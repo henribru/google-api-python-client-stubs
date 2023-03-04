@@ -81,6 +81,10 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     state: FeatureState
 
 @typing.type_check_only
+class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
+    identityservice: IdentityServiceMembershipSpec
+
+@typing.type_check_only
 class ConfigManagementBinauthzConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -267,6 +271,12 @@ class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False)
     templateLibraryInstalled: bool
 
 @typing.type_check_only
+class ConfigManagementPolicyControllerMigration(
+    typing_extensions.TypedDict, total=False
+):
+    stage: typing_extensions.Literal["STAGE_UNSPECIFIED", "ACM_MANAGED", "POCO_MANAGED"]
+
+@typing.type_check_only
 class ConfigManagementPolicyControllerMonitoring(
     typing_extensions.TypedDict, total=False
 ):
@@ -275,6 +285,7 @@ class ConfigManagementPolicyControllerMonitoring(
 @typing.type_check_only
 class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=False):
     deploymentState: ConfigManagementGatekeeperDeploymentState
+    migration: ConfigManagementPolicyControllerMigration
     version: ConfigManagementPolicyControllerVersion
 
 @typing.type_check_only
@@ -329,6 +340,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 class Feature(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
+    fleetDefaultMemberConfig: CommonFleetDefaultMemberConfigSpec
     labels: dict[str, typing.Any]
     membershipSpecs: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
@@ -493,15 +505,35 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
+    membershipBindings: _list[MembershipBinding]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Membership]
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
+    namespaces: _list[Namespace]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rbacrolebindings: _list[RBACRoleBinding]
+
+@typing.type_check_only
+class ListScopesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scopes: _list[Scope]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -527,10 +559,28 @@ class Membership(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MembershipBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    fleet: bool
+    name: str
+    scope: str
+    state: MembershipBindingLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class MembershipBindingLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     applianceCluster: ApplianceCluster
     edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
+    googleManaged: bool
     kubernetesMetadata: KubernetesMetadata
     kubernetesResource: KubernetesResource
     multiCloudCluster: MultiCloudCluster
@@ -594,6 +644,22 @@ class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
     configMembership: str
 
 @typing.type_check_only
+class Namespace(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    name: str
+    scope: str
+    state: NamespaceLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class NamespaceLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
 class OnPremCluster(typing_extensions.TypedDict, total=False):
     adminCluster: bool
     clusterMissing: bool
@@ -628,8 +694,15 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PolicyControllerBundleInstallSpec(typing_extensions.TypedDict, total=False):
+    exemptedNamespaces: _list[str]
+    management: typing_extensions.Literal["MANAGEMENT_UNSPECIFIED", "INSTALLED"]
+
+@typing.type_check_only
 class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
     auditIntervalSeconds: str
+    constraintViolationLimit: str
+    deploymentConfigs: dict[str, typing.Any]
     exemptableNamespaces: _list[str]
     installSpec: typing_extensions.Literal[
         "INSTALL_SPEC_UNSPECIFIED",
@@ -640,6 +713,7 @@ class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
     logDeniesEnabled: bool
     monitoring: PolicyControllerMonitoringConfig
     mutationEnabled: bool
+    policyContent: PolicyControllerPolicyContentSpec
     referentialRulesEnabled: bool
     templateLibraryConfig: PolicyControllerTemplateLibraryConfig
 
@@ -651,13 +725,14 @@ class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     componentStates: dict[str, typing.Any]
+    contentStates: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
         "INSTALLING",
         "ACTIVE",
         "UPDATING",
-        "DECOMISSIONING",
+        "DECOMMISSIONING",
         "CLUSTER_ERROR",
         "HUB_ERROR",
         "SUSPENDED",
@@ -676,15 +751,63 @@ class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
         "INSTALLING",
         "ACTIVE",
         "UPDATING",
-        "DECOMISSIONING",
+        "DECOMMISSIONING",
         "CLUSTER_ERROR",
         "HUB_ERROR",
         "SUSPENDED",
     ]
 
 @typing.type_check_only
+class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False):
+    bundles: dict[str, typing.Any]
+
+@typing.type_check_only
+class PolicyControllerPolicyControllerDeploymentConfig(
+    typing_extensions.TypedDict, total=False
+):
+    containerResources: PolicyControllerResourceRequirements
+    podAntiAffinity: bool
+    podTolerations: _list[PolicyControllerToleration]
+    replicaCount: str
+
+@typing.type_check_only
+class PolicyControllerResourceList(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
+class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=False):
+    limits: PolicyControllerResourceList
+    requests: PolicyControllerResourceList
+
+@typing.type_check_only
 class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
     included: bool
+
+@typing.type_check_only
+class PolicyControllerToleration(typing_extensions.TypedDict, total=False):
+    effect: str
+    key: str
+    operator: str
+    value: str
+
+@typing.type_check_only
+class RBACRoleBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    group: str
+    name: str
+    role: Role
+    state: RBACRoleBindingLifecycleState
+    uid: str
+    updateTime: str
+    user: str
+
+@typing.type_check_only
+class RBACRoleBindingLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
 
 @typing.type_check_only
 class ResourceManifest(typing_extensions.TypedDict, total=False):
@@ -698,11 +821,30 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
     v1beta1Crd: bool
 
 @typing.type_check_only
+class Role(typing_extensions.TypedDict, total=False):
+    predefinedRole: typing_extensions.Literal["UNKNOWN", "ADMIN", "EDIT", "VIEW"]
+
+@typing.type_check_only
+class Scope(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    name: str
+    state: ScopeLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class ScopeFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ScopeFeatureState(typing_extensions.TypedDict, total=False):
     state: FeatureState
+
+@typing.type_check_only
+class ScopeLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
 
 @typing.type_check_only
 class ServiceMeshAnalysisMessage(typing_extensions.TypedDict, total=False):

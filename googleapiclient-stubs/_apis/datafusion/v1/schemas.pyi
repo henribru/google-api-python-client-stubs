@@ -75,6 +75,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     enableRbac: bool
     enableStackdriverLogging: bool
     enableStackdriverMonitoring: bool
+    enableZoneSeparation: bool
     eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]

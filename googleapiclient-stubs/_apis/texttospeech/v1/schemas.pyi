@@ -29,6 +29,13 @@ class CustomVoiceParams(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    progressPercentage: float
+    startTime: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -55,6 +62,11 @@ class Status(typing_extensions.TypedDict, total=False):
 class SynthesisInput(typing_extensions.TypedDict, total=False):
     ssml: str
     text: str
+
+@typing.type_check_only
+class SynthesizeLongAudioMetadata(typing_extensions.TypedDict, total=False):
+    progressPercentage: float
+    startTime: str
 
 @typing.type_check_only
 class SynthesizeLongAudioRequest(typing_extensions.TypedDict, total=False):

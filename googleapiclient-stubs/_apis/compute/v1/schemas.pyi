@@ -128,6 +128,16 @@ class AliasIpRange(typing_extensions.TypedDict, total=False):
     subnetworkRangeName: str
 
 @typing.type_check_only
+class AllocationResourceStatus(typing_extensions.TypedDict, total=False):
+    specificSkuAllocation: AllocationResourceStatusSpecificSKUAllocation
+
+@typing.type_check_only
+class AllocationResourceStatusSpecificSKUAllocation(
+    typing_extensions.TypedDict, total=False
+):
+    sourceInstanceTemplateId: str
+
+@typing.type_check_only
 class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk(
     typing_extensions.TypedDict, total=False
 ):
@@ -152,6 +162,7 @@ class AllocationSpecificSKUReservation(typing_extensions.TypedDict, total=False)
     count: str
     inUseCount: str
     instanceProperties: AllocationSpecificSKUAllocationReservedInstanceProperties
+    sourceInstanceTemplate: str
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -453,6 +464,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
         "RANDOM",
         "RING_HASH",
         "ROUND_ROBIN",
+        "WEIGHTED_MAGLEV",
     ]
     logConfig: BackendServiceLogConfig
     maxStreamDuration: Duration
@@ -592,11 +604,16 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy(
         "RANDOM",
         "RING_HASH",
         "ROUND_ROBIN",
+        "WEIGHTED_MAGLEV",
     ]
 
 @typing.type_check_only
 class BackendServiceLogConfig(typing_extensions.TypedDict, total=False):
     enable: bool
+    optionalFields: _list[str]
+    optionalMode: typing_extensions.Literal[
+        "CUSTOM", "EXCLUDE_ALL_OPTIONAL", "INCLUDE_ALL_OPTIONAL"
+    ]
     sampleRate: float
 
 @typing.type_check_only
@@ -748,6 +765,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "ACCELERATOR_OPTIMIZED",
         "COMPUTE_OPTIMIZED",
         "COMPUTE_OPTIMIZED_C2D",
+        "COMPUTE_OPTIMIZED_C3",
         "GENERAL_PURPOSE",
         "GENERAL_PURPOSE_E2",
         "GENERAL_PURPOSE_N2",
@@ -1352,6 +1370,7 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
+        "SEV_SNP_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
         "WINDOWS",
@@ -2175,9 +2194,19 @@ class InstanceTemplate(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     properties: InstanceProperties
+    region: str
     selfLink: str
     sourceInstance: str
     sourceInstanceParams: SourceInstanceParams
+
+@typing.type_check_only
+class InstanceTemplateAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class InstanceTemplateList(typing_extensions.TypedDict, total=False):
@@ -2186,6 +2215,11 @@ class InstanceTemplateList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceTemplatesScopedList(typing_extensions.TypedDict, total=False):
+    instanceTemplates: _list[InstanceTemplate]
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -2253,6 +2287,11 @@ class InstancesSetMachineTypeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstancesSetMinCpuPlatformRequest(typing_extensions.TypedDict, total=False):
     minCpuPlatform: str
+
+@typing.type_check_only
+class InstancesSetNameRequest(typing_extensions.TypedDict, total=False):
+    currentName: str
+    name: str
 
 @typing.type_check_only
 class InstancesSetServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -3015,6 +3054,7 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     network: str
+    networkAttachment: str
     networkIP: str
     nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
     queueCount: int
@@ -3723,6 +3763,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "N2D_CPUS",
         "N2_CPUS",
         "NETWORKS",
+        "NETWORK_ATTACHMENTS",
         "NETWORK_ENDPOINT_GROUPS",
         "NETWORK_FIREWALL_POLICIES",
         "NODE_GROUPS",
@@ -4047,6 +4088,8 @@ class Reservation(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    resourcePolicies: dict[str, typing.Any]
+    resourceStatus: AllocationResourceStatus
     satisfiesPzs: bool
     selfLink: str
     shareSettings: ShareSettings
@@ -5858,6 +5901,7 @@ class WafExpressionSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WafExpressionSetExpression(typing_extensions.TypedDict, total=False):
     id: str
+    sensitivity: int
 
 @typing.type_check_only
 class WeightedBackendService(typing_extensions.TypedDict, total=False):

@@ -16,6 +16,40 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class LanguagesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ProductCertificationsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ProductCertificationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListProductCertificationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListProductCertificationsResponseHttpRequest,
+                    previous_response: ListProductCertificationsResponse,
+                ) -> ListProductCertificationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ProductCertification = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> ProductCertificationHttpRequest: ...
+
+            def productCertifications(self) -> ProductCertificationsResource: ...
+
+        @typing.type_check_only
         class ProductsResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, parent: str, name: str, **kwargs: typing.Any
@@ -65,6 +99,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
 
+        def languages(self) -> LanguagesResource: ...
         def products(self) -> ProductsResource: ...
 
     def new_batch_http_request(
@@ -90,6 +125,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class ListProductCertificationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListProductCertificationsResponse: ...
+
+@typing.type_check_only
 class ListProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -104,3 +147,11 @@ class ProductHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Product: ...
+
+@typing.type_check_only
+class ProductCertificationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ProductCertification: ...

@@ -38,111 +38,6 @@ class GoogleCloudPolicysimulatorV1ReplayResultsSummary(
     unchangedCount: int
 
 @typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1AccessStateDiff(
-    typing_extensions.TypedDict, total=False
-):
-    accessChange: typing_extensions.Literal[
-        "ACCESS_CHANGE_TYPE_UNSPECIFIED",
-        "NO_CHANGE",
-        "UNKNOWN_CHANGE",
-        "ACCESS_REVOKED",
-        "ACCESS_GAINED",
-        "ACCESS_MAYBE_REVOKED",
-        "ACCESS_MAYBE_GAINED",
-    ]
-    baseline: GoogleCloudPolicysimulatorV1beta1ExplainedAccess
-    simulated: GoogleCloudPolicysimulatorV1beta1ExplainedAccess
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1AccessTuple(
-    typing_extensions.TypedDict, total=False
-):
-    fullResourceName: str
-    permission: str
-    principal: str
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1BindingExplanation(
-    typing_extensions.TypedDict, total=False
-):
-    access: typing_extensions.Literal[
-        "ACCESS_STATE_UNSPECIFIED",
-        "GRANTED",
-        "NOT_GRANTED",
-        "UNKNOWN_CONDITIONAL",
-        "UNKNOWN_INFO_DENIED",
-    ]
-    condition: GoogleTypeExpr
-    memberships: dict[str, typing.Any]
-    relevance: typing_extensions.Literal[
-        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
-    ]
-    role: str
-    rolePermission: typing_extensions.Literal[
-        "ROLE_PERMISSION_UNSPECIFIED",
-        "ROLE_PERMISSION_INCLUDED",
-        "ROLE_PERMISSION_NOT_INCLUDED",
-        "ROLE_PERMISSION_UNKNOWN_INFO_DENIED",
-    ]
-    rolePermissionRelevance: typing_extensions.Literal[
-        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
-    ]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1BindingExplanationAnnotatedMembership(
-    typing_extensions.TypedDict, total=False
-):
-    membership: typing_extensions.Literal[
-        "MEMBERSHIP_UNSPECIFIED",
-        "MEMBERSHIP_INCLUDED",
-        "MEMBERSHIP_NOT_INCLUDED",
-        "MEMBERSHIP_UNKNOWN_INFO_DENIED",
-        "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
-    ]
-    relevance: typing_extensions.Literal[
-        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
-    ]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ExplainedAccess(
-    typing_extensions.TypedDict, total=False
-):
-    accessState: typing_extensions.Literal[
-        "ACCESS_STATE_UNSPECIFIED",
-        "GRANTED",
-        "NOT_GRANTED",
-        "UNKNOWN_CONDITIONAL",
-        "UNKNOWN_INFO_DENIED",
-    ]
-    errors: _list[GoogleRpcStatus]
-    policies: _list[GoogleCloudPolicysimulatorV1beta1ExplainedPolicy]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ExplainedPolicy(
-    typing_extensions.TypedDict, total=False
-):
-    access: typing_extensions.Literal[
-        "ACCESS_STATE_UNSPECIFIED",
-        "GRANTED",
-        "NOT_GRANTED",
-        "UNKNOWN_CONDITIONAL",
-        "UNKNOWN_INFO_DENIED",
-    ]
-    bindingExplanations: _list[GoogleCloudPolicysimulatorV1beta1BindingExplanation]
-    fullResourceName: str
-    policy: GoogleIamV1Policy
-    relevance: typing_extensions.Literal[
-        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
-    ]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ListReplayResultsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    replayResults: _list[GoogleCloudPolicysimulatorV1beta1ReplayResult]
-
-@typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1Replay(typing_extensions.TypedDict, total=False):
     config: GoogleCloudPolicysimulatorV1beta1ReplayConfig
     name: str
@@ -159,27 +54,10 @@ class GoogleCloudPolicysimulatorV1beta1ReplayConfig(
     policyOverlay: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ReplayDiff(
-    typing_extensions.TypedDict, total=False
-):
-    accessDiff: GoogleCloudPolicysimulatorV1beta1AccessStateDiff
-
-@typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     startTime: str
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ReplayResult(
-    typing_extensions.TypedDict, total=False
-):
-    accessTuple: GoogleCloudPolicysimulatorV1beta1AccessTuple
-    diff: GoogleCloudPolicysimulatorV1beta1ReplayDiff
-    error: GoogleRpcStatus
-    lastSeenDate: GoogleTypeDate
-    name: str
-    parent: str
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary(

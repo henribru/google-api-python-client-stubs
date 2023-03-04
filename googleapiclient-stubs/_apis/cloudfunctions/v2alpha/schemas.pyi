@@ -69,6 +69,7 @@ class Function(typing_extensions.TypedDict, total=False):
     description: str
     environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
     eventTrigger: EventTrigger
+    kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
     serviceConfig: ServiceConfig
@@ -86,7 +87,8 @@ class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
     downloadUrl: str
 
 @typing.type_check_only
-class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False): ...
+class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):

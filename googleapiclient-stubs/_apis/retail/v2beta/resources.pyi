@@ -206,6 +206,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2betaModelHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -401,6 +404,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2betaUserEvent = ...,
+                        writeAsync: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRetailV2betaUserEventHttpRequest: ...
 

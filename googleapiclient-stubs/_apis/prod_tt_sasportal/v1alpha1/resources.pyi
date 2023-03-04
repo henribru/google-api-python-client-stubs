@@ -296,6 +296,12 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> SasPortalCustomerHttpRequest: ...
+        def provisionDeployment(
+            self,
+            *,
+            body: SasPortalProvisionDeploymentRequest = ...,
+            **kwargs: typing.Any
+        ) -> SasPortalProvisionDeploymentResponseHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def devices(self) -> DevicesResource: ...
         def nodes(self) -> NodesResource: ...
@@ -743,6 +749,14 @@ class SasPortalPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SasPortalPolicy: ...
+
+@typing.type_check_only
+class SasPortalProvisionDeploymentResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SasPortalProvisionDeploymentResponse: ...
 
 @typing.type_check_only
 class SasPortalTestPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -496,10 +496,20 @@ class GoogleCloudApigeeV1DeploymentChangeReportRoutingDeployment(
 class GoogleCloudApigeeV1DeploymentConfig(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
     basePath: str
+    deploymentGroups: _list[str]
+    endpoints: dict[str, typing.Any]
     location: str
     name: str
     proxyUid: str
     serviceAccount: str
+    uid: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DeploymentGroupConfig(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    revisionId: str
     uid: str
 
 @typing.type_check_only
@@ -603,6 +613,11 @@ class GoogleCloudApigeeV1EndpointAttachment(typing_extensions.TypedDict, total=F
     ]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1EndpointChainingRule(typing_extensions.TypedDict, total=False):
+    deploymentGroup: str
+    proxyIds: _list[str]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1EntityMetadata(typing_extensions.TypedDict, total=False):
     createdAt: str
     lastModifiedAt: str
@@ -634,7 +649,9 @@ class GoogleCloudApigeeV1EnvironmentConfig(typing_extensions.TypedDict, total=Fa
     createTime: str
     dataCollectors: _list[GoogleCloudApigeeV1DataCollectorConfig]
     debugMask: GoogleCloudApigeeV1DebugMask
+    deploymentGroups: _list[GoogleCloudApigeeV1DeploymentGroupConfig]
     deployments: _list[GoogleCloudApigeeV1DeploymentConfig]
+    envScopedRevisionId: str
     featureFlags: dict[str, typing.Any]
     flowhooks: _list[GoogleCloudApigeeV1FlowHookConfig]
     forwardProxyUri: str
@@ -674,7 +691,9 @@ class GoogleCloudApigeeV1EnvironmentGroupAttachment(
 class GoogleCloudApigeeV1EnvironmentGroupConfig(
     typing_extensions.TypedDict, total=False
 ):
+    endpointChainingRules: _list[GoogleCloudApigeeV1EndpointChainingRule]
     hostnames: _list[str]
+    location: str
     name: str
     revisionId: str
     routingRules: _list[GoogleCloudApigeeV1RoutingRule]
@@ -1461,8 +1480,10 @@ class GoogleCloudApigeeV1RevisionStatus(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudApigeeV1RoutingRule(typing_extensions.TypedDict, total=False):
     basepath: str
+    deploymentGroup: str
     envGroupRevision: str
     environment: str
+    otherTargets: _list[str]
     receiver: str
     updateTime: str
 

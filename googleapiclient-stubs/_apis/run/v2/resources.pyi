@@ -163,6 +163,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                def wait(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleLongrunningWaitOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
             class ServicesResource(googleapiclient.discovery.Resource):

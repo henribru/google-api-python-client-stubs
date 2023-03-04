@@ -121,6 +121,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "PSC_PUBLISHED_SERVICE",
         "PSC_GOOGLE_API",
         "PSC_VPC_SC",
+        "SERVERLESS_NEG",
     ]
 
 @typing.type_check_only

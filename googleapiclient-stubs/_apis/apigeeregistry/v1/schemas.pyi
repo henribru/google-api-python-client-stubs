@@ -59,14 +59,17 @@ class ApiVersion(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     name: str
+    primarySpec: str
     state: str
     updateTime: str
 
 @typing.type_check_only
 class Artifact(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     contents: str
     createTime: str
     hash: str
+    labels: dict[str, typing.Any]
     mimeType: str
     name: str
     sizeBytes: int
@@ -77,6 +80,12 @@ class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class Build(typing_extensions.TypedDict, total=False):
+    commitId: str
+    commitTime: str
+    repo: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -104,6 +113,7 @@ class HttpBody(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    build: Build
     config: Config
     createTime: str
     name: str

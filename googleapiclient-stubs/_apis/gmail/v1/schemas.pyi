@@ -23,6 +23,28 @@ class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
     removeLabelIds: _list[str]
 
 @typing.type_check_only
+class CseIdentity(typing_extensions.TypedDict, total=False):
+    emailAddress: str
+    primaryKeyPairId: str
+
+@typing.type_check_only
+class CseKeyPair(typing_extensions.TypedDict, total=False):
+    disableTime: str
+    enablementState: typing_extensions.Literal[
+        "stateUnspecified", "enabled", "disabled"
+    ]
+    keyPairId: str
+    pem: str
+    pkcs7: str
+    privateKeyMetadata: _list[CsePrivateKeyMetadata]
+    subjectEmailAddresses: _list[str]
+
+@typing.type_check_only
+class CsePrivateKeyMetadata(typing_extensions.TypedDict, total=False):
+    kaclsKeyMetadata: KaclsKeyMetadata
+    privateKeyMetadataId: str
+
+@typing.type_check_only
 class Delegate(typing_extensions.TypedDict, total=False):
     delegateEmail: str
     verificationStatus: typing_extensions.Literal[
@@ -30,9 +52,15 @@ class Delegate(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DisableCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Draft(typing_extensions.TypedDict, total=False):
     id: str
     message: Message
+
+@typing.type_check_only
+class EnableCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
@@ -109,6 +137,11 @@ class ImapSettings(typing_extensions.TypedDict, total=False):
     maxFolderSize: int
 
 @typing.type_check_only
+class KaclsKeyMetadata(typing_extensions.TypedDict, total=False):
+    kaclsData: str
+    kaclsUri: str
+
+@typing.type_check_only
 class Label(typing_extensions.TypedDict, total=False):
     color: LabelColor
     id: str
@@ -131,6 +164,16 @@ class LabelColor(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LanguageSettings(typing_extensions.TypedDict, total=False):
     displayLanguage: str
+
+@typing.type_check_only
+class ListCseIdentitiesResponse(typing_extensions.TypedDict, total=False):
+    cseIdentities: _list[CseIdentity]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListCseKeyPairsResponse(typing_extensions.TypedDict, total=False):
+    cseKeyPairs: _list[CseKeyPair]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListDelegatesResponse(typing_extensions.TypedDict, total=False):
@@ -221,6 +264,9 @@ class ModifyMessageRequest(typing_extensions.TypedDict, total=False):
 class ModifyThreadRequest(typing_extensions.TypedDict, total=False):
     addLabelIds: _list[str]
     removeLabelIds: _list[str]
+
+@typing.type_check_only
+class ObliterateCseKeyPairRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PopSettings(typing_extensions.TypedDict, total=False):

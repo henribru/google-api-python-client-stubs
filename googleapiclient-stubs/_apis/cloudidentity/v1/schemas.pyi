@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddIdpCredentialOperationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AddIdpCredentialRequest(typing_extensions.TypedDict, total=False):
+    pemData: str
+
+@typing.type_check_only
 class CancelUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -15,13 +22,42 @@ class CheckTransitiveMembershipResponse(typing_extensions.TypedDict, total=False
 class CreateGroupMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CreateInboundSamlSsoProfileOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class CreateInboundSsoAssignmentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class CreateMembershipMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteGroupMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteIdpCredentialOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class DeleteInboundSamlSsoProfileOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class DeleteInboundSsoAssignmentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class DeleteMembershipMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DsaPublicKeyInfo(typing_extensions.TypedDict, total=False):
+    keySize: int
 
 @typing.type_check_only
 class DynamicGroupMetadata(typing_extensions.TypedDict, total=False):
@@ -380,12 +416,55 @@ class GroupRelation(typing_extensions.TypedDict, total=False):
     roles: _list[TransitiveMembershipRole]
 
 @typing.type_check_only
+class IdpCredential(typing_extensions.TypedDict, total=False):
+    dsaKeyInfo: DsaPublicKeyInfo
+    name: str
+    rsaKeyInfo: RsaPublicKeyInfo
+    updateTime: str
+
+@typing.type_check_only
+class InboundSamlSsoProfile(typing_extensions.TypedDict, total=False):
+    customer: str
+    displayName: str
+    idpConfig: SamlIdpConfig
+    name: str
+    spConfig: SamlSpConfig
+
+@typing.type_check_only
+class InboundSsoAssignment(typing_extensions.TypedDict, total=False):
+    customer: str
+    name: str
+    rank: int
+    samlSsoInfo: SamlSsoInfo
+    signInBehavior: SignInBehavior
+    ssoMode: typing_extensions.Literal[
+        "SSO_MODE_UNSPECIFIED", "SSO_OFF", "SAML_SSO", "DOMAIN_WIDE_SAML_IF_ENABLED"
+    ]
+    targetGroup: str
+    targetOrgUnit: str
+
+@typing.type_check_only
 class IsInvitableUserResponse(typing_extensions.TypedDict, total=False):
     isInvitableUser: bool
 
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListIdpCredentialsResponse(typing_extensions.TypedDict, total=False):
+    idpCredentials: _list[IdpCredential]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInboundSamlSsoProfilesResponse(typing_extensions.TypedDict, total=False):
+    inboundSamlSsoProfiles: _list[InboundSamlSsoProfile]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInboundSsoAssignmentsResponse(typing_extensions.TypedDict, total=False):
+    inboundSsoAssignments: _list[InboundSsoAssignment]
     nextPageToken: str
 
 @typing.type_check_only
@@ -485,6 +564,26 @@ class RestrictionEvaluations(typing_extensions.TypedDict, total=False):
     memberRestrictionEvaluation: MembershipRoleRestrictionEvaluation
 
 @typing.type_check_only
+class RsaPublicKeyInfo(typing_extensions.TypedDict, total=False):
+    keySize: int
+
+@typing.type_check_only
+class SamlIdpConfig(typing_extensions.TypedDict, total=False):
+    changePasswordUri: str
+    entityId: str
+    logoutRedirectUri: str
+    singleSignOnServiceUri: str
+
+@typing.type_check_only
+class SamlSpConfig(typing_extensions.TypedDict, total=False):
+    assertionConsumerServiceUri: str
+    entityId: str
+
+@typing.type_check_only
+class SamlSsoInfo(typing_extensions.TypedDict, total=False):
+    inboundSamlSsoProfile: str
+
+@typing.type_check_only
 class SearchGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
     nextPageToken: str
@@ -508,6 +607,12 @@ class SecuritySettings(typing_extensions.TypedDict, total=False):
 class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SignInBehavior(typing_extensions.TypedDict, total=False):
+    redirectCondition: typing_extensions.Literal[
+        "REDIRECT_CONDITION_UNSPECIFIED", "NEVER"
+    ]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -519,6 +624,16 @@ class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateGroupMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateInboundSamlSsoProfileOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UpdateInboundSsoAssignmentOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class UpdateMembershipMetadata(typing_extensions.TypedDict, total=False): ...

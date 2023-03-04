@@ -99,6 +99,7 @@ class GoogleCloudRunV2EnvVarSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    cancelledCount: int
     completionTime: str
     conditions: _list[GoogleCloudRunV2Condition]
     createTime: str
@@ -119,10 +120,12 @@ class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
         "GA",
         "DEPRECATED",
     ]
+    logUri: str
     name: str
     observedGeneration: str
     parallelism: int
     reconciling: bool
+    retriedCount: int
     runningCount: int
     startTime: str
     succeededCount: int
@@ -154,6 +157,7 @@ class GoogleCloudRunV2GRPCAction(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2HTTPGetAction(typing_extensions.TypedDict, total=False):
     httpHeaders: _list[GoogleCloudRunV2HTTPHeader]
     path: str
+    port: int
 
 @typing.type_check_only
 class GoogleCloudRunV2HTTPHeader(typing_extensions.TypedDict, total=False):
@@ -243,6 +247,10 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     encryptionKey: str
+    encryptionKeyRevocationAction: typing_extensions.Literal[
+        "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED", "PREVENT_NEW", "SHUTDOWN"
+    ]
+    encryptionKeyShutdownDuration: str
     etag: str
     executionEnvironment: typing_extensions.Literal[
         "EXECUTION_ENVIRONMENT_UNSPECIFIED",
@@ -387,6 +395,7 @@ class GoogleCloudRunV2Task(typing_extensions.TypedDict, total=False):
     job: str
     labels: dict[str, typing.Any]
     lastAttemptResult: GoogleCloudRunV2TaskAttemptResult
+    logUri: str
     maxRetries: int
     name: str
     observedGeneration: str
@@ -517,6 +526,10 @@ class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleLongrunningWaitOperationRequest(typing_extensions.TypedDict, total=False):
+    timeout: str
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

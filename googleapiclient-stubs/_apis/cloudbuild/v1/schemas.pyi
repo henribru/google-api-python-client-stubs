@@ -382,7 +382,7 @@ class GitFileSource(typing_extensions.TypedDict, total=False):
     githubEnterpriseConfig: str
     path: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER"
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
     ]
     revision: str
     uri: str
@@ -475,12 +475,8 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
     githubEnterpriseConfig: str
     ref: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER"
+        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
     ]
-    uri: str
-
-@typing.type_check_only
-class HTTPDelivery(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
@@ -553,40 +549,6 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     ]
     peeredNetwork: str
     peeredNetworkIpRange: str
-
-@typing.type_check_only
-class Notification(typing_extensions.TypedDict, total=False):
-    filter: str
-    httpDelivery: HTTPDelivery
-    slackDelivery: SlackDelivery
-    smtpDelivery: SMTPDelivery
-    structDelivery: dict[str, typing.Any]
-
-@typing.type_check_only
-class NotifierConfig(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    kind: str
-    metadata: NotifierMetadata
-    spec: NotifierSpec
-
-@typing.type_check_only
-class NotifierMetadata(typing_extensions.TypedDict, total=False):
-    name: str
-    notifier: str
-
-@typing.type_check_only
-class NotifierSecret(typing_extensions.TypedDict, total=False):
-    name: str
-    value: str
-
-@typing.type_check_only
-class NotifierSecretRef(typing_extensions.TypedDict, total=False):
-    secretRef: str
-
-@typing.type_check_only
-class NotifierSpec(typing_extensions.TypedDict, total=False):
-    notification: Notification
-    secrets: _list[NotifierSecret]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -717,15 +679,6 @@ class RunBuildTriggerRequest(typing_extensions.TypedDict, total=False):
     triggerId: str
 
 @typing.type_check_only
-class SMTPDelivery(typing_extensions.TypedDict, total=False):
-    fromAddress: str
-    password: NotifierSecretRef
-    port: str
-    recipientAddresses: _list[str]
-    senderAddress: str
-    server: str
-
-@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     secretEnv: dict[str, typing.Any]
@@ -743,10 +696,6 @@ class Secrets(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
     service: str
-
-@typing.type_check_only
-class SlackDelivery(typing_extensions.TypedDict, total=False):
-    webhookUri: NotifierSecretRef
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

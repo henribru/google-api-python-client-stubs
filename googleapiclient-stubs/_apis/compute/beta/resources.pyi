@@ -2014,6 +2014,23 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InstanceTemplatesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> InstanceTemplateAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: InstanceTemplateAggregatedListHttpRequest,
+            previous_response: InstanceTemplateAggregatedList,
+        ) -> InstanceTemplateAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -3564,6 +3581,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def simulateMaintenanceEvent(
+            self,
+            *,
+            project: str,
+            zone: str,
+            nodeGroup: str,
+            body: NodeGroupsSimulateMaintenanceEventRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def testIamPermissions(
             self,
             *,
@@ -4969,6 +4996,52 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class RegionInstanceTemplatesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceTemplate: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceTemplate: str,
+            **kwargs: typing.Any
+        ) -> InstanceTemplateHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: InstanceTemplate = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> InstanceTemplateListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: InstanceTemplateListHttpRequest,
+            previous_response: InstanceTemplateList,
+        ) -> InstanceTemplateListHttpRequest | None: ...
+
+    @typing.type_check_only
     class RegionInstancesResource(googleapiclient.discovery.Resource):
         def bulkInsert(
             self,
@@ -5952,6 +6025,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: ResourcePolicyListHttpRequest,
             previous_response: ResourcePolicyList,
         ) -> ResourcePolicyListHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            resourcePolicy: str,
+            body: ResourcePolicy = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -7779,6 +7863,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
+    def regionInstanceTemplates(self) -> RegionInstanceTemplatesResource: ...
     def regionInstances(self) -> RegionInstancesResource: ...
     def regionNetworkEndpointGroups(self) -> RegionNetworkEndpointGroupsResource: ...
     def regionNetworkFirewallPolicies(
@@ -8345,6 +8430,14 @@ class InstanceTemplateHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> InstanceTemplate: ...
+
+@typing.type_check_only
+class InstanceTemplateAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> InstanceTemplateAggregatedList: ...
 
 @typing.type_check_only
 class InstanceTemplateListHttpRequest(googleapiclient.http.HttpRequest):

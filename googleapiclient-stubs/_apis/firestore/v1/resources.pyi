@@ -284,6 +284,16 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 databaseId: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self,
+                *,
+                name: str,
+                allowMissing: bool = ...,
+                etag: str = ...,
+                freeId: bool = ...,
+                validateOnly: bool = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def exportDocuments(
                 self,
                 *,

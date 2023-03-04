@@ -275,7 +275,7 @@ class Money(typing_extensions.TypedDict, total=False):
 class Operation(typing_extensions.TypedDict, total=False):
     consumerId: str
     endTime: str
-    importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG"]
+    importance: typing_extensions.Literal["LOW", "HIGH", "DEBUG", "PROMOTED"]
     labels: dict[str, typing.Any]
     logEntries: _list[LogEntry]
     metricValueSets: _list[MetricValueSet]
@@ -347,9 +347,7 @@ class QuotaOperation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QuotaProperties(typing_extensions.TypedDict, total=False):
-    quotaMode: typing_extensions.Literal[
-        "ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK", "RELEASE"
-    ]
+    quotaMode: typing_extensions.Literal["ACQUIRE", "ACQUIRE_BEST_EFFORT", "CHECK"]
 
 @typing.type_check_only
 class ReportError(typing_extensions.TypedDict, total=False):

@@ -191,7 +191,10 @@ class DataprocMetricConfig(typing_extensions.TypedDict, total=False):
     metrics: _list[Metric]
 
 @typing.type_check_only
-class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False): ...
+class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False):
+    diagnosisInterval: Interval
+    job: str
+    yarnApplicationId: str
 
 @typing.type_check_only
 class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
@@ -215,6 +218,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     gcePdKmsKeyName: str
+    kmsKey: str
 
 @typing.type_check_only
 class EndpointConfig(typing_extensions.TypedDict, total=False):
@@ -233,7 +237,9 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
     networkTags: _list[str]
     networkUri: str
     serviceAccount: str
+    stagingBucket: str
     subnetworkUri: str
+    ttl: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -373,6 +379,11 @@ class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=Fals
     parameters: dict[str, typing.Any]
     requestId: str
     version: int
+
+@typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
@@ -537,6 +548,7 @@ class Metric(typing_extensions.TypedDict, total=False):
         "YARN",
         "SPARK_HISTORY_SERVER",
         "HIVESERVER2",
+        "HIVEMETASTORE",
     ]
 
 @typing.type_check_only

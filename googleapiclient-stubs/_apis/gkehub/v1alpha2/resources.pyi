@@ -42,7 +42,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def generateConnectManifest(
                     self,

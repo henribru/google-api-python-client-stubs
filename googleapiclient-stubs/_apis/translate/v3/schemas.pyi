@@ -14,6 +14,7 @@ class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
+    customizedAttribution: str
     formatConversions: dict[str, typing.Any]
     glossaries: dict[str, typing.Any]
     inputConfigs: _list[BatchDocumentInputConfig]
@@ -34,6 +35,27 @@ class BatchTranslateTextRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Dataset(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    exampleCount: int
+    name: str
+    sourceLanguageCode: str
+    targetLanguageCode: str
+    testExampleCount: int
+    trainExampleCount: int
+    updateTime: str
+    validateExampleCount: int
+
+@typing.type_check_only
+class DatasetInputConfig(typing_extensions.TypedDict, total=False):
+    inputFiles: _list[InputFile]
+
+@typing.type_check_only
+class DatasetOutputConfig(typing_extensions.TypedDict, total=False):
+    gcsDestination: GcsOutputDestination
 
 @typing.type_check_only
 class DetectLanguageRequest(typing_extensions.TypedDict, total=False):
@@ -72,7 +94,26 @@ class DocumentTranslation(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Example(typing_extensions.TypedDict, total=False):
+    name: str
+    sourceText: str
+    targetText: str
+    usage: str
+
+@typing.type_check_only
+class ExportDataRequest(typing_extensions.TypedDict, total=False):
+    outputConfig: DatasetOutputConfig
+
+@typing.type_check_only
 class GcsDestination(typing_extensions.TypedDict, total=False):
+    outputUriPrefix: str
+
+@typing.type_check_only
+class GcsInputSource(typing_extensions.TypedDict, total=False):
+    inputUri: str
+
+@typing.type_check_only
+class GcsOutputDestination(typing_extensions.TypedDict, total=False):
     outputUriPrefix: str
 
 @typing.type_check_only
@@ -116,9 +157,18 @@ class GlossaryTermsSet(typing_extensions.TypedDict, total=False):
     terms: _list[GlossaryTerm]
 
 @typing.type_check_only
+class ImportDataRequest(typing_extensions.TypedDict, total=False):
+    inputConfig: DatasetInputConfig
+
+@typing.type_check_only
 class InputConfig(typing_extensions.TypedDict, total=False):
     gcsSource: GcsSource
     mimeType: str
+
+@typing.type_check_only
+class InputFile(typing_extensions.TypedDict, total=False):
+    gcsSource: GcsInputSource
+    usage: str
 
 @typing.type_check_only
 class LanguageCodePair(typing_extensions.TypedDict, total=False):
@@ -128,6 +178,16 @@ class LanguageCodePair(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LanguageCodesSet(typing_extensions.TypedDict, total=False):
     languageCodes: _list[str]
+
+@typing.type_check_only
+class ListDatasetsResponse(typing_extensions.TypedDict, total=False):
+    datasets: _list[Dataset]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListExamplesResponse(typing_extensions.TypedDict, total=False):
+    examples: _list[Example]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListGlossariesResponse(typing_extensions.TypedDict, total=False):
@@ -145,6 +205,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListModelsResponse(typing_extensions.TypedDict, total=False):
+    models: _list[Model]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -156,6 +221,20 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class Model(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataset: str
+    deployTime: str
+    displayName: str
+    name: str
+    sourceLanguageCode: str
+    targetLanguageCode: str
+    testExampleCount: int
+    trainExampleCount: int
+    updateTime: str
+    validateExampleCount: int
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -191,6 +270,7 @@ class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
+    enableShadowRemovalNativePdf: bool
     glossaryConfig: TranslateTextGlossaryConfig
     isTranslateNativePdfOnly: bool
     labels: dict[str, typing.Any]

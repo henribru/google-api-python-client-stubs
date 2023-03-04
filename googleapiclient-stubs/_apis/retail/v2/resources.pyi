@@ -187,6 +187,62 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudRetailV2ControlHttpRequest: ...
 
                 @typing.type_check_only
+                class ModelsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudRetailV2Model = ...,
+                        dryRun: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2ListModelsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudRetailV2ListModelsResponseHttpRequest,
+                        previous_response: GoogleCloudRetailV2ListModelsResponse,
+                    ) -> GoogleCloudRetailV2ListModelsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2Model = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2ModelHttpRequest: ...
+                    def pause(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2PauseModelRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2ModelHttpRequest: ...
+                    def resume(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2ResumeModelRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2ModelHttpRequest: ...
+                    def tune(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2TuneModelRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -338,6 +394,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2UserEvent = ...,
+                        writeAsync: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRetailV2UserEventHttpRequest: ...
 
@@ -410,6 +467,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 def branches(self) -> BranchesResource: ...
                 def completionData(self) -> CompletionDataResource: ...
                 def controls(self) -> ControlsResource: ...
+                def models(self) -> ModelsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def placements(self) -> PlacementsResource: ...
                 def servingConfigs(self) -> ServingConfigsResource: ...
@@ -556,6 +614,16 @@ class GoogleCloudRetailV2ListControlsResponseHttpRequest(
     ) -> GoogleCloudRetailV2ListControlsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2ListModelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2ListModelsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2ListProductsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -574,6 +642,14 @@ class GoogleCloudRetailV2ListServingConfigsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2ListServingConfigsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2ModelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2Model: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2PredictResponseHttpRequest(googleapiclient.http.HttpRequest):

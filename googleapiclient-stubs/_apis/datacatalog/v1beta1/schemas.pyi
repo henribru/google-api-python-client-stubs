@@ -29,6 +29,46 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1ImportEntriesMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: _list[Status]
+    state: typing_extensions.Literal[
+        "IMPORT_STATE_UNSPECIFIED",
+        "IMPORT_QUEUED",
+        "IMPORT_IN_PROGRESS",
+        "IMPORT_DONE",
+        "IMPORT_OBSOLETE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ImportEntriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deletedEntriesCount: str
+    upsertedEntriesCount: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ReconcileTagsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: dict[str, typing.Any]
+    state: typing_extensions.Literal[
+        "RECONCILIATION_STATE_UNSPECIFIED",
+        "RECONCILIATION_QUEUED",
+        "RECONCILIATION_IN_PROGRESS",
+        "RECONCILIATION_DONE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ReconcileTagsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    createdTagsCount: str
+    deletedTagsCount: str
+    updatedTagsCount: str
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1beta1BigQueryDateShardedSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -323,7 +363,19 @@ class GoogleCloudDatacatalogV1beta1Taxonomy(typing_extensions.TypedDict, total=F
     displayName: str
     name: str
     policyTagCount: int
+    service: GoogleCloudDatacatalogV1beta1TaxonomyService
     taxonomyTimestamps: GoogleCloudDatacatalogV1beta1SystemTimestamps
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1beta1TaxonomyService(
+    typing_extensions.TypedDict, total=False
+):
+    identity: str
+    name: typing_extensions.Literal[
+        "MANAGING_SYSTEM_UNSPECIFIED",
+        "MANAGING_SYSTEM_DATAPLEX",
+        "MANAGING_SYSTEM_OTHER",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1UsageSignal(
@@ -352,6 +404,12 @@ class Policy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

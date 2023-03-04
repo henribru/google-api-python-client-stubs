@@ -143,6 +143,14 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                             body: QueryInstantRequest = ...,
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def query_exemplars(
+                            self,
+                            *,
+                            name: str,
+                            location: str,
+                            body: QueryExemplarsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def query_range(
                             self,
                             *,

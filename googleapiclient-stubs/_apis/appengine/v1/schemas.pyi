@@ -202,6 +202,11 @@ class FirewallRule(typing_extensions.TypedDict, total=False):
     sourceRange: str
 
 @typing.type_check_only
+class FlexibleRuntimeSettings(typing_extensions.TypedDict, total=False):
+    operatingSystem: str
+    runtimeVersion: str
+
+@typing.type_check_only
 class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=False):
     flexibleEnvironmentAvailable: bool
     searchApiAvailable: bool
@@ -599,6 +604,7 @@ class Version(typing_extensions.TypedDict, total=False):
     env: str
     envVariables: dict[str, typing.Any]
     errorHandlers: _list[ErrorHandler]
+    flexibleRuntimeSettings: FlexibleRuntimeSettings
     handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str

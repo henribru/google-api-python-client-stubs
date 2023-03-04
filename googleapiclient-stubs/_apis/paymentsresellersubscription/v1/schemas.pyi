@@ -254,6 +254,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
     typing_extensions.TypedDict, total=False
 ):
+    amount: GoogleCloudPaymentsResellerSubscriptionV1Amount
     description: str
     lineItemFreeTrialEndTime: str
     lineItemPromotionSpecs: _list[

@@ -58,6 +58,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             body: Rollout = ...,
                             requestId: str = ...,
                             rolloutId: str = ...,
+                            startingPhaseId: str = ...,
                             validateOnly: bool = ...,
                             **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...

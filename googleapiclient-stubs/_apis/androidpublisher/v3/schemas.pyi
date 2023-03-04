@@ -221,6 +221,7 @@ class DeviceTierConfig(typing_extensions.TypedDict, total=False):
     deviceGroups: _list[DeviceGroup]
     deviceTierConfigId: str
     deviceTierSet: DeviceTierSet
+    userCountrySets: _list[UserCountrySet]
 
 @typing.type_check_only
 class DeviceTierSet(typing_extensions.TypedDict, total=False):
@@ -847,6 +848,11 @@ class UserComment(typing_extensions.TypedDict, total=False):
     text: str
     thumbsDownCount: int
     thumbsUpCount: int
+
+@typing.type_check_only
+class UserCountrySet(typing_extensions.TypedDict, total=False):
+    countryCodes: _list[str]
+    name: str
 
 @typing.type_check_only
 class UserInitiatedCancellation(typing_extensions.TypedDict, total=False):

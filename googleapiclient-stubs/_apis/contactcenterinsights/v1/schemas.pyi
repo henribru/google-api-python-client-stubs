@@ -429,8 +429,18 @@ class GoogleCloudContactcenterinsightsV1IngestConversationsMetadata(
 ):
     createTime: str
     endTime: str
+    ingestConversationsStats: GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStats
     partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1IngestConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStats(
+    typing_extensions.TypedDict, total=False
+):
+    duplicatesSkippedCount: int
+    failedIngestCount: int
+    processedObjectCount: int
+    successfulIngestCount: int
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IngestConversationsRequest(
@@ -874,8 +884,18 @@ class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadata(
 ):
     createTime: str
     endTime: str
+    ingestConversationsStats: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStats
     partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStats(
+    typing_extensions.TypedDict, total=False
+):
+    duplicatesSkippedCount: int
+    failedIngestCount: int
+    processedObjectCount: int
+    successfulIngestCount: int
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest(

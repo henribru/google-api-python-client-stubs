@@ -14,58 +14,6 @@ _list = list
 @typing.type_check_only
 class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class DmsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class ConversationsResource(googleapiclient.discovery.Resource):
-            def messages(
-                self,
-                *,
-                parent: str,
-                body: Message = ...,
-                messageId: str = ...,
-                messageReplyOption: typing_extensions.Literal[
-                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                    "REPLY_MESSAGE_OR_FAIL",
-                ] = ...,
-                requestId: str = ...,
-                threadKey: str = ...,
-                **kwargs: typing.Any
-            ) -> MessageHttpRequest: ...
-
-        def messages(
-            self,
-            *,
-            parent: str,
-            body: Message = ...,
-            messageId: str = ...,
-            messageReplyOption: typing_extensions.Literal[
-                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                "REPLY_MESSAGE_OR_FAIL",
-            ] = ...,
-            requestId: str = ...,
-            threadKey: str = ...,
-            **kwargs: typing.Any
-        ) -> MessageHttpRequest: ...
-        def webhooks(
-            self,
-            *,
-            parent: str,
-            body: Message = ...,
-            messageId: str = ...,
-            messageReplyOption: typing_extensions.Literal[
-                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                "REPLY_MESSAGE_OR_FAIL",
-            ] = ...,
-            requestId: str = ...,
-            threadKey: str = ...,
-            **kwargs: typing.Any
-        ) -> MessageHttpRequest: ...
-        def conversations(self) -> ConversationsResource: ...
-
-    @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
@@ -73,58 +21,6 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def download_media(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
-
-    @typing.type_check_only
-    class RoomsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class ConversationsResource(googleapiclient.discovery.Resource):
-            def messages(
-                self,
-                *,
-                parent: str,
-                body: Message = ...,
-                messageId: str = ...,
-                messageReplyOption: typing_extensions.Literal[
-                    "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                    "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                    "REPLY_MESSAGE_OR_FAIL",
-                ] = ...,
-                requestId: str = ...,
-                threadKey: str = ...,
-                **kwargs: typing.Any
-            ) -> MessageHttpRequest: ...
-
-        def messages(
-            self,
-            *,
-            parent: str,
-            body: Message = ...,
-            messageId: str = ...,
-            messageReplyOption: typing_extensions.Literal[
-                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                "REPLY_MESSAGE_OR_FAIL",
-            ] = ...,
-            requestId: str = ...,
-            threadKey: str = ...,
-            **kwargs: typing.Any
-        ) -> MessageHttpRequest: ...
-        def webhooks(
-            self,
-            *,
-            parent: str,
-            body: Message = ...,
-            messageId: str = ...,
-            messageReplyOption: typing_extensions.Literal[
-                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                "REPLY_MESSAGE_OR_FAIL",
-            ] = ...,
-            requestId: str = ...,
-            threadKey: str = ...,
-            **kwargs: typing.Any
-        ) -> MessageHttpRequest: ...
-        def conversations(self) -> ConversationsResource: ...
 
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
@@ -203,21 +99,6 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             previous_request: ListSpacesResponseHttpRequest,
             previous_response: ListSpacesResponse,
         ) -> ListSpacesResponseHttpRequest | None: ...
-        def webhooks(
-            self,
-            *,
-            parent: str,
-            body: Message = ...,
-            messageId: str = ...,
-            messageReplyOption: typing_extensions.Literal[
-                "MESSAGE_REPLY_OPTION_UNSPECIFIED",
-                "REPLY_MESSAGE_FALLBACK_TO_NEW_THREAD",
-                "REPLY_MESSAGE_OR_FAIL",
-            ] = ...,
-            requestId: str = ...,
-            threadKey: str = ...,
-            **kwargs: typing.Any
-        ) -> MessageHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
 
@@ -233,9 +114,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def dms(self) -> DmsResource: ...
     def media(self) -> MediaResource: ...
-    def rooms(self) -> RoomsResource: ...
     def spaces(self) -> SpacesResource: ...
 
 @typing.type_check_only

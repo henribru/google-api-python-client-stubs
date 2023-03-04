@@ -18,6 +18,63 @@ class TranslateResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DatasetsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ExamplesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListExamplesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListExamplesResponseHttpRequest,
+                        previous_response: ListExamplesResponse,
+                    ) -> ListExamplesResponseHttpRequest | None: ...
+
+                def create(
+                    self, *, parent: str, body: Dataset = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def exportData(
+                    self,
+                    *,
+                    dataset: str,
+                    body: ExportDataRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DatasetHttpRequest: ...
+                def importData(
+                    self,
+                    *,
+                    dataset: str,
+                    body: ImportDataRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDatasetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDatasetsResponseHttpRequest,
+                    previous_response: ListDatasetsResponse,
+                ) -> ListDatasetsResponseHttpRequest | None: ...
+                def examples(self) -> ExamplesResource: ...
+
+            @typing.type_check_only
             class GlossariesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class GlossaryEntriesResource(googleapiclient.discovery.Resource):
@@ -87,6 +144,32 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def glossaryEntries(self) -> GlossaryEntriesResource: ...
+
+            @typing.type_check_only
+            class ModelsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: Model = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ModelHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListModelsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListModelsResponseHttpRequest,
+                    previous_response: ListModelsResponse,
+                ) -> ListModelsResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -185,7 +268,9 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 body: TranslateTextRequest = ...,
                 **kwargs: typing.Any
             ) -> TranslateTextResponseHttpRequest: ...
+            def datasets(self) -> DatasetsResource: ...
             def glossaries(self) -> GlossariesResource: ...
+            def models(self) -> ModelsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def detectLanguage(
@@ -223,6 +308,14 @@ class TranslateResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class DatasetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Dataset: ...
+
+@typing.type_check_only
 class DetectLanguageResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -255,6 +348,22 @@ class GlossaryEntryHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GlossaryEntry: ...
 
 @typing.type_check_only
+class ListDatasetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDatasetsResponse: ...
+
+@typing.type_check_only
+class ListExamplesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListExamplesResponse: ...
+
+@typing.type_check_only
 class ListGlossariesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -279,6 +388,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListModelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListModelsResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -293,6 +410,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Location: ...
+
+@typing.type_check_only
+class ModelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Model: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

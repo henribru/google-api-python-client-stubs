@@ -1177,6 +1177,7 @@ class Volume(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityNote(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
     cvssV3: CVSSv3
     cvssVersion: typing_extensions.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
@@ -1191,6 +1192,7 @@ class VulnerabilityNote(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
+    cvssV2: CVSS
     cvssVersion: typing_extensions.Literal[
         "CVSS_VERSION_UNSPECIFIED", "CVSS_VERSION_2", "CVSS_VERSION_3"
     ]

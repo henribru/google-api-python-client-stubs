@@ -200,6 +200,98 @@ class GmailResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SettingsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class CseResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class IdentitiesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        userId: str,
+                        body: CseIdentity = ...,
+                        **kwargs: typing.Any
+                    ) -> CseIdentityHttpRequest: ...
+                    def delete(
+                        self, *, userId: str, cseEmailAddress: str, **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def get(
+                        self, *, userId: str, cseEmailAddress: str, **kwargs: typing.Any
+                    ) -> CseIdentityHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        userId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCseIdentitiesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCseIdentitiesResponseHttpRequest,
+                        previous_response: ListCseIdentitiesResponse,
+                    ) -> ListCseIdentitiesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        userId: str,
+                        emailAddress: str,
+                        body: CseIdentity = ...,
+                        **kwargs: typing.Any
+                    ) -> CseIdentityHttpRequest: ...
+
+                @typing.type_check_only
+                class KeypairsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        userId: str,
+                        body: CseKeyPair = ...,
+                        **kwargs: typing.Any
+                    ) -> CseKeyPairHttpRequest: ...
+                    def disable(
+                        self,
+                        *,
+                        userId: str,
+                        keyPairId: str,
+                        body: DisableCseKeyPairRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> CseKeyPairHttpRequest: ...
+                    def enable(
+                        self,
+                        *,
+                        userId: str,
+                        keyPairId: str,
+                        body: EnableCseKeyPairRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> CseKeyPairHttpRequest: ...
+                    def get(
+                        self, *, userId: str, keyPairId: str, **kwargs: typing.Any
+                    ) -> CseKeyPairHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        userId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCseKeyPairsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCseKeyPairsResponseHttpRequest,
+                        previous_response: ListCseKeyPairsResponse,
+                    ) -> ListCseKeyPairsResponseHttpRequest | None: ...
+                    def obliterate(
+                        self,
+                        *,
+                        userId: str,
+                        keyPairId: str,
+                        body: ObliterateCseKeyPairRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+
+                def identities(self) -> IdentitiesResource: ...
+                def keypairs(self) -> KeypairsResource: ...
+
+            @typing.type_check_only
             class DelegatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self, *, userId: str, body: Delegate = ..., **kwargs: typing.Any
@@ -351,6 +443,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             def updateVacation(
                 self, *, userId: str, body: VacationSettings = ..., **kwargs: typing.Any
             ) -> VacationSettingsHttpRequest: ...
+            def cse(self) -> CseResource: ...
             def delegates(self) -> DelegatesResource: ...
             def filters(self) -> FiltersResource: ...
             def forwardingAddresses(self) -> ForwardingAddressesResource: ...
@@ -440,6 +533,22 @@ class AutoForwardingHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AutoForwarding: ...
 
 @typing.type_check_only
+class CseIdentityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CseIdentity: ...
+
+@typing.type_check_only
+class CseKeyPairHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CseKeyPair: ...
+
+@typing.type_check_only
 class DelegateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -494,6 +603,22 @@ class LanguageSettingsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LanguageSettings: ...
+
+@typing.type_check_only
+class ListCseIdentitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCseIdentitiesResponse: ...
+
+@typing.type_check_only
+class ListCseKeyPairsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCseKeyPairsResponse: ...
 
 @typing.type_check_only
 class ListDelegatesResponseHttpRequest(googleapiclient.http.HttpRequest):

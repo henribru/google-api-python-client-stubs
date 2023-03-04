@@ -137,6 +137,16 @@ class AliasIpRange(typing_extensions.TypedDict, total=False):
     subnetworkRangeName: str
 
 @typing.type_check_only
+class AllocationResourceStatus(typing_extensions.TypedDict, total=False):
+    specificSkuAllocation: AllocationResourceStatusSpecificSKUAllocation
+
+@typing.type_check_only
+class AllocationResourceStatusSpecificSKUAllocation(
+    typing_extensions.TypedDict, total=False
+):
+    sourceInstanceTemplateId: str
+
+@typing.type_check_only
 class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk(
     typing_extensions.TypedDict, total=False
 ):
@@ -163,6 +173,7 @@ class AllocationSpecificSKUReservation(typing_extensions.TypedDict, total=False)
     count: str
     inUseCount: str
     instanceProperties: AllocationSpecificSKUAllocationReservedInstanceProperties
+    sourceInstanceTemplate: str
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -205,6 +216,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
         "RECREATE_DISK", "RECREATE_DISK_IF_SOURCE_CHANGED", "USE_EXISTING_DISK"
     ]
     provisionedIops: str
+    provisionedThroughput: str
     resourceManagerTags: dict[str, typing.Any]
     resourcePolicies: _list[str]
     sourceImage: str
@@ -622,6 +634,10 @@ class BackendServiceLocalityLoadBalancingPolicyConfigPolicy(
 @typing.type_check_only
 class BackendServiceLogConfig(typing_extensions.TypedDict, total=False):
     enable: bool
+    optionalFields: _list[str]
+    optionalMode: typing_extensions.Literal[
+        "CUSTOM", "EXCLUDE_ALL_OPTIONAL", "INCLUDE_ALL_OPTIONAL"
+    ]
     sampleRate: float
 
 @typing.type_check_only
@@ -779,6 +795,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "ACCELERATOR_OPTIMIZED",
         "COMPUTE_OPTIMIZED",
         "COMPUTE_OPTIMIZED_C2D",
+        "COMPUTE_OPTIMIZED_C3",
         "GENERAL_PURPOSE",
         "GENERAL_PURPOSE_E2",
         "GENERAL_PURPOSE_N2",
@@ -866,6 +883,19 @@ class CorsPolicy(typing_extensions.TypedDict, total=False):
     maxAge: int
 
 @typing.type_check_only
+class CustomErrorResponsePolicy(typing_extensions.TypedDict, total=False):
+    errorResponseRules: _list[CustomErrorResponsePolicyCustomErrorResponseRule]
+    errorService: str
+
+@typing.type_check_only
+class CustomErrorResponsePolicyCustomErrorResponseRule(
+    typing_extensions.TypedDict, total=False
+):
+    matchResponseCodes: _list[str]
+    overrideResponseCode: int
+    path: str
+
+@typing.type_check_only
 class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     kmsKeyServiceAccount: str
@@ -914,6 +944,7 @@ class Disk(typing_extensions.TypedDict, total=False):
     params: DiskParams
     physicalBlockSizeBytes: str
     provisionedIops: str
+    provisionedThroughput: str
     region: str
     replicaZones: _list[str]
     resourcePolicies: _list[str]
@@ -1254,6 +1285,7 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     ]
     allPorts: bool
     allowGlobalAccess: bool
+    allowPscGlobalAccess: bool
     backendService: str
     baseForwardingRule: str
     creationTimestamp: str
@@ -1401,6 +1433,7 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
+        "SEV_SNP_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
         "WINDOWS",
@@ -1677,6 +1710,7 @@ class HttpRouteAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpRouteRule(typing_extensions.TypedDict, total=False):
+    customErrorResponsePolicy: CustomErrorResponsePolicy
     description: str
     headerAction: HttpHeaderAction
     httpFilterConfigs: _list[HttpFilterConfig]
@@ -2291,9 +2325,19 @@ class InstanceTemplate(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     properties: InstanceProperties
+    region: str
     selfLink: str
     sourceInstance: str
     sourceInstanceParams: SourceInstanceParams
+
+@typing.type_check_only
+class InstanceTemplateAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class InstanceTemplateList(typing_extensions.TypedDict, total=False):
@@ -2302,6 +2346,11 @@ class InstanceTemplateList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceTemplatesScopedList(typing_extensions.TypedDict, total=False):
+    instanceTemplates: _list[InstanceTemplate]
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -3188,6 +3237,7 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     network: str
+    networkAttachment: str
     networkIP: str
     nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
     queueCount: int
@@ -3365,6 +3415,12 @@ class NodeGroupsScopedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodeGroupsSetNodeTemplateRequest(typing_extensions.TypedDict, total=False):
     nodeTemplate: str
+
+@typing.type_check_only
+class NodeGroupsSimulateMaintenanceEventRequest(
+    typing_extensions.TypedDict, total=False
+):
+    nodes: _list[str]
 
 @typing.type_check_only
 class NodeTemplate(typing_extensions.TypedDict, total=False):
@@ -3645,6 +3701,7 @@ class PacketMirroringsScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PathMatcher(typing_extensions.TypedDict, total=False):
+    defaultCustomErrorResponsePolicy: CustomErrorResponsePolicy
     defaultRouteAction: HttpRouteAction
     defaultService: str
     defaultUrlRedirect: HttpRedirectAction
@@ -3656,6 +3713,7 @@ class PathMatcher(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PathRule(typing_extensions.TypedDict, total=False):
+    customErrorResponsePolicy: CustomErrorResponsePolicy
     paths: _list[str]
     routeAction: HttpRouteAction
     service: str
@@ -3927,6 +3985,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "N2D_CPUS",
         "N2_CPUS",
         "NETWORKS",
+        "NETWORK_ATTACHMENTS",
         "NETWORK_ENDPOINT_GROUPS",
         "NETWORK_FIREWALL_POLICIES",
         "NODE_GROUPS",
@@ -4272,6 +4331,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     resourcePolicies: dict[str, typing.Any]
+    resourceStatus: AllocationResourceStatus
     satisfiesPzs: bool
     selfLink: str
     shareSettings: ShareSettings
@@ -4377,6 +4437,7 @@ class ResourcePolicyDailyCycle(typing_extensions.TypedDict, total=False):
 class ResourcePolicyGroupPlacementPolicy(typing_extensions.TypedDict, total=False):
     availabilityDomainCount: int
     collocation: typing_extensions.Literal["COLLOCATED", "UNSPECIFIED_COLLOCATION"]
+    maxDistance: int
     vmCount: int
 
 @typing.type_check_only
@@ -5942,6 +6003,7 @@ class Uint128(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UrlMap(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
+    defaultCustomErrorResponsePolicy: CustomErrorResponsePolicy
     defaultRouteAction: HttpRouteAction
     defaultService: str
     defaultUrlRedirect: HttpRedirectAction
@@ -6245,6 +6307,7 @@ class WafExpressionSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WafExpressionSetExpression(typing_extensions.TypedDict, total=False):
     id: str
+    sensitivity: int
 
 @typing.type_check_only
 class WeightedBackendService(typing_extensions.TypedDict, total=False):

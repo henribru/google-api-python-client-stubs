@@ -8,6 +8,7 @@ _list = list
 class ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle(
     typing_extensions.TypedDict, total=False
 ):
+    deprecatedInFavorOf: _list[str]
     description: str
     endSupport: GoogleTypeDate
     policyApiLifecycleStage: typing_extensions.Literal[
@@ -97,6 +98,12 @@ class GoogleChromePolicyVersionsV1DeleteGroupPolicyRequest(
     policyTargetKey: GoogleChromePolicyVersionsV1PolicyTargetKey
 
 @typing.type_check_only
+class GoogleChromePolicyVersionsV1FieldConstraints(
+    typing_extensions.TypedDict, total=False
+):
+    numericRangeConstraint: GoogleChromePolicyVersionsV1NumericRangeConstraint
+
+@typing.type_check_only
 class GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -149,6 +156,28 @@ class GoogleChromePolicyVersionsV1NetworkSetting(
     value: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleChromePolicyVersionsV1NumericRangeConstraint(
+    typing_extensions.TypedDict, total=False
+):
+    maximum: str
+    minimum: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicyModificationError(
+    typing_extensions.TypedDict, total=False
+):
+    errors: _list[str]
+    fieldErrors: _list[GoogleChromePolicyVersionsV1PolicyModificationFieldError]
+    policySchema: str
+    policyTargetKey: GoogleChromePolicyVersionsV1PolicyTargetKey
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicyModificationErrorDetails(
+    typing_extensions.TypedDict, total=False
+):
+    modificationErrors: _list[GoogleChromePolicyVersionsV1PolicyModificationError]
+
+@typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicyModificationFieldError(
     typing_extensions.TypedDict, total=False
 ):
@@ -187,6 +216,7 @@ class GoogleChromePolicyVersionsV1PolicySchemaFieldDescription(
     defaultValue: typing.Any
     description: str
     field: str
+    fieldConstraints: GoogleChromePolicyVersionsV1FieldConstraints
     fieldDependencies: _list[GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies]
     fieldDescription: str
     inputConstraint: str

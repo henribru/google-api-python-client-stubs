@@ -153,6 +153,9 @@ class GoogleCloudDataplexV1AssetDiscoveryStatusStats(
 @typing.type_check_only
 class GoogleCloudDataplexV1AssetResourceSpec(typing_extensions.TypedDict, total=False):
     name: str
+    readAccessMode: typing_extensions.Literal[
+        "ACCESS_MODE_UNSPECIFIED", "DIRECT", "MANAGED"
+    ]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "STORAGE_BUCKET", "BIGQUERY_DATASET"
     ]
@@ -161,6 +164,7 @@ class GoogleCloudDataplexV1AssetResourceSpec(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1AssetResourceStatus(
     typing_extensions.TypedDict, total=False
 ):
+    managedAccessIdentity: str
     message: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "READY", "ERROR"]
     updateTime: str
@@ -204,6 +208,48 @@ class GoogleCloudDataplexV1ContentNotebook(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudDataplexV1ContentSqlScript(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal["QUERY_ENGINE_UNSPECIFIED", "SPARK"]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAccessSpec(typing_extensions.TypedDict, total=False):
+    readers: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAttribute(typing_extensions.TypedDict, total=False):
+    attributeCount: int
+    createTime: str
+    dataAccessSpec: GoogleCloudDataplexV1DataAccessSpec
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    parentId: str
+    resourceAccessSpec: GoogleCloudDataplexV1ResourceAccessSpec
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAttributeBinding(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: _list[str]
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    paths: _list[GoogleCloudDataplexV1DataAttributeBindingPath]
+    resource: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataAttributeBindingPath(
+    typing_extensions.TypedDict, total=False
+):
+    attributes: _list[str]
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
@@ -476,6 +522,18 @@ class GoogleCloudDataplexV1DataSource(typing_extensions.TypedDict, total=False):
     entity: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataTaxonomy(typing_extensions.TypedDict, total=False):
+    attributeCount: int
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=False):
     action: GoogleCloudDataplexV1DiscoveryEventActionDetails
     assetId: str
@@ -527,6 +585,7 @@ class GoogleCloudDataplexV1DiscoveryEventPartitionDetails(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Entity(typing_extensions.TypedDict, total=False):
+    access: GoogleCloudDataplexV1StorageAccess
     asset: str
     catalogEntry: str
     compatibility: GoogleCloudDataplexV1EntityCompatibilityStatus
@@ -544,6 +603,7 @@ class GoogleCloudDataplexV1Entity(typing_extensions.TypedDict, total=False):
         "STORAGE_SYSTEM_UNSPECIFIED", "CLOUD_STORAGE", "BIGQUERY"
     ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TABLE", "FILESET"]
+    uid: str
     updateTime: str
 
 @typing.type_check_only
@@ -707,6 +767,22 @@ class GoogleCloudDataplexV1ListContentResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListDataAttributeBindingsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataAttributeBindings: _list[GoogleCloudDataplexV1DataAttributeBinding]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataAttributesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataAttributes: _list[GoogleCloudDataplexV1DataAttribute]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListDataScanJobsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -720,6 +796,14 @@ class GoogleCloudDataplexV1ListDataScansResponse(
     dataScans: _list[GoogleCloudDataplexV1DataScan]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListDataTaxonomiesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataTaxonomies: _list[GoogleCloudDataplexV1DataTaxonomy]
+    nextPageToken: str
+    unreachableLocations: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListEntitiesResponse(
@@ -789,6 +873,12 @@ class GoogleCloudDataplexV1Partition(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ResourceAccessSpec(typing_extensions.TypedDict, total=False):
+    owners: _list[str]
+    readers: _list[str]
+    writers: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1RunDataScanRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -798,6 +888,13 @@ class GoogleCloudDataplexV1RunDataScanResponse(
     typing_extensions.TypedDict, total=False
 ):
     job: GoogleCloudDataplexV1DataScanJob
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunTaskRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1RunTaskResponse(typing_extensions.TypedDict, total=False):
+    job: GoogleCloudDataplexV1Job
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ScannedData(typing_extensions.TypedDict, total=False):
@@ -903,6 +1000,10 @@ class GoogleCloudDataplexV1SessionEventQueryDetail(
     queryId: str
     queryText: str
     resultSizeBytes: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1StorageAccess(typing_extensions.TypedDict, total=False):
+    read: typing_extensions.Literal["ACCESS_MODE_UNSPECIFIED", "DIRECT", "MANAGED"]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1StorageFormat(typing_extensions.TypedDict, total=False):

@@ -33,6 +33,12 @@ class GoogleCloudDialogflowCxV3ContinuousTestResult(
     testCaseResults: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ConversationSignals(
+    typing_extensions.TypedDict, total=False
+):
+    turnSignals: GoogleCloudDialogflowCxV3TurnSignals
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ConversationTurn(
     typing_extensions.TypedDict, total=False
 ):
@@ -377,6 +383,7 @@ class GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata(
 class GoogleCloudDialogflowCxV3ResponseMessage(
     typing_extensions.TypedDict, total=False
 ):
+    channel: str
     conversationSuccess: GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess
     endInteraction: GoogleCloudDialogflowCxV3ResponseMessageEndInteraction
     liveAgentHandoff: GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff
@@ -535,6 +542,17 @@ class GoogleCloudDialogflowCxV3TransitionRoute(
     triggerFulfillment: GoogleCloudDialogflowCxV3Fulfillment
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3TurnSignals(typing_extensions.TypedDict, total=False):
+    agentEscalated: bool
+    dtmfUsed: bool
+    failureReasons: _list[str]
+    noMatch: bool
+    noUserInput: bool
+    reachedEndPage: bool
+    userEscalated: bool
+    webhookStatuses: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -660,6 +678,12 @@ class GoogleCloudDialogflowCxV3beta1ContinuousTestResult(
     ]
     runTime: str
     testCaseResults: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ConversationSignals(
+    typing_extensions.TypedDict, total=False
+):
+    turnSignals: GoogleCloudDialogflowCxV3beta1TurnSignals
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationTurn(
@@ -1022,6 +1046,7 @@ class GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata(
 class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     typing_extensions.TypedDict, total=False
 ):
+    channel: str
     conversationSuccess: GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess
     endInteraction: GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction
     liveAgentHandoff: GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff
@@ -1186,6 +1211,19 @@ class GoogleCloudDialogflowCxV3beta1TransitionRoute(
     targetFlow: str
     targetPage: str
     triggerFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1TurnSignals(
+    typing_extensions.TypedDict, total=False
+):
+    agentEscalated: bool
+    dtmfUsed: bool
+    failureReasons: _list[str]
+    noMatch: bool
+    noUserInput: bool
+    reachedEndPage: bool
+    userEscalated: bool
+    webhookStatuses: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata(
@@ -2153,6 +2191,13 @@ class GoogleCloudDialogflowV2beta1AutomatedAgentReply(
     responseMessages: _list[GoogleCloudDialogflowV2beta1ResponseMessage]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1BargeInConfig(
+    typing_extensions.TypedDict, total=False
+):
+    noBargeInDuration: str
+    totalDuration: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2342,6 +2387,7 @@ class GoogleCloudDialogflowV2beta1ConversationProfile(
     securitySettings: str
     sttConfig: GoogleCloudDialogflowV2beta1SpeechToTextConfig
     timeZone: str
+    ttsConfig: GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig
     updateTime: str
 
 @typing.type_check_only
@@ -2692,6 +2738,7 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
     ]
+    bargeInConfig: GoogleCloudDialogflowV2beta1BargeInConfig
     disableNoSpeechRecognizedEvent: bool
     enableWordInfo: bool
     languageCode: str
@@ -3559,6 +3606,7 @@ class GoogleCloudDialogflowV2beta1SuggestArticlesResponse(
 class GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest(
     typing_extensions.TypedDict, total=False
 ):
+    assistQueryParams: GoogleCloudDialogflowV2beta1AssistQueryParameters
     contextSize: int
     latestMessage: str
 
@@ -3765,6 +3813,12 @@ class GoogleCloudDialogflowV2beta1WebhookResponse(
     source: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV3alpha1ConversationSignals(
+    typing_extensions.TypedDict, total=False
+):
+    turnSignals: GoogleCloudDialogflowV3alpha1TurnSignals
+
+@typing.type_check_only
 class GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -3799,6 +3853,20 @@ class GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDialogflowV3alpha1TurnSignals(
+    typing_extensions.TypedDict, total=False
+):
+    agentEscalated: bool
+    dtmfUsed: bool
+    failureReasons: _list[str]
+    noMatch: bool
+    noUserInput: bool
+    reachedEndPage: bool
+    triggeredAbandonmentEvent: bool
+    userEscalated: bool
+    webhookStatuses: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata(

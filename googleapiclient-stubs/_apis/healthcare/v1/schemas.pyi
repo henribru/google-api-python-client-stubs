@@ -313,6 +313,17 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
 
 @typing.type_check_only
+class FhirStoreMetric(typing_extensions.TypedDict, total=False):
+    count: str
+    resourceType: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
+class FhirStoreMetrics(typing_extensions.TypedDict, total=False):
+    metrics: _list[FhirStoreMetric]
+    name: str
+
+@typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
     maxOccurs: int
     minOccurs: int
@@ -684,6 +695,7 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):
+    lastUpdatedPartitionConfig: TimePartitioning
     recursiveStructureDepth: str
     schemaType: typing_extensions.Literal[
         "SCHEMA_TYPE_UNSPECIFIED", "ANALYTICS", "ANALYTICS_V2"
@@ -774,6 +786,13 @@ class TextConfig(typing_extensions.TypedDict, total=False):
 class TextSpan(typing_extensions.TypedDict, total=False):
     beginOffset: int
     content: str
+
+@typing.type_check_only
+class TimePartitioning(typing_extensions.TypedDict, total=False):
+    expirationMs: str
+    type: typing_extensions.Literal[
+        "PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"
+    ]
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

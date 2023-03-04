@@ -88,6 +88,13 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1MarkRecommendationClaimedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
+                    def markDismissed(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRecommenderV1MarkRecommendationDismissedRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
                     def markFailed(
                         self,
                         *,
@@ -185,6 +192,13 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRecommenderV1MarkRecommendationClaimedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
+                    def markDismissed(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRecommenderV1MarkRecommendationDismissedRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
                     def markFailed(
                         self,
                         *,
@@ -280,6 +294,13 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudRecommenderV1MarkRecommendationClaimedRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
+                    def markDismissed(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRecommenderV1MarkRecommendationDismissedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
                     def markFailed(
@@ -389,6 +410,13 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudRecommenderV1MarkRecommendationClaimedRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
+                    def markDismissed(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRecommenderV1MarkRecommendationDismissedRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRecommenderV1RecommendationHttpRequest: ...
                     def markFailed(

@@ -38,6 +38,7 @@ class GoogleIdentityStsV1ExchangeOauthTokenResponse(
 ):
     access_token: str
     expires_in: int
+    id_token: str
     refresh_token: str
     scope: str
     token_type: str

@@ -204,6 +204,7 @@ class ScanRunErrorTrace(typing_extensions.TypedDict, total=False):
         "TIMED_OUT_WHILE_SCANNING",
         "TOO_MANY_REDIRECTS",
         "TOO_MANY_HTTP_ERRORS",
+        "STARTING_URLS_CRAWL_HTTP_ERRORS",
     ]
     mostCommonHttpErrorCode: int
     scanConfigError: ScanConfigError

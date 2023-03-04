@@ -167,6 +167,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     multiShareEnabled: bool
     name: str
     networks: _list[NetworkConfig]
+    protocol: typing_extensions.Literal[
+        "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
+    ]
     satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

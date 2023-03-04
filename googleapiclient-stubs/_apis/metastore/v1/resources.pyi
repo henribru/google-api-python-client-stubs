@@ -14,12 +14,6 @@ _list = list
 @typing.type_check_only
 class DataprocMetastoreResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class OperationsResource(googleapiclient.discovery.Resource):
-        def cancel(
-            self, *, name: str, body: CancelOperationRequest = ..., **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -88,6 +82,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -309,7 +310,6 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

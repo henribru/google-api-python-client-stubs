@@ -93,7 +93,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2alphaProductHttpRequest: ...
                         def delete(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            cascadeDelete: bool = ...,
+                            **kwargs: typing.Any
                         ) -> GoogleProtobufEmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -225,6 +229,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaModelHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -420,6 +427,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRetailV2alphaUserEvent = ...,
+                        writeAsync: bool = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRetailV2alphaUserEventHttpRequest: ...
 

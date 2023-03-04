@@ -41,15 +41,12 @@ class AwsSecurityGroup(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AwsSourceDetails(typing_extensions.TypedDict, total=False):
     accessKeyCreds: AccessKeyCredentials
-    accessKeyId: str
     awsRegion: str
     error: Status
     inventorySecurityGroupNames: _list[str]
     inventoryTagList: _list[Tag]
-    inventoryTags: dict[str, typing.Any]
     migrationResourcesUserTags: dict[str, typing.Any]
     publicIp: str
-    secretAccessKey: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
 
 @typing.type_check_only
@@ -390,6 +387,7 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     error: Status
     group: str
     labels: dict[str, typing.Any]
+    lastReplicationCycle: ReplicationCycle
     lastSync: ReplicationSync
     name: str
     policy: SchedulePolicy
@@ -432,6 +430,14 @@ class MigrationError(typing_extensions.TypedDict, total=False):
     errorMessage: LocalizedMessage
     errorTime: str
     helpLinks: _list[Link]
+
+@typing.type_check_only
+class MigrationWarning(typing_extensions.TypedDict, total=False):
+    actionItem: LocalizedMessage
+    code: typing_extensions.Literal["WARNING_CODE_UNSPECIFIED", "ADAPTATION_WARNING"]
+    helpLinks: _list[Link]
+    warningMessage: LocalizedMessage
+    warningTime: str
 
 @typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
@@ -492,6 +498,7 @@ class ReplicationCycle(typing_extensions.TypedDict, total=False):
     ]
     steps: _list[CycleStep]
     totalPauseDuration: str
+    warnings: _list[MigrationWarning]
 
 @typing.type_check_only
 class ReplicationSync(typing_extensions.TypedDict, total=False):

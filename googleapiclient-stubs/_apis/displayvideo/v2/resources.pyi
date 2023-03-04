@@ -85,6 +85,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -141,6 +144,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -405,6 +411,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any
@@ -461,6 +470,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -517,6 +529,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -573,6 +588,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -734,6 +752,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         body: AssignedTargetingOption = ...,
                         **kwargs: typing.Any
@@ -790,6 +811,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -846,6 +870,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         assignedTargetingOptionId: str,
                         **kwargs: typing.Any
@@ -902,6 +929,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                             "TARGETING_TYPE_OMID",
                             "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                             "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
                         ],
                         filter: str = ...,
                         orderBy: str = ...,
@@ -1286,6 +1316,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -1341,6 +1374,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1396,6 +1432,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -1451,6 +1490,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -1465,6 +1507,206 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 ) -> ListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None: ...
 
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
+
+        @typing.type_check_only
+        class YoutubeAdGroupAdsResource(googleapiclient.discovery.Resource):
+            def get(
+                self,
+                *,
+                advertiserId: str,
+                youtubeAdGroupAdId: str,
+                **kwargs: typing.Any
+            ) -> YoutubeAdGroupAdHttpRequest: ...
+            def list(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListYoutubeAdGroupAdsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListYoutubeAdGroupAdsResponseHttpRequest,
+                previous_response: ListYoutubeAdGroupAdsResponse,
+            ) -> ListYoutubeAdGroupAdsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
+        class YoutubeAdGroupsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class TargetingTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AssignedTargetingOptionsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def get(
+                        self,
+                        *,
+                        advertiserId: str,
+                        youtubeAdGroupId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_POI",
+                            "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
+                        ],
+                        assignedTargetingOptionId: str,
+                        **kwargs: typing.Any
+                    ) -> AssignedTargetingOptionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        advertiserId: str,
+                        youtubeAdGroupId: str,
+                        targetingType: typing_extensions.Literal[
+                            "TARGETING_TYPE_UNSPECIFIED",
+                            "TARGETING_TYPE_CHANNEL",
+                            "TARGETING_TYPE_APP_CATEGORY",
+                            "TARGETING_TYPE_APP",
+                            "TARGETING_TYPE_URL",
+                            "TARGETING_TYPE_DAY_AND_TIME",
+                            "TARGETING_TYPE_AGE_RANGE",
+                            "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                            "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                            "TARGETING_TYPE_GENDER",
+                            "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                            "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                            "TARGETING_TYPE_PARENTAL_STATUS",
+                            "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                            "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                            "TARGETING_TYPE_DEVICE_TYPE",
+                            "TARGETING_TYPE_AUDIENCE_GROUP",
+                            "TARGETING_TYPE_BROWSER",
+                            "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                            "TARGETING_TYPE_ON_SCREEN_POSITION",
+                            "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                            "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                            "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                            "TARGETING_TYPE_ENVIRONMENT",
+                            "TARGETING_TYPE_CARRIER_AND_ISP",
+                            "TARGETING_TYPE_OPERATING_SYSTEM",
+                            "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                            "TARGETING_TYPE_KEYWORD",
+                            "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                            "TARGETING_TYPE_VIEWABILITY",
+                            "TARGETING_TYPE_CATEGORY",
+                            "TARGETING_TYPE_INVENTORY_SOURCE",
+                            "TARGETING_TYPE_LANGUAGE",
+                            "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                            "TARGETING_TYPE_GEO_REGION",
+                            "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                            "TARGETING_TYPE_EXCHANGE",
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_POI",
+                            "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE",
+                            "TARGETING_TYPE_YOUTUBE_VIDEO",
+                            "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                            "TARGETING_TYPE_SESSION_POSITION",
+                        ],
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest,
+                        previous_response: ListYoutubeAdGroupAssignedTargetingOptionsResponse,
+                    ) -> ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest | None: ...
+
+                def assignedTargetingOptions(
+                    self,
+                ) -> AssignedTargetingOptionsResource: ...
+
+            def bulkListAdGroupAssignedTargetingOptions(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                youtubeAdGroupIds: str | _list[str] = ...,
+                **kwargs: typing.Any
+            ) -> BulkListAdGroupAssignedTargetingOptionsResponseHttpRequest: ...
+            def bulkListAdGroupAssignedTargetingOptions_next(
+                self,
+                previous_request: BulkListAdGroupAssignedTargetingOptionsResponseHttpRequest,
+                previous_response: BulkListAdGroupAssignedTargetingOptionsResponse,
+            ) -> BulkListAdGroupAssignedTargetingOptionsResponseHttpRequest | None: ...
+            def get(
+                self, *, advertiserId: str, youtubeAdGroupId: str, **kwargs: typing.Any
+            ) -> YoutubeAdGroupHttpRequest: ...
+            def list(
+                self,
+                *,
+                advertiserId: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListYoutubeAdGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListYoutubeAdGroupsResponseHttpRequest,
+                previous_response: ListYoutubeAdGroupsResponse,
+            ) -> ListYoutubeAdGroupsResponseHttpRequest | None: ...
+            def targetingTypes(self) -> TargetingTypesResource: ...
 
         def audit(
             self, *, advertiserId: str, readMask: str = ..., **kwargs: typing.Any
@@ -1534,6 +1776,8 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def manualTriggers(self) -> ManualTriggersResource: ...
         def negativeKeywordLists(self) -> NegativeKeywordListsResource: ...
         def targetingTypes(self) -> TargetingTypesResource: ...
+        def youtubeAdGroupAds(self) -> YoutubeAdGroupAdsResource: ...
+        def youtubeAdGroups(self) -> YoutubeAdGroupsResource: ...
 
     @typing.type_check_only
     class CombinedAudiencesResource(googleapiclient.discovery.Resource):
@@ -2130,6 +2374,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     body: AssignedTargetingOption = ...,
                     **kwargs: typing.Any
@@ -2185,6 +2432,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -2240,6 +2490,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     assignedTargetingOptionId: str,
                     **kwargs: typing.Any
@@ -2295,6 +2548,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         "TARGETING_TYPE_OMID",
                         "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                         "TARGETING_TYPE_CONTENT_GENRE",
+                        "TARGETING_TYPE_YOUTUBE_VIDEO",
+                        "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                        "TARGETING_TYPE_SESSION_POSITION",
                     ],
                     filter: str = ...,
                     orderBy: str = ...,
@@ -2404,6 +2660,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                     "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION",
                 ],
                 targetingOptionId: str,
                 advertiserId: str = ...,
@@ -2459,6 +2718,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                     "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION",
                 ],
                 advertiserId: str = ...,
                 filter: str = ...,
@@ -2522,6 +2784,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     "TARGETING_TYPE_OMID",
                     "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
                     "TARGETING_TYPE_CONTENT_GENRE",
+                    "TARGETING_TYPE_YOUTUBE_VIDEO",
+                    "TARGETING_TYPE_YOUTUBE_CHANNEL",
+                    "TARGETING_TYPE_SESSION_POSITION",
                 ],
                 body: SearchTargetingOptionsRequest = ...,
                 **kwargs: typing.Any
@@ -2710,6 +2975,16 @@ class BulkEditSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BulkEditSitesResponse: ...
+
+@typing.type_check_only
+class BulkListAdGroupAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BulkListAdGroupAssignedTargetingOptionsResponse: ...
 
 @typing.type_check_only
 class BulkListAdvertiserAssignedTargetingOptionsResponseHttpRequest(
@@ -3206,6 +3481,32 @@ class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListUsersResponse: ...
 
 @typing.type_check_only
+class ListYoutubeAdGroupAdsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListYoutubeAdGroupAdsResponse: ...
+
+@typing.type_check_only
+class ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListYoutubeAdGroupAssignedTargetingOptionsResponse: ...
+
+@typing.type_check_only
+class ListYoutubeAdGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListYoutubeAdGroupsResponse: ...
+
+@typing.type_check_only
 class LocationListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3308,6 +3609,22 @@ class UserHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> User: ...
+
+@typing.type_check_only
+class YoutubeAdGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> YoutubeAdGroup: ...
+
+@typing.type_check_only
+class YoutubeAdGroupAdHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> YoutubeAdGroupAd: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

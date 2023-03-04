@@ -84,6 +84,13 @@ class Measurement3d(typing_extensions.TypedDict, total=False):
     z: float
 
 @typing.type_check_only
+class NoOverlapGpsFailureDetails(typing_extensions.TypedDict, total=False):
+    gpsEndTime: str
+    gpsStartTime: str
+    videoEndTime: str
+    videoStartTime: str
+
+@typing.type_check_only
 class NotOutdoorsFailureDetails(typing_extensions.TypedDict, total=False):
     startTime: str
 
@@ -199,6 +206,7 @@ class ProcessingFailureDetails(typing_extensions.TypedDict, total=False):
     gpsDataGapDetails: GpsDataGapFailureDetails
     imuDataGapDetails: ImuDataGapFailureDetails
     insufficientGpsDetails: InsufficientGpsFailureDetails
+    noOverlapGpsDetails: NoOverlapGpsFailureDetails
     notOutdoorsDetails: NotOutdoorsFailureDetails
 
 @typing.type_check_only

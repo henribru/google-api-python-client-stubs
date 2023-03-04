@@ -239,6 +239,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
+                            "visitorRegion",
                         ]
                         | _list[
                             typing_extensions.Literal[
@@ -355,6 +356,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationUrl",
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
+                                "visitorRegion",
                             ]
                         ] = ...,
                         **kwargs: typing.Any
@@ -477,6 +479,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
+                            "visitorRegion",
                         ]
                         | _list[
                             typing_extensions.Literal[
@@ -593,6 +596,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                                 "serverPageLocationUrl",
                                 "serverPageLocationPath",
                                 "serverPageLocationHostname",
+                                "visitorRegion",
                             ]
                         ] = ...,
                         **kwargs: typing.Any
@@ -723,6 +727,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                             "serverPageLocationUrl",
                             "serverPageLocationPath",
                             "serverPageLocationHostname",
+                            "visitorRegion",
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> RevertBuiltInVariableResponseHttpRequest: ...

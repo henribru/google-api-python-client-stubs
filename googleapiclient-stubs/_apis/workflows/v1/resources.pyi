@@ -54,7 +54,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, revisionId: str = ..., **kwargs: typing.Any
                 ) -> WorkflowHttpRequest: ...
                 def list(
                     self,

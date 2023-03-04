@@ -204,17 +204,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
     bidProtocol: typing_extensions.Literal[
-        "BID_PROTOCOL_UNSPECIFIED",
-        "GOOGLE_RTB",
-        "OPENRTB_JSON",
-        "OPENRTB_PROTOBUF",
-        "OPENRTB_2_2",
-        "OPENRTB_2_3",
-        "OPENRTB_PROTOBUF_2_3",
-        "OPENRTB_2_4",
-        "OPENRTB_PROTOBUF_2_4",
-        "OPENRTB_2_5",
-        "OPENRTB_PROTOBUF_2_5",
+        "BID_PROTOCOL_UNSPECIFIED", "GOOGLE_RTB", "OPENRTB_JSON", "OPENRTB_PROTOBUF"
     ]
     maximumQps: str
     name: str

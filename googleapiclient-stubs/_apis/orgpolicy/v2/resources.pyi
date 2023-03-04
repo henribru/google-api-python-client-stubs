@@ -67,6 +67,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
 
@@ -163,6 +164,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
 
@@ -224,6 +226,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
 

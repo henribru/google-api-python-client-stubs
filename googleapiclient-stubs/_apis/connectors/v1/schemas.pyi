@@ -43,6 +43,8 @@ class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
         "OAUTH2_AUTH_CODE_FLOW",
     ]
     configVariableTemplates: _list[ConfigVariableTemplate]
+    description: str
+    displayName: str
 
 @typing.type_check_only
 class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
@@ -105,6 +107,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     nodeConfig: NodeConfig
     serviceAccount: str
     serviceDirectory: str
+    sslConfig: SslConfig
     status: ConnectionStatus
     suspended: bool
     updateTime: str
@@ -129,6 +132,7 @@ class ConnectionStatus(typing_extensions.TypedDict, total=False):
         "DELETING",
         "UPDATING",
         "ERROR",
+        "AUTHORIZATION_REQUIRED",
     ]
     status: str
 
@@ -162,6 +166,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     releaseVersion: str
     roleGrant: RoleGrant
     roleGrants: _list[RoleGrant]
+    sslConfigTemplate: SslConfigTemplate
     supportedRuntimeFeatures: SupportedRuntimeFeatures
     updateTime: str
 
@@ -561,6 +566,27 @@ class SshPublicKey(typing_extensions.TypedDict, total=False):
     sshClientCert: Secret
     sshClientCertPass: Secret
     username: str
+
+@typing.type_check_only
+class SslConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[ConfigVariable]
+    clientCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    clientCertificate: Secret
+    clientPrivateKey: Secret
+    clientPrivateKeyPass: Secret
+    privateServerCertificate: Secret
+    serverCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    trustModel: typing_extensions.Literal["PUBLIC", "PRIVATE", "INSECURE"]
+    type: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    useSsl: bool
+
+@typing.type_check_only
+class SslConfigTemplate(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[ConfigVariableTemplate]
+    clientCertType: _list[str]
+    isTlsMandatory: bool
+    serverCertType: _list[str]
+    sslType: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

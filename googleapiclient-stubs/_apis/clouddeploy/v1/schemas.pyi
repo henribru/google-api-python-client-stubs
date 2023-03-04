@@ -109,6 +109,7 @@ class DeployJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
         "DEADLINE_EXCEEDED",
+        "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
     metadata: DeployJobRunMetadata
@@ -275,6 +276,7 @@ class Phase(typing_extensions.TypedDict, total=False):
 class PipelineCondition(typing_extensions.TypedDict, total=False):
     pipelineReadyCondition: PipelineReadyCondition
     targetsPresentCondition: TargetsPresentCondition
+    targetsTypeCondition: TargetsTypeCondition
 
 @typing.type_check_only
 class PipelineReadyCondition(typing_extensions.TypedDict, total=False):
@@ -299,6 +301,7 @@ class Release(typing_extensions.TypedDict, total=False):
     abandoned: bool
     annotations: dict[str, typing.Any]
     buildArtifacts: _list[BuildArtifact]
+    condition: ReleaseCondition
     createTime: str
     deliveryPipelineSnapshot: DeliveryPipeline
     description: str
@@ -319,6 +322,11 @@ class Release(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class ReleaseCondition(typing_extensions.TypedDict, total=False):
+    releaseReadyCondition: ReleaseReadyCondition
+    skaffoldSupportedCondition: SkaffoldSupportedCondition
+
+@typing.type_check_only
 class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
     message: str
     release: str
@@ -327,6 +335,10 @@ class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class ReleaseReadyCondition(typing_extensions.TypedDict, total=False):
+    status: bool
 
 @typing.type_check_only
 class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
@@ -362,6 +374,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "RELEASE_FAILED",
         "RELEASE_ABANDONED",
         "VERIFICATION_CONFIG_NOT_FOUND",
+        "CLOUD_BUILD_REQUEST_FAILED",
     ]
     deployStartTime: str
     deployingBuild: str
@@ -409,8 +422,22 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SkaffoldSupportedCondition(typing_extensions.TypedDict, total=False):
+    maintenanceModeTime: str
+    skaffoldSupportState: typing_extensions.Literal[
+        "SKAFFOLD_SUPPORT_STATE_UNSPECIFIED",
+        "SKAFFOLD_SUPPORT_STATE_SUPPORTED",
+        "SKAFFOLD_SUPPORT_STATE_MAINTENANCE_MODE",
+        "SKAFFOLD_SUPPORT_STATE_UNSUPPORTED",
+    ]
+    status: bool
+    supportExpirationTime: str
+
+@typing.type_check_only
 class SkaffoldVersion(typing_extensions.TypedDict, total=False):
+    maintenanceModeTime: str
     supportEndDate: Date
+    supportExpirationTime: str
     version: str
 
 @typing.type_check_only
@@ -469,7 +496,10 @@ class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TargetRender(typing_extensions.TypedDict, total=False):
     failureCause: typing_extensions.Literal[
-        "FAILURE_CAUSE_UNSPECIFIED", "CLOUD_BUILD_UNAVAILABLE", "EXECUTION_FAILED"
+        "FAILURE_CAUSE_UNSPECIFIED",
+        "CLOUD_BUILD_UNAVAILABLE",
+        "EXECUTION_FAILED",
+        "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
     renderingBuild: str
@@ -482,6 +512,11 @@ class TargetsPresentCondition(typing_extensions.TypedDict, total=False):
     missingTargets: _list[str]
     status: bool
     updateTime: str
+
+@typing.type_check_only
+class TargetsTypeCondition(typing_extensions.TypedDict, total=False):
+    errorDetails: str
+    status: bool
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -505,5 +540,6 @@ class VerifyJobRun(typing_extensions.TypedDict, total=False):
         "EXECUTION_FAILED",
         "DEADLINE_EXCEEDED",
         "VERIFICATION_CONFIG_NOT_FOUND",
+        "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str

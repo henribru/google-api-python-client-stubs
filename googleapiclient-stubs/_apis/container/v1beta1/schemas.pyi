@@ -143,6 +143,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableKubernetesAlpha: bool
     enableTpu: bool
     endpoint: str
+    etag: str
     expireTime: str
     id: str
     identityServiceConfig: IdentityServiceConfig
@@ -266,11 +267,15 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
+    desiredStackType: typing_extensions.Literal[
+        "STACK_TYPE_UNSPECIFIED", "IPV4", "IPV4_IPV6"
+    ]
     desiredTpuConfig: TpuConfig
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
     desiredWorkloadAltsConfig: WorkloadALTSConfig
     desiredWorkloadCertificates: WorkloadCertificates
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
+    etag: str
 
 @typing.type_check_only
 class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
@@ -352,6 +357,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
+    localSsdCount: int
+
+@typing.type_check_only
+class EphemeralStorageLocalSsdConfig(typing_extensions.TypedDict, total=False):
     localSsdCount: int
 
 @typing.type_check_only
@@ -520,6 +529,10 @@ class ListUsableSubnetworksResponse(typing_extensions.TypedDict, total=False):
     subnetworks: _list[UsableSubnetwork]
 
 @typing.type_check_only
+class LocalNvmeSsdBlockConfig(typing_extensions.TypedDict, total=False):
+    localSsdCount: int
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     name: str
     recommended: bool
@@ -651,6 +664,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: int
     diskType: str
     ephemeralStorageConfig: EphemeralStorageConfig
+    ephemeralStorageLocalSsdConfig: EphemeralStorageLocalSsdConfig
     fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
@@ -658,6 +672,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     kubeletConfig: NodeKubeletConfig
     labels: dict[str, typing.Any]
     linuxNodeConfig: LinuxNodeConfig
+    localNvmeSsdBlockConfig: LocalNvmeSsdBlockConfig
     localSsdCount: int
     loggingConfig: NodePoolLoggingConfig
     machineType: str
@@ -674,6 +689,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     spot: bool
     tags: _list[str]
     taints: _list[NodeTaint]
+    windowsNodeConfig: WindowsNodeConfig
     workloadMetadataConfig: WorkloadMetadataConfig
 
 @typing.type_check_only
@@ -711,6 +727,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     autoscaling: NodePoolAutoscaling
     conditions: _list[StatusCondition]
     config: NodeConfig
+    etag: str
     initialNodeCount: int
     instanceGroupUrls: _list[str]
     locations: _list[str]
@@ -1139,6 +1156,7 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     clusterId: str
     confidentialNodes: ConfidentialNodes
+    etag: str
     fastSocket: FastSocket
     gcfsConfig: GcfsConfig
     gvnic: VirtualNIC
@@ -1157,6 +1175,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     tags: NetworkTags
     taints: NodeTaints
     upgradeSettings: UpgradeSettings
+    windowsNodeConfig: WindowsNodeConfig
     workloadMetadataConfig: WorkloadMetadataConfig
     zone: str
 
@@ -1217,6 +1236,12 @@ class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VirtualNIC(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class WindowsNodeConfig(typing_extensions.TypedDict, total=False):
+    osVersion: typing_extensions.Literal[
+        "OS_VERSION_UNSPECIFIED", "OS_VERSION_LTSC2019", "OS_VERSION_LTSC2022"
+    ]
 
 @typing.type_check_only
 class WindowsVersion(typing_extensions.TypedDict, total=False):

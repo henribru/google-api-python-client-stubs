@@ -52,6 +52,15 @@ class Capacity(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class Certification(typing_extensions.TypedDict, total=False):
+    authority: str
+    link: str
+    logo: str
+    name: str
+    validUntil: str
+    value: str
+
+@typing.type_check_only
 class Count(typing_extensions.TypedDict, total=False):
     unit: str
     value: str
@@ -123,6 +132,11 @@ class Issue(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class ListProductCertificationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    productCertifications: _list[ProductCertification]
+
+@typing.type_check_only
 class ListProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     products: _list[Product]
@@ -188,6 +202,19 @@ class Product(typing_extensions.TypedDict, total=False):
     parent: str
     productId: str
     targetCountry: str
+
+@typing.type_check_only
+class ProductCertification(typing_extensions.TypedDict, total=False):
+    brand: str
+    certification: _list[Certification]
+    countryCode: _list[str]
+    destinationStatuses: _list[DestinationStatus]
+    issues: _list[Issue]
+    mpn: _list[str]
+    name: str
+    productCode: _list[str]
+    productType: _list[str]
+    title: str
 
 @typing.type_check_only
 class ProductDetail(typing_extensions.TypedDict, total=False):

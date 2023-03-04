@@ -87,6 +87,27 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderOidc(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    issuerUri: str
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderSaml(
+    typing_extensions.TypedDict, total=False
+):
+    idpMetadataXml: str
+
+@typing.type_check_only
 class LintPolicyRequest(typing_extensions.TypedDict, total=False):
     condition: Expr
     fullResourceName: str
@@ -119,6 +140,16 @@ class ListServiceAccountKeysResponse(typing_extensions.TypedDict, total=False):
 class ListServiceAccountsResponse(typing_extensions.TypedDict, total=False):
     accounts: _list[ServiceAccount]
     nextPageToken: str
+
+@typing.type_check_only
+class ListWorkforcePoolProvidersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workforcePoolProviders: _list[WorkforcePoolProvider]
+
+@typing.type_check_only
+class ListWorkforcePoolsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workforcePools: _list[WorkforcePool]
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolProvidersResponse(
@@ -308,6 +339,17 @@ class UndeleteServiceAccountResponse(typing_extensions.TypedDict, total=False):
     restoredAccount: ServiceAccount
 
 @typing.type_check_only
+class UndeleteWorkforcePoolProviderRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UndeleteWorkforcePoolRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteWorkforcePoolSubjectRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class UndeleteWorkloadIdentityPoolProviderRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -318,6 +360,28 @@ class UndeleteWorkloadIdentityPoolRequest(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class UploadServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
     publicKeyData: str
+
+@typing.type_check_only
+class WorkforcePool(typing_extensions.TypedDict, total=False):
+    description: str
+    disabled: bool
+    displayName: str
+    name: str
+    parent: str
+    sessionDuration: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
+    attributeCondition: str
+    attributeMapping: dict[str, typing.Any]
+    description: str
+    disabled: bool
+    displayName: str
+    name: str
+    oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
+    saml: GoogleIamAdminV1WorkforcePoolProviderSaml
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
 class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):

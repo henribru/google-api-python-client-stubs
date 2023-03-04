@@ -165,6 +165,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
+                        filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -389,6 +390,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             name: str,
+                            filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
                             **kwargs: typing.Any

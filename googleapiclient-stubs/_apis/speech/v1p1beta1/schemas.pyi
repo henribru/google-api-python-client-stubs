@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ABNFGrammar(typing_extensions.TypedDict, total=False):
+    abnfStrings: _list[str]
+
+@typing.type_check_only
 class ClassItem(typing_extensions.TypedDict, total=False):
     value: str
 
@@ -186,6 +190,7 @@ class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SpeechAdaptation(typing_extensions.TypedDict, total=False):
+    abnfGrammar: ABNFGrammar
     customClasses: _list[CustomClass]
     phraseSetReferences: _list[str]
     phraseSets: _list[PhraseSet]

@@ -95,6 +95,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -271,6 +273,15 @@ class DataprocResource(googleapiclient.discovery.Resource):
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class NodeGroupsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: NodeGroup = ...,
+                        nodeGroupId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> NodeGroupHttpRequest: ...

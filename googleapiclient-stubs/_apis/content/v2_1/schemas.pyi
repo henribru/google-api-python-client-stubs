@@ -12,6 +12,7 @@ class Account(typing_extensions.TypedDict, total=False):
     automaticImprovements: AccountAutomaticImprovements
     automaticLabelIds: _list[str]
     businessInformation: AccountBusinessInformation
+    conversionSettings: AccountConversionSettings
     cssId: str
     googleMyBusinessLink: AccountGoogleMyBusinessLink
     id: str
@@ -49,6 +50,10 @@ class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
     koreanBusinessRegistrationNumber: str
     phoneNumber: str
     phoneVerificationStatus: str
+
+@typing.type_check_only
+class AccountConversionSettings(typing_extensions.TypedDict, total=False):
+    freeListingsAutoTaggingEnabled: bool
 
 @typing.type_check_only
 class AccountCredentials(typing_extensions.TypedDict, total=False):
@@ -351,6 +356,26 @@ class Amount(typing_extensions.TypedDict, total=False):
     taxAmount: Price
 
 @typing.type_check_only
+class AttributionSettings(typing_extensions.TypedDict, total=False):
+    attributionLookbackWindowInDays: int
+    attributionModel: typing_extensions.Literal[
+        "ATTRIBUTION_MODEL_UNSPECIFIED",
+        "CROSS_CHANNEL_LAST_CLICK",
+        "ADS_PREFERRED_LAST_CLICK",
+        "CROSS_CHANNEL_DATA_DRIVEN",
+        "CROSS_CHANNEL_FIRST_CLICK",
+        "CROSS_CHANNEL_LINEAR",
+        "CROSS_CHANNEL_POSITION_BASED",
+        "CROSS_CHANNEL_TIME_DECAY",
+    ]
+    conversionType: _list[AttributionSettingsConversionType]
+
+@typing.type_check_only
+class AttributionSettingsConversionType(typing_extensions.TypedDict, total=False):
+    includeInReporting: bool
+    name: str
+
+@typing.type_check_only
 class BestSellers(typing_extensions.TypedDict, total=False):
     categoryId: str
     countryCode: str
@@ -478,6 +503,16 @@ class CollectionStatusItemLevelIssue(typing_extensions.TypedDict, total=False):
     documentation: str
     resolution: str
     servability: str
+
+@typing.type_check_only
+class ConversionSource(typing_extensions.TypedDict, total=False):
+    conversionSourceId: str
+    expireTime: str
+    googleAnalyticsLink: GoogleAnalyticsLink
+    merchantCenterDestination: MerchantCenterDestination
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "ARCHIVED", "PENDING"
+    ]
 
 @typing.type_check_only
 class Css(typing_extensions.TypedDict, total=False):
@@ -753,6 +788,12 @@ class GmbAccountsGmbAccount(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class GoogleAnalyticsLink(typing_extensions.TypedDict, total=False):
+    attributionSettings: AttributionSettings
+    propertyId: str
+    propertyName: str
+
+@typing.type_check_only
 class Headers(typing_extensions.TypedDict, total=False):
     locations: _list[LocationIdSet]
     numberOfItems: _list[str]
@@ -950,6 +991,11 @@ class ListCollectionsResponse(typing_extensions.TypedDict, total=False):
     resources: _list[Collection]
 
 @typing.type_check_only
+class ListConversionSourcesResponse(typing_extensions.TypedDict, total=False):
+    conversionSources: _list[ConversionSource]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListCssesResponse(typing_extensions.TypedDict, total=False):
     csses: _list[Css]
     nextPageToken: str
@@ -1029,6 +1075,13 @@ class LoyaltyPoints(typing_extensions.TypedDict, total=False):
     name: str
     pointsValue: str
     ratio: float
+
+@typing.type_check_only
+class MerchantCenterDestination(typing_extensions.TypedDict, total=False):
+    attributionSettings: AttributionSettings
+    currencyCode: str
+    destinationId: str
+    displayName: str
 
 @typing.type_check_only
 class MerchantOrderReturn(typing_extensions.TypedDict, total=False):
@@ -2027,6 +2080,7 @@ class Product(typing_extensions.TypedDict, total=False):
     isBundle: bool
     itemGroupId: str
     kind: str
+    lifestyleImageLinks: _list[str]
     link: str
     linkTemplate: str
     loyaltyPoints: LoyaltyPoints
@@ -2398,6 +2452,7 @@ class Promotion(typing_extensions.TypedDict, total=False):
     promotionEffectiveDates: str
     promotionEffectiveTimePeriod: TimePeriod
     promotionId: str
+    promotionStatus: PromotionPromotionStatus
     promotionUrl: str
     redemptionChannel: _list[str]
     shippingServiceNames: _list[str]
@@ -2407,6 +2462,33 @@ class Promotion(typing_extensions.TypedDict, total=False):
     storeCode: _list[str]
     storeCodeExclusion: _list[str]
     targetCountry: str
+
+@typing.type_check_only
+class PromotionPromotionStatus(typing_extensions.TypedDict, total=False):
+    creationDate: str
+    destinationStatuses: _list[PromotionPromotionStatusDestinationStatus]
+    lastUpdateDate: str
+    promotionIssue: _list[PromotionPromotionStatusPromotionIssue]
+
+@typing.type_check_only
+class PromotionPromotionStatusDestinationStatus(
+    typing_extensions.TypedDict, total=False
+):
+    destination: str
+    status: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "IN_REVIEW",
+        "REJECTED",
+        "LIVE",
+        "STOPPED",
+        "EXPIRED",
+        "PENDING",
+    ]
+
+@typing.type_check_only
+class PromotionPromotionStatusPromotionIssue(typing_extensions.TypedDict, total=False):
+    code: str
+    detail: str
 
 @typing.type_check_only
 class PubsubNotificationSettings(typing_extensions.TypedDict, total=False):
@@ -3164,6 +3246,9 @@ class TransitTableTransitTimeRowTransitTimeValue(
 ):
     maxTransitTimeInDays: int
     minTransitTimeInDays: int
+
+@typing.type_check_only
+class UndeleteConversionSourceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UnitInvoice(typing_extensions.TypedDict, total=False):

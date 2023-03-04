@@ -46,6 +46,7 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RequestDetails(typing_extensions.TypedDict, total=False):
     nonce: str
+    requestHash: str
     requestPackageName: str
     timestampMillis: str
 

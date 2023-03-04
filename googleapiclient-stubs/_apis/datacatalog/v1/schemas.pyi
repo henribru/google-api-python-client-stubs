@@ -82,11 +82,40 @@ class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ColumnSchema(typing_extensions.TypedDict, total=False):
     column: str
+    defaultValue: str
     description: str
     gcRule: str
+    highestIndexingType: typing_extensions.Literal[
+        "INDEXING_TYPE_UNSPECIFIED",
+        "INDEXING_TYPE_NONE",
+        "INDEXING_TYPE_NON_UNIQUE",
+        "INDEXING_TYPE_UNIQUE",
+        "INDEXING_TYPE_PRIMARY_KEY",
+    ]
+    lookerColumnSpec: GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec
     mode: str
+    ordinalPosition: int
     subcolumns: _list[GoogleCloudDatacatalogV1ColumnSchema]
     type: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "LOOKER_COLUMN_TYPE_UNSPECIFIED",
+        "DIMENSION",
+        "DIMENSION_GROUP",
+        "FILTER",
+        "MEASURE",
+        "PAREMETER",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1CommonUsageStats(
+    typing_extensions.TypedDict, total=False
+):
+    viewCount: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Contacts(typing_extensions.TypedDict, total=False):
@@ -122,8 +151,19 @@ class GoogleCloudDatacatalogV1DataSourceConnectionSpec(
 class GoogleCloudDatacatalogV1DatabaseTableSpec(
     typing_extensions.TypedDict, total=False
 ):
+    databaseViewSpec: GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec
     dataplexTable: GoogleCloudDatacatalogV1DataplexTableSpec
     type: typing_extensions.Literal["TABLE_TYPE_UNSPECIFIED", "NATIVE", "EXTERNAL"]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1DatabaseTableSpecDatabaseViewSpec(
+    typing_extensions.TypedDict, total=False
+):
+    baseTable: str
+    sqlQuery: str
+    viewType: typing_extensions.Literal[
+        "VIEW_TYPE_UNSPECIFIED", "STANDARD_VIEW", "MATERIALIZED_VIEW"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1DataplexExternalTable(
@@ -138,6 +178,8 @@ class GoogleCloudDatacatalogV1DataplexExternalTable(
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SQL",
+        "LOOKER",
     ]
 
 @typing.type_check_only
@@ -180,14 +222,18 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SQL",
+        "LOOKER",
     ]
     labels: dict[str, typing.Any]
     linkedResource: str
+    lookerSystemSpec: GoogleCloudDatacatalogV1LookerSystemSpec
     name: str
     personalDetails: GoogleCloudDatacatalogV1PersonalDetails
     routineSpec: GoogleCloudDatacatalogV1RoutineSpec
     schema: GoogleCloudDatacatalogV1Schema
     sourceSystemTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
+    sqlDatabaseSystemSpec: GoogleCloudDatacatalogV1SqlDatabaseSystemSpec
     type: typing_extensions.Literal[
         "ENTRY_TYPE_UNSPECIFIED",
         "TABLE",
@@ -201,6 +247,10 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "LAKE",
         "ZONE",
         "SERVICE",
+        "DATABASE_SCHEMA",
+        "DASHBOARD",
+        "EXPLORE",
+        "LOOK",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str
@@ -263,6 +313,32 @@ class GoogleCloudDatacatalogV1GcsFilesetSpec(typing_extensions.TypedDict, total=
     sampleGcsFileSpecs: _list[GoogleCloudDatacatalogV1GcsFileSpec]
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1ImportEntriesMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: _list[Status]
+    state: typing_extensions.Literal[
+        "IMPORT_STATE_UNSPECIFIED",
+        "IMPORT_QUEUED",
+        "IMPORT_IN_PROGRESS",
+        "IMPORT_DONE",
+        "IMPORT_OBSOLETE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ImportEntriesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    gcsBucketPath: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ImportEntriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deletedEntriesCount: str
+    upsertedEntriesCount: str
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1ImportTaxonomiesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -313,6 +389,17 @@ class GoogleCloudDatacatalogV1ListTaxonomiesResponse(
 ):
     nextPageToken: str
     taxonomies: _list[GoogleCloudDatacatalogV1Taxonomy]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1LookerSystemSpec(
+    typing_extensions.TypedDict, total=False
+):
+    parentInstanceDisplayName: str
+    parentInstanceId: str
+    parentModelDisplayName: str
+    parentModelId: str
+    parentViewDisplayName: str
+    parentViewId: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ModifyEntryContactsRequest(
@@ -380,6 +467,34 @@ class GoogleCloudDatacatalogV1PolicyTag(typing_extensions.TypedDict, total=False
     displayName: str
     name: str
     parentPolicyTag: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ReconcileTagsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    errors: dict[str, typing.Any]
+    state: typing_extensions.Literal[
+        "RECONCILIATION_STATE_UNSPECIFIED",
+        "RECONCILIATION_QUEUED",
+        "RECONCILIATION_IN_PROGRESS",
+        "RECONCILIATION_DONE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ReconcileTagsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    forceDeleteMissing: bool
+    tagTemplate: str
+    tags: _list[GoogleCloudDatacatalogV1Tag]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ReconcileTagsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    createdTagsCount: str
+    deletedTagsCount: str
+    updatedTagsCount: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1RenameTagTemplateFieldEnumValueRequest(
@@ -464,6 +579,8 @@ class GoogleCloudDatacatalogV1SearchCatalogResult(
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SQL",
+        "LOOKER",
     ]
     linkedResource: str
     modifyTime: str
@@ -491,6 +608,14 @@ class GoogleCloudDatacatalogV1SerializedTaxonomy(
     description: str
     displayName: str
     policyTags: _list[GoogleCloudDatacatalogV1SerializedPolicyTag]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1SqlDatabaseSystemSpec(
+    typing_extensions.TypedDict, total=False
+):
+    databaseVersion: str
+    instanceHost: str
+    sqlEngine: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1StarEntryRequest(
@@ -571,7 +696,17 @@ class GoogleCloudDatacatalogV1Taxonomy(typing_extensions.TypedDict, total=False)
     displayName: str
     name: str
     policyTagCount: int
+    service: GoogleCloudDatacatalogV1TaxonomyService
     taxonomyTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1TaxonomyService(typing_extensions.TypedDict, total=False):
+    identity: str
+    name: typing_extensions.Literal[
+        "MANAGING_SYSTEM_UNSPECIFIED",
+        "MANAGING_SYSTEM_DATAPLEX",
+        "MANAGING_SYSTEM_OTHER",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1UnstarEntryRequest(
@@ -585,6 +720,8 @@ class GoogleCloudDatacatalogV1UnstarEntryResponse(
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1UsageSignal(typing_extensions.TypedDict, total=False):
+    commonUsageWithinTimeRange: dict[str, typing.Any]
+    favoriteCount: str
     updateTime: str
     usageWithinTimeRange: dict[str, typing.Any]
 
@@ -600,6 +737,19 @@ class GoogleCloudDatacatalogV1ViewSpec(typing_extensions.TypedDict, total=False)
     viewQuery: str
 
 @typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[Operation]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
@@ -608,6 +758,12 @@ class Policy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

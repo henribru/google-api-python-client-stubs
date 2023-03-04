@@ -5,15 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AbuseDetected(typing_extensions.TypedDict, total=False):
-    additionalDetails: EntityList
-    alertDescriptor: str
-    nextSteps: str
-    product: str
-    subAlertId: str
-    summary: str
-
-@typing.type_check_only
 class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
     abuseReason: typing_extensions.Literal[
         "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
@@ -214,18 +205,6 @@ class DomainWideTakeoutInitiated(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Entity(typing_extensions.TypedDict, total=False):
-    link: str
-    name: str
-    values: _list[str]
-
-@typing.type_check_only
-class EntityList(typing_extensions.TypedDict, total=False):
-    entities: _list[Entity]
-    headers: _list[str]
-    name: str
-
-@typing.type_check_only
 class GmailMessageInfo(typing_extensions.TypedDict, total=False):
     attachmentsSha256Hash: _list[str]
     date: str
@@ -405,6 +384,29 @@ class SuspiciousActivitySecurityDetail(typing_extensions.TypedDict, total=False)
     serialNumber: str
 
 @typing.type_check_only
+class TransferError(typing_extensions.TypedDict, total=False):
+    email: str
+    entityType: typing_extensions.Literal[
+        "TRANSFER_ENTITY_TYPE_UNSPECIFIED",
+        "TRANSFER_AUTO_ATTENDANT",
+        "TRANSFER_RING_GROUP",
+        "TRANSFER_USER",
+    ]
+    id: str
+    invalidReason: typing_extensions.Literal[
+        "TRANSFER_INVALID_REASON_UNSPECIFIED",
+        "TRANSFER_TARGET_DELETED",
+        "UNLICENSED",
+        "SUSPENDED",
+        "NO_PHONE_NUMBER",
+    ]
+    name: str
+
+@typing.type_check_only
+class TransferMisconfiguration(typing_extensions.TypedDict, total=False):
+    errors: _list[TransferError]
+
+@typing.type_check_only
 class UndeleteAlertRequest(typing_extensions.TypedDict, total=False):
     customerId: str
 
@@ -421,3 +423,25 @@ class UserChanges(typing_extensions.TypedDict, total=False):
 class UserDefinedDetectorInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     resourceName: str
+
+@typing.type_check_only
+class VoiceMisconfiguration(typing_extensions.TypedDict, total=False):
+    entityName: str
+    entityType: typing_extensions.Literal[
+        "ENTITY_TYPE_UNSPECIFIED", "AUTO_ATTENDANT", "RING_GROUP"
+    ]
+    fixUri: str
+    membersMisconfiguration: TransferMisconfiguration
+    transferMisconfiguration: TransferMisconfiguration
+    voicemailMisconfiguration: VoicemailMisconfiguration
+
+@typing.type_check_only
+class VoicemailMisconfiguration(typing_extensions.TypedDict, total=False):
+    errors: _list[VoicemailRecipientError]
+
+@typing.type_check_only
+class VoicemailRecipientError(typing_extensions.TypedDict, total=False):
+    email: str
+    invalidReason: typing_extensions.Literal[
+        "EMAIL_INVALID_REASON_UNSPECIFIED", "OUT_OF_QUOTA", "RECIPIENT_DELETED"
+    ]

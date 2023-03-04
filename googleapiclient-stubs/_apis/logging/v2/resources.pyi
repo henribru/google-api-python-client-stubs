@@ -53,6 +53,36 @@ class LoggingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class LinksResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Link = ...,
+                        linkId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LinkHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListLinksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLinksResponseHttpRequest,
+                        previous_response: ListLinksResponse,
+                    ) -> ListLinksResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class LogsResource(googleapiclient.discovery.Resource):
@@ -116,6 +146,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     bucketId: str = ...,
                     **kwargs: typing.Any
                 ) -> LogBucketHttpRequest: ...
+                def createAsync(
+                    self,
+                    *,
+                    parent: str,
+                    body: LogBucket = ...,
+                    bucketId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -150,6 +188,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     body: UndeleteBucketRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def updateAsync(
+                    self,
+                    *,
+                    name: str,
+                    body: LogBucket = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def links(self) -> LinksResource: ...
                 def views(self) -> ViewsResource: ...
 
             @typing.type_check_only
@@ -369,6 +416,36 @@ class LoggingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class LinksResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Link = ...,
+                        linkId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LinkHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListLinksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLinksResponseHttpRequest,
+                        previous_response: ListLinksResponse,
+                    ) -> ListLinksResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class LogsResource(googleapiclient.discovery.Resource):
@@ -432,6 +509,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     bucketId: str = ...,
                     **kwargs: typing.Any
                 ) -> LogBucketHttpRequest: ...
+                def createAsync(
+                    self,
+                    *,
+                    parent: str,
+                    body: LogBucket = ...,
+                    bucketId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -466,6 +551,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     body: UndeleteBucketRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def updateAsync(
+                    self,
+                    *,
+                    name: str,
+                    body: LogBucket = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def links(self) -> LinksResource: ...
                 def views(self) -> ViewsResource: ...
 
             @typing.type_check_only
@@ -607,6 +701,36 @@ class LoggingResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class BucketsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class LinksResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Link = ...,
+                    linkId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> LinkHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListLinksResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListLinksResponseHttpRequest,
+                    previous_response: ListLinksResponse,
+                ) -> ListLinksResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ViewsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -652,6 +776,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 bucketId: str = ...,
                 **kwargs: typing.Any
             ) -> LogBucketHttpRequest: ...
+            def createAsync(
+                self,
+                *,
+                parent: str,
+                body: LogBucket = ...,
+                bucketId: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
@@ -686,6 +818,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 body: UndeleteBucketRequest = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def updateAsync(
+                self,
+                *,
+                name: str,
+                body: LogBucket = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def links(self) -> LinksResource: ...
             def views(self) -> ViewsResource: ...
 
         @typing.type_check_only
@@ -802,6 +943,36 @@ class LoggingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class LinksResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Link = ...,
+                        linkId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LinkHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListLinksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLinksResponseHttpRequest,
+                        previous_response: ListLinksResponse,
+                    ) -> ListLinksResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class LogsResource(googleapiclient.discovery.Resource):
@@ -865,6 +1036,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     bucketId: str = ...,
                     **kwargs: typing.Any
                 ) -> LogBucketHttpRequest: ...
+                def createAsync(
+                    self,
+                    *,
+                    parent: str,
+                    body: LogBucket = ...,
+                    bucketId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -899,6 +1078,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     body: UndeleteBucketRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def updateAsync(
+                    self,
+                    *,
+                    name: str,
+                    body: LogBucket = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def links(self) -> LinksResource: ...
                 def views(self) -> ViewsResource: ...
 
             @typing.type_check_only
@@ -1083,6 +1271,36 @@ class LoggingResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class BucketsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class LinksResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Link = ...,
+                        linkId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LinkHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListLinksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLinksResponseHttpRequest,
+                        previous_response: ListLinksResponse,
+                    ) -> ListLinksResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class ViewsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class LogsResource(googleapiclient.discovery.Resource):
@@ -1146,6 +1364,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     bucketId: str = ...,
                     **kwargs: typing.Any
                 ) -> LogBucketHttpRequest: ...
+                def createAsync(
+                    self,
+                    *,
+                    parent: str,
+                    body: LogBucket = ...,
+                    bucketId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -1180,6 +1406,15 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     body: UndeleteBucketRequest = ...,
                     **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def updateAsync(
+                    self,
+                    *,
+                    name: str,
+                    body: LogBucket = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def links(self) -> LinksResource: ...
                 def views(self) -> ViewsResource: ...
 
             @typing.type_check_only
@@ -1440,6 +1675,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class LinkHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Link: ...
+
+@typing.type_check_only
 class ListBucketsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1454,6 +1697,14 @@ class ListExclusionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListExclusionsResponse: ...
+
+@typing.type_check_only
+class ListLinksResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListLinksResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

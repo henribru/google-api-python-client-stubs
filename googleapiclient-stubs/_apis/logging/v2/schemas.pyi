@@ -5,9 +5,29 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class BigQueryDataset(typing_extensions.TypedDict, total=False):
+    datasetId: str
+
+@typing.type_check_only
 class BigQueryOptions(typing_extensions.TypedDict, total=False):
     usePartitionedTables: bool
     usesTimestampColumnPartitioning: bool
+
+@typing.type_check_only
+class BucketMetadata(typing_extensions.TypedDict, total=False):
+    createBucketRequest: CreateBucketRequest
+    endTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "OPERATION_STATE_SCHEDULED",
+        "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
+        "OPERATION_STATE_RUNNING",
+        "OPERATION_STATE_SUCCEEDED",
+        "OPERATION_STATE_FAILED",
+        "OPERATION_STATE_CANCELLED",
+    ]
+    updateBucketRequest: UpdateBucketRequest
 
 @typing.type_check_only
 class BucketOptions(typing_extensions.TypedDict, total=False):
@@ -52,6 +72,22 @@ class CopyLogEntriesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CopyLogEntriesResponse(typing_extensions.TypedDict, total=False):
     logEntriesCopiedCount: str
+
+@typing.type_check_only
+class CreateBucketRequest(typing_extensions.TypedDict, total=False):
+    bucket: LogBucket
+    bucketId: str
+    parent: str
+
+@typing.type_check_only
+class CreateLinkRequest(typing_extensions.TypedDict, total=False):
+    link: Link
+    linkId: str
+    parent: str
+
+@typing.type_check_only
+class DeleteLinkRequest(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -105,6 +141,37 @@ class Linear(typing_extensions.TypedDict, total=False):
     width: float
 
 @typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    bigqueryDataset: BigQueryDataset
+    createTime: str
+    description: str
+    lifecycleState: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "ACTIVE",
+        "DELETE_REQUESTED",
+        "UPDATING",
+        "CREATING",
+        "FAILED",
+    ]
+    name: str
+
+@typing.type_check_only
+class LinkMetadata(typing_extensions.TypedDict, total=False):
+    createLinkRequest: CreateLinkRequest
+    deleteLinkRequest: DeleteLinkRequest
+    endTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "OPERATION_STATE_SCHEDULED",
+        "OPERATION_STATE_WAITING_FOR_PERMISSIONS",
+        "OPERATION_STATE_RUNNING",
+        "OPERATION_STATE_SUCCEEDED",
+        "OPERATION_STATE_FAILED",
+        "OPERATION_STATE_CANCELLED",
+    ]
+
+@typing.type_check_only
 class ListBucketsResponse(typing_extensions.TypedDict, total=False):
     buckets: _list[LogBucket]
     nextPageToken: str
@@ -112,6 +179,11 @@ class ListBucketsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListExclusionsResponse(typing_extensions.TypedDict, total=False):
     exclusions: _list[LogExclusion]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListLinksResponse(typing_extensions.TypedDict, total=False):
+    links: _list[Link]
     nextPageToken: str
 
 @typing.type_check_only
@@ -174,13 +246,23 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    logAnalyticsEnabled: bool
+
+@typing.type_check_only
 class LogBucket(typing_extensions.TypedDict, total=False):
+    analyticsEnabled: bool
     cmekSettings: CmekSettings
     createTime: str
     description: str
     indexConfigs: _list[IndexConfig]
     lifecycleState: typing_extensions.Literal[
-        "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "ACTIVE",
+        "DELETE_REQUESTED",
+        "UPDATING",
+        "CREATING",
+        "FAILED",
     ]
     locked: bool
     name: str
@@ -470,6 +552,12 @@ class TailLogEntriesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateBucketRequest(typing_extensions.TypedDict, total=False):
+    bucket: LogBucket
+    name: str
+    updateMask: str
 
 @typing.type_check_only
 class WriteLogEntriesRequest(typing_extensions.TypedDict, total=False):

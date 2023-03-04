@@ -59,6 +59,7 @@ class CommitRequest(typing_extensions.TypedDict, total=False):
         "MODE_UNSPECIFIED", "TRANSACTIONAL", "NON_TRANSACTIONAL"
     ]
     mutations: _list[Mutation]
+    singleUseTransaction: TransactionOptions
     transaction: str
 
 @typing.type_check_only
@@ -86,6 +87,7 @@ class Entity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntityResult(typing_extensions.TypedDict, total=False):
+    createTime: str
     cursor: str
     entity: Entity
     updateTime: str
@@ -379,6 +381,7 @@ class LookupResponse(typing_extensions.TypedDict, total=False):
     found: _list[EntityResult]
     missing: _list[EntityResult]
     readTime: str
+    transaction: str
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -392,6 +395,7 @@ class Mutation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MutationResult(typing_extensions.TypedDict, total=False):
     conflictDetected: bool
+    createTime: str
     key: Key
     updateTime: str
     version: str
@@ -477,6 +481,7 @@ class ReadOnly(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReadOptions(typing_extensions.TypedDict, total=False):
+    newTransaction: TransactionOptions
     readConsistency: typing_extensions.Literal[
         "READ_CONSISTENCY_UNSPECIFIED", "STRONG", "EVENTUAL"
     ]
@@ -515,6 +520,7 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
     batch: AggregationResultBatch
     query: AggregationQuery
+    transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
@@ -528,6 +534,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     batch: QueryResultBatch
     query: Query
+    transaction: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

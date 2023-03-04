@@ -88,6 +88,7 @@ class EffectiveTag(typing_extensions.TypedDict, total=False):
     namespacedTagKey: str
     namespacedTagValue: str
     tagKey: str
+    tagKeyParentName: str
     tagValue: str
 
 @typing.type_check_only

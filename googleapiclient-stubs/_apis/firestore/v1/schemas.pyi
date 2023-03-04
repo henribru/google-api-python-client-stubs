@@ -176,6 +176,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "PESSIMISTIC",
         "OPTIMISTIC_WITH_ENTITY_GROUPS",
     ]
+    createTime: str
     etag: str
     keyPrefix: str
     locationId: str
@@ -183,6 +184,8 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
     ]
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsMetadata(
@@ -190,6 +193,7 @@ class GoogleFirestoreAdminV1ExportDocumentsMetadata(
 ):
     collectionIds: _list[str]
     endTime: str
+    namespaceIds: _list[str]
     operationState: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",
@@ -254,6 +258,7 @@ class GoogleFirestoreAdminV1ImportDocumentsMetadata(
     collectionIds: _list[str]
     endTime: str
     inputUriPrefix: str
+    namespaceIds: _list[str]
     operationState: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
         "INITIALIZING",

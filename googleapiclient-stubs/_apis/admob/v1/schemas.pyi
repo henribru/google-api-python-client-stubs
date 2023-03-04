@@ -15,6 +15,9 @@ class AdUnit(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class App(typing_extensions.TypedDict, total=False):
+    appApprovalState: typing_extensions.Literal[
+        "APP_APPROVAL_STATE_UNSPECIFIED", "ACTION_REQUIRED", "IN_REVIEW", "APPROVED"
+    ]
     appId: str
     linkedAppInfo: AppLinkedAppInfo
     manualAppInfo: AppManualAppInfo

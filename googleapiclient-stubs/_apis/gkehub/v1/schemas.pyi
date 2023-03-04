@@ -56,6 +56,9 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     state: FeatureState
 
 @typing.type_check_only
+class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     allowVerticalScale: bool
     enabled: bool
@@ -225,6 +228,12 @@ class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False)
     templateLibraryInstalled: bool
 
 @typing.type_check_only
+class ConfigManagementPolicyControllerMigration(
+    typing_extensions.TypedDict, total=False
+):
+    stage: typing_extensions.Literal["STAGE_UNSPECIFIED", "ACM_MANAGED", "POCO_MANAGED"]
+
+@typing.type_check_only
 class ConfigManagementPolicyControllerMonitoring(
     typing_extensions.TypedDict, total=False
 ):
@@ -233,6 +242,7 @@ class ConfigManagementPolicyControllerMonitoring(
 @typing.type_check_only
 class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=False):
     deploymentState: ConfigManagementGatekeeperDeploymentState
+    migration: ConfigManagementPolicyControllerMigration
     version: ConfigManagementPolicyControllerVersion
 
 @typing.type_check_only
@@ -287,6 +297,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 class Feature(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
+    fleetDefaultMemberConfig: CommonFleetDefaultMemberConfigSpec
     labels: dict[str, typing.Any]
     membershipSpecs: dict[str, typing.Any]
     membershipStates: dict[str, typing.Any]
@@ -417,6 +428,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
+    membershipBindings: _list[MembershipBinding]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Membership]
@@ -426,6 +442,11 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListScopesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scopes: _list[Scope]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -451,10 +472,28 @@ class Membership(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MembershipBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    fleet: bool
+    name: str
+    scope: str
+    state: MembershipBindingLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class MembershipBindingLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
 class MembershipEndpoint(typing_extensions.TypedDict, total=False):
     applianceCluster: ApplianceCluster
     edgeCluster: EdgeCluster
     gkeCluster: GkeCluster
+    googleManaged: bool
     kubernetesMetadata: KubernetesMetadata
     kubernetesResource: KubernetesResource
     multiCloudCluster: MultiCloudCluster
@@ -543,11 +582,26 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
     v1beta1Crd: bool
 
 @typing.type_check_only
+class Scope(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    name: str
+    state: ScopeLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class ScopeFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ScopeFeatureState(typing_extensions.TypedDict, total=False):
     state: FeatureState
+
+@typing.type_check_only
+class ScopeLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
 
 @typing.type_check_only
 class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False):
