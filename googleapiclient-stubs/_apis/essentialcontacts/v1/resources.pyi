@@ -53,7 +53,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ComputeContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None
+            ): ...
             def create(
                 self,
                 *,
@@ -79,7 +81,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ListContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -138,7 +142,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ComputeContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None
+            ): ...
             def create(
                 self,
                 *,
@@ -164,7 +170,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ListContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -223,7 +231,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ComputeContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ComputeContactsResponseHttpRequest | None
+            ): ...
             def create(
                 self,
                 *,
@@ -249,7 +259,9 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest,
                 previous_response: GoogleCloudEssentialcontactsV1ListContactsResponse,
-            ) -> GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudEssentialcontactsV1ListContactsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,

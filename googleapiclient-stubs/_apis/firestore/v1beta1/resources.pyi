@@ -211,7 +211,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest,
                     previous_response: GoogleFirestoreAdminV1beta1ListIndexesResponse,
-                ) -> GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleFirestoreAdminV1beta1ListIndexesResponseHttpRequest | None
+                ): ...
 
             def exportDocuments(
                 self,

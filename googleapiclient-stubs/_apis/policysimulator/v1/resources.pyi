@@ -60,12 +60,17 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1ListReplayResultsResponse,
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def create(
                     self,
@@ -154,12 +159,17 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1ListReplayResultsResponse,
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def create(
                     self,
@@ -228,12 +238,17 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest,
                         previous_response: GoogleCloudPolicysimulatorV1ListReplayResultsResponse,
-                    ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def create(
                     self,

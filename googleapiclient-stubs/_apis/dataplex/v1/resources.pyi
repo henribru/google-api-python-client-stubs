@@ -50,12 +50,17 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest,
                     previous_response: GoogleCloudDataplexV1ListDataAttributeBindingsResponse,
-                ) -> GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDataplexV1ListDataAttributeBindingsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -105,7 +110,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest,
                         previous_response: GoogleCloudDataplexV1ListDataScanJobsResponse,
-                    ) -> GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDataplexV1ListDataScanJobsResponseHttpRequest | None
+                    ): ...
 
                 def create(
                     self,
@@ -222,7 +229,10 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest,
                         previous_response: GoogleCloudDataplexV1ListDataAttributesResponse,
-                    ) -> GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDataplexV1ListDataAttributesResponseHttpRequest
+                        | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -283,7 +293,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest,
                     previous_response: GoogleCloudDataplexV1ListDataTaxonomiesResponse,
-                ) -> GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDataplexV1ListDataTaxonomiesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -478,7 +490,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDataplexV1ListSessionsResponseHttpRequest,
                             previous_response: GoogleCloudDataplexV1ListSessionsResponse,
-                        ) -> GoogleCloudDataplexV1ListSessionsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDataplexV1ListSessionsResponseHttpRequest | None
+                        ): ...
 
                     def create(
                         self,
@@ -516,7 +530,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest,
                         previous_response: GoogleCloudDataplexV1ListEnvironmentsResponse,
-                    ) -> GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDataplexV1ListEnvironmentsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -568,7 +584,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDataplexV1ListJobsResponseHttpRequest,
                             previous_response: GoogleCloudDataplexV1ListJobsResponse,
-                        ) -> GoogleCloudDataplexV1ListJobsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDataplexV1ListJobsResponseHttpRequest | None
+                        ): ...
 
                     def create(
                         self,
@@ -655,7 +673,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDataplexV1ListActionsResponseHttpRequest,
                             previous_response: GoogleCloudDataplexV1ListActionsResponse,
-                        ) -> GoogleCloudDataplexV1ListActionsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDataplexV1ListActionsResponseHttpRequest | None
+                        ): ...
 
                     @typing.type_check_only
                     class AssetsResource(googleapiclient.discovery.Resource):
@@ -668,12 +688,17 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                                 pageSize: int = ...,
                                 pageToken: str = ...,
                                 **kwargs: typing.Any
-                            ) -> GoogleCloudDataplexV1ListActionsResponseHttpRequest: ...
+                            ) -> (
+                                GoogleCloudDataplexV1ListActionsResponseHttpRequest
+                            ): ...
                             def list_next(
                                 self,
                                 previous_request: GoogleCloudDataplexV1ListActionsResponseHttpRequest,
                                 previous_response: GoogleCloudDataplexV1ListActionsResponse,
-                            ) -> GoogleCloudDataplexV1ListActionsResponseHttpRequest | None: ...
+                            ) -> (
+                                GoogleCloudDataplexV1ListActionsResponseHttpRequest
+                                | None
+                            ): ...
 
                         def create(
                             self,
@@ -711,7 +736,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDataplexV1ListAssetsResponseHttpRequest,
                             previous_response: GoogleCloudDataplexV1ListAssetsResponse,
-                        ) -> GoogleCloudDataplexV1ListAssetsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDataplexV1ListAssetsResponseHttpRequest | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -767,12 +794,17 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                                 pageSize: int = ...,
                                 pageToken: str = ...,
                                 **kwargs: typing.Any
-                            ) -> GoogleCloudDataplexV1ListPartitionsResponseHttpRequest: ...
+                            ) -> (
+                                GoogleCloudDataplexV1ListPartitionsResponseHttpRequest
+                            ): ...
                             def list_next(
                                 self,
                                 previous_request: GoogleCloudDataplexV1ListPartitionsResponseHttpRequest,
                                 previous_response: GoogleCloudDataplexV1ListPartitionsResponse,
-                            ) -> GoogleCloudDataplexV1ListPartitionsResponseHttpRequest | None: ...
+                            ) -> (
+                                GoogleCloudDataplexV1ListPartitionsResponseHttpRequest
+                                | None
+                            ): ...
 
                         def create(
                             self,
@@ -810,7 +842,9 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDataplexV1ListEntitiesResponseHttpRequest,
                             previous_response: GoogleCloudDataplexV1ListEntitiesResponse,
-                        ) -> GoogleCloudDataplexV1ListEntitiesResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDataplexV1ListEntitiesResponseHttpRequest | None
+                        ): ...
                         def update(
                             self,
                             *,

@@ -119,7 +119,9 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudOrgpolicyV2ListCustomConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListCustomConstraintsResponse,
-            ) -> GoogleCloudOrgpolicyV2ListCustomConstraintsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudOrgpolicyV2ListCustomConstraintsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,

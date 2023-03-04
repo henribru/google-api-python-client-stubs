@@ -102,7 +102,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudRetailV2ListProductsResponseHttpRequest,
                             previous_response: GoogleCloudRetailV2ListProductsResponse,
-                        ) -> GoogleCloudRetailV2ListProductsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudRetailV2ListProductsResponseHttpRequest | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -319,7 +321,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRetailV2ListServingConfigsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2ListServingConfigsResponse,
-                    ) -> GoogleCloudRetailV2ListServingConfigsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2ListServingConfigsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,

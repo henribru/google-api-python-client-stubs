@@ -29,7 +29,9 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest,
                 previous_response: GoogleAppsDriveLabelsV2betaListLabelLocksResponse,
-            ) -> GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class PermissionsResource(googleapiclient.discovery.Resource):
@@ -71,7 +73,10 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest,
                 previous_response: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse,
-            ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class RevisionsResource(googleapiclient.discovery.Resource):
@@ -89,7 +94,9 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest,
                     previous_response: GoogleAppsDriveLabelsV2betaListLabelLocksResponse,
-                ) -> GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest | None
+                ): ...
 
             @typing.type_check_only
             class PermissionsResource(googleapiclient.discovery.Resource):
@@ -126,12 +133,17 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     useAdminAccess: bool = ...,
                     **kwargs: typing.Any
-                ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest: ...
+                ) -> (
+                    GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest,
                     previous_response: GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse,
-                ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest
+                    | None
+                ): ...
 
             def updatePermissions(
                 self,

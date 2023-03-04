@@ -512,7 +512,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.abusiveexperiencereport.v1.resources.AbusiveExperienceReportResource: ...
+) -> (
+    googleapiclient._apis.abusiveexperiencereport.v1.resources.AbusiveExperienceReportResource
+): ...
 @overload
 def build(
     serviceName: Literal["acceleratedmobilepageurl"],
@@ -532,7 +534,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.acceleratedmobilepageurl.v1.resources.AcceleratedmobilepageurlResource: ...
+) -> (
+    googleapiclient._apis.acceleratedmobilepageurl.v1.resources.AcceleratedmobilepageurlResource
+): ...
 @overload
 def build(
     serviceName: Literal["accessapproval"],
@@ -572,7 +576,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.accesscontextmanager.v1.resources.AccessContextManagerResource: ...
+) -> (
+    googleapiclient._apis.accesscontextmanager.v1.resources.AccessContextManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["accesscontextmanager"],
@@ -592,7 +598,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.accesscontextmanager.v1beta.resources.AccessContextManagerResource: ...
+) -> (
+    googleapiclient._apis.accesscontextmanager.v1beta.resources.AccessContextManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["acmedns"],
@@ -692,7 +700,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.adexchangebuyer2.v2beta1.resources.AdExchangeBuyerIIResource: ...
+) -> (
+    googleapiclient._apis.adexchangebuyer2.v2beta1.resources.AdExchangeBuyerIIResource
+): ...
 @overload
 def build(
     serviceName: Literal["adexperiencereport"],
@@ -712,7 +722,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.adexperiencereport.v1.resources.AdExperienceReportResource: ...
+) -> (
+    googleapiclient._apis.adexperiencereport.v1.resources.AdExperienceReportResource
+): ...
 @overload
 def build(
     serviceName: Literal["admin"],
@@ -872,7 +884,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.advisorynotifications.v1.resources.AdvisorynotificationsResource: ...
+) -> (
+    googleapiclient._apis.advisorynotifications.v1.resources.AdvisorynotificationsResource
+): ...
 @overload
 def build(
     serviceName: Literal["alertcenter"],
@@ -932,7 +946,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.analyticsadmin.v1alpha.resources.GoogleAnalyticsAdminResource: ...
+) -> (
+    googleapiclient._apis.analyticsadmin.v1alpha.resources.GoogleAnalyticsAdminResource
+): ...
 @overload
 def build(
     serviceName: Literal["analyticsadmin"],
@@ -952,7 +968,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.analyticsadmin.v1beta.resources.GoogleAnalyticsAdminResource: ...
+) -> (
+    googleapiclient._apis.analyticsadmin.v1beta.resources.GoogleAnalyticsAdminResource
+): ...
 @overload
 def build(
     serviceName: Literal["analyticsdata"],
@@ -1052,7 +1070,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.analyticsreporting.v4.resources.AnalyticsReportingResource: ...
+) -> (
+    googleapiclient._apis.analyticsreporting.v4.resources.AnalyticsReportingResource
+): ...
 @overload
 def build(
     serviceName: Literal["androiddeviceprovisioning"],
@@ -1072,7 +1092,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.androiddeviceprovisioning.v1.resources.AndroidProvisioningPartnerResource: ...
+) -> (
+    googleapiclient._apis.androiddeviceprovisioning.v1.resources.AndroidProvisioningPartnerResource
+): ...
 @overload
 def build(
     serviceName: Literal["androidenterprise"],
@@ -1392,7 +1414,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.artifactregistry.v1beta1.resources.ArtifactRegistryResource: ...
+) -> (
+    googleapiclient._apis.artifactregistry.v1beta1.resources.ArtifactRegistryResource
+): ...
 @overload
 def build(
     serviceName: Literal["artifactregistry"],
@@ -1412,7 +1436,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.artifactregistry.v1beta2.resources.ArtifactRegistryResource: ...
+) -> (
+    googleapiclient._apis.artifactregistry.v1beta2.resources.ArtifactRegistryResource
+): ...
 @overload
 def build(
     serviceName: Literal["assuredworkloads"],
@@ -1452,7 +1478,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.assuredworkloads.v1beta1.resources.AssuredworkloadsResource: ...
+) -> (
+    googleapiclient._apis.assuredworkloads.v1beta1.resources.AssuredworkloadsResource
+): ...
 @overload
 def build(
     serviceName: Literal["authorizedbuyersmarketplace"],
@@ -1472,7 +1500,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.authorizedbuyersmarketplace.v1.resources.AuthorizedBuyersMarketplaceResource: ...
+) -> (
+    googleapiclient._apis.authorizedbuyersmarketplace.v1.resources.AuthorizedBuyersMarketplaceResource
+): ...
 @overload
 def build(
     serviceName: Literal["baremetalsolution"],
@@ -1512,7 +1542,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.baremetalsolution.v1alpha1.resources.BaremetalsolutionResource: ...
+) -> (
+    googleapiclient._apis.baremetalsolution.v1alpha1.resources.BaremetalsolutionResource
+): ...
 @overload
 def build(
     serviceName: Literal["baremetalsolution"],
@@ -1632,7 +1664,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.bigqueryconnection.v1beta1.resources.BigQueryConnectionServiceResource: ...
+) -> (
+    googleapiclient._apis.bigqueryconnection.v1beta1.resources.BigQueryConnectionServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["bigquerydatatransfer"],
@@ -1652,7 +1686,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.bigquerydatatransfer.v1.resources.BigQueryDataTransferResource: ...
+) -> (
+    googleapiclient._apis.bigquerydatatransfer.v1.resources.BigQueryDataTransferResource
+): ...
 @overload
 def build(
     serviceName: Literal["bigqueryreservation"],
@@ -1672,7 +1708,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.bigqueryreservation.v1.resources.BigQueryReservationResource: ...
+) -> (
+    googleapiclient._apis.bigqueryreservation.v1.resources.BigQueryReservationResource
+): ...
 @overload
 def build(
     serviceName: Literal["bigqueryreservation"],
@@ -1692,7 +1730,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.bigqueryreservation.v1alpha2.resources.BigQueryReservationResource: ...
+) -> (
+    googleapiclient._apis.bigqueryreservation.v1alpha2.resources.BigQueryReservationResource
+): ...
 @overload
 def build(
     serviceName: Literal["bigqueryreservation"],
@@ -1712,7 +1752,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.bigqueryreservation.v1beta1.resources.BigQueryReservationResource: ...
+) -> (
+    googleapiclient._apis.bigqueryreservation.v1beta1.resources.BigQueryReservationResource
+): ...
 @overload
 def build(
     serviceName: Literal["bigtableadmin"],
@@ -1792,7 +1834,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.billingbudgets.v1beta1.resources.CloudBillingBudgetResource: ...
+) -> (
+    googleapiclient._apis.billingbudgets.v1beta1.resources.CloudBillingBudgetResource
+): ...
 @overload
 def build(
     serviceName: Literal["binaryauthorization"],
@@ -1812,7 +1856,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.binaryauthorization.v1.resources.BinaryAuthorizationResource: ...
+) -> (
+    googleapiclient._apis.binaryauthorization.v1.resources.BinaryAuthorizationResource
+): ...
 @overload
 def build(
     serviceName: Literal["binaryauthorization"],
@@ -1832,7 +1878,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.binaryauthorization.v1beta1.resources.BinaryAuthorizationResource: ...
+) -> (
+    googleapiclient._apis.binaryauthorization.v1beta1.resources.BinaryAuthorizationResource
+): ...
 @overload
 def build(
     serviceName: Literal["blogger"],
@@ -1912,7 +1960,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.businessprofileperformance.v1.resources.BusinessProfilePerformanceResource: ...
+) -> (
+    googleapiclient._apis.businessprofileperformance.v1.resources.BusinessProfilePerformanceResource
+): ...
 @overload
 def build(
     serviceName: Literal["calendar"],
@@ -1952,7 +2002,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.certificatemanager.v1.resources.CertificateManagerResource: ...
+) -> (
+    googleapiclient._apis.certificatemanager.v1.resources.CertificateManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["chat"],
@@ -2352,7 +2404,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudcommerceprocurement.v1.resources.CloudCommercePartnerProcurementServiceResource: ...
+) -> (
+    googleapiclient._apis.cloudcommerceprocurement.v1.resources.CloudCommercePartnerProcurementServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["clouddebugger"],
@@ -2412,7 +2466,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.clouderrorreporting.v1beta1.resources.ClouderrorreportingResource: ...
+) -> (
+    googleapiclient._apis.clouderrorreporting.v1beta1.resources.ClouderrorreportingResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudfunctions"],
@@ -2612,7 +2668,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudresourcemanager.v1.resources.CloudResourceManagerResource: ...
+) -> (
+    googleapiclient._apis.cloudresourcemanager.v1.resources.CloudResourceManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudresourcemanager"],
@@ -2632,7 +2690,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudresourcemanager.v1beta1.resources.CloudResourceManagerResource: ...
+) -> (
+    googleapiclient._apis.cloudresourcemanager.v1beta1.resources.CloudResourceManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudresourcemanager"],
@@ -2652,7 +2712,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudresourcemanager.v2.resources.CloudResourceManagerResource: ...
+) -> (
+    googleapiclient._apis.cloudresourcemanager.v2.resources.CloudResourceManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudresourcemanager"],
@@ -2672,7 +2734,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudresourcemanager.v2beta1.resources.CloudResourceManagerResource: ...
+) -> (
+    googleapiclient._apis.cloudresourcemanager.v2beta1.resources.CloudResourceManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudresourcemanager"],
@@ -2692,7 +2756,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.cloudresourcemanager.v3.resources.CloudResourceManagerResource: ...
+) -> (
+    googleapiclient._apis.cloudresourcemanager.v3.resources.CloudResourceManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["cloudscheduler"],
@@ -3092,7 +3158,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.contactcenteraiplatform.v1alpha1.resources.CCAIPlatformResource: ...
+) -> (
+    googleapiclient._apis.contactcenteraiplatform.v1alpha1.resources.CCAIPlatformResource
+): ...
 @overload
 def build(
     serviceName: Literal["contactcenterinsights"],
@@ -3112,7 +3180,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.contactcenterinsights.v1.resources.ContactcenterinsightsResource: ...
+) -> (
+    googleapiclient._apis.contactcenterinsights.v1.resources.ContactcenterinsightsResource
+): ...
 @overload
 def build(
     serviceName: Literal["container"],
@@ -3192,7 +3262,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.containeranalysis.v1alpha1.resources.ContainerAnalysisResource: ...
+) -> (
+    googleapiclient._apis.containeranalysis.v1alpha1.resources.ContainerAnalysisResource
+): ...
 @overload
 def build(
     serviceName: Literal["containeranalysis"],
@@ -3212,7 +3284,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.containeranalysis.v1beta1.resources.ContainerAnalysisResource: ...
+) -> (
+    googleapiclient._apis.containeranalysis.v1beta1.resources.ContainerAnalysisResource
+): ...
 @overload
 def build(
     serviceName: Literal["content"],
@@ -3452,7 +3526,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.datamigration.v1.resources.DatabaseMigrationServiceResource: ...
+) -> (
+    googleapiclient._apis.datamigration.v1.resources.DatabaseMigrationServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["datamigration"],
@@ -3472,7 +3548,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.datamigration.v1beta1.resources.DatabaseMigrationServiceResource: ...
+) -> (
+    googleapiclient._apis.datamigration.v1beta1.resources.DatabaseMigrationServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["datapipelines"],
@@ -3672,7 +3750,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.deploymentmanager.alpha.resources.DeploymentManagerResource: ...
+) -> (
+    googleapiclient._apis.deploymentmanager.alpha.resources.DeploymentManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["deploymentmanager"],
@@ -3712,7 +3792,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.deploymentmanager.v2beta.resources.DeploymentManagerResource: ...
+) -> (
+    googleapiclient._apis.deploymentmanager.v2beta.resources.DeploymentManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["dfareporting"],
@@ -3932,7 +4014,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.discoveryengine.v1alpha.resources.DiscoveryEngineResource: ...
+) -> (
+    googleapiclient._apis.discoveryengine.v1alpha.resources.DiscoveryEngineResource
+): ...
 @overload
 def build(
     serviceName: Literal["discoveryengine"],
@@ -4252,7 +4336,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.doubleclickbidmanager.v1_1.resources.DoubleClickBidManagerResource: ...
+) -> (
+    googleapiclient._apis.doubleclickbidmanager.v1_1.resources.DoubleClickBidManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["doubleclickbidmanager"],
@@ -4272,7 +4358,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.doubleclickbidmanager.v1.resources.DoubleClickBidManagerResource: ...
+) -> (
+    googleapiclient._apis.doubleclickbidmanager.v1.resources.DoubleClickBidManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["doubleclickbidmanager"],
@@ -4292,7 +4380,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.doubleclickbidmanager.v2.resources.DoubleClickBidManagerResource: ...
+) -> (
+    googleapiclient._apis.doubleclickbidmanager.v2.resources.DoubleClickBidManagerResource
+): ...
 @overload
 def build(
     serviceName: Literal["doubleclicksearch"],
@@ -4632,7 +4722,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.firebaseappcheck.v1beta.resources.FirebaseappcheckResource: ...
+) -> (
+    googleapiclient._apis.firebaseappcheck.v1beta.resources.FirebaseappcheckResource
+): ...
 @overload
 def build(
     serviceName: Literal["firebasedatabase"],
@@ -4652,7 +4744,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.firebasedatabase.v1beta.resources.FirebaseRealtimeDatabaseResource: ...
+) -> (
+    googleapiclient._apis.firebasedatabase.v1beta.resources.FirebaseRealtimeDatabaseResource
+): ...
 @overload
 def build(
     serviceName: Literal["firebasedynamiclinks"],
@@ -4672,7 +4766,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.firebasedynamiclinks.v1.resources.FirebaseDynamicLinksResource: ...
+) -> (
+    googleapiclient._apis.firebasedynamiclinks.v1.resources.FirebaseDynamicLinksResource
+): ...
 @overload
 def build(
     serviceName: Literal["firebasehosting"],
@@ -4712,7 +4808,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.firebasehosting.v1beta1.resources.FirebaseHostingResource: ...
+) -> (
+    googleapiclient._apis.firebasehosting.v1beta1.resources.FirebaseHostingResource
+): ...
 @overload
 def build(
     serviceName: Literal["firebaseml"],
@@ -4932,7 +5030,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.gamesConfiguration.v1configuration.resources.GamesConfigurationResource: ...
+) -> (
+    googleapiclient._apis.gamesConfiguration.v1configuration.resources.GamesConfigurationResource
+): ...
 @overload
 def build(
     serviceName: Literal["gamesManagement"],
@@ -4952,7 +5052,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.gamesManagement.v1management.resources.GamesManagementResource: ...
+) -> (
+    googleapiclient._apis.gamesManagement.v1management.resources.GamesManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["gameservices"],
@@ -5232,7 +5334,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.gmailpostmastertools.v1.resources.PostmasterToolsResource: ...
+) -> (
+    googleapiclient._apis.gmailpostmastertools.v1.resources.PostmasterToolsResource
+): ...
 @overload
 def build(
     serviceName: Literal["gmailpostmastertools"],
@@ -5252,7 +5356,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.gmailpostmastertools.v1beta1.resources.PostmasterToolsResource: ...
+) -> (
+    googleapiclient._apis.gmailpostmastertools.v1beta1.resources.PostmasterToolsResource
+): ...
 @overload
 def build(
     serviceName: Literal["groupsmigration"],
@@ -5972,7 +6078,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.managedidentities.v1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
+) -> (
+    googleapiclient._apis.managedidentities.v1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
+): ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -5992,7 +6100,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.managedidentities.v1alpha1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
+) -> (
+    googleapiclient._apis.managedidentities.v1alpha1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
+): ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -6012,7 +6122,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.managedidentities.v1beta1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
+) -> (
+    googleapiclient._apis.managedidentities.v1beta1.resources.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
+): ...
 @overload
 def build(
     serviceName: Literal["manufacturers"],
@@ -6052,7 +6164,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.memcache.v1.resources.CloudMemorystoreForMemcachedResource: ...
+) -> (
+    googleapiclient._apis.memcache.v1.resources.CloudMemorystoreForMemcachedResource
+): ...
 @overload
 def build(
     serviceName: Literal["memcache"],
@@ -6072,7 +6186,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.memcache.v1beta2.resources.CloudMemorystoreForMemcachedResource: ...
+) -> (
+    googleapiclient._apis.memcache.v1beta2.resources.CloudMemorystoreForMemcachedResource
+): ...
 @overload
 def build(
     serviceName: Literal["metastore"],
@@ -6212,7 +6328,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessaccountmanagement.v1.resources.MyBusinessAccountManagementResource: ...
+) -> (
+    googleapiclient._apis.mybusinessaccountmanagement.v1.resources.MyBusinessAccountManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["mybusinessbusinesscalls"],
@@ -6232,7 +6350,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessbusinesscalls.v1.resources.MyBusinessBusinessCallsResource: ...
+) -> (
+    googleapiclient._apis.mybusinessbusinesscalls.v1.resources.MyBusinessBusinessCallsResource
+): ...
 @overload
 def build(
     serviceName: Literal["mybusinessbusinessinformation"],
@@ -6252,7 +6372,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessbusinessinformation.v1.resources.MyBusinessBusinessInformationResource: ...
+) -> (
+    googleapiclient._apis.mybusinessbusinessinformation.v1.resources.MyBusinessBusinessInformationResource
+): ...
 @overload
 def build(
     serviceName: Literal["mybusinesslodging"],
@@ -6292,7 +6414,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessnotifications.v1.resources.MyBusinessNotificationSettingsResource: ...
+) -> (
+    googleapiclient._apis.mybusinessnotifications.v1.resources.MyBusinessNotificationSettingsResource
+): ...
 @overload
 def build(
     serviceName: Literal["mybusinessplaceactions"],
@@ -6312,7 +6436,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessplaceactions.v1.resources.MyBusinessPlaceActionsResource: ...
+) -> (
+    googleapiclient._apis.mybusinessplaceactions.v1.resources.MyBusinessPlaceActionsResource
+): ...
 @overload
 def build(
     serviceName: Literal["mybusinessqanda"],
@@ -6352,7 +6478,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.mybusinessverifications.v1.resources.MyBusinessVerificationsResource: ...
+) -> (
+    googleapiclient._apis.mybusinessverifications.v1.resources.MyBusinessVerificationsResource
+): ...
 @overload
 def build(
     serviceName: Literal["networkconnectivity"],
@@ -6372,7 +6500,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.networkconnectivity.v1.resources.NetworkconnectivityResource: ...
+) -> (
+    googleapiclient._apis.networkconnectivity.v1.resources.NetworkconnectivityResource
+): ...
 @overload
 def build(
     serviceName: Literal["networkconnectivity"],
@@ -6392,7 +6522,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.networkconnectivity.v1alpha1.resources.NetworkconnectivityResource: ...
+) -> (
+    googleapiclient._apis.networkconnectivity.v1alpha1.resources.NetworkconnectivityResource
+): ...
 @overload
 def build(
     serviceName: Literal["networkmanagement"],
@@ -6432,7 +6564,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.networkmanagement.v1beta1.resources.NetworkManagementResource: ...
+) -> (
+    googleapiclient._apis.networkmanagement.v1beta1.resources.NetworkManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["networksecurity"],
@@ -6472,7 +6606,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.networksecurity.v1beta1.resources.NetworkSecurityResource: ...
+) -> (
+    googleapiclient._apis.networksecurity.v1beta1.resources.NetworkSecurityResource
+): ...
 @overload
 def build(
     serviceName: Literal["networkservices"],
@@ -6512,7 +6648,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.networkservices.v1beta1.resources.NetworkServicesResource: ...
+) -> (
+    googleapiclient._apis.networkservices.v1beta1.resources.NetworkServicesResource
+): ...
 @overload
 def build(
     serviceName: Literal["notebooks"],
@@ -6592,7 +6730,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.ondemandscanning.v1beta1.resources.OnDemandScanningResource: ...
+) -> (
+    googleapiclient._apis.ondemandscanning.v1beta1.resources.OnDemandScanningResource
+): ...
 @overload
 def build(
     serviceName: Literal["orgpolicy"],
@@ -6772,7 +6912,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.paymentsresellersubscription.v1.resources.PaymentsResellerSubscriptionResource: ...
+) -> (
+    googleapiclient._apis.paymentsresellersubscription.v1.resources.PaymentsResellerSubscriptionResource
+): ...
 @overload
 def build(
     serviceName: Literal["people"],
@@ -6852,7 +6994,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.playdeveloperreporting.v1alpha1.resources.PlaydeveloperreportingResource: ...
+) -> (
+    googleapiclient._apis.playdeveloperreporting.v1alpha1.resources.PlaydeveloperreportingResource
+): ...
 @overload
 def build(
     serviceName: Literal["playdeveloperreporting"],
@@ -6872,7 +7016,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.playdeveloperreporting.v1beta1.resources.PlaydeveloperreportingResource: ...
+) -> (
+    googleapiclient._apis.playdeveloperreporting.v1beta1.resources.PlaydeveloperreportingResource
+): ...
 @overload
 def build(
     serviceName: Literal["playintegrity"],
@@ -6972,7 +7118,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.policysimulator.v1alpha.resources.PolicySimulatorResource: ...
+) -> (
+    googleapiclient._apis.policysimulator.v1alpha.resources.PolicySimulatorResource
+): ...
 @overload
 def build(
     serviceName: Literal["policysimulator"],
@@ -6992,7 +7140,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.policysimulator.v1beta1.resources.PolicySimulatorResource: ...
+) -> (
+    googleapiclient._apis.policysimulator.v1beta1.resources.PolicySimulatorResource
+): ...
 @overload
 def build(
     serviceName: Literal["policytroubleshooter"],
@@ -7012,7 +7162,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.policytroubleshooter.v1.resources.PolicyTroubleshooterResource: ...
+) -> (
+    googleapiclient._apis.policytroubleshooter.v1.resources.PolicyTroubleshooterResource
+): ...
 @overload
 def build(
     serviceName: Literal["policytroubleshooter"],
@@ -7032,7 +7184,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.policytroubleshooter.v1beta.resources.PolicyTroubleshooterResource: ...
+) -> (
+    googleapiclient._apis.policytroubleshooter.v1beta.resources.PolicyTroubleshooterResource
+): ...
 @overload
 def build(
     serviceName: Literal["poly"],
@@ -7072,7 +7226,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.privateca.v1.resources.CertificateAuthorityServiceResource: ...
+) -> (
+    googleapiclient._apis.privateca.v1.resources.CertificateAuthorityServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["privateca"],
@@ -7092,7 +7248,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.privateca.v1beta1.resources.CertificateAuthorityServiceResource: ...
+) -> (
+    googleapiclient._apis.privateca.v1beta1.resources.CertificateAuthorityServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["prod_tt_sasportal"],
@@ -7112,7 +7270,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.prod_tt_sasportal.v1alpha1.resources.SASPortalTestingResource: ...
+) -> (
+    googleapiclient._apis.prod_tt_sasportal.v1alpha1.resources.SASPortalTestingResource
+): ...
 @overload
 def build(
     serviceName: Literal["pubsub"],
@@ -7212,7 +7372,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.readerrevenuesubscriptionlinking.v1.resources.SubscriptionLinkingResource: ...
+) -> (
+    googleapiclient._apis.readerrevenuesubscriptionlinking.v1.resources.SubscriptionLinkingResource
+): ...
 @overload
 def build(
     serviceName: Literal["realtimebidding"],
@@ -7252,7 +7414,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.realtimebidding.v1alpha.resources.RealTimeBiddingResource: ...
+) -> (
+    googleapiclient._apis.realtimebidding.v1alpha.resources.RealTimeBiddingResource
+): ...
 @overload
 def build(
     serviceName: Literal["recaptchaenterprise"],
@@ -7272,7 +7436,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.recaptchaenterprise.v1.resources.RecaptchaEnterpriseResource: ...
+) -> (
+    googleapiclient._apis.recaptchaenterprise.v1.resources.RecaptchaEnterpriseResource
+): ...
 @overload
 def build(
     serviceName: Literal["recommendationengine"],
@@ -7292,7 +7458,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.recommendationengine.v1beta1.resources.RecommendationsAIResource: ...
+) -> (
+    googleapiclient._apis.recommendationengine.v1beta1.resources.RecommendationsAIResource
+): ...
 @overload
 def build(
     serviceName: Literal["recommender"],
@@ -7392,7 +7560,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.remotebuildexecution.v1.resources.RemoteBuildExecutionResource: ...
+) -> (
+    googleapiclient._apis.remotebuildexecution.v1.resources.RemoteBuildExecutionResource
+): ...
 @overload
 def build(
     serviceName: Literal["remotebuildexecution"],
@@ -7412,7 +7582,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.remotebuildexecution.v1alpha.resources.RemoteBuildExecutionResource: ...
+) -> (
+    googleapiclient._apis.remotebuildexecution.v1alpha.resources.RemoteBuildExecutionResource
+): ...
 @overload
 def build(
     serviceName: Literal["remotebuildexecution"],
@@ -7432,7 +7604,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.remotebuildexecution.v2.resources.RemoteBuildExecutionResource: ...
+) -> (
+    googleapiclient._apis.remotebuildexecution.v2.resources.RemoteBuildExecutionResource
+): ...
 @overload
 def build(
     serviceName: Literal["reseller"],
@@ -7652,7 +7826,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.runtimeconfig.v1beta1.resources.CloudRuntimeConfigResource: ...
+) -> (
+    googleapiclient._apis.runtimeconfig.v1beta1.resources.CloudRuntimeConfigResource
+): ...
 @overload
 def build(
     serviceName: Literal["safebrowsing"],
@@ -7812,7 +7988,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.securitycenter.v1.resources.SecurityCommandCenterResource: ...
+) -> (
+    googleapiclient._apis.securitycenter.v1.resources.SecurityCommandCenterResource
+): ...
 @overload
 def build(
     serviceName: Literal["securitycenter"],
@@ -7832,7 +8010,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.securitycenter.v1beta1.resources.SecurityCommandCenterResource: ...
+) -> (
+    googleapiclient._apis.securitycenter.v1beta1.resources.SecurityCommandCenterResource
+): ...
 @overload
 def build(
     serviceName: Literal["securitycenter"],
@@ -7852,7 +8032,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.securitycenter.v1beta2.resources.SecurityCommandCenterResource: ...
+) -> (
+    googleapiclient._apis.securitycenter.v1beta2.resources.SecurityCommandCenterResource
+): ...
 @overload
 def build(
     serviceName: Literal["serviceconsumermanagement"],
@@ -7872,7 +8054,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.serviceconsumermanagement.v1.resources.ServiceConsumerManagementResource: ...
+) -> (
+    googleapiclient._apis.serviceconsumermanagement.v1.resources.ServiceConsumerManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["serviceconsumermanagement"],
@@ -7892,7 +8076,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.serviceconsumermanagement.v1beta1.resources.ServiceConsumerManagementResource: ...
+) -> (
+    googleapiclient._apis.serviceconsumermanagement.v1beta1.resources.ServiceConsumerManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["servicecontrol"],
@@ -7972,7 +8158,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.servicedirectory.v1beta1.resources.ServiceDirectoryResource: ...
+) -> (
+    googleapiclient._apis.servicedirectory.v1beta1.resources.ServiceDirectoryResource
+): ...
 @overload
 def build(
     serviceName: Literal["servicemanagement"],
@@ -8032,7 +8220,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.servicenetworking.v1beta.resources.ServiceNetworkingResource: ...
+) -> (
+    googleapiclient._apis.servicenetworking.v1beta.resources.ServiceNetworkingResource
+): ...
 @overload
 def build(
     serviceName: Literal["serviceusage"],
@@ -8152,7 +8342,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.smartdevicemanagement.v1.resources.SmartDeviceManagementResource: ...
+) -> (
+    googleapiclient._apis.smartdevicemanagement.v1.resources.SmartDeviceManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["sourcerepo"],
@@ -8632,7 +8824,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.trafficdirector.v2.resources.TrafficDirectorServiceResource: ...
+) -> (
+    googleapiclient._apis.trafficdirector.v2.resources.TrafficDirectorServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["transcoder"],
@@ -8872,7 +9066,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.videointelligence.v1.resources.CloudVideoIntelligenceResource: ...
+) -> (
+    googleapiclient._apis.videointelligence.v1.resources.CloudVideoIntelligenceResource
+): ...
 @overload
 def build(
     serviceName: Literal["videointelligence"],
@@ -8892,7 +9088,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.videointelligence.v1beta2.resources.CloudVideoIntelligenceResource: ...
+) -> (
+    googleapiclient._apis.videointelligence.v1beta2.resources.CloudVideoIntelligenceResource
+): ...
 @overload
 def build(
     serviceName: Literal["videointelligence"],
@@ -8912,7 +9110,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.videointelligence.v1p1beta1.resources.CloudVideoIntelligenceResource: ...
+) -> (
+    googleapiclient._apis.videointelligence.v1p1beta1.resources.CloudVideoIntelligenceResource
+): ...
 @overload
 def build(
     serviceName: Literal["videointelligence"],
@@ -8932,7 +9132,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.videointelligence.v1p2beta1.resources.CloudVideoIntelligenceResource: ...
+) -> (
+    googleapiclient._apis.videointelligence.v1p2beta1.resources.CloudVideoIntelligenceResource
+): ...
 @overload
 def build(
     serviceName: Literal["videointelligence"],
@@ -8952,7 +9154,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.videointelligence.v1p3beta1.resources.CloudVideoIntelligenceResource: ...
+) -> (
+    googleapiclient._apis.videointelligence.v1p3beta1.resources.CloudVideoIntelligenceResource
+): ...
 @overload
 def build(
     serviceName: Literal["vision"],
@@ -9052,7 +9256,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.vmmigration.v1alpha1.resources.VMMigrationServiceResource: ...
+) -> (
+    googleapiclient._apis.vmmigration.v1alpha1.resources.VMMigrationServiceResource
+): ...
 @overload
 def build(
     serviceName: Literal["vpcaccess"],
@@ -9172,7 +9378,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.websecurityscanner.v1.resources.WebSecurityScannerResource: ...
+) -> (
+    googleapiclient._apis.websecurityscanner.v1.resources.WebSecurityScannerResource
+): ...
 @overload
 def build(
     serviceName: Literal["websecurityscanner"],
@@ -9192,7 +9400,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.websecurityscanner.v1alpha.resources.WebSecurityScannerResource: ...
+) -> (
+    googleapiclient._apis.websecurityscanner.v1alpha.resources.WebSecurityScannerResource
+): ...
 @overload
 def build(
     serviceName: Literal["websecurityscanner"],
@@ -9212,7 +9422,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.websecurityscanner.v1beta.resources.WebSecurityScannerResource: ...
+) -> (
+    googleapiclient._apis.websecurityscanner.v1beta.resources.WebSecurityScannerResource
+): ...
 @overload
 def build(
     serviceName: Literal["workflowexecutions"],
@@ -9232,7 +9444,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.workflowexecutions.v1.resources.WorkflowExecutionsResource: ...
+) -> (
+    googleapiclient._apis.workflowexecutions.v1.resources.WorkflowExecutionsResource
+): ...
 @overload
 def build(
     serviceName: Literal["workflowexecutions"],
@@ -9252,7 +9466,9 @@ def build(
     adc_key_path: str | None = ...,
     num_retries: int = ...,
     static_discovery: bool | None = ...,
-) -> googleapiclient._apis.workflowexecutions.v1beta.resources.WorkflowExecutionsResource: ...
+) -> (
+    googleapiclient._apis.workflowexecutions.v1beta.resources.WorkflowExecutionsResource
+): ...
 @overload
 def build(
     serviceName: Literal["workflows"],

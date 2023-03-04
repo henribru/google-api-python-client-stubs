@@ -28,12 +28,17 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             startDate_month: int = ...,
             startDate_year: int = ...,
             **kwargs: typing.Any
-        ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest: ...
+        ) -> (
+            GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest
+        ): ...
         def search_next(
             self,
             previous_request: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest,
             previous_response: GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse,
-        ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest
+            | None
+        ): ...
 
     @typing.type_check_only
     class DetailedLeadReportsResource(googleapiclient.discovery.Resource):
@@ -55,7 +60,10 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest,
             previous_response: GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse,
-        ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest
+            | None
+        ): ...
 
     def new_batch_http_request(
         self,

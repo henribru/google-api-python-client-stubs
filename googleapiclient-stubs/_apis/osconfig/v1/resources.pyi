@@ -68,7 +68,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: ListOSPolicyAssignmentReportsResponseHttpRequest,
                             previous_response: ListOSPolicyAssignmentReportsResponse,
-                        ) -> ListOSPolicyAssignmentReportsResponseHttpRequest | None: ...
+                        ) -> (
+                            ListOSPolicyAssignmentReportsResponseHttpRequest | None
+                        ): ...
 
                     def reports(self) -> ReportsResource: ...
 

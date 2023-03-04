@@ -61,7 +61,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectionsV1ListAppConnectionsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -86,7 +89,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectionsV1ResolveAppConnectionsResponseHttpRequest
+                    | None
+                ): ...
                 def setIamPolicy(
                     self,
                     *,
@@ -146,7 +152,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectorsV1ListAppConnectorsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,

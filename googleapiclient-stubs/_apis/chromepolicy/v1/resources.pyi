@@ -56,7 +56,9 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     customer: str,
                     body: GoogleChromePolicyVersionsV1DefineCertificateRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest: ...
+                ) -> (
+                    GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest
+                ): ...
                 def defineNetwork(
                     self,
                     *,
@@ -70,7 +72,9 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     customer: str,
                     body: GoogleChromePolicyVersionsV1RemoveCertificateRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest: ...
+                ) -> (
+                    GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest
+                ): ...
                 def removeNetwork(
                     self,
                     *,
@@ -130,7 +134,9 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest,
                 previous_response: GoogleChromePolicyVersionsV1ListPolicySchemasResponse,
-            ) -> GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest | None
+            ): ...
 
         def policies(self) -> PoliciesResource: ...
         def policySchemas(self) -> PolicySchemasResource: ...

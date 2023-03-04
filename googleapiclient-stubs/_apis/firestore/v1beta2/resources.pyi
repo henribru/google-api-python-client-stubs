@@ -37,7 +37,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest,
                         previous_response: GoogleFirestoreAdminV1beta2ListFieldsResponse,
-                    ) -> GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -75,7 +77,9 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest,
                         previous_response: GoogleFirestoreAdminV1beta2ListIndexesResponse,
-                    ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest | None
+                    ): ...
 
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...

@@ -303,7 +303,9 @@ class IamResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListWorkloadIdentityPoolProvidersResponseHttpRequest,
                         previous_response: ListWorkloadIdentityPoolProvidersResponse,
-                    ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest | None: ...
+                    ) -> (
+                        ListWorkloadIdentityPoolProvidersResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,

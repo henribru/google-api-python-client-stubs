@@ -51,7 +51,9 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: ListCertificateRevocationListsResponseHttpRequest,
                             previous_response: ListCertificateRevocationListsResponse,
-                        ) -> ListCertificateRevocationListsResponseHttpRequest | None: ...
+                        ) -> (
+                            ListCertificateRevocationListsResponseHttpRequest | None
+                        ): ...
                         def patch(
                             self,
                             *,

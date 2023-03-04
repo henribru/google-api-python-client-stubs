@@ -22,7 +22,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleAnalyticsAdminV1betaListAccountSummariesResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1betaListAccountSummariesResponse,
-        ) -> GoogleAnalyticsAdminV1betaListAccountSummariesResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAnalyticsAdminV1betaListAccountSummariesResponseHttpRequest | None
+        ): ...
 
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
@@ -73,7 +75,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse,
-        ) -> GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest
+            | None
+        ): ...
 
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
@@ -104,7 +109,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListConversionEventsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListConversionEventsResponse,
-            ) -> GoogleAnalyticsAdminV1betaListConversionEventsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListConversionEventsResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):
@@ -137,7 +144,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListCustomDimensionsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListCustomDimensionsResponse,
-            ) -> GoogleAnalyticsAdminV1betaListCustomDimensionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListCustomDimensionsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -178,7 +187,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListCustomMetricsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListCustomMetricsResponse,
-            ) -> GoogleAnalyticsAdminV1betaListCustomMetricsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListCustomMetricsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -219,7 +230,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponseHttpRequest,
                     previous_response: GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponse,
-                ) -> GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -254,7 +268,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListDataStreamsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListDataStreamsResponse,
-            ) -> GoogleAnalyticsAdminV1betaListDataStreamsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListDataStreamsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -291,7 +307,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListFirebaseLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListFirebaseLinksResponse,
-            ) -> GoogleAnalyticsAdminV1betaListFirebaseLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListFirebaseLinksResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class GoogleAdsLinksResource(googleapiclient.discovery.Resource):
@@ -317,7 +335,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse,
-            ) -> GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -333,7 +353,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             property: str,
             body: GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest = ...,
             **kwargs: typing.Any
-        ) -> GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponseHttpRequest: ...
+        ) -> (
+            GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponseHttpRequest
+        ): ...
         def create(
             self,
             *,

@@ -85,7 +85,10 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudAssuredworkloadsV1beta1ListViolationsResponseHttpRequest,
                         previous_response: GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse,
-                    ) -> GoogleCloudAssuredworkloadsV1beta1ListViolationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1beta1ListViolationsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def create(
                     self,
@@ -109,12 +112,17 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest,
                     previous_response: GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse,
-                ) -> GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,

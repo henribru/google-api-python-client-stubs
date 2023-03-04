@@ -52,12 +52,17 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest,
                     previous_response: GoogleCloudDocumentaiV1beta3ListProcessorTypesResponse,
-                ) -> GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
@@ -90,7 +95,10 @@ class DocumentResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest,
                             previous_response: GoogleCloudDocumentaiV1beta3ListEvaluationsResponse,
-                        ) -> GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest
+                            | None
+                        ): ...
 
                     def batchProcess(
                         self,
@@ -131,7 +139,10 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest,
                         previous_response: GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse,
-                    ) -> GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest
+                        | None
+                    ): ...
                     def process(
                         self,
                         *,
@@ -201,7 +212,9 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest,
                     previous_response: GoogleCloudDocumentaiV1beta3ListProcessorsResponse,
-                ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest | None
+                ): ...
                 def process(
                     self,
                     *,

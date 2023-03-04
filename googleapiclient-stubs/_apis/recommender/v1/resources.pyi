@@ -37,7 +37,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRecommenderV1ListInsightsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListInsightsResponse,
-                    ) -> GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None
+                    ): ...
                     def markAccepted(
                         self,
                         *,
@@ -75,12 +77,17 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListRecommendationsResponse,
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                        | None
+                    ): ...
                     def markClaimed(
                         self,
                         *,
@@ -153,7 +160,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRecommenderV1ListInsightsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListInsightsResponse,
-                    ) -> GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None
+                    ): ...
                     def markAccepted(
                         self,
                         *,
@@ -179,12 +188,17 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListRecommendationsResponse,
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                        | None
+                    ): ...
                     def markClaimed(
                         self,
                         *,
@@ -245,7 +259,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRecommenderV1ListInsightsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListInsightsResponse,
-                    ) -> GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None
+                    ): ...
                     def markAccepted(
                         self,
                         *,
@@ -283,12 +299,17 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListRecommendationsResponse,
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                        | None
+                    ): ...
                     def markClaimed(
                         self,
                         *,
@@ -361,7 +382,9 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRecommenderV1ListInsightsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListInsightsResponse,
-                    ) -> GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListInsightsResponseHttpRequest | None
+                    ): ...
                     def markAccepted(
                         self,
                         *,
@@ -399,12 +422,17 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest,
                         previous_response: GoogleCloudRecommenderV1ListRecommendationsResponse,
-                    ) -> GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRecommenderV1ListRecommendationsResponseHttpRequest
+                        | None
+                    ): ...
                     def markClaimed(
                         self,
                         *,

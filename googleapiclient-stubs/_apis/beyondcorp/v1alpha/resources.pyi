@@ -45,7 +45,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse,
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest
+                    | None
+                ): ...
                 def get(
                     self,
                     *,
@@ -54,7 +57,9 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightHttpRequest: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightHttpRequest
+                ): ...
                 def list(
                     self,
                     *,
@@ -72,7 +77,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse,
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class SubscriptionsResource(googleapiclient.discovery.Resource):
@@ -98,7 +106,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse,
-                ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponseHttpRequest
+                    | None
+                ): ...
 
             def insights(self) -> InsightsResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...
@@ -131,7 +142,9 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionHttpRequest: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionHttpRequest
+                ): ...
                 def getIamPolicy(
                     self,
                     *,
@@ -153,7 +166,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -178,7 +194,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseHttpRequest
+                    | None
+                ): ...
                 def setIamPolicy(
                     self,
                     *,
@@ -216,7 +235,9 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorHttpRequest: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorHttpRequest
+                ): ...
                 def getIamPolicy(
                     self,
                     *,
@@ -238,7 +259,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponse,
-                ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -682,7 +706,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse,
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseHttpRequest
+                    | None
+                ): ...
                 def get(
                     self,
                     *,
@@ -691,7 +718,9 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightHttpRequest: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightHttpRequest
+                ): ...
                 def list(
                     self,
                     *,
@@ -709,7 +738,10 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest,
                     previous_response: GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse,
-                ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class NetConnectionsResource(googleapiclient.discovery.Resource):
@@ -957,7 +989,9 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResp
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse: ...
+    ) -> (
+        GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpRequest(
