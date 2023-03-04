@@ -72,7 +72,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
                 previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
-            ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
+            ) -> (
+                GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -150,7 +152,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
-                ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -210,7 +214,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
-                ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -290,7 +296,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
-                ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -403,7 +411,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
                 previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
-            ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
+            ) -> (
+                GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -606,7 +616,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListDeidentifyTemplatesResponse,
-                ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -710,7 +722,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListInspectTemplatesResponse,
-                ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -804,7 +818,9 @@ class DLPResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest,
                     previous_response: GooglePrivacyDlpV2ListStoredInfoTypesResponse,
-                ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None: ...
+                ) -> (
+                    GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,

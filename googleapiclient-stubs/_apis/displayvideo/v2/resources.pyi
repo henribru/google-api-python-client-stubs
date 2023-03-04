@@ -158,7 +158,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListCampaignAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListCampaignAssignedTargetingOptionsResponse,
-                    ) -> ListCampaignAssignedTargetingOptionsResponseHttpRequest | None: ...
+                    ) -> (
+                        ListCampaignAssignedTargetingOptionsResponseHttpRequest | None
+                    ): ...
 
                 def assignedTargetingOptions(
                     self,
@@ -597,12 +599,17 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest: ...
+                    ) -> (
+                        ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListInsertionOrderAssignedTargetingOptionsResponse,
-                    ) -> ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None: ...
+                    ) -> (
+                        ListInsertionOrderAssignedTargetingOptionsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def assignedTargetingOptions(
                     self,
@@ -651,7 +658,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest,
                 previous_response: BulkListInsertionOrderAssignedTargetingOptionsResponse,
-            ) -> BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None: ...
+            ) -> (
+                BulkListInsertionOrderAssignedTargetingOptionsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -943,7 +952,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListLineItemAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListLineItemAssignedTargetingOptionsResponse,
-                    ) -> ListLineItemAssignedTargetingOptionsResponseHttpRequest | None: ...
+                    ) -> (
+                        ListLineItemAssignedTargetingOptionsResponseHttpRequest | None
+                    ): ...
 
                 def assignedTargetingOptions(
                     self,
@@ -1504,7 +1515,9 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: ListAdvertiserAssignedTargetingOptionsResponseHttpRequest,
                     previous_response: ListAdvertiserAssignedTargetingOptionsResponse,
-                ) -> ListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None: ...
+                ) -> (
+                    ListAdvertiserAssignedTargetingOptionsResponseHttpRequest | None
+                ): ...
 
             def assignedTargetingOptions(self) -> AssignedTargetingOptionsResource: ...
 
@@ -1661,12 +1674,17 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest: ...
+                    ) -> (
+                        ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest,
                         previous_response: ListYoutubeAdGroupAssignedTargetingOptionsResponse,
-                    ) -> ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest | None: ...
+                    ) -> (
+                        ListYoutubeAdGroupAssignedTargetingOptionsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def assignedTargetingOptions(
                     self,

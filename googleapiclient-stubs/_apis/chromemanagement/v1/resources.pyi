@@ -49,7 +49,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1CountChromeAppRequestsResponse,
-            ) -> GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest | None
+            ): ...
             def android(self) -> AndroidResource: ...
             def chrome(self) -> ChromeResource: ...
             def web(self) -> WebResource: ...
@@ -98,7 +100,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1CountChromeVersionsResponse,
-            ) -> GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest | None
+            ): ...
             def countInstalledApps(
                 self,
                 *,
@@ -114,7 +118,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1CountInstalledAppsResponse,
-            ) -> GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest | None
+            ): ...
             def countPrintJobsByPrinter(
                 self,
                 *,
@@ -130,7 +136,10 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1CountPrintJobsByPrinterResponse,
-            ) -> GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest
+                | None
+            ): ...
             def countPrintJobsByUser(
                 self,
                 *,
@@ -146,7 +155,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1CountPrintJobsByUserResponse,
-            ) -> GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest | None
+            ): ...
             def findInstalledAppDevices(
                 self,
                 *,
@@ -171,7 +182,10 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest,
                 previous_response: GoogleChromeManagementV1FindInstalledAppDevicesResponse,
-            ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest | None: ...
+            ) -> (
+                GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
@@ -189,12 +203,17 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     readMask: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest: ...
+                ) -> (
+                    GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest,
                     previous_response: GoogleChromeManagementV1ListTelemetryDevicesResponse,
-                ) -> GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class EventsResource(googleapiclient.discovery.Resource):
@@ -212,7 +231,10 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest,
                     previous_response: GoogleChromeManagementV1ListTelemetryEventsResponse,
-                ) -> GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class UsersResource(googleapiclient.discovery.Resource):
@@ -233,7 +255,9 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest,
                     previous_response: GoogleChromeManagementV1ListTelemetryUsersResponse,
-                ) -> GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest | None
+                ): ...
 
             def devices(self) -> DevicesResource: ...
             def events(self) -> EventsResource: ...
@@ -293,7 +317,9 @@ class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateRespon
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse: ...
+    ) -> (
+        GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponseHttpRequest(

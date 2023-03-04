@@ -47,7 +47,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest,
                         previous_response: GoogleCloudContactcenterinsightsV1ListAnalysesResponse,
-                    ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest
+                        | None
+                    ): ...
 
                 def bulkAnalyze(
                     self,
@@ -58,7 +61,9 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def calculateStats(
                     self, *, location: str, filter: str = ..., **kwargs: typing.Any
-                ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest
+                ): ...
                 def create(
                     self,
                     *,
@@ -102,7 +107,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest,
                     previous_response: GoogleCloudContactcenterinsightsV1ListConversationsResponse,
-                ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -135,7 +143,9 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudContactcenterinsightsV1IssueHttpRequest: ...
                     def list(
                         self, *, parent: str, **kwargs: typing.Any
-                    ) -> GoogleCloudContactcenterinsightsV1ListIssuesResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1ListIssuesResponseHttpRequest
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -170,7 +180,9 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudContactcenterinsightsV1IssueModelHttpRequest: ...
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
-                ) -> GoogleCloudContactcenterinsightsV1ListIssueModelsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListIssueModelsResponseHttpRequest
+                ): ...
                 def patch(
                     self,
                     *,
@@ -239,7 +251,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest,
                     previous_response: GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse,
-                ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -276,7 +291,10 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest,
                     previous_response: GoogleCloudContactcenterinsightsV1ListViewsResponse,
-                ) -> GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,

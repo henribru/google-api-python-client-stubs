@@ -29,12 +29,17 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest
+                    ): ...
                     def query_next(
                         self,
                         previous_request: GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest,
                         previous_response: GoogleCloudPolicyanalyzerV1QueryActivityResponse,
-                    ) -> GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest
+                        | None
+                    ): ...
 
                 def activities(self) -> ActivitiesResource: ...
 

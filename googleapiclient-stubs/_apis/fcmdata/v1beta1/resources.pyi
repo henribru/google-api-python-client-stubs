@@ -31,7 +31,10 @@ class FcmdataResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest,
                     previous_response: GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse,
-                ) -> GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest
+                    | None
+                ): ...
 
             def deliveryData(self) -> DeliveryDataResource: ...
 

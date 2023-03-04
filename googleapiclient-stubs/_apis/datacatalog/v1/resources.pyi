@@ -70,7 +70,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDatacatalogV1ListTagsResponseHttpRequest,
                             previous_response: GoogleCloudDatacatalogV1ListTagsResponse,
-                        ) -> GoogleCloudDatacatalogV1ListTagsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDatacatalogV1ListTagsResponseHttpRequest | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -128,7 +130,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDatacatalogV1ListEntriesResponseHttpRequest,
                         previous_response: GoogleCloudDatacatalogV1ListEntriesResponse,
-                    ) -> GoogleCloudDatacatalogV1ListEntriesResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDatacatalogV1ListEntriesResponseHttpRequest | None
+                    ): ...
                     def modifyEntryContacts(
                         self,
                         *,
@@ -241,7 +245,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudDatacatalogV1ListEntryGroupsResponseHttpRequest,
                     previous_response: GoogleCloudDatacatalogV1ListEntryGroupsResponse,
-                ) -> GoogleCloudDatacatalogV1ListEntryGroupsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDatacatalogV1ListEntryGroupsResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -416,7 +422,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDatacatalogV1ListPolicyTagsResponseHttpRequest,
                         previous_response: GoogleCloudDatacatalogV1ListPolicyTagsResponse,
-                    ) -> GoogleCloudDatacatalogV1ListPolicyTagsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDatacatalogV1ListPolicyTagsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -488,7 +496,9 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudDatacatalogV1ListTaxonomiesResponseHttpRequest,
                     previous_response: GoogleCloudDatacatalogV1ListTaxonomiesResponse,
-                ) -> GoogleCloudDatacatalogV1ListTaxonomiesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDatacatalogV1ListTaxonomiesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,

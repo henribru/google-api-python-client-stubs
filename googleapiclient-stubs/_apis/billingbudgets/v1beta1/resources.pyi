@@ -42,7 +42,9 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest,
                 previous_response: GoogleCloudBillingBudgetsV1beta1ListBudgetsResponse,
-            ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,

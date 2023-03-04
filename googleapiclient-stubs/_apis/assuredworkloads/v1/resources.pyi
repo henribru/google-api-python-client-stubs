@@ -61,12 +61,17 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest,
                         previous_response: GoogleCloudAssuredworkloadsV1ListViolationsResponse,
-                    ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest
+                        | None
+                    ): ...
 
                 def create(
                     self,
@@ -95,7 +100,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest,
                     previous_response: GoogleCloudAssuredworkloadsV1ListWorkloadsResponse,
-                ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest | None
+                ): ...
                 def mutatePartnerPermissions(
                     self,
                     *,

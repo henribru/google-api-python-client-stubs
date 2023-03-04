@@ -22,7 +22,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1alphaListAccountSummariesResponse,
-        ) -> GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest | None
+        ): ...
 
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
@@ -34,7 +36,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest
+            ): ...
             def batchDelete(
                 self,
                 *,
@@ -48,14 +52,18 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 names: str | _list[str] = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest
+            ): ...
             def batchUpdate(
                 self,
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest
+            ): ...
             def create(
                 self,
                 *,
@@ -81,7 +89,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListAccessBindingsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -103,7 +113,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaAuditUserLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None
+            ): ...
             def batchCreate(
                 self,
                 *,
@@ -216,12 +228,17 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             account: str,
             body: GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest = ...,
             **kwargs: typing.Any
-        ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest: ...
+        ) -> (
+            GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest
+        ): ...
         def searchChangeHistoryEvents_next(
             self,
             previous_request: GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse,
-        ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest
+            | None
+        ): ...
         def accessBindings(self) -> AccessBindingsResource: ...
         def userLinks(self) -> UserLinksResource: ...
 
@@ -235,7 +252,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest
+            ): ...
             def batchDelete(
                 self,
                 *,
@@ -249,14 +268,18 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 names: str | _list[str] = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest
+            ): ...
             def batchUpdate(
                 self,
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest
+            ): ...
             def create(
                 self,
                 *,
@@ -282,7 +305,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListAccessBindingsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -349,7 +374,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class ConversionEventsResource(googleapiclient.discovery.Resource):
@@ -378,7 +405,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListConversionEventsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):
@@ -411,7 +441,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -452,7 +485,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListCustomMetricsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -474,13 +509,17 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
                     **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest
+                ): ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest
+                ): ...
                 def list(
                     self,
                     *,
@@ -493,7 +532,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest,
                     previous_response: GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse,
-                ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -501,7 +543,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     body: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest: ...
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest
+                ): ...
 
             def create(
                 self,
@@ -531,7 +575,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListDataStreamsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -587,7 +633,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class DisplayVideo360AdvertiserLinksResource(
@@ -599,13 +648,17 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest
+            ): ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest
+            ): ...
             def list(
                 self,
                 *,
@@ -618,7 +671,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -626,7 +682,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 body: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest
+            ): ...
 
         @typing.type_check_only
         class ExpandedDataSetsResource(googleapiclient.discovery.Resource):
@@ -655,7 +713,10 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -689,7 +750,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest | None
+            ): ...
 
         @typing.type_check_only
         class GoogleAdsLinksResource(googleapiclient.discovery.Resource):
@@ -715,7 +778,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -747,12 +812,17 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest
+            ): ...
             def list_next(
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -775,7 +845,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest,
                 previous_response: GoogleAnalyticsAdminV1alphaAuditUserLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None
+            ): ...
             def batchCreate(
                 self,
                 *,
@@ -845,7 +917,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             property: str,
             body: GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest = ...,
             **kwargs: typing.Any
-        ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpRequest: ...
+        ) -> (
+            GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpRequest
+        ): ...
         def create(
             self,
             *,
@@ -903,7 +977,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse,
-        ) -> GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest | None
+        ): ...
         def patch(
             self,
             *,
@@ -1020,7 +1096,9 @@ class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRes
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse: ...
+    ) -> (
+        GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest(
@@ -1368,7 +1446,9 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse: ...
+    ) -> (
+        GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpRequest(

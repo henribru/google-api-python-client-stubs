@@ -38,7 +38,10 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest,
                     previous_response: GoogleCloudAdvisorynotificationsV1ListNotificationsResponse,
-                ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest
+                    | None
+                ): ...
 
             def notifications(self) -> NotificationsResource: ...
 

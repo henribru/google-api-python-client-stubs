@@ -73,12 +73,17 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest: ...
+                ) -> (
+                    GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest,
                     previous_response: GoogleAppsCloudidentityDevicesV1ListClientStatesResponse,
-                ) -> GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleAppsCloudidentityDevicesV1ListClientStatesResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -131,7 +136,10 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest,
                 previous_response: GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse,
-            ) -> GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponseHttpRequest
+                | None
+            ): ...
             def lookup(
                 self,
                 *,
@@ -142,12 +150,17 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 rawResourceId: str = ...,
                 userId: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest: ...
+            ) -> (
+                GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest
+            ): ...
             def lookup_next(
                 self,
                 previous_request: GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest,
                 previous_response: GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse,
-            ) -> GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponseHttpRequest
+                | None
+            ): ...
             def wipe(
                 self,
                 *,

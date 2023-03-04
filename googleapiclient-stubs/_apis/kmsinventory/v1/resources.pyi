@@ -25,12 +25,17 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest: ...
+            ) -> (
+                GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
+            ): ...
             def search_next(
                 self,
                 previous_request: GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest,
                 previous_response: GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse,
-            ) -> GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
+                | None
+            ): ...
 
         def protectedResources(self) -> ProtectedResourcesResource: ...
 
@@ -60,7 +65,9 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 class CryptoKeysResource(googleapiclient.discovery.Resource):
                     def getProtectedResourcesSummary(
                         self, *, name: str, **kwargs: typing.Any
-                    ) -> GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest: ...
+                    ) -> (
+                        GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest
+                    ): ...
 
                 def cryptoKeys(self) -> CryptoKeysResource: ...
 

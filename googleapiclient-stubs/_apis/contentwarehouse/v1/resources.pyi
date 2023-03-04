@@ -39,12 +39,17 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest,
                     previous_response: GoogleCloudContentwarehouseV1ListDocumentSchemasResponse,
-                ) -> GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -94,7 +99,9 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudContentwarehouseV1UpdateDocumentRequest = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudContentwarehouseV1UpdateDocumentResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudContentwarehouseV1UpdateDocumentResponseHttpRequest
+                    ): ...
 
                 def create(
                     self,
@@ -130,19 +137,26 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudContentwarehouseV1ListLinkedSourcesRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest
+                ): ...
                 def linkedSources_next(
                     self,
                     previous_request: GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest,
                     previous_response: GoogleCloudContentwarehouseV1ListLinkedSourcesResponse,
-                ) -> GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest
+                    | None
+                ): ...
                 def linkedTargets(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1ListLinkedTargetsRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudContentwarehouseV1ListLinkedTargetsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListLinkedTargetsResponseHttpRequest
+                ): ...
                 def patch(
                     self,
                     *,
@@ -156,12 +170,17 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudContentwarehouseV1SearchDocumentsRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest
+                ): ...
                 def search_next(
                     self,
                     previous_request: GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest,
                     previous_response: GoogleCloudContentwarehouseV1SearchDocumentsResponse,
-                ) -> GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest
+                    | None
+                ): ...
                 def setAcl(
                     self,
                     *,
@@ -205,7 +224,9 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest,
                     previous_response: GoogleCloudContentwarehouseV1ListRuleSetsResponse,
-                ) -> GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -236,12 +257,17 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest,
                     previous_response: GoogleCloudContentwarehouseV1ListSynonymSetsResponse,
-                ) -> GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,

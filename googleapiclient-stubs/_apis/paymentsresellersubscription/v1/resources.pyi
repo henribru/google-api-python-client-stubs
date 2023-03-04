@@ -25,12 +25,17 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest: ...
+            ) -> (
+                GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest
+            ): ...
             def list_next(
                 self,
                 previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest,
                 previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse,
-            ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class PromotionsResource(googleapiclient.discovery.Resource):
@@ -45,7 +50,10 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest,
                 previous_response: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse,
-            ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest
+                | None
+            ): ...
             def list(
                 self,
                 *,
@@ -59,7 +67,10 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest,
                 previous_response: GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse,
-            ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):

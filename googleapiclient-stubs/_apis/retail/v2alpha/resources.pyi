@@ -119,12 +119,17 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             readMask: str = ...,
                             requireTotalSize: bool = ...,
                             **kwargs: typing.Any
-                        ) -> GoogleCloudRetailV2alphaListProductsResponseHttpRequest: ...
+                        ) -> (
+                            GoogleCloudRetailV2alphaListProductsResponseHttpRequest
+                        ): ...
                         def list_next(
                             self,
                             previous_request: GoogleCloudRetailV2alphaListProductsResponseHttpRequest,
                             previous_response: GoogleCloudRetailV2alphaListProductsResponse,
-                        ) -> GoogleCloudRetailV2alphaListProductsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudRetailV2alphaListProductsResponseHttpRequest
+                            | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -206,7 +211,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRetailV2alphaListControlsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2alphaListControlsResponse,
-                    ) -> GoogleCloudRetailV2alphaListControlsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2alphaListControlsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -244,7 +251,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRetailV2alphaListModelsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2alphaListModelsResponse,
-                    ) -> GoogleCloudRetailV2alphaListModelsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2alphaListModelsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -347,12 +356,17 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2alphaListServingConfigsResponse,
-                    ) -> GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest
+                        | None
+                    ): ...
                     def patch(
                         self,
                         *,

@@ -452,12 +452,17 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             **kwargs: typing.Any
-                        ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest: ...
+                        ) -> (
+                            ListCreativeStatusBreakdownByCreativeResponseHttpRequest
+                        ): ...
                         def list_next(
                             self,
                             previous_request: ListCreativeStatusBreakdownByCreativeResponseHttpRequest,
                             previous_response: ListCreativeStatusBreakdownByCreativeResponse,
-                        ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None: ...
+                        ) -> (
+                            ListCreativeStatusBreakdownByCreativeResponseHttpRequest
+                            | None
+                        ): ...
 
                     @typing.type_check_only
                     class DetailsResource(googleapiclient.discovery.Resource):
@@ -474,7 +479,10 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: ListCreativeStatusBreakdownByDetailResponseHttpRequest,
                             previous_response: ListCreativeStatusBreakdownByDetailResponse,
-                        ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest | None: ...
+                        ) -> (
+                            ListCreativeStatusBreakdownByDetailResponseHttpRequest
+                            | None
+                        ): ...
 
                     def list(
                         self,
@@ -665,7 +673,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListCreativeStatusBreakdownByCreativeResponseHttpRequest,
                         previous_response: ListCreativeStatusBreakdownByCreativeResponse,
-                    ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None: ...
+                    ) -> (
+                        ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None
+                    ): ...
 
                 @typing.type_check_only
                 class DetailsResource(googleapiclient.discovery.Resource):
@@ -682,7 +692,9 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListCreativeStatusBreakdownByDetailResponseHttpRequest,
                         previous_response: ListCreativeStatusBreakdownByDetailResponse,
-                    ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest | None: ...
+                    ) -> (
+                        ListCreativeStatusBreakdownByDetailResponseHttpRequest | None
+                    ): ...
 
                 def list(
                     self,

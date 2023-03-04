@@ -33,7 +33,9 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest,
                         previous_response: GoogleCloudDatapipelinesV1ListJobsResponse,
-                    ) -> GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest | None
+                    ): ...
 
                 def create(
                     self,
@@ -61,7 +63,9 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest,
                     previous_response: GoogleCloudDatapipelinesV1ListPipelinesResponse,
-                ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest | None
+                ): ...
                 def patch(
                     self,
                     *,

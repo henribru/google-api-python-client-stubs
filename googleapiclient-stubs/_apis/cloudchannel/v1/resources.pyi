@@ -47,7 +47,10 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest,
                     previous_response: GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse,
-                ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -128,7 +131,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest,
                 previous_response: GoogleCloudChannelV1ListChannelPartnerLinksResponse,
-            ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -166,12 +171,17 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest,
                     previous_response: GoogleCloudChannelV1ListCustomerRepricingConfigsResponse,
-                ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -308,7 +318,9 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest,
                 previous_response: GoogleCloudChannelV1ListPurchasableOffersResponse,
-            ) -> GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest | None
+            ): ...
             def listPurchasableSkus(
                 self,
                 *,

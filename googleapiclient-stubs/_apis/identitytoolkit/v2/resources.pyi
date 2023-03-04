@@ -22,7 +22,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 *,
                 body: GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponseHttpRequest: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponseHttpRequest
+            ): ...
             def start(
                 self,
                 *,
@@ -58,12 +60,17 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
     class DefaultSupportedIdpsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
-        ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest: ...
+        ) -> (
+            GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest
+        ): ...
         def list_next(
             self,
             previous_request: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest,
             previous_response: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse,
-        ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest
+            | None
+        ): ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -76,13 +83,17 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                 idpId: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest
+            ): ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest
+            ): ...
             def list(
                 self,
                 *,
@@ -95,7 +106,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest,
                 previous_response: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse,
-            ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -103,7 +117,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest
+            ): ...
 
         @typing.type_check_only
         class IdentityPlatformResource(googleapiclient.discovery.Resource):
@@ -143,7 +159,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest,
                 previous_response: GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse,
-            ) -> GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -176,12 +195,17 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest
+            ): ...
             def list_next(
                 self,
                 previous_request: GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest,
                 previous_response: GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse,
-            ) -> GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest
+                | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -223,7 +247,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest,
                     previous_response: GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse,
-                ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -261,7 +288,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest,
                     previous_response: GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse,
-                ) -> GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -299,7 +329,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest,
                     previous_response: GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse,
-                ) -> GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -341,7 +374,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudIdentitytoolkitAdminV2ListTenantsResponseHttpRequest,
                 previous_response: GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse,
-            ) -> GoogleCloudIdentitytoolkitAdminV2ListTenantsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitAdminV2ListTenantsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,

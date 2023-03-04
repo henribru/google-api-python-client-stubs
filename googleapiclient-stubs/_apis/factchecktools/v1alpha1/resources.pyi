@@ -31,7 +31,10 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest,
             previous_response: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse,
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest | None: ...
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest
+            | None
+        ): ...
 
     @typing.type_check_only
     class PagesResource(googleapiclient.discovery.Resource):
@@ -40,13 +43,17 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             *,
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
             **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
+        ): ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
+        ): ...
         def list(
             self,
             *,
@@ -61,14 +68,19 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest,
             previous_response: GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse,
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest | None: ...
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest
+            | None
+        ): ...
         def update(
             self,
             *,
             name: str,
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
             **kwargs: typing.Any
-        ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest: ...
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
+        ): ...
 
     def new_batch_http_request(
         self,

@@ -22,7 +22,9 @@ class SA360Resource(googleapiclient.discovery.Resource):
             ) -> GoogleAdsSearchads360V0Resources__CustomColumnHttpRequest: ...
             def list(
                 self, *, customerId: str, **kwargs: typing.Any
-            ) -> GoogleAdsSearchads360V0Services__ListCustomColumnsResponseHttpRequest: ...
+            ) -> (
+                GoogleAdsSearchads360V0Services__ListCustomColumnsResponseHttpRequest
+            ): ...
 
         @typing.type_check_only
         class SearchAds360Resource(googleapiclient.discovery.Resource):
@@ -32,12 +34,17 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 customerId: str,
                 body: GoogleAdsSearchads360V0Services__SearchSearchAds360Request = ...,
                 **kwargs: typing.Any
-            ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest: ...
+            ) -> (
+                GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
+            ): ...
             def search_next(
                 self,
                 previous_request: GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest,
                 previous_response: GoogleAdsSearchads360V0Services__SearchSearchAds360Response,
-            ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest | None: ...
+            ) -> (
+                GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
+                | None
+            ): ...
             def searchStream(
                 self,
                 *,
@@ -59,12 +66,17 @@ class SA360Resource(googleapiclient.discovery.Resource):
             *,
             body: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest = ...,
             **kwargs: typing.Any
-        ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest: ...
+        ) -> (
+            GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest
+        ): ...
         def search_next(
             self,
             previous_request: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest,
             previous_response: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse,
-        ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest | None: ...
+        ) -> (
+            GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest
+            | None
+        ): ...
 
     def new_batch_http_request(
         self,

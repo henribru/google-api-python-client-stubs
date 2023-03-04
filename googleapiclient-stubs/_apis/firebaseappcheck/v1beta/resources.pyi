@@ -71,7 +71,10 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest,
                     previous_response: GoogleFirebaseAppcheckV1betaListDebugTokensResponse,
-                ) -> GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -155,7 +158,9 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+                ) -> (
+                    GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest
+                ): ...
                 def patch(
                     self,
                     *,
@@ -163,7 +168,9 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                     body: GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest: ...
+                ) -> (
+                    GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest
+                ): ...
 
             @typing.type_check_only
             class RecaptchaV3ConfigResource(googleapiclient.discovery.Resource):

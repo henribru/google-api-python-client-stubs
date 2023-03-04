@@ -47,7 +47,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
                 previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
-            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -92,7 +94,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
                 previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
-            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,
@@ -137,7 +141,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest,
                 previous_response: GoogleCloudResourcesettingsV1ListSettingsResponse,
-            ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest | None
+            ): ...
             def patch(
                 self,
                 *,

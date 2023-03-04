@@ -39,7 +39,9 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: ListSearchKeywordImpressionsMonthlyResponseHttpRequest,
                         previous_response: ListSearchKeywordImpressionsMonthlyResponse,
-                    ) -> ListSearchKeywordImpressionsMonthlyResponseHttpRequest | None: ...
+                    ) -> (
+                        ListSearchKeywordImpressionsMonthlyResponseHttpRequest | None
+                    ): ...
 
                 def monthly(self) -> MonthlyResource: ...
 

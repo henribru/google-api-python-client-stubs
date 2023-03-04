@@ -56,7 +56,10 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest,
                             previous_response: GoogleCloudDiscoveryengineV1alphaListDocumentsResponse,
-                        ) -> GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest
+                            | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -84,7 +87,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                             previous_response: GoogleLongrunningListOperationsResponse,
-                        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleLongrunningListOperationsResponseHttpRequest | None
+                        ): ...
 
                     def documents(self) -> DocumentsResource: ...
                     def operations(self) -> OperationsResource: ...
@@ -109,7 +114,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                             previous_response: GoogleLongrunningListOperationsResponse,
-                        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleLongrunningListOperationsResponseHttpRequest | None
+                        ): ...
 
                     def operations(self) -> OperationsResource: ...
 
@@ -141,7 +148,9 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         servingConfig: str,
                         body: GoogleCloudDiscoveryengineV1alphaRecommendRequest = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudDiscoveryengineV1alphaRecommendResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1alphaRecommendResponseHttpRequest
+                    ): ...
 
                 @typing.type_check_only
                 class UserEventsResource(googleapiclient.discovery.Resource):

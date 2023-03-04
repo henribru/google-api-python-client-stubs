@@ -83,12 +83,17 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
-                ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest: ...
+                ) -> (
+                    GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest
+                ): ...
                 def list_next(
                     self,
                     previous_request: GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1alphaListAvailableLocalesResponse,
-                ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest
+                    | None
+                ): ...
 
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):

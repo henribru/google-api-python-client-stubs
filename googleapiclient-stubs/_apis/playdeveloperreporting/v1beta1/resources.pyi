@@ -28,7 +28,9 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
             self,
             previous_request: GooglePlayDeveloperReportingV1beta1ListAnomaliesResponseHttpRequest,
             previous_response: GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse,
-        ) -> GooglePlayDeveloperReportingV1beta1ListAnomaliesResponseHttpRequest | None: ...
+        ) -> (
+            GooglePlayDeveloperReportingV1beta1ListAnomaliesResponseHttpRequest | None
+        ): ...
 
     @typing.type_check_only
     class VitalsResource(googleapiclient.discovery.Resource):
@@ -48,7 +50,10 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest,
                 previous_response: GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse,
-            ) -> GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest | None: ...
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class CrashrateResource(googleapiclient.discovery.Resource):
@@ -66,7 +71,10 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponseHttpRequest,
                 previous_response: GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponse,
-            ) -> GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponseHttpRequest | None: ...
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class ExcessivewakeuprateResource(googleapiclient.discovery.Resource):
@@ -84,7 +92,10 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponseHttpRequest,
                 previous_response: GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse,
-            ) -> GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponseHttpRequest | None: ...
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponseHttpRequest
+                | None
+            ): ...
 
         @typing.type_check_only
         class StuckbackgroundwakelockrateResource(googleapiclient.discovery.Resource):
@@ -102,7 +113,10 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest,
                 previous_response: GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponse,
-            ) -> GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest | None: ...
+            ) -> (
+                GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest
+                | None
+            ): ...
 
         def anrrate(self) -> AnrrateResource: ...
         def crashrate(self) -> CrashrateResource: ...
@@ -194,7 +208,9 @@ class GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRespon
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse: ...
+    ) -> (
+        GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse
+    ): ...
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest(

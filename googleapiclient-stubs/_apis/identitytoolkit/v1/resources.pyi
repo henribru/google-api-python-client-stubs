@@ -144,7 +144,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 previous_request: GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest,
                 previous_response: GoogleCloudIdentitytoolkitV1DownloadAccountResponse,
-            ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest | None: ...
+            ) -> (
+                GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest | None
+            ): ...
             def delete(
                 self,
                 *,
@@ -200,7 +202,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1BatchDeleteAccountsRequest = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponseHttpRequest: ...
+                ) -> (
+                    GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponseHttpRequest
+                ): ...
                 def batchGet(
                     self,
                     *,
@@ -215,7 +219,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     self,
                     previous_request: GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest,
                     previous_response: GoogleCloudIdentitytoolkitV1DownloadAccountResponse,
-                ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest | None: ...
+                ) -> (
+                    GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest
+                    | None
+                ): ...
                 def delete(
                     self,
                     *,
@@ -307,7 +314,9 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudIdentitytoolkitV1GetRecaptchaParamResponseHttpRequest: ...
         def getSessionCookiePublicKeys(
             self, **kwargs: typing.Any
-        ) -> GoogleCloudIdentitytoolkitV1GetSessionCookiePublicKeysResponseHttpRequest: ...
+        ) -> (
+            GoogleCloudIdentitytoolkitV1GetSessionCookiePublicKeysResponseHttpRequest
+        ): ...
 
     def new_batch_http_request(
         self,

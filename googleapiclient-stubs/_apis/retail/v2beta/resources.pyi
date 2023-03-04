@@ -109,7 +109,10 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             self,
                             previous_request: GoogleCloudRetailV2betaListProductsResponseHttpRequest,
                             previous_response: GoogleCloudRetailV2betaListProductsResponse,
-                        ) -> GoogleCloudRetailV2betaListProductsResponseHttpRequest | None: ...
+                        ) -> (
+                            GoogleCloudRetailV2betaListProductsResponseHttpRequest
+                            | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -183,7 +186,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRetailV2betaListControlsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2betaListControlsResponse,
-                    ) -> GoogleCloudRetailV2betaListControlsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2betaListControlsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -221,7 +226,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         previous_request: GoogleCloudRetailV2betaListModelsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2betaListModelsResponse,
-                    ) -> GoogleCloudRetailV2betaListModelsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2betaListModelsResponseHttpRequest | None
+                    ): ...
                     def patch(
                         self,
                         *,
@@ -324,12 +331,17 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
-                    ) -> GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest
+                    ): ...
                     def list_next(
                         self,
                         previous_request: GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest,
                         previous_response: GoogleCloudRetailV2betaListServingConfigsResponse,
-                    ) -> GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest | None: ...
+                    ) -> (
+                        GoogleCloudRetailV2betaListServingConfigsResponseHttpRequest
+                        | None
+                    ): ...
                     def patch(
                         self,
                         *,
