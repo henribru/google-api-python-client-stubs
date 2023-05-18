@@ -108,6 +108,16 @@ class GoogleIamAdminV1WorkforcePoolProviderSaml(
     idpMetadataXml: str
 
 @typing.type_check_only
+class KeyData(typing_extensions.TypedDict, total=False):
+    format: typing_extensions.Literal["KEY_FORMAT_UNSPECIFIED", "RSA_X509_PEM"]
+    key: str
+    keySpec: typing_extensions.Literal[
+        "KEY_SPEC_UNSPECIFIED", "RSA_2048", "RSA_3072", "RSA_4096"
+    ]
+    notAfterTime: str
+    notBeforeTime: str
+
+@typing.type_check_only
 class LintPolicyRequest(typing_extensions.TypedDict, total=False):
     condition: Expr
     fullResourceName: str
@@ -142,6 +152,11 @@ class ListServiceAccountsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListWorkforcePoolProviderKeysResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workforcePoolProviderKeys: _list[WorkforcePoolProviderKey]
+
+@typing.type_check_only
 class ListWorkforcePoolProvidersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     workforcePoolProviders: _list[WorkforcePoolProvider]
@@ -150,6 +165,13 @@ class ListWorkforcePoolProvidersResponse(typing_extensions.TypedDict, total=Fals
 class ListWorkforcePoolsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     workforcePools: _list[WorkforcePool]
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolProviderKeysResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadIdentityPoolProviderKeys: _list[WorkloadIdentityPoolProviderKey]
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolProvidersResponse(
@@ -339,6 +361,11 @@ class UndeleteServiceAccountResponse(typing_extensions.TypedDict, total=False):
     restoredAccount: ServiceAccount
 
 @typing.type_check_only
+class UndeleteWorkforcePoolProviderKeyRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class UndeleteWorkforcePoolProviderRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -348,6 +375,11 @@ class UndeleteWorkforcePoolRequest(typing_extensions.TypedDict, total=False): ..
 
 @typing.type_check_only
 class UndeleteWorkforcePoolSubjectRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteWorkloadIdentityPoolProviderKeyRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class UndeleteWorkloadIdentityPoolProviderRequest(
@@ -384,6 +416,14 @@ class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
+class WorkforcePoolProviderKey(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    keyData: KeyData
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    use: typing_extensions.Literal["KEY_USE_UNSPECIFIED", "ENCRYPTION"]
+
+@typing.type_check_only
 class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
@@ -408,3 +448,11 @@ class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     oidc: Oidc
     saml: Saml
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkloadIdentityPoolProviderKey(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    keyData: KeyData
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    use: typing_extensions.Literal["KEY_USE_UNSPECIFIED", "ENCRYPTION"]

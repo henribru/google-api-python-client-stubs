@@ -463,6 +463,7 @@ class RuntimeSoftwareConfig(typing_extensions.TypedDict, total=False):
     idleShutdownTimeout: int
     installGpuDriver: bool
     kernels: _list[ContainerImage]
+    mixerDisabled: bool
     notebookUpgradeSchedule: str
     postStartupScript: str
     postStartupScriptBehavior: typing_extensions.Literal[

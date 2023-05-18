@@ -99,6 +99,7 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         ignoreActiveCertificates: bool = ...,
+                        ignoreDependentResources: bool = ...,
                         requestId: str = ...,
                         skipGracePeriod: bool = ...,
                         **kwargs: typing.Any
@@ -216,7 +217,12 @@ class CertificateAuthorityServiceResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    ignoreDependentResources: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def fetchCaCerts(
                     self,

@@ -204,6 +204,9 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_DEFINER",
         "CANT_RESTART_RUNNING_MIGRATION",
         "TABLES_WITH_LIMITED_SUPPORT",
+        "UNSUPPORTED_DATABASE_LOCALE",
+        "UNSUPPORTED_DATABASE_FDW_CONFIG",
+        "ERROR_RDBMS",
     ]
     errorDetailMessage: str
     errorMessage: str

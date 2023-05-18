@@ -128,6 +128,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
     labels: dict[str, typing.Any]
     lastConnectionTime: str
+    monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
     uniqueId: str
@@ -155,6 +156,14 @@ class MembershipState(typing_extensions.TypedDict, total=False):
     ]
     description: str
     updateTime: str
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    cluster: str
+    clusterHash: str
+    kubernetesMetricsPrefix: str
+    location: str
+    projectId: str
 
 @typing.type_check_only
 class MultiCloudCluster(typing_extensions.TypedDict, total=False):

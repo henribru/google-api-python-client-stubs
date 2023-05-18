@@ -627,6 +627,7 @@ class JobConfigurationQuery(typing_extensions.TypedDict, total=False):
     allowLargeResults: bool
     clustering: Clustering
     connectionProperties: _list[ConnectionProperty]
+    continuous: bool
     createDisposition: str
     createSession: bool
     defaultDataset: DatasetReference
@@ -906,6 +907,7 @@ class QueryParameterValue(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryRequest(typing_extensions.TypedDict, total=False):
     connectionProperties: _list[ConnectionProperty]
+    continuous: bool
     createSession: bool
     defaultDataset: DatasetReference
     dryRun: bool
@@ -987,7 +989,7 @@ class Routine(typing_extensions.TypedDict, total=False):
     etag: str
     importedLibraries: _list[str]
     language: typing_extensions.Literal[
-        "LANGUAGE_UNSPECIFIED", "SQL", "JAVASCRIPT", "PYTHON"
+        "LANGUAGE_UNSPECIFIED", "SQL", "JAVASCRIPT", "PYTHON", "JAVA", "SCALA"
     ]
     lastModifiedTime: str
     remoteFunctionOptions: RemoteFunctionOptions
@@ -1078,6 +1080,7 @@ class SparkOptions(typing_extensions.TypedDict, total=False):
     containerImage: str
     fileUris: _list[str]
     jarUris: _list[str]
+    mainClass: str
     mainFileUri: str
     properties: dict[str, typing.Any]
     pyFileUris: _list[str]
@@ -1264,6 +1267,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     adjustStepChanges: bool
     autoArima: bool
     autoArimaMaxOrder: str
+    autoArimaMinOrder: str
     batchSize: str
     boosterType: typing_extensions.Literal["BOOSTER_TYPE_UNSPECIFIED", "GBTREE", "DART"]
     calculatePValues: bool

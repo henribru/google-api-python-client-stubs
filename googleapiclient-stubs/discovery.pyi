@@ -155,6 +155,7 @@ import googleapiclient._apis.dataform.v1beta1.resources
 import googleapiclient._apis.datafusion.v1.resources
 import googleapiclient._apis.datafusion.v1beta1.resources
 import googleapiclient._apis.datalabeling.v1beta1.resources
+import googleapiclient._apis.datalineage.v1.resources
 import googleapiclient._apis.datamigration.v1.resources
 import googleapiclient._apis.datamigration.v1beta1.resources
 import googleapiclient._apis.datapipelines.v1.resources
@@ -215,6 +216,7 @@ import googleapiclient._apis.file.v1beta1.resources
 import googleapiclient._apis.firebase.v1beta1.resources
 import googleapiclient._apis.firebaseappcheck.v1.resources
 import googleapiclient._apis.firebaseappcheck.v1beta.resources
+import googleapiclient._apis.firebaseappdistribution.v1.resources
 import googleapiclient._apis.firebasedatabase.v1beta.resources
 import googleapiclient._apis.firebasedynamiclinks.v1.resources
 import googleapiclient._apis.firebasehosting.v1.resources
@@ -290,6 +292,7 @@ import googleapiclient._apis.memcache.v1beta2.resources
 import googleapiclient._apis.metastore.v1.resources
 import googleapiclient._apis.metastore.v1alpha.resources
 import googleapiclient._apis.metastore.v1beta.resources
+import googleapiclient._apis.migrationcenter.v1alpha1.resources
 import googleapiclient._apis.ml.v1.resources
 import googleapiclient._apis.monitoring.v1.resources
 import googleapiclient._apis.monitoring.v3.resources
@@ -310,6 +313,7 @@ import googleapiclient._apis.networksecurity.v1beta1.resources
 import googleapiclient._apis.networkservices.v1.resources
 import googleapiclient._apis.networkservices.v1beta1.resources
 import googleapiclient._apis.notebooks.v1.resources
+import googleapiclient._apis.notebooks.v2.resources
 import googleapiclient._apis.oauth2.v2.resources
 import googleapiclient._apis.ondemandscanning.v1.resources
 import googleapiclient._apis.ondemandscanning.v1beta1.resources
@@ -333,12 +337,15 @@ import googleapiclient._apis.policyanalyzer.v1beta1.resources
 import googleapiclient._apis.policysimulator.v1.resources
 import googleapiclient._apis.policysimulator.v1alpha.resources
 import googleapiclient._apis.policysimulator.v1beta1.resources
+import googleapiclient._apis.policysimulator.v1beta.resources
 import googleapiclient._apis.policytroubleshooter.v1.resources
 import googleapiclient._apis.policytroubleshooter.v1beta.resources
 import googleapiclient._apis.poly.v1.resources
 import googleapiclient._apis.privateca.v1.resources
 import googleapiclient._apis.privateca.v1beta1.resources
 import googleapiclient._apis.prod_tt_sasportal.v1alpha1.resources
+import googleapiclient._apis.publicca.v1alpha1.resources
+import googleapiclient._apis.publicca.v1beta1.resources
 import googleapiclient._apis.pubsub.v1.resources
 import googleapiclient._apis.pubsub.v1beta1a.resources
 import googleapiclient._apis.pubsub.v1beta2.resources
@@ -3509,6 +3516,26 @@ def build(
 ) -> googleapiclient._apis.datalabeling.v1beta1.resources.DataLabelingResource: ...
 @overload
 def build(
+    serviceName: Literal["datalineage"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.datalineage.v1.resources.DatalineageResource: ...
+@overload
+def build(
     serviceName: Literal["datamigration"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = ...,
@@ -4727,6 +4754,28 @@ def build(
 ): ...
 @overload
 def build(
+    serviceName: Literal["firebaseappdistribution"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.firebaseappdistribution.v1.resources.FirebaseAppDistributionResource
+): ...
+@overload
+def build(
     serviceName: Literal["firebasedatabase"],
     version: Literal["v1beta"],
     http: httplib2.Http | HttpMock | None = ...,
@@ -5035,28 +5084,6 @@ def build(
 ): ...
 @overload
 def build(
-    serviceName: Literal["gamesManagement"],
-    version: Literal["v1management"],
-    http: httplib2.Http | HttpMock | None = ...,
-    discoveryServiceUrl: str | None = ...,
-    developerKey: str | None = ...,
-    model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
-    credentials: oauth2client.Credentials
-    | google.auth.credentials.Credentials
-    | None = ...,
-    cache_discovery: bool = ...,
-    cache: Cache | None = ...,
-    client_options: dict[str, Any] | ClientOptions | None = ...,
-    adc_cert_path: str | None = ...,
-    adc_key_path: str | None = ...,
-    num_retries: int = ...,
-    static_discovery: bool | None = ...,
-) -> (
-    googleapiclient._apis.gamesManagement.v1management.resources.GamesManagementResource
-): ...
-@overload
-def build(
     serviceName: Literal["gameservices"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = ...,
@@ -5095,6 +5122,28 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.gameservices.v1beta.resources.GameServicesResource: ...
+@overload
+def build(
+    serviceName: Literal["gamesManagement"],
+    version: Literal["v1management"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.gamesManagement.v1management.resources.GamesManagementResource
+): ...
 @overload
 def build(
     serviceName: Literal["genomics"],
@@ -6251,6 +6300,28 @@ def build(
 ) -> googleapiclient._apis.metastore.v1beta.resources.DataprocMetastoreResource: ...
 @overload
 def build(
+    serviceName: Literal["migrationcenter"],
+    version: Literal["v1alpha1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.migrationcenter.v1alpha1.resources.MigrationCenterAPIResource
+): ...
+@overload
+def build(
     serviceName: Literal["ml"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = ...,
@@ -6671,6 +6742,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.notebooks.v1.resources.AIPlatformNotebooksResource: ...
+@overload
+def build(
+    serviceName: Literal["notebooks"],
+    version: Literal["v2"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.notebooks.v2.resources.AIPlatformNotebooksResource: ...
 @overload
 def build(
     serviceName: Literal["oauth2"],
@@ -7124,6 +7215,26 @@ def build(
 @overload
 def build(
     serviceName: Literal["policysimulator"],
+    version: Literal["v1beta"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.policysimulator.v1beta.resources.PolicySimulatorResource: ...
+@overload
+def build(
+    serviceName: Literal["policysimulator"],
     version: Literal["v1beta1"],
     http: httplib2.Http | HttpMock | None = ...,
     discoveryServiceUrl: str | None = ...,
@@ -7272,6 +7383,50 @@ def build(
     static_discovery: bool | None = ...,
 ) -> (
     googleapiclient._apis.prod_tt_sasportal.v1alpha1.resources.SASPortalTestingResource
+): ...
+@overload
+def build(
+    serviceName: Literal["publicca"],
+    version: Literal["v1alpha1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.publicca.v1alpha1.resources.PublicCertificateAuthorityResource
+): ...
+@overload
+def build(
+    serviceName: Literal["publicca"],
+    version: Literal["v1beta1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.publicca.v1beta1.resources.PublicCertificateAuthorityResource
 ): ...
 @overload
 def build(

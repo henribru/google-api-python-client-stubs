@@ -222,7 +222,9 @@ class SasPortalPolicy(typing_extensions.TypedDict, total=False):
     etag: str
 
 @typing.type_check_only
-class SasPortalProvisionDeploymentRequest(typing_extensions.TypedDict, total=False): ...
+class SasPortalProvisionDeploymentRequest(typing_extensions.TypedDict, total=False):
+    newDeploymentDisplayName: str
+    newOrganizationDisplayName: str
 
 @typing.type_check_only
 class SasPortalProvisionDeploymentResponse(typing_extensions.TypedDict, total=False):

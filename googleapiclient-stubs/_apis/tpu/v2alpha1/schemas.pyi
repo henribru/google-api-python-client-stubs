@@ -225,6 +225,7 @@ class QueuedResource(typing_extensions.TypedDict, total=False):
     guaranteed: Guaranteed
     name: str
     queueingPolicy: QueueingPolicy
+    reservationName: str
     state: QueuedResourceState
     tpu: Tpu
 

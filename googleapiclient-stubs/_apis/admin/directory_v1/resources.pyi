@@ -635,6 +635,7 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             self,
             *,
             customer: str,
+            includeIndirectRoleAssignments: bool = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             roleId: str = ...,

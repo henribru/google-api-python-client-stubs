@@ -281,6 +281,7 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
         "WIPE_USERS",
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
+        "CAPTURE_LOGS",
     ]
 
 @typing.type_check_only
@@ -304,6 +305,7 @@ class DirectoryChromeosdevicesIssueCommandRequest(
         "WIPE_USERS",
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
+        "CAPTURE_LOGS",
     ]
     payload: str
 
@@ -628,6 +630,7 @@ class Role(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RoleAssignment(typing_extensions.TypedDict, total=False):
     assignedTo: str
+    assigneeType: typing_extensions.Literal["user", "group"]
     etag: str
     kind: str
     orgUnitId: str

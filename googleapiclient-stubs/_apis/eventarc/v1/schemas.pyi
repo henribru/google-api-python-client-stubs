@@ -238,6 +238,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     createTime: str
     destination: Destination
     etag: str
+    eventDataContentType: str
     eventFilters: _list[EventFilter]
     labels: dict[str, typing.Any]
     name: str

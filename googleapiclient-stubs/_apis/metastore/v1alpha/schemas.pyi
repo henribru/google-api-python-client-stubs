@@ -35,7 +35,7 @@ class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BackendMetastore(typing_extensions.TypedDict, total=False):
     metastoreType: typing_extensions.Literal[
-        "METASTORE_TYPE_UNSPECIFIED", "BIGQUERY", "DATAPROC_METASTORE"
+        "METASTORE_TYPE_UNSPECIFIED", "DATAPLEX", "BIGQUERY", "DATAPROC_METASTORE"
     ]
     name: str
 
@@ -244,6 +244,7 @@ class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     consumers: _list[Consumer]
+    customRoutesEnabled: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -306,6 +307,18 @@ class RestoreServiceRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ScalingConfig(typing_extensions.TypedDict, total=False):
+    instanceSize: typing_extensions.Literal[
+        "INSTANCE_SIZE_UNSPECIFIED",
+        "EXTRA_SMALL",
+        "SMALL",
+        "MEDIUM",
+        "LARGE",
+        "EXTRA_LARGE",
+    ]
+    scalingFactor: float
+
+@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     cloudSecret: str
 
@@ -330,6 +343,7 @@ class Service(typing_extensions.TypedDict, total=False):
     releaseChannel: typing_extensions.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "STABLE"
     ]
+    scalingConfig: ScalingConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

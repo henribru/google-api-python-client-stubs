@@ -46,6 +46,14 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     previous_request: ListConnectorsResponseHttpRequest,
                     previous_response: ListConnectorsResponse,
                 ) -> ListConnectorsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Connector = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):

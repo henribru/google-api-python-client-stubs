@@ -162,6 +162,7 @@ class CertificateTemplate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DisableCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
+    ignoreDependentResources: bool
     requestId: str
 
 @typing.type_check_only

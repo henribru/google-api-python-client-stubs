@@ -344,7 +344,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             def versions(self) -> VersionsResource: ...
 
         def create(
-            self, *, body: Application = ..., **kwargs: typing.Any
+            self, *, body: Application = ..., parent: str = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
             self, *, appsId: str, **kwargs: typing.Any
@@ -378,6 +378,14 @@ class AppengineResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ApplicationsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    projectsId: str,
+                    locationsId: str,
+                    body: Application = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,

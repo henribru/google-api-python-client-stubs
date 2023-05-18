@@ -64,6 +64,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1betaProvisionAccountTicketResponseHttpRequest: ...
+        def runAccessReport(
+            self,
+            *,
+            entity: str,
+            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def searchChangeHistoryEvents(
             self,
             *,
@@ -393,6 +400,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1betaPropertyHttpRequest: ...
+        def runAccessReport(
+            self,
+            *,
+            entity: str,
+            body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def updateDataRetentionSettings(
             self,
             *,
@@ -647,6 +661,16 @@ class GoogleAnalyticsAdminV1betaProvisionAccountTicketResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest(

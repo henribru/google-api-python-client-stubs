@@ -129,8 +129,10 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     createTime: str
     destroyEventTime: str
     destroyTime: str
+    externalDestructionFailureReason: str
     externalProtectionLevelOptions: ExternalProtectionLevelOptions
     generateTime: str
+    generationFailureReason: str
     importFailureReason: str
     importJob: str
     importTime: str
@@ -148,6 +150,9 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "DESTROY_SCHEDULED",
         "PENDING_IMPORT",
         "IMPORT_FAILED",
+        "GENERATION_FAILED",
+        "PENDING_EXTERNAL_DESTRUCTION",
+        "EXTERNAL_DESTRUCTION_FAILED",
     ]
 
 @typing.type_check_only
@@ -213,9 +218,18 @@ class Digest(typing_extensions.TypedDict, total=False):
     sha512: str
 
 @typing.type_check_only
+class EkmConfig(typing_extensions.TypedDict, total=False):
+    defaultEkmConnection: str
+    name: str
+
+@typing.type_check_only
 class EkmConnection(typing_extensions.TypedDict, total=False):
     createTime: str
+    cryptoSpacePath: str
     etag: str
+    keyManagementMode: typing_extensions.Literal[
+        "KEY_MANAGEMENT_MODE_UNSPECIFIED", "MANUAL", "CLOUD_KMS"
+    ]
     name: str
     serviceResolvers: _list[ServiceResolver]
 
@@ -491,6 +505,9 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateCryptoKeyPrimaryVersionRequest(typing_extensions.TypedDict, total=False):
     cryptoKeyVersionId: str
+
+@typing.type_check_only
+class VerifyConnectivityResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class WrappingPublicKey(typing_extensions.TypedDict, total=False):

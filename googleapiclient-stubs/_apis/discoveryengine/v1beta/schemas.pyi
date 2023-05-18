@@ -98,6 +98,12 @@ class GoogleCloudDiscoveryengineV1alphaImportUserEventsResponse(
     unjoinedEventsCount: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: str
+    name: str
+    structSchema: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaBigQuerySource(
     typing_extensions.TypedDict, total=False
 ):
@@ -283,6 +289,12 @@ class GoogleCloudDiscoveryengineV1betaRecommendResponseRecommendationResult(
     document: GoogleCloudDiscoveryengineV1betaDocument
     id: str
     metadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: str
+    name: str
+    structSchema: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaSearchInfo(

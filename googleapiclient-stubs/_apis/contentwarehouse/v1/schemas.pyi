@@ -1030,6 +1030,7 @@ class AppsPeopleOzExternalMergedpeopleapiAffinity(
         "NUDGEIT_CAMPAIGN_MANAGER_AFFINITY",
         "LEGAL_CONTRACTS_EXTERNAL_AFFINITY",
         "CONTACTS_TO_STAR_AFFINITY",
+        "DECS_AFFINITY",
     ]
     containerId: str
     containerType: typing_extensions.Literal[
@@ -1663,6 +1664,7 @@ class AppsPeopleOzExternalMergedpeopleapiInAppNotificationTargetClientData(
         "PEOPLE_PLAYGROUND",
         "NEWS_360",
         "DUO",
+        "MEET",
     ]
     byteValue: str
 
@@ -1696,6 +1698,7 @@ class AppsPeopleOzExternalMergedpeopleapiInAppReachability(
         "LOUPE",
         "NEWS_360",
         "DUO",
+        "MEET",
     ]
     metadata: AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata
     reachabilityKey: AppsPeopleOzExternalMergedpeopleapiInAppReachabilityReachabilityKey
@@ -2488,6 +2491,7 @@ class AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfo(
         "OBSOLETE_PRIVATE",
     ]
     profileOwnerStats: AppsPeopleOzExternalMergedpeopleapiProfileOwnerStats
+    unjoinedEmailCertificates: _list[AppsPeopleOzExternalMergedpeopleapiEmail]
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfoDomainInfo(
@@ -2863,6 +2867,10 @@ class AssistantApiAudioOutput(typing_extensions.TypedDict, total=False):
     volumeProperties: AssistantApiVolumeProperties
 
 @typing.type_check_only
+class AssistantApiBluetoothCapabilities(typing_extensions.TypedDict, total=False):
+    isBluetoothConnectedProfileRequired: bool
+
+@typing.type_check_only
 class AssistantApiCallCapabilities(typing_extensions.TypedDict, total=False):
     callFormats: _list[str]
     callMediums: _list[str]
@@ -3145,6 +3153,29 @@ class AssistantApiCoreTypesGovernedColor(typing_extensions.TypedDict, total=Fals
     blue: float
     green: float
     red: float
+
+@typing.type_check_only
+class AssistantApiCoreTypesGovernedDeviceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+    deviceId: str
+
+@typing.type_check_only
+class AssistantApiCoreTypesGovernedDeviceId(typing_extensions.TypedDict, total=False):
+    agsaClientInstanceId: str
+    alloDeviceId: str
+    canonicalDeviceId: str
+    castDeviceId: str
+    clientInstanceId: str
+    connectedDockId: str
+    deviceConfig: AssistantApiCoreTypesGovernedDeviceConfig
+    deviceType: str
+    homeGraphDeviceId: str
+    libassistantDeviceId: str
+    multiHotwordArbitrationDeviceId: str
+    opaIosDeviceId: str
+    quartzDeviceId: str
 
 @typing.type_check_only
 class AssistantApiCoreTypesGovernedRingtoneTaskMetadata(
@@ -3580,6 +3611,7 @@ class AssistantApiDeviceCapabilities(typing_extensions.TypedDict, total=False):
     androidIntentCapabilities: AssistantApiAndroidIntentCapabilities
     audioInput: AssistantApiAudioInput
     audioOutput: AssistantApiAudioOutput
+    bluetoothCapabilities: AssistantApiBluetoothCapabilities
     callCapabilities: AssistantApiCallCapabilities
     camera: AssistantApiCameraCapabilities
     carUxRestrictions: _list[str]
@@ -4656,8 +4688,6 @@ class AssistantApiSpeechCapabilities(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssistantApiSuggestionsSupport(typing_extensions.TypedDict, total=False):
     clickImpersonationSupported: bool
-    coloredChipBackgroundBorderSupported: bool
-    coloredChipTextSupported: bool
     debugDataSupported: bool
     drlHistoryChipSupported: bool
     escapeHatchSupported: typing_extensions.Literal["UNSUPPORTED", "NGA_ESCAPE_HATCH"]
@@ -4920,6 +4950,67 @@ class AssistantApiVolumeProperties(typing_extensions.TypedDict, total=False):
     veryLowVolumePercentage: int
 
 @typing.type_check_only
+class AssistantContextAppProviderId(typing_extensions.TypedDict, total=False):
+    activityClassName: str
+    androidPackageName: str
+    castAppId: str
+    versionCode: int
+
+@typing.type_check_only
+class AssistantContextMediaProviderId(typing_extensions.TypedDict, total=False):
+    androidPackageName: str
+    castAppId: str
+    chromeOsPackageName: str
+    homeAppPackageName: str
+    iosBundleIdentifier: str
+    kaiOsPackageName: str
+    kgProviderKey: str
+    mid: str
+    providerVariant: AssistantContextProviderVariant
+    sipProviderId: str
+
+@typing.type_check_only
+class AssistantContextProviderId(typing_extensions.TypedDict, total=False):
+    appProviderId: AssistantContextAppProviderId
+    ecosystemType: typing_extensions.Literal[
+        "ECOSYSTEM_TYPE_UNSPECIFIED", "NATIVE", "CAST"
+    ]
+    mediaProviderId: AssistantContextMediaProviderId
+    mid: str
+    naturalProviderId: AssistantContextProviderIdNaturalProviderId
+    providerCorpusId: str
+    providerVariant: AssistantContextProviderVariant
+
+@typing.type_check_only
+class AssistantContextProviderIdNaturalProviderId(
+    typing_extensions.TypedDict, total=False
+):
+    providerType: typing_extensions.Literal[
+        "UNKNOWN",
+        "CLOUD_PROJECT",
+        "APP_ACTIONS",
+        "WEBSITE",
+        "NARRATIVE_NEWS",
+        "IOS_BUNDLE",
+        "CAST_APP",
+        "ZEROTH_PARTY",
+        "ANDROID_SYSTEM_API",
+    ]
+    value: str
+
+@typing.type_check_only
+class AssistantContextProviderVariant(typing_extensions.TypedDict, total=False):
+    emptyMidVariant: typing_extensions.Literal[
+        "UNSPECIFIED_EMPTY_MID_VARIANT", "BACKDROP_CAST", "CAST_RECEIVER"
+    ]
+    spotifyVariant: typing_extensions.Literal[
+        "UNSPECIFIED_SPOTIFY_VARIANT", "SPOTIFY_MAIN", "SPOTIFY_LITE"
+    ]
+    youtubeVariant: typing_extensions.Literal[
+        "UNSPECIFIED_YOUTUBE_VARIANT", "YOUTUBE_MAIN", "YOUTUBE_MUSIC", "YOUTUBE_GO"
+    ]
+
+@typing.type_check_only
 class AssistantDeviceTargetingDeviceTargetingError(
     typing_extensions.TypedDict, total=False
 ):
@@ -4935,6 +5026,7 @@ class AssistantDeviceTargetingDeviceTargetingError(
         "NO_DEVICE_AFTER_LOCAL_DEVICE_EXCLUDED",
         "UNABLE_TO_TARGET_ONLY_LOCAL_DEVICE",
         "NO_DEVICE_MATCHED_REQUIRED_TRAITS",
+        "NO_DEVICE_MATCHED_REQUIRED_ATTRIBUTES",
         "NO_DEVICE_MATCHED_REQUIRED_DEVICE_TYPE",
         "NO_DEVICE_IN_SAME_OR_MENTIONED_STRUCTURE",
         "NO_DEVICE_SATISFIES_PLAYBACK_REQUIREMENT",
@@ -5134,6 +5226,11 @@ class AssistantDevicesPlatformProtoProvidedData(
     name: str
 
 @typing.type_check_only
+class AssistantDevicesPlatformProtoProviderFulfillCapability(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AssistantDevicesPlatformProtoProviderOpenCapability(
     typing_extensions.TypedDict, total=False
 ):
@@ -5175,6 +5272,7 @@ class AssistantDevicesPlatformProtoSupportedDeviceOps(
     mediaPrevious: AssistantDevicesPlatformProtoMediaPreviousCapability
     mediaResume: AssistantDevicesPlatformProtoMediaResumeCapability
     mediaStop: AssistantDevicesPlatformProtoMediaStopCapability
+    providerFulfill: AssistantDevicesPlatformProtoProviderFulfillCapability
     providerOpen: AssistantDevicesPlatformProtoProviderOpenCapability
     sendChatMessage: AssistantDevicesPlatformProtoSendChatMessageCapability
 
@@ -5284,11 +5382,19 @@ class AssistantGroundingRankerDeviceContactAffinityFeatures(
     messageAffinity: float
 
 @typing.type_check_only
+class AssistantGroundingRankerDeviceGroundingProviderFeatures(
+    typing_extensions.TypedDict, total=False
+):
+    deviceId: AssistantApiCoreTypesGovernedDeviceId
+
+@typing.type_check_only
 class AssistantGroundingRankerGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
     contactGroundingProviderFeatures: AssistantGroundingRankerContactGroundingProviderFeatures
+    deviceGroundingProviderFeatures: AssistantGroundingRankerDeviceGroundingProviderFeatures
     mediaGroundingProviderFeatures: AssistantGroundingRankerMediaGroundingProviderFeatures
+    podcastGroundingProviderFeatures: AssistantGroundingRankerPodcastGroundingProviderFeatures
     providerGroundingProviderFeatures: AssistantGroundingRankerProviderGroundingProviderFeatures
 
 @typing.type_check_only
@@ -5327,16 +5433,63 @@ class AssistantGroundingRankerLaaFeaturesProvider(
 class AssistantGroundingRankerMediaGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
+    albumReleaseType: typing_extensions.Literal[
+        "UNKNOWN", "ALBUM", "SINGLE", "EXTENDED_PLAY"
+    ]
+    ambiguityClassifier: typing_extensions.Literal[
+        "UNKNOWN", "SONG_ALBUM_AMBIGUOUS", "NOT_AMBIGUOUS", "SINGLE_MEDIA_ITEM"
+    ]
+    hasTypeSemanticEdge: bool
     isCastVideo: bool
+    isMediaSearchQuerySubsetOfEntityNameAndArtist: bool
     isSeedRadio: bool
     isSeedRadioRequest: bool
     mscRate: float
     scubedPSaiMusic: float
+    type: typing_extensions.Literal[
+        "UNKNOWN",
+        "TRACK",
+        "ALBUM",
+        "ARTIST",
+        "PLAYLIST",
+        "EPISODE",
+        "MOVIE",
+        "PHOTO",
+        "TV_SHOW_EPISODE",
+        "MUSIC_GENRE",
+        "MUSIC_STATION",
+        "AUDIO_BOOK",
+        "CHAPTER",
+        "RADIO_STATION",
+        "MUSIC_MIX",
+        "SPORTS_EVENT",
+        "TV_CHANNEL",
+        "VIDEO",
+        "YOUTUBE_CHANNEL",
+        "YOUTUBE_VIDEO_PLAYLIST",
+        "TV_SHOW",
+        "NEWS",
+        "NARRATED_WEB",
+        "NEWS_CALL_TO_ACTION",
+        "AUDIO_STORY",
+        "PODCAST_SERIES",
+        "PODCAST_EPISODE",
+    ]
+    youtubeConfidenceScore: float
+
+@typing.type_check_only
+class AssistantGroundingRankerPodcastGroundingProviderFeatures(
+    typing_extensions.TypedDict, total=False
+):
+    isExclusive: bool
 
 @typing.type_check_only
 class AssistantGroundingRankerProviderGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
+    isInAppProvider: bool
+    providerClusterId: _list[str]
+    providerId: AssistantContextProviderId
     pslScore: float
 
 @typing.type_check_only
@@ -5530,6 +5683,7 @@ class AssistantLogsDeviceInfoLog(typing_extensions.TypedDict, total=False):
         "APP_FILTER",
         "HYBRID_DEVICE_PROPERTIES_FILTER",
         "NEARBY_DEVICE_FILTER",
+        "DEVICE_ATTRIBUTES_FILTER",
         "DEFAULT_MEDIA_OUTPUT_PROMOTER",
         "DEVICE_GROUP_PROMOTER",
         "LOCAL_DEVICE_PROMOTER",
@@ -5709,6 +5863,7 @@ class AssistantLogsDeviceSelectionResultLog(typing_extensions.TypedDict, total=F
         "NO_DEVICE_AFTER_LOCAL_DEVICE_EXCLUDED",
         "UNABLE_TO_TARGET_ONLY_LOCAL_DEVICE",
         "NO_DEVICE_MATCHED_REQUIRED_TRAITS",
+        "NO_DEVICE_MATCHED_REQUIRED_ATTRIBUTES",
         "NO_DEVICE_MATCHED_REQUIRED_DEVICE_TYPE",
         "NO_DEVICE_IN_SAME_OR_MENTIONED_STRUCTURE",
         "NO_DEVICE_SATISFIES_PLAYBACK_REQUIREMENT",
@@ -5803,6 +5958,7 @@ class AssistantLogsLumosProcessorInfo(typing_extensions.TypedDict, total=False):
         "APP_FILTER",
         "HYBRID_DEVICE_PROPERTIES_FILTER",
         "NEARBY_DEVICE_FILTER",
+        "DEVICE_ATTRIBUTES_FILTER",
         "DEFAULT_MEDIA_OUTPUT_PROMOTER",
         "DEVICE_GROUP_PROMOTER",
         "LOCAL_DEVICE_PROMOTER",
@@ -5882,6 +6038,7 @@ class AssistantLogsMediaStreamLog(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssistantLogsNearbyDevicesLog(typing_extensions.TypedDict, total=False):
     deviceArbitrationCreationTimestampMs: str
+    deviceTargetingInputCreationTimestampMs: str
     eliminatedByFurtherDistance: int
     eliminatedByLocalClosest: int
     eliminatedByUnknownDifferentRoom: int
@@ -5973,17 +6130,21 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
     fulfillableDominantMedia: bool
     groundabilityScore: float
     groundingProviderFeatures: AssistantGroundingRankerGroundingProviderFeatures
+    hasAnswerGroup: bool
     inQueryMaxEffectiveArgSpanLength: float
     intentName: str
     intentNameAuisScore: float
     intentNameAuisScoreExp: float
     isFeasible: bool
     isFullyGrounded: bool
+    isMediaControlIntent: bool
     isPlayGenericMusic: bool
+    isPodcastIntent: bool
     kscorerRank: int
     laaFeatures: AssistantGroundingRankerLaaFeatures
     maskCandidateLevelFeatures: bool
     maxHgrScoreAcrossBindingSets: float
+    nspRank: int
     numAlternativeHypothesis: float
     numConstraints: float
     numConstraintsSatisfied: float
@@ -5991,9 +6152,22 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
     numGroundedArgs: float
     numVariables: float
     numVariablesGrounded: float
+    parsingScoreMse8BucketId: int
     pq2tVsAssistantIbstCosine: float
     pq2tVsIbstCosine: float
     predictedIntentConfidence: float
+    rankerName: typing_extensions.Literal[
+        "RANKER_NAME_UNSPECIFIED",
+        "RANKER_NAME_PREFULFILLMENT_RANKER",
+        "RANKER_NAME_GROUNDING_RANKER",
+        "RANKER_NAME_TEST_PFR_DUMMY",
+        "RANKER_NAME_DEFER_TO_VERTICAL_SCORES",
+        "RANKER_NAME_GROUNDING_RANKER_V2",
+        "RANKER_NAME_GROUNDING_RANKER_MEDIA_EXP",
+        "RANKER_NAME_GROUNDING_RANKER_COMMS_EXP",
+        "RANKER_NAME_CONSOLIDATED_PFR_HGR",
+        "RANKER_NAME_CONSOLIDATED_PFR_HGR_V2",
+    ]
     searchDispatch: typing_extensions.Literal[
         "UNKNOWN",
         "NONE",
@@ -6002,6 +6176,9 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
         "EMIT_ONLY",
         "COUNTERFACTUAL_LOG_ONLY",
         "CAPACITY_ACCOUNTING",
+    ]
+    subIntentType: typing_extensions.Literal[
+        "SUB_INTENT_TYPE_UNKNOWN", "SUB_INTENT_TYPE_TV_FALLBACK_SEARCH_INTENT"
     ]
     topHypothesisConfidence: float
     verticalConfidenceScore: float
@@ -6448,6 +6625,7 @@ class BlueGingerClientVisibleProtoBlueGingerSupportedServicesBlueGingerModule(
         "DIALOGFLOW_DELEGATION",
         "AD_LEAD_VERIFICATION",
         "GET_HUMAN",
+        "CHECK_INSURANCE_ACCEPTANCE",
     ]
 
 @typing.type_check_only
@@ -6519,6 +6697,7 @@ class ClassifierPornQueryMultiLabelClassifierOutput(
     csai: ClassifierPornQueryClassifierOutput
     fringe: ClassifierPornQueryClassifierOutput
     medical: ClassifierPornQueryClassifierOutput
+    minor: ClassifierPornQueryClassifierOutput
     offensive: ClassifierPornQueryClassifierOutput
     porn: ClassifierPornQueryClassifierOutput
     spoof: ClassifierPornQueryClassifierOutput
@@ -6561,6 +6740,111 @@ class ClassifierPornSiteViolenceStats(typing_extensions.TypedDict, total=False):
     numberOfImages: str
     numberOfVideos: str
     videoViolenceScore: float
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceCloudSqlInstanceConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudSqlInstanceConnectionName: str
+    cloudSqlInstanceName: str
+    kmsKeyReference: str
+    mdbRolesForCorpAccess: _list[str]
+    slmInstanceName: str
+    slmInstanceTemplate: str
+    slmInstanceType: str
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceGcsBucketConfig(
+    typing_extensions.TypedDict, total=False
+):
+    admins: _list[str]
+    bucketName: str
+    entityName: str
+    kmsKeyReference: str
+    ttlDays: int
+    viewers: _list[str]
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceIamPolicyBinding(
+    typing_extensions.TypedDict, total=False
+):
+    members: _list[str]
+    resource: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "PROJECT",
+        "SERVICE_ACCOUNT",
+        "GCS_BUCKET",
+        "SERVICE_CONSUMER",
+        "AR_REPO",
+    ]
+    role: str
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceInfraSpannerConfig(
+    typing_extensions.TypedDict, total=False
+):
+    createDatabaseOptions: CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions
+    kmsKeyReference: str
+    sdlBundlePath: str
+    spannerBorgServiceAccount: str
+    spannerLocalNamePrefix: str
+    spannerNamespace: str
+    spannerUniverse: str
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions(
+    typing_extensions.TypedDict, total=False
+):
+    cmekCloudResourceName: str
+    cmekCloudResourceType: str
+    cmekServiceName: str
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceServiceAccountIdentity(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccountEmail: str
+    tag: str
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceTenantProjectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    billingConfig: GoogleApiServiceconsumermanagementV1BillingConfig
+    folder: str
+    policyBindings: _list[GoogleApiServiceconsumermanagementV1PolicyBinding]
+    services: _list[str]
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceTenantProjectResource(
+    typing_extensions.TypedDict, total=False
+):
+    cloudSqlInstances: _list[CloudAiPlatformTenantresourceCloudSqlInstanceConfig]
+    gcsBuckets: _list[CloudAiPlatformTenantresourceGcsBucketConfig]
+    iamPolicyBindings: _list[CloudAiPlatformTenantresourceIamPolicyBinding]
+    infraSpannerConfigs: _list[CloudAiPlatformTenantresourceInfraSpannerConfig]
+    tag: str
+    tenantProjectConfig: CloudAiPlatformTenantresourceTenantProjectConfig
+    tenantProjectId: str
+    tenantProjectNumber: str
+    tenantServiceAccounts: _list[
+        CloudAiPlatformTenantresourceTenantServiceAccountIdentity
+    ]
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceTenantResource(
+    typing_extensions.TypedDict, total=False
+):
+    p4ServiceAccounts: _list[CloudAiPlatformTenantresourceServiceAccountIdentity]
+    tenantProjectResources: _list[CloudAiPlatformTenantresourceTenantProjectResource]
+
+@typing.type_check_only
+class CloudAiPlatformTenantresourceTenantServiceAccountIdentity(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccountEmail: str
+    serviceName: str
 
 @typing.type_check_only
 class CommerceDatastoreDeepTag(typing_extensions.TypedDict, total=False):
@@ -7568,6 +7852,12 @@ class DocPropertiesBadTitleInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DrishtiCompressedFeature(typing_extensions.TypedDict, total=False):
+    featureName: typing_extensions.Literal["UNKNOWN", "STARBURST_V4", "RESNETISH_V3"]
+    inRangeBitstream: str
+    outOfRangeBitstream: str
+
+@typing.type_check_only
 class DrishtiDenseFeatureData(typing_extensions.TypedDict, total=False):
     extra: _list[DrishtiFeatureExtra]
     generalExtra: DrishtiFeatureExtra
@@ -7584,6 +7874,7 @@ class DrishtiFeatureSetData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DrishtiFeatureSetDataFeatureSetElement(typing_extensions.TypedDict, total=False):
+    compressed: DrishtiCompressedFeature
     dense: DrishtiDenseFeatureData
     indexed: DrishtiIndexedFeatureData
     name: str
@@ -8685,6 +8976,7 @@ class GeostoreDataSourceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_GOOGLE_GT_ALF",
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
+        "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -9209,6 +9501,7 @@ class GeostoreDataSourceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_LOOP",
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
+        "PROVIDER_JOLT",
     ]
     rawMetadata: _list[GeostoreRawMetadataProto]
     release: str
@@ -9888,6 +10181,7 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "SEGMENT_ROUTE",
         "SEGMENT_ROUTE_ASSOCIATION",
         "SEGMENT_SEPARATED_ROADWAYS",
+        "SEGMENT_SLOPE",
         "SEGMENT_SURFACE",
         "SEGMENT_SWEEP",
         "SEGMENT_TOLL_ROAD",
@@ -10723,6 +11017,7 @@ class GeostoreInternalSourceSummaryProto(typing_extensions.TypedDict, total=Fals
         "PROVIDER_GOOGLE_GT_ALF",
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
+        "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -11247,6 +11542,7 @@ class GeostoreInternalSourceSummaryProto(typing_extensions.TypedDict, total=Fals
         "PROVIDER_LOOP",
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
+        "PROVIDER_JOLT",
     ]
 
 @typing.type_check_only
@@ -11368,6 +11664,7 @@ class GeostoreLaneProtoLaneConnection(typing_extensions.TypedDict, total=False):
     laneNumber: int
     primaryConnection: bool
     segment: GeostoreFeatureIdProto
+    yieldToOtherConnections: bool
 
 @typing.type_check_only
 class GeostoreLanguageTaggedTextProto(typing_extensions.TypedDict, total=False):
@@ -11629,6 +11926,7 @@ class GeostoreOntologyRawGConceptInstanceProto(
         "PROVIDER_GOOGLE_GT_ALF",
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
+        "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -12153,6 +12451,7 @@ class GeostoreOntologyRawGConceptInstanceProto(
         "PROVIDER_LOOP",
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
+        "PROVIDER_JOLT",
     ]
     sourceDataset: str
 
@@ -12287,7 +12586,6 @@ class GeostorePolygonProto(typing_extensions.TypedDict, total=False):
     heightMeters: float
     loop: _list[GeostorePolyLineProto]
     metadata: GeostoreFieldMetadataProto
-    shapeId: str
     temporaryData: Proto2BridgeMessageSet
     unsuitableForDisplay: bool
 
@@ -12596,6 +12894,7 @@ class GeostoreProvenanceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_GOOGLE_GT_ALF",
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
+        "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -13120,6 +13419,7 @@ class GeostoreProvenanceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_LOOP",
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
+        "PROVIDER_JOLT",
     ]
 
 @typing.type_check_only
@@ -13445,10 +13745,13 @@ class GeostoreSegmentProto(typing_extensions.TypedDict, total=False):
     bicycleFacility: typing_extensions.Literal[
         "BICYCLE_FACILITY_SEPARATE_TRAIL",
         "BICYCLE_FACILITY_PEDESTRIAN_PATH",
+        "BICYCLE_FACILITY_WIDE_PEDESTRIAN_PATH",
         "BICYCLE_FACILITY_SHARED_ROAD",
         "BICYCLE_FACILITY_BIKE_LANE",
+        "BICYCLE_FACILITY_BIKE_LANE_WITH_PEDESTRIAN_PATH",
         "BICYCLE_FACILITY_WIDE_SHOULDER",
         "BICYCLE_FACILITY_SHARROW",
+        "BICYCLE_FACILITY_SHARED_ROAD_WITH_PEDESTRIAN_PATH",
     ]
     bicycleSafety: typing_extensions.Literal[
         "BICYCLE_SAFETY_RECOMMENDED", "BICYCLE_SAFETY_NEUTRAL", "BICYCLE_SAFETY_CAUTION"
@@ -13543,6 +13846,7 @@ class GeostoreSegmentProto(typing_extensions.TypedDict, total=False):
     routeAssociation: _list[GeostoreRouteAssociationProto]
     separatedRoadways: bool
     sibling: GeostoreFeatureIdProto
+    slope: _list[GeostoreSlopeProto]
     surface: typing_extensions.Literal[
         "SURFACE_UNKNOWN",
         "SURFACE_PAVED",
@@ -13643,6 +13947,11 @@ class GeostoreSkiTrailProto(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GeostoreSlopeProto(typing_extensions.TypedDict, total=False):
+    slopeValue: float
+    startPointFraction: float
+
+@typing.type_check_only
 class GeostoreSocialReferenceProto(typing_extensions.TypedDict, total=False):
     baseGaiaId: str
     claimedGaiaId: str
@@ -13677,6 +13986,9 @@ class GeostoreSpeedLimitProto(typing_extensions.TypedDict, total=False):
         "SPEED_LIMIT_CATEGORY_UNKNOWN", "NONE", "SCHOOL", "CONSTRUCTION"
     ]
     condition: _list[GeostoreRoadConditionalProto]
+    sourceType: typing_extensions.Literal[
+        "SPEED_LIMIT_SOURCE_TYPE_UNKNOWN", "EXPLICIT", "IMPLICIT"
+    ]
     speedWithUnit: GeostoreSpeedProto
     unlimitedSpeed: GeostoreUnlimitedSpeedProto
     variableSpeed: GeostoreVariableSpeedProto
@@ -14386,6 +14698,19 @@ class GoodocWordAlternatesAlternate(typing_extensions.TypedDict, total=False):
     Word: GoodocWord
 
 @typing.type_check_only
+class GoogleApiServiceconsumermanagementV1BillingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    billingAccount: str
+
+@typing.type_check_only
+class GoogleApiServiceconsumermanagementV1PolicyBinding(
+    typing_extensions.TypedDict, total=False
+):
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
 class GoogleAssistantAccessoryV1AudioOutConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -14407,9 +14732,9 @@ class GoogleAssistantAccessoryV1AudioOutConfig(
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1DeviceConfig(typing_extensions.TypedDict, total=False):
-    deviceBuild: GoogleAssistantEmbeddedV1DeviceBuild
     deviceModelCapabilitiesOverride: GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride
     heterodyneToken: str
+    surfaceIdentity: GoogleAssistantEmbeddedV1SurfaceIdentity
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1DeviceState(typing_extensions.TypedDict, total=False):
@@ -14482,10 +14807,6 @@ class GoogleAssistantEmbeddedV1Alarms(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GoogleAssistantEmbeddedV1DeviceBuild(typing_extensions.TypedDict, total=False):
-    userAgentSuffix: str
-
-@typing.type_check_only
 class GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride(
     typing_extensions.TypedDict, total=False
 ):
@@ -14539,6 +14860,71 @@ class GoogleAssistantEmbeddedV1FitnessActivity(
         "STRENGTH_TRAINING",
         "SNOWBOARDING",
     ]
+
+@typing.type_check_only
+class GoogleAssistantEmbeddedV1SurfaceIdentity(
+    typing_extensions.TypedDict, total=False
+):
+    surfaceType: typing_extensions.Literal[
+        "UNKNOWN_TYPE",
+        "ACCL",
+        "AGSA",
+        "ANDROID",
+        "ANDROID_AUTO",
+        "ANDROID_LITE",
+        "ANDROID_PHONE",
+        "ANDROID_SCREENLESS",
+        "ANDROID_SMART_DISPLAY",
+        "ANDROID_TABLET",
+        "ANDROID_THINGS",
+        "ANDROID_THINGS_CUBE",
+        "ANDROID_THINGS_JASPER",
+        "ANDROID_TV",
+        "ANDROID_WEAR",
+        "ASSISTANT_KIT",
+        "ASSISTANT_SDK",
+        "AUTO",
+        "CAST_OS",
+        "CHROME_OS",
+        "CHROMECAST_MANHATTAN",
+        "CLOUD_DEVICE",
+        "CROS",
+        "FITBIT_OS_WATCH",
+        "FITBIT_OS_WATCH_ANDROID",
+        "FITBIT_OS_WATCH_IOS",
+        "GOOGLE_HOME",
+        "HEADPHONE",
+        "HEADPHONE_ANDROID",
+        "HEADPHONE_IOS",
+        "IOPA",
+        "IOS",
+        "IOS_SCREENLESS",
+        "IPAD",
+        "IPHONE",
+        "KAI_OS",
+        "KAI_OS_AMA",
+        "LIBASSISTANT",
+        "PHONE",
+        "PIXEL",
+        "PIXEL5",
+        "PIXEL6",
+        "PIXEL7",
+        "PIXEL_BUDS",
+        "PIXEL_TABLET",
+        "PIXEL_TABLET_HUB_MODE",
+        "PIXEL_TABLET_PERSONAL_MODE",
+        "PIXEL_WATCH",
+        "SCREENLESS",
+        "SMART_DISPLAY",
+        "SPEAKER",
+        "TABLET",
+        "TELEPHONE",
+        "THING",
+        "WATCH",
+        "WEAR_OS",
+        "WEAR_OS_WATCH",
+    ]
+    userAgentSuffix: str
 
 @typing.type_check_only
 class GoogleAssistantEmbeddedV1Timer(typing_extensions.TypedDict, total=False):
@@ -14795,15 +15181,6 @@ class GoogleCloudContentwarehouseV1EnumValue(typing_extensions.TypedDict, total=
     value: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1ExportToCdwPipeline(
-    typing_extensions.TypedDict, total=False
-):
-    docAiDataset: str
-    documents: _list[str]
-    exportFolderPath: str
-    trainingSplitRatio: float
-
-@typing.type_check_only
 class GoogleCloudContentwarehouseV1FetchAclRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -14833,23 +15210,6 @@ class GoogleCloudContentwarehouseV1FloatArray(typing_extensions.TypedDict, total
 class GoogleCloudContentwarehouseV1FloatTypeOptions(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudContentwarehouseV1GcsIngestPipeline(
-    typing_extensions.TypedDict, total=False
-):
-    inputPath: str
-    processorResultsFolderPath: str
-    schemaName: str
-
-@typing.type_check_only
-class GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline(
-    typing_extensions.TypedDict, total=False
-):
-    extractProcessorInfos: _list[GoogleCloudContentwarehouseV1ProcessorInfo]
-    inputPath: str
-    processorResultsFolderPath: str
-    splitClassifyProcessorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1GetDocumentRequest(
@@ -14980,6 +15340,13 @@ class GoogleCloudContentwarehouseV1ListSynonymSetsResponse(
     synonymSets: _list[GoogleCloudContentwarehouseV1SynonymSet]
 
 @typing.type_check_only
+class GoogleCloudContentwarehouseV1LockDocumentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    collectionId: str
+    lockingUser: GoogleCloudContentwarehouseV1UserInfo
+
+@typing.type_check_only
 class GoogleCloudContentwarehouseV1MapProperty(
     typing_extensions.TypedDict, total=False
 ):
@@ -14996,15 +15363,6 @@ class GoogleCloudContentwarehouseV1MergeFieldsOptions(
 ):
     replaceMessageFields: bool
     replaceRepeatedFields: bool
-
-@typing.type_check_only
-class GoogleCloudContentwarehouseV1ProcessWithDocAi(
-    typing_extensions.TypedDict, total=False
-):
-    documents: _list[str]
-    exportFolderPath: str
-    processorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
-    processorResultsFolderPath: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1ProcessorInfo(
@@ -15159,13 +15517,45 @@ class GoogleCloudContentwarehouseV1RuleSet(typing_extensions.TypedDict, total=Fa
     source: str
 
 @typing.type_check_only
-class GoogleCloudContentwarehouseV1RunPipelineRequest(
+class GoogleCloudContentwarehouseV1RunPipelineMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exportCdwPipeline: GoogleCloudContentwarehouseV1ExportToCdwPipeline
-    gcsIngestPipeline: GoogleCloudContentwarehouseV1GcsIngestPipeline
-    gcsIngestWithDocAiProcessorsPipeline: GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline
-    processWithDocAiPipeline: GoogleCloudContentwarehouseV1ProcessWithDocAi
+    exportToCdwPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata
+    failedFileCount: int
+    gcsIngestPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata
+    individualDocumentStatuses: _list[
+        GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus
+    ]
+    processWithDocAiPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata
+    totalFileCount: int
+    userInfo: GoogleCloudContentwarehouseV1UserInfo
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    docAiDataset: str
+    documents: _list[str]
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    inputPath: str
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus(
+    typing_extensions.TypedDict, total=False
+):
+    documentId: str
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    documents: _list[str]
+    processorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsRequest(
@@ -15306,6 +15696,7 @@ class GoogleCloudContentwarehouseV1UpdateOptions(
         "UPDATE_TYPE_INSERT_PROPERTIES_BY_NAMES",
         "UPDATE_TYPE_REPLACE_PROPERTIES_BY_NAMES",
         "UPDATE_TYPE_DELETE_PROPERTIES_BY_NAMES",
+        "UPDATE_TYPE_MERGE_AND_REPLACE_OR_INSERT_PROPERTIES_BY_NAMES",
     ]
 
 @typing.type_check_only
@@ -15757,7 +16148,6 @@ class GoogleInternalAppsWaldoV1alphaCalendarBusy(
     typing_extensions.TypedDict, total=False
 ):
     committedUntil: str
-    committedUntilIsMixed: bool
     eventSummary: str
     nextAvailable: str
     occupiedUntil: str
@@ -15775,7 +16165,6 @@ class GoogleInternalAppsWaldoV1alphaDoNotDisturb(
     typing_extensions.TypedDict, total=False
 ):
     committedUntil: str
-    committedUntilIsMixed: bool
     nextAvailable: str
     occupiedUntil: str
 
@@ -15787,7 +16176,6 @@ class GoogleInternalAppsWaldoV1alphaHomeLocation(
 @typing.type_check_only
 class GoogleInternalAppsWaldoV1alphaInMeeting(typing_extensions.TypedDict, total=False):
     committedUntil: str
-    committedUntilIsMixed: bool
     eventSummary: str
     inMeetingsUntil: str
     nextAvailable: str
@@ -15811,6 +16199,7 @@ class GoogleInternalAppsWaldoV1alphaOfficeLocation(
     experimentalBuildingId: str
     experimentalDeskId: str
     experimentalFloorId: str
+    label: str
 
 @typing.type_check_only
 class GoogleInternalAppsWaldoV1alphaOutOfOffice(
@@ -15818,7 +16207,6 @@ class GoogleInternalAppsWaldoV1alphaOutOfOffice(
 ):
     comeBackTime: str
     committedUntil: str
-    committedUntilIsMixed: bool
     eventSummary: str
 
 @typing.type_check_only
@@ -16821,6 +17209,8 @@ class ImageBaseVideoPreviewMetadata(typing_extensions.TypedDict, total=False):
         "VPREVIEW_TENOR_50K_FIXED_100W_MP4",
         "VPREVIEW_TENOR_100K_FIXED_200W_MP4",
     ]
+    videoSegmentEndUs: str
+    videoSegmentStartUs: str
     width: int
 
 @typing.type_check_only
@@ -17401,6 +17791,7 @@ class ImageRepositoryApiItagSpecificMetadata(typing_extensions.TypedDict, total=
         "GENUS_CONTRIB_SERVICE_GEO_UGC",
         "GENUS_SEARCH_SPORTS",
         "GENUS_BUSINESSMESSAGING",
+        "GENUS_AERIAL_VIEW",
     ]
     state: typing_extensions.Literal[
         "STATE_UNKNOWN",
@@ -17688,6 +18079,7 @@ class ImageRepositoryVenomStatus(typing_extensions.TypedDict, total=False):
         "GENUS_CONTRIB_SERVICE_GEO_UGC",
         "GENUS_SEARCH_SPORTS",
         "GENUS_BUSINESSMESSAGING",
+        "GENUS_AERIAL_VIEW",
     ]
     insertionResponseTimestampUsec: str
     insertionTimestampUsec: str
@@ -18355,19 +18747,15 @@ class IndexingDocjoinerCDocBuildInfo(typing_extensions.TypedDict, total=False):
 class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     acceleratedShoppingSignal: IndexingDocjoinerDataVersionVersionInfo
     chromeCounts: IndexingDocjoinerDataVersionVersionInfo
+    creator: IndexingDocjoinerDataVersionVersionInfo
     instantNavboost: IndexingDocjoinerDataVersionVersionInfo
     localyp: IndexingDocjoinerDataVersionVersionInfo
-    localypVersion: str
     modernFormatContent: IndexingDocjoinerDataVersionVersionInfo
-    modernFormatContentVersion: str
     navboost: IndexingDocjoinerDataVersionVersionInfo
-    navboostVersion: str
     rankembed: IndexingDocjoinerDataVersionVersionInfo
     universalFacts: IndexingDocjoinerDataVersionVersionInfo
     videoScoringSignal: IndexingDocjoinerDataVersionVersionInfo
-    videoScoringSignalVersion: str
     volt: IndexingDocjoinerDataVersionVersionInfo
-    voltVersion: str
 
 @typing.type_check_only
 class IndexingDocjoinerDataVersionVersionInfo(typing_extensions.TypedDict, total=False):
@@ -20098,6 +20486,8 @@ class KnowledgeAnswersIntentQueryIdentifier(typing_extensions.TypedDict, total=F
         "ROOM",
         "STRUCTURE",
         "ZONE",
+        "TRAIT_ATTRIBUTE_VALUE",
+        "TRAIT_SEMANTIC_VALUE",
         "REMINDER",
         "RECIPE",
         "PERSON",
@@ -20111,6 +20501,7 @@ class KnowledgeAnswersIntentQueryIdentifier(typing_extensions.TypedDict, total=F
         "AUDIO_MESSAGE_METADATA_ID",
         "BROADCAST",
         "MESSAGE_CONTENT",
+        "INLINE_INVENTORY",
     ]
 
 @typing.type_check_only
@@ -20717,6 +21108,7 @@ class KnowledgeAnswersSensitivityMyActivityPolicy(
         "WRITE_NUTRITION",
         "READ_WELLNESS",
         "WRITE_WELLNESS",
+        "MAKE_BROADCAST",
     ]
     myActivityRedactionKey: str
 
@@ -21025,7 +21417,9 @@ class LensDiscoveryStylePersonAttributes(typing_extensions.TypedDict, total=Fals
         "PERSON_AGE_65_74",
         "PERSON_AGE_ABOVE_75",
     ]
-    version: typing_extensions.Literal["VERSION_UNKNOWN", "LOOKNET_PERSON_V2B"]
+    version: typing_extensions.Literal[
+        "VERSION_UNKNOWN", "LOOKNET_PERSON_V2B", "PERSON_INTERPRETATION_V1"
+    ]
 
 @typing.type_check_only
 class LensDiscoveryStylePersonAttributesPersonVisibilityScores(
@@ -21054,7 +21448,9 @@ class LensDiscoveryStylePersonDetectionSignals(
     typing_extensions.TypedDict, total=False
 ):
     detectedPersons: _list[LensDiscoveryStylePersonDetectionSignalsDetectedPerson]
-    version: typing_extensions.Literal["VERSION_UNKNOWN", "FASTER_RCNN"]
+    version: typing_extensions.Literal[
+        "VERSION_UNKNOWN", "FASTER_RCNN", "PERSON_INTERPRETATION_V1"
+    ]
 
 @typing.type_check_only
 class LensDiscoveryStylePersonDetectionSignalsDetectedPerson(
@@ -21782,6 +22178,7 @@ class NlpLoggingQRewriteClientCallPathInfo(typing_extensions.TypedDict, total=Fa
         "QU_PHASE_HIGH_PRECISION",
         "QU_PHASE_COMBINED_RBT_RESOLUTION",
         "QU_PHASE_ANALYZER_INPUT",
+        "QU_PHASE_NAGE",
     ]
 
 @typing.type_check_only
@@ -25465,6 +25862,7 @@ class PeoplestackFlexorgsProtoInternalExternal(
         "DOCS",
         "PHOTOS",
         "PHOTOS_TAKEOUT",
+        "PHOTOS_ABUSE",
         "SIMBA_MOBILE",
         "GOOGLE_JOBS",
         "CLOUD_PLATFORM",
@@ -25763,6 +26161,7 @@ class PeoplestackFlexorgsProtoInternalExternal(
         "MONOSPACE",
         "MY_ACCOUNT",
         "NUDGEIT_CAMPAIGN_MANAGER",
+        "DECS",
         "DEPRECATED_QUICKSTART_FLUME",
         "DUO_CLIENT",
         "ALBERT",
@@ -27240,7 +27639,9 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "REMINDER_PROACTIVE_API",
         "REMINDER_POST_TASK_MIGRATION",
         "REMINDER_VOLUNTARY_TASK_MIGRATION",
+        "REMINDER_NOTIFICATION_ENABLE_FIRST_NOTICE",
         "REMINDER_NOTIFICATION_ENABLE_NOTICE",
+        "REMINDER_ONE_OFF_DUP_NOTIFICATION_POST_MIGRATION",
         "CROSS_SURFACE",
         "CROSS_SURFACE_MOVIE_SHOWTIMES",
         "CROSS_SURFACE_EVENTS",
@@ -27431,6 +27832,7 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "ASSISTANT_SURVEY",
         "ASSISTANT_SURVEY_IMPORTANCE_MIN",
         "ASSISTANT_SURVEY_PRIORITY_LOW",
+        "ASSISTANT_SURVEY_ATV_AMATI",
         "WHEREABOUTS_CHECKIN",
         "TRAVEL_ASSISTANT_FLIGHT_CHECKIN",
         "DIALER_AUTH",
@@ -27484,6 +27886,8 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "SUPPORT_ARTICLE",
         "LOCKSCREEN_PERSONAL_RESULTS_SETTING",
         "ASSISTANT_ON_LOCKSCREEN_SETTING",
+        "SKIP_VOICE_RECOGNITION_SETTING",
+        "ASSISTANT_ON_LOCKSCREEN_SETTING_TNG",
         "MULTI_DEVICE_NOTIFICATION_FEEDBACK",
         "MULTI_DEVICE_FEEDBACK_CHIRP",
         "DRAGONGLASS_SPORT_MODULE",
@@ -27535,6 +27939,8 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "GEO_TTL_RESERVED_RESTAURANT",
         "GEO_TTL_RESERVED_SOCIAL_EVENT",
         "GEO_TTL_FLIGHT_PASSENGER_DEPARTURE",
+        "GEO_TTL_FLIGHT_PASSENGER_DEPARTURE_RIDESHARE",
+        "GEO_TTL_TRANSPORTATION_ROUTE_RESERVATION",
         "GEO_AAP_GROCERY_STORE",
         "GEO_AAP_BEAUTY_WELLNESS",
         "GEO_AAP_RESTAURANT",
@@ -27601,6 +28007,7 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "AADC_MINOR_MOMENT",
         "PAYMENTS_SETTINGS",
         "SMARTSPACE_HOLIDAY_ALARMS",
+        "CROSS_DEVICE_ALARM",
         "CROSS_DEVICE_TIMER",
         "CROSS_DEVICE_TIMER_FCM_PING",
         "MEMORY_AWARENESS",
@@ -27610,6 +28017,8 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "PROACTIVE_API_FASTTRACK",
         "PERSONAL_RESULTS_OPTIN",
         "HEADPHONE_PERSONAL_RESULTS_OPTIN",
+        "DISCOVERY_SPARKS",
+        "SPOKEN_NOTIFICATIONS_OOBE_OPTIN",
         "UNIT_TESTING",
     ]
     attachment: _list[AssistantRemindersAttachment]
@@ -27624,6 +28033,7 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
     description: str
     documentAssignmentSource: QualityActionsReminderDocument
     dynamiteGroupAssignmentSource: QualityActionsReminderDynamiteGroup
+    extraNotificationDeviceId: str
     id: str
     location: QualityActionsReminderLocation
     log: AssistantLogsReminderLog
@@ -28450,6 +28860,8 @@ class QualityNsrNsrChunksWithSourceInfo(typing_extensions.TypedDict, total=False
         "SITE_CHUNK_SOURCE_AUTHOR",
         "SITE_CHUNK_SOURCE_COOKBOOK",
         "SITE_CHUNK_SOURCE_CRAWLED_SELLER_DATA",
+        "SITE_CHUNK_SOURCE_FALLBACK",
+        "SITE_CHUNK_SOURCE_UV_CHUNK",
     ]
 
 @typing.type_check_only
@@ -28493,6 +28905,8 @@ class QualityNsrNsrData(typing_extensions.TypedDict, total=False):
         "SITE_CHUNK_SOURCE_AUTHOR",
         "SITE_CHUNK_SOURCE_COOKBOOK",
         "SITE_CHUNK_SOURCE_CRAWLED_SELLER_DATA",
+        "SITE_CHUNK_SOURCE_FALLBACK",
+        "SITE_CHUNK_SOURCE_UV_CHUNK",
     ]
     siteLinkIn: float
     siteLinkOut: float
@@ -28527,6 +28941,7 @@ class QualityNsrNsrDataMetadata(typing_extensions.TypedDict, total=False):
     raffiaLookupKey: str
     raffiaLookupKeyPerField: dict[str, typing.Any]
     raffiaLookupKeys: _list[str]
+    raffiaSignalMergerUrl: str
 
 @typing.type_check_only
 class QualityNsrPQData(typing_extensions.TypedDict, total=False):
@@ -28561,6 +28976,8 @@ class QualityNsrVersionedFloatSignal(typing_extensions.TypedDict, total=False):
 class QualityOrbitAsteroidBeltDocumentIntentScores(
     typing_extensions.TypedDict, total=False
 ):
+    belowThresholdIntents: _list[str]
+    belowThresholdScores: _list[int]
     imageIntentScores: dict[str, typing.Any]
     intents: _list[str]
     scores: _list[int]
@@ -29519,6 +29936,7 @@ class QualityShoppingShoppingAttachmentOffer(typing_extensions.TypedDict, total=
         "OFFER_CONTROL_TYPE_UNMANAGED",
     ]
     fingerprintOfOfferUrls: _list[str]
+    gtinValue: _list[str]
     imageId: _list[str]
     inferredImages: _list[ShoppingWebentityShoppingAnnotationInferredImage]
     isLensBuildable: bool
@@ -29580,6 +29998,7 @@ class QualityShoppingShoppingAttachmentProduct(
         "OUTLINK_TARGET_RELATIONSHIP_OFF_DOMAIN",
     ]
     pblock: QualityShoppingShoppingAttachmentPBlock
+    productBrowseonomyIds: _list[int]
     productClusterMid: str
     productPopularity: float
     relevanceEmbedding: _list[QualityRankembedMustangMustangRankEmbedInfo]
@@ -30275,6 +30694,7 @@ class RepositoryWebrefAnnotationStatsPerType(typing_extensions.TypedDict, total=
         "TITLE",
         "ANY",
         "IMAGE_QUERY",
+        "PASSAGE_QUERY",
         "CONTEXT_ENTITY",
         "RESULT_ENTITY",
         "CONTEXT_QUERY",
@@ -30484,7 +30904,6 @@ class RepositoryWebrefDocLevelRelevanceRatings(
 
 @typing.type_check_only
 class RepositoryWebrefDocumentMetadata(typing_extensions.TypedDict, total=False):
-    cdocAttachments: Proto2BridgeMessageSet
     crawlTime: str
     docFp: str
     docId: str
@@ -30677,7 +31096,6 @@ class RepositoryWebrefDocumentMetadata(typing_extensions.TypedDict, total=False)
         "NUM_LANGUAGES",
     ]
     numIncomingAnchors: float
-    repeatedCdocAttachments: _list[Proto2BridgeMessageSet]
     salientTerms: QualitySalientTermsSalientTermSet
     title: str
     totalClicks: float
@@ -30933,6 +31351,7 @@ class RepositoryWebrefFprintModifierProto(typing_extensions.TypedDict, total=Fal
         "TITLE",
         "ANY",
         "IMAGE_QUERY",
+        "PASSAGE_QUERY",
         "CONTEXT_ENTITY",
         "RESULT_ENTITY",
         "CONTEXT_QUERY",
@@ -31840,6 +32259,7 @@ class RepositoryWebrefSegmentMention(typing_extensions.TypedDict, total=False):
         "URL",
         "TITLE",
         "IMAGE_QUERY",
+        "PASSAGE_QUERY",
         "CONTEXT_ENTITY",
         "CONTEXT_QUERY",
         "SPORE_GRAPH",
@@ -31862,6 +32282,7 @@ class RepositoryWebrefSegmentMentions(typing_extensions.TypedDict, total=False):
         "URL",
         "TITLE",
         "IMAGE_QUERY",
+        "PASSAGE_QUERY",
         "CONTEXT_ENTITY",
         "CONTEXT_QUERY",
         "SPORE_GRAPH",
@@ -32390,7 +32811,6 @@ class RepositoryWebrefWebrefAttachmentMetadata(
     latE7: int
     lngE7: int
     oysterId: GeostoreFeatureIdProto
-    singleTopicnessE2: int
 
 @typing.type_check_only
 class RepositoryWebrefWebrefDocumentInfo(typing_extensions.TypedDict, total=False):
@@ -32452,13 +32872,6 @@ class RepositoryWebrefWebrefMustangAttachment(typing_extensions.TypedDict, total
     topicalityE2: _list[int]
     unboundIntentMid: _list[str]
     unboundIntentScoreE2: _list[int]
-    undermergedMembers: _list[RepositoryWebrefWebrefMustangAttachmentUndermergedMembers]
-
-@typing.type_check_only
-class RepositoryWebrefWebrefMustangAttachmentUndermergedMembers(
-    typing_extensions.TypedDict, total=False
-):
-    encodedMid: _list[str]
 
 @typing.type_check_only
 class RepositoryWebrefWebrefOutlinkInfo(typing_extensions.TypedDict, total=False):
@@ -32607,6 +33020,16 @@ class ResearchScamNeighborSelectionOverride(typing_extensions.TypedDict, total=F
     treeXHybridLeavesSearchedOverride: int
 
 @typing.type_check_only
+class ResearchScamNumericRestrictNamespace(typing_extensions.TypedDict, total=False):
+    namespace: str
+    op: typing_extensions.Literal[
+        "OP_UNSPECIFIED", "LESS", "LESS_EQUAL", "EQUAL", "GREATER_EQUAL", "GREATER"
+    ]
+    valueDouble: float
+    valueFloat: float
+    valueInt: str
+
+@typing.type_check_only
 class ResearchScamOnlineSearchLatencyStats(typing_extensions.TypedDict, total=False):
     cpuTime: float
     taskId: int
@@ -32643,6 +33066,7 @@ class ResearchScamTokenNamespace(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResearchScamV3Restrict(typing_extensions.TypedDict, total=False):
     namespaces: _list[ResearchScamTokenNamespace]
+    numericNamespaces: _list[ResearchScamNumericRestrictNamespace]
 
 @typing.type_check_only
 class ResearchScienceSearchCatalog(typing_extensions.TypedDict, total=False):
@@ -33183,6 +33607,7 @@ class SafesearchVideoClassifierOutput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SafesearchVideoContentSignals(typing_extensions.TypedDict, total=False):
+    isAbuseWithHighConfidence: bool
     scores: dict[str, typing.Any]
     versionTag: typing_extensions.Literal["UNKNOWN", "V20220330", "V20220620"]
     videoClassifierOutput: SafesearchVideoClassifierOutput
@@ -33195,6 +33620,7 @@ class ScienceCitation(typing_extensions.TypedDict, total=False):
         "MAIN_ABSTRACT_DISPLAY",
         "GRAPHICAL_ABSTRACT_DISPLAY",
         "SUMMARY_ABSTRACT_DISPLAY",
+        "HIGHLIGHTS_ABSTRACT_DISPLAY",
     ]
     AbstractHtml: str
     AbstractHtmlLeftOver: str
@@ -33329,6 +33755,7 @@ class ScienceCitationAlternateAbstract(typing_extensions.TypedDict, total=False)
         "MAIN_ABSTRACT_DISPLAY",
         "GRAPHICAL_ABSTRACT_DISPLAY",
         "SUMMARY_ABSTRACT_DISPLAY",
+        "HIGHLIGHTS_ABSTRACT_DISPLAY",
     ]
     AbstractHtml: str
     AbstractHtmlLeftOver: str
@@ -33430,9 +33857,15 @@ class ScienceCitationFunding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ScienceCitationFundingExtractionInfo(typing_extensions.TypedDict, total=False):
+    ClearedFunding: typing_extensions.Literal["UNSPECIFIED_REASON", "SHORT_ARTICLE"]
     DebugFundingTextBlock: str
     DocPart: typing_extensions.Literal[
-        "UNSPECIFIED_DOC_PART", "DOC_PREFIX", "BEFORE_REFS", "AFTER_REFS", "DOC_SUFFIX"
+        "UNSPECIFIED_DOC_PART",
+        "DOC_PREFIX",
+        "BEFORE_REFS",
+        "AFTER_REFS",
+        "DOC_SUFFIX",
+        "ACK_SECTION",
     ]
     ParseSection: typing_extensions.Literal[
         "UNKNOWN", "ACKNOWLEDGEMENT", "FOOTNOTE", "NEAR_REFS", "BODY"
@@ -33562,6 +33995,7 @@ class SearchPolicyRankableSensitivity(typing_extensions.TypedDict, total=False):
     attentionalEntity: SearchPolicyRankableSensitivityAttentionalEntity
     dasherUser: bool
     followon: SearchPolicyRankableSensitivityFollowOn
+    groundingProvider: SearchPolicyRankableSensitivityGroundingProvider
     prefilter: SearchPolicyRankableSensitivityPrefilter
     qu: SearchPolicyRankableSensitivityQueryUnderstanding
     sensitivityMode: typing_extensions.Literal[
@@ -33613,6 +34047,11 @@ class SearchPolicyRankableSensitivityFollowOn(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class SearchPolicyRankableSensitivityFulfillment(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class SearchPolicyRankableSensitivityGroundingProvider(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -33902,6 +34341,34 @@ class ShoppingWebentityShoppingAnnotationInferredImage(
         "INFERRED_IMAGE_TYPE_SCHEMA_DOT_ORG",
         "INFERRED_IMAGE_TYPE_CRAWZALL",
         "INFERRED_IMAGE_TYPE_OPEN_GRAPH",
+        "INFERRED_IMAGE_TYPE_NEARDUP_STARBURST_V5",
+        "INFERRED_IMAGE_TYPE_ANCHOR_IMAGE",
+    ]
+    neardupInfo: _list[ShoppingWebentityShoppingAnnotationInferredImageNeardupInfo]
+
+@typing.type_check_only
+class ShoppingWebentityShoppingAnnotationInferredImageNeardupInfo(
+    typing_extensions.TypedDict, total=False
+):
+    inferredImageSource: typing_extensions.Literal[
+        "INFERRED_IMAGE_SOURCE_UNKNOWN",
+        "INFERRED_IMAGE_SOURCE_WEB_INDEX",
+        "INFERRED_IMAGE_SOURCE_OVERLAY",
+        "INFERRED_IMAGE_SOURCE_SCARAB",
+    ]
+    inferredImageType: typing_extensions.Literal[
+        "INFERRED_IMAGE_TYPE_UNKNOWN",
+        "INFERRED_IMAGE_TYPE_NEARDUP_STARBURST_V3",
+        "INFERRED_IMAGE_TYPE_STRIDE_EXTRACTION",
+        "INFERRED_IMAGE_TYPE_CRAWLED_OFFER_DUPLICATE",
+        "INFERRED_IMAGE_TYPE_NEARDUP_FOR_INFERRED_IMAGES",
+        "INFERRED_IMAGE_TYPE_OTHER_ML_MATCHED_IMAGES",
+        "INFERRED_IMAGE_TYPE_PRODUCT_BLOCKS",
+        "INFERRED_IMAGE_TYPE_SCHEMA_DOT_ORG",
+        "INFERRED_IMAGE_TYPE_CRAWZALL",
+        "INFERRED_IMAGE_TYPE_OPEN_GRAPH",
+        "INFERRED_IMAGE_TYPE_NEARDUP_STARBURST_V5",
+        "INFERRED_IMAGE_TYPE_ANCHOR_IMAGE",
     ]
 
 @typing.type_check_only
@@ -33957,7 +34424,6 @@ class SmartphonePerDocData(typing_extensions.TypedDict, total=False):
     isSmartphoneOptimized: bool
     isWebErrorMobileContent: bool
     maximumFlashRatio: float
-    mobileFriendlyScore: int
     violatesMobileInterstitialPolicy: bool
 
 @typing.type_check_only
@@ -34015,6 +34481,7 @@ class SnippetExtraInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SnippetExtraInfoSnippetCandidateInfo(typing_extensions.TypedDict, total=False):
     boldedRanges: _list[QualitySnippetsTruncationSnippetBoldedRange]
+    extendedSnippet: SnippetExtraInfoSnippetCandidateInfoExtendedSnippet
     id: int
     isMuppetSelectedSnippet: bool
     isSnippetBrainBoldingTriggered: bool
@@ -34038,6 +34505,13 @@ class SnippetExtraInfoSnippetCandidateInfo(typing_extensions.TypedDict, total=Fa
         "ANNOTATED_FULL",
         "PEREGRINE",
     ]
+
+@typing.type_check_only
+class SnippetExtraInfoSnippetCandidateInfoExtendedSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    numChars: int
+    snippetText: str
 
 @typing.type_check_only
 class SnippetExtraInfoSnippetScoringInfo(typing_extensions.TypedDict, total=False):
@@ -34835,6 +35309,7 @@ class StorageGraphBfgPolicyMetadata(typing_extensions.TypedDict, total=False):
     legalAllowedRegions: _list[KeGovernanceTypedRegions]
     legalRemovalRegions: _list[KeGovernanceTypedRegions]
     lmsPolicyMetadata: StorageGraphBfgLmsPolicyMetadata
+    policyDataScopeKeys: _list[int]
     policySourceType: typing_extensions.Literal["UNKNOWN", "VERTICAL", "HORIZONTAL"]
     umpPolicyMetadata: StorageGraphBfgUmpPolicyMetadata
 
@@ -34924,6 +35399,7 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "ISOLATION_KE_INTERNAL",
         "ISOLATION_WEB_CHANNELS",
         "ISOLATION_ONRAMP_DICTIONARY_EXPERIMENT",
+        "ISOLATION_S3_TRAVEL_HOTEL_ROOMS",
         "ISOLATION_PKG_ANDROID_AUTO_EMBEDDED_SIGNED_IN",
         "ISOLATION_PKG_ANDROID_AUTO_EMBEDDED_SIGNED_OUT",
         "ISOLATION_PKG_APP_NAMES",
@@ -35206,7 +35682,7 @@ class ToolBarPerDocData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TravelFlightsAirlineConfig(typing_extensions.TypedDict, total=False):
-    adwordsCid: int
+    adwordsCid: str
     alliance: typing_extensions.Literal[
         "UNKNOWN",
         "AIRUNION",
@@ -36128,6 +36604,7 @@ class VideoAssetsVenomVideoId(typing_extensions.TypedDict, total=False):
         "NS_CONTRIB_SERVICE_GEO_UGC",
         "NS_SEARCH_SPORTS",
         "NS_BUSINESSMESSAGING",
+        "NS_AERIAL_VIEW",
     ]
 
 @typing.type_check_only
@@ -36156,9 +36633,13 @@ class VideoContentSearchAnchorCommonFeatureSet(
     typing_extensions.TypedDict, total=False
 ):
     anchorQbstDistance: float
+    asrAverageBabelSimilarityScore: float
+    asrMaximumBabelSimilarityScore: float
     bleurtFeatures: VideoContentSearchBleurtFeatures
     bleurtScore: float
     descartesScoreWithTitle: float
+    descriptionAverageBabelSimilarityScore: float
+    descriptionMaximumBabelSimilarityScore: float
     dolphinDescriptivenessScore: float
     dolphinEnsembleScore: _list[VideoContentSearchDolphinEnsembleScore]
     dolphinFeatures: VideoContentSearchDolphinFeatures
@@ -37040,6 +37521,7 @@ class VideoContentSearchVideoAnchor(typing_extensions.TypedDict, total=False):
         "OCR_EDU",
         "ASR_SPAN_EDU",
         "GENERATIVE_ASR_I18N",
+        "YT_AUTO_CHAPTERS",
     ]
     contextText: str
     destinationUrl: str
@@ -37152,6 +37634,7 @@ class VideoContentSearchVideoAnchors(typing_extensions.TypedDict, total=False):
         "OCR_EDU",
         "ASR_SPAN_EDU",
         "GENERATIVE_ASR_I18N",
+        "YT_AUTO_CHAPTERS",
     ]
     entityGroupInfo: VideoContentSearchEntityGroupInfo
     experimentalPredictedQuerylessTocUsefulness: float
@@ -37735,11 +38218,15 @@ class VideoThumbnailsThumbnailScore(typing_extensions.TypedDict, total=False):
         "MODEL_RACY_WATCHPAGE_2021_05_04_FLAGGED_HOME",
         "MODEL_RACY_WATCHPAGE_2021_05_04_FLAGGED_WATCHNEXT",
         "MODEL_RACY_WATCHPAGE_V4",
+        "MODEL_RACY_WATCHPAGE_V5",
+        "MODEL_RACY_WATCHPAGE_V5_FLAGGED",
         "MODEL_RACY_WATCHPAGE_RELEASE",
         "MODEL_RACY_SHORTS_WATCHPAGE_V1",
         "MODEL_RACY_SHORTS_WATCHPAGE_V1_FLAGGED",
         "MODEL_RACY_SHORTS_WATCHPAGE_V2",
         "MODEL_RACY_SHORTS_WATCHPAGE_V2_FLAGGED",
+        "MODEL_RACY_SHORTS_WATCHPAGE_V3",
+        "MODEL_RACY_SHORTS_WATCHPAGE_V3_FLAGGED",
         "MODEL_RACY_SHORTS_WATCHPAGE_RELEASE",
         "MODEL_RACY_THUMB_2019_04_02",
         "MODEL_RACY_THUMB_2019_08_12",
@@ -41905,6 +42392,7 @@ class WWWResultInfoSubImageDocInfo(typing_extensions.TypedDict, total=False):
     ]
     crops: int
     deepCropBytes: str
+    dimeScore: float
     docid: str
     documentTrust: float
     eqStar: float

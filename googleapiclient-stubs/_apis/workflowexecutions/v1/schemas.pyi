@@ -17,7 +17,7 @@ class Error(typing_extensions.TypedDict, total=False):
 class Execution(typing_extensions.TypedDict, total=False):
     argument: str
     callLogLevel: typing_extensions.Literal[
-        "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY"
+        "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY", "LOG_NONE"
     ]
     duration: str
     endTime: str
@@ -27,8 +27,9 @@ class Execution(typing_extensions.TypedDict, total=False):
     result: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "SUCCEEDED", "FAILED", "CANCELLED"
+        "STATE_UNSPECIFIED", "ACTIVE", "SUCCEEDED", "FAILED", "CANCELLED", "UNAVAILABLE"
     ]
+    stateError: StateError
     status: Status
     workflowRevisionId: str
 
@@ -60,6 +61,11 @@ class StackTraceElement(typing_extensions.TypedDict, total=False):
     position: Position
     routine: str
     step: str
+
+@typing.type_check_only
+class StateError(typing_extensions.TypedDict, total=False):
+    details: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "KMS_ERROR"]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

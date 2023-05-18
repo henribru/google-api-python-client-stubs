@@ -285,6 +285,9 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: GetIamPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+        def getNamespaced(
+            self, *, name: str = ..., **kwargs: typing.Any
+        ) -> TagKeyHttpRequest: ...
         def list(
             self,
             *,
@@ -375,6 +378,9 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             body: GetIamPolicyRequest = ...,
             **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
+        def getNamespaced(
+            self, *, name: str = ..., **kwargs: typing.Any
+        ) -> TagValueHttpRequest: ...
         def list(
             self,
             *,

@@ -197,6 +197,7 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     valuePerAllConversionsByConversionDate: float
     valuePerConversion: float
     valuePerConversionsByConversionDate: float
+    visits: float
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__PercentCpc(
@@ -295,6 +296,24 @@ class GoogleAdsSearchads360V0Common__TargetOutrankShare(
     cpcBidCeilingMicros: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Common__TargetRestriction(
+    typing_extensions.TypedDict, total=False
+):
+    bidOnly: bool
+    targetingDimension: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "KEYWORD",
+        "AUDIENCE",
+        "TOPIC",
+        "GENDER",
+        "AGE_RANGE",
+        "PLACEMENT",
+        "PARENTAL_STATUS",
+        "INCOME_RANGE",
+    ]
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Common__TargetRoas(
     typing_extensions.TypedDict, total=False
 ):
@@ -308,6 +327,25 @@ class GoogleAdsSearchads360V0Common__TargetSpend(
 ):
     cpcBidCeilingMicros: str
     targetSpendMicros: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__TargetingSetting(
+    typing_extensions.TypedDict, total=False
+):
+    targetRestrictions: _list[GoogleAdsSearchads360V0Common__TargetRestriction]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__TextLabel(
+    typing_extensions.TypedDict, total=False
+):
+    backgroundColor: str
+    description: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Common__UserListInfo(
+    typing_extensions.TypedDict, total=False
+):
+    userList: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Common__Value(typing_extensions.TypedDict, total=False):
@@ -489,11 +527,7 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "FILTER_HAS_TOO_MANY_VALUES",
     ]
     quotaError: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "UNKNOWN",
-        "RESOURCE_EXHAUSTED",
-        "ACCESS_PROHIBITED",
-        "RESOURCE_TEMPORARILY_EXHAUSTED",
+        "UNSPECIFIED", "UNKNOWN", "RESOURCE_EXHAUSTED", "RESOURCE_TEMPORARILY_EXHAUSTED"
     ]
     requestError: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -672,6 +706,49 @@ class GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings(
     defaultValue: float
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=False):
+    displayUrl: str
+    finalUrls: _list[str]
+    id: str
+    name: str
+    resourceName: str
+    type: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "TEXT_AD",
+        "EXPANDED_TEXT_AD",
+        "CALL_ONLY_AD",
+        "EXPANDED_DYNAMIC_SEARCH_AD",
+        "HOTEL_AD",
+        "SHOPPING_SMART_AD",
+        "SHOPPING_PRODUCT_AD",
+        "VIDEO_AD",
+        "GMAIL_AD",
+        "IMAGE_AD",
+        "RESPONSIVE_SEARCH_AD",
+        "LEGACY_RESPONSIVE_DISPLAY_AD",
+        "APP_AD",
+        "LEGACY_APP_INSTALL_AD",
+        "RESPONSIVE_DISPLAY_AD",
+        "LOCAL_AD",
+        "HTML5_UPLOAD_AD",
+        "DYNAMIC_HTML5_AD",
+        "APP_ENGAGEMENT_AD",
+        "SHOPPING_COMPARISON_LISTING_AD",
+        "VIDEO_BUMPER_AD",
+        "VIDEO_NON_SKIPPABLE_IN_STREAM_AD",
+        "VIDEO_OUTSTREAM_AD",
+        "VIDEO_TRUEVIEW_DISCOVERY_AD",
+        "VIDEO_TRUEVIEW_IN_STREAM_AD",
+        "VIDEO_RESPONSIVE_AD",
+        "SMART_CAMPAIGN_AD",
+        "APP_PRE_REGISTRATION_AD",
+        "DISCOVERY_MULTI_ASSET_AD",
+        "DISCOVERY_CAROUSEL_AD",
+        "TRAVEL_AD",
+    ]
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroup(
     typing_extensions.TypedDict, total=False
 ):
@@ -679,12 +756,33 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
         "UNSPECIFIED", "UNKNOWN", "OPTIMIZE", "ROTATE_FOREVER"
     ]
     cpcBidMicros: str
+    creationTime: str
+    endDate: str
+    engineId: str
+    engineStatus: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "AD_GROUP_ELIGIBLE",
+        "AD_GROUP_EXPIRED",
+        "AD_GROUP_REMOVED",
+        "AD_GROUP_DRAFT",
+        "AD_GROUP_PAUSED",
+        "AD_GROUP_SERVING",
+        "AD_GROUP_SUBMITTED",
+        "CAMPAIGN_PAUSED",
+        "ACCOUNT_PAUSED",
+    ]
     id: str
+    labels: _list[str]
+    languageCode: str
+    lastModifiedTime: str
     name: str
     resourceName: str
+    startDate: str
     status: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
     ]
+    targetingSetting: GoogleAdsSearchads360V0Common__TargetingSetting
     type: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -705,13 +803,64 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
         "VIDEO_RESPONSIVE",
         "VIDEO_EFFICIENT_REACH",
         "SMART_CAMPAIGN_ADS",
+        "TRAVEL_ADS",
     ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupAd(
+    typing_extensions.TypedDict, total=False
+):
+    ad: GoogleAdsSearchads360V0Resources__Ad
+    creationTime: str
+    engineId: str
+    engineStatus: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "AD_GROUP_AD_ELIGIBLE",
+        "AD_GROUP_AD_INAPPROPRIATE_FOR_CAMPAIGN",
+        "AD_GROUP_AD_MOBILE_URL_UNDER_REVIEW",
+        "AD_GROUP_AD_PARTIALLY_INVALID",
+        "AD_GROUP_AD_TO_BE_ACTIVATED",
+        "AD_GROUP_AD_NOT_REVIEWED",
+        "AD_GROUP_AD_ON_HOLD",
+        "AD_GROUP_AD_PAUSED",
+        "AD_GROUP_AD_REMOVED",
+        "AD_GROUP_AD_PENDING_REVIEW",
+        "AD_GROUP_AD_UNDER_REVIEW",
+        "AD_GROUP_AD_APPROVED",
+        "AD_GROUP_AD_DISAPPROVED",
+        "AD_GROUP_AD_SERVING",
+        "AD_GROUP_AD_ACCOUNT_PAUSED",
+        "AD_GROUP_AD_CAMPAIGN_PAUSED",
+        "AD_GROUP_AD_AD_GROUP_PAUSED",
+    ]
+    labels: _list[str]
+    lastModifiedTime: str
+    resourceName: str
+    status: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
+    ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupAdLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroupAd: str
+    label: str
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupAudienceView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupBidModifier(
     typing_extensions.TypedDict, total=False
 ):
     bidModifier: float
+    device: GoogleAdsSearchads360V0Common__DeviceInfo
     resourceName: str
 
 @typing.type_check_only
@@ -722,8 +871,10 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     ageRange: GoogleAdsSearchads360V0Common__AgeRangeInfo
     bidModifier: float
     cpcBidMicros: str
+    creationTime: str
     criterionId: str
     effectiveCpcBidMicros: str
+    engineId: str
     engineStatus: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -751,8 +902,11 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     finalUrls: _list[str]
     gender: GoogleAdsSearchads360V0Common__GenderInfo
     keyword: GoogleAdsSearchads360V0Common__KeywordInfo
+    labels: _list[str]
     lastModifiedTime: str
     listingGroup: GoogleAdsSearchads360V0Common__ListingGroupInfo
+    location: GoogleAdsSearchads360V0Common__LocationInfo
+    negative: bool
     qualityInfo: GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo
     resourceName: str
     status: typing_extensions.Literal[
@@ -798,7 +952,30 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
         "AUDIENCE",
         "LOCAL_SERVICE_ID",
     ]
+    userList: GoogleAdsSearchads360V0Common__UserListInfo
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroupCriterion: str
+    label: str
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroup: str
+    label: str
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AgeRangeView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__BiddingStrategy(
@@ -876,6 +1053,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "VIDEO_SEQUENCE",
         "APP_CAMPAIGN_FOR_PRE_REGISTRATION",
         "VIDEO_REACH_TARGET_FREQUENCY",
+        "TRAVEL_ACTIVITIES",
     ]
     advertisingChannelType: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -891,6 +1069,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "PERFORMANCE_MAX",
         "LOCAL_SERVICES",
         "DISCOVERY",
+        "TRAVEL",
     ]
     biddingStrategy: str
     biddingStrategySystemStatus: typing_extensions.Literal[
@@ -945,6 +1124,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     ]
     campaignBudget: str
     createTime: str
+    creationTime: str
     dynamicSearchAdsSetting: GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting
     endDate: str
     engineId: str
@@ -986,6 +1166,12 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     urlExpansionOptOut: bool
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__CampaignAudienceView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CampaignBudget(
     typing_extensions.TypedDict, total=False
 ):
@@ -1002,15 +1188,22 @@ class GoogleAdsSearchads360V0Resources__CampaignBudget(
 class GoogleAdsSearchads360V0Resources__CampaignCriterion(
     typing_extensions.TypedDict, total=False
 ):
+    ageRange: GoogleAdsSearchads360V0Common__AgeRangeInfo
     bidModifier: float
     criterionId: str
     device: GoogleAdsSearchads360V0Common__DeviceInfo
     displayName: str
+    gender: GoogleAdsSearchads360V0Common__GenderInfo
+    keyword: GoogleAdsSearchads360V0Common__KeywordInfo
     language: GoogleAdsSearchads360V0Common__LanguageInfo
+    lastModifiedTime: str
     location: GoogleAdsSearchads360V0Common__LocationInfo
     locationGroup: GoogleAdsSearchads360V0Common__LocationGroupInfo
     negative: bool
     resourceName: str
+    status: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
+    ]
     type: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -1050,6 +1243,16 @@ class GoogleAdsSearchads360V0Resources__CampaignCriterion(
         "AUDIENCE",
         "LOCAL_SERVICE_ID",
     ]
+    userList: GoogleAdsSearchads360V0Common__UserListInfo
+    webpage: GoogleAdsSearchads360V0Common__WebpageInfo
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__CampaignLabel(
+    typing_extensions.TypedDict, total=False
+):
+    campaign: str
+    label: str
+    resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ConversionAction(
@@ -1134,6 +1337,7 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
         "SMART_CAMPAIGN_MAP_DIRECTIONS",
         "SMART_CAMPAIGN_TRACKED_CALLS",
         "STORE_VISITS",
+        "WEBPAGE_CODELESS",
     ]
     valueSettings: GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings
 
@@ -1193,6 +1397,7 @@ class GoogleAdsSearchads360V0Resources__Customer(
     ]
     autoTaggingEnabled: bool
     conversionTrackingSetting: GoogleAdsSearchads360V0Resources__ConversionTrackingSetting
+    creationTime: str
     currencyCode: str
     descriptiveName: str
     doubleClickCampaignManagerSetting: GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting
@@ -1247,7 +1452,34 @@ class GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting(
     timeZone: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView(
+    typing_extensions.TypedDict, total=False
+):
+    landingPage: str
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__GenderView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__KeywordView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__Label(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    resourceName: str
+    status: typing_extensions.Literal["UNSPECIFIED", "UNKNOWN", "ENABLED", "REMOVED"]
+    textLabel: GoogleAdsSearchads360V0Common__TextLabel
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__LocationView(
     typing_extensions.TypedDict, total=False
 ):
     resourceName: str
@@ -1294,6 +1526,30 @@ class GoogleAdsSearchads360V0Resources__SearchAds360Field(
     typeUrl: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__UserList(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+    resourceName: str
+    type: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "REMARKETING",
+        "LOGICAL",
+        "EXTERNAL_REMARKETING",
+        "RULE_BASED",
+        "SIMILAR",
+        "CRM_BASED",
+    ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__WebpageView(
+    typing_extensions.TypedDict, total=False
+):
+    resourceName: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Services__CustomColumnHeader(
     typing_extensions.TypedDict, total=False
 ):
@@ -1312,21 +1568,35 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     typing_extensions.TypedDict, total=False
 ):
     adGroup: GoogleAdsSearchads360V0Resources__AdGroup
+    adGroupAd: GoogleAdsSearchads360V0Resources__AdGroupAd
+    adGroupAdLabel: GoogleAdsSearchads360V0Resources__AdGroupAdLabel
+    adGroupAudienceView: GoogleAdsSearchads360V0Resources__AdGroupAudienceView
     adGroupBidModifier: GoogleAdsSearchads360V0Resources__AdGroupBidModifier
     adGroupCriterion: GoogleAdsSearchads360V0Resources__AdGroupCriterion
+    adGroupCriterionLabel: GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel
+    adGroupLabel: GoogleAdsSearchads360V0Resources__AdGroupLabel
+    ageRangeView: GoogleAdsSearchads360V0Resources__AgeRangeView
     biddingStrategy: GoogleAdsSearchads360V0Resources__BiddingStrategy
     campaign: GoogleAdsSearchads360V0Resources__Campaign
+    campaignAudienceView: GoogleAdsSearchads360V0Resources__CampaignAudienceView
     campaignBudget: GoogleAdsSearchads360V0Resources__CampaignBudget
     campaignCriterion: GoogleAdsSearchads360V0Resources__CampaignCriterion
+    campaignLabel: GoogleAdsSearchads360V0Resources__CampaignLabel
     conversionAction: GoogleAdsSearchads360V0Resources__ConversionAction
     customColumns: _list[GoogleAdsSearchads360V0Common__Value]
     customer: GoogleAdsSearchads360V0Resources__Customer
     customerClient: GoogleAdsSearchads360V0Resources__CustomerClient
     customerManagerLink: GoogleAdsSearchads360V0Resources__CustomerManagerLink
+    dynamicSearchAdsSearchTermView: GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView
+    genderView: GoogleAdsSearchads360V0Resources__GenderView
     keywordView: GoogleAdsSearchads360V0Resources__KeywordView
+    label: GoogleAdsSearchads360V0Resources__Label
+    locationView: GoogleAdsSearchads360V0Resources__LocationView
     metrics: GoogleAdsSearchads360V0Common__Metrics
     productGroupView: GoogleAdsSearchads360V0Resources__ProductGroupView
     segments: GoogleAdsSearchads360V0Common__Segments
+    userList: GoogleAdsSearchads360V0Resources__UserList
+    webpageView: GoogleAdsSearchads360V0Resources__WebpageView
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest(

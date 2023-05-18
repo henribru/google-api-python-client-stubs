@@ -36,61 +36,6 @@ class AppGatewayOperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class ClientConnectorService(typing_extensions.TypedDict, total=False):
-    createTime: str
-    displayName: str
-    egress: Egress
-    ingress: Ingress
-    name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "CREATING",
-        "UPDATING",
-        "DELETING",
-        "RUNNING",
-        "DOWN",
-        "ERROR",
-    ]
-    updateTime: str
-
-@typing.type_check_only
-class ClientConnectorServiceOperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
-class ClientGateway(typing_extensions.TypedDict, total=False):
-    clientConnectorService: str
-    createTime: str
-    id: str
-    name: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "CREATING",
-        "UPDATING",
-        "DELETING",
-        "RUNNING",
-        "DOWN",
-        "ERROR",
-    ]
-    updateTime: str
-
-@typing.type_check_only
-class ClientGatewayOperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class CloudSecurityZerotrustApplinkAppConnectorProtoConnectionConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -122,22 +67,6 @@ class CloudSecurityZerotrustApplinkAppConnectorProtoGateway(
 class CloudSecurityZerotrustApplinkLogagentProtoLogAgentDetails(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class Config(typing_extensions.TypedDict, total=False):
-    destinationRoutes: _list[DestinationRoute]
-    transportProtocol: typing_extensions.Literal[
-        "TRANSPORT_PROTOCOL_UNSPECIFIED", "TCP"
-    ]
-
-@typing.type_check_only
-class DestinationRoute(typing_extensions.TypedDict, total=False):
-    address: str
-    netmask: str
-
-@typing.type_check_only
-class Egress(typing_extensions.TypedDict, total=False):
-    peeredVpc: PeeredVpc
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -527,30 +456,10 @@ class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
-class Ingress(typing_extensions.TypedDict, total=False):
-    config: Config
-
-@typing.type_check_only
 class ListAppGatewaysResponse(typing_extensions.TypedDict, total=False):
     appGateways: _list[AppGateway]
     nextPageToken: str
     unreachable: _list[str]
-
-@typing.type_check_only
-class ListClientConnectorServicesResponse(typing_extensions.TypedDict, total=False):
-    clientConnectorServices: _list[ClientConnectorService]
-    nextPageToken: str
-    unreachable: _list[str]
-
-@typing.type_check_only
-class ListClientGatewaysResponse(typing_extensions.TypedDict, total=False):
-    clientGateways: _list[ClientGateway]
-    nextPageToken: str
-    unreachable: _list[str]
-
-@typing.type_check_only
-class PeeredVpc(typing_extensions.TypedDict, total=False):
-    networkVpc: str
 
 @typing.type_check_only
 class Tunnelv1ProtoTunnelerError(typing_extensions.TypedDict, total=False):

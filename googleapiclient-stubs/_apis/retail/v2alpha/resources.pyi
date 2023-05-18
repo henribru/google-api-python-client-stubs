@@ -93,11 +93,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2alphaProductHttpRequest: ...
                         def delete(
-                            self,
-                            *,
-                            name: str,
-                            cascadeDelete: bool = ...,
-                            **kwargs: typing.Any
+                            self, *, name: str, force: bool = ..., **kwargs: typing.Any
                         ) -> GoogleProtobufEmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -222,6 +218,25 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudRetailV2alphaControlHttpRequest: ...
+
+                @typing.type_check_only
+                class MerchantCenterAccountLinksResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def createMerchantCenterAccountLink(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRetailV2alphaMerchantCenterAccountLink = ...,
+                        parent: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def list(
+                        self, *, parent: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class ModelsResource(googleapiclient.discovery.Resource):
@@ -452,6 +467,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     dataset: str = ...,
                     deviceType: str = ...,
                     enableAttributeSuggestions: bool = ...,
+                    entity: str = ...,
                     languageCodes: str | _list[str] = ...,
                     maxSuggestions: int = ...,
                     query: str = ...,
@@ -515,6 +531,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 def branches(self) -> BranchesResource: ...
                 def completionData(self) -> CompletionDataResource: ...
                 def controls(self) -> ControlsResource: ...
+                def merchantCenterAccountLinks(
+                    self,
+                ) -> MerchantCenterAccountLinksResource: ...
                 def models(self) -> ModelsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def placements(self) -> PlacementsResource: ...
@@ -674,6 +693,16 @@ class GoogleCloudRetailV2alphaListControlsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaListControlsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaListModelsResponseHttpRequest(

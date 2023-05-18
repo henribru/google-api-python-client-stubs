@@ -72,6 +72,29 @@ class GoogleCloudDatacatalogV1BusinessContext(typing_extensions.TypedDict, total
     entryOverview: GoogleCloudDatacatalogV1EntryOverview
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1CloudBigtableInstanceSpec(
+    typing_extensions.TypedDict, total=False
+):
+    cloudBigtableClusterSpecs: _list[
+        GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1CloudBigtableInstanceSpecCloudBigtableClusterSpec(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    linkedResource: str
+    location: str
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1CloudBigtableSystemSpec(
+    typing_extensions.TypedDict, total=False
+):
+    instanceDisplayName: str
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -108,7 +131,7 @@ class GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec(
         "DIMENSION_GROUP",
         "FILTER",
         "MEASURE",
-        "PAREMETER",
+        "PARAMETER",
     ]
 
 @typing.type_check_only
@@ -178,6 +201,8 @@ class GoogleCloudDatacatalogV1DataplexExternalTable(
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SPANNER",
+        "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
     ]
@@ -204,10 +229,15 @@ class GoogleCloudDatacatalogV1DataplexTableSpec(
     userManaged: bool
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1DumpItem(typing_extensions.TypedDict, total=False):
+    taggedEntry: GoogleCloudDatacatalogV1TaggedEntry
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     bigqueryDateShardedSpec: GoogleCloudDatacatalogV1BigQueryDateShardedSpec
     bigqueryTableSpec: GoogleCloudDatacatalogV1BigQueryTableSpec
     businessContext: GoogleCloudDatacatalogV1BusinessContext
+    cloudBigtableSystemSpec: GoogleCloudDatacatalogV1CloudBigtableSystemSpec
     dataSource: GoogleCloudDatacatalogV1DataSource
     dataSourceConnectionSpec: GoogleCloudDatacatalogV1DataSourceConnectionSpec
     databaseTableSpec: GoogleCloudDatacatalogV1DatabaseTableSpec
@@ -222,6 +252,8 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SPANNER",
+        "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
     ]
@@ -232,6 +264,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     personalDetails: GoogleCloudDatacatalogV1PersonalDetails
     routineSpec: GoogleCloudDatacatalogV1RoutineSpec
     schema: GoogleCloudDatacatalogV1Schema
+    serviceSpec: GoogleCloudDatacatalogV1ServiceSpec
     sourceSystemTimestamps: GoogleCloudDatacatalogV1SystemTimestamps
     sqlDatabaseSystemSpec: GoogleCloudDatacatalogV1SqlDatabaseSystemSpec
     type: typing_extensions.Literal[
@@ -579,6 +612,8 @@ class GoogleCloudDatacatalogV1SearchCatalogResult(
         "CLOUD_PUBSUB",
         "DATAPROC_METASTORE",
         "DATAPLEX",
+        "CLOUD_SPANNER",
+        "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
     ]
@@ -608,6 +643,10 @@ class GoogleCloudDatacatalogV1SerializedTaxonomy(
     description: str
     displayName: str
     policyTags: _list[GoogleCloudDatacatalogV1SerializedPolicyTag]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ServiceSpec(typing_extensions.TypedDict, total=False):
+    cloudBigtableInstanceSpec: GoogleCloudDatacatalogV1CloudBigtableInstanceSpec
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1SqlDatabaseSystemSpec(
@@ -688,6 +727,12 @@ class GoogleCloudDatacatalogV1TagTemplateField(
     name: str
     order: int
     type: GoogleCloudDatacatalogV1FieldType
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1TaggedEntry(typing_extensions.TypedDict, total=False):
+    absentTags: _list[GoogleCloudDatacatalogV1Tag]
+    presentTags: _list[GoogleCloudDatacatalogV1Tag]
+    v1Entry: GoogleCloudDatacatalogV1Entry
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Taxonomy(typing_extensions.TypedDict, total=False):

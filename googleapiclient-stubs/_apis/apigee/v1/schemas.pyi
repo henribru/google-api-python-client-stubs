@@ -508,6 +508,9 @@ class GoogleCloudApigeeV1DeploymentConfig(typing_extensions.TypedDict, total=Fal
 class GoogleCloudApigeeV1DeploymentGroupConfig(
     typing_extensions.TypedDict, total=False
 ):
+    deploymentGroupType: typing_extensions.Literal[
+        "DEPLOYMENT_GROUP_TYPE_UNSPECIFIED", "STANDARD", "EXTENSIBLE"
+    ]
     name: str
     revisionId: str
     uid: str
@@ -1067,6 +1070,13 @@ class GoogleCloudApigeeV1ListRatePlansResponse(
     ratePlans: _list[GoogleCloudApigeeV1RatePlan]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityIncidentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityIncidents: _list[GoogleCloudApigeeV1SecurityIncident]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1197,6 +1207,8 @@ class GoogleCloudApigeeV1OptimizedStatsResponse(
 class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     addonsConfig: GoogleCloudApigeeV1AddonsConfig
     analyticsRegion: str
+    apiConsumerDataEncryptionKeyName: str
+    apiConsumerDataLocation: str
     apigeeProjectId: str
     attributes: _list[str]
     authorizedNetwork: str
@@ -1204,6 +1216,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
         "BILLING_TYPE_UNSPECIFIED", "SUBSCRIPTION", "EVALUATION", "PAYG"
     ]
     caCertificate: str
+    controlPlaneEncryptionKeyName: str
     createdAt: str
     customerName: str
     description: str
@@ -1575,6 +1588,18 @@ class GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext(
     typing_extensions.TypedDict, total=False
 ):
     documentationLink: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=False):
+    detectionTypes: _list[str]
+    displayName: str
+    firstDetectedTime: str
+    lastDetectedTime: str
+    name: str
+    riskLevel: typing_extensions.Literal[
+        "RISK_LEVEL_UNSPECIFIED", "LOW", "MODERATE", "SEVERE"
+    ]
+    trafficCount: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityProfile(typing_extensions.TypedDict, total=False):

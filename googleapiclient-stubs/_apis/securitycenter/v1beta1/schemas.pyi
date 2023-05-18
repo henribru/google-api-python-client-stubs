@@ -44,12 +44,6 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
     projectIds: _list[str]
 
 @typing.type_check_only
-class AssociatedFinding(typing_extensions.TypedDict, total=False):
-    canonicalFindingName: str
-    findingCategory: str
-    name: str
-
-@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -69,6 +63,17 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
+    dataProfile: str
+
+@typing.type_check_only
+class CloudDlpInspection(typing_extensions.TypedDict, total=False):
+    fullScan: bool
+    infoType: str
+    infoTypeCount: str
+    inspectJob: str
 
 @typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
@@ -161,11 +166,6 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
-class Edge(typing_extensions.TypedDict, total=False):
-    destination: str
-    source: str
-
-@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -204,6 +204,8 @@ class Finding(typing_extensions.TypedDict, total=False):
     access: Access
     canonicalName: str
     category: str
+    cloudDlpDataProfile: CloudDlpDataProfile
+    cloudDlpInspection: CloudDlpInspection
     compliances: _list[Compliance]
     connections: _list[Connection]
     contacts: dict[str, typing.Any]
@@ -229,6 +231,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
     mitreAttack: MitreAttack
+    moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
     muteInitiator: str
     muteUpdateTime: str
@@ -289,27 +292,32 @@ class GoogleCloudSecuritycenterV1BulkMuteFindingsResponse(
 ): ...
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ExposedResource(
-    typing_extensions.TypedDict, total=False
-):
-    displayName: str
-    methods: _list[str]
-    name: str
-    resource: str
-    resourceType: str
-    resourceValue: typing_extensions.Literal[
-        "RESOURCE_VALUE_UNSPECIFIED",
-        "RESOURCE_VALUE_LOW",
-        "RESOURCE_VALUE_MEDIUM",
-        "RESOURCE_VALUE_HIGH",
+class GoogleCloudSecuritycenterV1CustomConfig(typing_extensions.TypedDict, total=False):
+    customOutput: GoogleCloudSecuritycenterV1CustomOutputSpec
+    description: str
+    predicate: Expr
+    recommendation: str
+    resourceSelector: GoogleCloudSecuritycenterV1ResourceSelector
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ExposurePath(typing_extensions.TypedDict, total=False):
-    edges: _list[Edge]
-    exposedResource: GoogleCloudSecuritycenterV1ExposedResource
+class GoogleCloudSecuritycenterV1CustomOutputSpec(
+    typing_extensions.TypedDict, total=False
+):
+    properties: _list[GoogleCloudSecuritycenterV1Property]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule(
+    typing_extensions.TypedDict, total=False
+):
+    customConfig: GoogleCloudSecuritycenterV1CustomConfig
+    displayName: str
+    enablementState: typing_extensions.Literal[
+        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     name: str
-    pathNodes: _list[PathNode]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1ExternalSystem(
@@ -340,6 +348,11 @@ class GoogleCloudSecuritycenterV1NotificationMessage(
     resource: GoogleCloudSecuritycenterV1Resource
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV1Property(typing_extensions.TypedDict, total=False):
+    name: str
+    valueExpression: Expr
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
     displayName: str
     folders: _list[Folder]
@@ -351,16 +364,10 @@ class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=Fal
     type: str
 
 @typing.type_check_only
-class GoogleCloudSecuritycenterV1ResourceValueConfig(
+class GoogleCloudSecuritycenterV1ResourceSelector(
     typing_extensions.TypedDict, total=False
 ):
-    name: str
-    resourceType: str
-    resourceValue: typing_extensions.Literal[
-        "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
-    ]
-    scope: str
-    tagValues: _list[str]
+    resourceTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
@@ -370,6 +377,20 @@ class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "COMPLETED", "SUPERSEDED", "TERMINATED"
     ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule(
+    typing_extensions.TypedDict, total=False
+):
+    ancestorModule: str
+    customConfig: GoogleCloudSecuritycenterV1CustomConfig
+    displayName: str
+    enablementState: typing_extensions.Literal[
+        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED", "INHERITED"
+    ]
+    lastEditor: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1beta1Finding(typing_extensions.TypedDict, total=False):
@@ -617,13 +638,6 @@ class OrganizationSettings(typing_extensions.TypedDict, total=False):
     assetDiscoveryConfig: AssetDiscoveryConfig
     enableAssetDiscovery: bool
     name: str
-
-@typing.type_check_only
-class PathNode(typing_extensions.TypedDict, total=False):
-    associatedFindings: _list[AssociatedFinding]
-    displayName: str
-    resource: str
-    resourceType: str
 
 @typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):

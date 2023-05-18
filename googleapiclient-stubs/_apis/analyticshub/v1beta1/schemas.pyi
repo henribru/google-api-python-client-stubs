@@ -128,7 +128,6 @@ class Publisher(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
-    restrictDirectTableAccess: bool
     restrictQueryResult: bool
 
 @typing.type_check_only

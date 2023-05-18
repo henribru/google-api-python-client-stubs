@@ -182,6 +182,92 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> NotificationConfigHttpRequest: ...
 
         @typing.type_check_only
+        class SecurityHealthAnalyticsSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest | None
+                ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
+            def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
+
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
@@ -275,6 +361,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
+        def securityHealthAnalyticsSettings(
+            self,
+        ) -> SecurityHealthAnalyticsSettingsResource: ...
         def sources(self) -> SourcesResource: ...
 
     @typing.type_check_only
@@ -479,6 +568,92 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> ListOperationsResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class SecurityHealthAnalyticsSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest | None
+                ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
+            def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
+
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
@@ -625,6 +800,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def operations(self) -> OperationsResource: ...
+        def securityHealthAnalyticsSettings(
+            self,
+        ) -> SecurityHealthAnalyticsSettingsResource: ...
         def sources(self) -> SourcesResource: ...
 
     @typing.type_check_only
@@ -796,6 +974,92 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> NotificationConfigHttpRequest: ...
 
         @typing.type_check_only
+        class SecurityHealthAnalyticsSettingsResource(
+            googleapiclient.discovery.Resource
+        ):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest | None
+                ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest: ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveSecurityHealthAnalyticsCustomModulesResponse,
+                ) -> (
+                    ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
+            def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
+
+        @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FindingsResource(googleapiclient.discovery.Resource):
@@ -889,6 +1153,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
+        def securityHealthAnalyticsSettings(
+            self,
+        ) -> SecurityHealthAnalyticsSettingsResource: ...
         def sources(self) -> SourcesResource: ...
 
     def new_batch_http_request(
@@ -934,6 +1201,16 @@ class GoogleCloudSecuritycenterV1BigQueryExportHttpRequest(
     ) -> GoogleCloudSecuritycenterV1BigQueryExport: ...
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule: ...
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1ExternalSystemHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -952,6 +1229,16 @@ class GoogleCloudSecuritycenterV1MuteConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudSecuritycenterV1MuteConfig: ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule: ...
 
 @typing.type_check_only
 class GroupAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -986,6 +1273,26 @@ class ListBigQueryExportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListBigQueryExportsResponse: ...
 
 @typing.type_check_only
+class ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDescendantSecurityHealthAnalyticsCustomModulesResponse: ...
+
+@typing.type_check_only
+class ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEffectiveSecurityHealthAnalyticsCustomModulesResponse: ...
+
+@typing.type_check_only
 class ListFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1016,6 +1323,16 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSecurityHealthAnalyticsCustomModulesResponse: ...
 
 @typing.type_check_only
 class ListSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):

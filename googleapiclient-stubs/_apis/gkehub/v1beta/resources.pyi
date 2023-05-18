@@ -14,6 +14,30 @@ _list = list
 @typing.type_check_only
 class GKEHubResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class FleetsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFleetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFleetsResponseHttpRequest,
+                    previous_response: ListFleetsResponse,
+                ) -> ListFleetsResponseHttpRequest | None: ...
+
+            def fleets(self) -> FleetsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -84,6 +108,39 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class FleetsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: Fleet = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FleetHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFleetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFleetsResponseHttpRequest,
+                    previous_response: ListFleetsResponse,
+                ) -> ListFleetsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Fleet = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class MembershipsResource(googleapiclient.discovery.Resource):
@@ -311,6 +368,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def features(self) -> FeaturesResource: ...
+            def fleets(self) -> FleetsResource: ...
             def memberships(self) -> MembershipsResource: ...
             def namespaces(self) -> NamespacesResource: ...
             def operations(self) -> OperationsResource: ...
@@ -330,6 +388,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -349,12 +408,28 @@ class FeatureHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Feature: ...
 
 @typing.type_check_only
+class FleetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Fleet: ...
+
+@typing.type_check_only
 class ListFeaturesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListFeaturesResponse: ...
+
+@typing.type_check_only
+class ListFleetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListFleetsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

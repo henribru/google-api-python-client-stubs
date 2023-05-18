@@ -11,6 +11,7 @@ class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlloyDbSettings(typing_extensions.TypedDict, total=False):
+    encryptionConfig: EncryptionConfig
     initialUser: UserPassword
     labels: dict[str, typing.Any]
     primaryInstanceSettings: PrimaryInstanceSettings
@@ -18,6 +19,11 @@ class AlloyDbSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ApplyConversionWorkspaceRequest(typing_extensions.TypedDict, total=False):
+    connectionProfile: str
+    filter: str
+
+@typing.type_check_only
+class ApplyJobDetails(typing_extensions.TypedDict, total=False):
     connectionProfile: str
     filter: str
 
@@ -35,10 +41,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
+    applyJobDetails: ApplyJobDetails
     completionComment: str
     completionState: typing_extensions.Literal[
         "JOB_COMPLETION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"
     ]
+    convertJobDetails: ConvertJobDetails
     finishTime: str
     id: str
     importRulesJobDetails: ImportRulesJobDetails
@@ -194,6 +202,10 @@ class ConvertConversionWorkspaceRequest(typing_extensions.TypedDict, total=False
     filter: str
 
 @typing.type_check_only
+class ConvertJobDetails(typing_extensions.TypedDict, total=False):
+    filter: str
+
+@typing.type_check_only
 class DatabaseEngineInfo(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "ORACLE"
@@ -219,7 +231,8 @@ class DatabaseEntity(typing_extensions.TypedDict, total=False):
         "DATABASE_ENTITY_TYPE_SYNONYM",
         "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
         "DATABASE_ENTITY_TYPE_UDT",
-        "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
     ]
     mappings: _list[EntityMapping]
     parentEntity: str
@@ -267,10 +280,50 @@ class DumpFlags(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+
+@typing.type_check_only
 class EntityMapping(typing_extensions.TypedDict, total=False):
     draftEntity: str
+    draftType: typing_extensions.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
     mappingLog: _list[EntityMappingLogEntry]
     sourceEntity: str
+    sourceType: typing_extensions.Literal[
+        "DATABASE_ENTITY_TYPE_UNSPECIFIED",
+        "DATABASE_ENTITY_TYPE_SCHEMA",
+        "DATABASE_ENTITY_TYPE_TABLE",
+        "DATABASE_ENTITY_TYPE_COLUMN",
+        "DATABASE_ENTITY_TYPE_CONSTRAINT",
+        "DATABASE_ENTITY_TYPE_INDEX",
+        "DATABASE_ENTITY_TYPE_TRIGGER",
+        "DATABASE_ENTITY_TYPE_VIEW",
+        "DATABASE_ENTITY_TYPE_SEQUENCE",
+        "DATABASE_ENTITY_TYPE_STORED_PROCEDURE",
+        "DATABASE_ENTITY_TYPE_FUNCTION",
+        "DATABASE_ENTITY_TYPE_SYNONYM",
+        "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
+        "DATABASE_ENTITY_TYPE_UDT",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
+    ]
 
 @typing.type_check_only
 class EntityMappingLogEntry(typing_extensions.TypedDict, total=False):
@@ -466,6 +519,9 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_DEFINER",
         "CANT_RESTART_RUNNING_MIGRATION",
         "TABLES_WITH_LIMITED_SUPPORT",
+        "UNSUPPORTED_DATABASE_LOCALE",
+        "UNSUPPORTED_DATABASE_FDW_CONFIG",
+        "ERROR_RDBMS",
     ]
     errorDetailMessage: str
     errorMessage: str
@@ -691,7 +747,8 @@ class SynonymEntity(typing_extensions.TypedDict, total=False):
         "DATABASE_ENTITY_TYPE_SYNONYM",
         "DATABASE_ENTITY_TYPE_DATABASE_PACKAGE",
         "DATABASE_ENTITY_TYPE_UDT",
-        "DATABASE_ENTITY_TYPE_MATERIAL_VIEW",
+        "DATABASE_ENTITY_TYPE_MATERIALIZED_VIEW",
+        "DATABASE_ENTITY_TYPE_DATABASE",
     ]
 
 @typing.type_check_only

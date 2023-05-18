@@ -49,6 +49,11 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
     signatures: _list[Signature]
 
 @typing.type_check_only
+class Binary(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
 class BuildOccurrence(typing_extensions.TypedDict, total=False):
     intotoProvenance: InTotoProvenance
     intotoStatement: InTotoStatement
@@ -314,6 +319,18 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     subject: _list[Subject]
 
 @typing.type_check_only
+class Justification(typing_extensions.TypedDict, total=False):
+    details: str
+    justificationType: typing_extensions.Literal[
+        "JUSTIFICATION_TYPE_UNSPECIFIED",
+        "COMPONENT_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+        "INLINE_MITIGATIONS_ALREADY_EXIST",
+    ]
+
+@typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
     compactJwt: str
 
@@ -347,6 +364,11 @@ class Location(typing_extensions.TypedDict, total=False):
     cpeUri: str
     path: str
     version: Version
+
+@typing.type_check_only
+class Maintainer(typing_extensions.TypedDict, total=False):
+    kind: str
+    name: str
 
 @typing.type_check_only
 class Material(typing_extensions.TypedDict, total=False):
@@ -390,6 +412,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "UPGRADE",
         "COMPLIANCE",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
     name: str
     noteName: str
@@ -410,10 +433,13 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PackageData(typing_extensions.TypedDict, total=False):
+    architecture: str
+    binary: Binary
     cpeUri: str
     dependencyChain: _list[LanguagePackageDependency]
     fileLocation: _list[FileLocation]
     hashDigest: str
+    maintainer: Maintainer
     os: str
     osVersion: str
     package: str
@@ -466,6 +492,19 @@ class Recipe(typing_extensions.TypedDict, total=False):
 class RelatedUrl(typing_extensions.TypedDict, total=False):
     label: str
     url: str
+
+@typing.type_check_only
+class Remediation(typing_extensions.TypedDict, total=False):
+    details: str
+    remediationType: typing_extensions.Literal[
+        "REMEDIATION_TYPE_UNSPECIFIED",
+        "MITIGATION",
+        "NO_FIX_PLANNED",
+        "NONE_AVAILABLE",
+        "VENDOR_FIX",
+        "WORKAROUND",
+    ]
+    remediationUri: RelatedUrl
 
 @typing.type_check_only
 class RepoId(typing_extensions.TypedDict, total=False):
@@ -570,6 +609,18 @@ class Version(typing_extensions.TypedDict, total=False):
     revision: str
 
 @typing.type_check_only
+class VexAssessment(typing_extensions.TypedDict, total=False):
+    cve: str
+    impacts: _list[str]
+    justification: Justification
+    noteName: str
+    relatedUris: _list[RelatedUrl]
+    remediations: _list[Remediation]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+
+@typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     cvssScore: float
     cvssV2: CVSS
@@ -589,6 +640,7 @@ class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     ]
     shortDescription: str
     type: str
+    vexAssessment: VexAssessment
 
 @typing.type_check_only
 class WindowsUpdate(typing_extensions.TypedDict, total=False):

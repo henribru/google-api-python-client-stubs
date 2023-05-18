@@ -213,6 +213,7 @@ class GmailMessageInfo(typing_extensions.TypedDict, total=False):
     messageBodySnippet: str
     messageId: str
     recipient: str
+    sentTime: str
     subjectText: str
 
 @typing.type_check_only

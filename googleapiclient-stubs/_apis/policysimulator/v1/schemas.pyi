@@ -156,39 +156,6 @@ class GoogleCloudPolicysimulatorV1ReplayResultsSummary(
     unchangedCount: int
 
 @typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1Replay(typing_extensions.TypedDict, total=False):
-    config: GoogleCloudPolicysimulatorV1beta1ReplayConfig
-    name: str
-    resultsSummary: GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
-    ]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ReplayConfig(
-    typing_extensions.TypedDict, total=False
-):
-    logSource: typing_extensions.Literal["LOG_SOURCE_UNSPECIFIED", "RECENT_ACCESSES"]
-    policyOverlay: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ReplayOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    startTime: str
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1beta1ReplayResultsSummary(
-    typing_extensions.TypedDict, total=False
-):
-    differenceCount: int
-    errorCount: int
-    logCount: int
-    newestDate: GoogleTypeDate
-    oldestDate: GoogleTypeDate
-    unchangedCount: int
-
-@typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[GoogleIamV1AuditLogConfig]
     service: str

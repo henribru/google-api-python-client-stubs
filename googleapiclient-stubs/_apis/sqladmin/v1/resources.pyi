@@ -258,12 +258,31 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):
+            def getDiskShrinkConfig(
+                self, *, project: str, instance: str, **kwargs: typing.Any
+            ) -> SqlInstancesGetDiskShrinkConfigResponseHttpRequest: ...
+            def performDiskShrink(
+                self,
+                *,
+                project: str,
+                instance: str,
+                body: PerformDiskShrinkContext = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def rescheduleMaintenance(
                 self,
                 *,
                 project: str,
                 instance: str,
                 body: SqlInstancesRescheduleMaintenanceRequestBody = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def resetReplicaSize(
+                self,
+                *,
+                project: str,
+                instance: str,
+                body: SqlInstancesResetReplicaSizeRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def startExternalSync(
@@ -484,6 +503,16 @@ class OperationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> OperationsListResponse: ...
+
+@typing.type_check_only
+class SqlInstancesGetDiskShrinkConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SqlInstancesGetDiskShrinkConfigResponse: ...
 
 @typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsResponseHttpRequest(

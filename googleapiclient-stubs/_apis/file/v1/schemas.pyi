@@ -26,7 +26,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "ENTERPRISE",
     ]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
     ]
     storageBytes: str
 
@@ -174,6 +174,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "SUSPENDED",
         "SUSPENDING",
         "RESUMING",
+        "REVERTING",
     ]
     statusMessage: str
     suspensionReasons: _list[str]
@@ -281,6 +282,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
     fileShare: str
     sourceBackup: str
+
+@typing.type_check_only
+class RevertInstanceRequest(typing_extensions.TypedDict, total=False):
+    targetSnapshotId: str
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

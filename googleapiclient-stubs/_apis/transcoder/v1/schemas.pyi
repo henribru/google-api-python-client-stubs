@@ -172,6 +172,11 @@ class Job(typing_extensions.TypedDict, total=False):
     error: Status
     inputUri: str
     labels: dict[str, typing.Any]
+    mode: typing_extensions.Literal[
+        "PROCESSING_MODE_UNSPECIFIED",
+        "PROCESSING_MODE_INTERACTIVE",
+        "PROCESSING_MODE_BATCH",
+    ]
     name: str
     outputUri: str
     startTime: str

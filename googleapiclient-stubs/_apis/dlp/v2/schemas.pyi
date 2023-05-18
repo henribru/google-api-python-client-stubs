@@ -15,6 +15,10 @@ class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
     saveFindings: GooglePrivacyDlpV2SaveFindings
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ActionDetails(typing_extensions.TypedDict, total=False):
+    deidentifyDetails: GooglePrivacyDlpV2DeidentifyDataSourceDetails
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ActivateJobTriggerRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -444,6 +448,21 @@ class GooglePrivacyDlpV2DeidentifyContentResponse(
     overview: GooglePrivacyDlpV2TransformationOverview
 
 @typing.type_check_only
+class GooglePrivacyDlpV2DeidentifyDataSourceDetails(
+    typing_extensions.TypedDict, total=False
+):
+    deidentifyStats: GooglePrivacyDlpV2DeidentifyDataSourceStats
+    requestedOptions: GooglePrivacyDlpV2RequestedDeidentifyOptions
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DeidentifyDataSourceStats(
+    typing_extensions.TypedDict, total=False
+):
+    transformationCount: str
+    transformationErrorCount: str
+    transformedBytes: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DeidentifyTemplate(typing_extensions.TypedDict, total=False):
     createTime: str
     deidentifyConfig: GooglePrivacyDlpV2DeidentifyConfig
@@ -496,6 +515,7 @@ class GooglePrivacyDlpV2Dictionary(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
+    actionDetails: _list[GooglePrivacyDlpV2ActionDetails]
     createTime: str
     endTime: str
     errors: _list[GooglePrivacyDlpV2Error]
@@ -712,6 +732,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "CHILE",
         "CHINA",
         "COLOMBIA",
+        "CROATIA",
         "DENMARK",
         "FRANCE",
         "FINLAND",
@@ -725,6 +746,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "JAPAN",
         "KOREA",
         "MEXICO",
+        "NEW_ZEALAND",
         "THE_NETHERLANDS",
         "NORWAY",
         "PARAGUAY",
@@ -743,7 +765,6 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "URUGUAY",
         "VENEZUELA",
         "INTERNAL",
-        "NEW_ZEALAND",
     ]
     typeCategory: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
@@ -1298,6 +1319,14 @@ class GooglePrivacyDlpV2ReplaceValueConfig(typing_extensions.TypedDict, total=Fa
 class GooglePrivacyDlpV2ReplaceWithInfoTypeConfig(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2RequestedDeidentifyOptions(
+    typing_extensions.TypedDict, total=False
+):
+    snapshotDeidentifyTemplate: GooglePrivacyDlpV2DeidentifyTemplate
+    snapshotImageRedactTemplate: GooglePrivacyDlpV2DeidentifyTemplate
+    snapshotStructuredDeidentifyTemplate: GooglePrivacyDlpV2DeidentifyTemplate
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RequestedOptions(typing_extensions.TypedDict, total=False):

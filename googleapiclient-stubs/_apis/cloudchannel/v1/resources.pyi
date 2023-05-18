@@ -250,6 +250,22 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleCloudChannelV1ListEntitlementsResponseHttpRequest,
                     previous_response: GoogleCloudChannelV1ListEntitlementsResponse,
                 ) -> GoogleCloudChannelV1ListEntitlementsResponseHttpRequest | None: ...
+                def listEntitlementChanges(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest: ...
+                def listEntitlementChanges_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListEntitlementChangesResponse,
+                ) -> (
+                    GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest | None
+                ): ...
                 def lookupOffer(
                     self, *, entitlement: str, **kwargs: typing.Any
                 ) -> GoogleCloudChannelV1OfferHttpRequest: ...
@@ -382,6 +398,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                showFutureOffers: bool = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest: ...
             def list_next(
@@ -680,6 +697,16 @@ class GoogleCloudChannelV1ListCustomersResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudChannelV1ListCustomersResponse: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListEntitlementChangesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListEntitlementsResponseHttpRequest(

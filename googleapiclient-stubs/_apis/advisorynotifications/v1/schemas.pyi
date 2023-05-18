@@ -52,6 +52,11 @@ class GoogleCloudAdvisorynotificationsV1Notification(
     createTime: str
     messages: _list[GoogleCloudAdvisorynotificationsV1Message]
     name: str
+    notificationType: typing_extensions.Literal[
+        "NOTIFICATION_TYPE_UNSPECIFIED",
+        "NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY",
+        "NOTIFICATION_TYPE_SENSITIVE_ACTIONS",
+    ]
     subject: GoogleCloudAdvisorynotificationsV1Subject
 
 @typing.type_check_only

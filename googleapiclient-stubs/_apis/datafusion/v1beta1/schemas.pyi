@@ -7,7 +7,11 @@ _list = list
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     acceleratorType: typing_extensions.Literal[
-        "ACCELERATOR_TYPE_UNSPECIFIED", "CDC", "HEALTHCARE", "CCAI_INSIGHTS"
+        "ACCELERATOR_TYPE_UNSPECIFIED",
+        "CDC",
+        "HEALTHCARE",
+        "CCAI_INSIGHTS",
+        "CLOUDSEARCH",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ENABLED", "DISABLED", "UNKNOWN"

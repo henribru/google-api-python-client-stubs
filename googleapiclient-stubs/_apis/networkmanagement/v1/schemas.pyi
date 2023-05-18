@@ -148,6 +148,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+        "GKE_PSC_ENDPOINT_MISSING",
         "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
         "GKE_CONTROL_PLANE_REGION_MISMATCH",
         "PUBLIC_GKE_CONTROL_PLANE_TO_PRIVATE_DESTINATION",
@@ -160,6 +161,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "VPC_CONNECTOR_NOT_RUNNING",
         "PSC_CONNECTION_NOT_ACCEPTED",
         "CLOUD_RUN_REVISION_NOT_READY",
+        "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
     ]
     resourceUri: str
 

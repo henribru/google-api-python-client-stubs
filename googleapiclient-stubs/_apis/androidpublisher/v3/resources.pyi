@@ -375,6 +375,27 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         def tracks(self) -> TracksResource: ...
 
     @typing.type_check_only
+    class ExternaltransactionsResource(googleapiclient.discovery.Resource):
+        def createexternaltransaction(
+            self,
+            *,
+            parent: str,
+            body: ExternalTransaction = ...,
+            externalTransactionId: str = ...,
+            **kwargs: typing.Any
+        ) -> ExternalTransactionHttpRequest: ...
+        def getexternaltransaction(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> ExternalTransactionHttpRequest: ...
+        def refundexternaltransaction(
+            self,
+            *,
+            name: str,
+            body: RefundExternalTransactionRequest = ...,
+            **kwargs: typing.Any
+        ) -> ExternalTransactionHttpRequest: ...
+
+    @typing.type_check_only
     class GeneratedapksResource(googleapiclient.discovery.Resource):
         def download(
             self,
@@ -384,14 +405,6 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             downloadId: str,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def download_media(
-            self,
-            *,
-            packageName: str,
-            versionCode: int,
-            downloadId: str,
-            **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
         def list(
             self, *, packageName: str, versionCode: int, **kwargs: typing.Any
         ) -> GeneratedApksListResponseHttpRequest: ...
@@ -671,6 +684,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: ProductPurchasesAcknowledgeRequest = ...,
                 **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
+            def consume(
+                self,
+                *,
+                packageName: str,
+                productId: str,
+                token: str,
+                **kwargs: typing.Any
+            ) -> googleapiclient.http.HttpRequest: ...
             def get(
                 self,
                 *,
@@ -808,14 +829,6 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 variantId: int,
                 **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
-            def download_media(
-                self,
-                *,
-                packageName: str,
-                versionCode: str,
-                variantId: int,
-                **kwargs: typing.Any
-            ) -> BytesHttpRequest: ...
             def get(
                 self,
                 *,
@@ -874,6 +887,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def applications(self) -> ApplicationsResource: ...
     def edits(self) -> EditsResource: ...
+    def externaltransactions(self) -> ExternaltransactionsResource: ...
     def generatedapks(self) -> GeneratedapksResource: ...
     def grants(self) -> GrantsResource: ...
     def inappproducts(self) -> InappproductsResource: ...
@@ -980,6 +994,14 @@ class ExpansionFilesUploadResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ExpansionFilesUploadResponse: ...
+
+@typing.type_check_only
+class ExternalTransactionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ExternalTransaction: ...
 
 @typing.type_check_only
 class GeneratedApksListResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1236,11 +1258,3 @@ class VoidedPurchasesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VoidedPurchasesListResponse: ...
-
-@typing.type_check_only
-class BytesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> bytes: ...

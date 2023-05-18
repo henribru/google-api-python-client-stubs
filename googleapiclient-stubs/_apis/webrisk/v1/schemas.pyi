@@ -67,20 +67,7 @@ class GoogleCloudWebriskV1SearchUrisResponseThreatUri(
 
 @typing.type_check_only
 class GoogleCloudWebriskV1Submission(typing_extensions.TypedDict, total=False):
-    threatTypes: _list[str]
     uri: str
-
-@typing.type_check_only
-class GoogleCloudWebriskV1SubmitUriMetadata(typing_extensions.TypedDict, total=False):
-    createTime: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CLOSED"
-    ]
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudWebriskV1SubmitUriRequest(typing_extensions.TypedDict, total=False):
-    submission: GoogleCloudWebriskV1Submission
 
 @typing.type_check_only
 class GoogleCloudWebriskV1ThreatEntryAdditions(

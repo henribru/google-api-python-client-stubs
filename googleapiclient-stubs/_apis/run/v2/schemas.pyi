@@ -20,6 +20,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "JOB_STATUS_SERVICE_POLLING_ERROR",
         "NON_ZERO_EXIT_CODE",
         "CANCELLED",
+        "CANCELLING",
     ]
     lastTransitionTime: str
     message: str
@@ -127,6 +128,7 @@ class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
     reconciling: bool
     retriedCount: int
     runningCount: int
+    satisfiesPzs: bool
     startTime: str
     succeededCount: int
     taskCount: int
@@ -194,6 +196,7 @@ class GoogleCloudRunV2Job(typing_extensions.TypedDict, total=False):
     name: str
     observedGeneration: str
     reconciling: bool
+    satisfiesPzs: bool
     template: GoogleCloudRunV2ExecutionTemplate
     terminalCondition: GoogleCloudRunV2Condition
     uid: str
@@ -275,6 +278,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     name: str
     observedGeneration: str
     reconciling: bool
+    satisfiesPzs: bool
     scaling: GoogleCloudRunV2RevisionScaling
     service: str
     serviceAccount: str
@@ -361,6 +365,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     name: str
     observedGeneration: str
     reconciling: bool
+    satisfiesPzs: bool
     template: GoogleCloudRunV2RevisionTemplate
     terminalCondition: GoogleCloudRunV2Condition
     traffic: _list[GoogleCloudRunV2TrafficTarget]
@@ -401,6 +406,7 @@ class GoogleCloudRunV2Task(typing_extensions.TypedDict, total=False):
     observedGeneration: str
     reconciling: bool
     retried: int
+    satisfiesPzs: bool
     serviceAccount: str
     startTime: str
     timeout: str

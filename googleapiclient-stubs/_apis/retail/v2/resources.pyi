@@ -201,6 +201,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2ModelHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -408,6 +411,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     catalog: str,
                     dataset: str = ...,
                     deviceType: str = ...,
+                    entity: str = ...,
                     languageCodes: str | _list[str] = ...,
                     maxSuggestions: int = ...,
                     query: str = ...,

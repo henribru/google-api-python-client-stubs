@@ -245,6 +245,12 @@ class GoogleCloudDiscoveryengineV1alphaRecommendResponseRecommendationResult(
     metadata: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: str
+    name: str
+    structSchema: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -332,6 +338,12 @@ class GoogleCloudDiscoveryengineV1betaImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     joinedEventsCount: str
     unjoinedEventsCount: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSchema(typing_extensions.TypedDict, total=False):
+    jsonSchema: str
+    name: str
+    structSchema: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):

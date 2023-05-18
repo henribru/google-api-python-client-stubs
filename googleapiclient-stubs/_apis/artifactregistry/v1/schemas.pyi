@@ -43,6 +43,10 @@ class DockerRepository(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DockerRepositoryConfig(typing_extensions.TypedDict, total=False):
+    immutableTags: bool
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -271,6 +275,7 @@ class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    dockerConfig: DockerRepositoryConfig
     format: typing_extensions.Literal[
         "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON", "KFP"
     ]

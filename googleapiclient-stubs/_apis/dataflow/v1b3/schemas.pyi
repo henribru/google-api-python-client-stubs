@@ -520,6 +520,7 @@ class JobMetadata(typing_extensions.TypedDict, total=False):
     pubsubDetails: _list[PubSubIODetails]
     sdkVersion: SdkVersion
     spannerDetails: _list[SpannerIODetails]
+    userDisplayProperties: dict[str, typing.Any]
 
 @typing.type_check_only
 class JobMetrics(typing_extensions.TypedDict, total=False):
@@ -700,6 +701,7 @@ class Parameter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ParameterMetadata(typing_extensions.TypedDict, total=False):
     customMetadata: dict[str, typing.Any]
+    groupName: str
     helpText: str
     isOptional: bool
     label: str
@@ -718,6 +720,8 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "BIGQUERY_TABLE",
         "JAVASCRIPT_UDF_FILE",
     ]
+    parentName: str
+    parentTriggerValues: _list[str]
     regexes: _list[str]
 
 @typing.type_check_only

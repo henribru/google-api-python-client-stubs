@@ -48,6 +48,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class StateError(typing_extensions.TypedDict, total=False):
+    details: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "KMS_ERROR"]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -55,7 +60,11 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Workflow(typing_extensions.TypedDict, total=False):
+    callLogLevel: typing_extensions.Literal[
+        "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY", "LOG_NONE"
+    ]
     createTime: str
+    cryptoKeyName: str
     description: str
     labels: dict[str, typing.Any]
     name: str
@@ -63,5 +72,6 @@ class Workflow(typing_extensions.TypedDict, total=False):
     revisionId: str
     serviceAccount: str
     sourceContents: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "UNAVAILABLE"]
+    stateError: StateError
     updateTime: str

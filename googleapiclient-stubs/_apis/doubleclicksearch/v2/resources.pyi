@@ -68,15 +68,9 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def getFile(
             self, *, reportId: str, reportFragment: int, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-        def getFile_media(
-            self, *, reportId: str, reportFragment: int, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
         def getIdMappingFile(
             self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
         ) -> IdMappingFileHttpRequest: ...
-        def getIdMappingFile_media(
-            self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
         def request(
             self, *, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
@@ -142,11 +136,3 @@ class UpdateAvailabilityResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UpdateAvailabilityResponse: ...
-
-@typing.type_check_only
-class BytesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> bytes: ...

@@ -292,7 +292,6 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 name: str,
                 allowMissing: bool = ...,
                 etag: str = ...,
-                freeId: bool = ...,
                 validateOnly: bool = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...

@@ -78,6 +78,7 @@ class GoogleCloudIdentitytoolkitAdminV2Config(typing_extensions.TypedDict, total
     name: str
     notification: GoogleCloudIdentitytoolkitAdminV2NotificationConfig
     quota: GoogleCloudIdentitytoolkitAdminV2QuotaConfig
+    recaptchaConfig: GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig
     signIn: GoogleCloudIdentitytoolkitAdminV2SignInConfig
     smsRegionConfig: GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig
     subtype: typing_extensions.Literal[
@@ -264,6 +265,7 @@ class GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig(
     typing_extensions.TypedDict, total=False
 ):
     enabledProviders: _list[str]
+    providerConfigs: _list[GoogleCloudIdentitytoolkitAdminV2ProviderConfig]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "DISABLED", "ENABLED", "MANDATORY"
     ]
@@ -318,10 +320,44 @@ class GoogleCloudIdentitytoolkitAdminV2PhoneNumber(
     testPhoneNumbers: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2ProviderConfig(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "MFA_STATE_UNSPECIFIED", "DISABLED", "ENABLED", "MANDATORY"
+    ]
+    totpProviderConfig: GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig
+
+@typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2QuotaConfig(
     typing_extensions.TypedDict, total=False
 ):
     signUpQuotaConfig: GoogleCloudIdentitytoolkitAdminV2TemporaryQuota
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig(
+    typing_extensions.TypedDict, total=False
+):
+    emailPasswordEnforcementState: typing_extensions.Literal[
+        "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "AUDIT", "ENFORCE"
+    ]
+    managedRules: _list[GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule]
+    recaptchaKeys: _list[GoogleCloudIdentitytoolkitAdminV2RecaptchaKey]
+    useAccountDefender: bool
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2RecaptchaKey(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    type: typing_extensions.Literal["CLIENT_TYPE_UNSPECIFIED", "WEB", "IOS", "ANDROID"]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["RECAPTCHA_ACTION_UNSPECIFIED", "BLOCK"]
+    endScore: float
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2RequestLogging(
@@ -422,8 +458,15 @@ class GoogleCloudIdentitytoolkitAdminV2Tenant(typing_extensions.TypedDict, total
     mfaConfig: GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig
     monitoring: GoogleCloudIdentitytoolkitAdminV2MonitoringConfig
     name: str
+    recaptchaConfig: GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig
     smsRegionConfig: GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig
     testPhoneNumbers: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2TotpMfaProviderConfig(
+    typing_extensions.TypedDict, total=False
+):
+    adjacentIntervals: int
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2Trigger(
@@ -446,6 +489,7 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest(
     idToken: str
     phoneVerificationInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneRequestInfo
     tenantId: str
+    totpVerificationInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse(
@@ -454,6 +498,7 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse(
     idToken: str
     phoneAuthInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneResponseInfo
     refreshToken: str
+    totpAuthInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneRequestInfo(
@@ -476,9 +521,11 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneResponseInfo(
 class GoogleCloudIdentitytoolkitV2FinalizeMfaSignInRequest(
     typing_extensions.TypedDict, total=False
 ):
+    mfaEnrollmentId: str
     mfaPendingCredential: str
     phoneVerificationInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneRequestInfo
     tenantId: str
+    totpVerificationInfo: GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse(
@@ -489,18 +536,76 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse(
     refreshToken: str
 
 @typing.type_check_only
+class GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo(
+    typing_extensions.TypedDict, total=False
+):
+    sessionInfo: str
+    verificationCode: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentResponseInfo(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo(
+    typing_extensions.TypedDict, total=False
+):
+    verificationCode: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RecaptchaConfig(
+    typing_extensions.TypedDict, total=False
+):
+    recaptchaEnforcementState: _list[
+        GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState
+    ]
+    recaptchaKey: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState(
+    typing_extensions.TypedDict, total=False
+):
+    enforcementState: typing_extensions.Literal[
+        "ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "AUDIT", "ENFORCE"
+    ]
+    provider: typing_extensions.Literal[
+        "RECAPTCHA_PROVIDER_UNSPECIFIED", "EMAIL_PASSWORD_PROVIDER"
+    ]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RevokeTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    idToken: str
+    providerId: str
+    redirectUri: str
+    tenantId: str
+    token: str
+    tokenType: typing_extensions.Literal[
+        "TOKEN_TYPE_UNSPECIFIED", "REFRESH_TOKEN", "ACCESS_TOKEN", "CODE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RevokeTokenResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest(
     typing_extensions.TypedDict, total=False
 ):
     idToken: str
     phoneEnrollmentInfo: GoogleCloudIdentitytoolkitV2StartMfaPhoneRequestInfo
     tenantId: str
+    totpEnrollmentInfo: GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse(
     typing_extensions.TypedDict, total=False
 ):
     phoneSessionInfo: GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo
+    totpSessionInfo: GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2StartMfaPhoneRequestInfo(
@@ -534,6 +639,22 @@ class GoogleCloudIdentitytoolkitV2StartMfaSignInResponse(
     typing_extensions.TypedDict, total=False
 ):
     phoneResponseInfo: GoogleCloudIdentitytoolkitV2StartMfaPhoneResponseInfo
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentRequestInfo(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2StartMfaTotpEnrollmentResponseInfo(
+    typing_extensions.TypedDict, total=False
+):
+    finalizeEnrollmentTime: str
+    hashingAlgorithm: str
+    periodSec: int
+    sessionInfo: str
+    sharedSecretKey: str
+    verificationCodeLength: int
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2WithdrawMfaRequest(

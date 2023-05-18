@@ -49,12 +49,22 @@ class ConfigSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
     benchmarkIndex: float
+    credits: dict[str, typing.Any]
     hostUserAgent: str
     networkUserAgent: str
 
 @typing.type_check_only
 class I18n(typing_extensions.TypedDict, total=False):
     rendererFormattedStrings: RendererFormattedStrings
+
+@typing.type_check_only
+class LhrEntity(typing_extensions.TypedDict, total=False):
+    category: str
+    homepage: str
+    isFirstParty: bool
+    isUnrecognized: bool
+    name: str
+    origins: _list[str]
 
 @typing.type_check_only
 class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
@@ -86,11 +96,15 @@ class LighthouseResultV5(typing_extensions.TypedDict, total=False):
     categories: Categories
     categoryGroups: dict[str, typing.Any]
     configSettings: ConfigSettings
+    entities: _list[LhrEntity]
     environment: Environment
     fetchTime: str
+    finalDisplayedUrl: str
     finalUrl: str
+    fullPageScreenshot: typing.Any
     i18n: I18n
     lighthouseVersion: str
+    mainDocumentUrl: str
     requestedUrl: str
     runWarnings: _list[typing.Any]
     runtimeError: RuntimeError

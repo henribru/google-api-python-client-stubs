@@ -201,6 +201,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
         "RECREATE_DISK", "RECREATE_DISK_IF_SOURCE_CHANGED", "USE_EXISTING_DISK"
     ]
     provisionedIops: str
+    replicaZones: _list[str]
     resourceManagerTags: dict[str, typing.Any]
     resourcePolicies: _list[str]
     sourceImage: str
@@ -1196,10 +1197,18 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
+    destAddressGroups: _list[str]
+    destFqdns: _list[str]
     destIpRanges: _list[str]
+    destRegionCodes: _list[str]
+    destThreatIntelligences: _list[str]
     layer4Configs: _list[FirewallPolicyRuleMatcherLayer4Config]
+    srcAddressGroups: _list[str]
+    srcFqdns: _list[str]
     srcIpRanges: _list[str]
+    srcRegionCodes: _list[str]
     srcSecureTags: _list[FirewallPolicyRuleSecureTag]
+    srcThreatIntelligences: _list[str]
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcherLayer4Config(typing_extensions.TypedDict, total=False):
@@ -1225,7 +1234,9 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     ]
     allPorts: bool
     allowGlobalAccess: bool
+    allowPscGlobalAccess: bool
     backendService: str
+    baseForwardingRule: str
     creationTimestamp: str
     description: str
     fingerprint: str
@@ -1266,6 +1277,7 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     serviceDirectoryRegistrations: _list[ForwardingRuleServiceDirectoryRegistration]
     serviceLabel: str
     serviceName: str
+    sourceIpRanges: _list[str]
     subnetwork: str
     target: str
 
@@ -1370,6 +1382,7 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
+        "SEV_LIVE_MIGRATABLE",
         "SEV_SNP_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
@@ -3224,6 +3237,12 @@ class NodeGroupsSetNodeTemplateRequest(typing_extensions.TypedDict, total=False)
     nodeTemplate: str
 
 @typing.type_check_only
+class NodeGroupsSimulateMaintenanceEventRequest(
+    typing_extensions.TypedDict, total=False
+):
+    nodes: _list[str]
+
+@typing.type_check_only
 class NodeTemplate(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     cpuOvercommitType: typing_extensions.Literal[
@@ -3766,11 +3785,15 @@ class Quota(typing_extensions.TypedDict, total=False):
         "NETWORK_ATTACHMENTS",
         "NETWORK_ENDPOINT_GROUPS",
         "NETWORK_FIREWALL_POLICIES",
+        "NET_LB_SECURITY_POLICIES_PER_REGION",
+        "NET_LB_SECURITY_POLICY_RULES_PER_REGION",
+        "NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION",
         "NODE_GROUPS",
         "NODE_TEMPLATES",
         "NVIDIA_A100_80GB_GPUS",
         "NVIDIA_A100_GPUS",
         "NVIDIA_K80_GPUS",
+        "NVIDIA_L4_GPUS",
         "NVIDIA_P100_GPUS",
         "NVIDIA_P100_VWS_GPUS",
         "NVIDIA_P4_GPUS",
@@ -3785,6 +3808,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_NVIDIA_A100_80GB_GPUS",
         "PREEMPTIBLE_NVIDIA_A100_GPUS",
         "PREEMPTIBLE_NVIDIA_K80_GPUS",
+        "PREEMPTIBLE_NVIDIA_L4_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_VWS_GPUS",
         "PREEMPTIBLE_NVIDIA_P4_GPUS",
@@ -3808,6 +3832,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "ROUTES",
         "SECURITY_POLICIES",
         "SECURITY_POLICIES_PER_REGION",
+        "SECURITY_POLICY_ADVANCED_RULES_PER_REGION",
         "SECURITY_POLICY_CEVAL_RULES",
         "SECURITY_POLICY_RULES",
         "SECURITY_POLICY_RULES_PER_REGION",
@@ -4718,6 +4743,7 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     headerAction: SecurityPolicyRuleHttpHeaderAction
     kind: str
     match: SecurityPolicyRuleMatcher
+    preconfiguredWafConfig: SecurityPolicyRulePreconfiguredWafConfig
     preview: bool
     priority: int
     rateLimitOptions: SecurityPolicyRuleRateLimitOptions
@@ -4745,6 +4771,40 @@ class SecurityPolicyRuleMatcherConfig(typing_extensions.TypedDict, total=False):
     srcIpRanges: _list[str]
 
 @typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfig(
+    typing_extensions.TypedDict, total=False
+):
+    exclusions: _list[SecurityPolicyRulePreconfiguredWafConfigExclusion]
+
+@typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfigExclusion(
+    typing_extensions.TypedDict, total=False
+):
+    requestCookiesToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestHeadersToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestQueryParamsToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    requestUrisToExclude: _list[
+        SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams
+    ]
+    targetRuleIds: _list[str]
+    targetRuleSet: str
+
+@typing.type_check_only
+class SecurityPolicyRulePreconfiguredWafConfigExclusionFieldParams(
+    typing_extensions.TypedDict, total=False
+):
+    op: typing_extensions.Literal[
+        "CONTAINS", "ENDS_WITH", "EQUALS", "EQUALS_ANY", "STARTS_WITH"
+    ]
+    val: str
+
+@typing.type_check_only
 class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=False):
     banDurationSec: int
     banThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
@@ -4759,10 +4819,27 @@ class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=Fals
         "SNI",
         "XFF_IP",
     ]
+    enforceOnKeyConfigs: _list[SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig]
     enforceOnKeyName: str
     exceedAction: str
     exceedRedirectOptions: SecurityPolicyRuleRedirectOptions
     rateLimitThreshold: SecurityPolicyRuleRateLimitOptionsThreshold
+
+@typing.type_check_only
+class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enforceOnKeyName: str
+    enforceOnKeyType: typing_extensions.Literal[
+        "ALL",
+        "HTTP_COOKIE",
+        "HTTP_HEADER",
+        "HTTP_PATH",
+        "IP",
+        "REGION_CODE",
+        "SNI",
+        "XFF_IP",
+    ]
 
 @typing.type_check_only
 class SecurityPolicyRuleRateLimitOptionsThreshold(

@@ -79,6 +79,7 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
+    managed: ConfigManagementManaged
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
@@ -199,6 +200,10 @@ class ConfigManagementHierarchyControllerVersion(
 @typing.type_check_only
 class ConfigManagementInstallError(typing_extensions.TypedDict, total=False):
     errorMessage: str
+
+@typing.type_check_only
+class ConfigManagementManaged(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -336,6 +341,22 @@ class FeatureState(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Fleet(typing_extensions.TypedDict, total=False):
+    createTime: str
+    deleteTime: str
+    displayName: str
+    name: str
+    state: FleetLifecycleState
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class FleetLifecycleState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
 class FleetObservabilityFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -405,6 +426,11 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Feature]
+
+@typing.type_check_only
+class ListFleetsResponse(typing_extensions.TypedDict, total=False):
+    fleets: _list[Fleet]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -576,6 +602,7 @@ class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
 class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     componentStates: dict[str, typing.Any]
     contentStates: dict[str, typing.Any]
+    policyContentState: PolicyControllerPolicyContentState
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
@@ -610,6 +637,12 @@ class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False):
     bundles: dict[str, typing.Any]
+    templateLibrary: PolicyControllerTemplateLibraryConfig
+
+@typing.type_check_only
+class PolicyControllerPolicyContentState(typing_extensions.TypedDict, total=False):
+    bundleStates: dict[str, typing.Any]
+    templateLibraryState: PolicyControllerOnClusterState
 
 @typing.type_check_only
 class PolicyControllerPolicyControllerDeploymentConfig(
@@ -633,6 +666,9 @@ class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
     included: bool
+    installation: typing_extensions.Literal[
+        "INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"
+    ]
 
 @typing.type_check_only
 class PolicyControllerToleration(typing_extensions.TypedDict, total=False):

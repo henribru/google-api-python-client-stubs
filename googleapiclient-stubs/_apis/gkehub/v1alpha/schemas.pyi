@@ -104,6 +104,7 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
+    managed: ConfigManagementManaged
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
@@ -224,6 +225,10 @@ class ConfigManagementHierarchyControllerVersion(
 @typing.type_check_only
 class ConfigManagementInstallError(typing_extensions.TypedDict, total=False):
     errorMessage: str
+
+@typing.type_check_only
+class ConfigManagementManaged(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -553,6 +558,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     externalId: str
     labels: dict[str, typing.Any]
     lastConnectionTime: str
+    monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
     uniqueId: str
@@ -630,6 +636,14 @@ class MembershipState(typing_extensions.TypedDict, total=False):
 class MeteringMembershipState(typing_extensions.TypedDict, total=False):
     lastMeasurementTime: str
     preciseLastMeasuredClusterVcpuCapacity: float
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    cluster: str
+    clusterHash: str
+    kubernetesMetricsPrefix: str
+    location: str
+    projectId: str
 
 @typing.type_check_only
 class MultiCloudCluster(typing_extensions.TypedDict, total=False):
@@ -726,6 +740,7 @@ class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
 class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     componentStates: dict[str, typing.Any]
     contentStates: dict[str, typing.Any]
+    policyContentState: PolicyControllerPolicyContentState
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "NOT_INSTALLED",
@@ -760,6 +775,12 @@ class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False):
     bundles: dict[str, typing.Any]
+    templateLibrary: PolicyControllerTemplateLibraryConfig
+
+@typing.type_check_only
+class PolicyControllerPolicyContentState(typing_extensions.TypedDict, total=False):
+    bundleStates: dict[str, typing.Any]
+    templateLibraryState: PolicyControllerOnClusterState
 
 @typing.type_check_only
 class PolicyControllerPolicyControllerDeploymentConfig(
@@ -783,6 +804,9 @@ class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
     included: bool
+    installation: typing_extensions.Literal[
+        "INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"
+    ]
 
 @typing.type_check_only
 class PolicyControllerToleration(typing_extensions.TypedDict, total=False):

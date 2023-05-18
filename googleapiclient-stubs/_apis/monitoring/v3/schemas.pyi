@@ -66,6 +66,7 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AlertStrategy(typing_extensions.TypedDict, total=False):
     autoClose: str
+    notificationChannelStrategy: _list[NotificationChannelStrategy]
     notificationRateLimit: NotificationRateLimit
 
 @typing.type_check_only
@@ -655,6 +656,11 @@ class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class NotificationChannelStrategy(typing_extensions.TypedDict, total=False):
+    notificationChannelNames: _list[str]
+    renotifyInterval: str
+
+@typing.type_check_only
 class NotificationRateLimit(typing_extensions.TypedDict, total=False):
     period: str
 
@@ -860,12 +866,15 @@ class Trigger(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
+    edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
 
 @typing.type_check_only
 class TypedValue(typing_extensions.TypedDict, total=False):

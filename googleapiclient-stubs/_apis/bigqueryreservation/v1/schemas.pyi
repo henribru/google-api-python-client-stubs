@@ -29,15 +29,35 @@ class BiReservation(typing_extensions.TypedDict, total=False):
 class CapacityCommitment(typing_extensions.TypedDict, total=False):
     commitmentEndTime: str
     commitmentStartTime: str
-    edition: typing_extensions.Literal["EDITION_UNSPECIFIED", "ENTERPRISE"]
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     failureStatus: Status
     multiRegionAuxiliary: bool
     name: str
     plan: typing_extensions.Literal[
-        "COMMITMENT_PLAN_UNSPECIFIED", "FLEX", "TRIAL", "MONTHLY", "ANNUAL", "NONE"
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "FLEX",
+        "FLEX_FLAT_RATE",
+        "TRIAL",
+        "MONTHLY",
+        "MONTHLY_FLAT_RATE",
+        "ANNUAL",
+        "ANNUAL_FLAT_RATE",
+        "THREE_YEAR",
+        "NONE",
     ]
     renewalPlan: typing_extensions.Literal[
-        "COMMITMENT_PLAN_UNSPECIFIED", "FLEX", "TRIAL", "MONTHLY", "ANNUAL", "NONE"
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "FLEX",
+        "FLEX_FLAT_RATE",
+        "TRIAL",
+        "MONTHLY",
+        "MONTHLY_FLAT_RATE",
+        "ANNUAL",
+        "ANNUAL_FLAT_RATE",
+        "THREE_YEAR",
+        "NONE",
     ]
     slotCount: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
@@ -66,6 +86,7 @@ class MergeCapacityCommitmentsRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
+    assignmentId: str
     destinationId: str
 
 @typing.type_check_only
@@ -73,7 +94,9 @@ class Reservation(typing_extensions.TypedDict, total=False):
     autoscale: Autoscale
     concurrency: str
     creationTime: str
-    edition: typing_extensions.Literal["EDITION_UNSPECIFIED", "ENTERPRISE"]
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     ignoreIdleSlots: bool
     multiRegionAuxiliary: bool
     name: str

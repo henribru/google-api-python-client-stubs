@@ -1526,6 +1526,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_PLACE_EXCHANGE",
         "EXCHANGE_APPLOVIN",
         "EXCHANGE_CONNATIX",
+        "EXCHANGE_RESET_DIGITAL",
+        "EXCHANGE_HIVESTACK",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1607,6 +1609,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_PLACE_EXCHANGE",
         "EXCHANGE_APPLOVIN",
         "EXCHANGE_CONNATIX",
+        "EXCHANGE_RESET_DIGITAL",
+        "EXCHANGE_HIVESTACK",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1691,6 +1695,8 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_PLACE_EXCHANGE",
         "EXCHANGE_APPLOVIN",
         "EXCHANGE_CONNATIX",
+        "EXCHANGE_RESET_DIGITAL",
+        "EXCHANGE_HIVESTACK",
     ]
 
 @typing.type_check_only
@@ -2035,6 +2041,8 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_PLACE_EXCHANGE",
         "EXCHANGE_APPLOVIN",
         "EXCHANGE_CONNATIX",
+        "EXCHANGE_RESET_DIGITAL",
+        "EXCHANGE_HIVESTACK",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2313,6 +2321,8 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_PLACE_EXCHANGE",
         "EXCHANGE_APPLOVIN",
         "EXCHANGE_CONNATIX",
+        "EXCHANGE_RESET_DIGITAL",
+        "EXCHANGE_HIVESTACK",
     ]
     guaranteedOrderId: str
     inventorySourceId: str

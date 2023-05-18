@@ -12,6 +12,10 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     gpuSharingConfig: GPUSharingConfig
 
 @typing.type_check_only
+class AdditionalPodRangesConfig(typing_extensions.TypedDict, total=False):
+    podRangeNames: _list[str]
+
+@typing.type_check_only
 class AddonsConfig(typing_extensions.TypedDict, total=False):
     cloudRunConfig: CloudRunConfig
     configConnectorConfig: ConfigConnectorConfig
@@ -136,6 +140,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     endpoint: str
     etag: str
     expireTime: str
+    fleet: Fleet
     id: str
     identityServiceConfig: IdentityServiceConfig
     initialClusterVersion: str
@@ -199,6 +204,7 @@ class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterUpdate(typing_extensions.TypedDict, total=False):
+    additionalPodRangesConfig: AdditionalPodRangesConfig
     desiredAddonsConfig: AddonsConfig
     desiredAuthenticatorGroupsConfig: AuthenticatorGroupsConfig
     desiredBinaryAuthorization: BinaryAuthorization
@@ -248,6 +254,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredVerticalPodAutoscaling: VerticalPodAutoscaling
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
     etag: str
+    removedAdditionalPodRangesConfig: AdditionalPodRangesConfig
 
 @typing.type_check_only
 class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
@@ -334,6 +341,12 @@ class Filter(typing_extensions.TypedDict, total=False):
     eventType: _list[str]
 
 @typing.type_check_only
+class Fleet(typing_extensions.TypedDict, total=False):
+    membership: str
+    preRegistered: bool
+    project: str
+
+@typing.type_check_only
 class GPUSharingConfig(typing_extensions.TypedDict, total=False):
     gpuSharingStrategy: typing_extensions.Literal[
         "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
@@ -401,6 +414,7 @@ class ILBSubsettingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
+    additionalPodRangesConfig: AdditionalPodRangesConfig
     clusterIpv4Cidr: str
     clusterIpv4CidrBlock: str
     clusterSecondaryRangeName: str
@@ -410,6 +424,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     ]
     nodeIpv4Cidr: str
     nodeIpv4CidrBlock: str
+    podCidrOverprovisionConfig: PodCIDROverprovisionConfig
     servicesIpv4Cidr: str
     servicesIpv4CidrBlock: str
     servicesIpv6CidrBlock: str
@@ -653,6 +668,7 @@ class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
     enablePrivateNodes: bool
     networkPerformanceConfig: NetworkPerformanceConfig
+    podCidrOverprovisionConfig: PodCIDROverprovisionConfig
     podIpv4CidrBlock: str
     podRange: str
 
@@ -776,6 +792,10 @@ class OperationProgress(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PlacementPolicy(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "COMPACT"]
+
+@typing.type_check_only
+class PodCIDROverprovisionConfig(typing_extensions.TypedDict, total=False):
+    disable: bool
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):

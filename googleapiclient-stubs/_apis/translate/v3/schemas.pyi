@@ -15,6 +15,7 @@ class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
+    enableShadowRemovalNativePdf: bool
     formatConversions: dict[str, typing.Any]
     glossaries: dict[str, typing.Any]
     inputConfigs: _list[BatchDocumentInputConfig]
@@ -226,7 +227,6 @@ class Location(typing_extensions.TypedDict, total=False):
 class Model(typing_extensions.TypedDict, total=False):
     createTime: str
     dataset: str
-    deployTime: str
     displayName: str
     name: str
     sourceLanguageCode: str
@@ -270,6 +270,7 @@ class TranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
     documentInputConfig: DocumentInputConfig
     documentOutputConfig: DocumentOutputConfig
+    enableRotationCorrection: bool
     enableShadowRemovalNativePdf: bool
     glossaryConfig: TranslateTextGlossaryConfig
     isTranslateNativePdfOnly: bool

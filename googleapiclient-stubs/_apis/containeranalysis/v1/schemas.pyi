@@ -20,6 +20,19 @@ class Artifact(typing_extensions.TypedDict, total=False):
     names: _list[str]
 
 @typing.type_check_only
+class Assessment(typing_extensions.TypedDict, total=False):
+    cve: str
+    impacts: _list[str]
+    justification: Justification
+    longDescription: str
+    relatedUris: _list[RelatedUrl]
+    remediations: _list[Remediation]
+    shortDescription: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+
+@typing.type_check_only
 class AttestationNote(typing_extensions.TypedDict, total=False):
     hint: Hint
 
@@ -384,6 +397,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     typing_extensions.TypedDict, total=False
 ):
+    defaultLogsBucketBehavior: typing_extensions.Literal[
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+    ]
     diskSizeGb: str
     dynamicSubstitutions: bool
     env: _list[str]
@@ -662,6 +678,7 @@ class DiscoveryNote(typing_extensions.TypedDict, total=False):
         "UPGRADE",
         "COMPLIANCE",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
 
 @typing.type_check_only
@@ -733,6 +750,9 @@ class FixableTotalByDigest(typing_extensions.TypedDict, total=False):
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
     totalCount: str
+
+@typing.type_check_only
+class GeneratePackagesSummaryRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GerritSourceContext(typing_extensions.TypedDict, total=False):
@@ -855,6 +875,18 @@ class InTotoStatement(typing_extensions.TypedDict, total=False):
     subject: _list[Subject]
 
 @typing.type_check_only
+class Justification(typing_extensions.TypedDict, total=False):
+    details: str
+    justificationType: typing_extensions.Literal[
+        "JUSTIFICATION_TYPE_UNSPECIFIED",
+        "COMPONENT_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+        "INLINE_MITIGATIONS_ALREADY_EXIST",
+    ]
+
+@typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
     compactJwt: str
 
@@ -872,6 +904,11 @@ class Layer(typing_extensions.TypedDict, total=False):
 class License(typing_extensions.TypedDict, total=False):
     comments: str
     expression: str
+
+@typing.type_check_only
+class LicensesSummary(typing_extensions.TypedDict, total=False):
+    count: str
+    license: str
 
 @typing.type_check_only
 class ListNoteOccurrencesResponse(typing_extensions.TypedDict, total=False):
@@ -936,6 +973,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "UPGRADE",
         "COMPLIANCE",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
     longDescription: str
     name: str
@@ -946,6 +984,7 @@ class Note(typing_extensions.TypedDict, total=False):
     updateTime: str
     upgrade: UpgradeNote
     vulnerability: VulnerabilityNote
+    vulnerabilityAssessment: VulnerabilityAssessmentNote
 
 @typing.type_check_only
 class Occurrence(typing_extensions.TypedDict, total=False):
@@ -970,6 +1009,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "UPGRADE",
         "COMPLIANCE",
         "DSSE_ATTESTATION",
+        "VULNERABILITY_ASSESSMENT",
     ]
     name: str
     noteName: str
@@ -1020,15 +1060,32 @@ class PackageOccurrence(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class PackagesSummaryResponse(typing_extensions.TypedDict, total=False):
+    licensesSummary: _list[LicensesSummary]
+    resourceUrl: str
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
 
 @typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    genericUri: str
+    id: str
+    name: str
+
+@typing.type_check_only
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
     projectId: str
     repoName: str
+
+@typing.type_check_only
+class Publisher(typing_extensions.TypedDict, total=False):
+    issuingAuthority: str
+    name: str
+    publisherNamespace: str
 
 @typing.type_check_only
 class Recipe(typing_extensions.TypedDict, total=False):
@@ -1042,6 +1099,19 @@ class Recipe(typing_extensions.TypedDict, total=False):
 class RelatedUrl(typing_extensions.TypedDict, total=False):
     label: str
     url: str
+
+@typing.type_check_only
+class Remediation(typing_extensions.TypedDict, total=False):
+    details: str
+    remediationType: typing_extensions.Literal[
+        "REMEDIATION_TYPE_UNSPECIFIED",
+        "MITIGATION",
+        "NO_FIX_PLANNED",
+        "NONE_AVAILABLE",
+        "VENDOR_FIX",
+        "WORKAROUND",
+    ]
+    remediationUri: RelatedUrl
 
 @typing.type_check_only
 class RepoId(typing_extensions.TypedDict, total=False):
@@ -1170,9 +1240,31 @@ class Version(typing_extensions.TypedDict, total=False):
     revision: str
 
 @typing.type_check_only
+class VexAssessment(typing_extensions.TypedDict, total=False):
+    cve: str
+    impacts: _list[str]
+    justification: Justification
+    noteName: str
+    relatedUris: _list[RelatedUrl]
+    remediations: _list[Remediation]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
+    ]
+
+@typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     name: str
     path: str
+
+@typing.type_check_only
+class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
+    assessment: Assessment
+    languageCode: str
+    longDescription: str
+    product: Product
+    publisher: Publisher
+    shortDescription: str
+    title: str
 
 @typing.type_check_only
 class VulnerabilityNote(typing_extensions.TypedDict, total=False):
@@ -1209,6 +1301,7 @@ class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     ]
     shortDescription: str
     type: str
+    vexAssessment: VexAssessment
 
 @typing.type_check_only
 class VulnerabilityOccurrencesSummary(typing_extensions.TypedDict, total=False):

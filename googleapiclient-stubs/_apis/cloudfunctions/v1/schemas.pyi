@@ -160,6 +160,12 @@ class GoogleCloudFunctionsV2StateMessage(typing_extensions.TypedDict, total=Fals
     type: str
 
 @typing.type_check_only
+class GoogleCloudFunctionsV2alphaLocationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    environments: _list[str]
+
+@typing.type_check_only
 class GoogleCloudFunctionsV2alphaOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -168,29 +174,10 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
-    stages: _list[GoogleCloudFunctionsV2alphaStage]
+    stages: _list[Stage]
     statusDetail: str
     target: str
     verb: str
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2alphaStage(typing_extensions.TypedDict, total=False):
-    message: str
-    name: typing_extensions.Literal[
-        "NAME_UNSPECIFIED",
-        "ARTIFACT_REGISTRY",
-        "BUILD",
-        "SERVICE",
-        "TRIGGER",
-        "SERVICE_ROLLBACK",
-        "TRIGGER_ROLLBACK",
-    ]
-    resource: str
-    resourceUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
-    ]
-    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total=False):
@@ -199,6 +186,12 @@ class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total
         "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
     ]
     type: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2betaLocationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    environments: _list[str]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2betaOperationMetadata(
@@ -273,6 +266,10 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    environments: _list[str]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -331,6 +328,25 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class SourceRepository(typing_extensions.TypedDict, total=False):
     deployedUrl: str
     url: str
+
+@typing.type_check_only
+class Stage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

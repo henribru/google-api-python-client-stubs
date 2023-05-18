@@ -115,6 +115,7 @@ class GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest(
     typing_extensions.TypedDict, total=False
 ):
     policyNamespace: str
+    policySchema: str
     policyTargetKey: GoogleChromePolicyVersionsV1PolicyTargetKey
 
 @typing.type_check_only
@@ -123,6 +124,7 @@ class GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse(
 ):
     groupIds: _list[str]
     policyNamespace: str
+    policySchema: str
     policyTargetKey: GoogleChromePolicyVersionsV1PolicyTargetKey
 
 @typing.type_check_only
@@ -196,7 +198,6 @@ class GoogleChromePolicyVersionsV1PolicySchema(
     name: str
     notices: _list[GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription]
     policyApiLifecycle: ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle
-    policyApiLifeycle: ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle
     policyDescription: str
     schemaName: str
     supportUri: str
@@ -325,6 +326,7 @@ class GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest(
 ):
     groupIds: _list[str]
     policyNamespace: str
+    policySchema: str
     policyTargetKey: GoogleChromePolicyVersionsV1PolicyTargetKey
 
 @typing.type_check_only

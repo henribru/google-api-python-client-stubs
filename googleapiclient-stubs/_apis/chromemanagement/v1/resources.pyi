@@ -121,43 +121,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest | None
             ): ...
-            def countPrintJobsByPrinter(
-                self,
-                *,
-                customer: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                printerOrgUnitId: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest: ...
-            def countPrintJobsByPrinter_next(
-                self,
-                previous_request: GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest,
-                previous_response: GoogleChromeManagementV1CountPrintJobsByPrinterResponse,
-            ) -> (
-                GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest
-                | None
-            ): ...
-            def countPrintJobsByUser(
-                self,
-                *,
-                customer: str,
-                filter: str = ...,
-                orderBy: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                printerOrgUnitId: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest: ...
-            def countPrintJobsByUser_next(
-                self,
-                previous_request: GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest,
-                previous_response: GoogleChromeManagementV1CountPrintJobsByUserResponse,
-            ) -> (
-                GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest | None
-            ): ...
             def findInstalledAppDevices(
                 self,
                 *,
@@ -360,26 +323,6 @@ class GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleChromeManagementV1CountInstalledAppsResponse: ...
-
-@typing.type_check_only
-class GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleChromeManagementV1CountPrintJobsByPrinterResponse: ...
-
-@typing.type_check_only
-class GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleChromeManagementV1CountPrintJobsByUserResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest(

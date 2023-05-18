@@ -142,6 +142,12 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 def runtimeEntitySchemas(self) -> RuntimeEntitySchemasResource: ...
 
             @typing.type_check_only
+            class GlobalResource(googleapiclient.discovery.Resource):
+                def getSettings(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SettingsHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -285,6 +291,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def connections(self) -> ConnectionsResource: ...
+            def global_(self) -> GlobalResource: ...
             def operations(self) -> OperationsResource: ...
             def providers(self) -> ProvidersResource: ...
 
@@ -447,6 +454,14 @@ class RuntimeConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RuntimeConfig: ...
+
+@typing.type_check_only
+class SettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Settings: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -21,6 +21,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     port: int
+    uid: str
     updateTime: str
 
 @typing.type_check_only
@@ -71,6 +72,7 @@ class Namespace(typing_extensions.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
+    uid: str
     updateTime: str
 
 @typing.type_check_only
@@ -94,6 +96,7 @@ class Service(typing_extensions.TypedDict, total=False):
     endpoints: _list[Endpoint]
     metadata: dict[str, typing.Any]
     name: str
+    uid: str
     updateTime: str
 
 @typing.type_check_only
