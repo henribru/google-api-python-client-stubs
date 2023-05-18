@@ -47,6 +47,48 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
 
             def impressions(self) -> ImpressionsResource: ...
 
+        def fetchMultiDailyMetricsTimeSeries(
+            self,
+            *,
+            location: str,
+            dailyMetrics: typing_extensions.Literal[
+                "DAILY_METRIC_UNKNOWN",
+                "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
+                "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
+                "BUSINESS_IMPRESSIONS_MOBILE_MAPS",
+                "BUSINESS_IMPRESSIONS_MOBILE_SEARCH",
+                "BUSINESS_CONVERSATIONS",
+                "BUSINESS_DIRECTION_REQUESTS",
+                "CALL_CLICKS",
+                "WEBSITE_CLICKS",
+                "BUSINESS_BOOKINGS",
+                "BUSINESS_FOOD_ORDERS",
+                "BUSINESS_FOOD_MENU_CLICKS",
+            ]
+            | _list[
+                typing_extensions.Literal[
+                    "DAILY_METRIC_UNKNOWN",
+                    "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
+                    "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
+                    "BUSINESS_IMPRESSIONS_MOBILE_MAPS",
+                    "BUSINESS_IMPRESSIONS_MOBILE_SEARCH",
+                    "BUSINESS_CONVERSATIONS",
+                    "BUSINESS_DIRECTION_REQUESTS",
+                    "CALL_CLICKS",
+                    "WEBSITE_CLICKS",
+                    "BUSINESS_BOOKINGS",
+                    "BUSINESS_FOOD_ORDERS",
+                    "BUSINESS_FOOD_MENU_CLICKS",
+                ]
+            ] = ...,
+            dailyRange_endDate_day: int = ...,
+            dailyRange_endDate_month: int = ...,
+            dailyRange_endDate_year: int = ...,
+            dailyRange_startDate_day: int = ...,
+            dailyRange_startDate_month: int = ...,
+            dailyRange_startDate_year: int = ...,
+            **kwargs: typing.Any
+        ) -> FetchMultiDailyMetricsTimeSeriesResponseHttpRequest: ...
         def getDailyMetricsTimeSeries(
             self,
             *,
@@ -102,6 +144,16 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
+
+@typing.type_check_only
+class FetchMultiDailyMetricsTimeSeriesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> FetchMultiDailyMetricsTimeSeriesResponse: ...
 
 @typing.type_check_only
 class GetDailyMetricsTimeSeriesResponseHttpRequest(googleapiclient.http.HttpRequest):

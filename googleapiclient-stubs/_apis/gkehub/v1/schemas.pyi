@@ -63,6 +63,7 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
+    managed: ConfigManagementManaged
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
@@ -183,6 +184,10 @@ class ConfigManagementHierarchyControllerVersion(
 @typing.type_check_only
 class ConfigManagementInstallError(typing_extensions.TypedDict, total=False):
     errorMessage: str
+
+@typing.type_check_only
+class ConfigManagementManaged(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -466,6 +471,7 @@ class Membership(typing_extensions.TypedDict, total=False):
     externalId: str
     labels: dict[str, typing.Any]
     lastConnectionTime: str
+    monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
     uniqueId: str
@@ -526,6 +532,14 @@ class MembershipState(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "SERVICE_UPDATING",
     ]
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    cluster: str
+    clusterHash: str
+    kubernetesMetricsPrefix: str
+    location: str
+    projectId: str
 
 @typing.type_check_only
 class MultiCloudCluster(typing_extensions.TypedDict, total=False):

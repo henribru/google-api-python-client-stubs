@@ -135,6 +135,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rename(
+                    self,
+                    *,
+                    name: str,
+                    body: RenameNetworkRequest = ...,
+                    **kwargs: typing.Any
+                ) -> NetworkHttpRequest: ...
 
             @typing.type_check_only
             class NfsSharesResource(googleapiclient.discovery.Resource):
@@ -169,6 +176,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rename(
+                    self,
+                    *,
+                    name: str,
+                    body: RenameNfsShareRequest = ...,
+                    **kwargs: typing.Any
+                ) -> NfsShareHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -345,6 +359,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rename(
+                    self,
+                    *,
+                    name: str,
+                    body: RenameVolumeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> VolumeHttpRequest: ...
                 def resize(
                     self,
                     *,

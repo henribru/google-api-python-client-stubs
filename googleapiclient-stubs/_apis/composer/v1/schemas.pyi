@@ -55,6 +55,7 @@ class Environment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EnvironmentConfig(typing_extensions.TypedDict, total=False):
+    airflowByoidUri: str
     airflowUri: str
     dagGcsPrefix: str
     databaseConfig: DatabaseConfig

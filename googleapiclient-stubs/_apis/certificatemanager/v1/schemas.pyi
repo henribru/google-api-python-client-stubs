@@ -101,6 +101,10 @@ class GclbTarget(typing_extensions.TypedDict, total=False):
     targetSslProxy: str
 
 @typing.type_check_only
+class IntermediateCA(typing_extensions.TypedDict, total=False):
+    pemCertificate: str
+
+@typing.type_check_only
 class IpConfig(typing_extensions.TypedDict, total=False):
     ipAddress: str
     ports: _list[int]
@@ -144,6 +148,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListTrustConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    trustConfigs: _list[TrustConfig]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -199,3 +209,22 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TrustAnchor(typing_extensions.TypedDict, total=False):
+    pemCertificate: str
+
+@typing.type_check_only
+class TrustConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    trustStores: _list[TrustStore]
+    updateTime: str
+
+@typing.type_check_only
+class TrustStore(typing_extensions.TypedDict, total=False):
+    intermediateCas: _list[IntermediateCA]
+    trustAnchors: _list[TrustAnchor]

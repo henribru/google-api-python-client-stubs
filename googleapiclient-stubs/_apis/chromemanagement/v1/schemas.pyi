@@ -222,22 +222,6 @@ class GoogleChromeManagementV1CountInstalledAppsResponse(
     totalSize: int
 
 @typing.type_check_only
-class GoogleChromeManagementV1CountPrintJobsByPrinterResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    printerReports: _list[GoogleChromeManagementV1PrinterReport]
-    totalSize: str
-
-@typing.type_check_only
-class GoogleChromeManagementV1CountPrintJobsByUserResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    totalSize: str
-    userPrintReports: _list[GoogleChromeManagementV1UserPrintReport]
-
-@typing.type_check_only
 class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
     architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
     keylockerConfigured: bool
@@ -510,15 +494,6 @@ class GoogleChromeManagementV1PeripheralsReport(
     usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
 
 @typing.type_check_only
-class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=False):
-    deviceCount: str
-    jobCount: str
-    printer: str
-    printerId: str
-    printerModel: str
-    userCount: str
-
-@typing.type_check_only
 class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
     availableDiskBytes: str
     totalDiskBytes: str
@@ -690,14 +665,6 @@ class GoogleChromeManagementV1UsbPeripheralReport(
     subclassId: int
     vendor: str
     vid: int
-
-@typing.type_check_only
-class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total=False):
-    deviceCount: str
-    jobCount: str
-    printerCount: str
-    userEmail: str
-    userId: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):

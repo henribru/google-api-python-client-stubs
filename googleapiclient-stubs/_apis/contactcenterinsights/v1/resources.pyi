@@ -119,6 +119,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1ConversationHttpRequest: ...
+                def upload(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1UploadConversationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def analyses(self) -> AnalysesResource: ...
 
             @typing.type_check_only

@@ -181,6 +181,9 @@ class GamesResource(googleapiclient.discovery.Resource):
             playerIdConsistencyToken: str = ...,
             **kwargs: typing.Any
         ) -> PlayerHttpRequest: ...
+        def getMultipleApplicationPlayerIds(
+            self, *, applicationIds: str | _list[str] = ..., **kwargs: typing.Any
+        ) -> GetMultipleApplicationPlayerIdsResponseHttpRequest: ...
         def getScopedPlayerIds(
             self, **kwargs: typing.Any
         ) -> ScopedPlayerIdsHttpRequest: ...
@@ -432,6 +435,16 @@ class EventUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventUpdateResponse: ...
+
+@typing.type_check_only
+class GetMultipleApplicationPlayerIdsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GetMultipleApplicationPlayerIdsResponse: ...
 
 @typing.type_check_only
 class LeaderboardHttpRequest(googleapiclient.http.HttpRequest):

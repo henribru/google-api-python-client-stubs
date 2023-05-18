@@ -14,16 +14,6 @@ _list = list
 @typing.type_check_only
 class CloudSupportResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class AttachmentsResource(googleapiclient.discovery.Resource):
-        def create(
-            self,
-            *,
-            parent: str,
-            body: CreateAttachmentRequest = ...,
-            **kwargs: typing.Any
-        ) -> AttachmentHttpRequest: ...
-
-    @typing.type_check_only
     class CaseClassificationsResource(googleapiclient.discovery.Resource):
         def search(
             self,
@@ -125,9 +115,6 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(self, *, name: str, **kwargs: typing.Any) -> MediaHttpRequest: ...
-        def download_media(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
         def upload(
             self,
             *,
@@ -148,7 +135,6 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def attachments(self) -> AttachmentsResource: ...
     def caseClassifications(self) -> CaseClassificationsResource: ...
     def cases(self) -> CasesResource: ...
     def media(self) -> MediaResource: ...
@@ -224,11 +210,3 @@ class SearchCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchCasesResponse: ...
-
-@typing.type_check_only
-class BytesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> bytes: ...

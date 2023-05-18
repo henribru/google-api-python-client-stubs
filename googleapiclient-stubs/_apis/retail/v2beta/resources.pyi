@@ -426,6 +426,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     catalog: str,
                     dataset: str = ...,
                     deviceType: str = ...,
+                    entity: str = ...,
                     languageCodes: str | _list[str] = ...,
                     maxSuggestions: int = ...,
                     query: str = ...,

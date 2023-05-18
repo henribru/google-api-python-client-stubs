@@ -27,6 +27,7 @@ class AuthConfig(typing_extensions.TypedDict, total=False):
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
     ]
+    oauth2AuthCodeFlow: Oauth2AuthCodeFlow
     oauth2ClientCredentials: Oauth2ClientCredentials
     oauth2JwtBearer: Oauth2JwtBearer
     sshPublicKey: SshPublicKey
@@ -76,6 +77,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     enumOptions: _list[EnumOption]
+    isAdvanced: bool
     key: str
     required: bool
     roleGrant: RoleGrant
@@ -103,6 +105,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     imageLocation: str
     labels: dict[str, typing.Any]
     lockConfig: LockConfig
+    logConfig: ConnectorsLogConfig
     name: str
     nodeConfig: NodeConfig
     serviceAccount: str
@@ -156,6 +159,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     authConfigTemplates: _list[AuthConfigTemplate]
     configVariableTemplates: _list[ConfigVariableTemplate]
     createTime: str
+    destinationConfigTemplates: _list[DestinationConfigTemplate]
     displayName: str
     egressControlConfig: EgressControlConfig
     labels: dict[str, typing.Any]
@@ -171,6 +175,10 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
     host: str
     port: int
@@ -180,6 +188,20 @@ class Destination(typing_extensions.TypedDict, total=False):
 class DestinationConfig(typing_extensions.TypedDict, total=False):
     destinations: _list[Destination]
     key: str
+
+@typing.type_check_only
+class DestinationConfigTemplate(typing_extensions.TypedDict, total=False):
+    defaultPort: int
+    description: str
+    displayName: str
+    isAdvanced: bool
+    key: str
+    max: int
+    min: int
+    portFieldType: typing_extensions.Literal[
+        "FIELD_TYPE_UNSPECIFIED", "REQUIRED", "OPTIONAL", "NOT_USED"
+    ]
+    regexPattern: str
 
 @typing.type_check_only
 class EgressControlConfig(typing_extensions.TypedDict, total=False):
@@ -390,6 +412,16 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     minNodeCount: int
 
 @typing.type_check_only
+class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
+    authCode: str
+    clientId: str
+    clientSecret: Secret
+    enablePkce: bool
+    pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
 class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: Secret
@@ -554,6 +586,12 @@ class Secret(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class Settings(typing_extensions.TypedDict, total=False):
+    name: str
+    payg: bool
+    vpcsc: bool
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

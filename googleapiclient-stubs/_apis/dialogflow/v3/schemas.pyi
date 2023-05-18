@@ -1413,6 +1413,7 @@ class GoogleCloudDialogflowCxV3WebhookGenericWebService(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total=False):
     detectIntentResponseId: str
+    dtmfDigits: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
     languageCode: str
@@ -2088,6 +2089,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     typing_extensions.TypedDict, total=False
 ):
     detectIntentResponseId: str
+    dtmfDigits: str
     fulfillmentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
     languageCode: str

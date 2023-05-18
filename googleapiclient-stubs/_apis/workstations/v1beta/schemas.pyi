@@ -201,6 +201,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     displayName: str
+    env: dict[str, typing.Any]
     etag: str
     host: str
     labels: dict[str, typing.Any]
@@ -220,6 +221,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
 class WorkstationCluster(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     conditions: _list[Status]
+    controlPlaneIp: str
     createTime: str
     degraded: bool
     deleteTime: str
@@ -243,6 +245,7 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     degraded: bool
     deleteTime: str
     displayName: str
+    enableAuditAgent: bool
     encryptionKey: CustomerEncryptionKey
     etag: str
     host: Host

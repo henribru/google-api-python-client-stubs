@@ -465,6 +465,7 @@ class GoogleAppsDriveLabelsV2betaLabel(typing_extensions.TypedDict, total=False)
     appliedLabelPolicy: GoogleAppsDriveLabelsV2betaLabelAppliedLabelPolicy
     createTime: str
     creator: GoogleAppsDriveLabelsV2betaUserInfo
+    customer: str
     disableTime: str
     disabler: GoogleAppsDriveLabelsV2betaUserInfo
     displayHints: GoogleAppsDriveLabelsV2betaLabelDisplayHints

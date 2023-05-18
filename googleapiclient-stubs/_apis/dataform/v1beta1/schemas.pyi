@@ -18,6 +18,12 @@ class BigQueryAction(typing_extensions.TypedDict, total=False):
     sqlScript: str
 
 @typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
+
+@typing.type_check_only
 class CancelWorkflowInvocationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -87,6 +93,13 @@ class DirectoryEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
 
 @typing.type_check_only
 class FetchFileDiffResponse(typing_extensions.TypedDict, total=False):
@@ -234,6 +247,12 @@ class Operations(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    bindings: _list[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
 class PullGitCommitsRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     remoteBranch: str
@@ -333,6 +352,10 @@ class ScheduledReleaseRecord(typing_extensions.TypedDict, total=False):
     releaseTime: str
 
 @typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -343,6 +366,14 @@ class Target(typing_extensions.TypedDict, total=False):
     database: str
     name: str
     schema: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
 
 @typing.type_check_only
 class UncommittedFileChange(typing_extensions.TypedDict, total=False):

@@ -8,6 +8,7 @@ _list = list
 class AccessKeyCredentials(typing_extensions.TypedDict, total=False):
     accessKeyId: str
     secretAccessKey: str
+    sessionToken: str
 
 @typing.type_check_only
 class AdaptingOSStep(typing_extensions.TypedDict, total=False): ...
@@ -202,6 +203,10 @@ class ComputeScheduling(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CutoverForecast(typing_extensions.TypedDict, total=False):
+    estimatedCutoverJobDuration: str
+
+@typing.type_check_only
 class CutoverJob(typing_extensions.TypedDict, total=False):
     computeEngineTargetDetails: ComputeEngineTargetDetails
     createTime: str
@@ -375,6 +380,7 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     computeEngineTargetDefaults: ComputeEngineTargetDefaults
     createTime: str
     currentSyncInfo: ReplicationCycle
+    cutoverForecast: CutoverForecast
     description: str
     displayName: str
     error: Status

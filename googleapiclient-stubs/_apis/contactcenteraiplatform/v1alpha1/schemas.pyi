@@ -5,10 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdminUser(typing_extensions.TypedDict, total=False):
+    familyName: str
+    givenName: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ContactCenter(typing_extensions.TypedDict, total=False):
+    adminUser: AdminUser
     ccaipManagedUsers: bool
     createTime: str
     customerDomainPrefix: str

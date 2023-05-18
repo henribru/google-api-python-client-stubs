@@ -776,6 +776,11 @@ class FreeListingsProgramStatusReviewIneligibilityReasonDetails(
     cooldownTime: str
 
 @typing.type_check_only
+class GenerateRecommendationsResponse(typing_extensions.TypedDict, total=False):
+    recommendations: _list[Recommendation]
+    responseToken: str
+
+@typing.type_check_only
 class GmbAccounts(typing_extensions.TypedDict, total=False):
     accountId: str
     gmbAccounts: _list[GmbAccountsGmbAccount]
@@ -2506,6 +2511,36 @@ class RateGroup(typing_extensions.TypedDict, total=False):
     subtables: _list[Table]
 
 @typing.type_check_only
+class Recommendation(typing_extensions.TypedDict, total=False):
+    additionalCallToAction: _list[RecommendationCallToAction]
+    additionalDescriptions: _list[RecommendationDescription]
+    creative: _list[RecommendationCreative]
+    defaultCallToAction: RecommendationCallToAction
+    defaultDescription: str
+    numericalImpact: int
+    paid: bool
+    recommendationName: str
+    subType: str
+    title: str
+    type: str
+
+@typing.type_check_only
+class RecommendationCallToAction(typing_extensions.TypedDict, total=False):
+    intent: str
+    localizedText: str
+    uri: str
+
+@typing.type_check_only
+class RecommendationCreative(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["CREATIVE_TYPE_UNSPECIFIED", "VIDEO", "PHOTO"]
+    uri: str
+
+@typing.type_check_only
+class RecommendationDescription(typing_extensions.TypedDict, total=False):
+    text: str
+    type: typing_extensions.Literal["DESCRIPTION_TYPE_UNSPECIFIED", "SHORT", "LONG"]
+
+@typing.type_check_only
 class RefundReason(typing_extensions.TypedDict, total=False):
     description: str
     reasonCode: str
@@ -2571,6 +2606,15 @@ class RegionalinventoryCustomBatchResponseEntry(
     errors: Errors
     kind: str
     regionalInventory: RegionalInventory
+
+@typing.type_check_only
+class ReportInteractionRequest(typing_extensions.TypedDict, total=False):
+    interactionType: typing_extensions.Literal[
+        "INTERACTION_TYPE_UNSPECIFIED", "INTERACTION_CLICK"
+    ]
+    responseToken: str
+    subtype: str
+    type: str
 
 @typing.type_check_only
 class ReportRow(typing_extensions.TypedDict, total=False):

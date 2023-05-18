@@ -394,6 +394,7 @@ class GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse(
 
 @typing.type_check_only
 class Group(typing_extensions.TypedDict, total=False):
+    additionalGroupKeys: _list[EntityKey]
     createTime: str
     description: str
     displayName: str
@@ -502,6 +503,14 @@ class MemberRestriction(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
+    deliverySetting: typing_extensions.Literal[
+        "DELIVERY_SETTING_UNSPECIFIED",
+        "ALL_MAIL",
+        "DIGEST",
+        "DAILY",
+        "NONE",
+        "DISABLED",
+    ]
     name: str
     preferredMemberKey: EntityKey
     roles: _list[MembershipRole]
@@ -514,6 +523,16 @@ class Membership(typing_extensions.TypedDict, total=False):
 class MembershipAdjacencyList(typing_extensions.TypedDict, total=False):
     edges: _list[Membership]
     group: str
+
+@typing.type_check_only
+class MembershipRelation(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    group: str
+    groupKey: EntityKey
+    labels: dict[str, typing.Any]
+    membership: str
+    roles: _list[MembershipRole]
 
 @typing.type_check_only
 class MembershipRole(typing_extensions.TypedDict, total=False):
@@ -582,6 +601,11 @@ class SamlSpConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SamlSsoInfo(typing_extensions.TypedDict, total=False):
     inboundSamlSsoProfile: str
+
+@typing.type_check_only
+class SearchDirectGroupsResponse(typing_extensions.TypedDict, total=False):
+    memberships: _list[MembershipRelation]
+    nextPageToken: str
 
 @typing.type_check_only
 class SearchGroupsResponse(typing_extensions.TypedDict, total=False):

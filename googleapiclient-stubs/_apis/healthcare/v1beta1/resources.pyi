@@ -695,6 +695,17 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             x_type: str = ...,
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def Resource_incoming_references(
+                            self,
+                            *,
+                            parent: str,
+                            target: str = ...,
+                            x_count: int = ...,
+                            x_page_token: str = ...,
+                            x_summary: str = ...,
+                            x_type: str = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def Resource_purge(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> EmptyHttpRequest: ...

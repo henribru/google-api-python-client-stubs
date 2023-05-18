@@ -234,6 +234,61 @@ class GoogleCloudChannelV1Entitlement(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1EntitlementChange(typing_extensions.TypedDict, total=False):
+    activationReason: typing_extensions.Literal[
+        "ACTIVATION_REASON_UNSPECIFIED",
+        "RESELLER_REVOKED_SUSPENSION",
+        "CUSTOMER_ACCEPTED_PENDING_TOS",
+        "RENEWAL_SETTINGS_CHANGED",
+        "OTHER_ACTIVATION_REASON",
+    ]
+    cancellationReason: typing_extensions.Literal[
+        "CANCELLATION_REASON_UNSPECIFIED",
+        "SERVICE_TERMINATED",
+        "RELATIONSHIP_ENDED",
+        "PARTIAL_TRANSFER",
+    ]
+    changeType: typing_extensions.Literal[
+        "CHANGE_TYPE_UNSPECIFIED",
+        "CREATED",
+        "PRICE_PLAN_SWITCHED",
+        "COMMITMENT_CHANGED",
+        "RENEWED",
+        "SUSPENDED",
+        "ACTIVATED",
+        "CANCELLED",
+        "SKU_CHANGED",
+        "RENEWAL_SETTING_CHANGED",
+        "PAID_SUBSCRIPTION_STARTED",
+        "LICENSE_CAP_CHANGED",
+        "SUSPENSION_DETAILS_CHANGED",
+        "TRIAL_END_DATE_EXTENDED",
+        "TRIAL_STARTED",
+    ]
+    createTime: str
+    entitlement: str
+    offer: str
+    operator: str
+    operatorType: typing_extensions.Literal[
+        "OPERATOR_TYPE_UNSPECIFIED",
+        "CUSTOMER_SERVICE_REPRESENTATIVE",
+        "SYSTEM",
+        "CUSTOMER",
+        "RESELLER",
+    ]
+    otherChangeReason: str
+    parameters: _list[GoogleCloudChannelV1Parameter]
+    provisionedService: GoogleCloudChannelV1ProvisionedService
+    suspensionReason: typing_extensions.Literal[
+        "SUSPENSION_REASON_UNSPECIFIED",
+        "RESELLER_INITIATED",
+        "TRIAL_ENDED",
+        "RENEWAL_WITH_TYPE_CANCEL",
+        "PENDING_TOS_ACCEPTANCE",
+        "OTHER",
+    ]
+
+@typing.type_check_only
 class GoogleCloudChannelV1EntitlementEvent(typing_extensions.TypedDict, total=False):
     entitlement: str
     eventType: typing_extensions.Literal[
@@ -306,6 +361,13 @@ class GoogleCloudChannelV1ListCustomersResponse(
     typing_extensions.TypedDict, total=False
 ):
     customers: _list[GoogleCloudChannelV1Customer]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListEntitlementChangesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entitlementChanges: _list[GoogleCloudChannelV1EntitlementChange]
     nextPageToken: str
 
 @typing.type_check_only
@@ -906,6 +968,7 @@ class GoogleCloudChannelV1alpha1RenewalSettings(
         "PAYMENT_PLAN_UNSPECIFIED", "COMMITMENT", "FLEXIBLE", "FREE", "TRIAL", "OFFLINE"
     ]
     resizeUnitCount: bool
+    scheduledRenewalOffer: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1Report(typing_extensions.TypedDict, total=False):

@@ -243,6 +243,37 @@ class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
     obfuscatedExternalProfileId: str
 
 @typing.type_check_only
+class ExternalSubscription(typing_extensions.TypedDict, total=False):
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "RECURRING", "PREPAID"
+    ]
+
+@typing.type_check_only
+class ExternalTransaction(typing_extensions.TypedDict, total=False):
+    createTime: str
+    currentPreTaxAmount: Price
+    currentTaxAmount: Price
+    externalTransactionId: str
+    oneTimeTransaction: OneTimeExternalTransaction
+    originalPreTaxAmount: Price
+    originalTaxAmount: Price
+    packageName: str
+    recurringTransaction: RecurringExternalTransaction
+    testPurchase: ExternalTransactionTestPurchase
+    transactionState: typing_extensions.Literal[
+        "TRANSACTION_STATE_UNSPECIFIED", "TRANSACTION_REPORTED", "TRANSACTION_CANCELED"
+    ]
+    transactionTime: str
+    userTaxAddress: ExternalTransactionAddress
+
+@typing.type_check_only
+class ExternalTransactionAddress(typing_extensions.TypedDict, total=False):
+    regionCode: str
+
+@typing.type_check_only
+class ExternalTransactionTestPurchase(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     applicationLabel: str
     certificateBase64s: _list[str]
@@ -259,6 +290,9 @@ class ExternallyHostedApk(typing_extensions.TypedDict, total=False):
     usesPermissions: _list[UsesPermission]
     versionCode: int
     versionName: str
+
+@typing.type_check_only
+class FullRefund(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GeneratedApksListResponse(typing_extensions.TypedDict, total=False):
@@ -436,6 +470,10 @@ class OfferTag(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
+    externalTransactionToken: str
+
+@typing.type_check_only
 class OtherRegionsBasePlanConfig(typing_extensions.TypedDict, total=False):
     eurPrice: Money
     newSubscriberAvailability: bool
@@ -465,6 +503,11 @@ class PageInfo(typing_extensions.TypedDict, total=False):
     resultPerPage: int
     startIndex: int
     totalResults: int
+
+@typing.type_check_only
+class PartialRefund(typing_extensions.TypedDict, total=False):
+    refundId: str
+    refundPreTaxAmount: Price
 
 @typing.type_check_only
 class PausedStateContext(typing_extensions.TypedDict, total=False):
@@ -506,6 +549,18 @@ class ProductPurchase(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+
+@typing.type_check_only
+class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
+    externalSubscription: ExternalSubscription
+    externalTransactionToken: str
+    initialExternalTransactionId: str
+
+@typing.type_check_only
+class RefundExternalTransactionRequest(typing_extensions.TypedDict, total=False):
+    fullRefund: FullRefund
+    partialRefund: PartialRefund
+    refundTime: str
 
 @typing.type_check_only
 class RegionalBasePlanConfig(typing_extensions.TypedDict, total=False):

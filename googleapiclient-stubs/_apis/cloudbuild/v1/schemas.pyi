@@ -35,6 +35,7 @@ class ArtifactResult(typing_extensions.TypedDict, total=False):
 class Artifacts(typing_extensions.TypedDict, total=False):
     images: _list[str]
     mavenArtifacts: _list[MavenArtifact]
+    npmPackages: _list[NpmPackage]
     objects: ArtifactObjects
     pythonPackages: _list[PythonPackage]
 
@@ -183,6 +184,9 @@ class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildOptions(typing_extensions.TypedDict, total=False):
+    defaultLogsBucketBehavior: typing_extensions.Literal[
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+    ]
     diskSizeGb: str
     dynamicSubstitutions: bool
     env: _list[str]
@@ -480,8 +484,14 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class GitSource(typing_extensions.TypedDict, total=False):
+    dir: str
+    revision: str
+    url: str
+
+@typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -549,6 +559,11 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     ]
     peeredNetwork: str
     peeredNetworkIpRange: str
+
+@typing.type_check_only
+class NpmPackage(typing_extensions.TypedDict, total=False):
+    packagePath: str
+    repository: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -663,6 +678,7 @@ class Results(typing_extensions.TypedDict, total=False):
     buildStepOutputs: _list[str]
     images: _list[BuiltImage]
     mavenArtifacts: _list[UploadedMavenArtifact]
+    npmPackages: _list[UploadedNpmPackage]
     numArtifacts: str
     pythonPackages: _list[UploadedPythonPackage]
 
@@ -699,6 +715,7 @@ class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
+    gitSource: GitSource
     repoSource: RepoSource
     storageSource: StorageSource
     storageSourceManifest: StorageSourceManifest
@@ -763,6 +780,12 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class UploadedMavenArtifact(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
+
+@typing.type_check_only
+class UploadedNpmPackage(typing_extensions.TypedDict, total=False):
     fileHashes: FileHashes
     pushTiming: TimeSpan
     uri: str

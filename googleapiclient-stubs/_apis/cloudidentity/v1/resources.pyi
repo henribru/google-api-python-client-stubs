@@ -267,6 +267,21 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
                 body: ModifyMembershipRolesRequest = ...,
                 **kwargs: typing.Any
             ) -> ModifyMembershipRolesResponseHttpRequest: ...
+            def searchDirectGroups(
+                self,
+                *,
+                parent: str,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                query: str = ...,
+                **kwargs: typing.Any
+            ) -> SearchDirectGroupsResponseHttpRequest: ...
+            def searchDirectGroups_next(
+                self,
+                previous_request: SearchDirectGroupsResponseHttpRequest,
+                previous_response: SearchDirectGroupsResponse,
+            ) -> SearchDirectGroupsResponseHttpRequest | None: ...
             def searchTransitiveGroups(
                 self,
                 *,
@@ -683,6 +698,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SearchDirectGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SearchDirectGroupsResponse: ...
 
 @typing.type_check_only
 class SearchGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

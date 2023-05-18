@@ -186,6 +186,12 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
     canHandleCodeInApp: bool
     captchaResp: str
     challenge: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED",
+        "CLIENT_TYPE_WEB",
+        "CLIENT_TYPE_ANDROID",
+        "CLIENT_TYPE_IOS",
+    ]
     continueUrl: str
     dynamicLinkDomain: str
     email: str
@@ -193,6 +199,9 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
     iOSBundleId: str
     idToken: str
     newEmail: str
+    recaptchaVersion: typing_extensions.Literal[
+        "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+    ]
     requestType: typing_extensions.Literal[
         "OOB_REQ_TYPE_UNSPECIFIED",
         "PASSWORD_RESET",
@@ -301,6 +310,7 @@ class GoogleCloudIdentitytoolkitV1MfaEnrollment(
     enrolledAt: str
     mfaEnrollmentId: str
     phoneInfo: str
+    totpInfo: GoogleCloudIdentitytoolkitV1TotpInfo
     unobfuscatedPhoneInfo: str
 
 @typing.type_check_only
@@ -599,12 +609,21 @@ class GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest(
 ):
     captchaChallenge: str
     captchaResponse: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED",
+        "CLIENT_TYPE_WEB",
+        "CLIENT_TYPE_ANDROID",
+        "CLIENT_TYPE_IOS",
+    ]
     delegatedProjectNumber: str
     email: str
     idToken: str
     instanceId: str
     password: str
     pendingIdToken: str
+    recaptchaVersion: typing_extensions.Literal[
+        "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+    ]
     returnSecureToken: bool
     tenantId: str
 
@@ -663,6 +682,12 @@ class GoogleCloudIdentitytoolkitV1SignUpRequest(
 ):
     captchaChallenge: str
     captchaResponse: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED",
+        "CLIENT_TYPE_WEB",
+        "CLIENT_TYPE_ANDROID",
+        "CLIENT_TYPE_IOS",
+    ]
     disabled: bool
     displayName: str
     email: str
@@ -674,6 +699,9 @@ class GoogleCloudIdentitytoolkitV1SignUpRequest(
     password: str
     phoneNumber: str
     photoUrl: str
+    recaptchaVersion: typing_extensions.Literal[
+        "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+    ]
     targetProjectId: str
     tenantId: str
 
@@ -696,6 +724,11 @@ class GoogleCloudIdentitytoolkitV1SqlExpression(
     email: str
     phoneNumber: str
     userId: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV1TotpInfo(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1UploadAccountRequest(

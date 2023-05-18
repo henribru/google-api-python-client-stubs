@@ -35,6 +35,48 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest: ...
 
         @typing.type_check_only
+        class FirewallpoliciesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> (
+                GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest,
+                previous_response: GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse,
+            ) -> (
+                GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest
+                | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
+
+        @typing.type_check_only
         class KeysResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -144,6 +186,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             def memberships(self) -> MembershipsResource: ...
 
         def assessments(self) -> AssessmentsResource: ...
+        def firewallpolicies(self) -> FirewallpoliciesResource: ...
         def keys(self) -> KeysResource: ...
         def relatedaccountgroupmemberships(
             self,
@@ -185,12 +228,32 @@ class GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest(
     ) -> GoogleCloudRecaptchaenterpriseV1Assessment: ...
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicy: ...
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1KeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecaptchaenterpriseV1Key: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest(

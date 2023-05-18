@@ -220,6 +220,7 @@ class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):
 class WordInfo(typing_extensions.TypedDict, total=False):
     confidence: float
     endTime: str
+    speakerLabel: str
     speakerTag: int
     startTime: str
     word: str

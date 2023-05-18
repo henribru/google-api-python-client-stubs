@@ -240,6 +240,13 @@ class GoogleCloudRetailV2alphaBigQueryOutputResult(
     tableId: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaCreateMerchantCenterAccountLinkMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -312,6 +319,29 @@ class GoogleCloudRetailV2alphaImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2alphaImportErrorsConfig
     importSummary: GoogleCloudRetailV2alphaUserEventImportSummary
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaMerchantCenterAccountLink(
+    typing_extensions.TypedDict, total=False
+):
+    branchId: str
+    feedFilters: _list[
+        GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter
+    ]
+    feedLabel: str
+    id: str
+    languageCode: str
+    merchantCenterAccountId: str
+    name: str
+    projectId: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter(
+    typing_extensions.TypedDict, total=False
+):
+    primaryFeedId: str
+    primaryFeedName: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaModel(typing_extensions.TypedDict, total=False):
@@ -695,6 +725,13 @@ class GoogleCloudRetailV2betaControl(typing_extensions.TypedDict, total=False):
     solutionTypes: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -709,7 +746,7 @@ class GoogleCloudRetailV2betaCustomAttribute(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaExperimentInfo(typing_extensions.TypedDict, total=False):
-    experimentName: str
+    experiment: str
     servingConfigExperiment: GoogleCloudRetailV2betaExperimentInfoServingConfigExperiment
 
 @typing.type_check_only
@@ -885,6 +922,29 @@ class GoogleCloudRetailV2betaLocalInventory(typing_extensions.TypedDict, total=F
     fulfillmentTypes: _list[str]
     placeId: str
     priceInfo: GoogleCloudRetailV2betaPriceInfo
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaMerchantCenterAccountLink(
+    typing_extensions.TypedDict, total=False
+):
+    branchId: str
+    feedFilters: _list[
+        GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter
+    ]
+    feedLabel: str
+    id: str
+    languageCode: str
+    merchantCenterAccountId: str
+    name: str
+    projectId: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter(
+    typing_extensions.TypedDict, total=False
+):
+    primaryFeedId: str
+    primaryFeedName: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaMerchantCenterFeedFilter(
@@ -1251,6 +1311,7 @@ class GoogleCloudRetailV2betaSearchRequest(typing_extensions.TypedDict, total=Fa
     branch: str
     canonicalFilter: str
     dynamicFacetSpec: GoogleCloudRetailV2betaSearchRequestDynamicFacetSpec
+    entity: str
     facetSpecs: _list[GoogleCloudRetailV2betaSearchRequestFacetSpec]
     filter: str
     labels: dict[str, typing.Any]
@@ -1459,6 +1520,7 @@ class GoogleCloudRetailV2betaUserEvent(typing_extensions.TypedDict, total=False)
     attributionToken: str
     cartId: str
     completionDetail: GoogleCloudRetailV2betaCompletionDetail
+    entity: str
     eventTime: str
     eventType: str
     experimentIds: _list[str]

@@ -294,6 +294,7 @@ class TransferOperation(typing_extensions.TypedDict, total=False):
     counters: TransferCounters
     endTime: str
     errorBreakdowns: _list[ErrorSummary]
+    loggingConfig: LoggingConfig
     name: str
     notificationConfig: NotificationConfig
     projectId: str

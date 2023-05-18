@@ -84,6 +84,16 @@ class Domain(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class DomainJoinMachineRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    ouName: str
+    vmIdToken: str
+
+@typing.type_check_only
+class DomainJoinMachineResponse(typing_extensions.TypedDict, total=False):
+    domainJoinBlob: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only

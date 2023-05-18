@@ -465,30 +465,6 @@ class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpClientconnectorservicesV1ClientConnectorServiceOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpClientgatewaysV1ClientGatewayOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    createTime: str
-    endTime: str
-    requestedCancellation: bool
-    statusMessage: str
-    target: str
-    verb: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaAppliedConfig(
     typing_extensions.TypedDict, total=False
 ):

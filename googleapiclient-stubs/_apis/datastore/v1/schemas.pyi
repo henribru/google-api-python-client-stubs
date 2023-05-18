@@ -71,7 +71,7 @@ class CommitResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CompositeFilter(typing_extensions.TypedDict, total=False):
     filters: _list[Filter]
-    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND"]
+    op: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
 
 @typing.type_check_only
 class Count(typing_extensions.TypedDict, total=False):

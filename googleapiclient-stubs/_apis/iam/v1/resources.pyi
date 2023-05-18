@@ -42,6 +42,41 @@ class IamResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
 
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WorkforcePoolProviderKey = ...,
+                        workforcePoolProviderKeyId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WorkforcePoolProviderKeyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> ListWorkforcePoolProviderKeysResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWorkforcePoolProviderKeysResponseHttpRequest,
+                        previous_response: ListWorkforcePoolProviderKeysResponse,
+                    ) -> ListWorkforcePoolProviderKeysResponseHttpRequest | None: ...
+                    def undelete(
+                        self,
+                        *,
+                        name: str,
+                        body: UndeleteWorkforcePoolProviderKeyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
@@ -268,6 +303,46 @@ class IamResource(googleapiclient.discovery.Resource):
                                 self, *, name: str, **kwargs: typing.Any
                             ) -> OperationHttpRequest: ...
 
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: WorkloadIdentityPoolProviderKey = ...,
+                            workloadIdentityPoolProviderKeyId: str = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> WorkloadIdentityPoolProviderKeyHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            showDeleted: bool = ...,
+                            **kwargs: typing.Any
+                        ) -> (
+                            ListWorkloadIdentityPoolProviderKeysResponseHttpRequest
+                        ): ...
+                        def list_next(
+                            self,
+                            previous_request: ListWorkloadIdentityPoolProviderKeysResponseHttpRequest,
+                            previous_response: ListWorkloadIdentityPoolProviderKeysResponse,
+                        ) -> (
+                            ListWorkloadIdentityPoolProviderKeysResponseHttpRequest
+                            | None
+                        ): ...
+                        def undelete(
+                            self,
+                            *,
+                            name: str,
+                            body: UndeleteWorkloadIdentityPoolProviderKeyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
                         def operations(self) -> OperationsResource: ...
 
                     @typing.type_check_only
@@ -652,6 +727,16 @@ class ListServiceAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListServiceAccountsResponse: ...
 
 @typing.type_check_only
+class ListWorkforcePoolProviderKeysResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListWorkforcePoolProviderKeysResponse: ...
+
+@typing.type_check_only
 class ListWorkforcePoolProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -666,6 +751,16 @@ class ListWorkforcePoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListWorkforcePoolsResponse: ...
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolProviderKeysResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListWorkloadIdentityPoolProviderKeysResponse: ...
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolProvidersResponseHttpRequest(
@@ -798,6 +893,14 @@ class WorkforcePoolProviderHttpRequest(googleapiclient.http.HttpRequest):
     ) -> WorkforcePoolProvider: ...
 
 @typing.type_check_only
+class WorkforcePoolProviderKeyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> WorkforcePoolProviderKey: ...
+
+@typing.type_check_only
 class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -812,3 +915,11 @@ class WorkloadIdentityPoolProviderHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> WorkloadIdentityPoolProvider: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolProviderKeyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> WorkloadIdentityPoolProviderKey: ...

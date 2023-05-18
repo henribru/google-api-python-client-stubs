@@ -57,7 +57,6 @@ class Contest(typing_extensions.TypedDict, total=False):
     numberVotingFor: str
     office: str
     primaryParties: _list[str]
-    primaryParty: str
     referendumBallotResponses: _list[str]
     referendumBrief: str
     referendumConStatement: str

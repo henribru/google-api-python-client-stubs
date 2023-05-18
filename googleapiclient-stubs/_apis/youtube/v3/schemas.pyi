@@ -1283,7 +1283,6 @@ class LiveBroadcastSnippet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LiveBroadcastStatistics(typing_extensions.TypedDict, total=False):
     concurrentViewers: str
-    totalChatCount: str
 
 @typing.type_check_only
 class LiveBroadcastStatus(typing_extensions.TypedDict, total=False):

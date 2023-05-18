@@ -262,6 +262,7 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     numMacros: str
     numRules: str
     numTags: str
+    numTransformations: str
     numTriggers: str
     numVariables: str
     numZones: str

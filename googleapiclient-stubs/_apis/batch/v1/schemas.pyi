@@ -45,6 +45,9 @@ class AgentTask(typing_extensions.TypedDict, total=False):
     spec: TaskSpec
     status: TaskStatus
     task: str
+    taskSource: typing_extensions.Literal[
+        "TASK_SOURCE_UNSPECIFIED", "BATCH_INTERNAL", "USER"
+    ]
 
 @typing.type_check_only
 class AgentTaskInfo(typing_extensions.TypedDict, total=False):
@@ -240,7 +243,13 @@ class Message(typing_extensions.TypedDict, total=False):
         "DELETION_IN_PROGRESS",
     ]
     newTaskState: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "ASSIGNED", "RUNNING", "FAILED", "SUCCEEDED"
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "ASSIGNED",
+        "RUNNING",
+        "FAILED",
+        "SUCCEEDED",
+        "UNEXECUTED",
     ]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "JOB_STATE_CHANGED", "TASK_STATE_CHANGED"
@@ -324,7 +333,13 @@ class StatusEvent(typing_extensions.TypedDict, total=False):
     eventTime: str
     taskExecution: TaskExecution
     taskState: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "ASSIGNED", "RUNNING", "FAILED", "SUCCEEDED"
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "ASSIGNED",
+        "RUNNING",
+        "FAILED",
+        "SUCCEEDED",
+        "UNEXECUTED",
     ]
     type: str
 
@@ -367,7 +382,13 @@ class TaskSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TaskStatus(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "ASSIGNED", "RUNNING", "FAILED", "SUCCEEDED"
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "ASSIGNED",
+        "RUNNING",
+        "FAILED",
+        "SUCCEEDED",
+        "UNEXECUTED",
     ]
     statusEvents: _list[StatusEvent]
 

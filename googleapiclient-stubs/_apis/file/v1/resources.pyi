@@ -143,6 +143,13 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     body: RestoreInstanceRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def revert(
+                    self,
+                    *,
+                    name: str,
+                    body: RevertInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def snapshots(self) -> SnapshotsResource: ...
 
             @typing.type_check_only

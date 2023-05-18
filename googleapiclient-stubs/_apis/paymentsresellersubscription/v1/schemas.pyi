@@ -25,6 +25,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest(
         "CANCELLATION_REASON_ACCOUNT_CLOSED",
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_USER_DELINQUENCY",
+        "CANCELLATION_REASON_SYSTEM_ERROR",
         "CANCELLATION_REASON_OTHER",
     ]
 
@@ -247,6 +248,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
         "CANCELLATION_REASON_ACCOUNT_CLOSED",
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_USER_DELINQUENCY",
+        "CANCELLATION_REASON_SYSTEM_ERROR",
         "CANCELLATION_REASON_OTHER",
     ]
 
@@ -276,6 +278,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
         "LINE_ITEM_STATE_ACTIVATING",
         "LINE_ITEM_STATE_DEACTIVATING",
         "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE",
+        "LINE_ITEM_STATE_OFF_CYCLE_CHARGING",
     ]
 
 @typing.type_check_only

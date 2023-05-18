@@ -157,6 +157,13 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                 ) -> (
                     GoogleCloudContentwarehouseV1ListLinkedTargetsResponseHttpRequest
                 ): ...
+                def lock(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContentwarehouseV1LockDocumentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudContentwarehouseV1DocumentHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -281,13 +288,6 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                 *,
                 location: str,
                 body: GoogleCloudContentwarehouseV1InitializeProjectRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleLongrunningOperationHttpRequest: ...
-            def runPipeline(
-                self,
-                *,
-                name: str,
-                body: GoogleCloudContentwarehouseV1RunPipelineRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def documentSchemas(self) -> DocumentSchemasResource: ...

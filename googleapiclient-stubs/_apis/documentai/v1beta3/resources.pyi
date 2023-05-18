@@ -127,6 +127,13 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDocumentaiV1beta3ProcessorVersionHttpRequest: ...
+                    def importProcessorVersion(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,

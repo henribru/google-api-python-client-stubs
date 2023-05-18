@@ -36,6 +36,7 @@ class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
 ):
     allowAllPackageNames: bool
     allowedPackageNames: _list[str]
+    supportNonGoogleAppStoreDistribution: bool
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
@@ -64,6 +65,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     accountVerification: GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo
     event: GoogleCloudRecaptchaenterpriseV1Event
+    firewallPolicyAssessment: GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment
     fraudPreventionAssessment: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment
     name: str
     privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
@@ -91,20 +93,88 @@ class GoogleCloudRecaptchaenterpriseV1EndpointVerificationInfo(
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=False):
     expectedAction: str
+    express: bool
+    firewallPolicyEvaluation: bool
     hashedAccountId: str
+    headers: _list[str]
+    ja3: str
+    requestedUri: str
     siteKey: str
     token: str
     transactionData: GoogleCloudRecaptchaenterpriseV1TransactionData
     userAgent: str
     userIpAddress: str
+    wafTokenAssessment: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallAction(
+    typing_extensions.TypedDict, total=False
+):
+    allow: GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction
+    block: GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction
+    redirect: GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction
+    setHeader: GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction
+    substitute: GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction(
+    typing_extensions.TypedDict, total=False
+):
+    path: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    actions: _list[GoogleCloudRecaptchaenterpriseV1FirewallAction]
+    condition: str
+    description: str
+    name: str
+    path: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment(
+    typing_extensions.TypedDict, total=False
+):
+    error: GoogleRpcStatus
+    firewallPolicy: GoogleCloudRecaptchaenterpriseV1FirewallPolicy
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
     typing_extensions.TypedDict, total=False
 ):
+    behavioralTrustVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict
     cardTestingVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict
     stolenInstrumentVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict
     transactionRisk: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict(
+    typing_extensions.TypedDict, total=False
+):
+    trust: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict(
@@ -136,6 +206,13 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     testingOptions: GoogleCloudRecaptchaenterpriseV1TestingOptions
     wafSettings: GoogleCloudRecaptchaenterpriseV1WafSettings
     webSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettings
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    firewallPolicies: _list[GoogleCloudRecaptchaenterpriseV1FirewallPolicy]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListKeysResponse(
@@ -205,6 +282,7 @@ class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse(
 class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
     typing_extensions.TypedDict, total=False
 ):
+    extendedVerdictReasons: _list[str]
     reasons: _list[str]
     score: float
 
@@ -359,7 +437,11 @@ class GoogleCloudRecaptchaenterpriseV1WafSettings(
     typing_extensions.TypedDict, total=False
 ):
     wafFeature: typing_extensions.Literal[
-        "WAF_FEATURE_UNSPECIFIED", "CHALLENGE_PAGE", "SESSION_TOKEN", "ACTION_TOKEN"
+        "WAF_FEATURE_UNSPECIFIED",
+        "CHALLENGE_PAGE",
+        "SESSION_TOKEN",
+        "ACTION_TOKEN",
+        "EXPRESS",
     ]
     wafService: typing_extensions.Literal["WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY"]
 
@@ -379,3 +461,9 @@ class GoogleCloudRecaptchaenterpriseV1WebKeySettings(
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str

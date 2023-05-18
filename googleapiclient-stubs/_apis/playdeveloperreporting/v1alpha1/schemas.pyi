@@ -29,6 +29,13 @@ class GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet(
     name: str
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1DecimalConfidenceInterval(
+    typing_extensions.TypedDict, total=False
+):
+    lowerBound: GoogleTypeDecimal
+    upperBound: GoogleTypeDecimal
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1DimensionValue(
     typing_extensions.TypedDict, total=False
 ):
@@ -100,6 +107,7 @@ class GooglePlayDeveloperReportingV1alpha1MetricValue(
     typing_extensions.TypedDict, total=False
 ):
     decimalValue: GoogleTypeDecimal
+    decimalValueConfidenceInterval: GooglePlayDeveloperReportingV1alpha1DecimalConfidenceInterval
     metric: str
 
 @typing.type_check_only
@@ -123,6 +131,9 @@ class GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetRequest(
     pageSize: int
     pageToken: str
     timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponse(
@@ -141,6 +152,9 @@ class GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetRequest(
     pageSize: int
     pageToken: str
     timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponse(
@@ -177,9 +191,54 @@ class GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetReque
     pageSize: int
     pageToken: str
     timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rows: _list[GooglePlayDeveloperReportingV1alpha1MetricsRow]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[str]
+    pageSize: int
+    pageToken: str
+    timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rows: _list[GooglePlayDeveloperReportingV1alpha1MetricsRow]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[str]
+    pageSize: int
+    pageToken: str
+    timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
@@ -195,6 +254,9 @@ class GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetric
     pageSize: int
     pageToken: str
     timelineSpec: GooglePlayDeveloperReportingV1alpha1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponse(
@@ -216,6 +278,20 @@ class GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse(
 ):
     errorReports: _list[GooglePlayDeveloperReportingV1alpha1ErrorReport]
     nextPageToken: str
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSet(
+    typing_extensions.TypedDict, total=False
+):
+    freshnessInfo: GooglePlayDeveloperReportingV1alpha1FreshnessInfo
+    name: str
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSet(
+    typing_extensions.TypedDict, total=False
+):
+    freshnessInfo: GooglePlayDeveloperReportingV1alpha1FreshnessInfo
+    name: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSet(

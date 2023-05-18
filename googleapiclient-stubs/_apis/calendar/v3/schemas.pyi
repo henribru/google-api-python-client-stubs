@@ -192,6 +192,7 @@ class Event(typing_extensions.TypedDict, total=False):
     transparency: str
     updated: str
     visibility: str
+    workingLocationProperties: EventWorkingLocationProperties
 
 @typing.type_check_only
 class EventAttachment(typing_extensions.TypedDict, total=False):
@@ -224,6 +225,12 @@ class EventDateTime(typing_extensions.TypedDict, total=False):
 class EventReminder(typing_extensions.TypedDict, total=False):
     method: str
     minutes: int
+
+@typing.type_check_only
+class EventWorkingLocationProperties(typing_extensions.TypedDict, total=False):
+    customLocation: dict[str, typing.Any]
+    homeOffice: typing.Any
+    officeLocation: dict[str, typing.Any]
 
 @typing.type_check_only
 class Events(typing_extensions.TypedDict, total=False):

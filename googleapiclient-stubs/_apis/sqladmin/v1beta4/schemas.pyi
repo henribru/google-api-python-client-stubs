@@ -12,6 +12,10 @@ class AclEntry(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+    threadsPerCore: int
+
+@typing.type_check_only
 class ApiWarning(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "SQL_API_WARNING_CODE_UNSPECIFIED",
@@ -130,6 +134,10 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_30",
         "MYSQL_8_0_31",
         "MYSQL_8_0_32",
+        "MYSQL_8_0_33",
+        "MYSQL_8_0_34",
+        "MYSQL_8_0_35",
+        "MYSQL_8_0_36",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -192,6 +200,10 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_30",
         "MYSQL_8_0_31",
         "MYSQL_8_0_32",
+        "MYSQL_8_0_33",
+        "MYSQL_8_0_34",
+        "MYSQL_8_0_35",
+        "MYSQL_8_0_36",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -526,6 +538,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "START_EXTERNAL_SYNC",
         "LOG_CLEANUP",
         "AUTO_RESTART",
+        "REENCRYPT",
     ]
     selfLink: str
     startTime: str
@@ -549,6 +562,16 @@ class OperationErrors(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class OperationsListResponse(typing_extensions.TypedDict, total=False):
     items: _list[Operation]
     kind: str
@@ -569,6 +592,10 @@ class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
     minLength: int
     passwordChangeInterval: str
     reuseInterval: int
+
+@typing.type_check_only
+class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
+    targetSizeGb: str
 
 @typing.type_check_only
 class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
@@ -604,6 +631,7 @@ class Settings(typing_extensions.TypedDict, total=False):
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER", "ON_DEMAND"
     ]
     activeDirectoryConfig: SqlActiveDirectoryConfig
+    advancedMachineFeatures: AdvancedMachineFeatures
     authorizedGaeApplications: _list[str]
     availabilityType: typing_extensions.Literal[
         "SQL_AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
@@ -680,13 +708,22 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "BINLOG_RETENTION_SETTING",
         "UNSUPPORTED_STORAGE_ENGINE",
         "LIMITED_SUPPORT_TABLES",
+        "EXISTING_DATA_IN_REPLICA",
     ]
+
+@typing.type_check_only
+class SqlInstancesGetDiskShrinkConfigResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    minimalTargetSizeGb: str
 
 @typing.type_check_only
 class SqlInstancesRescheduleMaintenanceRequestBody(
     typing_extensions.TypedDict, total=False
 ):
     reschedule: Reschedule
+
+@typing.type_check_only
+class SqlInstancesResetReplicaSizeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=False):

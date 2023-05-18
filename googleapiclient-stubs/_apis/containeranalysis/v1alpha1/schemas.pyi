@@ -18,6 +18,8 @@ class Artifact(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Assessment(typing_extensions.TypedDict, total=False):
     cve: str
+    impacts: _list[str]
+    justification: Justification
     longDescription: str
     relatedUris: _list[URI]
     remediations: _list[Remediation]
@@ -25,7 +27,6 @@ class Assessment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
-    threats: _list[Threat]
 
 @typing.type_check_only
 class Attestation(typing_extensions.TypedDict, total=False):
@@ -357,6 +358,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     typing_extensions.TypedDict, total=False
 ):
+    defaultLogsBucketBehavior: typing_extensions.Literal[
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+    ]
     diskSizeGb: str
     dynamicSubstitutions: bool
     env: _list[str]
@@ -671,6 +675,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
+        "SBOM_REFERENCE",
     ]
 
 @typing.type_check_only
@@ -932,6 +937,18 @@ class Installation(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class Justification(typing_extensions.TypedDict, total=False):
+    details: str
+    justificationType: typing_extensions.Literal[
+        "JUSTIFICATION_TYPE_UNSPECIFIED",
+        "COMPONENT_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_PRESENT",
+        "VULNERABLE_CODE_NOT_IN_EXECUTE_PATH",
+        "VULNERABLE_CODE_CANNOT_BE_CONTROLLED_BY_ADVERSARY",
+        "INLINE_MITIGATIONS_ALREADY_EXIST",
+    ]
+
+@typing.type_check_only
 class Layer(typing_extensions.TypedDict, total=False):
     arguments: str
     directive: typing_extensions.Literal[
@@ -1033,12 +1050,14 @@ class Note(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
+        "SBOM_REFERENCE",
     ]
     longDescription: str
     name: str
     package: Package
     relatedUrl: _list[RelatedUrl]
     sbom: DocumentNote
+    sbomReference: SBOMReferenceNote
     shortDescription: str
     spdxFile: FileNote
     spdxPackage: PackageInfoNote
@@ -1077,6 +1096,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "SPDX_RELATIONSHIP",
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
+        "SBOM_REFERENCE",
     ]
     name: str
     noteName: str
@@ -1084,6 +1104,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     resource: Resource
     resourceUrl: str
     sbom: DocumentOccurrence
+    sbomReference: SBOMReferenceOccurrence
     spdxFile: FileOccurrence
     spdxPackage: PackageInfoOccurrence
     spdxRelationship: RelationshipOccurrence
@@ -1178,9 +1199,9 @@ class Product(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Publisher(typing_extensions.TypedDict, total=False):
-    context: str
     issuingAuthority: str
     name: str
+    publisherNamespace: str
 
 @typing.type_check_only
 class Recipe(typing_extensions.TypedDict, total=False):
@@ -1299,7 +1320,6 @@ class RelationshipOccurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Remediation(typing_extensions.TypedDict, total=False):
     details: str
-    remediationTime: str
     remediationType: typing_extensions.Literal[
         "REMEDIATION_TYPE_UNSPECIFIED",
         "MITIGATION",
@@ -1323,6 +1343,31 @@ class Resource(typing_extensions.TypedDict, total=False):
     contentHash: Hash
     name: str
     uri: str
+
+@typing.type_check_only
+class SBOMReferenceNote(typing_extensions.TypedDict, total=False):
+    format: str
+    version: str
+
+@typing.type_check_only
+class SBOMReferenceOccurrence(typing_extensions.TypedDict, total=False):
+    payload: SbomReferenceIntotoPayload
+    payloadType: str
+    signatures: _list[EnvelopeSignature]
+
+@typing.type_check_only
+class SbomReferenceIntotoPayload(typing_extensions.TypedDict, total=False):
+    _type: str
+    predicate: SbomReferenceIntotoPredicate
+    predicateType: str
+    subject: _list[Subject]
+
+@typing.type_check_only
+class SbomReferenceIntotoPredicate(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    location: str
+    mimeType: str
+    referrerId: str
 
 @typing.type_check_only
 class ScanConfig(typing_extensions.TypedDict, total=False):
@@ -1422,13 +1467,6 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
-class Threat(typing_extensions.TypedDict, total=False):
-    details: str
-    threatType: typing_extensions.Literal[
-        "THREAT_TYPE_UNSPECIFIED", "IMPACT", "EXPLOIT_STATUS"
-    ]
-
-@typing.type_check_only
 class TimeSpan(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
@@ -1473,13 +1511,14 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VexAssessment(typing_extensions.TypedDict, total=False):
     cve: str
+    impacts: _list[str]
+    justification: Justification
     noteName: str
     relatedUris: _list[URI]
     remediations: _list[Remediation]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
-    threats: _list[Threat]
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):

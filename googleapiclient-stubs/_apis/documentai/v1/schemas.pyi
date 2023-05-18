@@ -5,6 +5,28 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
+    individualAutoLabelStatuses: _list[
+        GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus
+    ]
+    totalDocumentCount: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabelStatus(
+    typing_extensions.TypedDict, total=False
+):
+    gcsUri: str
+    status: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1131,6 +1153,7 @@ class GoogleCloudDocumentaiV1ProcessorVersion(typing_extensions.TypedDict, total
         "CREATING",
         "DELETING",
         "FAILED",
+        "IMPORTING",
     ]
 
 @typing.type_check_only
@@ -2237,6 +2260,18 @@ class GoogleCloudDocumentaiV1beta3HumanReviewStatus(
         "STATE_UNSPECIFIED", "SKIPPED", "VALIDATION_PASSED", "IN_PROGRESS", "ERROR"
     ]
     stateMessage: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ImportProcessorVersionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ImportProcessorVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    processorVersion: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata(

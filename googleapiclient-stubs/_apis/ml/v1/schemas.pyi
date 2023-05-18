@@ -128,6 +128,7 @@ class GoogleCloudMlV1__AcceleratorConfig(typing_extensions.TypedDict, total=Fals
         "TPU_V3",
         "TPU_V2_POD",
         "TPU_V3_POD",
+        "TPU_V4_POD",
     ]
 
 @typing.type_check_only

@@ -161,6 +161,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     compliantButDisallowedServices: _list[str]
     createTime: str
     displayName: str
+    ekmProvisioningResponse: GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse
     enableSovereignControls: bool
     etag: str
     kajEnrollmentState: typing_extensions.Literal[
@@ -175,6 +176,8 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "PARTNER_UNSPECIFIED",
         "LOCAL_CONTROLS_BY_S3NS",
         "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
+        "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
+        "SOVEREIGN_CONTROLS_BY_PSN",
     ]
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
@@ -187,6 +190,31 @@ class GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus(
 ):
     acknowledgedViolationCount: int
     activeViolationCount: int
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse(
+    typing_extensions.TypedDict, total=False
+):
+    ekmProvisioningErrorDomain: typing_extensions.Literal[
+        "EKM_PROVISIONING_ERROR_DOMAIN_UNSPECIFIED",
+        "UNSPECIFIED_ERROR",
+        "GOOGLE_SERVER_ERROR",
+        "EXTERNAL_USER_ERROR",
+        "EXTERNAL_PARTNER_ERROR",
+        "TIMEOUT_ERROR",
+    ]
+    ekmProvisioningErrorMapping: typing_extensions.Literal[
+        "EKM_PROVISIONING_ERROR_MAPPING_UNSPECIFIED",
+        "INVALID_SERVICE_ACCOUNT",
+        "MISSING_METRICS_SCOPE_ADMIN_PERMISSION",
+        "MISSING_EKM_CONNECTION_ADMIN_PERMISSION",
+    ]
+    ekmProvisioningState: typing_extensions.Literal[
+        "EKM_PROVISIONING_STATE_UNSPECIFIED",
+        "EKM_PROVISIONING_STATE_PENDING",
+        "EKM_PROVISIONING_STATE_FAILED",
+        "EKM_PROVISIONING_STATE_COMPLETED",
+    ]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(

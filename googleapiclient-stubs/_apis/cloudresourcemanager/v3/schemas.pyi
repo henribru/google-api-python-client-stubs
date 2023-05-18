@@ -286,6 +286,7 @@ class TagBinding(typing_extensions.TypedDict, total=False):
     name: str
     parent: str
     tagValue: str
+    tagValueNamespacedName: str
 
 @typing.type_check_only
 class TagHold(typing_extensions.TypedDict, total=False):

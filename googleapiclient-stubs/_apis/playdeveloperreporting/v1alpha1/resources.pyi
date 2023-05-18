@@ -207,6 +207,50 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
             ): ...
 
         @typing.type_check_only
+        class SlowrenderingrateResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSetHttpRequest: ...
+            def query(
+                self,
+                *,
+                name: str,
+                body: GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetRequest = ...,
+                **kwargs: typing.Any
+            ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponseHttpRequest: ...
+            def query_next(
+                self,
+                previous_request: GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponseHttpRequest,
+                previous_response: GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse,
+            ) -> (
+                GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
+        class SlowstartrateResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> (
+                GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSetHttpRequest
+            ): ...
+            def query(
+                self,
+                *,
+                name: str,
+                body: GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetRequest = ...,
+                **kwargs: typing.Any
+            ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHttpRequest: ...
+            def query_next(
+                self,
+                previous_request: GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHttpRequest,
+                previous_response: GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse,
+            ) -> (
+                GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class StuckbackgroundwakelockrateResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -231,6 +275,8 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
         def crashrate(self) -> CrashrateResource: ...
         def errors(self) -> ErrorsResource: ...
         def excessivewakeuprate(self) -> ExcessivewakeuprateResource: ...
+        def slowrenderingrate(self) -> SlowrenderingrateResource: ...
+        def slowstartrate(self) -> SlowstartrateResource: ...
         def stuckbackgroundwakelockrate(
             self,
         ) -> StuckbackgroundwakelockrateResource: ...
@@ -343,6 +389,28 @@ class GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetRespo
     ): ...
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> (
+        GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse
+    ): ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse: ...
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -371,6 +439,26 @@ class GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSet: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSetHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSet: ...
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSetHttpRequest(

@@ -651,6 +651,9 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponseHttpRequest: ...
 
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
                     def execute(
                         self,
                         *,

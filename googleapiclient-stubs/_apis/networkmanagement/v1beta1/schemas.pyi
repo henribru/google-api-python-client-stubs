@@ -164,6 +164,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "VPC_CONNECTOR_NOT_RUNNING",
         "PSC_CONNECTION_NOT_ACCEPTED",
         "CLOUD_RUN_REVISION_NOT_READY",
+        "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
     ]
     resourceUri: str
 
@@ -180,9 +181,31 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     cloudFunction: CloudFunctionEndpoint
     cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
+    forwardingRule: str
+    forwardingRuleTarget: typing_extensions.Literal[
+        "FORWARDING_RULE_TARGET_UNSPECIFIED",
+        "INSTANCE",
+        "LOAD_BALANCER",
+        "VPN_GATEWAY",
+        "PSC",
+    ]
     gkeMasterCluster: str
     instance: str
     ipAddress: str
+    loadBalancerId: str
+    loadBalancerType: typing_extensions.Literal[
+        "LOAD_BALANCER_TYPE_UNSPECIFIED",
+        "HTTPS_ADVANCED_LOAD_BALANCER",
+        "HTTPS_LOAD_BALANCER",
+        "REGIONAL_HTTPS_LOAD_BALANCER",
+        "INTERNAL_HTTPS_LOAD_BALANCER",
+        "SSL_PROXY_LOAD_BALANCER",
+        "TCP_PROXY_LOAD_BALANCER",
+        "INTERNAL_TCP_PROXY_LOAD_BALANCER",
+        "NETWORK_LOAD_BALANCER",
+        "LEGACY_NETWORK_LOAD_BALANCER",
+        "TCP_UDP_INTERNAL_LOAD_BALANCER",
+    ]
     network: str
     networkType: typing_extensions.Literal[
         "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK"

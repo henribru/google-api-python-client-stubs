@@ -71,14 +71,19 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Gateway(typing_extensions.TypedDict, total=False):
+    addresses: _list[str]
+    certificateUrls: _list[str]
     createTime: str
     description: str
+    gatewaySecurityPolicy: str
     labels: dict[str, typing.Any]
     name: str
+    network: str
     ports: _list[int]
     scope: str
     selfLink: str
     serverTlsPolicy: str
+    subnetwork: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "OPEN_MESH", "SECURE_WEB_GATEWAY"
     ]

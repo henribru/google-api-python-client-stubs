@@ -520,6 +520,7 @@ class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudDataplexV1DataSource(typing_extensions.TypedDict, total=False):
     entity: str
+    resource: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataTaxonomy(typing_extensions.TypedDict, total=False):

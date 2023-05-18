@@ -184,6 +184,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 jobId: str,
                 body: Job = ...,
                 location: str = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> JobHttpRequest: ...
             def debug(self) -> DebugResource: ...
@@ -400,6 +401,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     location: str,
                     jobId: str,
                     body: Job = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> JobHttpRequest: ...
                 def debug(self) -> DebugResource: ...

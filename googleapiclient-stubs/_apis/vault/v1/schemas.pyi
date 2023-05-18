@@ -264,6 +264,12 @@ class MailExportOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MailOptions(typing_extensions.TypedDict, total=False):
+    clientSideEncryptedOption: typing_extensions.Literal[
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNSPECIFIED",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ANY",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_ENCRYPTED",
+        "CLIENT_SIDE_ENCRYPTED_OPTION_UNENCRYPTED",
+    ]
     excludeDrafts: bool
 
 @typing.type_check_only

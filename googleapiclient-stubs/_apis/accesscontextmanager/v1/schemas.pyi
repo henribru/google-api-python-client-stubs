@@ -136,6 +136,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
+    dryRunAccessLevels: _list[str]
     groupKey: str
     name: str
 

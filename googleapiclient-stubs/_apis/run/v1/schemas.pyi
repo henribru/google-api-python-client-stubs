@@ -94,6 +94,12 @@ class Container(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
+class ContainerOverride(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    env: _list[EnvVar]
+    name: str
+
+@typing.type_check_only
 class ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
     name: str
@@ -365,6 +371,12 @@ class ObjectMeta(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class Overrides(typing_extensions.TypedDict, total=False):
+    containerOverrides: _list[ContainerOverride]
+    taskCount: int
+    timeoutSeconds: int
+
+@typing.type_check_only
 class OwnerReference(typing_extensions.TypedDict, total=False):
     apiVersion: str
     blockOwnerDeletion: bool
@@ -455,7 +467,8 @@ class RouteStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
-class RunJobRequest(typing_extensions.TypedDict, total=False): ...
+class RunJobRequest(typing_extensions.TypedDict, total=False):
+    overrides: Overrides
 
 @typing.type_check_only
 class SecretEnvSource(typing_extensions.TypedDict, total=False):

@@ -194,7 +194,9 @@ class DataprocMetricConfig(typing_extensions.TypedDict, total=False):
 class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False):
     diagnosisInterval: Interval
     job: str
+    jobs: _list[str]
     yarnApplicationId: str
+    yarnApplicationIds: _list[str]
 
 @typing.type_check_only
 class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):

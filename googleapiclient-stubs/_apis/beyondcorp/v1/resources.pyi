@@ -253,27 +253,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ClientConnectorServicesResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ClientConnectorService = ...,
-                    clientConnectorServiceId: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    name: str,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ClientConnectorServiceHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -281,32 +260,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1PolicyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListClientConnectorServicesResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListClientConnectorServicesResponseHttpRequest,
-                    previous_response: ListClientConnectorServicesResponse,
-                ) -> ListClientConnectorServicesResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: ClientConnectorService = ...,
-                    allowMissing: bool = ...,
-                    requestId: str = ...,
-                    updateMask: str = ...,
-                    validateOnly: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -324,27 +277,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class ClientGatewaysResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: ClientGateway = ...,
-                    clientGatewayId: str = ...,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def delete(
-                    self,
-                    *,
-                    name: str,
-                    requestId: str = ...,
-                    validateOnly: bool = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> ClientGatewayHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -352,21 +284,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1PolicyHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    filter: str = ...,
-                    orderBy: str = ...,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListClientGatewaysResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListClientGatewaysResponseHttpRequest,
-                    previous_response: ListClientGatewaysResponse,
-                ) -> ListClientGatewaysResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -459,22 +376,6 @@ class AppGatewayHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> AppGateway: ...
-
-@typing.type_check_only
-class ClientConnectorServiceHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ClientConnectorService: ...
-
-@typing.type_check_only
-class ClientGatewayHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ClientGateway: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -605,19 +506,3 @@ class ListAppGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAppGatewaysResponse: ...
-
-@typing.type_check_only
-class ListClientConnectorServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ListClientConnectorServicesResponse: ...
-
-@typing.type_check_only
-class ListClientGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> ListClientGatewaysResponse: ...

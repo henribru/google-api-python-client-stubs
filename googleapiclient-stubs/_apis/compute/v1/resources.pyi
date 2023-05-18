@@ -3377,6 +3377,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def simulateMaintenanceEvent(
+            self,
+            *,
+            project: str,
+            zone: str,
+            nodeGroup: str,
+            body: NodeGroupsSimulateMaintenanceEventRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def testIamPermissions(
             self,
             *,
@@ -4571,52 +4581,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
-    class RegionInstanceTemplatesResource(googleapiclient.discovery.Resource):
-        def delete(
-            self,
-            *,
-            project: str,
-            region: str,
-            instanceTemplate: str,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def get(
-            self,
-            *,
-            project: str,
-            region: str,
-            instanceTemplate: str,
-            **kwargs: typing.Any
-        ) -> InstanceTemplateHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            region: str,
-            body: InstanceTemplate = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            region: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any
-        ) -> InstanceTemplateListHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: InstanceTemplateListHttpRequest,
-            previous_response: InstanceTemplateList,
-        ) -> InstanceTemplateListHttpRequest | None: ...
-
-    @typing.type_check_only
     class RegionInstancesResource(googleapiclient.discovery.Resource):
         def bulkInsert(
             self,
@@ -5585,6 +5549,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             router: str,
             filter: str = ...,
             maxResults: int = ...,
+            natName: str = ...,
             orderBy: str = ...,
             pageToken: str = ...,
             returnPartialSuccess: bool = ...,
@@ -7226,7 +7191,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
-    def regionInstanceTemplates(self) -> RegionInstanceTemplatesResource: ...
     def regionInstances(self) -> RegionInstancesResource: ...
     def regionNetworkEndpointGroups(self) -> RegionNetworkEndpointGroupsResource: ...
     def regionNetworkFirewallPolicies(

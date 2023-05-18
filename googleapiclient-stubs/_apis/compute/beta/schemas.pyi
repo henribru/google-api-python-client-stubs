@@ -217,6 +217,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
     ]
     provisionedIops: str
     provisionedThroughput: str
+    replicaZones: _list[str]
     resourceManagerTags: dict[str, typing.Any]
     resourcePolicies: _list[str]
     sourceImage: str
@@ -724,6 +725,10 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BulkInsertDiskResource(typing_extensions.TypedDict, total=False):
+    sourceConsistencyGroupPolicy: str
+
+@typing.type_check_only
 class BulkInsertInstanceResource(typing_extensions.TypedDict, total=False):
     count: str
     instanceProperties: InstanceProperties
@@ -922,6 +927,8 @@ class Disk(typing_extensions.TypedDict, total=False):
     architecture: typing_extensions.Literal[
         "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
     ]
+    asyncPrimaryDisk: DiskAsyncReplication
+    asyncSecondaryDisks: dict[str, typing.Any]
     creationTimestamp: str
     description: str
     diskEncryptionKey: CustomerEncryptionKey
@@ -948,9 +955,12 @@ class Disk(typing_extensions.TypedDict, total=False):
     region: str
     replicaZones: _list[str]
     resourcePolicies: _list[str]
+    resourceStatus: DiskResourceStatus
     satisfiesPzs: bool
     selfLink: str
     sizeGb: str
+    sourceConsistencyGroupPolicy: str
+    sourceConsistencyGroupPolicyId: str
     sourceDisk: str
     sourceDiskId: str
     sourceImage: str
@@ -978,6 +988,17 @@ class DiskAggregatedList(typing_extensions.TypedDict, total=False):
     selfLink: str
     unreachables: _list[str]
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class DiskAsyncReplication(typing_extensions.TypedDict, total=False):
+    consistencyGroupPolicy: str
+    consistencyGroupPolicyId: str
+    disk: str
+    diskId: str
+
+@typing.type_check_only
+class DiskAsyncReplicationList(typing_extensions.TypedDict, total=False):
+    asyncReplicationDisk: DiskAsyncReplication
 
 @typing.type_check_only
 class DiskInstantiationConfig(typing_extensions.TypedDict, total=False):
@@ -1011,6 +1032,19 @@ class DiskMoveRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiskParams(typing_extensions.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
+
+@typing.type_check_only
+class DiskResourceStatus(typing_extensions.TypedDict, total=False):
+    asyncPrimaryDisk: DiskResourceStatusAsyncReplicationStatus
+    asyncSecondaryDisks: dict[str, typing.Any]
+
+@typing.type_check_only
+class DiskResourceStatusAsyncReplicationStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal[
+        "ACTIVE", "CREATED", "STARTING", "STATE_UNSPECIFIED", "STOPPED", "STOPPING"
+    ]
 
 @typing.type_check_only
 class DiskType(typing_extensions.TypedDict, total=False):
@@ -1066,6 +1100,14 @@ class DisksResizeRequest(typing_extensions.TypedDict, total=False):
 class DisksScopedList(typing_extensions.TypedDict, total=False):
     disks: _list[Disk]
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class DisksStartAsyncReplicationRequest(typing_extensions.TypedDict, total=False):
+    asyncSecondaryDisk: str
+
+@typing.type_check_only
+class DisksStopGroupAsyncReplicationResource(typing_extensions.TypedDict, total=False):
+    resourcePolicy: str
 
 @typing.type_check_only
 class DisplayDevice(typing_extensions.TypedDict, total=False):
@@ -1378,6 +1420,11 @@ class GRPCHealthCheck(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GlobalAddressesMoveRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    destinationAddress: str
+
+@typing.type_check_only
 class GlobalNetworkEndpointGroupsAttachEndpointsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1433,6 +1480,7 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
+        "SEV_LIVE_MIGRATABLE",
         "SEV_SNP_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
@@ -3988,11 +4036,15 @@ class Quota(typing_extensions.TypedDict, total=False):
         "NETWORK_ATTACHMENTS",
         "NETWORK_ENDPOINT_GROUPS",
         "NETWORK_FIREWALL_POLICIES",
+        "NET_LB_SECURITY_POLICIES_PER_REGION",
+        "NET_LB_SECURITY_POLICY_RULES_PER_REGION",
+        "NET_LB_SECURITY_POLICY_RULE_ATTRIBUTES_PER_REGION",
         "NODE_GROUPS",
         "NODE_TEMPLATES",
         "NVIDIA_A100_80GB_GPUS",
         "NVIDIA_A100_GPUS",
         "NVIDIA_K80_GPUS",
+        "NVIDIA_L4_GPUS",
         "NVIDIA_P100_GPUS",
         "NVIDIA_P100_VWS_GPUS",
         "NVIDIA_P4_GPUS",
@@ -4007,6 +4059,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_NVIDIA_A100_80GB_GPUS",
         "PREEMPTIBLE_NVIDIA_A100_GPUS",
         "PREEMPTIBLE_NVIDIA_K80_GPUS",
+        "PREEMPTIBLE_NVIDIA_L4_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_VWS_GPUS",
         "PREEMPTIBLE_NVIDIA_P4_GPUS",
@@ -4031,6 +4084,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "ROUTES",
         "SECURITY_POLICIES",
         "SECURITY_POLICIES_PER_REGION",
+        "SECURITY_POLICY_ADVANCED_RULES_PER_REGION",
         "SECURITY_POLICY_CEVAL_RULES",
         "SECURITY_POLICY_RULES",
         "SECURITY_POLICY_RULES_PER_REGION",
@@ -4088,6 +4142,11 @@ class Region(typing_extensions.TypedDict, total=False):
     zones: _list[str]
 
 @typing.type_check_only
+class RegionAddressesMoveRequest(typing_extensions.TypedDict, total=False):
+    description: str
+    destinationAddress: str
+
+@typing.type_check_only
 class RegionAutoscalerList(typing_extensions.TypedDict, total=False):
     id: str
     items: _list[Autoscaler]
@@ -4124,6 +4183,10 @@ class RegionDisksRemoveResourcePoliciesRequest(
 @typing.type_check_only
 class RegionDisksResizeRequest(typing_extensions.TypedDict, total=False):
     sizeGb: str
+
+@typing.type_check_only
+class RegionDisksStartAsyncReplicationRequest(typing_extensions.TypedDict, total=False):
+    asyncSecondaryDisk: str
 
 @typing.type_check_only
 class RegionInstanceGroupList(typing_extensions.TypedDict, total=False):
@@ -4403,6 +4466,7 @@ class ResourcePoliciesScopedList(typing_extensions.TypedDict, total=False):
 class ResourcePolicy(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
+    diskConsistencyGroupPolicy: ResourcePolicyDiskConsistencyGroupPolicy
     groupPlacementPolicy: ResourcePolicyGroupPlacementPolicy
     id: str
     instanceSchedulePolicy: ResourcePolicyInstanceSchedulePolicy
@@ -4432,6 +4496,11 @@ class ResourcePolicyDailyCycle(typing_extensions.TypedDict, total=False):
     daysInCycle: int
     duration: str
     startTime: str
+
+@typing.type_check_only
+class ResourcePolicyDiskConsistencyGroupPolicy(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class ResourcePolicyGroupPlacementPolicy(typing_extensions.TypedDict, total=False):
@@ -4689,6 +4758,9 @@ class RouterMd5AuthenticationKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RouterNat(typing_extensions.TypedDict, total=False):
+    autoNetworkTier: typing_extensions.Literal[
+        "FIXED_STANDARD", "PREMIUM", "STANDARD", "STANDARD_OVERRIDES_FIXED_STANDARD"
+    ]
     drainNatIps: _list[str]
     enableDynamicPortAllocation: bool
     enableEndpointIndependentMapping: bool
@@ -4964,6 +5036,7 @@ class SecurityPolicyAdvancedOptionsConfig(typing_extensions.TypedDict, total=Fal
     jsonCustomConfig: SecurityPolicyAdvancedOptionsConfigJsonCustomConfig
     jsonParsing: typing_extensions.Literal["DISABLED", "STANDARD"]
     logLevel: typing_extensions.Literal["NORMAL", "VERBOSE"]
+    userIpRequestHeaders: _list[str]
 
 @typing.type_check_only
 class SecurityPolicyAdvancedOptionsConfigJsonCustomConfig(
@@ -4980,7 +5053,9 @@ class SecurityPolicyAssociation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPolicyDdosProtectionConfig(typing_extensions.TypedDict, total=False):
-    ddosProtection: typing_extensions.Literal["ADVANCED", "STANDARD"]
+    ddosProtection: typing_extensions.Literal[
+        "ADVANCED", "ADVANCED_PREVIEW", "STANDARD"
+    ]
 
 @typing.type_check_only
 class SecurityPolicyList(typing_extensions.TypedDict, total=False):

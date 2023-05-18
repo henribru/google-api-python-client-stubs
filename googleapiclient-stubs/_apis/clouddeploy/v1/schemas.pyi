@@ -11,6 +11,21 @@ class AbandonReleaseRequest(typing_extensions.TypedDict, total=False): ...
 class AbandonReleaseResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AdvanceChildRolloutJob(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AdvanceChildRolloutJobRun(typing_extensions.TypedDict, total=False):
+    rollout: str
+    rolloutPhaseId: str
+
+@typing.type_check_only
+class AdvanceRolloutRequest(typing_extensions.TypedDict, total=False):
+    phaseId: str
+
+@typing.type_check_only
+class AdvanceRolloutResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AnthosCluster(typing_extensions.TypedDict, total=False):
     membership: str
 
@@ -45,7 +60,33 @@ class BuildArtifact(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class Canary(typing_extensions.TypedDict, total=False):
+    canaryDeployment: CanaryDeployment
+    customCanaryDeployment: CustomCanaryDeployment
+    runtimeConfig: RuntimeConfig
+
+@typing.type_check_only
+class CanaryDeployment(typing_extensions.TypedDict, total=False):
+    percentages: _list[int]
+    verify: bool
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelRolloutRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelRolloutResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ChildRolloutJobs(typing_extensions.TypedDict, total=False):
+    advanceRolloutJobs: _list[Job]
+    createRolloutJobs: _list[Job]
+
+@typing.type_check_only
+class CloudRunConfig(typing_extensions.TypedDict, total=False):
+    automaticTrafficControl: bool
 
 @typing.type_check_only
 class CloudRunLocation(typing_extensions.TypedDict, total=False):
@@ -58,10 +99,26 @@ class CloudRunMetadata(typing_extensions.TypedDict, total=False):
     serviceUrls: _list[str]
 
 @typing.type_check_only
+class CloudRunRenderMetadata(typing_extensions.TypedDict, total=False):
+    service: str
+
+@typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
     defaultSkaffoldVersion: str
     name: str
     supportedVersions: _list[SkaffoldVersion]
+
+@typing.type_check_only
+class CreateChildRolloutJob(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CreateChildRolloutJobRun(typing_extensions.TypedDict, total=False):
+    rollout: str
+    rolloutPhaseId: str
+
+@typing.type_check_only
+class CustomCanaryDeployment(typing_extensions.TypedDict, total=False):
+    phaseConfigs: _list[PhaseConfig]
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -109,6 +166,7 @@ class DeployJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
         "DEADLINE_EXCEEDED",
+        "MISSING_RESOURCES_FOR_CANARY",
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
@@ -144,15 +202,32 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
+    deployment: str
+    httpRoute: str
+    service: str
+
+@typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
     cluster: str
     internalIp: bool
 
 @typing.type_check_only
+class IgnoreJobRequest(typing_extensions.TypedDict, total=False):
+    jobId: str
+    phaseId: str
+
+@typing.type_check_only
+class IgnoreJobResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
+    advanceChildRolloutJob: AdvanceChildRolloutJob
+    createChildRolloutJob: CreateChildRolloutJob
     deployJob: DeployJob
     id: str
     jobRun: str
+    skipMessage: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "PENDING",
@@ -161,11 +236,15 @@ class Job(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "ABORTED",
+        "SKIPPED",
+        "IGNORED",
     ]
     verifyJob: VerifyJob
 
 @typing.type_check_only
 class JobRun(typing_extensions.TypedDict, total=False):
+    advanceChildRolloutJobRun: AdvanceChildRolloutJobRun
+    createChildRolloutJobRun: CreateChildRolloutJobRun
     createTime: str
     deployJobRun: DeployJobRun
     endTime: str
@@ -175,7 +254,12 @@ class JobRun(typing_extensions.TypedDict, total=False):
     phaseId: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
+        "STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED",
+        "TERMINATING",
+        "TERMINATED",
     ]
     uid: str
     verifyJobRun: VerifyJobRun
@@ -193,6 +277,11 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class KubernetesConfig(typing_extensions.TypedDict, total=False):
+    gatewayServiceMesh: GatewayServiceMesh
+    serviceNetworking: ServiceNetworking
 
 @typing.type_check_only
 class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
@@ -247,6 +336,10 @@ class Metadata(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRunMetadata
 
 @typing.type_check_only
+class MultiTarget(typing_extensions.TypedDict, total=False):
+    targetIds: _list[str]
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -266,11 +359,31 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Phase(typing_extensions.TypedDict, total=False):
+    childRolloutJobs: ChildRolloutJobs
     deploymentJobs: DeploymentJobs
     id: str
+    skipMessage: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PENDING", "IN_PROGRESS", "SUCCEEDED", "FAILED", "ABORTED"
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED",
+        "ABORTED",
+        "SKIPPED",
     ]
+
+@typing.type_check_only
+class PhaseArtifact(typing_extensions.TypedDict, total=False):
+    manifestPath: str
+    skaffoldConfigPath: str
+
+@typing.type_check_only
+class PhaseConfig(typing_extensions.TypedDict, total=False):
+    percentage: int
+    phaseId: str
+    profiles: _list[str]
+    verify: bool
 
 @typing.type_check_only
 class PipelineCondition(typing_extensions.TypedDict, total=False):
@@ -346,6 +459,10 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
     release: str
 
 @typing.type_check_only
+class RenderMetadata(typing_extensions.TypedDict, total=False):
+    cloudRun: CloudRunRenderMetadata
+
+@typing.type_check_only
 class RetryJobRequest(typing_extensions.TypedDict, total=False):
     jobId: str
     phaseId: str
@@ -364,6 +481,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "REJECTED",
     ]
     approveTime: str
+    controllerRollout: str
     createTime: str
     deployEndTime: str
     deployFailureCause: typing_extensions.Literal[
@@ -395,6 +513,9 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "APPROVAL_REJECTED",
         "PENDING",
         "PENDING_RELEASE",
+        "CANCELLING",
+        "CANCELLED",
+        "HALTED",
     ]
     targetId: str
     uid: str
@@ -413,8 +534,18 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RuntimeConfig(typing_extensions.TypedDict, total=False):
+    cloudRun: CloudRunConfig
+    kubernetes: KubernetesConfig
+
+@typing.type_check_only
 class SerialPipeline(typing_extensions.TypedDict, total=False):
     stages: _list[Stage]
+
+@typing.type_check_only
+class ServiceNetworking(typing_extensions.TypedDict, total=False):
+    deployment: str
+    service: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -458,6 +589,7 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Strategy(typing_extensions.TypedDict, total=False):
+    canary: Canary
     standard: Standard
 
 @typing.type_check_only
@@ -470,6 +602,7 @@ class Target(typing_extensions.TypedDict, total=False):
     executionConfigs: _list[ExecutionConfig]
     gke: GkeCluster
     labels: dict[str, typing.Any]
+    multiTarget: MultiTarget
     name: str
     requireApproval: bool
     run: CloudRunLocation
@@ -481,6 +614,7 @@ class Target(typing_extensions.TypedDict, total=False):
 class TargetArtifact(typing_extensions.TypedDict, total=False):
     artifactUri: str
     manifestPath: str
+    phaseArtifacts: dict[str, typing.Any]
     skaffoldConfigPath: str
 
 @typing.type_check_only
@@ -502,6 +636,7 @@ class TargetRender(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
+    metadata: RenderMetadata
     renderingBuild: str
     renderingState: typing_extensions.Literal[
         "TARGET_RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
@@ -517,6 +652,12 @@ class TargetsPresentCondition(typing_extensions.TypedDict, total=False):
 class TargetsTypeCondition(typing_extensions.TypedDict, total=False):
     errorDetails: str
     status: bool
+
+@typing.type_check_only
+class TerminateJobRunRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TerminateJobRunResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

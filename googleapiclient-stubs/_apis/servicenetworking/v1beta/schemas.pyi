@@ -40,7 +40,9 @@ class Api(typing_extensions.TypedDict, total=False):
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
     version: str
 
 @typing.type_check_only
@@ -228,6 +230,11 @@ class DocumentationRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DotnetSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    forcedNamespaceAliases: _list[str]
+    handwrittenSignatures: _list[str]
+    ignoredResources: _list[str]
+    renamedResources: dict[str, typing.Any]
+    renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
@@ -238,11 +245,14 @@ class Endpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Enum(typing_extensions.TypedDict, total=False):
+    edition: str
     enumvalue: _list[EnumValue]
     name: str
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
 
 @typing.type_check_only
 class EnumValue(typing_extensions.TypedDict, total=False):
@@ -391,7 +401,9 @@ class Method(typing_extensions.TypedDict, total=False):
     requestTypeUrl: str
     responseStreaming: bool
     responseTypeUrl: str
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
 
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
@@ -681,12 +693,15 @@ class SystemParameters(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
+    edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
 
 @typing.type_check_only
 class UpdateDnsRecordSetMetadata(typing_extensions.TypedDict, total=False): ...

@@ -1094,6 +1094,28 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudApigeeV1ResourceFileHttpRequest: ...
 
             @typing.type_check_only
+            class SecurityIncidentsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1SecurityIncidentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ListSecurityIncidentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListSecurityIncidentsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListSecurityIncidentsResponse,
+                ) -> (
+                    GoogleCloudApigeeV1ListSecurityIncidentsResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class SecurityReportsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -1390,6 +1412,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def queries(self) -> QueriesResource: ...
             def references(self) -> ReferencesResource: ...
             def resourcefiles(self) -> ResourcefilesResource: ...
+            def securityIncidents(self) -> SecurityIncidentsResource: ...
             def securityReports(self) -> SecurityReportsResource: ...
             def securityStats(self) -> SecurityStatsResource: ...
             def sharedflows(self) -> SharedflowsResource: ...
@@ -2671,6 +2694,16 @@ class GoogleCloudApigeeV1ListRatePlansResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListRatePlansResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityIncidentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1ListSecurityIncidentsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityProfileRevisionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2823,6 +2856,14 @@ class GoogleCloudApigeeV1SchemaHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudApigeeV1Schema: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityIncidentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudApigeeV1SecurityIncident: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityProfileHttpRequest(googleapiclient.http.HttpRequest):

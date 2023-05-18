@@ -235,6 +235,7 @@ class PartnerClaim(typing_extensions.TypedDict, total=False):
     sectionType: typing_extensions.Literal[
         "SECTION_TYPE_UNSPECIFIED", "SECTION_TYPE_SIM_LOCK", "SECTION_TYPE_ZERO_TOUCH"
     ]
+    simlockProfileId: str
 
 @typing.type_check_only
 class PartnerUnclaim(typing_extensions.TypedDict, total=False):

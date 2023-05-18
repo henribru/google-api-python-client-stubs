@@ -187,6 +187,16 @@ class EnterpriseCrmEventbusProtoBuganizerNotification(
     title: str
 
 @typing.type_check_only
+class EnterpriseCrmEventbusProtoCloudKmsConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcpProjectId: str
+    keyName: str
+    keyRingName: str
+    keyVersionName: str
+    locationName: str
+
+@typing.type_check_only
 class EnterpriseCrmEventbusProtoCloudSchedulerConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -384,6 +394,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMeta
 ):
     eventAttemptNum: int
     taskAttemptNum: int
+    taskLabel: str
     taskName: str
     taskNumber: str
 
@@ -878,6 +889,7 @@ class EnterpriseCrmEventbusProtoStringFunction(
         "REPLACE_ALL",
         "SUBSTRING",
         "RESOLVE_TEMPLATE",
+        "DECODE_BASE64_STRING",
     ]
 
 @typing.type_check_only
@@ -928,18 +940,24 @@ class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(
     typing_extensions.TypedDict, total=False
 ):
     audit: EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit
+    clientId: str
+    cloudKmsConfig: EnterpriseCrmEventbusProtoCloudKmsConfig
     createdTimestamp: str
+    encryptedSuspensionResolutionInfo: str
     eventExecutionInfoId: str
     externalTraffic: EnterpriseCrmEventbusProtoExternalTraffic
     lastModifiedTimestamp: str
     product: typing_extensions.Literal[
         "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
     ]
-    status: typing_extensions.Literal["PENDING_UNSPECIFIED", "REJECTED", "LIFTED"]
+    status: typing_extensions.Literal[
+        "PENDING_UNSPECIFIED", "REJECTED", "LIFTED", "CANCELED"
+    ]
     suspensionConfig: EnterpriseCrmEventbusProtoSuspensionConfig
     suspensionId: str
     taskNumber: str
     workflowName: str
+    wrappedDek: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit(
@@ -1021,6 +1039,7 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
         "HIDDEN",
         "CLOUD_SYSTEMS",
         "CUSTOM_TASK_TEMPLATE",
+        "TASK_RECOMMENDATIONS",
     ]
     codeSearchLink: str
     defaultJsonValidationOption: typing_extensions.Literal[
@@ -1482,6 +1501,10 @@ class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
     creatorEmail: str
     description: str
     disableStrictTypeValidation: bool
+    errorCatcherId: str
+    externalTaskType: typing_extensions.Literal[
+        "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
+    ]
     failurePolicy: EnterpriseCrmEventbusProtoFailurePolicy
     incomingEdgeCount: int
     jsonValidationOption: typing_extensions.Literal[
@@ -1533,6 +1556,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     cloudSchedulerConfig: EnterpriseCrmEventbusProtoCloudSchedulerConfig
     description: str
     enabledClients: _list[str]
+    errorCatcherId: str
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
@@ -1649,10 +1673,23 @@ class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
     ]
+    oauth2AuthCodeFlow: GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow
     oauth2ClientCredentials: GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials
     oauth2JwtBearer: GoogleCloudConnectorsV1AuthConfigOauth2JwtBearer
     sshPublicKey: GoogleCloudConnectorsV1AuthConfigSshPublicKey
     userPassword: GoogleCloudConnectorsV1AuthConfigUserPassword
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
+    typing_extensions.TypedDict, total=False
+):
+    authCode: str
+    clientId: str
+    clientSecret: GoogleCloudConnectorsV1Secret
+    enablePkce: bool
+    pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials(
@@ -1712,10 +1749,12 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     imageLocation: str
     labels: dict[str, typing.Any]
     lockConfig: GoogleCloudConnectorsV1LockConfig
+    logConfig: GoogleCloudConnectorsV1LogConfig
     name: str
     nodeConfig: GoogleCloudConnectorsV1NodeConfig
     serviceAccount: str
     serviceDirectory: str
+    sslConfig: GoogleCloudConnectorsV1SslConfig
     status: GoogleCloudConnectorsV1ConnectionStatus
     suspended: bool
     updateTime: str
@@ -1731,6 +1770,7 @@ class GoogleCloudConnectorsV1ConnectionStatus(typing_extensions.TypedDict, total
         "DELETING",
         "UPDATING",
         "ERROR",
+        "AUTHORIZATION_REQUIRED",
     ]
     status: str
 
@@ -1753,6 +1793,10 @@ class GoogleCloudConnectorsV1LockConfig(typing_extensions.TypedDict, total=False
     reason: str
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1LogConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
@@ -1760,6 +1804,19 @@ class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudConnectorsV1Secret(typing_extensions.TypedDict, total=False):
     secretVersion: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1SslConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    clientCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    clientCertificate: GoogleCloudConnectorsV1Secret
+    clientPrivateKey: GoogleCloudConnectorsV1Secret
+    clientPrivateKeyPass: GoogleCloudConnectorsV1Secret
+    privateServerCertificate: GoogleCloudConnectorsV1Secret
+    serverCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    trustModel: typing_extensions.Literal["PUBLIC", "PRIVATE", "INSECURE"]
+    type: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    useSsl: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAccessToken(
@@ -1886,6 +1943,13 @@ class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata(
     entities: _list[str]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCoordinate(
+    typing_extensions.TypedDict, total=False
+):
+    x: int
+    y: int
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1942,6 +2006,17 @@ class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     regions: _list[str]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaErrorCatcherConfig(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    errorCatcherId: str
+    errorCatcherNumber: str
+    label: str
+    position: GoogleCloudIntegrationsV1alphaCoordinate
+    startErrorTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEventParameter(
@@ -2022,6 +2097,7 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata(
     executionAttempt: int
     task: str
     taskAttempt: int
+    taskLabel: str
     taskNumber: str
 
 @typing.type_check_only
@@ -2135,6 +2211,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion(
         "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
     ]
     description: str
+    errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
     lastModifierEmail: str
     name: str
     parentIntegrationVersionId: str
@@ -2158,6 +2235,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
         "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
     ]
     description: str
+    errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
     integrationParameters: _list[GoogleCloudIntegrationsV1alphaIntegrationParameter]
     integrationParametersInternal: EnterpriseCrmFrontendsEventbusProtoWorkflowParameters
     lastModifierEmail: str
@@ -2167,6 +2245,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
         "UNSPECIFIED", "UI", "PIPER_V2", "PIPER_V3", "APPLICATION_IP_PROVISIONING"
     ]
     parentTemplateId: str
+    runAsServiceAccount: str
     snapshotNumber: str
     state: typing_extensions.Literal[
         "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
@@ -2572,6 +2651,10 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
 ):
     description: str
     displayName: str
+    errorCatcherId: str
+    externalTaskType: typing_extensions.Literal[
+        "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
+    ]
     failurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
     jsonValidationOption: typing_extensions.Literal[
         "JSON_VALIDATION_OPTION_UNSPECIFIED",
@@ -2585,6 +2668,7 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     parameters: dict[str, typing.Any]
+    position: GoogleCloudIntegrationsV1alphaCoordinate
     successPolicy: GoogleCloudIntegrationsV1alphaSuccessPolicy
     synchronousCallFailurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
     task: str
@@ -2626,10 +2710,12 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     alertConfig: _list[GoogleCloudIntegrationsV1alphaIntegrationAlertConfig]
     cloudSchedulerConfig: GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
     description: str
+    errorCatcherId: str
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
+    position: GoogleCloudIntegrationsV1alphaCoordinate
     properties: dict[str, typing.Any]
     startTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
     triggerId: str

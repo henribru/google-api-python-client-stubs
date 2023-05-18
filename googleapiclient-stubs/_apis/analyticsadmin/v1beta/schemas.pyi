@@ -5,6 +5,158 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessBetweenFilter(
+    typing_extensions.TypedDict, total=False
+):
+    fromValue: GoogleAnalyticsAdminV1betaNumericValue
+    toValue: GoogleAnalyticsAdminV1betaNumericValue
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessDateRange(
+    typing_extensions.TypedDict, total=False
+):
+    endDate: str
+    startDate: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessDimension(
+    typing_extensions.TypedDict, total=False
+):
+    dimensionName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessDimensionHeader(
+    typing_extensions.TypedDict, total=False
+):
+    dimensionName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessDimensionValue(
+    typing_extensions.TypedDict, total=False
+):
+    value: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessFilter(typing_extensions.TypedDict, total=False):
+    betweenFilter: GoogleAnalyticsAdminV1betaAccessBetweenFilter
+    fieldName: str
+    inListFilter: GoogleAnalyticsAdminV1betaAccessInListFilter
+    numericFilter: GoogleAnalyticsAdminV1betaAccessNumericFilter
+    stringFilter: GoogleAnalyticsAdminV1betaAccessStringFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    accessFilter: GoogleAnalyticsAdminV1betaAccessFilter
+    andGroup: GoogleAnalyticsAdminV1betaAccessFilterExpressionList
+    notExpression: GoogleAnalyticsAdminV1betaAccessFilterExpression
+    orGroup: GoogleAnalyticsAdminV1betaAccessFilterExpressionList
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessFilterExpressionList(
+    typing_extensions.TypedDict, total=False
+):
+    expressions: _list[GoogleAnalyticsAdminV1betaAccessFilterExpression]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessInListFilter(
+    typing_extensions.TypedDict, total=False
+):
+    caseSensitive: bool
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessMetric(typing_extensions.TypedDict, total=False):
+    metricName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessMetricHeader(
+    typing_extensions.TypedDict, total=False
+):
+    metricName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    value: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessNumericFilter(
+    typing_extensions.TypedDict, total=False
+):
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED",
+        "EQUAL",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+    ]
+    value: GoogleAnalyticsAdminV1betaNumericValue
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessOrderBy(typing_extensions.TypedDict, total=False):
+    desc: bool
+    dimension: GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy
+    metric: GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessOrderByDimensionOrderBy(
+    typing_extensions.TypedDict, total=False
+):
+    dimensionName: str
+    orderType: typing_extensions.Literal[
+        "ORDER_TYPE_UNSPECIFIED",
+        "ALPHANUMERIC",
+        "CASE_INSENSITIVE_ALPHANUMERIC",
+        "NUMERIC",
+    ]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessOrderByMetricOrderBy(
+    typing_extensions.TypedDict, total=False
+):
+    metricName: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessQuota(typing_extensions.TypedDict, total=False):
+    concurrentRequests: GoogleAnalyticsAdminV1betaAccessQuotaStatus
+    serverErrorsPerProjectPerHour: GoogleAnalyticsAdminV1betaAccessQuotaStatus
+    tokensPerDay: GoogleAnalyticsAdminV1betaAccessQuotaStatus
+    tokensPerHour: GoogleAnalyticsAdminV1betaAccessQuotaStatus
+    tokensPerProjectPerHour: GoogleAnalyticsAdminV1betaAccessQuotaStatus
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessQuotaStatus(
+    typing_extensions.TypedDict, total=False
+):
+    consumed: int
+    remaining: int
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessRow(typing_extensions.TypedDict, total=False):
+    dimensionValues: _list[GoogleAnalyticsAdminV1betaAccessDimensionValue]
+    metricValues: _list[GoogleAnalyticsAdminV1betaAccessMetricValue]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaAccessStringFilter(
+    typing_extensions.TypedDict, total=False
+):
+    caseSensitive: bool
+    matchType: typing_extensions.Literal[
+        "MATCH_TYPE_UNSPECIFIED",
+        "EXACT",
+        "BEGINS_WITH",
+        "ENDS_WITH",
+        "CONTAINS",
+        "FULL_REGEXP",
+        "PARTIAL_REGEXP",
+    ]
+    value: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1betaAccount(typing_extensions.TypedDict, total=False):
     createTime: str
     deleted: bool
@@ -99,7 +251,9 @@ class GoogleAnalyticsAdminV1betaCustomDimension(
     displayName: str
     name: str
     parameterName: str
-    scope: typing_extensions.Literal["DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER"]
+    scope: typing_extensions.Literal[
+        "DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER", "ITEM"
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaCustomMetric(typing_extensions.TypedDict, total=False):
@@ -284,6 +438,11 @@ class GoogleAnalyticsAdminV1betaMeasurementProtocolSecret(
     secretValue: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1betaNumericValue(typing_extensions.TypedDict, total=False):
+    doubleValue: float
+    int64Value: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1betaProperty(typing_extensions.TypedDict, total=False):
     account: str
     createTime: str
@@ -360,6 +519,31 @@ class GoogleAnalyticsAdminV1betaProvisionAccountTicketResponse(
     typing_extensions.TypedDict, total=False
 ):
     accountTicketId: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaRunAccessReportRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dateRanges: _list[GoogleAnalyticsAdminV1betaAccessDateRange]
+    dimensionFilter: GoogleAnalyticsAdminV1betaAccessFilterExpression
+    dimensions: _list[GoogleAnalyticsAdminV1betaAccessDimension]
+    limit: str
+    metricFilter: GoogleAnalyticsAdminV1betaAccessFilterExpression
+    metrics: _list[GoogleAnalyticsAdminV1betaAccessMetric]
+    offset: str
+    orderBys: _list[GoogleAnalyticsAdminV1betaAccessOrderBy]
+    returnEntityQuota: bool
+    timeZone: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaRunAccessReportResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dimensionHeaders: _list[GoogleAnalyticsAdminV1betaAccessDimensionHeader]
+    metricHeaders: _list[GoogleAnalyticsAdminV1betaAccessMetricHeader]
+    quota: GoogleAnalyticsAdminV1betaAccessQuota
+    rowCount: int
+    rows: _list[GoogleAnalyticsAdminV1betaAccessRow]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(

@@ -2224,9 +2224,6 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> GoogleBytestreamMediaHttpRequest: ...
-        def download_media(
-            self, *, resourceName: str, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
         def upload(
             self,
             *,
@@ -3643,11 +3640,3 @@ class YoutubeAdGroupAdHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> YoutubeAdGroupAd: ...
-
-@typing.type_check_only
-class BytesHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> bytes: ...

@@ -336,6 +336,7 @@ class PolicyCompliance(typing_extensions.TypedDict, total=False):
 class PolicyTopicEntry(typing_extensions.TypedDict, total=False):
     evidences: _list[PolicyTopicEvidence]
     helpCenterUrl: str
+    missingCertificate: bool
     policyTopic: str
 
 @typing.type_check_only

@@ -17,6 +17,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
+    configOverrides: dict[str, typing.Any]
+    networkConfig: NetworkConfig
+    version: str
+
+@typing.type_check_only
 class BackendMetastore(typing_extensions.TypedDict, total=False):
     metastoreType: typing_extensions.Literal[
         "METASTORE_TYPE_UNSPECIFIED", "DATAPROC_METASTORE"
@@ -93,6 +99,7 @@ class Federation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
+    auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
     kerberosConfig: KerberosConfig
     version: str
@@ -244,6 +251,18 @@ class RestoreServiceRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ScalingConfig(typing_extensions.TypedDict, total=False):
+    instanceSize: typing_extensions.Literal[
+        "INSTANCE_SIZE_UNSPECIFIED",
+        "EXTRA_SMALL",
+        "SMALL",
+        "MEDIUM",
+        "LARGE",
+        "EXTRA_LARGE",
+    ]
+    scalingFactor: float
+
+@typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
     cloudSecret: str
 
@@ -267,6 +286,7 @@ class Service(typing_extensions.TypedDict, total=False):
     releaseChannel: typing_extensions.Literal[
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "STABLE"
     ]
+    scalingConfig: ScalingConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

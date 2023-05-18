@@ -222,6 +222,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> WorkspaceHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
                     def installNpmPackages(
                         self,
                         *,
@@ -317,6 +324,20 @@ class DataformResource(googleapiclient.discovery.Resource):
                         body: ResetWorkspaceChangesRequest = ...,
                         **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                     def writeFile(
                         self,
                         *,
@@ -342,6 +363,13 @@ class DataformResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> RepositoryHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -365,6 +393,20 @@ class DataformResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> RepositoryHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def compilationResults(self) -> CompilationResultsResource: ...
                 def releaseConfigs(self) -> ReleaseConfigsResource: ...
                 def workflowConfigs(self) -> WorkflowConfigsResource: ...
@@ -379,7 +421,6 @@ class DataformResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 filter: str = ...,
-                includeUnrevealedLocations: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any
@@ -552,6 +593,14 @@ class MoveFileResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MoveFileResponse: ...
 
 @typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Policy: ...
+
+@typing.type_check_only
 class QueryCompilationResultActionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -602,6 +651,14 @@ class RepositoryHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Repository: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class WorkflowConfigHttpRequest(googleapiclient.http.HttpRequest):

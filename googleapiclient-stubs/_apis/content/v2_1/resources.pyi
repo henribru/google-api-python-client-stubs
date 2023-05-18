@@ -1122,6 +1122,24 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> ListMethodQuotasResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class RecommendationsResource(googleapiclient.discovery.Resource):
+        def generate(
+            self,
+            *,
+            merchantId: str,
+            allowedTag: str | _list[str] = ...,
+            languageCode: str = ...,
+            **kwargs: typing.Any
+        ) -> GenerateRecommendationsResponseHttpRequest: ...
+        def reportInteraction(
+            self,
+            *,
+            merchantId: str,
+            body: ReportInteractionRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+
+    @typing.type_check_only
     class RegionalinventoryResource(googleapiclient.discovery.Resource):
         def custombatch(
             self,
@@ -1453,6 +1471,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def promotions(self) -> PromotionsResource: ...
     def pubsubnotificationsettings(self) -> PubsubnotificationsettingsResource: ...
     def quotas(self) -> QuotasResource: ...
+    def recommendations(self) -> RecommendationsResource: ...
     def regionalinventory(self) -> RegionalinventoryResource: ...
     def regions(self) -> RegionsResource: ...
     def reports(self) -> ReportsResource: ...
@@ -1712,6 +1731,14 @@ class FreeListingsProgramStatusHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FreeListingsProgramStatus: ...
+
+@typing.type_check_only
+class GenerateRecommendationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GenerateRecommendationsResponse: ...
 
 @typing.type_check_only
 class LiaSettingsHttpRequest(googleapiclient.http.HttpRequest):

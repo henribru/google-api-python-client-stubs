@@ -50,6 +50,29 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    tlsInspectionPolicy: str
+    updateTime: str
+
+@typing.type_check_only
+class GatewaySecurityPolicyRule(typing_extensions.TypedDict, total=False):
+    applicationMatcher: str
+    basicProfile: typing_extensions.Literal[
+        "BASIC_PROFILE_UNSPECIFIED", "ALLOW", "DENY"
+    ]
+    createTime: str
+    description: str
+    enabled: bool
+    name: str
+    priority: int
+    sessionMatcher: str
+    tlsInspectionEnabled: bool
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudNetworksecurityV1CertificateProvider(
     typing_extensions.TypedDict, total=False
 ):
@@ -116,6 +139,18 @@ class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListGatewaySecurityPoliciesResponse(typing_extensions.TypedDict, total=False):
+    gatewaySecurityPolicies: _list[GatewaySecurityPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGatewaySecurityPolicyRulesResponse(typing_extensions.TypedDict, total=False):
+    gatewaySecurityPolicyRules: _list[GatewaySecurityPolicyRule]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
@@ -131,6 +166,18 @@ class ListServerTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     serverTlsPolicies: _list[ServerTlsPolicy]
 
 @typing.type_check_only
+class ListTlsInspectionPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    tlsInspectionPolicies: _list[TlsInspectionPolicy]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListUrlListsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    urlLists: _list[UrlList]
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -141,6 +188,12 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MTLSPolicy(typing_extensions.TypedDict, total=False):
     clientValidationCa: _list[ValidationCA]
+    clientValidationMode: typing_extensions.Literal[
+        "CLIENT_VALIDATION_MODE_UNSPECIFIED",
+        "ALLOW_INVALID_OR_MISSING_CLIENT_CERT",
+        "REJECT_INVALID",
+    ]
+    clientValidationTrustConfig: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -186,6 +239,22 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
+    caPool: str
+    createTime: str
+    description: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class UrlList(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    updateTime: str
+    values: _list[str]
 
 @typing.type_check_only
 class ValidationCA(typing_extensions.TypedDict, total=False):

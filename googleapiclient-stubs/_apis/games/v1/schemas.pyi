@@ -112,6 +112,11 @@ class ApplicationCategory(typing_extensions.TypedDict, total=False):
     secondary: str
 
 @typing.type_check_only
+class ApplicationPlayerId(typing_extensions.TypedDict, total=False):
+    applicationId: str
+    playerId: str
+
+@typing.type_check_only
 class ApplicationVerifyResponse(typing_extensions.TypedDict, total=False):
     alternate_player_id: str
     kind: str
@@ -221,6 +226,10 @@ class GamesAchievementIncrement(typing_extensions.TypedDict, total=False):
 class GamesAchievementSetStepsAtLeast(typing_extensions.TypedDict, total=False):
     kind: str
     steps: int
+
+@typing.type_check_only
+class GetMultipleApplicationPlayerIdsResponse(typing_extensions.TypedDict, total=False):
+    playerIds: _list[ApplicationPlayerId]
 
 @typing.type_check_only
 class ImageAsset(typing_extensions.TypedDict, total=False):

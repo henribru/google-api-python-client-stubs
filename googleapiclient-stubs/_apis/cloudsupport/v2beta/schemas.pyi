@@ -30,6 +30,7 @@ class Blobstore2Info(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Case(typing_extensions.TypedDict, total=False):
     classification: CaseClassification
+    contactEmail: str
     createTime: str
     creator: Actor
     description: str

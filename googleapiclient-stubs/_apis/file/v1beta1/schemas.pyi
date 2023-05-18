@@ -26,7 +26,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "ENTERPRISE",
     ]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING"
+        "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
     ]
     storageBytes: str
 
@@ -319,6 +319,7 @@ class Schedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Share(typing_extensions.TypedDict, total=False):
+    backup: str
     capacityGb: str
     createTime: str
     description: str

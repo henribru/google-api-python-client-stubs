@@ -80,19 +80,8 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudWebriskV1SubmissionHttpRequest: ...
 
-        @typing.type_check_only
-        class UrisResource(googleapiclient.discovery.Resource):
-            def submit(
-                self,
-                *,
-                parent: str,
-                body: GoogleCloudWebriskV1SubmitUriRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleLongrunningOperationHttpRequest: ...
-
         def operations(self) -> OperationsResource: ...
         def submissions(self) -> SubmissionsResource: ...
-        def uris(self) -> UrisResource: ...
 
     @typing.type_check_only
     class ThreatListsResource(googleapiclient.discovery.Resource):

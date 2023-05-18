@@ -110,6 +110,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: AddressListHttpRequest,
             previous_response: AddressList,
         ) -> AddressListHttpRequest | None: ...
+        def move(
+            self,
+            *,
+            project: str,
+            region: str,
+            address: str,
+            body: RegionAddressesMoveRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setLabels(
             self,
             *,
@@ -534,6 +544,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: DiskAggregatedListHttpRequest,
             previous_response: DiskAggregatedList,
         ) -> DiskAggregatedListHttpRequest | None: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: BulkInsertDiskResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def createSnapshot(
             self,
             *,
@@ -627,6 +646,34 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             resource: str,
             body: ZoneSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def startAsyncReplication(
+            self,
+            *,
+            project: str,
+            zone: str,
+            disk: str,
+            body: DisksStartAsyncReplicationRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopAsyncReplication(
+            self,
+            *,
+            project: str,
+            zone: str,
+            disk: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopGroupAsyncReplication(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: DisksStopGroupAsyncReplicationResource = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -1038,6 +1085,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: AddressListHttpRequest,
             previous_response: AddressList,
         ) -> AddressListHttpRequest | None: ...
+        def move(
+            self,
+            *,
+            project: str,
+            address: str,
+            body: GlobalAddressesMoveRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setLabels(
             self,
             *,
@@ -4425,6 +4481,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def bulkInsert(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: BulkInsertDiskResource = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def createSnapshot(
             self,
             *,
@@ -4517,6 +4582,34 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             resource: str,
             body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def startAsyncReplication(
+            self,
+            *,
+            project: str,
+            region: str,
+            disk: str,
+            body: RegionDisksStartAsyncReplicationRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopAsyncReplication(
+            self,
+            *,
+            project: str,
+            region: str,
+            disk: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def stopGroupAsyncReplication(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: DisksStopGroupAsyncReplicationResource = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -6314,6 +6407,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             securityPolicy: str,
             body: SecurityPolicyRule = ...,
             priority: int = ...,
+            updateMask: str = ...,
             validateOnly: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

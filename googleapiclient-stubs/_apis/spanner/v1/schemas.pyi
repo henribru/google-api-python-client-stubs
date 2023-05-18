@@ -161,9 +161,11 @@ class Database(typing_extensions.TypedDict, total=False):
     ]
     defaultLeader: str
     earliestVersionTime: str
+    enableDropProtection: bool
     encryptionConfig: EncryptionConfig
     encryptionInfo: _list[EncryptionInfo]
     name: str
+    reconciling: bool
     restoreInfo: RestoreInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
@@ -223,6 +225,7 @@ class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
+    dataBoostEnabled: bool
     paramTypes: dict[str, typing.Any]
     params: dict[str, typing.Any]
     partitionToken: str
@@ -552,6 +555,7 @@ class ReadOnly(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReadRequest(typing_extensions.TypedDict, total=False):
     columns: _list[str]
+    dataBoostEnabled: bool
     index: str
     keySet: KeySet
     limit: str
@@ -746,6 +750,17 @@ class UpdateDatabaseDdlRequest(typing_extensions.TypedDict, total=False):
     operationId: str
     protoDescriptors: str
     statements: _list[str]
+
+@typing.type_check_only
+class UpdateDatabaseMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    progress: OperationProgress
+    request: UpdateDatabaseRequest
+
+@typing.type_check_only
+class UpdateDatabaseRequest(typing_extensions.TypedDict, total=False):
+    database: Database
+    updateMask: str
 
 @typing.type_check_only
 class UpdateInstanceConfigMetadata(typing_extensions.TypedDict, total=False):

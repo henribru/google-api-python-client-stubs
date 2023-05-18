@@ -397,12 +397,15 @@ class TimeSeriesTable(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
+    edition: str
     fields: _list[Field]
     name: str
     oneofs: _list[str]
     options: _list[Option]
     sourceContext: SourceContext
-    syntax: typing_extensions.Literal["SYNTAX_PROTO2", "SYNTAX_PROTO3"]
+    syntax: typing_extensions.Literal[
+        "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
+    ]
 
 @typing.type_check_only
 class Widget(typing_extensions.TypedDict, total=False):

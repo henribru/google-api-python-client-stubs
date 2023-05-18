@@ -207,6 +207,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
+            customer: str = ...,
             languageCode: str = ...,
             minimumRole: typing_extensions.Literal[
                 "LABEL_ROLE_UNSPECIFIED", "READER", "APPLIER", "ORGANIZER", "EDITOR"
@@ -260,7 +261,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def getCapabilities(
-            self, *, name: str, **kwargs: typing.Any
+            self, *, name: str, customer: str = ..., **kwargs: typing.Any
         ) -> GoogleAppsDriveLabelsV2betaUserCapabilitiesHttpRequest: ...
 
     def new_batch_http_request(

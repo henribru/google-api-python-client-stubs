@@ -53,6 +53,12 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudIdentitytoolkitV2StartMfaSignInResponseHttpRequest: ...
 
+        def revokeToken(
+            self,
+            *,
+            body: GoogleCloudIdentitytoolkitV2RevokeTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleCloudIdentitytoolkitV2RevokeTokenResponseHttpRequest: ...
         def mfaEnrollment(self) -> MfaEnrollmentResource: ...
         def mfaSignIn(self) -> MfaSignInResource: ...
 
@@ -422,6 +428,24 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         def oauthIdpConfigs(self) -> OauthIdpConfigsResource: ...
         def tenants(self) -> TenantsResource: ...
 
+    @typing.type_check_only
+    class V2Resource(googleapiclient.discovery.Resource):
+        def getRecaptchaConfig(
+            self,
+            *,
+            clientType: typing_extensions.Literal[
+                "CLIENT_TYPE_UNSPECIFIED",
+                "CLIENT_TYPE_WEB",
+                "CLIENT_TYPE_ANDROID",
+                "CLIENT_TYPE_IOS",
+            ] = ...,
+            tenantId: str = ...,
+            version: typing_extensions.Literal[
+                "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> GoogleCloudIdentitytoolkitV2RecaptchaConfigHttpRequest: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -437,6 +461,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
     def accounts(self) -> AccountsResource: ...
     def defaultSupportedIdps(self) -> DefaultSupportedIdpsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def v2(self) -> V2Resource: ...
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest(
@@ -567,6 +592,26 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RecaptchaConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudIdentitytoolkitV2RecaptchaConfig: ...
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2RevokeTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudIdentitytoolkitV2RevokeTokenResponse: ...
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponseHttpRequest(

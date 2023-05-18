@@ -506,6 +506,7 @@ class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total
     excludedEvents: _list[str]
     exportStreams: _list[str]
     includeAdvertisingId: bool
+    intradayExportEnabled: bool
     name: str
     project: str
     streamingExportEnabled: bool
@@ -533,6 +534,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     account: GoogleAnalyticsAdminV1alphaAccount
     attributionSettings: GoogleAnalyticsAdminV1alphaAttributionSettings
     bigqueryLink: GoogleAnalyticsAdminV1alphaBigQueryLink
+    channelGroup: GoogleAnalyticsAdminV1alphaChannelGroup
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
     customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
@@ -540,6 +542,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     dataStream: GoogleAnalyticsAdminV1alphaDataStream
     displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
+    enhancedMeasurementSettings: GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
     expandedDataSet: GoogleAnalyticsAdminV1alphaExpandedDataSet
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
@@ -562,11 +565,63 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
     userActorEmail: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroup(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    groupingRule: _list[GoogleAnalyticsAdminV1alphaGroupingRule]
+    name: str
+    systemDefined: bool
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroupFilter(
+    typing_extensions.TypedDict, total=False
+):
+    fieldName: str
+    inListFilter: GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter
+    stringFilter: GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    andGroup: GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList
+    filter: GoogleAnalyticsAdminV1alphaChannelGroupFilter
+    notExpression: GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression
+    orGroup: GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroupFilterExpressionList(
+    typing_extensions.TypedDict, total=False
+):
+    filterExpressions: _list[GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroupFilterInListFilter(
+    typing_extensions.TypedDict, total=False
+):
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaChannelGroupFilterStringFilter(
+    typing_extensions.TypedDict, total=False
+):
+    matchType: typing_extensions.Literal[
+        "MATCH_TYPE_UNSPECIFIED",
+        "EXACT",
+        "BEGINS_WITH",
+        "ENDS_WITH",
+        "CONTAINS",
+        "FULL_REGEXP",
+        "PARTIAL_REGEXP",
+    ]
+    value: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConnectedSiteTag(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
-    measurementId: str
+    tagId: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConversionEvent(
@@ -586,6 +641,18 @@ class GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest(
     parent: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest(
+    typing_extensions.TypedDict, total=False
+):
+    connectedSiteTag: GoogleAnalyticsAdminV1alphaConnectedSiteTag
+    property: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -602,7 +669,9 @@ class GoogleAnalyticsAdminV1alphaCustomDimension(
     displayName: str
     name: str
     parameterName: str
-    scope: typing_extensions.Literal["DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER"]
+    scope: typing_extensions.Literal[
+        "DIMENSION_SCOPE_UNSPECIFIED", "EVENT", "USER", "ITEM"
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCustomMetric(typing_extensions.TypedDict, total=False):
@@ -700,8 +769,8 @@ class GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest(
 class GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest(
     typing_extensions.TypedDict, total=False
 ):
-    measurementId: str
     property: str
+    tagId: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
@@ -732,6 +801,22 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal(
     linkProposalStatusDetails: GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails
     name: str
     validationEmail: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
+    typing_extensions.TypedDict, total=False
+):
+    fileDownloadsEnabled: bool
+    formInteractionsEnabled: bool
+    name: str
+    outboundClicksEnabled: bool
+    pageChangesEnabled: bool
+    scrollsEnabled: bool
+    searchQueryParameter: str
+    siteSearchEnabled: bool
+    streamEnabled: bool
+    uriQueryParameter: str
+    videoEngagementEnabled: bool
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaExpandedDataSet(
@@ -795,6 +880,12 @@ class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse(
     optOut: bool
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    property: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLink(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -834,6 +925,11 @@ class GoogleAnalyticsAdminV1alphaGoogleSignalsSettings(
         "GOOGLE_SIGNALS_ENABLED",
         "GOOGLE_SIGNALS_DISABLED",
     ]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaGroupingRule(typing_extensions.TypedDict, total=False):
+    displayName: str
+    expression: GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
@@ -891,11 +987,16 @@ class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListChannelGroupsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    channelGroups: _list[GoogleAnalyticsAdminV1alphaChannelGroup]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    pageSize: int
-    pageToken: str
     property: str
 
 @typing.type_check_only
@@ -903,7 +1004,6 @@ class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse(
     typing_extensions.TypedDict, total=False
 ):
     connectedSiteTags: _list[GoogleAnalyticsAdminV1alphaConnectedSiteTag]
-    nextPageToken: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponse(

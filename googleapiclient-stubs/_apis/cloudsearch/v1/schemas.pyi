@@ -77,6 +77,7 @@ class Annotation(typing_extensions.TypedDict, total=False):
     chipRenderType: typing_extensions.Literal[
         "CHIP_RENDER_TYPE_UNSPECIFIED", "RENDER", "RENDER_IF_POSSIBLE", "DO_NOT_RENDER"
     ]
+    componentSearchInfo: AppsDynamiteSharedMessageComponentSearchInfo
     consentedAppUnfurlMetadata: ConsentedAppUnfurlMetadata
     customEmojiMetadata: CustomEmojiMetadata
     dataLossPreventionMetadata: DataLossPreventionMetadata
@@ -504,6 +505,13 @@ class AppsDynamiteSharedMeetMetadata(typing_extensions.TypedDict, total=False):
     meetingUrl: str
 
 @typing.type_check_only
+class AppsDynamiteSharedMessageComponentSearchInfo(
+    typing_extensions.TypedDict, total=False
+):
+    matchedSearch: bool
+    titleTextWithDescription: AppsDynamiteSharedTextWithDescription
+
+@typing.type_check_only
 class AppsDynamiteSharedMessageInfo(typing_extensions.TypedDict, total=False):
     messageId: MessageId
     messageType: typing_extensions.Literal["MESSAGE_TYPE_UNSPECIFIED", "INLINE_REPLY"]
@@ -650,6 +658,25 @@ class AppsDynamiteSharedTasksAnnotationDataUserDefinedMessage(
 class AppsDynamiteSharedTasksMessageIntegrationPayload(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class AppsDynamiteSharedTextSegment(typing_extensions.TypedDict, total=False):
+    length: int
+    startIndex: int
+
+@typing.type_check_only
+class AppsDynamiteSharedTextSegmentsWithDescription(
+    typing_extensions.TypedDict, total=False
+):
+    descriptionType: typing_extensions.Literal[
+        "DESCRIPTION_TYPE_UNSPECIFIED", "KEYWORD_MATCH"
+    ]
+    textSegment: _list[AppsDynamiteSharedTextSegment]
+
+@typing.type_check_only
+class AppsDynamiteSharedTextWithDescription(typing_extensions.TypedDict, total=False):
+    textBody: str
+    textSegmentsWithDescription: _list[AppsDynamiteSharedTextSegmentsWithDescription]
 
 @typing.type_check_only
 class AppsDynamiteSharedUserBlockRelationship(typing_extensions.TypedDict, total=False):
@@ -821,6 +848,7 @@ class AppsDynamiteStorageIcon(typing_extensions.TypedDict, total=False):
     iconUrl: str
     imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
     knownIcon: str
+    materialIcon: AppsDynamiteStorageMaterialIcon
 
 @typing.type_check_only
 class AppsDynamiteStorageImage(typing_extensions.TypedDict, total=False):
@@ -845,6 +873,13 @@ class AppsDynamiteStorageImageCropStyle(typing_extensions.TypedDict, total=False
         "RECTANGLE_CUSTOM",
         "RECTANGLE_4_3",
     ]
+
+@typing.type_check_only
+class AppsDynamiteStorageMaterialIcon(typing_extensions.TypedDict, total=False):
+    fill: bool
+    grade: int
+    name: str
+    weight: int
 
 @typing.type_check_only
 class AppsDynamiteStorageOnClick(typing_extensions.TypedDict, total=False):
@@ -1239,6 +1274,7 @@ class CallSettings(typing_extensions.TypedDict, total=False):
         "ACCESS_TYPE_OPEN",
         "ACCESS_TYPE_TRUSTED",
         "ACCESS_TYPE_RESTRICTED",
+        "ACCESS_TYPE_CLOSED",
     ]
     allowJoiningBeforeHost: bool
     attendanceReportEnabled: bool
@@ -1614,7 +1650,13 @@ class DisplayedProperty(typing_extensions.TypedDict, total=False):
 class Divider(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DlpAction(typing_extensions.TypedDict, total=False):
+    actionType: typing_extensions.Literal["NO_ACTION", "BLOCK", "AUDIT_ONLY", "WARN"]
+    unsafeHtmlMessageBody: str
+
+@typing.type_check_only
 class DlpScanSummary(typing_extensions.TypedDict, total=False):
+    dlpAction: DlpAction
     scanId: str
     scanNotApplicableForContext: bool
     scanOutcome: typing_extensions.Literal[
@@ -1759,6 +1801,7 @@ class DynamiteMessagesScoringInfo(typing_extensions.TypedDict, total=False):
     commonCountToMembershipCountRatio: float
     creatorGaiaId: str
     creatorInSearcherContactList: bool
+    crowdingMultiplier: float
     dasContactCount: str
     finalScore: float
     freshnessScore: float
@@ -1781,6 +1824,7 @@ class DynamiteSpacesScoringInfo(typing_extensions.TypedDict, total=False):
     joinedSpacesAffinityScore: float
     lastMessagePostedTimestampSecs: str
     lastReadTimestampSecs: str
+    memberCountScore: float
     memberMetadataCount: float
     messageScore: float
     numAucContacts: str
@@ -3203,35 +3247,6 @@ class Message(typing_extensions.TypedDict, total=False):
     deleteTime: str
     deleteTimeForRequester: str
     deletedByVault: bool
-    dlpScanOutcome: typing_extensions.Literal[
-        "SCAN_UNKNOWN_OUTCOME",
-        "SCAN_SUCCEEDED_NO_VIOLATION",
-        "SCAN_SUCCEEDED_BLOCK",
-        "SCAN_SUCCEEDED_WARN",
-        "SCAN_SUCCEEDED_AUDIT_ONLY",
-        "SCAN_FAILURE_EXCEPTION",
-        "SCAN_FAILURE_RULE_FETCH_FAILED",
-        "SCAN_FAILURE_TIMEOUT",
-        "SCAN_FAILURE_ALL_RULES_FAILED",
-        "SCAN_FAILURE_ILLEGAL_STATE_FOR_ATTACHMENTS",
-        "SCAN_SKIPPED_EXPERIMENT_DISABLED",
-        "SCAN_SKIPPED_CONSUMER",
-        "SCAN_SKIPPED_NON_HUMAN_USER",
-        "SCAN_SKIPPED_NO_MESSAGE",
-        "SCAN_SKIPPED_USER_ACKNOWLEDGED_WARNING",
-        "SCAN_SKIPPED_MESSAGE_FROM_UNSUPPORTED_ORIGIN",
-        "SCAN_SKIPPED_MESSAGE_SENT_DURING_SPACE_MIGRATION",
-        "SCAN_RULE_EVALUATION_SKIPPED_NO_RULES_FOUND",
-        "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_ACTION_PARAMS",
-        "SCAN_RULE_EVALUATION_SKIPPED_NO_APPLICABLE_RULES_FOR_TRIGGER",
-        "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_PERMANENT_ERROR",
-        "SCAN_RULE_EVALUATION_SKIPPED_CHANGELING_EMPTY_RESPONSE",
-        "SCAN_RULE_EVALUATION_SKIPPED_UNSUPPORTED_FILE_TYPE",
-        "SCAN_SUCCEEDED_WITH_FAILURES_NO_VIOLATION",
-        "SCAN_SUCCEEDED_WITH_FAILURES_BLOCK",
-        "SCAN_SUCCEEDED_WITH_FAILURES_WARN",
-        "SCAN_SUCCEEDED_WITH_FAILURES_AUDIT_ONLY",
-    ]
     dlpScanSummary: DlpScanSummary
     editableBy: typing_extensions.Literal[
         "PERMISSION_UNSPECIFIED",
@@ -4163,6 +4178,7 @@ class Settings(typing_extensions.TypedDict, total=False):
         "ACCESS_TYPE_OPEN",
         "ACCESS_TYPE_TRUSTED",
         "ACCESS_TYPE_RESTRICTED",
+        "ACCESS_TYPE_CLOSED",
     ]
     allowJoiningBeforeHost: bool
     attendanceReportEnabled: bool

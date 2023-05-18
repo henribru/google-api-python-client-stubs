@@ -442,6 +442,14 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     previous_request: ListDatabasesResponseHttpRequest,
                     previous_response: ListDatabasesResponse,
                 ) -> ListDatabasesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Database = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,

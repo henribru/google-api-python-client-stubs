@@ -21,6 +21,7 @@ class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False)
     displayName: str
     listConstraint: GoogleCloudOrgpolicyV2ConstraintListConstraint
     name: str
+    supportsDryRun: bool
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintBooleanConstraint(

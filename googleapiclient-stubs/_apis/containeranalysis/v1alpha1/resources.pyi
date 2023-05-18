@@ -144,6 +144,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "SPDX_RELATIONSHIP",
                     "DSSE_ATTESTATION",
                     "VULNERABILITY_ASSESSMENT",
+                    "SBOM_REFERENCE",
                 ] = ...,
                 name: str = ...,
                 pageSize: int = ...,

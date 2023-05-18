@@ -19,6 +19,72 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EvaluationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ExecutionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ResultsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListExecutionResultsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListExecutionResultsResponseHttpRequest,
+                            previous_response: ListExecutionResultsResponse,
+                        ) -> ListExecutionResultsResponseHttpRequest | None: ...
+
+                    @typing.type_check_only
+                    class ScannedResourcesResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            rule: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListScannedResourcesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListScannedResourcesResponseHttpRequest,
+                            previous_response: ListScannedResourcesResponse,
+                        ) -> ListScannedResourcesResponseHttpRequest | None: ...
+
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ExecutionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListExecutionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListExecutionsResponseHttpRequest,
+                        previous_response: ListExecutionsResponse,
+                    ) -> ListExecutionsResponseHttpRequest | None: ...
+                    def run(
+                        self,
+                        *,
+                        name: str,
+                        body: RunEvaluationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def results(self) -> ResultsResource: ...
+                    def scannedResources(self) -> ScannedResourcesResource: ...
+
                 def create(
                     self,
                     *,
@@ -46,6 +112,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListEvaluationsResponseHttpRequest,
                     previous_response: ListEvaluationsResponse,
                 ) -> ListEvaluationsResponseHttpRequest | None: ...
+                def executions(self) -> ExecutionsResource: ...
 
             @typing.type_check_only
             class InsightsResource(googleapiclient.discovery.Resource):
@@ -87,6 +154,23 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RulesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRulesResponseHttpRequest,
+                    previous_response: ListRulesResponse,
+                ) -> ListRulesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -107,6 +191,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
             def evaluations(self) -> EvaluationsResource: ...
             def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
+            def rules(self) -> RulesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -141,12 +226,36 @@ class EvaluationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Evaluation: ...
 
 @typing.type_check_only
+class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Execution: ...
+
+@typing.type_check_only
 class ListEvaluationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListEvaluationsResponse: ...
+
+@typing.type_check_only
+class ListExecutionResultsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListExecutionResultsResponse: ...
+
+@typing.type_check_only
+class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListExecutionsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -163,6 +272,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListRulesResponse: ...
+
+@typing.type_check_only
+class ListScannedResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListScannedResourcesResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):

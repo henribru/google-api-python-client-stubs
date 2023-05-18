@@ -66,6 +66,7 @@ class GoogleCloudBaremetalsolutionV2ServerNetworkTemplateLogicalInterface(
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
+    firmwareVersion: str
     hyperthreadingEnabled: bool
     id: str
     interactiveSerialConsoleEnabled: bool
@@ -203,6 +204,7 @@ class Lun(typing_extensions.TypedDict, total=False):
     bootLun: bool
     expireTime: str
     id: str
+    instances: _list[str]
     multiprotocolType: typing_extensions.Literal[
         "MULTIPROTOCOL_TYPE_UNSPECIFIED", "LINUX"
     ]
@@ -375,7 +377,19 @@ class QosPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RenameInstanceRequest(typing_extensions.TypedDict, total=False):
-    newName: str
+    newInstanceId: str
+
+@typing.type_check_only
+class RenameNetworkRequest(typing_extensions.TypedDict, total=False):
+    newNetworkId: str
+
+@typing.type_check_only
+class RenameNfsShareRequest(typing_extensions.TypedDict, total=False):
+    newNfsshareId: str
+
+@typing.type_check_only
+class RenameVolumeRequest(typing_extensions.TypedDict, total=False):
+    newVolumeId: str
 
 @typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
@@ -446,12 +460,14 @@ class VlanAttachment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
+    attached: bool
     autoGrownSizeGib: str
     bootVolume: bool
     currentSizeGib: str
     emergencySizeGib: str
     expireTime: str
     id: str
+    instances: _list[str]
     labels: dict[str, typing.Any]
     maxSizeGib: str
     name: str

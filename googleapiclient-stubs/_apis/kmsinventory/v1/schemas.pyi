@@ -101,8 +101,10 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
     createTime: str
     destroyEventTime: str
     destroyTime: str
+    externalDestructionFailureReason: str
     externalProtectionLevelOptions: GoogleCloudKmsV1ExternalProtectionLevelOptions
     generateTime: str
+    generationFailureReason: str
     importFailureReason: str
     importJob: str
     importTime: str
@@ -120,6 +122,9 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "DESTROY_SCHEDULED",
         "PENDING_IMPORT",
         "IMPORT_FAILED",
+        "GENERATION_FAILED",
+        "PENDING_EXTERNAL_DESTRUCTION",
+        "EXTERNAL_DESTRUCTION_FAILED",
     ]
 
 @typing.type_check_only
