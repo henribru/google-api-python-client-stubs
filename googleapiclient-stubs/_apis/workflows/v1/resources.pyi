@@ -71,6 +71,19 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     previous_request: ListWorkflowsResponseHttpRequest,
                     previous_response: ListWorkflowsResponse,
                 ) -> ListWorkflowsResponseHttpRequest | None: ...
+                def listRevisions(
+                    self,
+                    *,
+                    name: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkflowRevisionsResponseHttpRequest: ...
+                def listRevisions_next(
+                    self,
+                    previous_request: ListWorkflowRevisionsResponseHttpRequest,
+                    previous_response: ListWorkflowRevisionsResponse,
+                ) -> ListWorkflowRevisionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -139,6 +152,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListWorkflowRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListWorkflowRevisionsResponse: ...
 
 @typing.type_check_only
 class ListWorkflowsResponseHttpRequest(googleapiclient.http.HttpRequest):

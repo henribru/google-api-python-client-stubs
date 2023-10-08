@@ -18,18 +18,7 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class InstanceProvisioningSettingsResource(
-                googleapiclient.discovery.Resource
-            ):
-                def fetch(
-                    self, *, location: str, **kwargs: typing.Any
-                ) -> FetchInstanceProvisioningSettingsResponseHttpRequest: ...
-
-            @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
-                def create(
-                    self, *, parent: str, body: Instance = ..., **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
                 def detachLun(
                     self,
                     *,
@@ -189,6 +178,25 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class OsImagesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OSImageHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOSImagesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOSImagesResponseHttpRequest,
+                    previous_response: ListOSImagesResponse,
+                ) -> ListOSImagesResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class ProvisioningConfigsResource(googleapiclient.discovery.Resource):
@@ -393,13 +401,11 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-            def instanceProvisioningSettings(
-                self,
-            ) -> InstanceProvisioningSettingsResource: ...
             def instances(self) -> InstancesResource: ...
             def networks(self) -> NetworksResource: ...
             def nfsShares(self) -> NfsSharesResource: ...
             def operations(self) -> OperationsResource: ...
+            def osImages(self) -> OsImagesResource: ...
             def provisioningConfigs(self) -> ProvisioningConfigsResource: ...
             def provisioningQuotas(self) -> ProvisioningQuotasResource: ...
             def sshKeys(self) -> SshKeysResource: ...
@@ -428,16 +434,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
-
-@typing.type_check_only
-class FetchInstanceProvisioningSettingsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> FetchInstanceProvisioningSettingsResponse: ...
 
 @typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):
@@ -494,6 +490,14 @@ class ListNfsSharesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListNfsSharesResponse: ...
+
+@typing.type_check_only
+class ListOSImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListOSImagesResponse: ...
 
 @typing.type_check_only
 class ListProvisioningQuotasResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -558,6 +562,14 @@ class NfsShareHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> NfsShare: ...
+
+@typing.type_check_only
+class OSImageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> OSImage: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

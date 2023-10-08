@@ -43,6 +43,13 @@ class BackupContext(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class BackupReencryptionConfig(typing_extensions.TypedDict, total=False):
+    backupLimit: int
+    backupType: typing_extensions.Literal[
+        "BACKUP_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND"
+    ]
+
+@typing.type_check_only
 class BackupRetentionSettings(typing_extensions.TypedDict, total=False):
     retainedBackups: int
     retentionUnit: typing_extensions.Literal["RETENTION_UNIT_UNSPECIFIED", "COUNT"]
@@ -103,6 +110,7 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     kind: str
     pitrTimestampMs: str
     pointInTime: str
+    preferredZone: str
 
 @typing.type_check_only
 class ConnectSettings(typing_extensions.TypedDict, total=False):
@@ -125,6 +133,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_12",
         "POSTGRES_13",
         "POSTGRES_14",
+        "POSTGRES_15",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -142,11 +151,21 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
         "SQLSERVER_2019_WEB",
+        "SQLSERVER_2022_STANDARD",
+        "SQLSERVER_2022_ENTERPRISE",
+        "SQLSERVER_2022_EXPRESS",
+        "SQLSERVER_2022_WEB",
     ]
+    dnsName: str
     ipAddresses: _list[IpMapping]
     kind: str
+    pscEnabled: bool
     region: str
     serverCaCert: SslCert
+
+@typing.type_check_only
+class DataCacheConfig(typing_extensions.TypedDict, total=False):
+    dataCacheEnabled: bool
 
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
@@ -191,6 +210,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_12",
         "POSTGRES_13",
         "POSTGRES_14",
+        "POSTGRES_15",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -208,9 +228,14 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
         "SQLSERVER_2019_WEB",
+        "SQLSERVER_2022_STANDARD",
+        "SQLSERVER_2022_ENTERPRISE",
+        "SQLSERVER_2022_EXPRESS",
+        "SQLSERVER_2022_WEB",
     ]
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
+    dnsName: str
     etag: str
     failoverReplica: dict[str, typing.Any]
     gceZone: str
@@ -229,7 +254,9 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     name: str
     onPremisesConfiguration: OnPremisesConfiguration
     outOfDiskReport: SqlOutOfDiskReport
+    primaryDnsName: str
     project: str
+    pscServiceAttachmentLink: str
     region: str
     replicaConfiguration: ReplicaConfiguration
     replicaNames: _list[str]
@@ -295,6 +322,9 @@ class DiskEncryptionConfiguration(typing_extensions.TypedDict, total=False):
 class DiskEncryptionStatus(typing_extensions.TypedDict, total=False):
     kind: str
     kmsKeyVersionName: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExportContext(typing_extensions.TypedDict, total=False):
@@ -412,6 +442,10 @@ class InstancesListServerCasResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class InstancesReencryptRequest(typing_extensions.TypedDict, total=False):
+    backupReencryptionConfig: BackupReencryptionConfig
+
+@typing.type_check_only
 class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
     restoreBackupContext: RestoreBackupContext
 
@@ -430,6 +464,7 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
     enablePrivatePathForGoogleCloudServices: bool
     ipv4Enabled: bool
     privateNetwork: str
+    pscConfig: PscConfig
     requireSsl: bool
 
 @typing.type_check_only
@@ -539,6 +574,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "LOG_CLEANUP",
         "AUTO_RESTART",
         "REENCRYPT",
+        "SWITCHOVER",
     ]
     selfLink: str
     startTime: str
@@ -598,6 +634,11 @@ class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
     targetSizeGb: str
 
 @typing.type_check_only
+class PscConfig(typing_extensions.TypedDict, total=False):
+    allowedConsumerProjects: _list[str]
+    pscEnabled: bool
+
+@typing.type_check_only
 class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
     failoverTarget: bool
     kind: str
@@ -642,6 +683,7 @@ class Settings(typing_extensions.TypedDict, total=False):
         "CONNECTOR_ENFORCEMENT_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
     ]
     crashSafeReplicationEnabled: bool
+    dataCacheConfig: DataCacheConfig
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
         "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD", "OBSOLETE_LOCAL_SSD"
@@ -650,6 +692,9 @@ class Settings(typing_extensions.TypedDict, total=False):
     databaseReplicationEnabled: bool
     deletionProtectionEnabled: bool
     denyMaintenancePeriods: _list[DenyMaintenancePeriod]
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
     kind: str
@@ -709,12 +754,26 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_STORAGE_ENGINE",
         "LIMITED_SUPPORT_TABLES",
         "EXISTING_DATA_IN_REPLICA",
+        "MISSING_OPTIONAL_PRIVILEGES",
+        "RISKY_BACKUP_ADMIN_PRIVILEGE",
+        "INSUFFICIENT_GCS_PERMISSIONS",
+        "INVALID_FILE_INFO",
+        "UNSUPPORTED_DATABASE_SETTINGS",
+        "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
     ]
 
 @typing.type_check_only
 class SqlInstancesGetDiskShrinkConfigResponse(typing_extensions.TypedDict, total=False):
     kind: str
+    message: str
     minimalTargetSizeGb: str
+
+@typing.type_check_only
+class SqlInstancesGetLatestRecoveryTimeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    kind: str
+    latestRecoveryTime: str
 
 @typing.type_check_only
 class SqlInstancesRescheduleMaintenanceRequestBody(
@@ -731,6 +790,9 @@ class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=Fa
     skipVerification: bool
     syncMode: typing_extensions.Literal[
         "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+    syncParallelLevel: typing_extensions.Literal[
+        "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
     ]
 
 @typing.type_check_only

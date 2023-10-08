@@ -56,8 +56,24 @@ class GoogleCloudAdvisorynotificationsV1Notification(
         "NOTIFICATION_TYPE_UNSPECIFIED",
         "NOTIFICATION_TYPE_SECURITY_PRIVACY_ADVISORY",
         "NOTIFICATION_TYPE_SENSITIVE_ACTIONS",
+        "NOTIFICATION_TYPE_SECURITY_MSA",
+        "NOTIFICATION_TYPE_THREAT_HORIZONS",
     ]
     subject: GoogleCloudAdvisorynotificationsV1Subject
+
+@typing.type_check_only
+class GoogleCloudAdvisorynotificationsV1NotificationSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enabled: bool
+
+@typing.type_check_only
+class GoogleCloudAdvisorynotificationsV1Settings(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    name: str
+    notificationSettings: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudAdvisorynotificationsV1Subject(

@@ -119,6 +119,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleAnalyticsAdminV1betaListConversionEventsResponseHttpRequest | None
             ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1betaConversionEvent = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1betaConversionEventHttpRequest: ...
 
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):

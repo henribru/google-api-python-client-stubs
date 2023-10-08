@@ -18,6 +18,9 @@ class KeepResource(googleapiclient.discovery.Resource):
         def download(
             self, *, name: str, mimeType: str = ..., **kwargs: typing.Any
         ) -> AttachmentHttpRequest: ...
+        def download_media(
+            self, *, name: str, mimeType: str = ..., **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
 
     @typing.type_check_only
     class NotesResource(googleapiclient.discovery.Resource):
@@ -112,3 +115,11 @@ class NoteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Note: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

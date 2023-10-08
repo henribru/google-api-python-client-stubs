@@ -283,11 +283,21 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudContentwarehouseV1SynonymSetHttpRequest: ...
 
+            def getStatus(
+                self, *, location: str, **kwargs: typing.Any
+            ) -> GoogleCloudContentwarehouseV1ProjectStatusHttpRequest: ...
             def initialize(
                 self,
                 *,
                 location: str,
                 body: GoogleCloudContentwarehouseV1InitializeProjectRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def runPipeline(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudContentwarehouseV1RunPipelineRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def documentSchemas(self) -> DocumentSchemasResource: ...
@@ -425,6 +435,16 @@ class GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudContentwarehouseV1ListSynonymSetsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1ProjectStatusHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudContentwarehouseV1ProjectStatus: ...
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RuleSetHttpRequest(googleapiclient.http.HttpRequest):

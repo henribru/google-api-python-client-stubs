@@ -18,6 +18,9 @@ class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     invalidKeyVersion: bool
     name: str
     notificationEmails: _list[str]
+    notificationPubsubTopic: str
+    preferNoBroadApprovalRequests: bool
+    preferredRequestExpirationDays: int
 
 @typing.type_check_only
 class AccessLocations(typing_extensions.TypedDict, total=False):

@@ -189,6 +189,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         def promoteReplica(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def reencrypt(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesReencryptRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def resetSslConfig(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -236,6 +244,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, project: str, operation: str, **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def get(
             self, *, project: str, operation: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -261,6 +272,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             def getDiskShrinkConfig(
                 self, *, project: str, instance: str, **kwargs: typing.Any
             ) -> SqlInstancesGetDiskShrinkConfigResponseHttpRequest: ...
+            def getLatestRecoveryTime(
+                self, *, project: str, instance: str, **kwargs: typing.Any
+            ) -> SqlInstancesGetLatestRecoveryTimeResponseHttpRequest: ...
             def performDiskShrink(
                 self,
                 *,
@@ -457,6 +471,14 @@ class DatabasesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DatabasesListResponse: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class FlagsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -513,6 +535,16 @@ class SqlInstancesGetDiskShrinkConfigResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SqlInstancesGetDiskShrinkConfigResponse: ...
+
+@typing.type_check_only
+class SqlInstancesGetLatestRecoveryTimeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SqlInstancesGetLatestRecoveryTimeResponse: ...
 
 @typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsResponseHttpRequest(

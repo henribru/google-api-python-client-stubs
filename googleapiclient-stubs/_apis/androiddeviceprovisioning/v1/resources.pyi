@@ -164,6 +164,13 @@ class AndroidProvisioningPartnerResource(googleapiclient.discovery.Resource):
                 previous_response: FindDevicesByOwnerResponse,
             ) -> FindDevicesByOwnerResponseHttpRequest | None: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> DeviceHttpRequest: ...
+            def getSimLockState(
+                self,
+                *,
+                partnerId: str,
+                body: GetDeviceSimLockStateRequest = ...,
+                **kwargs: typing.Any
+            ) -> GetDeviceSimLockStateResponseHttpRequest: ...
             def metadata(
                 self,
                 *,
@@ -344,6 +351,14 @@ class FindDevicesByOwnerResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FindDevicesByOwnerResponse: ...
+
+@typing.type_check_only
+class GetDeviceSimLockStateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GetDeviceSimLockStateResponse: ...
 
 @typing.type_check_only
 class ListCustomersResponseHttpRequest(googleapiclient.http.HttpRequest):

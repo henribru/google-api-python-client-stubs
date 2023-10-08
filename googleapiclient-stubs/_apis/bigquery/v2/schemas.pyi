@@ -108,6 +108,13 @@ class BiEngineStatistics(typing_extensions.TypedDict, total=False):
     biEngineReasons: _list[BiEngineReason]
 
 @typing.type_check_only
+class BigLakeConfiguration(typing_extensions.TypedDict, total=False):
+    connectionId: str
+    fileFormat: str
+    storageUri: str
+    tableFormat: str
+
+@typing.type_check_only
 class BigQueryModelTraining(typing_extensions.TypedDict, total=False):
     currentIteration: int
     expectedTotalIterations: str
@@ -254,6 +261,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     defaultTableExpirationMs: str
     description: str
     etag: str
+    externalDatasetReference: ExternalDatasetReference
     friendlyName: str
     id: str
     isCaseInsensitive: bool
@@ -400,9 +408,11 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     connectionId: str
     csvOptions: CsvOptions
     decimalTargetTypes: _list[str]
+    fileSetSpecType: str
     googleSheetsOptions: GoogleSheetsOptions
     hivePartitioningOptions: HivePartitioningOptions
     ignoreUnknownValues: bool
+    jsonOptions: JsonOptions
     maxBadRecords: int
     metadataCacheMode: str
     objectMetadata: str
@@ -411,6 +421,11 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     schema: TableSchema
     sourceFormat: str
     sourceUris: _list[str]
+
+@typing.type_check_only
+class ExternalDatasetReference(typing_extensions.TypedDict, total=False):
+    connection: str
+    externalSource: str
 
 @typing.type_check_only
 class FeatureValue(typing_extensions.TypedDict, total=False):
@@ -458,6 +473,7 @@ class GoogleSheetsOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HivePartitioningOptions(typing_extensions.TypedDict, total=False):
+    fields: _list[str]
     mode: str
     requirePartitionFilter: bool
     sourceUriPrefix: str
@@ -510,9 +526,9 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IndexUnusedReason(typing_extensions.TypedDict, total=False):
-    base_table: TableReference
+    baseTable: TableReference
     code: str
-    index_name: str
+    indexName: str
     message: str
 
 @typing.type_check_only
@@ -600,6 +616,7 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     destinationTableProperties: DestinationTableProperties
     encoding: str
     fieldDelimiter: str
+    fileSetSpecType: str
     hivePartitioningOptions: HivePartitioningOptions
     ignoreUnknownValues: bool
     jsonExtension: str
@@ -748,8 +765,8 @@ class JobStatistics4(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobStatistics5(typing_extensions.TypedDict, total=False):
-    copied_logical_bytes: str
-    copied_rows: str
+    copiedLogicalBytes: str
+    copiedRows: str
 
 @typing.type_check_only
 class JobStatus(typing_extensions.TypedDict, total=False):
@@ -759,6 +776,10 @@ class JobStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JsonObject(dict[str, typing.Any]): ...
+
+@typing.type_check_only
+class JsonOptions(typing_extensions.TypedDict, total=False):
+    encoding: str
 
 @typing.type_check_only
 class JsonValue(dict[str, typing.Any]): ...
@@ -784,7 +805,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaterializedViewDefinition(typing_extensions.TypedDict, total=False):
-    allow_non_incremental_definition: bool
+    allowNonIncrementalDefinition: bool
     enableRefresh: bool
     lastRefreshTime: str
     maxStaleness: str
@@ -823,6 +844,7 @@ class Model(typing_extensions.TypedDict, total=False):
         "DNN_CLASSIFIER",
         "TENSORFLOW",
         "DNN_REGRESSOR",
+        "XGBOOST",
         "BOOSTED_TREE_REGRESSOR",
         "BOOSTED_TREE_CLASSIFIER",
         "ARIMA",
@@ -833,11 +855,16 @@ class Model(typing_extensions.TypedDict, total=False):
         "DNN_LINEAR_COMBINED_REGRESSOR",
         "AUTOENCODER",
         "ARIMA_PLUS",
+        "ARIMA_PLUS_XREG",
         "RANDOM_FOREST_REGRESSOR",
         "RANDOM_FOREST_CLASSIFIER",
+        "TENSORFLOW_LITE",
+        "ONNX",
     ]
     optimalTrialIds: _list[str]
+    remoteModelInfo: RemoteModelInfo
     trainingRuns: _list[TrainingRun]
+    transformColumns: _list[TransformColumn]
 
 @typing.type_check_only
 class ModelDefinition(typing_extensions.TypedDict, total=False):
@@ -978,9 +1005,25 @@ class RemoteFunctionOptions(typing_extensions.TypedDict, total=False):
     userDefinedContext: dict[str, typing.Any]
 
 @typing.type_check_only
+class RemoteModelInfo(typing_extensions.TypedDict, total=False):
+    connection: str
+    endpoint: str
+    maxBatchingRows: str
+    remoteModelVersion: str
+    remoteServiceType: typing_extensions.Literal[
+        "REMOTE_SERVICE_TYPE_UNSPECIFIED",
+        "CLOUD_AI_TRANSLATE_V3",
+        "CLOUD_AI_VISION_V1",
+        "CLOUD_AI_NATURAL_LANGUAGE_V1",
+    ]
+
+@typing.type_check_only
 class Routine(typing_extensions.TypedDict, total=False):
     arguments: _list[Argument]
     creationTime: str
+    dataGovernanceType: typing_extensions.Literal[
+        "DATA_GOVERNANCE_TYPE_UNSPECIFIED", "DATA_MASKING"
+    ]
     definitionBody: str
     description: str
     determinismLevel: typing_extensions.Literal[
@@ -1001,6 +1044,7 @@ class Routine(typing_extensions.TypedDict, total=False):
         "SCALAR_FUNCTION",
         "PROCEDURE",
         "TABLE_VALUED_FUNCTION",
+        "AGGREGATE_FUNCTION",
     ]
     sparkOptions: SparkOptions
     strictMode: bool
@@ -1051,7 +1095,7 @@ class ScriptStatistics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchStatistics(typing_extensions.TypedDict, total=False):
-    indexUnusedReason: _list[IndexUnusedReason]
+    indexUnusedReasons: _list[IndexUnusedReason]
     indexUsageMode: str
 
 @typing.type_check_only
@@ -1089,13 +1133,14 @@ class SparkOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SparkStatistics(typing_extensions.TypedDict, total=False):
     endpoints: dict[str, typing.Any]
-    logging_info: SparkLoggingInfo
-    spark_job_id: str
-    spark_job_location: str
+    loggingInfo: SparkLoggingInfo
+    sparkJobId: str
+    sparkJobLocation: str
 
 @typing.type_check_only
 class StandardSqlDataType(typing_extensions.TypedDict, total=False):
     arrayElementType: StandardSqlDataType
+    rangeElementType: StandardSqlDataType
     structType: StandardSqlStructType
     typeKind: typing_extensions.Literal[
         "TYPE_KIND_UNSPECIFIED",
@@ -1115,6 +1160,7 @@ class StandardSqlDataType(typing_extensions.TypedDict, total=False):
         "JSON",
         "ARRAY",
         "STRUCT",
+        "RANGE",
     ]
 
 @typing.type_check_only
@@ -1142,6 +1188,7 @@ class StringHparamSearchSpace(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
+    biglakeConfiguration: BigLakeConfiguration
     cloneDefinition: CloneDefinition
     clustering: Clustering
     creationTime: str
@@ -1161,24 +1208,25 @@ class Table(typing_extensions.TypedDict, total=False):
     materializedView: MaterializedViewDefinition
     maxStaleness: str
     model: ModelDefinition
+    numActiveLogicalBytes: str
+    numActivePhysicalBytes: str
     numBytes: str
     numLongTermBytes: str
+    numLongTermLogicalBytes: str
+    numLongTermPhysicalBytes: str
+    numPartitions: str
     numPhysicalBytes: str
     numRows: str
-    num_active_logical_bytes: str
-    num_active_physical_bytes: str
-    num_long_term_logical_bytes: str
-    num_long_term_physical_bytes: str
-    num_partitions: str
-    num_time_travel_physical_bytes: str
-    num_total_logical_bytes: str
-    num_total_physical_bytes: str
+    numTimeTravelPhysicalBytes: str
+    numTotalLogicalBytes: str
+    numTotalPhysicalBytes: str
     rangePartitioning: RangePartitioning
     requirePartitionFilter: bool
     schema: TableSchema
     selfLink: str
     snapshotDefinition: SnapshotDefinition
     streamingBuffer: Streamingbuffer
+    tableConstraints: TableConstraints
     tableReference: TableReference
     timePartitioning: TimePartitioning
     type: str
@@ -1187,6 +1235,11 @@ class Table(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableCell(typing_extensions.TypedDict, total=False):
     v: typing.Any
+
+@typing.type_check_only
+class TableConstraints(typing_extensions.TypedDict, total=False):
+    foreignKeys: _list[dict[str, typing.Any]]
+    primaryKey: dict[str, typing.Any]
 
 @typing.type_check_only
 class TableDataInsertAllRequest(typing_extensions.TypedDict, total=False):
@@ -1221,6 +1274,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
     name: str
     policyTags: dict[str, typing.Any]
     precision: str
+    rangeElementType: dict[str, typing.Any]
     roundingMode: str
     scale: str
     type: str
@@ -1264,13 +1318,23 @@ class TimePartitioning(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TrainingOptions(typing_extensions.TypedDict, total=False):
+    activationFn: str
     adjustStepChanges: bool
+    approxGlobalFeatureContrib: bool
     autoArima: bool
     autoArimaMaxOrder: str
     autoArimaMinOrder: str
+    autoClassWeights: bool
     batchSize: str
     boosterType: typing_extensions.Literal["BOOSTER_TYPE_UNSPECIFIED", "GBTREE", "DART"]
+    budgetHours: float
     calculatePValues: bool
+    categoryEncodingMethod: typing_extensions.Literal[
+        "ENCODING_METHOD_UNSPECIFIED",
+        "ONE_HOT_ENCODING",
+        "LABEL_ENCODING",
+        "DUMMY_ENCODING",
+    ]
     cleanSpikesAndDips: bool
     colorSpace: typing_extensions.Literal[
         "COLOR_SPACE_UNSPECIFIED", "RGB", "HSV", "YIQ", "YUV", "GRAYSCALE"
@@ -1312,6 +1376,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     feedbackType: typing_extensions.Literal[
         "FEEDBACK_TYPE_UNSPECIFIED", "IMPLICIT", "EXPLICIT"
     ]
+    fitIntercept: bool
     hiddenUnits: _list[str]
     holidayRegion: typing_extensions.Literal[
         "HOLIDAY_REGION_UNSPECIFIED",
@@ -1384,11 +1449,13 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "VN",
         "ZA",
     ]
+    holidayRegions: _list[str]
     horizon: str
     hparamTuningObjectives: _list[str]
     includeDrift: bool
     initialLearnRate: float
     inputLabelColumns: _list[str]
+    instanceWeightColumn: str
     integratedGradientsNumSteps: str
     itemColumn: str
     kmeansInitializationColumn: str
@@ -1398,6 +1465,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "CUSTOM",
         "KMEANS_PLUS_PLUS",
     ]
+    l1RegActivation: float
     l1Regularization: float
     l2Regularization: float
     labelClassWeights: dict[str, typing.Any]
@@ -1416,18 +1484,25 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     minSplitLoss: float
     minTimeSeriesLength: str
     minTreeChildWeight: str
+    modelRegistry: typing_extensions.Literal["MODEL_REGISTRY_UNSPECIFIED", "VERTEX_AI"]
     modelUri: str
     nonSeasonalOrder: ArimaOrder
     numClusters: str
     numFactors: str
     numParallelTree: str
+    numPrincipalComponents: str
     numTrials: str
     optimizationStrategy: typing_extensions.Literal[
         "OPTIMIZATION_STRATEGY_UNSPECIFIED", "BATCH_GRADIENT_DESCENT", "NORMAL_EQUATION"
     ]
-    preserveInputStructs: bool
+    optimizer: str
+    pcaExplainedVarianceRatio: float
+    pcaSolver: typing_extensions.Literal["UNSPECIFIED", "FULL", "RANDOMIZED", "AUTO"]
     sampledShapleyNumPaths: str
+    scaleFeatures: bool
+    standardizeFeatures: bool
     subsample: float
+    tfVersion: str
     timeSeriesDataColumn: str
     timeSeriesIdColumn: str
     timeSeriesIdColumns: _list[str]
@@ -1438,8 +1513,10 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     ]
     trendSmoothingWindowSize: str
     userColumn: str
+    vertexAiModelVersionAliases: _list[str]
     walsAlpha: float
     warmStart: bool
+    xgboostVersion: str
 
 @typing.type_check_only
 class TrainingRun(typing_extensions.TypedDict, total=False):
@@ -1457,6 +1534,12 @@ class TrainingRun(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransactionInfo(typing_extensions.TypedDict, total=False):
     transactionId: str
+
+@typing.type_check_only
+class TransformColumn(typing_extensions.TypedDict, total=False):
+    name: str
+    transformSql: str
+    type: StandardSqlDataType
 
 @typing.type_check_only
 class UserDefinedFunctionResource(typing_extensions.TypedDict, total=False):

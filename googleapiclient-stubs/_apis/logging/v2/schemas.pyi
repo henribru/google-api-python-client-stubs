@@ -512,6 +512,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     disableDefaultSink: bool
     kmsKeyName: str
     kmsServiceAccountId: str
+    loggingServiceAccountId: str
     name: str
     storageLocation: str
 

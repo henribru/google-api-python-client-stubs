@@ -635,6 +635,28 @@ class AppsDynamiteSharedOrganizationInfoCustomerInfo(
     customerId: AppsDynamiteCustomerId
 
 @typing.type_check_only
+class AppsDynamiteSharedSegmentedMembershipCount(
+    typing_extensions.TypedDict, total=False
+):
+    memberType: typing_extensions.Literal[
+        "MEMBER_TYPE_UNSPECIFIED", "HUMAN_USER", "ROSTER_MEMBER"
+    ]
+    membershipCount: int
+    membershipState: typing_extensions.Literal[
+        "MEMBER_UNKNOWN",
+        "MEMBER_INVITED",
+        "MEMBER_JOINED",
+        "MEMBER_NOT_A_MEMBER",
+        "MEMBER_FAILED",
+    ]
+
+@typing.type_check_only
+class AppsDynamiteSharedSegmentedMembershipCounts(
+    typing_extensions.TypedDict, total=False
+):
+    value: _list[AppsDynamiteSharedSegmentedMembershipCount]
+
+@typing.type_check_only
 class AppsPeopleActivityBackendDestinationStream(
     typing_extensions.TypedDict, total=False
 ):
@@ -1031,6 +1053,27 @@ class AppsPeopleOzExternalMergedpeopleapiAffinity(
         "LEGAL_CONTRACTS_EXTERNAL_AFFINITY",
         "CONTACTS_TO_STAR_AFFINITY",
         "DECS_AFFINITY",
+        "GSOX_MOCHI_AFFINITY",
+        "MEET_AFFINITY",
+        "PMW_TI_AFFINITY",
+        "DRIVE_SEARCH_FILTER_PERSON_ONLY",
+        "ACCESSIBILITY_TRACKER_AFFINITY",
+        "PLX_DATASOURCE_AFFINITY",
+        "DUCKIEWEB_AFFINITY",
+        "MEET_CALLING_AFFINITY",
+        "MATTERSPACE_AFFINITY",
+        "TRUSTED_CONTACTS_OOBE_AFFINITY",
+        "REFERRALS_AFFINITY",
+        "WAYMO_TRIAGE_TOOLING_AFFINITY",
+        "DATA_STUDIO_GAIA_ONLY_AFFINITY",
+        "TWENTYPERCENT_JOBPOSTINGS_AFFINITY",
+        "ENGAGEMENTS_AFFINITY",
+        "TRUSTED_CONTACTS_FL_AFFINITY",
+        "CALENDAR_WEB_TEAM_MEMBERS_AFFINITY",
+        "CLOUDCONNECT_AFFINITY",
+        "PERSONAL_AGENT_AFFINITY",
+        "MOBILE_HARNESS_AFFINITY",
+        "LOOKER_STUDIO_PRO_AFFINITY",
     ]
     containerId: str
     containerType: typing_extensions.Literal[
@@ -1073,6 +1116,7 @@ class AppsPeopleOzExternalMergedpeopleapiAppUniqueInfo(
     typing_extensions.TypedDict, total=False
 ):
     appUniqueId: str
+    contactInfoSource: typing_extensions.Literal["SOURCE_UNKNOWN", "APP_SEARCH"]
     displayAppUniqueId: str
     label: str
     mimetype: str
@@ -1223,7 +1267,6 @@ class AppsPeopleOzExternalMergedpeopleapiCommunicationEmail(
 class AppsPeopleOzExternalMergedpeopleapiConnectionReminder(
     typing_extensions.TypedDict, total=False
 ):
-    contactPromptSettings: SocialGraphApiProtoContactPromptSettings
     metadata: AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata
     prompt: _list[SocialGraphApiProtoPrompt]
 
@@ -1251,6 +1294,13 @@ class AppsPeopleOzExternalMergedpeopleapiContactGroupMembership(
     systemContactGroupId: typing_extensions.Literal[
         "UNKNOWN", "MY_CONTACTS", "STARRED", "FRIENDS", "FAMILY", "COWORKERS"
     ]
+
+@typing.type_check_only
+class AppsPeopleOzExternalMergedpeopleapiContactPromptSettingsInfo(
+    typing_extensions.TypedDict, total=False
+):
+    contactPromptSettings: SocialGraphApiProtoContactPromptSettings
+    metadata: AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiContactStateInfo(
@@ -2023,6 +2073,9 @@ class AppsPeopleOzExternalMergedpeopleapiPerson(
     contactGroupMembership: _list[
         AppsPeopleOzExternalMergedpeopleapiContactGroupMembership
     ]
+    contactPromptSettingsInfo: _list[
+        AppsPeopleOzExternalMergedpeopleapiContactPromptSettingsInfo
+    ]
     contactStateInfo: _list[AppsPeopleOzExternalMergedpeopleapiContactStateInfo]
     coverPhoto: _list[AppsPeopleOzExternalMergedpeopleapiCoverPhoto]
     customSchemaField: _list[AppsPeopleOzExternalMergedpeopleapiCustomSchemaField]
@@ -2782,13 +2835,6 @@ class AppsPeopleOzExternalMergedpeopleapiYoutubeExtendedData(
     failure: AppsPeopleOzExternalMergedpeopleapiProductProfileFailure
 
 @typing.type_check_only
-class AssistantApiAccessControlOutput(typing_extensions.TypedDict, total=False):
-    allowNonUnicornUserAccessYoutubeKids: bool
-    guestAccessOnYoutube: typing_extensions.Literal[
-        "UNKNOWN_GUEST_ACCESS", "USE_DEFAULT_ACCOUNT_FOR_GUEST", "DISABLED_FOR_GUEST"
-    ]
-
-@typing.type_check_only
 class AssistantApiActionV2SupportedFeatures(typing_extensions.TypedDict, total=False):
     expressUrlInSettingsResponseSupported: bool
     reconnectClientInputSupported: bool
@@ -2834,6 +2880,7 @@ class AssistantApiAppControlSupport(typing_extensions.TypedDict, total=False):
     enabled: typing_extensions.Literal[
         "DEFAULT_DISABLED", "ENABLED_WITH_SMART_DICTATION"
     ]
+    sendMessageSuppressed: bool
 
 @typing.type_check_only
 class AssistantApiAppIntegrationsSettings(typing_extensions.TypedDict, total=False):
@@ -2888,14 +2935,6 @@ class AssistantApiCameraCapabilities(typing_extensions.TypedDict, total=False):
 class AssistantApiCameraReceiverCapabilities(typing_extensions.TypedDict, total=False):
     hasLimitedCameraStreamCapability: bool
     supportedCameraReceivers: _list[AssistantApiCoreTypesCastAppInfo]
-
-@typing.type_check_only
-class AssistantApiCapabilitiesHomeAppCapabilities(
-    typing_extensions.TypedDict, total=False
-):
-    setupState: typing_extensions.Literal[
-        "SETUP_STATE_UNKNOWN", "SETUP_STATE_INCOMPLETE", "SETUP_STATE_COMPLETE"
-    ]
 
 @typing.type_check_only
 class AssistantApiCarAssistantCapabilities(typing_extensions.TypedDict, total=False):
@@ -2972,6 +3011,7 @@ class AssistantApiContactLookupCapabilities(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class AssistantApiCoreTypesAndroidAppInfo(typing_extensions.TypedDict, total=False):
     accountType: str
+    activityInfo: AssistantApiCoreTypesAndroidAppInfoActivityInfo
     androidIntent: str
     appUniqueId: str
     appVersion: int
@@ -2988,6 +3028,21 @@ class AssistantApiCoreTypesAndroidAppInfo(typing_extensions.TypedDict, total=Fal
     shortcutId: str
     targetClass: str
     versionName: str
+
+@typing.type_check_only
+class AssistantApiCoreTypesAndroidAppInfoActivityInfo(
+    typing_extensions.TypedDict, total=False
+):
+    activeLaunchableActivities: _list[
+        AssistantApiCoreTypesAndroidAppInfoActivityInfoActivity
+    ]
+
+@typing.type_check_only
+class AssistantApiCoreTypesAndroidAppInfoActivityInfoActivity(
+    typing_extensions.TypedDict, total=False
+):
+    localizedActivityName: str
+    shortClassName: str
 
 @typing.type_check_only
 class AssistantApiCoreTypesAndroidAppInfoDelta(
@@ -3307,6 +3362,141 @@ class AssistantApiCoreTypesGovernedRingtoneTaskMetadataRoutineAlarmMetadata(
     routineId: str
 
 @typing.type_check_only
+class AssistantApiCoreTypesGovernedSurfaceIdentity(
+    typing_extensions.TypedDict, total=False
+):
+    deviceId: AssistantApiCoreTypesDeviceId
+    legacySurfaceType: typing_extensions.Literal[
+        "UNKNOWN",
+        "ANDROID_ALLO",
+        "ANDROID_AUTO",
+        "ANDROID_THINGS_CUBE",
+        "ANDROID_THINGS_JASPER",
+        "ANDROID_TV",
+        "ANDROID_TV_KIDS",
+        "ANDROID_WEAR",
+        "AR_GLASSES",
+        "ASSISTANT_SDK",
+        "AUDIOWEAR",
+        "BUBBLE_CHARACTERS_IOS",
+        "CAPABILITY_BASED_SURFACE",
+        "CHROMECAST_ASSISTANT",
+        "CHROMECAST_MANHATTAN",
+        "CHROMECAST_SEARCH",
+        "CLOUD_DEVICE",
+        "COMPANION_SCREEN",
+        "DYNAMITE_WEB",
+        "ENSEMBLE",
+        "EYESFREE_AGSA",
+        "EYESFREE_GMM",
+        "GBOARD",
+        "GLASS",
+        "GOOGLE_HOME",
+        "HANGOUTS_CHATBOT",
+        "IOS_ALLO",
+        "IOS_GSA",
+        "IOS_WEAR",
+        "LIBASSISTANT",
+        "LINE_CHATBOT",
+        "MULTIMODAL_AGSA",
+        "NON_ASSISTANT_SURFACE",
+        "OPA_AGSA",
+        "OPA_AGSA_CHROME_OS",
+        "OPA_ANDROID_AUTO",
+        "OPA_ANDROID_LITE",
+        "OPA_ANDROID_SCREENLESS",
+        "OPA_ANDROID_SMART_DISPLAY",
+        "OPA_ANDROID_TABLET",
+        "OPA_CROS",
+        "OPA_GACS",
+        "OPA_IOS",
+        "OPA_IOS_SCREENLESS",
+        "OPA_KAIOS",
+        "OPA_MOBILE_WEB",
+        "RTOS_PHONE",
+        "SMS_CHATBOT",
+        "TELEGRAM_CHATBOT",
+        "TELEPHONE_ASSISTANT",
+        "VERILY_ONDUO",
+        "YOUTUBE_APP",
+        "AGSA_BISTO_FOR_EVAL",
+        "COGSWORTH_FOR_EVAL",
+        "LOCKHART_MIC_FOR_EVAL",
+        "OPA_ANDROID_AUTO_EMBEDDED_FAKE",
+        "SPARK",
+        "WALLE",
+        "UNIT_TESTING",
+    ]
+    surfaceType: typing_extensions.Literal[
+        "UNKNOWN_TYPE",
+        "ACCL",
+        "AGSA",
+        "ANDROID",
+        "ANDROID_AUTO",
+        "ANDROID_LITE",
+        "ANDROID_PHONE",
+        "ANDROID_SCREENLESS",
+        "ANDROID_SMART_DISPLAY",
+        "ANDROID_TABLET",
+        "ANDROID_THINGS",
+        "ANDROID_THINGS_CUBE",
+        "ANDROID_THINGS_JASPER",
+        "ANDROID_TV",
+        "ANDROID_WEAR",
+        "ASSISTANT_KIT",
+        "ASSISTANT_SDK",
+        "AUTO",
+        "CAST_OS",
+        "CHROME_OS",
+        "CHROMECAST_MANHATTAN",
+        "CLOUD_DEVICE",
+        "CROS",
+        "FITBIT_OS_WATCH",
+        "FITBIT_OS_WATCH_ANDROID",
+        "FITBIT_OS_WATCH_IOS",
+        "GOOGLE_HOME",
+        "HEADPHONE",
+        "HEADPHONE_ANDROID",
+        "HEADPHONE_IOS",
+        "IOPA",
+        "IOS",
+        "IOS_SCREENLESS",
+        "IPAD",
+        "IPHONE",
+        "KAI_OS",
+        "KAI_OS_AMA",
+        "LIBASSISTANT",
+        "PHONE",
+        "PIXEL",
+        "PIXEL5",
+        "PIXEL6",
+        "PIXEL7",
+        "PIXEL8",
+        "PIXEL_BUDS",
+        "PIXEL_TABLET",
+        "PIXEL_TABLET_HUB_MODE",
+        "PIXEL_TABLET_PERSONAL_MODE",
+        "PIXEL_WATCH",
+        "SCREENLESS",
+        "SMART_DISPLAY",
+        "SPEAKER",
+        "TABLET",
+        "TELEPHONE",
+        "THING",
+        "WATCH",
+        "WEAR_OS",
+        "WEAR_OS_WATCH",
+    ]
+    surfaceVersion: AssistantApiCoreTypesGovernedSurfaceVersion
+
+@typing.type_check_only
+class AssistantApiCoreTypesGovernedSurfaceVersion(
+    typing_extensions.TypedDict, total=False
+):
+    major: int
+    minor: int
+
+@typing.type_check_only
 class AssistantApiCoreTypesHomeAppInfo(typing_extensions.TypedDict, total=False):
     localizedAppName: str
     packageName: str
@@ -3326,7 +3516,7 @@ class AssistantApiCoreTypesImage(typing_extensions.TypedDict, total=False):
     providerUrl: str
     sourceUrl: str
     sourceUrlType: typing_extensions.Literal[
-        "DEFAULT_URL_TYPE", "LOTTIE", "DUO_CLIENT", "CONTACT_ID"
+        "DEFAULT_URL_TYPE", "LOTTIE", "DUO_CLIENT", "CONTACT_ID", "GLIDE_CACHE_ID"
     ]
     width: int
 
@@ -3397,11 +3587,13 @@ class AssistantApiCoreTypesMessageNotification(
 class AssistantApiCoreTypesMessageNotificationNotificationEntry(
     typing_extensions.TypedDict, total=False
 ):
+    charCount: int
     dataUri: str
     messageBody: str
     mimeType: str
     postTime: str
     sender: AssistantApiCoreTypesMessageNotificationPerson
+    wordCount: int
 
 @typing.type_check_only
 class AssistantApiCoreTypesMessageNotificationPerson(
@@ -3485,6 +3677,7 @@ class AssistantApiCoreTypesSurfaceIdentity(typing_extensions.TypedDict, total=Fa
         "PIXEL5",
         "PIXEL6",
         "PIXEL7",
+        "PIXEL8",
         "PIXEL_BUDS",
         "PIXEL_TABLET",
         "PIXEL_TABLET_HUB_MODE",
@@ -3609,6 +3802,9 @@ class AssistantApiDateTime(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssistantApiDeviceCapabilities(typing_extensions.TypedDict, total=False):
     androidIntentCapabilities: AssistantApiAndroidIntentCapabilities
+    assistantCapability: typing_extensions.Literal[
+        "UNKNOWN", "SUPPORTED", "UNSUPPORTED"
+    ]
     audioInput: AssistantApiAudioInput
     audioOutput: AssistantApiAudioOutput
     bluetoothCapabilities: AssistantApiBluetoothCapabilities
@@ -3814,7 +4010,6 @@ class AssistantApiLocationCapabilities(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class AssistantApiLoggingOnlyData(typing_extensions.TypedDict, total=False):
-    accountIndex: int
     acpVersion: str
     androidId: str
     appVersion: str
@@ -3839,6 +4034,7 @@ class AssistantApiLoggingOnlyData(typing_extensions.TypedDict, total=False):
     deviceModel: str
     embedderBuildInfo: str
     initialAppVersion: str
+    isPrimaryUser: bool
     mdnsDisplayName: str
     platformBuild: str
     virtualReleaseChannel: str
@@ -3850,6 +4046,7 @@ class AssistantApiMediaControlSupport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssistantApiMessageCapabilities(typing_extensions.TypedDict, total=False):
     fallbackToTetheredDeviceAppCapabilities: bool
+    preferTargetingPrimaryDevice: bool
     supportedRecipientTypes: _list[str]
 
 @typing.type_check_only
@@ -3983,7 +4180,6 @@ class AssistantApiOnDeviceStorageCapabilities(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class AssistantApiOutputRestrictions(typing_extensions.TypedDict, total=False):
-    accessControlOutput: AssistantApiAccessControlOutput
     googlePhotoContent: typing_extensions.Literal[
         "ALL_PHOTO_CONTENT", "NO_RESTRICTED_PHOTO_CONTENT"
     ]
@@ -4037,7 +4233,6 @@ class AssistantApiProactiveOutput(typing_extensions.TypedDict, total=False):
         "NO_PHOTOS_PROACTIVE_OUTPUT",
         "ALL_PHOTOS_PROACTIVE_OUTPUT",
     ]
-    supportsProactiveOutput: bool
     userMatchProactive: typing_extensions.Literal[
         "UNKNOWN_USER_MATCH_PROACTIVE",
         "NEVER_SHOW",
@@ -4195,8 +4390,6 @@ class AssistantApiSettingsDeviceSettings(typing_extensions.TypedDict, total=Fals
         "UNKNOWN_STATUS", "SUCCESS", "FAILURE", "PENDING"
     ]
     faceMatchEnabled: bool
-    flAudioCacheEnabled: bool
-    flVisualFramesCacheEnabled: bool
     gcmSettings: AssistantApiSettingsGcmSettings
     homeGraphData: AssistantApiSettingsHomeGraphData
     homeGraphId: str
@@ -4242,7 +4435,6 @@ class AssistantApiSettingsDeviceSettings(typing_extensions.TypedDict, total=Fals
     tetheredInfo: AssistantApiSettingsTetheredInfo
     timeZone: AssistantApiTimeZone
     truncatedLocalNetworkId: str
-    trustedVoiceEnabled: bool
     type: typing_extensions.Literal[
         "UNKNOWN_DEVICE_TYPE",
         "ASSISTANT",
@@ -4658,7 +4850,6 @@ class AssistantApiSoftwareCapabilities(typing_extensions.TypedDict, total=False)
     crossDeviceExecutionCapabilities: AssistantApiCrossDeviceExecutionCapability
     gacsCapabilities: AssistantApiGacsCapabilities
     gcmCapabilities: AssistantApiGcmCapabilities
-    homeAppCapabilities: AssistantApiCapabilitiesHomeAppCapabilities
     liveTvChannelCapabilities: AssistantApiLiveTvChannelCapabilities
     oemCapabilities: AssistantApiOemCapabilities
     onDeviceAssistantCapabilities: AssistantApiOnDeviceAssistantCapabilities
@@ -4759,6 +4950,7 @@ class AssistantApiSupportedFeatures(typing_extensions.TypedDict, total=False):
     client1mProvidersSupported: bool
     clientOpResultBatchingSupported: bool
     confirmationBeforeReadingMultipleMessagesSupported: bool
+    conversationalCareSupported: bool
     crossDeviceBroadcastSupported: bool
     crossDeviceBroadcastVersion: typing_extensions.Literal[
         "CROSS_DEVICE_BROADCAST_NOT_SUPPORTED", "CROSS_DEVICE_BROADCAST_V1"
@@ -4777,11 +4969,17 @@ class AssistantApiSupportedFeatures(typing_extensions.TypedDict, total=False):
     inDialogAccountLinkingSupported: bool
     isPairedPhoneContactUploadNeededForComms: bool
     isPairedPhoneNeededForComms: bool
+    justInTimeSupported: bool
     launchKeyboardSupported: typing_extensions.Literal[
         "LAUNCH_KEYBOARD_UNSUPPORTED", "OPA_ANDROID_LAUNCH_KEYBOARD_URI"
     ]
     lensSupported: bool
     liveCardsSupported: bool
+    lottieAnimationSupport: typing_extensions.Literal[
+        "LOTTIE_ANIMATION_UNKNOWN",
+        "LOTTIE_ANIMATION_NOT_SUPPORTED",
+        "LOTTIE_ANIMATION_SUPPORTED",
+    ]
     mapsDialogsSupported: bool
     masqueradeModeSupported: bool
     mediaControlSupport: AssistantApiMediaControlSupport
@@ -4798,6 +4996,8 @@ class AssistantApiSupportedFeatures(typing_extensions.TypedDict, total=False):
     parentalControlsSupported: bool
     persistentDisplaySupported: bool
     privacyAwareLockscreenSupported: bool
+    readMessagesTtsTaperingSupported: bool
+    readNotificationSummarizationSupported: bool
     remoteCloudCastingEnabled: bool
     serverGeneratedFeedbackChipsEnabled: bool
     shLockScreenSupported: bool
@@ -4841,6 +5041,7 @@ class AssistantApiSupportedProviderTypes(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class AssistantApiSurfaceProperties(typing_extensions.TypedDict, total=False):
     executionCapabilities: AssistantApiSurfacePropertiesExecutionCapabilities
+    prefersGlanceableUi: bool
     responseDisplayFormat: typing_extensions.Literal[
         "SINGLE_ITEM", "MULTIPLE_ITEMS", "FULL_HISTORY"
     ]
@@ -4977,26 +5178,27 @@ class AssistantContextProviderId(typing_extensions.TypedDict, total=False):
     ]
     mediaProviderId: AssistantContextMediaProviderId
     mid: str
-    naturalProviderId: AssistantContextProviderIdNaturalProviderId
     providerCorpusId: str
     providerVariant: AssistantContextProviderVariant
 
 @typing.type_check_only
-class AssistantContextProviderIdNaturalProviderId(
-    typing_extensions.TypedDict, total=False
-):
-    providerType: typing_extensions.Literal[
-        "UNKNOWN",
-        "CLOUD_PROJECT",
-        "APP_ACTIONS",
-        "WEBSITE",
-        "NARRATIVE_NEWS",
-        "IOS_BUNDLE",
-        "CAST_APP",
-        "ZEROTH_PARTY",
-        "ANDROID_SYSTEM_API",
+class AssistantContextProviderSelectionPolicy(typing_extensions.TypedDict, total=False):
+    policyAction: typing_extensions.Literal[
+        "UNSET_ACTION", "BOOST_TO_WIN_ACTION", "SUPPRESS_TO_INVALIDATE_ACTION"
     ]
-    value: str
+    policyName: typing_extensions.Literal[
+        "UNSET_POLICY",
+        "QUERY_RESTRICTED_SPOTIFY_POLICY",
+        "QUERY_RESTRICTED_PANDORA_POLICY",
+        "QUERY_RESTRICTED_NETFLIX_POLICY",
+    ]
+
+@typing.type_check_only
+class AssistantContextProviderSelectionResult(typing_extensions.TypedDict, total=False):
+    bucketedFinalScore: typing_extensions.Literal["DEFAULT_BUCKET"]
+    finalScore: float
+    policyApplied: _list[AssistantContextProviderSelectionPolicy]
+    shouldPrune: bool
 
 @typing.type_check_only
 class AssistantContextProviderVariant(typing_extensions.TypedDict, total=False):
@@ -5043,6 +5245,7 @@ class AssistantDeviceTargetingDeviceTargetingError(
         "NO_DEVICE_HAS_REQUIRED_APP",
         "HYBRID_DEVICE_NOT_QUALIFIED",
         "NO_NEARBY_DEVICES",
+        "NO_MATCHING_LAST_USED_DEVICE",
     ]
 
 @typing.type_check_only
@@ -5051,6 +5254,7 @@ class AssistantDevicesPlatformProtoAlarmCapability(
 ):
     maxSupportedAlarms: int
     restrictAlarmsToNextDay: bool
+    supportsGenericMutations: bool
     supportsStopAction: bool
 
 @typing.type_check_only
@@ -5082,6 +5286,11 @@ class AssistantDevicesPlatformProtoCloudEndpoint(
     name: str
     scopes: _list[str]
     url: str
+
+@typing.type_check_only
+class AssistantDevicesPlatformProtoCoreDismissAssistantCapability(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class AssistantDevicesPlatformProtoDeviceActionCapability(
@@ -5133,6 +5342,11 @@ class AssistantDevicesPlatformProtoExecutionConfig(
     remoteExecutionType: typing_extensions.Literal["DEFAULT", "CLOUD"]
 
 @typing.type_check_only
+class AssistantDevicesPlatformProtoExecutionWaitCapability(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AssistantDevicesPlatformProtoInlinedActionCapability(
     typing_extensions.TypedDict, total=False
 ):
@@ -5142,6 +5356,7 @@ class AssistantDevicesPlatformProtoInlinedActionCapability(
     supportedDeviceOps: AssistantDevicesPlatformProtoSupportedDeviceOps
     supportsMultiResponse: bool
     timer: AssistantDevicesPlatformProtoTimerCapability
+    ttsOutput: AssistantDevicesPlatformProtoTtsOutputCapability
 
 @typing.type_check_only
 class AssistantDevicesPlatformProtoIntValueSpec(
@@ -5209,6 +5424,11 @@ class AssistantDevicesPlatformProtoMediaResumeCapability(
 ): ...
 
 @typing.type_check_only
+class AssistantDevicesPlatformProtoMediaShowControlsCapability(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AssistantDevicesPlatformProtoMediaStopCapability(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -5264,13 +5484,16 @@ class AssistantDevicesPlatformProtoSupportedDeviceOps(
 ):
     callCall: AssistantDevicesPlatformProtoCallCallCapability
     clientReconnect: AssistantDevicesPlatformProtoClientReconnectCapability
+    coreDismissAssistant: AssistantDevicesPlatformProtoCoreDismissAssistantCapability
     deviceModifySetting: AssistantDevicesPlatformProtoDeviceModifySettingCapability
     deviceTakePhoto: AssistantDevicesPlatformProtoDeviceTakePhotoCapability
+    executionWait: AssistantDevicesPlatformProtoExecutionWaitCapability
     mediaNext: AssistantDevicesPlatformProtoMediaNextCapability
     mediaPause: AssistantDevicesPlatformProtoMediaPauseCapability
     mediaPlayMedia: AssistantDevicesPlatformProtoMediaPlayMediaCapability
     mediaPrevious: AssistantDevicesPlatformProtoMediaPreviousCapability
     mediaResume: AssistantDevicesPlatformProtoMediaResumeCapability
+    mediaShowControls: AssistantDevicesPlatformProtoMediaShowControlsCapability
     mediaStop: AssistantDevicesPlatformProtoMediaStopCapability
     providerFulfill: AssistantDevicesPlatformProtoProviderFulfillCapability
     providerOpen: AssistantDevicesPlatformProtoProviderOpenCapability
@@ -5294,10 +5517,34 @@ class AssistantDevicesPlatformProtoTriggerCondition(
     status: str
 
 @typing.type_check_only
+class AssistantDevicesPlatformProtoTtsOutputCapability(
+    typing_extensions.TypedDict, total=False
+):
+    supportsStructuredTts: bool
+
+@typing.type_check_only
 class AssistantDevicesPlatformProtoUnderstandingConfig(
     typing_extensions.TypedDict, total=False
 ):
     nluLevel: typing_extensions.Literal["DEFAULT_SHALLOW_NLU", "NO_NLU", "DEEP_NLU"]
+
+@typing.type_check_only
+class AssistantGroundingProviderProviderSignalResult(
+    typing_extensions.TypedDict, total=False
+):
+    isDefaultProvider: bool
+    isForegroundProvider: bool
+    isInAppProvider: bool
+    isInstalled: bool
+    isLastUsedProvider: bool
+    isQueryRestrictedProvider: bool
+    providerSelectionResult: AssistantContextProviderSelectionResult
+    providerTypeSignal: typing_extensions.Literal[
+        "UNKNOWN_TYPE",
+        "ZEROTH_PARTY_TYPE",
+        "ANDROID_SYSTEM_API_TYPE",
+        "ANDROID_APP_TYPE",
+    ]
 
 @typing.type_check_only
 class AssistantGroundingRankerAssistantInteractionFeatures(
@@ -5334,6 +5581,7 @@ class AssistantGroundingRankerContactGroundingProviderFeatures(
         "FAMILY_MEMBER",
         "SHARED_DEVICE_USER",
         "ON_DEVICE_CONTACT_LOOKUP",
+        "APP_SEARCH_CONTACT",
     ]
     isRelationshipFromAnnotation: bool
     isRelationshipFromSource: bool
@@ -5386,6 +5634,114 @@ class AssistantGroundingRankerDeviceGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
     deviceId: AssistantApiCoreTypesGovernedDeviceId
+    deviceTargetingFeatures: AssistantGroundingRankerDeviceTargetingFeatures
+    deviceTargetingLabels: AssistantGroundingRankerDeviceTargetingLabels
+    surfaceIdentity: AssistantApiCoreTypesGovernedSurfaceIdentity
+
+@typing.type_check_only
+class AssistantGroundingRankerDeviceTargetingFeatures(
+    typing_extensions.TypedDict, total=False
+):
+    properties: AssistantGroundingRankerDeviceTargetingFeaturesProperties
+    states: AssistantGroundingRankerDeviceTargetingFeaturesStates
+
+@typing.type_check_only
+class AssistantGroundingRankerDeviceTargetingFeaturesProperties(
+    typing_extensions.TypedDict, total=False
+):
+    deviceModelId: str
+    isOwnedBySpeaker: bool
+    surfaceType: typing_extensions.Literal[
+        "UNKNOWN_TYPE",
+        "ACCL",
+        "AGSA",
+        "ANDROID",
+        "ANDROID_AUTO",
+        "ANDROID_LITE",
+        "ANDROID_PHONE",
+        "ANDROID_SCREENLESS",
+        "ANDROID_SMART_DISPLAY",
+        "ANDROID_TABLET",
+        "ANDROID_THINGS",
+        "ANDROID_THINGS_CUBE",
+        "ANDROID_THINGS_JASPER",
+        "ANDROID_TV",
+        "ANDROID_WEAR",
+        "ASSISTANT_KIT",
+        "ASSISTANT_SDK",
+        "AUTO",
+        "CAST_OS",
+        "CHROME_OS",
+        "CHROMECAST_MANHATTAN",
+        "CLOUD_DEVICE",
+        "CROS",
+        "FITBIT_OS_WATCH",
+        "FITBIT_OS_WATCH_ANDROID",
+        "FITBIT_OS_WATCH_IOS",
+        "GOOGLE_HOME",
+        "HEADPHONE",
+        "HEADPHONE_ANDROID",
+        "HEADPHONE_IOS",
+        "IOPA",
+        "IOS",
+        "IOS_SCREENLESS",
+        "IPAD",
+        "IPHONE",
+        "KAI_OS",
+        "KAI_OS_AMA",
+        "LIBASSISTANT",
+        "PHONE",
+        "PIXEL",
+        "PIXEL5",
+        "PIXEL6",
+        "PIXEL7",
+        "PIXEL8",
+        "PIXEL_BUDS",
+        "PIXEL_TABLET",
+        "PIXEL_TABLET_HUB_MODE",
+        "PIXEL_TABLET_PERSONAL_MODE",
+        "PIXEL_WATCH",
+        "SCREENLESS",
+        "SMART_DISPLAY",
+        "SPEAKER",
+        "TABLET",
+        "TELEPHONE",
+        "THING",
+        "WATCH",
+        "WEAR_OS",
+        "WEAR_OS_WATCH",
+    ]
+
+@typing.type_check_only
+class AssistantGroundingRankerDeviceTargetingFeaturesStates(
+    typing_extensions.TypedDict, total=False
+):
+    distance: typing_extensions.Literal[
+        "UNKNOWN_DISTANCE", "CLOSEST", "EQUALLY_CLOSE", "FURTHER"
+    ]
+    hasBufferingMediaSession: bool
+    hasPausedMediaSession: bool
+    hasPlayingMediaSession: bool
+    inSameRoomAsHearingDevice: bool
+    inSameRoomAsLocalDevice: bool
+    inSameStructureAsHearingDevice: bool
+    inSameStructureAsLocalDevice: bool
+    isDocked: bool
+    isLocal: bool
+    isLocked: bool
+    isTethered: bool
+
+@typing.type_check_only
+class AssistantGroundingRankerDeviceTargetingLabels(
+    typing_extensions.TypedDict, total=False
+):
+    isSelectedByLumos: bool
+
+@typing.type_check_only
+class AssistantGroundingRankerEndpointGroundingProviderFeatures(
+    typing_extensions.TypedDict, total=False
+):
+    isUserConfirmed: bool
 
 @typing.type_check_only
 class AssistantGroundingRankerGroundingProviderFeatures(
@@ -5393,15 +5749,22 @@ class AssistantGroundingRankerGroundingProviderFeatures(
 ):
     contactGroundingProviderFeatures: AssistantGroundingRankerContactGroundingProviderFeatures
     deviceGroundingProviderFeatures: AssistantGroundingRankerDeviceGroundingProviderFeatures
+    endpointGroundingProviderFeatures: AssistantGroundingRankerEndpointGroundingProviderFeatures
     mediaGroundingProviderFeatures: AssistantGroundingRankerMediaGroundingProviderFeatures
     podcastGroundingProviderFeatures: AssistantGroundingRankerPodcastGroundingProviderFeatures
     providerGroundingProviderFeatures: AssistantGroundingRankerProviderGroundingProviderFeatures
+
+@typing.type_check_only
+class AssistantGroundingRankerLaaFeature(typing_extensions.TypedDict, total=False):
+    name: str
+    value: float
 
 @typing.type_check_only
 class AssistantGroundingRankerLaaFeatures(typing_extensions.TypedDict, total=False):
     bindingSet: AssistantGroundingRankerLaaFeaturesBindingSet
     communicationEndpoint: AssistantGroundingRankerLaaFeaturesCommunicationEndpoint
     contact: AssistantGroundingRankerLaaFeaturesContact
+    features: _list[AssistantGroundingRankerLaaFeature]
     provider: AssistantGroundingRankerLaaFeaturesProvider
 
 @typing.type_check_only
@@ -5439,13 +5802,60 @@ class AssistantGroundingRankerMediaGroundingProviderFeatures(
     ambiguityClassifier: typing_extensions.Literal[
         "UNKNOWN", "SONG_ALBUM_AMBIGUOUS", "NOT_AMBIGUOUS", "SINGLE_MEDIA_ITEM"
     ]
+    entityMid: str
+    hasCastVideoDeeplink: bool
     hasTypeSemanticEdge: bool
     isCastVideo: bool
+    isExclusiveOriginalProvider: bool
     isMediaSearchQuerySubsetOfEntityNameAndArtist: bool
+    isMostRecentSongAlbumAmbiguous: bool
     isSeedRadio: bool
     isSeedRadioRequest: bool
+    isYoutubeMusicSeeking: bool
+    mediaContentType: typing_extensions.Literal[
+        "MEDIA_CONTENT_TYPE_UNSPECIFIED",
+        "MUSIC_TRACK",
+        "MUSIC_ARTIST",
+        "MUSIC_ALBUM",
+        "PUBLIC_PLAYLIST",
+        "PERSONAL_PLAYLIST",
+        "MUSIC_PERSONALIZED_MIX",
+        "MUSIC_GENRE_MIX",
+        "MUSIC_SEED_RADIO",
+        "MUSIC_STATION",
+        "RADIO_STATION",
+        "RADIO_NETWORK",
+        "PODCAST_SERIES",
+        "PODCAST_GENERIC",
+        "PODCAST_GENRE",
+        "PODCAST_TOPIC",
+        "PODCAST_RESUME",
+        "PODCAST_EPISODE",
+        "VIDEO",
+        "MUSIC_VIDEO",
+        "VIDEO_RECOMMENDED_PLAYLIST",
+        "MUSIC_VIDEO_PERSONALIZED_PLAYLIST",
+        "TV_SHOW",
+        "TV_SHOW_SEASON",
+        "TV_SHOW_EPISODE",
+        "MOVIE",
+        "YOUTUBE_CHANNEL",
+        "TV_CHANNEL",
+        "SPORTS_TEAM_GAME",
+        "AUDIO_BOOK",
+        "AUDIO_STORY",
+        "YOUTUBE_VIDEO_PLAYLIST",
+        "TV_ARTIST",
+        "NEWS",
+        "VIDEO_GAME",
+        "DIRECTOR",
+        "ACTOR",
+        "MOVIE_SERIES",
+        "APP",
+    ]
     mscRate: float
     scubedPSaiMusic: float
+    scubedPSaiTvm: float
     type: typing_extensions.Literal[
         "UNKNOWN",
         "TRACK",
@@ -5465,12 +5875,14 @@ class AssistantGroundingRankerMediaGroundingProviderFeatures(
         "SPORTS_EVENT",
         "TV_CHANNEL",
         "VIDEO",
+        "VIDEO_RECOMMENDED_PLAYLIST",
         "YOUTUBE_CHANNEL",
         "YOUTUBE_VIDEO_PLAYLIST",
         "TV_SHOW",
         "NEWS",
         "NARRATED_WEB",
         "NEWS_CALL_TO_ACTION",
+        "NEWS_OVERVIEW",
         "AUDIO_STORY",
         "PODCAST_SERIES",
         "PODCAST_EPISODE",
@@ -5482,14 +5894,19 @@ class AssistantGroundingRankerPodcastGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
     isExclusive: bool
+    podcastListenersCount: int
+    popularityScore: float
+    scubedNg3ModelScore: float
+    scubedTstarScore: float
+    youtubeConfidenceScore: float
 
 @typing.type_check_only
 class AssistantGroundingRankerProviderGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
-    isInAppProvider: bool
-    providerClusterId: _list[str]
+    providerClusterIds: _list[str]
     providerId: AssistantContextProviderId
+    providerSignalResult: AssistantGroundingProviderProviderSignalResult
     pslScore: float
 
 @typing.type_check_only
@@ -5619,6 +6036,7 @@ class AssistantLogsCommunicationPersonalContactDataLog(
         "FAMILY_MEMBER",
         "SHARED_DEVICE_USER",
         "ON_DEVICE_CONTACT_LOOKUP",
+        "APP_SEARCH_CONTACT",
     ]
     systemContactGroupId: _list[int]
     whatsappPhoneNumberCount: int
@@ -5684,6 +6102,7 @@ class AssistantLogsDeviceInfoLog(typing_extensions.TypedDict, total=False):
         "HYBRID_DEVICE_PROPERTIES_FILTER",
         "NEARBY_DEVICE_FILTER",
         "DEVICE_ATTRIBUTES_FILTER",
+        "LAST_USED_DEVICE_FILTER",
         "DEFAULT_MEDIA_OUTPUT_PROMOTER",
         "DEVICE_GROUP_PROMOTER",
         "LOCAL_DEVICE_PROMOTER",
@@ -5694,7 +6113,10 @@ class AssistantLogsDeviceInfoLog(typing_extensions.TypedDict, total=False):
         "PHONE_TARGETING_PROMOTER",
         "TRAITS_PROMOTER",
         "DEVICE_TYPE_PROMOTER",
+        "FEATURE_EXTRACTOR",
+        "LABELER",
     ]
+    homeStructureId: str
     isRemote: bool
     isTethered: bool
     mediaCapabilities: AssistantLogsMediaCapabilities
@@ -5800,12 +6222,14 @@ class AssistantLogsDeviceMediaSessionLog(typing_extensions.TypedDict, total=Fals
         "SPORTS_EVENT",
         "TV_CHANNEL",
         "VIDEO",
+        "VIDEO_RECOMMENDED_PLAYLIST",
         "YOUTUBE_CHANNEL",
         "YOUTUBE_VIDEO_PLAYLIST",
         "TV_SHOW",
         "NEWS",
         "NARRATED_WEB",
         "NEWS_CALL_TO_ACTION",
+        "NEWS_OVERVIEW",
         "AUDIO_STORY",
         "PODCAST_SERIES",
         "PODCAST_EPISODE",
@@ -5880,6 +6304,7 @@ class AssistantLogsDeviceSelectionResultLog(typing_extensions.TypedDict, total=F
         "NO_DEVICE_HAS_REQUIRED_APP",
         "HYBRID_DEVICE_NOT_QUALIFIED",
         "NO_NEARBY_DEVICES",
+        "NO_MATCHING_LAST_USED_DEVICE",
     ]
     finalLumosStage: str
     lowConfidenceTargetDevice: AssistantLogsLowConfidenceTargetDeviceLog
@@ -5931,6 +6356,7 @@ class AssistantLogsInputErrorLog(typing_extensions.TypedDict, total=False):
         "ERROR_DEVICE_PROPERTIES",
         "ERROR_HOME_GRAPH",
         "ERROR_CAPABILITIES_ACROSS_DEVICES",
+        "ERROR_SURFACE_IDENTITIES_ACROSS_DEVICES",
     ]
 
 @typing.type_check_only
@@ -5959,6 +6385,7 @@ class AssistantLogsLumosProcessorInfo(typing_extensions.TypedDict, total=False):
         "HYBRID_DEVICE_PROPERTIES_FILTER",
         "NEARBY_DEVICE_FILTER",
         "DEVICE_ATTRIBUTES_FILTER",
+        "LAST_USED_DEVICE_FILTER",
         "DEFAULT_MEDIA_OUTPUT_PROMOTER",
         "DEVICE_GROUP_PROMOTER",
         "LOCAL_DEVICE_PROMOTER",
@@ -5969,6 +6396,8 @@ class AssistantLogsLumosProcessorInfo(typing_extensions.TypedDict, total=False):
         "PHONE_TARGETING_PROMOTER",
         "TRAITS_PROMOTER",
         "DEVICE_TYPE_PROMOTER",
+        "FEATURE_EXTRACTOR",
+        "LABELER",
     ]
 
 @typing.type_check_only
@@ -6112,22 +6541,55 @@ class AssistantLogsTargetDeviceLog(typing_extensions.TypedDict, total=False):
         "SINGLE_NEARBY_DEVICE",
         "PERSONAL_RESPONSE_BIT_OPTOUT_ON_LOCKED_PHONE",
         "FURTHER_LOCAL_DEVICE",
+        "RESULT_FROM_DEFAULT_MEDIA_OUTPUT_PROMOTER",
     ]
     resultConfidenceLevel: typing_extensions.Literal[
         "UNKNOWN", "LOW_CONFIDENCE", "HIGH_CONFIDENCE"
     ]
 
 @typing.type_check_only
+class AssistantPfrDeviceRdMetadata(typing_extensions.TypedDict, total=False):
+    deviceName: str
+    deviceTypes: _list[str]
+    effectiveArgSpanLength: float
+    hasAmbiguousResolutions: bool
+    hasResolvedDeviceId: bool
+    roomName: str
+
+@typing.type_check_only
+class AssistantPfrSmartHomeIntentMetadata(typing_extensions.TypedDict, total=False):
+    deviceRdMetadata: _list[AssistantPfrDeviceRdMetadata]
+    intentName: str
+    isExactMatch: bool
+    isGrounded: bool
+
+@typing.type_check_only
+class AssistantPfrTiebreakingMetadata(typing_extensions.TypedDict, total=False):
+    fingerprint: str
+    sortedNameString: str
+
+@typing.type_check_only
 class AssistantPrefulfillmentRankerPrefulfillmentSignals(
     typing_extensions.TypedDict, total=False
 ):
     bindingSetAuis: float
+    bindingSetInvalidReason: typing_extensions.Literal[
+        "BINDING_SET_INVALID_REASON_UNKNOWN",
+        "BINDING_SET_INVALID_REASON_PROVIDER_INFEASIBLE_FOR_INTENT",
+    ]
     bindingSetPauis: float
+    bindingSetValidity: typing_extensions.Literal[
+        "BINDING_SET_VALIDITY_UNKNOWN",
+        "BINDING_SET_VALIDITY_VALID",
+        "BINDING_SET_VALIDITY_INVALID_RESOLUTIONS",
+        "BINDING_SET_VALIDITY_INFEASIBLE_JOINT_GROUNDING",
+    ]
     calibratedParsingScore: float
     deepMediaDominant: bool
     dominant: bool
     effectiveArgSpanLength: float
     fulfillableDominantMedia: bool
+    generatedByLegacyAquaDomain: bool
     groundabilityScore: float
     groundingProviderFeatures: AssistantGroundingRankerGroundingProviderFeatures
     hasAnswerGroup: bool
@@ -6135,11 +6597,31 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
     intentName: str
     intentNameAuisScore: float
     intentNameAuisScoreExp: float
+    intentNamePauis: float
+    intentType: typing_extensions.Literal[
+        "UNKNOWN_INTENT_TYPE",
+        "PLAY_MEDIA_MUSIC",
+        "PLAY_MEDIA_PODCAST",
+        "FIND_MEDIA_TV_FALLBACK",
+        "PLAY_MEDIA_VIDEO",
+        "ALARMS_AND_TIMERS",
+        "HEALTH_AND_FITNESS",
+        "PLAY_MEDIA_RADIO",
+        "PLAY_TVM",
+    ]
     isFeasible: bool
     isFullyGrounded: bool
+    isHighConfidencePodcastIntent: bool
     isMediaControlIntent: bool
     isPlayGenericMusic: bool
+    isPodcastGenericIntent: bool
     isPodcastIntent: bool
+    isSageDisabledIntent: bool
+    isSageInNageIntent: bool
+    isSageIntent: bool
+    isTvmIntent: bool
+    isValidSmarthomeIntent: bool
+    isVideoIntent: bool
     kscorerRank: int
     laaFeatures: AssistantGroundingRankerLaaFeatures
     maskCandidateLevelFeatures: bool
@@ -6153,20 +6635,37 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
     numVariables: float
     numVariablesGrounded: float
     parsingScoreMse8BucketId: int
+    phase: typing_extensions.Literal[
+        "QU_PHASE_UNSPECIFIED",
+        "QU_PHASE_REQUEST",
+        "QU_PHASE_QREWRITE",
+        "QU_PHASE_QBT",
+        "QU_PHASE_PROBE_QUERY",
+        "QU_PHASE_MULTI_ACCOUNT",
+        "QU_PHASE_CQBT",
+        "QU_PHASE_QBT_RESOLUTION",
+        "QU_PHASE_HIGH_PRECISION",
+        "QU_PHASE_COMBINED_RBT_RESOLUTION",
+        "QU_PHASE_ANALYZER_INPUT",
+        "QU_PHASE_NAGE",
+    ]
+    platinumSource: bool
     pq2tVsAssistantIbstCosine: float
     pq2tVsIbstCosine: float
     predictedIntentConfidence: float
     rankerName: typing_extensions.Literal[
         "RANKER_NAME_UNSPECIFIED",
-        "RANKER_NAME_PREFULFILLMENT_RANKER",
         "RANKER_NAME_GROUNDING_RANKER",
-        "RANKER_NAME_TEST_PFR_DUMMY",
         "RANKER_NAME_DEFER_TO_VERTICAL_SCORES",
         "RANKER_NAME_GROUNDING_RANKER_V2",
         "RANKER_NAME_GROUNDING_RANKER_MEDIA_EXP",
         "RANKER_NAME_GROUNDING_RANKER_COMMS_EXP",
         "RANKER_NAME_CONSOLIDATED_PFR_HGR",
-        "RANKER_NAME_CONSOLIDATED_PFR_HGR_V2",
+        "RANKER_NAME_CONSOLIDATED_PFR_HGR_V2_COMMS_CALIBRATED",
+        "RANKER_NAME_CONSOLIDATED_PFR_HGR_V2_COMMS_CALIBRATED_V2",
+        "RANKER_NAME_GROUNDING_RANKER_COMMS_EXP_CALIBRATED_V2",
+        "RANKER_NAME_CONSOLIDATED_PFR_HGR_PODCAST",
+        "RANKER_NAME_GROUNDING_RANKER_V4",
     ]
     searchDispatch: typing_extensions.Literal[
         "UNKNOWN",
@@ -6177,9 +6676,18 @@ class AssistantPrefulfillmentRankerPrefulfillmentSignals(
         "COUNTERFACTUAL_LOG_ONLY",
         "CAPACITY_ACCOUNTING",
     ]
+    smarthomeIntentMetadata: AssistantPfrSmartHomeIntentMetadata
     subIntentType: typing_extensions.Literal[
-        "SUB_INTENT_TYPE_UNKNOWN", "SUB_INTENT_TYPE_TV_FALLBACK_SEARCH_INTENT"
+        "SUB_INTENT_TYPE_UNKNOWN",
+        "SUB_INTENT_TYPE_TV_FALLBACK_SEARCH_INTENT",
+        "SUB_INTENT_TYPE_PODCAST",
+        "SUB_INTENT_TYPE_MUSIC_INITIATION_INTENT",
+        "SUB_INTENT_TYPE_PLAY_RADIO_INTENT",
+        "SUB_INTENT_TYPE_PLAY_TVM_INTENT",
+        "SUB_INTENT_TYPE_PLAY_VIDEO_INTENT",
+        "SUB_INTENT_TYPE_BROWSE_VIDEO_INTENT",
     ]
+    tiebreakingMetadata: AssistantPfrTiebreakingMetadata
     topHypothesisConfidence: float
     verticalConfidenceScore: float
 
@@ -6365,6 +6873,7 @@ class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData(
     groupIds: _list[str]
     hashValue: str
     lanscanOptedIn: bool
+    matterUniqueId: AssistantVerticalsHomeautomationProtoMatterUniqueId
     modelName: str
     notificationEnabledByUser: bool
     notificationSupportedByAgent: bool
@@ -6378,6 +6887,9 @@ class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData(
     physicalLocation: AssistantVerticalsHomeautomationProtoPhysicalLocation
     plural: _list[str]
     primaryName: str
+    reportStateStatus: typing_extensions.Literal[
+        "RSS_UNSPECIFIED", "RSS_IN_SYNC", "RSS_OUT_OF_SYNC"
+    ]
     roleInformation: AssistantVerticalsHomeautomationProtoRoleInformation
     routableViaGcm: bool
     saftDocument: NlpSaftDocument
@@ -6402,6 +6914,14 @@ class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaDataSupportedTrait
     typing_extensions.TypedDict, total=False
 ):
     traits: _list[str]
+
+@typing.type_check_only
+class AssistantVerticalsHomeautomationProtoMatterUniqueId(
+    typing_extensions.TypedDict, total=False
+):
+    productId: int
+    uniqueId: str
+    vendorId: int
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoPhysicalLocation(
@@ -6626,6 +7146,8 @@ class BlueGingerClientVisibleProtoBlueGingerSupportedServicesBlueGingerModule(
         "AD_LEAD_VERIFICATION",
         "GET_HUMAN",
         "CHECK_INSURANCE_ACCEPTANCE",
+        "FREE_TEXT",
+        "SMART_NOTES",
     ]
 
 @typing.type_check_only
@@ -6654,11 +7176,6 @@ class ChatBotPlatformBotSendToken(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChatBotPlatformFireballId(typing_extensions.TypedDict, total=False):
     id: GoogleInternalCommunicationsInstantmessagingV1Id
-
-@typing.type_check_only
-class ClassifierPornAggregatedUrlPornScores(typing_extensions.TypedDict, total=False):
-    averageUrlPornScore: float
-    urlCount: int
 
 @typing.type_check_only
 class ClassifierPornClassifierData(typing_extensions.TypedDict, total=False):
@@ -6725,6 +7242,7 @@ class ClassifierPornSiteData(typing_extensions.TypedDict, total=False):
     sitePornRatio: float
     siteSoftpornRatio: float
     versionedscore: _list[ClassifierPornSiteDataVersionedScore]
+    violenceScore: float
     violenceStats: ClassifierPornSiteViolenceStats
 
 @typing.type_check_only
@@ -6966,9 +7484,9 @@ class CompositeDocIndexingInfo(typing_extensions.TypedDict, total=False):
     ieIdentifier: str
     imageIndexingInfo: ImageSearchImageIndexingInfo
     indexingTs: str
-    isSiblingDeletion: bool
     noLongerCanonicalTimestamp: str
     normalizedClickScore: float
+    primaryVertical: str
     rawNavboost: int
     rowTimestamp: str
     selectionTierRank: float
@@ -6976,6 +7494,7 @@ class CompositeDocIndexingInfo(typing_extensions.TypedDict, total=False):
     urlChangerate: CrawlerChangerateUrlChangerate
     urlHistory: CrawlerChangerateUrlHistory
     urlPatternSignals: IndexingSignalAggregatorUrlPatternSignals
+    verticals: _list[str]
     videoIndexingInfo: ImageRepositoryVideoIndexingInfo
 
 @typing.type_check_only
@@ -7009,7 +7528,10 @@ class CompositeDocPartialUpdateInfoLastFullIndexingInfo(
     typing_extensions.TypedDict, total=False
 ):
     corpus: typing_extensions.Literal[
-        "RAFFIA_WEBSEARCH", "RAFFIA_FASTPATH_DAILY", "RAFFIA_FASTPATH_INSTANT"
+        "RAFFIA_WEBSEARCH",
+        "RAFFIA_FASTPATH_DAILY",
+        "RAFFIA_FASTPATH_INSTANT",
+        "DOCJOINS",
     ]
     lastFullIndexingTsMicros: str
 
@@ -7061,6 +7583,11 @@ class CompressedQualitySignals(typing_extensions.TypedDict, total=False):
     topicEmbeddingsVersionedData: _list[QualityAuthorityTopicEmbeddingsVersionedItem]
     unauthoritativeScore: int
     vlqNsr: int
+
+@typing.type_check_only
+class ConceptsConceptId(typing_extensions.TypedDict, total=False):
+    conceptId: str
+    id: str
 
 @typing.type_check_only
 class ContentAttributions(typing_extensions.TypedDict, total=False):
@@ -7940,9 +8467,12 @@ class DrishtiSparseFeatureData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DrishtiVesperEncodedThumbnail(typing_extensions.TypedDict, total=False):
+    byteSize: str
+    crc32c: int
     encodingQuality: int
     encodingType: typing_extensions.Literal["UNKNOWN", "JPEG", "WEBP", "PNG"]
     height: int
+    imageBlobId: str
     imageBytes: str
     imageString: str
     width: int
@@ -8705,6 +9235,62 @@ class GeostoreCellCoveringProto(typing_extensions.TypedDict, total=False):
     cellId: _list[str]
 
 @typing.type_check_only
+class GeostoreCityJsonProto(typing_extensions.TypedDict, total=False):
+    cityObjects: _list[GeostoreCityJsonProtoCityObject]
+    transform: GeostoreCityJsonProtoTransform
+    vertexXyz: _list[int]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObject(typing_extensions.TypedDict, total=False):
+    geometries: _list[GeostoreCityJsonProtoCityObjectGeometry]
+    id: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "BUILDING", "OTHER_CONSTRUCTION"
+    ]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObjectGeometry(typing_extensions.TypedDict, total=False):
+    lod: str
+    multipoint: GeostoreCityJsonProtoCityObjectGeometryMultiPoint
+    multisurface: GeostoreCityJsonProtoCityObjectGeometryMultiSurface
+    solid: GeostoreCityJsonProtoCityObjectGeometrySolid
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObjectGeometryMultiPoint(
+    typing_extensions.TypedDict, total=False
+):
+    xIndices: _list[int]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObjectGeometryMultiSurface(
+    typing_extensions.TypedDict, total=False
+):
+    surfaces: _list[GeostoreCityJsonProtoCityObjectGeometrySurface]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObjectGeometrySolid(
+    typing_extensions.TypedDict, total=False
+):
+    shells: _list[GeostoreCityJsonProtoCityObjectGeometryMultiSurface]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoCityObjectGeometrySurface(
+    typing_extensions.TypedDict, total=False
+):
+    loops: _list[GeostoreCityJsonProtoCityObjectGeometryMultiPoint]
+
+@typing.type_check_only
+class GeostoreCityJsonProtoTransform(typing_extensions.TypedDict, total=False):
+    scale: float
+    translate: GeostoreCityJsonProtoTransformXyzVector
+
+@typing.type_check_only
+class GeostoreCityJsonProtoTransformXyzVector(typing_extensions.TypedDict, total=False):
+    x: float
+    y: float
+    z: float
+
+@typing.type_check_only
 class GeostoreComposableItemProto(typing_extensions.TypedDict, total=False):
     callToAction: GeostoreCallToActionProto
     jobMetadata: GeostoreJobMetadata
@@ -8750,6 +9336,10 @@ class GeostoreCrossingStripePatternProto(typing_extensions.TypedDict, total=Fals
         "TRIANGLE_CROSSING_LINE_POINTING_RIGHT",
         "STRUCTURED_CROSSING_LINE",
     ]
+
+@typing.type_check_only
+class GeostoreCurvatureProto(typing_extensions.TypedDict, total=False):
+    pointCurvature: _list[GeostorePointCurvatureProto]
 
 @typing.type_check_only
 class GeostoreCurveConnectionProto(typing_extensions.TypedDict, total=False):
@@ -8977,6 +9567,8 @@ class GeostoreDataSourceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
         "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
+        "PROVIDER_GOOGLE_GEO_NG_LOCAL",
+        "PROVIDER_GOOGLE_MAPFACTS_CLEANUP",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -9502,6 +10094,8 @@ class GeostoreDataSourceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
         "PROVIDER_JOLT",
+        "PROVIDER_CHARGESMITH",
+        "PROVIDER_PLUGO",
     ]
     rawMetadata: _list[GeostoreRawMetadataProto]
     release: str
@@ -9542,6 +10136,11 @@ class GeostoreDimensionProto(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GeostoreDisplayDataProto(typing_extensions.TypedDict, total=False):
     displayLocation: GeostorePointProto
+
+@typing.type_check_only
+class GeostoreDisputedAreaProto(typing_extensions.TypedDict, total=False):
+    administeredBy: str
+    claimant: _list[GeostoreFeatureIdProto]
 
 @typing.type_check_only
 class GeostoreDoodleProto(typing_extensions.TypedDict, total=False):
@@ -10072,6 +10671,8 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "BUSINESS_HOURS",
         "DATA_SOURCE",
         "DISPLAY_DATA",
+        "DISPUTED_AREA_ADMINISTERED_BY",
+        "DISPUTED_AREA_CLAIMANT",
         "ENTRANCE_ALLOWANCE",
         "ESTABLISHMENT_OPENING_HOURS_EXCEPTION",
         "ESTABLISHMENT_OPENING_HOURS_REGULAR_HOURS",
@@ -10096,7 +10697,10 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "FUTURE_GEOMETRY",
         "FUTURE_GEOMETRY_FOR",
         "GCONCEPT",
+        "GEOMETRY_3D",
         "GEOMETRY_PRECISION_METERS",
+        "GEOPOLITICAL_CONVEYS_ATTRIBUTION_TO",
+        "GEOPOLITICAL_REGION_SPECIFIC_NAME",
         "GEOPOLITICAL_GEOMETRY_REST_OF_WORLD_POLYGON",
         "GEOPOLITICAL_GEOMETRY_SELF_POLYGON",
         "INFERRED_GEOMETRY_GEOMETRY_COMPOSITION",
@@ -10131,6 +10735,7 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "PEAK_PROMINENCE",
         "PHONE_NUMBER",
         "POINT",
+        "POLITICAL_CLAIM",
         "POLYGON",
         "POLYGON_FOR_DISPLAY",
         "POLYLINE",
@@ -10162,6 +10767,8 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "SEGMENT_ELEVATION",
         "SEGMENT_ENDPOINT",
         "SEGMENT_GRADE_LEVEL_LIST",
+        "SEGMENT_INTERNAL_DISALLOWED_CONNECTIONS",
+        "SEGMENT_INTERNAL_DISALLOWED_PRIMARY_CONNECTION",
         "SEGMENT_INTERNAL_TRAVEL_ALLOWANCE",
         "SEGMENT_INTERPOLATION_OFFSET_METERS",
         "SEGMENT_IS_MAX_PERMITTED_SPEED_DERIVED",
@@ -10175,6 +10782,7 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "SEGMENT_PEDESTRIAN_FACILITY",
         "SEGMENT_PEDESTRIAN_GRADE",
         "SEGMENT_PRIORITY",
+        "SEGMENT_RAMP_MAX_CONNECTED_PRIORITY",
         "SEGMENT_RESTRICTION",
         "SEGMENT_ROAD_CAMERA",
         "SEGMENT_ROAD_SIGN",
@@ -10198,6 +10806,7 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "STATUS_REMOVED_REASON",
         "STATUS_START_DATE",
         "STOREFRONT_GEOMETRY",
+        "STOREFRONT_GEOMETRY_MODEL",
         "SYNTHETIC_GEOMETRY",
         "THREE_DIMENSIONAL_MODEL",
         "TOLL_CLUSTER_INTERSECTION",
@@ -10206,8 +10815,9 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "TRANSIT_LINE_VARIANT_LINE_CONCEPT",
         "TRANSIT_LINE_VARIANT_STOP",
         "TRANSIT_LINE_VEHICLE_TYPE",
-        "TRANSIT_STATION_AGENCY",
+        "TRANSIT_STATION_AGENCY_ASSOCIATION",
         "VERTICAL_ORDERING_LEVEL",
+        "VISUALIZATION_AREA",
         "WATER_REMOVED_POLYGON",
         "DEPRECATED_DO_NOT_USE_EMAIL_ADDRESS",
         "DEPRECATED_DO_NOT_USE_RANK_GEOMETRY",
@@ -10253,6 +10863,7 @@ class GeostoreFeaturePropertyIdProto(typing_extensions.TypedDict, total=False):
         "DEPRECATED_DO_NOT_USE_WORKAREA",
         "DEPRECATED_DO_NOT_USE_INFERRED_GEOMETRY_INCLUDES_GEOMETRY_OF",
         "DEPRECATED_DO_NOT_USE_INFERRED_GEOMETRY_EXCLUDES_GEOMETRY_OF",
+        "DEPRECATED_DO_NOT_USE_TRANSIT_STATION_AGENCY",
     ]
     kgPropertyId: str
     nameLanguage: str
@@ -10274,6 +10885,7 @@ class GeostoreFeatureProto(typing_extensions.TypedDict, total=False):
     covering: GeostoreCellCoveringProto
     dataSource: GeostoreDataSourceProto
     displayData: GeostoreDisplayDataProto
+    disputedArea: GeostoreDisputedAreaProto
     doodle: GeostoreDoodleProto
     elevation: GeostoreElevationProto
     elevationModel: GeostoreElevationModelProto
@@ -10282,7 +10894,9 @@ class GeostoreFeatureProto(typing_extensions.TypedDict, total=False):
     exemptRegulatedArea: _list[GeostoreFeatureIdProto]
     futureGeometry: GeostoreFeatureIdProto
     futureGeometryFor: GeostoreFeatureIdProto
+    geometry3d: GeostoreGeometryStoreReferenceProto
     geometryPrecisionMeters: float
+    geopolitical: GeostoreGeopoliticalProto
     geopoliticalGeometry: GeostoreGeopoliticalGeometryProto
     htmlText: _list[GeostoreHtmlTextProto]
     id: GeostoreFeatureIdProto
@@ -10334,6 +10948,7 @@ class GeostoreFeatureProto(typing_extensions.TypedDict, total=False):
     sourceInfo: _list[GeostoreSourceInfoProto]
     status: GeostoreExistenceProto
     storefrontGeometry: _list[GeostoreAnchoredGeometryProto]
+    storefrontGeometryModel: GeostoreGeometryStoreReferenceProto
     syntheticGeometry: bool
     temporaryData: Proto2BridgeMessageSet
     threeDimModel: GeostoreThreeDimensionalModelProto
@@ -10715,6 +11330,7 @@ class GeostoreFeatureProto(typing_extensions.TypedDict, total=False):
         "TYPE_UNKNOWN",
     ]
     verticalOrdering: GeostoreVerticalOrderingProto
+    visualizationArea: GeostoreGeometryStoreReferenceProto
     waterRemovedPolygon: GeostorePolygonProto
     website: _list[GeostoreUrlProto]
 
@@ -10738,6 +11354,7 @@ class GeostoreFieldWithRightsProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeostoreFlowLineProto(typing_extensions.TypedDict, total=False):
+    curvature: GeostoreCurvatureProto
     track: GeostoreTrackProto
 
 @typing.type_check_only
@@ -10788,9 +11405,20 @@ class GeostoreGeometryComposition(typing_extensions.TypedDict, total=False):
     includesGeometryOf: _list[GeostoreFeatureIdProto]
 
 @typing.type_check_only
+class GeostoreGeometryStoreReferenceProto(typing_extensions.TypedDict, total=False):
+    footprint: str
+    geometry: GeostoreCityJsonProto
+    geometryId: str
+
+@typing.type_check_only
 class GeostoreGeopoliticalGeometryProto(typing_extensions.TypedDict, total=False):
     restOfWorldPolygon: GeostorePolygonProto
     selfPolygon: GeostorePolygonProto
+
+@typing.type_check_only
+class GeostoreGeopoliticalProto(typing_extensions.TypedDict, total=False):
+    conveysAttributionTo: str
+    regionSpecificName: _list[GeostoreRegionSpecificNameProto]
 
 @typing.type_check_only
 class GeostoreGradeLevelProto(typing_extensions.TypedDict, total=False):
@@ -10823,7 +11451,19 @@ class GeostoreInternalFieldMetadataProto(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GeostoreInternalSegmentProto(typing_extensions.TypedDict, total=False):
+    disallowedConnections: _list[GeostoreInternalSegmentProtoLaneConnectionReference]
+    disallowedPrimaryConnection: _list[
+        GeostoreInternalSegmentProtoLaneConnectionReference
+    ]
     travelAllowance: _list[GeostoreRestrictionProto]
+
+@typing.type_check_only
+class GeostoreInternalSegmentProtoLaneConnectionReference(
+    typing_extensions.TypedDict, total=False
+):
+    fromLaneNumber: int
+    segment: GeostoreFeatureIdProto
+    toLaneNumber: int
 
 @typing.type_check_only
 class GeostoreInternalSourceSummaryProto(typing_extensions.TypedDict, total=False):
@@ -11018,6 +11658,8 @@ class GeostoreInternalSourceSummaryProto(typing_extensions.TypedDict, total=Fals
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
         "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
+        "PROVIDER_GOOGLE_GEO_NG_LOCAL",
+        "PROVIDER_GOOGLE_MAPFACTS_CLEANUP",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -11543,6 +12185,8 @@ class GeostoreInternalSourceSummaryProto(typing_extensions.TypedDict, total=Fals
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
         "PROVIDER_JOLT",
+        "PROVIDER_CHARGESMITH",
+        "PROVIDER_PLUGO",
     ]
 
 @typing.type_check_only
@@ -11927,6 +12571,8 @@ class GeostoreOntologyRawGConceptInstanceProto(
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
         "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
+        "PROVIDER_GOOGLE_GEO_NG_LOCAL",
+        "PROVIDER_GOOGLE_MAPFACTS_CLEANUP",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -12452,6 +13098,8 @@ class GeostoreOntologyRawGConceptInstanceProto(
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
         "PROVIDER_JOLT",
+        "PROVIDER_CHARGESMITH",
+        "PROVIDER_PLUGO",
     ]
     sourceDataset: str
 
@@ -12554,6 +13202,14 @@ class GeostorePhysicalLineProto(typing_extensions.TypedDict, total=False):
     physicalLineToken: str
 
 @typing.type_check_only
+class GeostorePointCurvatureProto(typing_extensions.TypedDict, total=False):
+    curvatureStatus: typing_extensions.Literal[
+        "CURVATURE_UNSPECIFIED", "CURVATURE_UNKNOWN"
+    ]
+    radiansPerMeter: float
+    startPointFraction: float
+
+@typing.type_check_only
 class GeostorePointProto(typing_extensions.TypedDict, total=False):
     latE7: int
     lngE7: int
@@ -12568,6 +13224,7 @@ class GeostorePointWithHeightProto(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GeostorePoliticalProto(typing_extensions.TypedDict, total=False):
     capital: GeostoreFeatureIdProto
+    claim: _list[GeostoreFeatureIdProto]
     grossDomesticProductUsdMillions: float
     literacyPercent: float
     population: str
@@ -12895,6 +13552,8 @@ class GeostoreProvenanceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_GOOGLE_GT_OPERATOR_PROVENANCE",
         "PROVIDER_GOOGLE_LOCAL_SERVICES_ADS",
         "PROVIDER_GOOGLE_GT_LANE_AUTOMATION",
+        "PROVIDER_GOOGLE_GEO_NG_LOCAL",
+        "PROVIDER_GOOGLE_MAPFACTS_CLEANUP",
         "PROVIDER_GOOGLE_LOCALSEARCH",
         "PROVIDER_GOOGLE_TRANSIT",
         "PROVIDER_GOOGLE_GEOWIKI",
@@ -13420,6 +14079,8 @@ class GeostoreProvenanceProto(typing_extensions.TypedDict, total=False):
         "PROVIDER_ZEST",
         "PROVIDER_EZVOLT",
         "PROVIDER_JOLT",
+        "PROVIDER_CHARGESMITH",
+        "PROVIDER_PLUGO",
     ]
 
 @typing.type_check_only
@@ -13564,6 +14225,12 @@ class GeostoreRectProto(typing_extensions.TypedDict, total=False):
     lo: GeostorePointProto
 
 @typing.type_check_only
+class GeostoreRegionSpecificNameProto(typing_extensions.TypedDict, total=False):
+    displayableAsAlternativeName: bool
+    name: GeostoreNameProto
+    regionCode: str
+
+@typing.type_check_only
 class GeostoreRegulatedAreaProto(typing_extensions.TypedDict, total=False):
     restriction: _list[GeostoreRestrictionProto]
 
@@ -13627,6 +14294,7 @@ class GeostoreRestrictionProto(typing_extensions.TypedDict, total=False):
     intersectionGroup: GeostoreFeatureIdProto
     metadata: GeostoreFieldMetadataProto
     restrictionGroup: GeostoreFeatureIdProto
+    restrictionToken: str
     schedule: GeostoreTimeScheduleProto
     scope: typing_extensions.Literal["SCOPE_DIRECTION", "SCOPE_SIDE"]
     style: typing_extensions.Literal[
@@ -13650,6 +14318,7 @@ class GeostoreRestrictionProto(typing_extensions.TypedDict, total=False):
         "RESTRICTION_TOLL_BOOTH",
         "RESTRICTION_USAGE_FEE_REQUIRED",
         "RESTRICTION_ENTRANCE_FEE_REQUIRED",
+        "RESTRICTION_VIGNETTE_REQUIRED",
         "RESTRICTION_ADVISORY",
         "RESTRICTION_HIGH_CRIME",
         "RESTRICTION_POLITICALLY_SENSITIVE",
@@ -13691,6 +14360,61 @@ class GeostoreRoadSignComponentProto(typing_extensions.TypedDict, total=False):
         "DIRECTION_SOUTHWEST",
         "DIRECTION_INNER",
         "DIRECTION_OUTER",
+    ]
+    semanticType: typing_extensions.Literal[
+        "ROAD_SIGN_SEMANTIC_TYPE_UNSPECIFIED",
+        "PRIORITY",
+        "PRIORITY_STOP",
+        "PRIORITY_STOP_AHEAD",
+        "PRIORITY_YIELD",
+        "PRIORITY_YIELD_AHEAD",
+        "SPEED_LIMIT",
+        "SPEED_LIMIT_START",
+        "SPEED_LIMIT_START_MAX",
+        "SPEED_LIMIT_START_MIN",
+        "SPEED_LIMIT_START_SCHOOL",
+        "SPEED_LIMIT_START_ZONE",
+        "SPEED_LIMIT_START_ADVISORY",
+        "SPEED_LIMIT_START_AHEAD",
+        "SPEED_LIMIT_END",
+        "SPEED_LIMIT_END_MAX",
+        "SPEED_LIMIT_END_MIN",
+        "SPEED_LIMIT_END_SCHOOL",
+        "SPEED_LIMIT_END_ZONE",
+        "RESTRICTION",
+        "RESTRICTION_TURN",
+        "RESTRICTION_TURN_NO_RIGHT",
+        "RESTRICTION_TURN_NO_LEFT",
+        "RESTRICTION_TURN_NO_U",
+        "RESTRICTION_TURN_NO_THRU",
+        "RESTRICTION_MOVEMENT",
+        "RESTRICTION_MOVEMENT_PASSING",
+        "RESTRICTION_ACCESS",
+        "RESTRICTION_ACCESS_NO_ENTRY",
+        "WARNING",
+        "WARNING_CROSSING",
+        "WARNING_CROSSING_CHILDREN",
+        "WARNING_CROSSING_PEDESTRIAN",
+        "WARNING_CROSSING_RAILROAD",
+        "WARNING_CROSSING_SCHOOL",
+        "WARNING_ROAD_WORK",
+        "INFO",
+        "INFO_BOUNDARY",
+        "INFO_BOUNDARY_BUILT_UP_AREA",
+        "INFO_BOUNDARY_BUILT_UP_AREA_START",
+        "INFO_BOUNDARY_BUILT_UP_AREA_END",
+        "INFO_BOUNDARY_RESIDENTIAL",
+        "INFO_BOUNDARY_RESIDENTIAL_START",
+        "INFO_BOUNDARY_RESIDENTIAL_END",
+        "INFO_TRANSIT",
+        "AUXILIARY",
+        "AUXILIARY_ANIMAL",
+        "AUXILIARY_DIRECTION",
+        "AUXILIARY_DISTANCE",
+        "AUXILIARY_TIME",
+        "AUXILIARY_WEATHER",
+        "AUXILIARY_WEIGHT",
+        "AUXILIARY_VEHICLE",
     ]
     text: GeostoreNameProto
     type: typing_extensions.Literal["TYPE_TEXT"]
@@ -13745,7 +14469,7 @@ class GeostoreSegmentProto(typing_extensions.TypedDict, total=False):
     bicycleFacility: typing_extensions.Literal[
         "BICYCLE_FACILITY_SEPARATE_TRAIL",
         "BICYCLE_FACILITY_PEDESTRIAN_PATH",
-        "BICYCLE_FACILITY_WIDE_PEDESTRIAN_PATH",
+        "BICYCLE_FACILITY_BIKE_FRIENDLY_PEDESTRIAN_PATH",
         "BICYCLE_FACILITY_SHARED_ROAD",
         "BICYCLE_FACILITY_BIKE_LANE",
         "BICYCLE_FACILITY_BIKE_LANE_WITH_PEDESTRIAN_PATH",
@@ -13839,6 +14563,7 @@ class GeostoreSegmentProto(typing_extensions.TypedDict, total=False):
         "PRIORITY_CONTROLLED_ACCESS",
     ]
     priorityMetadata: GeostoreFieldMetadataProto
+    ramp: GeostoreSegmentProtoRampProto
     restriction: _list[GeostoreRestrictionProto]
     roadMonitor: _list[GeostoreFeatureIdProto]
     roadSign: _list[GeostoreFeatureIdProto]
@@ -13894,6 +14619,21 @@ class GeostoreSegmentProto(typing_extensions.TypedDict, total=False):
         "USAGE_INDOOR_CONNECTION_PATH",
     ]
     visibleLandmark: _list[GeostoreLandmarkReferenceProto]
+
+@typing.type_check_only
+class GeostoreSegmentProtoRampProto(typing_extensions.TypedDict, total=False):
+    maxConnectedPriority: typing_extensions.Literal[
+        "PRIORITY_UNKNOWN",
+        "PRIORITY_NON_TRAFFIC",
+        "PRIORITY_TERMINAL",
+        "PRIORITY_LOCAL",
+        "PRIORITY_MINOR_ARTERIAL",
+        "PRIORITY_MAJOR_ARTERIAL",
+        "PRIORITY_SECONDARY_ROAD",
+        "PRIORITY_PRIMARY_HIGHWAY",
+        "PRIORITY_LIMITED_ACCESS",
+        "PRIORITY_CONTROLLED_ACCESS",
+    ]
 
 @typing.type_check_only
 class GeostoreServiceAreaProto(typing_extensions.TypedDict, total=False):
@@ -14188,7 +14928,14 @@ class GeostoreTransitLineVariantProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeostoreTransitStationProto(typing_extensions.TypedDict, total=False):
-    agencies: _list[GeostoreFeatureIdProto]
+    agencyAssociations: _list[GeostoreTransitStationProtoTransitAgencyAssociationProto]
+
+@typing.type_check_only
+class GeostoreTransitStationProtoTransitAgencyAssociationProto(
+    typing_extensions.TypedDict, total=False
+):
+    agency: GeostoreFeatureIdProto
+    stationCode: str
 
 @typing.type_check_only
 class GeostoreTrustSignalsProto(typing_extensions.TypedDict, total=False):
@@ -14745,6 +15492,7 @@ class GoogleAssistantAccessoryV1DeviceState(typing_extensions.TypedDict, total=F
     doNotDisturb: bool
     fitnessActivitiesState: GoogleAssistantEmbeddedV1FitnessActivities
     timerState: GoogleAssistantEmbeddedV1Timers
+    unavailableSettings: _list[str]
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1ResponseConfig(
@@ -14783,6 +15531,7 @@ class GoogleAssistantAccessoryV1ScreenOutConfigDimensions(
 @typing.type_check_only
 class GoogleAssistantEmbeddedV1Alarm(typing_extensions.TypedDict, total=False):
     alarmId: str
+    alarmSource: typing_extensions.Literal["ALARM_SOURCE_UNSPECIFIED", "PHONE", "WATCH"]
     datePattern: GoogleTypeDate
     label: str
     recurrencePattern: GoogleAssistantEmbeddedV1AlarmRecurrence
@@ -14803,7 +15552,9 @@ class GoogleAssistantEmbeddedV1Alarms(typing_extensions.TypedDict, total=False):
     alarms: _list[GoogleAssistantEmbeddedV1Alarm]
     snoozeDuration: str
     stateFetchError: typing_extensions.Literal[
-        "STATE_FETCH_ERROR_UNSPECIFIED", "STATE_FETCH_ERROR_TIMEOUT"
+        "STATE_FETCH_ERROR_UNSPECIFIED",
+        "STATE_FETCH_ERROR_TIMEOUT",
+        "STATE_FETCH_ERROR_UNSUPPORTED",
     ]
 
 @typing.type_check_only
@@ -14909,6 +15660,7 @@ class GoogleAssistantEmbeddedV1SurfaceIdentity(
         "PIXEL5",
         "PIXEL6",
         "PIXEL7",
+        "PIXEL8",
         "PIXEL_BUDS",
         "PIXEL_TABLET",
         "PIXEL_TABLET_HUB_MODE",
@@ -14940,7 +15692,9 @@ class GoogleAssistantEmbeddedV1Timer(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAssistantEmbeddedV1Timers(typing_extensions.TypedDict, total=False):
     stateFetchError: typing_extensions.Literal[
-        "STATE_FETCH_ERROR_UNSPECIFIED", "STATE_FETCH_ERROR_TIMEOUT"
+        "STATE_FETCH_ERROR_UNSPECIFIED",
+        "STATE_FETCH_ERROR_TIMEOUT",
+        "STATE_FETCH_ERROR_UNSUPPORTED",
     ]
     timers: _list[GoogleAssistantEmbeddedV1Timer]
 
@@ -15091,8 +15845,10 @@ class GoogleCloudContentwarehouseV1Document(typing_extensions.TypedDict, total=F
     creator: str
     displayName: str
     displayUri: str
+    dispositionTime: str
     documentSchemaName: str
     inlineRawDocument: str
+    legalHold: bool
     name: str
     plainText: str
     properties: _list[GoogleCloudContentwarehouseV1Property]
@@ -15132,6 +15888,7 @@ class GoogleCloudContentwarehouseV1DocumentQuery(
     customPropertyFilter: str
     customWeightsMetadata: GoogleCloudContentwarehouseV1CustomWeightsMetadata
     documentCreatorFilter: _list[str]
+    documentNameFilter: _list[str]
     documentSchemaNames: _list[str]
     fileTypeFilter: GoogleCloudContentwarehouseV1FileTypeFilter
     folderNameFilter: str
@@ -15149,6 +15906,8 @@ class GoogleCloudContentwarehouseV1DocumentReference(
     deleteTime: str
     displayName: str
     documentIsFolder: bool
+    documentIsLegalHoldFolder: bool
+    documentIsRetentionFolder: bool
     documentName: str
     snippet: str
     updateTime: str
@@ -15181,6 +15940,15 @@ class GoogleCloudContentwarehouseV1EnumValue(typing_extensions.TypedDict, total=
     value: str
 
 @typing.type_check_only
+class GoogleCloudContentwarehouseV1ExportToCdwPipeline(
+    typing_extensions.TypedDict, total=False
+):
+    docAiDataset: str
+    documents: _list[str]
+    exportFolderPath: str
+    trainingSplitRatio: float
+
+@typing.type_check_only
 class GoogleCloudContentwarehouseV1FetchAclRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -15199,7 +15967,7 @@ class GoogleCloudContentwarehouseV1FileTypeFilter(
     typing_extensions.TypedDict, total=False
 ):
     fileType: typing_extensions.Literal[
-        "FILE_TYPE_UNSPECIFIED", "ALL", "FOLDER", "DOCUMENT"
+        "FILE_TYPE_UNSPECIFIED", "ALL", "FOLDER", "DOCUMENT", "ROOT_FOLDER"
     ]
 
 @typing.type_check_only
@@ -15210,6 +15978,27 @@ class GoogleCloudContentwarehouseV1FloatArray(typing_extensions.TypedDict, total
 class GoogleCloudContentwarehouseV1FloatTypeOptions(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1GcsIngestPipeline(
+    typing_extensions.TypedDict, total=False
+):
+    inputPath: str
+    pipelineConfig: GoogleCloudContentwarehouseV1IngestPipelineConfig
+    processorType: str
+    schemaName: str
+    skipIngestedDocuments: bool
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline(
+    typing_extensions.TypedDict, total=False
+):
+    extractProcessorInfos: _list[GoogleCloudContentwarehouseV1ProcessorInfo]
+    inputPath: str
+    pipelineConfig: GoogleCloudContentwarehouseV1IngestPipelineConfig
+    processorResultsFolderPath: str
+    skipIngestedDocuments: bool
+    splitClassifyProcessorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1GetDocumentRequest(
@@ -15243,6 +16032,15 @@ class GoogleCloudContentwarehouseV1HistogramQueryResult(
     histogramQuery: str
 
 @typing.type_check_only
+class GoogleCloudContentwarehouseV1IngestPipelineConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudFunction: str
+    documentAclPolicy: GoogleIamV1Policy
+    enableDocumentTextExtraction: bool
+    folder: str
+
+@typing.type_check_only
 class GoogleCloudContentwarehouseV1InitializeProjectRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -15261,6 +16059,7 @@ class GoogleCloudContentwarehouseV1InitializeProjectRequest(
         "DOCUMENT_EDITOR",
         "DOCUMENT_VIEWER",
     ]
+    enableCalUserEmailLogging: bool
     kmsKey: str
 
 @typing.type_check_only
@@ -15365,12 +16164,48 @@ class GoogleCloudContentwarehouseV1MergeFieldsOptions(
     replaceRepeatedFields: bool
 
 @typing.type_check_only
+class GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline(
+    typing_extensions.TypedDict, total=False
+):
+    documents: _list[str]
+    exportFolderPath: str
+    processorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
+    processorResultsFolderPath: str
+
+@typing.type_check_only
 class GoogleCloudContentwarehouseV1ProcessorInfo(
     typing_extensions.TypedDict, total=False
 ):
     documentType: str
     processorName: str
     schemaName: str
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1ProjectStatus(
+    typing_extensions.TypedDict, total=False
+):
+    accessControlMode: typing_extensions.Literal[
+        "ACL_MODE_UNKNOWN",
+        "ACL_MODE_UNIVERSAL_ACCESS",
+        "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID",
+        "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI",
+    ]
+    databaseType: typing_extensions.Literal[
+        "DB_UNKNOWN", "DB_INFRA_SPANNER", "DB_CLOUD_SQL_POSTGRES"
+    ]
+    documentCreatorDefaultRole: str
+    location: str
+    qaEnabled: bool
+    state: typing_extensions.Literal[
+        "PROJECT_STATE_UNSPECIFIED",
+        "PROJECT_STATE_PENDING",
+        "PROJECT_STATE_COMPLETED",
+        "PROJECT_STATE_FAILED",
+        "PROJECT_STATE_DELETING",
+        "PROJECT_STATE_DELETING_FAILED",
+        "PROJECT_STATE_DELETED",
+        "PROJECT_STATE_NOT_FOUND",
+    ]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1Property(typing_extensions.TypedDict, total=False):
@@ -15484,7 +16319,9 @@ class GoogleCloudContentwarehouseV1Rule(typing_extensions.TypedDict, total=False
     condition: str
     description: str
     ruleId: str
-    triggerType: typing_extensions.Literal["UNKNOWN", "ON_CREATE", "ON_UPDATE"]
+    triggerType: typing_extensions.Literal[
+        "UNKNOWN", "ON_CREATE", "ON_UPDATE", "ON_CREATE_LINK", "ON_DELETE_LINK"
+    ]
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RuleActionsPair(
@@ -15536,6 +16373,7 @@ class GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadat
 ):
     docAiDataset: str
     documents: _list[str]
+    outputPath: str
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata(
@@ -15556,6 +16394,16 @@ class GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMe
 ):
     documents: _list[str]
     processorInfo: GoogleCloudContentwarehouseV1ProcessorInfo
+
+@typing.type_check_only
+class GoogleCloudContentwarehouseV1RunPipelineRequest(
+    typing_extensions.TypedDict, total=False
+):
+    exportCdwPipeline: GoogleCloudContentwarehouseV1ExportToCdwPipeline
+    gcsIngestPipeline: GoogleCloudContentwarehouseV1GcsIngestPipeline
+    gcsIngestWithDocAiProcessorsPipeline: GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline
+    processWithDocAiPipeline: GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline
+    requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1SearchDocumentsRequest(
@@ -15584,6 +16432,7 @@ class GoogleCloudContentwarehouseV1SearchDocumentsResponse(
     ]
     metadata: GoogleCloudContentwarehouseV1ResponseMetadata
     nextPageToken: str
+    questionAnswer: str
     totalSize: int
 
 @typing.type_check_only
@@ -15633,7 +16482,7 @@ class GoogleCloudContentwarehouseV1TextTypeOptions(
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1TimeFilter(typing_extensions.TypedDict, total=False):
     timeField: typing_extensions.Literal[
-        "TIME_FIELD_UNSPECIFIED", "CREATE_TIME", "UPDATE_TIME"
+        "TIME_FIELD_UNSPECIFIED", "CREATE_TIME", "UPDATE_TIME", "DISPOSITION_TIME"
     ]
     timeRange: GoogleTypeInterval
 
@@ -15994,12 +16843,33 @@ class GoogleCloudDocumentaiV1DocumentPageToken(
     detectedLanguages: _list[GoogleCloudDocumentaiV1DocumentPageDetectedLanguage]
     layout: GoogleCloudDocumentaiV1DocumentPageLayout
     provenance: GoogleCloudDocumentaiV1DocumentProvenance
+    styleInfo: GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageTokenDetectedBreak(
     typing_extensions.TypedDict, total=False
 ):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SPACE", "WIDE_SPACE", "HYPHEN"]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentPageTokenStyleInfo(
+    typing_extensions.TypedDict, total=False
+):
+    backgroundColor: GoogleTypeColor
+    bold: bool
+    fontSize: int
+    fontType: str
+    fontWeight: int
+    handwritten: bool
+    italic: bool
+    letterSpacing: float
+    pixelFontSize: float
+    smallcaps: bool
+    strikeout: bool
+    subscript: bool
+    superscript: bool
+    textColor: GoogleTypeColor
+    underlined: bool
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentPageVisualElement(
@@ -16338,6 +17208,7 @@ class GoogleInternalCommunicationsInstantmessagingV1Id(
         "SUPPORT_CASES_ID",
         "FITBIT_P11_ID",
         "SHORT_PHONE_NUMBER",
+        "USER_HANDLE",
     ]
 
 @typing.type_check_only
@@ -17239,6 +18110,8 @@ class ImageContentStarburstVersionGroup(typing_extensions.TypedDict, total=False
         "STARBURST_VISUAL_V4",
         "STARBURST_V5",
         "STARBURST_V5_5",
+        "STARBURST_V6",
+        "STARBURST_EXP",
     ]
     minorVersion: typing_extensions.Literal[
         "UNKNOWN_MINOR_VERSION",
@@ -17251,6 +18124,8 @@ class ImageContentStarburstVersionGroup(typing_extensions.TypedDict, total=False
         "VISUAL_V4_ORIGINAL",
         "V5_ORIGINAL",
         "V5_5_ORIGINAL",
+        "V6_ORIGINAL",
+        "EXP_ORIGINAL",
     ]
     starburstTokens: _list[int]
     version: int
@@ -17310,6 +18185,7 @@ class ImageData(typing_extensions.TypedDict, total=False):
     imageLicenseInfo: ImageSearchImageLicenseInfo
     imageRegions: ImageRegionsImageRegions
     imagerank: int
+    indexedVerticals: _list[ImageDataVerticalIndexingInfoImage]
     isIipInScope: bool
     isIndexedByImagesearch: bool
     isMultiframe: bool
@@ -17330,6 +18206,7 @@ class ImageData(typing_extensions.TypedDict, total=False):
     ]
     lineartDetectorScore: float
     lineartDetectorVersion: int
+    linkinfoType: str
     multibangKgEntities: ImageDataMultibangEntities
     nearDupFeatures: str
     nearDupFeaturesSmall: _list[str]
@@ -17436,6 +18313,10 @@ class ImageDataThumbnail(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
+class ImageDataVerticalIndexingInfoImage(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class ImageExactBoost(typing_extensions.TypedDict, total=False):
     navquery: _list[ImageExactBoostNavQuery]
 
@@ -17460,6 +18341,12 @@ class ImageExifIPTCMetadata(typing_extensions.TypedDict, total=False):
     dateExpired: str
     dateReleased: str
     description: str
+    digitalSourceType: typing_extensions.Literal[
+        "DST_NOT_RECORDED",
+        "DST_TRAINED_ALGORITHMIC_MEDIA",
+        "DST_COMPOSITE_SYNTHETIC",
+        "DST_ALGORITHMIC_MEDIA",
+    ]
     event: str
     headline: str
     imageSupplier: str
@@ -17671,6 +18558,13 @@ class ImagePornDebugInfo(typing_extensions.TypedDict, total=False):
     info: str
 
 @typing.type_check_only
+class ImageQualitySensitiveMediaOrPeopleEntities(
+    typing_extensions.TypedDict, total=False
+):
+    mediaEntitiesId: _list[str]
+    peopleEntitiesId: _list[str]
+
+@typing.type_check_only
 class ImageRegionsImageRegion(typing_extensions.TypedDict, total=False):
     boundingBox: PhotosVisionGroundtruthdbNormalizedBoundingBox
     boundingBoxScore: float
@@ -17705,8 +18599,10 @@ class ImageRegionsImageRegions(typing_extensions.TypedDict, total=False):
 class ImageRepositoryAmarnaCloudSpeechSignals(typing_extensions.TypedDict, total=False):
     duplicateOfYtS3Asr: bool
     langWithoutLocale: str
+    langidInput: ImageRepositoryLanguageIdentificationResult
     modelIdentifier: str
     results: _list[ImageRepositorySpeechRecognitionResult]
+    s3RecognizerMetadataResponse: ImageRepositoryS3RecognizerMetadataResponse
     transcriptAsr: PseudoVideoData
 
 @typing.type_check_only
@@ -17789,9 +18685,11 @@ class ImageRepositoryApiItagSpecificMetadata(typing_extensions.TypedDict, total=
         "GENUS_KARTO",
         "GENUS_CONTRIB_SERVICE_SHARED",
         "GENUS_CONTRIB_SERVICE_GEO_UGC",
+        "GENUS_CONTRIB_SERVICE_BARD_STORAGE",
         "GENUS_SEARCH_SPORTS",
         "GENUS_BUSINESSMESSAGING",
         "GENUS_AERIAL_VIEW",
+        "GENUS_DOCS_FLIX_RENDER",
     ]
     state: typing_extensions.Literal[
         "STATE_UNKNOWN",
@@ -17827,12 +18725,14 @@ class ImageRepositoryContentBasedVideoMetadata(
     cloudSpeechSignals: ImageRepositoryAmarnaCloudSpeechSignals
     featureSetData: DrishtiFeatureSetData
     golden7SoapboxSummary: DrishtiFeatureSetData
+    golden7SoapboxTracksBlobInfo: ImageRepositoryAmarnaSignalsBlobInfo
     inlinePlayback: VideoCrawlVideoInlinePlaybackMetadata
     languageIdentification: VideoTimedtextS4ALIResults
     legosAnnotationData: VideoLegosLegosAnnotationsSets
     lmsPreviewFramePerdocs: ImageRepositoryFramePerdocs
     loudnessData: VideoStorageLoudnessData
     mediaInfo: VideoMediaInfo
+    multiThumbnailsFramePerdocs: ImageRepositoryFramePerdocs
     representativeFrameData: ImageData
     s3Asr: ImageRepositoryAmarnaCloudSpeechSignals
     s3LanguageIdentification: ImageRepositoryS3LangIdSignals
@@ -17905,9 +18805,15 @@ class ImageRepositoryFileTruncationInfo(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class ImageRepositoryFrameIdentifier(typing_extensions.TypedDict, total=False):
+    multiThumbnailVariant: ImageRepositoryFrameIdentifierMultiThumbnailVariant
     previewFrameZeroVariant: ImageRepositoryFrameIdentifierPreviewFrameZeroVariant
     thumbnailVariant: ImageRepositoryFrameIdentifierThumbnailVariant
     timestampMs: int
+
+@typing.type_check_only
+class ImageRepositoryFrameIdentifierMultiThumbnailVariant(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class ImageRepositoryFrameIdentifierPreviewFrameZeroVariant(
@@ -17934,12 +18840,30 @@ class ImageRepositoryFramePerdocs(typing_extensions.TypedDict, total=False):
     framePerdoc: _list[ImageRepositoryFramePerdoc]
 
 @typing.type_check_only
+class ImageRepositoryLanguageIdentificationResult(
+    typing_extensions.TypedDict, total=False
+):
+    localeStripped: bool
+    s3TopLocale: str
+    ytCapsAudioLanguage: str
+
+@typing.type_check_only
 class ImageRepositoryNimaOutput(typing_extensions.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
+class ImageRepositoryS3LangIdDebuggingInfo(typing_extensions.TypedDict, total=False):
+    audioInputCap: str
+    failedSegments: int
+    processedSegments: int
+    segmentDuration: str
+    segmentStride: int
+    waveHeader: SpeechWaveHeader
+
+@typing.type_check_only
 class ImageRepositoryS3LangIdSignals(typing_extensions.TypedDict, total=False):
     containsSpeech: bool
+    debuggingInfo: ImageRepositoryS3LangIdDebuggingInfo
     endSec: str
     langidResult: SpeechS3LanguageIdentificationResult
     languageIdentification: VideoTimedtextS4ALIResults
@@ -17947,6 +18871,14 @@ class ImageRepositoryS3LangIdSignals(typing_extensions.TypedDict, total=False):
     speechFrameCount: int
     startSec: str
     totalFrameCount: int
+
+@typing.type_check_only
+class ImageRepositoryS3RecognizerMetadataResponse(
+    typing_extensions.TypedDict, total=False
+):
+    mode: str
+    modelInfoLabel: str
+    serviceName: str
 
 @typing.type_check_only
 class ImageRepositoryShoppingProductInformation(
@@ -18077,9 +19009,11 @@ class ImageRepositoryVenomStatus(typing_extensions.TypedDict, total=False):
         "GENUS_KARTO",
         "GENUS_CONTRIB_SERVICE_SHARED",
         "GENUS_CONTRIB_SERVICE_GEO_UGC",
+        "GENUS_CONTRIB_SERVICE_BARD_STORAGE",
         "GENUS_SEARCH_SPORTS",
         "GENUS_BUSINESSMESSAGING",
         "GENUS_AERIAL_VIEW",
+        "GENUS_DOCS_FLIX_RENDER",
     ]
     insertionResponseTimestampUsec: str
     insertionTimestampUsec: str
@@ -18146,10 +19080,17 @@ class ImageRepositoryVideoProperties(typing_extensions.TypedDict, total=False):
     crawlState: ImageMoosedogCrawlState
     firstCrawlTimestampSec: str
     firstProcessingTimestampSec: str
+    indexedVerticals: _list[ImageRepositoryVideoPropertiesVerticalIndexingInfoVideo]
     inlinePlayback: VideoCrawlVideoInlinePlaybackMetadata
     lastCrawlRequestTimestampSec: str
     lastProcessingTimestampSec: str
     url: str
+
+@typing.type_check_only
+class ImageRepositoryVideoPropertiesVerticalIndexingInfoVideo(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class ImageRepositoryWordInfo(typing_extensions.TypedDict, total=False):
@@ -18169,11 +19110,14 @@ class ImageSafesearchContentBrainPornAnnotation(
 ):
     childScore: float
     csaiScore: float
+    csamA1Score: float
+    csamAgeIndeterminateScore: float
     iuInappropriateScore: float
     medicalScore: float
     pedoScore: float
     pornScore: float
     racyScore: float
+    semanticSexualizationScore: float
     spoofScore: float
     version: str
     violenceScore: float
@@ -18746,16 +19690,537 @@ class IndexingDocjoinerCDocBuildInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     acceleratedShoppingSignal: IndexingDocjoinerDataVersionVersionInfo
+    adsAdsaiMagicApfelApfelRegionFinderAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    adsAdsaiMagicMagicPageTypeAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    adsShoppingWebpxRawShoppingAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    amphtmlSignedExchangeErrorDetails: IndexingDocjoinerDataVersionVersionInfo
+    amphtmlSignedExchangeValidationPayload: IndexingDocjoinerDataVersionVersionInfo
+    analyticsSiteidAnalyticsPropertyAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    analyticsSiteidAnalyticsRenderedOutput: IndexingDocjoinerDataVersionVersionInfo
+    authenticSiteRankData: IndexingDocjoinerDataVersionVersionInfo
+    babelEncoderBabelEncodings: IndexingDocjoinerDataVersionVersionInfo
+    badurlsBadurlsForceSelectionSignal: IndexingDocjoinerDataVersionVersionInfo
+    boilerplateAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    boilerplateVisibleBytesEstimates: IndexingDocjoinerDataVersionVersionInfo
     chromeCounts: IndexingDocjoinerDataVersionVersionInfo
+    commerceDataqualityOrganicCrawledSellerData: IndexingDocjoinerDataVersionVersionInfo
+    commerceDataqualityOrganicShoppingAnnotationSignal: IndexingDocjoinerDataVersionVersionInfo
+    commerceDataqualityOrganicShoppingSiteQuality: IndexingDocjoinerDataVersionVersionInfo
+    commonsenseQueriosityGoldmineQnaAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    commonsenseScoredCompoundReferenceAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    commonsenseStoneSoupProtoRaffiaInstructionsSeq: IndexingDocjoinerDataVersionVersionInfo
+    contraContentReviewAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    contraCuratedContent: IndexingDocjoinerDataVersionVersionInfo
+    countryCountryAttachment: IndexingDocjoinerDataVersionVersionInfo
+    crawzallSignal: IndexingDocjoinerDataVersionVersionInfo
     creator: IndexingDocjoinerDataVersionVersionInfo
+    datacommonsDatacommonsTriplesSignal: IndexingDocjoinerDataVersionVersionInfo
+    dateAnnotationTags: IndexingDocjoinerDataVersionVersionInfo
+    dateAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    dateRangeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    dateTimeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    discoverSource: IndexingDocjoinerDataVersionVersionInfo
+    discussion: IndexingDocjoinerDataVersionVersionInfo
+    documentIntent: IndexingDocjoinerDataVersionVersionInfo
+    dotsGaramondSignal: IndexingDocjoinerDataVersionVersionInfo
+    dotsNewsstandSignal: IndexingDocjoinerDataVersionVersionInfo
+    emailAddressAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    extractedBookInfo: IndexingDocjoinerDataVersionVersionInfo
+    fatcatCompactDocClassification: IndexingDocjoinerDataVersionVersionInfo
+    fatcatSiteVerticalsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    firstseen: IndexingDocjoinerDataVersionVersionInfo
+    fontsAnalysisAnnotatorFontsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    forumRankingForumPostsSafeSearchAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    foundationSplinterSignal: IndexingDocjoinerDataVersionVersionInfo
+    freshboxFreshboxArticleAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    geoPointAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    geoPointResolution: IndexingDocjoinerDataVersionVersionInfo
+    geostoreAddressProto: IndexingDocjoinerDataVersionVersionInfo
+    i2eV2ImageEntitiesInfos: IndexingDocjoinerDataVersionVersionInfo
+    imageContentAnnotationLabels: IndexingDocjoinerDataVersionVersionInfo
+    imageContentColorSearchColorDetectionResults: IndexingDocjoinerDataVersionVersionInfo
+    imageDataList: IndexingDocjoinerDataVersionVersionInfo
+    imageExtraImageExtraTerms: IndexingDocjoinerDataVersionVersionInfo
+    imageMonetizationFeaturedDocumentProperties: IndexingDocjoinerDataVersionVersionInfo
+    imageMustangFaviconInfo: IndexingDocjoinerDataVersionVersionInfo
+    imageMustangWebsearchImageSnippetResponse: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityLabelmakerDocMediaLabels: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityLandingPageProtoLandingPageSalientTextSet: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityLayoutDocument: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityRichdataProtoImageAnchor: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityRichdataProtoRichdata: IndexingDocjoinerDataVersionVersionInfo
+    imageQualitySalientTermsImageQuerySmearingList: IndexingDocjoinerDataVersionVersionInfo
+    imageQualitySalientTermsImageSalientTermSetMap: IndexingDocjoinerDataVersionVersionInfo
+    imageQualitySensitiveFaceSkinToneSignals: IndexingDocjoinerDataVersionVersionInfo
+    imageQualitySensitiveMediaOrPeopleEntities: IndexingDocjoinerDataVersionVersionInfo
+    imageRepositoryGeolocation: IndexingDocjoinerDataVersionVersionInfo
+    imageRepositoryPicasaGeoData: IndexingDocjoinerDataVersionVersionInfo
+    imageSearchRejectedImageInfoList: IndexingDocjoinerDataVersionVersionInfo
+    imageStockStockImageAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    imageembed: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAnnotationMeta: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAppMarketAppMarketAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAppsCacheColonAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAppsDocRestrictionsDocPreviewRestrictionsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAutomobileVinAnnotatorAutomobileVinAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsCanonicalUrl: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsCleanTextProto: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsCollectionsDocCollections: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsCommentBlockGroups: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsDatasetModelAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsDatesDateTimes: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsDocImportance: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsDocRestrictionsInDocRestrictionsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsEntityPage: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsFeedbackSet: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsIBertEmbeddingAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsImageRepositoryImageLicenseInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsPcuAmpError: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsPcuSignedExchangeInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsPersonPersonAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsSduPageTypeAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsSocialLinksSocialLinksAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsSubscribewithgoogleSwgAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsTwitterEmbeddedTweetsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsTypedNumberTypedNumberAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsWaPassagesQueryToPassageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsWaPassagesTrimmedQueryToPassageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAppsAffiliatedInstantAppInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingAppsMergedAppInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingBadpagesBadPageParseResult: IndexingDocjoinerDataVersionVersionInfo
+    indexingBadpagesCollapserInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingBadpagesIndexSelectionRemoval: IndexingDocjoinerDataVersionVersionInfo
+    indexingBadpagesLoginPageResult: IndexingDocjoinerDataVersionVersionInfo
+    indexingBadpagesUnifiedModelFeatures: IndexingDocjoinerDataVersionVersionInfo
+    indexingBeringPublisherOnPageAdsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingCenterpieceCenterPieceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingCenterpieceCenterpieceChecksums: IndexingDocjoinerDataVersionVersionInfo
+    indexingCenterpieceComponentLearningSource: IndexingDocjoinerDataVersionVersionInfo
+    indexingCenterpieceSectionTitleAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterContentGenerationInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterContentParserResults: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterFileMetaInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterLinkRelOutlinks: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterMetaDetectorsResultsProto: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterPdfFileMetaInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingConverterPdfPageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingCustomCorpusCdmAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingDeepwebStoreListAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingDocjoinerServingTimeClusterIds: IndexingDocjoinerDataVersionVersionInfo
+    indexingDocjoinerWikiInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingDocskeletonRepeatedPatternRepeatedPatternAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingDupsLocalizedLocalizedCluster: IndexingDocjoinerDataVersionVersionInfo
+    indexingFreshSchedulerFreshSchedulerDoubleInstantExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingFreshSchedulerOutlinkDiscoveryHistoricalHubsSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingImagesRelatedImageSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantActiveClusterScorerSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantBaseReindexWhitelistData: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantClusterScorerArticle: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantClusterScorerSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantHistoricalContentSignals: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantNewsHighlyCitedDocumentSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantNewsImagesInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantSignalSourceTagsExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingLatticeLatticeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingMetricsUrlIndexingProps: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlDomNodeSegments: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlEntityInfoboxes: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlPageStructure: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlSemanticArticle: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlShoppingUniverseAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlVerticalVerticalClassificationResult: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlVerticalVerticalClassificationV2: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileClientDependentInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileInterstitialsProtoDesktopInterstitials: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileObelixInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileSmartphoneContentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileSmartphonePatternClassification: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileSpeedPageSpeedFieldData: IndexingDocjoinerDataVersionVersionInfo
+    indexingPlusonePlusOneSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingPlusoneSocialScoreSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingRaffiaDataRecoveryInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingRaffiaIndexingIntermediate: IndexingDocjoinerDataVersionVersionInfo
+    indexingRaffiaMediaProcessingMetadata: IndexingDocjoinerDataVersionVersionInfo
+    indexingRaffiaOverlayCDocAttachment: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionAcquisitionMetadataAttachment: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionDoubleIndexingExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionFastServingPush: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionFreshdocsPassthroughExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionImageImageSelectionAttachment: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionLanguageExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionPriorScorerParameterSet: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionProcessingPriorityExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionProtoBasePromotionInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionTensorFlowExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSignalAggregatorUrlPatternSignals: IndexingDocjoinerDataVersionVersionInfo
+    indexingSignalsAccumulatedOnlineSignals: IndexingDocjoinerDataVersionVersionInfo
+    indexingSignalsImpressionsPerDayContainer: IndexingDocjoinerDataVersionVersionInfo
+    indexingSocialCountsSocialWidgetsIndicator: IndexingDocjoinerDataVersionVersionInfo
+    indexingSpeechGoldminePodcastAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingSpeechSpeechPagePropertiesProto: IndexingDocjoinerDataVersionVersionInfo
+    indexingThirdpartyThirdPartyInputs: IndexingDocjoinerDataVersionVersionInfo
+    indexingUgcPageParamInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingUnionKeyData: IndexingDocjoinerDataVersionVersionInfo
+    indexingUrlPatternUrlTreeUrlPatternAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingVideosVideoAnchorSourceInfo: IndexingDocjoinerDataVersionVersionInfo
+    indexingVideosVideoPlaylistAnchorSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingWebChannelsWebChannelAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    infoextractionPinpointPinpointAnnotationSignal: IndexingDocjoinerDataVersionVersionInfo
+    infoextractionPinpointPinpointSignal: IndexingDocjoinerDataVersionVersionInfo
+    instantChromeViews: IndexingDocjoinerDataVersionVersionInfo
     instantNavboost: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeGraphAcquisitionFeedsQuotesQuotesAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsDocumentSignals: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsFactEvaluationSignals: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsHtmlTableSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsKatsSignals: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsLocalizedFact: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsObjectAnnotationsSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsProductCompositionSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsServingData: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsShoppingSignals: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsStructuredSnippetsSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsUdrExtraFactData: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsUdrExtraFactMentionData: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsUniversalFactMetadata: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsUniversalFactScores: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsUniversalTableSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsWebKvSiteGroupSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningShoppingBrowseonomyData: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningShoppingTwdModelVersions: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMumStoryTeaserAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMumStorytimeStampEngagementAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMumStorytimeStampQualityAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeTablesTableInternalData: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeTablesUniversalTableAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeTasksUniversalTaskAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeTpfHowtodoHowtoVideoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    langIdLangReasonerDocumentLanguages: IndexingDocjoinerDataVersionVersionInfo
+    lensVsaiDatasets: IndexingDocjoinerDataVersionVersionInfo
+    localsearchAuthoritySiteAnnotation: IndexingDocjoinerDataVersionVersionInfo
     localyp: IndexingDocjoinerDataVersionVersionInfo
+    mapsSyntheticsGeoDocFetchKey: IndexingDocjoinerDataVersionVersionInfo
+    measurementAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    metawebExtractionDocumentEvidence: IndexingDocjoinerDataVersionVersionInfo
     modernFormatContent: IndexingDocjoinerDataVersionVersionInfo
+    navBoostDocument: IndexingDocjoinerDataVersionVersionInfo
     navboost: IndexingDocjoinerDataVersionVersionInfo
+    newsAnnotationsContentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusHubPageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusLeafPageAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusNewsAggregateSignal: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusNewsCorpusAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusNewsCorpusRootAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusNewsCorpusStatusAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusNewsinessAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    newsCorpusPositionRankAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    newsCrawlFilterNewsLinkCrawlSignal: IndexingDocjoinerDataVersionVersionInfo
+    newsExtractionNewsPbeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    newsNarIndexingMetadata: IndexingDocjoinerDataVersionVersionInfo
+    newsNarRow: IndexingDocjoinerDataVersionVersionInfo
+    newsNarRowContainer: IndexingDocjoinerDataVersionVersionInfo
+    newsNearDupsInfo: IndexingDocjoinerDataVersionVersionInfo
+    newsNewromanIndexingNewRomanSignal: IndexingDocjoinerDataVersionVersionInfo
+    newsNewsArticleChecksum: IndexingDocjoinerDataVersionVersionInfo
+    newsNewsClassifications: IndexingDocjoinerDataVersionVersionInfo
+    newsNewsContentSignals: IndexingDocjoinerDataVersionVersionInfo
+    newsNewsForEducationReadingStatistics: IndexingDocjoinerDataVersionVersionInfo
+    newsVideosNewsAnchorSourceInfo: IndexingDocjoinerDataVersionVersionInfo
+    newsVideosNewsVideoAnnotationSignals: IndexingDocjoinerDataVersionVersionInfo
+    nlpAtcClaraAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    nlpSaftDocument: IndexingDocjoinerDataVersionVersionInfo
+    nlpSaftNlxDocAnnotatorMigration: IndexingDocjoinerDataVersionVersionInfo
+    nlpSaftRodinClassification: IndexingDocjoinerDataVersionVersionInfo
+    nlpSentimentSentimentAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    nlxDocAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    noindexedImageDataList: IndexingDocjoinerDataVersionVersionInfo
+    numberAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    oceanLibrarianBookMetadata: IndexingDocjoinerDataVersionVersionInfo
+    oceanLibrarianPopulatorData: IndexingDocjoinerDataVersionVersionInfo
+    oceanLibrarianPopulatorPageData: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataAllItemSpecificBibdatas: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataAvailabilityInfoComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataAvailabilitySnapshot: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataAvailabilitySnapshotHolder: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataBibkeyComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusterHorizontalReference: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusterRecord: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusterVolumes: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusteringSeriesSeriesInfo: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusteringTomeHorizontalLinkDescriptor: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataContributorLinks: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataItemSpecificBibdataComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataKgTopicLinks: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataLanguageInfoComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataMaterialInfoComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataParsedAccessTerms: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataParsedSuDoc: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataPatentPublicationDetails: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataPhysicalMeasurementsComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataPublicDomainInfo: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataPublicationDetailsComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataRightsComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataSeriesInfoComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataTomeDetailsComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataTomeMembersComponent: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataTomePriceInfo: IndexingDocjoinerDataVersionVersionInfo
+    oceanReviewsForWork: IndexingDocjoinerDataVersionVersionInfo
+    oceanRightsOptOutRequest: IndexingDocjoinerDataVersionVersionInfo
+    officialPagesQuerySet: IndexingDocjoinerDataVersionVersionInfo
+    perDocLangidData: IndexingDocjoinerDataVersionVersionInfo
+    personalizationGameWebeventsConsolidatedEvents: IndexingDocjoinerDataVersionVersionInfo
+    personalizationGameWebeventsEvent: IndexingDocjoinerDataVersionVersionInfo
+    personalizationGameWebeventsEvents: IndexingDocjoinerDataVersionVersionInfo
+    photosGeoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    predictedAuthenticity: IndexingDocjoinerDataVersionVersionInfo
+    priceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityAnchorsOutdegreeOutdegreeInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityAnimaLivewebLivewebAttachment: IndexingDocjoinerDataVersionVersionInfo
+    qualityAnimaRoutinesRoutinesPropertiesProto: IndexingDocjoinerDataVersionVersionInfo
+    qualityAuthorityTopicEmbeddings: IndexingDocjoinerDataVersionVersionInfo
+    qualityAuthorshipAuthorAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityBreadcrumbsBreadcrumbAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityCalypsoAppsLink: IndexingDocjoinerDataVersionVersionInfo
+    qualityChardDocument: IndexingDocjoinerDataVersionVersionInfo
+    qualityChardPredictedQueryFringeScore: IndexingDocjoinerDataVersionVersionInfo
+    qualityChardPredictedXlq: IndexingDocjoinerDataVersionVersionInfo
+    qualityContraSelectedAttributions: IndexingDocjoinerDataVersionVersionInfo
+    qualityCopiaFireflySiteInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityDiscoverUgcScatScatEmbeddingAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityDniNewsstandPcu: IndexingDocjoinerDataVersionVersionInfo
+    qualityDniPcuAuxiliaryData: IndexingDocjoinerDataVersionVersionInfo
+    qualityDniPcuMetaAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityDniPcuParsedData: IndexingDocjoinerDataVersionVersionInfo
+    qualityDniPcuRawData: IndexingDocjoinerDataVersionVersionInfo
+    qualityExploreQueryableFeedEcsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityExploreQueryableFeedHashtagAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityExploreQueryableFeedHashtagListAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityExploreQueryableFeedTopicFeedScoringSignals: IndexingDocjoinerDataVersionVersionInfo
+    qualityFreshnessAbacusInstantNegativeClicksInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityFringeFringeQueryPrior: IndexingDocjoinerDataVersionVersionInfo
+    qualityGeoBrainlocGoldmineBrainlocAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityGeoLoglocGoldmineDocumentLocationAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityHistoricalContentAge: IndexingDocjoinerDataVersionVersionInfo
+    qualityHorizonProtoHorizonEmbeddings: IndexingDocjoinerDataVersionVersionInfo
+    qualityHorizonRecordInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityImprovDocToQueries: IndexingDocjoinerDataVersionVersionInfo
+    qualityImprovImprovAnchors: IndexingDocjoinerDataVersionVersionInfo
+    qualityLisztomaniaDocument: IndexingDocjoinerDataVersionVersionInfo
+    qualityNavboostCrapsCrapsData: IndexingDocjoinerDataVersionVersionInfo
+    qualityNavboostCrapsCrapsPatternSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualityNegativeClicksNegativeClicksInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityNlqStructuredSearchAnnotationAnalysisAutomaticExtractionAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityNlqStructuredSearchListingPagesListingPageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrDokiAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrNsrData: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrNsrSitechunksAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrPairwiseqPairwiseQData: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrPqData: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrSiteAuthority: IndexingDocjoinerDataVersionVersionInfo
+    qualityNsrUvSitechunksAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityOrbitAsteroidBeltIntermediateDocumentIntentScores: IndexingDocjoinerDataVersionVersionInfo
+    qualityPagemasterPagemasterAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticIndexingDiscoverCorpusAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticIndexingDiscoverDocumentSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticIndexingPanopticAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticStorytimeAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticStorytimeScoringSignals: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticVoiceUgcAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityPeoplesearchNamedetectorNameOccurrenceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPopfeedsChromeBackgroundAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityPopfeedsHubDataAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPopfeedsUrlPredictionAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPopfeedsUrlSourceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPricedetectorKefirPriceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPricedetectorProductBlockAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityProseJsonLdAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityProseThumbnailSelection: IndexingDocjoinerDataVersionVersionInfo
+    qualityQ2QualityBoost: IndexingDocjoinerDataVersionVersionInfo
+    qualityQ2SiteQualityFeatures: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeBoostRealtimeBoostEvent: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeBoostRealtimeBoostResponse: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeBoostSeismographEventAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeRealtimeResultInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeRtFactAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityResultFilteringIndexingClusterAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityRichsnippetsAppsProtosApplicationInformationAttachment: IndexingDocjoinerDataVersionVersionInfo
+    qualityRodinRodinSiteSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualitySalientCountriesSalientCountrySet: IndexingDocjoinerDataVersionVersionInfo
+    qualitySalientStructuresSalientStructureSet: IndexingDocjoinerDataVersionVersionInfo
+    qualitySalientStuffSalientStuffSet: IndexingDocjoinerDataVersionVersionInfo
+    qualitySalientTermsQuerySmearingModel: IndexingDocjoinerDataVersionVersionInfo
+    qualitySalientTermsSalientTermSet: IndexingDocjoinerDataVersionVersionInfo
+    qualitySearchoversiteAnnotatorStructuredResultsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualitySherlockKnexAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityShoppingProductReview: IndexingDocjoinerDataVersionVersionInfo
+    qualityShoppingProductReviewPage: IndexingDocjoinerDataVersionVersionInfo
+    qualityShoppingShoppingProductReviewAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualitySimilarpagesRelatedInfoSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualitySitemapDocument: IndexingDocjoinerDataVersionVersionInfo
+    qualitySitemapThirdPartyCarouselsItemLists: IndexingDocjoinerDataVersionVersionInfo
+    qualitySixfaceSixfaceUrlData: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsHiddenTextHiddenSpanAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsListSnippetsAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsMetadescriptionDuplicateMetaSiteSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsSnippetSpansInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualitySosGoldmineSosAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualitySummarySummary: IndexingDocjoinerDataVersionVersionInfo
+    qualityTangramInformationTypes: IndexingDocjoinerDataVersionVersionInfo
+    qualityTimebasedTimeSensitivityTimeSensitivityAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityTitlesAlternativeTitlesInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityTitlesSitelinksTargetTitleInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityTwiddlerDomainClassification: IndexingDocjoinerDataVersionVersionInfo
+    qualityViewsAnswersAnswerAnnotationInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityVisualwebVisualWebAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityVisualwebVisualWebModelsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityWebanswersAltTitleSaftDoc: IndexingDocjoinerDataVersionVersionInfo
+    qualityWebanswersTranscriptAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityWebfeederDocEmbedding: IndexingDocjoinerDataVersionVersionInfo
+    qualityWebshineDocResources: IndexingDocjoinerDataVersionVersionInfo
+    rankBoostDocAttachment: IndexingDocjoinerDataVersionVersionInfo
     rankembed: IndexingDocjoinerDataVersionVersionInfo
+    relativeDateAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsAddressAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsAmenitiesAmenitiesAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsCrawzallAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsDiscussionThreadDiscussionViewProto: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsLicensedResources: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsListFilterAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsListSummaryAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsMicrodataMicrodataAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsMicroformatsHproduct: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsMicroformatsMicroformatAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsPhoneTypePhoneTypeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsRdfaRdfaAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsRodinArticleAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSectionHeadingAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSnippetSegmentSnippetSegmentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeAuthoritySignal: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeDeeplinkAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeExtractorTopicAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeExtractorTripleAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeSporeEtlAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeSporeEtlInputAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsStorehoursStoreHoursAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsVerseAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsWebanswersContextItemAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumEncyclojoinsEncycloJoin: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumGoldmineTriplificationResult: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumGoldmineTypeAssertionOutput: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumWebkvWebKv: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumWikiaWikiaInfo: IndexingDocjoinerDataVersionVersionInfo
+    repositoryUpdaterIndexSelectionAttachment: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefEntityJoin: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefExperimentalWebrefEntitiesAttachment: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefGraphMention: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefJuggernautIndices: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPageClassificationAnchorSignalsSet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPageClassificationSignalsSet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPiannoDocumentIntents: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPiannoTvSeasonEpisode: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPreprocessingReferencePageCandidateList: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefReconcileResponse: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefRefconJugglerReferencePageMappings: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefReferencePagesClassifierScoredPage: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefSalientEntitySet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefUndermergedEntities: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefUniversalEmbeddingRetrievalDebug: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebitIntermediaryMids: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebitScopeFprint: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebitScopeSignals: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebitTripleSignals: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebrefEntities: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefWebrefStatus: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebtablesDataTableAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebtablesDataTableMidAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebtablesTranslationMessage: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaAliasList: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaAnnotatorWikipediaPageComponentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaSentenceCompressionAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaWikiJoin: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaWikiMapperTripleSet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaWikibaseEntity: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaWikidataOrgTripleSet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaWikitrustWikiTrustInfo: IndexingDocjoinerDataVersionVersionInfo
+    researchCoauthorOpinionAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    researchStructuredDataInadvertentAnchorScoreAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    researchStructuredDataKnowledgeExplorationAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    researchStructuredDataNewsEmbeddingAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    richsnippetsDataObject: IndexingDocjoinerDataVersionVersionInfo
+    richsnippetsFeedPageMap: IndexingDocjoinerDataVersionVersionInfo
+    richsnippetsPageMap: IndexingDocjoinerDataVersionVersionInfo
+    richsnippetsPageMapAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    richsnippetsSchemaThing: IndexingDocjoinerDataVersionVersionInfo
+    rosettaLanguage: IndexingDocjoinerDataVersionVersionInfo
+    safesearchPageClassifierOutput: IndexingDocjoinerDataVersionVersionInfo
+    safesearchSafeSearchInternalPageSignals: IndexingDocjoinerDataVersionVersionInfo
+    scienceIndexSignal: IndexingDocjoinerDataVersionVersionInfo
+    searchEngagementHighlightSharedHighlightSignal: IndexingDocjoinerDataVersionVersionInfo
+    searcharSearchArPipelineSignal: IndexingDocjoinerDataVersionVersionInfo
+    shoppingQualityShoppingSiteClassifier: IndexingDocjoinerDataVersionVersionInfo
+    shoppingQualityShoppingSiteClassifierShopfab: IndexingDocjoinerDataVersionVersionInfo
+    shoppingWebentityShoppingAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    sitemapsSitemapsSignals: IndexingDocjoinerDataVersionVersionInfo
+    smearingSmearedTerms: IndexingDocjoinerDataVersionVersionInfo
+    socialPersonalizationKnexAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamBrainSpamBrainData: IndexingDocjoinerDataVersionVersionInfo
+    spamBrainSpamBrainPageClassifierAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamContentAnchorDist: IndexingDocjoinerDataVersionVersionInfo
+    spamContentAuthenticAuthenticTextAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamContentImageMapPb: IndexingDocjoinerDataVersionVersionInfo
+    spamContentSiteAgeStats: IndexingDocjoinerDataVersionVersionInfo
+    spamCookbookCookbookAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    spamCookbookCookbookSitechunkAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    spamFatpingIndexFeed: IndexingDocjoinerDataVersionVersionInfo
+    spamGodclusterAffIdAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamGodclusterServerHeaderAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamGooglebombsGooglebombsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    spamHackedSitesDocSpamInfo: IndexingDocjoinerDataVersionVersionInfo
+    spamHackedSitesGpgbGpgbNgramStats: IndexingDocjoinerDataVersionVersionInfo
+    spamHackedSitesWordFrequencies: IndexingDocjoinerDataVersionVersionInfo
+    spamJsJsInfo: IndexingDocjoinerDataVersionVersionInfo
+    spamScamScamness: IndexingDocjoinerDataVersionVersionInfo
+    spamScamUnauthoritativeSite: IndexingDocjoinerDataVersionVersionInfo
+    spamTokensSpamTokensAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    tableTalkStrideOfferPagePriceAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    tasksTabaTabaDocSignals: IndexingDocjoinerDataVersionVersionInfo
+    telephoneNumberAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    timeAnnotationTags: IndexingDocjoinerDataVersionVersionInfo
+    timeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    timeRangeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    travelAssistantTravelDocClassification: IndexingDocjoinerDataVersionVersionInfo
+    ucpSignal: IndexingDocjoinerDataVersionVersionInfo
+    udrConverterDocumentShoppingData: IndexingDocjoinerDataVersionVersionInfo
+    udrConverterOffer: IndexingDocjoinerDataVersionVersionInfo
+    udrConverterProductBlockData: IndexingDocjoinerDataVersionVersionInfo
+    udrProtoDetailedEntityScores: IndexingDocjoinerDataVersionVersionInfo
+    udrProtoOverlay: IndexingDocjoinerDataVersionVersionInfo
+    udrProtoWebrefMention: IndexingDocjoinerDataVersionVersionInfo
     universalFacts: IndexingDocjoinerDataVersionVersionInfo
+    unwantedImageDataList: IndexingDocjoinerDataVersionVersionInfo
+    uriAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    utilStatusProto: IndexingDocjoinerDataVersionVersionInfo
+    verticalsDiscussionDiscussionAnnotationTag: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlAutomatedAudioExtractionSignals: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlAutomatedExtractionSignals: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlDomainVideoClickData: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlVideoClickData: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlVideoSalientTermSet: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlVideoScoringSignals: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlWatchPagePatternClassification: IndexingDocjoinerDataVersionVersionInfo
+    videoCrawlYoutubeEmbedSignal: IndexingDocjoinerDataVersionVersionInfo
     videoScoringSignal: IndexingDocjoinerDataVersionVersionInfo
+    videoWebGallery: IndexingDocjoinerDataVersionVersionInfo
+    videoYoutubeLiveCardioCardioStats: IndexingDocjoinerDataVersionVersionInfo
     volt: IndexingDocjoinerDataVersionVersionInfo
+    watchpageLanguageWatchPageLanguageResult: IndexingDocjoinerDataVersionVersionInfo
+    websitetoolsFeedsAnnotationsFeedContentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    websitetoolsFeedsLinkedFeedLinkedFeed: IndexingDocjoinerDataVersionVersionInfo
+    websitetoolsFeedsPodcastPodcastSignals: IndexingDocjoinerDataVersionVersionInfo
+    websitetoolsFeedsSporeFeedsSporeTriples: IndexingDocjoinerDataVersionVersionInfo
+    whatshappStrideExtractions: IndexingDocjoinerDataVersionVersionInfo
+    youtubeAlexandriaYoutubeBody: IndexingDocjoinerDataVersionVersionInfo
+    youtubeAlexandriaYoutubeSignal: IndexingDocjoinerDataVersionVersionInfo
 
 @typing.type_check_only
 class IndexingDocjoinerDataVersionVersionInfo(typing_extensions.TypedDict, total=False):
@@ -19990,6 +21455,8 @@ class IndexingVideosAsrTranscriptRepairAnnotation(
         "GIBBERISH_DECLINED",
         "GIBBERISH_DETECTION_FAILED",
     ]
+    numGibberishSegments: int
+    numSegmentsClassified: int
 
 @typing.type_check_only
 class KaltixPerDocData(typing_extensions.TypedDict, total=False):
@@ -20006,25 +21473,30 @@ class KeGovernanceTypedRegions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KnowledgeAnswersAnyType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersAttributeType(typing_extensions.TypedDict, total=False):
     attribute: _list[str]
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     pivotEntitySlot: str
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersBooleanType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersCollectionType(typing_extensions.TypedDict, total=False):
     collection: _list[str]
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersCompoundType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
@@ -20046,6 +21518,7 @@ class KnowledgeAnswersDateType(typing_extensions.TypedDict, total=False):
     allowSymbolicTime: bool
     allowTimeResolutionsWithoutExplicitTimezone: bool
     allowYearResolution: bool
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
     subType: typing_extensions.Literal[
         "DATE_TIME_DEFAULT",
@@ -20057,6 +21530,7 @@ class KnowledgeAnswersDateType(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KnowledgeAnswersDependencyType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     containerType: KnowledgeAnswersContainerType
     intersectType: KnowledgeAnswersIntersectType
     remodelings: NlpMeaningMeaningRemodelings
@@ -20079,19 +21553,20 @@ class KnowledgeAnswersDialogReferentialResolution(
 
 @typing.type_check_only
 class KnowledgeAnswersDurationType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     rangeConstraint: KnowledgeAnswersRangeConstraint
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersEntityType(typing_extensions.TypedDict, total=False):
     collection: _list[str]
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     excludedCollection: _list[str]
     id: _list[str]
     identifier: _list[KnowledgeAnswersIntentQueryIdentifier]
     inAllCollections: bool
     includeGeolocationData: bool
     remodelings: NlpMeaningMeaningRemodelings
-    stbrDomain: _list[str]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentModifiers(typing_extensions.TypedDict, total=False):
@@ -20275,7 +21750,380 @@ class KnowledgeAnswersIntentQueryArgumentSignals(
     isIntentgenAnnotation: bool
     isNimbleAnnotation: bool
     location: GeostorePointProto
+    locationClassificationScore: float
     locationMarkersSignals: KnowledgeAnswersIntentQueryLocationMarkersSignals
+    locationType: typing_extensions.Literal[
+        "TYPE_ANY",
+        "TYPE_TRANSPORTATION",
+        "TYPE_ROUTE",
+        "TYPE_DEPRECATED_HIGHWAY_DO_NOT_USE",
+        "TYPE_HIGHWAY",
+        "TYPE_HIGHWAY_1",
+        "TYPE_HIGHWAY_2",
+        "TYPE_HIGHWAY_3",
+        "TYPE_HIGHWAY_4",
+        "TYPE_HIGHWAY_5",
+        "TYPE_HIGHWAY_6",
+        "TYPE_HIGHWAY_7",
+        "TYPE_HIGHWAY_8",
+        "TYPE_HIGHWAY_9",
+        "TYPE_BICYCLE_ROUTE",
+        "TYPE_TRAIL",
+        "TYPE_SEGMENT",
+        "TYPE_ROAD",
+        "TYPE_RAILWAY",
+        "TYPE_STANDARD_TRACK",
+        "TYPE_JR_TRACK",
+        "TYPE_NARROW_TRACK",
+        "TYPE_MONORAIL_TRACK",
+        "TYPE_SUBWAY_TRACK",
+        "TYPE_LIGHT_RAIL_TRACK",
+        "TYPE_BROAD_TRACK",
+        "TYPE_HIGH_SPEED_RAIL",
+        "TYPE_TROLLEY_TRACK",
+        "TYPE_FERRY",
+        "TYPE_FERRY_BOAT",
+        "TYPE_FERRY_TRAIN",
+        "TYPE_VIRTUAL_SEGMENT",
+        "TYPE_INTERSECTION",
+        "TYPE_TRANSIT",
+        "TYPE_TRANSIT_STATION",
+        "TYPE_BUS_STATION",
+        "TYPE_TRAMWAY_STATION",
+        "TYPE_TRAIN_STATION",
+        "TYPE_SUBWAY_STATION",
+        "TYPE_FERRY_TERMINAL",
+        "TYPE_AIRPORT",
+        "TYPE_AIRPORT_CIVIL",
+        "TYPE_AIRPORT_MILITARY",
+        "TYPE_AIRPORT_MIXED",
+        "TYPE_HELIPORT",
+        "TYPE_SEAPLANE_BASE",
+        "TYPE_AIRSTRIP",
+        "TYPE_CABLE_CAR_STATION",
+        "TYPE_GONDOLA_LIFT_STATION",
+        "TYPE_FUNICULAR_STATION",
+        "TYPE_SPECIAL_STATION",
+        "TYPE_HORSE_CARRIAGE_STATION",
+        "TYPE_MONORAIL_STATION",
+        "TYPE_SEAPORT",
+        "TYPE_TRANSIT_STOP",
+        "TYPE_TRANSIT_TRIP",
+        "TYPE_TRANSIT_DEPARTURE",
+        "TYPE_TRANSIT_LEG",
+        "TYPE_TRANSIT_LINE",
+        "TYPE_TRANSIT_AGENCY_DEPRECATED_VALUE",
+        "TYPE_TRANSIT_TRANSFER",
+        "TYPE_SEGMENT_PATH",
+        "TYPE_ROAD_SIGN",
+        "TYPE_INTERSECTION_GROUP",
+        "TYPE_PATHWAY",
+        "TYPE_RESTRICTION_GROUP",
+        "TYPE_TOLL_CLUSTER",
+        "TYPE_POLITICAL",
+        "TYPE_COUNTRY",
+        "TYPE_ADMINISTRATIVE_AREA",
+        "TYPE_ADMINISTRATIVE_AREA1",
+        "TYPE_US_STATE",
+        "TYPE_GB_COUNTRY",
+        "TYPE_JP_TODOUFUKEN",
+        "TYPE_ADMINISTRATIVE_AREA2",
+        "TYPE_GB_FORMER_POSTAL_COUNTY",
+        "TYPE_GB_TRADITIONAL_COUNTY",
+        "TYPE_ADMINISTRATIVE_AREA3",
+        "TYPE_ADMINISTRATIVE_AREA4",
+        "TYPE_ADMINISTRATIVE_AREA5",
+        "TYPE_ADMINISTRATIVE_AREA6",
+        "TYPE_ADMINISTRATIVE_AREA7",
+        "TYPE_ADMINISTRATIVE_AREA8",
+        "TYPE_ADMINISTRATIVE_AREA9",
+        "TYPE_COLLOQUIAL_AREA",
+        "TYPE_RESERVATION",
+        "TYPE_LOCALITY",
+        "TYPE_GB_POST_TOWN",
+        "TYPE_JP_GUN",
+        "TYPE_JP_SHIKUCHOUSON",
+        "TYPE_JP_SUB_SHIKUCHOUSON",
+        "TYPE_COLLOQUIAL_CITY",
+        "TYPE_SUBLOCALITY",
+        "TYPE_US_BOROUGH",
+        "TYPE_GB_DEPENDENT_LOCALITY",
+        "TYPE_JP_OOAZA",
+        "TYPE_JP_KOAZA",
+        "TYPE_JP_GAIKU",
+        "TYPE_GB_DOUBLE_DEPENDENT_LOCALITY",
+        "TYPE_JP_CHIBAN",
+        "TYPE_JP_EDABAN",
+        "TYPE_SUBLOCALITY1",
+        "TYPE_SUBLOCALITY2",
+        "TYPE_SUBLOCALITY3",
+        "TYPE_SUBLOCALITY4",
+        "TYPE_SUBLOCALITY5",
+        "TYPE_NEIGHBORHOOD",
+        "TYPE_CONSTITUENCY",
+        "TYPE_DESIGNATED_MARKET_AREA",
+        "TYPE_SCHOOL_DISTRICT",
+        "TYPE_LAND_PARCEL",
+        "TYPE_DISPUTED_AREA",
+        "TYPE_POLICE_JURISDICTION",
+        "TYPE_STATISTICAL_AREA",
+        "TYPE_CONSTITUENCY_FUTURE",
+        "TYPE_PARK",
+        "TYPE_GOLF_COURSE",
+        "TYPE_LOCAL_PARK",
+        "TYPE_NATIONAL_PARK",
+        "TYPE_US_NATIONAL_PARK",
+        "TYPE_US_NATIONAL_MONUMENT",
+        "TYPE_NATIONAL_FOREST",
+        "TYPE_PROVINCIAL_PARK",
+        "TYPE_PROVINCIAL_FOREST",
+        "TYPE_CAMPGROUNDS",
+        "TYPE_HIKING_AREA",
+        "TYPE_BUSINESS",
+        "TYPE_GOVERNMENT",
+        "TYPE_BORDER_CROSSING",
+        "TYPE_CITY_HALL",
+        "TYPE_COURTHOUSE",
+        "TYPE_EMBASSY",
+        "TYPE_LIBRARY",
+        "TYPE_SCHOOL",
+        "TYPE_UNIVERSITY",
+        "TYPE_EMERGENCY",
+        "TYPE_HOSPITAL",
+        "TYPE_PHARMACY",
+        "TYPE_POLICE",
+        "TYPE_FIRE",
+        "TYPE_DOCTOR",
+        "TYPE_DENTIST",
+        "TYPE_VETERINARIAN",
+        "TYPE_TRAVEL_SERVICE",
+        "TYPE_LODGING",
+        "TYPE_RESTAURANT",
+        "TYPE_GAS_STATION",
+        "TYPE_PARKING",
+        "TYPE_POST_OFFICE",
+        "TYPE_REST_AREA",
+        "TYPE_CASH_MACHINE",
+        "TYPE_CAR_RENTAL",
+        "TYPE_CAR_REPAIR",
+        "TYPE_SHOPPING",
+        "TYPE_GROCERY",
+        "TYPE_TOURIST_DESTINATION",
+        "TYPE_ECO_TOURIST_DESTINATION",
+        "TYPE_BIRD_WATCHING",
+        "TYPE_FISHING",
+        "TYPE_HUNTING",
+        "TYPE_NATURE_RESERVE",
+        "TYPE_TEMPLE",
+        "TYPE_CHURCH",
+        "TYPE_GURUDWARA",
+        "TYPE_HINDU_TEMPLE",
+        "TYPE_MOSQUE",
+        "TYPE_SYNAGOGUE",
+        "TYPE_STADIUM",
+        "TYPE_BAR",
+        "TYPE_MOVIE_RENTAL",
+        "TYPE_COFFEE",
+        "TYPE_GOLF",
+        "TYPE_BANK",
+        "TYPE_DOODLE",
+        "TYPE_GROUNDS",
+        "TYPE_AIRPORT_GROUNDS",
+        "TYPE_BUILDING_GROUNDS",
+        "TYPE_CEMETERY",
+        "TYPE_HOSPITAL_GROUNDS",
+        "TYPE_INDUSTRIAL",
+        "TYPE_MILITARY",
+        "TYPE_SHOPPING_CENTER",
+        "TYPE_SPORTS_COMPLEX",
+        "TYPE_UNIVERSITY_GROUNDS",
+        "TYPE_DEPRECATED_TARMAC",
+        "TYPE_ENCLOSED_TRAFFIC_AREA",
+        "TYPE_PARKING_LOT",
+        "TYPE_PARKING_GARAGE",
+        "TYPE_OFF_ROAD_AREA",
+        "TYPE_BORDER",
+        "TYPE_BUILDING",
+        "TYPE_GEOCODED_ADDRESS",
+        "TYPE_NATURAL_FEATURE",
+        "TYPE_TERRAIN",
+        "TYPE_SAND",
+        "TYPE_BEACH",
+        "TYPE_DUNE",
+        "TYPE_ROCKY",
+        "TYPE_ICE",
+        "TYPE_GLACIER",
+        "TYPE_BUILT_UP_AREA",
+        "TYPE_VEGETATION",
+        "TYPE_SHRUBBERY",
+        "TYPE_WOODS",
+        "TYPE_AGRICULTURAL",
+        "TYPE_GRASSLAND",
+        "TYPE_TUNDRA",
+        "TYPE_DESERT",
+        "TYPE_SALT_FLAT",
+        "TYPE_WATER",
+        "TYPE_OCEAN",
+        "TYPE_BAY",
+        "TYPE_BIGHT",
+        "TYPE_LAGOON",
+        "TYPE_SEA",
+        "TYPE_STRAIT",
+        "TYPE_INLET",
+        "TYPE_FJORD",
+        "TYPE_LAKE",
+        "TYPE_SEASONAL_LAKE",
+        "TYPE_RESERVOIR",
+        "TYPE_POND",
+        "TYPE_RIVER",
+        "TYPE_RAPIDS",
+        "TYPE_DISTRIBUTARY",
+        "TYPE_CONFLUENCE",
+        "TYPE_WATERFALL",
+        "TYPE_SPRING",
+        "TYPE_GEYSER",
+        "TYPE_HOT_SPRING",
+        "TYPE_SEASONAL_RIVER",
+        "TYPE_WADI",
+        "TYPE_ESTUARY",
+        "TYPE_WETLAND",
+        "TYPE_WATER_NAVIGATION",
+        "TYPE_FORD",
+        "TYPE_CANAL",
+        "TYPE_HARBOR",
+        "TYPE_CHANNEL",
+        "TYPE_REEF",
+        "TYPE_REEF_FLAT",
+        "TYPE_REEF_GROWTH",
+        "TYPE_REEF_EXTENT",
+        "TYPE_REEF_ROCK_SUBMERGED",
+        "TYPE_IRRIGATION",
+        "TYPE_DAM",
+        "TYPE_DRINKING_WATER",
+        "TYPE_CURRENT",
+        "TYPE_WATERING_HOLE",
+        "TYPE_TECTONIC",
+        "TYPE_WATERING_HOLE_DEPRECATED",
+        "TYPE_VOLCANO",
+        "TYPE_LAVA_FIELD",
+        "TYPE_FISSURE",
+        "TYPE_FAULT",
+        "TYPE_LAND_MASS",
+        "TYPE_CONTINENT",
+        "TYPE_ISLAND",
+        "TYPE_ATOLL",
+        "TYPE_OCEAN_ROCK_EXPOSED",
+        "TYPE_CAY",
+        "TYPE_PENINSULA",
+        "TYPE_ISTHMUS",
+        "TYPE_ELEVATED",
+        "TYPE_PEAK",
+        "TYPE_NUNATAK",
+        "TYPE_SPUR",
+        "TYPE_PASS",
+        "TYPE_PLATEAU",
+        "TYPE_RIDGE",
+        "TYPE_RAVINE",
+        "TYPE_CRATER",
+        "TYPE_KARST",
+        "TYPE_CLIFF",
+        "TYPE_VISTA",
+        "TYPE_DIGITAL_ELEVATION_MODEL",
+        "TYPE_UPLAND",
+        "TYPE_TERRACE",
+        "TYPE_SLOPE",
+        "TYPE_CONTOUR_LINE",
+        "TYPE_PAN",
+        "TYPE_UNSTABLE_HILLSIDE",
+        "TYPE_MOUNTAIN_RANGE",
+        "TYPE_UNDERSEA",
+        "TYPE_SUBMARINE_SEAMOUNT",
+        "TYPE_SUBMARINE_RIDGE",
+        "TYPE_SUBMARINE_GAP",
+        "TYPE_SUBMARINE_PLATEAU",
+        "TYPE_SUBMARINE_DEEP",
+        "TYPE_SUBMARINE_VALLEY",
+        "TYPE_SUBMARINE_BASIN",
+        "TYPE_SUBMARINE_SLOPE",
+        "TYPE_SUBMARINE_CLIFF",
+        "TYPE_SUBMARINE_PLAIN",
+        "TYPE_SUBMARINE_FRACTURE_ZONE",
+        "TYPE_CAVE",
+        "TYPE_ROCK",
+        "TYPE_ARCHIPELAGO",
+        "TYPE_POSTAL",
+        "TYPE_POSTAL_CODE",
+        "TYPE_POSTAL_CODE_PREFIX",
+        "TYPE_PREMISE",
+        "TYPE_SUB_PREMISE",
+        "TYPE_SUITE",
+        "TYPE_POST_TOWN",
+        "TYPE_POSTAL_ROUND",
+        "TYPE_META_FEATURE",
+        "TYPE_DATA_SOURCE",
+        "TYPE_LOCALE",
+        "TYPE_TIMEZONE",
+        "TYPE_BUSINESS_CHAIN",
+        "TYPE_PHONE_NUMBER_PREFIX",
+        "TYPE_PHONE_NUMBER_AREA_CODE",
+        "TYPE_BUSINESS_CORRIDOR",
+        "TYPE_ADDRESS_TEMPLATE",
+        "TYPE_TRANSIT_AGENCY",
+        "TYPE_FUTURE_GEOMETRY",
+        "TYPE_EVENT",
+        "TYPE_EARTHQUAKE",
+        "TYPE_HURRICANE",
+        "TYPE_WEATHER_CONDITION",
+        "TYPE_TRANSIENT",
+        "TYPE_ENTRANCE",
+        "TYPE_CARTOGRAPHIC",
+        "TYPE_HIGH_TENSION",
+        "TYPE_SKI_TRAIL",
+        "TYPE_SKI_LIFT",
+        "TYPE_SKI_BOUNDARY",
+        "TYPE_WATERSHED_BOUNDARY",
+        "TYPE_TARMAC",
+        "TYPE_WALL",
+        "TYPE_PICNIC_AREA",
+        "TYPE_PLAY_GROUND",
+        "TYPE_TRAIL_HEAD",
+        "TYPE_GOLF_TEEING_GROUND",
+        "TYPE_GOLF_PUTTING_GREEN",
+        "TYPE_GOLF_ROUGH",
+        "TYPE_GOLF_SAND_BUNKER",
+        "TYPE_GOLF_FAIRWAY",
+        "TYPE_GOLF_HOLE",
+        "TYPE_DEPRECATED_GOLF_SHOP",
+        "TYPE_CAMPING_SITE",
+        "TYPE_DESIGNATED_BARBECUE_PIT",
+        "TYPE_DESIGNATED_COOKING_AREA",
+        "TYPE_CAMPFIRE_PIT",
+        "TYPE_WATER_FOUNTAIN",
+        "TYPE_LITTER_RECEPTACLE",
+        "TYPE_LOCKER_AREA",
+        "TYPE_ANIMAL_ENCLOSURE",
+        "TYPE_CARTOGRAPHIC_LINE",
+        "TYPE_ESTABLISHMENT",
+        "TYPE_ESTABLISHMENT_GROUNDS",
+        "TYPE_ESTABLISHMENT_BUILDING",
+        "TYPE_ESTABLISHMENT_POI",
+        "TYPE_ESTABLISHMENT_SERVICE",
+        "TYPE_CELESTIAL",
+        "TYPE_ROAD_MONITOR",
+        "TYPE_PUBLIC_SPACES_AND_MONUMENTS",
+        "TYPE_STATUE",
+        "TYPE_TOWN_SQUARE",
+        "TYPE_LEVEL",
+        "TYPE_COMPOUND",
+        "TYPE_COMPOUND_GROUNDS",
+        "TYPE_COMPOUND_BUILDING",
+        "TYPE_COMPOUND_SECTION",
+        "TYPE_TERMINAL_POINT",
+        "TYPE_REGULATED_AREA",
+        "TYPE_LOGICAL_BORDER",
+        "TYPE_DO_NOT_USE_RESERVED_TO_CATCH_GENERATED_FILES",
+        "TYPE_UNKNOWN",
+    ]
     mediaEntitySignals: KnowledgeAnswersIntentQueryMediaEntitySignals
     mergedImpliedEntity: _list[KnowledgeAnswersIntentQueryImpliedEntity]
     midEquivalentToCollection: str
@@ -20293,6 +22141,7 @@ class KnowledgeAnswersIntentQueryArgumentSignals(
     relatednessSignals: KnowledgeAnswersIntentQueryRelatednessSignals
     resolvedFromContext: bool
     resolvedFromPronoun: bool
+    responseMeaningSignals: KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals
     resultSupport: _list[UniversalsearchNewPackerKnowledgeResultSupport]
     saftSignals: KnowledgeAnswersIntentQuerySaftSignals
     shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
@@ -20373,6 +22222,10 @@ class KnowledgeAnswersIntentQueryCollectionScore(
     scoreValue: float
 
 @typing.type_check_only
+class KnowledgeAnswersIntentQueryConceptInfo(typing_extensions.TypedDict, total=False):
+    id: ConceptsConceptId
+
+@typing.type_check_only
 class KnowledgeAnswersIntentQueryCoreference(typing_extensions.TypedDict, total=False):
     argPath: KnowledgeAnswersIntentQueryArgPath
 
@@ -20391,6 +22244,7 @@ class KnowledgeAnswersIntentQueryFreetextAnnotationSignals(
 class KnowledgeAnswersIntentQueryFunctionCall(typing_extensions.TypedDict, total=False):
     argument: _list[KnowledgeAnswersIntentQueryArgument]
     catalogVersion: str
+    conceptInfo: KnowledgeAnswersIntentQueryConceptInfo
     contextualSensitivity: _list[KnowledgeAnswersSensitivitySensitivity]
     enabledRemodelings: NlpMeaningMeaningRemodelingControl
     ignoredTokens: _list[KnowledgeAnswersIntentQueryTokens]
@@ -20429,6 +22283,7 @@ class KnowledgeAnswersIntentQueryFunctionCallSignals(
     isDisambiguationCardIntent: bool
     isDisambiguationIntent: bool
     isNeuralCategoricalInterpretation: bool
+    isRefinedMeaning: bool
     isUiCompositionIntent: bool
     localSignals: KnowledgeAnswersIntentQueryLocalSignals
     osrpJourneyTag: str
@@ -20448,6 +22303,7 @@ class KnowledgeAnswersIntentQueryFunctionCallSignals(
     signalsFallbackIntents: _list[
         KnowledgeAnswersIntentQuerySignalComputationFallbackIntent
     ]
+    usesPrefulfillmentRanker: bool
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryGroundingSignals(
@@ -20464,6 +22320,8 @@ class KnowledgeAnswersIntentQueryGroundingSignals(
     pgrpOutputFormat: typing_extensions.Literal[
         "INTENT_FORMAT_UNSPECIFIED", "PROD_INTENT_FACTORY", "PORTMON_FULFILLMENT"
     ]
+    provenance: typing_extensions.Literal["UNKNOWN_PROVENANCE", "FIELD_CANDIDATE"]
+    sentiment: typing_extensions.Literal["UNKNOWN_SENTIMENT", "REJECT"]
     usesGroundingBox: bool
 
 @typing.type_check_only
@@ -20502,6 +22360,8 @@ class KnowledgeAnswersIntentQueryIdentifier(typing_extensions.TypedDict, total=F
         "BROADCAST",
         "MESSAGE_CONTENT",
         "INLINE_INVENTORY",
+        "MEDIA_PLAYBACK",
+        "CONCEPT_ID",
     ]
 
 @typing.type_check_only
@@ -20583,7 +22443,6 @@ class KnowledgeAnswersIntentQueryParsingSignals(
     calibratedParsingScore: float
     effectiveArgSpanLength: float
     inQueryMaxEffectiveArgSpanLength: float
-    qrewriteCallPathInfo: NlpLoggingQRewriteClientCallPathInfo
     qrewriteCallPathInfoFingerprint: str
     source: typing_extensions.Literal[
         "UNKNOWN_PARSING_SOURCE",
@@ -20627,10 +22486,21 @@ class KnowledgeAnswersIntentQueryRelatednessSignals(
     youtubeViews: str
 
 @typing.type_check_only
+class KnowledgeAnswersIntentQueryResponseMeaningSignalsAnswersHeaderSignals(
+    typing_extensions.TypedDict, total=False
+):
+    answersValueGender: typing_extensions.Literal["UNKNOWN", "FEMALE", "MALE"]
+    numAnswers: str
+
+@typing.type_check_only
 class KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals(
     typing_extensions.TypedDict, total=False
 ):
+    answersHeaderSignals: KnowledgeAnswersIntentQueryResponseMeaningSignalsAnswersHeaderSignals
     propertyValue: _list[FreebasePropertyValue]
+    responseMeaningApplication: typing_extensions.Literal[
+        "DEFAULT", "HEADER", "VOICE_ANSWERS", "DISPLAY_ANSWERS"
+    ]
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQuerySaftSignals(typing_extensions.TypedDict, total=False):
@@ -20779,15 +22649,18 @@ class KnowledgeAnswersMeaningSchemaSlotKey(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class KnowledgeAnswersMeasurementType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersNormalizedStringType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     normalizedValue: _list[str]
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersNumberType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     keepAsString: bool
     rangeConstraint: KnowledgeAnswersRangeConstraint
     remodelings: NlpMeaningMeaningRemodelings
@@ -20926,6 +22799,7 @@ class KnowledgeAnswersOpaqueType(typing_extensions.TypedDict, total=False):
     calendarReferenceType: KnowledgeAnswersOpaqueCalendarReferenceType
     complexQueriesRewriteType: KnowledgeAnswersOpaqueComplexQueriesRewriteType
     componentReferenceType: KnowledgeAnswersOpaqueComponentReferenceIndexType
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     deviceIdType: KnowledgeAnswersOpaqueDeviceIdType
     deviceType: KnowledgeAnswersOpaqueDeviceType
     deviceUserIdentityType: KnowledgeAnswersOpaqueDeviceUserIdentityType
@@ -20951,6 +22825,7 @@ class KnowledgeAnswersOpaqueType(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class KnowledgeAnswersPlexityRequirement(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
     simplePlexity: typing_extensions.Literal[
         "UNSPECIFIED_PLEXITY", "UNIPLEX", "MULTIPLEX", "ANY_PLEXITY"
@@ -20958,6 +22833,7 @@ class KnowledgeAnswersPlexityRequirement(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class KnowledgeAnswersPolarQuestionType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
@@ -20979,8 +22855,10 @@ class KnowledgeAnswersSameType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class KnowledgeAnswersSemanticType(typing_extensions.TypedDict, total=False):
     allowAll: bool
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     includesContainingIntent: bool
     name: _list[str]
+    nameContracts: _list[NlpMeaningSemanticTypeNameComponentSpecificContracts]
     nameRemodelings: _list[NlpMeaningSemanticTypeNameMeaningRemodelings]
     remodelings: NlpMeaningMeaningRemodelings
 
@@ -21130,30 +23008,30 @@ class KnowledgeAnswersSensitivityStoragePolicy(
     typing_extensions.TypedDict, total=False
 ):
     encryptArgumentValue: bool
+    encryptFieldCandidateValueTerm: bool
     encryptQueryAnnotationData: bool
     scrubAuxiliaryFieldsInConversationSnapshot: bool
 
 @typing.type_check_only
 class KnowledgeAnswersStateOfAffairsType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersStringType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
     singleToken: bool
 
 @typing.type_check_only
 class KnowledgeAnswersTimeZoneType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
 
 @typing.type_check_only
 class KnowledgeAnswersTrackingNumberType(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
     remodelings: NlpMeaningMeaningRemodelings
-
-@typing.type_check_only
-class KnowledgeAnswersTypeTrait(typing_extensions.TypedDict, total=False):
-    remodelings: NlpMeaningMeaningRemodelings
-    traitId: _list[str]
 
 @typing.type_check_only
 class KnowledgeAnswersUnionType(typing_extensions.TypedDict, total=False):
@@ -21182,14 +23060,12 @@ class KnowledgeAnswersValueType(typing_extensions.TypedDict, total=False):
     numberType: KnowledgeAnswersNumberType
     opaqueType: KnowledgeAnswersOpaqueType
     plexityRequirement: KnowledgeAnswersPlexityRequirement
-    pluralityType: typing_extensions.Literal["ALL", "PLURAL_ONLY", "SINGULAR_ONLY"]
     polarQuestionType: KnowledgeAnswersPolarQuestionType
     semanticType: KnowledgeAnswersSemanticType
     stateOfAffairsType: KnowledgeAnswersStateOfAffairsType
     stringType: KnowledgeAnswersStringType
     timezoneType: KnowledgeAnswersTimeZoneType
     trackingNumberType: KnowledgeAnswersTrackingNumberType
-    withTrait: KnowledgeAnswersTypeTrait
 
 @typing.type_check_only
 class KnowledgeGraphDateTimeProto(typing_extensions.TypedDict, total=False):
@@ -22162,45 +24038,8 @@ class NetFabricRpcVirtualNetworkId(typing_extensions.TypedDict, total=False):
     id: int
 
 @typing.type_check_only
-class NlpLoggingQRewriteClientCallPathInfo(typing_extensions.TypedDict, total=False):
-    qrewriteCandidateId: QualityQrewriteCandidateId
-    qusCandidateId: QualityQrewriteCandidateId
-    qusClientCallPathInfo: NlpLoggingQusClientCallPathInfo
-    qusPhase: typing_extensions.Literal[
-        "QU_PHASE_UNSPECIFIED",
-        "QU_PHASE_REQUEST",
-        "QU_PHASE_QREWRITE",
-        "QU_PHASE_QBT",
-        "QU_PHASE_PROBE_QUERY",
-        "QU_PHASE_MULTI_ACCOUNT",
-        "QU_PHASE_CQBT",
-        "QU_PHASE_QBT_RESOLUTION",
-        "QU_PHASE_HIGH_PRECISION",
-        "QU_PHASE_COMBINED_RBT_RESOLUTION",
-        "QU_PHASE_ANALYZER_INPUT",
-        "QU_PHASE_NAGE",
-    ]
-
-@typing.type_check_only
-class NlpLoggingQusClientCallPathInfo(typing_extensions.TypedDict, total=False):
-    rewriterType: typing_extensions.Literal[
-        "UNKNOWN_REWRITER_TYPE",
-        "GENIE",
-        "FUZZY_MATCHER_HC",
-        "FUZZY_MATCHER",
-        "FUZZY_MATCHER_ADDITIONAL_1",
-        "FUZZY_MATCHER_ADDITIONAL_2",
-        "IDENTITY",
-        "MONDEGREEN_ASSISTANT",
-        "MONDEGREEN",
-        "SYNTHETIC",
-        "SPEECH_RECOGNITION",
-        "SPEECH_MISRECOGNITION",
-        "SPELL_CORRECTION",
-        "AUTO_TRANSLATION",
-        "AUTO_TRANSLATION_ARGUMENT_TRANSFER",
-    ]
-    temporaryAceTag: str
+class NlpMeaningComponentSpecificContracts(typing_extensions.TypedDict, total=False):
+    componentSpecificContracts: _list[str]
 
 @typing.type_check_only
 class NlpMeaningMeaningRemodeling(typing_extensions.TypedDict, total=False):
@@ -22214,6 +24053,13 @@ class NlpMeaningMeaningRemodelingControl(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class NlpMeaningMeaningRemodelings(typing_extensions.TypedDict, total=False):
     remodeling: _list[NlpMeaningMeaningRemodeling]
+
+@typing.type_check_only
+class NlpMeaningSemanticTypeNameComponentSpecificContracts(
+    typing_extensions.TypedDict, total=False
+):
+    componentSpecificContracts: NlpMeaningComponentSpecificContracts
+    name: str
 
 @typing.type_check_only
 class NlpMeaningSemanticTypeNameMeaningRemodelings(
@@ -23819,6 +25665,12 @@ class NlpSemanticParsingLocalEvChargingStationConnectorConstraint(
     ]
 
 @typing.type_check_only
+class NlpSemanticParsingLocalEvChargingStationPaymentConstraint(
+    typing_extensions.TypedDict, total=False
+):
+    paymentNetworkMid: str
+
+@typing.type_check_only
 class NlpSemanticParsingLocalEvChargingStationSpeedConstraint(
     typing_extensions.TypedDict, total=False
 ):
@@ -23987,6 +25839,7 @@ class NlpSemanticParsingLocalLocationConstraint(
     chainMember: NlpSemanticParsingLocalChainMemberConstraint
     cuisine: NlpSemanticParsingLocalCuisineConstraint
     evcsConnectorConstraint: NlpSemanticParsingLocalEvChargingStationConnectorConstraint
+    evcsPaymentConstraint: NlpSemanticParsingLocalEvChargingStationPaymentConstraint
     evcsSpeedConstraint: NlpSemanticParsingLocalEvChargingStationSpeedConstraint
     gcidConstraint: NlpSemanticParsingLocalGcidConstraint
     healthInsurance: NlpSemanticParsingLocalHealthInsuranceConstraint
@@ -25158,7 +27011,7 @@ class NlpSemanticParsingRelatedEntity(typing_extensions.TypedDict, total=False):
         "NONE_COMPOSED_FROM", "COMPOSED_FROM"
     ]
     equivalentRelation: typing_extensions.Literal[
-        "NO_EQUIVALENT", "EQUIVALENT", "MUNIN_SYNONYM", "SYNONYM"
+        "NO_EQUIVALENT", "EQUIVALENT", "MUNIN_SYNONYM"
     ]
     mdvcRelation: typing_extensions.Literal[
         "NO_MDVC",
@@ -25707,6 +27560,8 @@ class OcrPhotoTextBox(typing_extensions.TypedDict, total=False):
         "HANDWRITTEN_FORMULA",
         "NOT_ANNOTATED",
         "SIGNATURE",
+        "DIAGRAM_2D",
+        "DIAGRAM_OTHER",
         "UNKNOWN",
         "CUSTOM",
     ]
@@ -26162,6 +28017,18 @@ class PeoplestackFlexorgsProtoInternalExternal(
         "MY_ACCOUNT",
         "NUDGEIT_CAMPAIGN_MANAGER",
         "DECS",
+        "GSOX_MOCHI",
+        "PMW_TI",
+        "ACCESSIBILITY_TRACKER",
+        "DUCKIEWEB",
+        "MATTERSPACE",
+        "WAYMO_TRIAGE_TOOLING",
+        "TWENTYPERCENT_JOBPOSTINGS",
+        "ENGAGEMENTS",
+        "CLOUDCONNECT",
+        "PERSONAL_AGENT",
+        "MOBILE_HARNESS",
+        "LOOKER_STUDIO_PRO",
         "DEPRECATED_QUICKSTART_FLUME",
         "DUO_CLIENT",
         "ALBERT",
@@ -26467,6 +28334,7 @@ class PerDocData(typing_extensions.TypedDict, total=False):
     launchAppInfo: QualityRichsnippetsAppsProtosLaunchAppInfoPerDocData
     liveResultsData: WeboftrustLiveResultsDocAttachments
     localizedCluster: IndexingDupsLocalizedLocalizedCluster
+    mediaOrPeopleEntities: ImageQualitySensitiveMediaOrPeopleEntities
     noimageframeoverlayreason: int
     nsrDataProto: QualityNsrNsrData
     nsrIsCovidLocalAuthority: bool
@@ -26925,6 +28793,7 @@ class PersonalizationMapsAliasIcon(typing_extensions.TypedDict, total=False):
     formattedAddress: str
     nickname: str
     point: GeostorePointProto
+    ptoken: PtokenPToken
     stickerId: int
     syntheticFeature: bool
     timestamp: str
@@ -26979,6 +28848,16 @@ class PhotosGDepthMetadata(typing_extensions.TypedDict, total=False):
     mime: str
     near: float
     units: str
+
+@typing.type_check_only
+class PhotosHdrMetadata(typing_extensions.TypedDict, total=False):
+    gainmap: PhotosHdrMetadataGainmap
+
+@typing.type_check_only
+class PhotosHdrMetadataGainmap(typing_extensions.TypedDict, total=False):
+    adobeHdr: bool
+    appleHdr: bool
+    googleHdr: bool
 
 @typing.type_check_only
 class PhotosImageMetadata(typing_extensions.TypedDict, total=False):
@@ -27156,6 +29035,7 @@ class PhotosImageMetadata(typing_extensions.TypedDict, total=False):
     grayresponsecurve: int
     grayresponseunit: int
     hasAlpha: bool
+    hdrMetadata: PhotosHdrMetadata
     headline: str
     height: int
     hostcomputer: str
@@ -27402,8 +29282,6 @@ class PhotosVisionObjectrecROI(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PornFlagData(typing_extensions.TypedDict, total=False):
-    coclickBrainScores: ImageSafesearchContentBrainPornAnnotation
-    csaiScore: float
     debugInfo: _list[ImagePornDebugInfo]
     finalOffensiveScore: float
     finalViolenceScore: float
@@ -27423,7 +29301,6 @@ class PornFlagData(typing_extensions.TypedDict, total=False):
     referrerCounts: ClassifierPornReferrerCounts
     semanticSexualizationScore: float
     url: str
-    urlPornScores: ClassifierPornAggregatedUrlPornScores
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
@@ -27642,6 +29519,7 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "REMINDER_NOTIFICATION_ENABLE_FIRST_NOTICE",
         "REMINDER_NOTIFICATION_ENABLE_NOTICE",
         "REMINDER_ONE_OFF_DUP_NOTIFICATION_POST_MIGRATION",
+        "REMINDER_NOTIFICATION_FORCED_MIGRATED",
         "CROSS_SURFACE",
         "CROSS_SURFACE_MOVIE_SHOWTIMES",
         "CROSS_SURFACE_EVENTS",
@@ -27795,6 +29673,7 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "LIVE_CARD_FAMILY_BELL_IOS",
         "FAMILY_BELL_RING",
         "FAMILY_BELL_GET_READY",
+        "FAMILY_BELL_DEPRECATION",
         "THIRD_PARTY_ORDER_STATUS_UPDATE",
         "THIRD_PARTY_ALERT",
         "THIRD_PARTY_SUBSCRIPTION",
@@ -27815,10 +29694,10 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "REENGAGEMENT_NOTIFICATION",
         "BLUE_GINGER_RESPONSE",
         "BLUE_GINGER_SURVEY",
-        "SMARTHOME_DOORBELL",
         "SMARTHOME_ALARM",
         "SMARTHOME_ASYNCHRONOUS",
         "SMARTHOME_BROADCAST",
+        "SMARTHOME_DOORBELL",
         "SMARTHOME_FOLLOW_UP",
         "SMARTHOME_PHONES",
         "COMMUNICATION_MISSED_CALL",
@@ -28019,6 +29898,11 @@ class QualityActionsReminder(typing_extensions.TypedDict, total=False):
         "HEADPHONE_PERSONAL_RESULTS_OPTIN",
         "DISCOVERY_SPARKS",
         "SPOKEN_NOTIFICATIONS_OOBE_OPTIN",
+        "SPOKEN_NOTIFICATIONS_BNS_MIGRATION_OOBE",
+        "TRAIN_STATUS",
+        "TRAIN_DELAY",
+        "TRAIN_PLATFORM",
+        "NOTES_AND_LISTS_POST_MIGRATION",
         "UNIT_TESTING",
     ]
     attachment: _list[AssistantRemindersAttachment]
@@ -28180,6 +30064,7 @@ class QualityCalypsoAppsUniversalAuLiveOpDetail(
         "OFFER",
         "IAP_SKU_DEALS",
         "FEATURED_PRODUCTS",
+        "PLAY_PASS",
     ]
     eventUrl: str
     localeLevelFormatInformation: dict[str, typing.Any]
@@ -28379,266 +30264,6 @@ class QualityDniDocPreviewRestrictions(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class QualityDniExtendedNewsPreviews(typing_extensions.TypedDict, total=False):
-    countryCode: typing_extensions.Literal[
-        "UNKNOWN_TWO_CHARACTER_COUNTRY_CODE",
-        "AD",
-        "AE",
-        "AF",
-        "AG",
-        "AI",
-        "AL",
-        "AM",
-        "AN",
-        "AO",
-        "AQ",
-        "AR",
-        "AS",
-        "AT",
-        "AU",
-        "AW",
-        "AX",
-        "AZ",
-        "BA",
-        "BB",
-        "BD",
-        "BE",
-        "BF",
-        "BG",
-        "BH",
-        "BI",
-        "BJ",
-        "BL",
-        "BM",
-        "BN",
-        "BO",
-        "BQ",
-        "BR",
-        "BS",
-        "BT",
-        "BV",
-        "BW",
-        "BY",
-        "BZ",
-        "CA",
-        "CC",
-        "CD",
-        "CF",
-        "CG",
-        "CH",
-        "CI",
-        "CK",
-        "CL",
-        "CM",
-        "CN",
-        "CO",
-        "CR",
-        "CS",
-        "CU",
-        "CV",
-        "CW",
-        "CX",
-        "CY",
-        "CZ",
-        "DE",
-        "DJ",
-        "DK",
-        "DM",
-        "DO",
-        "DZ",
-        "EC",
-        "EE",
-        "EG",
-        "EH",
-        "ER",
-        "ES",
-        "ET",
-        "EU",
-        "FI",
-        "FJ",
-        "FK",
-        "FM",
-        "FO",
-        "FR",
-        "FX",
-        "GA",
-        "GB",
-        "GD",
-        "GE",
-        "GF",
-        "GG",
-        "GH",
-        "GI",
-        "GL",
-        "GM",
-        "GN",
-        "GP",
-        "GQ",
-        "GR",
-        "GS",
-        "GT",
-        "GU",
-        "GW",
-        "GY",
-        "HK",
-        "HM",
-        "HN",
-        "HR",
-        "HT",
-        "HU",
-        "ID",
-        "IE",
-        "IL",
-        "IM",
-        "IN",
-        "IO",
-        "IQ",
-        "IR",
-        "IS",
-        "IT",
-        "JE",
-        "JM",
-        "JO",
-        "JP",
-        "KE",
-        "KG",
-        "KH",
-        "KI",
-        "KM",
-        "KN",
-        "KP",
-        "KR",
-        "KW",
-        "KY",
-        "KZ",
-        "LA",
-        "LB",
-        "LC",
-        "LI",
-        "LK",
-        "LR",
-        "LS",
-        "LT",
-        "LU",
-        "LV",
-        "LY",
-        "MA",
-        "MC",
-        "MD",
-        "ME",
-        "MF",
-        "MG",
-        "MH",
-        "MK",
-        "ML",
-        "MM",
-        "MN",
-        "MO",
-        "MP",
-        "MQ",
-        "MR",
-        "MS",
-        "MT",
-        "MU",
-        "MV",
-        "MW",
-        "MX",
-        "MY",
-        "MZ",
-        "NA",
-        "NC",
-        "NE",
-        "NF",
-        "NG",
-        "NI",
-        "NL",
-        "NO",
-        "NP",
-        "NR",
-        "NU",
-        "NZ",
-        "OM",
-        "PA",
-        "PE",
-        "PF",
-        "PG",
-        "PH",
-        "PK",
-        "PL",
-        "PM",
-        "PN",
-        "PR",
-        "PS",
-        "PT",
-        "PW",
-        "PY",
-        "QA",
-        "RE",
-        "RO",
-        "RS",
-        "RU",
-        "RW",
-        "SA",
-        "SB",
-        "SC",
-        "SD",
-        "SE",
-        "SG",
-        "SH",
-        "SI",
-        "SJ",
-        "SK",
-        "SL",
-        "SM",
-        "SN",
-        "SO",
-        "SR",
-        "SS",
-        "ST",
-        "SV",
-        "SX",
-        "SY",
-        "SZ",
-        "TC",
-        "TD",
-        "TF",
-        "TG",
-        "TH",
-        "TJ",
-        "TK",
-        "TL",
-        "TM",
-        "TN",
-        "TO",
-        "TR",
-        "TT",
-        "TV",
-        "TW",
-        "TZ",
-        "UA",
-        "UG",
-        "UK",
-        "UM",
-        "US",
-        "UY",
-        "UZ",
-        "VA",
-        "VC",
-        "VE",
-        "VG",
-        "VI",
-        "VN",
-        "VU",
-        "WF",
-        "WS",
-        "YE",
-        "YT",
-        "YU",
-        "ZA",
-        "ZM",
-        "ZW",
-        "ZZ",
-        "NORDICS",
-    ]
     desnippetedCountryCode: _list[str]
     policyCriteriaBase64: str
     status: typing_extensions.Literal[
@@ -28658,6 +30283,7 @@ class QualityDniExtendedNewsPreviews(typing_extensions.TypedDict, total=False):
 class QualityFringeFringeQueryPriorPerDocData(typing_extensions.TypedDict, total=False):
     encodedCalibratedFringeSitePriorScore: int
     encodedChardXlqHoaxPrediction: int
+    encodedChardXlqTranslatedPrediction: int
     encodedChardXlqYmylPrediction: int
     encodedDocumentFringeVulnerability: int
     encodedEntityPriorScore: int
@@ -28666,6 +30292,7 @@ class QualityFringeFringeQueryPriorPerDocData(typing_extensions.TypedDict, total
     encodedFringeSitePriorScoreForQfsTraining: int
     encodedPredictedXlqScoreAndConfidence: int
     encodedProximityScore: int
+    sensitiveEntitiesIndices: _list[int]
 
 @typing.type_check_only
 class QualityGenieComplexQueriesComplexQueriesOutputRewrite(
@@ -28832,6 +30459,7 @@ class QualityNsrExperimentalNsrTeamScoringSignal(
     valueDouble: float
     valueFloat: float
     valueInt32: int
+    valueString: str
     valueUint32: int
     versionId: int
 
@@ -28870,6 +30498,7 @@ class QualityNsrNsrData(typing_extensions.TypedDict, total=False):
     articleScoreV2: float
     chardEncoded: int
     chardVariance: float
+    chromeInTotal: float
     clusterId: int
     clusterUplift: QualityNsrNsrDataClusterUplift
     clutterScore: float
@@ -28893,6 +30522,7 @@ class QualityNsrNsrData(typing_extensions.TypedDict, total=False):
     nsrVariance: float
     nsrdataFromFallbackPatternKey: bool
     pnav: float
+    pnavClicks: float
     priorAdjustedNsr: _list[QualityNsrVersionedFloatSignal]
     secondarySiteChunk: str
     shoppingScore: float
@@ -28917,7 +30547,6 @@ class QualityNsrNsrData(typing_extensions.TypedDict, total=False):
     tofu: float
     ugcScore: float
     url: str
-    versionedAsrData: _list[QualityNsrVersionedFloatSignal]
     versionedData: _list[QualityNsrNSRVersionedData]
     videoScore: float
     vlq: float
@@ -28951,6 +30580,7 @@ class QualityNsrPQData(typing_extensions.TypedDict, total=False):
     deltaLinkOutgoing: float
     deltaPageQuality: float
     deltaSubchunkAdjustment: float
+    keto: _list[QualityNsrVersionedFloatSignal]
     linkIncoming: float
     linkOutgoing: float
     numOffdomainAnchors: float
@@ -29000,15 +30630,20 @@ class QualityPreviewChosenSnippetInfo(typing_extensions.TypedDict, total=False):
         "SEQUENCE",
         "SEQUENCE_V2",
         "FULL",
-        "FULL_V2",
         "META",
         "LEADING_TEXT",
+        "FULL_V2",
         "SAFT_SENTENCE",
         "RADISH_SENTENCE",
         "RADISH_LIST",
         "RADISH_TABLE",
         "ANNOTATED_FULL",
+        "OFFLINE_RADISH_SENTENCE",
+        "OFFLINE_RADISH_LIST",
+        "OFFLINE_RADISH_TABLE",
+        "OFFLINE_LEADING_TEXT",
         "PEREGRINE",
+        "LLM_EXTRACTIVE",
     ]
     source: str
     tidbits: _list[QualityPreviewChosenSnippetInfoTidbitInfo]
@@ -29422,33 +31057,6 @@ class QualityQrewriteCalendarReference(typing_extensions.TypedDict, total=False)
     primaryCalendarAlias: QualityQrewritePrimaryCalendarAlias
 
 @typing.type_check_only
-class QualityQrewriteCandidateId(typing_extensions.TypedDict, total=False):
-    field: _list[QualityQrewriteCandidateIdField]
-
-@typing.type_check_only
-class QualityQrewriteCandidateIdField(typing_extensions.TypedDict, total=False):
-    index: int
-    type: typing_extensions.Literal[
-        "CANDIDATE_TYPE_UNSPECIFIED",
-        "IDENTITY",
-        "SPELLING",
-        "S3_TOP_HYPOTHESIS",
-        "AUTO_TRANSLATE",
-        "ADS_ALTERNATIVE_RUN",
-        "NEARBY_RETRIEVAL",
-        "CONTEXTUAL_REWRITE",
-        "SAFT_TOKENIZER",
-        "CONVO_FPR",
-        "SPOKEN_INTENT",
-        "AUTO_TRANSLATE_ARGUMENT_TRANSFER",
-        "CONTEXT_AWARE_SPEECH_RECOGNITION_REWRITE",
-        "MAST",
-        "FUZZY_MATCHER_REWRITE",
-        "SHOPPING_PREFERENCES_REWRITE",
-        "MAGI_CONTEXT_ENGINE_REWRITE",
-    ]
-
-@typing.type_check_only
 class QualityQrewriteContactCalendarName(typing_extensions.TypedDict, total=False):
     contact: NlpSemanticParsingModelsPersonPerson
 
@@ -29527,6 +31135,7 @@ class QualityQrewritePersonalContactData(typing_extensions.TypedDict, total=Fals
         "FAMILY_MEMBER",
         "SHARED_DEVICE_USER",
         "ON_DEVICE_CONTACT_LOOKUP",
+        "APP_SEARCH_CONTACT",
     ]
 
 @typing.type_check_only
@@ -29546,6 +31155,7 @@ class QualityQrewriteRelationshipMemoryData(typing_extensions.TypedDict, total=F
 class QualityRankembedMustangMustangRankEmbedInfo(
     typing_extensions.TypedDict, total=False
 ):
+    additionalFixedPointEncodings: _list[str]
     compressedDocumentEmbedding: QualityRankembedMustangMustangRankEmbedInfoCompressedEmbedding
     fixedPointEncoding: str
     scaledFixedPoint4Encoding: str
@@ -29809,10 +31419,10 @@ class QualitySalientTermsSalientTermSet(typing_extensions.TypedDict, total=False
         "V5",
         "V5_1",
         "V5_2",
+        "V5_3",
+        "V5_4",
         "V1_BODYONLY",
         "V2_BODYONLY",
-        "RENAME_ME_TO_ADD_NEW_ENUM_16",
-        "RENAME_ME_TO_ADD_NEW_ENUM_17",
         "RENAME_ME_TO_ADD_NEW_ENUM_18",
         "RENAME_ME_TO_ADD_NEW_ENUM_19",
         "RENAME_ME_TO_ADD_NEW_ENUM_20",
@@ -29821,6 +31431,8 @@ class QualitySalientTermsSalientTermSet(typing_extensions.TypedDict, total=False
         "RENAME_ME_TO_ADD_NEW_ENUM_23",
         "RENAME_ME_TO_ADD_NEW_ENUM_24",
         "RENAME_ME_TO_ADD_NEW_ENUM_25",
+        "RENAME_ME_TO_ADD_NEW_ENUM_26",
+        "RENAME_ME_TO_ADD_NEW_ENUM_27",
     ]
 
 @typing.type_check_only
@@ -29946,9 +31558,11 @@ class QualityShoppingShoppingAttachmentOffer(typing_extensions.TypedDict, total=
     nonDisplayableBrandMerchantRelationship: typing_extensions.Literal[
         "OFFER_BRAND_MERCHANT_RELATIONSHIP_UNKNOWN",
         "OFFER_BRAND_MERCHANT_RELATIONSHIP_DTC_CHANNEL",
+        "OFFER_BRAND_MERCHANT_RELATIONSHIP_CANDIDATE_DTC_EXPERIMENT",
     ]
     nonDisplayableCurrency: str
     nonDisplayableOrganicScoreMillis: int
+    nonDisplayableStaleAvailability: ShoppingWebentityShoppingAnnotationOfferAvailabilityInfo
     offerDocid: str
     refType: typing_extensions.Literal[
         "REFERENCE_TYPE_UNKNOWN",
@@ -29987,6 +31601,7 @@ class QualityShoppingShoppingAttachmentProduct(
     brandEntityId: str
     catalogId: str
     globalProductClusterId: str
+    images: _list[ShoppingWebentityShoppingAnnotationProductImage]
     locale: QualityShoppingShoppingAttachmentLocale
     mokaFacet: _list[QualityShoppingShoppingAttachmentMokaFacetValue]
     nonDisplayableDescription: str
@@ -30131,9 +31746,16 @@ class QualitySnippetsTruncationSnippetBoldedRangePosition(
     index: int
 
 @typing.type_check_only
+class QualityTimebasedDateUnreliability(typing_extensions.TypedDict, total=False):
+    petacatScores: _list[QualityTimebasedPetacatDateUnreliability]
+    unreliableDatesScore: float
+    unreliableDatesScoreExposureAdjusted: float
+
+@typing.type_check_only
 class QualityTimebasedLastSignificantUpdate(typing_extensions.TypedDict, total=False):
     adjustmentInfo: QualityTimebasedLastSignificantUpdateAdjustments
     date: str
+    dateUnreliabilityInfo: QualityTimebasedDateUnreliability
     source: typing_extensions.Literal[
         "UNSET",
         "LSU_LOW_PRECISION",
@@ -30144,6 +31766,7 @@ class QualityTimebasedLastSignificantUpdate(typing_extensions.TypedDict, total=F
         "LSU_HIGH_PRECISION_PUBLICATION_MARKUP_SUPPORTED_BY_ANNOTATION",
         "LSU_HIGH_PRECISION_ANNOTATION_WITH_PATTERN_BYLINE_TAG",
         "LSU_HIGH_PRECISION_RELIABLE_CONTENT_AGE_SUPPORTED_BY_ANNOTATION",
+        "LSU_HIGH_PRECISION_CREATION_DATE_OF_UGC_PAGE",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_LOW_SUPPORT",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_MEDIUM_SUPPORT",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_HIGH_SUPPORT",
@@ -30177,6 +31800,7 @@ class QualityTimebasedLastSignificantUpdateAdjustments(
         "LSU_HIGH_PRECISION_PUBLICATION_MARKUP_SUPPORTED_BY_ANNOTATION",
         "LSU_HIGH_PRECISION_ANNOTATION_WITH_PATTERN_BYLINE_TAG",
         "LSU_HIGH_PRECISION_RELIABLE_CONTENT_AGE_SUPPORTED_BY_ANNOTATION",
+        "LSU_HIGH_PRECISION_CREATION_DATE_OF_UGC_PAGE",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_LOW_SUPPORT",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_MEDIUM_SUPPORT",
         "LSU_MEDIUM_PRECISION_FRESH_SALIENT_ANNOTATION_HIGH_SUPPORT",
@@ -30197,6 +31821,18 @@ class QualityTimebasedPageType(typing_extensions.TypedDict, total=False):
     isForumPage: bool
     isPageWithFreshRepeatedDates: bool
     isQnaPage: bool
+
+@typing.type_check_only
+class QualityTimebasedPetacatDateUnreliability(
+    typing_extensions.TypedDict, total=False
+):
+    contentageReliability: float
+    dateExposure: float
+    dateExposureScore: float
+    dateVsContentageDistributionSkew: float
+    isForumQnaSocialMediaProbability: float
+    petacatId: int
+    unreliableDatesScore: float
 
 @typing.type_check_only
 class QualityTimebasedSyntacticDate(typing_extensions.TypedDict, total=False):
@@ -30660,7 +32296,6 @@ class RepositoryWebrefAnchorIndices(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RepositoryWebrefAnnotatedCategoryInfo(typing_extensions.TypedDict, total=False):
     debugString: str
-    listiness: float
     mid: str
 
 @typing.type_check_only
@@ -30706,23 +32341,24 @@ class RepositoryWebrefAnnotationStatsPerType(typing_extensions.TypedDict, total=
         "TOPIC_LINK",
         "QUERY_NAME_CANDIDATE",
         "ANCHOR_NAME_CANDIDATE",
-        "INJECTED_NAME_CANDIDATE",
         "REFERENCE_PAGE_URL",
         "REFERENCE_PAGE_LINK",
-        "DEPRECATED_ENTITY_METADATA",
         "STRONG_IDENTIFIER",
         "REFERENCE_PAGE_URL_INLINK",
         "REFERENCE_PAGE_LINK_INLINK",
         "GEO_LINK",
-        "PRINCIPAL_NAME",
-        "NAME_BLACKLIST",
-        "ENTITY_CONTEXT_TOKENS",
         "VIDEO_TRANSCRIPT",
         "VIDEO_OCR",
         "IMAGE_OCR",
         "LENS",
+        "VIDEO_DESCRIPTION",
         "ONLY_LOOKUP_METADATA",
-        "EMBEDDED_CONTENT",
+        "DEPRECATED_ENTITY_METADATA",
+        "DEPRECATED_PRINCIPAL_NAME",
+        "DEPRECATED_NAME_BLACKLIST",
+        "DEPRECATED_ENTITY_CONTEXT_TOKENS",
+        "DEPRECATED_INJECTED_NAME_CANDIDATE",
+        "DEPRECATED_EMBEDDED_CONTENT",
     ]
 
 @typing.type_check_only
@@ -30873,12 +32509,11 @@ class RepositoryWebrefConceptNameMetadata(typing_extensions.TypedDict, total=Fal
 class RepositoryWebrefDetailedEntityScores(typing_extensions.TypedDict, total=False):
     connectedness: float
     docScore: float
-    geoTopicNormalizedScore: float
     isAuthor: bool
     isPublisher: bool
     isReferencePage: bool
-    localEntityLocationConfidence: float
     normalizedTopicality: float
+    profileUrl: str
     referencePageScores: RepositoryWebrefReferencePageScores
     relevanceScore: float
 
@@ -31196,7 +32831,6 @@ class RepositoryWebrefEntityNameScore(typing_extensions.TypedDict, total=False):
     confidence: float
     debugInfo: _list[RepositoryWebrefEntityDebugInfo]
     debugVariantSignals: _list[RepositoryWebrefPreprocessingNameVariantSignals]
-    entity: RepositoryWebrefEntityJoin
     extendedScoreRatio: _list[RepositoryWebrefExtendedEntityNameScore]
     includeInModel: bool
     internalBootstrapIsOpenWorld: bool
@@ -31259,12 +32893,10 @@ class RepositoryWebrefEntityNameSource(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class RepositoryWebrefEntityScores(typing_extensions.TypedDict, total=False):
-    allCapsProb: float
     alphaEntityIdf: float
     commonNgramProb: float
     entityIdf: float
     nameCapitalizationProb: float
-    personProb: float
 
 @typing.type_check_only
 class RepositoryWebrefExplainedRangeInfo(typing_extensions.TypedDict, total=False):
@@ -31363,29 +32995,31 @@ class RepositoryWebrefFprintModifierProto(typing_extensions.TypedDict, total=Fal
         "TOPIC_LINK",
         "QUERY_NAME_CANDIDATE",
         "ANCHOR_NAME_CANDIDATE",
-        "INJECTED_NAME_CANDIDATE",
         "REFERENCE_PAGE_URL",
         "REFERENCE_PAGE_LINK",
-        "DEPRECATED_ENTITY_METADATA",
         "STRONG_IDENTIFIER",
         "REFERENCE_PAGE_URL_INLINK",
         "REFERENCE_PAGE_LINK_INLINK",
         "GEO_LINK",
-        "PRINCIPAL_NAME",
-        "NAME_BLACKLIST",
-        "ENTITY_CONTEXT_TOKENS",
         "VIDEO_TRANSCRIPT",
         "VIDEO_OCR",
         "IMAGE_OCR",
         "LENS",
+        "VIDEO_DESCRIPTION",
         "ONLY_LOOKUP_METADATA",
-        "EMBEDDED_CONTENT",
+        "DEPRECATED_ENTITY_METADATA",
+        "DEPRECATED_PRINCIPAL_NAME",
+        "DEPRECATED_NAME_BLACKLIST",
+        "DEPRECATED_ENTITY_CONTEXT_TOKENS",
+        "DEPRECATED_INJECTED_NAME_CANDIDATE",
+        "DEPRECATED_EMBEDDED_CONTENT",
     ]
 
 @typing.type_check_only
 class RepositoryWebrefFreebaseType(typing_extensions.TypedDict, total=False):
     provenance: _list[str]
     score: float
+    typeFprint: str
     typeMid: str
     typeName: str
 
@@ -31455,7 +33089,6 @@ class RepositoryWebrefKGCollection(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RepositoryWebrefLatentEntities(typing_extensions.TypedDict, total=False):
     latentEntity: _list[RepositoryWebrefLatentEntity]
-    latentMid: _list[str]
 
 @typing.type_check_only
 class RepositoryWebrefLatentEntity(typing_extensions.TypedDict, total=False):
@@ -31477,6 +33110,7 @@ class RepositoryWebrefLexicalRange(typing_extensions.TypedDict, total=False):
         "PLURAL",
         "FEMALE",
         "ASPECT",
+        "GEO_CONNECTOR",
         "TARGET_AUDIENCE",
         "TARGET_PURPOSE",
         "SETTING_BY_LOCATION",
@@ -31547,6 +33181,8 @@ class RepositoryWebrefLightweightTokensMatchedLightweightToken(
         "UNKNOWN",
         "DEFINITE",
         "INDEFINITE",
+        "FEMININE_DETERMINER",
+        "FEMININE_ADJECTIVE",
         "ABLATIVE",
         "ADESSIVE",
         "ALLATIVE",
@@ -31706,18 +33342,10 @@ class RepositoryWebrefLinkKindFlags(typing_extensions.TypedDict, total=False):
     property: typing_extensions.Literal[
         "NO_PROPERTY", "EQUIVALENT_TOPIC", "EQUIVALENT_PROPERTY"
     ]
-    resolution: typing_extensions.Literal[
-        "NO_RESOLUTION",
-        "MAY_BE_RESOLVED_FROM",
-        "MAY_RESOLVE_TO",
-        "RESOLVED_FROM",
-        "RESOLVES_TO",
-    ]
 
 @typing.type_check_only
 class RepositoryWebrefLinkKindInfo(typing_extensions.TypedDict, total=False):
     flags: RepositoryWebrefLinkKindFlags
-    kcLinkName: str
     topicPropertyName: str
 
 @typing.type_check_only
@@ -31913,7 +33541,6 @@ class RepositoryWebrefNgramMention(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RepositoryWebrefOysterType(typing_extensions.TypedDict, total=False):
     featureType: int
-    gconcepts: GeostoreOntologyRawGConceptInstanceContainerProto
 
 @typing.type_check_only
 class RepositoryWebrefPerDocRelevanceRating(typing_extensions.TypedDict, total=False):
@@ -32173,15 +33800,6 @@ class RepositoryWebrefProcessorTiming(typing_extensions.TypedDict, total=False):
 class RepositoryWebrefProductMetadata(typing_extensions.TypedDict, total=False):
     productLineId: _list[str]
     shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
-    type: typing_extensions.Literal[
-        "CATALOG_ENTRY",
-        "VARIANT_CLUSTER",
-        "OTHER",
-        "PRODUCT_LINE",
-        "BRAND",
-        "CATEGORY",
-        "NOT_PRODUCT",
-    ]
     variantClusterId: _list[str]
 
 @typing.type_check_only
@@ -32238,16 +33856,10 @@ class RepositoryWebrefRefconRefconNameInfo(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class RepositoryWebrefReferencePageScores(typing_extensions.TypedDict, total=False):
     bookScore: float
-    firstScore: float
-    hasSpecialLinks: bool
-    medianMentionScore: float
-    navboostCoverage: float
     referencePageScore: float
     selected: bool
     singleTopicness: float
     singleTopicnessV2: float
-    titleCoverage: float
-    totalSum: float
 
 @typing.type_check_only
 class RepositoryWebrefSegmentMention(typing_extensions.TypedDict, total=False):
@@ -32270,6 +33882,7 @@ class RepositoryWebrefSegmentMention(typing_extensions.TypedDict, total=False):
         "VIDEO_OCR",
         "IMAGE_OCR",
         "LENS",
+        "VIDEO_DESCRIPTION",
     ]
 
 @typing.type_check_only
@@ -32293,6 +33906,7 @@ class RepositoryWebrefSegmentMentions(typing_extensions.TypedDict, total=False):
         "VIDEO_OCR",
         "IMAGE_OCR",
         "LENS",
+        "VIDEO_DESCRIPTION",
     ]
 
 @typing.type_check_only
@@ -32334,6 +33948,7 @@ class RepositoryWebrefSimplifiedCompositeDoc(typing_extensions.TypedDict, total=
     anchors: RepositoryWebrefSimplifiedAnchors
     cdocContainer: Proto2BridgeMessageSet
     documentMentionSpans: RepositoryWebrefRefconDocumentMentionSpans
+    forwardingDups: _list[RepositoryWebrefSimplifiedForwardingDup]
     matchingMetadata: RepositoryWebrefPreprocessingUrlMatchingMetadata
     refconDocumentMetadata: RepositoryWebrefRefconRefconDocumentMetadata
     sourceSnapshotType: typing_extensions.Literal[
@@ -32354,7 +33969,12 @@ class RepositoryWebrefSimplifiedCompositeDoc(typing_extensions.TypedDict, total=
         "ADWORDS_BASE",
     ]
     url: str
-    webrefOutlinks: Proto2BridgeMessageSet
+    webrefOutlinkInfos: RepositoryWebrefWebrefOutlinkInfos
+    webrefOutlinksLegacy: Proto2BridgeMessageSet
+
+@typing.type_check_only
+class RepositoryWebrefSimplifiedForwardingDup(typing_extensions.TypedDict, total=False):
+    url: str
 
 @typing.type_check_only
 class RepositoryWebrefSubSegmentIndex(typing_extensions.TypedDict, total=False):
@@ -33006,6 +34626,7 @@ class ResearchScamNearestNeighborsNeighbor(typing_extensions.TypedDict, total=Fa
     crowdingAttribute: str
     distance: float
     docid: str
+    gfv: ResearchScamGenericFeatureVector
     metadata: str
 
 @typing.type_check_only
@@ -33023,7 +34644,13 @@ class ResearchScamNeighborSelectionOverride(typing_extensions.TypedDict, total=F
 class ResearchScamNumericRestrictNamespace(typing_extensions.TypedDict, total=False):
     namespace: str
     op: typing_extensions.Literal[
-        "OP_UNSPECIFIED", "LESS", "LESS_EQUAL", "EQUAL", "GREATER_EQUAL", "GREATER"
+        "OP_UNSPECIFIED",
+        "LESS",
+        "LESS_EQUAL",
+        "EQUAL",
+        "GREATER_EQUAL",
+        "GREATER",
+        "NOT_EQUAL",
     ]
     valueDouble: float
     valueFloat: float
@@ -33249,6 +34876,7 @@ class ResearchScienceSearchOrganization(typing_extensions.TypedDict, total=False
 class ResearchScienceSearchReconciledMetadata(typing_extensions.TypedDict, total=False):
     alternateName: _list[str]
     authorList: str
+    basicFieldsHash: str
     catalog: ResearchScienceSearchCatalog
     compactIdentifier: _list[str]
     compactIdentifierFromCitation: _list[str]
@@ -33269,6 +34897,7 @@ class ResearchScienceSearchReconciledMetadata(typing_extensions.TypedDict, total
     fieldOfStudy: _list[ResearchScienceSearchFieldOfStudyInfo]
     fingerprint: str
     funder: _list[ResearchScienceSearchOrganization]
+    hasCroissantFormat: bool
     hasTableSummaries: bool
     id: str
     identifierFromSource: _list[str]
@@ -33309,6 +34938,7 @@ class ResearchScienceSearchReconciledMetadata(typing_extensions.TypedDict, total
     versionClusterInfo: ResearchScienceSearchVersionClusterInfo
     versionEmbeddingFieldsHash: str
     versionEmbeddingVector: _list[float]
+    versionsSimhash: str
 
 @typing.type_check_only
 class ResearchScienceSearchReplica(typing_extensions.TypedDict, total=False):
@@ -33607,10 +35237,30 @@ class SafesearchVideoClassifierOutput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SafesearchVideoContentSignals(typing_extensions.TypedDict, total=False):
+    internalMultiLabelClassification: SafesearchVideoContentSignalsMultiLabelClassificationInfo
     isAbuseWithHighConfidence: bool
     scores: dict[str, typing.Any]
-    versionTag: typing_extensions.Literal["UNKNOWN", "V20220330", "V20220620"]
+    versionTag: typing_extensions.Literal[
+        "UNKNOWN", "V20220330", "V20220620", "V20230910"
+    ]
     videoClassifierOutput: SafesearchVideoClassifierOutput
+
+@typing.type_check_only
+class SafesearchVideoContentSignalsMultiLabelClassificationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    frameFeaturesPresent: bool
+    output: SafesearchVideoContentSignalsMultiLabelOutput
+
+@typing.type_check_only
+class SafesearchVideoContentSignalsMultiLabelOutput(
+    typing_extensions.TypedDict, total=False
+):
+    ageIndeterminate: float
+    csam: float
+    porn: float
+    racy: float
+    violence: float
 
 @typing.type_check_only
 class ScienceCitation(typing_extensions.TypedDict, total=False):
@@ -33636,6 +35286,7 @@ class ScienceCitation(typing_extensions.TypedDict, total=False):
         "PDF_TEXT_BLOCK",
     ]
     AbstractText: str
+    AbstractTypeFromSource: str
     AlternateVersionID: str
     Anchors: _list[ScienceCitationAnchor]
     ArxivSection: str
@@ -33647,6 +35298,7 @@ class ScienceCitation(typing_extensions.TypedDict, total=False):
     BorrowedFields: int
     Chapter: str
     CitationSource: int
+    CitationSourceCrawlTimestamp: str
     CitationSourceUrl: str
     CitationSrc: str
     ClearedReason: typing_extensions.Literal[
@@ -33761,6 +35413,7 @@ class ScienceCitationAlternateAbstract(typing_extensions.TypedDict, total=False)
     AbstractHtmlLeftOver: str
     AbstractLanguage: str
     AbstractText: str
+    AbstractTypeFromSource: str
 
 @typing.type_check_only
 class ScienceCitationAlternateTitle(typing_extensions.TypedDict, total=False):
@@ -34372,6 +36025,31 @@ class ShoppingWebentityShoppingAnnotationInferredImageNeardupInfo(
     ]
 
 @typing.type_check_only
+class ShoppingWebentityShoppingAnnotationOfferAvailabilityInfo(
+    typing_extensions.TypedDict, total=False
+):
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNKNOWN",
+        "AVAILABILITY_IN_STOCK",
+        "AVAILABILITY_LIMITED",
+        "AVAILABILITY_OUT_OF_STOCK",
+        "AVAILABILITY_BACKORDER",
+        "AVAILABILITY_PREORDER",
+        "AVAILABILITY_ON_DISPLAY_TO_ORDER",
+    ]
+
+@typing.type_check_only
+class ShoppingWebentityShoppingAnnotationProductImage(
+    typing_extensions.TypedDict, total=False
+):
+    imageDocid: str
+    productImageType: typing_extensions.Literal[
+        "PRODUCT_IMAGE_TYPE_UNKNOWN",
+        "PRODUCT_IMAGE_GPC",
+        "PRODUCT_IMAGE_TYPE_MULTIBANG_ENTITY_INFERRED",
+    ]
+
+@typing.type_check_only
 class ShoppingWebentityShoppingAnnotationProductRating(
     typing_extensions.TypedDict, total=False
 ):
@@ -34474,7 +36152,9 @@ class SnippetExtraInfo(typing_extensions.TypedDict, total=False):
     candidateInfo: _list[SnippetExtraInfoSnippetCandidateInfo]
     containUserQuotes: bool
     containVulgarCandidates: bool
+    disableNg3Scoring: bool
     disableQueryFeatures: bool
+    forceLeadingTextOrMeta: bool
     snippetBrainSelectedCandidateIndex: int
     snippetsbrainModelInfo: SnippetExtraInfoSnippetsBrainModelInfo
 
@@ -34495,15 +36175,20 @@ class SnippetExtraInfoSnippetCandidateInfo(typing_extensions.TypedDict, total=Fa
         "SEQUENCE",
         "SEQUENCE_V2",
         "FULL",
-        "FULL_V2",
         "META",
         "LEADING_TEXT",
+        "FULL_V2",
         "SAFT_SENTENCE",
         "RADISH_SENTENCE",
         "RADISH_LIST",
         "RADISH_TABLE",
         "ANNOTATED_FULL",
+        "OFFLINE_RADISH_SENTENCE",
+        "OFFLINE_RADISH_LIST",
+        "OFFLINE_RADISH_TABLE",
+        "OFFLINE_LEADING_TEXT",
         "PEREGRINE",
+        "LLM_EXTRACTIVE",
     ]
 
 @typing.type_check_only
@@ -34600,13 +36285,26 @@ class SocialCommonLinkData(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class SocialCommonSearchLinkData(typing_extensions.TypedDict, total=False):
+    kgEntityConfidence: float
+    mid: str
+    queryBroadnessScore: float
+
+@typing.type_check_only
 class SocialCommonSegment(typing_extensions.TypedDict, total=False):
     formatting: SocialCommonFormatting
     hashtagData: SocialCommonHashtagData
     linkData: SocialCommonLinkData
+    searchLinkData: SocialCommonSearchLinkData
     text: str
     type: typing_extensions.Literal[
-        "TEXT", "LINE_BREAK", "LINK", "USER_MENTION", "ALL_USER_MENTION", "HASHTAG"
+        "TEXT",
+        "LINE_BREAK",
+        "LINK",
+        "USER_MENTION",
+        "ALL_USER_MENTION",
+        "HASHTAG",
+        "SEARCH_LINK",
     ]
     userMentionData: SocialCommonUserMentionData
 
@@ -34796,6 +36494,7 @@ class SocialGraphApiProtoLimitedProfilePictureSettings(
 class SocialGraphApiProtoLimitedProfileSettings(
     typing_extensions.TypedDict, total=False
 ):
+    androidMessages: bool
     disableReason: typing_extensions.Literal[
         "DISABLE_REASON_UNSPECIFIED",
         "INCOMPATIBLE_NAME_ONLY_MUTATION",
@@ -35147,11 +36846,13 @@ class SocialGraphWireProtoPeopleapiExtensionDynamiteExtendedData(
     entityType: typing_extensions.Literal[
         "UNKNOWN_ENTITY_TYPE", "PERSON", "GOOGLE_GROUP", "BOT"
     ]
+    isMembershipVisibleToCaller: bool
     memberCount: str
     organizationInfo: AppsDynamiteSharedOrganizationInfo
     presence: typing_extensions.Literal[
         "UNDEFINED_PRESENCE", "ACTIVE", "INACTIVE", "UNKNOWN", "SHARING_DISABLED"
     ]
+    segmentedMembershipCounts: AppsDynamiteSharedSegmentedMembershipCounts
 
 @typing.type_check_only
 class SocialGraphWireProtoPeopleapiExtensionPaisaExtendedData(
@@ -35272,6 +36973,23 @@ class SpeechS3Locale(typing_extensions.TypedDict, total=False):
     locale: str
 
 @typing.type_check_only
+class SpeechWaveHeader(typing_extensions.TypedDict, total=False):
+    atomicSize: int
+    atomicType: str
+    bitRate: float
+    byteOrder: str
+    details: str
+    dimension: _list[int]
+    elementsPerSample: int
+    rank: int
+    sampleCoding: str
+    sampleRate: float
+    sampleSize: int
+    sampleType: str
+    startTime: float
+    totalSamples: str
+
+@typing.type_check_only
 class StorageGraphBfgAuthorityFeedbackMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -35311,6 +37029,7 @@ class StorageGraphBfgPolicyMetadata(typing_extensions.TypedDict, total=False):
     lmsPolicyMetadata: StorageGraphBfgLmsPolicyMetadata
     policyDataScopeKeys: _list[int]
     policySourceType: typing_extensions.Literal["UNKNOWN", "VERTICAL", "HORIZONTAL"]
+    rwjPolicyMetadata: StorageGraphBfgRwjPolicyMetadata
     umpPolicyMetadata: StorageGraphBfgUmpPolicyMetadata
 
 @typing.type_check_only
@@ -35319,6 +37038,10 @@ class StorageGraphBfgPublicInformationMetadata(
 ):
     attributionUrl: _list[str]
     lastVerifiedDate: str
+
+@typing.type_check_only
+class StorageGraphBfgRwjPolicyMetadata(typing_extensions.TypedDict, total=False):
+    eligibleSurfaces: _list[str]
 
 @typing.type_check_only
 class StorageGraphBfgSpiiCertification(typing_extensions.TypedDict, total=False):
@@ -35356,6 +37079,7 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "CONTRACTUAL_YOUVIEW_DATA",
         "CONTRACTUAL_YOUTUBE_ALC_DATA",
         "CREATOR_PRESENCE_DATA",
+        "YOUTUBE_PODCASTS_DATA",
         "TECHNICAL_UNRECONCILED_MEDIA_ACTION",
         "CONTRACTUAL_AUDIBLE_DATA",
         "CONTRACTUAL_SEARCH_NETFLIX_DATA",
@@ -35412,6 +37136,7 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "ISOLATION_PKG_CALENDAR_EVENTS_FOR_SPEECH_BIASING",
         "ISOLATION_PKG_CALENDARS_FOR_QUERY_ANNOTATION",
         "ISOLATION_PKG_CALENDARS_FOR_SPEECH_BIASING",
+        "ISOLATION_PKG_ASSISTANT_SETTINGS_DEVICE_SETTINGS",
         "PKG_ASSISTANT_CONTACT_AFFINITY_FOOTPRINTS",
         "ISOLATION_PKG_CONTACT_AGGREGATED_SIGNALS",
         "ISOLATION_PKG_CONTENT_INTERESTS",
@@ -35423,6 +37148,7 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "ISOLATION_PKG_FORMATTED_ADDRESS",
         "ISOLATION_PKG_GAIA",
         "ISOLATION_PKG_GELLER_ANSWERS",
+        "ISOLATION_PKG_ASSISTANT_EPHEMERAL_SUGGESTIONS",
         "ISOLATION_PKG_GMAIL_BILLS",
         "ISOLATION_PKG_GMAIL_ORDERS",
         "ISOLATION_PKG_HABITS",
@@ -35472,6 +37198,7 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "ISOLATION_PKG_STARLIGHT_VISIBLE_TO_GUESTS",
         "ISOLATION_PKG_STRUCTURED_MEMORY_FOOTPRINTS",
         "ISOLATION_PKG_TEACH_AND_LEARN_ENTITIES",
+        "ISOLATION_PKG_TYPED_QUERIES",
         "ISOLATION_PKG_ASSISTANT_ROUTINES",
         "ISOLATION_PKG_VANITY_COLLECTIONS",
         "ISOLATION_PKG_WEBSEARCH",
@@ -35486,6 +37213,9 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "ISOLATION_PKG_YOUTUBE_PUBLIC_AND_PRIVATE_PLAYLISTS",
         "ISOLATION_S3_CREATOR_PRESENCE",
         "ISOLATION_S12Y_RECIPE_INGREDIENT_INSIGHTS",
+        "ISOLATION_SCOUTS_SOCIETAL_CONTEXT_ENTITIES",
+        "ISOLATION_ASTROLOGY_HOROSCOPE",
+        "ISOLATION_LLM_GENERATED_TVM_SYNOPSIS",
         "UMP_TESTING_ONLY",
         "INTENTJOINS_NB_SIGNALS",
         "ADS_INTEGRITY_ANNOTATION",
@@ -35501,6 +37231,8 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
         "RIGHTS_MANAGEMENT_100",
         "RIGHTS_MANAGEMENT_101",
         "RIGHTS_MANAGEMENT_102",
+        "RIGHTS_MANAGEMENT_INSIDER_RISK",
+        "RIGHTS_MANAGEMENT_EBF_DATA",
         "DICTIONARY_DATA_OXFORD",
         "DICTIONARY_DATA_LE_ROBERT",
         "ENTITY_TEXT_FEATURES",
@@ -35682,7 +37414,6 @@ class ToolBarPerDocData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TravelFlightsAirlineConfig(typing_extensions.TypedDict, total=False):
-    adwordsCid: str
     alliance: typing_extensions.Literal[
         "UNKNOWN",
         "AIRUNION",
@@ -35711,6 +37442,7 @@ class TravelFlightsAirlineConfig(typing_extensions.TypedDict, total=False):
     dupFlag: bool
     fareFamilyUrls: TravelFlightsNameCatalogProto
     fqtvPartnerCode: _list[str]
+    greenFaresInfo: TravelFlightsAirlineConfigGreenFaresInfo
     iataCode: str
     icaoCode: str
     innovataCode: str
@@ -35720,6 +37452,7 @@ class TravelFlightsAirlineConfig(typing_extensions.TypedDict, total=False):
     passengerAssistanceUrls: TravelFlightsNameCatalogProto
     popularity: int
     shortNames: TravelFlightsNameCatalogProto
+    sustainabilityProgramUrls: TravelFlightsNameCatalogProto
     type: typing_extensions.Literal[
         "SCHEDULED_PASSENGER",
         "NON_SCHEDULED_PASSENGER",
@@ -35747,6 +37480,22 @@ class TravelFlightsAirlineConfigCountryContactInfo(
 ):
     contactInfo: _list[TravelFlightsAirlineConfigContactInfo]
     countryCode: str
+
+@typing.type_check_only
+class TravelFlightsAirlineConfigGreenFaresInfo(
+    typing_extensions.TypedDict, total=False
+):
+    bonusMilesProgramName: str
+    bonusMilesQuantity: str
+    bonusMilesQuantityType: typing_extensions.Literal[
+        "BONUS_MILES_QUANTITY_TYPE_UNDEFINED", "ABSOLUTE", "PERCENTAGE"
+    ]
+    bonusMilesType: typing_extensions.Literal[
+        "BONUS_MILES_TYPE_UNDEFINED", "MILES", "POINTS"
+    ]
+    contributionFraming: typing_extensions.Literal[
+        "CONTRIBUTION_FRAMING_UNDEFINED", "SAF", "CARBON_COMPENSATION"
+    ]
 
 @typing.type_check_only
 class TravelFlightsAirlineConfigLocalizedContactInfo(
@@ -36243,8 +37992,10 @@ class TrawlerHostBucketDataUrlList(typing_extensions.TypedDict, total=False):
     IsListForUrl: bool
     NumCurrentFetches: int
     NumUrls: int
+    PartnerTotalCapacityQps: float
+    PartnerTotalUsedQps: float
     RequestType: typing_extensions.Literal[
-        "HIGH_THROUGHPUT", "LOW_LATENCY", "NUM_REQUEST_TYPES"
+        "HIGH_THROUGHPUT", "LOW_LATENCY", "LATENCY_SENSITIVE", "NUM_REQUEST_TYPES"
     ]
     RequestorFp: str
 
@@ -36358,6 +38109,7 @@ class TrawlerTrawlerPrivateFetchReplyData(typing_extensions.TypedDict, total=Fal
     ]
     cdnProvider: typing_extensions.Literal["NON_CDN", "CLOUDFLARE"]
     concurrentStreamNum: str
+    credentialId: str
     dependentFetchType: typing_extensions.Literal[
         "DEPENDENT_UNSPECIFIED", "DEPENDENT_COMPOSITE_FETCH"
     ]
@@ -36372,6 +38124,7 @@ class TrawlerTrawlerPrivateFetchReplyData(typing_extensions.TypedDict, total=Fal
         "NUM_VERSIONS",
     ]
     isBidiStreamingFetch: bool
+    isDedicatedHostload: bool
     isFloonetFetch: bool
     isFromGrpcProxy: bool
     isVpcTraffic: bool
@@ -36379,6 +38132,7 @@ class TrawlerTrawlerPrivateFetchReplyData(typing_extensions.TypedDict, total=Fal
     multiverseClientIdentifier: TrawlerMultiverseClientIdentifier
     numDroppedReplies: str
     originalClientParams: TrawlerOriginalClientParams
+    prodRegion: str
     resourceBucket: str
     subResourceBucket: str
     tier: typing_extensions.Literal[
@@ -36446,9 +38200,11 @@ class VendingConsumerProtoTrustedGenomeAnnotation(
 class VendingConsumerProtoTrustedGenomeEntity(typing_extensions.TypedDict, total=False):
     categoryId: str
     id: str
+    isLocalized: bool
     level: int
     predicateName: str
     queryText: str
+    recsTopicId: _list[str]
     score: float
     title: str
     userVisible: bool
@@ -36482,6 +38238,7 @@ class VendingConsumerProtoTrustedGenomeHierarchy(
         "ACCESSIBLITY",
         "ASSISTANT",
         "CHROMEBOOK_COMPATIBILITY",
+        "GLOBAL_ATTRIBUTE",
     ]
 
 @typing.type_check_only
@@ -36549,6 +38306,8 @@ class VideoAssetsVenomTransition(typing_extensions.TypedDict, total=False):
         "OBJECTIVE_SAM_FEATURES_DONE",
         "OBJECTIVE_SPEECH_RECOGNITION_DONE",
         "OBJECTIVE_MULTI_TRACK_AUDIO_DONE",
+        "OBJECTIVE_SHORTS_READY",
+        "OBJECTIVE_720P_TRANSCODES_ONLY_DONE",
     ]
     outcome: typing_extensions.Literal[
         "OUTCOME_UNKNOWN",
@@ -36602,9 +38361,11 @@ class VideoAssetsVenomVideoId(typing_extensions.TypedDict, total=False):
         "NS_KARTO",
         "NS_CONTRIB_SERVICE_SHARED",
         "NS_CONTRIB_SERVICE_GEO_UGC",
+        "NS_CONTRIB_SERVICE_BARD_STORAGE",
         "NS_SEARCH_SPORTS",
         "NS_BUSINESSMESSAGING",
         "NS_AERIAL_VIEW",
+        "NS_DOCS_FLIX_RENDER",
     ]
 
 @typing.type_check_only
@@ -36999,6 +38760,10 @@ class VideoContentSearchFrameStarburstData(typing_extensions.TypedDict, total=Fa
         "ADSBURST_DISCOVERY_UNCOMFORTABLE_V1",
         "ADSBURST_DISCOVERY_NERV_SUBS_V1",
         "ADSBURST_BASIC_TEXT_TOWER_V0",
+        "ADSBURST_V2",
+        "ADSBURST_V2_128D",
+        "ADSBURST_V2_64D",
+        "ADSBURST_V2_32D",
         "SHOPPING_IMAGE_TRANSFORMATION_UNCROP",
         "SHOPPING_IMAGE_TRANSFORMATION_V2",
         "SCREENAI_V1",
@@ -37131,6 +38896,7 @@ class VideoContentSearchMultimodalTopicFeatures(
         "PRODUCT_ANCHOR",
         "ANCHOR",
         "RANKEMBED_GENERATED_NAVBOOST_ANCHOR",
+        "GENERATED_ORACLE_ANCHOR",
     ]
 
 @typing.type_check_only
@@ -37522,6 +39288,7 @@ class VideoContentSearchVideoAnchor(typing_extensions.TypedDict, total=False):
         "ASR_SPAN_EDU",
         "GENERATIVE_ASR_I18N",
         "YT_AUTO_CHAPTERS",
+        "OCR_I18N",
     ]
     contextText: str
     destinationUrl: str
@@ -37635,6 +39402,7 @@ class VideoContentSearchVideoAnchors(typing_extensions.TypedDict, total=False):
         "ASR_SPAN_EDU",
         "GENERATIVE_ASR_I18N",
         "YT_AUTO_CHAPTERS",
+        "OCR_I18N",
     ]
     entityGroupInfo: VideoContentSearchEntityGroupInfo
     experimentalPredictedQuerylessTocUsefulness: float
@@ -37748,6 +39516,8 @@ class VideoContentSearchVisualFeatures(typing_extensions.TypedDict, total=False)
         "STARBURST_VISUAL_V4",
         "STARBURST_V5",
         "STARBURST_V5_5",
+        "STARBURST_V6",
+        "STARBURST_EXP",
     ]
     tokens: _list[int]
 
@@ -37958,6 +39728,11 @@ class VideoFileSphericalMetadataViewDirection(typing_extensions.TypedDict, total
     headingDegrees: int
     pitchDegrees: int
     rollDegrees: int
+
+@typing.type_check_only
+class VideoGoogleVideoClipInfo(typing_extensions.TypedDict, total=False):
+    appVersion: str
+    assetLoggingId: _list[str]
 
 @typing.type_check_only
 class VideoLegosLegosAnnotationsSet(typing_extensions.TypedDict, total=False):
@@ -38200,6 +39975,7 @@ class VideoThumbnailsThumbnailScore(typing_extensions.TypedDict, total=False):
     colorSampling: int
     denseFeatures: _list[float]
     denseGeneralExtraFeatures: DrishtiFeatureExtra
+    externalImageId: str
     isAssigned: bool
     isInstant: bool
     modelVersion: typing_extensions.Literal[
@@ -38220,13 +39996,20 @@ class VideoThumbnailsThumbnailScore(typing_extensions.TypedDict, total=False):
         "MODEL_RACY_WATCHPAGE_V4",
         "MODEL_RACY_WATCHPAGE_V5",
         "MODEL_RACY_WATCHPAGE_V5_FLAGGED",
+        "MODEL_RACY_WATCHPAGE_IMMERSIVE_LIVE_V1",
+        "MODEL_RACY_WATCHPAGE_IMMERSIVE_LIVE_WF_V1",
+        "MODEL_RACY_WATCHPAGE_IMMERSIVE_LIVE_V1_FLAGGED",
         "MODEL_RACY_WATCHPAGE_RELEASE",
         "MODEL_RACY_SHORTS_WATCHPAGE_V1",
         "MODEL_RACY_SHORTS_WATCHPAGE_V1_FLAGGED",
         "MODEL_RACY_SHORTS_WATCHPAGE_V2",
         "MODEL_RACY_SHORTS_WATCHPAGE_V2_FLAGGED",
         "MODEL_RACY_SHORTS_WATCHPAGE_V3",
+        "MODEL_RACY_SHORTS_WATCHPAGE_NF_V3",
+        "MODEL_RACY_SHORTS_WATCHPAGE_WF_V3",
         "MODEL_RACY_SHORTS_WATCHPAGE_V3_FLAGGED",
+        "MODEL_RACY_SHORTS_WATCHPAGE_NF_V3_FLAGGED",
+        "MODEL_RACY_SHORTS_WATCHPAGE_WF_V3_FLAGGED",
         "MODEL_RACY_SHORTS_WATCHPAGE_RELEASE",
         "MODEL_RACY_THUMB_2019_04_02",
         "MODEL_RACY_THUMB_2019_08_12",
@@ -38856,7 +40639,7 @@ class VideoVideoStreamInfo(typing_extensions.TypedDict, total=False):
     audioStartTimestamp: str
     audioStream: _list[VideoVideoStreamInfoAudioStream]
     audioStreamCodecTag: str
-    avDistance: int
+    avDistance: str
     avLength: float
     averageVideoFps: float
     buildLabel: str
@@ -39145,6 +40928,8 @@ class VideoVideoStreamInfo(typing_extensions.TypedDict, total=False):
         "CONTAINER_ID_CODEC2RAW",
         "CONTAINER_ID_SBC",
         "CONTAINER_ID_SER",
+        "CONTAINER_ID_AV1",
+        "CONTAINER_ID_OBU",
         "CONTAINER_ID_GOOGLE_INDEX",
         "CONTAINER_ID_MEDIASAMPLE",
         "CONTAINER_ID_TOOTHLESS",
@@ -39161,6 +40946,7 @@ class VideoVideoStreamInfo(typing_extensions.TypedDict, total=False):
     fileName: str
     fileSize: str
     fileType: int
+    googleVideoClipInfo: VideoGoogleVideoClipInfo
     imageStream: _list[VideoVideoStreamInfoVideoStream]
     isAsf: bool
     isImageFile: bool
@@ -39173,6 +40959,7 @@ class VideoVideoStreamInfo(typing_extensions.TypedDict, total=False):
     numTimedtextStreams: int
     numVideoStreams: int
     parsedByFfmpeg: bool
+    parsedByInHouseParsers: bool
     partialFile: bool
     pixFmt: typing_extensions.Literal[
         "PIX_FMT_NONE",
@@ -42397,6 +44184,7 @@ class WWWResultInfoSubImageDocInfo(typing_extensions.TypedDict, total=False):
     documentTrust: float
     eqStar: float
     estRelevance: float
+    estSigmaU: float
     flowOutput: ImageContentFlowProtoProd
     height: int
     height50k: int
@@ -42468,9 +44256,212 @@ class WWWSnippetResponseBitmapPB(typing_extensions.TypedDict, total=False):
     size: int
 
 @typing.type_check_only
+class WatchpageLanguageWatchPageLanguageModelPredictions(
+    typing_extensions.TypedDict, total=False
+):
+    languageScore: _list[
+        WatchpageLanguageWatchPageLanguageModelPredictionsLanguageScore
+    ]
+    usesSpeechSignals: bool
+    version: typing_extensions.Literal["UNKNOWN_MODEL", "V2"]
+
+@typing.type_check_only
+class WatchpageLanguageWatchPageLanguageModelPredictionsLanguageScore(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+    watchpageLanguage: typing_extensions.Literal[
+        "ENGLISH",
+        "DANISH",
+        "DUTCH",
+        "FINNISH",
+        "FRENCH",
+        "GERMAN",
+        "HEBREW",
+        "ITALIAN",
+        "JAPANESE",
+        "KOREAN",
+        "NORWEGIAN",
+        "POLISH",
+        "PORTUGUESE",
+        "RUSSIAN",
+        "SPANISH",
+        "SWEDISH",
+        "CHINESE",
+        "CZECH",
+        "GREEK",
+        "ICELANDIC",
+        "LATVIAN",
+        "LITHUANIAN",
+        "ROMANIAN",
+        "HUNGARIAN",
+        "ESTONIAN",
+        "TG_UNKNOWN_LANGUAGE",
+        "UNKNOWN_LANGUAGE",
+        "BULGARIAN",
+        "CROATIAN",
+        "SERBIAN",
+        "IRISH",
+        "GALICIAN",
+        "TAGALOG",
+        "TURKISH",
+        "UKRAINIAN",
+        "HINDI",
+        "MACEDONIAN",
+        "BENGALI",
+        "INDONESIAN",
+        "LATIN",
+        "MALAY",
+        "MALAYALAM",
+        "WELSH",
+        "NEPALI",
+        "TELUGU",
+        "ALBANIAN",
+        "TAMIL",
+        "BELARUSIAN",
+        "JAVANESE",
+        "OCCITAN",
+        "URDU",
+        "BIHARI",
+        "GUJARATI",
+        "THAI",
+        "ARABIC",
+        "CATALAN",
+        "ESPERANTO",
+        "BASQUE",
+        "INTERLINGUA",
+        "KANNADA",
+        "PUNJABI",
+        "SCOTS_GAELIC",
+        "SWAHILI",
+        "SLOVENIAN",
+        "MARATHI",
+        "MALTESE",
+        "VIETNAMESE",
+        "FRISIAN",
+        "SLOVAK",
+        "CHINESE_T",
+        "FAROESE",
+        "SUNDANESE",
+        "UZBEK",
+        "AMHARIC",
+        "AZERBAIJANI",
+        "GEORGIAN",
+        "TIGRINYA",
+        "PERSIAN",
+        "BOSNIAN",
+        "SINHALESE",
+        "NORWEGIAN_N",
+        "PORTUGUESE_P",
+        "PORTUGUESE_B",
+        "XHOSA",
+        "ZULU",
+        "GUARANI",
+        "SESOTHO",
+        "TURKMEN",
+        "KYRGYZ",
+        "BRETON",
+        "TWI",
+        "YIDDISH",
+        "SERBO_CROATIAN",
+        "SOMALI",
+        "UIGHUR",
+        "KURDISH",
+        "MONGOLIAN",
+        "ARMENIAN",
+        "LAOTHIAN",
+        "SINDHI",
+        "RHAETO_ROMANCE",
+        "AFRIKAANS",
+        "LUXEMBOURGISH",
+        "BURMESE",
+        "KHMER",
+        "TIBETAN",
+        "DHIVEHI",
+        "CHEROKEE",
+        "SYRIAC",
+        "LIMBU",
+        "ORIYA",
+        "ASSAMESE",
+        "CORSICAN",
+        "INTERLINGUE",
+        "KAZAKH",
+        "LINGALA",
+        "MOLDAVIAN",
+        "PASHTO",
+        "QUECHUA",
+        "SHONA",
+        "TAJIK",
+        "TATAR",
+        "TONGA",
+        "YORUBA",
+        "CREOLES_AND_PIDGINS_ENGLISH_BASED",
+        "CREOLES_AND_PIDGINS_FRENCH_BASED",
+        "CREOLES_AND_PIDGINS_PORTUGUESE_BASED",
+        "CREOLES_AND_PIDGINS_OTHER",
+        "MAORI",
+        "WOLOF",
+        "ABKHAZIAN",
+        "AFAR",
+        "AYMARA",
+        "BASHKIR",
+        "BISLAMA",
+        "DZONGKHA",
+        "FIJIAN",
+        "GREENLANDIC",
+        "HAUSA",
+        "HAITIAN_CREOLE",
+        "INUPIAK",
+        "INUKTITUT",
+        "KASHMIRI",
+        "KINYARWANDA",
+        "MALAGASY",
+        "NAURU",
+        "OROMO",
+        "RUNDI",
+        "SAMOAN",
+        "SANGO",
+        "SANSKRIT",
+        "SISWANT",
+        "TSONGA",
+        "TSWANA",
+        "VOLAPUK",
+        "ZHUANG",
+        "KHASI",
+        "SCOTS",
+        "GANDA",
+        "MANX",
+        "MONTENEGRIN",
+        "AKAN",
+        "IGBO",
+        "MAURITIAN_CREOLE",
+        "HAWAIIAN",
+        "CEBUANO",
+        "EWE",
+        "GA",
+        "HMONG",
+        "KRIO",
+        "LOZI",
+        "LUBA_LULUA",
+        "LUO_KENYA_AND_TANZANIA",
+        "NEWARI",
+        "NYANJA",
+        "OSSETIAN",
+        "PAMPANGA",
+        "PEDI",
+        "RAJASTHANI",
+        "SESELWA_CREOLE_FRENCH",
+        "TUMBUKA",
+        "VENDA",
+        "WARAY_PHILIPPINES",
+        "NUM_LANGUAGES",
+    ]
+
+@typing.type_check_only
 class WatchpageLanguageWatchPageLanguageResult(
     typing_extensions.TypedDict, total=False
 ):
+    predictions: _list[WatchpageLanguageWatchPageLanguageModelPredictions]
     watchpageLanguage: typing_extensions.Literal[
         "ENGLISH",
         "DANISH",
@@ -42701,11 +44692,110 @@ class YoutubeBackstageSuperVodCommentInfo(typing_extensions.TypedDict, total=Fal
     entitlementId: str
     priceInMicros: str
     superVodItemId: str
+    transactionId: str
     version: typing_extensions.Literal[
         "UNSPECIFIED_VERSION",
         "V1_DEFAULT_MESSAGE",
         "V2_DECORATED_DEFAULT_MESSAGE",
         "V3_USER_GENERATED_MESSAGE",
+    ]
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentModeratedRestriction(
+    typing_extensions.TypedDict, total=False
+):
+    autoModEnforcements: _list[
+        YoutubeCommentsApiCommentModeratedRestrictionAutoModDecisionEnforcement
+    ]
+    createTime: str
+    externalCommentId: str
+    issuer: YoutubeCommentsApiCommentRestrictionIssuer
+    reason: YoutubeCommentsApiCommentRestrictionReason
+    reviewable: bool
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "ACTIVE", "DORMANT"]
+    updateTime: str
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentModeratedRestrictionAutoModDecisionEnforcement(
+    typing_extensions.TypedDict, total=False
+):
+    enforced: bool
+    name: typing_extensions.Literal[
+        "UNKNOWN_DECISION_NAME", "HIGH_RECALL", "MEDIAN", "ULTRA_HIGH_RECALL"
+    ]
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentRestrictionIssuer(
+    typing_extensions.TypedDict, total=False
+):
+    channelModeratorDetails: YoutubeCommentsApiCommentRestrictionIssuerChannelModeratorDetails
+    channelOwnerDetails: YoutubeCommentsApiCommentRestrictionIssuerChannelOwnerDetails
+    issuer: typing_extensions.Literal[
+        "ISSUER_UNSPECIFIED",
+        "GLOBAL",
+        "TNS",
+        "CHANNEL_OWNER",
+        "CHANNEL_MODERATOR",
+        "CHANNEL_SETTINGS",
+        "AUTOMOD",
+        "EXPIRY_JOBS",
+    ]
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentRestrictionIssuerChannelModeratorDetails(
+    typing_extensions.TypedDict, total=False
+):
+    externalChannelId: str
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentRestrictionIssuerChannelOwnerDetails(
+    typing_extensions.TypedDict, total=False
+):
+    externalChannelId: str
+
+@typing.type_check_only
+class YoutubeCommentsApiCommentRestrictionReason(
+    typing_extensions.TypedDict, total=False
+):
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "OTHER_ABUSE",
+        "CHILD_PORN",
+        "COPYRIGHT",
+        "COUNTERFEIT",
+        "COURT_ORDER",
+        "CTM",
+        "DEFAMATION",
+        "GOVERNMENT_ORDER",
+        "HARASSMENT",
+        "HATE",
+        "IMPERSONATION",
+        "LOCAL_LAWS",
+        "LOW_QUALITY",
+        "LOW_QUALITY_HIGH_RECALL",
+        "MALWARE",
+        "PEDOPHILIA",
+        "PHISHING",
+        "PORNOGRAPHY",
+        "PRIVACY",
+        "QUOTA_EXCEEDED",
+        "REGULATED",
+        "SPAM",
+        "TRADEMARK",
+        "UNSAFE_RACY",
+        "UNWANTED_SOFTWARE",
+        "UNWANTED_CONTENT",
+        "VIOLENCE",
+        "DANGEROUS",
+        "BLOCKED_LINKS",
+        "BLOCKED_WORDS",
+        "ENABLED_HOLD_ALL",
+        "HIDDEN_USER_LIST",
+        "VIOLENT_EXTREMISM",
+        "PRIVILEGED_USER_REJECTED",
+        "ABOVE_REJECT_INAPPROPRIATE_SCORE",
+        "TOO_MANY_BAD_CHARS",
+        "EXPIRED_FOR_REVIEW",
     ]
 
 @typing.type_check_only
@@ -42720,6 +44810,7 @@ class YoutubeCommentsClusteringMiniStanza(typing_extensions.TypedDict, total=Fal
     commentClassification: dict[str, typing.Any]
     commentClassificationBuckets: _list[str]
     commentClassificationRanking: dict[str, typing.Any]
+    commentModeratedRestrictions: _list[YoutubeCommentsApiCommentModeratedRestriction]
     commentType: typing_extensions.Literal[
         "UNKNOWN_PRODUCT_TYPE",
         "UNSUPPORTED_PRODUCT_TYPE",
@@ -42751,6 +44842,7 @@ class YoutubeCommentsClusteringMiniStanza(typing_extensions.TypedDict, total=Fal
         "WEB_PARENT_TOOLS",
         "WEB_PHONE_VERIFICATION",
         "WEB_EMBEDDED_PLAYER",
+        "WEB_EFFECT_MAKER",
         "WEB_UNPLUGGED",
         "WEB_UNPLUGGED_ONBOARDING",
         "WEB_UNPLUGGED_OPS",
@@ -42842,6 +44934,7 @@ class YoutubeCommentsClusteringMiniStanza(typing_extensions.TypedDict, total=Fal
     fds: float
     hasCreatorHeart: bool
     hasCreatorReply: bool
+    impersonationScores: dict[str, typing.Any]
     isAuthorSponsor: bool
     isDeleted: bool
     isPinned: bool
@@ -42851,6 +44944,7 @@ class YoutubeCommentsClusteringMiniStanza(typing_extensions.TypedDict, total=Fal
     languageCode: str
     lastReplyTimestampUsec: str
     lowQualityDecisions: dict[str, typing.Any]
+    lowQualityScores: dict[str, typing.Any]
     mentionedTimestampCommentSecond: int
     misinfoScores: dict[str, typing.Any]
     numDislikes: int
@@ -42979,6 +45073,7 @@ class YoutubeDiscoveryLegosLegosSemanticRelationshipContext(
         "MUSIC_PRIMARY_RECORDING",
         "MUSIC_RECORDING_ARTIST",
         "MUSIC_FEATURED_ARTIST",
+        "MUSIC_GENERATED_REMIX_ARTIST",
         "MUSIC_COMPOSITION",
         "MUSIC_ORIGINAL_ARTIST_OF_COVER",
         "MUSIC_ORIGINAL_RECORDING_CLUSTER_OF_COVER",
@@ -43061,6 +45156,7 @@ class YoutubeDiscoveryLegosLegosSemanticRelationshipContext(
         "GEO_LEGOS_TEST_SET_V2_TRAVEL_DESTINATIONS",
         "GEO_LEGOS_TEST_SET_V2_DINING",
         "GEO_LEGOS_TEST_SET_V2_HOTEL",
+        "TRAVEL_INTEREST",
     ]
 
 @typing.type_check_only

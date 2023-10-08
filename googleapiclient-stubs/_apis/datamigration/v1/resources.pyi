@@ -93,6 +93,21 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
             class ConversionWorkspacesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class MappingRulesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: MappingRule = ...,
+                        mappingRuleId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> MappingRuleHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MappingRuleHttpRequest: ...
                     def import_(
                         self,
                         *,
@@ -100,6 +115,19 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: ImportMappingRulesRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListMappingRulesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMappingRulesResponseHttpRequest,
+                        previous_response: ListMappingRulesResponse,
+                    ) -> ListMappingRulesResponseHttpRequest | None: ...
 
                 def apply(
                     self,
@@ -132,7 +160,12 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def describeConversionWorkspaceRevisions(
                     self,
@@ -156,6 +189,12 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         "DESTINATION_TREE",
                     ] = ...,
                     uncommitted: bool = ...,
+                    view: typing_extensions.Literal[
+                        "DATABASE_ENTITY_VIEW_UNSPECIFIED",
+                        "DATABASE_ENTITY_VIEW_BASIC",
+                        "DATABASE_ENTITY_VIEW_FULL",
+                        "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
+                    ] = ...,
                     **kwargs: typing.Any
                 ) -> DescribeDatabaseEntitiesResponseHttpRequest: ...
                 def describeDatabaseEntities_next(
@@ -261,6 +300,13 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: GenerateSshScriptRequest = ...,
                     **kwargs: typing.Any
                 ) -> SshScriptHttpRequest: ...
+                def generateTcpProxyScript(
+                    self,
+                    *,
+                    migrationJob: str,
+                    body: GenerateTcpProxyScriptRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TcpProxyScriptHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> MigrationJobHttpRequest: ...
@@ -400,6 +446,13 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> PrivateConnectionHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -415,6 +468,20 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListPrivateConnectionsResponseHttpRequest,
                     previous_response: ListPrivateConnectionsResponse,
                 ) -> ListPrivateConnectionsResponseHttpRequest | None: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             def fetchStaticIps(
                 self,
@@ -543,6 +610,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListMappingRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListMappingRulesResponse: ...
+
+@typing.type_check_only
 class ListMigrationJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -573,6 +648,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Location: ...
+
+@typing.type_check_only
+class MappingRuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> MappingRule: ...
 
 @typing.type_check_only
 class MigrationJobHttpRequest(googleapiclient.http.HttpRequest):
@@ -621,6 +704,14 @@ class SshScriptHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SshScript: ...
+
+@typing.type_check_only
+class TcpProxyScriptHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> TcpProxyScript: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

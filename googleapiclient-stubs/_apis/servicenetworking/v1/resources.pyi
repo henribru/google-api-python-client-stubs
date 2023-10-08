@@ -71,6 +71,24 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 body: AddDnsRecordSetRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+            def get(
+                self,
+                *,
+                parent: str,
+                consumerNetwork: str = ...,
+                domain: str = ...,
+                type: str = ...,
+                zone: str = ...,
+                **kwargs: typing.Any
+            ) -> DnsRecordSetHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                consumerNetwork: str = ...,
+                zone: str = ...,
+                **kwargs: typing.Any
+            ) -> ListDnsRecordSetsResponseHttpRequest: ...
             def remove(
                 self,
                 *,
@@ -110,6 +128,15 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class NetworksResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class DnsZonesResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GetDnsZoneResponseHttpRequest: ...
+                        def list(
+                            self, *, parent: str, **kwargs: typing.Any
+                        ) -> ListDnsZonesResponseHttpRequest: ...
+
+                    @typing.type_check_only
                     class PeeredDnsDomainsResource(googleapiclient.discovery.Resource):
                         def create(
                             self,
@@ -139,6 +166,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         body: UpdateConsumerConfigRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def dnsZones(self) -> DnsZonesResource: ...
                     def peeredDnsDomains(self) -> PeeredDnsDomainsResource: ...
 
                 def networks(self) -> NetworksResource: ...
@@ -208,6 +236,14 @@ class ConsumerConfigHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ConsumerConfig: ...
 
 @typing.type_check_only
+class DnsRecordSetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DnsRecordSet: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -216,12 +252,36 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GetDnsZoneResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GetDnsZoneResponse: ...
+
+@typing.type_check_only
 class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListConnectionsResponse: ...
+
+@typing.type_check_only
+class ListDnsRecordSetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDnsRecordSetsResponse: ...
+
+@typing.type_check_only
+class ListDnsZonesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDnsZonesResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

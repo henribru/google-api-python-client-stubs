@@ -77,6 +77,43 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
             ) -> ValidateAttestationOccurrenceResponseHttpRequest: ...
 
         @typing.type_check_only
+        class PlatformsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class PoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: PlatformPolicy = ...,
+                    policyId: str = ...,
+                    **kwargs: typing.Any
+                ) -> PlatformPolicyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PlatformPolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListPlatformPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPlatformPoliciesResponseHttpRequest,
+                    previous_response: ListPlatformPoliciesResponse,
+                ) -> ListPlatformPoliciesResponseHttpRequest | None: ...
+                def replacePlatformPolicy(
+                    self, *, name: str, body: PlatformPolicy = ..., **kwargs: typing.Any
+                ) -> PlatformPolicyHttpRequest: ...
+
+            def policies(self) -> PoliciesResource: ...
+
+        @typing.type_check_only
         class PolicyResource(googleapiclient.discovery.Resource):
             def getIamPolicy(
                 self,
@@ -107,6 +144,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: Policy = ..., **kwargs: typing.Any
         ) -> PolicyHttpRequest: ...
         def attestors(self) -> AttestorsResource: ...
+        def platforms(self) -> PlatformsResource: ...
         def policy(self) -> PolicyResource: ...
 
     @typing.type_check_only
@@ -161,6 +199,22 @@ class ListAttestorsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAttestorsResponse: ...
+
+@typing.type_check_only
+class ListPlatformPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPlatformPoliciesResponse: ...
+
+@typing.type_check_only
+class PlatformPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PlatformPolicy: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

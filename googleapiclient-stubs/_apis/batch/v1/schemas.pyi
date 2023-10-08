@@ -7,12 +7,27 @@ _list = list
 @typing.type_check_only
 class Accelerator(typing_extensions.TypedDict, total=False):
     count: str
+    driverVersion: str
     installGpuDrivers: bool
     type: str
 
 @typing.type_check_only
 class ActionCondition(typing_extensions.TypedDict, total=False):
     exitCodes: _list[int]
+
+@typing.type_check_only
+class AgentContainer(typing_extensions.TypedDict, total=False):
+    commands: _list[str]
+    entrypoint: str
+    imageUri: str
+    options: str
+    volumes: _list[str]
+
+@typing.type_check_only
+class AgentEnvironment(typing_extensions.TypedDict, total=False):
+    encryptedVariables: AgentKMSEnvMap
+    secretVariables: dict[str, typing.Any]
+    variables: dict[str, typing.Any]
 
 @typing.type_check_only
 class AgentInfo(typing_extensions.TypedDict, total=False):
@@ -23,6 +38,11 @@ class AgentInfo(typing_extensions.TypedDict, total=False):
     ]
     taskGroupId: str
     tasks: _list[AgentTaskInfo]
+
+@typing.type_check_only
+class AgentKMSEnvMap(typing_extensions.TypedDict, total=False):
+    cipherText: str
+    keyName: str
 
 @typing.type_check_only
 class AgentMetadata(typing_extensions.TypedDict, total=False):
@@ -37,7 +57,13 @@ class AgentMetadata(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class AgentScript(typing_extensions.TypedDict, total=False):
+    path: str
+    text: str
+
+@typing.type_check_only
 class AgentTask(typing_extensions.TypedDict, total=False):
+    agentTaskSpec: AgentTaskSpec
     intendedState: typing_extensions.Literal[
         "INTENDED_STATE_UNSPECIFIED", "ASSIGNED", "CANCELLED", "DELETED"
     ]
@@ -56,6 +82,22 @@ class AgentTaskInfo(typing_extensions.TypedDict, total=False):
     taskStatus: TaskStatus
 
 @typing.type_check_only
+class AgentTaskRunnable(typing_extensions.TypedDict, total=False):
+    alwaysRun: bool
+    background: bool
+    container: AgentContainer
+    environment: AgentEnvironment
+    ignoreExitStatus: bool
+    script: AgentScript
+    timeout: str
+
+@typing.type_check_only
+class AgentTaskSpec(typing_extensions.TypedDict, total=False):
+    environment: AgentEnvironment
+    maxRunDuration: str
+    runnables: _list[AgentTaskRunnable]
+
+@typing.type_check_only
 class AgentTimingInfo(typing_extensions.TypedDict, total=False):
     agentStartupTime: str
     bootTime: str
@@ -67,6 +109,7 @@ class AllocationPolicy(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     location: LocationPolicy
     network: NetworkPolicy
+    placement: PlacementPolicy
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
@@ -130,6 +173,7 @@ class InstancePolicy(typing_extensions.TypedDict, total=False):
     provisioningModel: typing_extensions.Literal[
         "PROVISIONING_MODEL_UNSPECIFIED", "STANDARD", "SPOT", "PREEMPTIBLE"
     ]
+    reservation: str
 
 @typing.type_check_only
 class InstancePolicyOrTemplate(typing_extensions.TypedDict, total=False):
@@ -289,6 +333,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PlacementPolicy(typing_extensions.TypedDict, total=False):
+    collocation: str
+    maxDistance: str
+
+@typing.type_check_only
 class ReportAgentStateRequest(typing_extensions.TypedDict, total=False):
     agentInfo: AgentInfo
     agentTimingInfo: AgentTimingInfo
@@ -308,6 +357,7 @@ class Runnable(typing_extensions.TypedDict, total=False):
     container: Container
     environment: Environment
     ignoreExitStatus: bool
+    labels: dict[str, typing.Any]
     script: Script
     timeout: str
 
@@ -358,6 +408,9 @@ class TaskGroup(typing_extensions.TypedDict, total=False):
     parallelism: str
     permissiveSsh: bool
     requireHostsFile: bool
+    schedulingPolicy: typing_extensions.Literal[
+        "SCHEDULING_POLICY_UNSPECIFIED", "AS_SOON_AS_POSSIBLE", "IN_ORDER"
+    ]
     taskCount: str
     taskCountPerNode: str
     taskEnvironments: _list[Environment]

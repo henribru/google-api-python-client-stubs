@@ -43,6 +43,16 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                     | None
                 ): ...
 
+            def getSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
+            def updateSettings(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAdvisorynotificationsV1Settings = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
             def notifications(self) -> NotificationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -80,3 +90,13 @@ class GoogleCloudAdvisorynotificationsV1NotificationHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudAdvisorynotificationsV1Notification: ...
+
+@typing.type_check_only
+class GoogleCloudAdvisorynotificationsV1SettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAdvisorynotificationsV1Settings: ...

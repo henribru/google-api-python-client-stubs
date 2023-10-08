@@ -22,9 +22,26 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                 def create(
                     self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def databaseFailover(
+                    self,
+                    *,
+                    environment: str,
+                    body: DatabaseFailoverRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def executeAirflowCommand(
+                    self,
+                    *,
+                    environment: str,
+                    body: ExecuteAirflowCommandRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ExecuteAirflowCommandResponseHttpRequest: ...
+                def fetchDatabaseProperties(
+                    self, *, environment: str, **kwargs: typing.Any
+                ) -> FetchDatabasePropertiesResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EnvironmentHttpRequest: ...
@@ -56,6 +73,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def pollAirflowCommand(
+                    self,
+                    *,
+                    environment: str,
+                    body: PollAirflowCommandRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PollAirflowCommandResponseHttpRequest: ...
                 def saveSnapshot(
                     self,
                     *,
@@ -63,6 +87,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     body: SaveSnapshotRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def stopAirflowCommand(
+                    self,
+                    *,
+                    environment: str,
+                    body: StopAirflowCommandRequest = ...,
+                    **kwargs: typing.Any
+                ) -> StopAirflowCommandResponseHttpRequest: ...
 
             @typing.type_check_only
             class ImageVersionsResource(googleapiclient.discovery.Resource):
@@ -141,6 +172,22 @@ class EnvironmentHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Environment: ...
 
 @typing.type_check_only
+class ExecuteAirflowCommandResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ExecuteAirflowCommandResponse: ...
+
+@typing.type_check_only
+class FetchDatabasePropertiesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> FetchDatabasePropertiesResponse: ...
+
+@typing.type_check_only
 class ListEnvironmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -171,3 +218,19 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class PollAirflowCommandResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PollAirflowCommandResponse: ...
+
+@typing.type_check_only
+class StopAirflowCommandResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StopAirflowCommandResponse: ...

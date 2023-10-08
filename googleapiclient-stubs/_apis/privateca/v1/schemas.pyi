@@ -155,6 +155,7 @@ class CertificateTemplate(typing_extensions.TypedDict, total=False):
     description: str
     identityConstraints: CertificateIdentityConstraints
     labels: dict[str, typing.Any]
+    maximumLifetime: str
     name: str
     passthroughExtensions: CertificateExtensionConstraints
     predefinedValues: X509Parameters
@@ -353,6 +354,9 @@ class PublicKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PublishingOptions(typing_extensions.TypedDict, total=False):
+    encodingFormat: typing_extensions.Literal[
+        "ENCODING_FORMAT_UNSPECIFIED", "PEM", "DER"
+    ]
     publishCaCert: bool
     publishCrl: bool
 

@@ -88,6 +88,7 @@ class Condition(typing_extensions.TypedDict, total=False):
     negate: bool
     regions: _list[str]
     requiredAccessLevels: _list[str]
+    vpcNetworkSources: _list[VpcNetworkSource]
 
 @typing.type_check_only
 class CustomLevel(typing_extensions.TypedDict, total=False):
@@ -111,11 +112,21 @@ class EgressFrom(typing_extensions.TypedDict, total=False):
         "ANY_USER_ACCOUNT",
         "ANY_SERVICE_ACCOUNT",
     ]
+    sourceRestriction: typing_extensions.Literal[
+        "SOURCE_RESTRICTION_UNSPECIFIED",
+        "SOURCE_RESTRICTION_ENABLED",
+        "SOURCE_RESTRICTION_DISABLED",
+    ]
+    sources: _list[EgressSource]
 
 @typing.type_check_only
 class EgressPolicy(typing_extensions.TypedDict, total=False):
     egressFrom: EgressFrom
     egressTo: EgressTo
+
+@typing.type_check_only
+class EgressSource(typing_extensions.TypedDict, total=False):
+    accessLevel: str
 
 @typing.type_check_only
 class EgressTo(typing_extensions.TypedDict, total=False):
@@ -305,3 +316,12 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class VpcAccessibleServices(typing_extensions.TypedDict, total=False):
     allowedServices: _list[str]
     enableRestriction: bool
+
+@typing.type_check_only
+class VpcNetworkSource(typing_extensions.TypedDict, total=False):
+    vpcSubnetwork: VpcSubNetwork
+
+@typing.type_check_only
+class VpcSubNetwork(typing_extensions.TypedDict, total=False):
+    network: str
+    vpcIpSubnetworks: _list[str]

@@ -28,12 +28,20 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         body: ExecuteActionRequest = ...,
                         **kwargs: typing.Any
                     ) -> ExecuteActionResponseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ActionHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "ACTION_VIEW_UNSPECIFIED",
+                            "ACTION_VIEW_BASIC",
+                            "ACTION_VIEW_FULL",
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> ListActionsResponseHttpRequest: ...
                     def list_next(
@@ -93,12 +101,20 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> UpdateEntitiesWithConditionsResponseHttpRequest: ...
 
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EntityTypeHttpRequest: ...
                     def list(
                         self,
                         *,
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "ENTITY_TYPE_VIEW_UNSPECIFIED",
+                            "ENTITY_TYPE_VIEW_BASIC",
+                            "ENTITY_TYPE_VIEW_FULL",
+                        ] = ...,
                         **kwargs: typing.Any
                     ) -> ListEntityTypesResponseHttpRequest: ...
                     def list_next(
@@ -137,6 +153,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class ActionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Action: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -151,6 +175,14 @@ class EntityHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Entity: ...
+
+@typing.type_check_only
+class EntityTypeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EntityType: ...
 
 @typing.type_check_only
 class ExecuteActionResponseHttpRequest(googleapiclient.http.HttpRequest):

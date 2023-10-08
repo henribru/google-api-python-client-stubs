@@ -61,6 +61,10 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class ChangeStreamConfig(typing_extensions.TypedDict, total=False):
+    retentionPeriod: str
+
+@typing.type_check_only
 class CheckConsistencyRequest(typing_extensions.TypedDict, total=False):
     consistencyToken: str
 
@@ -300,6 +304,7 @@ class Modification(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
+    ignoreWarnings: bool
     modifications: _list[Modification]
 
 @typing.type_check_only
@@ -388,6 +393,7 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
+    changeStreamConfig: ChangeStreamConfig
     clusterStates: dict[str, typing.Any]
     columnFamilies: dict[str, typing.Any]
     deletionProtection: bool

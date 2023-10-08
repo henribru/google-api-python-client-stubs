@@ -79,6 +79,20 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         previous_request: ListListingsResponseHttpRequest,
                         previous_response: ListListingsResponse,
                     ) -> ListListingsResponseHttpRequest | None: ...
+                    def listSubscriptions(
+                        self,
+                        *,
+                        resource: str,
+                        includeDeletedSubscriptions: bool = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListSharedResourceSubscriptionsResponseHttpRequest: ...
+                    def listSubscriptions_next(
+                        self,
+                        previous_request: ListSharedResourceSubscriptionsResponseHttpRequest,
+                        previous_response: ListSharedResourceSubscriptionsResponse,
+                    ) -> ListSharedResourceSubscriptionsResponseHttpRequest | None: ...
                     def patch(
                         self,
                         *,
@@ -143,6 +157,20 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     previous_request: ListDataExchangesResponseHttpRequest,
                     previous_response: ListDataExchangesResponse,
                 ) -> ListDataExchangesResponseHttpRequest | None: ...
+                def listSubscriptions(
+                    self,
+                    *,
+                    resource: str,
+                    includeDeletedSubscriptions: bool = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSharedResourceSubscriptionsResponseHttpRequest: ...
+                def listSubscriptions_next(
+                    self,
+                    previous_request: ListSharedResourceSubscriptionsResponseHttpRequest,
+                    previous_response: ListSharedResourceSubscriptionsResponse,
+                ) -> ListSharedResourceSubscriptionsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -158,6 +186,13 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def subscribe(
+                    self,
+                    *,
+                    name: str,
+                    body: SubscribeDataExchangeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -167,7 +202,45 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def listings(self) -> ListingsResource: ...
 
+            @typing.type_check_only
+            class SubscriptionsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SubscriptionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSubscriptionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSubscriptionsResponseHttpRequest,
+                    previous_response: ListSubscriptionsResponse,
+                ) -> ListSubscriptionsResponseHttpRequest | None: ...
+                def refresh(
+                    self,
+                    *,
+                    name: str,
+                    body: RefreshSubscriptionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def revoke(
+                    self,
+                    *,
+                    name: str,
+                    body: RevokeSubscriptionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RevokeSubscriptionResponseHttpRequest: ...
+
             def dataExchanges(self) -> DataExchangesResource: ...
+            def subscriptions(self) -> SubscriptionsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -227,12 +300,38 @@ class ListOrgDataExchangesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOrgDataExchangesResponse: ...
 
 @typing.type_check_only
+class ListSharedResourceSubscriptionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSharedResourceSubscriptionsResponse: ...
+
+@typing.type_check_only
+class ListSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSubscriptionsResponse: ...
+
+@typing.type_check_only
 class ListingHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Listing: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -243,12 +342,28 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Policy: ...
 
 @typing.type_check_only
+class RevokeSubscriptionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RevokeSubscriptionResponse: ...
+
+@typing.type_check_only
 class SubscribeListingResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SubscribeListingResponse: ...
+
+@typing.type_check_only
+class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Subscription: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

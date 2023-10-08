@@ -30,6 +30,8 @@ class AwsS3CompatibleData(typing_extensions.TypedDict, total=False):
 class AwsS3Data(typing_extensions.TypedDict, total=False):
     awsAccessKey: AwsAccessKey
     bucketName: str
+    cloudfrontDomain: str
+    credentialsSecret: str
     path: str
     roleArn: str
 
@@ -37,6 +39,7 @@ class AwsS3Data(typing_extensions.TypedDict, total=False):
 class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
     azureCredentials: AzureCredentials
     container: str
+    credentialsSecret: str
     path: str
     storageAccount: str
 

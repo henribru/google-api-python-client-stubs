@@ -171,6 +171,7 @@ class ContextRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Control(typing_extensions.TypedDict, total=False):
     environment: str
+    methodPolicies: _list[MethodPolicy]
 
 @typing.type_check_only
 class CppSettings(typing_extensions.TypedDict, total=False):
@@ -206,6 +207,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
     overview: str
     pages: _list[Page]
     rules: _list[DocumentationRule]
+    sectionOverrides: _list[Page]
     serviceRootUrl: str
     summary: str
 
@@ -213,6 +215,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
 class DocumentationRule(typing_extensions.TypedDict, total=False):
     deprecationDescription: str
     description: str
+    disableReplacementWords: str
     selector: str
 
 @typing.type_check_only
@@ -295,6 +298,12 @@ class Field(typing_extensions.TypedDict, total=False):
     options: _list[Option]
     packed: bool
     typeUrl: str
+
+@typing.type_check_only
+class FieldPolicy(typing_extensions.TypedDict, total=False):
+    resourcePermission: str
+    resourceType: str
+    selector: str
 
 @typing.type_check_only
 class FlowErrorDetails(typing_extensions.TypedDict, total=False):
@@ -422,6 +431,11 @@ class Method(typing_extensions.TypedDict, total=False):
     syntax: typing_extensions.Literal[
         "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
     ]
+
+@typing.type_check_only
+class MethodPolicy(typing_extensions.TypedDict, total=False):
+    requestPolicies: _list[FieldPolicy]
+    selector: str
 
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
@@ -580,6 +594,9 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "ADS",
         "PHOTOS",
         "STREET_VIEW",
+        "SHOPPING",
+        "GEO",
+        "GENERATIVE_AI",
     ]
     protoReferenceDocumentationUri: str
 

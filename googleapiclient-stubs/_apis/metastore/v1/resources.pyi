@@ -198,6 +198,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                def alterLocation(
+                    self,
+                    *,
+                    service: str,
+                    body: AlterMetadataResourceLocationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -242,6 +249,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     previous_request: ListServicesResponseHttpRequest,
                     previous_response: ListServicesResponse,
                 ) -> ListServicesResponseHttpRequest | None: ...
+                def moveTableToDatabase(
+                    self,
+                    *,
+                    service: str,
+                    body: MoveTableToDatabaseRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -249,6 +263,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     body: Service = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def queryMetadata(
+                    self,
+                    *,
+                    service: str,
+                    body: QueryMetadataRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def restore(

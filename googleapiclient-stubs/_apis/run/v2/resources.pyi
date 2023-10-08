@@ -41,6 +41,13 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                             previous_response: GoogleCloudRunV2ListTasksResponse,
                         ) -> GoogleCloudRunV2ListTasksResponseHttpRequest | None: ...
 
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudRunV2CancelExecutionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self,
                         *,

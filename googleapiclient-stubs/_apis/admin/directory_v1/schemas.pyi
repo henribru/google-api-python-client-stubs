@@ -160,20 +160,28 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
     deprovisionReason: typing_extensions.Literal[
-        "deprovisionReasonUnspecified",
-        "deprovisionReasonSameModelReplacement",
-        "deprovisionReasonUpgrade",
-        "deprovisionReasonDomainMove",
-        "deprovisionReasonServiceExpiration",
-        "deprovisionReasonOther",
-        "deprovisionReasonDifferentModelReplacement",
-        "deprovisionReasonRetiringDevice",
-        "deprovisionReasonUpgradeTransfer",
-        "deprovisionReasonNotRequired",
-        "deprovisionReasonRepairCenter",
+        "DEPROVISION_REASON_UNSPECIFIED",
+        "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
+        "DEPROVISION_REASON_UPGRADE",
+        "DEPROVISION_REASON_DOMAIN_MOVE",
+        "DEPROVISION_REASON_SERVICE_EXPIRATION",
+        "DEPROVISION_REASON_OTHER",
+        "DEPROVISION_REASON_DIFFERENT_MODEL_REPLACEMENT",
+        "DEPROVISION_REASON_RETIRING_DEVICE",
+        "DEPROVISION_REASON_UPGRADE_TRANSFER",
+        "DEPROVISION_REASON_NOT_REQUIRED",
+        "DEPROVISION_REASON_REPAIR_CENTER",
     ]
     deviceFiles: _list[dict[str, typing.Any]]
     deviceId: str
+    deviceLicenseType: typing_extensions.Literal[
+        "deviceLicenseTypeUnspecified",
+        "enterprise",
+        "enterpriseUpgrade",
+        "educationUpgrade",
+        "education",
+        "kioskUpgrade",
+    ]
     diskVolumeReports: _list[dict[str, typing.Any]]
     dockMacAddress: str
     etag: str

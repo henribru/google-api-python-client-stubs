@@ -33,6 +33,25 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
         ): ...
 
     @typing.type_check_only
+    class AppsResource(googleapiclient.discovery.Resource):
+        def fetchReleaseFilterOptions(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GooglePlayDeveloperReportingV1beta1ReleaseFilterOptionsHttpRequest: ...
+        def search(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> (
+            GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponseHttpRequest
+        ): ...
+        def search_next(
+            self,
+            previous_request: GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponseHttpRequest,
+            previous_response: GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponse,
+        ) -> (
+            GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponseHttpRequest
+            | None
+        ): ...
+
+    @typing.type_check_only
     class VitalsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AnrrateResource(googleapiclient.discovery.Resource):
@@ -128,6 +147,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     interval_startTime_timeZone_version: str = ...,
                     interval_startTime_utcOffset: str = ...,
                     interval_startTime_year: int = ...,
+                    orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -296,6 +316,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def anomalies(self) -> AnomaliesResource: ...
+    def apps(self) -> AppsResource: ...
     def vitals(self) -> VitalsResource: ...
 
 @typing.type_check_only
@@ -419,6 +440,26 @@ class GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricS
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponse: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1ReleaseFilterOptionsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePlayDeveloperReportingV1beta1ReleaseFilterOptions: ...
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePlayDeveloperReportingV1beta1SearchAccessibleAppsResponse: ...
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1SearchErrorIssuesResponseHttpRequest(

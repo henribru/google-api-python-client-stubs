@@ -37,10 +37,19 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityKey(typing_extensions.TypedDict, total=False):
+    deviceNickname: str
     privateKey: str
     publicKey: str
     universalTwoFactor: UniversalTwoFactor
     webAuthn: WebAuthn
+
+@typing.type_check_only
+class SignSshPublicKeyRequest(typing_extensions.TypedDict, total=False):
+    sshPublicKey: str
+
+@typing.type_check_only
+class SignSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
+    signedSshPublicKey: str
 
 @typing.type_check_only
 class SshPublicKey(typing_extensions.TypedDict, total=False):

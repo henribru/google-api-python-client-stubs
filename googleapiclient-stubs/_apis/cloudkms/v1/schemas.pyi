@@ -87,6 +87,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
         "ENCRYPT_DECRYPT",
         "ASYMMETRIC_SIGN",
         "ASYMMETRIC_DECRYPT",
+        "RAW_ENCRYPT_DECRYPT",
         "MAC",
     ]
     rotationPeriod: str
@@ -97,6 +98,12 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",
@@ -160,6 +167,12 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",
@@ -280,6 +293,12 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",
@@ -444,6 +463,12 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",
@@ -478,6 +503,51 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
+
+@typing.type_check_only
+class RawDecryptRequest(typing_extensions.TypedDict, total=False):
+    additionalAuthenticatedData: str
+    additionalAuthenticatedDataCrc32c: str
+    ciphertext: str
+    ciphertextCrc32c: str
+    initializationVector: str
+    initializationVectorCrc32c: str
+    tagLength: int
+
+@typing.type_check_only
+class RawDecryptResponse(typing_extensions.TypedDict, total=False):
+    plaintext: str
+    plaintextCrc32c: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+    ]
+    verifiedAdditionalAuthenticatedDataCrc32c: bool
+    verifiedCiphertextCrc32c: bool
+    verifiedInitializationVectorCrc32c: bool
+
+@typing.type_check_only
+class RawEncryptRequest(typing_extensions.TypedDict, total=False):
+    additionalAuthenticatedData: str
+    additionalAuthenticatedDataCrc32c: str
+    initializationVector: str
+    initializationVectorCrc32c: str
+    plaintext: str
+    plaintextCrc32c: str
+
+@typing.type_check_only
+class RawEncryptResponse(typing_extensions.TypedDict, total=False):
+    ciphertext: str
+    ciphertextCrc32c: str
+    initializationVector: str
+    initializationVectorCrc32c: str
+    name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+    ]
+    tagLength: int
+    verifiedAdditionalAuthenticatedDataCrc32c: bool
+    verifiedInitializationVectorCrc32c: bool
+    verifiedPlaintextCrc32c: bool
 
 @typing.type_check_only
 class RestoreCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False): ...

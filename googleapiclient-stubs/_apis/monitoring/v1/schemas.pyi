@@ -47,6 +47,11 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AggregationFunction(typing_extensions.TypedDict, total=False):
+    parameters: _list[Parameter]
+    type: str
+
+@typing.type_check_only
 class AlertChart(typing_extensions.TypedDict, total=False):
     name: str
 
@@ -56,7 +61,20 @@ class Axis(typing_extensions.TypedDict, total=False):
     scale: typing_extensions.Literal["SCALE_UNSPECIFIED", "LINEAR", "LOG10"]
 
 @typing.type_check_only
+class Breakdown(typing_extensions.TypedDict, total=False):
+    aggregationFunction: AggregationFunction
+    column: str
+    limit: int
+    sortOrder: typing_extensions.Literal[
+        "SORT_ORDER_UNSPECIFIED",
+        "SORT_ORDER_NONE",
+        "SORT_ORDER_ASCENDING",
+        "SORT_ORDER_DESCENDING",
+    ]
+
+@typing.type_check_only
 class ChartOptions(typing_extensions.TypedDict, total=False):
+    displayHorizontal: bool
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COLOR", "X_RAY", "STATS"]
 
 @typing.type_check_only
@@ -105,13 +123,32 @@ class DashboardFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSet(typing_extensions.TypedDict, total=False):
+    breakdowns: _list[Breakdown]
+    dimensions: _list[Dimension]
     legendTemplate: str
+    measures: _list[Measure]
     minAlignmentPeriod: str
     plotType: typing_extensions.Literal[
         "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
     ]
     targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
+class Dimension(typing_extensions.TypedDict, total=False):
+    column: str
+    columnType: str
+    floatBinSize: float
+    maxBinCount: int
+    numericBinSize: int
+    sortColumn: str
+    sortOrder: typing_extensions.Literal[
+        "SORT_ORDER_UNSPECIFIED",
+        "SORT_ORDER_NONE",
+        "SORT_ORDER_ASCENDING",
+        "SORT_ORDER_DESCENDING",
+    ]
+    timeBinSize: str
 
 @typing.type_check_only
 class DroppedLabels(typing_extensions.TypedDict, total=False):
@@ -185,12 +222,6 @@ class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListLabelsRequest(typing_extensions.TypedDict, total=False):
-    end: str
-    match: str
-    start: str
-
-@typing.type_check_only
 class ListMetricsScopesByMonitoredProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -200,6 +231,11 @@ class ListMetricsScopesByMonitoredProjectResponse(
 class LogsPanel(typing_extensions.TypedDict, total=False):
     filter: str
     resourceNames: _list[str]
+
+@typing.type_check_only
+class Measure(typing_extensions.TypedDict, total=False):
+    aggregationFunction: AggregationFunction
+    column: str
 
 @typing.type_check_only
 class MetricsScope(typing_extensions.TypedDict, total=False):
@@ -240,9 +276,18 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
+    sql: str
+
+@typing.type_check_only
 class Option(typing_extensions.TypedDict, total=False):
     name: str
     value: dict[str, typing.Any]
+
+@typing.type_check_only
+class Parameter(typing_extensions.TypedDict, total=False):
+    doubleValue: float
+    intValue: str
 
 @typing.type_check_only
 class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
@@ -258,6 +303,20 @@ class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PieChart(typing_extensions.TypedDict, total=False):
+    chartType: typing_extensions.Literal["PIE_CHART_TYPE_UNSPECIFIED", "PIE", "DONUT"]
+    dataSets: _list[PieChartDataSet]
+    showLabels: bool
+    showTotal: bool
+    sliceAggregatedThreshold: float
+
+@typing.type_check_only
+class PieChartDataSet(typing_extensions.TypedDict, total=False):
+    minAlignmentPeriod: str
+    sliceNameTemplate: str
+    timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
 class QueryExemplarsRequest(typing_extensions.TypedDict, total=False):
     end: str
     query: str
@@ -268,6 +327,12 @@ class QueryInstantRequest(typing_extensions.TypedDict, total=False):
     query: str
     time: str
     timeout: str
+
+@typing.type_check_only
+class QueryLabelsRequest(typing_extensions.TypedDict, total=False):
+    end: str
+    match: str
+    start: str
 
 @typing.type_check_only
 class QueryRangeRequest(typing_extensions.TypedDict, total=False):
@@ -298,6 +363,7 @@ class RowLayout(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Scorecard(typing_extensions.TypedDict, total=False):
+    blankView: Empty
     gaugeView: GaugeView
     sparkChartView: SparkChartView
     thresholds: _list[Threshold]
@@ -346,6 +412,49 @@ class TableDisplayOptions(typing_extensions.TypedDict, total=False):
 class Text(typing_extensions.TypedDict, total=False):
     content: str
     format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "MARKDOWN", "RAW"]
+    style: TextStyle
+
+@typing.type_check_only
+class TextStyle(typing_extensions.TypedDict, total=False):
+    backgroundColor: str
+    fontSize: typing_extensions.Literal[
+        "FONT_SIZE_UNSPECIFIED",
+        "FS_EXTRA_SMALL",
+        "FS_SMALL",
+        "FS_MEDIUM",
+        "FS_LARGE",
+        "FS_EXTRA_LARGE",
+    ]
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "H_LEFT", "H_CENTER", "H_RIGHT"
+    ]
+    padding: typing_extensions.Literal[
+        "PADDING_SIZE_UNSPECIFIED",
+        "P_EXTRA_SMALL",
+        "P_SMALL",
+        "P_MEDIUM",
+        "P_LARGE",
+        "P_EXTRA_LARGE",
+    ]
+    pointerLocation: typing_extensions.Literal[
+        "POINTER_LOCATION_UNSPECIFIED",
+        "PL_TOP",
+        "PL_RIGHT",
+        "PL_BOTTOM",
+        "PL_LEFT",
+        "PL_TOP_LEFT",
+        "PL_TOP_RIGHT",
+        "PL_RIGHT_TOP",
+        "PL_RIGHT_BOTTOM",
+        "PL_BOTTOM_RIGHT",
+        "PL_BOTTOM_LEFT",
+        "PL_LEFT_BOTTOM",
+        "PL_LEFT_TOP",
+    ]
+    textColor: str
+    verticalAlignment: typing_extensions.Literal[
+        "VERTICAL_ALIGNMENT_UNSPECIFIED", "V_TOP", "V_CENTER", "V_BOTTOM"
+    ]
 
 @typing.type_check_only
 class Threshold(typing_extensions.TypedDict, total=False):
@@ -381,6 +490,8 @@ class TimeSeriesFilterRatio(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeriesQuery(typing_extensions.TypedDict, total=False):
+    opsAnalyticsQuery: OpsAnalyticsQuery
+    outputFullDuration: bool
     prometheusQuery: str
     timeSeriesFilter: TimeSeriesFilter
     timeSeriesFilterRatio: TimeSeriesFilterRatio
@@ -414,6 +525,7 @@ class Widget(typing_extensions.TypedDict, total=False):
     collapsibleGroup: CollapsibleGroup
     incidentList: IncidentList
     logsPanel: LogsPanel
+    pieChart: PieChart
     scorecard: Scorecard
     text: Text
     timeSeriesTable: TimeSeriesTable

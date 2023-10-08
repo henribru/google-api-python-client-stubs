@@ -118,20 +118,6 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> AttributesHttpRequest: ...
 
-        def associate(
-            self,
-            *,
-            name: str,
-            body: AssociateLocationRequest = ...,
-            **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
-        def clearLocationAssociation(
-            self,
-            *,
-            name: str,
-            body: ClearLocationAssociationRequest = ...,
-            **kwargs: typing.Any
-        ) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(
             self, *, name: str, readMask: str = ..., **kwargs: typing.Any

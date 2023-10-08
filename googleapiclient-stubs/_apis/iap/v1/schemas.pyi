@@ -110,6 +110,7 @@ class ListTunnelDestGroupsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OAuthSettings(typing_extensions.TypedDict, total=False):
     loginHint: str
+    programmaticClients: _list[str]
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -173,3 +174,8 @@ class TunnelDestGroup(typing_extensions.TypedDict, total=False):
     cidrs: _list[str]
     fqdns: _list[str]
     name: str
+
+@typing.type_check_only
+class ValidateIapAttributeExpressionResponse(
+    typing_extensions.TypedDict, total=False
+): ...

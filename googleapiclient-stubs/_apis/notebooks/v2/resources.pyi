@@ -19,6 +19,31 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
+                def checkUpgradability(
+                    self, *, notebookInstance: str, **kwargs: typing.Any
+                ) -> CheckInstanceUpgradabilityResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Instance = ...,
+                    instanceId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def diagnose(
+                    self,
+                    *,
+                    name: str,
+                    body: DiagnoseInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InstanceHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -26,6 +51,51 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListInstancesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancesResponseHttpRequest,
+                    previous_response: ListInstancesResponse,
+                ) -> ListInstancesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Instance = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def reportInfoSystem(
+                    self,
+                    *,
+                    name: str,
+                    body: ReportInstanceInfoSystemRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def reset(
+                    self,
+                    *,
+                    name: str,
+                    body: ResetInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def rollback(
+                    self,
+                    *,
+                    name: str,
+                    body: RollbackInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -33,6 +103,20 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def start(
+                    self,
+                    *,
+                    name: str,
+                    body: StartInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    name: str,
+                    body: StopInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -40,6 +124,20 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def upgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: UpgradeInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def upgradeSystem(
+                    self,
+                    *,
+                    name: str,
+                    body: UpgradeInstanceSystemRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -108,12 +206,36 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class CheckInstanceUpgradabilityResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CheckInstanceUpgradabilityResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class InstanceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Instance: ...
+
+@typing.type_check_only
+class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListInstancesResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

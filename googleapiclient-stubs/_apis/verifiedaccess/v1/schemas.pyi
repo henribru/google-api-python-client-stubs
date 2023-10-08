@@ -24,6 +24,7 @@ class VerifyChallengeResponseRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
+    attestedDeviceId: str
     deviceEnrollmentId: str
     devicePermanentId: str
     signedPublicKeyAndChallenge: str

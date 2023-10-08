@@ -26,6 +26,7 @@ class BatchModifyMessagesRequest(typing_extensions.TypedDict, total=False):
 class CseIdentity(typing_extensions.TypedDict, total=False):
     emailAddress: str
     primaryKeyPairId: str
+    signAndEncryptKeyPairs: SignAndEncryptKeyPairs
 
 @typing.type_check_only
 class CseKeyPair(typing_extensions.TypedDict, total=False):
@@ -41,6 +42,7 @@ class CseKeyPair(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CsePrivateKeyMetadata(typing_extensions.TypedDict, total=False):
+    hardwareKeyMetadata: HardwareKeyMetadata
     kaclsKeyMetadata: KaclsKeyMetadata
     privateKeyMetadataId: str
 
@@ -99,6 +101,10 @@ class ForwardingAddress(typing_extensions.TypedDict, total=False):
     verificationStatus: typing_extensions.Literal[
         "verificationStatusUnspecified", "accepted", "pending"
     ]
+
+@typing.type_check_only
+class HardwareKeyMetadata(typing_extensions.TypedDict, total=False):
+    description: str
 
 @typing.type_check_only
 class History(typing_extensions.TypedDict, total=False):
@@ -299,6 +305,11 @@ class SendAs(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SignAndEncryptKeyPairs(typing_extensions.TypedDict, total=False):
+    encryptionKeyPairId: str
+    signingKeyPairId: str
+
+@typing.type_check_only
 class SmimeInfo(typing_extensions.TypedDict, total=False):
     encryptedKeyPassword: str
     expiration: str
@@ -339,6 +350,7 @@ class VacationSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WatchRequest(typing_extensions.TypedDict, total=False):
     labelFilterAction: typing_extensions.Literal["include", "exclude"]
+    labelFilterBehavior: typing_extensions.Literal["include", "exclude"]
     labelIds: _list[str]
     topicName: str
 

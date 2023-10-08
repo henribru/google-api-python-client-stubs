@@ -56,6 +56,10 @@ class Annotation(typing_extensions.TypedDict, total=False):
     userMention: UserMentionMetadata
 
 @typing.type_check_only
+class AttachedGif(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
     attachmentDataRef: AttachmentDataRef
     contentName: str
@@ -70,6 +74,7 @@ class Attachment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AttachmentDataRef(typing_extensions.TypedDict, total=False):
+    attachmentUploadToken: str
     resourceName: str
 
 @typing.type_check_only
@@ -108,6 +113,10 @@ class ChatAppLogEntry(typing_extensions.TypedDict, total=False):
     error: Status
 
 @typing.type_check_only
+class ChatClientDataSourceMarkup(typing_extensions.TypedDict, total=False):
+    spaceDataSource: SpaceDataSource
+
+@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     alpha: float
     blue: float
@@ -137,6 +146,10 @@ class CommonEventObject(typing_extensions.TypedDict, total=False):
     userLocale: str
 
 @typing.type_check_only
+class CustomEmoji(typing_extensions.TypedDict, total=False):
+    uid: str
+
+@typing.type_check_only
 class DateInput(typing_extensions.TypedDict, total=False):
     msSinceEpoch: str
 
@@ -145,6 +158,18 @@ class DateTimeInput(typing_extensions.TypedDict, total=False):
     hasDate: bool
     hasTime: bool
     msSinceEpoch: str
+
+@typing.type_check_only
+class DeletionMetadata(typing_extensions.TypedDict, total=False):
+    deletionType: typing_extensions.Literal[
+        "DELETION_TYPE_UNSPECIFIED",
+        "CREATOR",
+        "SPACE_OWNER",
+        "ADMIN",
+        "APP_MESSAGE_EXPIRY",
+        "CREATOR_VIA_APP",
+        "SPACE_OWNER_VIA_APP",
+    ]
 
 @typing.type_check_only
 class DeprecatedEvent(typing_extensions.TypedDict, total=False):
@@ -177,6 +202,16 @@ class DialogAction(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DriveDataRef(typing_extensions.TypedDict, total=False):
     driveFileId: str
+
+@typing.type_check_only
+class Emoji(typing_extensions.TypedDict, total=False):
+    customEmoji: CustomEmoji
+    unicode: str
+
+@typing.type_check_only
+class EmojiReactionSummary(typing_extensions.TypedDict, total=False):
+    emoji: Emoji
+    reactionCount: int
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -228,6 +263,9 @@ class GoogleAppsCardV1Card(typing_extensions.TypedDict, total=False):
     header: GoogleAppsCardV1CardHeader
     name: str
     peekCardHeader: GoogleAppsCardV1CardHeader
+    sectionDividerStyle: typing_extensions.Literal[
+        "DIVIDER_STYLE_UNSPECIFIED", "SOLID_DIVIDER", "NO_DIVIDER"
+    ]
     sections: _list[GoogleAppsCardV1Section]
 
 @typing.type_check_only
@@ -247,6 +285,25 @@ class GoogleAppsCardV1CardHeader(typing_extensions.TypedDict, total=False):
     imageUrl: str
     subtitle: str
     title: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Column(typing_extensions.TypedDict, total=False):
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
+    horizontalSizeStyle: typing_extensions.Literal[
+        "HORIZONTAL_SIZE_STYLE_UNSPECIFIED",
+        "FILL_AVAILABLE_SPACE",
+        "FILL_MINIMUM_SPACE",
+    ]
+    verticalAlignment: typing_extensions.Literal[
+        "VERTICAL_ALIGNMENT_UNSPECIFIED", "CENTER", "TOP", "BOTTOM"
+    ]
+    widgets: _list[GoogleAppsCardV1Widgets]
+
+@typing.type_check_only
+class GoogleAppsCardV1Columns(typing_extensions.TypedDict, total=False):
+    columnItems: _list[GoogleAppsCardV1Column]
 
 @typing.type_check_only
 class GoogleAppsCardV1DateTimePicker(typing_extensions.TypedDict, total=False):
@@ -336,6 +393,11 @@ class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class GoogleAppsCardV1PlatformDataSource(typing_extensions.TypedDict, total=False):
+    commonDataSource: typing_extensions.Literal["UNKNOWN", "USER"]
+    hostAppDataSource: HostAppDataSourceMarkup
+
+@typing.type_check_only
 class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
     collapsible: bool
     header: str
@@ -344,15 +406,23 @@ class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
+    externalDataSource: GoogleAppsCardV1Action
     items: _list[GoogleAppsCardV1SelectionItem]
     label: str
+    multiSelectMaxSelectedItems: int
+    multiSelectMinQueryLength: int
     name: str
     onChangeAction: GoogleAppsCardV1Action
-    type: typing_extensions.Literal["CHECK_BOX", "RADIO_BUTTON", "SWITCH", "DROPDOWN"]
+    platformDataSource: GoogleAppsCardV1PlatformDataSource
+    type: typing_extensions.Literal[
+        "CHECK_BOX", "RADIO_BUTTON", "SWITCH", "DROPDOWN", "MULTI_SELECT"
+    ]
 
 @typing.type_check_only
 class GoogleAppsCardV1SelectionItem(typing_extensions.TypedDict, total=False):
+    bottomText: str
     selected: bool
+    startIconUri: str
     text: str
     value: str
 
@@ -380,6 +450,7 @@ class GoogleAppsCardV1TextInput(typing_extensions.TypedDict, total=False):
     label: str
     name: str
     onChangeAction: GoogleAppsCardV1Action
+    placeholderText: str
     type: typing_extensions.Literal["SINGLE_LINE", "MULTIPLE_LINE"]
     value: str
 
@@ -390,14 +461,32 @@ class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
     buttonList: GoogleAppsCardV1ButtonList
+    columns: GoogleAppsCardV1Columns
     dateTimePicker: GoogleAppsCardV1DateTimePicker
     decoratedText: GoogleAppsCardV1DecoratedText
     divider: GoogleAppsCardV1Divider
     grid: GoogleAppsCardV1Grid
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
     image: GoogleAppsCardV1Image
     selectionInput: GoogleAppsCardV1SelectionInput
     textInput: GoogleAppsCardV1TextInput
     textParagraph: GoogleAppsCardV1TextParagraph
+
+@typing.type_check_only
+class GoogleAppsCardV1Widgets(typing_extensions.TypedDict, total=False):
+    buttonList: GoogleAppsCardV1ButtonList
+    dateTimePicker: GoogleAppsCardV1DateTimePicker
+    decoratedText: GoogleAppsCardV1DecoratedText
+    image: GoogleAppsCardV1Image
+    selectionInput: GoogleAppsCardV1SelectionInput
+    textInput: GoogleAppsCardV1TextInput
+    textParagraph: GoogleAppsCardV1TextParagraph
+
+@typing.type_check_only
+class HostAppDataSourceMarkup(typing_extensions.TypedDict, total=False):
+    chatDataSource: ChatClientDataSourceMarkup
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -500,6 +589,16 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMessagesResponse(typing_extensions.TypedDict, total=False):
+    messages: _list[Message]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListReactionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reactions: _list[Reaction]
+
+@typing.type_check_only
 class ListSpacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     spaces: _list[Space]
@@ -529,15 +628,21 @@ class Message(typing_extensions.TypedDict, total=False):
     actionResponse: ActionResponse
     annotations: _list[Annotation]
     argumentText: str
+    attachedGifs: _list[AttachedGif]
     attachment: _list[Attachment]
     cards: _list[Card]
     cardsV2: _list[CardWithId]
     clientAssignedMessageId: str
     createTime: str
+    deleteTime: str
+    deletionMetadata: DeletionMetadata
+    emojiReactionSummaries: _list[EmojiReactionSummary]
     fallbackText: str
+    formattedText: str
     lastUpdateTime: str
     matchedUrl: MatchedUrl
     name: str
+    quotedMessageMetadata: QuotedMessageMetadata
     sender: User
     slashCommand: SlashCommand
     space: Space
@@ -555,9 +660,26 @@ class OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
+    lastUpdateTime: str
+    name: str
+
+@typing.type_check_only
+class Reaction(typing_extensions.TypedDict, total=False):
+    emoji: Emoji
+    name: str
+    user: User
+
+@typing.type_check_only
 class Section(typing_extensions.TypedDict, total=False):
     header: str
     widgets: _list[WidgetMarkup]
+
+@typing.type_check_only
+class SetUpSpaceRequest(typing_extensions.TypedDict, total=False):
+    memberships: _list[Membership]
+    requestId: str
+    space: Space
 
 @typing.type_check_only
 class SlashCommand(typing_extensions.TypedDict, total=False):
@@ -575,17 +697,28 @@ class SlashCommandMetadata(typing_extensions.TypedDict, total=False):
 class Space(typing_extensions.TypedDict, total=False):
     adminInstalled: bool
     displayName: str
+    externalUserAllowed: bool
     name: str
     singleUserBotDm: bool
     spaceDetails: SpaceDetails
+    spaceHistoryState: typing_extensions.Literal[
+        "HISTORY_STATE_UNSPECIFIED", "HISTORY_OFF", "HISTORY_ON"
+    ]
     spaceThreadingState: typing_extensions.Literal[
         "SPACE_THREADING_STATE_UNSPECIFIED",
         "THREADED_MESSAGES",
         "GROUPED_MESSAGES",
         "UNTHREADED_MESSAGES",
     ]
+    spaceType: typing_extensions.Literal[
+        "SPACE_TYPE_UNSPECIFIED", "SPACE", "GROUP_CHAT", "DIRECT_MESSAGE"
+    ]
     threaded: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
+
+@typing.type_check_only
+class SpaceDataSource(typing_extensions.TypedDict, total=False):
+    defaultToCurrentSpace: bool
 
 @typing.type_check_only
 class SpaceDetails(typing_extensions.TypedDict, total=False):
@@ -625,6 +758,14 @@ class TimeInput(typing_extensions.TypedDict, total=False):
 class TimeZone(typing_extensions.TypedDict, total=False):
     id: str
     offset: int
+
+@typing.type_check_only
+class UploadAttachmentRequest(typing_extensions.TypedDict, total=False):
+    filename: str
+
+@typing.type_check_only
+class UploadAttachmentResponse(typing_extensions.TypedDict, total=False):
+    attachmentDataRef: AttachmentDataRef
 
 @typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):

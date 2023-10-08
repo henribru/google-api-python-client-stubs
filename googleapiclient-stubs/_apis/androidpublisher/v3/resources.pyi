@@ -405,6 +405,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             downloadId: str,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def download_media(
+            self,
+            *,
+            packageName: str,
+            versionCode: int,
+            downloadId: str,
+            **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def list(
             self, *, packageName: str, versionCode: int, **kwargs: typing.Any
         ) -> GeneratedApksListResponseHttpRequest: ...
@@ -829,6 +837,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 variantId: int,
                 **kwargs: typing.Any
             ) -> googleapiclient.http.HttpRequest: ...
+            def download_media(
+                self,
+                *,
+                packageName: str,
+                versionCode: str,
+                variantId: int,
+                **kwargs: typing.Any
+            ) -> BytesHttpRequest: ...
             def get(
                 self,
                 *,
@@ -1258,3 +1274,11 @@ class VoidedPurchasesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VoidedPurchasesListResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

@@ -44,6 +44,10 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
     deviceRecognitionVerdict: _list[str]
 
 @typing.type_check_only
+class GuidanceDetails(typing_extensions.TypedDict, total=False):
+    userRemediationDetails: _list[UserRemediationDetails]
+
+@typing.type_check_only
 class RequestDetails(typing_extensions.TypedDict, total=False):
     nonce: str
     requestHash: str
@@ -59,5 +63,17 @@ class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
     accountDetails: AccountDetails
     appIntegrity: AppIntegrity
     deviceIntegrity: DeviceIntegrity
+    guidanceDetails: GuidanceDetails
     requestDetails: RequestDetails
     testingDetails: TestingDetails
+
+@typing.type_check_only
+class UserRemediationDetails(typing_extensions.TypedDict, total=False):
+    remediation: typing_extensions.Literal[
+        "UNKNOWN_USER_REMEDIATION",
+        "RESTORE_FACTORY_ROM",
+        "LOCK_BOOTLOADER",
+        "GET_UNMODIFIED_APP",
+        "SIGN_INTO_GOOGLE_ACCOUNT",
+        "INSTALL_APP_FROM_PLAY",
+    ]

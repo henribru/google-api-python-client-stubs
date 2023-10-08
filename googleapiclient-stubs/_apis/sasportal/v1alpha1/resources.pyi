@@ -277,6 +277,9 @@ class SasportalResource(googleapiclient.discovery.Resource):
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
 
+        def checkHasProvisionedDeployment(
+            self, **kwargs: typing.Any
+        ) -> SasPortalCheckHasProvisionedDeploymentResponseHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalCustomerHttpRequest: ...
@@ -288,6 +291,12 @@ class SasportalResource(googleapiclient.discovery.Resource):
             previous_request: SasPortalListCustomersResponseHttpRequest,
             previous_response: SasPortalListCustomersResponse,
         ) -> SasPortalListCustomersResponseHttpRequest | None: ...
+        def migrateOrganization(
+            self,
+            *,
+            body: SasPortalMigrateOrganizationRequest = ...,
+            **kwargs: typing.Any
+        ) -> SasPortalOperationHttpRequest: ...
         def patch(
             self,
             *,
@@ -302,6 +311,9 @@ class SasportalResource(googleapiclient.discovery.Resource):
             body: SasPortalProvisionDeploymentRequest = ...,
             **kwargs: typing.Any
         ) -> SasPortalProvisionDeploymentResponseHttpRequest: ...
+        def setupSasAnalytics(
+            self, *, body: SasPortalSetupSasAnalyticsRequest = ..., **kwargs: typing.Any
+        ) -> SasPortalOperationHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def devices(self) -> DevicesResource: ...
         def nodes(self) -> NodesResource: ...
@@ -653,6 +665,16 @@ class SasportalResource(googleapiclient.discovery.Resource):
     def installer(self) -> InstallerResource: ...
     def nodes(self) -> NodesResource: ...
     def policies(self) -> PoliciesResource: ...
+
+@typing.type_check_only
+class SasPortalCheckHasProvisionedDeploymentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SasPortalCheckHasProvisionedDeploymentResponse: ...
 
 @typing.type_check_only
 class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):

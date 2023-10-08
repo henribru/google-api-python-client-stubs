@@ -174,6 +174,7 @@ class CommentReplyList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContentRestriction(typing_extensions.TypedDict, total=False):
+    ownerRestricted: bool
     readOnly: bool
     reason: str
     restrictingUser: User

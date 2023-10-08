@@ -143,7 +143,12 @@ class TPUResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -161,6 +166,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListQueuedResourcesResponseHttpRequest,
                     previous_response: ListQueuedResourcesResponse,
                 ) -> ListQueuedResourcesResponseHttpRequest | None: ...
+                def reset(
+                    self,
+                    *,
+                    name: str,
+                    body: ResetQueuedResourceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class RuntimeVersionsResource(googleapiclient.discovery.Resource):

@@ -236,6 +236,9 @@ class GoogleAnalyticsAdminV1betaChangeHistoryEvent(
 class GoogleAnalyticsAdminV1betaConversionEvent(
     typing_extensions.TypedDict, total=False
 ):
+    countingMethod: typing_extensions.Literal[
+        "CONVERSION_COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
+    ]
     createTime: str
     custom: bool
     deletable: bool

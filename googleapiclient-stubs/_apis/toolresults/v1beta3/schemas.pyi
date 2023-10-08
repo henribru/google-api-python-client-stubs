@@ -52,6 +52,9 @@ class AppStartTime(typing_extensions.TypedDict, total=False):
     initialDisplayTime: Duration
 
 @typing.type_check_only
+class AssetIssue(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AvailableDeepLinks(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -648,6 +651,7 @@ class TestIssue(typing_extensions.TypedDict, total=False):
         "deviceOutOfMemory",
         "logcatCollectionError",
         "detectedAppSplashScreen",
+        "assetIssue",
     ]
     warning: Any
 

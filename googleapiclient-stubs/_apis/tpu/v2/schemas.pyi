@@ -129,9 +129,11 @@ class Node(typing_extensions.TypedDict, total=False):
     id: str
     labels: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
+    multisliceNode: bool
     name: str
     networkConfig: NetworkConfig
     networkEndpoints: _list[NetworkEndpoint]
+    queuedResource: str
     runtimeVersion: str
     schedulingConfig: SchedulingConfig
     serviceAccount: ServiceAccount

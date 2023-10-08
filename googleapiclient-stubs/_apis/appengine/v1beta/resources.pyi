@@ -211,6 +211,18 @@ class AppengineResource(googleapiclient.discovery.Resource):
             ) -> ListOperationsResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class RuntimesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                appsId: str,
+                environment: typing_extensions.Literal[
+                    "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
+                ] = ...,
+                **kwargs: typing.Any
+            ) -> ListRuntimesResponseHttpRequest: ...
+
+        @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
@@ -282,6 +294,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     servicesId: str,
                     versionsId: str,
+                    includeExtraData: typing_extensions.Literal[
+                        "INCLUDE_EXTRA_DATA_UNSPECIFIED",
+                        "INCLUDE_EXTRA_DATA_NONE",
+                        "INCLUDE_GOOGLE_GENERATED_METADATA",
+                    ] = ...,
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
                     **kwargs: typing.Any
                 ) -> VersionHttpRequest: ...
@@ -316,7 +333,16 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self, *, appsId: str, servicesId: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def get(
-                self, *, appsId: str, servicesId: str, **kwargs: typing.Any
+                self,
+                *,
+                appsId: str,
+                servicesId: str,
+                includeExtraData: typing_extensions.Literal[
+                    "INCLUDE_EXTRA_DATA_UNSPECIFIED",
+                    "INCLUDE_EXTRA_DATA_NONE",
+                    "INCLUDE_GOOGLE_GENERATED_METADATA",
+                ] = ...,
+                **kwargs: typing.Any
             ) -> ServiceHttpRequest: ...
             def list(
                 self,
@@ -344,10 +370,18 @@ class AppengineResource(googleapiclient.discovery.Resource):
             def versions(self) -> VersionsResource: ...
 
         def create(
-            self, *, body: Application = ..., parent: str = ..., **kwargs: typing.Any
+            self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, appsId: str, **kwargs: typing.Any
+            self,
+            *,
+            appsId: str,
+            includeExtraData: typing_extensions.Literal[
+                "INCLUDE_EXTRA_DATA_UNSPECIFIED",
+                "INCLUDE_EXTRA_DATA_NONE",
+                "INCLUDE_GOOGLE_GENERATED_METADATA",
+            ] = ...,
+            **kwargs: typing.Any
         ) -> ApplicationHttpRequest: ...
         def patch(
             self,
@@ -370,40 +404,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def firewall(self) -> FirewallResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+        def runtimes(self) -> RuntimesResource: ...
         def services(self) -> ServicesResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class ApplicationsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    projectsId: str,
-                    locationsId: str,
-                    body: Application = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self,
-                    *,
-                    projectsId: str,
-                    locationsId: str,
-                    applicationsId: str,
-                    **kwargs: typing.Any
-                ) -> ApplicationHttpRequest: ...
-                def repair(
-                    self,
-                    *,
-                    projectsId: str,
-                    locationsId: str,
-                    applicationsId: str,
-                    body: RepairApplicationRequest = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -447,7 +454,6 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-            def applications(self) -> ApplicationsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -578,6 +584,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListRuntimesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListRuntimesResponse: ...
 
 @typing.type_check_only
 class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):

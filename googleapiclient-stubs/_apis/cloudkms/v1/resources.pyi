@@ -189,6 +189,20 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> CryptoKeyVersionHttpRequest: ...
+                        def rawDecrypt(
+                            self,
+                            *,
+                            name: str,
+                            body: RawDecryptRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> RawDecryptResponseHttpRequest: ...
+                        def rawEncrypt(
+                            self,
+                            *,
+                            name: str,
+                            body: RawEncryptRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> RawEncryptResponseHttpRequest: ...
                         def restore(
                             self,
                             *,
@@ -609,6 +623,22 @@ class PublicKeyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PublicKey: ...
+
+@typing.type_check_only
+class RawDecryptResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RawDecryptResponse: ...
+
+@typing.type_check_only
+class RawEncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RawEncryptResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

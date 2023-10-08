@@ -270,6 +270,9 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 previous_response: ListQuerySourcesResponse,
             ) -> ListQuerySourcesResponseHttpRequest | None: ...
 
+        def removeActivity(
+            self, *, body: RemoveActivityRequest = ..., **kwargs: typing.Any
+        ) -> RemoveActivityResponseHttpRequest: ...
         def search(
             self, *, body: SearchRequest = ..., **kwargs: typing.Any
         ) -> SearchResponseHttpRequest: ...
@@ -754,6 +757,14 @@ class PollItemsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> PollItemsResponse: ...
+
+@typing.type_check_only
+class RemoveActivityResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RemoveActivityResponse: ...
 
 @typing.type_check_only
 class SchemaHttpRequest(googleapiclient.http.HttpRequest):

@@ -7,7 +7,9 @@ _list = list
 @typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
     alias: str
+    avg: Avg
     count: Count
+    sum: Sum
 
 @typing.type_check_only
 class AggregationResult(typing_extensions.TypedDict, total=False):
@@ -16,6 +18,10 @@ class AggregationResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ArrayValue(typing_extensions.TypedDict, total=False):
     values: _list[Value]
+
+@typing.type_check_only
+class Avg(typing_extensions.TypedDict, total=False):
+    field: FieldReference
 
 @typing.type_check_only
 class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
@@ -49,6 +55,16 @@ class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
     transaction: str
+
+@typing.type_check_only
+class BitSequence(typing_extensions.TypedDict, total=False):
+    bitmap: str
+    padding: int
+
+@typing.type_check_only
+class BloomFilter(typing_extensions.TypedDict, total=False):
+    bits: BitSequence
+    hashCount: int
 
 @typing.type_check_only
 class CollectionSelector(typing_extensions.TypedDict, total=False):
@@ -124,6 +140,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class ExistenceFilter(typing_extensions.TypedDict, total=False):
     count: int
     targetId: int
+    unchangedNames: BloomFilter
 
 @typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
@@ -164,6 +181,41 @@ class Filter(typing_extensions.TypedDict, total=False):
     compositeFilter: CompositeFilter
     fieldFilter: FieldFilter
     unaryFilter: UnaryFilter
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1CreateDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
+    completedWork: str
+    estimatedWork: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backup: str
+    database: str
+    endTime: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressPercentage: GoogleFirestoreAdminV1Progress
+    startTime: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
@@ -427,8 +479,13 @@ AlternativeStructuredQuery = typing_extensions.TypedDict(
 class StructuredQuery(AlternativeStructuredQuery): ...
 
 @typing.type_check_only
+class Sum(typing_extensions.TypedDict, total=False):
+    field: FieldReference
+
+@typing.type_check_only
 class Target(typing_extensions.TypedDict, total=False):
     documents: DocumentsTarget
+    expectedCount: int
     once: bool
     query: QueryTarget
     readTime: str

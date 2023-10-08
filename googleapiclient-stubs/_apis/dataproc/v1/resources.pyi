@@ -134,6 +134,82 @@ class DataprocResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class SessionTemplatesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SessionTemplate = ...,
+                    **kwargs: typing.Any
+                ) -> SessionTemplateHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SessionTemplateHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSessionTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSessionTemplatesResponseHttpRequest,
+                    previous_response: ListSessionTemplatesResponse,
+                ) -> ListSessionTemplatesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SessionTemplate = ...,
+                    **kwargs: typing.Any
+                ) -> SessionTemplateHttpRequest: ...
+
+            @typing.type_check_only
+            class SessionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Session = ...,
+                    requestId: str = ...,
+                    sessionId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SessionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSessionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSessionsResponseHttpRequest,
+                    previous_response: ListSessionsResponse,
+                ) -> ListSessionsResponseHttpRequest | None: ...
+                def terminate(
+                    self,
+                    *,
+                    name: str,
+                    body: TerminateSessionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class WorkflowTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -208,6 +284,8 @@ class DataprocResource(googleapiclient.discovery.Resource):
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
             def batches(self) -> BatchesResource: ...
             def operations(self) -> OperationsResource: ...
+            def sessionTemplates(self) -> SessionTemplatesResource: ...
+            def sessions(self) -> SessionsResource: ...
             def workflowTemplates(self) -> WorkflowTemplatesResource: ...
 
         @typing.type_check_only
@@ -312,6 +390,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     clusterUuid: str = ...,
+                    gracefulTerminationTimeout: str = ...,
                     requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -735,6 +814,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListSessionTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSessionTemplatesResponse: ...
+
+@typing.type_check_only
+class ListSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListSessionsResponse: ...
+
+@typing.type_check_only
 class ListWorkflowTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -765,6 +860,22 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class SessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Session: ...
+
+@typing.type_check_only
+class SessionTemplateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SessionTemplate: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

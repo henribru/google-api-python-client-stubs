@@ -400,6 +400,10 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "ADS_PER_IMPRESSION",
                     "TOTAL_EARNINGS",
                     "WEBSEARCH_RESULT_PAGES",
+                    "FUNNEL_REQUESTS",
+                    "FUNNEL_IMPRESSIONS",
+                    "FUNNEL_CLICKS",
+                    "FUNNEL_RPM",
                 ]
                 | _list[
                     typing_extensions.Literal[
@@ -436,6 +440,10 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "ADS_PER_IMPRESSION",
                         "TOTAL_EARNINGS",
                         "WEBSEARCH_RESULT_PAGES",
+                        "FUNNEL_REQUESTS",
+                        "FUNNEL_IMPRESSIONS",
+                        "FUNNEL_CLICKS",
+                        "FUNNEL_RPM",
                     ]
                 ] = ...,
                 orderBy: str | _list[str] = ...,
@@ -606,6 +614,10 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                     "ADS_PER_IMPRESSION",
                     "TOTAL_EARNINGS",
                     "WEBSEARCH_RESULT_PAGES",
+                    "FUNNEL_REQUESTS",
+                    "FUNNEL_IMPRESSIONS",
+                    "FUNNEL_CLICKS",
+                    "FUNNEL_RPM",
                 ]
                 | _list[
                     typing_extensions.Literal[
@@ -642,6 +654,10 @@ class AdsenseResource(googleapiclient.discovery.Resource):
                         "ADS_PER_IMPRESSION",
                         "TOTAL_EARNINGS",
                         "WEBSEARCH_RESULT_PAGES",
+                        "FUNNEL_REQUESTS",
+                        "FUNNEL_IMPRESSIONS",
+                        "FUNNEL_CLICKS",
+                        "FUNNEL_RPM",
                     ]
                 ] = ...,
                 orderBy: str | _list[str] = ...,

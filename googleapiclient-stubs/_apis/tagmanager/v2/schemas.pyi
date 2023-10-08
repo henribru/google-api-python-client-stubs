@@ -220,6 +220,7 @@ class ContainerFeatures(typing_extensions.TypedDict, total=False):
     supportGtagConfigs: bool
     supportTags: bool
     supportTemplates: bool
+    supportTransformations: bool
     supportTriggers: bool
     supportUserPermissions: bool
     supportVariables: bool
@@ -245,6 +246,7 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     path: str
     tag: _list[Tag]
     tagManagerUrl: str
+    transformation: _list[Transformation]
     trigger: _list[Trigger]
     variable: _list[Variable]
     zone: _list[Zone]
@@ -312,14 +314,19 @@ class Destination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
+    builtInVariable: BuiltInVariable
     changeStatus: typing_extensions.Literal[
         "changeStatusUnspecified", "none", "added", "deleted", "updated"
     ]
     client: Client
+    customTemplate: CustomTemplate
     folder: Folder
+    gtagConfig: GtagConfig
     tag: Tag
+    transformation: Transformation
     trigger: Trigger
     variable: Variable
+    zone: Zone
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
@@ -444,6 +451,11 @@ class ListTemplatesResponse(typing_extensions.TypedDict, total=False):
     template: _list[CustomTemplate]
 
 @typing.type_check_only
+class ListTransformationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    transformation: _list[Transformation]
+
+@typing.type_check_only
 class ListTriggersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     trigger: _list[Trigger]
@@ -475,6 +487,7 @@ class MergeConflict(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Parameter(typing_extensions.TypedDict, total=False):
+    isWeakReference: bool
     key: str
     list: _list[Parameter]
     map: _list[Parameter]
@@ -520,6 +533,10 @@ class RevertTagResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RevertTemplateResponse(typing_extensions.TypedDict, total=False):
     template: CustomTemplate
+
+@typing.type_check_only
+class RevertTransformationResponse(typing_extensions.TypedDict, total=False):
+    transformation: Transformation
 
 @typing.type_check_only
 class RevertTriggerResponse(typing_extensions.TypedDict, total=False):
@@ -589,6 +606,21 @@ class TagConsentSetting(typing_extensions.TypedDict, total=False):
 class TeardownTag(typing_extensions.TypedDict, total=False):
     stopTeardownOnFailure: bool
     tagName: str
+
+@typing.type_check_only
+class Transformation(typing_extensions.TypedDict, total=False):
+    accountId: str
+    containerId: str
+    fingerprint: str
+    name: str
+    notes: str
+    parameter: _list[Parameter]
+    parentFolderId: str
+    path: str
+    tagManagerUrl: str
+    transformationId: str
+    type: str
+    workspaceId: str
 
 @typing.type_check_only
 class Trigger(typing_extensions.TypedDict, total=False):

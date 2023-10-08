@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AlterMetadataResourceLocationRequest(typing_extensions.TypedDict, total=False):
+    locationUri: str
+    resourceName: str
+
+@typing.type_check_only
+class AlterMetadataResourceLocationResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -25,7 +35,7 @@ class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BackendMetastore(typing_extensions.TypedDict, total=False):
     metastoreType: typing_extensions.Literal[
-        "METASTORE_TYPE_UNSPECIFIED", "DATAPROC_METASTORE"
+        "METASTORE_TYPE_UNSPECIFIED", "BIGQUERY", "DATAPROC_METASTORE"
     ]
     name: str
 
@@ -52,6 +62,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Consumer(typing_extensions.TypedDict, total=False):
+    endpointLocation: str
     endpointUri: str
     subnetwork: str
 
@@ -68,6 +79,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     kmsKey: str
+
+@typing.type_check_only
+class ErrorDetails(typing_extensions.TypedDict, total=False):
+    details: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExportMetadataRequest(typing_extensions.TypedDict, total=False):
@@ -101,6 +116,9 @@ class Federation(typing_extensions.TypedDict, total=False):
 class HiveMetastoreConfig(typing_extensions.TypedDict, total=False):
     auxiliaryVersions: dict[str, typing.Any]
     configOverrides: dict[str, typing.Any]
+    endpointProtocol: typing_extensions.Literal[
+        "ENDPOINT_PROTOCOL_UNSPECIFIED", "THRIFT", "GRPC"
+    ]
     kerberosConfig: KerberosConfig
     version: str
 
@@ -203,6 +221,15 @@ class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
     restores: _list[Restore]
 
 @typing.type_check_only
+class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
+    dbName: str
+    destinationDbName: str
+    tableName: str
+
+@typing.type_check_only
+class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     consumers: _list[Consumer]
 
@@ -230,6 +257,14 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class QueryMetadataRequest(typing_extensions.TypedDict, total=False):
+    query: str
+
+@typing.type_check_only
+class QueryMetadataResponse(typing_extensions.TypedDict, total=False):
+    resultManifestUri: str
 
 @typing.type_check_only
 class Restore(typing_extensions.TypedDict, total=False):

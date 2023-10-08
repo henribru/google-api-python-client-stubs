@@ -18,6 +18,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListWorkflowRevisionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workflows: _list[Workflow]
+
+@typing.type_check_only
 class ListWorkflowsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
@@ -75,3 +80,4 @@ class Workflow(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "UNAVAILABLE"]
     stateError: StateError
     updateTime: str
+    userEnvVars: dict[str, typing.Any]

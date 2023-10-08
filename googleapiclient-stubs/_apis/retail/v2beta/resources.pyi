@@ -122,6 +122,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2betaProductHttpRequest: ...
+                        def purge(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudRetailV2betaPurgeProductsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def removeFulfillmentPlaces(
                             self,
                             *,

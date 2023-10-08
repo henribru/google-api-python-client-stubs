@@ -183,12 +183,27 @@ class DataDiskAssignment(typing_extensions.TypedDict, total=False):
     vmInstance: str
 
 @typing.type_check_only
+class DataSamplingConfig(typing_extensions.TypedDict, total=False):
+    behaviors: _list[str]
+
+@typing.type_check_only
+class DataSamplingReport(typing_extensions.TypedDict, total=False):
+    bytesWrittenDelta: str
+    elementsSampledBytes: str
+    elementsSampledCount: str
+    exceptionsSampledCount: str
+    pcollectionsSampledCount: str
+    persistenceErrorsCount: str
+    translationErrorsCount: str
+
+@typing.type_check_only
 class DatastoreIODetails(typing_extensions.TypedDict, total=False):
     namespace: str
     projectId: str
 
 @typing.type_check_only
 class DebugOptions(typing_extensions.TypedDict, total=False):
+    dataSampling: DataSamplingConfig
     enableHotKeyLogging: bool
 
 @typing.type_check_only
@@ -257,6 +272,7 @@ class Environment(typing_extensions.TypedDict, total=False):
         "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
     ]
     tempStoragePrefix: str
+    useStreamingEngineResourceBasedBilling: bool
     userAgent: dict[str, typing.Any]
     version: dict[str, typing.Any]
     workerPools: _list[WorkerPool]
@@ -473,6 +489,7 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_QUEUED",
         "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
+    runtimeUpdatableParams: RuntimeUpdatableParams
     satisfiesPzs: bool
     stageStates: _list[ExecutionStageState]
     startTime: str
@@ -701,6 +718,8 @@ class Parameter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ParameterMetadata(typing_extensions.TypedDict, total=False):
     customMetadata: dict[str, typing.Any]
+    defaultValue: str
+    enumOptions: _list[ParameterMetadataEnumOption]
     groupName: str
     helpText: str
     isOptional: bool
@@ -719,10 +738,24 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "PUBSUB_SUBSCRIPTION",
         "BIGQUERY_TABLE",
         "JAVASCRIPT_UDF_FILE",
+        "SERVICE_ACCOUNT",
+        "MACHINE_TYPE",
+        "KMS_KEY_NAME",
+        "WORKER_REGION",
+        "WORKER_ZONE",
+        "BOOLEAN",
+        "ENUM",
+        "NUMBER",
     ]
     parentName: str
     parentTriggerValues: _list[str]
     regexes: _list[str]
+
+@typing.type_check_only
+class ParameterMetadataEnumOption(typing_extensions.TypedDict, total=False):
+    description: str
+    label: str
+    value: str
 
 @typing.type_check_only
 class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
@@ -767,6 +800,7 @@ class PubSubIODetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PubsubLocation(typing_extensions.TypedDict, total=False):
     dropLateData: bool
+    dynamicDestinations: bool
     idLabel: str
     subscription: str
     timestampLabel: str
@@ -816,6 +850,7 @@ class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
     additionalExperiments: _list[str]
     additionalUserLabels: dict[str, typing.Any]
     bypassTempDirValidation: bool
+    diskSizeGb: int
     enableStreamingEngine: bool
     ipConfiguration: typing_extensions.Literal[
         "WORKER_IP_UNSPECIFIED", "WORKER_IP_PUBLIC", "WORKER_IP_PRIVATE"
@@ -838,9 +873,24 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
     sdkInfo: SDKInfo
 
 @typing.type_check_only
+class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
+    maxNumWorkers: int
+    minNumWorkers: int
+
+@typing.type_check_only
 class SDKInfo(typing_extensions.TypedDict, total=False):
     language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON", "GO"]
     version: str
+
+@typing.type_check_only
+class SdkBug(typing_extensions.TypedDict, total=False):
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "NOTICE", "WARNING", "SEVERE"
+    ]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GENERAL", "PERFORMANCE", "DATALOSS"
+    ]
+    uri: str
 
 @typing.type_check_only
 class SdkHarnessContainerImage(typing_extensions.TypedDict, total=False):
@@ -851,6 +901,7 @@ class SdkHarnessContainerImage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SdkVersion(typing_extensions.TypedDict, total=False):
+    bugs: _list[SdkBug]
     sdkSupportStatus: typing_extensions.Literal[
         "UNKNOWN", "SUPPORTED", "STALE", "DEPRECATED", "UNSUPPORTED"
     ]
@@ -1318,6 +1369,7 @@ class WorkerLifecycleEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkerMessage(typing_extensions.TypedDict, total=False):
+    dataSamplingReport: DataSamplingReport
     labels: dict[str, typing.Any]
     time: str
     workerHealthReport: WorkerHealthReport

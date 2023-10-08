@@ -20,6 +20,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     customerDomainPrefix: str
     displayName: str
     instanceConfig: InstanceConfig
+    kmsKey: str
     labels: dict[str, typing.Any]
     name: str
     samlParams: SAMLParams
@@ -31,6 +32,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
         "STATE_FAILED",
         "STATE_TERMINATING_FAILED",
         "STATE_TERMINATED",
+        "STATE_IN_GRACE_PERIOD",
     ]
     updateTime: str
     uris: URIs
@@ -40,9 +42,20 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
 class ContactCenterQuota(typing_extensions.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
+    quotas: _list[Quota]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class InstanceConfig(typing_extensions.TypedDict, total=False):
@@ -54,6 +67,7 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
         "STANDARD_XLARGE",
         "STANDARD_2XLARGE",
         "STANDARD_3XLARGE",
+        "DEV_XSMALL",
     ]
 
 @typing.type_check_only
@@ -100,8 +114,24 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Quota(typing_extensions.TypedDict, total=False):
+    contactCenterCountLimit: int
+    contactCenterCountSum: int
+    contactCenterInstanceSize: typing_extensions.Literal[
+        "INSTANCE_SIZE_UNSPECIFIED",
+        "STANDARD_SMALL",
+        "STANDARD_MEDIUM",
+        "STANDARD_LARGE",
+        "STANDARD_XLARGE",
+        "STANDARD_2XLARGE",
+        "STANDARD_3XLARGE",
+        "DEV_XSMALL",
+    ]
+
+@typing.type_check_only
 class SAMLParams(typing_extensions.TypedDict, total=False):
     certificate: str
+    emailMapping: str
     entityId: str
     ssoUri: str
     userEmail: str

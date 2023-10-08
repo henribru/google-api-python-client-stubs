@@ -20,6 +20,41 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
         ) -> GoogleFirebaseAppcheckV1betaPublicJwkSetHttpRequest: ...
 
     @typing.type_check_only
+    class OauthClientsResource(googleapiclient.discovery.Resource):
+        def exchangeAppAttestAssertion(
+            self,
+            *,
+            app: str,
+            body: GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
+        def exchangeAppAttestAttestation(
+            self,
+            *,
+            app: str,
+            body: GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest = ...,
+            **kwargs: typing.Any
+        ) -> (
+            GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponseHttpRequest
+        ): ...
+        def exchangeDebugToken(
+            self,
+            *,
+            app: str,
+            body: GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest: ...
+        def generateAppAttestChallenge(
+            self,
+            *,
+            app: str,
+            body: GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest = ...,
+            **kwargs: typing.Any
+        ) -> (
+            GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest
+        ): ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
@@ -343,6 +378,13 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaServiceHttpRequest: ...
 
+        def verifyAppCheckToken(
+            self,
+            *,
+            project: str,
+            body: GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponseHttpRequest: ...
         def apps(self) -> AppsResource: ...
         def services(self) -> ServicesResource: ...
 
@@ -359,6 +401,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def jwks(self) -> JwksResource: ...
+    def oauthClients(self) -> OauthClientsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -598,6 +641,16 @@ class GoogleFirebaseAppcheckV1betaServiceHttpRequest(googleapiclient.http.HttpRe
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirebaseAppcheckV1betaService: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

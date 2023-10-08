@@ -5,6 +5,14 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddEnableRulesMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AddEnableRulesResponse(typing_extensions.TypedDict, total=False):
+    addedValues: _list[str]
+    parent: str
+
+@typing.type_check_only
 class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
     container: str
     dimensions: dict[str, typing.Any]
@@ -166,6 +174,7 @@ class ContextRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Control(typing_extensions.TypedDict, total=False):
     environment: str
+    methodPolicies: _list[MethodPolicy]
 
 @typing.type_check_only
 class CppSettings(typing_extensions.TypedDict, total=False):
@@ -205,6 +214,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
     overview: str
     pages: _list[Page]
     rules: _list[DocumentationRule]
+    sectionOverrides: _list[Page]
     serviceRootUrl: str
     summary: str
 
@@ -212,6 +222,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
 class DocumentationRule(typing_extensions.TypedDict, total=False):
     deprecationDescription: str
     description: str
+    disableReplacementWords: str
     selector: str
 
 @typing.type_check_only
@@ -308,6 +319,12 @@ class Field(typing_extensions.TypedDict, total=False):
     options: _list[Option]
     packed: bool
     typeUrl: str
+
+@typing.type_check_only
+class FieldPolicy(typing_extensions.TypedDict, total=False):
+    resourcePermission: str
+    resourceType: str
+    selector: str
 
 @typing.type_check_only
 class GetServiceIdentityMetadata(typing_extensions.TypedDict, total=False): ...
@@ -524,6 +541,11 @@ class Method(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class MethodPolicy(typing_extensions.TypedDict, total=False):
+    requestPolicies: _list[FieldPolicy]
+    selector: str
+
+@typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
     longRunning: LongRunning
     selector: str
@@ -654,6 +676,15 @@ class PhpSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
+class ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):
+    container: str
+    dimensions: dict[str, typing.Any]
+    metric: str
+    name: str
+    policyValue: str
+    unit: str
+
+@typing.type_check_only
 class Publishing(typing_extensions.TypedDict, total=False):
     apiShortName: str
     codeownerGithubTeams: _list[str]
@@ -670,6 +701,8 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "PHOTOS",
         "STREET_VIEW",
         "SHOPPING",
+        "GEO",
+        "GENERATIVE_AI",
     ]
     protoReferenceDocumentationUri: str
 
@@ -690,6 +723,7 @@ class QuotaBucket(typing_extensions.TypedDict, total=False):
     dimensions: dict[str, typing.Any]
     effectiveLimit: str
     producerOverride: QuotaOverride
+    producerQuotaPolicy: ProducerQuotaPolicy
 
 @typing.type_check_only
 class QuotaLimit(typing_extensions.TypedDict, total=False):
@@ -712,6 +746,14 @@ class QuotaOverride(typing_extensions.TypedDict, total=False):
     name: str
     overrideValue: str
     unit: str
+
+@typing.type_check_only
+class RemoveEnableRulesMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RemoveEnableRulesResponse(typing_extensions.TypedDict, total=False):
+    parent: str
+    removedValues: _list[str]
 
 @typing.type_check_only
 class RubySettings(typing_extensions.TypedDict, total=False):
@@ -787,7 +829,7 @@ class Type(typing_extensions.TypedDict, total=False):
 class UpdateAdminQuotaPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UpdateConsumerPolicyLROMetadata(typing_extensions.TypedDict, total=False): ...
+class UpdateConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):

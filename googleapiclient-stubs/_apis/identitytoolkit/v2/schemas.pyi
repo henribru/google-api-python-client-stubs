@@ -77,6 +77,7 @@ class GoogleCloudIdentitytoolkitAdminV2Config(typing_extensions.TypedDict, total
     multiTenant: GoogleCloudIdentitytoolkitAdminV2MultiTenantConfig
     name: str
     notification: GoogleCloudIdentitytoolkitAdminV2NotificationConfig
+    passwordPolicyConfig: GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig
     quota: GoogleCloudIdentitytoolkitAdminV2QuotaConfig
     recaptchaConfig: GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig
     signIn: GoogleCloudIdentitytoolkitAdminV2SignInConfig
@@ -84,6 +85,17 @@ class GoogleCloudIdentitytoolkitAdminV2Config(typing_extensions.TypedDict, total
     subtype: typing_extensions.Literal[
         "SUBTYPE_UNSPECIFIED", "IDENTITY_PLATFORM", "FIREBASE_AUTH"
     ]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions(
+    typing_extensions.TypedDict, total=False
+):
+    containsLowercaseCharacter: bool
+    containsNonAlphanumericCharacter: bool
+    containsNumericCharacter: bool
+    containsUppercaseCharacter: bool
+    maxPasswordLength: int
+    minPasswordLength: int
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdp(
@@ -306,6 +318,34 @@ class GoogleCloudIdentitytoolkitAdminV2OAuthResponseType(
     token: bool
 
 @typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2PasskeyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    expectedOrigins: _list[str]
+    name: str
+    rpId: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    forceUpgradeOnSignin: bool
+    lastUpdateTime: str
+    passwordPolicyEnforcementState: typing_extensions.Literal[
+        "PASSWORD_POLICY_ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "ENFORCE"
+    ]
+    passwordPolicyVersions: _list[
+        GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion
+    ]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2PasswordPolicyVersion(
+    typing_extensions.TypedDict, total=False
+):
+    customStrengthOptions: GoogleCloudIdentitytoolkitAdminV2CustomStrengthOptions
+    schemaVersion: int
+
+@typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2Permissions(
     typing_extensions.TypedDict, total=False
 ):
@@ -458,6 +498,7 @@ class GoogleCloudIdentitytoolkitAdminV2Tenant(typing_extensions.TypedDict, total
     mfaConfig: GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig
     monitoring: GoogleCloudIdentitytoolkitAdminV2MonitoringConfig
     name: str
+    passwordPolicyConfig: GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig
     recaptchaConfig: GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig
     smsRegionConfig: GoogleCloudIdentitytoolkitAdminV2SmsRegionConfig
     testPhoneNumbers: dict[str, typing.Any]
@@ -480,6 +521,17 @@ class GoogleCloudIdentitytoolkitV2AutoRetrievalInfo(
     typing_extensions.TypedDict, total=False
 ):
     appSignatureHash: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2CustomStrengthOptions(
+    typing_extensions.TypedDict, total=False
+):
+    containsLowercaseCharacter: bool
+    containsNonAlphanumericCharacter: bool
+    containsNumericCharacter: bool
+    containsUppercaseCharacter: bool
+    maxPasswordLength: int
+    minPasswordLength: int
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest(
@@ -552,6 +604,18 @@ class GoogleCloudIdentitytoolkitV2MfaTotpSignInRequestInfo(
     typing_extensions.TypedDict, total=False
 ):
     verificationCode: str
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV2PasswordPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    allowedNonAlphanumericCharacters: _list[str]
+    customStrengthOptions: GoogleCloudIdentitytoolkitV2CustomStrengthOptions
+    enforcementState: typing_extensions.Literal[
+        "ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "ENFORCE"
+    ]
+    forceUpgradeOnSignin: bool
+    schemaVersion: int
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2RecaptchaConfig(

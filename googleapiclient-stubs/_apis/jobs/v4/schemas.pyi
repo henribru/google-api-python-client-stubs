@@ -460,6 +460,7 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
         "SIMPLE",
         "ONE_PER_COMPANY",
         "TWO_PER_COMPANY",
+        "MAX_THREE_PER_COMPANY",
         "DIVERSIFY_BY_LOOSER_SIMILARITY",
     ]
     enableBroadening: bool

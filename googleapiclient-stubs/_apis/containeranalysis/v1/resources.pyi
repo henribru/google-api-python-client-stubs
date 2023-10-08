@@ -166,19 +166,8 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
-        @typing.type_check_only
-        class ResourcesResource(googleapiclient.discovery.Resource):
-            def generatePackagesSummary(
-                self,
-                *,
-                name: str,
-                body: GeneratePackagesSummaryRequest = ...,
-                **kwargs: typing.Any
-            ) -> PackagesSummaryResponseHttpRequest: ...
-
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
-        def resources(self) -> ResourcesResource: ...
 
     def new_batch_http_request(
         self,
@@ -257,14 +246,6 @@ class OccurrenceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Occurrence: ...
-
-@typing.type_check_only
-class PackagesSummaryResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> PackagesSummaryResponse: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):

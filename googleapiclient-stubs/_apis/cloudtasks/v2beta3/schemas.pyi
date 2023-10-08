@@ -122,6 +122,8 @@ class HttpTarget(typing_extensions.TypedDict, total=False):
         "PATCH",
         "OPTIONS",
     ]
+    oauthToken: OAuthToken
+    oidcToken: OidcToken
     uriOverride: UriOverride
 
 @typing.type_check_only

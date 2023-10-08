@@ -104,6 +104,7 @@ class GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest(
     artifact: str
     assertion: str
     challenge: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest(
@@ -112,6 +113,7 @@ class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest(
     attestationStatement: str
     challenge: str
     keyId: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse(
@@ -126,29 +128,34 @@ class GoogleFirebaseAppcheckV1betaExchangeCustomTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     customToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     debugToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     deviceToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangePlayIntegrityTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     playIntegrityToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     recaptchaEnterpriseToken: str
 
 @typing.type_check_only
@@ -161,6 +168,7 @@ class GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest(
 class GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     recaptchaV3Token: str
 
 @typing.type_check_only
@@ -265,7 +273,9 @@ class GoogleFirebaseAppcheckV1betaSafetyNetConfig(
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaService(typing_extensions.TypedDict, total=False):
     enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+    etag: str
     name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaUpdateServiceRequest(
@@ -273,6 +283,18 @@ class GoogleFirebaseAppcheckV1betaUpdateServiceRequest(
 ):
     service: GoogleFirebaseAppcheckV1betaService
     updateMask: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenRequest(
+    typing_extensions.TypedDict, total=False
+):
+    appCheckToken: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    alreadyConsumed: bool
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

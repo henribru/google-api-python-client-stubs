@@ -253,9 +253,25 @@ class GoogleCloudDataplexV1DataAttributeBindingPath(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
+    postScanActionsResult: GoogleCloudDataplexV1DataProfileResultPostScanActionsResult
     profile: GoogleCloudDataplexV1DataProfileResultProfile
     rowCount: str
     scannedData: GoogleCloudDataplexV1ScannedData
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultPostScanActionsResult(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryExportResult: GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult(
+    typing_extensions.TypedDict, total=False
+):
+    message: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResultProfile(
@@ -318,32 +334,79 @@ class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue(
     typing_extensions.TypedDict, total=False
 ):
     count: str
+    ratio: float
     value: str
 
 @typing.type_check_only
-class GoogleCloudDataplexV1DataProfileSpec(
+class GoogleCloudDataplexV1DataProfileSpec(typing_extensions.TypedDict, total=False):
+    excludeFields: GoogleCloudDataplexV1DataProfileSpecSelectedFields
+    includeFields: GoogleCloudDataplexV1DataProfileSpecSelectedFields
+    postScanActions: GoogleCloudDataplexV1DataProfileSpecPostScanActions
+    rowFilter: str
+    samplingPercent: float
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileSpecPostScanActions(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    bigqueryExport: GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport(
+    typing_extensions.TypedDict, total=False
+):
+    resultsTable: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataProfileSpecSelectedFields(
+    typing_extensions.TypedDict, total=False
+):
+    fieldNames: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityDimension(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityDimensionResult(
     typing_extensions.TypedDict, total=False
 ):
+    dimension: GoogleCloudDataplexV1DataQualityDimension
     passed: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=False):
     dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
     passed: bool
+    postScanActionsResult: GoogleCloudDataplexV1DataQualityResultPostScanActionsResult
     rowCount: str
     rules: _list[GoogleCloudDataplexV1DataQualityRuleResult]
     scannedData: GoogleCloudDataplexV1ScannedData
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataQualityResultPostScanActionsResult(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryExportResult: GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult(
+    typing_extensions.TypedDict, total=False
+):
+    message: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=False):
     column: str
+    description: str
     dimension: str
     ignoreNull: bool
+    name: str
     nonNullExpectation: GoogleCloudDataplexV1DataQualityRuleNonNullExpectation
     rangeExpectation: GoogleCloudDataplexV1DataQualityRuleRangeExpectation
     regexExpectation: GoogleCloudDataplexV1DataQualityRuleRegexExpectation
@@ -420,8 +483,52 @@ class GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataQualityScanRuleResult(
+    typing_extensions.TypedDict, total=False
+):
+    column: str
+    dataSource: str
+    evaluatedRowCount: str
+    evalutionType: typing_extensions.Literal[
+        "EVALUATION_TYPE_UNSPECIFIED", "PER_ROW", "AGGREGATE"
+    ]
+    jobId: str
+    nullRowCount: str
+    passedRowCount: str
+    result: typing_extensions.Literal["RESULT_UNSPECIFIED", "PASSED", "FAILED"]
+    ruleDimension: str
+    ruleName: str
+    ruleType: typing_extensions.Literal[
+        "RULE_TYPE_UNSPECIFIED",
+        "NON_NULL_EXPECTATION",
+        "RANGE_EXPECTATION",
+        "REGEX_EXPECTATION",
+        "ROW_CONDITION_EXPECTATION",
+        "SET_EXPECTATION",
+        "STATISTIC_RANGE_EXPECTATION",
+        "TABLE_CONDITION_EXPECTATION",
+        "UNIQUENESS_EXPECTATION",
+    ]
+    thresholdPercent: float
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpec(typing_extensions.TypedDict, total=False):
+    postScanActions: GoogleCloudDataplexV1DataQualitySpecPostScanActions
+    rowFilter: str
     rules: _list[GoogleCloudDataplexV1DataQualityRule]
+    samplingPercent: float
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActions(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryExport: GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport(
+    typing_extensions.TypedDict, total=False
+):
+    resultsTable: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
@@ -448,22 +555,34 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=False):
+    createTime: str
     dataProfile: GoogleCloudDataplexV1DataScanEventDataProfileResult
+    dataProfileConfigs: GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs
     dataQuality: GoogleCloudDataplexV1DataScanEventDataQualityResult
+    dataQualityConfigs: GoogleCloudDataplexV1DataScanEventDataQualityAppliedConfigs
     dataSource: str
     endTime: str
     jobId: str
     message: str
+    postScanActionsResult: GoogleCloudDataplexV1DataScanEventPostScanActionsResult
     scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "FULL", "INCREMENTAL"]
     specVersion: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELLED"
+        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELLED", "CREATED"
     ]
     trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "ON_DEMAND", "SCHEDULE"]
     type: typing_extensions.Literal[
         "SCAN_TYPE_UNSPECIFIED", "DATA_PROFILE", "DATA_QUALITY"
     ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs(
+    typing_extensions.TypedDict, total=False
+):
+    columnFilterApplied: bool
+    rowFilterApplied: bool
+    samplingPercent: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanEventDataProfileResult(
@@ -472,12 +591,34 @@ class GoogleCloudDataplexV1DataScanEventDataProfileResult(
     rowCount: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventDataQualityAppliedConfigs(
+    typing_extensions.TypedDict, total=False
+):
+    rowFilterApplied: bool
+    samplingPercent: float
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataScanEventDataQualityResult(
     typing_extensions.TypedDict, total=False
 ):
     dimensionPassed: dict[str, typing.Any]
     passed: bool
     rowCount: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventPostScanActionsResult(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryExportResult: GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult(
+    typing_extensions.TypedDict, total=False
+):
+    message: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanExecutionSpec(
@@ -525,6 +666,7 @@ class GoogleCloudDataplexV1DataSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDataplexV1DataTaxonomy(typing_extensions.TypedDict, total=False):
     attributeCount: int
+    classCount: int
     createTime: str
     description: str
     displayName: str
@@ -685,6 +827,8 @@ class GoogleCloudDataplexV1EnvironmentSessionStatus(
 @typing.type_check_only
 class GoogleCloudDataplexV1Job(typing_extensions.TypedDict, total=False):
     endTime: str
+    executionSpec: GoogleCloudDataplexV1TaskExecutionSpec
+    labels: dict[str, typing.Any]
     message: str
     name: str
     retryCount: int
@@ -700,11 +844,17 @@ class GoogleCloudDataplexV1Job(typing_extensions.TypedDict, total=False):
         "FAILED",
         "ABORTED",
     ]
+    trigger: typing_extensions.Literal[
+        "TRIGGER_UNSPECIFIED", "TASK_CONFIG", "RUN_REQUEST"
+    ]
     uid: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1JobEvent(typing_extensions.TypedDict, total=False):
     endTime: str
+    executionTrigger: typing_extensions.Literal[
+        "EXECUTION_TRIGGER_UNSPECIFIED", "TASK_CONFIG", "RUN_REQUEST"
+    ]
     jobId: str
     message: str
     retries: int
@@ -891,7 +1041,9 @@ class GoogleCloudDataplexV1RunDataScanResponse(
     job: GoogleCloudDataplexV1DataScanJob
 
 @typing.type_check_only
-class GoogleCloudDataplexV1RunTaskRequest(typing_extensions.TypedDict, total=False): ...
+class GoogleCloudDataplexV1RunTaskRequest(typing_extensions.TypedDict, total=False):
+    args: dict[str, typing.Any]
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1RunTaskResponse(typing_extensions.TypedDict, total=False):

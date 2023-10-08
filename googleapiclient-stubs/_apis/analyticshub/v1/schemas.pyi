@@ -35,11 +35,18 @@ class DataExchange(typing_extensions.TypedDict, total=False):
     listingCount: int
     name: str
     primaryContact: str
+    sharingEnvironmentConfig: SharingEnvironmentConfig
 
 @typing.type_check_only
 class DataProvider(typing_extensions.TypedDict, total=False):
     name: str
     primaryContact: str
+
+@typing.type_check_only
+class DcrExchangeConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DefaultExchangeConfig(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DestinationDataset(typing_extensions.TypedDict, total=False):
@@ -73,6 +80,10 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class LinkedResource(typing_extensions.TypedDict, total=False):
+    linkedDataset: str
+
+@typing.type_check_only
 class ListDataExchangesResponse(typing_extensions.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
@@ -86,6 +97,16 @@ class ListListingsResponse(typing_extensions.TypedDict, total=False):
 class ListOrgDataExchangesResponse(typing_extensions.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
+
+@typing.type_check_only
+class ListSharedResourceSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sharedResourceSubscriptions: _list[Subscription]
+
+@typing.type_check_only
+class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    subscriptions: _list[Subscription]
 
 @typing.type_check_only
 class Listing(typing_extensions.TypedDict, total=False):
@@ -102,6 +123,14 @@ class Listing(typing_extensions.TypedDict, total=False):
     requestAccess: str
     restrictedExportConfig: RestrictedExportConfig
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -126,9 +155,23 @@ class Publisher(typing_extensions.TypedDict, total=False):
     primaryContact: str
 
 @typing.type_check_only
+class RefreshSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RefreshSubscriptionResponse(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+
+@typing.type_check_only
 class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+    restrictDirectTableAccess: bool
     restrictQueryResult: bool
+
+@typing.type_check_only
+class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -136,11 +179,48 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SharingEnvironmentConfig(typing_extensions.TypedDict, total=False):
+    dcrExchangeConfig: DcrExchangeConfig
+    defaultExchangeConfig: DefaultExchangeConfig
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
+class SubscribeDataExchangeRequest(typing_extensions.TypedDict, total=False):
+    destination: str
+    subscriberContact: str
+    subscription: str
+
+@typing.type_check_only
+class SubscribeDataExchangeResponse(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+
+@typing.type_check_only
 class SubscribeListingRequest(typing_extensions.TypedDict, total=False):
     destinationDataset: DestinationDataset
 
 @typing.type_check_only
-class SubscribeListingResponse(typing_extensions.TypedDict, total=False): ...
+class SubscribeListingResponse(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    dataExchange: str
+    lastModifyTime: str
+    linkedDatasetMap: dict[str, typing.Any]
+    listing: str
+    name: str
+    organizationDisplayName: str
+    organizationId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_STALE", "STATE_INACTIVE"
+    ]
+    subscriberContact: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

@@ -252,10 +252,19 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Stream = ...,
+                    cdcStrategy_specificStartPosition_mysqlLogPosition_logFile: str = ...,
+                    cdcStrategy_specificStartPosition_mysqlLogPosition_logPosition: int = ...,
                     force: bool = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def run(
+                    self,
+                    *,
+                    name: str,
+                    body: RunStreamRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def objects(self) -> ObjectsResource: ...

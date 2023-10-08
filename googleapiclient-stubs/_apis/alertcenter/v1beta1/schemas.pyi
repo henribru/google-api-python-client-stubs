@@ -5,6 +5,26 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AbuseDetected(typing_extensions.TypedDict, total=False):
+    additionalDetails: EntityList
+    product: str
+    subAlertId: str
+    variationType: typing_extensions.Literal[
+        "ABUSE_DETECTED_VARIATION_TYPE_UNSPECIFIED",
+        "DRIVE_ABUSIVE_CONTENT",
+        "LIMITED_DISABLE",
+    ]
+
+@typing.type_check_only
+class AccessApproval(typing_extensions.TypedDict, total=False):
+    justificationReason: _list[str]
+    officeLocation: str
+    products: _list[str]
+    requestId: str
+    scope: str
+    tickets: _list[SupportTicket]
+
+@typing.type_check_only
 class AccountSuspensionDetails(typing_extensions.TypedDict, total=False):
     abuseReason: typing_extensions.Literal[
         "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
@@ -205,6 +225,18 @@ class DomainWideTakeoutInitiated(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Entity(typing_extensions.TypedDict, total=False):
+    link: str
+    name: str
+    values: _list[str]
+
+@typing.type_check_only
+class EntityList(typing_extensions.TypedDict, total=False):
+    entities: _list[Entity]
+    headers: _list[str]
+    name: str
+
+@typing.type_check_only
 class GmailMessageInfo(typing_extensions.TypedDict, total=False):
     attachmentsSha256Hash: _list[str]
     date: str
@@ -366,6 +398,11 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SuperAdminPasswordResetEvent(typing_extensions.TypedDict, total=False):
     userEmail: str
+
+@typing.type_check_only
+class SupportTicket(typing_extensions.TypedDict, total=False):
+    ticketId: str
+    ticketUrl: str
 
 @typing.type_check_only
 class SuspiciousActivity(typing_extensions.TypedDict, total=False):

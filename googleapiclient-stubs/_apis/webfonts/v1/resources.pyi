@@ -18,9 +18,17 @@ class WebfontsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
+            capability: typing_extensions.Literal[
+                "CAPABILITY_UNSPECIFIED", "WOFF2", "VF"
+            ]
+            | _list[
+                typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF"]
+            ] = ...,
+            family: str | _list[str] = ...,
             sort: typing_extensions.Literal[
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"
             ] = ...,
+            subset: str = ...,
             **kwargs: typing.Any
         ) -> WebfontListHttpRequest: ...
 

@@ -45,6 +45,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     theme: str
     title: str
     videoLink: _list[str]
+    virtualModelLink: str
 
 @typing.type_check_only
 class Capacity(typing_extensions.TypedDict, total=False):
@@ -54,6 +55,7 @@ class Capacity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Certification(typing_extensions.TypedDict, total=False):
     authority: str
+    code: str
     link: str
     logo: str
     name: str

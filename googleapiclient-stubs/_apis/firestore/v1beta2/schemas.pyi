@@ -8,6 +8,41 @@ _list = list
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1CreateDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
+    completedWork: str
+    estimatedWork: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backup: str
+    database: str
+    endTime: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressPercentage: GoogleFirestoreAdminV1Progress
+    startTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...

@@ -59,6 +59,7 @@ class GoogleCloudKmsV1CryptoKey(typing_extensions.TypedDict, total=False):
         "ENCRYPT_DECRYPT",
         "ASYMMETRIC_SIGN",
         "ASYMMETRIC_DECRYPT",
+        "RAW_ENCRYPT_DECRYPT",
         "MAC",
     ]
     rotationPeriod: str
@@ -69,6 +70,12 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",
@@ -134,6 +141,12 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
     algorithm: typing_extensions.Literal[
         "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
         "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
         "RSA_SIGN_PSS_2048_SHA256",
         "RSA_SIGN_PSS_3072_SHA256",
         "RSA_SIGN_PSS_4096_SHA256",

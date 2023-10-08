@@ -28,7 +28,7 @@ class Certificate(typing_extensions.TypedDict, total=False):
     name: str
     pemCertificate: str
     sanDnsnames: _list[str]
-    scope: typing_extensions.Literal["DEFAULT", "EDGE_CACHE"]
+    scope: typing_extensions.Literal["DEFAULT", "EDGE_CACHE", "ALL_REGIONS"]
     selfManaged: SelfManagedCertificate
     updateTime: str
 

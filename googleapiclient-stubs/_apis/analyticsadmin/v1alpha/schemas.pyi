@@ -196,6 +196,11 @@ class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAdSenseLink(typing_extensions.TypedDict, total=False):
+    adClientCode: str
+    name: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -230,6 +235,12 @@ class GoogleAnalyticsAdminV1alphaAttributionSettings(
         "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_7_DAYS",
         "ACQUISITION_CONVERSION_EVENT_LOOKBACK_WINDOW_30_DAYS",
     ]
+    adsWebConversionDataExportScope: typing_extensions.Literal[
+        "ADS_WEB_CONVERSION_DATA_EXPORT_SCOPE_UNSPECIFIED",
+        "NOT_SELECTED_YET",
+        "PAID_AND_ORGANIC_CHANNELS",
+        "GOOGLE_PAID_CHANNELS",
+    ]
     name: str
     otherConversionEventLookbackWindow: typing_extensions.Literal[
         "OTHER_CONVERSION_EVENT_LOOKBACK_WINDOW_UNSPECIFIED",
@@ -239,13 +250,13 @@ class GoogleAnalyticsAdminV1alphaAttributionSettings(
     ]
     reportingAttributionModel: typing_extensions.Literal[
         "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
-        "CROSS_CHANNEL_DATA_DRIVEN",
-        "CROSS_CHANNEL_LAST_CLICK",
-        "CROSS_CHANNEL_FIRST_CLICK",
-        "CROSS_CHANNEL_LINEAR",
-        "CROSS_CHANNEL_POSITION_BASED",
-        "CROSS_CHANNEL_TIME_DECAY",
-        "ADS_PREFERRED_LAST_CLICK",
+        "PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN",
+        "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK",
+        "PAID_AND_ORGANIC_CHANNELS_FIRST_CLICK",
+        "PAID_AND_ORGANIC_CHANNELS_LINEAR",
+        "PAID_AND_ORGANIC_CHANNELS_POSITION_BASED",
+        "PAID_AND_ORGANIC_CHANNELS_TIME_DECAY",
+        "GOOGLE_PAID_CHANNELS_LAST_CLICK",
     ]
 
 @typing.type_check_only
@@ -505,8 +516,8 @@ class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total
     dailyExportEnabled: bool
     excludedEvents: _list[str]
     exportStreams: _list[str]
+    freshDailyExportEnabled: bool
     includeAdvertisingId: bool
-    intradayExportEnabled: bool
     name: str
     project: str
     streamingExportEnabled: bool
@@ -532,17 +543,21 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     typing_extensions.TypedDict, total=False
 ):
     account: GoogleAnalyticsAdminV1alphaAccount
+    adsenseLink: GoogleAnalyticsAdminV1alphaAdSenseLink
     attributionSettings: GoogleAnalyticsAdminV1alphaAttributionSettings
+    audience: GoogleAnalyticsAdminV1alphaAudience
     bigqueryLink: GoogleAnalyticsAdminV1alphaBigQueryLink
     channelGroup: GoogleAnalyticsAdminV1alphaChannelGroup
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
     customMetric: GoogleAnalyticsAdminV1alphaCustomMetric
+    dataRedactionSettings: GoogleAnalyticsAdminV1alphaDataRedactionSettings
     dataRetentionSettings: GoogleAnalyticsAdminV1alphaDataRetentionSettings
     dataStream: GoogleAnalyticsAdminV1alphaDataStream
     displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
     displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
     enhancedMeasurementSettings: GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
+    eventCreateRule: GoogleAnalyticsAdminV1alphaEventCreateRule
     expandedDataSet: GoogleAnalyticsAdminV1alphaExpandedDataSet
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
@@ -550,6 +565,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     measurementProtocolSecret: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     property: GoogleAnalyticsAdminV1alphaProperty
     searchAds360Link: GoogleAnalyticsAdminV1alphaSearchAds360Link
+    skadnetworkConversionValueSchema: GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
@@ -627,11 +643,29 @@ class GoogleAnalyticsAdminV1alphaConnectedSiteTag(
 class GoogleAnalyticsAdminV1alphaConversionEvent(
     typing_extensions.TypedDict, total=False
 ):
+    countingMethod: typing_extensions.Literal[
+        "CONVERSION_COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
+    ]
     createTime: str
     custom: bool
     deletable: bool
     eventName: str
     name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaConversionValues(
+    typing_extensions.TypedDict, total=False
+):
+    coarseValue: typing_extensions.Literal[
+        "COARSE_VALUE_UNSPECIFIED",
+        "COARSE_VALUE_LOW",
+        "COARSE_VALUE_MEDIUM",
+        "COARSE_VALUE_HIGH",
+    ]
+    displayName: str
+    eventMappings: _list[GoogleAnalyticsAdminV1alphaEventMapping]
+    fineValue: int
+    lockEnabled: bool
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateAccessBindingRequest(
@@ -651,6 +685,37 @@ class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest(
 class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    rollupProperty: GoogleAnalyticsAdminV1alphaProperty
+    sourceProperties: _list[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    rollupProperty: GoogleAnalyticsAdminV1alphaProperty
+    rollupPropertySourceLinks: _list[
+        GoogleAnalyticsAdminV1alphaRollupPropertySourceLink
+    ]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    parent: str
+    subproperty: GoogleAnalyticsAdminV1alphaProperty
+    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    subproperty: GoogleAnalyticsAdminV1alphaProperty
+    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
@@ -694,6 +759,15 @@ class GoogleAnalyticsAdminV1alphaCustomMetric(typing_extensions.TypedDict, total
     parameterName: str
     restrictedMetricType: _list[str]
     scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataRedactionSettings(
+    typing_extensions.TypedDict, total=False
+):
+    emailRedactionEnabled: bool
+    name: str
+    queryParameterKeys: _list[str]
+    queryParameterRedactionEnabled: bool
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDataRetentionSettings(
@@ -817,6 +891,24 @@ class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings(
     streamEnabled: bool
     uriQueryParameter: str
     videoEngagementEnabled: bool
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEventCreateRule(
+    typing_extensions.TypedDict, total=False
+):
+    destinationEvent: str
+    eventConditions: _list[GoogleAnalyticsAdminV1alphaMatchingCondition]
+    name: str
+    parameterMutations: _list[GoogleAnalyticsAdminV1alphaParameterMutation]
+    sourceCopyParameters: bool
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEventMapping(typing_extensions.TypedDict, total=False):
+    eventName: str
+    maxEventCount: str
+    maxEventValue: float
+    minEventCount: str
+    minEventValue: float
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaExpandedDataSet(
@@ -973,6 +1065,13 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    adsenseLinks: _list[GoogleAnalyticsAdminV1alphaAdSenseLink]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAudiencesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1052,6 +1151,13 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    eventCreateRules: _list[GoogleAnalyticsAdminV1alphaEventCreateRule]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1089,6 +1195,24 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponse(
     properties: _list[GoogleAnalyticsAdminV1alphaProperty]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rollupPropertySourceLinks: _list[
+        GoogleAnalyticsAdminV1alphaRollupPropertySourceLink
+    ]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    skadnetworkConversionValueSchemas: _list[
+        GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
+    ]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1096,11 +1220,43 @@ class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse(
     searchAds360Links: _list[GoogleAnalyticsAdminV1alphaSearchAds360Link]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    subpropertyEventFilters: _list[GoogleAnalyticsAdminV1alphaSubpropertyEventFilter]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListUserLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
     userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaMatchingCondition(
+    typing_extensions.TypedDict, total=False
+):
+    comparisonType: typing_extensions.Literal[
+        "COMPARISON_TYPE_UNSPECIFIED",
+        "EQUALS",
+        "EQUALS_CASE_INSENSITIVE",
+        "CONTAINS",
+        "CONTAINS_CASE_INSENSITIVE",
+        "STARTS_WITH",
+        "STARTS_WITH_CASE_INSENSITIVE",
+        "ENDS_WITH",
+        "ENDS_WITH_CASE_INSENSITIVE",
+        "GREATER_THAN",
+        "GREATER_THAN_OR_EQUAL",
+        "LESS_THAN",
+        "LESS_THAN_OR_EQUAL",
+        "REGULAR_EXPRESSION",
+        "REGULAR_EXPRESSION_CASE_INSENSITIVE",
+    ]
+    field: str
+    negated: bool
+    value: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
@@ -1114,6 +1270,20 @@ class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret(
 class GoogleAnalyticsAdminV1alphaNumericValue(typing_extensions.TypedDict, total=False):
     doubleValue: float
     int64Value: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaParameterMutation(
+    typing_extensions.TypedDict, total=False
+):
+    parameter: str
+    parameterValue: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaPostbackWindow(
+    typing_extensions.TypedDict, total=False
+):
+    conversionValues: _list[GoogleAnalyticsAdminV1alphaConversionValues]
+    postbackWindowSettingsEnabled: bool
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaProperty(typing_extensions.TypedDict, total=False):
@@ -1194,6 +1364,13 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse(
     accountTicketId: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaRollupPropertySourceLink(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    sourceProperty: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRunAccessReportRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1217,6 +1394,16 @@ class GoogleAnalyticsAdminV1alphaRunAccessReportResponse(
     quota: GoogleAnalyticsAdminV1alphaAccessQuota
     rowCount: int
     rows: _list[GoogleAnalyticsAdminV1alphaAccessRow]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema(
+    typing_extensions.TypedDict, total=False
+):
+    applyConversionValues: bool
+    name: str
+    postbackWindowOne: GoogleAnalyticsAdminV1alphaPostbackWindow
+    postbackWindowThree: GoogleAnalyticsAdminV1alphaPostbackWindow
+    postbackWindowTwo: GoogleAnalyticsAdminV1alphaPostbackWindow
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSearchAds360Link(
@@ -1261,6 +1448,63 @@ class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest(
 class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilter(
+    typing_extensions.TypedDict, total=False
+):
+    applyToProperty: str
+    filterClauses: _list[GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause]
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterClause(
+    typing_extensions.TypedDict, total=False
+):
+    filterClauseType: typing_extensions.Literal[
+        "FILTER_CLAUSE_TYPE_UNSPECIFIED", "INCLUDE", "EXCLUDE"
+    ]
+    filterExpression: GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition(
+    typing_extensions.TypedDict, total=False
+):
+    fieldName: str
+    nullFilter: bool
+    stringFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterConditionStringFilter(
+    typing_extensions.TypedDict, total=False
+):
+    caseSensitive: bool
+    matchType: typing_extensions.Literal[
+        "MATCH_TYPE_UNSPECIFIED",
+        "EXACT",
+        "BEGINS_WITH",
+        "ENDS_WITH",
+        "CONTAINS",
+        "FULL_REGEXP",
+        "PARTIAL_REGEXP",
+    ]
+    value: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression(
+    typing_extensions.TypedDict, total=False
+):
+    filterCondition: GoogleAnalyticsAdminV1alphaSubpropertyEventFilterCondition
+    notExpression: GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression
+    orGroup: GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList(
+    typing_extensions.TypedDict, total=False
+):
+    filterExpressions: _list[
+        GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpression
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(

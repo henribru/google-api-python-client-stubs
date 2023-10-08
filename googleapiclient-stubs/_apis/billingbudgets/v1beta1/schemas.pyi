@@ -9,6 +9,7 @@ class GoogleCloudBillingBudgetsV1beta1AllUpdatesRule(
     typing_extensions.TypedDict, total=False
 ):
     disableDefaultIamRecipients: bool
+    enableProjectLevelRecipients: bool
     monitoringNotificationChannels: _list[str]
     pubsubTopic: str
     schemaVersion: str
@@ -58,6 +59,7 @@ class GoogleCloudBillingBudgetsV1beta1Filter(typing_extensions.TypedDict, total=
     customPeriod: GoogleCloudBillingBudgetsV1beta1CustomPeriod
     labels: dict[str, typing.Any]
     projects: _list[str]
+    resourceAncestors: _list[str]
     services: _list[str]
     subaccounts: _list[str]
 

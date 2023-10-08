@@ -59,6 +59,14 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AppleDeveloperId(
+    typing_extensions.TypedDict, total=False
+):
+    keyId: str
+    privateKey: str
+    teamId: str
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Assessment(
     typing_extensions.TypedDict, total=False
 ):
@@ -67,6 +75,7 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     event: GoogleCloudRecaptchaenterpriseV1Event
     firewallPolicyAssessment: GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment
     fraudPreventionAssessment: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment
+    fraudSignals: GoogleCloudRecaptchaenterpriseV1FraudSignals
     name: str
     privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
@@ -189,11 +198,32 @@ class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentV
     risk: float
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudSignals(
+    typing_extensions.TypedDict, total=False
+):
+    cardSignals: GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals
+    userSignals: GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals(
+    typing_extensions.TypedDict, total=False
+):
+    cardLabels: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals(
+    typing_extensions.TypedDict, total=False
+):
+    activeDaysLowerBound: int
+    syntheticRisk: float
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
     typing_extensions.TypedDict, total=False
 ):
     allowAllBundleIds: bool
     allowedBundleIds: _list[str]
+    appleDeveloperId: GoogleCloudRecaptchaenterpriseV1AppleDeveloperId
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=False):

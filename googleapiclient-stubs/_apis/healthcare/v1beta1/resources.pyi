@@ -680,8 +680,19 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             system: str = ...,
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def Consent_enforcement_status(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def Observation_lastn(
                             self, *, parent: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def Patient_consent_enforcement_status(
+                            self,
+                            *,
+                            name: str,
+                            x_count: int = ...,
+                            x_page_token: str = ...,
+                            **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def Patient_everything(
                             self,
@@ -804,6 +815,20 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
 
+                    def applyAdminConsents(
+                        self,
+                        *,
+                        name: str,
+                        body: ApplyAdminConsentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def applyConsents(
+                        self,
+                        *,
+                        name: str,
+                        body: ApplyConsentsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def configureSearch(
                         self,
                         *,

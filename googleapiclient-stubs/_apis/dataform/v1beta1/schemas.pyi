@@ -49,6 +49,24 @@ class CommitAuthor(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class CommitLogEntry(typing_extensions.TypedDict, total=False):
+    author: CommitAuthor
+    commitMessage: str
+    commitSha: str
+    commitTime: str
+
+@typing.type_check_only
+class CommitMetadata(typing_extensions.TypedDict, total=False):
+    author: CommitAuthor
+    commitMessage: str
+
+@typing.type_check_only
+class CommitRepositoryChangesRequest(typing_extensions.TypedDict, total=False):
+    commitMetadata: CommitMetadata
+    fileOperations: dict[str, typing.Any]
+    requiredHeadCommitSha: str
+
+@typing.type_check_only
 class CommitWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     commitMessage: str
@@ -83,8 +101,19 @@ class CompilationResultAction(typing_extensions.TypedDict, total=False):
     target: Target
 
 @typing.type_check_only
+class ComputeRepositoryAccessTokenStatusResponse(
+    typing_extensions.TypedDict, total=False
+):
+    tokenStatus: typing_extensions.Literal[
+        "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
+    ]
+
+@typing.type_check_only
 class Declaration(typing_extensions.TypedDict, total=False):
     relationDescriptor: RelationDescriptor
+
+@typing.type_check_only
+class DeleteFile(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DirectoryEntry(typing_extensions.TypedDict, total=False):
@@ -119,9 +148,20 @@ class FetchRemoteBranchesResponse(typing_extensions.TypedDict, total=False):
     branches: _list[str]
 
 @typing.type_check_only
+class FetchRepositoryHistoryResponse(typing_extensions.TypedDict, total=False):
+    commits: _list[CommitLogEntry]
+    nextPageToken: str
+
+@typing.type_check_only
+class FileOperation(typing_extensions.TypedDict, total=False):
+    deleteFile: DeleteFile
+    writeFile: WriteFile
+
+@typing.type_check_only
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
     authenticationTokenSecretVersion: str
     defaultBranch: str
+    sshAuthenticationConfig: SshAuthenticationConfig
     tokenStatus: typing_extensions.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
     ]
@@ -152,6 +192,7 @@ class InvocationConfig(typing_extensions.TypedDict, total=False):
     fullyRefreshIncrementalTablesEnabled: bool
     includedTags: _list[str]
     includedTargets: _list[Target]
+    serviceAccount: str
     transitiveDependenciesIncluded: bool
     transitiveDependentsIncluded: bool
 
@@ -272,6 +313,13 @@ class QueryDirectoryContentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class QueryRepositoryDirectoryContentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    directoryEntries: _list[DirectoryEntry]
+    nextPageToken: str
+
+@typing.type_check_only
 class QueryWorkflowInvocationActionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     workflowInvocationActions: _list[WorkflowInvocationAction]
@@ -279,6 +327,10 @@ class QueryWorkflowInvocationActionsResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class ReadFileResponse(typing_extensions.TypedDict, total=False):
     fileContents: str
+
+@typing.type_check_only
+class ReadRepositoryFileResponse(typing_extensions.TypedDict, total=False):
+    contents: str
 
 @typing.type_check_only
 class Relation(typing_extensions.TypedDict, total=False):
@@ -329,9 +381,13 @@ class RemoveFileRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
+    displayName: str
     gitRemoteSettings: GitRemoteSettings
+    labels: dict[str, typing.Any]
     name: str
     npmrcEnvironmentVariablesSecretVersion: str
+    serviceAccount: str
+    setAuthenticatedUserAdmin: bool
     workspaceCompilationOverrides: WorkspaceCompilationOverrides
 
 @typing.type_check_only
@@ -354,6 +410,11 @@ class ScheduledReleaseRecord(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class SshAuthenticationConfig(typing_extensions.TypedDict, total=False):
+    hostPublicKey: str
+    userPrivateKeySecretVersion: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -422,6 +483,10 @@ class WorkspaceCompilationOverrides(typing_extensions.TypedDict, total=False):
     defaultDatabase: str
     schemaSuffix: str
     tablePrefix: str
+
+@typing.type_check_only
+class WriteFile(typing_extensions.TypedDict, total=False):
+    contents: str
 
 @typing.type_check_only
 class WriteFileRequest(typing_extensions.TypedDict, total=False):

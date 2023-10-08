@@ -101,6 +101,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int = ...,
             pageToken: str = ...,
+            parent: str = ...,
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchCasesResponseHttpRequest: ...
@@ -115,6 +116,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(self, *, name: str, **kwargs: typing.Any) -> MediaHttpRequest: ...
+        def download_media(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def upload(
             self,
             *,
@@ -210,3 +214,11 @@ class SearchCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SearchCasesResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

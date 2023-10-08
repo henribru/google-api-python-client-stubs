@@ -195,6 +195,7 @@ class EnterpriseCrmEventbusProtoCloudKmsConfig(
     keyRingName: str
     keyVersionName: str
     locationName: str
+    serviceAccount: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoCloudSchedulerConfig(
@@ -1054,7 +1055,21 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
     descriptiveName: str
     docMarkdown: str
     externalCategory: typing_extensions.Literal[
-        "UNSPECIFIED_EXTERNAL_CATEGORY", "CORE", "CONNECTORS"
+        "UNSPECIFIED_EXTERNAL_CATEGORY",
+        "CORE",
+        "CONNECTORS",
+        "EXTERNAL_HTTP",
+        "EXTERNAL_INTEGRATION_SERVICES",
+        "EXTERNAL_CUSTOMER_ACTIONS",
+        "EXTERNAL_FLOW_CONTROL",
+        "EXTERNAL_WORKSPACE",
+        "EXTERNAL_SECURITY",
+        "EXTERNAL_DATABASES",
+        "EXTERNAL_ANALYTICS",
+        "EXTERNAL_BYOC",
+        "EXTERNAL_BYOT",
+        "EXTERNAL_ARTIFICIAL_INTELIGENCE",
+        "EXTERNAL_DATA_MANIPULATION",
     ]
     externalCategorySequence: int
     externalDocHtml: str
@@ -1567,6 +1582,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     startTasks: _list[EnterpriseCrmEventbusProtoNextTask]
     triggerCriteria: EnterpriseCrmEventbusProtoTriggerCriteria
     triggerId: str
+    triggerName: str
     triggerNumber: str
     triggerType: typing_extensions.Literal[
         "UNKNOWN",
@@ -1582,6 +1598,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
         "SFDC_CDC_CHANNEL",
         "SFDC_PLATFORM_EVENTS_CHANNEL",
         "CLOUD_SCHEDULER",
+        "INTEGRATION_CONNECTOR_TRIGGER",
     ]
 
 @typing.type_check_only
@@ -1611,6 +1628,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
         "JSON_VALUE",
     ]
     defaultValue: EnterpriseCrmFrontendsEventbusProtoParameterValueType
+    description: str
     inOutType: typing_extensions.Literal[
         "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
     ]
@@ -1665,6 +1683,7 @@ class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    authKey: str
     authType: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
@@ -1684,6 +1703,7 @@ class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
     typing_extensions.TypedDict, total=False
 ):
     authCode: str
+    authUri: str
     clientId: str
     clientSecret: GoogleCloudConnectorsV1Secret
     enablePkce: bool
@@ -1732,6 +1752,7 @@ class GoogleCloudConnectorsV1AuthConfigUserPassword(
 @typing.type_check_only
 class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=False):
     boolValue: bool
+    encryptionKeyValue: GoogleCloudConnectorsV1EncryptionKey
     intValue: str
     key: str
     secretValue: GoogleCloudConnectorsV1Secret
@@ -1741,12 +1762,25 @@ class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=F
 class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False):
     authConfig: GoogleCloudConnectorsV1AuthConfig
     configVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    connectionRevision: str
     connectorVersion: str
+    connectorVersionInfraConfig: GoogleCloudConnectorsV1ConnectorVersionInfraConfig
+    connectorVersionLaunchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+    ]
     createTime: str
     description: str
     destinationConfigs: _list[GoogleCloudConnectorsV1DestinationConfig]
     envoyImageLocation: str
+    eventingConfig: GoogleCloudConnectorsV1EventingConfig
+    eventingEnablementType: typing_extensions.Literal[
+        "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+        "EVENTING_AND_CONNECTION",
+        "ONLY_EVENTING",
+    ]
+    eventingRuntimeData: GoogleCloudConnectorsV1EventingRuntimeData
     imageLocation: str
+    isTrustedTester: bool
     labels: dict[str, typing.Any]
     lockConfig: GoogleCloudConnectorsV1LockConfig
     logConfig: GoogleCloudConnectorsV1LogConfig
@@ -1756,6 +1790,9 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     serviceDirectory: str
     sslConfig: GoogleCloudConnectorsV1SslConfig
     status: GoogleCloudConnectorsV1ConnectionStatus
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
+    ]
     suspended: bool
     updateTime: str
 
@@ -1775,6 +1812,18 @@ class GoogleCloudConnectorsV1ConnectionStatus(typing_extensions.TypedDict, total
     status: str
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(
+    typing_extensions.TypedDict, total=False
+):
+    connectionRatelimitWindowSeconds: str
+    hpaConfig: GoogleCloudConnectorsV1HPAConfig
+    internalclientRatelimitThreshold: str
+    ratelimitThreshold: str
+    resourceLimits: GoogleCloudConnectorsV1ResourceLimits
+    resourceRequests: GoogleCloudConnectorsV1ResourceRequests
+    sharedDeployment: str
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1Destination(typing_extensions.TypedDict, total=False):
     host: str
     port: int
@@ -1786,6 +1835,43 @@ class GoogleCloudConnectorsV1DestinationConfig(
 ):
     destinations: _list[GoogleCloudConnectorsV1Destination]
     key: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    authConfig: GoogleCloudConnectorsV1AuthConfig
+    encryptionKey: GoogleCloudConnectorsV1ConfigVariable
+    enrichmentEnabled: bool
+    eventsListenerIngressEndpoint: str
+    privateConnectivityEnabled: bool
+    registrationDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingRuntimeData(
+    typing_extensions.TypedDict, total=False
+):
+    eventsListenerEndpoint: str
+    eventsListenerPscSa: str
+    status: GoogleCloudConnectorsV1EventingStatus
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingStatus(typing_extensions.TypedDict, total=False):
+    description: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "INGRESS_ENDPOINT_REQUIRED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1HPAConfig(typing_extensions.TypedDict, total=False):
+    cpuUtilizationThreshold: str
+    memoryUtilizationThreshold: str
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1LockConfig(typing_extensions.TypedDict, total=False):
@@ -1800,6 +1886,16 @@ class GoogleCloudConnectorsV1LogConfig(typing_extensions.TypedDict, total=False)
 class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1ResourceLimits(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1ResourceRequests(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1Secret(typing_extensions.TypedDict, total=False):
@@ -1827,6 +1923,22 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     refreshToken: str
     refreshTokenExpireTime: str
     tokenType: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaAssertion(typing_extensions.TypedDict, total=False):
+    assertionStrategy: typing_extensions.Literal[
+        "ASSERTION_STRATEGY_UNSPECIFIED",
+        "ASSERT_SUCCESSFUL_EXECUTION",
+        "ASSERT_FAILED_EXECUTION",
+        "ASSERT_NO_EXECUTION",
+        "ASSERT_EQUALS",
+        "ASSERT_NOT_EQUALS",
+        "ASSERT_CONTAINS",
+        "ASSERT_CONDITION",
+    ]
+    condition: str
+    parameter: GoogleCloudIntegrationsV1alphaEventParameter
+    retryCount: int
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAttemptStats(
@@ -2026,6 +2138,12 @@ class GoogleCloudIntegrationsV1alphaEventParameter(
     value: GoogleCloudIntegrationsV1alphaValueType
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteEventResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionId: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteIntegrationsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2046,6 +2164,20 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     executionId: str
     outputParameters: dict[str, typing.Any]
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    inputParameters: dict[str, typing.Any]
+    requestId: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionId: str
+    outputParameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
@@ -2381,6 +2513,34 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executions: _list[GoogleCloudIntegrationsV1alphaExecution]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTestCasesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    testCases: _list[GoogleCloudIntegrationsV1alphaTestCase]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaMockConfig(
+    typing_extensions.TypedDict, total=False
+):
+    failedExecutions: str
+    mockStrategy: typing_extensions.Literal[
+        "MOCK_STRATEGY_UNSPECIFIED",
+        "NO_MOCK_STRATEGY",
+        "SPECIFIC_MOCK_STRATEGY",
+        "FAILURE_MOCK_STRATEGY",
+        "SKIP_MOCK_STRATEGY",
+    ]
+    parameters: _list[GoogleCloudIntegrationsV1alphaEventParameter]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
     condition: str
     description: str
@@ -2704,6 +2864,33 @@ class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(
     taskNumber: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTestCase(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorEmail: str
+    databasePersistencePolicy: typing_extensions.Literal[
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
+    ]
+    description: str
+    displayName: str
+    lastModifierEmail: str
+    lockHolderEmail: str
+    name: str
+    testInputParameters: _list[GoogleCloudIntegrationsV1alphaIntegrationParameter]
+    testTaskConfigs: _list[GoogleCloudIntegrationsV1alphaTestTaskConfig]
+    triggerId: str
+    updateTime: str
+    workflowId: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTestTaskConfig(
+    typing_extensions.TypedDict, total=False
+):
+    assertions: _list[GoogleCloudIntegrationsV1alphaAssertion]
+    mockConfig: GoogleCloudIntegrationsV1alphaMockConfig
+    task: str
+    taskNumber: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTriggerConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -2718,6 +2905,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     position: GoogleCloudIntegrationsV1alphaCoordinate
     properties: dict[str, typing.Any]
     startTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
+    trigger: str
     triggerId: str
     triggerNumber: str
     triggerType: typing_extensions.Literal[
@@ -2728,6 +2916,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
         "CLOUD_PUBSUB_EXTERNAL",
         "SFDC_CDC_CHANNEL",
         "CLOUD_SCHEDULER",
+        "INTEGRATION_CONNECTOR_TRIGGER",
     ]
 
 @typing.type_check_only
@@ -2778,6 +2967,7 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
         "UNSPCIFIED", "SHEDDABLE", "SHEDDABLE_PLUS", "CRITICAL", "CRITICAL_PLUS"
     ]
     requestId: str
+    resourceName: str
     scheduledTime: str
     testMode: bool
     triggerId: str

@@ -13,6 +13,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Evaluation(typing_extensions.TypedDict, total=False):
     createTime: str
+    customRulesBucket: str
     description: str
     labels: dict[str, typing.Any]
     name: str
@@ -51,9 +52,11 @@ class GceInstanceFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Insight(typing_extensions.TypedDict, total=False):
+    instanceId: str
     sapDiscovery: SapDiscovery
     sapValidation: SapValidation
     sentTime: str
+    sqlserverValidation: SqlserverValidation
 
 @typing.type_check_only
 class ListEvaluationsResponse(typing_extensions.TypedDict, total=False):
@@ -167,11 +170,29 @@ class SapDiscovery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SapDiscoveryComponent(typing_extensions.TypedDict, total=False):
-    applicationType: str
-    databaseType: str
+    applicationProperties: SapDiscoveryComponentApplicationProperties
+    databaseProperties: SapDiscoveryComponentDatabaseProperties
     hostProject: str
     resources: _list[SapDiscoveryResource]
     sid: str
+
+@typing.type_check_only
+class SapDiscoveryComponentApplicationProperties(
+    typing_extensions.TypedDict, total=False
+):
+    applicationType: typing_extensions.Literal[
+        "APPLICATION_TYPE_UNSPECIFIED", "NETWEAVER"
+    ]
+    ascsUri: str
+    nfsUri: str
+
+@typing.type_check_only
+class SapDiscoveryComponentDatabaseProperties(typing_extensions.TypedDict, total=False):
+    databaseType: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED", "HANA", "MAX_DB", "DB2"
+    ]
+    primaryInstanceUri: str
+    sharedNfsUri: str
 
 @typing.type_check_only
 class SapDiscoveryMetadata(typing_extensions.TypedDict, total=False):
@@ -183,17 +204,25 @@ class SapDiscoveryMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SapDiscoveryResource(typing_extensions.TypedDict, total=False):
     relatedResources: _list[str]
-    resourceKind: str
-    resourceState: typing_extensions.Literal[
-        "RESOURCE_STATE_UNSPECIFIED",
-        "ADDED",
-        "UPDATED",
-        "REMOVED",
-        "REPLACED",
-        "MISSING",
+    resourceKind: typing_extensions.Literal[
+        "RESOURCE_KIND_UNSPECIFIED",
+        "RESOURCE_KIND_INSTANCE",
+        "RESOURCE_KIND_DISK",
+        "RESOURCE_KIND_ADDRESS",
+        "RESOURCE_KIND_FILESTORE",
+        "RESOURCE_KIND_HEALTH_CHECK",
+        "RESOURCE_KIND_FORWARDING_RULE",
+        "RESOURCE_KIND_BACKEND_SERVICE",
+        "RESOURCE_KIND_SUBNETWORK",
+        "RESOURCE_KIND_NETWORK",
+        "RESOURCE_KIND_PUBLIC_ADDRESS",
+        "RESOURCE_KIND_INSTANCE_GROUP",
     ]
     resourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED", "COMPUTE", "STORAGE", "NETWORK"
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "RESOURCE_TYPE_COMPUTE",
+        "RESOURCE_TYPE_STORAGE",
+        "RESOURCE_TYPE_NETWORK",
     ]
     resourceUri: str
     updateTime: str
@@ -212,11 +241,43 @@ class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
         "PACEMAKER",
         "HANA",
         "NETWEAVER",
+        "HANA_SECURITY",
+        "CUSTOM",
     ]
 
 @typing.type_check_only
 class ScannedResource(typing_extensions.TypedDict, total=False):
     resource: str
+
+@typing.type_check_only
+class SqlserverValidation(typing_extensions.TypedDict, total=False):
+    agentVersion: str
+    instance: str
+    projectId: str
+    validationDetails: _list[SqlserverValidationValidationDetail]
+
+@typing.type_check_only
+class SqlserverValidationDetails(typing_extensions.TypedDict, total=False):
+    fields: dict[str, typing.Any]
+
+@typing.type_check_only
+class SqlserverValidationValidationDetail(typing_extensions.TypedDict, total=False):
+    details: _list[SqlserverValidationDetails]
+    type: typing_extensions.Literal[
+        "SQLSERVER_VALIDATION_TYPE_UNSPECIFIED",
+        "OS",
+        "DB_LOG_DISK_SEPARATION",
+        "DB_MAX_PARALLELISM",
+        "DB_CXPACKET_WAITS",
+        "DB_TRANSACTION_LOG_HANDLING",
+        "DB_VIRTUAL_LOG_FILE_COUNT",
+        "DB_BUFFER_POOL_EXTENSION",
+        "DB_MAX_SERVER_MEMORY",
+        "INSTANCE_METRICS",
+        "DB_INDEX_FRAGMENTATION",
+        "DB_TABLE_INDEX_COMPRESSION",
+        "DB_BACKUP_POLICY",
+    ]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

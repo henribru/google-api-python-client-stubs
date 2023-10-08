@@ -195,6 +195,9 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "APPLICATION_STATE_UNSPECIFIED", "REMOVED", "INSTALLED"
     ]
+    userFacingType: typing_extensions.Literal[
+        "USER_FACING_TYPE_UNSPECIFIED", "NOT_USER_FACING", "USER_FACING"
+    ]
     versionCode: int
     versionName: str
 
@@ -262,6 +265,10 @@ class Command(typing_extensions.TypedDict, total=False):
     ]
     newPassword: str
     resetPasswordFlags: _list[str]
+    startLostModeParams: StartLostModeParams
+    startLostModeStatus: StartLostModeStatus
+    stopLostModeParams: StopLostModeParams
+    stopLostModeStatus: StopLostModeStatus
     type: typing_extensions.Literal[
         "COMMAND_TYPE_UNSPECIFIED",
         "LOCK",
@@ -269,6 +276,8 @@ class Command(typing_extensions.TypedDict, total=False):
         "REBOOT",
         "RELINQUISH_OWNERSHIP",
         "CLEAR_APP_DATA",
+        "START_LOST_MODE",
+        "STOP_LOST_MODE",
     ]
     userName: str
 
@@ -322,10 +331,12 @@ class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
         "DATA_SHARING_FROM_WORK_TO_PERSONAL_DISALLOWED",
         "CROSS_PROFILE_DATA_SHARING_ALLOWED",
     ]
+    exemptionsToShowWorkContactsInPersonalProfile: PackageNameList
     showWorkContactsInPersonalProfile: typing_extensions.Literal[
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
         "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED",
+        "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED_EXCEPT_SYSTEM",
     ]
     workProfileWidgetsDefault: typing_extensions.Literal[
         "WORK_PROFILE_WIDGETS_DEFAULT_UNSPECIFIED",
@@ -351,7 +362,12 @@ class Device(typing_extensions.TypedDict, total=False):
     appliedPolicyName: str
     appliedPolicyVersion: str
     appliedState: typing_extensions.Literal[
-        "DEVICE_STATE_UNSPECIFIED", "ACTIVE", "DISABLED", "DELETED", "PROVISIONING"
+        "DEVICE_STATE_UNSPECIFIED",
+        "ACTIVE",
+        "DISABLED",
+        "DELETED",
+        "PROVISIONING",
+        "LOST",
     ]
     commonCriteriaModeInfo: CommonCriteriaModeInfo
     deviceSettings: DeviceSettings
@@ -383,11 +399,54 @@ class Device(typing_extensions.TypedDict, total=False):
     securityPosture: SecurityPosture
     softwareInfo: SoftwareInfo
     state: typing_extensions.Literal[
-        "DEVICE_STATE_UNSPECIFIED", "ACTIVE", "DISABLED", "DELETED", "PROVISIONING"
+        "DEVICE_STATE_UNSPECIFIED",
+        "ACTIVE",
+        "DISABLED",
+        "DELETED",
+        "PROVISIONING",
+        "LOST",
     ]
     systemProperties: dict[str, typing.Any]
     user: User
     userName: str
+
+@typing.type_check_only
+class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
+    configureWifi: typing_extensions.Literal[
+        "CONFIGURE_WIFI_UNSPECIFIED",
+        "ALLOW_CONFIGURING_WIFI",
+        "DISALLOW_ADD_WIFI_CONFIG",
+        "DISALLOW_CONFIGURING_WIFI",
+    ]
+    tetheringSettings: typing_extensions.Literal[
+        "TETHERING_SETTINGS_UNSPECIFIED",
+        "ALLOW_ALL_TETHERING",
+        "DISALLOW_WIFI_TETHERING",
+        "DISALLOW_ALL_TETHERING",
+    ]
+    usbDataAccess: typing_extensions.Literal[
+        "USB_DATA_ACCESS_UNSPECIFIED",
+        "ALLOW_USB_DATA_TRANSFER",
+        "DISALLOW_USB_FILE_TRANSFER",
+        "DISALLOW_USB_DATA_TRANSFER",
+    ]
+    wifiDirectSettings: typing_extensions.Literal[
+        "WIFI_DIRECT_SETTINGS_UNSPECIFIED", "ALLOW_WIFI_DIRECT", "DISALLOW_WIFI_DIRECT"
+    ]
+
+@typing.type_check_only
+class DeviceRadioState(typing_extensions.TypedDict, total=False):
+    airplaneModeState: typing_extensions.Literal[
+        "AIRPLANE_MODE_STATE_UNSPECIFIED",
+        "AIRPLANE_MODE_USER_CHOICE",
+        "AIRPLANE_MODE_DISABLED",
+    ]
+    wifiState: typing_extensions.Literal[
+        "WIFI_STATE_UNSPECIFIED",
+        "WIFI_STATE_USER_CHOICE",
+        "WIFI_ENABLED",
+        "WIFI_DISABLED",
+    ]
 
 @typing.type_check_only
 class DeviceSettings(typing_extensions.TypedDict, total=False):
@@ -428,6 +487,9 @@ class DnsEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnrollmentCompleteEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnrollmentToken(typing_extensions.TypedDict, total=False):
@@ -621,6 +683,11 @@ class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
     webApps: _list[WebApp]
 
 @typing.type_check_only
+class Location(typing_extensions.TypedDict, total=False):
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
 class LogBufferSizeCriticalEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -628,6 +695,14 @@ class LoggingStartedEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class LoggingStoppedEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LostModeLocationEvent(typing_extensions.TypedDict, total=False):
+    batteryLevel: int
+    location: Location
+
+@typing.type_check_only
+class LostModeOutgoingPhoneCallEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ManagedConfigurationTemplate(typing_extensions.TypedDict, total=False):
@@ -724,6 +799,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "DEVICE_INCOMPATIBLE",
     ]
     packageName: str
     settingName: str
@@ -735,6 +811,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "PASSWORD_POLICIES_PASSWORD_NOT_SUFFICIENT",
         "ONC_WIFI_INVALID_VALUE",
         "ONC_WIFI_API_LEVEL",
+        "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
     ]
 
 @typing.type_check_only
@@ -751,6 +828,7 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
         "PENDING",
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
+        "DEVICE_INCOMPATIBLE",
     ]
     packageName: str
     settingName: str
@@ -918,7 +996,9 @@ class Policy(typing_extensions.TypedDict, total=False):
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
+    deviceConnectivityManagement: DeviceConnectivityManagement
     deviceOwnerLockScreenInfo: UserFacingMessage
+    deviceRadioState: DeviceRadioState
     encryptionPolicy: typing_extensions.Literal[
         "ENCRYPTION_POLICY_UNSPECIFIED",
         "ENABLED_WITHOUT_PASSWORD",
@@ -1038,6 +1118,20 @@ class PowerManagementEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ProvisioningInfo(typing_extensions.TypedDict, total=False):
+    apiLevel: int
+    brand: str
+    enterprise: str
+    managementMode: typing_extensions.Literal[
+        "MANAGEMENT_MODE_UNSPECIFIED", "DEVICE_OWNER", "PROFILE_OWNER"
+    ]
+    model: str
+    name: str
+    ownership: typing_extensions.Literal[
+        "OWNERSHIP_UNSPECIFIED", "COMPANY_OWNED", "PERSONALLY_OWNED"
+    ]
+
+@typing.type_check_only
 class ProxyInfo(typing_extensions.TypedDict, total=False):
     excludedHosts: _list[str]
     host: str
@@ -1073,6 +1167,7 @@ class SigninDetail(typing_extensions.TypedDict, total=False):
     qrCode: str
     signinEnrollmentToken: str
     signinUrl: str
+    tokenTag: str
 
 @typing.type_check_only
 class SignupUrl(typing_extensions.TypedDict, total=False):
@@ -1099,6 +1194,24 @@ class SpecificNonComplianceContext(typing_extensions.TypedDict, total=False):
     passwordPoliciesContext: PasswordPoliciesContext
 
 @typing.type_check_only
+class StartLostModeParams(typing_extensions.TypedDict, total=False):
+    lostEmailAddress: str
+    lostMessage: UserFacingMessage
+    lostOrganization: UserFacingMessage
+    lostPhoneNumber: UserFacingMessage
+    lostStreetAddress: UserFacingMessage
+
+@typing.type_check_only
+class StartLostModeStatus(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "SUCCESS",
+        "RESET_PASSWORD_RECENTLY",
+        "USER_EXIT_LOST_MODE_RECENTLY",
+        "ALREADY_IN_LOST_MODE",
+    ]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -1117,6 +1230,21 @@ class StatusReportingSettings(typing_extensions.TypedDict, total=False):
     powerManagementEventsEnabled: bool
     softwareInfoEnabled: bool
     systemPropertiesEnabled: bool
+
+@typing.type_check_only
+class StopLostModeParams(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StopLostModeStatus(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "SUCCESS", "NOT_IN_LOST_MODE"
+    ]
+
+@typing.type_check_only
+class StopLostModeUserAttemptEvent(typing_extensions.TypedDict, total=False):
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "ATTEMPT_SUCCEEDED", "ATTEMPT_FAILED"
+    ]
 
 @typing.type_check_only
 class SystemUpdate(typing_extensions.TypedDict, total=False):
@@ -1164,6 +1292,7 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
     connectEvent: ConnectEvent
     cryptoSelfTestCompletedEvent: CryptoSelfTestCompletedEvent
     dnsEvent: DnsEvent
+    enrollmentCompleteEvent: EnrollmentCompleteEvent
     eventId: str
     eventTime: str
     eventType: typing_extensions.Literal[
@@ -1195,6 +1324,10 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
         "WIPE_FAILURE",
         "CONNECT",
         "DNS",
+        "STOP_LOST_MODE_USER_ATTEMPT",
+        "LOST_MODE_OUTGOING_PHONE_CALL",
+        "LOST_MODE_LOCATION",
+        "ENROLLMENT_COMPLETE",
     ]
     filePulledEvent: FilePulledEvent
     filePushedEvent: FilePushedEvent
@@ -1208,11 +1341,14 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
     logBufferSizeCriticalEvent: LogBufferSizeCriticalEvent
     loggingStartedEvent: LoggingStartedEvent
     loggingStoppedEvent: LoggingStoppedEvent
+    lostModeLocationEvent: LostModeLocationEvent
+    lostModeOutgoingPhoneCallEvent: LostModeOutgoingPhoneCallEvent
     mediaMountEvent: MediaMountEvent
     mediaUnmountEvent: MediaUnmountEvent
     osShutdownEvent: OsShutdownEvent
     osStartupEvent: OsStartupEvent
     remoteLockEvent: RemoteLockEvent
+    stopLostModeUserAttemptEvent: StopLostModeUserAttemptEvent
     wipeFailureEvent: WipeFailureEvent
 
 @typing.type_check_only

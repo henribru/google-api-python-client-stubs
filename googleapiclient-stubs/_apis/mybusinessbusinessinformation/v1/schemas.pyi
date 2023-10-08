@@ -9,10 +9,6 @@ class AdWordsLocationExtensions(typing_extensions.TypedDict, total=False):
     adPhone: str
 
 @typing.type_check_only
-class AssociateLocationRequest(typing_extensions.TypedDict, total=False):
-    placeId: str
-
-@typing.type_check_only
 class Attribute(typing_extensions.TypedDict, total=False):
     name: str
     repeatedEnumValue: RepeatedEnumAttributeValue
@@ -79,9 +75,6 @@ class ChainName(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChainUri(typing_extensions.TypedDict, total=False):
     uri: str
-
-@typing.type_check_only
-class ClearLocationAssociationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):

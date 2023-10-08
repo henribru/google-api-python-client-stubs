@@ -24,6 +24,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "BASIC_SSD",
         "HIGH_SCALE_SSD",
         "ENTERPRISE",
+        "ZONAL",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
@@ -49,6 +50,10 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
+
+@typing.type_check_only
+class DirectoryServicesConfig(typing_extensions.TypedDict, total=False):
+    managedActiveDirectory: ManagedActiveDirectoryConfig
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -158,6 +163,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     capacityStepSizeGb: str
     createTime: str
     description: str
+    directoryServices: DirectoryServicesConfig
     etag: str
     fileShares: _list[FileShareConfig]
     kmsKeyName: str
@@ -194,6 +200,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "BASIC_SSD",
         "HIGH_SCALE_SSD",
         "ENTERPRISE",
+        "ZONAL",
     ]
 
 @typing.type_check_only
@@ -253,6 +260,11 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     weeklyCycle: WeeklyCycle
 
 @typing.type_check_only
+class ManagedActiveDirectoryConfig(typing_extensions.TypedDict, total=False):
+    computer: str
+    domain: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     connectMode: typing_extensions.Literal[
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
@@ -270,6 +282,7 @@ class NfsExportOptions(typing_extensions.TypedDict, total=False):
     anonGid: str
     anonUid: str
     ipRanges: _list[str]
+    securityFlavors: _list[str]
     squashMode: typing_extensions.Literal[
         "SQUASH_MODE_UNSPECIFIED", "NO_ROOT_SQUASH", "ROOT_SQUASH"
     ]

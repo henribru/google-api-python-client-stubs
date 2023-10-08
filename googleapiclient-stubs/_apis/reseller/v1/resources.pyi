@@ -91,7 +91,11 @@ class ResellerResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             body: Subscription = ...,
+            action: typing_extensions.Literal[
+                "actionUnspecified", "buy", "switch"
+            ] = ...,
             customerAuthToken: str = ...,
+            sourceSkuId: str = ...,
             **kwargs: typing.Any
         ) -> SubscriptionHttpRequest: ...
         def list(

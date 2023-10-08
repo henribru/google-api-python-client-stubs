@@ -207,6 +207,9 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_DATABASE_LOCALE",
         "UNSUPPORTED_DATABASE_FDW_CONFIG",
         "ERROR_RDBMS",
+        "SOURCE_SIZE_EXCEEDS_THRESHOLD",
+        "EXISTING_CONFLICTING_DATABASES",
+        "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
     ]
     errorDetailMessage: str
     errorMessage: str

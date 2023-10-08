@@ -34,6 +34,31 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
 
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class SitesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CustomDomainsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelOperationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            def customDomains(self) -> CustomDomainsResource: ...
+
+        def sites(self) -> SitesResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -47,6 +72,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def operations(self) -> OperationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

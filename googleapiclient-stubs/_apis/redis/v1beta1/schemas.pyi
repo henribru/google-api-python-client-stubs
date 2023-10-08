@@ -5,6 +5,44 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CertChain(typing_extensions.TypedDict, total=False):
+    certificates: _list[str]
+
+@typing.type_check_only
+class CertificateAuthority(typing_extensions.TypedDict, total=False):
+    managedServerCa: ManagedCertificateAuthority
+
+@typing.type_check_only
+class Cluster(typing_extensions.TypedDict, total=False):
+    authorizationMode: typing_extensions.Literal[
+        "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
+    ]
+    createTime: str
+    discoveryEndpoints: _list[DiscoveryEndpoint]
+    name: str
+    pscConfigs: _list[PscConfig]
+    pscConnections: _list[PscConnection]
+    replicaCount: int
+    shardCount: int
+    sizeGb: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
+    ]
+    stateInfo: StateInfo
+    transitEncryptionMode: typing_extensions.Literal[
+        "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+        "TRANSIT_ENCRYPTION_MODE_DISABLED",
+        "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION",
+    ]
+    uid: str
+
+@typing.type_check_only
+class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
+    address: str
+    port: int
+    pscConfig: PscConfig
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -111,6 +149,12 @@ class InstanceAuthString(typing_extensions.TypedDict, total=False):
     authString: str
 
 @typing.type_check_only
+class ListClustersResponse(typing_extensions.TypedDict, total=False):
+    clusters: _list[Cluster]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
@@ -149,6 +193,10 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class ManagedCertificateAuthority(typing_extensions.TypedDict, total=False):
+    caCerts: _list[CertChain]
+
+@typing.type_check_only
 class NodeInfo(typing_extensions.TypedDict, total=False):
     id: str
     zone: str
@@ -160,6 +208,16 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
@@ -181,6 +239,18 @@ class PersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbSnapshotStartTime: str
 
 @typing.type_check_only
+class PscConfig(typing_extensions.TypedDict, total=False):
+    network: str
+
+@typing.type_check_only
+class PscConnection(typing_extensions.TypedDict, total=False):
+    address: str
+    forwardingRule: str
+    network: str
+    projectId: str
+    pscConnectionId: str
+
+@typing.type_check_only
 class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     deleteResource: bool
     exclusiveAction: typing_extensions.Literal[
@@ -196,6 +266,10 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
         "SPECIFIC_TIME",
     ]
     scheduleTime: str
+
+@typing.type_check_only
+class StateInfo(typing_extensions.TypedDict, total=False):
+    updateInfo: UpdateInfo
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -217,6 +291,11 @@ class TlsCertificate(typing_extensions.TypedDict, total=False):
     expireTime: str
     serialNumber: str
     sha1Fingerprint: str
+
+@typing.type_check_only
+class UpdateInfo(typing_extensions.TypedDict, total=False):
+    targetReplicaCount: int
+    targetShardCount: int
 
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):

@@ -252,13 +252,6 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             previous_request: ListRowAccessPoliciesResponseHttpRequest,
             previous_response: ListRowAccessPoliciesResponse,
         ) -> ListRowAccessPoliciesResponseHttpRequest | None: ...
-        def setIamPolicy(
-            self,
-            *,
-            resource: str,
-            body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
-        ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,

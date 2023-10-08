@@ -62,6 +62,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Consumer(typing_extensions.TypedDict, total=False):
+    endpointLocation: str
     endpointUri: str
     subnetwork: str
 
@@ -86,6 +87,10 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     kmsKey: str
+
+@typing.type_check_only
+class ErrorDetails(typing_extensions.TypedDict, total=False):
+    details: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExportMetadataRequest(typing_extensions.TypedDict, total=False):

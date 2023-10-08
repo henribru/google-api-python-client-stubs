@@ -147,6 +147,9 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> IapSettingsHttpRequest: ...
+        def validateAttributeExpression(
+            self, *, name: str, expression: str = ..., **kwargs: typing.Any
+        ) -> ValidateIapAttributeExpressionResponseHttpRequest: ...
 
     def new_batch_http_request(
         self,
@@ -244,3 +247,13 @@ class TunnelDestGroupHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TunnelDestGroup: ...
+
+@typing.type_check_only
+class ValidateIapAttributeExpressionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ValidateIapAttributeExpressionResponse: ...

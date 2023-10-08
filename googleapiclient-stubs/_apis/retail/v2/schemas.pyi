@@ -140,6 +140,7 @@ class GoogleCloudRetailV2CatalogAttribute(typing_extensions.TypedDict, total=Fal
         "EXACT_SEARCHABLE_ENABLED",
         "EXACT_SEARCHABLE_DISABLED",
     ]
+    facetConfig: GoogleCloudRetailV2CatalogAttributeFacetConfig
     inUse: bool
     indexableOption: typing_extensions.Literal[
         "INDEXABLE_OPTION_UNSPECIFIED", "INDEXABLE_ENABLED", "INDEXABLE_DISABLED"
@@ -152,6 +153,33 @@ class GoogleCloudRetailV2CatalogAttribute(typing_extensions.TypedDict, total=Fal
         "SEARCHABLE_OPTION_UNSPECIFIED", "SEARCHABLE_ENABLED", "SEARCHABLE_DISABLED"
     ]
     type: typing_extensions.Literal["UNKNOWN", "TEXTUAL", "NUMERICAL"]
+
+@typing.type_check_only
+class GoogleCloudRetailV2CatalogAttributeFacetConfig(
+    typing_extensions.TypedDict, total=False
+):
+    facetIntervals: _list[GoogleCloudRetailV2Interval]
+    ignoredFacetValues: _list[
+        GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues
+    ]
+    mergedFacetValues: _list[
+        GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
+    values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue(
+    typing_extensions.TypedDict, total=False
+):
+    mergedValue: str
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2ColorInfo(typing_extensions.TypedDict, total=False):
@@ -210,6 +238,7 @@ class GoogleCloudRetailV2CompletionDetail(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudRetailV2Condition(typing_extensions.TypedDict, total=False):
     activeTimeRange: _list[GoogleCloudRetailV2ConditionTimeRange]
+    pageCategories: _list[str]
     queryTerms: _list[GoogleCloudRetailV2ConditionQueryTerm]
 
 @typing.type_check_only
@@ -393,6 +422,7 @@ class GoogleCloudRetailV2Model(typing_extensions.TypedDict, total=False):
         "RECOMMENDATIONS_FILTERING_ENABLED",
     ]
     lastTuneTime: str
+    modelFeaturesConfig: GoogleCloudRetailV2ModelModelFeaturesConfig
     name: str
     optimizationObjective: str
     periodicTuningState: typing_extensions.Literal[
@@ -411,6 +441,22 @@ class GoogleCloudRetailV2Model(typing_extensions.TypedDict, total=False):
     tuningOperation: str
     type: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contextProductsType: typing_extensions.Literal[
+        "CONTEXT_PRODUCTS_TYPE_UNSPECIFIED",
+        "SINGLE_CONTEXT_PRODUCT",
+        "MULTIPLE_CONTEXT_PRODUCTS",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2ModelModelFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig
 
 @typing.type_check_only
 class GoogleCloudRetailV2ModelServingConfigList(
@@ -539,6 +585,27 @@ class GoogleCloudRetailV2PurchaseTransaction(typing_extensions.TypedDict, total=
 class GoogleCloudRetailV2PurgeMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2PurgeProductsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    failureCount: str
+    successCount: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2PurgeProductsRequest(typing_extensions.TypedDict, total=False):
+    filter: str
+    force: bool
+
+@typing.type_check_only
+class GoogleCloudRetailV2PurgeProductsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    purgeCount: str
+    purgeSample: _list[str]
+
+@typing.type_check_only
 class GoogleCloudRetailV2PurgeUserEventsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -641,9 +708,11 @@ class GoogleCloudRetailV2Rule(typing_extensions.TypedDict, total=False):
     condition: GoogleCloudRetailV2Condition
     doNotAssociateAction: GoogleCloudRetailV2RuleDoNotAssociateAction
     filterAction: GoogleCloudRetailV2RuleFilterAction
+    forceReturnFacetAction: GoogleCloudRetailV2RuleForceReturnFacetAction
     ignoreAction: GoogleCloudRetailV2RuleIgnoreAction
     onewaySynonymsAction: GoogleCloudRetailV2RuleOnewaySynonymsAction
     redirectAction: GoogleCloudRetailV2RuleRedirectAction
+    removeFacetAction: GoogleCloudRetailV2RuleRemoveFacetAction
     replacementAction: GoogleCloudRetailV2RuleReplacementAction
     twowaySynonymsAction: GoogleCloudRetailV2RuleTwowaySynonymsAction
 
@@ -665,6 +734,21 @@ class GoogleCloudRetailV2RuleFilterAction(typing_extensions.TypedDict, total=Fal
     filter: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2RuleForceReturnFacetAction(
+    typing_extensions.TypedDict, total=False
+):
+    facetPositionAdjustments: _list[
+        GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment(
+    typing_extensions.TypedDict, total=False
+):
+    attributeName: str
+    position: int
+
+@typing.type_check_only
 class GoogleCloudRetailV2RuleIgnoreAction(typing_extensions.TypedDict, total=False):
     ignoreTerms: _list[str]
 
@@ -679,6 +763,12 @@ class GoogleCloudRetailV2RuleOnewaySynonymsAction(
 @typing.type_check_only
 class GoogleCloudRetailV2RuleRedirectAction(typing_extensions.TypedDict, total=False):
     redirectUri: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2RuleRemoveFacetAction(
+    typing_extensions.TypedDict, total=False
+):
+    attributeNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2RuleReplacementAction(
@@ -986,6 +1076,21 @@ class GoogleCloudRetailV2alphaCreateModelMetadata(
     model: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaEnrollSolutionMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaEnrollSolutionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    enrolledSolution: typing_extensions.Literal[
+        "SOLUTION_TYPE_UNSPECIFIED",
+        "SOLUTION_TYPE_RECOMMENDATION",
+        "SOLUTION_TYPE_SEARCH",
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1067,6 +1172,7 @@ class GoogleCloudRetailV2alphaMerchantCenterAccountLink(
     merchantCenterAccountId: str
     name: str
     projectId: str
+    source: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
 
 @typing.type_check_only
@@ -1089,6 +1195,7 @@ class GoogleCloudRetailV2alphaModel(typing_extensions.TypedDict, total=False):
         "RECOMMENDATIONS_FILTERING_ENABLED",
     ]
     lastTuneTime: str
+    modelFeaturesConfig: GoogleCloudRetailV2alphaModelModelFeaturesConfig
     name: str
     optimizationObjective: str
     pageOptimizationConfig: GoogleCloudRetailV2alphaModelPageOptimizationConfig
@@ -1108,6 +1215,22 @@ class GoogleCloudRetailV2alphaModel(typing_extensions.TypedDict, total=False):
     tuningOperation: str
     type: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contextProductsType: typing_extensions.Literal[
+        "CONTEXT_PRODUCTS_TYPE_UNSPECIFIED",
+        "SINGLE_CONTEXT_PRODUCT",
+        "MULTIPLE_CONTEXT_PRODUCTS",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaModelModelFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaModelPageOptimizationConfig(
@@ -1362,6 +1485,7 @@ class GoogleCloudRetailV2betaMerchantCenterAccountLink(
     merchantCenterAccountId: str
     name: str
     projectId: str
+    source: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
 
 @typing.type_check_only
@@ -1384,6 +1508,7 @@ class GoogleCloudRetailV2betaModel(typing_extensions.TypedDict, total=False):
         "RECOMMENDATIONS_FILTERING_ENABLED",
     ]
     lastTuneTime: str
+    modelFeaturesConfig: GoogleCloudRetailV2betaModelModelFeaturesConfig
     name: str
     optimizationObjective: str
     periodicTuningState: typing_extensions.Literal[
@@ -1404,6 +1529,22 @@ class GoogleCloudRetailV2betaModel(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contextProductsType: typing_extensions.Literal[
+        "CONTEXT_PRODUCTS_TYPE_UNSPECIFIED",
+        "SINGLE_CONTEXT_PRODUCT",
+        "MULTIPLE_CONTEXT_PRODUCTS",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaModelModelFeaturesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaModelServingConfigList(
     typing_extensions.TypedDict, total=False
 ):
@@ -1418,6 +1559,22 @@ class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=Fal
 class GoogleCloudRetailV2betaPurgeMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaPurgeProductsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    failureCount: str
+    successCount: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaPurgeProductsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    purgeCount: str
+    purgeSample: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaPurgeUserEventsResponse(

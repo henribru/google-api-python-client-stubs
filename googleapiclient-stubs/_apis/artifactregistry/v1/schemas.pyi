@@ -16,14 +16,47 @@ class AptArtifact(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AptRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository
+
+@typing.type_check_only
 class BatchDeleteVersionsMetadata(typing_extensions.TypedDict, total=False):
     failedVersions: _list[str]
+
+@typing.type_check_only
+class BatchDeleteVersionsRequest(typing_extensions.TypedDict, total=False):
+    names: _list[str]
+    validateOnly: bool
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class CleanupPolicy(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "DELETE", "KEEP"]
+    condition: CleanupPolicyCondition
+    id: str
+    mostRecentVersions: CleanupPolicyMostRecentVersions
+
+@typing.type_check_only
+class CleanupPolicyCondition(typing_extensions.TypedDict, total=False):
+    newerThan: str
+    olderThan: str
+    packageNamePrefixes: _list[str]
+    tagPrefixes: _list[str]
+    tagState: typing_extensions.Literal[
+        "TAG_STATE_UNSPECIFIED", "TAGGED", "UNTAGGED", "ANY"
+    ]
+    versionAge: str
+    versionNamePrefixes: _list[str]
+
+@typing.type_check_only
+class CleanupPolicyMostRecentVersions(typing_extensions.TypedDict, total=False):
+    keepCount: int
+    packageNamePrefixes: _list[str]
 
 @typing.type_check_only
 class DockerImage(typing_extensions.TypedDict, total=False):
@@ -57,6 +90,19 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GoModule(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    updateTime: str
+    version: str
+
+@typing.type_check_only
+class GoogetArtifact(typing_extensions.TypedDict, total=False):
+    architecture: str
+    name: str
+    packageName: str
+
+@typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1File(typing_extensions.TypedDict, total=False):
     createTime: str
     fetchTime: str
@@ -65,6 +111,30 @@ class GoogleDevtoolsArtifactregistryV1File(typing_extensions.TypedDict, total=Fa
     owner: str
     sizeBytes: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository(
+    typing_extensions.TypedDict, total=False
+):
+    repositoryBase: typing_extensions.Literal[
+        "REPOSITORY_BASE_UNSPECIFIED", "DEBIAN", "UBUNTU"
+    ]
+    repositoryPath: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository(
+    typing_extensions.TypedDict, total=False
+):
+    repositoryBase: typing_extensions.Literal[
+        "REPOSITORY_BASE_UNSPECIFIED",
+        "CENTOS",
+        "CENTOS_DEBUG",
+        "CENTOS_VAULT",
+        "CENTOS_STREAM",
+        "ROCKY",
+        "EPEL",
+    ]
+    repositoryPath: str
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
@@ -92,6 +162,28 @@ class ImportAptArtifactsRequest(typing_extensions.TypedDict, total=False):
 class ImportAptArtifactsResponse(typing_extensions.TypedDict, total=False):
     aptArtifacts: _list[AptArtifact]
     errors: _list[ImportAptArtifactsErrorInfo]
+
+@typing.type_check_only
+class ImportGoogetArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
+    error: Status
+    gcsSource: ImportGoogetArtifactsGcsSource
+
+@typing.type_check_only
+class ImportGoogetArtifactsGcsSource(typing_extensions.TypedDict, total=False):
+    uris: _list[str]
+    useWildcards: bool
+
+@typing.type_check_only
+class ImportGoogetArtifactsMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ImportGoogetArtifactsRequest(typing_extensions.TypedDict, total=False):
+    gcsSource: ImportGoogetArtifactsGcsSource
+
+@typing.type_check_only
+class ImportGoogetArtifactsResponse(typing_extensions.TypedDict, total=False):
+    errors: _list[ImportGoogetArtifactsErrorInfo]
+    googetArtifacts: _list[GoogetArtifact]
 
 @typing.type_check_only
 class ImportYumArtifactsErrorInfo(typing_extensions.TypedDict, total=False):
@@ -265,19 +357,32 @@ class PythonRepository(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
+    aptRepository: AptRepository
     description: str
     dockerRepository: DockerRepository
     mavenRepository: MavenRepository
     npmRepository: NpmRepository
     pythonRepository: PythonRepository
+    yumRepository: YumRepository
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
+    cleanupPolicies: dict[str, typing.Any]
+    cleanupPolicyDryRun: bool
     createTime: str
     description: str
     dockerConfig: DockerRepositoryConfig
     format: typing_extensions.Literal[
-        "FORMAT_UNSPECIFIED", "DOCKER", "MAVEN", "NPM", "APT", "YUM", "PYTHON", "KFP"
+        "FORMAT_UNSPECIFIED",
+        "DOCKER",
+        "MAVEN",
+        "NPM",
+        "APT",
+        "YUM",
+        "GOOGET",
+        "PYTHON",
+        "KFP",
+        "GO",
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -331,6 +436,30 @@ class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
     aptArtifacts: _list[AptArtifact]
+
+@typing.type_check_only
+class UploadGoModuleMediaResponse(typing_extensions.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
+class UploadGoModuleMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadGoModuleRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadGoogetArtifactMediaResponse(typing_extensions.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
+class UploadGoogetArtifactMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadGoogetArtifactRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadGoogetArtifactResponse(typing_extensions.TypedDict, total=False):
+    googetArtifacts: _list[GoogetArtifact]
 
 @typing.type_check_only
 class UploadKfpArtifactMediaResponse(typing_extensions.TypedDict, total=False):
@@ -390,3 +519,7 @@ class YumArtifact(typing_extensions.TypedDict, total=False):
     packageType: typing_extensions.Literal[
         "PACKAGE_TYPE_UNSPECIFIED", "BINARY", "SOURCE"
     ]
+
+@typing.type_check_only
+class YumRepository(typing_extensions.TypedDict, total=False):
+    publicRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository

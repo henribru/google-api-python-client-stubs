@@ -26,6 +26,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest(
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_USER_DELINQUENCY",
         "CANCELLATION_REASON_SYSTEM_ERROR",
+        "CANCELLATION_REASON_SYSTEM_CANCEL",
         "CANCELLATION_REASON_OTHER",
     ]
 
@@ -45,7 +46,17 @@ class GoogleCloudPaymentsResellerSubscriptionV1Duration(
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    lineItemEntitlementDetails: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails
+    ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails(
+    typing_extensions.TypedDict, total=False
+):
+    lineItemIndex: int
+    products: _list[str]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse(
@@ -89,6 +100,12 @@ class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse(
 ):
     nextPageToken: str
     promotions: _list[GoogleCloudPaymentsResellerSubscriptionV1Promotion]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails(
+    typing_extensions.TypedDict, total=False
+):
+    billingCycleCountLimit: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload(
@@ -136,11 +153,24 @@ class GoogleCloudPaymentsResellerSubscriptionV1Location(
 class GoogleCloudPaymentsResellerSubscriptionV1Product(
     typing_extensions.TypedDict, total=False
 ):
+    bundleDetails: ProductBundleDetails
+    finiteBillingCycleDetails: GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
     name: str
     priceConfigs: _list[GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig]
+    productType: typing_extensions.Literal[
+        "PRODUCT_TYPE_UNSPECIFIED",
+        "PRODUCT_TYPE_SUBSCRIPTION",
+        "PRODUCT_TYPE_BUNDLE_SUBSCRIPTION",
+    ]
     regionCodes: _list[str]
     subscriptionBillingCycleDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
     titles: _list[GoogleTypeLocalizedText]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement(
+    typing_extensions.TypedDict, total=False
+):
+    product: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ProductPayload(
@@ -249,6 +279,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
         "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
         "CANCELLATION_REASON_USER_DELINQUENCY",
         "CANCELLATION_REASON_SYSTEM_ERROR",
+        "CANCELLATION_REASON_SYSTEM_CANCEL",
         "CANCELLATION_REASON_OTHER",
     ]
 
@@ -257,8 +288,11 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
     typing_extensions.TypedDict, total=False
 ):
     amount: GoogleCloudPaymentsResellerSubscriptionV1Amount
+    bundleDetails: SubscriptionLineItemBundleDetails
     description: str
+    finiteBillingCycleDetails: GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
     lineItemFreeTrialEndTime: str
+    lineItemIndex: int
     lineItemPromotionSpecs: _list[
         GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec
     ]
@@ -280,6 +314,13 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
         "LINE_ITEM_STATE_WAITING_TO_DEACTIVATE",
         "LINE_ITEM_STATE_OFF_CYCLE_CHARGING",
     ]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails(
+    typing_extensions.TypedDict, total=False
+):
+    product: str
+    userAccountLinkedTime: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails(
@@ -326,9 +367,27 @@ class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse(
 class GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload(
     typing_extensions.TypedDict, total=False
 ):
+    accessEndTime: str
     partnerEligibilityIds: _list[str]
 
 @typing.type_check_only
 class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):
     languageCode: str
     text: str
+
+@typing.type_check_only
+class ProductBundleDetails(typing_extensions.TypedDict, total=False):
+    bundleElements: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement
+    ]
+    entitlementMode: typing_extensions.Literal[
+        "ENTITLEMENT_MODE_UNSPECIFIED",
+        "ENTITLEMENT_MODE_FULL",
+        "ENTITLEMENT_MODE_INCREMENTAL",
+    ]
+
+@typing.type_check_only
+class SubscriptionLineItemBundleDetails(typing_extensions.TypedDict, total=False):
+    bundleElementDetails: _list[
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails
+    ]

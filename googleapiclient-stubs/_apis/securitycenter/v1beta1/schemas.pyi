@@ -14,6 +14,7 @@ class Access(typing_extensions.TypedDict, total=False):
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
     serviceName: str
+    userAgent: str
     userAgentFamily: str
     userName: str
 
@@ -44,6 +45,18 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
     projectIds: _list[str]
 
 @typing.type_check_only
+class AttackExposure(typing_extensions.TypedDict, total=False):
+    attackExposureResult: str
+    exposedHighValueResourcesCount: int
+    exposedLowValueResourcesCount: int
+    exposedMediumValueResourcesCount: int
+    latestCalculationTime: str
+    score: float
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
+    ]
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -67,6 +80,9 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
     dataProfile: str
+    parentType: typing_extensions.Literal[
+        "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
+    ]
 
 @typing.type_check_only
 class CloudDlpInspection(typing_extensions.TypedDict, total=False):
@@ -101,6 +117,7 @@ class ContactDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Container(typing_extensions.TypedDict, total=False):
+    createTime: str
     imageId: str
     labels: _list[Label]
     name: str
@@ -159,6 +176,7 @@ class Database(typing_extensions.TypedDict, total=False):
     name: str
     query: str
     userName: str
+    version: str
 
 @typing.type_check_only
 class Detection(typing_extensions.TypedDict, total=False):
@@ -182,6 +200,7 @@ class ExfilResource(typing_extensions.TypedDict, total=False):
 class Exfiltration(typing_extensions.TypedDict, total=False):
     sources: _list[ExfilResource]
     targets: _list[ExfilResource]
+    totalExfiltratedBytes: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -202,6 +221,7 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    attackExposure: AttackExposure
     canonicalName: str
     category: str
     cloudDlpDataProfile: CloudDlpDataProfile
@@ -225,6 +245,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "MISCONFIGURATION",
         "OBSERVATION",
         "SCC_ERROR",
+        "POSTURE_VIOLATION",
     ]
     iamBindings: _list[IamBinding]
     indicator: Indicator
@@ -368,6 +389,22 @@ class GoogleCloudSecuritycenterV1ResourceSelector(
     typing_extensions.TypedDict, total=False
 ):
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceValueConfig(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    name: str
+    resourceLabelsSelector: dict[str, typing.Any]
+    resourceType: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
+    ]
+    scope: str
+    tagValues: _list[str]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(

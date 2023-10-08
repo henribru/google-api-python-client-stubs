@@ -222,6 +222,22 @@ class GoogleChromeManagementV1CountInstalledAppsResponse(
     totalSize: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountPrintJobsByPrinterResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    printerReports: _list[GoogleChromeManagementV1PrinterReport]
+    totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountPrintJobsByUserResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    totalSize: str
+    userPrintReports: _list[GoogleChromeManagementV1UserPrintReport]
+
+@typing.type_check_only
 class GoogleChromeManagementV1CpuInfo(typing_extensions.TypedDict, total=False):
     architecture: typing_extensions.Literal["ARCHITECTURE_UNSPECIFIED", "X64"]
     keylockerConfigured: bool
@@ -247,6 +263,15 @@ class GoogleChromeManagementV1CpuTemperatureInfo(
 class GoogleChromeManagementV1Device(typing_extensions.TypedDict, total=False):
     deviceId: str
     machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1DeviceActivityReport(
+    typing_extensions.TypedDict, total=False
+):
+    deviceActivityState: typing_extensions.Literal[
+        "DEVICE_ACTIVITY_STATE_UNSPECIFIED", "ACTIVE", "IDLE", "LOCKED"
+    ]
+    reportTime: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1DeviceAueCountReport(
@@ -315,6 +340,14 @@ class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=Fal
     resolutionWidth: int
 
 @typing.type_check_only
+class GoogleChromeManagementV1EnumeratePrintJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    printJobs: _list[GoogleChromeManagementV1PrintJob]
+    totalSize: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -343,6 +376,15 @@ class GoogleChromeManagementV1GraphicsStatusReport(
 ):
     displays: _list[GoogleChromeManagementV1DisplayInfo]
     reportTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1HeartbeatStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    reportTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "UNKNOWN", "ONLINE", "OFFLINE"
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementV1HttpsLatencyRoutineData(
@@ -384,6 +426,14 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     permissions: _list[str]
 
 @typing.type_check_only
+class GoogleChromeManagementV1KioskAppStatusReport(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    appVersion: str
+    reportTime: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryDevicesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -396,6 +446,15 @@ class GoogleChromeManagementV1ListTelemetryEventsResponse(
 ):
     nextPageToken: str
     telemetryEvents: _list[GoogleChromeManagementV1TelemetryEvent]
+
+@typing.type_check_only
+class GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    telemetryNotificationConfigs: _list[
+        GoogleChromeManagementV1TelemetryNotificationConfig
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementV1ListTelemetryUsersResponse(
@@ -494,6 +553,40 @@ class GoogleChromeManagementV1PeripheralsReport(
     usbPeripheralReport: _list[GoogleChromeManagementV1UsbPeripheralReport]
 
 @typing.type_check_only
+class GoogleChromeManagementV1PrintJob(typing_extensions.TypedDict, total=False):
+    colorMode: typing_extensions.Literal[
+        "COLOR_MODE_UNSPECIFIED", "BLACK_AND_WHITE", "COLOR"
+    ]
+    completeTime: str
+    copyCount: int
+    createTime: str
+    documentPageCount: int
+    duplexMode: typing_extensions.Literal[
+        "DUPLEX_MODE_UNSPECIFIED",
+        "ONE_SIDED",
+        "TWO_SIDED_LONG_EDGE",
+        "TWO_SIDED_SHORT_EDGE",
+    ]
+    id: str
+    printer: str
+    printerId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PRINTED", "CANCELLED", "FAILED"
+    ]
+    title: str
+    userEmail: str
+    userId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=False):
+    deviceCount: str
+    jobCount: str
+    printer: str
+    printerId: str
+    printerModel: str
+    userCount: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
     availableDiskBytes: str
     totalDiskBytes: str
@@ -531,6 +624,8 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     deviceId: str
     graphicsInfo: GoogleChromeManagementV1GraphicsInfo
     graphicsStatusReport: _list[GoogleChromeManagementV1GraphicsStatusReport]
+    heartbeatStatusReport: _list[GoogleChromeManagementV1HeartbeatStatusReport]
+    kioskAppStatusReport: _list[GoogleChromeManagementV1KioskAppStatusReport]
     memoryInfo: GoogleChromeManagementV1MemoryInfo
     memoryStatusReport: _list[GoogleChromeManagementV1MemoryStatusReport]
     name: str
@@ -559,15 +654,28 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
     eventType: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "AUDIO_SEVERE_UNDERRUN",
+        "NETWORK_STATE_CHANGE",
         "USB_ADDED",
         "USB_REMOVED",
         "NETWORK_HTTPS_LATENCY_CHANGE",
+        "WIFI_SIGNAL_STRENGTH_LOW",
+        "WIFI_SIGNAL_STRENGTH_RECOVERED",
+        "VPN_CONNECTION_STATE_CHANGE",
     ]
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
+    networkStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
     reportTime: str
     usbPeripheralsEvent: GoogleChromeManagementV1TelemetryUsbPeripheralsEvent
     user: GoogleChromeManagementV1TelemetryUserInfo
+    vpnConnectionStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    wifiSignalStrengthEvent: GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryEventNotificationFilter(
+    typing_extensions.TypedDict, total=False
+):
+    eventTypes: _list[str]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
@@ -577,6 +685,46 @@ class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(
     httpsLatencyState: typing_extensions.Literal[
         "HTTPS_LATENCY_STATE_UNSPECIFIED", "RECOVERY", "PROBLEM"
     ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent(
+    typing_extensions.TypedDict, total=False
+):
+    connectionState: typing_extensions.Literal[
+        "NETWORK_CONNECTION_STATE_UNSPECIFIED",
+        "ONLINE",
+        "CONNECTED",
+        "PORTAL",
+        "CONNECTING",
+        "NOT_CONNECTED",
+    ]
+    guid: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent(
+    typing_extensions.TypedDict, total=False
+):
+    guid: str
+    signalStrengthDbm: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryNotificationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    customer: str
+    filter: GoogleChromeManagementV1TelemetryNotificationFilter
+    googleCloudPubsubTopic: str
+    name: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryNotificationFilter(
+    typing_extensions.TypedDict, total=False
+):
+    deviceId: str
+    deviceOrgUnitId: str
+    telemetryEventNotificationFilter: GoogleChromeManagementV1TelemetryEventNotificationFilter
+    userEmail: str
+    userOrgUnitId: str
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryUsbPeripheralsEvent(
@@ -598,6 +746,7 @@ class GoogleChromeManagementV1TelemetryUserDevice(
     typing_extensions.TypedDict, total=False
 ):
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
+    deviceActivityReport: _list[GoogleChromeManagementV1DeviceActivityReport]
     deviceId: str
     peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
 
@@ -665,6 +814,17 @@ class GoogleChromeManagementV1UsbPeripheralReport(
     subclassId: int
     vendor: str
     vid: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total=False):
+    deviceCount: str
+    jobCount: str
+    printerCount: str
+    userEmail: str
+    userId: str
+
+@typing.type_check_only
+class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):

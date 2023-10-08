@@ -17,6 +17,16 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ProjectsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ZonesResource(googleapiclient.discovery.Resource):
+                def signSshPublicKey(
+                    self,
+                    *,
+                    parent: str,
+                    body: SignSshPublicKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SignSshPublicKeyResponseHttpRequest: ...
+
             def delete(
                 self,
                 *,
@@ -26,6 +36,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def zones(self) -> ZonesResource: ...
 
         @typing.type_check_only
         class SshPublicKeysResource(googleapiclient.discovery.Resource):
@@ -112,6 +123,14 @@ class LoginProfileHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> LoginProfile: ...
+
+@typing.type_check_only
+class SignSshPublicKeyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SignSshPublicKeyResponse: ...
 
 @typing.type_check_only
 class SshPublicKeyHttpRequest(googleapiclient.http.HttpRequest):

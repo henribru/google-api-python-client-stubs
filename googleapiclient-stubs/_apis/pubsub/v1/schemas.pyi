@@ -9,6 +9,10 @@ class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
     ackIds: _list[str]
 
 @typing.type_check_only
+class AvroConfig(typing_extensions.TypedDict, total=False):
+    writeMetadata: bool
+
+@typing.type_check_only
 class BigQueryConfig(typing_extensions.TypedDict, total=False):
     dropUnknownFields: bool
     state: typing_extensions.Literal[
@@ -27,6 +31,19 @@ class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class CloudStorageConfig(typing_extensions.TypedDict, total=False):
+    avroConfig: AvroConfig
+    bucket: str
+    filenamePrefix: str
+    filenameSuffix: str
+    maxBytes: str
+    maxDuration: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "PERMISSION_DENIED", "NOT_FOUND"
+    ]
+    textConfig: TextConfig
 
 @typing.type_check_only
 class CommitSchemaRequest(typing_extensions.TypedDict, total=False):
@@ -108,6 +125,10 @@ class ModifyPushConfigRequest(typing_extensions.TypedDict, total=False):
     pushConfig: PushConfig
 
 @typing.type_check_only
+class NoWrapper(typing_extensions.TypedDict, total=False):
+    writeMetadata: bool
+
+@typing.type_check_only
 class OidcToken(typing_extensions.TypedDict, total=False):
     audience: str
     serviceAccountEmail: str
@@ -135,6 +156,9 @@ class PubsubMessage(typing_extensions.TypedDict, total=False):
     publishTime: str
 
 @typing.type_check_only
+class PubsubWrapper(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PullRequest(typing_extensions.TypedDict, total=False):
     maxMessages: int
     returnImmediately: bool
@@ -146,7 +170,9 @@ class PullResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PushConfig(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    noWrapper: NoWrapper
     oidcToken: OidcToken
+    pubsubWrapper: PubsubWrapper
     pushEndpoint: str
 
 @typing.type_check_only
@@ -202,6 +228,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
 class Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     bigqueryConfig: BigQueryConfig
+    cloudStorageConfig: CloudStorageConfig
     deadLetterPolicy: DeadLetterPolicy
     detached: bool
     enableExactlyOnceDelivery: bool
@@ -225,6 +252,9 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TextConfig(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Topic(typing_extensions.TypedDict, total=False):

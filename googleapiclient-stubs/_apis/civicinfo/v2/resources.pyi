@@ -22,7 +22,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ElectionsResource(googleapiclient.discovery.Resource):
         def electionQuery(
-            self, **kwargs: typing.Any
+            self, *, productionDataOnly: bool = ..., **kwargs: typing.Any
         ) -> ElectionsQueryResponseHttpRequest: ...
         def voterInfoQuery(
             self,
@@ -30,6 +30,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
             address: str,
             electionId: str = ...,
             officialOnly: bool = ...,
+            productionDataOnly: bool = ...,
             returnAllAvailableData: bool = ...,
             **kwargs: typing.Any
         ) -> VoterInfoResponseHttpRequest: ...

@@ -5,21 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle(
-    typing_extensions.TypedDict, total=False
-):
-    deprecatedInFavorOf: _list[str]
-    description: str
-    endSupport: GoogleTypeDate
-    policyApiLifecycleStage: typing_extensions.Literal[
-        "API_UNSPECIFIED",
-        "API_PREVIEW",
-        "API_DEVELOPMENT",
-        "API_CURRENT",
-        "API_DEPRECATED",
-    ]
-
-@typing.type_check_only
 class GoogleChromePolicyVersionsV1AdditionalTargetKeyName(
     typing_extensions.TypedDict, total=False
 ):
@@ -165,6 +150,21 @@ class GoogleChromePolicyVersionsV1NumericRangeConstraint(
     minimum: str
 
 @typing.type_check_only
+class GoogleChromePolicyVersionsV1PolicyApiLifecycle(
+    typing_extensions.TypedDict, total=False
+):
+    deprecatedInFavorOf: _list[str]
+    description: str
+    endSupport: GoogleTypeDate
+    policyApiLifecycleStage: typing_extensions.Literal[
+        "API_UNSPECIFIED",
+        "API_PREVIEW",
+        "API_DEVELOPMENT",
+        "API_CURRENT",
+        "API_DEPRECATED",
+    ]
+
+@typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicyModificationError(
     typing_extensions.TypedDict, total=False
 ):
@@ -197,7 +197,7 @@ class GoogleChromePolicyVersionsV1PolicySchema(
     fieldDescriptions: _list[GoogleChromePolicyVersionsV1PolicySchemaFieldDescription]
     name: str
     notices: _list[GoogleChromePolicyVersionsV1PolicySchemaNoticeDescription]
-    policyApiLifecycle: ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle
+    policyApiLifecycle: GoogleChromePolicyVersionsV1PolicyApiLifecycle
     policyDescription: str
     schemaName: str
     supportUri: str
@@ -235,6 +235,7 @@ class GoogleChromePolicyVersionsV1PolicySchemaFieldKnownValueDescription(
     typing_extensions.TypedDict, total=False
 ):
     description: str
+    fieldDependencies: _list[GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies]
     value: str
 
 @typing.type_check_only
@@ -403,6 +404,7 @@ class Proto2FieldDescriptorProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Proto2FileDescriptorProto(typing_extensions.TypedDict, total=False):
+    editionDeprecated: str
     enumType: _list[Proto2EnumDescriptorProto]
     messageType: _list[Proto2DescriptorProto]
     name: str

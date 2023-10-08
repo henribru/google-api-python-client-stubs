@@ -155,6 +155,7 @@ class GoogleIdentityAccesscontextmanagerV1Condition(
     negate: bool
     regions: _list[str]
     requiredAccessLevels: _list[str]
+    vpcNetworkSources: _list[GoogleIdentityAccesscontextmanagerV1VpcNetworkSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1CustomLevel(
@@ -184,6 +185,12 @@ class GoogleIdentityAccesscontextmanagerV1EgressFrom(
         "ANY_USER_ACCOUNT",
         "ANY_SERVICE_ACCOUNT",
     ]
+    sourceRestriction: typing_extensions.Literal[
+        "SOURCE_RESTRICTION_UNSPECIFIED",
+        "SOURCE_RESTRICTION_ENABLED",
+        "SOURCE_RESTRICTION_DISABLED",
+    ]
+    sources: _list[GoogleIdentityAccesscontextmanagerV1EgressSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
@@ -191,6 +198,12 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 ):
     egressFrom: GoogleIdentityAccesscontextmanagerV1EgressFrom
     egressTo: GoogleIdentityAccesscontextmanagerV1EgressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressSource(
+    typing_extensions.TypedDict, total=False
+):
+    accessLevel: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
@@ -288,6 +301,19 @@ class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
 ):
     allowedServices: _list[str]
     enableRestriction: bool
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1VpcNetworkSource(
+    typing_extensions.TypedDict, total=False
+):
+    vpcSubnetwork: GoogleIdentityAccesscontextmanagerV1VpcSubNetwork
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1VpcSubNetwork(
+    typing_extensions.TypedDict, total=False
+):
+    network: str
+    vpcIpSubnetworks: _list[str]
 
 @typing.type_check_only
 class IamPolicySearchResult(typing_extensions.TypedDict, total=False):

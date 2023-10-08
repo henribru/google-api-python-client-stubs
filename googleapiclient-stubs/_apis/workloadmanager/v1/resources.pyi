@@ -160,6 +160,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    customRulesBucket: str = ...,
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,

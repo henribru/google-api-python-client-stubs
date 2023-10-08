@@ -84,6 +84,13 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     body: UpdateParametersRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def upgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudMemcacheV1beta2UpgradeInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):

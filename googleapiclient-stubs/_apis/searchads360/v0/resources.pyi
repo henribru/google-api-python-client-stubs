@@ -45,14 +45,12 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
                 | None
             ): ...
-            def searchStream(
-                self,
-                *,
-                customerId: str,
-                body: GoogleAdsSearchads360V0Services__SearchSearchAds360StreamRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponseHttpRequest: ...
 
+        def listAccessibleCustomers(
+            self, **kwargs: typing.Any
+        ) -> (
+            GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponseHttpRequest
+        ): ...
         def customColumns(self) -> CustomColumnsResource: ...
         def searchAds360(self) -> SearchAds360Resource: ...
 
@@ -114,6 +112,16 @@ class GoogleAdsSearchads360V0Resources__SearchAds360FieldHttpRequest(
     ) -> GoogleAdsSearchads360V0Resources__SearchAds360Field: ...
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse: ...
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Services__ListCustomColumnsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -142,13 +150,3 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360Response: ...
-
-@typing.type_check_only
-class GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360StreamResponse: ...

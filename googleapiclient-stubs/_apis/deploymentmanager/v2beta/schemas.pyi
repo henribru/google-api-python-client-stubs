@@ -40,6 +40,16 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BulkInsertOperationStatus(typing_extensions.TypedDict, total=False):
+    createdVmCount: int
+    deletedVmCount: int
+    failedToCreateVmCount: int
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "CREATING", "ROLLING_BACK", "DONE"
+    ]
+    targetVmCount: int
+
+@typing.type_check_only
 class CollectionOverride(typing_extensions.TypedDict, total=False):
     collection: str
     options: Options
@@ -153,6 +163,10 @@ class InputMapping(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class InstancesBulkInsertOperationMetadata(typing_extensions.TypedDict, total=False):
+    perLocationStatus: dict[str, typing.Any]
+
+@typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
     config: ConfigFile
     expandedConfig: str
@@ -181,6 +195,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     httpErrorStatusCode: int
     id: str
     insertTime: str
+    instancesBulkInsertOperationMetadata: InstancesBulkInsertOperationMetadata
     kind: str
     name: str
     operationGroupId: str
@@ -188,6 +203,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     progress: int
     region: str
     selfLink: str
+    setCommonInstanceMetadataOperationMetadata: SetCommonInstanceMetadataOperationMetadata
     startTime: str
     status: typing_extensions.Literal["PENDING", "RUNNING", "DONE"]
     statusMessage: str
@@ -266,6 +282,28 @@ class ResourcesListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
+
+@typing.type_check_only
+class SetCommonInstanceMetadataOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    clientOperationId: str
+    perLocationOperations: dict[str, typing.Any]
+
+@typing.type_check_only
+class SetCommonInstanceMetadataOperationMetadataPerLocationOperationInfo(
+    typing_extensions.TypedDict, total=False
+):
+    error: Status
+    state: typing_extensions.Literal[
+        "UNSPECIFIED", "PROPAGATING", "PROPAGATED", "ABANDONED", "FAILED", "DONE"
+    ]
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TargetConfiguration(typing_extensions.TypedDict, total=False):

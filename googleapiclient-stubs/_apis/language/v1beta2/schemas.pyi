@@ -58,6 +58,7 @@ class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
     documentSentiment: Sentiment
     entities: _list[Entity]
     language: str
+    moderationCategories: _list[ClassificationCategory]
     sentences: _list[Sentence]
     tokens: _list[Token]
 
@@ -217,6 +218,15 @@ class Features(typing_extensions.TypedDict, total=False):
     extractEntities: bool
     extractEntitySentiment: bool
     extractSyntax: bool
+    moderateText: bool
+
+@typing.type_check_only
+class ModerateTextRequest(typing_extensions.TypedDict, total=False):
+    document: Document
+
+@typing.type_check_only
+class ModerateTextResponse(typing_extensions.TypedDict, total=False):
+    moderationCategories: _list[ClassificationCategory]
 
 @typing.type_check_only
 class PartOfSpeech(typing_extensions.TypedDict, total=False):

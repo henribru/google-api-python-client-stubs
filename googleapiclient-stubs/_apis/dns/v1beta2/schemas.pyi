@@ -355,7 +355,9 @@ class RRSetRoutingPolicyLoadBalancerTarget(typing_extensions.TypedDict, total=Fa
     ipAddress: str
     ipProtocol: typing_extensions.Literal["undefined", "tcp", "udp"]
     kind: str
-    loadBalancerType: typing_extensions.Literal["none", "regionalL4ilb"]
+    loadBalancerType: typing_extensions.Literal[
+        "none", "globalL7ilb", "regionalL4ilb", "regionalL7ilb"
+    ]
     networkUrl: str
     port: str
     project: str

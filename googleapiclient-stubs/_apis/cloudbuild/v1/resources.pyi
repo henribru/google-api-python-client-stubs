@@ -432,6 +432,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     body: BuildTrigger = ...,
                     projectId: str = ...,
                     triggerId: str = ...,
+                    updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> BuildTriggerHttpRequest: ...
                 def run(
@@ -552,6 +553,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 triggerId: str,
                 body: BuildTrigger = ...,
+                updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> BuildTriggerHttpRequest: ...
             def run(

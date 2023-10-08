@@ -527,6 +527,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "OBJECT_SEARCH_LIFT_STUDY",
                 "OBJECT_FLOODLIGHT_DV360_LINK",
                 "OBJECT_ADVERTISER_CUSTOMER_LINK",
+                "OBJECT_CONVERSION_DOMAIN",
+                "OBJECT_ACCOUNT_CONVERSION_DOMAIN",
             ] = ...,
             pageToken: str = ...,
             searchString: str = ...,
@@ -998,6 +1000,9 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def get(
             self, *, reportId: str, fileId: str, **kwargs: typing.Any
         ) -> FileHttpRequest: ...
+        def get_media(
+            self, *, reportId: str, fileId: str, **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def list(
             self,
             *,
@@ -1265,33 +1270,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> OperatingSystemsListResponseHttpRequest: ...
-
-    @typing.type_check_only
-    class OrderDocumentsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, profileId: str, projectId: str, id: str, **kwargs: typing.Any
-        ) -> OrderDocumentHttpRequest: ...
-        def list(
-            self,
-            *,
-            profileId: str,
-            projectId: str,
-            approved: bool = ...,
-            ids: str | _list[str] = ...,
-            maxResults: int = ...,
-            orderId: str | _list[str] = ...,
-            pageToken: str = ...,
-            searchString: str = ...,
-            siteId: str | _list[str] = ...,
-            sortField: typing_extensions.Literal["ID", "NAME"] = ...,
-            sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
-        ) -> OrderDocumentsListResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: OrderDocumentsListResponseHttpRequest,
-            previous_response: OrderDocumentsListResponse,
-        ) -> OrderDocumentsListResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
@@ -1726,6 +1704,14 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 fileId: str,
                 **kwargs: typing.Any
             ) -> FileHttpRequest: ...
+            def get_media(
+                self,
+                *,
+                profileId: str,
+                reportId: str,
+                fileId: str,
+                **kwargs: typing.Any
+            ) -> BytesHttpRequest: ...
             def list(
                 self,
                 *,
@@ -2077,7 +2063,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     def mobileCarriers(self) -> MobileCarriersResource: ...
     def operatingSystemVersions(self) -> OperatingSystemVersionsResource: ...
     def operatingSystems(self) -> OperatingSystemsResource: ...
-    def orderDocuments(self) -> OrderDocumentsResource: ...
     def orders(self) -> OrdersResource: ...
     def placementGroups(self) -> PlacementGroupsResource: ...
     def placementStrategies(self) -> PlacementStrategiesResource: ...
@@ -2729,22 +2714,6 @@ class OrderHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Order: ...
 
 @typing.type_check_only
-class OrderDocumentHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> OrderDocument: ...
-
-@typing.type_check_only
-class OrderDocumentsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> OrderDocumentsListResponse: ...
-
-@typing.type_check_only
 class OrdersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3065,3 +3034,11 @@ class VideoFormatsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoFormatsListResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

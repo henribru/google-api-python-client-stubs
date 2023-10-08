@@ -19,6 +19,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AuthConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
+    authKey: str
     authType: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
@@ -35,6 +36,7 @@ class AuthConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
+    authKey: str
     authType: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
@@ -66,6 +68,7 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ConfigVariable(typing_extensions.TypedDict, total=False):
     boolValue: bool
+    encryptionKeyValue: EncryptionKey
     intValue: str
     key: str
     secretValue: Secret
@@ -80,6 +83,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
     isAdvanced: bool
     key: str
     required: bool
+    requiredCondition: LogicalExpression
     roleGrant: RoleGrant
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
     validationRegex: str
@@ -91,18 +95,32 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
         "SECRET",
         "ENUM",
         "AUTHORIZATION_CODE",
+        "ENCRYPTION_KEY",
     ]
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     authConfig: AuthConfig
     configVariables: _list[ConfigVariable]
+    connectionRevision: str
     connectorVersion: str
+    connectorVersionInfraConfig: ConnectorVersionInfraConfig
+    connectorVersionLaunchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+    ]
     createTime: str
     description: str
     destinationConfigs: _list[DestinationConfig]
     envoyImageLocation: str
+    eventingConfig: EventingConfig
+    eventingEnablementType: typing_extensions.Literal[
+        "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+        "EVENTING_AND_CONNECTION",
+        "ONLY_EVENTING",
+    ]
+    eventingRuntimeData: EventingRuntimeData
     imageLocation: str
+    isTrustedTester: bool
     labels: dict[str, typing.Any]
     lockConfig: LockConfig
     logConfig: ConnectorsLogConfig
@@ -112,6 +130,9 @@ class Connection(typing_extensions.TypedDict, total=False):
     serviceDirectory: str
     sslConfig: SslConfig
     status: ConnectionStatus
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
+    ]
     suspended: bool
     updateTime: str
 
@@ -145,6 +166,7 @@ class Connector(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     documentationUri: str
+    eventingDetails: EventingDetails
     externalUri: str
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
@@ -155,13 +177,25 @@ class Connector(typing_extensions.TypedDict, total=False):
     webAssetsLocation: str
 
 @typing.type_check_only
+class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
+    connectionRatelimitWindowSeconds: str
+    hpaConfig: HPAConfig
+    internalclientRatelimitThreshold: str
+    ratelimitThreshold: str
+    resourceLimits: ResourceLimits
+    resourceRequests: ResourceRequests
+    sharedDeployment: str
+
+@typing.type_check_only
 class ConnectorVersion(typing_extensions.TypedDict, total=False):
     authConfigTemplates: _list[AuthConfigTemplate]
     configVariableTemplates: _list[ConfigVariableTemplate]
+    connectorInfraConfig: ConnectorInfraConfig
     createTime: str
     destinationConfigTemplates: _list[DestinationConfigTemplate]
     displayName: str
     egressControlConfig: EgressControlConfig
+    eventingConfigTemplate: EventingConfigTemplate
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
@@ -173,6 +207,16 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     sslConfigTemplate: SslConfigTemplate
     supportedRuntimeFeatures: SupportedRuntimeFeatures
     updateTime: str
+
+@typing.type_check_only
+class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
+    connectionRatelimitWindowSeconds: str
+    hpaConfig: HPAConfig
+    internalclientRatelimitThreshold: str
+    ratelimitThreshold: str
+    resourceLimits: ResourceLimits
+    resourceRequests: ResourceRequests
+    sharedDeployment: str
 
 @typing.type_check_only
 class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
@@ -212,9 +256,112 @@ class EgressControlConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"
+    ]
+
+@typing.type_check_only
+class EndPoint(typing_extensions.TypedDict, total=False):
+    endpointUri: str
+    headers: _list[Header]
+
+@typing.type_check_only
+class EndpointAttachment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    endpointIp: str
+    labels: dict[str, typing.Any]
+    name: str
+    serviceAttachment: str
+    updateTime: str
+
+@typing.type_check_only
 class EnumOption(typing_extensions.TypedDict, total=False):
     displayName: str
     id: str
+
+@typing.type_check_only
+class EventSubscription(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destinations: EventSubscriptionDestination
+    eventTypeId: str
+    name: str
+    status: EventSubscriptionStatus
+    subscriber: str
+    subscriberLink: str
+    updateTime: str
+
+@typing.type_check_only
+class EventSubscriptionDestination(typing_extensions.TypedDict, total=False):
+    endpoint: EndPoint
+    serviceAccount: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT"]
+
+@typing.type_check_only
+class EventSubscriptionStatus(typing_extensions.TypedDict, total=False):
+    description: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "UPDATING", "ACTIVE", "SUSPENDED", "ERROR"
+    ]
+
+@typing.type_check_only
+class EventType(typing_extensions.TypedDict, total=False):
+    createTime: str
+    enrichedEventPayloadSchema: str
+    entityType: str
+    eventPayloadSchema: str
+    eventTypeId: str
+    idPath: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class EventingConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[ConfigVariable]
+    authConfig: AuthConfig
+    encryptionKey: ConfigVariable
+    enrichmentEnabled: bool
+    eventsListenerIngressEndpoint: str
+    privateConnectivityEnabled: bool
+    registrationDestinationConfig: DestinationConfig
+
+@typing.type_check_only
+class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[ConfigVariableTemplate]
+    authConfigTemplates: _list[AuthConfigTemplate]
+    autoRefresh: bool
+    autoRegistrationSupported: bool
+    encryptionKeyTemplate: ConfigVariableTemplate
+    enrichmentSupported: bool
+    isEventingSupported: bool
+    registrationDestinationConfig: DestinationConfigTemplate
+
+@typing.type_check_only
+class EventingDetails(typing_extensions.TypedDict, total=False):
+    customEventTypes: bool
+    description: str
+    documentationLink: str
+    iconLocation: str
+    launchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+    ]
+    name: str
+    searchTags: _list[str]
+
+@typing.type_check_only
+class EventingRuntimeData(typing_extensions.TypedDict, total=False):
+    eventsListenerEndpoint: str
+    eventsListenerPscSa: str
+    status: EventingStatus
+
+@typing.type_check_only
+class EventingStatus(typing_extensions.TypedDict, total=False):
+    description: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "INGRESS_ENDPOINT_REQUIRED"
+    ]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -285,9 +432,30 @@ class Field(typing_extensions.TypedDict, total=False):
     defaultValue: typing.Any
     description: str
     field: str
+    jsonSchema: JsonSchema
     key: bool
     nullable: bool
     readonly: bool
+
+@typing.type_check_only
+class FieldComparison(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    comparator: typing_extensions.Literal[
+        "COMPARATOR_UNSPECIFIED", "EQUALS", "NOT_EQUALS"
+    ]
+    intValue: str
+    key: str
+    stringValue: str
+
+@typing.type_check_only
+class HPAConfig(typing_extensions.TypedDict, total=False):
+    cpuUtilizationThreshold: str
+    memoryUtilizationThreshold: str
+
+@typing.type_check_only
+class Header(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
 
 @typing.type_check_only
 class InputParameter(typing_extensions.TypedDict, total=False):
@@ -340,8 +508,67 @@ class InputParameter(typing_extensions.TypedDict, total=False):
     ]
     defaultValue: typing.Any
     description: str
+    jsonSchema: JsonSchema
     nullable: bool
     parameter: str
+
+@typing.type_check_only
+class JsonSchema(typing_extensions.TypedDict, total=False):
+    default: typing.Any
+    description: str
+    enum: _list[typing.Any]
+    format: str
+    items: JsonSchema
+    jdbcType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "DATA_TYPE_INT",
+        "DATA_TYPE_SMALLINT",
+        "DATA_TYPE_DOUBLE",
+        "DATA_TYPE_DATE",
+        "DATA_TYPE_DATETIME",
+        "DATA_TYPE_TIME",
+        "DATA_TYPE_STRING",
+        "DATA_TYPE_LONG",
+        "DATA_TYPE_BOOLEAN",
+        "DATA_TYPE_DECIMAL",
+        "DATA_TYPE_UUID",
+        "DATA_TYPE_BLOB",
+        "DATA_TYPE_BIT",
+        "DATA_TYPE_TINYINT",
+        "DATA_TYPE_INTEGER",
+        "DATA_TYPE_BIGINT",
+        "DATA_TYPE_FLOAT",
+        "DATA_TYPE_REAL",
+        "DATA_TYPE_NUMERIC",
+        "DATA_TYPE_CHAR",
+        "DATA_TYPE_VARCHAR",
+        "DATA_TYPE_LONGVARCHAR",
+        "DATA_TYPE_TIMESTAMP",
+        "DATA_TYPE_NCHAR",
+        "DATA_TYPE_NVARCHAR",
+        "DATA_TYPE_LONGNVARCHAR",
+        "DATA_TYPE_NULL",
+        "DATA_TYPE_OTHER",
+        "DATA_TYPE_JAVA_OBJECT",
+        "DATA_TYPE_DISTINCT",
+        "DATA_TYPE_STRUCT",
+        "DATA_TYPE_ARRAY",
+        "DATA_TYPE_CLOB",
+        "DATA_TYPE_REF",
+        "DATA_TYPE_DATALINK",
+        "DATA_TYPE_ROWID",
+        "DATA_TYPE_BINARY",
+        "DATA_TYPE_VARBINARY",
+        "DATA_TYPE_LONGVARBINARY",
+        "DATA_TYPE_NCLOB",
+        "DATA_TYPE_SQLXML",
+        "DATA_TYPE_REF_CURSOR",
+        "DATA_TYPE_TIME_WITH_TIMEZONE",
+        "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE",
+    ]
+    properties: dict[str, typing.Any]
+    required: _list[str]
+    type: _list[str]
 
 @typing.type_check_only
 class JwtClaims(typing_extensions.TypedDict, total=False):
@@ -368,8 +595,30 @@ class ListConnectorsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListEndpointAttachmentsResponse(typing_extensions.TypedDict, total=False):
+    endpointAttachments: _list[EndpointAttachment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListEventSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    eventSubscriptions: _list[EventSubscription]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListEventTypesResponse(typing_extensions.TypedDict, total=False):
+    eventTypes: _list[EventType]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListManagedZonesResponse(typing_extensions.TypedDict, total=False):
+    managedZones: _list[ManagedZone]
     nextPageToken: str
 
 @typing.type_check_only
@@ -407,6 +656,23 @@ class LockConfig(typing_extensions.TypedDict, total=False):
     reason: str
 
 @typing.type_check_only
+class LogicalExpression(typing_extensions.TypedDict, total=False):
+    fieldComparisons: _list[FieldComparison]
+    logicalExpressions: _list[LogicalExpression]
+    logicalOperator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "AND", "OR"]
+
+@typing.type_check_only
+class ManagedZone(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    dns: str
+    labels: dict[str, typing.Any]
+    name: str
+    targetProject: str
+    targetVpc: str
+    updateTime: str
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
@@ -414,6 +680,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
     authCode: str
+    authUri: str
     clientId: str
     clientSecret: Secret
     enablePkce: bool
@@ -477,6 +744,9 @@ class RefreshConnectionSchemaMetadataRequest(
 ): ...
 
 @typing.type_check_only
+class RepairEventingRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     pathTemplate: str
     type: typing_extensions.Literal[
@@ -486,6 +756,16 @@ class Resource(typing_extensions.TypedDict, total=False):
         "GCP_SECRETMANAGER_SECRET",
         "GCP_SECRETMANAGER_SECRET_VERSION",
     ]
+
+@typing.type_check_only
+class ResourceLimits(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
+class ResourceRequests(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
 
 @typing.type_check_only
 class ResultMetadata(typing_extensions.TypedDict, total=False):
@@ -538,6 +818,10 @@ class ResultMetadata(typing_extensions.TypedDict, total=False):
     ]
     description: str
     field: str
+    jsonSchema: JsonSchema
+
+@typing.type_check_only
+class RetryEventSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RoleGrant(typing_extensions.TypedDict, total=False):
@@ -549,7 +833,11 @@ class RoleGrant(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeActionSchema(typing_extensions.TypedDict, total=False):
     action: str
+    description: str
+    displayName: str
+    inputJsonSchema: JsonSchema
     inputParameters: _list[InputParameter]
+    resultJsonSchema: JsonSchema
     resultMetadata: _list[ResultMetadata]
 
 @typing.type_check_only
@@ -577,6 +865,7 @@ class RuntimeConfig(typing_extensions.TypedDict, total=False):
 class RuntimeEntitySchema(typing_extensions.TypedDict, total=False):
     entity: str
     fields: _list[Field]
+    jsonSchema: JsonSchema
 
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
@@ -591,6 +880,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class Settings(typing_extensions.TypedDict, total=False):
     name: str
     payg: bool
+    tenantProjectId: str
     vpcsc: bool
 
 @typing.type_check_only

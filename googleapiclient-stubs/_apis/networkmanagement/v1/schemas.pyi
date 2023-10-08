@@ -25,6 +25,10 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED",
         "MISMATCHED_IP_VERSION",
         "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
+        "RESOURCE_CONFIG_NOT_FOUND",
+        "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+        "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
+        "SOURCE_FORWARDING_RULE_UNSUPPORTED",
     ]
     projectsMissingPermission: _list[str]
     resourceUri: str
@@ -100,6 +104,7 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     name: str
+    probingDetails: ProbingDetails
     protocol: str
     reachabilityDetails: ReachabilityDetails
     relatedProjects: _list[str]
@@ -119,6 +124,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "PSC_PUBLISHED_SERVICE",
         "PSC_GOOGLE_API",
         "PSC_VPC_SC",
+        "SERVERLESS_NEG",
     ]
 
 @typing.type_check_only
@@ -148,6 +154,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+        "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
         "GKE_PSC_ENDPOINT_MISSING",
         "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
         "GKE_CONTROL_PLANE_REGION_MISMATCH",
@@ -162,8 +169,13 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "PSC_CONNECTION_NOT_ACCEPTED",
         "CLOUD_RUN_REVISION_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
+        "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
     ]
     resourceUri: str
+
+@typing.type_check_only
+class EdgeLocation(typing_extensions.TypedDict, total=False):
+    metropolitanArea: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -174,9 +186,31 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     cloudFunction: CloudFunctionEndpoint
     cloudRunRevision: CloudRunRevisionEndpoint
     cloudSqlInstance: str
+    forwardingRule: str
+    forwardingRuleTarget: typing_extensions.Literal[
+        "FORWARDING_RULE_TARGET_UNSPECIFIED",
+        "INSTANCE",
+        "LOAD_BALANCER",
+        "VPN_GATEWAY",
+        "PSC",
+    ]
     gkeMasterCluster: str
     instance: str
     ipAddress: str
+    loadBalancerId: str
+    loadBalancerType: typing_extensions.Literal[
+        "LOAD_BALANCER_TYPE_UNSPECIFIED",
+        "HTTPS_ADVANCED_LOAD_BALANCER",
+        "HTTPS_LOAD_BALANCER",
+        "REGIONAL_HTTPS_LOAD_BALANCER",
+        "INTERNAL_HTTPS_LOAD_BALANCER",
+        "SSL_PROXY_LOAD_BALANCER",
+        "TCP_PROXY_LOAD_BALANCER",
+        "INTERNAL_TCP_PROXY_LOAD_BALANCER",
+        "NETWORK_LOAD_BALANCER",
+        "LEGACY_NETWORK_LOAD_BALANCER",
+        "TCP_UDP_INTERNAL_LOAD_BALANCER",
+    ]
     network: str
     networkType: typing_extensions.Literal[
         "NETWORK_TYPE_UNSPECIFIED", "GCP_NETWORK", "NON_GCP_NETWORK"
@@ -190,6 +224,7 @@ class EndpointInfo(typing_extensions.TypedDict, total=False):
     destinationNetworkUri: str
     destinationPort: int
     protocol: str
+    sourceAgentUri: str
     sourceIp: str
     sourceNetworkUri: str
     sourcePort: int
@@ -213,6 +248,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "IMPLIED_VPC_FIREWALL_RULE",
         "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
         "NETWORK_FIREWALL_POLICY_RULE",
+        "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
     ]
     networkUri: str
     policy: str
@@ -233,6 +269,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
         "CLOUD_SQL_INSTANCE",
         "ANOTHER_PROJECT",
+        "NCC_HUB",
     ]
 
 @typing.type_check_only
@@ -253,6 +290,16 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     internalIp: str
 
 @typing.type_check_only
+class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
+    googleServiceType: typing_extensions.Literal[
+        "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+        "IAP",
+        "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+        "CLOUD_DNS",
+    ]
+    sourceIp: str
+
+@typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     externalIp: str
@@ -262,6 +309,15 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     networkUri: str
     serviceAccount: str
     uri: str
+
+@typing.type_check_only
+class LatencyDistribution(typing_extensions.TypedDict, total=False):
+    latencyPercentiles: _list[LatencyPercentile]
+
+@typing.type_check_only
+class LatencyPercentile(typing_extensions.TypedDict, total=False):
+    latencyMicros: str
+    percent: int
 
 @typing.type_check_only
 class ListConnectivityTestsResponse(typing_extensions.TypedDict, total=False):
@@ -346,6 +402,26 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class ProbingDetails(typing_extensions.TypedDict, total=False):
+    abortCause: typing_extensions.Literal[
+        "PROBING_ABORT_CAUSE_UNSPECIFIED", "PERMISSION_DENIED", "NO_SOURCE_LOCATION"
+    ]
+    destinationEgressLocation: EdgeLocation
+    endpointInfo: EndpointInfo
+    error: Status
+    probingLatency: LatencyDistribution
+    result: typing_extensions.Literal[
+        "PROBING_RESULT_UNSPECIFIED",
+        "REACHABLE",
+        "UNREACHABLE",
+        "REACHABILITY_INCONSISTENT",
+        "UNDETERMINED",
+    ]
+    sentProbeCount: int
+    successfulProbeCount: int
+    verifyTime: str
+
+@typing.type_check_only
 class ReachabilityDetails(typing_extensions.TypedDict, total=False):
     error: Status
     result: typing_extensions.Literal[
@@ -363,6 +439,8 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     destPortRanges: _list[str]
     displayName: str
     instanceTags: _list[str]
+    nccHubUri: str
+    nccSpokeUri: str
     networkUri: str
     nextHop: str
     nextHopType: typing_extensions.Literal[
@@ -378,9 +456,13 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_BLACKHOLE",
         "NEXT_HOP_ILB",
         "NEXT_HOP_ROUTER_APPLIANCE",
+        "NEXT_HOP_NCC_HUB",
     ]
     priority: int
     protocols: _list[str]
+    routeScope: typing_extensions.Literal[
+        "ROUTE_SCOPE_UNSPECIFIED", "NETWORK", "NCC_HUB"
+    ]
     routeType: typing_extensions.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
         "SUBNET",
@@ -422,6 +504,7 @@ class Step(typing_extensions.TypedDict, total=False):
     forward: ForwardInfo
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
+    googleService: GoogleServiceInfo
     instance: InstanceInfo
     loadBalancer: LoadBalancerInfo
     network: NetworkInfo
@@ -431,6 +514,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED",
         "START_FROM_INSTANCE",
         "START_FROM_INTERNET",
+        "START_FROM_GOOGLE_SERVICE",
         "START_FROM_PRIVATE_NETWORK",
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",
