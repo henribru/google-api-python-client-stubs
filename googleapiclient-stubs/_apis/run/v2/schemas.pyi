@@ -10,6 +10,11 @@ class GoogleCloudRunV2BinaryAuthorization(typing_extensions.TypedDict, total=Fal
     useDefault: bool
 
 @typing.type_check_only
+class GoogleCloudRunV2CancelExecutionRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    validateOnly: bool
+
+@typing.type_check_only
 class GoogleCloudRunV2CloudSqlInstance(typing_extensions.TypedDict, total=False):
     instances: _list[str]
 
@@ -21,6 +26,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
         "NON_ZERO_EXIT_CODE",
         "CANCELLED",
         "CANCELLING",
+        "DELETED",
     ]
     lastTransitionTime: str
     message: str
@@ -72,6 +78,7 @@ class GoogleCloudRunV2Condition(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2Container(typing_extensions.TypedDict, total=False):
     args: _list[str]
     command: _list[str]
+    dependsOn: _list[str]
     env: _list[GoogleCloudRunV2EnvVar]
     image: str
     livenessProbe: GoogleCloudRunV2Probe
@@ -83,9 +90,21 @@ class GoogleCloudRunV2Container(typing_extensions.TypedDict, total=False):
     workingDir: str
 
 @typing.type_check_only
+class GoogleCloudRunV2ContainerOverride(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    clearArgs: bool
+    env: _list[GoogleCloudRunV2EnvVar]
+    name: str
+
+@typing.type_check_only
 class GoogleCloudRunV2ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
     name: str
+
+@typing.type_check_only
+class GoogleCloudRunV2EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
+    medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "MEMORY"]
+    sizeLimit: str
 
 @typing.type_check_only
 class GoogleCloudRunV2EnvVar(typing_extensions.TypedDict, total=False):
@@ -228,6 +247,18 @@ class GoogleCloudRunV2ListTasksResponse(typing_extensions.TypedDict, total=False
     tasks: _list[GoogleCloudRunV2Task]
 
 @typing.type_check_only
+class GoogleCloudRunV2NetworkInterface(typing_extensions.TypedDict, total=False):
+    network: str
+    subnetwork: str
+    tags: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRunV2Overrides(typing_extensions.TypedDict, total=False):
+    containerOverrides: _list[GoogleCloudRunV2ContainerOverride]
+    taskCount: int
+    timeout: str
+
+@typing.type_check_only
 class GoogleCloudRunV2Probe(typing_extensions.TypedDict, total=False):
     failureThreshold: int
     grpc: GoogleCloudRunV2GRPCAction
@@ -241,6 +272,7 @@ class GoogleCloudRunV2Probe(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2ResourceRequirements(typing_extensions.TypedDict, total=False):
     cpuIdle: bool
     limits: dict[str, typing.Any]
+    startupCpuBoost: bool
 
 @typing.type_check_only
 class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
@@ -282,6 +314,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     scaling: GoogleCloudRunV2RevisionScaling
     service: str
     serviceAccount: str
+    sessionAffinity: bool
     timeout: str
     uid: str
     updateTime: str
@@ -308,6 +341,7 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
     revision: str
     scaling: GoogleCloudRunV2RevisionScaling
     serviceAccount: str
+    sessionAffinity: bool
     timeout: str
     volumes: _list[GoogleCloudRunV2Volume]
     vpcAccess: GoogleCloudRunV2VpcAccess
@@ -315,6 +349,7 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudRunV2RunJobRequest(typing_extensions.TypedDict, total=False):
     etag: str
+    overrides: GoogleCloudRunV2Overrides
     validateOnly: bool
 
 @typing.type_check_only
@@ -337,6 +372,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV2Condition]
     createTime: str
     creator: str
+    customAudiences: _list[str]
     deleteTime: str
     description: str
     etag: str
@@ -370,6 +406,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     terminalCondition: GoogleCloudRunV2Condition
     traffic: _list[GoogleCloudRunV2TrafficTarget]
     trafficStatuses: _list[GoogleCloudRunV2TrafficTargetStatus]
+    trafficTagsCleanupThreshold: str
     uid: str
     updateTime: str
     uri: str
@@ -407,6 +444,7 @@ class GoogleCloudRunV2Task(typing_extensions.TypedDict, total=False):
     reconciling: bool
     retried: int
     satisfiesPzs: bool
+    scheduledTime: str
     serviceAccount: str
     startTime: str
     timeout: str
@@ -467,6 +505,7 @@ class GoogleCloudRunV2VersionToPath(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2Volume(typing_extensions.TypedDict, total=False):
     cloudSqlInstance: GoogleCloudRunV2CloudSqlInstance
+    emptyDir: GoogleCloudRunV2EmptyDirVolumeSource
     name: str
     secret: GoogleCloudRunV2SecretVolumeSource
 
@@ -481,6 +520,7 @@ class GoogleCloudRunV2VpcAccess(typing_extensions.TypedDict, total=False):
     egress: typing_extensions.Literal[
         "VPC_EGRESS_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_RANGES_ONLY"
     ]
+    networkInterfaces: _list[GoogleCloudRunV2NetworkInterface]
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):

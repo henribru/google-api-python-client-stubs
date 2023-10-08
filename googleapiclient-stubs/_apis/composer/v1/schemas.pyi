@@ -29,6 +29,12 @@ class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
 @typing.type_check_only
+class DatabaseFailoverRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DatabaseFailoverResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -47,9 +53,11 @@ class Environment(typing_extensions.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"
     ]
+    storageConfig: StorageConfig
     updateTime: str
     uuid: str
 
@@ -73,10 +81,37 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     nodeCount: int
     privateEnvironmentConfig: PrivateEnvironmentConfig
     recoveryConfig: RecoveryConfig
+    resilienceMode: typing_extensions.Literal[
+        "RESILIENCE_MODE_UNSPECIFIED", "HIGH_RESILIENCE"
+    ]
     softwareConfig: SoftwareConfig
     webServerConfig: WebServerConfig
     webServerNetworkAccessControl: WebServerNetworkAccessControl
     workloadsConfig: WorkloadsConfig
+
+@typing.type_check_only
+class ExecuteAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+    command: str
+    parameters: _list[str]
+    subcommand: str
+
+@typing.type_check_only
+class ExecuteAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+    error: str
+    executionId: str
+    pod: str
+    podNamespace: str
+
+@typing.type_check_only
+class ExitInfo(typing_extensions.TypedDict, total=False):
+    error: str
+    exitCode: int
+
+@typing.type_check_only
+class FetchDatabasePropertiesResponse(typing_extensions.TypedDict, total=False):
+    isFailoverReplicaAvailable: bool
+    primaryGceZone: str
+    secondaryGceZone: str
 
 @typing.type_check_only
 class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
@@ -94,6 +129,11 @@ class ImageVersion(typing_extensions.TypedDict, total=False):
     releaseDate: Date
     supportedPythonVersions: _list[str]
     upgradeDisabled: bool
+
+@typing.type_check_only
+class Line(typing_extensions.TypedDict, total=False):
+    content: str
+    lineNumber: int
 
 @typing.type_check_only
 class ListEnvironmentsResponse(typing_extensions.TypedDict, total=False):
@@ -171,12 +211,26 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
         "CHECK",
         "SAVE_SNAPSHOT",
         "LOAD_SNAPSHOT",
+        "DATABASE_FAILOVER",
     ]
     resource: str
     resourceUuid: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "SUCCESSFUL", "FAILED"
     ]
+
+@typing.type_check_only
+class PollAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+    executionId: str
+    nextLineNumber: int
+    pod: str
+    podNamespace: str
+
+@typing.type_check_only
+class PollAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+    exitInfo: ExitInfo
+    output: _list[Line]
+    outputEnd: bool
 
 @typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
@@ -239,6 +293,27 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StopAirflowCommandRequest(typing_extensions.TypedDict, total=False):
+    executionId: str
+    force: bool
+    pod: str
+    podNamespace: str
+
+@typing.type_check_only
+class StopAirflowCommandResponse(typing_extensions.TypedDict, total=False):
+    isDone: bool
+    output: _list[str]
+
+@typing.type_check_only
+class StorageConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TriggererResource(typing_extensions.TypedDict, total=False):
+    count: int
+    cpu: float
+    memoryGb: float
+
+@typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):
     machineType: str
 
@@ -263,5 +338,6 @@ class WorkerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkloadsConfig(typing_extensions.TypedDict, total=False):
     scheduler: SchedulerResource
+    triggerer: TriggererResource
     webServer: WebServerResource
     worker: WorkerResource

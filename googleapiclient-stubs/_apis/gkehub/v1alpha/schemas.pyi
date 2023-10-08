@@ -65,10 +65,100 @@ class CloudBuildMembershipSpec(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class ClusterUpgradeFleetSpec(typing_extensions.TypedDict, total=False):
+    gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
+    postConditions: ClusterUpgradePostConditions
+    upstreamFleets: _list[str]
+
+@typing.type_check_only
+class ClusterUpgradeFleetState(typing_extensions.TypedDict, total=False):
+    downstreamFleets: _list[str]
+    gkeState: ClusterUpgradeGKEUpgradeFeatureState
+    ignored: dict[str, typing.Any]
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgrade(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeFeatureCondition(
+    typing_extensions.TypedDict, total=False
+):
+    reason: str
+    status: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeFeatureState(typing_extensions.TypedDict, total=False):
+    conditions: _list[ClusterUpgradeGKEUpgradeFeatureCondition]
+    upgradeState: _list[ClusterUpgradeGKEUpgradeState]
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeOverride(typing_extensions.TypedDict, total=False):
+    postConditions: ClusterUpgradePostConditions
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeState(typing_extensions.TypedDict, total=False):
+    stats: dict[str, typing.Any]
+    status: ClusterUpgradeUpgradeStatus
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeIgnoredMembership(typing_extensions.TypedDict, total=False):
+    ignoredTime: str
+    reason: str
+
+@typing.type_check_only
+class ClusterUpgradeMembershipGKEUpgradeState(typing_extensions.TypedDict, total=False):
+    status: ClusterUpgradeUpgradeStatus
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeMembershipState(typing_extensions.TypedDict, total=False):
+    fleet: str
+    ignored: ClusterUpgradeIgnoredMembership
+    scopes: _list[str]
+    upgrades: _list[ClusterUpgradeMembershipGKEUpgradeState]
+
+@typing.type_check_only
+class ClusterUpgradePostConditions(typing_extensions.TypedDict, total=False):
+    soaking: str
+
+@typing.type_check_only
+class ClusterUpgradeScopeSpec(typing_extensions.TypedDict, total=False):
+    gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
+    postConditions: ClusterUpgradePostConditions
+    upstreamScopes: _list[str]
+
+@typing.type_check_only
+class ClusterUpgradeScopeState(typing_extensions.TypedDict, total=False):
+    downstreamScopes: _list[str]
+    gkeState: ClusterUpgradeGKEUpgradeFeatureState
+    ignored: dict[str, typing.Any]
+
+@typing.type_check_only
+class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "INELIGIBLE",
+        "PENDING",
+        "IN_PROGRESS",
+        "SOAKING",
+        "FORCED_SOAKING",
+        "COMPLETE",
+    ]
+    reason: str
+    updateTime: str
+
+@typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     anthosobservability: AnthosObservabilityFeatureSpec
     appdevexperience: AppDevExperienceFeatureSpec
     cloudauditlogging: CloudAuditLoggingFeatureSpec
+    clusterupgrade: ClusterUpgradeFleetSpec
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
     workloadcertificate: FeatureSpec
@@ -76,12 +166,14 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
+    clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
     servicemesh: ServiceMeshFeatureState
     state: FeatureState
 
 @typing.type_check_only
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
+    configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
 
 @typing.type_check_only
@@ -104,10 +196,11 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
-    managed: ConfigManagementManaged
+    metricsGcpServiceAccountEmail: str
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
+    stopSyncing: bool
 
 @typing.type_check_only
 class ConfigManagementConfigSyncDeploymentState(
@@ -136,8 +229,13 @@ class ConfigManagementConfigSyncDeploymentState(
     ]
 
 @typing.type_check_only
+class ConfigManagementConfigSyncError(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+
+@typing.type_check_only
 class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
     deploymentState: ConfigManagementConfigSyncDeploymentState
+    errors: _list[ConfigManagementConfigSyncError]
     syncState: ConfigManagementSyncState
     version: ConfigManagementConfigSyncVersion
 
@@ -227,14 +325,14 @@ class ConfigManagementInstallError(typing_extensions.TypedDict, total=False):
     errorMessage: str
 
 @typing.type_check_only
-class ConfigManagementManaged(typing_extensions.TypedDict, total=False):
-    enabled: bool
-
-@typing.type_check_only
 class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
     binauthz: ConfigManagementBinauthzConfig
+    cluster: str
     configSync: ConfigManagementConfigSync
     hierarchyController: ConfigManagementHierarchyControllerConfig
+    management: typing_extensions.Literal[
+        "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
+    ]
     policyController: ConfigManagementPolicyController
     version: str
 
@@ -274,11 +372,13 @@ class ConfigManagementPolicyController(typing_extensions.TypedDict, total=False)
     mutationEnabled: bool
     referentialRulesEnabled: bool
     templateLibraryInstalled: bool
+    updateTime: str
 
 @typing.type_check_only
 class ConfigManagementPolicyControllerMigration(
     typing_extensions.TypedDict, total=False
 ):
+    copyTime: str
     stage: typing_extensions.Literal["STAGE_UNSPECIFIED", "ACM_MANAGED", "POCO_MANAGED"]
 
 @typing.type_check_only
@@ -372,7 +472,11 @@ class FeatureResourceState(typing_extensions.TypedDict, total=False):
 class FeatureSpec(typing_extensions.TypedDict, total=False):
     defaultConfig: MembershipSpec
     provisionGoogleCa: typing_extensions.Literal[
-        "GOOGLE_CA_PROVISIONING_UNSPECIFIED", "DISABLED", "ENABLED"
+        "GOOGLE_CA_PROVISIONING_UNSPECIFIED",
+        "DISABLED",
+        "ENABLED",
+        "ENABLED_WITH_MANAGED_CA",
+        "ENABLED_WITH_DEFAULT_CA",
     ]
 
 @typing.type_check_only
@@ -386,6 +490,7 @@ class Fleet(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     displayName: str
+    labels: dict[str, typing.Any]
     name: str
     state: FleetLifecycleState
     uid: str
@@ -398,10 +503,43 @@ class FleetLifecycleState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class FleetObservabilityFeatureSpec(typing_extensions.TypedDict, total=False): ...
+class FleetObservabilityFeatureError(typing_extensions.TypedDict, total=False):
+    code: str
+    description: str
 
 @typing.type_check_only
-class FleetObservabilityFeatureState(typing_extensions.TypedDict, total=False): ...
+class FleetObservabilityFeatureSpec(typing_extensions.TypedDict, total=False):
+    loggingConfig: FleetObservabilityLoggingConfig
+
+@typing.type_check_only
+class FleetObservabilityFeatureState(typing_extensions.TypedDict, total=False):
+    logging: FleetObservabilityFleetObservabilityLoggingState
+    monitoring: FleetObservabilityFleetObservabilityMonitoringState
+
+@typing.type_check_only
+class FleetObservabilityFleetObservabilityBaseFeatureState(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal["CODE_UNSPECIFIED", "OK", "ERROR"]
+    errors: _list[FleetObservabilityFeatureError]
+
+@typing.type_check_only
+class FleetObservabilityFleetObservabilityLoggingState(
+    typing_extensions.TypedDict, total=False
+):
+    defaultLog: FleetObservabilityFleetObservabilityBaseFeatureState
+    scopeLog: FleetObservabilityFleetObservabilityBaseFeatureState
+
+@typing.type_check_only
+class FleetObservabilityFleetObservabilityMonitoringState(
+    typing_extensions.TypedDict, total=False
+):
+    state: FleetObservabilityFleetObservabilityBaseFeatureState
+
+@typing.type_check_only
+class FleetObservabilityLoggingConfig(typing_extensions.TypedDict, total=False):
+    defaultConfig: FleetObservabilityRoutingConfig
+    fleetScopeLogsConfig: FleetObservabilityRoutingConfig
 
 @typing.type_check_only
 class FleetObservabilityMembershipSpec(typing_extensions.TypedDict, total=False): ...
@@ -410,8 +548,18 @@ class FleetObservabilityMembershipSpec(typing_extensions.TypedDict, total=False)
 class FleetObservabilityMembershipState(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FleetObservabilityRoutingConfig(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COPY", "MOVE"]
+
+@typing.type_check_only
 class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
     manifest: _list[ConnectAgentResource]
+
+@typing.type_check_only
+class GenerateMembershipRBACRoleBindingYAMLResponse(
+    typing_extensions.TypedDict, total=False
+):
+    roleBindingsYaml: str
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
@@ -515,6 +663,11 @@ class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMembershipRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rbacrolebindings: _list[RBACRoleBinding]
+
+@typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Membership]
@@ -532,6 +685,16 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ListRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rbacrolebindings: _list[RBACRoleBinding]
+
+@typing.type_check_only
+class ListScopeNamespacesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scopeNamespaces: _list[Namespace]
+
+@typing.type_check_only
+class ListScopeRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     rbacrolebindings: _list[RBACRoleBinding]
 
@@ -568,7 +731,7 @@ class Membership(typing_extensions.TypedDict, total=False):
 class MembershipBinding(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
-    fleet: bool
+    labels: dict[str, typing.Any]
     name: str
     scope: str
     state: MembershipBindingLifecycleState
@@ -597,16 +760,17 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     anthosobservability: AnthosObservabilityMembershipSpec
     cloudbuild: CloudBuildMembershipSpec
     configmanagement: ConfigManagementMembershipSpec
-    fleetInherited: bool
     fleetobservability: FleetObservabilityMembershipSpec
     identityservice: IdentityServiceMembershipSpec
     mesh: ServiceMeshMembershipSpec
+    origin: Origin
     policycontroller: PolicyControllerMembershipSpec
     workloadcertificate: MembershipSpec
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
+    clusterupgrade: ClusterUpgradeMembershipState
     configmanagement: ConfigManagementMembershipState
     fleetobservability: FleetObservabilityMembershipState
     identityservice: IdentityServiceMembershipState
@@ -661,7 +825,9 @@ class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
 class Namespace(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
+    labels: dict[str, typing.Any]
     name: str
+    namespaceLabels: dict[str, typing.Any]
     scope: str
     state: NamespaceLifecycleState
     uid: str
@@ -701,6 +867,12 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Origin(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "FLEET", "FLEET_OUT_OF_SYNC", "USER"
+    ]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -710,7 +882,6 @@ class Policy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerBundleInstallSpec(typing_extensions.TypedDict, total=False):
     exemptedNamespaces: _list[str]
-    management: typing_extensions.Literal["MANAGEMENT_UNSPECIFIED", "INSTALLED"]
 
 @typing.type_check_only
 class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
@@ -723,13 +894,13 @@ class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
         "INSTALL_SPEC_NOT_INSTALLED",
         "INSTALL_SPEC_ENABLED",
         "INSTALL_SPEC_SUSPENDED",
+        "INSTALL_SPEC_DETACHED",
     ]
     logDeniesEnabled: bool
     monitoring: PolicyControllerMonitoringConfig
     mutationEnabled: bool
     policyContent: PolicyControllerPolicyContentSpec
     referentialRulesEnabled: bool
-    templateLibraryConfig: PolicyControllerTemplateLibraryConfig
 
 @typing.type_check_only
 class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -739,7 +910,6 @@ class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
     componentStates: dict[str, typing.Any]
-    contentStates: dict[str, typing.Any]
     policyContentState: PolicyControllerPolicyContentState
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
@@ -751,6 +921,7 @@ class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
         "CLUSTER_ERROR",
         "HUB_ERROR",
         "SUSPENDED",
+        "DETACHED",
     ]
 
 @typing.type_check_only
@@ -770,6 +941,7 @@ class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
         "CLUSTER_ERROR",
         "HUB_ERROR",
         "SUSPENDED",
+        "DETACHED",
     ]
 
 @typing.type_check_only
@@ -780,6 +952,7 @@ class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class PolicyControllerPolicyContentState(typing_extensions.TypedDict, total=False):
     bundleStates: dict[str, typing.Any]
+    referentialSyncConfigState: PolicyControllerOnClusterState
     templateLibraryState: PolicyControllerOnClusterState
 
 @typing.type_check_only
@@ -787,6 +960,9 @@ class PolicyControllerPolicyControllerDeploymentConfig(
     typing_extensions.TypedDict, total=False
 ):
     containerResources: PolicyControllerResourceRequirements
+    podAffinity: typing_extensions.Literal[
+        "AFFINITY_UNSPECIFIED", "NO_AFFINITY", "ANTI_AFFINITY"
+    ]
     podAntiAffinity: bool
     podTolerations: _list[PolicyControllerToleration]
     replicaCount: str
@@ -803,7 +979,6 @@ class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
-    included: bool
     installation: typing_extensions.Literal[
         "INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"
     ]
@@ -820,6 +995,7 @@ class RBACRoleBinding(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     group: str
+    labels: dict[str, typing.Any]
     name: str
     role: Role
     state: RBACRoleBindingLifecycleState
@@ -846,22 +1022,29 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
-    predefinedRole: typing_extensions.Literal["UNKNOWN", "ADMIN", "EDIT", "VIEW"]
+    predefinedRole: typing_extensions.Literal[
+        "UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"
+    ]
 
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
+    allMemberships: bool
     createTime: str
     deleteTime: str
+    labels: dict[str, typing.Any]
     name: str
+    namespaceLabels: dict[str, typing.Any]
     state: ScopeLifecycleState
     uid: str
     updateTime: str
 
 @typing.type_check_only
-class ScopeFeatureSpec(typing_extensions.TypedDict, total=False): ...
+class ScopeFeatureSpec(typing_extensions.TypedDict, total=False):
+    clusterupgrade: ClusterUpgradeScopeSpec
 
 @typing.type_check_only
 class ScopeFeatureState(typing_extensions.TypedDict, total=False):
+    clusterupgrade: ClusterUpgradeScopeState
     state: FeatureState
 
 @typing.type_check_only

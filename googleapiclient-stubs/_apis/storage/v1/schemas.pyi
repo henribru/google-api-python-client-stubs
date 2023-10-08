@@ -25,12 +25,14 @@ class Bucket(typing_extensions.TypedDict, total=False):
     logging: dict[str, typing.Any]
     metageneration: str
     name: str
+    objectRetention: dict[str, typing.Any]
     owner: dict[str, typing.Any]
     projectNumber: str
     retentionPolicy: dict[str, typing.Any]
     rpo: str
     satisfiesPZS: bool
     selfLink: str
+    softDeletePolicy: dict[str, typing.Any]
     storageClass: str
     timeCreated: str
     updated: str
@@ -63,6 +65,14 @@ class Buckets(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class BulkRestoreObjectsRequest(typing_extensions.TypedDict, total=False):
+    allowOverwrite: bool
+    copySourceAcl: bool
+    matchGlobs: _list[str]
+    softDeletedAfterTime: str
+    softDeletedBeforeTime: str
+
+@typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
     address: str
     expiration: str
@@ -87,6 +97,25 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[GoogleLongrunningOperation]
+
+@typing.type_check_only
+class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: GoogleRpcStatus
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class HmacKey(typing_extensions.TypedDict, total=False):
@@ -146,6 +175,7 @@ class Object(typing_extensions.TypedDict, total=False):
     etag: str
     eventBasedHold: bool
     generation: str
+    hardDeleteTime: str
     id: str
     kind: str
     kmsKeyName: str
@@ -155,9 +185,11 @@ class Object(typing_extensions.TypedDict, total=False):
     metageneration: str
     name: str
     owner: dict[str, typing.Any]
+    retention: dict[str, typing.Any]
     retentionExpirationTime: str
     selfLink: str
     size: str
+    softDeleteTime: str
     storageClass: str
     temporaryHold: bool
     timeCreated: str

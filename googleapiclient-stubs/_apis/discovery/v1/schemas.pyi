@@ -17,8 +17,10 @@ AlternativeJsonSchema = typing_extensions.TypedDict(
         "additionalProperties": JsonSchema,
         "annotations": dict[str, typing.Any],
         "default": str,
+        "deprecated": bool,
         "description": str,
         "enum": _list[str],
+        "enumDeprecated": _list[bool],
         "enumDescriptions": _list[str],
         "format": str,
         "id": str,
@@ -50,6 +52,7 @@ class RestDescription(typing_extensions.TypedDict, total=False):
     description: str
     discoveryVersion: str
     documentationLink: str
+    endpoints: _list[dict[str, typing.Any]]
     etag: str
     exponentialBackoffDefault: bool
     features: _list[str]
@@ -75,6 +78,7 @@ class RestDescription(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestMethod(typing_extensions.TypedDict, total=False):
+    deprecated: bool
     description: str
     etagRequired: bool
     flatPath: str
@@ -94,5 +98,6 @@ class RestMethod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestResource(typing_extensions.TypedDict, total=False):
+    deprecated: bool
     methods: dict[str, typing.Any]
     resources: dict[str, typing.Any]

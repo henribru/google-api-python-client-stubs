@@ -96,6 +96,7 @@ class Container(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContainerOverride(typing_extensions.TypedDict, total=False):
     args: _list[str]
+    clearArgs: bool
     env: _list[EnvVar]
     name: str
 
@@ -128,6 +129,11 @@ class DomainMappingStatus(typing_extensions.TypedDict, total=False):
     observedGeneration: int
     resourceRecords: _list[ResourceRecord]
     url: str
+
+@typing.type_check_only
+class EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
+    medium: str
+    sizeLimit: str
 
 @typing.type_check_only
 class EnvFromSource(typing_extensions.TypedDict, total=False):
@@ -607,6 +613,7 @@ class TrafficTarget(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     configMap: ConfigMapVolumeSource
+    emptyDir: EmptyDirVolumeSource
     name: str
     secret: SecretVolumeSource
 

@@ -110,6 +110,7 @@ class AppUpdateEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppVersion(typing_extensions.TypedDict, total=False):
     isProduction: bool
+    targetSdkVersion: int
     track: typing_extensions.Literal[
         "appTrackUnspecified", "production", "beta", "alpha"
     ]
@@ -429,6 +430,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "publicGoogleHosted", "privateGoogleHosted", "privateSelfHosted"
     ]
     features: _list[str]
+    fullDescription: str
     iconUrl: str
     lastUpdatedTimestampMillis: str
     minAndroidSdkVersion: int

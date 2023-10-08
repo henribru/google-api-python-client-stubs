@@ -223,12 +223,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 class MerchantCenterAccountLinksResource(
                     googleapiclient.discovery.Resource
                 ):
-                    def createMerchantCenterAccountLink(
+                    def create(
                         self,
                         *,
-                        name: str,
+                        parent: str,
                         body: GoogleCloudRetailV2alphaMerchantCenterAccountLink = ...,
-                        parent: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
@@ -583,8 +582,32 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+        @typing.type_check_only
+        class RetailProjectResource(googleapiclient.discovery.Resource):
+            def acceptTerms(
+                self,
+                *,
+                project: str,
+                body: GoogleCloudRetailV2alphaAcceptTermsRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRetailV2alphaProjectHttpRequest: ...
+
+        def enrollSolution(
+            self,
+            *,
+            project: str,
+            body: GoogleCloudRetailV2alphaEnrollSolutionRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def getRetailProject(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaProjectHttpRequest: ...
+        def listEnrolledSolutions(
+            self, *, parent: str, **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaListEnrolledSolutionsResponseHttpRequest: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+        def retailProject(self) -> RetailProjectResource: ...
 
     def new_batch_http_request(
         self,
@@ -695,6 +718,16 @@ class GoogleCloudRetailV2alphaListControlsResponseHttpRequest(
     ) -> GoogleCloudRetailV2alphaListControlsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaListEnrolledSolutionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaListEnrolledSolutionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -759,6 +792,14 @@ class GoogleCloudRetailV2alphaProductHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaProduct: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaProjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaProject: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaSearchResponseHttpRequest(

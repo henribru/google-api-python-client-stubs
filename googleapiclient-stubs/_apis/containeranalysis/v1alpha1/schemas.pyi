@@ -27,6 +27,7 @@ class Assessment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
+    vulnerabilityId: str
 
 @typing.type_check_only
 class Attestation(typing_extensions.TypedDict, total=False):
@@ -52,11 +53,25 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BuildDefinition(typing_extensions.TypedDict, total=False):
+    buildType: str
+    externalParameters: dict[str, typing.Any]
+    internalParameters: dict[str, typing.Any]
+    resolvedDependencies: _list[ResourceDescriptor]
+
+@typing.type_check_only
 class BuildDetails(typing_extensions.TypedDict, total=False):
+    inTotoSlsaProvenanceV1: InTotoSlsaProvenanceV1
     intotoProvenance: InTotoProvenance
     intotoStatement: InTotoStatement
     provenance: BuildProvenance
     provenanceBytes: str
+
+@typing.type_check_only
+class BuildMetadata(typing_extensions.TypedDict, total=False):
+    finishedOn: str
+    invocationId: str
+    startedOn: str
 
 @typing.type_check_only
 class BuildProvenance(typing_extensions.TypedDict, total=False):
@@ -88,6 +103,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     allowExitCodes: _list[int]
     allowFailure: bool
     args: _list[str]
+    automapSubstitutions: bool
     dir: str
     entrypoint: str
     env: _list[str]
@@ -254,6 +270,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact
     ]
+    npmPackages: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage]
     objects: ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects
     pythonPackages: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage
@@ -276,6 +293,13 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
     path: str
     repository: str
     version: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage(
+    typing_extensions.TypedDict, total=False
+):
+    packagePath: str
+    repository: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsPythonPackage(
@@ -358,6 +382,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     typing_extensions.TypedDict, total=False
 ):
+    automapSubstitutions: bool
     defaultLogsBucketBehavior: typing_extensions.Literal[
         "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
     ]
@@ -376,7 +401,12 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
         "NONE",
     ]
     machineType: typing_extensions.Literal[
-        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
+        "UNSPECIFIED",
+        "N1_HIGHCPU_8",
+        "N1_HIGHCPU_32",
+        "E2_HIGHCPU_8",
+        "E2_HIGHCPU_32",
+        "E2_MEDIUM",
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
@@ -399,6 +429,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildStep(
     allowExitCodes: _list[int]
     allowFailure: bool
     args: _list[str]
+    automapSubstitutions: bool
     dir: str
     entrypoint: str
     env: _list[str]
@@ -443,16 +474,32 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage(
     pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
+    typing_extensions.TypedDict, total=False
+):
+    dir: str
+    repository: str
+    revision: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
     typing_extensions.TypedDict, total=False
 ):
     fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
+    typing_extensions.TypedDict, total=False
+):
+    dir: str
+    revision: str
+    url: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
     typing_extensions.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -487,6 +534,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact
     ]
+    npmPackages: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage]
     numArtifacts: str
     pythonPackages: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage
@@ -517,6 +565,8 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
     typing_extensions.TypedDict, total=False
 ):
+    connectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     repoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     storageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
     storageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
@@ -526,6 +576,8 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
     typing_extensions.TypedDict, total=False
 ):
     fileHashes: dict[str, typing.Any]
+    resolvedConnectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    resolvedGitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     resolvedRepoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     resolvedStorageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
     resolvedStorageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
@@ -555,6 +607,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedNpmPackage(
     typing_extensions.TypedDict, total=False
 ):
     fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
@@ -655,6 +715,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
     cpe: str
     lastScanTime: str
     operation: Operation
+    sbomStatus: SBOMStatus
 
 @typing.type_check_only
 class Discovery(typing_extensions.TypedDict, total=False):
@@ -916,6 +977,13 @@ class InTotoProvenance(typing_extensions.TypedDict, total=False):
     materials: _list[str]
     metadata: Metadata
     recipe: Recipe
+
+@typing.type_check_only
+class InTotoSlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+    _type: str
+    predicate: SlsaProvenanceV1
+    predicateType: str
+    subject: _list[Subject]
 
 @typing.type_check_only
 class InTotoStatement(typing_extensions.TypedDict, total=False):
@@ -1198,6 +1266,12 @@ class Product(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ProvenanceBuilder(typing_extensions.TypedDict, total=False):
+    builderDependencies: _list[ResourceDescriptor]
+    id: str
+    version: dict[str, typing.Any]
+
+@typing.type_check_only
 class Publisher(typing_extensions.TypedDict, total=False):
     issuingAuthority: str
     name: str
@@ -1345,6 +1419,22 @@ class Resource(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class ResourceDescriptor(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    content: str
+    digest: dict[str, typing.Any]
+    downloadLocation: str
+    mediaType: str
+    name: str
+    uri: str
+
+@typing.type_check_only
+class RunDetails(typing_extensions.TypedDict, total=False):
+    builder: ProvenanceBuilder
+    byproducts: _list[ResourceDescriptor]
+    metadata: BuildMetadata
+
+@typing.type_check_only
 class SBOMReferenceNote(typing_extensions.TypedDict, total=False):
     format: str
     version: str
@@ -1354,6 +1444,13 @@ class SBOMReferenceOccurrence(typing_extensions.TypedDict, total=False):
     payload: SbomReferenceIntotoPayload
     payloadType: str
     signatures: _list[EnvelopeSignature]
+
+@typing.type_check_only
+class SBOMStatus(typing_extensions.TypedDict, total=False):
+    error: str
+    sbomState: typing_extensions.Literal[
+        "SBOM_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
+    ]
 
 @typing.type_check_only
 class SbomReferenceIntotoPayload(typing_extensions.TypedDict, total=False):
@@ -1412,6 +1509,11 @@ class SlsaProvenance(typing_extensions.TypedDict, total=False):
     materials: _list[Material]
     metadata: SlsaMetadata
     recipe: SlsaRecipe
+
+@typing.type_check_only
+class SlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+    buildDefinition: BuildDefinition
+    runDetails: RunDetails
 
 @typing.type_check_only
 class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
@@ -1519,6 +1621,7 @@ class VexAssessment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
+    vulnerabilityId: str
 
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
@@ -1546,6 +1649,7 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+    extraDetails: str
     packageIssue: _list[PackageIssue]
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"

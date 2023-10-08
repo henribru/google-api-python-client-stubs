@@ -14,6 +14,7 @@ class Access(typing_extensions.TypedDict, total=False):
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
     serviceName: str
+    userAgent: str
     userAgentFamily: str
     userName: str
 
@@ -47,6 +48,52 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
     projectIds: _list[str]
 
 @typing.type_check_only
+class AttackExposure(typing_extensions.TypedDict, total=False):
+    attackExposureResult: str
+    exposedHighValueResourcesCount: int
+    exposedLowValueResourcesCount: int
+    exposedMediumValueResourcesCount: int
+    latestCalculationTime: str
+    score: float
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
+    ]
+
+@typing.type_check_only
+class AttackPath(typing_extensions.TypedDict, total=False):
+    edges: _list[AttackPathEdge]
+    name: str
+    pathNodes: _list[AttackPathNode]
+
+@typing.type_check_only
+class AttackPathEdge(typing_extensions.TypedDict, total=False):
+    destination: str
+    source: str
+
+@typing.type_check_only
+class AttackPathNode(typing_extensions.TypedDict, total=False):
+    associatedFindings: _list[PathNodeAssociatedFinding]
+    attackSteps: _list[AttackStepNode]
+    displayName: str
+    resource: str
+    resourceType: str
+    uuid: str
+
+@typing.type_check_only
+class AttackStepNode(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    type: typing_extensions.Literal[
+        "NODE_TYPE_UNSPECIFIED",
+        "NODE_TYPE_AND",
+        "NODE_TYPE_OR",
+        "NODE_TYPE_DEFENSE",
+        "NODE_TYPE_ATTACKER",
+    ]
+    uuid: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -57,6 +104,14 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class BatchCreateResourceValueConfigsRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[CreateResourceValueConfigRequest]
+
+@typing.type_check_only
+class BatchCreateResourceValueConfigsResponse(typing_extensions.TypedDict, total=False):
+    resourceValueConfigs: _list[GoogleCloudSecuritycenterV1ResourceValueConfig]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -72,6 +127,9 @@ class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
     dataProfile: str
+    parentType: typing_extensions.Literal[
+        "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
+    ]
 
 @typing.type_check_only
 class CloudDlpInspection(typing_extensions.TypedDict, total=False):
@@ -106,10 +164,27 @@ class ContactDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Container(typing_extensions.TypedDict, total=False):
+    createTime: str
     imageId: str
     labels: _list[Label]
     name: str
     uri: str
+
+@typing.type_check_only
+class CreateResourceValueConfigRequest(typing_extensions.TypedDict, total=False):
+    parent: str
+    resourceValueConfig: GoogleCloudSecuritycenterV1ResourceValueConfig
+
+@typing.type_check_only
+class CustomModuleValidationError(typing_extensions.TypedDict, total=False):
+    description: str
+    end: Position
+    fieldPath: str
+    start: Position
+
+@typing.type_check_only
+class CustomModuleValidationErrors(typing_extensions.TypedDict, total=False):
+    errors: _list[CustomModuleValidationError]
 
 @typing.type_check_only
 class Cve(typing_extensions.TypedDict, total=False):
@@ -164,6 +239,7 @@ class Database(typing_extensions.TypedDict, total=False):
     name: str
     query: str
     userName: str
+    version: str
 
 @typing.type_check_only
 class Detection(typing_extensions.TypedDict, total=False):
@@ -179,6 +255,19 @@ class EnvironmentVariable(typing_extensions.TypedDict, total=False):
     val: str
 
 @typing.type_check_only
+class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False):
+    config: dict[str, typing.Any]
+    description: str
+    displayName: str
+    enablementState: typing_extensions.Literal[
+        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
+    lastEditor: str
+    name: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
 class ExfilResource(typing_extensions.TypedDict, total=False):
     components: _list[str]
     name: str
@@ -187,6 +276,7 @@ class ExfilResource(typing_extensions.TypedDict, total=False):
 class Exfiltration(typing_extensions.TypedDict, total=False):
     sources: _list[ExfilResource]
     targets: _list[ExfilResource]
+    totalExfiltratedBytes: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -207,6 +297,7 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    attackExposure: AttackExposure
     canonicalName: str
     category: str
     cloudDlpDataProfile: CloudDlpDataProfile
@@ -230,11 +321,13 @@ class Finding(typing_extensions.TypedDict, total=False):
         "MISCONFIGURATION",
         "OBSERVATION",
         "SCC_ERROR",
+        "POSTURE_VIOLATION",
     ]
     iamBindings: _list[IamBinding]
     indicator: Indicator
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
+    loadBalancers: _list[LoadBalancer]
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -247,6 +340,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     processes: _list[Process]
     resourceName: str
     securityMarks: SecurityMarks
+    securityPosture: SecurityPosture
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
@@ -373,6 +467,22 @@ class GoogleCloudSecuritycenterV1ResourceSelector(
     typing_extensions.TypedDict, total=False
 ):
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceValueConfig(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    name: str
+    resourceLabelsSelector: dict[str, typing.Any]
+    resourceType: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
+    ]
+    scope: str
+    tagValues: _list[str]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
@@ -540,6 +650,7 @@ class Kubernetes(typing_extensions.TypedDict, total=False):
     bindings: _list[GoogleCloudSecuritycenterV1Binding]
     nodePools: _list[NodePool]
     nodes: _list[Node]
+    objects: _list[Object]
     pods: _list[Pod]
     roles: _list[Role]
 
@@ -559,6 +670,11 @@ class ListAssetsResponse(typing_extensions.TypedDict, total=False):
 class ListAssetsResult(typing_extensions.TypedDict, total=False):
     asset: Asset
     stateChange: typing_extensions.Literal["UNUSED", "ADDED", "REMOVED", "ACTIVE"]
+
+@typing.type_check_only
+class ListAttackPathsResponse(typing_extensions.TypedDict, total=False):
+    attackPaths: _list[AttackPath]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListBigQueryExportsResponse(typing_extensions.TypedDict, total=False):
@@ -581,6 +697,13 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse(
     effectiveSecurityHealthAnalyticsCustomModules: _list[
         GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule
     ]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListEventThreatDetectionCustomModulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    eventThreatDetectionCustomModules: _list[EventThreatDetectionCustomModule]
     nextPageToken: str
 
 @typing.type_check_only
@@ -614,6 +737,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListResourceValueConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resourceValueConfigs: _list[GoogleCloudSecuritycenterV1ResourceValueConfig]
+
+@typing.type_check_only
 class ListSecurityHealthAnalyticsCustomModulesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -626,6 +754,16 @@ class ListSecurityHealthAnalyticsCustomModulesResponse(
 class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     sources: _list[Source]
+
+@typing.type_check_only
+class ListValuedResourcesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    totalSize: int
+    valuedResources: _list[ValuedResource]
+
+@typing.type_check_only
+class LoadBalancer(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class MemoryHashSignature(typing_extensions.TypedDict, total=False):
@@ -674,6 +812,13 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
     streamingConfig: StreamingConfig
 
 @typing.type_check_only
+class Object(typing_extensions.TypedDict, total=False):
+    group: str
+    kind: str
+    name: str
+    ns: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -685,6 +830,12 @@ class Operation(typing_extensions.TypedDict, total=False):
 class OrganizationSettings(typing_extensions.TypedDict, total=False):
     assetDiscoveryConfig: AssetDiscoveryConfig
     enableAssetDiscovery: bool
+    name: str
+
+@typing.type_check_only
+class PathNodeAssociatedFinding(typing_extensions.TypedDict, total=False):
+    canonicalFinding: str
+    findingCategory: str
     name: str
 
 @typing.type_check_only
@@ -700,6 +851,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class Position(typing_extensions.TypedDict, total=False):
+    columnNumber: int
+    lineNumber: int
 
 @typing.type_check_only
 class Process(typing_extensions.TypedDict, total=False):
@@ -736,6 +892,10 @@ class Resource(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class ResourceValueConfigMetadata(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
     name: str
@@ -763,6 +923,14 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class SecurityPosture(typing_extensions.TypedDict, total=False):
+    changedPolicy: str
+    name: str
+    postureDeployment: str
+    postureDeploymentResource: str
+    revisionId: str
+
+@typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     principalEmail: str
     principalSubject: str
@@ -780,6 +948,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetMuteRequest(typing_extensions.TypedDict, total=False):
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+
+@typing.type_check_only
+class Simulation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    resourceValueConfigsMetadata: _list[ResourceValueConfigMetadata]
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
@@ -813,6 +987,34 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class ValidateEventThreatDetectionCustomModuleRequest(
+    typing_extensions.TypedDict, total=False
+):
+    rawText: str
+    type: str
+
+@typing.type_check_only
+class ValidateEventThreatDetectionCustomModuleResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errors: CustomModuleValidationErrors
+
+@typing.type_check_only
+class ValuedResource(typing_extensions.TypedDict, total=False):
+    displayName: str
+    exposedScore: float
+    name: str
+    resource: str
+    resourceType: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED",
+        "RESOURCE_VALUE_LOW",
+        "RESOURCE_VALUE_MEDIUM",
+        "RESOURCE_VALUE_HIGH",
+    ]
+    resourceValueConfigsUsed: _list[ResourceValueConfigMetadata]
 
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):

@@ -75,6 +75,16 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     name: str
     protectedPodCount: int
     retentionPolicy: RetentionPolicy
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CLUSTER_PENDING",
+        "PROVISIONING",
+        "READY",
+        "FAILED",
+        "DEACTIVATED",
+        "DELETING",
+    ]
+    stateReason: str
     uid: str
     updateTime: str
 
@@ -94,6 +104,9 @@ class ClusterMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClusterResourceRestoreScope(typing_extensions.TypedDict, total=False):
+    allGroupKinds: bool
+    excludedGroupKinds: _list[GroupKind]
+    noGroupKinds: bool
     selectedGroupKinds: _list[GroupKind]
 
 @typing.type_check_only
@@ -216,6 +229,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class ResourceFilter(typing_extensions.TypedDict, total=False):
+    groupKinds: _list[GroupKind]
+    jsonPath: str
+    namespaces: _list[str]
+
+@typing.type_check_only
 class Restore(typing_extensions.TypedDict, total=False):
     backup: str
     cluster: str
@@ -251,14 +270,17 @@ class RestoreConfig(typing_extensions.TypedDict, total=False):
         "USE_BACKUP_VERSION",
     ]
     clusterResourceRestoreScope: ClusterResourceRestoreScope
+    excludedNamespaces: Namespaces
     namespacedResourceRestoreMode: typing_extensions.Literal[
         "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
         "DELETE_AND_RESTORE",
         "FAIL_ON_CONFLICT",
     ]
+    noNamespaces: bool
     selectedApplications: NamespacedNames
     selectedNamespaces: Namespaces
     substitutionRules: _list[SubstitutionRule]
+    transformationRules: _list[TransformationRule]
     volumeDataRestorePolicy: typing_extensions.Literal[
         "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
         "RESTORE_VOLUME_DATA_FROM_BACKUP",
@@ -276,6 +298,10 @@ class RestorePlan(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     restoreConfig: RestoreConfig
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CLUSTER_PENDING", "READY", "FAILED", "DELETING"
+    ]
+    stateReason: str
     uid: str
     updateTime: str
 
@@ -310,6 +336,21 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TransformationRule(typing_extensions.TypedDict, total=False):
+    description: str
+    fieldActions: _list[TransformationRuleAction]
+    resourceFilter: ResourceFilter
+
+@typing.type_check_only
+class TransformationRuleAction(typing_extensions.TypedDict, total=False):
+    fromPath: str
+    op: typing_extensions.Literal[
+        "OP_UNSPECIFIED", "REMOVE", "MOVE", "COPY", "ADD", "TEST", "REPLACE"
+    ]
+    path: str
+    value: str
 
 @typing.type_check_only
 class VolumeBackup(typing_extensions.TypedDict, total=False):

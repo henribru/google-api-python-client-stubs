@@ -92,6 +92,21 @@ class AccountImageImprovementsSettings(typing_extensions.TypedDict, total=False)
     allowAutomaticImageImprovements: bool
 
 @typing.type_check_only
+class AccountIssue(typing_extensions.TypedDict, total=False):
+    actions: _list[Action]
+    impact: AccountIssueImpact
+    prerenderedContent: str
+    title: str
+
+@typing.type_check_only
+class AccountIssueImpact(typing_extensions.TypedDict, total=False):
+    breakdowns: _list[Breakdown]
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+
+@typing.type_check_only
 class AccountItemUpdates(typing_extensions.TypedDict, total=False):
     accountItemUpdatesSettings: AccountItemUpdatesSettings
     effectiveAllowAvailabilityUpdates: bool
@@ -340,6 +355,20 @@ class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
     resources: _list[AccountTax]
 
 @typing.type_check_only
+class Action(typing_extensions.TypedDict, total=False):
+    builtinSimpleAction: BuiltInSimpleAction
+    buttonLabel: str
+    externalAction: ExternalAction
+    isAvailable: bool
+    reasons: _list[ActionReason]
+
+@typing.type_check_only
+class ActionReason(typing_extensions.TypedDict, total=False):
+    action: Action
+    detail: str
+    message: str
+
+@typing.type_check_only
 class ActivateBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -349,6 +378,11 @@ class Address(typing_extensions.TypedDict, total=False):
     country: str
     postalCode: str
     streetAddress: str
+
+@typing.type_check_only
+class AlternateDisputeResolution(typing_extensions.TypedDict, total=False):
+    label: str
+    uri: str
 
 @typing.type_check_only
 class Amount(typing_extensions.TypedDict, total=False):
@@ -400,6 +434,38 @@ class Brand(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Breakdown(typing_extensions.TypedDict, total=False):
+    details: _list[str]
+    regions: _list[BreakdownRegion]
+
+@typing.type_check_only
+class BreakdownRegion(typing_extensions.TypedDict, total=False):
+    code: str
+    name: str
+
+@typing.type_check_only
+class BuiltInSimpleAction(typing_extensions.TypedDict, total=False):
+    additionalContent: BuiltInSimpleActionAdditionalContent
+    attributeCode: str
+    type: typing_extensions.Literal[
+        "BUILT_IN_SIMPLE_ACTION_TYPE_UNSPECIFIED",
+        "VERIFY_PHONE",
+        "CLAIM_WEBSITE",
+        "ADD_PRODUCTS",
+        "ADD_CONTACT_INFO",
+        "LINK_ADS_ACCOUNT",
+        "ADD_BUSINESS_REGISTRATION_NUMBER",
+        "EDIT_ITEM_ATTRIBUTE",
+        "FIX_ACCOUNT_ISSUE",
+        "SHOW_ADDITIONAL_CONTENT",
+    ]
+
+@typing.type_check_only
+class BuiltInSimpleActionAdditionalContent(typing_extensions.TypedDict, total=False):
+    paragraphs: _list[str]
+    title: str
+
+@typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
     businessDays: _list[str]
 
@@ -427,6 +493,7 @@ class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
         "REVIEW_DISAPPROVED",
         "ACTIVE",
         "PAUSED",
+        "DEPRECATED",
     ]
 
 @typing.type_check_only
@@ -453,6 +520,41 @@ class CarriersCarrier(typing_extensions.TypedDict, total=False):
     eddServices: _list[str]
     name: str
     services: _list[str]
+
+@typing.type_check_only
+class CheckoutSettings(typing_extensions.TypedDict, total=False):
+    effectiveEnrollmentState: typing_extensions.Literal[
+        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED"
+    ]
+    effectiveReviewState: typing_extensions.Literal[
+        "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+        "IN_REVIEW",
+        "APPROVED",
+        "DISAPPROVED",
+    ]
+    effectiveUriSettings: UrlSettings
+    enrollmentState: typing_extensions.Literal[
+        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED"
+    ]
+    merchantId: str
+    reviewState: typing_extensions.Literal[
+        "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
+        "IN_REVIEW",
+        "APPROVED",
+        "DISAPPROVED",
+    ]
+    uriSettings: UrlSettings
+
+@typing.type_check_only
+class CloudExportAdditionalProperties(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    floatValue: _list[float]
+    intValue: _list[str]
+    maxValue: float
+    minValue: float
+    propertyName: str
+    textValue: _list[str]
+    unitCode: str
 
 @typing.type_check_only
 class Collection(typing_extensions.TypedDict, total=False):
@@ -503,6 +605,22 @@ class CollectionStatusItemLevelIssue(typing_extensions.TypedDict, total=False):
     documentation: str
     resolution: str
     servability: str
+
+@typing.type_check_only
+class CompetitiveVisibility(typing_extensions.TypedDict, total=False):
+    adsOrganicRatio: float
+    categoryBenchmarkVisibilityTrend: float
+    categoryId: str
+    countryCode: str
+    date: Date
+    domain: str
+    higherPositionRate: float
+    isYourDomain: bool
+    pageOverlapRate: float
+    rank: str
+    relativeVisibility: float
+    trafficSource: typing_extensions.Literal["UNKNOWN", "ORGANIC", "ADS", "ALL"]
+    yourDomainVisibilityTrend: float
 
 @typing.type_check_only
 class ConversionSource(typing_extensions.TypedDict, total=False):
@@ -715,6 +833,11 @@ class DeliveryTime(typing_extensions.TypedDict, total=False):
     warehouseBasedDeliveryTimes: _list[WarehouseBasedDeliveryTime]
 
 @typing.type_check_only
+class Distance(typing_extensions.TypedDict, total=False):
+    unit: str
+    value: str
+
+@typing.type_check_only
 class ECommercePlatformLinkInfo(typing_extensions.TypedDict, total=False):
     externalAccountId: str
 
@@ -729,6 +852,16 @@ class Errors(typing_extensions.TypedDict, total=False):
     code: int
     errors: _list[Error]
     message: str
+
+@typing.type_check_only
+class ExternalAction(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "EXTERNAL_ACTION_TYPE_UNSPECIFIED",
+        "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER",
+        "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER",
+        "LEGAL_APPEAL_IN_HELP_CENTER",
+    ]
+    uri: str
 
 @typing.type_check_only
 class FreeListingsProgramStatus(typing_extensions.TypedDict, total=False):
@@ -839,6 +972,10 @@ class InapplicabilityDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class InsertCheckoutSettingsRequest(typing_extensions.TypedDict, total=False):
+    uriSettings: UrlSettings
+
+@typing.type_check_only
 class Installment(typing_extensions.TypedDict, total=False):
     amount: Price
     months: str
@@ -868,6 +1005,7 @@ class LiaCountrySettings(typing_extensions.TypedDict, total=False):
     country: str
     hostedLocalStorefrontActive: bool
     inventory: LiaInventorySettings
+    omnichannelExperience: LiaOmnichannelExperience
     onDisplayToOrder: LiaOnDisplayToOrderSettings
     posDataProvider: LiaPosDataProvider
     storePickupActive: bool
@@ -878,6 +1016,12 @@ class LiaInventorySettings(typing_extensions.TypedDict, total=False):
     inventoryVerificationContactName: str
     inventoryVerificationContactStatus: str
     status: str
+
+@typing.type_check_only
+class LiaOmnichannelExperience(typing_extensions.TypedDict, total=False):
+    country: str
+    lsfType: str
+    pickupTypes: _list[str]
 
 @typing.type_check_only
 class LiaOnDisplayToOrderSettings(typing_extensions.TypedDict, total=False):
@@ -910,6 +1054,7 @@ class LiasettingsCustomBatchRequestEntry(typing_extensions.TypedDict, total=Fals
     liaSettings: LiaSettings
     merchantId: str
     method: str
+    omnichannelExperience: LiaOmnichannelExperience
     posDataProviderId: str
     posExternalAccountId: str
 
@@ -925,6 +1070,7 @@ class LiasettingsCustomBatchResponseEntry(typing_extensions.TypedDict, total=Fal
     gmbAccounts: GmbAccounts
     kind: str
     liaSettings: LiaSettings
+    omnichannelExperience: LiaOmnichannelExperience
     posDataProviders: _list[PosDataProviders]
 
 @typing.type_check_only
@@ -1009,6 +1155,11 @@ class ListCssesResponse(typing_extensions.TypedDict, total=False):
 class ListMethodQuotasResponse(typing_extensions.TypedDict, total=False):
     methodQuotas: _list[MethodQuota]
     nextPageToken: str
+
+@typing.type_check_only
+class ListPromotionResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    promotions: _list[Promotion]
 
 @typing.type_check_only
 class ListRegionsResponse(typing_extensions.TypedDict, total=False):
@@ -1918,6 +2069,8 @@ class PosInventory(typing_extensions.TypedDict, total=False):
     gtin: str
     itemId: str
     kind: str
+    pickupMethod: str
+    pickupSla: str
     price: Price
     quantity: str
     storeCode: str
@@ -1929,6 +2082,8 @@ class PosInventoryRequest(typing_extensions.TypedDict, total=False):
     contentLanguage: str
     gtin: str
     itemId: str
+    pickupMethod: str
+    pickupSla: str
     price: Price
     quantity: str
     storeCode: str
@@ -1941,6 +2096,8 @@ class PosInventoryResponse(typing_extensions.TypedDict, total=False):
     gtin: str
     itemId: str
     kind: str
+    pickupMethod: str
+    pickupSla: str
     price: Price
     quantity: str
     storeCode: str
@@ -2052,7 +2209,9 @@ class Product(typing_extensions.TypedDict, total=False):
     availabilityDate: str
     brand: str
     canonicalLink: str
+    certifications: _list[ProductCertification]
     channel: str
+    cloudExportAdditionalProperties: _list[CloudExportAdditionalProperties]
     color: str
     condition: str
     contentLanguage: str
@@ -2064,6 +2223,7 @@ class Product(typing_extensions.TypedDict, total=False):
     customLabel3: str
     customLabel4: str
     description: str
+    disclosureDate: str
     displayAdsId: str
     displayAdsLink: str
     displayAdsSimilarIds: _list[str]
@@ -2134,12 +2294,19 @@ class Product(typing_extensions.TypedDict, total=False):
     transitTimeLabel: str
     unitPricingBaseMeasure: ProductUnitPricingBaseMeasure
     unitPricingMeasure: ProductUnitPricingMeasure
+    virtualModelLink: str
 
 @typing.type_check_only
 class ProductAmount(typing_extensions.TypedDict, total=False):
     priceAmount: Price
     remittedTaxAmount: Price
     taxAmount: Price
+
+@typing.type_check_only
+class ProductCertification(typing_extensions.TypedDict, total=False):
+    certificationAuthority: str
+    certificationCode: str
+    certificationName: str
 
 @typing.type_check_only
 class ProductCluster(typing_extensions.TypedDict, total=False):
@@ -2185,6 +2352,21 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductId(typing_extensions.TypedDict, total=False):
     productId: str
+
+@typing.type_check_only
+class ProductIssue(typing_extensions.TypedDict, total=False):
+    actions: _list[Action]
+    impact: ProductIssueImpact
+    prerenderedContent: str
+    title: str
+
+@typing.type_check_only
+class ProductIssueImpact(typing_extensions.TypedDict, total=False):
+    breakdowns: _list[Breakdown]
+    message: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
 
 @typing.type_check_only
 class ProductProductDetail(typing_extensions.TypedDict, total=False):
@@ -2335,6 +2517,7 @@ class ProductViewItemIssueItemIssueSeverity(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ProductViewItemIssueItemIssueType(typing_extensions.TypedDict, total=False):
     canonicalAttribute: str
+    code: str
 
 @typing.type_check_only
 class ProductWeight(typing_extensions.TypedDict, total=False):
@@ -2608,9 +2791,31 @@ class RegionalinventoryCustomBatchResponseEntry(
     regionalInventory: RegionalInventory
 
 @typing.type_check_only
+class RenderAccountIssuesRequestPayload(typing_extensions.TypedDict, total=False):
+    contentOption: typing_extensions.Literal[
+        "CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"
+    ]
+
+@typing.type_check_only
+class RenderAccountIssuesResponse(typing_extensions.TypedDict, total=False):
+    alternateDisputeResolution: AlternateDisputeResolution
+    issues: _list[AccountIssue]
+
+@typing.type_check_only
+class RenderProductIssuesRequestPayload(typing_extensions.TypedDict, total=False):
+    contentOption: typing_extensions.Literal[
+        "CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"
+    ]
+
+@typing.type_check_only
+class RenderProductIssuesResponse(typing_extensions.TypedDict, total=False):
+    alternateDisputeResolution: AlternateDisputeResolution
+    issues: _list[ProductIssue]
+
+@typing.type_check_only
 class ReportInteractionRequest(typing_extensions.TypedDict, total=False):
     interactionType: typing_extensions.Literal[
-        "INTERACTION_TYPE_UNSPECIFIED", "INTERACTION_CLICK"
+        "INTERACTION_TYPE_UNSPECIFIED", "INTERACTION_DISMISS", "INTERACTION_CLICK"
     ]
     responseToken: str
     subtype: str
@@ -2620,6 +2825,7 @@ class ReportInteractionRequest(typing_extensions.TypedDict, total=False):
 class ReportRow(typing_extensions.TypedDict, total=False):
     bestSellers: BestSellers
     brand: Brand
+    competitiveVisibility: CompetitiveVisibility
     metrics: Metrics
     priceCompetitiveness: PriceCompetitiveness
     priceInsights: PriceInsights
@@ -3009,6 +3215,27 @@ class Service(typing_extensions.TypedDict, total=False):
     pickupService: PickupCarrierService
     rateGroups: _list[RateGroup]
     shipmentType: str
+    storeConfig: ServiceStoreConfig
+
+@typing.type_check_only
+class ServiceStoreConfig(typing_extensions.TypedDict, total=False):
+    cutoffConfig: ServiceStoreConfigCutoffConfig
+    serviceRadius: Distance
+    storeCodes: _list[str]
+    storeServiceType: str
+
+@typing.type_check_only
+class ServiceStoreConfigCutoffConfig(typing_extensions.TypedDict, total=False):
+    localCutoffTime: ServiceStoreConfigCutoffConfigLocalCutoffTime
+    noDeliveryPostCutoff: bool
+    storeCloseOffsetHours: str
+
+@typing.type_check_only
+class ServiceStoreConfigCutoffConfigLocalCutoffTime(
+    typing_extensions.TypedDict, total=False
+):
+    hour: str
+    minute: str
 
 @typing.type_check_only
 class SettlementReport(typing_extensions.TypedDict, total=False):
@@ -3310,6 +3537,11 @@ class UnitInvoiceTaxLine(typing_extensions.TypedDict, total=False):
     taxAmount: Price
     taxName: str
     taxType: str
+
+@typing.type_check_only
+class UrlSettings(typing_extensions.TypedDict, total=False):
+    cartUriTemplate: str
+    checkoutUriTemplate: str
 
 @typing.type_check_only
 class Value(typing_extensions.TypedDict, total=False):

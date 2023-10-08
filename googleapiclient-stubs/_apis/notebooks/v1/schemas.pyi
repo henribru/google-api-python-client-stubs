@@ -15,6 +15,7 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_P4",
         "NVIDIA_TESLA_T4",
         "NVIDIA_TESLA_A100",
+        "NVIDIA_L4",
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
@@ -46,10 +47,12 @@ class DataprocParameters(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiagnoseInstanceRequest(typing_extensions.TypedDict, total=False):
     diagnosticConfig: DiagnosticConfig
+    timeoutMinutes: int
 
 @typing.type_check_only
 class DiagnoseRuntimeRequest(typing_extensions.TypedDict, total=False):
     diagnosticConfig: DiagnosticConfig
+    timeoutMinutes: int
 
 @typing.type_check_only
 class DiagnosticConfig(typing_extensions.TypedDict, total=False):
@@ -191,11 +194,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     disks: _list[Disk]
     installGpuDriver: bool
+    instanceMigrationEligibility: InstanceMigrationEligibility
     instanceOwners: _list[str]
     kmsKey: str
     labels: dict[str, typing.Any]
     machineType: str
     metadata: dict[str, typing.Any]
+    migrated: bool
     name: str
     network: str
     nicType: typing_extensions.Literal["UNSPECIFIED_NIC_TYPE", "VIRTIO_NET", "GVNIC"]
@@ -232,6 +237,11 @@ class Instance(typing_extensions.TypedDict, total=False):
 class InstanceConfig(typing_extensions.TypedDict, total=False):
     enableHealthMonitoring: bool
     notebookUpgradeSchedule: str
+
+@typing.type_check_only
+class InstanceMigrationEligibility(typing_extensions.TypedDict, total=False):
+    errors: _list[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class IsInstanceUpgradeableResponse(typing_extensions.TypedDict, total=False):
@@ -398,7 +408,9 @@ class Runtime(typing_extensions.TypedDict, total=False):
     ]
     labels: dict[str, typing.Any]
     metrics: RuntimeMetrics
+    migrated: bool
     name: str
+    runtimeMigrationEligibility: RuntimeMigrationEligibility
     softwareConfig: RuntimeSoftwareConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -425,6 +437,7 @@ class RuntimeAcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_P4",
         "NVIDIA_TESLA_T4",
         "NVIDIA_TESLA_A100",
+        "NVIDIA_L4",
         "TPU_V2",
         "TPU_V3",
         "NVIDIA_TESLA_T4_VWS",
@@ -447,6 +460,11 @@ class RuntimeGuestOsFeature(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RuntimeMetrics(typing_extensions.TypedDict, total=False):
     systemMetrics: dict[str, typing.Any]
+
+@typing.type_check_only
+class RuntimeMigrationEligibility(typing_extensions.TypedDict, total=False):
+    errors: _list[str]
+    warnings: _list[str]
 
 @typing.type_check_only
 class RuntimeShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
@@ -525,6 +543,7 @@ class SetInstanceAcceleratorRequest(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_P4",
         "NVIDIA_TESLA_T4",
         "NVIDIA_TESLA_A100",
+        "NVIDIA_L4",
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",

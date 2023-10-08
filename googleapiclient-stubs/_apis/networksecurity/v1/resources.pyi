@@ -14,9 +14,217 @@ _list = list
 @typing.type_check_only
 class NetworkSecurityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddressGroupsResource(googleapiclient.discovery.Resource):
+                def addItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: AddAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def cloneItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: CloneAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AddressGroup = ...,
+                    addressGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AddressGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAddressGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddressGroupsResponseHttpRequest,
+                    previous_response: ListAddressGroupsResponse,
+                ) -> ListAddressGroupsResponseHttpRequest | None: ...
+                def listReferences(
+                    self,
+                    *,
+                    addressGroup: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAddressGroupReferencesResponseHttpRequest: ...
+                def listReferences_next(
+                    self,
+                    previous_request: ListAddressGroupReferencesResponseHttpRequest,
+                    previous_response: ListAddressGroupReferencesResponse,
+                ) -> ListAddressGroupReferencesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AddressGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def removeItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: RemoveAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOperationsResponseHttpRequest,
+                    previous_response: ListOperationsResponse,
+                ) -> ListOperationsResponseHttpRequest | None: ...
+
+            def addressGroups(self) -> AddressGroupsResource: ...
+            def operations(self) -> OperationsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddressGroupsResource(googleapiclient.discovery.Resource):
+                def addItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: AddAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def cloneItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: CloneAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AddressGroup = ...,
+                    addressGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AddressGroupHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAddressGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddressGroupsResponseHttpRequest,
+                    previous_response: ListAddressGroupsResponse,
+                ) -> ListAddressGroupsResponseHttpRequest | None: ...
+                def listReferences(
+                    self,
+                    *,
+                    addressGroup: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAddressGroupReferencesResponseHttpRequest: ...
+                def listReferences_next(
+                    self,
+                    previous_request: ListAddressGroupReferencesResponseHttpRequest,
+                    previous_response: ListAddressGroupReferencesResponse,
+                ) -> ListAddressGroupReferencesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AddressGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def removeItems(
+                    self,
+                    *,
+                    addressGroup: str,
+                    body: RemoveAddressGroupItemsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
             @typing.type_check_only
             class AuthorizationPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -394,6 +602,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def addressGroups(self) -> AddressGroupsResource: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
@@ -416,7 +625,16 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AddressGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AddressGroup: ...
 
 @typing.type_check_only
 class AuthorizationPolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -475,6 +693,22 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class ListAddressGroupReferencesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAddressGroupReferencesResponse: ...
+
+@typing.type_check_only
+class ListAddressGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAddressGroupsResponse: ...
 
 @typing.type_check_only
 class ListAuthorizationPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):

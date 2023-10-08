@@ -52,6 +52,17 @@ class GoogleCloudContactcenterinsightsV1AnnotatorSelector(
     runPhraseMatcherAnnotator: bool
     runSentimentAnnotator: bool
     runSilenceAnnotator: bool
+    runSummarizationAnnotator: bool
+    summarizationConfig: GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    summarizationModel: typing_extensions.Literal[
+        "SUMMARIZATION_MODEL_UNSPECIFIED", "BASELINE_MODEL"
+    ]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1AnswerFeedback(
@@ -169,6 +180,7 @@ class GoogleCloudContactcenterinsightsV1Conversation(
     labels: dict[str, typing.Any]
     languageCode: str
     latestAnalysis: GoogleCloudContactcenterinsightsV1Analysis
+    latestSummary: GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
     obfuscatedUserId: str
@@ -211,6 +223,17 @@ class GoogleCloudContactcenterinsightsV1ConversationParticipant(
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER", "ANY_AGENT"
     ]
     userId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    confidence: float
+    conversationModel: str
+    metadata: dict[str, typing.Any]
+    text: str
+    textSections: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationTranscript(
@@ -522,6 +545,8 @@ class GoogleCloudContactcenterinsightsV1IssueModel(
     displayName: str
     inputDataConfig: GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig
     issueCount: str
+    languageCode: str
+    modelType: typing_extensions.Literal["MODEL_TYPE_UNSPECIFIED", "TYPE_V1", "TYPE_V2"]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -669,6 +694,7 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation(
     annotationId: str
     answerFeedback: GoogleCloudContactcenterinsightsV1AnswerFeedback
     articleSuggestion: GoogleCloudContactcenterinsightsV1ArticleSuggestionData
+    conversationSummarizationSuggestion: GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData
     createTime: str
     dialogflowInteraction: GoogleCloudContactcenterinsightsV1DialogflowInteractionData
     endBoundary: GoogleCloudContactcenterinsightsV1AnnotationBoundary
@@ -695,6 +721,7 @@ class GoogleCloudContactcenterinsightsV1Settings(
     name: str
     pubsubNotificationSettings: dict[str, typing.Any]
     redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
+    speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
     updateTime: str
 
 @typing.type_check_only
@@ -727,6 +754,12 @@ class GoogleCloudContactcenterinsightsV1SmartReplyData(
     metadata: dict[str, typing.Any]
     queryRecord: str
     reply: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SpeechConfig(
+    typing_extensions.TypedDict, total=False
+):
+    speechRecognizer: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadata(
@@ -765,6 +798,7 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest(
     conversationId: str
     parent: str
     redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
+    speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1View(typing_extensions.TypedDict, total=False):
@@ -824,6 +858,17 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelector(
     runPhraseMatcherAnnotator: bool
     runSentimentAnnotator: bool
     runSilenceAnnotator: bool
+    runSummarizationAnnotator: bool
+    summarizationConfig: GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    conversationProfile: str
+    summarizationModel: typing_extensions.Literal[
+        "SUMMARIZATION_MODEL_UNSPECIFIED", "BASELINE_MODEL"
+    ]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1AnswerFeedback(
@@ -906,6 +951,7 @@ class GoogleCloudContactcenterinsightsV1alpha1Conversation(
     labels: dict[str, typing.Any]
     languageCode: str
     latestAnalysis: GoogleCloudContactcenterinsightsV1alpha1Analysis
+    latestSummary: GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
     obfuscatedUserId: str
@@ -948,6 +994,17 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant(
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER", "ANY_AGENT"
     ]
     userId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    confidence: float
+    conversationModel: str
+    metadata: dict[str, typing.Any]
+    text: str
+    textSections: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ConversationTranscript(
@@ -1245,6 +1302,8 @@ class GoogleCloudContactcenterinsightsV1alpha1IssueModel(
     displayName: str
     inputDataConfig: GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig
     issueCount: str
+    languageCode: str
+    modelType: typing_extensions.Literal["MODEL_TYPE_UNSPECIFIED", "TYPE_V1", "TYPE_V2"]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -1309,6 +1368,7 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation(
     annotationId: str
     answerFeedback: GoogleCloudContactcenterinsightsV1alpha1AnswerFeedback
     articleSuggestion: GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionData
+    conversationSummarizationSuggestion: GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData
     createTime: str
     dialogflowInteraction: GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionData
     endBoundary: GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary
@@ -1348,6 +1408,12 @@ class GoogleCloudContactcenterinsightsV1alpha1SmartReplyData(
     reply: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SpeechConfig(
+    typing_extensions.TypedDict, total=False
+):
+    speechRecognizer: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1384,6 +1450,7 @@ class GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequest(
     conversationId: str
     parent: str
     redactionConfig: GoogleCloudContactcenterinsightsV1alpha1RedactionConfig
+    speechConfig: GoogleCloudContactcenterinsightsV1alpha1SpeechConfig
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):

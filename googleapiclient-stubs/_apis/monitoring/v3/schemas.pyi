@@ -105,6 +105,11 @@ class CloudEndpoints(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class CloudFunctionV2Target(typing_extensions.TypedDict, total=False):
+    cloudRunRevision: MonitoredResource
+    name: str
+
+@typing.type_check_only
 class CloudRun(typing_extensions.TypedDict, total=False):
     location: str
     serviceName: str
@@ -151,6 +156,7 @@ class Condition(typing_extensions.TypedDict, total=False):
     conditionAbsent: MetricAbsence
     conditionMatchedLog: LogMatch
     conditionMonitoringQueryLanguage: MonitoringQueryLanguageCondition
+    conditionPrometheusQueryLanguage: PrometheusQueryLanguageCondition
     conditionThreshold: MetricThreshold
     displayName: str
     name: str
@@ -216,6 +222,7 @@ class DistributionCut(typing_extensions.TypedDict, total=False):
 class Documentation(typing_extensions.TypedDict, total=False):
     content: str
     mimeType: str
+    subject: str
 
 @typing.type_check_only
 class DroppedLabels(typing_extensions.TypedDict, total=False):
@@ -698,6 +705,15 @@ class PointData(typing_extensions.TypedDict, total=False):
     values: _list[TypedValue]
 
 @typing.type_check_only
+class PrometheusQueryLanguageCondition(typing_extensions.TypedDict, total=False):
+    alertRule: str
+    duration: str
+    evaluationInterval: str
+    labels: dict[str, typing.Any]
+    query: str
+    ruleGroup: str
+
+@typing.type_check_only
 class QueryTimeSeriesRequest(typing_extensions.TypedDict, total=False):
     pageSize: int
     pageToken: str
@@ -810,6 +826,10 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class SyntheticMonitorTarget(typing_extensions.TypedDict, total=False):
+    cloudFunctionV2: CloudFunctionV2Target
+
+@typing.type_check_only
 class TcpCheck(typing_extensions.TypedDict, total=False):
     pingConfig: PingConfig
     port: int
@@ -899,6 +919,7 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
     period: str
     resourceGroup: ResourceGroup
     selectedRegions: _list[str]
+    syntheticMonitor: SyntheticMonitorTarget
     tcpCheck: TcpCheck
     timeout: str
     userLabels: dict[str, typing.Any]

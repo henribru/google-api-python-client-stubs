@@ -66,6 +66,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     filter: str = ...,
+                    orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any

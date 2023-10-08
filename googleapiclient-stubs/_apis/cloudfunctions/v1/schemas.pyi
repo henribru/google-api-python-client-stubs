@@ -121,12 +121,17 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
+class GoogleCloudFunctionsV2LocationMetadata(typing_extensions.TypedDict, total=False):
+    environments: _list[str]
+
+@typing.type_check_only
 class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
+    sourceToken: str
     stages: _list[GoogleCloudFunctionsV2Stage]
     statusDetail: str
     target: str
@@ -174,10 +179,30 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
-    stages: _list[Stage]
+    sourceToken: str
+    stages: _list[GoogleCloudFunctionsV2alphaStage]
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2alphaStage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total=False):
@@ -202,6 +227,7 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
+    sourceToken: str
     stages: _list[GoogleCloudFunctionsV2betaStage]
     statusDetail: str
     target: str
@@ -266,10 +292,6 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
-    environments: _list[str]
-
-@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -328,25 +350,6 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class SourceRepository(typing_extensions.TypedDict, total=False):
     deployedUrl: str
     url: str
-
-@typing.type_check_only
-class Stage(typing_extensions.TypedDict, total=False):
-    message: str
-    name: typing_extensions.Literal[
-        "NAME_UNSPECIFIED",
-        "ARTIFACT_REGISTRY",
-        "BUILD",
-        "SERVICE",
-        "TRIGGER",
-        "SERVICE_ROLLBACK",
-        "TRIGGER_ROLLBACK",
-    ]
-    resource: str
-    resourceUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
-    ]
-    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

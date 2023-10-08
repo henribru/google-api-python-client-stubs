@@ -63,6 +63,7 @@ class DataSourceParameter(typing_extensions.TypedDict, total=False):
         "BOOLEAN",
         "RECORD",
         "PLUS_PAGE",
+        "LIST",
     ]
     validationDescription: str
     validationHelpUrl: str
@@ -74,6 +75,10 @@ class EmailPreferences(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionConfiguration(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class EnrollDataSourcesRequest(typing_extensions.TypedDict, total=False):
@@ -156,6 +161,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     disabled: bool
     displayName: str
     emailPreferences: EmailPreferences
+    encryptionConfiguration: EncryptionConfiguration
     name: str
     nextRunTime: str
     notificationPubsubTopic: str

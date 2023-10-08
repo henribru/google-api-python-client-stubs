@@ -15,6 +15,7 @@ class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
+    enableRotationCorrection: bool
     enableShadowRemovalNativePdf: bool
     formatConversions: dict[str, typing.Any]
     glossaries: dict[str, typing.Any]
@@ -249,6 +250,20 @@ class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
 
 @typing.type_check_only
+class Romanization(typing_extensions.TypedDict, total=False):
+    detectedLanguageCode: str
+    romanizedText: str
+
+@typing.type_check_only
+class RomanizeTextRequest(typing_extensions.TypedDict, total=False):
+    contents: _list[str]
+    sourceLanguageCode: str
+
+@typing.type_check_only
+class RomanizeTextResponse(typing_extensions.TypedDict, total=False):
+    romanizations: _list[Romanization]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -300,6 +315,7 @@ class TranslateTextRequest(typing_extensions.TypedDict, total=False):
     model: str
     sourceLanguageCode: str
     targetLanguageCode: str
+    transliterationConfig: TransliterationConfig
 
 @typing.type_check_only
 class TranslateTextResponse(typing_extensions.TypedDict, total=False):
@@ -312,6 +328,10 @@ class Translation(typing_extensions.TypedDict, total=False):
     glossaryConfig: TranslateTextGlossaryConfig
     model: str
     translatedText: str
+
+@typing.type_check_only
+class TransliterationConfig(typing_extensions.TypedDict, total=False):
+    enableTransliteration: bool
 
 @typing.type_check_only
 class WaitOperationRequest(typing_extensions.TypedDict, total=False):

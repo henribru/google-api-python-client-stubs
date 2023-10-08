@@ -28,6 +28,11 @@ class DisableInteractiveSerialConsoleRequest(
 ): ...
 
 @typing.type_check_only
+class DisableInteractiveSerialConsoleResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -36,16 +41,15 @@ class EnableInteractiveSerialConsoleRequest(
 ): ...
 
 @typing.type_check_only
+class EnableInteractiveSerialConsoleResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class EvictLunRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EvictVolumeRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class FetchInstanceProvisioningSettingsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    images: _list[OSImage]
 
 @typing.type_check_only
 class GoogleCloudBaremetalsolutionV2LogicalInterface(
@@ -113,6 +117,7 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     networkTemplate: str
     osImage: str
     privateNetwork: NetworkAddress
+    sshKeyNames: _list[str]
     userNote: str
 
 @typing.type_check_only
@@ -160,6 +165,11 @@ class ListNfsSharesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     nfsShares: _list[NfsShare]
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListOSImagesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    osImages: _list[OSImage]
 
 @typing.type_check_only
 class ListProvisioningQuotasResponse(typing_extensions.TypedDict, total=False):
@@ -305,6 +315,7 @@ class NfsShare(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     nfsShareId: str
+    pod: str
     requestedSizeGib: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PROVISIONED", "CREATING", "UPDATING", "DELETING"
@@ -318,7 +329,7 @@ class OSImage(typing_extensions.TypedDict, total=False):
     code: str
     description: str
     name: str
-    supportedNetworkTemplates: _list[ServerNetworkTemplate]
+    supportedNetworkTemplates: _list[str]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -338,6 +349,7 @@ class ProvisioningConfig(typing_extensions.TypedDict, total=False):
     location: str
     name: str
     networks: _list[NetworkConfig]
+    pod: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "DRAFT",
@@ -395,6 +407,9 @@ class RenameVolumeRequest(typing_extensions.TypedDict, total=False):
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ResetInstanceResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ResizeVolumeRequest(typing_extensions.TypedDict, total=False):
     sizeGib: str
 
@@ -425,6 +440,9 @@ class SnapshotReservationDetail(typing_extensions.TypedDict, total=False):
 class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class StartInstanceResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -432,6 +450,9 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StopInstanceResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SubmitProvisioningConfigRequest(typing_extensions.TypedDict, total=False):
@@ -452,6 +473,7 @@ class VRF(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VlanAttachment(typing_extensions.TypedDict, total=False):
     id: str
+    interconnectAttachment: str
     pairingKey: str
     peerIp: str
     peerVlanId: str
@@ -491,11 +513,9 @@ class Volume(typing_extensions.TypedDict, total=False):
     ]
     snapshotEnabled: bool
     snapshotReservationDetail: SnapshotReservationDetail
-    snapshotSchedulePolicy: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING", "COOL_OFF"
     ]
-    storageAggregatePool: str
     storageType: typing_extensions.Literal["STORAGE_TYPE_UNSPECIFIED", "SSD", "HDD"]
     workloadProfile: typing_extensions.Literal[
         "WORKLOAD_PROFILE_UNSPECIFIED", "GENERIC", "HANA"
@@ -520,7 +540,6 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
     ]
     sizeGb: int
     snapshotsEnabled: bool
-    storageAggregatePool: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "FLASH", "DISK"]
     userNote: str
 

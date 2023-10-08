@@ -73,6 +73,26 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         | None
                     ): ...
 
+                def analyzeWorkloadMove(
+                    self,
+                    *,
+                    target: str,
+                    assetTypes: str | _list[str] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    project: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest
+                ): ...
+                def analyzeWorkloadMove_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest
+                    | None
+                ): ...
                 def create(
                     self,
                     *,
@@ -155,6 +175,16 @@ class GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest(

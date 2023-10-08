@@ -195,6 +195,7 @@ class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False):
     diagnosisInterval: Interval
     job: str
     jobs: _list[str]
+    tarballGcsDir: str
     yarnApplicationId: str
     yarnApplicationIds: _list[str]
 
@@ -220,7 +221,6 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     gcePdKmsKeyName: str
-    kmsKey: str
 
 @typing.type_check_only
 class EndpointConfig(typing_extensions.TypedDict, total=False):
@@ -249,6 +249,16 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class FlinkJob(typing_extensions.TypedDict, total=False):
+    args: _list[str]
+    jarFileUris: _list[str]
+    loggingConfig: LoggingConfig
+    mainClass: str
+    mainJarFileUri: str
+    properties: dict[str, typing.Any]
+    savepointUri: str
 
 @typing.type_check_only
 class GceClusterConfig(typing_extensions.TypedDict, total=False):
@@ -348,6 +358,11 @@ class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
     credentialsCiphertext: str
 
 @typing.type_check_only
+class InstanceFlexibilityPolicy(typing_extensions.TypedDict, total=False):
+    instanceSelectionList: _list[InstanceSelection]
+    instanceSelectionResults: _list[InstanceSelectionResult]
+
+@typing.type_check_only
 class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
     maxInstances: int
     minInstances: int
@@ -358,16 +373,19 @@ class InstanceGroupConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[AcceleratorConfig]
     diskConfig: DiskConfig
     imageUri: str
+    instanceFlexibilityPolicy: InstanceFlexibilityPolicy
     instanceNames: _list[str]
     instanceReferences: _list[InstanceReference]
     isPreemptible: bool
     machineTypeUri: str
     managedGroupConfig: ManagedGroupConfig
     minCpuPlatform: str
+    minNumInstances: int
     numInstances: int
     preemptibility: typing_extensions.Literal[
         "PREEMPTIBILITY_UNSPECIFIED", "NON_PREEMPTIBLE", "PREEMPTIBLE", "SPOT"
     ]
+    startupConfig: StartupConfig
 
 @typing.type_check_only
 class InstanceReference(typing_extensions.TypedDict, total=False):
@@ -375,6 +393,16 @@ class InstanceReference(typing_extensions.TypedDict, total=False):
     instanceName: str
     publicEciesKey: str
     publicKey: str
+
+@typing.type_check_only
+class InstanceSelection(typing_extensions.TypedDict, total=False):
+    machineTypes: _list[str]
+    rank: int
+
+@typing.type_check_only
+class InstanceSelectionResult(typing_extensions.TypedDict, total=False):
+    machineType: str
+    vmCount: int
 
 @typing.type_check_only
 class InstantiateWorkflowTemplateRequest(typing_extensions.TypedDict, total=False):
@@ -393,6 +421,7 @@ class Job(typing_extensions.TypedDict, total=False):
     driverControlFilesUri: str
     driverOutputResourceUri: str
     driverSchedulingConfig: DriverSchedulingConfig
+    flinkJob: FlinkJob
     hadoopJob: HadoopJob
     hiveJob: HiveJob
     jobUuid: str
@@ -453,6 +482,11 @@ class JobStatus(typing_extensions.TypedDict, total=False):
     substate: typing_extensions.Literal[
         "UNSPECIFIED", "SUBMITTED", "QUEUED", "STALE_STATUS"
     ]
+
+@typing.type_check_only
+class JupyterConfig(typing_extensions.TypedDict, total=False):
+    displayName: str
+    kernel: typing_extensions.Literal["KERNEL_UNSPECIFIED", "PYTHON", "SCALA"]
 
 @typing.type_check_only
 class KerberosConfig(typing_extensions.TypedDict, total=False):
@@ -516,6 +550,16 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListSessionTemplatesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sessionTemplates: _list[SessionTemplate]
+
+@typing.type_check_only
+class ListSessionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sessions: _list[Session]
+
+@typing.type_check_only
 class ListWorkflowTemplatesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     templates: _list[WorkflowTemplate]
@@ -533,6 +577,7 @@ class ManagedCluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
     instanceGroupManagerName: str
+    instanceGroupManagerUri: str
     instanceTemplateName: str
 
 @typing.type_check_only
@@ -551,6 +596,7 @@ class Metric(typing_extensions.TypedDict, total=False):
         "SPARK_HISTORY_SERVER",
         "HIVESERVER2",
         "HIVEMETASTORE",
+        "FLINK",
     ]
 
 @typing.type_check_only
@@ -603,6 +649,7 @@ class Operation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OrderedJob(typing_extensions.TypedDict, total=False):
+    flinkJob: FlinkJob
     hadoopJob: HadoopJob
     hiveJob: HiveJob
     labels: dict[str, typing.Any]
@@ -654,6 +701,10 @@ class PrestoJob(typing_extensions.TypedDict, total=False):
     queryList: QueryList
 
 @typing.type_check_only
+class PyPiRepositoryConfig(typing_extensions.TypedDict, total=False):
+    pypiRepository: str
+
+@typing.type_check_only
 class PySparkBatch(typing_extensions.TypedDict, total=False):
     archiveUris: _list[str]
     args: _list[str]
@@ -690,6 +741,10 @@ class RepairClusterRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
+class RepositoryConfig(typing_extensions.TypedDict, total=False):
+    pypiRepositoryConfig: PyPiRepositoryConfig
+
+@typing.type_check_only
 class ReservationAffinity(typing_extensions.TypedDict, total=False):
     consumeReservationType: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
@@ -707,6 +762,7 @@ class ResizeNodeGroupRequest(typing_extensions.TypedDict, total=False):
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
     containerImage: str
     properties: dict[str, typing.Any]
+    repositoryConfig: RepositoryConfig
     version: str
 
 @typing.type_check_only
@@ -723,6 +779,26 @@ class SecurityConfig(typing_extensions.TypedDict, total=False):
     kerberosConfig: KerberosConfig
 
 @typing.type_check_only
+class Session(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creator: str
+    environmentConfig: EnvironmentConfig
+    jupyterSession: JupyterConfig
+    labels: dict[str, typing.Any]
+    name: str
+    runtimeConfig: RuntimeConfig
+    runtimeInfo: RuntimeInfo
+    sessionTemplate: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "TERMINATING", "TERMINATED", "FAILED"
+    ]
+    stateHistory: _list[SessionStateHistory]
+    stateMessage: str
+    stateTime: str
+    user: str
+    uuid: str
+
+@typing.type_check_only
 class SessionOperationMetadata(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -734,6 +810,27 @@ class SessionOperationMetadata(typing_extensions.TypedDict, total=False):
     session: str
     sessionUuid: str
     warnings: _list[str]
+
+@typing.type_check_only
+class SessionStateHistory(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "TERMINATING", "TERMINATED", "FAILED"
+    ]
+    stateMessage: str
+    stateStartTime: str
+
+@typing.type_check_only
+class SessionTemplate(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creator: str
+    description: str
+    environmentConfig: EnvironmentConfig
+    jupyterSession: JupyterConfig
+    labels: dict[str, typing.Any]
+    name: str
+    runtimeConfig: RuntimeConfig
+    updateTime: str
+    uuid: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -809,6 +906,7 @@ class SparkSqlJob(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SparkStandaloneAutoscalingConfig(typing_extensions.TypedDict, total=False):
     gracefulDecommissionTimeout: str
+    removeOnlyIdleWorkers: bool
     scaleDownFactor: float
     scaleDownMinWorkerFraction: float
     scaleUpFactor: float
@@ -818,6 +916,10 @@ class SparkStandaloneAutoscalingConfig(typing_extensions.TypedDict, total=False)
 class StartClusterRequest(typing_extensions.TypedDict, total=False):
     clusterUuid: str
     requestId: str
+
+@typing.type_check_only
+class StartupConfig(typing_extensions.TypedDict, total=False):
+    requiredRegistrationFraction: float
 
 @typing.type_check_only
 class StateHistory(typing_extensions.TypedDict, total=False):
@@ -857,6 +959,10 @@ class TemplateParameter(typing_extensions.TypedDict, total=False):
     validation: ParameterValidation
 
 @typing.type_check_only
+class TerminateSessionRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
@@ -882,7 +988,9 @@ class UsageMetrics(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UsageSnapshot(typing_extensions.TypedDict, total=False):
     milliDcu: str
+    milliDcuPremium: str
     shuffleStorageGb: str
+    shuffleStorageGbPremium: str
     snapshotTime: str
 
 @typing.type_check_only

@@ -254,6 +254,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def romanizeText(
+                self,
+                *,
+                parent: str,
+                body: RomanizeTextRequest = ...,
+                **kwargs: typing.Any
+            ) -> RomanizeTextResponseHttpRequest: ...
             def translateDocument(
                 self,
                 *,
@@ -288,6 +295,9 @@ class TranslateResource(googleapiclient.discovery.Resource):
             model: str = ...,
             **kwargs: typing.Any
         ) -> SupportedLanguagesHttpRequest: ...
+        def romanizeText(
+            self, *, parent: str, body: RomanizeTextRequest = ..., **kwargs: typing.Any
+        ) -> RomanizeTextResponseHttpRequest: ...
         def translateText(
             self, *, parent: str, body: TranslateTextRequest = ..., **kwargs: typing.Any
         ) -> TranslateTextResponseHttpRequest: ...
@@ -426,6 +436,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Operation: ...
+
+@typing.type_check_only
+class RomanizeTextResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RomanizeTextResponse: ...
 
 @typing.type_check_only
 class SupportedLanguagesHttpRequest(googleapiclient.http.HttpRequest):

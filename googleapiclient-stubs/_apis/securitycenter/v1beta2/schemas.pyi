@@ -14,6 +14,7 @@ class Access(typing_extensions.TypedDict, total=False):
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
     serviceName: str
+    userAgent: str
     userAgentFamily: str
     userName: str
 
@@ -28,8 +29,23 @@ class AccessReview(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class AttackExposure(typing_extensions.TypedDict, total=False):
+    attackExposureResult: str
+    exposedHighValueResourcesCount: int
+    exposedLowValueResourcesCount: int
+    exposedMediumValueResourcesCount: int
+    latestCalculationTime: str
+    score: float
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
+    ]
+
+@typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
     dataProfile: str
+    parentType: typing_extensions.Literal[
+        "PARENT_TYPE_UNSPECIFIED", "ORGANIZATION", "PROJECT"
+    ]
 
 @typing.type_check_only
 class CloudDlpInspection(typing_extensions.TypedDict, total=False):
@@ -71,6 +87,7 @@ class ContactDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Container(typing_extensions.TypedDict, total=False):
+    createTime: str
     imageId: str
     labels: _list[Label]
     name: str
@@ -139,6 +156,7 @@ class Database(typing_extensions.TypedDict, total=False):
     name: str
     query: str
     userName: str
+    version: str
 
 @typing.type_check_only
 class Details(typing_extensions.TypedDict, total=False):
@@ -176,6 +194,7 @@ class ExfilResource(typing_extensions.TypedDict, total=False):
 class Exfiltration(typing_extensions.TypedDict, total=False):
     sources: _list[ExfilResource]
     targets: _list[ExfilResource]
+    totalExfiltratedBytes: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -196,6 +215,7 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    attackExposure: AttackExposure
     canonicalName: str
     category: str
     cloudDlpDataProfile: CloudDlpDataProfile
@@ -219,11 +239,13 @@ class Finding(typing_extensions.TypedDict, total=False):
         "MISCONFIGURATION",
         "OBSERVATION",
         "SCC_ERROR",
+        "POSTURE_VIOLATION",
     ]
     iamBindings: _list[IamBinding]
     indicator: Indicator
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
+    loadBalancers: _list[LoadBalancer]
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -236,6 +258,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     processes: _list[Process]
     resourceName: str
     securityMarks: SecurityMarks
+    securityPosture: SecurityPosture
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
@@ -354,6 +377,22 @@ class GoogleCloudSecuritycenterV1ResourceSelector(
     typing_extensions.TypedDict, total=False
 ):
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceValueConfig(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    name: str
+    resourceLabelsSelector: dict[str, typing.Any]
+    resourceType: str
+    resourceValue: typing_extensions.Literal[
+        "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
+    ]
+    scope: str
+    tagValues: _list[str]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1RunAssetDiscoveryResponse(
@@ -480,6 +519,7 @@ class Kubernetes(typing_extensions.TypedDict, total=False):
     bindings: _list[GoogleCloudSecuritycenterV1Binding]
     nodePools: _list[NodePool]
     nodes: _list[Node]
+    objects: _list[Object]
     pods: _list[Pod]
     roles: _list[Role]
 
@@ -487,6 +527,10 @@ class Kubernetes(typing_extensions.TypedDict, total=False):
 class Label(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class LoadBalancer(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class MemoryHashSignature(typing_extensions.TypedDict, total=False):
@@ -527,13 +571,11 @@ class NodePool(typing_extensions.TypedDict, total=False):
     nodes: _list[Node]
 
 @typing.type_check_only
-class OnboardingState(typing_extensions.TypedDict, total=False):
+class Object(typing_extensions.TypedDict, total=False):
+    group: str
+    kind: str
     name: str
-    onboardingLevel: typing_extensions.Literal[
-        "ONBOARDING_LEVEL_UNSPECIFIED",
-        "ONBOARDING_LEVEL_PROJECT",
-        "ONBOARDING_LEVEL_ORGANIZATION",
-    ]
+    ns: str
 
 @typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):
@@ -604,6 +646,14 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class SecurityPosture(typing_extensions.TypedDict, total=False):
+    changedPolicy: str
+    name: str
+    postureDeployment: str
+    postureDeploymentResource: str
+    revisionId: str
+
+@typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     principalEmail: str
     principalSubject: str
@@ -620,7 +670,9 @@ class Subject(typing_extensions.TypedDict, total=False):
 class Subscription(typing_extensions.TypedDict, total=False):
     details: Details
     name: str
-    tier: typing_extensions.Literal["TIER_UNSPECIFIED", "STANDARD", "PREMIUM"]
+    tier: typing_extensions.Literal[
+        "TIER_UNSPECIFIED", "STANDARD", "PREMIUM", "ENTERPRISE"
+    ]
 
 @typing.type_check_only
 class VirtualMachineThreatDetectionSettings(typing_extensions.TypedDict, total=False):

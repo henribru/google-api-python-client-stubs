@@ -99,7 +99,37 @@ class GoogleIamAdminV1WorkforcePoolProviderOidc(
     typing_extensions.TypedDict, total=False
 ):
     clientId: str
+    clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret
     issuerUri: str
+    jwksJson: str
+    webSsoConfig: GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret(
+    typing_extensions.TypedDict, total=False
+):
+    value: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecretValue
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderOidcClientSecretValue(
+    typing_extensions.TypedDict, total=False
+):
+    plainText: str
+    thumbprint: str
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderOidcWebSsoConfig(
+    typing_extensions.TypedDict, total=False
+):
+    additionalScopes: _list[str]
+    assertionClaimsBehavior: typing_extensions.Literal[
+        "ASSERTION_CLAIMS_BEHAVIOR_UNSPECIFIED",
+        "MERGE_USER_INFO_OVER_ID_TOKEN_CLAIMS",
+        "ONLY_ID_TOKEN_CLAIMS",
+    ]
+    responseType: typing_extensions.Literal[
+        "RESPONSE_TYPE_UNSPECIFIED", "CODE", "ID_TOKEN"
+    ]
 
 @typing.type_check_only
 class GoogleIamAdminV1WorkforcePoolProviderSaml(
@@ -189,6 +219,7 @@ class ListWorkloadIdentityPoolsResponse(typing_extensions.TypedDict, total=False
 class Oidc(typing_extensions.TypedDict, total=False):
     allowedAudiences: _list[str]
     issuerUri: str
+    jwksJson: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -197,6 +228,16 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
 
 @typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -398,6 +439,7 @@ class WorkforcePool(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     displayName: str
+    expireTime: str
     name: str
     parent: str
     sessionDuration: str
@@ -410,6 +452,7 @@ class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     displayName: str
+    expireTime: str
     name: str
     oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
     saml: GoogleIamAdminV1WorkforcePoolProviderSaml
@@ -428,6 +471,7 @@ class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     displayName: str
+    expireTime: str
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
@@ -444,6 +488,7 @@ class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     description: str
     disabled: bool
     displayName: str
+    expireTime: str
     name: str
     oidc: Oidc
     saml: Saml

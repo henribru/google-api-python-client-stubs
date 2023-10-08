@@ -5,6 +5,16 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    cancelRequested: bool
+    createTime: str
+    endTime: str
+    statusDetail: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleIamAdminV1AuditData(typing_extensions.TypedDict, total=False):
     permissionDelta: GoogleIamAdminV1AuditDataPermissionDelta
 

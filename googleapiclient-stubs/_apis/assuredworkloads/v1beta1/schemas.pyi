@@ -8,6 +8,11 @@ _list = list
 class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest(
     typing_extensions.TypedDict, total=False
 ):
+    acknowledgeType: typing_extensions.Literal[
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+        "SINGLE_VIOLATION",
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS",
+    ]
     comment: str
     nonCompliantOrgPolicy: str
 
@@ -20,7 +25,51 @@ class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponse(
 class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse(
     typing_extensions.TypedDict, total=False
 ):
-    blockers: _list[str]
+    assetMoveAnalyses: _list[GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis(
+    typing_extensions.TypedDict, total=False
+):
+    analysisGroups: _list[GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup]
+    asset: str
+    assetType: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    complianceRegime: typing_extensions.Literal[
+        "COMPLIANCE_REGIME_UNSPECIFIED",
+        "IL4",
+        "CJIS",
+        "FEDRAMP_HIGH",
+        "FEDRAMP_MODERATE",
+        "US_REGIONAL_ACCESS",
+        "HIPAA",
+        "HITRUST",
+        "EU_REGIONS_AND_SUPPORT",
+        "CA_REGIONS_AND_SUPPORT",
+        "ITAR",
+        "AU_REGIONS_AND_US_SUPPORT",
+        "ASSURED_WORKLOADS_FOR_PARTNERS",
+        "ISR_REGIONS",
+        "ISR_REGIONS_AND_SUPPORT",
+        "CA_PROTECTED_B",
+        "IL5",
+        "IL2",
+        "JP_REGIONS_AND_SUPPORT",
+    ]
+    createTime: str
+    displayName: str
+    parent: str
+    resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse(
@@ -35,6 +84,27 @@ class GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse(
 ):
     nextPageToken: str
     workloads: _list[GoogleCloudAssuredworkloadsV1beta1Workload]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup(
+    typing_extensions.TypedDict, total=False
+):
+    analysisResult: GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult
+    displayName: str
+    error: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1MoveAnalysisResult(
+    typing_extensions.TypedDict, total=False
+):
+    blockers: _list[GoogleCloudAssuredworkloadsV1beta1MoveImpact]
+    warnings: _list[GoogleCloudAssuredworkloadsV1beta1MoveImpact]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1MoveImpact(
+    typing_extensions.TypedDict, total=False
+):
+    detail: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest(
@@ -58,20 +128,38 @@ class GoogleCloudAssuredworkloadsV1beta1Violation(
 ):
     acknowledged: bool
     acknowledgementTime: str
+    associatedOrgPolicyViolationId: str
     auditLogLink: str
     beginTime: str
     category: str
     description: str
     exceptionAuditLogLink: str
+    exceptionContexts: _list[
+        GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext
+    ]
     name: str
     nonCompliantOrgPolicy: str
     orgPolicyConstraint: str
+    parentProjectNumber: str
     remediation: GoogleCloudAssuredworkloadsV1beta1ViolationRemediation
     resolveTime: str
+    resourceName: str
+    resourceType: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RESOLVED", "UNRESOLVED", "EXCEPTION"
     ]
     updateTime: str
+    violationType: typing_extensions.Literal[
+        "VIOLATION_TYPE_UNSPECIFIED", "ORG_POLICY", "RESOURCE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ViolationExceptionContext(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgementTime: str
+    comment: str
+    userName: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ViolationRemediation(
@@ -85,6 +173,7 @@ class GoogleCloudAssuredworkloadsV1beta1ViolationRemediation(
         "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
         "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
         "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+        "REMEDIATION_RESOURCE_VIOLATION",
     ]
 
 @typing.type_check_only
@@ -133,6 +222,9 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "ISR_REGIONS",
         "ISR_REGIONS_AND_SUPPORT",
         "CA_PROTECTED_B",
+        "IL5",
+        "IL2",
+        "JP_REGIONS_AND_SUPPORT",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
@@ -159,10 +251,13 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
         "SOVEREIGN_CONTROLS_BY_PSN",
     ]
+    partnerPermissions: GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions
     provisionedResourcesParent: str
+    resourceMonitoringEnabled: bool
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
     saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse
+    violationNotificationsEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings(
@@ -174,7 +269,9 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings(
 class GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus(
     typing_extensions.TypedDict, total=False
 ):
+    acknowledgedResourceViolationCount: int
     acknowledgedViolationCount: int
+    activeResourceViolationCount: int
     activeViolationCount: int
 
 @typing.type_check_only
@@ -226,6 +323,14 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings(
 ):
     nextRotationTime: str
     rotationPeriod: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions(
+    typing_extensions.TypedDict, total=False
+):
+    assuredWorkloadsMonitoring: bool
+    dataLogsViewer: bool
+    serviceAccessApprover: bool
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo(

@@ -479,6 +479,22 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class FreelistingsprogramResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class CheckoutsettingsResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, merchantId: str, **kwargs: typing.Any
+            ) -> googleapiclient.http.HttpRequest: ...
+            def get(
+                self, *, merchantId: str, **kwargs: typing.Any
+            ) -> CheckoutSettingsHttpRequest: ...
+            def insert(
+                self,
+                *,
+                merchantId: str,
+                body: InsertCheckoutSettingsRequest = ...,
+                **kwargs: typing.Any
+            ) -> CheckoutSettingsHttpRequest: ...
+
         def get(
             self, *, merchantId: str, **kwargs: typing.Any
         ) -> FreeListingsProgramStatusHttpRequest: ...
@@ -489,6 +505,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: RequestReviewFreeListingsRequest = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def checkoutsettings(self) -> CheckoutsettingsResource: ...
 
     @typing.type_check_only
     class LiasettingsResource(googleapiclient.discovery.Resource):
@@ -539,6 +556,16 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             contactEmail: str,
             **kwargs: typing.Any
         ) -> LiasettingsSetInventoryVerificationContactResponseHttpRequest: ...
+        def setomnichannelexperience(
+            self,
+            *,
+            merchantId: str,
+            accountId: str,
+            country: str = ...,
+            lsfType: str = ...,
+            pickupTypes: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> LiaOmnichannelExperienceHttpRequest: ...
         def setposdataprovider(
             self,
             *,
@@ -571,6 +598,28 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             body: LocalInventory = ...,
             **kwargs: typing.Any
         ) -> LocalInventoryHttpRequest: ...
+
+    @typing.type_check_only
+    class MerchantsupportResource(googleapiclient.discovery.Resource):
+        def renderaccountissues(
+            self,
+            *,
+            merchantId: str,
+            body: RenderAccountIssuesRequestPayload = ...,
+            languageCode: str = ...,
+            timeZone: str = ...,
+            **kwargs: typing.Any
+        ) -> RenderAccountIssuesResponseHttpRequest: ...
+        def renderproductissues(
+            self,
+            *,
+            merchantId: str,
+            productId: str,
+            body: RenderProductIssuesRequestPayload = ...,
+            languageCode: str = ...,
+            timeZone: str = ...,
+            **kwargs: typing.Any
+        ) -> RenderProductIssuesResponseHttpRequest: ...
 
     @typing.type_check_only
     class OrderinvoicesResource(googleapiclient.discovery.Resource):
@@ -1091,6 +1140,21 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         def get(
             self, *, merchantId: str, id: str, **kwargs: typing.Any
         ) -> PromotionHttpRequest: ...
+        def list(
+            self,
+            *,
+            merchantId: str,
+            countryCode: str = ...,
+            languageCode: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> ListPromotionResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPromotionResponseHttpRequest,
+            previous_response: ListPromotionResponse,
+        ) -> ListPromotionResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class PubsubnotificationsettingsResource(googleapiclient.discovery.Resource):
@@ -1459,6 +1523,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def freelistingsprogram(self) -> FreelistingsprogramResource: ...
     def liasettings(self) -> LiasettingsResource: ...
     def localinventory(self) -> LocalinventoryResource: ...
+    def merchantsupport(self) -> MerchantsupportResource: ...
     def orderinvoices(self) -> OrderinvoicesResource: ...
     def orderreports(self) -> OrderreportsResource: ...
     def orderreturns(self) -> OrderreturnsResource: ...
@@ -1637,6 +1702,14 @@ class CaptureOrderResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CaptureOrderResponse: ...
 
 @typing.type_check_only
+class CheckoutSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CheckoutSettings: ...
+
+@typing.type_check_only
 class CollectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1739,6 +1812,14 @@ class GenerateRecommendationsResponseHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GenerateRecommendationsResponse: ...
+
+@typing.type_check_only
+class LiaOmnichannelExperienceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> LiaOmnichannelExperience: ...
 
 @typing.type_check_only
 class LiaSettingsHttpRequest(googleapiclient.http.HttpRequest):
@@ -1877,6 +1958,14 @@ class ListMethodQuotasResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListMethodQuotasResponse: ...
+
+@typing.type_check_only
+class ListPromotionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListPromotionResponse: ...
 
 @typing.type_check_only
 class ListRegionsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -2329,6 +2418,22 @@ class RegionalinventoryCustomBatchResponseHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RegionalinventoryCustomBatchResponse: ...
+
+@typing.type_check_only
+class RenderAccountIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RenderAccountIssuesResponse: ...
+
+@typing.type_check_only
+class RenderProductIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RenderProductIssuesResponse: ...
 
 @typing.type_check_only
 class RepricingRuleHttpRequest(googleapiclient.http.HttpRequest):

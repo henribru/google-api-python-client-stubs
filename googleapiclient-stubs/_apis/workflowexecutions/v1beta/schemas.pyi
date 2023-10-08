@@ -25,7 +25,13 @@ class Execution(typing_extensions.TypedDict, total=False):
     result: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "SUCCEEDED", "FAILED", "CANCELLED"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "UNAVAILABLE",
+        "QUEUED",
     ]
     status: Status
     workflowRevisionId: str

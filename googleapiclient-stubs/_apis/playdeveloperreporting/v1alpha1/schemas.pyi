@@ -22,6 +22,18 @@ class GooglePlayDeveloperReportingV1alpha1AnrRateMetricSet(
     name: str
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1App(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    packageName: str
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1AppVersion(
+    typing_extensions.TypedDict, total=False
+):
+    versionCode: str
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet(
     typing_extensions.TypedDict, total=False
 ):
@@ -34,6 +46,21 @@ class GooglePlayDeveloperReportingV1alpha1DecimalConfidenceInterval(
 ):
     lowerBound: GoogleTypeDecimal
     upperBound: GoogleTypeDecimal
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1DeviceId(
+    typing_extensions.TypedDict, total=False
+):
+    buildBrand: str
+    buildDevice: str
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1DeviceModelSummary(
+    typing_extensions.TypedDict, total=False
+):
+    deviceId: GooglePlayDeveloperReportingV1alpha1DeviceId
+    deviceUri: str
+    marketingName: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1DimensionValue(
@@ -56,6 +83,15 @@ class GooglePlayDeveloperReportingV1alpha1ErrorIssue(
     typing_extensions.TypedDict, total=False
 ):
     cause: str
+    distinctUsers: str
+    distinctUsersPercent: GoogleTypeDecimal
+    errorReportCount: str
+    firstAppVersion: GooglePlayDeveloperReportingV1alpha1AppVersion
+    firstOsVersion: GooglePlayDeveloperReportingV1alpha1OsVersion
+    issueUri: str
+    lastAppVersion: GooglePlayDeveloperReportingV1alpha1AppVersion
+    lastErrorReportTime: str
+    lastOsVersion: GooglePlayDeveloperReportingV1alpha1OsVersion
     location: str
     name: str
     type: typing_extensions.Literal[
@@ -66,8 +102,11 @@ class GooglePlayDeveloperReportingV1alpha1ErrorIssue(
 class GooglePlayDeveloperReportingV1alpha1ErrorReport(
     typing_extensions.TypedDict, total=False
 ):
+    deviceModel: GooglePlayDeveloperReportingV1alpha1DeviceModelSummary
+    eventTime: str
     issue: str
     name: str
+    osVersion: GooglePlayDeveloperReportingV1alpha1OsVersion
     reportText: str
     type: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH"
@@ -91,7 +130,7 @@ class GooglePlayDeveloperReportingV1alpha1FreshnessInfoFreshness(
     typing_extensions.TypedDict, total=False
 ):
     aggregationPeriod: typing_extensions.Literal[
-        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY"
+        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY", "FULL_RANGE"
     ]
     latestEndTime: GoogleTypeDateTime
 
@@ -115,11 +154,17 @@ class GooglePlayDeveloperReportingV1alpha1MetricsRow(
     typing_extensions.TypedDict, total=False
 ):
     aggregationPeriod: typing_extensions.Literal[
-        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY"
+        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY", "FULL_RANGE"
     ]
     dimensions: _list[GooglePlayDeveloperReportingV1alpha1DimensionValue]
     metrics: _list[GooglePlayDeveloperReportingV1alpha1MetricValue]
     startTime: GoogleTypeDateTime
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1OsVersion(
+    typing_extensions.TypedDict, total=False
+):
+    apiLevel: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetRequest(
@@ -266,6 +311,26 @@ class GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetric
     rows: _list[GooglePlayDeveloperReportingV1alpha1MetricsRow]
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1Release(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    versionCodes: _list[str]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1ReleaseFilterOptions(
+    typing_extensions.TypedDict, total=False
+):
+    tracks: _list[GooglePlayDeveloperReportingV1alpha1Track]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1SearchAccessibleAppsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    apps: _list[GooglePlayDeveloperReportingV1alpha1App]
+    nextPageToken: str
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -305,10 +370,18 @@ class GooglePlayDeveloperReportingV1alpha1TimelineSpec(
     typing_extensions.TypedDict, total=False
 ):
     aggregationPeriod: typing_extensions.Literal[
-        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY"
+        "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY", "FULL_RANGE"
     ]
     endTime: GoogleTypeDateTime
     startTime: GoogleTypeDateTime
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1alpha1Track(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    servingReleases: _list[GooglePlayDeveloperReportingV1alpha1Release]
+    type: str
 
 @typing.type_check_only
 class GoogleTypeDateTime(typing_extensions.TypedDict, total=False):

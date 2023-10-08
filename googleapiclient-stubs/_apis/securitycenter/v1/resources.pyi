@@ -456,6 +456,56 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
 
         @typing.type_check_only
+        class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListEventThreatDetectionCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEventThreatDetectionCustomModulesResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+
+            def validateCustomModule(
+                self,
+                *,
+                parent: str,
+                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                **kwargs: typing.Any
+            ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
+            def customModules(self) -> CustomModulesResource: ...
+
+        @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
             def bulkMute(
                 self,
@@ -568,6 +618,43 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> ListOperationsResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class ResourceValueConfigsResource(googleapiclient.discovery.Resource):
+            def batchCreate(
+                self,
+                *,
+                parent: str,
+                body: BatchCreateResourceValueConfigsRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchCreateResourceValueConfigsResponseHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudSecuritycenterV1ResourceValueConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListResourceValueConfigsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListResourceValueConfigsResponseHttpRequest,
+                previous_response: ListResourceValueConfigsResponse,
+            ) -> ListResourceValueConfigsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudSecuritycenterV1ResourceValueConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudSecuritycenterV1ResourceValueConfigHttpRequest: ...
+
+        @typing.type_check_only
         class SecurityHealthAnalyticsSettingsResource(
             googleapiclient.discovery.Resource
         ):
@@ -652,6 +739,106 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
 
             def customModules(self) -> CustomModulesResource: ...
             def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
+
+        @typing.type_check_only
+        class SimulationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AttackExposureResultsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AttackPathsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAttackPathsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAttackPathsResponseHttpRequest,
+                        previous_response: ListAttackPathsResponse,
+                    ) -> ListAttackPathsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class ValuedResourcesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListValuedResourcesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListValuedResourcesResponseHttpRequest,
+                        previous_response: ListValuedResourcesResponse,
+                    ) -> ListValuedResourcesResponseHttpRequest | None: ...
+
+                def attackPaths(self) -> AttackPathsResource: ...
+                def valuedResources(self) -> ValuedResourcesResource: ...
+
+            @typing.type_check_only
+            class AttackPathsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAttackPathsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAttackPathsResponseHttpRequest,
+                    previous_response: ListAttackPathsResponse,
+                ) -> ListAttackPathsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class ValuedResourcesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AttackPathsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAttackPathsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAttackPathsResponseHttpRequest,
+                        previous_response: ListAttackPathsResponse,
+                    ) -> ListAttackPathsResponseHttpRequest | None: ...
+
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListValuedResourcesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListValuedResourcesResponseHttpRequest,
+                    previous_response: ListValuedResourcesResponse,
+                ) -> ListValuedResourcesResponseHttpRequest | None: ...
+                def attackPaths(self) -> AttackPathsResource: ...
+
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SimulationHttpRequest: ...
+            def attackExposureResults(self) -> AttackExposureResultsResource: ...
+            def attackPaths(self) -> AttackPathsResource: ...
+            def valuedResources(self) -> ValuedResourcesResource: ...
 
         @typing.type_check_only
         class SourcesResource(googleapiclient.discovery.Resource):
@@ -796,13 +983,18 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         ) -> OrganizationSettingsHttpRequest: ...
         def assets(self) -> AssetsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
+        def eventThreatDetectionSettings(
+            self,
+        ) -> EventThreatDetectionSettingsResource: ...
         def findings(self) -> FindingsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def operations(self) -> OperationsResource: ...
+        def resourceValueConfigs(self) -> ResourceValueConfigsResource: ...
         def securityHealthAnalyticsSettings(
             self,
         ) -> SecurityHealthAnalyticsSettingsResource: ...
+        def simulations(self) -> SimulationsResource: ...
         def sources(self) -> SourcesResource: ...
 
     @typing.type_check_only
@@ -1175,12 +1367,30 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class BatchCreateResourceValueConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchCreateResourceValueConfigsResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Empty: ...
+
+@typing.type_check_only
+class EventThreatDetectionCustomModuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> EventThreatDetectionCustomModule: ...
 
 @typing.type_check_only
 class FindingHttpRequest(googleapiclient.http.HttpRequest):
@@ -1231,6 +1441,16 @@ class GoogleCloudSecuritycenterV1MuteConfigHttpRequest(
     ) -> GoogleCloudSecuritycenterV1MuteConfig: ...
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV1ResourceValueConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudSecuritycenterV1ResourceValueConfig: ...
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1265,6 +1485,14 @@ class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListAssetsResponse: ...
 
 @typing.type_check_only
+class ListAttackPathsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAttackPathsResponse: ...
+
+@typing.type_check_only
 class ListBigQueryExportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1291,6 +1519,16 @@ class ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListEffectiveSecurityHealthAnalyticsCustomModulesResponse: ...
+
+@typing.type_check_only
+class ListEventThreatDetectionCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListEventThreatDetectionCustomModulesResponse: ...
 
 @typing.type_check_only
 class ListFindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1325,6 +1563,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListResourceValueConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListResourceValueConfigsResponse: ...
+
+@typing.type_check_only
 class ListSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1341,6 +1587,14 @@ class ListSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListSourcesResponse: ...
+
+@typing.type_check_only
+class ListValuedResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListValuedResourcesResponse: ...
 
 @typing.type_check_only
 class NotificationConfigHttpRequest(googleapiclient.http.HttpRequest):
@@ -1383,6 +1637,14 @@ class SecurityMarksHttpRequest(googleapiclient.http.HttpRequest):
     ) -> SecurityMarks: ...
 
 @typing.type_check_only
+class SimulationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Simulation: ...
+
+@typing.type_check_only
 class SourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1397,3 +1659,13 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class ValidateEventThreatDetectionCustomModuleResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ValidateEventThreatDetectionCustomModuleResponse: ...

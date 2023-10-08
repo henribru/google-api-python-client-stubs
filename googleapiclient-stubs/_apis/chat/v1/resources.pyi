@@ -18,11 +18,27 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> MediaHttpRequest: ...
+        def download_media(
+            self, *, resourceName: str, **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
+        def upload(
+            self,
+            *,
+            parent: str,
+            body: UploadAttachmentRequest = ...,
+            **kwargs: typing.Any
+        ) -> UploadAttachmentResponseHttpRequest: ...
 
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MembersResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: Membership = ..., **kwargs: typing.Any
+            ) -> MembershipHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> MembershipHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> MembershipHttpRequest: ...
@@ -30,8 +46,10 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                showInvited: bool = ...,
                 **kwargs: typing.Any
             ) -> ListMembershipsResponseHttpRequest: ...
             def list_next(
@@ -47,6 +65,29 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> AttachmentHttpRequest: ...
+
+            @typing.type_check_only
+            class ReactionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self, *, parent: str, body: Reaction = ..., **kwargs: typing.Any
+                ) -> ReactionHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListReactionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReactionsResponseHttpRequest,
+                    previous_response: ListReactionsResponse,
+                ) -> ListReactionsResponseHttpRequest | None: ...
 
             def create(
                 self,
@@ -64,9 +105,25 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, force: bool = ..., **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> MessageHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                showDeleted: bool = ...,
+                **kwargs: typing.Any
+            ) -> ListMessagesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMessagesResponseHttpRequest,
+                previous_response: ListMessagesResponse,
+            ) -> ListMessagesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -86,16 +143,40 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> MessageHttpRequest: ...
             def attachments(self) -> AttachmentsResource: ...
+            def reactions(self) -> ReactionsResource: ...
 
+        def create(
+            self, *, body: Space = ..., requestId: str = ..., **kwargs: typing.Any
+        ) -> SpaceHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def findDirectMessage(
+            self, *, name: str = ..., **kwargs: typing.Any
+        ) -> SpaceHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> SpaceHttpRequest: ...
         def list(
-            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
         ) -> ListSpacesResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListSpacesResponseHttpRequest,
             previous_response: ListSpacesResponse,
         ) -> ListSpacesResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: Space = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> SpaceHttpRequest: ...
+        def setup(
+            self, *, body: SetUpSpaceRequest = ..., **kwargs: typing.Any
+        ) -> SpaceHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
 
@@ -139,6 +220,22 @@ class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMembershipsResponse: ...
 
 @typing.type_check_only
+class ListMessagesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListMessagesResponse: ...
+
+@typing.type_check_only
+class ListReactionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListReactionsResponse: ...
+
+@typing.type_check_only
 class ListSpacesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -171,9 +268,33 @@ class MessageHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Message: ...
 
 @typing.type_check_only
+class ReactionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Reaction: ...
+
+@typing.type_check_only
 class SpaceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Space: ...
+
+@typing.type_check_only
+class UploadAttachmentResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UploadAttachmentResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

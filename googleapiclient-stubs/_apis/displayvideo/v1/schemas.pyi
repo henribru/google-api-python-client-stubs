@@ -941,6 +941,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only
@@ -1856,6 +1857,8 @@ class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
         "LINE_ITEM_TYPE_AUDIO_DEFAULT",
         "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
     ]
     mobileApp: MobileApp
 
@@ -2350,7 +2353,6 @@ class InventorySource(typing_extensions.TypedDict, total=False):
     readPartnerIds: _list[str]
     readWriteAccessors: InventorySourceAccessors
     status: InventorySourceStatus
-    subSitePropertyId: str
     timeRange: TimeRange
     updateTime: str
 
@@ -2499,6 +2501,8 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
         "LINE_ITEM_TYPE_AUDIO_DEFAULT",
         "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP",
+        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
     ]
     mobileApp: MobileApp
     name: str
@@ -2994,6 +2998,7 @@ class PartnerCost(typing_extensions.TypedDict, total=False):
         "PARTNER_COST_TYPE_CUSTOM_FEE_3",
         "PARTNER_COST_TYPE_CUSTOM_FEE_4",
         "PARTNER_COST_TYPE_CUSTOM_FEE_5",
+        "PARTNER_COST_TYPE_SCIBIDS_FEE",
     ]
     feeAmount: str
     feePercentageMillis: str
@@ -3215,6 +3220,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only
@@ -3237,6 +3243,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only

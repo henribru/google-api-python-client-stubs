@@ -42,25 +42,9 @@ class FetchVerificationOptionsResponse(typing_extensions.TypedDict, total=False)
     options: _list[VerificationOption]
 
 @typing.type_check_only
-class GenerateVerificationTokenRequest(typing_extensions.TypedDict, total=False):
-    location: Location
-
-@typing.type_check_only
-class GenerateVerificationTokenResponse(typing_extensions.TypedDict, total=False):
-    token: VerificationToken
-
-@typing.type_check_only
 class ListVerificationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     verifications: _list[Verification]
-
-@typing.type_check_only
-class Location(typing_extensions.TypedDict, total=False):
-    address: PostalAddress
-    name: str
-    primaryCategoryId: str
-    primaryPhone: str
-    websiteUri: str
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):

@@ -161,6 +161,17 @@ class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
     memoryMb: int
     physicalCoreCount: int
     series: str
+    storage: _list[ComputeStorageDescriptor]
+
+@typing.type_check_only
+class ComputeStorageDescriptor(typing_extensions.TypedDict, total=False):
+    sizeGb: int
+    type: typing_extensions.Literal[
+        "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+        "PERSISTENT_DISK_TYPE_STANDARD",
+        "PERSISTENT_DISK_TYPE_BALANCED",
+        "PERSISTENT_DISK_TYPE_SSD",
+    ]
 
 @typing.type_check_only
 class CpuUsageSample(typing_extensions.TypedDict, total=False):
@@ -254,6 +265,13 @@ class DiskUsageSample(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ErrorFrame(typing_extensions.TypedDict, total=False):
+    ingestionTime: str
+    name: str
+    originalFrame: AssetFrame
+    violations: _list[FrameViolationEntry]
+
+@typing.type_check_only
 class ExecutionReport(typing_extensions.TypedDict, total=False):
     executionErrors: ValidationReport
     framesReported: int
@@ -272,6 +290,11 @@ class FitDescriptor(typing_extensions.TypedDict, total=False):
     fitLevel: typing_extensions.Literal[
         "FIT_LEVEL_UNSPECIFIED", "FIT", "NO_FIT", "REQUIRES_EFFORT"
     ]
+
+@typing.type_check_only
+class FrameViolationEntry(typing_extensions.TypedDict, total=False):
+    field: str
+    violation: str
 
 @typing.type_check_only
 class Frames(typing_extensions.TypedDict, total=False):
@@ -302,6 +325,12 @@ class GCSPayloadInfo(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_MANUAL_CSV",
     ]
     path: str
+
+@typing.type_check_only
+class GenericInsight(typing_extensions.TypedDict, total=False):
+    additionalInformation: _list[str]
+    defaultMessage: str
+    messageId: str
 
 @typing.type_check_only
 class GenericPlatformDetails(typing_extensions.TypedDict, total=False):
@@ -436,6 +465,7 @@ class InlinePayloadInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Insight(typing_extensions.TypedDict, total=False):
+    genericInsight: GenericInsight
     migrationInsight: MigrationInsight
 
 @typing.type_check_only
@@ -446,6 +476,12 @@ class InsightList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[Asset]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListErrorFramesResponse(typing_extensions.TypedDict, total=False):
+    errorFrames: _list[ErrorFrame]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -746,7 +782,9 @@ class ReportSummaryGroupPreferenceSetFinding(typing_extensions.TypedDict, total=
     monthlyCostTotal: Money
     preferredRegion: str
     pricingTrack: str
+    soleTenantFinding: ReportSummarySoleTenantFinding
     topPriority: str
+    vmwareEngineFinding: ReportSummaryVMWareEngineFinding
 
 @typing.type_check_only
 class ReportSummaryHistogramChartData(typing_extensions.TypedDict, total=False):
@@ -771,9 +809,37 @@ class ReportSummaryMachineSeriesAllocation(typing_extensions.TypedDict, total=Fa
     machineSeries: MachineSeries
 
 @typing.type_check_only
+class ReportSummarySoleTenantFinding(typing_extensions.TypedDict, total=False):
+    allocatedAssetCount: str
+    allocatedRegions: _list[str]
+    nodeAllocations: _list[ReportSummarySoleTenantNodeAllocation]
+
+@typing.type_check_only
+class ReportSummarySoleTenantNodeAllocation(typing_extensions.TypedDict, total=False):
+    allocatedAssetCount: str
+    node: SoleTenantNodeType
+    nodeCount: str
+
+@typing.type_check_only
 class ReportSummaryUtilizationChartData(typing_extensions.TypedDict, total=False):
     free: str
     used: str
+
+@typing.type_check_only
+class ReportSummaryVMWareEngineFinding(typing_extensions.TypedDict, total=False):
+    allocatedAssetCount: str
+    allocatedRegions: _list[str]
+    nodeAllocations: _list[ReportSummaryVMWareNodeAllocation]
+
+@typing.type_check_only
+class ReportSummaryVMWareNode(typing_extensions.TypedDict, total=False):
+    code: str
+
+@typing.type_check_only
+class ReportSummaryVMWareNodeAllocation(typing_extensions.TypedDict, total=False):
+    allocatedAssetCount: str
+    nodeCount: str
+    vmwareNode: ReportSummaryVMWareNode
 
 @typing.type_check_only
 class RunImportJobRequest(typing_extensions.TypedDict, total=False):
@@ -818,18 +884,44 @@ class Selinux(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
+    disableCloudLogging: bool
     name: str
     preferenceSet: str
+
+@typing.type_check_only
+class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
+    commitmentPlan: typing_extensions.Literal[
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "ON_DEMAND",
+        "COMMITMENT_1_YEAR",
+        "COMMITMENT_3_YEAR",
+    ]
+    cpuOvercommitRatio: float
+    hostMaintenancePolicy: typing_extensions.Literal[
+        "HOST_MAINTENANCE_POLICY_UNSPECIFIED",
+        "HOST_MAINTENANCE_POLICY_DEFAULT",
+        "HOST_MAINTENANCE_POLICY_RESTART_IN_PLACE",
+        "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP",
+    ]
+    nodeTypes: _list[SoleTenantNodeType]
+
+@typing.type_check_only
+class SoleTenantNodeType(typing_extensions.TypedDict, total=False):
+    nodeName: str
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
+    errorFrameCount: int
     isManaged: bool
     name: str
     pendingFrameCount: int
     priority: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "DELETING", "INVALID"
+    ]
     type: typing_extensions.Literal[
         "SOURCE_TYPE_UNKNOWN",
         "SOURCE_TYPE_UPLOAD",
@@ -860,7 +952,6 @@ class UpdateAssetRequest(typing_extensions.TypedDict, total=False):
 class UploadFileInfo(typing_extensions.TypedDict, total=False):
     headers: dict[str, typing.Any]
     signedUri: str
-    uri: str
     uriExpirationTime: str
 
 @typing.type_check_only
@@ -934,13 +1025,45 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
         "COMMITMENT_PLAN_THREE_YEARS",
     ]
     computeEnginePreferences: ComputeEnginePreferences
+    networkCostParameters: VirtualMachinePreferencesNetworkCostParameters
     regionPreferences: RegionPreferences
+    sizingOptimizationCustomParameters: VirtualMachinePreferencesSizingOptimizationCustomParameters
     sizingOptimizationStrategy: typing_extensions.Literal[
         "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
         "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
         "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
         "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE",
+        "SIZING_OPTIMIZATION_STRATEGY_CUSTOM",
     ]
+    soleTenancyPreferences: SoleTenancyPreferences
+    targetProduct: typing_extensions.Literal[
+        "COMPUTE_MIGRATION_TARGET_PRODUCT_UNSPECIFIED",
+        "COMPUTE_MIGRATION_TARGET_PRODUCT_COMPUTE_ENGINE",
+        "COMPUTE_MIGRATION_TARGET_PRODUCT_VMWARE_ENGINE",
+        "COMPUTE_MIGRATION_TARGET_PRODUCT_SOLE_TENANCY",
+    ]
+    vmwareEnginePreferences: VmwareEnginePreferences
+
+@typing.type_check_only
+class VirtualMachinePreferencesNetworkCostParameters(
+    typing_extensions.TypedDict, total=False
+):
+    estimatedEgressTrafficPercentage: int
+
+@typing.type_check_only
+class VirtualMachinePreferencesSizingOptimizationCustomParameters(
+    typing_extensions.TypedDict, total=False
+):
+    aggregationMethod: typing_extensions.Literal[
+        "AGGREGATION_METHOD_UNSPECIFIED",
+        "AGGREGATION_METHOD_AVERAGE",
+        "AGGREGATION_METHOD_MEDIAN",
+        "AGGREGATION_METHOD_NINETY_FIFTH_PERCENTILE",
+        "AGGREGATION_METHOD_PEAK",
+    ]
+    cpuUsagePercentage: int
+    memoryUsagePercentage: int
+    storageMultiplier: float
 
 @typing.type_check_only
 class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
@@ -961,6 +1084,20 @@ class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VmwareEngineMigrationTarget(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
+    commitmentPlan: typing_extensions.Literal[
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "ON_DEMAND",
+        "COMMITMENT_1_YEAR_MONTHLY_PAYMENTS",
+        "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS",
+        "COMMITMENT_1_YEAR_UPFRONT_PAYMENT",
+        "COMMITMENT_3_YEAR_UPFRONT_PAYMENT",
+    ]
+    cpuOvercommitRatio: float
+    memoryOvercommitRatio: float
+    storageDeduplicationCompressionRatio: float
 
 @typing.type_check_only
 class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):

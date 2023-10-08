@@ -65,6 +65,14 @@ class GoogleCloudMemcacheV1beta2OperationMetadata(
     verb: str
 
 @typing.type_check_only
+class GoogleCloudMemcacheV1beta2UpgradeInstanceRequest(
+    typing_extensions.TypedDict, total=False
+):
+    memcacheVersion: typing_extensions.Literal[
+        "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
+    ]
+
+@typing.type_check_only
 class GoogleCloudMemcacheV1beta2ZoneMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -174,12 +182,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     memcacheFullVersion: str
     memcacheNodes: _list[Node]
     memcacheVersion: typing_extensions.Literal[
-        "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5"
+        "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
     ]
     name: str
     nodeConfig: NodeConfig
     nodeCount: int
     parameters: MemcacheParameters
+    reservedIpRangeId: _list[str]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -187,6 +196,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "DELETING",
         "PERFORMING_MAINTENANCE",
+        "MEMCACHE_VERSION_UPGRADING",
     ]
     updateAvailable: bool
     updateTime: str
@@ -254,6 +264,10 @@ class MemcacheParameters(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
     host: str
+    memcacheFullVersion: str
+    memcacheVersion: typing_extensions.Literal[
+        "MEMCACHE_VERSION_UNSPECIFIED", "MEMCACHE_1_5", "MEMCACHE_1_6_15"
+    ]
     nodeId: str
     parameters: MemcacheParameters
     port: int

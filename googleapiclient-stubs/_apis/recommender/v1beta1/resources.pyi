@@ -238,6 +238,19 @@ class RecommenderResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
 
     @typing.type_check_only
+    class InsightTypesResource(googleapiclient.discovery.Resource):
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> GoogleCloudRecommenderV1beta1ListInsightTypesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleCloudRecommenderV1beta1ListInsightTypesResponseHttpRequest,
+            previous_response: GoogleCloudRecommenderV1beta1ListInsightTypesResponse,
+        ) -> (
+            GoogleCloudRecommenderV1beta1ListInsightTypesResponseHttpRequest | None
+        ): ...
+
+    @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -485,6 +498,19 @@ class RecommenderResource(googleapiclient.discovery.Resource):
 
         def locations(self) -> LocationsResource: ...
 
+    @typing.type_check_only
+    class RecommendersResource(googleapiclient.discovery.Resource):
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> GoogleCloudRecommenderV1beta1ListRecommendersResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleCloudRecommenderV1beta1ListRecommendersResponseHttpRequest,
+            previous_response: GoogleCloudRecommenderV1beta1ListRecommendersResponse,
+        ) -> (
+            GoogleCloudRecommenderV1beta1ListRecommendersResponseHttpRequest | None
+        ): ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -499,8 +525,10 @@ class RecommenderResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
     def folders(self) -> FoldersResource: ...
+    def insightTypes(self) -> InsightTypesResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+    def recommenders(self) -> RecommendersResource: ...
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):
@@ -521,6 +549,16 @@ class GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest(
     ) -> GoogleCloudRecommenderV1beta1InsightTypeConfig: ...
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1beta1ListInsightTypesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecommenderV1beta1ListInsightTypesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -539,6 +577,16 @@ class GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1ListRecommendersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRecommenderV1beta1ListRecommendersResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1RecommendationHttpRequest(

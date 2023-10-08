@@ -52,6 +52,7 @@ class Configuration(typing_extensions.TypedDict, total=False):
     customMessage: str
     dpcExtras: str
     dpcResourcePath: str
+    forcedResetTime: str
     isDefault: bool
     name: str
 
@@ -188,6 +189,19 @@ class FindDevicesByOwnerResponse(typing_extensions.TypedDict, total=False):
     totalSize: int
 
 @typing.type_check_only
+class GetDeviceSimLockStateRequest(typing_extensions.TypedDict, total=False):
+    deviceIdentifier: DeviceIdentifier
+
+@typing.type_check_only
+class GetDeviceSimLockStateResponse(typing_extensions.TypedDict, total=False):
+    simLockState: typing_extensions.Literal[
+        "SIM_LOCK_STATE_UNSPECIFIED",
+        "UNLOCKED",
+        "LOCKED_TO_PARTNER",
+        "LOCKED_TO_OTHER_PARTNER",
+    ]
+
+@typing.type_check_only
 class GoogleWorkspaceAccount(typing_extensions.TypedDict, total=False):
     customerId: str
     preProvisioningTokens: _list[str]
@@ -263,6 +277,7 @@ class PerDeviceStatusInBatch(typing_extensions.TypedDict, total=False):
         "SINGLE_DEVICE_STATUS_SECTION_NOT_YOURS",
         "SINGLE_DEVICE_STATUS_INVALID_TOKEN",
         "SINGLE_DEVICE_STATUS_REVOKED_TOKEN",
+        "SINGLE_DEVICE_STATUS_DEVICE_LIMIT_EXCEEDED",
     ]
 
 @typing.type_check_only

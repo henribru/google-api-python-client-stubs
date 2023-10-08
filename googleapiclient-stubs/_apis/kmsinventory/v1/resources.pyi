@@ -24,6 +24,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 cryptoKey: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                resourceTypes: str | _list[str] = ...,
                 **kwargs: typing.Any
             ) -> (
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest

@@ -440,7 +440,9 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             *,
             customerId: str,
             orgUnitPath: str = ...,
-            type: typing_extensions.Literal["all", "children"] = ...,
+            type: typing_extensions.Literal[
+                "all", "children", "allIncludingParent"
+            ] = ...,
             **kwargs: typing.Any
         ) -> OrgUnitsHttpRequest: ...
         def patch(
@@ -778,7 +780,11 @@ class DirectoryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> UserHttpRequest: ...
         def insert(
-            self, *, body: User = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: User = ...,
+            resolveConflictAccount: bool = ...,
+            **kwargs: typing.Any
         ) -> UserHttpRequest: ...
         def list(
             self,

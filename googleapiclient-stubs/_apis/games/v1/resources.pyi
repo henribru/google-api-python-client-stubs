@@ -76,9 +76,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             applicationId: str,
             language: str = ...,
-            platformType: typing_extensions.Literal[
-                "PLATFORM_TYPE_UNSPECIFIED", "ANDROID", "IOS", "WEB_APP"
-            ] = ...,
+            platformType: typing_extensions.Literal["ANDROID", "IOS", "WEB_APP"] = ...,
             **kwargs: typing.Any
         ) -> ApplicationHttpRequest: ...
         def getEndPoint(
@@ -86,7 +84,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             applicationId: str = ...,
             endPointType: typing_extensions.Literal[
-                "END_POINT_TYPE_UNSPECIFIED", "PROFILE_CREATION", "PROFILE_SETTINGS"
+                "PROFILE_CREATION", "PROFILE_SETTINGS"
             ] = ...,
             **kwargs: typing.Any
         ) -> EndPointHttpRequest: ...
@@ -159,7 +157,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             playerId: str,
-            collection: typing_extensions.Literal["COLLECTION_UNSPECIFIED", "ALL"],
+            collection: typing_extensions.Literal["ALL"],
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -205,6 +203,21 @@ class GamesResource(googleapiclient.discovery.Resource):
         ) -> PlayerListResponseHttpRequest | None: ...
 
     @typing.type_check_only
+    class RecallResource(googleapiclient.discovery.Resource):
+        def linkPersona(
+            self, *, body: LinkPersonaRequest = ..., **kwargs: typing.Any
+        ) -> LinkPersonaResponseHttpRequest: ...
+        def resetPersona(
+            self, *, body: ResetPersonaRequest = ..., **kwargs: typing.Any
+        ) -> ResetPersonaResponseHttpRequest: ...
+        def retrieveTokens(
+            self, *, sessionId: str, **kwargs: typing.Any
+        ) -> RetrievePlayerTokensResponseHttpRequest: ...
+        def unlinkPersona(
+            self, *, body: UnlinkPersonaRequest = ..., **kwargs: typing.Any
+        ) -> UnlinkPersonaResponseHttpRequest: ...
+
+    @typing.type_check_only
     class RevisionsResource(googleapiclient.discovery.Resource):
         def check(
             self, *, clientRevision: str, **kwargs: typing.Any
@@ -217,11 +230,9 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             playerId: str,
             leaderboardId: str,
-            timeSpan: typing_extensions.Literal[
-                "SCORE_TIME_SPAN_UNSPECIFIED", "ALL", "ALL_TIME", "WEEKLY", "DAILY"
-            ],
+            timeSpan: typing_extensions.Literal["ALL", "ALL_TIME", "WEEKLY", "DAILY"],
             includeRankType: typing_extensions.Literal[
-                "INCLUDE_RANK_TYPE_UNSPECIFIED", "ALL", "PUBLIC", "SOCIAL", "FRIENDS"
+                "ALL", "PUBLIC", "SOCIAL", "FRIENDS"
             ] = ...,
             language: str = ...,
             maxResults: int = ...,
@@ -237,12 +248,8 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             leaderboardId: str,
-            collection: typing_extensions.Literal[
-                "SCORE_COLLECTION_UNSPECIFIED", "PUBLIC", "SOCIAL", "FRIENDS"
-            ],
-            timeSpan: typing_extensions.Literal[
-                "SCORE_TIME_SPAN_UNSPECIFIED", "ALL_TIME", "WEEKLY", "DAILY"
-            ],
+            collection: typing_extensions.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
+            timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"],
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -257,12 +264,8 @@ class GamesResource(googleapiclient.discovery.Resource):
             self,
             *,
             leaderboardId: str,
-            collection: typing_extensions.Literal[
-                "SCORE_COLLECTION_UNSPECIFIED", "PUBLIC", "SOCIAL", "FRIENDS"
-            ],
-            timeSpan: typing_extensions.Literal[
-                "SCORE_TIME_SPAN_UNSPECIFIED", "ALL_TIME", "WEEKLY", "DAILY"
-            ],
+            collection: typing_extensions.Literal["PUBLIC", "SOCIAL", "FRIENDS"],
+            timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"],
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -335,6 +338,7 @@ class GamesResource(googleapiclient.discovery.Resource):
     def leaderboards(self) -> LeaderboardsResource: ...
     def metagame(self) -> MetagameResource: ...
     def players(self) -> PlayersResource: ...
+    def recall(self) -> RecallResource: ...
     def revisions(self) -> RevisionsResource: ...
     def scores(self) -> ScoresResource: ...
     def snapshots(self) -> SnapshotsResource: ...
@@ -471,6 +475,14 @@ class LeaderboardScoresHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LeaderboardScores: ...
 
 @typing.type_check_only
+class LinkPersonaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> LinkPersonaResponse: ...
+
+@typing.type_check_only
 class MetagameConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -535,6 +547,22 @@ class PlayerScoreResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> PlayerScoreResponse: ...
 
 @typing.type_check_only
+class ResetPersonaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ResetPersonaResponse: ...
+
+@typing.type_check_only
+class RetrievePlayerTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RetrievePlayerTokensResponse: ...
+
+@typing.type_check_only
 class RevisionCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -573,3 +601,11 @@ class StatsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> StatsResponse: ...
+
+@typing.type_check_only
+class UnlinkPersonaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UnlinkPersonaResponse: ...

@@ -34,6 +34,8 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
             *,
             fullyQualifiedName: str = ...,
             linkedResource: str = ...,
+            location: str = ...,
+            project: str = ...,
             sqlResource: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudDatacatalogV1EntryHttpRequest: ...

@@ -88,6 +88,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     options: dict[str, typing.Any]
     p4ServiceAccount: str
     privateInstance: bool
+    satisfiesPzs: bool
     serviceAccount: str
     serviceEndpoint: str
     state: typing_extensions.Literal[

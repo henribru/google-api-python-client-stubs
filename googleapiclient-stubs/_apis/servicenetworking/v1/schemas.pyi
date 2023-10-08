@@ -208,6 +208,7 @@ class ContextRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Control(typing_extensions.TypedDict, total=False):
     environment: str
+    methodPolicies: _list[MethodPolicy]
 
 @typing.type_check_only
 class CppSettings(typing_extensions.TypedDict, total=False):
@@ -255,11 +256,17 @@ class DnsZone(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class DnsZonePair(typing_extensions.TypedDict, total=False):
+    consumerPeeringZone: DnsZone
+    producerPrivateZone: DnsZone
+
+@typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
     documentationRootUrl: str
     overview: str
     pages: _list[Page]
     rules: _list[DocumentationRule]
+    sectionOverrides: _list[Page]
     serviceRootUrl: str
     summary: str
 
@@ -267,6 +274,7 @@ class Documentation(typing_extensions.TypedDict, total=False):
 class DocumentationRule(typing_extensions.TypedDict, total=False):
     deprecationDescription: str
     description: str
+    disableReplacementWords: str
     selector: str
 
 @typing.type_check_only
@@ -348,6 +356,17 @@ class Field(typing_extensions.TypedDict, total=False):
     typeUrl: str
 
 @typing.type_check_only
+class FieldPolicy(typing_extensions.TypedDict, total=False):
+    resourcePermission: str
+    resourceType: str
+    selector: str
+
+@typing.type_check_only
+class GetDnsZoneResponse(typing_extensions.TypedDict, total=False):
+    consumerPeeringZone: DnsZone
+    producerPrivateZone: DnsZone
+
+@typing.type_check_only
 class GoSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
 
@@ -419,6 +438,14 @@ class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
     connections: _list[Connection]
 
 @typing.type_check_only
+class ListDnsRecordSetsResponse(typing_extensions.TypedDict, total=False):
+    dnsRecordSets: _list[DnsRecordSet]
+
+@typing.type_check_only
+class ListDnsZonesResponse(typing_extensions.TypedDict, total=False):
+    dnsZonePairs: _list[DnsZonePair]
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -462,6 +489,11 @@ class Method(typing_extensions.TypedDict, total=False):
     syntax: typing_extensions.Literal[
         "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
     ]
+
+@typing.type_check_only
+class MethodPolicy(typing_extensions.TypedDict, total=False):
+    requestPolicies: _list[FieldPolicy]
+    selector: str
 
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
@@ -617,6 +649,9 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "ADS",
         "PHOTOS",
         "STREET_VIEW",
+        "SHOPPING",
+        "GEO",
+        "GENERATIVE_AI",
     ]
     protoReferenceDocumentationUri: str
 

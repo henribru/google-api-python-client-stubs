@@ -127,6 +127,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                         self, *, parent: str, **kwargs: typing.Any
                     ) -> GetOpenIDConfigResponseHttpRequest: ...
 
+                def checkAutopilotCompatibility(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CheckAutopilotCompatibilityResponseHttpRequest: ...
                 def completeIpRotation(
                     self,
                     *,
@@ -600,6 +603,14 @@ class ContainerResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class CheckAutopilotCompatibilityResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CheckAutopilotCompatibilityResponse: ...
 
 @typing.type_check_only
 class ClusterHttpRequest(googleapiclient.http.HttpRequest):

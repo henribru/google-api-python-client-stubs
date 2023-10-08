@@ -18,6 +18,30 @@ class DataformResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class CollectionsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class RepositoriesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CompilationResultsResource(googleapiclient.discovery.Resource):
@@ -346,6 +370,16 @@ class DataformResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> WriteFileResponseHttpRequest: ...
 
+                def commit(
+                    self,
+                    *,
+                    name: str,
+                    body: CommitRepositoryChangesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def computeAccessTokenStatus(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ComputeRepositoryAccessTokenStatusResponseHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -357,6 +391,19 @@ class DataformResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def fetchHistory(
+                    self,
+                    *,
+                    name: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> FetchRepositoryHistoryResponseHttpRequest: ...
+                def fetchHistory_next(
+                    self,
+                    previous_request: FetchRepositoryHistoryResponseHttpRequest,
+                    previous_response: FetchRepositoryHistoryResponse,
+                ) -> FetchRepositoryHistoryResponseHttpRequest | None: ...
                 def fetchRemoteBranches(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> FetchRemoteBranchesResponseHttpRequest: ...
@@ -393,6 +440,29 @@ class DataformResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> RepositoryHttpRequest: ...
+                def queryDirectoryContents(
+                    self,
+                    *,
+                    name: str,
+                    commitSha: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    path: str = ...,
+                    **kwargs: typing.Any
+                ) -> QueryRepositoryDirectoryContentsResponseHttpRequest: ...
+                def queryDirectoryContents_next(
+                    self,
+                    previous_request: QueryRepositoryDirectoryContentsResponseHttpRequest,
+                    previous_response: QueryRepositoryDirectoryContentsResponse,
+                ) -> QueryRepositoryDirectoryContentsResponseHttpRequest | None: ...
+                def readFile(
+                    self,
+                    *,
+                    name: str,
+                    commitSha: str = ...,
+                    path: str = ...,
+                    **kwargs: typing.Any
+                ) -> ReadRepositoryFileResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -430,6 +500,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def collections(self) -> CollectionsResource: ...
             def repositories(self) -> RepositoriesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -455,6 +526,16 @@ class CompilationResultHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CompilationResult: ...
+
+@typing.type_check_only
+class ComputeRepositoryAccessTokenStatusResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ComputeRepositoryAccessTokenStatusResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -495,6 +576,14 @@ class FetchRemoteBranchesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> FetchRemoteBranchesResponse: ...
+
+@typing.type_check_only
+class FetchRepositoryHistoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> FetchRepositoryHistoryResponse: ...
 
 @typing.type_check_only
 class InstallNpmPackagesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -619,6 +708,16 @@ class QueryDirectoryContentsResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> QueryDirectoryContentsResponse: ...
 
 @typing.type_check_only
+class QueryRepositoryDirectoryContentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> QueryRepositoryDirectoryContentsResponse: ...
+
+@typing.type_check_only
 class QueryWorkflowInvocationActionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -635,6 +734,14 @@ class ReadFileResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ReadFileResponse: ...
+
+@typing.type_check_only
+class ReadRepositoryFileResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ReadRepositoryFileResponse: ...
 
 @typing.type_check_only
 class ReleaseConfigHttpRequest(googleapiclient.http.HttpRequest):

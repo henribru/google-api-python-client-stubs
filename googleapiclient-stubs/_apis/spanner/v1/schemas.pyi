@@ -38,6 +38,17 @@ class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
     session: _list[Session]
 
 @typing.type_check_only
+class BatchWriteRequest(typing_extensions.TypedDict, total=False):
+    mutationGroups: _list[MutationGroup]
+    requestOptions: RequestOptions
+
+@typing.type_check_only
+class BatchWriteResponse(typing_extensions.TypedDict, total=False):
+    commitTimestamp: str
+    indexes: _list[int]
+    status: Status
+
+@typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
     options: TransactionOptions
     requestOptions: RequestOptions
@@ -175,6 +186,12 @@ class Database(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatabaseRole(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class DdlStatementActionInfo(typing_extensions.TypedDict, total=False):
+    action: str
+    entityNames: _list[str]
+    entityType: str
 
 @typing.type_check_only
 class Delete(typing_extensions.TypedDict, total=False):
@@ -448,6 +465,10 @@ class Mutation(typing_extensions.TypedDict, total=False):
     insertOrUpdate: Write
     replace: Write
     update: Write
+
+@typing.type_check_only
+class MutationGroup(typing_extensions.TypedDict, total=False):
+    mutations: _list[Mutation]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -739,6 +760,7 @@ class Type(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateDatabaseDdlMetadata(typing_extensions.TypedDict, total=False):
+    actions: _list[DdlStatementActionInfo]
     commitTimestamps: _list[str]
     database: str
     progress: _list[OperationProgress]

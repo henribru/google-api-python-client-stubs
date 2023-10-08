@@ -33,6 +33,9 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
         def classifyText(
             self, *, body: ClassifyTextRequest = ..., **kwargs: typing.Any
         ) -> ClassifyTextResponseHttpRequest: ...
+        def moderateText(
+            self, *, body: ModerateTextRequest = ..., **kwargs: typing.Any
+        ) -> ModerateTextResponseHttpRequest: ...
 
     def new_batch_http_request(
         self,
@@ -95,3 +98,11 @@ class ClassifyTextResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ClassifyTextResponse: ...
+
+@typing.type_check_only
+class ModerateTextResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ModerateTextResponse: ...

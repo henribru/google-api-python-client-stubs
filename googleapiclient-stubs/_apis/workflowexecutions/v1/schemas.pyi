@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Callback(typing_extensions.TypedDict, total=False):
+    availablePayloads: _list[str]
+    method: str
+    name: str
+    waiters: str
+
+@typing.type_check_only
 class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -27,11 +34,26 @@ class Execution(typing_extensions.TypedDict, total=False):
     result: str
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "SUCCEEDED", "FAILED", "CANCELLED", "UNAVAILABLE"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "UNAVAILABLE",
+        "QUEUED",
     ]
     stateError: StateError
     status: Status
     workflowRevisionId: str
+
+@typing.type_check_only
+class ExportDataResponse(typing_extensions.TypedDict, total=False):
+    data: str
+
+@typing.type_check_only
+class ListCallbacksResponse(typing_extensions.TypedDict, total=False):
+    callbacks: _list[Callback]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
@@ -79,5 +101,6 @@ class Step(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TriggerPubsubExecutionRequest(typing_extensions.TypedDict, total=False):
     GCPCloudEventsMode: str
+    deliveryAttempt: int
     message: PubsubMessage
     subscription: str

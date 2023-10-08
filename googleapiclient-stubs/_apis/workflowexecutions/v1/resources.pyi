@@ -21,6 +21,22 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
             class WorkflowsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExecutionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class CallbacksResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListCallbacksResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListCallbacksResponseHttpRequest,
+                            previous_response: ListCallbacksResponse,
+                        ) -> ListCallbacksResponseHttpRequest | None: ...
+
                     def cancel(
                         self,
                         *,
@@ -35,6 +51,9 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         body: Execution = ...,
                         **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
+                    def exportData(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ExportDataResponseHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -62,6 +81,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         previous_request: ListExecutionsResponseHttpRequest,
                         previous_response: ListExecutionsResponse,
                     ) -> ListExecutionsResponseHttpRequest | None: ...
+                    def callbacks(self) -> CallbacksResource: ...
 
                 def triggerPubsubExecution(
                     self,
@@ -97,6 +117,22 @@ class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Execution: ...
+
+@typing.type_check_only
+class ExportDataResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ExportDataResponse: ...
+
+@typing.type_check_only
+class ListCallbacksResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCallbacksResponse: ...
 
 @typing.type_check_only
 class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):

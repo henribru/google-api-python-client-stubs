@@ -44,6 +44,7 @@ class Application(typing_extensions.TypedDict, total=False):
     dispatchRules: _list[UrlDispatchRule]
     featureSettings: FeatureSettings
     gcrDomain: str
+    generatedCustomerMetadata: dict[str, typing.Any]
     iap: IdentityAwareProxy
     id: str
     locationId: str
@@ -142,6 +143,12 @@ class CustomMetric(typing_extensions.TypedDict, total=False):
     singleInstanceAssignment: float
     targetType: str
     targetUtilization: float
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class DebugInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -309,6 +316,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListRuntimesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    runtimes: _list[Runtime]
 
 @typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
@@ -518,11 +530,33 @@ class Resources(typing_extensions.TypedDict, total=False):
     volumes: _list[Volume]
 
 @typing.type_check_only
+class Runtime(typing_extensions.TypedDict, total=False):
+    decommissionedDate: Date
+    deprecationDate: Date
+    endOfSupportDate: Date
+    environment: typing_extensions.Literal[
+        "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
+    ]
+    name: str
+    stage: typing_extensions.Literal[
+        "RUNTIME_STAGE_UNSPECIFIED",
+        "DEVELOPMENT",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+        "DECOMMISSIONED",
+        "END_OF_SUPPORT",
+    ]
+    warnings: _list[str]
+
+@typing.type_check_only
 class ScriptHandler(typing_extensions.TypedDict, total=False):
     scriptPath: str
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
+    generatedCustomerMetadata: dict[str, typing.Any]
     id: str
     labels: dict[str, typing.Any]
     name: str
@@ -617,6 +651,7 @@ class Version(typing_extensions.TypedDict, total=False):
     envVariables: dict[str, typing.Any]
     errorHandlers: _list[ErrorHandler]
     flexibleRuntimeSettings: FlexibleRuntimeSettings
+    generatedCustomerMetadata: dict[str, typing.Any]
     handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str

@@ -5,6 +5,56 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudOrgpolicyV2AlternatePolicySpec(
+    typing_extensions.TypedDict, total=False
+):
+    launch: str
+    spec: GoogleCloudOrgpolicyV2PolicySpec
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=False):
+    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+    condition: str
+    description: str
+    displayName: str
+    methodTypes: _list[str]
+    name: str
+    resourceTypes: _list[str]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
+    alternate: GoogleCloudOrgpolicyV2AlternatePolicySpec
+    dryRunSpec: GoogleCloudOrgpolicyV2PolicySpec
+    name: str
+    spec: GoogleCloudOrgpolicyV2PolicySpec
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2PolicySpec(typing_extensions.TypedDict, total=False):
+    etag: str
+    inheritFromParent: bool
+    reset: bool
+    rules: _list[GoogleCloudOrgpolicyV2PolicySpecPolicyRule]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
+    typing_extensions.TypedDict, total=False
+):
+    allowAll: bool
+    condition: GoogleTypeExpr
+    denyAll: bool
+    enforce: bool
+    values: GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues(
+    typing_extensions.TypedDict, total=False
+):
+    allowedValues: _list[str]
+    deniedValues: _list[str]
+
+@typing.type_check_only
 class GoogleCloudPolicysimulatorV1Replay(typing_extensions.TypedDict, total=False):
     config: GoogleCloudPolicysimulatorV1ReplayConfig
     name: str
@@ -36,6 +86,331 @@ class GoogleCloudPolicysimulatorV1ReplayResultsSummary(
     newestDate: GoogleTypeDate
     oldestDate: GoogleTypeDate
     unchangedCount: int
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaAccessStateDiff(
+    typing_extensions.TypedDict, total=False
+):
+    accessChange: typing_extensions.Literal[
+        "ACCESS_CHANGE_TYPE_UNSPECIFIED",
+        "NO_CHANGE",
+        "UNKNOWN_CHANGE",
+        "ACCESS_REVOKED",
+        "ACCESS_GAINED",
+        "ACCESS_MAYBE_REVOKED",
+        "ACCESS_MAYBE_GAINED",
+    ]
+    baseline: GoogleCloudPolicysimulatorV1alphaExplainedAccess
+    simulated: GoogleCloudPolicysimulatorV1alphaExplainedAccess
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaAccessTuple(
+    typing_extensions.TypedDict, total=False
+):
+    fullResourceName: str
+    permission: str
+    principal: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaBindingExplanation(
+    typing_extensions.TypedDict, total=False
+):
+    access: typing_extensions.Literal[
+        "ACCESS_STATE_UNSPECIFIED",
+        "GRANTED",
+        "NOT_GRANTED",
+        "UNKNOWN_CONDITIONAL",
+        "UNKNOWN_INFO_DENIED",
+    ]
+    condition: GoogleTypeExpr
+    memberships: dict[str, typing.Any]
+    relevance: typing_extensions.Literal[
+        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
+    ]
+    role: str
+    rolePermission: typing_extensions.Literal[
+        "ROLE_PERMISSION_UNSPECIFIED",
+        "ROLE_PERMISSION_INCLUDED",
+        "ROLE_PERMISSION_NOT_INCLUDED",
+        "ROLE_PERMISSION_UNKNOWN_INFO_DENIED",
+    ]
+    rolePermissionRelevance: typing_extensions.Literal[
+        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaBindingExplanationAnnotatedMembership(
+    typing_extensions.TypedDict, total=False
+):
+    membership: typing_extensions.Literal[
+        "MEMBERSHIP_UNSPECIFIED",
+        "MEMBERSHIP_INCLUDED",
+        "MEMBERSHIP_NOT_INCLUDED",
+        "MEMBERSHIP_UNKNOWN_INFO_DENIED",
+        "MEMBERSHIP_UNKNOWN_UNSUPPORTED",
+    ]
+    relevance: typing_extensions.Literal[
+        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaExplainedAccess(
+    typing_extensions.TypedDict, total=False
+):
+    accessState: typing_extensions.Literal[
+        "ACCESS_STATE_UNSPECIFIED",
+        "GRANTED",
+        "NOT_GRANTED",
+        "UNKNOWN_CONDITIONAL",
+        "UNKNOWN_INFO_DENIED",
+    ]
+    errors: _list[GoogleRpcStatus]
+    policies: _list[GoogleCloudPolicysimulatorV1alphaExplainedPolicy]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaExplainedPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    access: typing_extensions.Literal[
+        "ACCESS_STATE_UNSPECIFIED",
+        "GRANTED",
+        "NOT_GRANTED",
+        "UNKNOWN_CONDITIONAL",
+        "UNKNOWN_INFO_DENIED",
+    ]
+    bindingExplanations: _list[GoogleCloudPolicysimulatorV1alphaBindingExplanation]
+    fullResourceName: str
+    policy: GoogleIamV1Policy
+    relevance: typing_extensions.Literal[
+        "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaGenerateOrgPolicyViolationsPreviewOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    requestTime: str
+    resourcesFound: int
+    resourcesPending: int
+    resourcesScanned: int
+    startTime: str
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaListOrgPolicyViolationsPreviewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    orgPolicyViolationsPreviews: _list[
+        GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaListOrgPolicyViolationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    orgPolicyViolations: _list[GoogleCloudPolicysimulatorV1alphaOrgPolicyViolation]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaListReplayResultsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    replayResults: _list[GoogleCloudPolicysimulatorV1alphaReplayResult]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaListReplaysResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    replays: _list[GoogleCloudPolicysimulatorV1alphaReplay]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraints: _list[
+        GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay
+    ]
+    policies: _list[GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayCustomConstraintOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraint: GoogleCloudOrgpolicyV2CustomConstraint
+    customConstraintParent: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlayPolicyOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    policy: GoogleCloudOrgpolicyV2Policy
+    policyParent: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyViolation(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraint: GoogleCloudOrgpolicyV2CustomConstraint
+    error: GoogleRpcStatus
+    name: str
+    resource: GoogleCloudPolicysimulatorV1alphaResourceContext
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    customConstraints: _list[str]
+    name: str
+    overlay: GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay
+    resourceCounts: GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
+    ]
+    violationsCount: int
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts(
+    typing_extensions.TypedDict, total=False
+):
+    compliant: int
+    errors: int
+    noncompliant: int
+    scanned: int
+    unenforced: int
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaReplay(typing_extensions.TypedDict, total=False):
+    config: GoogleCloudPolicysimulatorV1alphaReplayConfig
+    name: str
+    resultsSummary: GoogleCloudPolicysimulatorV1alphaReplayResultsSummary
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaReplayConfig(
+    typing_extensions.TypedDict, total=False
+):
+    logSource: typing_extensions.Literal["LOG_SOURCE_UNSPECIFIED", "RECENT_ACCESSES"]
+    policyOverlay: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaReplayDiff(
+    typing_extensions.TypedDict, total=False
+):
+    accessDiff: GoogleCloudPolicysimulatorV1alphaAccessStateDiff
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaReplayResult(
+    typing_extensions.TypedDict, total=False
+):
+    accessTuple: GoogleCloudPolicysimulatorV1alphaAccessTuple
+    diff: GoogleCloudPolicysimulatorV1alphaReplayDiff
+    error: GoogleRpcStatus
+    lastSeenDate: GoogleTypeDate
+    name: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaReplayResultsSummary(
+    typing_extensions.TypedDict, total=False
+):
+    differenceCount: int
+    errorCount: int
+    logCount: int
+    newestDate: GoogleTypeDate
+    oldestDate: GoogleTypeDate
+    unchangedCount: int
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaResourceContext(
+    typing_extensions.TypedDict, total=False
+):
+    ancestors: _list[str]
+    assetType: str
+    resource: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaGenerateOrgPolicyViolationsPreviewOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    requestTime: str
+    resourcesFound: int
+    resourcesPending: int
+    resourcesScanned: int
+    startTime: str
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraints: _list[
+        GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay
+    ]
+    policies: _list[GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayCustomConstraintOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    customConstraint: GoogleCloudOrgpolicyV2CustomConstraint
+    customConstraintParent: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaOrgPolicyOverlayPolicyOverlay(
+    typing_extensions.TypedDict, total=False
+):
+    policy: GoogleCloudOrgpolicyV2Policy
+    policyParent: str
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    customConstraints: _list[str]
+    name: str
+    overlay: GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay
+    resourceCounts: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
+    ]
+    violationsCount: int
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts(
+    typing_extensions.TypedDict, total=False
+):
+    compliant: int
+    errors: int
+    noncompliant: int
+    scanned: int
+    unenforced: int
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):

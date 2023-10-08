@@ -97,7 +97,9 @@ class GetMembershipGraphResponse(typing_extensions.TypedDict, total=False):
 class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
     typing_extensions.TypedDict, total=False
 ):
+    ctsProfileMatch: bool
     enabledUnknownSources: bool
+    hasPotentiallyHarmfulApps: bool
     ownerProfileAccount: bool
     ownershipPrivilege: typing_extensions.Literal[
         "OWNERSHIP_PRIVILEGE_UNSPECIFIED",
@@ -106,6 +108,8 @@ class GoogleAppsCloudidentityDevicesV1AndroidAttributes(
         "DEVICE_OWNER",
     ]
     supportsWorkProfile: bool
+    verifiedBoot: bool
+    verifyAppsEnabled: bool
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ApproveDeviceUserMetadata(
@@ -254,6 +258,7 @@ class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=
         "ENCRYPTED",
         "NOT_ENCRYPTED",
     ]
+    hostname: str
     imei: str
     kernelVersion: str
     lastSyncTime: str

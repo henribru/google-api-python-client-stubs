@@ -561,6 +561,25 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def capabilities(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def conditionalDelete(
+                            self, *, parent: str, type: str, **kwargs: typing.Any
+                        ) -> EmptyHttpRequest: ...
+                        def conditionalPatch(
+                            self,
+                            *,
+                            parent: str,
+                            type: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def conditionalUpdate(
+                            self,
+                            *,
+                            parent: str,
+                            type: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def create(
                             self,
                             *,

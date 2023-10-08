@@ -70,6 +70,12 @@ class GoogleCloudRecommenderV1beta1InsightStateInfo(
     stateMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1beta1InsightType(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1InsightTypeConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -88,6 +94,13 @@ class GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig(
     params: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudRecommenderV1beta1ListInsightTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    insightTypes: _list[GoogleCloudRecommenderV1beta1InsightType]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1ListInsightsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -100,6 +113,13 @@ class GoogleCloudRecommenderV1beta1ListRecommendationsResponse(
 ):
     nextPageToken: str
     recommendations: _list[GoogleCloudRecommenderV1beta1Recommendation]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1ListRecommendersResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    recommenders: _list[GoogleCloudRecommenderV1beta1RecommenderType]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest(
@@ -212,6 +232,12 @@ class GoogleCloudRecommenderV1beta1RecommenderGenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
     params: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRecommenderV1beta1RecommenderType(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1ReliabilityProjection(

@@ -24,10 +24,19 @@ class AdmissionWhitelistPattern(typing_extensions.TypedDict, total=False):
     namePattern: str
 
 @typing.type_check_only
+class AttestationAuthenticator(typing_extensions.TypedDict, total=False):
+    displayName: str
+    pkixPublicKeySet: PkixPublicKeySet
+
+@typing.type_check_only
 class AttestationOccurrence(typing_extensions.TypedDict, total=False):
     jwts: _list[Jwt]
     serializedPayload: str
     signatures: _list[Signature]
+
+@typing.type_check_only
+class AttestationSource(typing_extensions.TypedDict, total=False):
+    containerAnalysisAttestationProjects: _list[str]
 
 @typing.type_check_only
 class Attestor(typing_extensions.TypedDict, total=False):
@@ -51,6 +60,24 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Check(typing_extensions.TypedDict, total=False):
+    alwaysDeny: bool
+    displayName: str
+    imageAllowlist: ImageAllowlist
+    imageFreshnessCheck: ImageFreshnessCheck
+    simpleSigningAttestationCheck: SimpleSigningAttestationCheck
+    slsaCheck: SlsaCheck
+    trustedDirectoryCheck: TrustedDirectoryCheck
+    vulnerabilityCheck: VulnerabilityCheck
+
+@typing.type_check_only
+class CheckSet(typing_extensions.TypedDict, total=False):
+    checks: _list[Check]
+    displayName: str
+    imageAllowlist: ImageAllowlist
+    scope: Scope
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -61,10 +88,23 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GkePolicy(typing_extensions.TypedDict, total=False):
+    checkSets: _list[CheckSet]
+    imageAllowlist: ImageAllowlist
+
+@typing.type_check_only
 class IamPolicy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class ImageAllowlist(typing_extensions.TypedDict, total=False):
+    allowPattern: _list[str]
+
+@typing.type_check_only
+class ImageFreshnessCheck(typing_extensions.TypedDict, total=False):
+    maxUploadAgeDays: int
 
 @typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
@@ -74,6 +114,11 @@ class Jwt(typing_extensions.TypedDict, total=False):
 class ListAttestorsResponse(typing_extensions.TypedDict, total=False):
     attestors: _list[Attestor]
     nextPageToken: str
+
+@typing.type_check_only
+class ListPlatformPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    platformPolicies: _list[PlatformPolicy]
 
 @typing.type_check_only
 class PkixPublicKey(typing_extensions.TypedDict, total=False):
@@ -101,6 +146,17 @@ class PkixPublicKey(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PkixPublicKeySet(typing_extensions.TypedDict, total=False):
+    pkixPublicKeys: _list[PkixPublicKey]
+
+@typing.type_check_only
+class PlatformPolicy(typing_extensions.TypedDict, total=False):
+    description: str
+    gkePolicy: GkePolicy
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     admissionWhitelistPatterns: _list[AdmissionWhitelistPattern]
     clusterAdmissionRules: dict[str, typing.Any]
@@ -117,6 +173,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Scope(typing_extensions.TypedDict, total=False):
+    kubernetesNamespace: str
+    kubernetesServiceAccount: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: IamPolicy
 
@@ -126,12 +187,25 @@ class Signature(typing_extensions.TypedDict, total=False):
     signature: str
 
 @typing.type_check_only
+class SimpleSigningAttestationCheck(typing_extensions.TypedDict, total=False):
+    attestationAuthenticators: _list[AttestationAuthenticator]
+    containerAnalysisAttestationProjects: _list[str]
+
+@typing.type_check_only
+class SlsaCheck(typing_extensions.TypedDict, total=False):
+    rules: _list[VerificationRule]
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TrustedDirectoryCheck(typing_extensions.TypedDict, total=False):
+    trustedDirPatterns: _list[str]
 
 @typing.type_check_only
 class UserOwnedGrafeasNote(typing_extensions.TypedDict, total=False):
@@ -150,4 +224,39 @@ class ValidateAttestationOccurrenceResponse(typing_extensions.TypedDict, total=F
     denialReason: str
     result: typing_extensions.Literal[
         "RESULT_UNSPECIFIED", "VERIFIED", "ATTESTATION_NOT_VERIFIABLE"
+    ]
+
+@typing.type_check_only
+class VerificationRule(typing_extensions.TypedDict, total=False):
+    attestationSource: AttestationSource
+    configBasedBuildRequired: bool
+    trustedBuilder: typing_extensions.Literal[
+        "BUILDER_UNSPECIFIED", "GOOGLE_CLOUD_BUILD"
+    ]
+    trustedSourceRepoPatterns: _list[str]
+
+@typing.type_check_only
+class VulnerabilityCheck(typing_extensions.TypedDict, total=False):
+    allowedCves: _list[str]
+    blockedCves: _list[str]
+    containerAnalysisVulnerabilityProjects: _list[str]
+    maximumFixableSeverity: typing_extensions.Literal[
+        "MAXIMUM_ALLOWED_SEVERITY_UNSPECIFIED",
+        "BLOCK_ALL",
+        "MINIMAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL",
+        "ALLOW_ALL",
+    ]
+    maximumUnfixableSeverity: typing_extensions.Literal[
+        "MAXIMUM_ALLOWED_SEVERITY_UNSPECIFIED",
+        "BLOCK_ALL",
+        "MINIMAL",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL",
+        "ALLOW_ALL",
     ]

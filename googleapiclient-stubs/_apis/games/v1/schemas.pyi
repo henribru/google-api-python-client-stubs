@@ -6,16 +6,12 @@ _list = list
 
 @typing.type_check_only
 class AchievementDefinition(typing_extensions.TypedDict, total=False):
-    achievementType: typing_extensions.Literal[
-        "ACHIEVEMENT_TYPE_UNSPECIFIED", "STANDARD", "INCREMENTAL"
-    ]
+    achievementType: typing_extensions.Literal["STANDARD", "INCREMENTAL"]
     description: str
     experiencePoints: str
     formattedTotalSteps: str
     id: str
-    initialState: typing_extensions.Literal[
-        "INITIAL_ACHIEVEMENT_STATE_UNSPECIFIED", "HIDDEN", "REVEALED", "UNLOCKED"
-    ]
+    initialState: typing_extensions.Literal["HIDDEN", "REVEALED", "UNLOCKED"]
     isRevealedIconUrlDefault: bool
     isUnlockedIconUrlDefault: bool
     kind: str
@@ -38,9 +34,7 @@ class AchievementIncrementResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AchievementRevealResponse(typing_extensions.TypedDict, total=False):
-    currentState: typing_extensions.Literal[
-        "REVEAL_ACHIEVEMENT_STATE_UNSPECIFIED", "REVEALED", "UNLOCKED"
-    ]
+    currentState: typing_extensions.Literal["REVEALED", "UNLOCKED"]
     kind: str
 
 @typing.type_check_only
@@ -71,19 +65,13 @@ class AchievementUpdateRequest(typing_extensions.TypedDict, total=False):
     kind: str
     setStepsAtLeastPayload: GamesAchievementSetStepsAtLeast
     updateType: typing_extensions.Literal[
-        "ACHIEVEMENT_UPDATE_TYPE_UNSPECIFIED",
-        "REVEAL",
-        "UNLOCK",
-        "INCREMENT",
-        "SET_STEPS_AT_LEAST",
+        "REVEAL", "UNLOCK", "INCREMENT", "SET_STEPS_AT_LEAST"
     ]
 
 @typing.type_check_only
 class AchievementUpdateResponse(typing_extensions.TypedDict, total=False):
     achievementId: str
-    currentState: typing_extensions.Literal[
-        "UPDATED_ACHIEVEMENT_STATE_UNSPECIFIED", "HIDDEN", "REVEALED", "UNLOCKED"
-    ]
+    currentState: typing_extensions.Literal["HIDDEN", "REVEALED", "UNLOCKED"]
     currentSteps: int
     kind: str
     newlyUnlocked: bool
@@ -141,7 +129,6 @@ class EndPoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventBatchRecordFailure(typing_extensions.TypedDict, total=False):
     failureCause: typing_extensions.Literal[
-        "EVENT_FAILURE_CAUSE_UNSPECIFIED",
         "TOO_LARGE",
         "TIME_PERIOD_EXPIRED",
         "TIME_PERIOD_SHORT",
@@ -166,9 +153,7 @@ class EventDefinition(typing_extensions.TypedDict, total=False):
     imageUrl: str
     isDefaultImageUrl: bool
     kind: str
-    visibility: typing_extensions.Literal[
-        "EVENT_VISIBILITY_UNSPECIFIED", "REVEALED", "HIDDEN"
-    ]
+    visibility: typing_extensions.Literal["REVEALED", "HIDDEN"]
 
 @typing.type_check_only
 class EventDefinitionListResponse(typing_extensions.TypedDict, total=False):
@@ -191,9 +176,7 @@ class EventPeriodUpdate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventRecordFailure(typing_extensions.TypedDict, total=False):
     eventId: str
-    failureCause: typing_extensions.Literal[
-        "EVENT_UPDATE_FAILURE_CAUSE_UNSPECIFIED", "NOT_FOUND", "INVALID_UPDATE_VALUE"
-    ]
+    failureCause: typing_extensions.Literal["NOT_FOUND", "INVALID_UPDATE_VALUE"]
     kind: str
 
 @typing.type_check_only
@@ -246,9 +229,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     iosInstance: InstanceIosDetails
     kind: str
     name: str
-    platformType: typing_extensions.Literal[
-        "PLATFORM_TYPE_UNSPECIFIED", "ANDROID", "IOS", "WEB_APP"
-    ]
+    platformType: typing_extensions.Literal["ANDROID", "IOS", "WEB_APP"]
     realtimePlay: bool
     turnBasedPlay: bool
     webInstance: InstanceWebDetails
@@ -283,9 +264,7 @@ class Leaderboard(typing_extensions.TypedDict, total=False):
     isIconUrlDefault: bool
     kind: str
     name: str
-    order: typing_extensions.Literal[
-        "SCORE_ORDER_UNSPECIFIED", "LARGER_IS_BETTER", "SMALLER_IS_BETTER"
-    ]
+    order: typing_extensions.Literal["LARGER_IS_BETTER", "SMALLER_IS_BETTER"]
 
 @typing.type_check_only
 class LeaderboardEntry(typing_extensions.TypedDict, total=False):
@@ -296,9 +275,7 @@ class LeaderboardEntry(typing_extensions.TypedDict, total=False):
     scoreRank: str
     scoreTag: str
     scoreValue: str
-    timeSpan: typing_extensions.Literal[
-        "SCORE_TIME_SPAN_UNSPECIFIED", "ALL_TIME", "WEEKLY", "DAILY"
-    ]
+    timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"]
     writeTimestampMillis: str
 
 @typing.type_check_only
@@ -325,6 +302,22 @@ class LeaderboardScores(typing_extensions.TypedDict, total=False):
     prevPageToken: str
 
 @typing.type_check_only
+class LinkPersonaRequest(typing_extensions.TypedDict, total=False):
+    cardinalityConstraint: typing_extensions.Literal["ONE_PERSONA_TO_ONE_PLAYER"]
+    conflictingLinksResolutionPolicy: typing_extensions.Literal[
+        "KEEP_EXISTING_LINKS", "CREATE_NEW_LINK"
+    ]
+    expireTime: str
+    persona: str
+    sessionId: str
+    token: str
+    ttl: str
+
+@typing.type_check_only
+class LinkPersonaResponse(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal["LINK_CREATED", "PERSONA_OR_PLAYER_ALREADY_LINKED"]
+
+@typing.type_check_only
 class MetagameConfig(typing_extensions.TypedDict, total=False):
     currentVersion: int
     kind: str
@@ -337,9 +330,7 @@ class Player(typing_extensions.TypedDict, total=False):
     bannerUrlPortrait: str
     displayName: str
     experienceInfo: PlayerExperienceInfo
-    friendStatus: typing_extensions.Literal[
-        "FRIEND_STATUS_UNSPECIFIED", "NO_RELATIONSHIP", "FRIEND"
-    ]
+    friendStatus: typing_extensions.Literal["NO_RELATIONSHIP", "FRIEND"]
     gamePlayerId: str
     kind: str
     name: dict[str, typing.Any]
@@ -350,9 +341,7 @@ class Player(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerAchievement(typing_extensions.TypedDict, total=False):
-    achievementState: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "HIDDEN", "REVEALED", "UNLOCKED"
-    ]
+    achievementState: typing_extensions.Literal["HIDDEN", "REVEALED", "UNLOCKED"]
     currentSteps: int
     experiencePoints: str
     formattedCurrentStepsString: str
@@ -398,9 +387,7 @@ class PlayerLeaderboardScore(typing_extensions.TypedDict, total=False):
     scoreTag: str
     scoreValue: str
     socialRank: LeaderboardScoreRank
-    timeSpan: typing_extensions.Literal[
-        "SCORE_TIME_SPAN_UNSPECIFIED", "ALL_TIME", "WEEKLY", "DAILY"
-    ]
+    timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"]
     writeTimestamp: str
 
 @typing.type_check_only
@@ -429,9 +416,7 @@ class PlayerScore(typing_extensions.TypedDict, total=False):
     kind: str
     score: str
     scoreTag: str
-    timeSpan: typing_extensions.Literal[
-        "SCORE_TIME_SPAN_UNSPECIFIED", "ALL_TIME", "WEEKLY", "DAILY"
-    ]
+    timeSpan: typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"]
 
 @typing.type_check_only
 class PlayerScoreListResponse(typing_extensions.TypedDict, total=False):
@@ -455,21 +440,34 @@ class PlayerScoreSubmissionList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProfileSettings(typing_extensions.TypedDict, total=False):
     friendsListVisibility: typing_extensions.Literal[
-        "FRIENDS_LIST_VISIBILITY_UNSPECIFIED",
-        "VISIBLE",
-        "REQUEST_REQUIRED",
-        "UNAVAILABLE",
+        "VISIBLE", "REQUEST_REQUIRED", "UNAVAILABLE"
     ]
     kind: str
     profileVisible: bool
 
 @typing.type_check_only
+class RecallToken(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    multiPlayerPersona: bool
+    token: str
+
+@typing.type_check_only
+class ResetPersonaRequest(typing_extensions.TypedDict, total=False):
+    persona: str
+
+@typing.type_check_only
+class ResetPersonaResponse(typing_extensions.TypedDict, total=False):
+    unlinked: bool
+
+@typing.type_check_only
+class RetrievePlayerTokensResponse(typing_extensions.TypedDict, total=False):
+    tokens: _list[RecallToken]
+
+@typing.type_check_only
 class RevisionCheckResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     kind: str
-    revisionStatus: typing_extensions.Literal[
-        "REVISION_STATUS_UNSPECIFIED", "OK", "DEPRECATED", "INVALID"
-    ]
+    revisionStatus: typing_extensions.Literal["OK", "DEPRECATED", "INVALID"]
 
 @typing.type_check_only
 class ScopedPlayerIds(typing_extensions.TypedDict, total=False):
@@ -495,7 +493,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     lastModifiedMillis: str
     progressValue: str
     title: str
-    type: typing_extensions.Literal["SNAPSHOT_TYPE_UNSPECIFIED", "SAVE_GAME"]
+    type: typing_extensions.Literal["SAVE_GAME"]
     uniqueName: str
 
 @typing.type_check_only
@@ -525,3 +523,13 @@ class StatsResponse(typing_extensions.TypedDict, total=False):
     spend_percentile: float
     spend_probability: float
     total_spend_next_28_days: float
+
+@typing.type_check_only
+class UnlinkPersonaRequest(typing_extensions.TypedDict, total=False):
+    persona: str
+    sessionId: str
+    token: str
+
+@typing.type_check_only
+class UnlinkPersonaResponse(typing_extensions.TypedDict, total=False):
+    unlinked: bool

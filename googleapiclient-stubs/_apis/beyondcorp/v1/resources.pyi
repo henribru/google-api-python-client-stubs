@@ -14,6 +14,123 @@ _list = list
 @typing.type_check_only
 class BeyondCorpResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class GlobalResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class PartnerTenantsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class BrowserDlpRulesResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: GoogleIamV1SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1PolicyHttpRequest: ...
+                        def testIamPermissions(
+                            self,
+                            *,
+                            resource: str,
+                            body: GoogleIamV1TestIamPermissionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                    @typing.type_check_only
+                    class ProxyConfigsResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: GoogleIamV1SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1PolicyHttpRequest: ...
+                        def testIamPermissions(
+                            self,
+                            *,
+                            resource: str,
+                            body: GoogleIamV1TestIamPermissionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                    def browserDlpRules(self) -> BrowserDlpRulesResource: ...
+                    def proxyConfigs(self) -> ProxyConfigsResource: ...
+
+                def partnerTenants(self) -> PartnerTenantsResource: ...
+
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+            def global_(self) -> GlobalResource: ...
+            def operations(self) -> OperationsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -367,6 +484,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

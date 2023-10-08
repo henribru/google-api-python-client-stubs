@@ -297,6 +297,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         body: BatchCreateSessionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> BatchCreateSessionsResponseHttpRequest: ...
+                    def batchWrite(
+                        self,
+                        *,
+                        session: str,
+                        body: BatchWriteRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BatchWriteResponseHttpRequest: ...
                     def beginTransaction(
                         self,
                         *,
@@ -483,6 +490,36 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 def sessions(self) -> SessionsResource: ...
 
             @typing.type_check_only
+            class InstancePartitionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self, *, name: str, **kwargs: typing.Any
@@ -568,6 +605,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
             def backups(self) -> BackupsResource: ...
             def databaseOperations(self) -> DatabaseOperationsResource: ...
             def databases(self) -> DatabasesResource: ...
+            def instancePartitions(self) -> InstancePartitionsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def instanceConfigOperations(self) -> InstanceConfigOperationsResource: ...
@@ -624,6 +662,14 @@ class BatchCreateSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BatchCreateSessionsResponse: ...
+
+@typing.type_check_only
+class BatchWriteResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> BatchWriteResponse: ...
 
 @typing.type_check_only
 class CommitResponseHttpRequest(googleapiclient.http.HttpRequest):

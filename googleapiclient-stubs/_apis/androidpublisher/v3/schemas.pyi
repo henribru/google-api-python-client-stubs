@@ -5,6 +5,23 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Abi(typing_extensions.TypedDict, total=False):
+    alias: typing_extensions.Literal[
+        "UNSPECIFIED_CPU_ARCHITECTURE",
+        "ARMEABI",
+        "ARMEABI_V7A",
+        "ARM64_V8A",
+        "X86",
+        "X86_64",
+        "RISCV64",
+    ]
+
+@typing.type_check_only
+class AbiTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[Abi]
+    value: _list[Abi]
+
+@typing.type_check_only
 class AcquisitionTargetingRule(typing_extensions.TypedDict, total=False):
     scope: TargetingRuleScope
 
@@ -23,6 +40,29 @@ class Apk(typing_extensions.TypedDict, total=False):
 class ApkBinary(typing_extensions.TypedDict, total=False):
     sha1: str
     sha256: str
+
+@typing.type_check_only
+class ApkDescription(typing_extensions.TypedDict, total=False):
+    assetSliceMetadata: SplitApkMetadata
+    instantApkMetadata: SplitApkMetadata
+    path: str
+    splitApkMetadata: SplitApkMetadata
+    standaloneApkMetadata: StandaloneApkMetadata
+    targeting: ApkTargeting
+
+@typing.type_check_only
+class ApkSet(typing_extensions.TypedDict, total=False):
+    apkDescription: _list[ApkDescription]
+    moduleMetadata: ModuleMetadata
+
+@typing.type_check_only
+class ApkTargeting(typing_extensions.TypedDict, total=False):
+    abiTargeting: AbiTargeting
+    languageTargeting: LanguageTargeting
+    multiAbiTargeting: MultiAbiTargeting
+    screenDensityTargeting: ScreenDensityTargeting
+    sdkVersionTargeting: SdkVersionTargeting
+    textureCompressionFormatTargeting: TextureCompressionFormatTargeting
 
 @typing.type_check_only
 class ApksAddExternallyHostedRequest(typing_extensions.TypedDict, total=False):
@@ -51,6 +91,18 @@ class AppEdit(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ArchiveSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AssetModuleMetadata(typing_extensions.TypedDict, total=False):
+    deliveryType: typing_extensions.Literal[
+        "UNKNOWN_DELIVERY_TYPE", "INSTALL_TIME", "ON_DEMAND", "FAST_FOLLOW"
+    ]
+    name: str
+
+@typing.type_check_only
+class AssetSliceSet(typing_extensions.TypedDict, total=False):
+    apkDescription: _list[ApkDescription]
+    assetModuleMetadata: AssetModuleMetadata
 
 @typing.type_check_only
 class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
@@ -151,6 +203,10 @@ class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False): ...
 class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeferredItemReplacement(typing_extensions.TypedDict, total=False):
+    productId: str
+
+@typing.type_check_only
 class DeobfuscationFile(typing_extensions.TypedDict, total=False):
     symbolType: typing_extensions.Literal[
         "deobfuscationFileTypeUnspecified", "proguard", "nativeCode"
@@ -167,6 +223,15 @@ class DeveloperComment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeveloperInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeviceFeature(typing_extensions.TypedDict, total=False):
+    featureName: str
+    featureVersion: int
+
+@typing.type_check_only
+class DeviceFeatureTargeting(typing_extensions.TypedDict, total=False):
+    requiredFeature: DeviceFeature
 
 @typing.type_check_only
 class DeviceGroup(typing_extensions.TypedDict, total=False):
@@ -305,6 +370,7 @@ class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
     generatedSplitApks: _list[GeneratedSplitApk]
     generatedStandaloneApks: _list[GeneratedStandaloneApk]
     generatedUniversalApk: GeneratedUniversalApk
+    targetingInfo: TargetingInfo
 
 @typing.type_check_only
 class GeneratedAssetPackSlice(typing_extensions.TypedDict, total=False):
@@ -399,6 +465,11 @@ class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
     introductoryPricePeriod: str
 
 @typing.type_check_only
+class LanguageTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[str]
+    value: _list[str]
+
+@typing.type_check_only
 class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
     deviceTierConfigs: _list[DeviceTierConfig]
     nextPageToken: str
@@ -443,6 +514,7 @@ class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=
         "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
         "WITHDRAWAL_RIGHT_SERVICE",
     ]
+    isTokenizedDigitalAsset: bool
     taxRateInfoByRegionCode: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -454,10 +526,35 @@ class MigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
 class MigrateBasePlanPricesResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ModuleMetadata(typing_extensions.TypedDict, total=False):
+    deliveryType: typing_extensions.Literal[
+        "UNKNOWN_DELIVERY_TYPE", "INSTALL_TIME", "ON_DEMAND", "FAST_FOLLOW"
+    ]
+    dependencies: _list[str]
+    moduleType: typing_extensions.Literal["UNKNOWN_MODULE_TYPE", "FEATURE_MODULE"]
+    name: str
+    targeting: ModuleTargeting
+
+@typing.type_check_only
+class ModuleTargeting(typing_extensions.TypedDict, total=False):
+    deviceFeatureTargeting: _list[DeviceFeatureTargeting]
+    sdkVersionTargeting: SdkVersionTargeting
+    userCountriesTargeting: UserCountriesTargeting
+
+@typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class MultiAbi(typing_extensions.TypedDict, total=False):
+    abi: _list[Abi]
+
+@typing.type_check_only
+class MultiAbiTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[MultiAbi]
+    value: _list[MultiAbi]
 
 @typing.type_check_only
 class OfferDetails(typing_extensions.TypedDict, total=False):
@@ -571,6 +668,11 @@ class RegionalBasePlanConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionalPriceMigrationConfig(typing_extensions.TypedDict, total=False):
     oldestAllowedPriceVersionTime: str
+    priceIncreaseType: typing_extensions.Literal[
+        "PRICE_INCREASE_TYPE_UNSPECIFIED",
+        "PRICE_INCREASE_TYPE_OPT_IN",
+        "PRICE_INCREASE_TYPE_OPT_OUT",
+    ]
     regionCode: str
 
 @typing.type_check_only
@@ -639,6 +741,50 @@ class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
     result: ReviewReplyResult
 
 @typing.type_check_only
+class ScreenDensity(typing_extensions.TypedDict, total=False):
+    densityAlias: typing_extensions.Literal[
+        "DENSITY_UNSPECIFIED",
+        "NODPI",
+        "LDPI",
+        "MDPI",
+        "TVDPI",
+        "HDPI",
+        "XHDPI",
+        "XXHDPI",
+        "XXXHDPI",
+    ]
+    densityDpi: int
+
+@typing.type_check_only
+class ScreenDensityTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[ScreenDensity]
+    value: _list[ScreenDensity]
+
+@typing.type_check_only
+class SdkVersion(typing_extensions.TypedDict, total=False):
+    min: int
+
+@typing.type_check_only
+class SdkVersionTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[SdkVersion]
+    value: _list[SdkVersion]
+
+@typing.type_check_only
+class SplitApkMetadata(typing_extensions.TypedDict, total=False):
+    isMasterSplit: bool
+    splitId: str
+
+@typing.type_check_only
+class SplitApkVariant(typing_extensions.TypedDict, total=False):
+    apkSet: _list[ApkSet]
+    targeting: VariantTargeting
+    variantNumber: int
+
+@typing.type_check_only
+class StandaloneApkMetadata(typing_extensions.TypedDict, total=False):
+    fusedModuleName: _list[str]
+
+@typing.type_check_only
 class SubscribeWithGoogleInfo(typing_extensions.TypedDict, total=False):
     emailAddress: str
     familyName: str
@@ -670,7 +816,10 @@ class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=Fals
     expectedNewPriceChargeTime: str
     newPrice: Money
     priceChangeMode: typing_extensions.Literal[
-        "PRICE_CHANGE_MODE_UNSPECIFIED", "PRICE_DECREASE", "PRICE_INCREASE"
+        "PRICE_CHANGE_MODE_UNSPECIFIED",
+        "PRICE_DECREASE",
+        "PRICE_INCREASE",
+        "OPT_OUT_PRICE_INCREASE",
     ]
     priceChangeState: typing_extensions.Literal[
         "PRICE_CHANGE_STATE_UNSPECIFIED", "OUTSTANDING", "CONFIRMED", "APPLIED"
@@ -748,6 +897,7 @@ class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
+    deferredItemReplacement: DeferredItemReplacement
     expiryTime: str
     offerDetails: OfferDetails
     prepaidPlan: PrepaidPlan
@@ -801,7 +951,14 @@ class SubscriptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=Fa
         "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
         "WITHDRAWAL_RIGHT_SERVICE",
     ]
+    isTokenizedDigitalAsset: bool
     taxRateInfoByRegionCode: dict[str, typing.Any]
+
+@typing.type_check_only
+class SystemApkOptions(typing_extensions.TypedDict, total=False):
+    rotated: bool
+    uncompressedDexFiles: bool
+    uncompressedNativeLibraries: bool
 
 @typing.type_check_only
 class SystemApksListResponse(typing_extensions.TypedDict, total=False):
@@ -815,6 +972,12 @@ class SystemFeature(typing_extensions.TypedDict, total=False):
 class SystemInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class TargetingInfo(typing_extensions.TypedDict, total=False):
+    assetSliceSet: _list[AssetSliceSet]
+    packageName: str
+    variant: _list[SplitApkVariant]
+
+@typing.type_check_only
 class TargetingRuleScope(typing_extensions.TypedDict, total=False):
     specificSubscriptionInApp: str
 
@@ -824,6 +987,27 @@ class TestPurchase(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Testers(typing_extensions.TypedDict, total=False):
     googleGroups: _list[str]
+
+@typing.type_check_only
+class TextureCompressionFormat(typing_extensions.TypedDict, total=False):
+    alias: typing_extensions.Literal[
+        "UNSPECIFIED_TEXTURE_COMPRESSION_FORMAT",
+        "ETC1_RGB8",
+        "PALETTED",
+        "THREE_DC",
+        "ATC",
+        "LATC",
+        "DXT1",
+        "S3TC",
+        "PVRTC",
+        "ASTC",
+        "ETC2",
+    ]
+
+@typing.type_check_only
+class TextureCompressionFormatTargeting(typing_extensions.TypedDict, total=False):
+    alternatives: _list[TextureCompressionFormat]
+    value: _list[TextureCompressionFormat]
 
 @typing.type_check_only
 class Timestamp(typing_extensions.TypedDict, total=False):
@@ -905,6 +1089,11 @@ class UserComment(typing_extensions.TypedDict, total=False):
     thumbsUpCount: int
 
 @typing.type_check_only
+class UserCountriesTargeting(typing_extensions.TypedDict, total=False):
+    countryCodes: _list[str]
+    exclude: bool
+
+@typing.type_check_only
 class UserCountrySet(typing_extensions.TypedDict, total=False):
     countryCodes: _list[str]
     name: str
@@ -922,7 +1111,16 @@ class UsesPermission(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Variant(typing_extensions.TypedDict, total=False):
     deviceSpec: DeviceSpec
+    options: SystemApkOptions
     variantId: int
+
+@typing.type_check_only
+class VariantTargeting(typing_extensions.TypedDict, total=False):
+    abiTargeting: AbiTargeting
+    multiAbiTargeting: MultiAbiTargeting
+    screenDensityTargeting: ScreenDensityTargeting
+    sdkVersionTargeting: SdkVersionTargeting
+    textureCompressionFormatTargeting: TextureCompressionFormatTargeting
 
 @typing.type_check_only
 class VoidedPurchase(typing_extensions.TypedDict, total=False):

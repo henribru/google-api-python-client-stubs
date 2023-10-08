@@ -40,25 +40,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
-                class OrganizationsResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class LocationsResource(googleapiclient.discovery.Resource):
-                        @typing.type_check_only
-                        class WorkloadsResource(googleapiclient.discovery.Resource):
-                            def analyzeWorkloadMove(
-                                self,
-                                *,
-                                source: str,
-                                target: str,
-                                project: str = ...,
-                                **kwargs: typing.Any
-                            ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest: ...
-
-                        def workloads(self) -> WorkloadsResource: ...
-
-                    def locations(self) -> LocationsResource: ...
-
-                @typing.type_check_only
                 class ViolationsResource(googleapiclient.discovery.Resource):
                     def acknowledge(
                         self,
@@ -90,6 +71,24 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         | None
                     ): ...
 
+                def analyzeWorkloadMove(
+                    self,
+                    *,
+                    target: str,
+                    assetTypes: str | _list[str] = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    project: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest: ...
+                def analyzeWorkloadMove_next(
+                    self,
+                    previous_request: GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest,
+                    previous_response: GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse,
+                ) -> (
+                    GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest
+                    | None
+                ): ...
                 def create(
                     self,
                     *,
@@ -101,6 +100,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def enableResourceMonitoring(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1beta1WorkloadHttpRequest: ...
@@ -138,36 +140,12 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponseHttpRequest: ...
-                def organizations(self) -> OrganizationsResource: ...
                 def violations(self) -> ViolationsResource: ...
 
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
 
         def locations(self) -> LocationsResource: ...
-
-    @typing.type_check_only
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class OrganizationsResource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class LocationsResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class WorkloadsResource(googleapiclient.discovery.Resource):
-                    def analyzeWorkloadMove(
-                        self,
-                        *,
-                        project: str,
-                        target: str,
-                        source: str = ...,
-                        **kwargs: typing.Any
-                    ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest: ...
-
-                def workloads(self) -> WorkloadsResource: ...
-
-            def locations(self) -> LocationsResource: ...
-
-        def organizations(self) -> OrganizationsResource: ...
 
     def new_batch_http_request(
         self,
@@ -182,7 +160,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
-    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationResponseHttpRequest(
@@ -203,6 +180,16 @@ class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponseHttpRequest(

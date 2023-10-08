@@ -317,6 +317,37 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaAccessBindingHttpRequest: ...
 
         @typing.type_check_only
+        class AdSenseLinksResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaAdSenseLink = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaAdSenseLinkHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaAdSenseLinkHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest | None
+            ): ...
+
+        @typing.type_check_only
         class AudiencesResource(googleapiclient.discovery.Resource):
             def archive(
                 self,
@@ -448,6 +479,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest
                 | None
             ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaConversionEvent = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaConversionEventHttpRequest: ...
 
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):
@@ -539,6 +578,48 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DataStreamsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class EventCreateRulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleAnalyticsAdminV1alphaEventCreateRule = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest,
+                    previous_response: GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse,
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleAnalyticsAdminV1alphaEventCreateRule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest: ...
+
+            @typing.type_check_only
             class MeasurementProtocolSecretsResource(
                 googleapiclient.discovery.Resource
             ):
@@ -586,6 +667,48 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest
                 ): ...
 
+            @typing.type_check_only
+            class SKAdNetworkConversionValueSchemaResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHttpRequest,
+                    previous_response: GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse,
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -599,6 +722,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
+            def getDataRedactionSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaDataRedactionSettingsHttpRequest: ...
             def getEnhancedMeasurementSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
@@ -628,6 +754,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaDataStreamHttpRequest: ...
+            def updateDataRedactionSettings(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaDataRedactionSettings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaDataRedactionSettingsHttpRequest: ...
             def updateEnhancedMeasurementSettings(
                 self,
                 *,
@@ -636,9 +770,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
+            def eventCreateRules(self) -> EventCreateRulesResource: ...
             def measurementProtocolSecrets(
                 self,
             ) -> MeasurementProtocolSecretsResource: ...
+            def sKAdNetworkConversionValueSchema(
+                self,
+            ) -> SKAdNetworkConversionValueSchemaResource: ...
 
         @typing.type_check_only
         class DisplayVideo360AdvertiserLinkProposalsResource(
@@ -841,6 +979,38 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest: ...
 
         @typing.type_check_only
+        class RollupPropertySourceLinksResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaRollupPropertySourceLink = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class SearchAds360LinksResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -881,6 +1051,46 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest: ...
+
+        @typing.type_check_only
+        class SubpropertyEventFiltersResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest
+                | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
 
         @typing.type_check_only
         class UserLinksResource(googleapiclient.discovery.Resource):
@@ -982,6 +1192,18 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponseHttpRequest: ...
+        def createRollupProperty(
+            self,
+            *,
+            body: GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest: ...
+        def createSubproperty(
+            self,
+            *,
+            body: GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaCreateSubpropertyResponseHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
@@ -1080,6 +1302,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
         def accessBindings(self) -> AccessBindingsResource: ...
+        def adSenseLinks(self) -> AdSenseLinksResource: ...
         def audiences(self) -> AudiencesResource: ...
         def bigQueryLinks(self) -> BigQueryLinksResource: ...
         def channelGroups(self) -> ChannelGroupsResource: ...
@@ -1096,7 +1319,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def expandedDataSets(self) -> ExpandedDataSetsResource: ...
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
+        def rollupPropertySourceLinks(self) -> RollupPropertySourceLinksResource: ...
         def searchAds360Links(self) -> SearchAds360LinksResource: ...
+        def subpropertyEventFilters(self) -> SubpropertyEventFiltersResource: ...
         def userLinks(self) -> UserLinksResource: ...
 
     def new_batch_http_request(
@@ -1142,6 +1367,16 @@ class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaAdSenseLinkHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaAdSenseLink: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponseHttpRequest(
@@ -1284,6 +1519,26 @@ class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCustomDimensionHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1302,6 +1557,16 @@ class GoogleAnalyticsAdminV1alphaCustomMetricHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaCustomMetric: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaDataRedactionSettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaDataRedactionSettings: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDataRetentionSettingsHttpRequest(
@@ -1362,6 +1627,16 @@ class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaEventCreateRule: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaExpandedDataSetHttpRequest(
@@ -1462,6 +1737,16 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListAccountsResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest(
@@ -1566,6 +1851,16 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpR
     ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1616,6 +1911,26 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1624,6 +1939,16 @@ class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest(
@@ -1664,6 +1989,16 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaRollupPropertySourceLink: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1672,6 +2007,16 @@ class GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaRunAccessReportResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest(
@@ -1702,6 +2047,16 @@ class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponseHttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilter: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUserLinkHttpRequest(googleapiclient.http.HttpRequest):

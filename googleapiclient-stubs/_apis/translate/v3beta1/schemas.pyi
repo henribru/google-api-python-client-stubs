@@ -15,6 +15,7 @@ class BatchDocumentOutputConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchTranslateDocumentRequest(typing_extensions.TypedDict, total=False):
     customizedAttribution: str
+    enableRotationCorrection: bool
     enableShadowRemovalNativePdf: bool
     formatConversions: dict[str, typing.Any]
     glossaries: dict[str, typing.Any]

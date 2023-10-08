@@ -911,6 +911,41 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     ) -> CustomTemplateHttpRequest: ...
 
                 @typing.type_check_only
+                class TransformationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Transformation = ...,
+                        **kwargs: typing.Any
+                    ) -> TransformationHttpRequest: ...
+                    def delete(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> googleapiclient.http.HttpRequest: ...
+                    def get(
+                        self, *, path: str, **kwargs: typing.Any
+                    ) -> TransformationHttpRequest: ...
+                    def list(
+                        self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
+                    ) -> ListTransformationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListTransformationsResponseHttpRequest,
+                        previous_response: ListTransformationsResponse,
+                    ) -> ListTransformationsResponseHttpRequest | None: ...
+                    def revert(
+                        self, *, path: str, fingerprint: str = ..., **kwargs: typing.Any
+                    ) -> RevertTransformationResponseHttpRequest: ...
+                    def update(
+                        self,
+                        *,
+                        path: str,
+                        body: Transformation = ...,
+                        fingerprint: str = ...,
+                        **kwargs: typing.Any
+                    ) -> TransformationHttpRequest: ...
+
+                @typing.type_check_only
                 class TriggersResource(googleapiclient.discovery.Resource):
                     def create(
                         self, *, parent: str, body: Trigger = ..., **kwargs: typing.Any
@@ -1058,6 +1093,7 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 def gtag_config(self) -> Gtag_configResource: ...
                 def tags(self) -> TagsResource: ...
                 def templates(self) -> TemplatesResource: ...
+                def transformations(self) -> TransformationsResource: ...
                 def triggers(self) -> TriggersResource: ...
                 def variables(self) -> VariablesResource: ...
                 def zones(self) -> ZonesResource: ...
@@ -1392,6 +1428,14 @@ class ListTemplatesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListTemplatesResponse: ...
 
 @typing.type_check_only
+class ListTransformationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListTransformationsResponse: ...
+
+@typing.type_check_only
 class ListTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1488,6 +1532,14 @@ class RevertTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> RevertTemplateResponse: ...
 
 @typing.type_check_only
+class RevertTransformationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RevertTransformationResponse: ...
+
+@typing.type_check_only
 class RevertTriggerResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1526,6 +1578,14 @@ class TagHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Tag: ...
+
+@typing.type_check_only
+class TransformationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Transformation: ...
 
 @typing.type_check_only
 class TriggerHttpRequest(googleapiclient.http.HttpRequest):

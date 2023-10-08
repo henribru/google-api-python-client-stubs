@@ -42,7 +42,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 ) -> BatchUpdateAssetsResponseHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -84,7 +84,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
+                ) -> AssetHttpRequest: ...
                 def reportAssetFrames(
                     self,
                     *,
@@ -418,6 +418,38 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class SourcesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ErrorFramesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "ERROR_FRAME_VIEW_UNSPECIFIED",
+                            "ERROR_FRAME_VIEW_BASIC",
+                            "ERROR_FRAME_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ErrorFrameHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "ERROR_FRAME_VIEW_UNSPECIFIED",
+                            "ERROR_FRAME_VIEW_BASIC",
+                            "ERROR_FRAME_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListErrorFramesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListErrorFramesResponseHttpRequest,
+                        previous_response: ListErrorFramesResponse,
+                    ) -> ListErrorFramesResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -457,6 +489,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def errorFrames(self) -> ErrorFramesResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -544,6 +577,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class ErrorFrameHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ErrorFrame: ...
+
+@typing.type_check_only
 class GroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -574,6 +615,14 @@ class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListAssetsResponse: ...
+
+@typing.type_check_only
+class ListErrorFramesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListErrorFramesResponse: ...
 
 @typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

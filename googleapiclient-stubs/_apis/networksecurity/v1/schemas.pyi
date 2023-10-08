@@ -5,6 +5,23 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+    items: _list[str]
+    requestId: str
+
+@typing.type_check_only
+class AddressGroup(typing_extensions.TypedDict, total=False):
+    capacity: int
+    createTime: str
+    description: str
+    items: _list[str]
+    labels: dict[str, typing.Any]
+    name: str
+    selfLink: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IPV4", "IPV6"]
+    updateTime: str
+
+@typing.type_check_only
 class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
     createTime: str
@@ -31,6 +48,11 @@ class ClientTlsPolicy(typing_extensions.TypedDict, total=False):
     serverValidationCa: _list[ValidationCA]
     sni: str
     updateTime: str
+
+@typing.type_check_only
+class CloneAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    sourceAddressGroup: str
 
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
@@ -129,6 +151,25 @@ class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
     regexMatch: str
 
 @typing.type_check_only
+class ListAddressGroupReferencesResponse(typing_extensions.TypedDict, total=False):
+    addressGroupReferences: _list[
+        ListAddressGroupReferencesResponseAddressGroupReference
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAddressGroupReferencesResponseAddressGroupReference(
+    typing_extensions.TypedDict, total=False
+):
+    firewallPolicy: str
+    rulePriority: int
+
+@typing.type_check_only
+class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):
+    addressGroups: _list[AddressGroup]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
     authorizationPolicies: _list[AuthorizationPolicy]
     nextPageToken: str
@@ -214,6 +255,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class RemoveAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
+    items: _list[str]
+    requestId: str
+
+@typing.type_check_only
 class Rule(typing_extensions.TypedDict, total=False):
     destinations: _list[Destination]
     sources: _list[Source]
@@ -244,8 +290,21 @@ class Status(typing_extensions.TypedDict, total=False):
 class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
     caPool: str
     createTime: str
+    customTlsFeatures: _list[str]
     description: str
+    excludePublicCaSet: bool
+    minTlsVersion: typing_extensions.Literal[
+        "TLS_VERSION_UNSPECIFIED", "TLS_1_0", "TLS_1_1", "TLS_1_2", "TLS_1_3"
+    ]
     name: str
+    tlsFeatureProfile: typing_extensions.Literal[
+        "PROFILE_UNSPECIFIED",
+        "PROFILE_COMPATIBLE",
+        "PROFILE_MODERN",
+        "PROFILE_RESTRICTED",
+        "PROFILE_CUSTOM",
+    ]
+    trustConfig: str
     updateTime: str
 
 @typing.type_check_only

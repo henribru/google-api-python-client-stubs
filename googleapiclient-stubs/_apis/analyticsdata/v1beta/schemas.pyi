@@ -10,6 +10,9 @@ class ActiveMetricRestriction(typing_extensions.TypedDict, total=False):
     restrictedMetricTypes: _list[str]
 
 @typing.type_check_only
+class AudienceListMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class BatchRunPivotReportsRequest(typing_extensions.TypedDict, total=False):
     requests: _list[RunPivotReportRequest]
 

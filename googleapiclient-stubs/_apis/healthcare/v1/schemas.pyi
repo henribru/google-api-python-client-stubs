@@ -12,6 +12,9 @@ class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
+    alternativeOutputFormat: typing_extensions.Literal[
+        "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED", "FHIR_BUNDLE"
+    ]
     documentContent: str
     licensedVocabularies: _list[str]
 
@@ -19,6 +22,7 @@ class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
 class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
     entities: _list[Entity]
     entityMentions: _list[EntityMention]
+    fhirBundle: str
     relationships: _list[EntityMentionRelationship]
 
 @typing.type_check_only
@@ -157,6 +161,7 @@ class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     fhir: FhirConfig
     image: ImageConfig
     text: TextConfig
+    useRegionalDataProcessing: bool
 
 @typing.type_check_only
 class DeidentifyDatasetRequest(typing_extensions.TypedDict, total=False):
@@ -204,6 +209,7 @@ class DicomStore(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
+    streamConfigs: _list[GoogleCloudHealthcareV1DicomStreamConfig]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -259,7 +265,9 @@ class ExportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
     endTime: str
+    filter: str
     gcsDestination: GcsDestination
+    pubsubDestination: PubsubDestination
     startTime: str
 
 @typing.type_check_only
@@ -297,6 +305,12 @@ class FhirFilter(typing_extensions.TypedDict, total=False):
     resources: Resources
 
 @typing.type_check_only
+class FhirNotificationConfig(typing_extensions.TypedDict, total=False):
+    pubsubTopic: str
+    sendFullResource: bool
+    sendPreviousResourceOnDelete: bool
+
+@typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
     complexDataTypeReferenceParsing: typing_extensions.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
@@ -308,6 +322,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     notificationConfig: NotificationConfig
+    notificationConfigs: _list[FhirNotificationConfig]
     streamConfigs: _list[StreamConfig]
     validationConfig: ValidationConfig
     version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
@@ -398,6 +413,12 @@ class GoogleCloudHealthcareV1DicomGcsDestination(
 @typing.type_check_only
 class GoogleCloudHealthcareV1DicomGcsSource(typing_extensions.TypedDict, total=False):
     uri: str
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1DicomStreamConfig(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
 
 @typing.type_check_only
 class GoogleCloudHealthcareV1FhirBigQueryDestination(
@@ -612,6 +633,7 @@ class Message(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
     pubsubTopic: str
+    sendForBulkImport: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -658,6 +680,10 @@ class ProgressCounter(typing_extensions.TypedDict, total=False):
     failure: str
     pending: str
     success: str
+
+@typing.type_check_only
+class PubsubDestination(typing_extensions.TypedDict, total=False):
+    pubsubTopic: str
 
 @typing.type_check_only
 class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
@@ -780,6 +806,8 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextConfig(typing_extensions.TypedDict, total=False):
+    additionalTransformations: _list[InfoTypeTransformation]
+    excludeInfoTypes: _list[str]
     transformations: _list[InfoTypeTransformation]
 
 @typing.type_check_only

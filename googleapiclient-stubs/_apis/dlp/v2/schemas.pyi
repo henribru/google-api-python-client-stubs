@@ -196,6 +196,58 @@ class GooglePrivacyDlpV2Color(typing_extensions.TypedDict, total=False):
     red: float
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ColumnDataProfile(typing_extensions.TypedDict, total=False):
+    column: str
+    columnInfoType: GooglePrivacyDlpV2InfoTypeSummary
+    columnType: typing_extensions.Literal[
+        "COLUMN_DATA_TYPE_UNSPECIFIED",
+        "TYPE_INT64",
+        "TYPE_BOOL",
+        "TYPE_FLOAT64",
+        "TYPE_STRING",
+        "TYPE_BYTES",
+        "TYPE_TIMESTAMP",
+        "TYPE_DATE",
+        "TYPE_TIME",
+        "TYPE_DATETIME",
+        "TYPE_GEOGRAPHY",
+        "TYPE_NUMERIC",
+        "TYPE_RECORD",
+        "TYPE_BIGNUMERIC",
+        "TYPE_JSON",
+    ]
+    dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
+    datasetId: str
+    datasetLocation: str
+    datasetProjectId: str
+    estimatedNullPercentage: typing_extensions.Literal[
+        "NULL_PERCENTAGE_LEVEL_UNSPECIFIED",
+        "NULL_PERCENTAGE_VERY_LOW",
+        "NULL_PERCENTAGE_LOW",
+        "NULL_PERCENTAGE_MEDIUM",
+        "NULL_PERCENTAGE_HIGH",
+    ]
+    estimatedUniquenessScore: typing_extensions.Literal[
+        "UNIQUENESS_SCORE_LEVEL_UNSPECIFIED",
+        "UNIQUENESS_SCORE_LOW",
+        "UNIQUENESS_SCORE_MEDIUM",
+        "UNIQUENESS_SCORE_HIGH",
+    ]
+    freeTextScore: float
+    name: str
+    otherMatches: _list[GooglePrivacyDlpV2OtherInfoTypeSummary]
+    policyState: typing_extensions.Literal[
+        "COLUMN_POLICY_STATE_UNSPECIFIED", "COLUMN_POLICY_TAGGED"
+    ]
+    profileLastGenerated: str
+    profileStatus: GooglePrivacyDlpV2ProfileStatus
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "RUNNING", "DONE"]
+    tableDataProfile: str
+    tableFullResource: str
+    tableId: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2Condition(typing_extensions.TypedDict, total=False):
     field: GooglePrivacyDlpV2FieldId
     operator: typing_extensions.Literal[
@@ -331,6 +383,7 @@ class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False)
         "VERY_LIKELY",
     ]
     regex: GooglePrivacyDlpV2Regex
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     storedType: GooglePrivacyDlpV2StoredType
     surrogateType: GooglePrivacyDlpV2SurrogateType
 
@@ -338,6 +391,13 @@ class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False)
 class GooglePrivacyDlpV2DataProfileAction(typing_extensions.TypedDict, total=False):
     exportData: GooglePrivacyDlpV2Export
     pubSubNotification: GooglePrivacyDlpV2PubSubNotification
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileBigQueryRowSchema(
+    typing_extensions.TypedDict, total=False
+):
+    columnProfile: GooglePrivacyDlpV2ColumnDataProfile
+    tableProfile: GooglePrivacyDlpV2TableDataProfile
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DataProfileConfigSnapshot(
@@ -714,6 +774,7 @@ class GooglePrivacyDlpV2ImageTransformations(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GooglePrivacyDlpV2InfoType(typing_extensions.TypedDict, total=False):
     name: str
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     version: str
 
 @typing.type_check_only
@@ -788,6 +849,18 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     versions: _list[GooglePrivacyDlpV2VersionDescription]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2InfoTypeLikelihood(typing_extensions.TypedDict, total=False):
+    infoType: GooglePrivacyDlpV2InfoType
+    minLikelihood: typing_extensions.Literal[
+        "LIKELIHOOD_UNSPECIFIED",
+        "VERY_UNLIKELY",
+        "UNLIKELY",
+        "POSSIBLE",
+        "LIKELY",
+        "VERY_LIKELY",
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2InfoTypeLimit(typing_extensions.TypedDict, total=False):
     infoType: GooglePrivacyDlpV2InfoType
     maxFindings: int
@@ -831,6 +904,7 @@ class GooglePrivacyDlpV2InspectConfig(typing_extensions.TypedDict, total=False):
         "LIKELY",
         "VERY_LIKELY",
     ]
+    minLikelihoodPerInfoType: _list[GooglePrivacyDlpV2InfoTypeLikelihood]
     ruleSet: _list[GooglePrivacyDlpV2InspectionRuleSet]
 
 @typing.type_check_only
@@ -1097,6 +1171,7 @@ class GooglePrivacyDlpV2NumericalStatsResult(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GooglePrivacyDlpV2OtherInfoTypeSummary(typing_extensions.TypedDict, total=False):
     estimatedPrevalence: int
+    excludedFromAnalysis: bool
     infoType: GooglePrivacyDlpV2InfoType
 
 @typing.type_check_only

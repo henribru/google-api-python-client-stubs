@@ -149,6 +149,11 @@ class EffectiveIamPolicy(typing_extensions.TypedDict, total=False):
     policies: _list[PolicyInfo]
 
 @typing.type_check_only
+class EffectiveTagDetails(typing_extensions.TypedDict, total=False):
+    attachedResource: str
+    effectiveTags: _list[Tag]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -450,6 +455,7 @@ class GoogleIdentityAccesscontextmanagerV1Condition(
     negate: bool
     regions: _list[str]
     requiredAccessLevels: _list[str]
+    vpcNetworkSources: _list[GoogleIdentityAccesscontextmanagerV1VpcNetworkSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1CustomLevel(
@@ -479,6 +485,12 @@ class GoogleIdentityAccesscontextmanagerV1EgressFrom(
         "ANY_USER_ACCOUNT",
         "ANY_SERVICE_ACCOUNT",
     ]
+    sourceRestriction: typing_extensions.Literal[
+        "SOURCE_RESTRICTION_UNSPECIFIED",
+        "SOURCE_RESTRICTION_ENABLED",
+        "SOURCE_RESTRICTION_DISABLED",
+    ]
+    sources: _list[GoogleIdentityAccesscontextmanagerV1EgressSource]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
@@ -486,6 +498,12 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 ):
     egressFrom: GoogleIdentityAccesscontextmanagerV1EgressFrom
     egressTo: GoogleIdentityAccesscontextmanagerV1EgressTo
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1EgressSource(
+    typing_extensions.TypedDict, total=False
+):
+    accessLevel: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
@@ -583,6 +601,19 @@ class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices(
 ):
     allowedServices: _list[str]
     enableRestriction: bool
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1VpcNetworkSource(
+    typing_extensions.TypedDict, total=False
+):
+    vpcSubnetwork: GoogleIdentityAccesscontextmanagerV1VpcSubNetwork
+
+@typing.type_check_only
+class GoogleIdentityAccesscontextmanagerV1VpcSubNetwork(
+    typing_extensions.TypedDict, total=False
+):
+    network: str
+    vpcIpSubnetworks: _list[str]
 
 @typing.type_check_only
 class IamPolicyAnalysis(typing_extensions.TypedDict, total=False):
@@ -843,6 +874,7 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     displayName: str
+    effectiveTags: _list[EffectiveTagDetails]
     folders: _list[str]
     kmsKey: str
     kmsKeys: _list[str]
@@ -855,10 +887,12 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     parentFullResourceName: str
     project: str
     relationships: dict[str, typing.Any]
+    sccSecurityMarks: dict[str, typing.Any]
     state: str
     tagKeys: _list[str]
     tagValueIds: _list[str]
     tagValues: _list[str]
+    tags: _list[Tag]
     updateTime: str
     versionedResources: _list[VersionedResource]
 
@@ -915,6 +949,12 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableSchema(typing_extensions.TypedDict, total=False):
     fields: _list[TableFieldSchema]
+
+@typing.type_check_only
+class Tag(typing_extensions.TypedDict, total=False):
+    tagKey: str
+    tagValue: str
+    tagValueId: str
 
 @typing.type_check_only
 class TemporalAsset(typing_extensions.TypedDict, total=False):

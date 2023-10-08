@@ -208,7 +208,9 @@ class RunMobileFriendlyTestResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
-    aggregationType: typing_extensions.Literal["AUTO", "BY_PROPERTY", "BY_PAGE"]
+    aggregationType: typing_extensions.Literal[
+        "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
+    ]
     dataState: typing_extensions.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL"]
     dimensionFilterGroups: _list[ApiDimensionFilterGroup]
     dimensions: _list[str]
@@ -225,7 +227,9 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):
-    responseAggregationType: typing_extensions.Literal["AUTO", "BY_PROPERTY", "BY_PAGE"]
+    responseAggregationType: typing_extensions.Literal[
+        "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
+    ]
     rows: _list[ApiDataRow]
 
 @typing.type_check_only

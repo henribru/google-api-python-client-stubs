@@ -868,6 +868,7 @@ class PublisherProfileMobileApplication(typing_extensions.TypedDict, total=False
         "SAMSUNG",
         "VIVO",
         "XIAOMI",
+        "LG_TV",
     ]
     externalAppId: str
     name: str

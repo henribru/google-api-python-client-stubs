@@ -17,6 +17,21 @@ class GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assetMoveAnalyses: _list[GoogleCloudAssuredworkloadsV1AssetMoveAnalysis]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1AssetMoveAnalysis(
+    typing_extensions.TypedDict, total=False
+):
+    analysisGroups: _list[GoogleCloudAssuredworkloadsV1MoveAnalysisGroup]
+    asset: str
+    assetType: str
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -37,6 +52,9 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "ISR_REGIONS",
         "ISR_REGIONS_AND_SUPPORT",
         "CA_PROTECTED_B",
+        "IL5",
+        "IL2",
+        "JP_REGIONS_AND_SUPPORT",
     ]
     createTime: str
     displayName: str
@@ -55,6 +73,25 @@ class GoogleCloudAssuredworkloadsV1ListWorkloadsResponse(
 ):
     nextPageToken: str
     workloads: _list[GoogleCloudAssuredworkloadsV1Workload]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1MoveAnalysisGroup(
+    typing_extensions.TypedDict, total=False
+):
+    analysisResult: GoogleCloudAssuredworkloadsV1MoveAnalysisResult
+    displayName: str
+    error: GoogleRpcStatus
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1MoveAnalysisResult(
+    typing_extensions.TypedDict, total=False
+):
+    blockers: _list[GoogleCloudAssuredworkloadsV1MoveImpact]
+    warnings: _list[GoogleCloudAssuredworkloadsV1MoveImpact]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1MoveImpact(typing_extensions.TypedDict, total=False):
+    detail: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest(
@@ -89,6 +126,7 @@ class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=
     category: str
     description: str
     exceptionAuditLogLink: str
+    exceptionContexts: _list[GoogleCloudAssuredworkloadsV1ViolationExceptionContext]
     name: str
     nonCompliantOrgPolicy: str
     orgPolicyConstraint: str
@@ -98,6 +136,14 @@ class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=
         "STATE_UNSPECIFIED", "RESOLVED", "UNRESOLVED", "EXCEPTION"
     ]
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ViolationExceptionContext(
+    typing_extensions.TypedDict, total=False
+):
+    acknowledgementTime: str
+    comment: str
+    userName: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ViolationRemediation(
@@ -156,6 +202,9 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "ISR_REGIONS",
         "ISR_REGIONS_AND_SUPPORT",
         "CA_PROTECTED_B",
+        "IL5",
+        "IL2",
+        "JP_REGIONS_AND_SUPPORT",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
@@ -179,10 +228,12 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
         "SOVEREIGN_CONTROLS_BY_PSN",
     ]
+    partnerPermissions: GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions
     provisionedResourcesParent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
     saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse
+    violationNotificationsEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus(
@@ -227,8 +278,8 @@ class GoogleCloudAssuredworkloadsV1WorkloadKMSSettings(
 class GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions(
     typing_extensions.TypedDict, total=False
 ):
+    assuredWorkloadsMonitoring: bool
     dataLogsViewer: bool
-    remediateFolderViolations: bool
     serviceAccessApprover: bool
 
 @typing.type_check_only

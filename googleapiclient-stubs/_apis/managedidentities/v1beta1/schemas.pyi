@@ -114,6 +114,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnableMigrationRequest(typing_extensions.TypedDict, total=False):
+    enableDuration: str
     migratingDomains: _list[OnPremDomainDetails]
 
 @typing.type_check_only

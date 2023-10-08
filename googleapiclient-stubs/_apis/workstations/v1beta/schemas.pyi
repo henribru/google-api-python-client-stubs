@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Accelerator(typing_extensions.TypedDict, total=False):
+    count: int
+    type: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -40,6 +45,11 @@ class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
     kmsKeyServiceAccount: str
 
 @typing.type_check_only
+class EphemeralDirectory(typing_extensions.TypedDict, total=False):
+    gcePd: GcePersistentDisk
+    mountPath: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -52,14 +62,25 @@ class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GceInstance(typing_extensions.TypedDict, total=False):
+    accelerators: _list[Accelerator]
     bootDiskSizeGb: int
     confidentialInstanceConfig: GceConfidentialInstanceConfig
     disablePublicIpAddresses: bool
+    enableNestedVirtualization: bool
     machineType: str
     poolSize: int
+    pooledInstances: int
     serviceAccount: str
+    serviceAccountScopes: _list[str]
     shieldedInstanceConfig: GceShieldedInstanceConfig
     tags: _list[str]
+
+@typing.type_check_only
+class GcePersistentDisk(typing_extensions.TypedDict, total=False):
+    diskType: str
+    readOnly: bool
+    sourceImage: str
+    sourceSnapshot: str
 
 @typing.type_check_only
 class GceRegionalPersistentDisk(typing_extensions.TypedDict, total=False):
@@ -167,6 +188,11 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     serviceAttachmentUri: str
 
 @typing.type_check_only
+class ReadinessCheck(typing_extensions.TypedDict, total=False):
+    path: str
+    port: int
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -207,6 +233,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "STATE_STARTING",
@@ -247,13 +274,16 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     displayName: str
     enableAuditAgent: bool
     encryptionKey: CustomerEncryptionKey
+    ephemeralDirectories: _list[EphemeralDirectory]
     etag: str
     host: Host
     idleTimeout: str
     labels: dict[str, typing.Any]
     name: str
     persistentDirectories: _list[PersistentDirectory]
+    readinessChecks: _list[ReadinessCheck]
     reconciling: bool
+    replicaZones: _list[str]
     runningTimeout: str
     uid: str
     updateTime: str

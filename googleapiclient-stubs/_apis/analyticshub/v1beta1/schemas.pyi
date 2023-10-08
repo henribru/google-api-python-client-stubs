@@ -73,6 +73,10 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class LinkedResource(typing_extensions.TypedDict, total=False):
+    linkedDataset: str
+
+@typing.type_check_only
 class ListDataExchangesResponse(typing_extensions.TypedDict, total=False):
     dataExchanges: _list[DataExchange]
     nextPageToken: str
@@ -126,8 +130,13 @@ class Publisher(typing_extensions.TypedDict, total=False):
     primaryContact: str
 
 @typing.type_check_only
+class RefreshSubscriptionResponse(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+
+@typing.type_check_only
 class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+    restrictDirectTableAccess: bool
     restrictQueryResult: bool
 
 @typing.type_check_only
@@ -136,11 +145,30 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SubscribeDataExchangeResponse(typing_extensions.TypedDict, total=False):
+    subscription: Subscription
+
+@typing.type_check_only
 class SubscribeListingRequest(typing_extensions.TypedDict, total=False):
     destinationDataset: DestinationDataset
 
 @typing.type_check_only
 class SubscribeListingResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Subscription(typing_extensions.TypedDict, total=False):
+    creationTime: str
+    dataExchange: str
+    lastModifyTime: str
+    linkedDatasetMap: dict[str, typing.Any]
+    listing: str
+    name: str
+    organizationDisplayName: str
+    organizationId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_STALE", "STATE_INACTIVE"
+    ]
+    subscriberContact: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

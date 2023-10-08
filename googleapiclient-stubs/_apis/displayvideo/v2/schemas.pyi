@@ -1025,6 +1025,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only
@@ -2056,6 +2057,9 @@ class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
+        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
     ]
     mobileApp: MobileApp
 
@@ -2562,7 +2566,6 @@ class InventorySource(typing_extensions.TypedDict, total=False):
     readPartnerIds: _list[str]
     readWriteAccessors: InventorySourceAccessors
     status: InventorySourceStatus
-    subSitePropertyId: str
     timeRange: TimeRange
     updateTime: str
 
@@ -2720,6 +2723,9 @@ class LineItem(typing_extensions.TypedDict, total=False):
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_REACH_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_SIMPLE_OVER_THE_TOP",
         "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_TARGET_FREQUENCY",
+        "LINE_ITEM_TYPE_YOUTUBE_AND_PARTNERS_VIEW",
+        "LINE_ITEM_TYPE_DISPLAY_OUT_OF_HOME",
+        "LINE_ITEM_TYPE_VIDEO_OUT_OF_HOME",
     ]
     mobileApp: MobileApp
     name: str
@@ -3258,6 +3264,7 @@ class PartnerCost(typing_extensions.TypedDict, total=False):
         "PARTNER_COST_TYPE_CUSTOM_FEE_3",
         "PARTNER_COST_TYPE_CUSTOM_FEE_4",
         "PARTNER_COST_TYPE_CUSTOM_FEE_5",
+        "PARTNER_COST_TYPE_SCIBIDS_FEE",
     ]
     feeAmount: str
     feePercentageMillis: str
@@ -3495,6 +3502,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only
@@ -3517,6 +3525,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_3",
         "SDF_VERSION_5_4",
         "SDF_VERSION_5_5",
+        "SDF_VERSION_6",
     ]
 
 @typing.type_check_only
@@ -4037,6 +4046,9 @@ class YoutubeAndPartnersBiddingStrategy(typing_extensions.TypedDict, total=False
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_LIFT",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
+        "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPV",
+        "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS",
+        "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSION_VALUE",
     ]
     value: str
 
@@ -4050,6 +4062,12 @@ class YoutubeAndPartnersInventorySourceConfig(typing_extensions.TypedDict, total
 class YoutubeAndPartnersSettings(typing_extensions.TypedDict, total=False):
     biddingStrategy: YoutubeAndPartnersBiddingStrategy
     contentCategory: typing_extensions.Literal[
+        "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_UNSPECIFIED",
+        "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_STANDARD",
+        "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_EXPANDED",
+        "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_LIMITED",
+    ]
+    effectiveContentCategory: typing_extensions.Literal[
         "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_UNSPECIFIED",
         "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_STANDARD",
         "YOUTUBE_AND_PARTNERS_CONTENT_CATEGORY_EXPANDED",

@@ -84,6 +84,33 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     ) -> ListFilesResponseHttpRequest | None: ...
 
                 @typing.type_check_only
+                class GoModulesResource(googleapiclient.discovery.Resource):
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadGoModuleRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> UploadGoModuleMediaResponseHttpRequest: ...
+
+                @typing.type_check_only
+                class GoogetArtifactsResource(googleapiclient.discovery.Resource):
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: ImportGoogetArtifactsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadGoogetArtifactRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> UploadGoogetArtifactMediaResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class KfpArtifactsResource(googleapiclient.discovery.Resource):
                     def upload(
                         self,
@@ -174,6 +201,13 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
 
                     @typing.type_check_only
                     class VersionsResource(googleapiclient.discovery.Resource):
+                        def batchDelete(
+                            self,
+                            *,
+                            parent: str,
+                            body: BatchDeleteVersionsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
                         def delete(
                             self, *, name: str, force: bool = ..., **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
@@ -321,6 +355,8 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def aptArtifacts(self) -> AptArtifactsResource: ...
                 def dockerImages(self) -> DockerImagesResource: ...
                 def files(self) -> FilesResource: ...
+                def goModules(self) -> GoModulesResource: ...
+                def googetArtifacts(self) -> GoogetArtifactsResource: ...
                 def kfpArtifacts(self) -> KfpArtifactsResource: ...
                 def mavenArtifacts(self) -> MavenArtifactsResource: ...
                 def npmPackages(self) -> NpmPackagesResource: ...
@@ -585,6 +621,22 @@ class UploadAptArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> UploadAptArtifactMediaResponse: ...
+
+@typing.type_check_only
+class UploadGoModuleMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UploadGoModuleMediaResponse: ...
+
+@typing.type_check_only
+class UploadGoogetArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> UploadGoogetArtifactMediaResponse: ...
 
 @typing.type_check_only
 class UploadKfpArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):

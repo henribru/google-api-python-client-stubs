@@ -145,6 +145,7 @@ class GrpcRouteRouteAction(typing_extensions.TypedDict, total=False):
     destinations: _list[GrpcRouteDestination]
     faultInjectionPolicy: GrpcRouteFaultInjectionPolicy
     retryPolicy: GrpcRouteRetryPolicy
+    statefulSessionAffinity: GrpcRouteStatefulSessionAffinityPolicy
     timeout: str
 
 @typing.type_check_only
@@ -156,6 +157,10 @@ class GrpcRouteRouteMatch(typing_extensions.TypedDict, total=False):
 class GrpcRouteRouteRule(typing_extensions.TypedDict, total=False):
     action: GrpcRouteRouteAction
     matches: _list[GrpcRouteRouteMatch]
+
+@typing.type_check_only
+class GrpcRouteStatefulSessionAffinityPolicy(typing_extensions.TypedDict, total=False):
+    cookieTtl: str
 
 @typing.type_check_only
 class HttpRoute(typing_extensions.TypedDict, total=False):
@@ -267,6 +272,7 @@ class HttpRouteRouteAction(typing_extensions.TypedDict, total=False):
     requestMirrorPolicy: HttpRouteRequestMirrorPolicy
     responseHeaderModifier: HttpRouteHeaderModifier
     retryPolicy: HttpRouteRetryPolicy
+    statefulSessionAffinity: HttpRouteStatefulSessionAffinityPolicy
     timeout: str
     urlRewrite: HttpRouteURLRewrite
 
@@ -285,6 +291,10 @@ class HttpRouteRouteRule(typing_extensions.TypedDict, total=False):
     matches: _list[HttpRouteRouteMatch]
 
 @typing.type_check_only
+class HttpRouteStatefulSessionAffinityPolicy(typing_extensions.TypedDict, total=False):
+    cookieTtl: str
+
+@typing.type_check_only
 class HttpRouteURLRewrite(typing_extensions.TypedDict, total=False):
     hostRewrite: str
     pathPrefixRewrite: str
@@ -298,6 +308,7 @@ class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
 class ListGatewaysResponse(typing_extensions.TypedDict, total=False):
     gateways: _list[Gateway]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGrpcRoutesResponse(typing_extensions.TypedDict, total=False):
@@ -389,6 +400,7 @@ class ServiceBinding(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     service: str
+    serviceId: str
     updateTime: str
 
 @typing.type_check_only
@@ -447,6 +459,7 @@ class TlsRoute(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     gateways: _list[str]
+    labels: dict[str, typing.Any]
     meshes: _list[str]
     name: str
     rules: _list[TlsRouteRouteRule]

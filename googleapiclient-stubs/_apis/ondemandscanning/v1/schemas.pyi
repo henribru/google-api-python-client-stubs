@@ -50,12 +50,26 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
     signatures: _list[Signature]
 
 @typing.type_check_only
-class Binary(typing_extensions.TypedDict, total=False):
-    name: str
-    version: str
+class BinarySourceInfo(typing_extensions.TypedDict, total=False):
+    binaryVersion: PackageVersion
+    sourceVersion: PackageVersion
+
+@typing.type_check_only
+class BuildDefinition(typing_extensions.TypedDict, total=False):
+    buildType: str
+    externalParameters: dict[str, typing.Any]
+    internalParameters: dict[str, typing.Any]
+    resolvedDependencies: _list[ResourceDescriptor]
+
+@typing.type_check_only
+class BuildMetadata(typing_extensions.TypedDict, total=False):
+    finishedOn: str
+    invocationId: str
+    startedOn: str
 
 @typing.type_check_only
 class BuildOccurrence(typing_extensions.TypedDict, total=False):
+    inTotoSlsaProvenanceV1: InTotoSlsaProvenanceV1
     intotoProvenance: InTotoProvenance
     intotoStatement: InTotoStatement
     provenance: BuildProvenance
@@ -87,6 +101,7 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "ATTACK_COMPLEXITY_UNSPECIFIED",
         "ATTACK_COMPLEXITY_LOW",
         "ATTACK_COMPLEXITY_HIGH",
+        "ATTACK_COMPLEXITY_MEDIUM",
     ]
     attackVector: typing_extensions.Literal[
         "ATTACK_VECTOR_UNSPECIFIED",
@@ -102,16 +117,31 @@ class CVSS(typing_extensions.TypedDict, total=False):
         "AUTHENTICATION_NONE",
     ]
     availabilityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     baseScore: float
     confidentialityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     exploitabilityScore: float
     impactScore: float
     integrityImpact: typing_extensions.Literal[
-        "IMPACT_UNSPECIFIED", "IMPACT_HIGH", "IMPACT_LOW", "IMPACT_NONE"
+        "IMPACT_UNSPECIFIED",
+        "IMPACT_HIGH",
+        "IMPACT_LOW",
+        "IMPACT_NONE",
+        "IMPACT_PARTIAL",
+        "IMPACT_COMPLETE",
     ]
     privilegesRequired: typing_extensions.Literal[
         "PRIVILEGES_REQUIRED_UNSPECIFIED",
@@ -194,6 +224,7 @@ class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
     ]
     cpe: str
     lastScanTime: str
+    sbomStatus: SBOMStatus
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -311,6 +342,13 @@ class InTotoProvenance(typing_extensions.TypedDict, total=False):
     recipe: Recipe
 
 @typing.type_check_only
+class InTotoSlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+    _type: str
+    predicate: SlsaProvenanceV1
+    predicateType: str
+    subject: _list[Subject]
+
+@typing.type_check_only
 class InTotoStatement(typing_extensions.TypedDict, total=False):
     _type: str
     predicateType: str
@@ -414,12 +452,14 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "COMPLIANCE",
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
+        "SBOM_REFERENCE",
     ]
     name: str
     noteName: str
     package: PackageOccurrence
     remediation: str
     resourceUri: str
+    sbomReference: SBOMReferenceOccurrence
     updateTime: str
     upgrade: UpgradeOccurrence
     vulnerability: VulnerabilityOccurrence
@@ -435,7 +475,8 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PackageData(typing_extensions.TypedDict, total=False):
     architecture: str
-    binary: Binary
+    binarySourceInfo: _list[BinarySourceInfo]
+    binaryVersion: PackageVersion
     cpeUri: str
     dependencyChain: _list[LanguagePackageDependency]
     fileLocation: _list[FileLocation]
@@ -448,6 +489,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
         "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB", "PYPI", "NPM"
     ]
     patchedCve: _list[str]
+    sourceVersion: PackageVersion
     unused: str
     version: str
 
@@ -477,9 +519,20 @@ class PackageOccurrence(typing_extensions.TypedDict, total=False):
     version: Version
 
 @typing.type_check_only
+class PackageVersion(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
 class ProjectRepoId(typing_extensions.TypedDict, total=False):
     projectId: str
     repoName: str
+
+@typing.type_check_only
+class ProvenanceBuilder(typing_extensions.TypedDict, total=False):
+    builderDependencies: _list[ResourceDescriptor]
+    id: str
+    version: dict[str, typing.Any]
 
 @typing.type_check_only
 class Recipe(typing_extensions.TypedDict, total=False):
@@ -513,6 +566,49 @@ class RepoId(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class ResourceDescriptor(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    content: str
+    digest: dict[str, typing.Any]
+    downloadLocation: str
+    mediaType: str
+    name: str
+    uri: str
+
+@typing.type_check_only
+class RunDetails(typing_extensions.TypedDict, total=False):
+    builder: ProvenanceBuilder
+    byproducts: _list[ResourceDescriptor]
+    metadata: BuildMetadata
+
+@typing.type_check_only
+class SBOMReferenceOccurrence(typing_extensions.TypedDict, total=False):
+    payload: SbomReferenceIntotoPayload
+    payloadType: str
+    signatures: _list[EnvelopeSignature]
+
+@typing.type_check_only
+class SBOMStatus(typing_extensions.TypedDict, total=False):
+    error: str
+    sbomState: typing_extensions.Literal[
+        "SBOM_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
+    ]
+
+@typing.type_check_only
+class SbomReferenceIntotoPayload(typing_extensions.TypedDict, total=False):
+    _type: str
+    predicate: SbomReferenceIntotoPredicate
+    predicateType: str
+    subject: _list[Subject]
+
+@typing.type_check_only
+class SbomReferenceIntotoPredicate(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    location: str
+    mimeType: str
+    referrerId: str
+
+@typing.type_check_only
 class Signature(typing_extensions.TypedDict, total=False):
     publicKeyId: str
     signature: str
@@ -541,6 +637,11 @@ class SlsaProvenance(typing_extensions.TypedDict, total=False):
     materials: _list[Material]
     metadata: SlsaMetadata
     recipe: SlsaRecipe
+
+@typing.type_check_only
+class SlsaProvenanceV1(typing_extensions.TypedDict, total=False):
+    buildDefinition: BuildDefinition
+    runDetails: RunDetails
 
 @typing.type_check_only
 class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
@@ -620,6 +721,7 @@ class VexAssessment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "AFFECTED", "NOT_AFFECTED", "FIXED", "UNDER_INVESTIGATION"
     ]
+    vulnerabilityId: str
 
 @typing.type_check_only
 class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):

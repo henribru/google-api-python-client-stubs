@@ -622,6 +622,30 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class DocumentsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -732,6 +756,7 @@ class ApigeeRegistryResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def apis(self) -> ApisResource: ...
             def artifacts(self) -> ArtifactsResource: ...
+            def documents(self) -> DocumentsResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
             def runtime(self) -> RuntimeResource: ...

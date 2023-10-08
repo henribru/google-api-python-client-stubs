@@ -21,6 +21,27 @@ class GoogleCloudChannelV1AssociationInfo(typing_extensions.TypedDict, total=Fal
     baseEntitlement: str
 
 @typing.type_check_only
+class GoogleCloudChannelV1BillableSku(typing_extensions.TypedDict, total=False):
+    service: str
+    serviceDisplayName: str
+    sku: str
+    skuDisplayName: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1BillingAccount(typing_extensions.TypedDict, total=False):
+    createTime: str
+    currencyCode: str
+    displayName: str
+    name: str
+    regionCode: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1BillingAccountPurchaseInfo(
+    typing_extensions.TypedDict, total=False
+):
+    billingAccount: GoogleCloudChannelV1BillingAccount
+
+@typing.type_check_only
 class GoogleCloudChannelV1CancelEntitlementRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -28,6 +49,7 @@ class GoogleCloudChannelV1CancelEntitlementRequest(
 
 @typing.type_check_only
 class GoogleCloudChannelV1ChangeOfferRequest(typing_extensions.TypedDict, total=False):
+    billingAccount: str
     offer: str
     parameters: _list[GoogleCloudChannelV1Parameter]
     purchaseOrderId: str
@@ -219,6 +241,7 @@ class GoogleCloudChannelV1EduData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudChannelV1Entitlement(typing_extensions.TypedDict, total=False):
     associationInfo: GoogleCloudChannelV1AssociationInfo
+    billingAccount: str
     commitmentSettings: GoogleCloudChannelV1CommitmentSettings
     createTime: str
     name: str
@@ -313,6 +336,7 @@ class GoogleCloudChannelV1FetchReportResultsRequest(
 ):
     pageSize: int
     pageToken: str
+    partitionKeys: _list[str]
 
 @typing.type_check_only
 class GoogleCloudChannelV1FetchReportResultsResponse(
@@ -409,6 +433,20 @@ class GoogleCloudChannelV1ListReportsResponse(typing_extensions.TypedDict, total
     reports: _list[GoogleCloudChannelV1Report]
 
 @typing.type_check_only
+class GoogleCloudChannelV1ListSkuGroupBillableSkusResponse(
+    typing_extensions.TypedDict, total=False
+):
+    billableSkus: _list[GoogleCloudChannelV1BillableSku]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListSkuGroupsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    skuGroups: _list[GoogleCloudChannelV1SkuGroup]
+
+@typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     skus: _list[GoogleCloudChannelV1Sku]
@@ -425,6 +463,7 @@ class GoogleCloudChannelV1ListSubscribersResponse(
 class GoogleCloudChannelV1ListTransferableOffersRequest(
     typing_extensions.TypedDict, total=False
 ):
+    billingAccount: str
     cloudIdentityId: str
     customerName: str
     languageCode: str
@@ -513,7 +552,7 @@ class GoogleCloudChannelV1ParameterDefinition(typing_extensions.TypedDict, total
     name: str
     optional: bool
     parameterType: typing_extensions.Literal[
-        "PARAMETER_TYPE_UNSPECIFIED", "INT64", "STRING", "DOUBLE"
+        "PARAMETER_TYPE_UNSPECIFIED", "INT64", "STRING", "DOUBLE", "BOOLEAN"
     ]
 
 @typing.type_check_only
@@ -607,6 +646,12 @@ class GoogleCloudChannelV1PurchasableSku(typing_extensions.TypedDict, total=Fals
     sku: GoogleCloudChannelV1Sku
 
 @typing.type_check_only
+class GoogleCloudChannelV1QueryEligibleBillingAccountsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    skuPurchaseGroups: _list[GoogleCloudChannelV1SkuPurchaseGroup]
+
+@typing.type_check_only
 class GoogleCloudChannelV1RegisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -697,6 +742,7 @@ class GoogleCloudChannelV1RepricingConfigEntitlementGranularity(
 
 @typing.type_check_only
 class GoogleCloudChannelV1Row(typing_extensions.TypedDict, total=False):
+    partitionKey: str
     values: _list[GoogleCloudChannelV1ReportValue]
 
 @typing.type_check_only
@@ -719,8 +765,18 @@ class GoogleCloudChannelV1Sku(typing_extensions.TypedDict, total=False):
     product: GoogleCloudChannelV1Product
 
 @typing.type_check_only
+class GoogleCloudChannelV1SkuGroup(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudChannelV1SkuGroupCondition(typing_extensions.TypedDict, total=False):
     skuGroup: str
+
+@typing.type_check_only
+class GoogleCloudChannelV1SkuPurchaseGroup(typing_extensions.TypedDict, total=False):
+    billingAccountPurchaseInfos: _list[GoogleCloudChannelV1BillingAccountPurchaseInfo]
+    skus: _list[str]
 
 @typing.type_check_only
 class GoogleCloudChannelV1StartPaidServiceRequest(
@@ -747,6 +803,7 @@ class GoogleCloudChannelV1TransferEligibility(typing_extensions.TypedDict, total
         "PENDING_TOS_ACCEPTANCE",
         "SKU_NOT_ELIGIBLE",
         "SKU_SUSPENDED",
+        "CHANNEL_PARTNER_NOT_AUTHORIZED_FOR_SKU",
     ]
     isEligible: bool
 
@@ -868,6 +925,7 @@ class GoogleCloudChannelV1alpha1DateRange(typing_extensions.TypedDict, total=Fal
 class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=False):
     assignedUnits: int
     associationInfo: GoogleCloudChannelV1alpha1AssociationInfo
+    billingAccount: str
     channelPartnerId: str
     commitmentSettings: GoogleCloudChannelV1alpha1CommitmentSettings
     createTime: str

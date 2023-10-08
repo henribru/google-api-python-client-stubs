@@ -191,6 +191,14 @@ class DatalineageResource(googleapiclient.discovery.Resource):
                 GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponseHttpRequest
                 | None
             ): ...
+            def processOpenLineageRunEvent(
+                self,
+                *,
+                parent: str,
+                body: dict[str, typing.Any] = ...,
+                requestId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponseHttpRequest: ...
             def searchLinks(
                 self,
                 *,
@@ -283,6 +291,16 @@ class GoogleCloudDatacatalogLineageV1ProcessHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudDatacatalogLineageV1Process: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogLineageV1RunHttpRequest(googleapiclient.http.HttpRequest):

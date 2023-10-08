@@ -573,6 +573,7 @@ class Conversion(typing_extensions.TypedDict, total=False):
     quantity: str
     timestampMicros: str
     treatmentForUnderage: bool
+    userIdentifiers: _list[UserIdentifier]
     value: float
 
 @typing.type_check_only
@@ -1464,7 +1465,7 @@ class FloodlightConfiguration(typing_extensions.TypedDict, total=False):
     analyticsDataSharingEnabled: bool
     customViewabilityMetric: CustomViewabilityMetric
     exposureToConversionEnabled: bool
-    firstDayOfWeek: typing_extensions.Literal["MONDAY", "SUNDAY"]
+    firstDayOfWeek: typing_extensions.Literal["SUNDAY", "MONDAY"]
     id: str
     idDimensionValue: DimensionValue
     inAppAttributionTrackingEnabled: bool
@@ -1789,6 +1790,16 @@ class ObjectFilter(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal["NONE", "ASSIGNED", "ALL"]
 
 @typing.type_check_only
+class OfflineUserAddressInfo(typing_extensions.TypedDict, total=False):
+    city: str
+    countryCode: str
+    hashedFirstName: str
+    hashedLastName: str
+    hashedStreetAddress: str
+    postalCode: str
+    state: str
+
+@typing.type_check_only
 class OffsetPosition(typing_extensions.TypedDict, total=False):
     left: int
     top: int
@@ -1865,34 +1876,6 @@ class OrderContact(typing_extensions.TypedDict, total=False):
         "PLANNING_ORDER_CONTACT_SELLER_CONTACT",
     ]
     signatureUserProfileId: str
-
-@typing.type_check_only
-class OrderDocument(typing_extensions.TypedDict, total=False):
-    accountId: str
-    advertiserId: str
-    amendedOrderDocumentId: str
-    approvedByUserProfileIds: _list[str]
-    cancelled: bool
-    createdInfo: LastModifiedInfo
-    effectiveDate: str
-    id: str
-    kind: str
-    lastSentRecipients: _list[str]
-    lastSentTime: str
-    orderId: str
-    projectId: str
-    signed: bool
-    subaccountId: str
-    title: str
-    type: typing_extensions.Literal[
-        "PLANNING_ORDER_TYPE_INSERTION_ORDER", "PLANNING_ORDER_TYPE_CHANGE_ORDER"
-    ]
-
-@typing.type_check_only
-class OrderDocumentsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    orderDocuments: _list[OrderDocument]
 
 @typing.type_check_only
 class OrdersListResponse(typing_extensions.TypedDict, total=False):
@@ -2721,6 +2704,12 @@ class UserDefinedVariableConfiguration(typing_extensions.TypedDict, total=False)
         "U99",
         "U100",
     ]
+
+@typing.type_check_only
+class UserIdentifier(typing_extensions.TypedDict, total=False):
+    addressInfo: OfflineUserAddressInfo
+    hashedEmail: str
+    hashedPhoneNumber: str
 
 @typing.type_check_only
 class UserProfile(typing_extensions.TypedDict, total=False):

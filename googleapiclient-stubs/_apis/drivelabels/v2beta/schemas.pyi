@@ -471,7 +471,9 @@ class GoogleAppsDriveLabelsV2betaLabel(typing_extensions.TypedDict, total=False)
     displayHints: GoogleAppsDriveLabelsV2betaLabelDisplayHints
     fields: _list[GoogleAppsDriveLabelsV2betaField]
     id: str
-    labelType: typing_extensions.Literal["LABEL_TYPE_UNSPECIFIED", "SHARED", "ADMIN"]
+    labelType: typing_extensions.Literal[
+        "LABEL_TYPE_UNSPECIFIED", "SHARED", "ADMIN", "GOOGLE_APP"
+    ]
     learnMoreUri: str
     lifecycle: GoogleAppsDriveLabelsV2betaLifecycle
     lockStatus: GoogleAppsDriveLabelsV2betaLockStatus

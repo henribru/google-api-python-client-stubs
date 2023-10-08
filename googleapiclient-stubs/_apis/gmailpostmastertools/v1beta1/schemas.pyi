@@ -71,3 +71,5 @@ class TrafficStats(typing_extensions.TypedDict, total=False):
     spammyFeedbackLoops: _list[FeedbackLoop]
     spfSuccessRatio: float
     userReportedSpamRatio: float
+    userReportedSpamRatioLowerBound: float
+    userReportedSpamRatioUpperBound: float

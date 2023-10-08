@@ -24,9 +24,19 @@ class CreatePhraseSetRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomClass(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     customClassId: str
+    deleteTime: str
+    displayName: str
+    etag: str
+    expireTime: str
     items: _list[ClassItem]
+    kmsKeyName: str
+    kmsKeyVersionName: str
     name: str
+    reconciling: bool
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    uid: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -90,9 +100,19 @@ class Phrase(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PhraseSet(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     boost: float
+    deleteTime: str
+    displayName: str
+    etag: str
+    expireTime: str
+    kmsKeyName: str
+    kmsKeyVersionName: str
     name: str
     phrases: _list[Phrase]
+    reconciling: bool
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    uid: str
 
 @typing.type_check_only
 class RecognitionAudio(typing_extensions.TypedDict, total=False):

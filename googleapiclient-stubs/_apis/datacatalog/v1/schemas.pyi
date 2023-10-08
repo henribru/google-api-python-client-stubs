@@ -205,6 +205,7 @@ class GoogleCloudDatacatalogV1DataplexExternalTable(
         "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
+        "VERTEX_AI",
     ]
 
 @typing.type_check_only
@@ -229,6 +230,10 @@ class GoogleCloudDatacatalogV1DataplexTableSpec(
     userManaged: bool
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1DatasetSpec(typing_extensions.TypedDict, total=False):
+    vertexDatasetSpec: GoogleCloudDatacatalogV1VertexDatasetSpec
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1DumpItem(typing_extensions.TypedDict, total=False):
     taggedEntry: GoogleCloudDatacatalogV1TaggedEntry
 
@@ -241,6 +246,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     dataSource: GoogleCloudDatacatalogV1DataSource
     dataSourceConnectionSpec: GoogleCloudDatacatalogV1DataSourceConnectionSpec
     databaseTableSpec: GoogleCloudDatacatalogV1DatabaseTableSpec
+    datasetSpec: GoogleCloudDatacatalogV1DatasetSpec
     description: str
     displayName: str
     filesetSpec: GoogleCloudDatacatalogV1FilesetSpec
@@ -256,10 +262,12 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
+        "VERTEX_AI",
     ]
     labels: dict[str, typing.Any]
     linkedResource: str
     lookerSystemSpec: GoogleCloudDatacatalogV1LookerSystemSpec
+    modelSpec: GoogleCloudDatacatalogV1ModelSpec
     name: str
     personalDetails: GoogleCloudDatacatalogV1PersonalDetails
     routineSpec: GoogleCloudDatacatalogV1RoutineSpec
@@ -363,6 +371,7 @@ class GoogleCloudDatacatalogV1ImportEntriesRequest(
     typing_extensions.TypedDict, total=False
 ):
     gcsBucketPath: str
+    jobId: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ImportEntriesResponse(
@@ -433,6 +442,10 @@ class GoogleCloudDatacatalogV1LookerSystemSpec(
     parentModelId: str
     parentViewDisplayName: str
     parentViewId: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ModelSpec(typing_extensions.TypedDict, total=False):
+    vertexModelSpec: GoogleCloudDatacatalogV1VertexModelSpec
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ModifyEntryContactsRequest(
@@ -574,6 +587,7 @@ class GoogleCloudDatacatalogV1Schema(typing_extensions.TypedDict, total=False):
 class GoogleCloudDatacatalogV1SearchCatalogRequest(
     typing_extensions.TypedDict, total=False
 ):
+    adminSearch: bool
     orderBy: str
     pageSize: int
     pageToken: str
@@ -597,6 +611,7 @@ class GoogleCloudDatacatalogV1SearchCatalogResponse(
 ):
     nextPageToken: str
     results: _list[GoogleCloudDatacatalogV1SearchCatalogResult]
+    totalSize: int
     unreachable: _list[str]
 
 @typing.type_check_only
@@ -616,6 +631,7 @@ class GoogleCloudDatacatalogV1SearchCatalogResult(
         "CLOUD_BIGTABLE",
         "CLOUD_SQL",
         "LOOKER",
+        "VERTEX_AI",
     ]
     linkedResource: str
     modifyTime: str
@@ -776,6 +792,44 @@ class GoogleCloudDatacatalogV1UsageStats(typing_extensions.TypedDict, total=Fals
     totalCompletions: float
     totalExecutionTimeForCompletionsMillis: float
     totalFailures: float
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1VertexDatasetSpec(
+    typing_extensions.TypedDict, total=False
+):
+    dataItemCount: str
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "TABLE",
+        "IMAGE",
+        "TEXT",
+        "VIDEO",
+        "CONVERSATION",
+        "TIME_SERIES",
+        "DOCUMENT",
+        "TEXT_TO_SPEECH",
+        "TRANSLATION",
+        "STORE_VISION",
+        "ENTERPRISE_KNOWLEDGE_GRAPH",
+        "TEXT_PROMPT",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1VertexModelSourceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    copy: bool
+    sourceType: typing_extensions.Literal[
+        "MODEL_SOURCE_TYPE_UNSPECIFIED", "AUTOML", "CUSTOM", "BQML", "MODEL_GARDEN"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1VertexModelSpec(typing_extensions.TypedDict, total=False):
+    containerImageUri: str
+    versionAliases: _list[str]
+    versionDescription: str
+    versionId: str
+    vertexModelSourceInfo: GoogleCloudDatacatalogV1VertexModelSourceInfo
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ViewSpec(typing_extensions.TypedDict, total=False):

@@ -15,6 +15,12 @@ class SasPortalChannelWithScore(typing_extensions.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
+class SasPortalCheckHasProvisionedDeploymentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    hasProvisionedDeployment: bool
+
+@typing.type_check_only
 class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
     encodedDevice: str
     installerId: str
@@ -31,6 +37,11 @@ class SasPortalDeployment(typing_extensions.TypedDict, total=False):
     frns: _list[str]
     name: str
     sasUserIds: _list[str]
+
+@typing.type_check_only
+class SasPortalDeploymentAssociation(typing_extensions.TypedDict, total=False):
+    gcpProjectId: str
+    userId: str
 
 @typing.type_check_only
 class SasPortalDevice(typing_extensions.TypedDict, total=False):
@@ -183,6 +194,24 @@ class SasPortalListNodesResponse(typing_extensions.TypedDict, total=False):
     nodes: _list[SasPortalNode]
 
 @typing.type_check_only
+class SasPortalMigrateOrganizationMetadata(typing_extensions.TypedDict, total=False):
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "OPERATION_STATE_PENDING",
+        "OPERATION_STATE_RUNNING",
+        "OPERATION_STATE_SUCCEEDED",
+        "OPERATION_STATE_FAILED",
+    ]
+
+@typing.type_check_only
+class SasPortalMigrateOrganizationRequest(typing_extensions.TypedDict, total=False):
+    organizationId: str
+
+@typing.type_check_only
+class SasPortalMigrateOrganizationResponse(typing_extensions.TypedDict, total=False):
+    deploymentAssociation: _list[SasPortalDeploymentAssociation]
+
+@typing.type_check_only
 class SasPortalMoveDeploymentRequest(typing_extensions.TypedDict, total=False):
     destination: str
 
@@ -225,6 +254,7 @@ class SasPortalPolicy(typing_extensions.TypedDict, total=False):
 class SasPortalProvisionDeploymentRequest(typing_extensions.TypedDict, total=False):
     newDeploymentDisplayName: str
     newOrganizationDisplayName: str
+    organizationId: str
 
 @typing.type_check_only
 class SasPortalProvisionDeploymentResponse(typing_extensions.TypedDict, total=False):
@@ -235,6 +265,16 @@ class SasPortalSetPolicyRequest(typing_extensions.TypedDict, total=False):
     disableNotification: bool
     policy: SasPortalPolicy
     resource: str
+
+@typing.type_check_only
+class SasPortalSetupSasAnalyticsMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SasPortalSetupSasAnalyticsRequest(typing_extensions.TypedDict, total=False):
+    userId: str
+
+@typing.type_check_only
+class SasPortalSetupSasAnalyticsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SasPortalSignDeviceRequest(typing_extensions.TypedDict, total=False):

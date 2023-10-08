@@ -7,7 +7,9 @@ _list = list
 @typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
     alias: str
+    avg: Avg
     count: Count
+    sum: Sum
 
 @typing.type_check_only
 class AggregationResult(typing_extensions.TypedDict, total=False):
@@ -16,6 +18,10 @@ class AggregationResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ArrayValue(typing_extensions.TypedDict, total=False):
     values: _list[Value]
+
+@typing.type_check_only
+class Avg(typing_extensions.TypedDict, total=False):
+    field: FieldReference
 
 @typing.type_check_only
 class BatchGetDocumentsRequest(typing_extensions.TypedDict, total=False):
@@ -49,6 +55,16 @@ class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BeginTransactionResponse(typing_extensions.TypedDict, total=False):
     transaction: str
+
+@typing.type_check_only
+class BitSequence(typing_extensions.TypedDict, total=False):
+    bitmap: str
+    padding: int
+
+@typing.type_check_only
+class BloomFilter(typing_extensions.TypedDict, total=False):
+    bits: BitSequence
+    hashCount: int
 
 @typing.type_check_only
 class CollectionSelector(typing_extensions.TypedDict, total=False):
@@ -124,6 +140,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class ExistenceFilter(typing_extensions.TypedDict, total=False):
     count: int
     targetId: int
+    unchangedNames: BloomFilter
 
 @typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
@@ -166,6 +183,37 @@ class Filter(typing_extensions.TypedDict, total=False):
     unaryFilter: UnaryFilter
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1Backup(typing_extensions.TypedDict, total=False):
+    database: str
+    databaseUid: str
+    expireTime: str
+    name: str
+    snapshotTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "NOT_AVAILABLE"
+    ]
+    stats: GoogleFirestoreAdminV1Stats
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1BackupSchedule(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dailyRecurrence: GoogleFirestoreAdminV1DailyRecurrence
+    name: str
+    retention: str
+    updateTime: str
+    weeklyRecurrence: GoogleFirestoreAdminV1WeeklyRecurrence
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1CreateDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DailyRecurrence(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     appEngineIntegrationMode: typing_extensions.Literal[
         "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED", "ENABLED", "DISABLED"
@@ -182,15 +230,27 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "DELETE_PROTECTION_DISABLED",
         "DELETE_PROTECTION_ENABLED",
     ]
+    earliestVersionTime: str
     etag: str
     keyPrefix: str
     locationId: str
     name: str
+    pointInTimeRecoveryEnablement: typing_extensions.Literal[
+        "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
+        "POINT_IN_TIME_RECOVERY_ENABLED",
+        "POINT_IN_TIME_RECOVERY_DISABLED",
+    ]
     type: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
     ]
     uid: str
     updateTime: str
+    versionRetentionPeriod: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsMetadata(
@@ -212,6 +272,7 @@ class GoogleFirestoreAdminV1ExportDocumentsMetadata(
     outputUriPrefix: str
     progressBytes: GoogleFirestoreAdminV1Progress
     progressDocuments: GoogleFirestoreAdminV1Progress
+    snapshotTime: str
     startTime: str
 
 @typing.type_check_only
@@ -221,6 +282,7 @@ class GoogleFirestoreAdminV1ExportDocumentsRequest(
     collectionIds: _list[str]
     namespaceIds: _list[str]
     outputUriPrefix: str
+    snapshotTime: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsResponse(
@@ -340,6 +402,19 @@ class GoogleFirestoreAdminV1IndexOperationMetadata(
     ]
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1ListBackupSchedulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    backupSchedules: _list[GoogleFirestoreAdminV1BackupSchedule]
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListBackupsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    backups: _list[GoogleFirestoreAdminV1Backup]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1ListDatabasesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -370,6 +445,39 @@ class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
     estimatedWork: str
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backup: str
+    database: str
+    endTime: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressPercentage: GoogleFirestoreAdminV1Progress
+    startTime: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1RestoreDatabaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    backup: str
+    databaseId: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1Stats(typing_extensions.TypedDict, total=False):
+    documentCount: str
+    indexCount: str
+    sizeBytes: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1TtlConfig(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "NEEDS_REPAIR"
@@ -383,6 +491,19 @@ class GoogleFirestoreAdminV1TtlConfigDelta(typing_extensions.TypedDict, total=Fa
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1WeeklyRecurrence(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -558,8 +679,13 @@ AlternativeStructuredQuery = typing_extensions.TypedDict(
 class StructuredQuery(AlternativeStructuredQuery): ...
 
 @typing.type_check_only
+class Sum(typing_extensions.TypedDict, total=False):
+    field: FieldReference
+
+@typing.type_check_only
 class Target(typing_extensions.TypedDict, total=False):
     documents: DocumentsTarget
+    expectedCount: int
     once: bool
     query: QueryTarget
     readTime: str

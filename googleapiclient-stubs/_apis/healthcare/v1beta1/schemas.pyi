@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessDeterminationLogConfig(typing_extensions.TypedDict, total=False):
+    logLevel: typing_extensions.Literal[
+        "LOG_LEVEL_UNSPECIFIED", "DISABLED", "MINIMUM", "VERBOSE"
+    ]
+
+@typing.type_check_only
 class Action(typing_extensions.TypedDict, total=False):
     cleanImageTag: ImageConfig
     cleanTextTag: CleanTextTag
@@ -23,7 +29,14 @@ class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
     ttl: str
 
 @typing.type_check_only
+class AdminConsents(typing_extensions.TypedDict, total=False):
+    names: _list[str]
+
+@typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
+    alternativeOutputFormat: typing_extensions.Literal[
+        "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED", "FHIR_BUNDLE"
+    ]
     documentContent: str
     licensedVocabularies: _list[str]
 
@@ -31,6 +44,7 @@ class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
 class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
     entities: _list[Entity]
     entityMentions: _list[EntityMention]
+    fhirBundle: str
     relationships: _list[EntityMentionRelationship]
 
 @typing.type_check_only
@@ -55,6 +69,30 @@ class AnnotationSource(typing_extensions.TypedDict, total=False):
 class AnnotationStore(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class ApplyAdminConsentsRequest(typing_extensions.TypedDict, total=False):
+    newConsentsList: AdminConsents
+    validateOnly: bool
+
+@typing.type_check_only
+class ApplyAdminConsentsResponse(typing_extensions.TypedDict, total=False):
+    affectedResources: str
+    consentApplySuccess: str
+    failedResources: str
+
+@typing.type_check_only
+class ApplyConsentsRequest(typing_extensions.TypedDict, total=False):
+    patientScope: PatientScope
+    timeRange: TimeRange
+    validateOnly: bool
+
+@typing.type_check_only
+class ApplyConsentsResponse(typing_extensions.TypedDict, total=False):
+    affectedResources: str
+    consentApplyFailure: str
+    consentApplySuccess: str
+    failedResources: str
 
 @typing.type_check_only
 class ArchiveUserDataMappingRequest(typing_extensions.TypedDict, total=False): ...
@@ -172,6 +210,14 @@ class ConsentArtifact(typing_extensions.TypedDict, total=False):
     witnessSignature: Signature
 
 @typing.type_check_only
+class ConsentConfig(typing_extensions.TypedDict, total=False):
+    accessDeterminationLogConfig: AccessDeterminationLogConfig
+    accessEnforced: bool
+    consentHeaderHandling: ConsentHeaderHandling
+    enforcedAdminConsents: _list[str]
+    version: typing_extensions.Literal["CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED", "V1"]
+
+@typing.type_check_only
 class ConsentEvaluation(typing_extensions.TypedDict, total=False):
     evaluationResult: typing_extensions.Literal[
         "EVALUATION_RESULT_UNSPECIFIED",
@@ -179,6 +225,12 @@ class ConsentEvaluation(typing_extensions.TypedDict, total=False):
         "NO_MATCHING_POLICY",
         "NO_SATISFIED_POLICY",
         "HAS_SATISFIED_POLICY",
+    ]
+
+@typing.type_check_only
+class ConsentHeaderHandling(typing_extensions.TypedDict, total=False):
+    profile: typing_extensions.Literal[
+        "SCOPE_PROFILE_UNSPECIFIED", "PERMIT_EMPTY_SCOPE", "REQUIRED_ON_READ"
     ]
 
 @typing.type_check_only
@@ -235,6 +287,7 @@ class DeidentifyConfig(typing_extensions.TypedDict, total=False):
     image: ImageConfig
     operationMetadata: DeidentifyOperationMetadata
     text: TextConfig
+    useRegionalDataProcessing: bool
 
 @typing.type_check_only
 class DeidentifyDatasetRequest(typing_extensions.TypedDict, total=False):
@@ -318,6 +371,7 @@ class Entity(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EntityMention(typing_extensions.TypedDict, total=False):
+    additionalInfo: _list[Feature]
     certaintyAssessment: Feature
     confidence: float
     linkedEntities: _list[LinkedEntity]
@@ -381,7 +435,9 @@ class ExportDicomDataResponse(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
     endTime: str
+    filter: str
     gcsDestination: GcsDestination
+    pubsubDestination: PubsubDestination
     startTime: str
 
 @typing.type_check_only
@@ -427,6 +483,7 @@ class FhirFilter(typing_extensions.TypedDict, total=False):
 class FhirNotificationConfig(typing_extensions.TypedDict, total=False):
     pubsubTopic: str
     sendFullResource: bool
+    sendPreviousResourceOnDelete: bool
 
 @typing.type_check_only
 class FhirOutput(typing_extensions.TypedDict, total=False):
@@ -437,6 +494,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     complexDataTypeReferenceParsing: typing_extensions.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
+    consentConfig: ConsentConfig
     defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
@@ -910,6 +968,10 @@ class PatientId(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class PatientScope(typing_extensions.TypedDict, total=False):
+    patientIds: _list[str]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -920,7 +982,13 @@ class Policy(typing_extensions.TypedDict, total=False):
 class ProgressCounter(typing_extensions.TypedDict, total=False):
     failure: str
     pending: str
+    secondaryFailure: str
+    secondarySuccess: str
     success: str
+
+@typing.type_check_only
+class PubsubDestination(typing_extensions.TypedDict, total=False):
+    pubsubTopic: str
 
 @typing.type_check_only
 class QueryAccessibleDataRequest(typing_extensions.TypedDict, total=False):
@@ -1091,6 +1159,11 @@ class TimePartitioning(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"
     ]
+
+@typing.type_check_only
+class TimeRange(typing_extensions.TypedDict, total=False):
+    end: str
+    start: str
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

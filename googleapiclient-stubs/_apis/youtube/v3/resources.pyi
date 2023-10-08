@@ -65,6 +65,16 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             tlang: str = ...,
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def download_media(
+            self,
+            *,
+            id: str,
+            onBehalfOf: str = ...,
+            onBehalfOfContentOwner: str = ...,
+            tfmt: str = ...,
+            tlang: str = ...,
+            **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def insert(
             self,
             *,
@@ -632,6 +642,9 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             ] = ...,
             videoLicense: typing_extensions.Literal[
                 "any", "youtube", "creativeCommon"
+            ] = ...,
+            videoPaidProductPlacement: typing_extensions.Literal[
+                "videoPaidProductPlacementUnspecified", "any", "true"
             ] = ...,
             videoSyndicated: typing_extensions.Literal[
                 "videoSyndicatedUnspecified", "any", "true"
@@ -1275,3 +1288,11 @@ class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> VideoListResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

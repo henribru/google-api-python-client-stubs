@@ -112,6 +112,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: AttachTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def checkMigrationPermission(
+                        self,
+                        *,
+                        domain: str,
+                        body: CheckMigrationPermissionRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> CheckMigrationPermissionResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -130,6 +137,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: DetachTrustRequest = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def disableMigration(
+                        self,
+                        *,
+                        domain: str,
+                        body: DisableMigrationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def domainJoinMachine(
                         self,
                         *,
@@ -137,6 +151,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         body: DomainJoinMachineRequest = ...,
                         **kwargs: typing.Any
                     ) -> DomainJoinMachineResponseHttpRequest: ...
+                    def enableMigration(
+                        self,
+                        *,
+                        domain: str,
+                        body: EnableMigrationRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def extendSchema(
                         self,
                         *,
@@ -370,6 +391,14 @@ class BackupHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Backup: ...
+
+@typing.type_check_only
+class CheckMigrationPermissionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CheckMigrationPermissionResponse: ...
 
 @typing.type_check_only
 class DomainHttpRequest(googleapiclient.http.HttpRequest):

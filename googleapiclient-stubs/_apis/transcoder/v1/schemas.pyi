@@ -9,6 +9,9 @@ class AdBreak(typing_extensions.TypedDict, total=False):
     startTimeOffset: str
 
 @typing.type_check_only
+class Aes128Encryption(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Animation(typing_extensions.TypedDict, total=False):
     animationEnd: AnimationEnd
     animationFade: AnimationFade
@@ -63,6 +66,9 @@ class BwdifConfig(typing_extensions.TypedDict, total=False):
     parity: str
 
 @typing.type_check_only
+class Clearkey(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     brightness: float
     contrast: float
@@ -74,6 +80,14 @@ class Crop(typing_extensions.TypedDict, total=False):
     leftPixels: int
     rightPixels: int
     topPixels: int
+
+@typing.type_check_only
+class DashConfig(typing_extensions.TypedDict, total=False):
+    segmentReferenceScheme: typing_extensions.Literal[
+        "SEGMENT_REFERENCE_SCHEME_UNSPECIFIED",
+        "SEGMENT_LIST",
+        "SEGMENT_TEMPLATE_NUMBER",
+    ]
 
 @typing.type_check_only
 class Deblock(typing_extensions.TypedDict, total=False):
@@ -91,6 +105,13 @@ class Denoise(typing_extensions.TypedDict, total=False):
     tune: str
 
 @typing.type_check_only
+class DrmSystems(typing_extensions.TypedDict, total=False):
+    clearkey: Clearkey
+    fairplay: Fairplay
+    playready: Playready
+    widevine: Widevine
+
+@typing.type_check_only
 class EditAtom(typing_extensions.TypedDict, total=False):
     endTimeOffset: str
     inputs: _list[str]
@@ -106,6 +127,22 @@ class ElementaryStream(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Encryption(typing_extensions.TypedDict, total=False):
+    aes128: Aes128Encryption
+    drmSystems: DrmSystems
+    id: str
+    mpegCenc: MpegCommonEncryption
+    sampleAes: SampleAesEncryption
+    secretManagerKeySource: SecretManagerSource
+
+@typing.type_check_only
+class Fairplay(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Fmp4Config(typing_extensions.TypedDict, total=False):
+    codecTag: str
 
 @typing.type_check_only
 class H264CodecSettings(typing_extensions.TypedDict, total=False):
@@ -166,6 +203,7 @@ class Input(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
+    batchModePriority: int
     config: JobConfig
     createTime: str
     endTime: str
@@ -178,6 +216,9 @@ class Job(typing_extensions.TypedDict, total=False):
         "PROCESSING_MODE_BATCH",
     ]
     name: str
+    optimization: typing_extensions.Literal[
+        "OPTIMIZATION_STRATEGY_UNSPECIFIED", "AUTODETECT", "DISABLED"
+    ]
     outputUri: str
     startTime: str
     state: typing_extensions.Literal[
@@ -191,6 +232,7 @@ class JobConfig(typing_extensions.TypedDict, total=False):
     adBreaks: _list[AdBreak]
     editList: _list[EditAtom]
     elementaryStreams: _list[ElementaryStream]
+    encryptions: _list[Encryption]
     inputs: _list[Input]
     manifests: _list[Manifest]
     muxStreams: _list[MuxStream]
@@ -219,15 +261,22 @@ class ListJobsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
+    dash: DashConfig
     fileName: str
     muxStreams: _list[str]
     type: typing_extensions.Literal["MANIFEST_TYPE_UNSPECIFIED", "HLS", "DASH"]
 
 @typing.type_check_only
+class MpegCommonEncryption(typing_extensions.TypedDict, total=False):
+    scheme: str
+
+@typing.type_check_only
 class MuxStream(typing_extensions.TypedDict, total=False):
     container: str
     elementaryStreams: _list[str]
+    encryptionId: str
     fileName: str
+    fmp4: Fmp4Config
     key: str
     segmentSettings: SegmentSettings
 
@@ -253,6 +302,9 @@ class Pad(typing_extensions.TypedDict, total=False):
     topPixels: int
 
 @typing.type_check_only
+class Playready(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PreprocessingConfig(typing_extensions.TypedDict, total=False):
     audio: Audio
     color: Color
@@ -265,6 +317,13 @@ class PreprocessingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PubsubDestination(typing_extensions.TypedDict, total=False):
     topic: str
+
+@typing.type_check_only
+class SampleAesEncryption(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SecretManagerSource(typing_extensions.TypedDict, total=False):
+    secretVersion: str
 
 @typing.type_check_only
 class SegmentSettings(typing_extensions.TypedDict, total=False):
@@ -322,6 +381,9 @@ class Vp9CodecSettings(typing_extensions.TypedDict, total=False):
     profile: str
     rateControlMode: str
     widthPixels: int
+
+@typing.type_check_only
+class Widevine(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class YadifConfig(typing_extensions.TypedDict, total=False):

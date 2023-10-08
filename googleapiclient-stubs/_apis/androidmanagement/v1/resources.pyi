@@ -229,6 +229,12 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def webTokens(self) -> WebTokensResource: ...
 
     @typing.type_check_only
+    class ProvisioningInfoResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> ProvisioningInfoHttpRequest: ...
+
+    @typing.type_check_only
     class SignupUrlsResource(googleapiclient.discovery.Resource):
         def create(
             self, *, callbackUrl: str = ..., projectId: str = ..., **kwargs: typing.Any
@@ -247,6 +253,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def enterprises(self) -> EnterprisesResource: ...
+    def provisioningInfo(self) -> ProvisioningInfoResource: ...
     def signupUrls(self) -> SignupUrlsResource: ...
 
 @typing.type_check_only
@@ -352,6 +359,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class ProvisioningInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ProvisioningInfo: ...
 
 @typing.type_check_only
 class SignupUrlHttpRequest(googleapiclient.http.HttpRequest):

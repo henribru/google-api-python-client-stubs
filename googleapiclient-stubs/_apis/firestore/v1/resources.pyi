@@ -18,6 +18,33 @@ class FirestoreResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DatabasesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class BackupSchedulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirestoreAdminV1BackupSchedule = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1ListBackupSchedulesResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirestoreAdminV1BackupSchedule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
+
+            @typing.type_check_only
             class CollectionGroupsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class FieldsResource(googleapiclient.discovery.Resource):
@@ -287,13 +314,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
-                self,
-                *,
-                name: str,
-                allowMissing: bool = ...,
-                etag: str = ...,
-                validateOnly: bool = ...,
-                **kwargs: typing.Any
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def exportDocuments(
                 self,
@@ -323,12 +344,32 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def restore(
+                self,
+                *,
+                parent: str,
+                body: GoogleFirestoreAdminV1RestoreDatabaseRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def backupSchedules(self) -> BackupSchedulesResource: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BackupsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1BackupHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1ListBackupsResponseHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -346,6 +387,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def backups(self) -> BackupsResource: ...
 
         def databases(self) -> DatabasesResource: ...
         def locations(self) -> LocationsResource: ...
@@ -413,6 +455,22 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1BackupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1Backup: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1BackupScheduleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1BackupSchedule: ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1DatabaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -435,6 +493,26 @@ class GoogleFirestoreAdminV1IndexHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleFirestoreAdminV1Index: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListBackupSchedulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1ListBackupSchedulesResponse: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListBackupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleFirestoreAdminV1ListBackupsResponse: ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest(

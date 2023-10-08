@@ -25,6 +25,10 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED",
         "MISMATCHED_IP_VERSION",
         "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
+        "RESOURCE_CONFIG_NOT_FOUND",
+        "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+        "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
+        "SOURCE_FORWARDING_RULE_UNSUPPORTED",
     ]
     projectsMissingPermission: _list[str]
     resourceUri: str
@@ -151,6 +155,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_GKE_SERVICE",
         "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
         "GOOGLE_MANAGED_SERVICE_NO_PEERING",
+        "GOOGLE_MANAGED_SERVICE_NO_PSC_ENDPOINT",
         "GKE_PSC_ENDPOINT_MISSING",
         "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
         "GKE_CONTROL_PLANE_REGION_MISMATCH",
@@ -165,6 +170,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "PSC_CONNECTION_NOT_ACCEPTED",
         "CLOUD_RUN_REVISION_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
+        "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
     ]
     resourceUri: str
 
@@ -243,6 +249,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "IMPLIED_VPC_FIREWALL_RULE",
         "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
         "NETWORK_FIREWALL_POLICY_RULE",
+        "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
     ]
     networkUri: str
     policy: str
@@ -263,6 +270,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "IMPORTED_CUSTOM_ROUTE_NEXT_HOP",
         "CLOUD_SQL_INSTANCE",
         "ANOTHER_PROJECT",
+        "NCC_HUB",
     ]
 
 @typing.type_check_only
@@ -281,6 +289,16 @@ class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     clusterUri: str
     externalIp: str
     internalIp: str
+
+@typing.type_check_only
+class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
+    googleServiceType: typing_extensions.Literal[
+        "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+        "IAP",
+        "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+        "CLOUD_DNS",
+    ]
+    sourceIp: str
 
 @typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
@@ -422,6 +440,8 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     destPortRanges: _list[str]
     displayName: str
     instanceTags: _list[str]
+    nccHubUri: str
+    nccSpokeUri: str
     networkUri: str
     nextHop: str
     nextHopType: typing_extensions.Literal[
@@ -437,9 +457,13 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_BLACKHOLE",
         "NEXT_HOP_ILB",
         "NEXT_HOP_ROUTER_APPLIANCE",
+        "NEXT_HOP_NCC_HUB",
     ]
     priority: int
     protocols: _list[str]
+    routeScope: typing_extensions.Literal[
+        "ROUTE_SCOPE_UNSPECIFIED", "NETWORK", "NCC_HUB"
+    ]
     routeType: typing_extensions.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
         "SUBNET",
@@ -481,6 +505,7 @@ class Step(typing_extensions.TypedDict, total=False):
     forward: ForwardInfo
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
+    googleService: GoogleServiceInfo
     instance: InstanceInfo
     loadBalancer: LoadBalancerInfo
     network: NetworkInfo
@@ -490,6 +515,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED",
         "START_FROM_INSTANCE",
         "START_FROM_INTERNET",
+        "START_FROM_GOOGLE_SERVICE",
         "START_FROM_PRIVATE_NETWORK",
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",

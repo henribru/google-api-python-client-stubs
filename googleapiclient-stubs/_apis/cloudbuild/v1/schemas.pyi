@@ -87,6 +87,7 @@ class BitbucketServerConfig(typing_extensions.TypedDict, total=False):
     hostUri: str
     name: str
     peeredNetwork: str
+    peeredNetworkIpRange: str
     secrets: BitbucketServerSecrets
     sslCa: str
     username: str
@@ -184,6 +185,7 @@ class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildOptions(typing_extensions.TypedDict, total=False):
+    automapSubstitutions: bool
     defaultLogsBucketBehavior: typing_extensions.Literal[
         "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
     ]
@@ -202,7 +204,12 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
         "NONE",
     ]
     machineType: typing_extensions.Literal[
-        "UNSPECIFIED", "N1_HIGHCPU_8", "N1_HIGHCPU_32", "E2_HIGHCPU_8", "E2_HIGHCPU_32"
+        "UNSPECIFIED",
+        "N1_HIGHCPU_8",
+        "N1_HIGHCPU_32",
+        "E2_HIGHCPU_8",
+        "E2_HIGHCPU_32",
+        "E2_MEDIUM",
     ]
     pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
@@ -217,6 +224,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     allowExitCodes: _list[int]
     allowFailure: bool
     args: _list[str]
+    automapSubstitutions: bool
     dir: str
     entrypoint: str
     env: _list[str]
@@ -291,6 +299,12 @@ class CancelBuildRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ConnectedRepository(typing_extensions.TypedDict, total=False):
+    dir: str
+    repository: str
+    revision: str
 
 @typing.type_check_only
 class CreateBitbucketServerConfigOperationMetadata(
@@ -388,6 +402,7 @@ class GitFileSource(typing_extensions.TypedDict, total=False):
     repoType: typing_extensions.Literal[
         "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
     ]
+    repository: str
     revision: str
     uri: str
 
@@ -481,6 +496,7 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
     repoType: typing_extensions.Literal[
         "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
     ]
+    repository: str
     uri: str
 
 @typing.type_check_only
@@ -715,6 +731,7 @@ class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
+    connectedRepository: ConnectedRepository
     gitSource: GitSource
     repoSource: RepoSource
     storageSource: StorageSource
@@ -723,6 +740,8 @@ class Source(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SourceProvenance(typing_extensions.TypedDict, total=False):
     fileHashes: dict[str, typing.Any]
+    resolvedConnectedRepository: ConnectedRepository
+    resolvedGitSource: GitSource
     resolvedRepoSource: RepoSource
     resolvedStorageSource: StorageSource
     resolvedStorageSourceManifest: StorageSourceManifest

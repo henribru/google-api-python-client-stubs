@@ -7,7 +7,9 @@ _list = list
 @typing.type_check_only
 class Aggregation(typing_extensions.TypedDict, total=False):
     alias: str
+    avg: Avg
     count: Count
+    sum: Sum
 
 @typing.type_check_only
 class AggregationQuery(typing_extensions.TypedDict, total=False):
@@ -42,6 +44,10 @@ class AllocateIdsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ArrayValue(typing_extensions.TypedDict, total=False):
     values: _list[Value]
+
+@typing.type_check_only
+class Avg(typing_extensions.TypedDict, total=False):
+    property: PropertyReference
 
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -541,6 +547,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Sum(typing_extensions.TypedDict, total=False):
+    property: PropertyReference
 
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):

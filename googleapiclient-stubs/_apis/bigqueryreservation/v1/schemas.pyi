@@ -33,6 +33,7 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
         "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
     failureStatus: Status
+    isFlatRate: bool
     multiRegionAuxiliary: bool
     name: str
     plan: typing_extensions.Literal[

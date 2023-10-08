@@ -58,6 +58,7 @@ class AsyncAnnotateFileResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AsyncBatchAnnotateFilesRequest(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[AsyncAnnotateFileRequest]
 
@@ -67,6 +68,7 @@ class AsyncBatchAnnotateFilesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AsyncBatchAnnotateImagesRequest(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
     outputConfig: OutputConfig
     parent: str
     requests: _list[AnnotateImageRequest]
@@ -77,6 +79,7 @@ class AsyncBatchAnnotateImagesResponse(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class BatchAnnotateFilesRequest(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[AnnotateFileRequest]
 
@@ -86,6 +89,7 @@ class BatchAnnotateFilesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchAnnotateImagesRequest(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[AnnotateImageRequest]
 

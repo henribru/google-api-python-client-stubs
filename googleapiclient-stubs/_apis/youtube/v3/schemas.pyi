@@ -1100,6 +1100,15 @@ class Cuepoint(typing_extensions.TypedDict, total=False):
     walltimeMs: str
 
 @typing.type_check_only
+class CuepointSchedule(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    pauseAdsUntil: str
+    repeatIntervalSecs: int
+    scheduleStrategy: typing_extensions.Literal[
+        "scheduleStrategyUnspecified", "concurrent", "nonConcurrent"
+    ]
+
+@typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
     id: str
     typeId: str
@@ -1219,6 +1228,7 @@ class LiveBroadcast(typing_extensions.TypedDict, total=False):
     etag: str
     id: str
     kind: str
+    monetizationDetails: LiveBroadcastMonetizationDetails
     snippet: LiveBroadcastSnippet
     statistics: LiveBroadcastStatistics
     status: LiveBroadcastStatus
@@ -1265,6 +1275,10 @@ class LiveBroadcastListResponse(typing_extensions.TypedDict, total=False):
     prevPageToken: str
     tokenPagination: TokenPagination
     visitorId: str
+
+@typing.type_check_only
+class LiveBroadcastMonetizationDetails(typing_extensions.TypedDict, total=False):
+    cuepointSchedule: CuepointSchedule
 
 @typing.type_check_only
 class LiveBroadcastSnippet(typing_extensions.TypedDict, total=False):

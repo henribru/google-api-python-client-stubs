@@ -34,7 +34,14 @@ class BuildConfig(typing_extensions.TypedDict, total=False):
     runtime: str
     source: Source
     sourceProvenance: SourceProvenance
+    sourceToken: str
     workerPool: str
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
@@ -71,12 +78,14 @@ class Function(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     serviceConfig: ServiceConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "DEPLOYING", "DELETING", "UNKNOWN"
     ]
     stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
     updateTime: str
+    url: str
 
 @typing.type_check_only
 class GenerateDownloadUrlRequest(typing_extensions.TypedDict, total=False): ...
@@ -95,12 +104,17 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
+class GoogleCloudFunctionsV2LocationMetadata(typing_extensions.TypedDict, total=False):
+    environments: _list[str]
+
+@typing.type_check_only
 class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
+    sourceToken: str
     stages: _list[GoogleCloudFunctionsV2Stage]
     statusDetail: str
     target: str
@@ -148,10 +162,30 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
-    stages: _list[Stage]
+    sourceToken: str
+    stages: _list[GoogleCloudFunctionsV2alphaStage]
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudFunctionsV2alphaStage(typing_extensions.TypedDict, total=False):
+    message: str
+    name: typing_extensions.Literal[
+        "NAME_UNSPECIFIED",
+        "ARTIFACT_REGISTRY",
+        "BUILD",
+        "SERVICE",
+        "TRIGGER",
+        "SERVICE_ROLLBACK",
+        "TRIGGER_ROLLBACK",
+    ]
+    resource: str
+    resourceUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
+    ]
+    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total=False):
@@ -176,6 +210,7 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     createTime: str
     endTime: str
     requestResource: dict[str, typing.Any]
+    sourceToken: str
     stages: _list[GoogleCloudFunctionsV2betaStage]
     statusDetail: str
     target: str
@@ -237,10 +272,6 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationMetadata(typing_extensions.TypedDict, total=False):
-    environments: _list[str]
-
-@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -273,13 +304,14 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
     dir: str
-    invertRegex: bool
     projectId: str
     repoName: str
     tagName: str
 
 @typing.type_check_only
 class Runtime(typing_extensions.TypedDict, total=False):
+    decommissionDate: Date
+    deprecationDate: Date
     displayName: str
     environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
     name: str
@@ -352,32 +384,15 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
+    gitUri: str
     repoSource: RepoSource
     storageSource: StorageSource
 
 @typing.type_check_only
 class SourceProvenance(typing_extensions.TypedDict, total=False):
+    gitUri: str
     resolvedRepoSource: RepoSource
     resolvedStorageSource: StorageSource
-
-@typing.type_check_only
-class Stage(typing_extensions.TypedDict, total=False):
-    message: str
-    name: typing_extensions.Literal[
-        "NAME_UNSPECIFIED",
-        "ARTIFACT_REGISTRY",
-        "BUILD",
-        "SERVICE",
-        "TRIGGER",
-        "SERVICE_ROLLBACK",
-        "TRIGGER_ROLLBACK",
-    ]
-    resource: str
-    resourceUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
-    ]
-    stateMessages: _list[GoogleCloudFunctionsV2alphaStateMessage]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

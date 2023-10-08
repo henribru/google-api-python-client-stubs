@@ -159,6 +159,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ProductMetadata(typing_extensions.TypedDict, total=False):
     warningMessages: _list[str]
 

@@ -211,6 +211,13 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def rollbackTarget(
+                    self,
+                    *,
+                    name: str,
+                    body: RollbackTargetRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RollbackTargetResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -537,6 +544,14 @@ class RetryJobResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> RetryJobResponse: ...
+
+@typing.type_check_only
+class RollbackTargetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RollbackTargetResponse: ...
 
 @typing.type_check_only
 class RolloutHttpRequest(googleapiclient.http.HttpRequest):

@@ -95,6 +95,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             body: Bucket = ...,
+            enableObjectRetention: bool = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "private",
@@ -361,6 +362,13 @@ class StorageResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class ObjectsResource(googleapiclient.discovery.Resource):
+        def bulkRestore(
+            self,
+            *,
+            bucket: str,
+            body: BulkRestoreObjectsRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
         def compose(
             self,
             *,
@@ -435,9 +443,25 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectHttpRequest: ...
+        def get_media(
+            self,
+            *,
+            bucket: str,
+            object: str,
+            generation: str = ...,
+            ifGenerationMatch: str = ...,
+            ifGenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            softDeleted: bool = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def getIamPolicy(
             self,
             *,
@@ -483,6 +507,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            softDeleted: bool = ...,
             startOffset: str = ...,
             userProject: str = ...,
             versions: bool = ...,
@@ -502,6 +527,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str = ...,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
+            overrideUnlockedRetention: bool = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -510,6 +536,22 @@ class StorageResource(googleapiclient.discovery.Resource):
                 "projectPrivate",
                 "publicRead",
             ] = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> ObjectHttpRequest: ...
+        def restore(
+            self,
+            *,
+            bucket: str,
+            object: str,
+            body: Object = ...,
+            copySourceAcl: bool = ...,
+            generation: str,
+            ifGenerationMatch: str = ...,
+            ifGenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
             userProject: str = ...,
             **kwargs: typing.Any
@@ -577,6 +619,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifGenerationNotMatch: str = ...,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
+            overrideUnlockedRetention: bool = ...,
             predefinedAcl: typing_extensions.Literal[
                 "authenticatedRead",
                 "bucketOwnerFullControl",
@@ -606,6 +649,29 @@ class StorageResource(googleapiclient.discovery.Resource):
             versions: bool = ...,
             **kwargs: typing.Any
         ) -> ChannelHttpRequest: ...
+
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, bucket: str, operationId: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self, *, bucket: str, operationId: str, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            bucket: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+            previous_response: GoogleLongrunningListOperationsResponse,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -689,6 +755,7 @@ class StorageResource(googleapiclient.discovery.Resource):
     def notifications(self) -> NotificationsResource: ...
     def objectAccessControls(self) -> ObjectAccessControlsResource: ...
     def objects(self) -> ObjectsResource: ...
+    def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -730,6 +797,24 @@ class ChannelHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Channel: ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class HmacKeyHttpRequest(googleapiclient.http.HttpRequest):
@@ -834,3 +919,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

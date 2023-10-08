@@ -304,7 +304,9 @@ class TagKey(typing_extensions.TypedDict, total=False):
     name: str
     namespacedName: str
     parent: str
-    purpose: typing_extensions.Literal["PURPOSE_UNSPECIFIED", "GCE_FIREWALL"]
+    purpose: typing_extensions.Literal[
+        "PURPOSE_UNSPECIFIED", "GCE_FIREWALL", "DATA_GOVERNANCE"
+    ]
     purposeData: dict[str, typing.Any]
     shortName: str
     updateTime: str

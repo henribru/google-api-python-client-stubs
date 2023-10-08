@@ -202,11 +202,18 @@ class DriveResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def emptyTrash(
-            self, *, enforceSingleParent: bool = ..., **kwargs: typing.Any
+            self,
+            *,
+            driveId: str = ...,
+            enforceSingleParent: bool = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def export(
             self, *, fileId: str, mimeType: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
+        def export_media(
+            self, *, fileId: str, mimeType: str, **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def generateIds(
             self,
             *,
@@ -226,6 +233,17 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             **kwargs: typing.Any
         ) -> FileHttpRequest: ...
+        def get_media(
+            self,
+            *,
+            fileId: str,
+            acknowledgeAbuse: bool = ...,
+            includeLabels: str = ...,
+            includePermissionsForView: str = ...,
+            supportsAllDrives: bool = ...,
+            supportsTeamDrives: bool = ...,
+            **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def list(
             self,
             *,
@@ -419,6 +437,14 @@ class DriveResource(googleapiclient.discovery.Resource):
             acknowledgeAbuse: bool = ...,
             **kwargs: typing.Any
         ) -> RevisionHttpRequest: ...
+        def get_media(
+            self,
+            *,
+            fileId: str,
+            revisionId: str,
+            acknowledgeAbuse: bool = ...,
+            **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
         def list(
             self,
             *,
@@ -669,3 +695,11 @@ class TeamDriveListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> TeamDriveList: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> bytes: ...

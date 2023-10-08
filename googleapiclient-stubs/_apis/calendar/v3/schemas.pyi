@@ -231,6 +231,7 @@ class EventWorkingLocationProperties(typing_extensions.TypedDict, total=False):
     customLocation: dict[str, typing.Any]
     homeOffice: typing.Any
     officeLocation: dict[str, typing.Any]
+    type: str
 
 @typing.type_check_only
 class Events(typing_extensions.TypedDict, total=False):

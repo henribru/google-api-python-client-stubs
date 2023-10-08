@@ -56,6 +56,8 @@ class Destination(typing_extensions.TypedDict, total=False):
     cloudFunction: str
     cloudRun: CloudRun
     gke: GKE
+    httpEndpoint: HttpEndpoint
+    networkConfig: NetworkConfig
     workflow: str
 
 @typing.type_check_only
@@ -127,6 +129,11 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class HttpEndpoint(typing_extensions.TypedDict, total=False):
+    forwardDnsRequests: bool
+    uri: str
+
+@typing.type_check_only
 class ListChannelConnectionsResponse(typing_extensions.TypedDict, total=False):
     channelConnections: _list[ChannelConnection]
     nextPageToken: str
@@ -162,6 +169,10 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class NetworkConfig(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):

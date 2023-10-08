@@ -111,19 +111,6 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                             ) -> HttpBodyHttpRequest: ...
 
                         @typing.type_check_only
-                        class LabelsResource(googleapiclient.discovery.Resource):
-                            def list(
-                                self,
-                                *,
-                                name: str,
-                                location: str,
-                                end: str = ...,
-                                match: str = ...,
-                                start: str = ...,
-                                **kwargs: typing.Any
-                            ) -> HttpBodyHttpRequest: ...
-
-                        @typing.type_check_only
                         class MetadataResource(googleapiclient.discovery.Resource):
                             def list(
                                 self,
@@ -135,6 +122,14 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                                 **kwargs: typing.Any
                             ) -> HttpBodyHttpRequest: ...
 
+                        def labels(
+                            self,
+                            *,
+                            name: str,
+                            location: str,
+                            body: QueryLabelsRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def query(
                             self,
                             *,
@@ -168,7 +163,6 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
                         def label(self) -> LabelResource: ...
-                        def labels(self) -> LabelsResource: ...
                         def metadata(self) -> MetadataResource: ...
 
                     def v1(self) -> V1Resource: ...

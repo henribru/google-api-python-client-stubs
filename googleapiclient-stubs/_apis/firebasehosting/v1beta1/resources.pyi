@@ -90,6 +90,82 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 def releases(self) -> ReleasesResource: ...
 
             @typing.type_check_only
+            class CustomDomainsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CustomDomain = ...,
+                    customDomainId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    allowMissing: bool = ...,
+                    etag: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CustomDomainHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any
+                ) -> ListCustomDomainsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListCustomDomainsResponseHttpRequest,
+                    previous_response: ListCustomDomainsResponse,
+                ) -> ListCustomDomainsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CustomDomain = ...,
+                    allowMissing: bool = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteCustomDomainRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
             class DomainsResource(googleapiclient.discovery.Resource):
                 def create(
                     self, *, parent: str, body: Domain = ..., **kwargs: typing.Any
@@ -224,6 +300,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Site = ...,
                 siteId: str = ...,
+                validateOnly: bool = ...,
                 **kwargs: typing.Any
             ) -> SiteHttpRequest: ...
             def delete(
@@ -263,6 +340,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> SiteConfigHttpRequest: ...
             def channels(self) -> ChannelsResource: ...
+            def customDomains(self) -> CustomDomainsResource: ...
             def domains(self) -> DomainsResource: ...
             def releases(self) -> ReleasesResource: ...
             def versions(self) -> VersionsResource: ...
@@ -499,6 +577,14 @@ class ChannelHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Channel: ...
 
 @typing.type_check_only
+class CustomDomainHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CustomDomain: ...
+
+@typing.type_check_only
 class DomainHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -523,12 +609,28 @@ class ListChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListChannelsResponse: ...
 
 @typing.type_check_only
+class ListCustomDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListCustomDomainsResponse: ...
+
+@typing.type_check_only
 class ListDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListDomainsResponse: ...
+
+@typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
 class ListReleasesResponseHttpRequest(googleapiclient.http.HttpRequest):

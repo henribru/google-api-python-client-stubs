@@ -387,6 +387,7 @@ class BooleanCondition(typing_extensions.TypedDict, total=False):
         "BOOLEAN",
         "TEXT_NOT_EQ",
         "DATE_NOT_EQ",
+        "FILTER_EXPRESSION",
     ]
     values: _list[ConditionValue]
 

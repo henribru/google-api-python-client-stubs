@@ -119,6 +119,10 @@ class GoogleCloudIdentitytoolkitV1DownloadAccountResponse(
     nextPageToken: str
     users: _list[GoogleCloudIdentitytoolkitV1UserInfo]
 
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV1EmailInfo(typing_extensions.TypedDict, total=False):
+    emailAddress: str
+
 AlternativeGoogleCloudIdentitytoolkitV1EmailTemplate = typing_extensions.TypedDict(
     "AlternativeGoogleCloudIdentitytoolkitV1EmailTemplate",
     {
@@ -307,6 +311,7 @@ class GoogleCloudIdentitytoolkitV1MfaEnrollment(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
+    emailInfo: GoogleCloudIdentitytoolkitV1EmailInfo
     enrolledAt: str
     mfaEnrollmentId: str
     phoneInfo: str
@@ -645,6 +650,7 @@ class GoogleCloudIdentitytoolkitV1SignInWithPasswordResponse(
     profilePicture: str
     refreshToken: str
     registered: bool
+    userNotifications: _list[GoogleCloudIdentitytoolkitV1UserNotification]
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest(
@@ -789,6 +795,21 @@ class GoogleCloudIdentitytoolkitV1UserInfo(typing_extensions.TypedDict, total=Fa
     timeZone: str
     validSince: str
     version: int
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitV1UserNotification(
+    typing_extensions.TypedDict, total=False
+):
+    notificationCode: typing_extensions.Literal[
+        "NOTIFICATION_CODE_UNSPECIFIED",
+        "MISSING_LOWERCASE_CHARACTER",
+        "MISSING_UPPERCASE_CHARACTER",
+        "MISSING_NUMERIC_CHARACTER",
+        "MISSING_NON_ALPHANUMERIC_CHARACTER",
+        "MINIMUM_PASSWORD_LENGTH",
+        "MAXIMUM_PASSWORD_LENGTH",
+    ]
+    notificationMessage: str
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV1VerifyIosClientRequest(

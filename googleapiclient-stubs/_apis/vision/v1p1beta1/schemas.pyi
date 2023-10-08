@@ -224,6 +224,7 @@ class GoogleCloudVisionV1p1beta1AsyncAnnotateFileResponse(
 class GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[GoogleCloudVisionV1p1beta1AsyncAnnotateFileRequest]
 
@@ -237,6 +238,7 @@ class GoogleCloudVisionV1p1beta1AsyncBatchAnnotateFilesResponse(
 class GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    labels: dict[str, typing.Any]
     outputConfig: GoogleCloudVisionV1p1beta1OutputConfig
     parent: str
     requests: _list[GoogleCloudVisionV1p1beta1AnnotateImageRequest]
@@ -245,6 +247,7 @@ class GoogleCloudVisionV1p1beta1AsyncBatchAnnotateImagesRequest(
 class GoogleCloudVisionV1p1beta1BatchAnnotateFilesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[GoogleCloudVisionV1p1beta1AnnotateFileRequest]
 
@@ -258,6 +261,7 @@ class GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse(
 class GoogleCloudVisionV1p1beta1BatchAnnotateImagesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    labels: dict[str, typing.Any]
     parent: str
     requests: _list[GoogleCloudVisionV1p1beta1AnnotateImageRequest]
 

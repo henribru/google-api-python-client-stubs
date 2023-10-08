@@ -55,6 +55,7 @@ class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     principalSubject: str
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
     serviceAccountKeyName: str
+    serviceDelegationHistory: ServiceDelegationHistory
     thirdPartyPrincipal: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -172,6 +173,17 @@ class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     firstPartyPrincipal: FirstPartyPrincipal
     principalSubject: str
     thirdPartyPrincipal: ThirdPartyPrincipal
+
+@typing.type_check_only
+class ServiceDelegationHistory(typing_extensions.TypedDict, total=False):
+    originalPrincipal: str
+    serviceMetadata: _list[ServiceMetadata]
+
+@typing.type_check_only
+class ServiceMetadata(typing_extensions.TypedDict, total=False):
+    jobMetadata: dict[str, typing.Any]
+    principalSubject: str
+    serviceDomain: str
 
 @typing.type_check_only
 class SpanContext(typing_extensions.TypedDict, total=False):

@@ -124,6 +124,7 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     metadata: _list[Metadata]
     minSdkVersion: int
     packageName: str
+    services: _list[Service]
     targetSdkVersion: int
     usesFeature: _list[UsesFeature]
     usesPermission: _list[str]
@@ -133,6 +134,9 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppBundle(typing_extensions.TypedDict, total=False):
     bundleLocation: FileReference
+
+@typing.type_check_only
+class CancelDeviceSessionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelTestMatrixResponse(typing_extensions.TypedDict, total=False):
@@ -184,9 +188,40 @@ class DeviceIpBlockCatalog(typing_extensions.TypedDict, total=False):
     ipBlocks: _list[DeviceIpBlock]
 
 @typing.type_check_only
+class DeviceSession(typing_extensions.TypedDict, total=False):
+    activeStartTime: str
+    androidDevice: AndroidDevice
+    androidDeviceList: AndroidDeviceList
+    createTime: str
+    displayName: str
+    expireTime: str
+    inactivityTimeout: str
+    name: str
+    state: typing_extensions.Literal[
+        "SESSION_STATE_UNSPECIFIED",
+        "REQUESTED",
+        "PENDING",
+        "ACTIVE",
+        "EXPIRED",
+        "FINISHED",
+        "UNAVAILABLE",
+        "ERROR",
+    ]
+    stateHistories: _list[SessionStateEvent]
+    ttl: str
+
+@typing.type_check_only
+class DirectAccessVersionInfo(typing_extensions.TypedDict, total=False):
+    directAccessSupported: bool
+    minimumAndroidStudioVersion: str
+
+@typing.type_check_only
 class Distribution(typing_extensions.TypedDict, total=False):
     marketShare: float
     measurementTime: str
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
@@ -265,6 +300,12 @@ class IosModel(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
+class IosRoboTest(typing_extensions.TypedDict, total=False):
+    appBundleId: str
+    appIpa: FileReference
+    roboScript: FileReference
+
+@typing.type_check_only
 class IosRuntimeConfiguration(typing_extensions.TypedDict, total=False):
     locales: _list[Locale]
     orientations: _list[Orientation]
@@ -302,6 +343,11 @@ class IosXcTest(typing_extensions.TypedDict, total=False):
 class LauncherActivityIntent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ListDeviceSessionsResponse(typing_extensions.TypedDict, total=False):
+    deviceSessions: _list[DeviceSession]
+    nextPageToken: str
+
+@typing.type_check_only
 class Locale(typing_extensions.TypedDict, total=False):
     id: str
     name: str
@@ -328,6 +374,9 @@ class NetworkConfigurationCatalog(typing_extensions.TypedDict, total=False):
     configurations: _list[NetworkConfiguration]
 
 @typing.type_check_only
+class NoActivityIntent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ObbFile(typing_extensions.TypedDict, total=False):
     obb: FileReference
     obbFileName: str
@@ -347,6 +396,7 @@ class PerAndroidVersionInfo(typing_extensions.TypedDict, total=False):
         "DEVICE_CAPACITY_LOW",
         "DEVICE_CAPACITY_NONE",
     ]
+    directAccessVersionInfo: DirectAccessVersionInfo
     versionId: str
 
 @typing.type_check_only
@@ -388,11 +438,33 @@ class RoboDirective(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RoboStartingIntent(typing_extensions.TypedDict, total=False):
     launcherActivity: LauncherActivityIntent
+    noActivity: NoActivityIntent
     startActivity: StartActivityIntent
     timeout: str
 
 @typing.type_check_only
+class Service(typing_extensions.TypedDict, total=False):
+    intentFilter: _list[IntentFilter]
+    name: str
+
+@typing.type_check_only
+class SessionStateEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+    sessionState: typing_extensions.Literal[
+        "SESSION_STATE_UNSPECIFIED",
+        "REQUESTED",
+        "PENDING",
+        "ACTIVE",
+        "EXPIRED",
+        "FINISHED",
+        "UNAVAILABLE",
+        "ERROR",
+    ]
+    stateMessage: str
+
+@typing.type_check_only
 class Shard(typing_extensions.TypedDict, total=False):
+    estimatedShardDuration: str
     numShards: int
     shardIndex: int
     testTargetsForShard: TestTargetsForShard
@@ -400,7 +472,12 @@ class Shard(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShardingOption(typing_extensions.TypedDict, total=False):
     manualSharding: ManualSharding
+    smartSharding: SmartSharding
     uniformSharding: UniformSharding
+
+@typing.type_check_only
+class SmartSharding(typing_extensions.TypedDict, total=False):
+    targetedShardDuration: str
 
 @typing.type_check_only
 class StartActivityIntent(typing_extensions.TypedDict, total=False):
@@ -538,6 +615,7 @@ class TestSpecification(typing_extensions.TypedDict, total=False):
     androidTestLoop: AndroidTestLoop
     disablePerformanceMetrics: bool
     disableVideoRecording: bool
+    iosRoboTest: IosRoboTest
     iosTestLoop: IosTestLoop
     iosTestSetup: IosTestSetup
     iosXcTest: IosXcTest

@@ -65,9 +65,6 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
-        def getOnboardingState(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> OnboardingStateHttpRequest: ...
         def getRapidVulnerabilityDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -200,9 +197,6 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
-        def getOnboardingState(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> OnboardingStateHttpRequest: ...
         def getRapidVulnerabilityDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -367,9 +361,6 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def getEventThreatDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> EventThreatDetectionSettingsHttpRequest: ...
-        def getOnboardingState(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> OnboardingStateHttpRequest: ...
         def getRapidVulnerabilityDetectionSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
@@ -482,14 +473,6 @@ class EventThreatDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> EventThreatDetectionSettings: ...
-
-@typing.type_check_only
-class OnboardingStateHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> OnboardingState: ...
 
 @typing.type_check_only
 class RapidVulnerabilityDetectionSettingsHttpRequest(googleapiclient.http.HttpRequest):

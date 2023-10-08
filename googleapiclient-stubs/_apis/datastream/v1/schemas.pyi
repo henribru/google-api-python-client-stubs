@@ -46,6 +46,12 @@ class BigQueryProfile(typing_extensions.TypedDict, total=False): ...
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CdcStrategy(typing_extensions.TypedDict, total=False):
+    mostRecentStartPosition: MostRecentStartPosition
+    nextAvailableStartPosition: NextAvailableStartPosition
+    specificStartPosition: SpecificStartPosition
+
+@typing.type_check_only
 class ConnectionProfile(typing_extensions.TypedDict, total=False):
     bigqueryProfile: BigQueryProfile
     createTime: str
@@ -190,6 +196,9 @@ class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
+class MostRecentStartPosition(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class MysqlColumn(typing_extensions.TypedDict, total=False):
     collation: str
     column: str
@@ -197,12 +206,19 @@ class MysqlColumn(typing_extensions.TypedDict, total=False):
     length: int
     nullable: bool
     ordinalPosition: int
+    precision: int
     primaryKey: bool
+    scale: int
 
 @typing.type_check_only
 class MysqlDatabase(typing_extensions.TypedDict, total=False):
     database: str
     mysqlTables: _list[MysqlTable]
+
+@typing.type_check_only
+class MysqlLogPosition(typing_extensions.TypedDict, total=False):
+    logFile: str
+    logPosition: int
 
 @typing.type_check_only
 class MysqlObjectIdentifier(typing_extensions.TypedDict, total=False):
@@ -241,6 +257,9 @@ class MysqlSslConfig(typing_extensions.TypedDict, total=False):
 class MysqlTable(typing_extensions.TypedDict, total=False):
     mysqlColumns: _list[MysqlColumn]
     table: str
+
+@typing.type_check_only
+class NextAvailableStartPosition(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -283,6 +302,7 @@ class OracleProfile(typing_extensions.TypedDict, total=False):
     connectionAttributes: dict[str, typing.Any]
     databaseService: str
     hostname: str
+    oracleSslConfig: OracleSslConfig
     password: str
     port: int
     username: str
@@ -304,6 +324,11 @@ class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
     streamLargeObjects: StreamLargeObjects
+
+@typing.type_check_only
+class OracleSslConfig(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+    caCertificateSet: bool
 
 @typing.type_check_only
 class OracleTable(typing_extensions.TypedDict, total=False):
@@ -389,6 +414,10 @@ class Route(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class RunStreamRequest(typing_extensions.TypedDict, total=False):
+    cdcStrategy: CdcStrategy
+
+@typing.type_check_only
 class SingleTargetDataset(typing_extensions.TypedDict, total=False):
     datasetId: str
 
@@ -408,6 +437,10 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
     postgresqlIdentifier: PostgresqlObjectIdentifier
+
+@typing.type_check_only
+class SpecificStartPosition(typing_extensions.TypedDict, total=False):
+    mysqlLogPosition: MysqlLogPosition
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -442,6 +475,7 @@ class Stream(typing_extensions.TypedDict, total=False):
     displayName: str
     errors: _list[Error]
     labels: dict[str, typing.Any]
+    lastRecoveryTime: str
     name: str
     sourceConfig: SourceConfig
     state: typing_extensions.Literal[

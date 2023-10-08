@@ -273,6 +273,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
@@ -300,6 +301,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -309,6 +311,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -636,6 +639,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
@@ -663,6 +667,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -672,6 +677,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -1163,6 +1169,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
@@ -1190,6 +1197,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -1199,6 +1207,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -1519,6 +1528,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 **kwargs: typing.Any
             ) -> LogSinkHttpRequest: ...
@@ -1546,6 +1556,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -1555,6 +1566,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 *,
                 sinkName: str,
                 body: LogSink = ...,
+                customWriterIdentity: str = ...,
                 uniqueWriterIdentity: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -1579,6 +1591,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: LogSink = ...,
+            customWriterIdentity: str = ...,
             uniqueWriterIdentity: bool = ...,
             **kwargs: typing.Any
         ) -> LogSinkHttpRequest: ...
@@ -1604,6 +1617,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             *,
             sinkName: str,
             body: LogSink = ...,
+            customWriterIdentity: str = ...,
             uniqueWriterIdentity: bool = ...,
             updateMask: str = ...,
             **kwargs: typing.Any

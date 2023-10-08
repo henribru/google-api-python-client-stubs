@@ -45,6 +45,9 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
         "PRIORITY_HIGH",
         "PRIORITY_MAX",
     ]
+    proxy: typing_extensions.Literal[
+        "PROXY_UNSPECIFIED", "ALLOW", "DENY", "IF_PRIORITY_LOWERED"
+    ]
     sound: str
     sticky: bool
     tag: str

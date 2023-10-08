@@ -131,6 +131,9 @@ class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
         "BATCH_TASK",
     ]
     projectName: str
+    runtimeVersion: typing_extensions.Literal[
+        "RUNTIME_VERSION_UNSPECIFIED", "DEPRECATED_ES5", "V8"
+    ]
     startTime: str
     userAccessLevel: typing_extensions.Literal[
         "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"

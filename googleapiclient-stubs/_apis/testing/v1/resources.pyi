@@ -22,6 +22,44 @@ class TestingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class DeviceSessionsResource(googleapiclient.discovery.Resource):
+            def cancel(
+                self,
+                *,
+                name: str,
+                body: CancelDeviceSessionRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def create(
+                self, *, parent: str, body: DeviceSession = ..., **kwargs: typing.Any
+            ) -> DeviceSessionHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> DeviceSessionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListDeviceSessionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListDeviceSessionsResponseHttpRequest,
+                previous_response: ListDeviceSessionsResponse,
+            ) -> ListDeviceSessionsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: DeviceSession = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> DeviceSessionHttpRequest: ...
+
+        @typing.type_check_only
         class TestMatricesResource(googleapiclient.discovery.Resource):
             def cancel(
                 self, *, projectId: str, testMatrixId: str, **kwargs: typing.Any
@@ -38,6 +76,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 self, *, projectId: str, testMatrixId: str, **kwargs: typing.Any
             ) -> TestMatrixHttpRequest: ...
 
+        def deviceSessions(self) -> DeviceSessionsResource: ...
         def testMatrices(self) -> TestMatricesResource: ...
 
     @typing.type_check_only
@@ -82,12 +121,36 @@ class CancelTestMatrixResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CancelTestMatrixResponse: ...
 
 @typing.type_check_only
+class DeviceSessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DeviceSession: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class GetApkDetailsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GetApkDetailsResponse: ...
+
+@typing.type_check_only
+class ListDeviceSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListDeviceSessionsResponse: ...
 
 @typing.type_check_only
 class TestEnvironmentCatalogHttpRequest(googleapiclient.http.HttpRequest):

@@ -44,6 +44,7 @@ class Application(typing_extensions.TypedDict, total=False):
     dispatchRules: _list[UrlDispatchRule]
     featureSettings: FeatureSettings
     gcrDomain: str
+    generatedCustomerMetadata: dict[str, typing.Any]
     iap: IdentityAwareProxy
     id: str
     locationId: str
@@ -509,6 +510,7 @@ class ScriptHandler(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
+    generatedCustomerMetadata: dict[str, typing.Any]
     id: str
     labels: dict[str, typing.Any]
     name: str

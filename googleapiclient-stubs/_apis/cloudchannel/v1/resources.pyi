@@ -322,8 +322,10 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 customer: str,
+                changeOfferPurchase_billingAccount: str = ...,
                 changeOfferPurchase_entitlement: str = ...,
                 changeOfferPurchase_newSku: str = ...,
+                createEntitlementPurchase_billingAccount: str = ...,
                 createEntitlementPurchase_sku: str = ...,
                 languageCode: str = ...,
                 pageSize: int = ...,
@@ -371,6 +373,15 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 body: GoogleCloudChannelV1ProvisionCloudIdentityRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
+            def queryEligibleBillingAccounts(
+                self,
+                *,
+                customer: str,
+                skus: str | _list[str] = ...,
+                **kwargs: typing.Any
+            ) -> (
+                GoogleCloudChannelV1QueryEligibleBillingAccountsResponseHttpRequest
+            ): ...
             def transferEntitlements(
                 self,
                 *,
@@ -446,6 +457,44 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
 
+        @typing.type_check_only
+        class SkuGroupsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BillableSkusResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest,
+                    previous_response: GoogleCloudChannelV1ListSkuGroupBillableSkusResponse,
+                ) -> (
+                    GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest
+                    | None
+                ): ...
+
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest,
+                previous_response: GoogleCloudChannelV1ListSkuGroupsResponse,
+            ) -> GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest | None: ...
+            def billableSkus(self) -> BillableSkusResource: ...
+
         def checkCloudIdentityAccountsExist(
             self,
             *,
@@ -509,6 +558,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         def offers(self) -> OffersResource: ...
         def reportJobs(self) -> ReportJobsResource: ...
         def reports(self) -> ReportsResource: ...
+        def skuGroups(self) -> SkuGroupsResource: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -769,6 +819,26 @@ class GoogleCloudChannelV1ListReportsResponseHttpRequest(
     ) -> GoogleCloudChannelV1ListReportsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListSkuGroupBillableSkusResponse: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1ListSkuGroupsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -813,6 +883,16 @@ class GoogleCloudChannelV1OfferHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudChannelV1Offer: ...
+
+@typing.type_check_only
+class GoogleCloudChannelV1QueryEligibleBillingAccountsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudChannelV1QueryEligibleBillingAccountsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1RegisterSubscriberResponseHttpRequest(

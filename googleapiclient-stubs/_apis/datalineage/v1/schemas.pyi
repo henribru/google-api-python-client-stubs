@@ -76,7 +76,7 @@ class GoogleCloudDatacatalogLineageV1OperationMetadata(
 ):
     createTime: str
     endTime: str
-    operationType: typing_extensions.Literal["TYPE_UNSPECIFIED", "DELETE"]
+    operationType: typing_extensions.Literal["TYPE_UNSPECIFIED", "DELETE", "CREATE"]
     resource: str
     resourceUuid: str
     state: typing_extensions.Literal[
@@ -117,6 +117,14 @@ class GoogleCloudDatacatalogLineageV1ProcessLinks(
 ):
     links: _list[GoogleCloudDatacatalogLineageV1ProcessLinkInfo]
     process: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse(
+    typing_extensions.TypedDict, total=False
+):
+    lineageEvents: _list[str]
+    process: str
+    run: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogLineageV1Run(typing_extensions.TypedDict, total=False):

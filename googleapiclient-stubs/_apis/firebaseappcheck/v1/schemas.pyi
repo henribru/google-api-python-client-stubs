@@ -86,6 +86,7 @@ class GoogleFirebaseAppcheckV1ExchangeAppAttestAssertionRequest(
     artifact: str
     assertion: str
     challenge: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest(
@@ -94,6 +95,7 @@ class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationRequest(
     attestationStatement: str
     challenge: str
     keyId: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeAppAttestAttestationResponse(
@@ -107,35 +109,41 @@ class GoogleFirebaseAppcheckV1ExchangeCustomTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     customToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeDebugTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     debugToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeDeviceCheckTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
     deviceToken: str
+    limitedUse: bool
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangePlayIntegrityTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     playIntegrityToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeRecaptchaEnterpriseTokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     recaptchaEnterpriseToken: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1ExchangeRecaptchaV3TokenRequest(
     typing_extensions.TypedDict, total=False
 ):
+    limitedUse: bool
     recaptchaV3Token: str
 
 @typing.type_check_only

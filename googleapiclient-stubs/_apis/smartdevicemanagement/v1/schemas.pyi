@@ -29,20 +29,17 @@ class GoogleHomeEnterpriseSdmV1ListDevicesResponse(
     typing_extensions.TypedDict, total=False
 ):
     devices: _list[GoogleHomeEnterpriseSdmV1Device]
-    nextPageToken: str
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1ListRoomsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    nextPageToken: str
     rooms: _list[GoogleHomeEnterpriseSdmV1Room]
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1ListStructuresResponse(
     typing_extensions.TypedDict, total=False
 ):
-    nextPageToken: str
     structures: _list[GoogleHomeEnterpriseSdmV1Structure]
 
 @typing.type_check_only

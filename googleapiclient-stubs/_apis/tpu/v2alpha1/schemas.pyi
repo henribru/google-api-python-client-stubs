@@ -34,7 +34,16 @@ class AttachedDisk(typing_extensions.TypedDict, total=False):
 class BestEffort(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BootDiskConfig(typing_extensions.TypedDict, total=False):
+    customerEncryptionKey: CustomerEncryptionKey
+    enableConfidentialCompute: bool
+
+@typing.type_check_only
 class CreatingData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class DeletingData(typing_extensions.TypedDict, total=False): ...
@@ -130,6 +139,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MultiNodeParams(typing_extensions.TypedDict, total=False):
+    nodeCount: int
+    nodeIdPrefix: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     canIpForward: bool
     enableExternalIps: bool
@@ -149,6 +163,7 @@ class Node(typing_extensions.TypedDict, total=False):
     apiVersion: typing_extensions.Literal[
         "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1"
     ]
+    bootDiskConfig: BootDiskConfig
     cidrBlock: str
     createTime: str
     dataDisks: _list[AttachedDisk]
@@ -164,6 +179,7 @@ class Node(typing_extensions.TypedDict, total=False):
     id: str
     labels: dict[str, typing.Any]
     metadata: dict[str, typing.Any]
+    multisliceNode: bool
     name: str
     networkConfig: NetworkConfig
     networkEndpoints: _list[NetworkEndpoint]
@@ -194,6 +210,7 @@ class Node(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodeSpec(typing_extensions.TypedDict, total=False):
+    multiNodeParams: MultiNodeParams
     node: Node
     nodeId: str
     parent: str
@@ -226,6 +243,7 @@ class QueuedResource(typing_extensions.TypedDict, total=False):
     name: str
     queueingPolicy: QueueingPolicy
     reservationName: str
+    spot: Spot
     state: QueuedResourceState
     tpu: Tpu
 
@@ -247,6 +265,10 @@ class QueuedResourceState(typing_extensions.TypedDict, total=False):
         "ACTIVE",
         "SUSPENDING",
         "SUSPENDED",
+        "WAITING_FOR_RESOURCES",
+    ]
+    stateInitiator: typing_extensions.Literal[
+        "STATE_INITIATOR_UNSPECIFIED", "USER", "SERVICE"
     ]
     suspendedData: SuspendedData
     suspendingData: SuspendingData
@@ -258,6 +280,9 @@ class QueueingPolicy(typing_extensions.TypedDict, total=False):
     validInterval: Interval
     validUntilDuration: str
     validUntilTime: str
+
+@typing.type_check_only
+class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RuntimeVersion(typing_extensions.TypedDict, total=False):
@@ -285,6 +310,9 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SimulateMaintenanceEventRequest(typing_extensions.TypedDict, total=False):
     workerIds: _list[str]
+
+@typing.type_check_only
+class Spot(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
