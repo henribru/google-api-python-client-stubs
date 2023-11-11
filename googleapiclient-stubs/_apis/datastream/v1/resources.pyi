@@ -252,8 +252,6 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: Stream = ...,
-                    cdcStrategy_specificStartPosition_mysqlLogPosition_logFile: str = ...,
-                    cdcStrategy_specificStartPosition_mysqlLogPosition_logPosition: int = ...,
                     force: bool = ...,
                     requestId: str = ...,
                     updateMask: str = ...,

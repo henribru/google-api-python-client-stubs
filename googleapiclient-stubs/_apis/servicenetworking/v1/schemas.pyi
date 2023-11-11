@@ -47,6 +47,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     consumer: str
     consumerNetwork: str
     description: str
+    internalRange: str
     ipPrefixLength: int
     outsideAllocationPublicIpRange: str
     privateIpv6GoogleAccess: str
@@ -876,3 +877,7 @@ class ValidateConsumerConfigResponse(typing_extensions.TypedDict, total=False):
         "COMPUTE_API_NOT_ENABLED",
         "USE_PERMISSION_NOT_FOUND",
     ]
+
+@typing.type_check_only
+class VpcServiceControls(typing_extensions.TypedDict, total=False):
+    enabled: bool

@@ -69,7 +69,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GenerateUploadUrlResponseHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, versionId: str = ..., **kwargs: typing.Any
                 ) -> CloudFunctionHttpRequest: ...
                 def getIamPolicy(
                     self,

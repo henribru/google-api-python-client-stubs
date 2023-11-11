@@ -3004,6 +3004,7 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
         "TERMINATED",
     ]
     lastAttempt: ManagedInstanceLastAttempt
+    name: str
     preservedStateFromConfig: PreservedState
     preservedStateFromPolicy: PreservedState
     version: ManagedInstanceVersion
@@ -3115,6 +3116,7 @@ class NetworkAttachmentAggregatedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=False):
     ipAddress: str
+    ipv6Address: str
     projectIdOrNum: str
     secondaryIpCidrRanges: _list[str]
     status: typing_extensions.Literal[
@@ -3126,6 +3128,7 @@ class NetworkAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=Fals
         "STATUS_UNSPECIFIED",
     ]
     subnetwork: str
+    subnetworkCidrRange: str
 
 @typing.type_check_only
 class NetworkAttachmentList(typing_extensions.TypedDict, total=False):
@@ -3869,6 +3872,7 @@ class ProjectsSetDefaultNetworkTierRequest(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class PublicAdvertisedPrefix(typing_extensions.TypedDict, total=False):
+    byoipApiVersion: typing_extensions.Literal["V1", "V2"]
     creationTimestamp: str
     description: str
     dnsVerificationIp: str
@@ -3877,15 +3881,18 @@ class PublicAdvertisedPrefix(typing_extensions.TypedDict, total=False):
     ipCidrRange: str
     kind: str
     name: str
+    pdpScope: typing_extensions.Literal["GLOBAL", "GLOBAL_AND_REGIONAL", "REGIONAL"]
     publicDelegatedPrefixs: _list[PublicAdvertisedPrefixPublicDelegatedPrefix]
     selfLink: str
     sharedSecret: str
     status: typing_extensions.Literal[
+        "ANNOUNCED_TO_INTERNET",
         "INITIAL",
         "PREFIX_CONFIGURATION_COMPLETE",
         "PREFIX_CONFIGURATION_IN_PROGRESS",
         "PREFIX_REMOVAL_IN_PROGRESS",
         "PTR_CONFIGURED",
+        "READY_TO_ANNOUNCE",
         "REVERSE_DNS_LOOKUP_FAILED",
         "VALIDATED",
     ]
@@ -3911,6 +3918,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix(
 
 @typing.type_check_only
 class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
+    byoipApiVersion: typing_extensions.Literal["V1", "V2"]
     creationTimestamp: str
     description: str
     fingerprint: str
@@ -3924,7 +3932,12 @@ class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     status: typing_extensions.Literal[
-        "ANNOUNCED", "DELETING", "INITIALIZING", "READY_TO_ANNOUNCE"
+        "ANNOUNCED",
+        "ANNOUNCED_TO_GOOGLE",
+        "ANNOUNCED_TO_INTERNET",
+        "DELETING",
+        "INITIALIZING",
+        "READY_TO_ANNOUNCE",
     ]
 
 @typing.type_check_only
@@ -5371,6 +5384,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     snapshotType: typing_extensions.Literal["ARCHIVE", "STANDARD"]
     sourceDisk: str
     sourceDiskEncryptionKey: CustomerEncryptionKey
+    sourceDiskForRecoveryCheckpoint: str
     sourceDiskId: str
     sourceSnapshotSchedulePolicy: str
     sourceSnapshotSchedulePolicyId: str
@@ -5389,6 +5403,26 @@ class SnapshotList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class SnapshotSettings(typing_extensions.TypedDict, total=False):
+    storageLocation: SnapshotSettingsStorageLocationSettings
+
+@typing.type_check_only
+class SnapshotSettingsStorageLocationSettings(typing_extensions.TypedDict, total=False):
+    locations: dict[str, typing.Any]
+    policy: typing_extensions.Literal[
+        "LOCAL_REGION",
+        "NEAREST_MULTI_REGION",
+        "SPECIFIC_LOCATIONS",
+        "STORAGE_LOCATION_POLICY_UNSPECIFIED",
+    ]
+
+@typing.type_check_only
+class SnapshotSettingsStorageLocationSettingsStorageLocationPreference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class SourceDiskEncryptionKey(typing_extensions.TypedDict, total=False):

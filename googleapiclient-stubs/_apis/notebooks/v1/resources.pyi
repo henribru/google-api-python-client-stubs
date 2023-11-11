@@ -140,6 +140,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListInstancesResponseHttpRequest,
                     previous_response: ListInstancesResponse,
                 ) -> ListInstancesResponseHttpRequest | None: ...
+                def migrate(
+                    self,
+                    *,
+                    name: str,
+                    body: MigrateInstanceRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def register(
                     self,
                     *,
@@ -336,6 +343,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     previous_request: ListRuntimesResponseHttpRequest,
                     previous_response: ListRuntimesResponse,
                 ) -> ListRuntimesResponseHttpRequest | None: ...
+                def migrate(
+                    self,
+                    *,
+                    name: str,
+                    body: MigrateRuntimeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def patch(
                     self,
                     *,

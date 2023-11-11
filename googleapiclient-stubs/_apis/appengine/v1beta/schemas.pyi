@@ -120,6 +120,12 @@ class ContainerInfo(typing_extensions.TypedDict, total=False):
     image: str
 
 @typing.type_check_only
+class ContainerState(typing_extensions.TypedDict, total=False):
+    currentReasons: Reasons
+    previousReasons: Reasons
+    state: typing_extensions.Literal["UNKNOWN_STATE", "ON", "OFF", "DELETED"]
+
+@typing.type_check_only
 class CpuUtilization(typing_extensions.TypedDict, total=False):
     aggregationWindowLength: str
     targetUtilization: float
@@ -448,13 +454,7 @@ class ProjectEvent(typing_extensions.TypedDict, total=False):
         "UNKNOWN", "BEFORE_RESOURCE_HANDLING", "AFTER_RESOURCE_HANDLING"
     ]
     projectMetadata: ProjectsMetadata
-    state: ProjectState
-
-@typing.type_check_only
-class ProjectState(typing_extensions.TypedDict, total=False):
-    currentReasons: Reasons
-    previousReasons: Reasons
-    state: typing_extensions.Literal["UNKNOWN_STATE", "ON", "OFF", "DELETED"]
+    state: ContainerState
 
 @typing.type_check_only
 class ProjectsMetadata(typing_extensions.TypedDict, total=False):

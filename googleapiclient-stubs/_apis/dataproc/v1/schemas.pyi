@@ -221,6 +221,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     gcePdKmsKeyName: str
+    kmsKey: str
 
 @typing.type_check_only
 class EndpointConfig(typing_extensions.TypedDict, total=False):
@@ -327,6 +328,12 @@ class GkeNodePoolTarget(typing_extensions.TypedDict, total=False):
     nodePool: str
     nodePoolConfig: GkeNodePoolConfig
     roles: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKey: str
 
 @typing.type_check_only
 class HadoopJob(typing_extensions.TypedDict, total=False):
@@ -543,6 +550,7 @@ class ListClustersResponse(typing_extensions.TypedDict, total=False):
 class ListJobsResponse(typing_extensions.TypedDict, total=False):
     jobs: _list[Job]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -563,6 +571,7 @@ class ListSessionsResponse(typing_extensions.TypedDict, total=False):
 class ListWorkflowTemplatesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     templates: _list[WorkflowTemplate]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
@@ -622,7 +631,12 @@ class NodeGroupOperationMetadata(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     nodeGroupId: str
     operationType: typing_extensions.Literal[
-        "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "RESIZE"
+        "NODE_GROUP_OPERATION_TYPE_UNSPECIFIED",
+        "CREATE",
+        "UPDATE",
+        "DELETE",
+        "RESIZE",
+        "REPAIR",
     ]
     status: ClusterOperationStatus
     statusHistory: _list[ClusterOperationStatus]
@@ -755,6 +769,7 @@ class ReservationAffinity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResizeNodeGroupRequest(typing_extensions.TypedDict, total=False):
     gracefulDecommissionTimeout: str
+    parentOperationId: str
     requestId: str
     size: int
 
@@ -982,11 +997,15 @@ class TrinoJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UsageMetrics(typing_extensions.TypedDict, total=False):
+    acceleratorType: str
+    milliAcceleratorSeconds: str
     milliDcuSeconds: str
     shuffleStorageGbSeconds: str
 
 @typing.type_check_only
 class UsageSnapshot(typing_extensions.TypedDict, total=False):
+    acceleratorType: str
+    milliAccelerator: str
     milliDcu: str
     milliDcuPremium: str
     shuffleStorageGb: str
@@ -1043,6 +1062,7 @@ class WorkflowNode(typing_extensions.TypedDict, total=False):
 class WorkflowTemplate(typing_extensions.TypedDict, total=False):
     createTime: str
     dagTimeout: str
+    encryptionConfig: GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig
     id: str
     jobs: _list[OrderedJob]
     labels: dict[str, typing.Any]

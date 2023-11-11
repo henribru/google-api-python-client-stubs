@@ -163,6 +163,7 @@ class GoogleChromePolicyVersionsV1PolicyApiLifecycle(
         "API_CURRENT",
         "API_DEPRECATED",
     ]
+    scheduledToDeprecatePolicies: _list[str]
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicyModificationError(
@@ -374,7 +375,7 @@ class Proto2FieldDescriptorProto(typing_extensions.TypedDict, total=False):
     defaultValue: str
     jsonName: str
     label: typing_extensions.Literal[
-        "LABEL_OPTIONAL", "LABEL_REQUIRED", "LABEL_REPEATED"
+        "LABEL_OPTIONAL", "LABEL_REPEATED", "LABEL_REQUIRED"
     ]
     name: str
     number: int

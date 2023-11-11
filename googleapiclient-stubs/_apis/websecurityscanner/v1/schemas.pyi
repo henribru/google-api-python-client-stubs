@@ -171,6 +171,7 @@ class ScanConfigError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_FILTER",
         "UNSUPPORTED_FINDING_TYPE",
         "UNSUPPORTED_URL_SCHEME",
+        "CLOUD_ASSET_INVENTORY_ASSET_NOT_FOUND",
     ]
     fieldName: str
 

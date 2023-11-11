@@ -54,6 +54,11 @@ class BufferTaskResponse(typing_extensions.TypedDict, total=False):
     task: Task
 
 @typing.type_check_only
+class CmekConfig(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class CreateTaskRequest(typing_extensions.TypedDict, total=False):
     responseView: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"]
     task: Task

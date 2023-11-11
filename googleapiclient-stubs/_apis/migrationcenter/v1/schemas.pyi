@@ -882,6 +882,7 @@ class RuntimeNetworkInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
+    disableCloudLogging: bool
     name: str
     preferenceSet: str
 

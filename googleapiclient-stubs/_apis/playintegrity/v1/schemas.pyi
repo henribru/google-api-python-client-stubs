@@ -44,6 +44,18 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
     deviceRecognitionVerdict: _list[str]
 
 @typing.type_check_only
+class EnvironmentDetails(typing_extensions.TypedDict, total=False):
+    playProtectVerdict: typing_extensions.Literal[
+        "PLAY_PROTECT_VERDICT_UNSPECIFIED",
+        "UNEVALUATED",
+        "NO_ISSUES",
+        "NO_DATA",
+        "MEDIUM_RISK",
+        "HIGH_RISK",
+        "POSSIBLE_RISK",
+    ]
+
+@typing.type_check_only
 class GuidanceDetails(typing_extensions.TypedDict, total=False):
     userRemediationDetails: _list[UserRemediationDetails]
 
@@ -63,6 +75,7 @@ class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
     accountDetails: AccountDetails
     appIntegrity: AppIntegrity
     deviceIntegrity: DeviceIntegrity
+    environmentDetails: EnvironmentDetails
     guidanceDetails: GuidanceDetails
     requestDetails: RequestDetails
     testingDetails: TestingDetails

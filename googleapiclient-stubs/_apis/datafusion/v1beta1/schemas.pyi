@@ -92,6 +92,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     networkConfig: NetworkConfig
     options: dict[str, typing.Any]
     p4ServiceAccount: str
+    patchRevision: str
     privateInstance: bool
     satisfiesPzs: bool
     serviceAccount: str
@@ -116,6 +117,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     version: str
+    workforceIdentityServiceEndpoint: str
     zone: str
 
 @typing.type_check_only
@@ -164,8 +166,14 @@ class Namespace(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "VPC_PEERING",
+        "PRIVATE_SERVICE_CONNECT_INTERFACES",
+    ]
     ipAllocation: str
     network: str
+    privateServiceConnectConfig: PrivateServiceConnectConfig
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -192,6 +200,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PrivateServiceConnectConfig(typing_extensions.TypedDict, total=False):
+    effectiveUnreachableCidrBlock: str
+    networkAttachment: str
+    unreachableCidrBlock: str
 
 @typing.type_check_only
 class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...

@@ -599,12 +599,23 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             body: GoogleCloudRetailV2alphaEnrollSolutionRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
+        def getLoggingConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaLoggingConfigHttpRequest: ...
         def getRetailProject(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudRetailV2alphaProjectHttpRequest: ...
         def listEnrolledSolutions(
             self, *, parent: str, **kwargs: typing.Any
         ) -> GoogleCloudRetailV2alphaListEnrolledSolutionsResponseHttpRequest: ...
+        def updateLoggingConfig(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudRetailV2alphaLoggingConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaLoggingConfigHttpRequest: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
         def retailProject(self) -> RetailProjectResource: ...
@@ -766,6 +777,16 @@ class GoogleCloudRetailV2alphaListServingConfigsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudRetailV2alphaListServingConfigsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaLoggingConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleCloudRetailV2alphaLoggingConfig: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaModelHttpRequest(googleapiclient.http.HttpRequest):

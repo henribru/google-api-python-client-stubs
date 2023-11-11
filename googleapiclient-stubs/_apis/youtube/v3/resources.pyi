@@ -507,6 +507,49 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         ) -> MembershipsLevelListResponseHttpRequest: ...
 
     @typing.type_check_only
+    class PlaylistImagesResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            id: str = ...,
+            onBehalfOfContentOwner: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def insert(
+            self,
+            *,
+            body: PlaylistImage = ...,
+            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwnerChannel: str = ...,
+            part: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> PlaylistImageHttpRequest: ...
+        def list(
+            self,
+            *,
+            maxResults: int = ...,
+            onBehalfOfContentOwner: str = ...,
+            onBehalfOfContentOwnerChannel: str = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            part: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> PlaylistImageListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: PlaylistImageListResponseHttpRequest,
+            previous_response: PlaylistImageListResponse,
+        ) -> PlaylistImageListResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            body: PlaylistImage = ...,
+            onBehalfOfContentOwner: str = ...,
+            part: str | _list[str] = ...,
+            **kwargs: typing.Any
+        ) -> PlaylistImageHttpRequest: ...
+
+    @typing.type_check_only
     class PlaylistItemsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, id: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
@@ -621,7 +664,6 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             publishedBefore: str = ...,
             q: str = ...,
             regionCode: str = ...,
-            relatedToVideoId: str = ...,
             relevanceLanguage: str = ...,
             safeSearch: typing_extensions.Literal[
                 "safeSearchSettingUnspecified", "none", "moderate", "strict"
@@ -923,6 +965,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     def liveStreams(self) -> LiveStreamsResource: ...
     def members(self) -> MembersResource: ...
     def membershipsLevels(self) -> MembershipsLevelsResource: ...
+    def playlistImages(self) -> PlaylistImagesResource: ...
     def playlistItems(self) -> PlaylistItemsResource: ...
     def playlists(self) -> PlaylistsResource: ...
     def search(self) -> SearchResource: ...
@@ -1160,6 +1203,22 @@ class PlaylistHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Playlist: ...
+
+@typing.type_check_only
+class PlaylistImageHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PlaylistImage: ...
+
+@typing.type_check_only
+class PlaylistImageListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> PlaylistImageListResponse: ...
 
 @typing.type_check_only
 class PlaylistItemHttpRequest(googleapiclient.http.HttpRequest):

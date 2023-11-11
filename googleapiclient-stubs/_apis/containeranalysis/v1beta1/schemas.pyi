@@ -619,6 +619,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
     bucket: str
     generation: str
     object: str
+    sourceFetcher: typing_extensions.Literal[
+        "SOURCE_FETCHER_UNSPECIFIED", "GSUTIL", "GCS_FETCHER"
+    ]
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest(

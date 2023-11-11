@@ -142,7 +142,16 @@ class ConnectionSchemaMetadata(typing_extensions.TypedDict, total=False):
     entities: _list[str]
     name: str
     refreshTime: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "REFRESHING", "UPDATED"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "REFRESHING",
+        "UPDATED",
+        "REFRESHING_SCHEMA_METADATA",
+        "UPDATED_SCHEMA_METADATA",
+        "REFRESH_SCHEMA_METADATA_FAILED",
+        "REFRESHING_FULL_SCHEMA",
+        "UPDATED_FULL_SCHEMA",
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -179,6 +188,9 @@ class Connector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     connectionRatelimitWindowSeconds: str
+    deploymentModel: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
+    ]
     hpaConfig: HPAConfig
     internalclientRatelimitThreshold: str
     ratelimitThreshold: str
@@ -256,6 +268,13 @@ class EgressControlConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionConfig(typing_extensions.TypedDict, total=False):
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED", "GMEK", "CMEK"
+    ]
+    kmsKeyName: str
+
+@typing.type_check_only
 class EncryptionKey(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     type: typing_extensions.Literal[
@@ -287,6 +306,7 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
     createTime: str
     destinations: EventSubscriptionDestination
     eventTypeId: str
+    jms: JMS
     name: str
     status: EventSubscriptionStatus
     subscriber: str
@@ -335,6 +355,9 @@ class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
     autoRegistrationSupported: bool
     encryptionKeyTemplate: ConfigVariableTemplate
     enrichmentSupported: bool
+    eventListenerType: typing_extensions.Literal[
+        "EVENT_LISTENER_TYPE_UNSPECIFIED", "WEBHOOK_LISTENER", "JMS_LISTENER"
+    ]
     isEventingSupported: bool
     registrationDestinationConfig: DestinationConfigTemplate
 
@@ -349,6 +372,7 @@ class EventingDetails(typing_extensions.TypedDict, total=False):
     ]
     name: str
     searchTags: _list[str]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "WEBHOOK", "JMS"]
 
 @typing.type_check_only
 class EventingRuntimeData(typing_extensions.TypedDict, total=False):
@@ -513,6 +537,11 @@ class InputParameter(typing_extensions.TypedDict, total=False):
     parameter: str
 
 @typing.type_check_only
+class JMS(typing_extensions.TypedDict, total=False):
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "QUEUE", "TOPIC"]
+
+@typing.type_check_only
 class JsonSchema(typing_extensions.TypedDict, total=False):
     default: typing.Any
     description: str
@@ -673,6 +702,13 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class NetworkConfig(typing_extensions.TypedDict, total=False):
+    egressIps: _list[str]
+    egressMode: typing_extensions.Literal[
+        "NETWORK_EGRESS_MODE_UNSPECIFIED", "AUTO_IP", "STATIC_IP"
+    ]
+
+@typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
     maxNodeCount: int
     minNodeCount: int
@@ -742,6 +778,12 @@ class Provider(typing_extensions.TypedDict, total=False):
 class RefreshConnectionSchemaMetadataRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class RegionalSettings(typing_extensions.TypedDict, total=False):
+    encryptionConfig: EncryptionConfig
+    name: str
+    networkConfig: NetworkConfig
 
 @typing.type_check_only
 class RepairEventingRequest(typing_extensions.TypedDict, total=False): ...

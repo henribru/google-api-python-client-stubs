@@ -117,6 +117,7 @@ class GoogleAppsScriptTypeProcess(typing_extensions.TypedDict, total=False):
         "TIMED_OUT",
         "UNKNOWN",
         "DELAYED",
+        "EXECUTION_DISABLED",
     ]
     processType: typing_extensions.Literal[
         "PROCESS_TYPE_UNSPECIFIED",

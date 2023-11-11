@@ -87,6 +87,10 @@ class Money(typing_extensions.TypedDict, total=False):
     units: str
 
 @typing.type_check_only
+class MoveBillingAccountRequest(typing_extensions.TypedDict, total=False):
+    destinationParent: str
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]

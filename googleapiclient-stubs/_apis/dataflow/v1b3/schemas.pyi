@@ -490,6 +490,7 @@ class Job(typing_extensions.TypedDict, total=False):
         "JOB_STATE_RESOURCE_CLEANING_UP",
     ]
     runtimeUpdatableParams: RuntimeUpdatableParams
+    satisfiesPzi: bool
     satisfiesPzs: bool
     stageStates: _list[ExecutionStageState]
     startTime: str

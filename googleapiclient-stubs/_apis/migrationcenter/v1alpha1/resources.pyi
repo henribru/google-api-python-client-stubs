@@ -63,6 +63,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showHidden: bool = ...,
                     view: typing_extensions.Literal[
                         "ASSET_VIEW_UNSPECIFIED",
                         "ASSET_VIEW_BASIC",

@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessRestrictions(typing_extensions.TypedDict, total=False):
+    allowedServices: _list[ServiceConfig]
+    disableProgrammaticSignin: bool
+
+@typing.type_check_only
 class AdminAuditData(typing_extensions.TypedDict, total=False):
     permissionDelta: PermissionDelta
 
@@ -354,6 +359,10 @@ class ServiceAccountKey(typing_extensions.TypedDict, total=False):
     validBeforeTime: str
 
 @typing.type_check_only
+class ServiceConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -436,6 +445,7 @@ class UploadServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkforcePool(typing_extensions.TypedDict, total=False):
+    accessRestrictions: AccessRestrictions
     description: str
     disabled: bool
     displayName: str

@@ -123,6 +123,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def demote(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesDemoteRequest = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def demoteMaster(
             self,
             *,
@@ -187,7 +195,12 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def promoteReplica(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            failover: bool = ...,
+            **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def reencrypt(
             self,
@@ -224,6 +237,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
         def stopReplica(
             self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def switchover(
+            self,
+            *,
+            project: str,
+            instance: str,
+            dbTimeout: str = ...,
+            **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def truncateLog(
             self,

@@ -31,8 +31,28 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 previous_response: ListProjectBillingInfoResponse,
             ) -> ListProjectBillingInfoResponseHttpRequest | None: ...
 
+        @typing.type_check_only
+        class SubAccountsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: BillingAccount = ..., **kwargs: typing.Any
+            ) -> BillingAccountHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListBillingAccountsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBillingAccountsResponseHttpRequest,
+                previous_response: ListBillingAccountsResponse,
+            ) -> ListBillingAccountsResponseHttpRequest | None: ...
+
         def create(
-            self, *, body: BillingAccount = ..., **kwargs: typing.Any
+            self, *, body: BillingAccount = ..., parent: str = ..., **kwargs: typing.Any
         ) -> BillingAccountHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -50,6 +70,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
+            parent: str = ...,
             **kwargs: typing.Any
         ) -> ListBillingAccountsResponseHttpRequest: ...
         def list_next(
@@ -57,6 +78,13 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             previous_request: ListBillingAccountsResponseHttpRequest,
             previous_response: ListBillingAccountsResponse,
         ) -> ListBillingAccountsResponseHttpRequest | None: ...
+        def move(
+            self,
+            *,
+            name: str,
+            body: MoveBillingAccountRequest = ...,
+            **kwargs: typing.Any
+        ) -> BillingAccountHttpRequest: ...
         def patch(
             self,
             *,
@@ -80,6 +108,34 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
+        def subAccounts(self) -> SubAccountsResource: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class BillingAccountsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: BillingAccount = ..., **kwargs: typing.Any
+            ) -> BillingAccountHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListBillingAccountsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListBillingAccountsResponseHttpRequest,
+                previous_response: ListBillingAccountsResponse,
+            ) -> ListBillingAccountsResponseHttpRequest | None: ...
+            def move(
+                self, *, destinationParent: str, name: str, **kwargs: typing.Any
+            ) -> BillingAccountHttpRequest: ...
+
+        def billingAccounts(self) -> BillingAccountsResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -134,6 +190,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def services(self) -> ServicesResource: ...
 

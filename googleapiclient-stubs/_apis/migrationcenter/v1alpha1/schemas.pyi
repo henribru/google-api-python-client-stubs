@@ -14,6 +14,7 @@ class AddAssetsToGroupRequest(typing_extensions.TypedDict, total=False):
 class AggregateAssetsValuesRequest(typing_extensions.TypedDict, total=False):
     aggregations: _list[Aggregation]
     filter: str
+    showHidden: bool
 
 @typing.type_check_only
 class AggregateAssetsValuesResponse(typing_extensions.TypedDict, total=False):
@@ -75,6 +76,9 @@ class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
+    hidden: bool
+    hideReason: str
+    hideTime: str
     insightList: InsightList
     labels: dict[str, typing.Any]
     name: str
@@ -226,6 +230,11 @@ class DateTime(typing_extensions.TypedDict, total=False):
     timeZone: TimeZone
     utcOffset: str
     year: int
+
+@typing.type_check_only
+class DetectedSoftware(typing_extensions.TypedDict, total=False):
+    softwareFamily: str
+    softwareName: str
 
 @typing.type_check_only
 class DiskEntry(typing_extensions.TypedDict, total=False):
@@ -467,6 +476,7 @@ class InlinePayloadInfo(typing_extensions.TypedDict, total=False):
 class Insight(typing_extensions.TypedDict, total=False):
     genericInsight: GenericInsight
     migrationInsight: MigrationInsight
+    softwareInsight: SoftwareInsight
 
 @typing.type_check_only
 class InsightList(typing_extensions.TypedDict, total=False):
@@ -887,6 +897,10 @@ class Settings(typing_extensions.TypedDict, total=False):
     disableCloudLogging: bool
     name: str
     preferenceSet: str
+
+@typing.type_check_only
+class SoftwareInsight(typing_extensions.TypedDict, total=False):
+    detectedSoftware: DetectedSoftware
 
 @typing.type_check_only
 class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):

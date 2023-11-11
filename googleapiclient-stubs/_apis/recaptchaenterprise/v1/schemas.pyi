@@ -42,6 +42,7 @@ class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
     typing_extensions.TypedDict, total=False
 ):
+    accountId: str
     annotation: typing_extensions.Literal[
         "ANNOTATION_UNSPECIFIED",
         "LEGITIMATE",
@@ -112,6 +113,7 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
     token: str
     transactionData: GoogleCloudRecaptchaenterpriseV1TransactionData
     userAgent: str
+    userInfo: GoogleCloudRecaptchaenterpriseV1UserInfo
     userIpAddress: str
     wafTokenAssessment: bool
 
@@ -461,6 +463,20 @@ class GoogleCloudRecaptchaenterpriseV1TransactionEvent(
     ]
     reason: str
     value: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1UserId(typing_extensions.TypedDict, total=False):
+    email: str
+    phoneNumber: str
+    username: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1UserInfo(
+    typing_extensions.TypedDict, total=False
+):
+    accountId: str
+    createAccountTime: str
+    userIds: _list[GoogleCloudRecaptchaenterpriseV1UserId]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WafSettings(

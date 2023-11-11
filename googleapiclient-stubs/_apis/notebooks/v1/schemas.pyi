@@ -324,6 +324,26 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MigrateInstanceRequest(typing_extensions.TypedDict, total=False):
+    postStartupScriptOption: typing_extensions.Literal[
+        "POST_STARTUP_SCRIPT_OPTION_UNSPECIFIED",
+        "POST_STARTUP_SCRIPT_OPTION_SKIP",
+        "POST_STARTUP_SCRIPT_OPTION_RERUN",
+    ]
+
+@typing.type_check_only
+class MigrateRuntimeRequest(typing_extensions.TypedDict, total=False):
+    network: str
+    postStartupScriptOption: typing_extensions.Literal[
+        "POST_STARTUP_SCRIPT_OPTION_UNSPECIFIED",
+        "POST_STARTUP_SCRIPT_OPTION_SKIP",
+        "POST_STARTUP_SCRIPT_OPTION_RERUN",
+    ]
+    requestId: str
+    serviceAccount: str
+    subnet: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status

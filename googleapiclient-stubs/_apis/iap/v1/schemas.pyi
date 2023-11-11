@@ -152,6 +152,7 @@ class ResetIdentityAwareProxyClientSecretRequest(
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    expectedNextState: dict[str, typing.Any]
     labels: dict[str, typing.Any]
     name: str
     service: str

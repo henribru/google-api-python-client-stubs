@@ -14,6 +14,45 @@ _list = list
 @typing.type_check_only
 class StorageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AnywhereCacheResource(googleapiclient.discovery.Resource):
+        def disable(
+            self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
+        ) -> AnywhereCacheHttpRequest: ...
+        def get(
+            self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
+        ) -> AnywhereCacheHttpRequest: ...
+        def insert(
+            self, *, bucket: str, body: AnywhereCache = ..., **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            bucket: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any
+        ) -> AnywhereCachesHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: AnywhereCachesHttpRequest,
+            previous_response: AnywhereCaches,
+        ) -> AnywhereCachesHttpRequest | None: ...
+        def pause(
+            self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
+        ) -> AnywhereCacheHttpRequest: ...
+        def resume(
+            self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
+        ) -> AnywhereCacheHttpRequest: ...
+        def update(
+            self,
+            *,
+            bucket: str,
+            anywhereCacheId: str,
+            body: AnywhereCache = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+    @typing.type_check_only
     class BucketAccessControlsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -267,6 +306,71 @@ class StorageResource(googleapiclient.discovery.Resource):
         ) -> ObjectAccessControlHttpRequest: ...
 
     @typing.type_check_only
+    class ManagedFoldersResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any
+        ) -> ManagedFolderHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            optionsRequestedPolicyVersion: int = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self, *, bucket: str, body: ManagedFolder = ..., **kwargs: typing.Any
+        ) -> ManagedFolderHttpRequest: ...
+        def list(
+            self,
+            *,
+            bucket: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            prefix: str = ...,
+            **kwargs: typing.Any
+        ) -> ManagedFoldersHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ManagedFoldersHttpRequest,
+            previous_response: ManagedFolders,
+        ) -> ManagedFoldersHttpRequest | None: ...
+        def setIamPolicy(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            body: Policy = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            bucket: str,
+            managedFolder: str,
+            permissions: str | _list[str],
+            userProject: str = ...,
+            **kwargs: typing.Any
+        ) -> TestIamPermissionsResponseHttpRequest: ...
+
+    @typing.type_check_only
     class NotificationsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -501,6 +605,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             delimiter: str = ...,
             endOffset: str = ...,
+            includeFoldersAsPrefixes: bool = ...,
             includeTrailingDelimiter: bool = ...,
             matchGlob: str = ...,
             maxResults: int = ...,
@@ -748,15 +853,33 @@ class StorageResource(googleapiclient.discovery.Resource):
         ]
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def anywhereCache(self) -> AnywhereCacheResource: ...
     def bucketAccessControls(self) -> BucketAccessControlsResource: ...
     def buckets(self) -> BucketsResource: ...
     def channels(self) -> ChannelsResource: ...
     def defaultObjectAccessControls(self) -> DefaultObjectAccessControlsResource: ...
+    def managedFolders(self) -> ManagedFoldersResource: ...
     def notifications(self) -> NotificationsResource: ...
     def objectAccessControls(self) -> ObjectAccessControlsResource: ...
     def objects(self) -> ObjectsResource: ...
     def operations(self) -> OperationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AnywhereCacheHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AnywhereCache: ...
+
+@typing.type_check_only
+class AnywhereCachesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AnywhereCaches: ...
 
 @typing.type_check_only
 class BucketHttpRequest(googleapiclient.http.HttpRequest):
@@ -839,6 +962,22 @@ class HmacKeysMetadataHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> HmacKeysMetadata: ...
+
+@typing.type_check_only
+class ManagedFolderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ManagedFolder: ...
+
+@typing.type_check_only
+class ManagedFoldersHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ManagedFolders: ...
 
 @typing.type_check_only
 class NotificationHttpRequest(googleapiclient.http.HttpRequest):

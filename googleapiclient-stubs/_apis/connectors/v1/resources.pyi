@@ -438,6 +438,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getRegionalSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> RegionalSettingsHttpRequest: ...
             def getRuntimeConfig(
                 self, *, name: str, **kwargs: typing.Any
             ) -> RuntimeConfigHttpRequest: ...
@@ -455,6 +458,14 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateRegionalSettings(
+                self,
+                *,
+                name: str,
+                body: RegionalSettings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
             def connections(self) -> ConnectionsResource: ...
             def endpointAttachments(self) -> EndpointAttachmentsResource: ...
             def global_(self) -> GlobalResource: ...
@@ -676,6 +687,14 @@ class ProviderHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Provider: ...
+
+@typing.type_check_only
+class RegionalSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> RegionalSettings: ...
 
 @typing.type_check_only
 class RuntimeConfigHttpRequest(googleapiclient.http.HttpRequest):

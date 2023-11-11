@@ -69,6 +69,7 @@ import googleapiclient._apis.baremetalsolution.v2.resources
 import googleapiclient._apis.batch.v1.resources
 import googleapiclient._apis.beyondcorp.v1.resources
 import googleapiclient._apis.beyondcorp.v1alpha.resources
+import googleapiclient._apis.biglake.v1.resources
 import googleapiclient._apis.bigquery.v2.resources
 import googleapiclient._apis.bigqueryconnection.v1beta1.resources
 import googleapiclient._apis.bigquerydatatransfer.v1.resources
@@ -194,6 +195,7 @@ import googleapiclient._apis.discoveryengine.v1alpha.resources
 import googleapiclient._apis.discoveryengine.v1beta.resources
 import googleapiclient._apis.displayvideo.v1.resources
 import googleapiclient._apis.displayvideo.v2.resources
+import googleapiclient._apis.displayvideo.v3.resources
 import googleapiclient._apis.dlp.v2.resources
 import googleapiclient._apis.dns.v1.resources
 import googleapiclient._apis.dns.v1beta2.resources
@@ -391,6 +393,7 @@ import googleapiclient._apis.run.v2.resources
 import googleapiclient._apis.runtimeconfig.v1.resources
 import googleapiclient._apis.runtimeconfig.v1beta1.resources
 import googleapiclient._apis.safebrowsing.v4.resources
+import googleapiclient._apis.safebrowsing.v5.resources
 import googleapiclient._apis.sasportal.v1alpha1.resources
 import googleapiclient._apis.script.v1.resources
 import googleapiclient._apis.searchads360.v0.resources
@@ -439,6 +442,7 @@ import googleapiclient._apis.tpu.v1alpha1.resources
 import googleapiclient._apis.tpu.v2.resources
 import googleapiclient._apis.tpu.v2alpha1.resources
 import googleapiclient._apis.trafficdirector.v2.resources
+import googleapiclient._apis.trafficdirector.v3.resources
 import googleapiclient._apis.transcoder.v1.resources
 import googleapiclient._apis.transcoder.v1beta1.resources
 import googleapiclient._apis.translate.v2.resources
@@ -1771,6 +1775,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.beyondcorp.v1alpha.resources.BeyondCorpResource: ...
+@overload
+def build(
+    serviceName: Literal["biglake"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.biglake.v1.resources.BigLakeServiceResource: ...
 @overload
 def build(
     serviceName: Literal["bigquery"],
@@ -4325,6 +4349,26 @@ def build(
     num_retries: int = ...,
     static_discovery: bool | None = ...,
 ) -> googleapiclient._apis.displayvideo.v2.resources.DisplayVideoResource: ...
+@overload
+def build(
+    serviceName: Literal["displayvideo"],
+    version: Literal["v3"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.displayvideo.v3.resources.DisplayVideoResource: ...
 @overload
 def build(
     serviceName: Literal["dlp"],
@@ -8369,6 +8413,26 @@ def build(
 ) -> googleapiclient._apis.safebrowsing.v4.resources.SafebrowsingResource: ...
 @overload
 def build(
+    serviceName: Literal["safebrowsing"],
+    version: Literal["v5"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> googleapiclient._apis.safebrowsing.v5.resources.SafebrowsingResource: ...
+@overload
+def build(
     serviceName: Literal["sasportal"],
     version: Literal["v1alpha1"],
     http: httplib2.Http | HttpMock | None = ...,
@@ -9344,6 +9408,28 @@ def build(
     static_discovery: bool | None = ...,
 ) -> (
     googleapiclient._apis.trafficdirector.v2.resources.TrafficDirectorServiceResource
+): ...
+@overload
+def build(
+    serviceName: Literal["trafficdirector"],
+    version: Literal["v3"],
+    http: httplib2.Http | HttpMock | None = ...,
+    discoveryServiceUrl: str | None = ...,
+    developerKey: str | None = ...,
+    model: Model | None = ...,
+    requestBuilder: HttpRequest = ...,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = ...,
+    cache_discovery: bool = ...,
+    cache: Cache | None = ...,
+    client_options: dict[str, Any] | ClientOptions | None = ...,
+    adc_cert_path: str | None = ...,
+    adc_key_path: str | None = ...,
+    num_retries: int = ...,
+    static_discovery: bool | None = ...,
+) -> (
+    googleapiclient._apis.trafficdirector.v3.resources.TrafficDirectorServiceResource
 ): ...
 @overload
 def build(

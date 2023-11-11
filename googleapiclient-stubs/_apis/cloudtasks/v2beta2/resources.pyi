@@ -209,8 +209,7 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
             def updateCmekConfig(
                 self,
                 *,
-                projectsId: str,
-                locationsId: str,
+                name: str,
                 body: CmekConfig = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any

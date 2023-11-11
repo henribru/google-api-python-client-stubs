@@ -18,6 +18,7 @@ class Availability(typing_extensions.TypedDict, total=False):
 class Conversion(typing_extensions.TypedDict, total=False):
     adGroupId: str
     adId: str
+    adUserDataConsent: typing_extensions.Literal["UNKNOWN", "GRANTED", "DENIED"]
     advertiserId: str
     agencyId: str
     attributionModel: str

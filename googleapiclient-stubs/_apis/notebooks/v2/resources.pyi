@@ -44,6 +44,9 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
+                def getConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ConfigHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -212,6 +215,14 @@ class CheckInstanceUpgradabilityResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> CheckInstanceUpgradabilityResponse: ...
+
+@typing.type_check_only
+class ConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Config: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

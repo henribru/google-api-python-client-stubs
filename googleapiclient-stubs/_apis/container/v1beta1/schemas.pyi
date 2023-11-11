@@ -201,6 +201,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     enableKubernetesAlpha: bool
     enableTpu: bool
     endpoint: str
+    enterpriseConfig: EnterpriseConfig
     etag: str
     expireTime: str
     fleet: Fleet
@@ -326,6 +327,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMonitoringService: str
     desiredNetworkPerformanceConfig: ClusterNetworkPerformanceConfig
     desiredNodePoolAutoConfigNetworkTags: NetworkTags
+    desiredNodePoolAutoConfigResourceManagerTags: ResourceManagerTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
     desiredNodePoolId: str
     desiredNodePoolLoggingConfig: NodePoolLoggingConfig
@@ -437,6 +439,12 @@ class DnsCacheConfig(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EnterpriseConfig(typing_extensions.TypedDict, total=False):
+    clusterTier: typing_extensions.Literal[
+        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
+    ]
+
+@typing.type_check_only
 class EphemeralStorageConfig(typing_extensions.TypedDict, total=False):
     localSsdCount: int
 
@@ -474,7 +482,10 @@ class GPUSharingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GatewayAPIConfig(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
-        "CHANNEL_UNSPECIFIED", "CHANNEL_DISABLED", "CHANNEL_STANDARD"
+        "CHANNEL_UNSPECIFIED",
+        "CHANNEL_DISABLED",
+        "CHANNEL_EXPERIMENTAL",
+        "CHANNEL_STANDARD",
     ]
 
 @typing.type_check_only
@@ -522,6 +533,7 @@ class HostMaintenancePolicy(typing_extensions.TypedDict, total=False):
     maintenanceInterval: typing_extensions.Literal[
         "MAINTENANCE_INTERVAL_UNSPECIFIED", "AS_NEEDED", "PERIODIC"
     ]
+    opportunisticMaintenanceStrategy: OpportunisticMaintenanceStrategy
 
 @typing.type_check_only
 class HttpCacheControlResponseHeader(typing_extensions.TypedDict, total=False):
@@ -807,6 +819,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     preemptible: bool
     reservationAffinity: ReservationAffinity
     resourceLabels: dict[str, typing.Any]
+    resourceManagerTags: ResourceManagerTags
     sandboxConfig: SandboxConfig
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -887,6 +900,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
     networkTags: NetworkTags
+    resourceManagerTags: ResourceManagerTags
 
 @typing.type_check_only
 class NodePoolAutoscaling(typing_extensions.TypedDict, total=False):
@@ -952,6 +966,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "SET_NETWORK_POLICY",
         "SET_MAINTENANCE_POLICY",
         "RESIZE_CLUSTER",
+        "FLEET_FEATURE_UPGRADE",
     ]
     progress: OperationProgress
     selfLink: str
@@ -971,6 +986,12 @@ class OperationProgress(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE", "ABORTING"
     ]
+
+@typing.type_check_only
+class OpportunisticMaintenanceStrategy(typing_extensions.TypedDict, total=False):
+    maintenanceAvailabilityWindow: str
+    minNodesPerPool: str
+    nodeIdleTimeWindow: str
 
 @typing.type_check_only
 class ParentProductConfig(typing_extensions.TypedDict, total=False):
@@ -1061,6 +1082,10 @@ class ResourceLimit(typing_extensions.TypedDict, total=False):
     maximum: str
     minimum: str
     resourceType: str
+
+@typing.type_check_only
+class ResourceManagerTags(typing_extensions.TypedDict, total=False):
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class ResourceUsageExportConfig(typing_extensions.TypedDict, total=False):
@@ -1342,6 +1367,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     nodeVersion: str
     projectId: str
     resourceLabels: ResourceLabels
+    resourceManagerTags: ResourceManagerTags
     tags: NetworkTags
     taints: NodeTaints
     upgradeSettings: UpgradeSettings

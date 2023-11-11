@@ -175,6 +175,22 @@ class TPUResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class ReservationsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListReservationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReservationsResponseHttpRequest,
+                    previous_response: ListReservationsResponse,
+                ) -> ListReservationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class RuntimeVersionsResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -223,6 +239,7 @@ class TPUResource(googleapiclient.discovery.Resource):
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...
             def queuedResources(self) -> QueuedResourcesResource: ...
+            def reservations(self) -> ReservationsResource: ...
             def runtimeVersions(self) -> RuntimeVersionsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -312,6 +329,14 @@ class ListQueuedResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListQueuedResourcesResponse: ...
+
+@typing.type_check_only
+class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListReservationsResponse: ...
 
 @typing.type_check_only
 class ListRuntimeVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):

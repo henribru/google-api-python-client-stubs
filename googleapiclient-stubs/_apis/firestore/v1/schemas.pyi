@@ -319,6 +319,9 @@ class GoogleFirestoreAdminV1FieldOperationMetadata(
     ttlConfigDelta: GoogleFirestoreAdminV1TtlConfigDelta
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1FlatIndex(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1ImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -380,6 +383,7 @@ class GoogleFirestoreAdminV1IndexField(typing_extensions.TypedDict, total=False)
     arrayConfig: typing_extensions.Literal["ARRAY_CONFIG_UNSPECIFIED", "CONTAINS"]
     fieldPath: str
     order: typing_extensions.Literal["ORDER_UNSPECIFIED", "ASCENDING", "DESCENDING"]
+    vectorConfig: GoogleFirestoreAdminV1VectorConfig
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1IndexOperationMetadata(
@@ -419,6 +423,7 @@ class GoogleFirestoreAdminV1ListDatabasesResponse(
     typing_extensions.TypedDict, total=False
 ):
     databases: _list[GoogleFirestoreAdminV1Database]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ListFieldsResponse(
@@ -491,6 +496,11 @@ class GoogleFirestoreAdminV1TtlConfigDelta(typing_extensions.TypedDict, total=Fa
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1VectorConfig(typing_extensions.TypedDict, total=False):
+    dimension: int
+    flat: GoogleFirestoreAdminV1FlatIndex
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1WeeklyRecurrence(typing_extensions.TypedDict, total=False):

@@ -5,6 +5,26 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AnywhereCache(typing_extensions.TypedDict, total=False):
+    admissionPolicy: str
+    anywhereCacheId: str
+    bucket: str
+    createTime: str
+    id: str
+    kind: str
+    pendingUpdate: bool
+    selfLink: str
+    state: str
+    ttl: str
+    updateTime: str
+
+@typing.type_check_only
+class AnywhereCaches(typing_extensions.TypedDict, total=False):
+    items: _list[AnywhereCache]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
 class Bucket(typing_extensions.TypedDict, total=False):
     acl: _list[BucketAccessControl]
     autoclass: dict[str, typing.Any]
@@ -139,6 +159,23 @@ class HmacKeyMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HmacKeysMetadata(typing_extensions.TypedDict, total=False):
     items: _list[HmacKeyMetadata]
+    kind: str
+    nextPageToken: str
+
+@typing.type_check_only
+class ManagedFolder(typing_extensions.TypedDict, total=False):
+    bucket: str
+    createTime: str
+    id: str
+    kind: str
+    metageneration: str
+    name: str
+    selfLink: str
+    updateTime: str
+
+@typing.type_check_only
+class ManagedFolders(typing_extensions.TypedDict, total=False):
+    items: _list[ManagedFolder]
     kind: str
     nextPageToken: str
 

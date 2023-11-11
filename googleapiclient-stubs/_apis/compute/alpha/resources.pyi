@@ -2489,6 +2489,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def deleteNetworkInterface(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            networkInterfaceName: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def detachDisk(
             self,
             *,
@@ -7715,6 +7725,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class SnapshotsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any
+        ) -> SnapshotAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: SnapshotAggregatedListHttpRequest,
+            previous_response: SnapshotAggregatedList,
+        ) -> SnapshotAggregatedListHttpRequest | None: ...
         def delete(
             self,
             *,
@@ -10991,6 +11019,14 @@ class SnapshotHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Snapshot: ...
+
+@typing.type_check_only
+class SnapshotAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SnapshotAggregatedList: ...
 
 @typing.type_check_only
 class SnapshotListHttpRequest(googleapiclient.http.HttpRequest):

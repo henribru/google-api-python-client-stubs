@@ -21,6 +21,10 @@ class Error(typing_extensions.TypedDict, total=False):
     stackTrace: StackTrace
 
 @typing.type_check_only
+class Exception(typing_extensions.TypedDict, total=False):
+    payload: str
+
+@typing.type_check_only
 class Execution(typing_extensions.TypedDict, total=False):
     argument: str
     callLogLevel: typing_extensions.Literal[
@@ -61,6 +65,19 @@ class ListExecutionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListStepEntriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    stepEntries: _list[StepEntry]
+    totalSize: int
+
+@typing.type_check_only
+class NavigationInfo(typing_extensions.TypedDict, total=False):
+    children: _list[str]
+    next: str
+    parent: str
+    previous: str
+
+@typing.type_check_only
 class Position(typing_extensions.TypedDict, total=False):
     column: str
     length: str
@@ -97,6 +114,56 @@ class Status(typing_extensions.TypedDict, total=False):
 class Step(typing_extensions.TypedDict, total=False):
     routine: str
     step: str
+
+@typing.type_check_only
+class StepEntry(typing_extensions.TypedDict, total=False):
+    createTime: str
+    entryId: str
+    exception: Exception
+    name: str
+    navigationInfo: NavigationInfo
+    routine: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STATE_IN_PROGRESS", "STATE_SUCCEEDED", "STATE_FAILED"
+    ]
+    step: str
+    stepEntryMetadata: StepEntryMetadata
+    stepType: typing_extensions.Literal[
+        "STEP_TYPE_UNSPECIFIED",
+        "STEP_ASSIGN",
+        "STEP_STD_LIB_CALL",
+        "STEP_CONNECTOR_CALL",
+        "STEP_SUBWORKFLOW_CALL",
+        "STEP_CALL",
+        "STEP_SWITCH",
+        "STEP_CONDITION",
+        "STEP_FOR",
+        "STEP_FOR_ITERATION",
+        "STEP_PARALLEL_FOR",
+        "STEP_PARALLEL_BRANCH",
+        "STEP_PARALLEL_BRANCH_ENTRY",
+        "STEP_TRY_RETRY_EXCEPT",
+        "STEP_TRY",
+        "STEP_RETRY",
+        "STEP_EXCEPT",
+        "STEP_RETURN",
+        "STEP_RAISE",
+        "STEP_GOTO",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class StepEntryMetadata(typing_extensions.TypedDict, total=False):
+    progressNumber: str
+    progressType: typing_extensions.Literal[
+        "PROGRESS_TYPE_UNSPECIFIED",
+        "PROGRESS_TYPE_FOR",
+        "PROGRESS_TYPE_SWITCH",
+        "PROGRESS_TYPE_RETRY",
+        "PROGRESS_TYPE_PARALLEL_FOR",
+        "PROGRESS_TYPE_PARALLEL_BRANCH",
+    ]
+    threadId: str
 
 @typing.type_check_only
 class TriggerPubsubExecutionRequest(typing_extensions.TypedDict, total=False):

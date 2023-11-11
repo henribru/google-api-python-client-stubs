@@ -106,6 +106,27 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MuteConfigsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
+            def muteConfigs(self) -> MuteConfigsResource: ...
+
+        @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -239,6 +260,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def simulate(
+                    self,
+                    *,
+                    parent: str,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
             @typing.type_check_only
             class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
@@ -359,6 +387,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def assets(self) -> AssetsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
         def findings(self) -> FindingsResource: ...
+        def locations(self) -> LocationsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def securityHealthAnalyticsSettings(
@@ -514,6 +543,27 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: BulkMuteFindingsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MuteConfigsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
+            def muteConfigs(self) -> MuteConfigsResource: ...
 
         @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
@@ -712,6 +762,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def simulate(
+                    self,
+                    *,
+                    parent: str,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
             @typing.type_check_only
             class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
@@ -987,6 +1044,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             self,
         ) -> EventThreatDetectionSettingsResource: ...
         def findings(self) -> FindingsResource: ...
+        def locations(self) -> LocationsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def operations(self) -> OperationsResource: ...
@@ -1088,6 +1146,27 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 body: BulkMuteFindingsRequest = ...,
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
+
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class MuteConfigsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
+
+            def muteConfigs(self) -> MuteConfigsResource: ...
 
         @typing.type_check_only
         class MuteConfigsResource(googleapiclient.discovery.Resource):
@@ -1223,6 +1302,13 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModuleHttpRequest: ...
+                def simulate(
+                    self,
+                    *,
+                    parent: str,
+                    body: SimulateSecurityHealthAnalyticsCustomModuleRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest: ...
 
             @typing.type_check_only
             class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
@@ -1343,6 +1429,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         def assets(self) -> AssetsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
         def findings(self) -> FindingsResource: ...
+        def locations(self) -> LocationsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
         def notificationConfigs(self) -> NotificationConfigsResource: ...
         def securityHealthAnalyticsSettings(
@@ -1635,6 +1722,16 @@ class SecurityMarksHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SecurityMarks: ...
+
+@typing.type_check_only
+class SimulateSecurityHealthAnalyticsCustomModuleResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SimulateSecurityHealthAnalyticsCustomModuleResponse: ...
 
 @typing.type_check_only
 class SimulationHttpRequest(googleapiclient.http.HttpRequest):

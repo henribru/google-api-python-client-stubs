@@ -137,6 +137,20 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BlobStorageInfo(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
+    storageClass: typing_extensions.Literal[
+        "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    ]
+    storageClassUpdateTime: str
+
+@typing.type_check_only
+class BlobStorageSettings(typing_extensions.TypedDict, total=False):
+    blobStorageClass: typing_extensions.Literal[
+        "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    ]
+
+@typing.type_check_only
 class BoundingPoly(typing_extensions.TypedDict, total=False):
     label: str
     vertices: _list[Vertex]
@@ -347,6 +361,15 @@ class DicomStore(typing_extensions.TypedDict, total=False):
     name: str
     notificationConfig: NotificationConfig
     streamConfigs: _list[GoogleCloudHealthcareV1beta1DicomStreamConfig]
+
+@typing.type_check_only
+class DicomStoreMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    name: str
+    seriesCount: str
+    structuredStorageSizeBytes: str
+    studyCount: str
 
 @typing.type_check_only
 class DicomTagConfig(typing_extensions.TypedDict, total=False):
@@ -724,6 +747,17 @@ class Hl7V2Store(typing_extensions.TypedDict, total=False):
     rejectDuplicateMessage: bool
 
 @typing.type_check_only
+class Hl7V2StoreMetric(typing_extensions.TypedDict, total=False):
+    count: str
+    messageType: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
+class Hl7V2StoreMetrics(typing_extensions.TypedDict, total=False):
+    metrics: _list[Hl7V2StoreMetric]
+    name: str
+
+@typing.type_check_only
 class HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
@@ -760,6 +794,7 @@ class ImportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
+    blobStorageSettings: BlobStorageSettings
     gcsSource: GoogleCloudHealthcareV1beta1DicomGcsSource
 
 @typing.type_check_only
@@ -1044,6 +1079,28 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
     consentArtifact: str
 
 @typing.type_check_only
+class RollbackFhirResourceFilteringFields(typing_extensions.TypedDict, total=False):
+    metadataFilter: str
+    operationIds: _list[str]
+
+@typing.type_check_only
+class RollbackFhirResourcesRequest(typing_extensions.TypedDict, total=False):
+    changeType: typing_extensions.Literal[
+        "CHANGE_TYPE_UNSPECIFIED", "ALL", "CREATE", "UPDATE", "DELETE"
+    ]
+    excludeRollbacks: bool
+    filteringFields: RollbackFhirResourceFilteringFields
+    force: bool
+    inputGcsObject: str
+    resultGcsBucket: str
+    rollbackTime: str
+    type: _list[str]
+
+@typing.type_check_only
+class RollbackFhirResourcesResponse(typing_extensions.TypedDict, total=False):
+    fhirStore: str
+
+@typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):
     lastUpdatedPartitionConfig: TimePartitioning
     recursiveStructureDepth: str
@@ -1106,6 +1163,21 @@ class SensitiveTextAnnotation(typing_extensions.TypedDict, total=False):
     details: dict[str, typing.Any]
 
 @typing.type_check_only
+class SeriesMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    series: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
+class SetBlobStorageSettingsRequest(typing_extensions.TypedDict, total=False):
+    blobStorageSettings: BlobStorageSettings
+    filterConfig: DicomFilterConfig
+
+@typing.type_check_only
+class SetBlobStorageSettingsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -1124,10 +1196,28 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StorageInfo(typing_extensions.TypedDict, total=False):
+    blobStorageInfo: BlobStorageInfo
+    referencedResource: str
+    structuredStorageInfo: StructuredStorageInfo
+
+@typing.type_check_only
 class StreamConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1beta1FhirBigQueryDestination
     deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class StructuredStorageInfo(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
+
+@typing.type_check_only
+class StudyMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    seriesCount: str
+    structuredStorageSizeBytes: str
+    study: str
 
 @typing.type_check_only
 class TagFilterList(typing_extensions.TypedDict, total=False):

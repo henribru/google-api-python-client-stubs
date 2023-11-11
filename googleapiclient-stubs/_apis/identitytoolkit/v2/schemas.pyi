@@ -318,14 +318,6 @@ class GoogleCloudIdentitytoolkitAdminV2OAuthResponseType(
     token: bool
 
 @typing.type_check_only
-class GoogleCloudIdentitytoolkitAdminV2PasskeyConfig(
-    typing_extensions.TypedDict, total=False
-):
-    expectedOrigins: _list[str]
-    name: str
-    rpId: str
-
-@typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig(
     typing_extensions.TypedDict, total=False
 ):

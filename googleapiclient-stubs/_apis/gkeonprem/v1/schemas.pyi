@@ -720,6 +720,7 @@ class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     networkConfig: VmwareAdminNetworkConfig
     onPremVersion: str
     platformConfig: VmwarePlatformConfig
+    preparedSecrets: VmwareAdminPreparedSecretsConfig
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -779,6 +780,10 @@ class VmwareAdminNetworkConfig(typing_extensions.TypedDict, total=False):
     serviceAddressCidrBlocks: _list[str]
     staticIpConfig: VmwareStaticIpConfig
     vcenterNetwork: str
+
+@typing.type_check_only
+class VmwareAdminPreparedSecretsConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class VmwareAdminSeesawConfig(typing_extensions.TypedDict, total=False):

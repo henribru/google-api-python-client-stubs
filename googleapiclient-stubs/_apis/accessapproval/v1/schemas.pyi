@@ -45,6 +45,7 @@ class ApprovalRequest(typing_extensions.TypedDict, total=False):
     dismiss: DismissDecision
     name: str
     requestTime: str
+    requestedDuration: str
     requestedExpiration: str
     requestedLocations: AccessLocations
     requestedReason: AccessReason

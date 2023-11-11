@@ -279,11 +279,17 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "ONLINE_MAINTENANCE",
     ]
     suspensionReason: _list[str]
+    writeEndpoint: str
 
 @typing.type_check_only
 class DatabasesListResponse(typing_extensions.TypedDict, total=False):
     items: _list[Database]
     kind: str
+
+@typing.type_check_only
+class DemoteContext(typing_extensions.TypedDict, total=False):
+    kind: str
+    sourceRepresentativeInstanceName: str
 
 @typing.type_check_only
 class DemoteMasterConfiguration(typing_extensions.TypedDict, total=False):
@@ -417,6 +423,10 @@ class InstancesDemoteMasterRequest(typing_extensions.TypedDict, total=False):
     demoteMasterContext: DemoteMasterContext
 
 @typing.type_check_only
+class InstancesDemoteRequest(typing_extensions.TypedDict, total=False):
+    demoteContext: DemoteContext
+
+@typing.type_check_only
 class InstancesExportRequest(typing_extensions.TypedDict, total=False):
     exportContext: ExportContext
 
@@ -466,6 +476,12 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
     privateNetwork: str
     pscConfig: PscConfig
     requireSsl: bool
+    sslMode: typing_extensions.Literal[
+        "SSL_MODE_UNSPECIFIED",
+        "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+        "ENCRYPTED_ONLY",
+        "TRUSTED_CLIENT_CERTIFICATE_REQUIRED",
+    ]
 
 @typing.type_check_only
 class IpMapping(typing_extensions.TypedDict, total=False):
@@ -640,6 +656,7 @@ class PscConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
+    cascadableReplica: bool
     failoverTarget: bool
     kind: str
     mysqlReplicaConfiguration: MySqlReplicaConfiguration
@@ -760,6 +777,8 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "INVALID_FILE_INFO",
         "UNSUPPORTED_DATABASE_SETTINGS",
         "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
+        "LOCAL_INFILE_OFF",
+        "TURN_ON_PITR_AFTER_PROMOTE",
     ]
 
 @typing.type_check_only
@@ -924,7 +943,12 @@ class User(typing_extensions.TypedDict, total=False):
     project: str
     sqlserverUserDetails: SqlServerUserDetails
     type: typing_extensions.Literal[
-        "BUILT_IN", "CLOUD_IAM_USER", "CLOUD_IAM_SERVICE_ACCOUNT"
+        "BUILT_IN",
+        "CLOUD_IAM_USER",
+        "CLOUD_IAM_SERVICE_ACCOUNT",
+        "CLOUD_IAM_GROUP",
+        "CLOUD_IAM_GROUP_USER",
+        "CLOUD_IAM_GROUP_SERVICE_ACCOUNT",
     ]
 
 @typing.type_check_only

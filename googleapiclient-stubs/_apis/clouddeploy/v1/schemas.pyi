@@ -19,11 +19,25 @@ class AdvanceChildRolloutJobRun(typing_extensions.TypedDict, total=False):
     rolloutPhaseId: str
 
 @typing.type_check_only
+class AdvanceRolloutOperation(typing_extensions.TypedDict, total=False):
+    destinationPhase: str
+    rollout: str
+    sourcePhase: str
+    wait: str
+
+@typing.type_check_only
 class AdvanceRolloutRequest(typing_extensions.TypedDict, total=False):
     phaseId: str
 
 @typing.type_check_only
 class AdvanceRolloutResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AdvanceRolloutRule(typing_extensions.TypedDict, total=False):
+    condition: AutomationRuleCondition
+    id: str
+    sourcePhases: _list[str]
+    wait: str
 
 @typing.type_check_only
 class AnthosCluster(typing_extensions.TypedDict, total=False):
@@ -49,6 +63,21 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Automation(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    rules: _list[AutomationRule]
+    selector: AutomationResourceSelector
+    serviceAccount: str
+    suspended: bool
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class AutomationEvent(typing_extensions.TypedDict, total=False):
     automation: str
     message: str
@@ -60,8 +89,55 @@ class AutomationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class AutomationResourceSelector(typing_extensions.TypedDict, total=False):
+    targets: _list[TargetAttribute]
+
+@typing.type_check_only
+class AutomationRolloutMetadata(typing_extensions.TypedDict, total=False):
+    advanceAutomationRuns: _list[str]
+    promoteAutomationRun: str
+    repairAutomationRuns: _list[str]
+
+@typing.type_check_only
+class AutomationRule(typing_extensions.TypedDict, total=False):
+    advanceRolloutRule: AdvanceRolloutRule
+    promoteReleaseRule: PromoteReleaseRule
+    repairRolloutRule: RepairRolloutRule
+
+@typing.type_check_only
+class AutomationRuleCondition(typing_extensions.TypedDict, total=False):
+    targetsPresentCondition: TargetsPresentCondition
+
+@typing.type_check_only
+class AutomationRun(typing_extensions.TypedDict, total=False):
+    advanceRolloutOperation: AdvanceRolloutOperation
+    automationId: str
+    automationSnapshot: Automation
+    createTime: str
+    etag: str
+    expireTime: str
+    name: str
+    promoteReleaseOperation: PromoteReleaseOperation
+    repairRolloutOperation: RepairRolloutOperation
+    ruleId: str
+    serviceAccount: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "SUCCEEDED",
+        "CANCELLED",
+        "FAILED",
+        "IN_PROGRESS",
+        "PENDING",
+    ]
+    stateDescription: str
+    targetId: str
+    updateTime: str
+    waitUntilTime: str
 
 @typing.type_check_only
 class AutomationRunEvent(typing_extensions.TypedDict, total=False):
@@ -78,6 +154,7 @@ class AutomationRunEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -106,6 +183,12 @@ class CanaryDeployment(typing_extensions.TypedDict, total=False):
     verify: bool
 
 @typing.type_check_only
+class CancelAutomationRunRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelAutomationRunResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -129,6 +212,7 @@ class CloudRunLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudRunMetadata(typing_extensions.TypedDict, total=False):
+    job: str
     revision: str
     service: str
     serviceUrls: _list[str]
@@ -191,6 +275,7 @@ class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -336,6 +421,7 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -343,6 +429,18 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
 class KubernetesConfig(typing_extensions.TypedDict, total=False):
     gatewayServiceMesh: GatewayServiceMesh
     serviceNetworking: ServiceNetworking
+
+@typing.type_check_only
+class ListAutomationRunsResponse(typing_extensions.TypedDict, total=False):
+    automationRuns: _list[AutomationRun]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListAutomationsResponse(typing_extensions.TypedDict, total=False):
+    automations: _list[Automation]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
@@ -394,6 +492,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
+    automation: AutomationRolloutMetadata
     cloudRun: CloudRunMetadata
 
 @typing.type_check_only
@@ -514,6 +613,21 @@ class PrivatePool(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class PromoteReleaseOperation(typing_extensions.TypedDict, total=False):
+    phase: str
+    rollout: str
+    targetId: str
+    wait: str
+
+@typing.type_check_only
+class PromoteReleaseRule(typing_extensions.TypedDict, total=False):
+    condition: AutomationRuleCondition
+    destinationPhase: str
+    destinationTargetId: str
+    id: str
+    wait: str
+
+@typing.type_check_only
 class Release(typing_extensions.TypedDict, total=False):
     abandoned: bool
     annotations: dict[str, typing.Any]
@@ -555,6 +669,7 @@ class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -572,12 +687,88 @@ class RenderMetadata(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRunRenderMetadata
 
 @typing.type_check_only
+class RepairMode(typing_extensions.TypedDict, total=False):
+    retry: Retry
+    rollback: Rollback
+
+@typing.type_check_only
+class RepairPhase(typing_extensions.TypedDict, total=False):
+    retry: RetryPhase
+    rollback: RollbackAttempt
+
+@typing.type_check_only
+class RepairRolloutOperation(typing_extensions.TypedDict, total=False):
+    currentRepairModeIndex: str
+    repairPhases: _list[RepairPhase]
+    rollout: str
+
+@typing.type_check_only
+class RepairRolloutRule(typing_extensions.TypedDict, total=False):
+    condition: AutomationRuleCondition
+    id: str
+    jobs: _list[str]
+    repairModes: _list[RepairMode]
+    sourcePhases: _list[str]
+
+@typing.type_check_only
+class Retry(typing_extensions.TypedDict, total=False):
+    attempts: str
+    backoffMode: typing_extensions.Literal[
+        "BACKOFF_MODE_UNSPECIFIED", "BACKOFF_MODE_LINEAR", "BACKOFF_MODE_EXPONENTIAL"
+    ]
+    wait: str
+
+@typing.type_check_only
+class RetryAttempt(typing_extensions.TypedDict, total=False):
+    attempt: str
+    state: typing_extensions.Literal[
+        "REPAIR_STATE_UNSPECIFIED",
+        "REPAIR_STATE_SUCCEEDED",
+        "REPAIR_STATE_CANCELLED",
+        "REPAIR_STATE_FAILED",
+        "REPAIR_STATE_IN_PROGRESS",
+        "REPAIR_STATE_PENDING",
+        "REPAIR_STATE_SKIPPED",
+    ]
+    stateDesc: str
+    wait: str
+
+@typing.type_check_only
 class RetryJobRequest(typing_extensions.TypedDict, total=False):
     jobId: str
     phaseId: str
 
 @typing.type_check_only
 class RetryJobResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RetryPhase(typing_extensions.TypedDict, total=False):
+    attempts: _list[RetryAttempt]
+    backoffMode: typing_extensions.Literal[
+        "BACKOFF_MODE_UNSPECIFIED", "BACKOFF_MODE_LINEAR", "BACKOFF_MODE_EXPONENTIAL"
+    ]
+    jobId: str
+    phaseId: str
+    totalAttempts: str
+
+@typing.type_check_only
+class Rollback(typing_extensions.TypedDict, total=False):
+    destinationPhase: str
+
+@typing.type_check_only
+class RollbackAttempt(typing_extensions.TypedDict, total=False):
+    destinationPhase: str
+    rolloutId: str
+    state: typing_extensions.Literal[
+        "REPAIR_STATE_UNSPECIFIED",
+        "REPAIR_STATE_SUCCEEDED",
+        "REPAIR_STATE_CANCELLED",
+        "REPAIR_STATE_FAILED",
+        "REPAIR_STATE_IN_PROGRESS",
+        "REPAIR_STATE_PENDING",
+        "REPAIR_STATE_SKIPPED",
+    ]
+    stateDesc: str
 
 @typing.type_check_only
 class RollbackTargetConfig(typing_extensions.TypedDict, total=False):
@@ -663,6 +854,41 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
+
+@typing.type_check_only
+class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
+    message: str
+    pipelineUid: str
+    releaseUid: str
+    rollout: str
+    rolloutUpdateType: typing_extensions.Literal[
+        "ROLLOUT_UPDATE_TYPE_UNSPECIFIED",
+        "PENDING",
+        "PENDING_RELEASE",
+        "IN_PROGRESS",
+        "CANCELLING",
+        "CANCELLED",
+        "HALTED",
+        "SUCCEEDED",
+        "FAILED",
+        "APPROVAL_REQUIRED",
+        "APPROVED",
+        "REJECTED",
+        "ADVANCE_REQUIRED",
+        "ADVANCED",
+    ]
+    targetId: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RESOURCE_STATE_CHANGE",
+        "TYPE_PROCESS_ABORTED",
+        "TYPE_RESTRICTION_VIOLATED",
+        "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -756,6 +982,11 @@ class TargetArtifact(typing_extensions.TypedDict, total=False):
     skaffoldConfigPath: str
 
 @typing.type_check_only
+class TargetAttribute(typing_extensions.TypedDict, total=False):
+    id: str
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
 class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
     message: str
     target: str
@@ -766,6 +997,7 @@ class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_PROCESS_ABORTED",
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -776,6 +1008,7 @@ class TargetRender(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_UNAVAILABLE",
         "EXECUTION_FAILED",
         "CLOUD_BUILD_REQUEST_FAILED",
+        "VERIFICATION_CONFIG_NOT_FOUND",
         "CUSTOM_ACTION_NOT_FOUND",
     ]
     failureMessage: str

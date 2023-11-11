@@ -425,12 +425,14 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse(
 class GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse(
     typing_extensions.TypedDict, total=False
 ):
+    nextPageToken: str
     partnerTenants: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponse(
     typing_extensions.TypedDict, total=False
 ):
+    nextPageToken: str
     proxyConfigs: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig]
 
 @typing.type_check_only

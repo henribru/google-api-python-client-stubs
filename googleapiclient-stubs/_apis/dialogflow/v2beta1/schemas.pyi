@@ -1719,6 +1719,11 @@ class GoogleCloudDialogflowV2DeployConversationModelOperationMetadata(
     createTime: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2EncryptionSpec(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -1796,6 +1801,18 @@ class GoogleCloudDialogflowV2ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    request: GoogleCloudDialogflowV2InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudDialogflowV2EncryptionSpec
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=False):
@@ -2715,6 +2732,13 @@ class GoogleCloudDialogflowV2beta1DtmfParameters(
     acceptsDtmfInput: bool
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1EncryptionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -3030,6 +3054,18 @@ class GoogleCloudDialogflowV2beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    request: GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudDialogflowV2beta1EncryptionSpec
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1InputAudioConfig(

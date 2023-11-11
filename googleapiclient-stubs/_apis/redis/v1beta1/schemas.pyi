@@ -11,6 +11,7 @@ class CertChain(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CertificateAuthority(typing_extensions.TypedDict, total=False):
     managedServerCa: ManagedCertificateAuthority
+    name: str
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
