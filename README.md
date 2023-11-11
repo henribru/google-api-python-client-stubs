@@ -11,18 +11,22 @@ The stubs were generated automatically based on Google's [Discovery Documents](h
 
 If you find incorrect annotations, please create an issue.
 
+Releases can be somewhat infrequent. If you need a new release, create an issue and I'll probably get around to it faster.
+
 ## Installation
 
 ```shell script
 $ pip install google-api-python-client-stubs
 ```
 
+The stubs should be automatically picked up by your editor or typechecker.
+
 ## Caveats
 
 ### Performance
 The stubs contain a separate overload of `googleapiclient.discovery.build` for each service and version (see `discovery.pyi`). 
 This can lead to slow type inference for this function. Mypy will generally be pretty fast after the first run,
-but you might experience slow autocomplete. If you're experiencing this problem you can bypass type inference with explicit annotations, 
+but you might experience slow autocomplete in your editor. If you're experiencing this problem you can bypass type inference with explicit annotations, 
 e.g. `sheets_service: SheetsResource = build("sheets", "v4")` instead of `sheets_service = build("sheets", "v4")`.
 See the next section for some caveats to this approach.
 
