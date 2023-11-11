@@ -272,6 +272,7 @@ class LogBucket(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogEntry(typing_extensions.TypedDict, total=False):
+    errorGroups: _list[LogErrorGroup]
     httpRequest: HttpRequest
     insertId: str
     jsonPayload: dict[str, typing.Any]
@@ -313,6 +314,10 @@ class LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
     file: str
     function: str
     line: str
+
+@typing.type_check_only
+class LogErrorGroup(typing_extensions.TypedDict, total=False):
+    id: str
 
 @typing.type_check_only
 class LogExclusion(typing_extensions.TypedDict, total=False):

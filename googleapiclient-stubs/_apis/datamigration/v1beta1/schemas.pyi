@@ -210,6 +210,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "SOURCE_SIZE_EXCEEDS_THRESHOLD",
         "EXISTING_CONFLICTING_DATABASES",
         "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
+        "EXISTING_DATA",
     ]
     errorDetailMessage: str
     errorMessage: str

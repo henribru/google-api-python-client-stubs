@@ -21,6 +21,7 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED",
         "NOT_FOUND",
         "SCHEMA_MISMATCH",
+        "IN_TRANSIT_LOCATION_RESTRICTION",
     ]
     table: str
     useTopicSchema: bool
@@ -41,7 +42,11 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     maxBytes: str
     maxDuration: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "PERMISSION_DENIED", "NOT_FOUND"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "PERMISSION_DENIED",
+        "NOT_FOUND",
+        "IN_TRANSIT_LOCATION_RESTRICTION",
     ]
     textConfig: TextConfig
 

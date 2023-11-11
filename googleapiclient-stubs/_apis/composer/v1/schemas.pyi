@@ -27,6 +27,7 @@ class CidrBlock(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
+    zone: str
 
 @typing.type_check_only
 class DatabaseFailoverRequest(typing_extensions.TypedDict, total=False): ...
@@ -305,7 +306,8 @@ class StopAirflowCommandResponse(typing_extensions.TypedDict, total=False):
     output: _list[str]
 
 @typing.type_check_only
-class StorageConfig(typing_extensions.TypedDict, total=False): ...
+class StorageConfig(typing_extensions.TypedDict, total=False):
+    bucket: str
 
 @typing.type_check_only
 class TriggererResource(typing_extensions.TypedDict, total=False):

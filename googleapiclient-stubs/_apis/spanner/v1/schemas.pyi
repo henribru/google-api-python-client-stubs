@@ -5,6 +5,23 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AutoscalingConfig(typing_extensions.TypedDict, total=False):
+    autoscalingLimits: AutoscalingLimits
+    autoscalingTargets: AutoscalingTargets
+
+@typing.type_check_only
+class AutoscalingLimits(typing_extensions.TypedDict, total=False):
+    maxNodes: int
+    maxProcessingUnits: int
+    minNodes: int
+    minProcessingUnits: int
+
+@typing.type_check_only
+class AutoscalingTargets(typing_extensions.TypedDict, total=False):
+    highPriorityCpuUtilizationPercent: int
+    storageUtilizationPercent: int
+
+@typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     database: str
@@ -290,6 +307,11 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class IndexAdvice(typing_extensions.TypedDict, total=False):
+    ddl: _list[str]
+    improvementFactor: float
+
+@typing.type_check_only
 class IndexedHotKey(typing_extensions.TypedDict, total=False):
     sparseHotKeys: dict[str, typing.Any]
 
@@ -299,6 +321,7 @@ class IndexedKeyRangeInfos(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    autoscalingConfig: AutoscalingConfig
     config: str
     createTime: str
     displayName: str
@@ -556,6 +579,10 @@ class PrefixNode(typing_extensions.TypedDict, total=False):
     word: str
 
 @typing.type_check_only
+class QueryAdvisorResult(typing_extensions.TypedDict, total=False):
+    indexAdvice: _list[IndexAdvice]
+
+@typing.type_check_only
 class QueryOptions(typing_extensions.TypedDict, total=False):
     optimizerStatisticsPackage: str
     optimizerVersion: str
@@ -563,6 +590,7 @@ class QueryOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueryPlan(typing_extensions.TypedDict, total=False):
     planNodes: _list[PlanNode]
+    queryAdvice: QueryAdvisorResult
 
 @typing.type_check_only
 class ReadOnly(typing_extensions.TypedDict, total=False):

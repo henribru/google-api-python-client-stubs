@@ -37,6 +37,28 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             previous_response: ListCallbacksResponse,
                         ) -> ListCallbacksResponseHttpRequest | None: ...
 
+                    @typing.type_check_only
+                    class StepEntriesResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> StepEntryHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            skip: int = ...,
+                            **kwargs: typing.Any
+                        ) -> ListStepEntriesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListStepEntriesResponseHttpRequest,
+                            previous_response: ListStepEntriesResponse,
+                        ) -> ListStepEntriesResponseHttpRequest | None: ...
+
                     def cancel(
                         self,
                         *,
@@ -82,6 +104,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         previous_response: ListExecutionsResponse,
                     ) -> ListExecutionsResponseHttpRequest | None: ...
                     def callbacks(self) -> CallbacksResource: ...
+                    def stepEntries(self) -> StepEntriesResource: ...
 
                 def triggerPubsubExecution(
                     self,
@@ -141,3 +164,19 @@ class ListExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListExecutionsResponse: ...
+
+@typing.type_check_only
+class ListStepEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListStepEntriesResponse: ...
+
+@typing.type_check_only
+class StepEntryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StepEntry: ...

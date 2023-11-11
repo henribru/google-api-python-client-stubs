@@ -125,6 +125,11 @@ class ListQueuedResourcesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListReservationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reservations: _list[Reservation]
+
+@typing.type_check_only
 class ListRuntimeVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     runtimeVersions: _list[RuntimeVersion]
@@ -239,6 +244,7 @@ class ProvisioningData(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class QueuedResource(typing_extensions.TypedDict, total=False):
     bestEffort: BestEffort
+    createTime: str
     guaranteed: Guaranteed
     name: str
     queueingPolicy: QueueingPolicy
@@ -282,6 +288,11 @@ class QueueingPolicy(typing_extensions.TypedDict, total=False):
     validUntilTime: str
 
 @typing.type_check_only
+class Reservation(typing_extensions.TypedDict, total=False):
+    name: str
+    standard: Standard
+
+@typing.type_check_only
 class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -313,6 +324,16 @@ class SimulateMaintenanceEventRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Spot(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Standard(typing_extensions.TypedDict, total=False):
+    capacityUnits: typing_extensions.Literal[
+        "CAPACITY_UNITS_UNSPECIFIED", "CORES", "CHIPS"
+    ]
+    interval: Interval
+    resourceType: str
+    size: int
+    usage: Usage
 
 @typing.type_check_only
 class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
@@ -350,3 +371,7 @@ class Symptom(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tpu(typing_extensions.TypedDict, total=False):
     nodeSpec: _list[NodeSpec]
+
+@typing.type_check_only
+class Usage(typing_extensions.TypedDict, total=False):
+    total: str

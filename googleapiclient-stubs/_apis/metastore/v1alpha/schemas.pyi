@@ -189,6 +189,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    multiRegionMetadata: MultiRegionMetadata
     supportedHiveMetastoreVersions: _list[HiveMetastoreVersion]
 
 @typing.type_check_only
@@ -245,6 +246,10 @@ class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MultiRegionMetadata(typing_extensions.TypedDict, total=False):
+    constituentRegions: _list[str]
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):

@@ -734,3 +734,7 @@ class UsageRule(typing_extensions.TypedDict, total=False):
     allowUnregisteredCalls: bool
     selector: str
     skipServiceControl: bool
+
+@typing.type_check_only
+class VpcServiceControls(typing_extensions.TypedDict, total=False):
+    enabled: bool

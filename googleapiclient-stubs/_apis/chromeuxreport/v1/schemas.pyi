@@ -46,6 +46,7 @@ class Key(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metric(typing_extensions.TypedDict, total=False):
+    fractions: dict[str, typing.Any]
     histogram: _list[Bin]
     percentiles: Percentiles
 

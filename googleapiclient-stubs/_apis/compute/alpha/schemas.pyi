@@ -946,6 +946,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
     endTimestamp: str
+    existingReservations: _list[str]
     id: str
     kind: str
     licenseResource: LicenseResourceCommitment
@@ -2488,6 +2489,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicy(
     typing_extensions.TypedDict, total=False
 ):
     instanceSelectionLists: dict[str, typing.Any]
+    instanceSelections: dict[str, typing.Any]
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
@@ -2528,6 +2530,7 @@ class InstanceGroupManagerResizeRequest(typing_extensions.TypedDict, total=False
     kind: str
     name: str
     queuingPolicy: QueuingPolicy
+    requestedRunDuration: Duration
     resizeBy: int
     selfLink: str
     selfLinkWithId: str
@@ -3763,6 +3766,7 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     name: str
     preservedStateFromConfig: PreservedState
     preservedStateFromPolicy: PreservedState
+    propertiesFromFlexibilityPolicy: ManagedInstancePropertiesFromFlexibilityPolicy
     tag: str
     targetStatus: typing_extensions.Literal[
         "ABANDONED", "DELETED", "RUNNING", "STOPPED", "SUSPENDED"
@@ -3791,6 +3795,12 @@ class ManagedInstanceInstanceHealth(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedInstanceLastAttempt(typing_extensions.TypedDict, total=False):
     errors: dict[str, typing.Any]
+
+@typing.type_check_only
+class ManagedInstancePropertiesFromFlexibilityPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    machineType: str
 
 @typing.type_check_only
 class ManagedInstanceVersion(typing_extensions.TypedDict, total=False):
@@ -3916,6 +3926,7 @@ class NetworkAttachmentConnectedEndpoint(typing_extensions.TypedDict, total=Fals
         "STATUS_UNSPECIFIED",
     ]
     subnetwork: str
+    subnetworkCidrRange: str
 
 @typing.type_check_only
 class NetworkAttachmentList(typing_extensions.TypedDict, total=False):
@@ -4773,7 +4784,7 @@ class Project(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     managedProtectionTier: typing_extensions.Literal[
-        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_MONTHLY", "CA_STANDARD"
+        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_PAYGO", "CA_STANDARD"
     ]
     name: str
     quotas: _list[Quota]
@@ -4822,11 +4833,12 @@ class ProjectsSetDefaultServiceAccountRequest(typing_extensions.TypedDict, total
 @typing.type_check_only
 class ProjectsSetManagedProtectionTierRequest(typing_extensions.TypedDict, total=False):
     managedProtectionTier: typing_extensions.Literal[
-        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_MONTHLY", "CA_STANDARD"
+        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_PAYGO", "CA_STANDARD"
     ]
 
 @typing.type_check_only
 class PublicAdvertisedPrefix(typing_extensions.TypedDict, total=False):
+    byoipApiVersion: typing_extensions.Literal["V1", "V2"]
     creationTimestamp: str
     description: str
     dnsVerificationIp: str
@@ -4874,6 +4886,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix(
 @typing.type_check_only
 class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
     allocatablePrefixLength: int
+    byoipApiVersion: typing_extensions.Literal["V1", "V2"]
     creationTimestamp: str
     description: str
     fingerprint: str
@@ -5757,9 +5770,31 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class ResourceStatus(typing_extensions.TypedDict, total=False):
+    lastInstanceTerminationDetails: ResourceStatusLastInstanceTerminationDetails
     physicalHost: str
     scheduling: ResourceStatusScheduling
     serviceIntegrationStatuses: dict[str, typing.Any]
+
+@typing.type_check_only
+class ResourceStatusLastInstanceTerminationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    terminationReason: typing_extensions.Literal[
+        "BAD_BILLING_ACCOUNT",
+        "CLOUD_ABUSE_DETECTED",
+        "DISK_ERROR",
+        "FREE_TRIAL_EXPIRED",
+        "INSTANCE_UPDATE_REQUIRED_RESTART",
+        "INTERNAL_ERROR",
+        "KMS_REJECTION",
+        "MANAGED_INSTANCE_GROUP",
+        "OS_TERMINATED",
+        "PREEMPTED",
+        "SCHEDULED_STOP",
+        "SHUTDOWN_DUE_TO_MAINTENANCE",
+        "UNSPECIFIED_TERMINATION_REASON",
+        "USER_TERMINATED",
+    ]
 
 @typing.type_check_only
 class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
@@ -5802,9 +5837,12 @@ class Route(typing_extensions.TypedDict, total=False):
     nextHopHub: str
     nextHopIlb: str
     nextHopInstance: str
+    nextHopInterRegionCost: int
     nextHopInterconnectAttachment: str
     nextHopIp: str
+    nextHopMed: int
     nextHopNetwork: str
+    nextHopOrigin: typing_extensions.Literal["EGP", "IGP", "INCOMPLETE"]
     nextHopPeering: str
     nextHopVpnTunnel: str
     priority: int
@@ -6365,7 +6403,7 @@ class SecurityPolicyRule(typing_extensions.TypedDict, total=False):
     redirectOptions: SecurityPolicyRuleRedirectOptions
     redirectTarget: str
     ruleManagedProtectionTier: typing_extensions.Literal[
-        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_MONTHLY", "CA_STANDARD"
+        "CAMP_PLUS_ANNUAL", "CAMP_PLUS_PAYGO", "CA_STANDARD"
     ]
     ruleNumber: str
     ruleTupleCount: int
@@ -6799,6 +6837,17 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     userLicenses: _list[str]
 
 @typing.type_check_only
+class SnapshotAggregatedList(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class SnapshotList(typing_extensions.TypedDict, total=False):
     id: str
     items: _list[Snapshot]
@@ -6826,6 +6875,11 @@ class SnapshotSettingsStorageLocationSettingsStorageLocationPreference(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+
+@typing.type_check_only
+class SnapshotsScopedList(typing_extensions.TypedDict, total=False):
+    snapshots: _list[Snapshot]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class SourceDiskEncryptionKey(typing_extensions.TypedDict, total=False):

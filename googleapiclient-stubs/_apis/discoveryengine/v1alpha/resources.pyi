@@ -481,7 +481,35 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
 
+                    @typing.type_check_only
+                    class ServingConfigsResource(googleapiclient.discovery.Resource):
+                        def recommend(
+                            self,
+                            *,
+                            servingConfig: str,
+                            body: GoogleCloudDiscoveryengineV1alphaRecommendRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1alphaRecommendResponseHttpRequest: ...
+                        def search(
+                            self,
+                            *,
+                            servingConfig: str,
+                            body: GoogleCloudDiscoveryengineV1alphaSearchRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1alphaSearchResponseHttpRequest
+                        ): ...
+                        def search_next(
+                            self,
+                            previous_request: GoogleCloudDiscoveryengineV1alphaSearchResponseHttpRequest,
+                            previous_response: GoogleCloudDiscoveryengineV1alphaSearchResponse,
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1alphaSearchResponseHttpRequest
+                            | None
+                        ): ...
+
                     def operations(self) -> OperationsResource: ...
+                    def servingConfigs(self) -> ServingConfigsResource: ...
 
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):

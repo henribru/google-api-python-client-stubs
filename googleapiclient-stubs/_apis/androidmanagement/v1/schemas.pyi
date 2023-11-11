@@ -441,6 +441,16 @@ class DeviceRadioState(typing_extensions.TypedDict, total=False):
         "AIRPLANE_MODE_USER_CHOICE",
         "AIRPLANE_MODE_DISABLED",
     ]
+    cellularTwoGState: typing_extensions.Literal[
+        "CELLULAR_TWO_G_STATE_UNSPECIFIED",
+        "CELLULAR_TWO_G_USER_CHOICE",
+        "CELLULAR_TWO_G_DISABLED",
+    ]
+    ultraWidebandState: typing_extensions.Literal[
+        "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
+        "ULTRA_WIDEBAND_USER_CHOICE",
+        "ULTRA_WIDEBAND_DISABLED",
+    ]
     wifiState: typing_extensions.Literal[
         "WIFI_STATE_UNSPECIFIED",
         "WIFI_STATE_USER_CHOICE",
@@ -786,6 +796,8 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "NO_LICENSES_REMAINING",
         "NOT_ENROLLED",
         "USER_INVALID",
+        "NETWORK_ERROR_UNRELIABLE_CONNECTION",
+        "INSUFFICIENT_STORAGE",
     ]
     nonComplianceReason: typing_extensions.Literal[
         "NON_COMPLIANCE_REASON_UNSPECIFIED",

@@ -825,6 +825,33 @@ class GoogleCloudDataplexV1EnvironmentSessionStatus(
     active: bool
 
 @typing.type_check_only
+class GoogleCloudDataplexV1GovernanceEvent(typing_extensions.TypedDict, total=False):
+    entity: GoogleCloudDataplexV1GovernanceEventEntity
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "RESOURCE_IAM_POLICY_UPDATE",
+        "BIGQUERY_TABLE_CREATE",
+        "BIGQUERY_TABLE_UPDATE",
+        "BIGQUERY_TABLE_DELETE",
+        "BIGQUERY_CONNECTION_CREATE",
+        "BIGQUERY_CONNECTION_UPDATE",
+        "BIGQUERY_CONNECTION_DELETE",
+        "BIGQUERY_TAXONOMY_CREATE",
+        "BIGQUERY_POLICY_TAG_CREATE",
+        "BIGQUERY_POLICY_TAG_DELETE",
+        "BIGQUERY_POLICY_TAG_SET_IAM_POLICY",
+        "ACCESS_POLICY_UPDATE",
+    ]
+    message: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GovernanceEventEntity(
+    typing_extensions.TypedDict, total=False
+):
+    entity: str
+    entityType: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "TABLE", "FILESET"]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1Job(typing_extensions.TypedDict, total=False):
     endTime: str
     executionSpec: GoogleCloudDataplexV1TaskExecutionSpec

@@ -103,8 +103,23 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any
                         ) -> GoogleIamV1PolicyHttpRequest: ...
                         def list(
-                            self, *, parent: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
                         ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponseHttpRequest,
+                            previous_response: GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponse,
+                        ) -> (
+                            GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponseHttpRequest
+                            | None
+                        ): ...
                         def patch(
                             self,
                             *,
@@ -151,8 +166,23 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
-                        self, *, parent: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
                     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest,
+                        previous_response: GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse,
+                    ) -> (
+                        GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpRequest
+                        | None
+                    ): ...
                     def patch(
                         self,
                         *,

@@ -12,6 +12,9 @@ class GoogleCloudBillingBudgetsV1Budget(typing_extensions.TypedDict, total=False
     etag: str
     name: str
     notificationsRule: GoogleCloudBillingBudgetsV1NotificationsRule
+    ownershipScope: typing_extensions.Literal[
+        "OWNERSHIP_SCOPE_UNSPECIFIED", "ALL_USERS", "BILLING_ACCOUNT"
+    ]
     thresholdRules: _list[GoogleCloudBillingBudgetsV1ThresholdRule]
 
 @typing.type_check_only

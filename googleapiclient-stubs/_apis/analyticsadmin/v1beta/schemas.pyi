@@ -241,9 +241,17 @@ class GoogleAnalyticsAdminV1betaConversionEvent(
     ]
     createTime: str
     custom: bool
+    defaultConversionValue: GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue
     deletable: bool
     eventName: str
     name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue(
+    typing_extensions.TypedDict, total=False
+):
+    currencyCode: str
+    value: float
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaCustomDimension(
@@ -530,6 +538,8 @@ class GoogleAnalyticsAdminV1betaRunAccessReportRequest(
     dateRanges: _list[GoogleAnalyticsAdminV1betaAccessDateRange]
     dimensionFilter: GoogleAnalyticsAdminV1betaAccessFilterExpression
     dimensions: _list[GoogleAnalyticsAdminV1betaAccessDimension]
+    expandGroups: bool
+    includeAllUsers: bool
     limit: str
     metricFilter: GoogleAnalyticsAdminV1betaAccessFilterExpression
     metrics: _list[GoogleAnalyticsAdminV1betaAccessMetric]

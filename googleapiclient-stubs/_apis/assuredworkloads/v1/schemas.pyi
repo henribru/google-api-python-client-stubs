@@ -230,6 +230,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     ]
     partnerPermissions: GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions
     provisionedResourcesParent: str
+    resourceMonitoringEnabled: bool
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
     saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse

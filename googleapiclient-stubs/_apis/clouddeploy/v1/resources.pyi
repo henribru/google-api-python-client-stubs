@@ -20,6 +20,86 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DeliveryPipelinesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class AutomationRunsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelAutomationRunRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> CancelAutomationRunResponseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AutomationRunHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAutomationRunsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAutomationRunsResponseHttpRequest,
+                        previous_response: ListAutomationRunsResponse,
+                    ) -> ListAutomationRunsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class AutomationsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Automation = ...,
+                        automationId: str = ...,
+                        requestId: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        allowMissing: bool = ...,
+                        etag: str = ...,
+                        requestId: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AutomationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAutomationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAutomationsResponseHttpRequest,
+                        previous_response: ListAutomationsResponse,
+                    ) -> ListAutomationsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Automation = ...,
+                        allowMissing: bool = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class ReleasesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class RolloutsResource(googleapiclient.discovery.Resource):
@@ -232,6 +312,8 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def automationRuns(self) -> AutomationRunsResource: ...
+                def automations(self) -> AutomationsResource: ...
                 def releases(self) -> ReleasesResource: ...
 
             @typing.type_check_only
@@ -402,6 +484,30 @@ class ApproveRolloutResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ApproveRolloutResponse: ...
 
 @typing.type_check_only
+class AutomationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Automation: ...
+
+@typing.type_check_only
+class AutomationRunHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> AutomationRun: ...
+
+@typing.type_check_only
+class CancelAutomationRunResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CancelAutomationRunResponse: ...
+
+@typing.type_check_only
 class CancelRolloutResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -448,6 +554,22 @@ class JobRunHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> JobRun: ...
+
+@typing.type_check_only
+class ListAutomationRunsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAutomationRunsResponse: ...
+
+@typing.type_check_only
+class ListAutomationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListAutomationsResponse: ...
 
 @typing.type_check_only
 class ListDeliveryPipelinesResponseHttpRequest(googleapiclient.http.HttpRequest):

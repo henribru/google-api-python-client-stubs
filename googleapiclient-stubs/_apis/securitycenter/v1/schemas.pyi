@@ -139,6 +139,13 @@ class CloudDlpInspection(typing_extensions.TypedDict, total=False):
     inspectJob: str
 
 @typing.type_check_only
+class CloudLoggingEntry(typing_extensions.TypedDict, total=False):
+    insertId: str
+    logId: str
+    resourceContainer: str
+    timestamp: str
+
+@typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     standard: str
@@ -328,6 +335,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
     loadBalancers: _list[LoadBalancer]
+    logEntries: _list[LogEntry]
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -335,6 +343,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     muteUpdateTime: str
     name: str
     nextSteps: str
+    orgPolicies: _list[OrgPolicy]
     parent: str
     parentDisplayName: str
     processes: _list[Process]
@@ -766,6 +775,10 @@ class LoadBalancer(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LogEntry(typing_extensions.TypedDict, total=False):
+    cloudLoggingEntry: CloudLoggingEntry
+
+@typing.type_check_only
 class MemoryHashSignature(typing_extensions.TypedDict, total=False):
     binaryFamily: str
     detections: _list[Detection]
@@ -813,6 +826,7 @@ class NotificationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Object(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
     group: str
     kind: str
     name: str
@@ -825,6 +839,10 @@ class Operation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OrgPolicy(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class OrganizationSettings(typing_extensions.TypedDict, total=False):
@@ -948,6 +966,31 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetMuteRequest(typing_extensions.TypedDict, total=False):
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+
+@typing.type_check_only
+class SimulateSecurityHealthAnalyticsCustomModuleRequest(
+    typing_extensions.TypedDict, total=False
+):
+    customConfig: GoogleCloudSecuritycenterV1CustomConfig
+    resource: SimulatedResource
+
+@typing.type_check_only
+class SimulateSecurityHealthAnalyticsCustomModuleResponse(
+    typing_extensions.TypedDict, total=False
+):
+    result: SimulatedResult
+
+@typing.type_check_only
+class SimulatedResource(typing_extensions.TypedDict, total=False):
+    iamPolicyData: Policy
+    resourceData: dict[str, typing.Any]
+    resourceType: str
+
+@typing.type_check_only
+class SimulatedResult(typing_extensions.TypedDict, total=False):
+    error: Status
+    finding: Finding
+    noViolation: Empty
 
 @typing.type_check_only
 class Simulation(typing_extensions.TypedDict, total=False):

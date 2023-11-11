@@ -36,6 +36,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "TIMED_OUT",
                 "UNKNOWN",
                 "DELAYED",
+                "EXECUTION_DISABLED",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -48,6 +49,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "TIMED_OUT",
                     "UNKNOWN",
                     "DELAYED",
+                    "EXECUTION_DISABLED",
                 ]
             ] = ...,
             userProcessFilter_types: typing_extensions.Literal[
@@ -111,6 +113,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 "TIMED_OUT",
                 "UNKNOWN",
                 "DELAYED",
+                "EXECUTION_DISABLED",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -123,6 +126,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "TIMED_OUT",
                     "UNKNOWN",
                     "DELAYED",
+                    "EXECUTION_DISABLED",
                 ]
             ] = ...,
             scriptProcessFilter_types: typing_extensions.Literal[

@@ -96,6 +96,7 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata(
     createTime: str
     endTime: str
     failedAnalysesCount: int
+    partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest
     totalRequestedAnalysesCount: int
 
@@ -114,6 +115,29 @@ class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponse(
 ):
     failedAnalysisCount: int
     successfulAnalysisCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    force: bool
+    maxDeleteCount: int
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse(
@@ -472,18 +496,25 @@ class GoogleCloudContactcenterinsightsV1IngestConversationsRequest(
     conversationConfig: GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig
     gcsSource: GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource
     parent: str
+    redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
+    speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
     transcriptObjectConfig: GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    agentChannel: int
     agentId: str
+    customerChannel: int
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource(
     typing_extensions.TypedDict, total=False
 ):
+    bucketObjectType: typing_extensions.Literal[
+        "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
+    ]
     bucketUri: str
 
 @typing.type_check_only
@@ -902,6 +933,7 @@ class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadata(
     createTime: str
     endTime: str
     failedAnalysesCount: int
+    partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequest
     totalRequestedAnalysesCount: int
 
@@ -920,6 +952,29 @@ class GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponse(
 ):
     failedAnalysisCount: int
     successfulAnalysisCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    force: bool
+    maxDeleteCount: int
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1CallAnnotation(
@@ -1237,18 +1292,25 @@ class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest(
     conversationConfig: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig
     gcsSource: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource
     parent: str
+    redactionConfig: GoogleCloudContactcenterinsightsV1alpha1RedactionConfig
+    speechConfig: GoogleCloudContactcenterinsightsV1alpha1SpeechConfig
     transcriptObjectConfig: GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfig(
     typing_extensions.TypedDict, total=False
 ):
+    agentChannel: int
     agentId: str
+    customerChannel: int
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource(
     typing_extensions.TypedDict, total=False
 ):
+    bucketObjectType: typing_extensions.Literal[
+        "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
+    ]
     bucketUri: str
 
 @typing.type_check_only

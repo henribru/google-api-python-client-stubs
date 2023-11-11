@@ -442,6 +442,7 @@ class RevisionSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RevisionStatus(typing_extensions.TypedDict, total=False):
     conditions: _list[GoogleCloudRunV1Condition]
+    desiredReplicas: int
     imageDigest: str
     logUrl: str
     observedGeneration: int

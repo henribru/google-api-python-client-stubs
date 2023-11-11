@@ -253,6 +253,7 @@ class Network(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "CLIENT", "PRIVATE"]
     vlanId: str
     vrf: VRF
+    vrfAttachment: str
 
 @typing.type_check_only
 class NetworkAddress(typing_extensions.TypedDict, total=False):

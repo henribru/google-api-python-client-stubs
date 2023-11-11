@@ -87,6 +87,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     networkConfig: NetworkConfig
     options: dict[str, typing.Any]
     p4ServiceAccount: str
+    patchRevision: str
     privateInstance: bool
     satisfiesPzs: bool
     serviceAccount: str
@@ -111,6 +112,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     version: str
+    workforceIdentityServiceEndpoint: str
     zone: str
 
 @typing.type_check_only

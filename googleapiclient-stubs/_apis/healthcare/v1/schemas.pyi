@@ -212,6 +212,15 @@ class DicomStore(typing_extensions.TypedDict, total=False):
     streamConfigs: _list[GoogleCloudHealthcareV1DicomStreamConfig]
 
 @typing.type_check_only
+class DicomStoreMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    name: str
+    seriesCount: str
+    structuredStorageSizeBytes: str
+    studyCount: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -468,6 +477,17 @@ class Hl7V2Store(typing_extensions.TypedDict, total=False):
     notificationConfigs: _list[Hl7V2NotificationConfig]
     parserConfig: ParserConfig
     rejectDuplicateMessage: bool
+
+@typing.type_check_only
+class Hl7V2StoreMetric(typing_extensions.TypedDict, total=False):
+    count: str
+    messageType: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
+class Hl7V2StoreMetrics(typing_extensions.TypedDict, total=False):
+    metrics: _list[Hl7V2StoreMetric]
+    name: str
 
 @typing.type_check_only
 class HttpBody(typing_extensions.TypedDict, total=False):
@@ -769,6 +789,13 @@ class Segment(typing_extensions.TypedDict, total=False):
     setId: str
 
 @typing.type_check_only
+class SeriesMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    series: str
+    structuredStorageSizeBytes: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -791,6 +818,14 @@ class StreamConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class StudyMetrics(typing_extensions.TypedDict, total=False):
+    blobStorageSizeBytes: str
+    instanceCount: str
+    seriesCount: str
+    structuredStorageSizeBytes: str
+    study: str
 
 @typing.type_check_only
 class TagFilterList(typing_extensions.TypedDict, total=False):

@@ -151,6 +151,9 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getCmekConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CmekConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -165,6 +168,14 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateCmekConfig(
+                self,
+                *,
+                name: str,
+                body: CmekConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> CmekConfigHttpRequest: ...
             def queues(self) -> QueuesResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -190,6 +201,14 @@ class BufferTaskResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> BufferTaskResponse: ...
+
+@typing.type_check_only
+class CmekConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> CmekConfig: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

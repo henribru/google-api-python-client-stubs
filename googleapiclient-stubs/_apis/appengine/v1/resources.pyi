@@ -357,6 +357,15 @@ class AppengineResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ApplicationHttpRequest: ...
+        def listRuntimes(
+            self,
+            *,
+            appsId: str,
+            environment: typing_extensions.Literal[
+                "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> ListRuntimesResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -505,6 +514,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListRuntimesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListRuntimesResponse: ...
 
 @typing.type_check_only
 class ListServicesResponseHttpRequest(googleapiclient.http.HttpRequest):

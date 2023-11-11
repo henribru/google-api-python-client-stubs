@@ -368,9 +368,6 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 body: GoogleIamV1GetIamPolicyRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleIamV1PolicyHttpRequest: ...
-            def getPasskeyConfig(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2PasskeyConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -408,14 +405,6 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 body: GoogleIamV1TestIamPermissionsRequest = ...,
                 **kwargs: typing.Any
             ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-            def updatePasskeyConfig(
-                self,
-                *,
-                name: str,
-                body: GoogleCloudIdentitytoolkitAdminV2PasskeyConfig = ...,
-                updateMask: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleCloudIdentitytoolkitAdminV2PasskeyConfigHttpRequest: ...
             def defaultSupportedIdpConfigs(
                 self,
             ) -> DefaultSupportedIdpConfigsResource: ...
@@ -425,9 +414,6 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
         def getConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest: ...
-        def getPasskeyConfig(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> GoogleCloudIdentitytoolkitAdminV2PasskeyConfigHttpRequest: ...
         def updateConfig(
             self,
             *,
@@ -436,14 +422,6 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest: ...
-        def updatePasskeyConfig(
-            self,
-            *,
-            name: str,
-            body: GoogleCloudIdentitytoolkitAdminV2PasskeyConfig = ...,
-            updateMask: str = ...,
-            **kwargs: typing.Any
-        ) -> GoogleCloudIdentitytoolkitAdminV2PasskeyConfigHttpRequest: ...
         def defaultSupportedIdpConfigs(self) -> DefaultSupportedIdpConfigsResource: ...
         def identityPlatform(self) -> IdentityPlatformResource: ...
         def inboundSamlConfigs(self) -> InboundSamlConfigsResource: ...
@@ -587,16 +565,6 @@ class GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig: ...
-
-@typing.type_check_only
-class GoogleCloudIdentitytoolkitAdminV2PasskeyConfigHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleCloudIdentitytoolkitAdminV2PasskeyConfig: ...
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2TenantHttpRequest(

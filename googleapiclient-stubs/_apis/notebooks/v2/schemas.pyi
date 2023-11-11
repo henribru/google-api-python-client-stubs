@@ -49,6 +49,12 @@ class CheckInstanceUpgradabilityResponse(typing_extensions.TypedDict, total=Fals
     upgradeable: bool
 
 @typing.type_check_only
+class Config(typing_extensions.TypedDict, total=False):
+    availableImages: _list[ImageRelease]
+    defaultValues: DefaultValues
+    supportedValues: SupportedValues
+
+@typing.type_check_only
 class ContainerImage(typing_extensions.TypedDict, total=False):
     repository: str
     tag: str
@@ -63,6 +69,10 @@ class DataDisk(typing_extensions.TypedDict, total=False):
         "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
     ]
     kmsKey: str
+
+@typing.type_check_only
+class DefaultValues(typing_extensions.TypedDict, total=False):
+    machineType: str
 
 @typing.type_check_only
 class DiagnoseInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -121,6 +131,11 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     shieldedInstanceConfig: ShieldedInstanceConfig
     tags: _list[str]
     vmImage: VmImage
+
+@typing.type_check_only
+class ImageRelease(typing_extensions.TypedDict, total=False):
+    imageName: str
+    releaseName: str
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
@@ -251,6 +266,11 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StopInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SupportedValues(typing_extensions.TypedDict, total=False):
+    acceleratorTypes: _list[str]
+    machineTypes: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

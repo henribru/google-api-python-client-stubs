@@ -4482,6 +4482,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class PublicAdvertisedPrefixesResource(googleapiclient.discovery.Resource):
+        def announce(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -4526,6 +4534,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def withdraw(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class PublicDelegatedPrefixesResource(googleapiclient.discovery.Resource):
@@ -4547,6 +4563,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: PublicDelegatedPrefixAggregatedListHttpRequest,
             previous_response: PublicDelegatedPrefixAggregatedList,
         ) -> PublicDelegatedPrefixAggregatedListHttpRequest | None: ...
+        def announce(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -4597,6 +4622,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             publicDelegatedPrefix: str,
             body: PublicDelegatedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def withdraw(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...

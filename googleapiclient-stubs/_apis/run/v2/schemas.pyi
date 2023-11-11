@@ -312,6 +312,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     reconciling: bool
     satisfiesPzs: bool
     scaling: GoogleCloudRunV2RevisionScaling
+    scalingStatus: GoogleCloudRunV2RevisionScalingStatus
     service: str
     serviceAccount: str
     sessionAffinity: bool
@@ -325,6 +326,10 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2RevisionScaling(typing_extensions.TypedDict, total=False):
     maxInstanceCount: int
     minInstanceCount: int
+
+@typing.type_check_only
+class GoogleCloudRunV2RevisionScalingStatus(typing_extensions.TypedDict, total=False):
+    desiredMinInstanceCount: int
 
 @typing.type_check_only
 class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False):
@@ -402,14 +407,18 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     observedGeneration: str
     reconciling: bool
     satisfiesPzs: bool
+    scaling: GoogleCloudRunV2ServiceScaling
     template: GoogleCloudRunV2RevisionTemplate
     terminalCondition: GoogleCloudRunV2Condition
     traffic: _list[GoogleCloudRunV2TrafficTarget]
     trafficStatuses: _list[GoogleCloudRunV2TrafficTargetStatus]
-    trafficTagsCleanupThreshold: str
     uid: str
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
+    minInstanceCount: int
 
 @typing.type_check_only
 class GoogleCloudRunV2TCPSocketAction(typing_extensions.TypedDict, total=False):

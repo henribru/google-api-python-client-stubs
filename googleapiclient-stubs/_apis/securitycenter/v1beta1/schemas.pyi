@@ -92,6 +92,13 @@ class CloudDlpInspection(typing_extensions.TypedDict, total=False):
     inspectJob: str
 
 @typing.type_check_only
+class CloudLoggingEntry(typing_extensions.TypedDict, total=False):
+    insertId: str
+    logId: str
+    resourceContainer: str
+    timestamp: str
+
+@typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     standard: str
@@ -251,6 +258,8 @@ class Finding(typing_extensions.TypedDict, total=False):
     indicator: Indicator
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
+    loadBalancers: _list[LoadBalancer]
+    logEntries: _list[LogEntry]
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -258,11 +267,13 @@ class Finding(typing_extensions.TypedDict, total=False):
     muteUpdateTime: str
     name: str
     nextSteps: str
+    orgPolicies: _list[OrgPolicy]
     parent: str
     parentDisplayName: str
     processes: _list[Process]
     resourceName: str
     securityMarks: SecurityMarks
+    securityPosture: SecurityPosture
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
     ]
@@ -585,6 +596,7 @@ class Kubernetes(typing_extensions.TypedDict, total=False):
     bindings: _list[GoogleCloudSecuritycenterV1Binding]
     nodePools: _list[NodePool]
     nodes: _list[Node]
+    objects: _list[Object]
     pods: _list[Pod]
     roles: _list[Role]
 
@@ -625,6 +637,14 @@ class ListSourcesResponse(typing_extensions.TypedDict, total=False):
     sources: _list[Source]
 
 @typing.type_check_only
+class LoadBalancer(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class LogEntry(typing_extensions.TypedDict, total=False):
+    cloudLoggingEntry: CloudLoggingEntry
+
+@typing.type_check_only
 class MemoryHashSignature(typing_extensions.TypedDict, total=False):
     binaryFamily: str
     detections: _list[Detection]
@@ -663,12 +683,24 @@ class NodePool(typing_extensions.TypedDict, total=False):
     nodes: _list[Node]
 
 @typing.type_check_only
+class Object(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
+    group: str
+    kind: str
+    name: str
+    ns: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class OrgPolicy(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class OrganizationSettings(typing_extensions.TypedDict, total=False):
@@ -735,6 +767,14 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class SecurityPosture(typing_extensions.TypedDict, total=False):
+    changedPolicy: str
+    name: str
+    postureDeployment: str
+    postureDeploymentResource: str
+    revisionId: str
 
 @typing.type_check_only
 class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):

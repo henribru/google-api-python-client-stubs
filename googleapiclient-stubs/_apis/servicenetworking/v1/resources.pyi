@@ -159,6 +159,9 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         includeUsedIpRanges: bool = ...,
                         **kwargs: typing.Any
                     ) -> ConsumerConfigHttpRequest: ...
+                    def getVpcServiceControls(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> VpcServiceControlsHttpRequest: ...
                     def updateConsumerConfig(
                         self,
                         *,
@@ -314,3 +317,11 @@ class ValidateConsumerConfigResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ValidateConsumerConfigResponse: ...
+
+@typing.type_check_only
+class VpcServiceControlsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> VpcServiceControls: ...

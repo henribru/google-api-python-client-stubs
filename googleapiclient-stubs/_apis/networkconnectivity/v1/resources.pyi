@@ -566,13 +566,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class SpokesResource(googleapiclient.discovery.Resource):
-                def accept(
-                    self,
-                    *,
-                    name: str,
-                    body: AcceptSpokeRequest = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -617,13 +610,6 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     body: Spoke = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def reject(
-                    self,
-                    *,
-                    name: str,
-                    body: RejectSpokeRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(

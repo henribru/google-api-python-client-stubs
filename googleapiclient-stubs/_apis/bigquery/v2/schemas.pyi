@@ -15,11 +15,17 @@ class AggregateClassificationMetrics(typing_extensions.TypedDict, total=False):
     threshold: float
 
 @typing.type_check_only
+class AggregationThresholdPolicy(typing_extensions.TypedDict, total=False):
+    privacyUnitColumns: _list[str]
+    threshold: str
+
+@typing.type_check_only
 class Argument(typing_extensions.TypedDict, total=False):
     argumentKind: typing_extensions.Literal[
         "ARGUMENT_KIND_UNSPECIFIED", "FIXED_TYPE", "ANY_TYPE"
     ]
     dataType: StandardSqlDataType
+    isAggregate: bool
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "IN", "OUT", "INOUT"]
     name: str
 
@@ -234,7 +240,7 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
     allowQuotedNewlines: bool
     encoding: str
     fieldDelimiter: str
-    null_marker: str
+    nullMarker: str
     preserveAsciiControlCharacters: bool
     quote: str
     skipLeadingRows: str
@@ -566,6 +572,7 @@ class Job(typing_extensions.TypedDict, total=False):
     configuration: JobConfiguration
     etag: str
     id: str
+    jobCreationReason: typing.Any
     jobReference: JobReference
     kind: str
     selfLink: str
@@ -677,6 +684,12 @@ class JobConfigurationTableCopy(typing_extensions.TypedDict, total=False):
     sourceTable: TableReference
     sourceTables: _list[TableReference]
     writeDisposition: str
+
+@typing.type_check_only
+class JobCreationReason(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED", "REQUESTED", "LONG_RUNNING", "LARGE_RESULTS", "OTHER"
+    ]
 
 @typing.type_check_only
 class JobList(typing_extensions.TypedDict, total=False):
@@ -902,6 +915,10 @@ class PrincipalComponentInfo(typing_extensions.TypedDict, total=False):
     principalComponentId: str
 
 @typing.type_check_only
+class PrivacyPolicy(typing_extensions.TypedDict, total=False):
+    aggregationThresholdPolicy: AggregationThresholdPolicy
+
+@typing.type_check_only
 class ProjectList(typing_extensions.TypedDict, total=False):
     etag: str
     kind: str
@@ -938,6 +955,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     createSession: bool
     defaultDataset: DatasetReference
     dryRun: bool
+    jobCreationMode: str
     kind: str
     labels: dict[str, typing.Any]
     location: str
@@ -958,10 +976,12 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
     dmlStats: DmlStatistics
     errors: _list[ErrorProto]
     jobComplete: bool
+    jobCreationReason: typing.Any
     jobReference: JobReference
     kind: str
     numDmlAffectedRows: str
     pageToken: str
+    queryId: str
     rows: _list[TableRow]
     schema: TableSchema
     sessionInfo: SessionInfo
@@ -1046,6 +1066,9 @@ class Routine(typing_extensions.TypedDict, total=False):
         "TABLE_VALUED_FUNCTION",
         "AGGREGATE_FUNCTION",
     ]
+    securityMode: typing_extensions.Literal[
+        "SECURITY_MODE_UNSPECIFIED", "DEFINER", "INVOKER"
+    ]
     sparkOptions: SparkOptions
     strictMode: bool
 
@@ -1114,8 +1137,8 @@ class SnapshotDefinition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SparkLoggingInfo(typing_extensions.TypedDict, total=False):
-    project_id: str
-    resource_type: str
+    projectId: str
+    resourceType: str
 
 @typing.type_check_only
 class SparkOptions(typing_extensions.TypedDict, total=False):
@@ -1222,6 +1245,7 @@ class Table(typing_extensions.TypedDict, total=False):
     numTotalPhysicalBytes: str
     rangePartitioning: RangePartitioning
     requirePartitionFilter: bool
+    resourceTags: dict[str, typing.Any]
     schema: TableSchema
     selfLink: str
     snapshotDefinition: SnapshotDefinition

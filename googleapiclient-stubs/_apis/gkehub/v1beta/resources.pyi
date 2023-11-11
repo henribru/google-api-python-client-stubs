@@ -229,6 +229,38 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Membership = ...,
+                    membershipId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def generateConnectManifest(
+                    self,
+                    *,
+                    name: str,
+                    imagePullSecretContent: str = ...,
+                    isUpgrade: bool = ...,
+                    namespace: str = ...,
+                    proxy: str = ...,
+                    registry: str = ...,
+                    version: str = ...,
+                    **kwargs: typing.Any
+                ) -> GenerateConnectManifestResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MembershipHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -236,6 +268,30 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListMembershipsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMembershipsResponseHttpRequest,
+                    previous_response: ListMembershipsResponse,
+                ) -> ListMembershipsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Membership = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -563,6 +619,14 @@ class FleetHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Fleet: ...
 
 @typing.type_check_only
+class GenerateConnectManifestResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GenerateConnectManifestResponse: ...
+
+@typing.type_check_only
 class GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -613,6 +677,14 @@ class ListMembershipRBACRoleBindingsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> ListMembershipRBACRoleBindingsResponse: ...
+
+@typing.type_check_only
+class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> ListMembershipsResponse: ...
 
 @typing.type_check_only
 class ListNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -669,6 +741,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Location: ...
+
+@typing.type_check_only
+class MembershipHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Membership: ...
 
 @typing.type_check_only
 class MembershipBindingHttpRequest(googleapiclient.http.HttpRequest):
