@@ -55,6 +55,13 @@ class CloudDlpInspection(typing_extensions.TypedDict, total=False):
     inspectJob: str
 
 @typing.type_check_only
+class CloudLoggingEntry(typing_extensions.TypedDict, total=False):
+    insertId: str
+    logId: str
+    resourceContainer: str
+    timestamp: str
+
+@typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     standard: str
@@ -246,6 +253,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
     loadBalancers: _list[LoadBalancer]
+    logEntries: _list[LogEntry]
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
@@ -253,6 +261,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     muteUpdateTime: str
     name: str
     nextSteps: str
+    orgPolicies: _list[OrgPolicy]
     parent: str
     parentDisplayName: str
     processes: _list[Process]
@@ -533,6 +542,10 @@ class LoadBalancer(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LogEntry(typing_extensions.TypedDict, total=False):
+    cloudLoggingEntry: CloudLoggingEntry
+
+@typing.type_check_only
 class MemoryHashSignature(typing_extensions.TypedDict, total=False):
     binaryFamily: str
     detections: _list[Detection]
@@ -572,10 +585,15 @@ class NodePool(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Object(typing_extensions.TypedDict, total=False):
+    containers: _list[Container]
     group: str
     kind: str
     name: str
     ns: str
+
+@typing.type_check_only
+class OrgPolicy(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):

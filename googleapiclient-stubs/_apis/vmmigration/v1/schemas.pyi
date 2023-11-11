@@ -156,6 +156,7 @@ class BootDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    encryption: Encryption
     image: DiskImageDefaults
 
 @typing.type_check_only
@@ -232,6 +233,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
     licenseType: typing_extensions.Literal[
@@ -266,6 +268,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
     licenseType: typing_extensions.Literal[
@@ -380,6 +383,7 @@ class DisksMigrationVmTargetDefaults(typing_extensions.TypedDict, total=False):
     additionalLicenses: _list[str]
     bootDiskDefaults: BootDiskDefaults
     computeScheduling: ComputeScheduling
+    encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
     machineType: str
@@ -397,6 +401,10 @@ class DisksMigrationVmTargetDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Encryption(typing_extensions.TypedDict, total=False):
+    kmsKey: str
 
 @typing.type_check_only
 class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
@@ -632,6 +640,7 @@ class PersistentDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
     ]
+    encryption: Encryption
     sourceDiskNumber: int
     vmAttachmentDetails: VmAttachmentDetails
 
@@ -694,6 +703,7 @@ class Source(typing_extensions.TypedDict, total=False):
     azure: AzureSourceDetails
     createTime: str
     description: str
+    encryption: Encryption
     labels: dict[str, typing.Any]
     name: str
     updateTime: str

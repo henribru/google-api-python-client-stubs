@@ -270,7 +270,8 @@ class SasPortalSetPolicyRequest(typing_extensions.TypedDict, total=False):
 class SasPortalSetupSasAnalyticsMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class SasPortalSetupSasAnalyticsRequest(typing_extensions.TypedDict, total=False): ...
+class SasPortalSetupSasAnalyticsRequest(typing_extensions.TypedDict, total=False):
+    userId: str
 
 @typing.type_check_only
 class SasPortalSetupSasAnalyticsResponse(typing_extensions.TypedDict, total=False): ...

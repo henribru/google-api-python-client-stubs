@@ -1599,6 +1599,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
         "SFDC_PLATFORM_EVENTS_CHANNEL",
         "CLOUD_SCHEDULER",
         "INTEGRATION_CONNECTOR_TRIGGER",
+        "PRIVATE_TRIGGER",
     ]
 
 @typing.type_check_only
@@ -2170,7 +2171,6 @@ class GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest(
     typing_extensions.TypedDict, total=False
 ):
     inputParameters: dict[str, typing.Any]
-    requestId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse(
@@ -2340,7 +2340,9 @@ class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion(
 ):
     createTime: str
     databasePersistencePolicy: typing_extensions.Literal[
-        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+        "DATABASE_PERSISTENCE_DISABLED",
+        "DATABASE_PERSISTENCE_ASYNC",
     ]
     description: str
     errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
@@ -2364,7 +2366,9 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
 ):
     createTime: str
     databasePersistencePolicy: typing_extensions.Literal[
-        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+        "DATABASE_PERSISTENCE_DISABLED",
+        "DATABASE_PERSISTENCE_ASYNC",
     ]
     description: str
     errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
@@ -2868,7 +2872,9 @@ class GoogleCloudIntegrationsV1alphaTestCase(typing_extensions.TypedDict, total=
     createTime: str
     creatorEmail: str
     databasePersistencePolicy: typing_extensions.Literal[
-        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+        "DATABASE_PERSISTENCE_DISABLED",
+        "DATABASE_PERSISTENCE_ASYNC",
     ]
     description: str
     displayName: str
@@ -2917,6 +2923,7 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
         "SFDC_CDC_CHANNEL",
         "CLOUD_SCHEDULER",
         "INTEGRATION_CONNECTOR_TRIGGER",
+        "PRIVATE_TRIGGER",
     ]
 
 @typing.type_check_only
@@ -2971,6 +2978,7 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
     scheduledTime: str
     testMode: bool
     triggerId: str
+    userGeneratedExecutionId: str
     workflowName: str
 
 @typing.type_check_only

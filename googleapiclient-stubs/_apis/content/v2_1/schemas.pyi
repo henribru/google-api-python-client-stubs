@@ -11,6 +11,7 @@ class Account(typing_extensions.TypedDict, total=False):
     adultContent: bool
     automaticImprovements: AccountAutomaticImprovements
     automaticLabelIds: _list[str]
+    businessIdentity: AccountBusinessIdentity
     businessInformation: AccountBusinessInformation
     conversionSettings: AccountConversionSettings
     cssId: str
@@ -42,6 +43,15 @@ class AccountAutomaticImprovements(typing_extensions.TypedDict, total=False):
     imageImprovements: AccountImageImprovements
     itemUpdates: AccountItemUpdates
     shippingImprovements: AccountShippingImprovements
+
+@typing.type_check_only
+class AccountBusinessIdentity(typing_extensions.TypedDict, total=False):
+    blackOwned: AccountIdentityType
+    includeForPromotions: bool
+    latinoOwned: AccountIdentityType
+    smallBusiness: AccountIdentityType
+    veteranOwned: AccountIdentityType
+    womenOwned: AccountIdentityType
 
 @typing.type_check_only
 class AccountBusinessInformation(typing_extensions.TypedDict, total=False):
@@ -81,6 +91,10 @@ class AccountGoogleMyBusinessLink(typing_extensions.TypedDict, total=False):
 class AccountIdentifier(typing_extensions.TypedDict, total=False):
     aggregatorId: str
     merchantId: str
+
+@typing.type_check_only
+class AccountIdentityType(typing_extensions.TypedDict, total=False):
+    selfIdentified: bool
 
 @typing.type_check_only
 class AccountImageImprovements(typing_extensions.TypedDict, total=False):

@@ -122,6 +122,7 @@ class ListPlatformPoliciesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PkixPublicKey(typing_extensions.TypedDict, total=False):
+    keyId: str
     publicKeyPem: str
     signatureAlgorithm: typing_extensions.Literal[
         "SIGNATURE_ALGORITHM_UNSPECIFIED",

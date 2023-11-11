@@ -429,6 +429,39 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class DicomWebResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class StudiesResource(googleapiclient.discovery.Resource):
+                            @typing.type_check_only
+                            class SeriesResource(googleapiclient.discovery.Resource):
+                                @typing.type_check_only
+                                class InstancesResource(
+                                    googleapiclient.discovery.Resource
+                                ):
+                                    def getStorageInfo(
+                                        self, *, resource: str, **kwargs: typing.Any
+                                    ) -> StorageInfoHttpRequest: ...
+
+                                def getSeriesMetrics(
+                                    self, *, series: str, **kwargs: typing.Any
+                                ) -> SeriesMetricsHttpRequest: ...
+                                def instances(self) -> InstancesResource: ...
+
+                            def getStudyMetrics(
+                                self, *, study: str, **kwargs: typing.Any
+                            ) -> StudyMetricsHttpRequest: ...
+                            def setBlobStorageSettings(
+                                self,
+                                *,
+                                resource: str,
+                                body: SetBlobStorageSettingsRequest = ...,
+                                **kwargs: typing.Any
+                            ) -> OperationHttpRequest: ...
+                            def series(self) -> SeriesResource: ...
+
+                        def studies(self) -> StudiesResource: ...
+
+                    @typing.type_check_only
                     class StudiesResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
                         class SeriesResource(googleapiclient.discovery.Resource):
@@ -586,6 +619,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> DicomStoreHttpRequest: ...
+                    def getDICOMStoreMetrics(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DicomStoreMetricsHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -631,6 +667,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def searchForStudies(
                         self, *, parent: str, dicomWebPath: str, **kwargs: typing.Any
                     ) -> HttpBodyHttpRequest: ...
+                    def setBlobStorageSettings(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetBlobStorageSettingsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -653,6 +696,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def dicomWeb(self) -> DicomWebResource: ...
                     def studies(self) -> StudiesResource: ...
 
                 @typing.type_check_only
@@ -903,6 +947,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> FhirStoreHttpRequest: ...
+                    def rollback(
+                        self,
+                        *,
+                        name: str,
+                        body: RollbackFhirResourcesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -1022,6 +1073,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> Hl7V2StoreHttpRequest: ...
+                    def getHL7v2StoreMetrics(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> Hl7V2StoreMetricsHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -1318,6 +1372,14 @@ class DicomStoreHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DicomStore: ...
 
 @typing.type_check_only
+class DicomStoreMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> DicomStoreMetrics: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1356,6 +1418,14 @@ class Hl7V2StoreHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Hl7V2Store: ...
+
+@typing.type_check_only
+class Hl7V2StoreMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> Hl7V2StoreMetrics: ...
 
 @typing.type_check_only
 class HttpBodyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1524,6 +1594,30 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> Policy: ...
+
+@typing.type_check_only
+class SeriesMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SeriesMetrics: ...
+
+@typing.type_check_only
+class StorageInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StorageInfo: ...
+
+@typing.type_check_only
+class StudyMetricsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> StudyMetrics: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

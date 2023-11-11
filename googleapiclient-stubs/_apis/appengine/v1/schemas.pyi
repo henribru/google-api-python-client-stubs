@@ -115,6 +115,12 @@ class ContainerInfo(typing_extensions.TypedDict, total=False):
     image: str
 
 @typing.type_check_only
+class ContainerState(typing_extensions.TypedDict, total=False):
+    currentReasons: Reasons
+    previousReasons: Reasons
+    state: typing_extensions.Literal["UNKNOWN_STATE", "ON", "OFF", "DELETED"]
+
+@typing.type_check_only
 class CpuUtilization(typing_extensions.TypedDict, total=False):
     aggregationWindowLength: str
     targetUtilization: float
@@ -130,6 +136,12 @@ class CreateVersionMetadataV1Alpha(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateVersionMetadataV1Beta(typing_extensions.TypedDict, total=False):
     cloudBuildId: str
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class DebugInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -298,6 +310,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListRuntimesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    runtimes: _list[Runtime]
+
+@typing.type_check_only
 class ListServicesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     services: _list[Service]
@@ -423,13 +440,7 @@ class ProjectEvent(typing_extensions.TypedDict, total=False):
         "UNKNOWN", "BEFORE_RESOURCE_HANDLING", "AFTER_RESOURCE_HANDLING"
     ]
     projectMetadata: ProjectsMetadata
-    state: ProjectState
-
-@typing.type_check_only
-class ProjectState(typing_extensions.TypedDict, total=False):
-    currentReasons: Reasons
-    previousReasons: Reasons
-    state: typing_extensions.Literal["UNKNOWN_STATE", "ON", "OFF", "DELETED"]
+    state: ContainerState
 
 @typing.type_check_only
 class ProjectsMetadata(typing_extensions.TypedDict, total=False):
@@ -503,6 +514,27 @@ class Resources(typing_extensions.TypedDict, total=False):
     kmsKeyReference: str
     memoryGb: float
     volumes: _list[Volume]
+
+@typing.type_check_only
+class Runtime(typing_extensions.TypedDict, total=False):
+    decommissionedDate: Date
+    deprecationDate: Date
+    endOfSupportDate: Date
+    environment: typing_extensions.Literal[
+        "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
+    ]
+    name: str
+    stage: typing_extensions.Literal[
+        "RUNTIME_STAGE_UNSPECIFIED",
+        "DEVELOPMENT",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+        "DECOMMISSIONED",
+        "END_OF_SUPPORT",
+    ]
+    warnings: _list[str]
 
 @typing.type_check_only
 class ScriptHandler(typing_extensions.TypedDict, total=False):
@@ -607,6 +639,7 @@ class Version(typing_extensions.TypedDict, total=False):
     envVariables: dict[str, typing.Any]
     errorHandlers: _list[ErrorHandler]
     flexibleRuntimeSettings: FlexibleRuntimeSettings
+    generatedCustomerMetadata: dict[str, typing.Any]
     handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str

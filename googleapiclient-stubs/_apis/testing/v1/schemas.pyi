@@ -191,7 +191,6 @@ class DeviceIpBlockCatalog(typing_extensions.TypedDict, total=False):
 class DeviceSession(typing_extensions.TypedDict, total=False):
     activeStartTime: str
     androidDevice: AndroidDevice
-    androidDeviceList: AndroidDeviceList
     createTime: str
     displayName: str
     expireTime: str
@@ -605,6 +604,7 @@ class TestSetup(typing_extensions.TypedDict, total=False):
     dontAutograntPermissions: bool
     environmentVariables: _list[EnvironmentVariable]
     filesToPush: _list[DeviceFile]
+    initialSetupApks: _list[Apk]
     networkProfile: str
     systrace: SystraceSetup
 

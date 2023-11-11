@@ -100,85 +100,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaAccessBindingHttpRequest: ...
 
-        @typing.type_check_only
-        class UserLinksResource(googleapiclient.discovery.Resource):
-            def audit(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaAuditUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest: ...
-            def audit_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaAuditUserLinksResponse,
-            ) -> (
-                GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None
-            ): ...
-            def batchCreate(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponseHttpRequest: ...
-            def batchDelete(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def batchGet(
-                self,
-                *,
-                parent: str,
-                names: str | _list[str] = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest: ...
-            def batchUpdate(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaUserLink = ...,
-                notifyNewUser: bool = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaListUserLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaUserLink = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -240,7 +161,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             | None
         ): ...
         def accessBindings(self) -> AccessBindingsResource: ...
-        def userLinks(self) -> UserLinksResource: ...
 
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
@@ -1092,85 +1012,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
 
-        @typing.type_check_only
-        class UserLinksResource(googleapiclient.discovery.Resource):
-            def audit(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaAuditUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest: ...
-            def audit_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaAuditUserLinksResponse,
-            ) -> (
-                GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest | None
-            ): ...
-            def batchCreate(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponseHttpRequest: ...
-            def batchDelete(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def batchGet(
-                self,
-                *,
-                parent: str,
-                names: str | _list[str] = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest: ...
-            def batchUpdate(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponseHttpRequest: ...
-            def create(
-                self,
-                *,
-                parent: str,
-                body: GoogleAnalyticsAdminV1alphaUserLink = ...,
-                notifyNewUser: bool = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-            def delete(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleProtobufEmptyHttpRequest: ...
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest,
-                previous_response: GoogleAnalyticsAdminV1alphaListUserLinksResponse,
-            ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest | None: ...
-            def patch(
-                self,
-                *,
-                name: str,
-                body: GoogleAnalyticsAdminV1alphaUserLink = ...,
-                **kwargs: typing.Any
-            ) -> GoogleAnalyticsAdminV1alphaUserLinkHttpRequest: ...
-
         def acknowledgeUserDataCollection(
             self,
             *,
@@ -1322,7 +1163,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def rollupPropertySourceLinks(self) -> RollupPropertySourceLinksResource: ...
         def searchAds360Links(self) -> SearchAds360LinksResource: ...
         def subpropertyEventFilters(self) -> SubpropertyEventFiltersResource: ...
-        def userLinks(self) -> UserLinksResource: ...
 
     def new_batch_http_request(
         self,
@@ -1409,16 +1249,6 @@ class GoogleAnalyticsAdminV1alphaAudienceHttpRequest(googleapiclient.http.HttpRe
     ) -> GoogleAnalyticsAdminV1alphaAudience: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAuditUserLinksResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaAuditUserLinksResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1427,16 +1257,6 @@ class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest(
@@ -1449,16 +1269,6 @@ class GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1467,16 +1277,6 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest(
@@ -1951,16 +1751,6 @@ class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListUserLinksResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaListUserLinksResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2057,14 +1847,6 @@ class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilter: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaUserLinkHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
-    ) -> GoogleAnalyticsAdminV1alphaUserLink: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

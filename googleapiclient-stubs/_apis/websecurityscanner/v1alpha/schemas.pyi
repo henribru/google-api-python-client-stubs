@@ -42,6 +42,9 @@ class Finding(typing_extensions.TypedDict, total=False):
         "INVALID_HEADER",
         "MISSPELLED_SECURITY_HEADER_NAME",
         "MISMATCHING_SECURITY_HEADER_VALUES",
+        "ACCESSIBLE_GIT_REPOSITORY",
+        "ACCESSIBLE_SVN_REPOSITORY",
+        "ACCESSIBLE_ENV_FILE",
     ]
     frameUrl: str
     fuzzedUrl: str
@@ -71,6 +74,9 @@ class FindingTypeStats(typing_extensions.TypedDict, total=False):
         "INVALID_HEADER",
         "MISSPELLED_SECURITY_HEADER_NAME",
         "MISMATCHING_SECURITY_HEADER_VALUES",
+        "ACCESSIBLE_GIT_REPOSITORY",
+        "ACCESSIBLE_SVN_REPOSITORY",
+        "ACCESSIBLE_ENV_FILE",
     ]
 
 @typing.type_check_only

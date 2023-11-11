@@ -45,6 +45,10 @@ class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
     kmsKeyServiceAccount: str
 
 @typing.type_check_only
+class DomainConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+
+@typing.type_check_only
 class EphemeralDirectory(typing_extensions.TypedDict, total=False):
     gcePd: GcePersistentDisk
     mountPath: str
@@ -253,6 +257,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     degraded: bool
     deleteTime: str
     displayName: str
+    domainConfig: DomainConfig
     etag: str
     labels: dict[str, typing.Any]
     name: str

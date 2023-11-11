@@ -141,12 +141,6 @@ class GoogleCloudDiscoveryengineV1UpdateSchemaMetadata(
     updateTime: str
 
 @typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    targetSites: _list[GoogleCloudDiscoveryengineV1alphaTargetSite]
-
-@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata(
     typing_extensions.TypedDict, total=False
 ):

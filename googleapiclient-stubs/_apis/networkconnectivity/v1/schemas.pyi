@@ -14,10 +14,6 @@ class AcceptHubSpokeResponse(typing_extensions.TypedDict, total=False):
     spoke: Spoke
 
 @typing.type_check_only
-class AcceptSpokeRequest(typing_extensions.TypedDict, total=False):
-    requestId: str
-
-@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -370,11 +366,6 @@ class RejectHubSpokeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RejectHubSpokeResponse(typing_extensions.TypedDict, total=False):
     spoke: Spoke
-
-@typing.type_check_only
-class RejectSpokeRequest(typing_extensions.TypedDict, total=False):
-    details: str
-    requestId: str
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):

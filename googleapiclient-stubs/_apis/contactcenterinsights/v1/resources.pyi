@@ -59,6 +59,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def bulkDelete(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1BulkDeleteConversationsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def calculateStats(
                     self, *, location: str, filter: str = ..., **kwargs: typing.Any
                 ) -> (

@@ -481,6 +481,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
     dependencyChain: _list[LanguagePackageDependency]
     fileLocation: _list[FileLocation]
     hashDigest: str
+    licenses: _list[str]
     maintainer: Maintainer
     os: str
     osVersion: str
@@ -520,6 +521,7 @@ class PackageOccurrence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PackageVersion(typing_extensions.TypedDict, total=False):
+    licenses: _list[str]
     name: str
     version: str
 
@@ -734,6 +736,7 @@ class VulnerabilityOccurrence(typing_extensions.TypedDict, total=False):
     effectiveSeverity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]
+    extraDetails: str
     fixAvailable: bool
     longDescription: str
     packageIssue: _list[PackageIssue]

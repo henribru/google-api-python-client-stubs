@@ -95,19 +95,18 @@ class GoogleCloudApigeeV1AnalyticsConfig(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiCategory(typing_extensions.TypedDict, total=False):
-    data: GoogleCloudApigeeV1ApiCategoryData
-    errorCode: str
-    message: str
-    requestId: str
-    status: str
-
-@typing.type_check_only
-class GoogleCloudApigeeV1ApiCategoryData(typing_extensions.TypedDict, total=False):
-    gcpResource: str
     id: str
     name: str
     siteId: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiCategoryResponse(typing_extensions.TypedDict, total=False):
+    data: GoogleCloudApigeeV1ApiCategory
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
@@ -999,7 +998,7 @@ class GoogleCloudApigeeV1KeystoreConfig(typing_extensions.TypedDict, total=False
 class GoogleCloudApigeeV1ListApiCategoriesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    data: _list[GoogleCloudApigeeV1ApiCategoryData]
+    data: _list[GoogleCloudApigeeV1ApiCategory]
     errorCode: str
     message: str
     requestId: str

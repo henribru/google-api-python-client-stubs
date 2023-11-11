@@ -306,6 +306,7 @@ class ResponseMetaData(typing_extensions.TypedDict, total=False):
     currencyCode: str
     dataLossFromOtherRow: bool
     emptyReason: str
+    samplingMetadatas: _list[SamplingMetadata]
     schemaRestrictionResponse: SchemaRestrictionResponse
     subjectToThresholding: bool
     timeZone: str
@@ -393,6 +394,11 @@ class RunReportResponse(typing_extensions.TypedDict, total=False):
     rowCount: int
     rows: _list[Row]
     totals: _list[Row]
+
+@typing.type_check_only
+class SamplingMetadata(typing_extensions.TypedDict, total=False):
+    samplesReadCount: str
+    samplingSpaceSize: str
 
 @typing.type_check_only
 class SchemaRestrictionResponse(typing_extensions.TypedDict, total=False):

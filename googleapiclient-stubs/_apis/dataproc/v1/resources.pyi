@@ -357,6 +357,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: NodeGroup = ...,
                         nodeGroupId: str = ...,
+                        parentOperationId: str = ...,
                         requestId: str = ...,
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...

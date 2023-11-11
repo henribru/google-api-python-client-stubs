@@ -21,10 +21,80 @@ class GoogleMapsPlacesV1Circle(typing_extensions.TypedDict, total=False):
     radius: float
 
 @typing.type_check_only
+class GoogleMapsPlacesV1EVChargeOptions(typing_extensions.TypedDict, total=False):
+    connectorAggregation: _list[GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation]
+    connectorCount: int
+
+@typing.type_check_only
+class GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation(
+    typing_extensions.TypedDict, total=False
+):
+    availabilityLastUpdateTime: str
+    availableCount: int
+    count: int
+    maxChargeRateKw: float
+    outOfServiceCount: int
+    type: typing_extensions.Literal[
+        "EV_CONNECTOR_TYPE_UNSPECIFIED",
+        "EV_CONNECTOR_TYPE_OTHER",
+        "EV_CONNECTOR_TYPE_J1772",
+        "EV_CONNECTOR_TYPE_TYPE_2",
+        "EV_CONNECTOR_TYPE_CHADEMO",
+        "EV_CONNECTOR_TYPE_CCS_COMBO_1",
+        "EV_CONNECTOR_TYPE_CCS_COMBO_2",
+        "EV_CONNECTOR_TYPE_TESLA",
+        "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
+        "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+    ]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1FuelOptions(typing_extensions.TypedDict, total=False):
+    fuelPrices: _list[GoogleMapsPlacesV1FuelOptionsFuelPrice]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=False):
+    price: GoogleTypeMoney
+    type: typing_extensions.Literal[
+        "FUEL_TYPE_UNSPECIFIED",
+        "DIESEL",
+        "REGULAR_UNLEADED",
+        "MIDGRADE",
+        "PREMIUM",
+        "SP91",
+        "SP91_E10",
+        "SP92",
+        "SP95",
+        "SP95_E10",
+        "SP98",
+        "SP99",
+        "SP100",
+        "LPG",
+        "E80",
+        "E85",
+        "METHANE",
+        "BIO_DIESEL",
+        "TRUCK_DIESEL",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1Photo(typing_extensions.TypedDict, total=False):
+    authorAttributions: _list[GoogleMapsPlacesV1AuthorAttribution]
+    heightPx: int
+    name: str
+    widthPx: int
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PhotoMedia(typing_extensions.TypedDict, total=False):
+    name: str
+    photoUri: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     accessibilityOptions: GoogleMapsPlacesV1PlaceAccessibilityOptions
     addressComponents: _list[GoogleMapsPlacesV1PlaceAddressComponent]
     adrFormatAddress: str
+    allowsDogs: bool
     attributions: _list[GoogleMapsPlacesV1PlaceAttribution]
     businessStatus: typing_extensions.Literal[
         "BUSINESS_STATUS_UNSPECIFIED",
@@ -39,15 +109,26 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     dineIn: bool
     displayName: GoogleTypeLocalizedText
     editorialSummary: GoogleTypeLocalizedText
+    evChargeOptions: GoogleMapsPlacesV1EVChargeOptions
     formattedAddress: str
+    fuelOptions: GoogleMapsPlacesV1FuelOptions
+    goodForChildren: bool
+    goodForGroups: bool
+    goodForWatchingSports: bool
     googleMapsUri: str
     iconBackgroundColor: str
     iconMaskBaseUri: str
     id: str
     internationalPhoneNumber: str
+    liveMusic: bool
     location: GoogleTypeLatLng
+    menuForChildren: bool
     name: str
     nationalPhoneNumber: str
+    outdoorSeating: bool
+    parkingOptions: GoogleMapsPlacesV1PlaceParkingOptions
+    paymentOptions: GoogleMapsPlacesV1PlacePaymentOptions
+    photos: _list[GoogleMapsPlacesV1Photo]
     plusCode: GoogleMapsPlacesV1PlacePlusCode
     priceLevel: typing_extensions.Literal[
         "PRICE_LEVEL_UNSPECIFIED",
@@ -57,18 +138,26 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
         "PRICE_LEVEL_EXPENSIVE",
         "PRICE_LEVEL_VERY_EXPENSIVE",
     ]
+    primaryType: str
+    primaryTypeDisplayName: GoogleTypeLocalizedText
     rating: float
     regularOpeningHours: GoogleMapsPlacesV1PlaceOpeningHours
     regularSecondaryOpeningHours: _list[GoogleMapsPlacesV1PlaceOpeningHours]
     reservable: bool
+    restroom: bool
     reviews: _list[GoogleMapsPlacesV1Review]
     servesBeer: bool
     servesBreakfast: bool
     servesBrunch: bool
+    servesCocktails: bool
+    servesCoffee: bool
+    servesDessert: bool
     servesDinner: bool
     servesLunch: bool
     servesVegetarianFood: bool
     servesWine: bool
+    shortFormattedAddress: str
+    subDestinations: _list[GoogleMapsPlacesV1PlaceSubDestination]
     takeout: bool
     types: _list[str]
     userRatingCount: int
@@ -81,6 +170,9 @@ class GoogleMapsPlacesV1PlaceAccessibilityOptions(
     typing_extensions.TypedDict, total=False
 ):
     wheelchairAccessibleEntrance: bool
+    wheelchairAccessibleParking: bool
+    wheelchairAccessibleRestroom: bool
+    wheelchairAccessibleSeating: bool
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total=False):
@@ -141,18 +233,65 @@ class GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay(
     date: GoogleTypeDate
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceParkingOptions(typing_extensions.TypedDict, total=False):
+    freeGarageParking: bool
+    freeParkingLot: bool
+    freeStreetParking: bool
+    paidGarageParking: bool
+    paidParkingLot: bool
+    paidStreetParking: bool
+    valetParking: bool
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlacePaymentOptions(typing_extensions.TypedDict, total=False):
+    acceptsCashOnly: bool
+    acceptsCreditCards: bool
+    acceptsDebitCards: bool
+    acceptsNfc: bool
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlacePlusCode(typing_extensions.TypedDict, total=False):
     compoundCode: str
     globalCode: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceSubDestination(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     authorAttribution: GoogleMapsPlacesV1AuthorAttribution
+    name: str
     originalText: GoogleTypeLocalizedText
     publishTime: str
     rating: float
     relativePublishTimeDescription: str
     text: GoogleTypeLocalizedText
+
+@typing.type_check_only
+class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=False):
+    excludedPrimaryTypes: _list[str]
+    excludedTypes: _list[str]
+    includedPrimaryTypes: _list[str]
+    includedTypes: _list[str]
+    languageCode: str
+    locationRestriction: GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction
+    maxResultCount: int
+    rankPreference: typing_extensions.Literal[
+        "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "POPULARITY"
+    ]
+    regionCode: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction(
+    typing_extensions.TypedDict, total=False
+):
+    circle: GoogleMapsPlacesV1Circle
+
+@typing.type_check_only
+class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=False):
+    places: _list[GoogleMapsPlacesV1Place]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
@@ -203,3 +342,9 @@ class GoogleTypeLatLng(typing_extensions.TypedDict, total=False):
 class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):
     languageCode: str
     text: str
+
+@typing.type_check_only
+class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
+    currencyCode: str
+    nanos: int
+    units: str

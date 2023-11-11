@@ -752,6 +752,34 @@ class GoogleCloudRetailV2alphaLocalInventory(typing_extensions.TypedDict, total=
     priceInfo: GoogleCloudRetailV2alphaPriceInfo
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaLoggingConfig(typing_extensions.TypedDict, total=False):
+    defaultLogGenerationRule: GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule
+    name: str
+    serviceLogGenerationRules: _list[
+        GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule(
+    typing_extensions.TypedDict, total=False
+):
+    infoLogSampleRate: float
+    loggingLevel: typing_extensions.Literal[
+        "LOGGING_LEVEL_UNSPECIFIED",
+        "LOGGING_DISABLED",
+        "LOG_ERRORS_AND_ABOVE",
+        "LOG_WARNINGS_AND_ABOVE",
+        "LOG_ALL",
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaLoggingConfigServiceLogGenerationRule(
+    typing_extensions.TypedDict, total=False
+):
+    logGenerationRule: GoogleCloudRetailV2alphaLoggingConfigLogGenerationRule
+    serviceName: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaMerchantCenterAccountLink(
     typing_extensions.TypedDict, total=False
 ):

@@ -130,7 +130,6 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpEndpoint(typing_extensions.TypedDict, total=False):
-    forwardDnsRequests: bool
     uri: str
 
 @typing.type_check_only

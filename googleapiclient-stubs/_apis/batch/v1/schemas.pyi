@@ -96,6 +96,12 @@ class AgentTaskSpec(typing_extensions.TypedDict, total=False):
     environment: AgentEnvironment
     maxRunDuration: str
     runnables: _list[AgentTaskRunnable]
+    userAccount: AgentTaskUserAccount
+
+@typing.type_check_only
+class AgentTaskUserAccount(typing_extensions.TypedDict, total=False):
+    gid: str
+    uid: str
 
 @typing.type_check_only
 class AgentTimingInfo(typing_extensions.TypedDict, total=False):
@@ -124,6 +130,9 @@ class Barrier(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudLoggingOption(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ComputeResource(typing_extensions.TypedDict, total=False):
@@ -270,6 +279,7 @@ class LocationPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogsPolicy(typing_extensions.TypedDict, total=False):
+    cloudLoggingOption: CloudLoggingOption
     destination: typing_extensions.Literal[
         "DESTINATION_UNSPECIFIED", "CLOUD_LOGGING", "PATH"
     ]
@@ -348,6 +358,7 @@ class ReportAgentStateResponse(typing_extensions.TypedDict, total=False):
     defaultReportInterval: str
     minReportInterval: str
     tasks: _list[AgentTask]
+    useBatchMonitoredResource: bool
 
 @typing.type_check_only
 class Runnable(typing_extensions.TypedDict, total=False):
@@ -355,6 +366,7 @@ class Runnable(typing_extensions.TypedDict, total=False):
     background: bool
     barrier: Barrier
     container: Container
+    displayName: str
     environment: Environment
     ignoreExitStatus: bool
     labels: dict[str, typing.Any]

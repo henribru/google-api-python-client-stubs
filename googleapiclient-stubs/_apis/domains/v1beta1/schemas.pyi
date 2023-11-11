@@ -266,6 +266,7 @@ class Registration(typing_extensions.TypedDict, total=False):
         "ACTIVE",
         "SUSPENDED",
         "EXPORTED",
+        "EXPIRED",
     ]
     supportedPrivacy: _list[str]
     transferFailureReason: typing_extensions.Literal[

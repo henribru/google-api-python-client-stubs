@@ -175,6 +175,8 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
+    mesh: ServiceMeshMembershipSpec
+    policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
 class ConfigManagementBinauthzConfig(typing_extensions.TypedDict, total=False):
@@ -1028,7 +1030,6 @@ class Role(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
-    allMemberships: bool
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]

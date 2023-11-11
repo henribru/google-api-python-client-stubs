@@ -15,12 +15,39 @@ _list = list
 class MapsPlacesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PlacesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class PhotosResource(googleapiclient.discovery.Resource):
+            def getMedia(
+                self,
+                *,
+                name: str,
+                maxHeightPx: int = ...,
+                maxWidthPx: int = ...,
+                skipHttpRedirect: bool = ...,
+                **kwargs: typing.Any
+            ) -> GoogleMapsPlacesV1PhotoMediaHttpRequest: ...
+
+        def get(
+            self,
+            *,
+            name: str,
+            languageCode: str = ...,
+            regionCode: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
+        def searchNearby(
+            self,
+            *,
+            body: GoogleMapsPlacesV1SearchNearbyRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleMapsPlacesV1SearchNearbyResponseHttpRequest: ...
         def searchText(
             self,
             *,
             body: GoogleMapsPlacesV1SearchTextRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest: ...
+        def photos(self) -> PhotosResource: ...
 
     def new_batch_http_request(
         self,
@@ -35,6 +62,32 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
         | None = ...,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def places(self) -> PlacesResource: ...
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PhotoMediaHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleMapsPlacesV1PhotoMedia: ...
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleMapsPlacesV1Place: ...
+
+@typing.type_check_only
+class GoogleMapsPlacesV1SearchNearbyResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GoogleMapsPlacesV1SearchNearbyResponse: ...
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextResponseHttpRequest(googleapiclient.http.HttpRequest):

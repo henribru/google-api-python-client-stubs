@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class ClaimDeviceRequest(typing_extensions.TypedDict, total=False):
+    configurationId: str
     customerId: str
     deviceIdentifier: DeviceIdentifier
     deviceMetadata: DeviceMetadata
@@ -241,6 +242,7 @@ class OperationPerDevice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PartnerClaim(typing_extensions.TypedDict, total=False):
+    configurationId: str
     customerId: str
     deviceIdentifier: DeviceIdentifier
     deviceMetadata: DeviceMetadata

@@ -363,6 +363,7 @@ class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
     mavenRepository: MavenRepository
     npmRepository: NpmRepository
     pythonRepository: PythonRepository
+    upstreamCredentials: UpstreamCredentials
     yumRepository: YumRepository
 
 @typing.type_check_only
@@ -488,10 +489,19 @@ class UploadYumArtifactResponse(typing_extensions.TypedDict, total=False):
     yumArtifacts: _list[YumArtifact]
 
 @typing.type_check_only
+class UpstreamCredentials(typing_extensions.TypedDict, total=False):
+    usernamePasswordCredentials: UsernamePasswordCredentials
+
+@typing.type_check_only
 class UpstreamPolicy(typing_extensions.TypedDict, total=False):
     id: str
     priority: int
     repository: str
+
+@typing.type_check_only
+class UsernamePasswordCredentials(typing_extensions.TypedDict, total=False):
+    passwordSecretVersion: str
+    username: str
 
 @typing.type_check_only
 class VPCSCConfig(typing_extensions.TypedDict, total=False):

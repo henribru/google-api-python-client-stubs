@@ -18,6 +18,16 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ProjectsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class LocationsResource(googleapiclient.discovery.Resource):
+                def signSshPublicKey(
+                    self,
+                    *,
+                    parent: str,
+                    body: SignSshPublicKeyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> SignSshPublicKeyResponseHttpRequest: ...
+
+            @typing.type_check_only
             class ZonesResource(googleapiclient.discovery.Resource):
                 def signSshPublicKey(
                     self,
@@ -30,6 +40,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmptyHttpRequest: ...
+            def locations(self) -> LocationsResource: ...
             def zones(self) -> ZonesResource: ...
 
         @typing.type_check_only

@@ -203,6 +203,7 @@ class DocumentStyle(typing_extensions.TypedDict, total=False):
     evenPageHeaderId: str
     firstPageFooterId: str
     firstPageHeaderId: str
+    flipPageOrientation: bool
     marginBottom: Dimension
     marginFooter: Dimension
     marginHeader: Dimension
@@ -224,6 +225,7 @@ class DocumentStyleSuggestionState(typing_extensions.TypedDict, total=False):
     evenPageHeaderIdSuggested: bool
     firstPageFooterIdSuggested: bool
     firstPageHeaderIdSuggested: bool
+    flipPageOrientationSuggested: bool
     marginBottomSuggested: bool
     marginFooterSuggested: bool
     marginHeaderSuggested: bool
@@ -845,6 +847,7 @@ class SectionStyle(typing_extensions.TypedDict, total=False):
     evenPageHeaderId: str
     firstPageFooterId: str
     firstPageHeaderId: str
+    flipPageOrientation: bool
     marginBottom: Dimension
     marginFooter: Dimension
     marginHeader: Dimension

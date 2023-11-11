@@ -67,6 +67,10 @@ class Consumer(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
+class DataCatalogConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class DatabaseDump(typing_extensions.TypedDict, total=False):
     databaseType: typing_extensions.Literal["DATABASE_TYPE_UNSPECIFIED", "MYSQL"]
     gcsUri: str
@@ -177,6 +181,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    multiRegionMetadata: MultiRegionMetadata
     supportedHiveMetastoreVersions: _list[HiveMetastoreVersion]
 
 @typing.type_check_only
@@ -216,6 +221,10 @@ class MetadataImport(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MetadataIntegration(typing_extensions.TypedDict, total=False):
+    dataCatalogConfig: DataCatalogConfig
+
+@typing.type_check_only
 class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
     metadataExports: _list[MetadataExport]
     restores: _list[Restore]
@@ -228,6 +237,10 @@ class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class MultiRegionMetadata(typing_extensions.TypedDict, total=False):
+    constituentRegions: _list[str]
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -313,6 +326,7 @@ class Service(typing_extensions.TypedDict, total=False):
     hiveMetastoreConfig: HiveMetastoreConfig
     labels: dict[str, typing.Any]
     maintenanceWindow: MaintenanceWindow
+    metadataIntegration: MetadataIntegration
     metadataManagementActivity: MetadataManagementActivity
     name: str
     network: str

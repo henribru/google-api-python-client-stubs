@@ -243,6 +243,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, backendBucket: str, **kwargs: typing.Any
         ) -> BackendBucketHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -285,6 +293,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: GlobalSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -435,6 +459,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -2933,6 +2965,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: NetworkAttachmentListHttpRequest,
             previous_response: NetworkAttachmentList,
         ) -> NetworkAttachmentListHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            networkAttachment: str,
+            body: NetworkAttachment = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -3843,6 +3885,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class PublicAdvertisedPrefixesResource(googleapiclient.discovery.Resource):
+        def announce(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -3887,6 +3937,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def withdraw(
+            self,
+            *,
+            project: str,
+            publicAdvertisedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class PublicDelegatedPrefixesResource(googleapiclient.discovery.Resource):
@@ -3908,6 +3966,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: PublicDelegatedPrefixAggregatedListHttpRequest,
             previous_response: PublicDelegatedPrefixAggregatedList,
         ) -> PublicDelegatedPrefixAggregatedListHttpRequest | None: ...
+        def announce(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def delete(
             self,
             *,
@@ -3958,6 +4025,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             publicDelegatedPrefix: str,
             body: PublicDelegatedPrefix = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def withdraw(
+            self,
+            *,
+            project: str,
+            region: str,
+            publicDelegatedPrefix: str,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -4132,6 +4208,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -6226,6 +6311,21 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class SnapshotSettingsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, **kwargs: typing.Any
+        ) -> SnapshotSettingsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            body: SnapshotSettings = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class SnapshotsResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -7599,6 +7699,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def routes(self) -> RoutesResource: ...
     def securityPolicies(self) -> SecurityPoliciesResource: ...
     def serviceAttachments(self) -> ServiceAttachmentsResource: ...
+    def snapshotSettings(self) -> SnapshotSettingsResource: ...
     def snapshots(self) -> SnapshotsResource: ...
     def sslCertificates(self) -> SslCertificatesResource: ...
     def sslPolicies(self) -> SslPoliciesResource: ...
@@ -8954,6 +9055,14 @@ class SnapshotListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> SnapshotList: ...
+
+@typing.type_check_only
+class SnapshotSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> SnapshotSettings: ...
 
 @typing.type_check_only
 class SslCertificateHttpRequest(googleapiclient.http.HttpRequest):

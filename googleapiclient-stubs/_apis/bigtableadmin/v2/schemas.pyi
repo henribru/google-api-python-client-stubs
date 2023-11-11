@@ -10,7 +10,11 @@ class AppProfile(typing_extensions.TypedDict, total=False):
     etag: str
     multiClusterRoutingUseAny: MultiClusterRoutingUseAny
     name: str
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
+    ]
     singleClusterRouting: SingleClusterRouting
+    standardIsolation: StandardIsolation
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -67,6 +71,7 @@ class ChangeStreamConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckConsistencyRequest(typing_extensions.TypedDict, total=False):
     consistencyToken: str
+    standardReadRemoteWrites: StandardReadRemoteWrites
 
 @typing.type_check_only
 class CheckConsistencyResponse(typing_extensions.TypedDict, total=False):
@@ -304,7 +309,6 @@ class Modification(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
-    ignoreWarnings: bool
     modifications: _list[Modification]
 
 @typing.type_check_only
@@ -384,6 +388,15 @@ class SingleClusterRouting(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Split(typing_extensions.TypedDict, total=False):
     key: str
+
+@typing.type_check_only
+class StandardIsolation(typing_extensions.TypedDict, total=False):
+    priority: typing_extensions.Literal[
+        "PRIORITY_UNSPECIFIED", "PRIORITY_LOW", "PRIORITY_MEDIUM", "PRIORITY_HIGH"
+    ]
+
+@typing.type_check_only
+class StandardReadRemoteWrites(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

@@ -211,18 +211,6 @@ class AppengineResource(googleapiclient.discovery.Resource):
             ) -> ListOperationsResponseHttpRequest | None: ...
 
         @typing.type_check_only
-        class RuntimesResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                appsId: str,
-                environment: typing_extensions.Literal[
-                    "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
-                ] = ...,
-                **kwargs: typing.Any
-            ) -> ListRuntimesResponseHttpRequest: ...
-
-        @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class VersionsResource(googleapiclient.discovery.Resource):
@@ -383,6 +371,15 @@ class AppengineResource(googleapiclient.discovery.Resource):
             ] = ...,
             **kwargs: typing.Any
         ) -> ApplicationHttpRequest: ...
+        def listRuntimes(
+            self,
+            *,
+            appsId: str,
+            environment: typing_extensions.Literal[
+                "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
+            ] = ...,
+            **kwargs: typing.Any
+        ) -> ListRuntimesResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -404,7 +401,6 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def firewall(self) -> FirewallResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-        def runtimes(self) -> RuntimesResource: ...
         def services(self) -> ServicesResource: ...
 
     @typing.type_check_only

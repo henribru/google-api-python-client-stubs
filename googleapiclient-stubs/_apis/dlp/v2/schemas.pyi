@@ -27,6 +27,11 @@ class GooglePrivacyDlpV2ActivateJobTriggerRequest(
 class GooglePrivacyDlpV2AllInfoTypes(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2AllOtherBigQueryTables(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2AllText(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -48,6 +53,15 @@ class GooglePrivacyDlpV2AuxiliaryTable(typing_extensions.TypedDict, total=False)
     quasiIds: _list[GooglePrivacyDlpV2QuasiIdField]
     relativeFrequency: GooglePrivacyDlpV2FieldId
     table: GooglePrivacyDlpV2BigQueryTable
+
+@typing.type_check_only
+class GooglePrivacyDlpV2BigQueryDiscoveryTarget(
+    typing_extensions.TypedDict, total=False
+):
+    cadence: GooglePrivacyDlpV2DiscoveryGenerationCadence
+    conditions: GooglePrivacyDlpV2DiscoveryBigQueryConditions
+    disabled: GooglePrivacyDlpV2Disabled
+    filter: GooglePrivacyDlpV2DiscoveryBigQueryFilter
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BigQueryField(typing_extensions.TypedDict, total=False):
@@ -72,10 +86,30 @@ class GooglePrivacyDlpV2BigQueryOptions(typing_extensions.TypedDict, total=False
     tableReference: GooglePrivacyDlpV2BigQueryTable
 
 @typing.type_check_only
+class GooglePrivacyDlpV2BigQueryRegex(typing_extensions.TypedDict, total=False):
+    datasetIdRegex: str
+    projectIdRegex: str
+    tableIdRegex: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2BigQueryRegexes(typing_extensions.TypedDict, total=False):
+    patterns: _list[GooglePrivacyDlpV2BigQueryRegex]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2BigQueryTable(typing_extensions.TypedDict, total=False):
     datasetId: str
     projectId: str
     tableId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2BigQueryTableCollection(
+    typing_extensions.TypedDict, total=False
+):
+    includeRegexes: GooglePrivacyDlpV2BigQueryRegexes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2BigQueryTableTypes(typing_extensions.TypedDict, total=False):
+    types: _list[str]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BoundingBox(typing_extensions.TypedDict, total=False):
@@ -299,6 +333,13 @@ class GooglePrivacyDlpV2CreateDeidentifyTemplateRequest(
     deidentifyTemplate: GooglePrivacyDlpV2DeidentifyTemplate
     locationId: str
     templateId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2CreateDiscoveryConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    configId: str
+    discoveryConfig: GooglePrivacyDlpV2DiscoveryConfig
 
 @typing.type_check_only
 class GooglePrivacyDlpV2CreateDlpJobRequest(typing_extensions.TypedDict, total=False):
@@ -574,6 +615,85 @@ class GooglePrivacyDlpV2Dictionary(typing_extensions.TypedDict, total=False):
     wordList: GooglePrivacyDlpV2WordList
 
 @typing.type_check_only
+class GooglePrivacyDlpV2Disabled(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryBigQueryConditions(
+    typing_extensions.TypedDict, total=False
+):
+    createdAfter: str
+    orConditions: GooglePrivacyDlpV2OrConditions
+    typeCollection: typing_extensions.Literal[
+        "BIG_QUERY_COLLECTION_UNSPECIFIED",
+        "BIG_QUERY_COLLECTION_ALL_TYPES",
+        "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES",
+    ]
+    types: GooglePrivacyDlpV2BigQueryTableTypes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryBigQueryFilter(
+    typing_extensions.TypedDict, total=False
+):
+    otherTables: GooglePrivacyDlpV2AllOtherBigQueryTables
+    tables: GooglePrivacyDlpV2BigQueryTableCollection
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryConfig(typing_extensions.TypedDict, total=False):
+    actions: _list[GooglePrivacyDlpV2DataProfileAction]
+    createTime: str
+    displayName: str
+    errors: _list[GooglePrivacyDlpV2Error]
+    inspectTemplates: _list[str]
+    lastRunTime: str
+    name: str
+    orgConfig: GooglePrivacyDlpV2OrgConfig
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "PAUSED"]
+    targets: _list[GooglePrivacyDlpV2DiscoveryTarget]
+    updateTime: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryGenerationCadence(
+    typing_extensions.TypedDict, total=False
+):
+    schemaModifiedCadence: GooglePrivacyDlpV2DiscoverySchemaModifiedCadence
+    tableModifiedCadence: GooglePrivacyDlpV2DiscoveryTableModifiedCadence
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoverySchemaModifiedCadence(
+    typing_extensions.TypedDict, total=False
+):
+    frequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
+    types: _list[str]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryStartingLocation(
+    typing_extensions.TypedDict, total=False
+):
+    folderId: str
+    organizationId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryTableModifiedCadence(
+    typing_extensions.TypedDict, total=False
+):
+    frequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
+    types: _list[str]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryTarget(typing_extensions.TypedDict, total=False):
+    bigQueryTarget: GooglePrivacyDlpV2BigQueryDiscoveryTarget
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
     actionDetails: _list[GooglePrivacyDlpV2ActionDetails]
     createTime: str
@@ -581,6 +701,7 @@ class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
     errors: _list[GooglePrivacyDlpV2Error]
     inspectDetails: GooglePrivacyDlpV2InspectDataSourceDetails
     jobTriggerName: str
+    lastModified: str
     name: str
     riskDetails: GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails
     startTime: str
@@ -807,8 +928,8 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "JAPAN",
         "KOREA",
         "MEXICO",
-        "NEW_ZEALAND",
         "THE_NETHERLANDS",
+        "NEW_ZEALAND",
         "NORWAY",
         "PARAGUAY",
         "PERU",
@@ -818,6 +939,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "SOUTH_AFRICA",
         "SPAIN",
         "SWEDEN",
+        "SWITZERLAND",
         "TAIWAN",
         "THAILAND",
         "TURKEY",
@@ -1114,6 +1236,13 @@ class GooglePrivacyDlpV2ListDeidentifyTemplatesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ListDiscoveryConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    discoveryConfigs: _list[GooglePrivacyDlpV2DiscoveryConfig]
+    nextPageToken: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ListDlpJobsResponse(typing_extensions.TypedDict, total=False):
     jobs: _list[GooglePrivacyDlpV2DlpJob]
     nextPageToken: str
@@ -1167,6 +1296,16 @@ class GooglePrivacyDlpV2NumericalStatsResult(typing_extensions.TypedDict, total=
     maxValue: GooglePrivacyDlpV2Value
     minValue: GooglePrivacyDlpV2Value
     quantileValues: _list[GooglePrivacyDlpV2Value]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OrConditions(typing_extensions.TypedDict, total=False):
+    minAge: str
+    minRowCount: int
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OrgConfig(typing_extensions.TypedDict, total=False):
+    location: GooglePrivacyDlpV2DiscoveryStartingLocation
+    projectId: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2OtherInfoTypeSummary(typing_extensions.TypedDict, total=False):
@@ -1710,6 +1849,13 @@ class GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest(
     typing_extensions.TypedDict, total=False
 ):
     deidentifyTemplate: GooglePrivacyDlpV2DeidentifyTemplate
+    updateMask: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2UpdateDiscoveryConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    discoveryConfig: GooglePrivacyDlpV2DiscoveryConfig
     updateMask: str
 
 @typing.type_check_only

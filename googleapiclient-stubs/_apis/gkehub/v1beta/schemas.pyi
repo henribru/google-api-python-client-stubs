@@ -22,6 +22,10 @@ class AppDevExperienceFeatureState(typing_extensions.TypedDict, total=False):
     networkingInstallSucceeded: Status
 
 @typing.type_check_only
+class ApplianceCluster(typing_extensions.TypedDict, total=False):
+    resourceLink: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -32,6 +36,13 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class Authority(typing_extensions.TypedDict, total=False):
+    identityProvider: str
+    issuer: str
+    oidcJwks: str
+    workloadIdentityPool: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -59,6 +70,8 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
     identityservice: IdentityServiceMembershipSpec
+    mesh: ServiceMeshMembershipSpec
+    policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
 class ConfigManagementBinauthzConfig(typing_extensions.TypedDict, total=False):
@@ -307,6 +320,15 @@ class ConfigManagementSyncState(typing_extensions.TypedDict, total=False):
     syncToken: str
 
 @typing.type_check_only
+class ConnectAgentResource(typing_extensions.TypedDict, total=False):
+    manifest: str
+    type: TypeMeta
+
+@typing.type_check_only
+class EdgeCluster(typing_extensions.TypedDict, total=False):
+    resourceLink: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -416,10 +438,19 @@ class FleetObservabilityRoutingConfig(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "COPY", "MOVE"]
 
 @typing.type_check_only
+class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
+    manifest: _list[ConnectAgentResource]
+
+@typing.type_check_only
 class GenerateMembershipRBACRoleBindingYAMLResponse(
     typing_extensions.TypedDict, total=False
 ):
     roleBindingsYaml: str
+
+@typing.type_check_only
+class GkeCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
@@ -476,6 +507,22 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
     userPrefix: str
 
 @typing.type_check_only
+class KubernetesMetadata(typing_extensions.TypedDict, total=False):
+    kubernetesApiServerVersion: str
+    memoryMb: int
+    nodeCount: int
+    nodeProviderId: str
+    updateTime: str
+    vcpuCount: int
+
+@typing.type_check_only
+class KubernetesResource(typing_extensions.TypedDict, total=False):
+    connectResources: _list[ResourceManifest]
+    membershipCrManifest: str
+    membershipResources: _list[ResourceManifest]
+    resourceOptions: ResourceOptions
+
+@typing.type_check_only
 class ListFeaturesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Feature]
@@ -499,6 +546,12 @@ class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
 class ListMembershipRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     rbacrolebindings: _list[RBACRoleBinding]
+
+@typing.type_check_only
+class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resources: _list[Membership]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListNamespacesResponse(typing_extensions.TypedDict, total=False):
@@ -539,6 +592,22 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Membership(typing_extensions.TypedDict, total=False):
+    authority: Authority
+    createTime: str
+    deleteTime: str
+    description: str
+    endpoint: MembershipEndpoint
+    externalId: str
+    labels: dict[str, typing.Any]
+    lastConnectionTime: str
+    monitoringConfig: MonitoringConfig
+    name: str
+    state: MembershipState
+    uniqueId: str
+    updateTime: str
+
+@typing.type_check_only
 class MembershipBinding(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
@@ -554,6 +623,17 @@ class MembershipBindingLifecycleState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
+
+@typing.type_check_only
+class MembershipEndpoint(typing_extensions.TypedDict, total=False):
+    applianceCluster: ApplianceCluster
+    edgeCluster: EdgeCluster
+    gkeCluster: GkeCluster
+    googleManaged: bool
+    kubernetesMetadata: KubernetesMetadata
+    kubernetesResource: KubernetesResource
+    multiCloudCluster: MultiCloudCluster
+    onPremCluster: OnPremCluster
 
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -585,9 +665,33 @@ class MembershipSpec(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class MembershipState(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "CREATING",
+        "READY",
+        "DELETING",
+        "UPDATING",
+        "SERVICE_UPDATING",
+    ]
+
+@typing.type_check_only
 class MeteringMembershipState(typing_extensions.TypedDict, total=False):
     lastMeasurementTime: str
     preciseLastMeasuredClusterVcpuCapacity: float
+
+@typing.type_check_only
+class MonitoringConfig(typing_extensions.TypedDict, total=False):
+    cluster: str
+    clusterHash: str
+    kubernetesMetricsPrefix: str
+    location: str
+    projectId: str
+
+@typing.type_check_only
+class MultiCloudCluster(typing_extensions.TypedDict, total=False):
+    clusterMissing: bool
+    resourceLink: str
 
 @typing.type_check_only
 class MultiClusterIngressFeatureSpec(typing_extensions.TypedDict, total=False):
@@ -613,6 +717,15 @@ class NamespaceLifecycleState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
     ]
+
+@typing.type_check_only
+class OnPremCluster(typing_extensions.TypedDict, total=False):
+    adminCluster: bool
+    clusterMissing: bool
+    clusterType: typing_extensions.Literal[
+        "CLUSTERTYPE_UNSPECIFIED", "BOOTSTRAP", "HYBRID", "STANDALONE", "USER"
+    ]
+    resourceLink: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -776,6 +889,17 @@ class RBACRoleBindingLifecycleState(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ResourceManifest(typing_extensions.TypedDict, total=False):
+    clusterScoped: bool
+    manifest: str
+
+@typing.type_check_only
+class ResourceOptions(typing_extensions.TypedDict, total=False):
+    connectVersion: str
+    k8sVersion: str
+    v1beta1Crd: bool
+
+@typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     predefinedRole: typing_extensions.Literal[
         "UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"
@@ -783,7 +907,6 @@ class Role(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
-    allMemberships: bool
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]
@@ -870,3 +993,8 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TypeMeta(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str

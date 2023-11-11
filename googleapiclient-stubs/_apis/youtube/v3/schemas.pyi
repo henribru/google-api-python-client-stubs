@@ -1686,6 +1686,27 @@ class PlaylistContentDetails(typing_extensions.TypedDict, total=False):
     itemCount: int
 
 @typing.type_check_only
+class PlaylistImage(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    snippet: PlaylistImageSnippet
+
+@typing.type_check_only
+class PlaylistImageListResponse(typing_extensions.TypedDict, total=False):
+    items: _list[PlaylistImage]
+    kind: str
+    nextPageToken: str
+    pageInfo: PageInfo
+    prevPageToken: str
+
+@typing.type_check_only
+class PlaylistImageSnippet(typing_extensions.TypedDict, total=False):
+    height: int
+    playlistId: str
+    type: typing_extensions.Literal["hero"]
+    width: int
+
+@typing.type_check_only
 class PlaylistItem(typing_extensions.TypedDict, total=False):
     contentDetails: PlaylistItemContentDetails
     etag: str

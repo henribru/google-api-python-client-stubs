@@ -164,6 +164,45 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
             @typing.type_check_only
+            class DiscoveryConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDiscoveryConfigsResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+
+            @typing.type_check_only
             class DlpJobsResource(googleapiclient.discovery.Resource):
                 def list(
                     self,
@@ -308,6 +347,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
+            def discoveryConfigs(self) -> DiscoveryConfigsResource: ...
             def dlpJobs(self) -> DlpJobsResource: ...
             def inspectTemplates(self) -> InspectTemplatesResource: ...
             def jobTriggers(self) -> JobTriggersResource: ...
@@ -628,6 +668,45 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
             @typing.type_check_only
+            class DiscoveryConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListDiscoveryConfigsResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
+
+            @typing.type_check_only
             class DlpJobsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -831,6 +910,7 @@ class DLPResource(googleapiclient.discovery.Resource):
 
             def content(self) -> ContentResource: ...
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
+            def discoveryConfigs(self) -> DiscoveryConfigsResource: ...
             def dlpJobs(self) -> DlpJobsResource: ...
             def image(self) -> ImageResource: ...
             def inspectTemplates(self) -> InspectTemplatesResource: ...
@@ -920,6 +1000,14 @@ class GooglePrivacyDlpV2DeidentifyTemplateHttpRequest(googleapiclient.http.HttpR
     ) -> GooglePrivacyDlpV2DeidentifyTemplate: ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePrivacyDlpV2DiscoveryConfig: ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DlpJobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -972,6 +1060,16 @@ class GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
     ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponse: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
+        num_retries: int = ...,
+    ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponse: ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest(

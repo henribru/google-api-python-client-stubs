@@ -415,29 +415,6 @@ class GoogleAnalyticsAdminV1alphaAudienceSimpleFilter(
     ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAuditUserLink(
-    typing_extensions.TypedDict, total=False
-):
-    directRoles: _list[str]
-    effectiveRoles: _list[str]
-    emailAddress: str
-    name: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAuditUserLinksRequest(
-    typing_extensions.TypedDict, total=False
-):
-    pageSize: int
-    pageToken: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaAuditUserLinksResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    userLinks: _list[GoogleAnalyticsAdminV1alphaAuditUserLink]
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -450,41 +427,16 @@ class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse(
     accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest(
-    typing_extensions.TypedDict, total=False
-):
-    notifyNewUsers: bool
-    requests: _list[GoogleAnalyticsAdminV1alphaCreateUserLinkRequest]
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse(
-    typing_extensions.TypedDict, total=False
-):
-    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchDeleteAccessBindingsRequest(
     typing_extensions.TypedDict, total=False
 ):
     requests: _list[GoogleAnalyticsAdminV1alphaDeleteAccessBindingRequest]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest(
-    typing_extensions.TypedDict, total=False
-):
-    requests: _list[GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest]
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse(
     typing_extensions.TypedDict, total=False
 ):
     accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse(
-    typing_extensions.TypedDict, total=False
-):
-    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsRequest(
@@ -497,18 +449,6 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse(
     typing_extensions.TypedDict, total=False
 ):
     accessBindings: _list[GoogleAnalyticsAdminV1alphaAccessBinding]
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest(
-    typing_extensions.TypedDict, total=False
-):
-    requests: _list[GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest]
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse(
-    typing_extensions.TypedDict, total=False
-):
-    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total=False):
@@ -648,9 +588,17 @@ class GoogleAnalyticsAdminV1alphaConversionEvent(
     ]
     createTime: str
     custom: bool
+    defaultConversionValue: GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue
     deletable: bool
     eventName: str
     name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue(
+    typing_extensions.TypedDict, total=False
+):
+    currencyCode: str
+    value: float
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaConversionValues(
@@ -716,14 +664,6 @@ class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse(
 ):
     subproperty: GoogleAnalyticsAdminV1alphaProperty
     subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateUserLinkRequest(
-    typing_extensions.TypedDict, total=False
-):
-    notifyNewUser: bool
-    parent: str
-    userLink: GoogleAnalyticsAdminV1alphaUserLink
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCustomDimension(
@@ -845,12 +785,6 @@ class GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest(
 ):
     property: str
     tagId: str
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest(
-    typing_extensions.TypedDict, total=False
-):
-    name: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink(
@@ -1227,13 +1161,6 @@ class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse(
     subpropertyEventFilters: _list[GoogleAnalyticsAdminV1alphaSubpropertyEventFilter]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListUserLinksResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    userLinks: _list[GoogleAnalyticsAdminV1alphaUserLink]
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMatchingCondition(
     typing_extensions.TypedDict, total=False
 ):
@@ -1377,6 +1304,8 @@ class GoogleAnalyticsAdminV1alphaRunAccessReportRequest(
     dateRanges: _list[GoogleAnalyticsAdminV1alphaAccessDateRange]
     dimensionFilter: GoogleAnalyticsAdminV1alphaAccessFilterExpression
     dimensions: _list[GoogleAnalyticsAdminV1alphaAccessDimension]
+    expandGroups: bool
+    includeAllUsers: bool
     limit: str
     metricFilter: GoogleAnalyticsAdminV1alphaAccessFilterExpression
     metrics: _list[GoogleAnalyticsAdminV1alphaAccessMetric]
@@ -1511,18 +1440,6 @@ class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(
     typing_extensions.TypedDict, total=False
 ):
     accessBinding: GoogleAnalyticsAdminV1alphaAccessBinding
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest(
-    typing_extensions.TypedDict, total=False
-):
-    userLink: GoogleAnalyticsAdminV1alphaUserLink
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaUserLink(typing_extensions.TypedDict, total=False):
-    directRoles: _list[str]
-    emailAddress: str
-    name: str
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

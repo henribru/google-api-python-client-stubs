@@ -25,6 +25,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "HIGH_SCALE_SSD",
         "ENTERPRISE",
         "ZONAL",
+        "REGIONAL",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
@@ -188,6 +189,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "HIGH_SCALE_SSD",
         "ENTERPRISE",
         "ZONAL",
+        "REGIONAL",
     ]
 
 @typing.type_check_only

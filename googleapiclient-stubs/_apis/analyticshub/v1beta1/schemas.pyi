@@ -110,10 +110,10 @@ class Listing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
-    cancelRequested: bool
     createTime: str
     endTime: str
-    statusDetail: str
+    requestedCancellation: bool
+    statusMessage: str
     target: str
     verb: str
 

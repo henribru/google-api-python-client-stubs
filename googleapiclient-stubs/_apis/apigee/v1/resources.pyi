@@ -2091,15 +2091,15 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
-                    body: GoogleCloudApigeeV1ApiCategoryData = ...,
+                    body: GoogleCloudApigeeV1ApiCategory = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+                ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1DeleteResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
-                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+                ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ListApiCategoriesResponseHttpRequest: ...
@@ -2107,9 +2107,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    body: GoogleCloudApigeeV1ApiCategoryData = ...,
+                    body: GoogleCloudApigeeV1ApiCategory = ...,
                     **kwargs: typing.Any
-                ) -> GoogleCloudApigeeV1ApiCategoryHttpRequest: ...
+                ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
 
             def apicategories(self) -> ApicategoriesResource: ...
 
@@ -2252,12 +2252,14 @@ class GoogleCloudApigeeV1AliasHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleCloudApigeeV1Alias: ...
 
 @typing.type_check_only
-class GoogleCloudApigeeV1ApiCategoryHttpRequest(googleapiclient.http.HttpRequest):
+class GoogleCloudApigeeV1ApiCategoryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
         num_retries: int = ...,
-    ) -> GoogleCloudApigeeV1ApiCategory: ...
+    ) -> GoogleCloudApigeeV1ApiCategoryResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProductHttpRequest(googleapiclient.http.HttpRequest):

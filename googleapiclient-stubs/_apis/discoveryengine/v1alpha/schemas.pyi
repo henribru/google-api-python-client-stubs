@@ -147,12 +147,6 @@ class GoogleCloudDiscoveryengineV1alphaAdditionalParams(
     token: str
 
 @typing.type_check_only
-class GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSitesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    targetSites: _list[GoogleCloudDiscoveryengineV1alphaTargetSite]
-
-@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaBigQuerySource(
     typing_extensions.TypedDict, total=False
 ):
@@ -315,7 +309,13 @@ class GoogleCloudDiscoveryengineV1alphaFieldConfig(
     ]
     fieldPath: str
     fieldType: typing_extensions.Literal[
-        "FIELD_TYPE_UNSPECIFIED", "OBJECT", "STRING", "NUMBER", "INTEGER", "BOOLEAN"
+        "FIELD_TYPE_UNSPECIFIED",
+        "OBJECT",
+        "STRING",
+        "NUMBER",
+        "INTEGER",
+        "BOOLEAN",
+        "GEOLOCATION",
     ]
     indexableOption: typing_extensions.Literal[
         "INDEXABLE_OPTION_UNSPECIFIED", "INDEXABLE_ENABLED", "INDEXABLE_DISABLED"
@@ -769,6 +769,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponse(
     attributionToken: str
     correctedQuery: str
     facets: _list[GoogleCloudDiscoveryengineV1alphaSearchResponseFacet]
+    geoSearchDebugInfo: _list[
+        GoogleCloudDiscoveryengineV1alphaSearchResponseGeoSearchDebugInfo
+    ]
     guidedSearchResult: GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult
     nextPageToken: str
     queryExpansionInfo: GoogleCloudDiscoveryengineV1alphaSearchResponseQueryExpansionInfo
@@ -792,6 +795,13 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseFacetFacetValue(
     count: str
     interval: GoogleCloudDiscoveryengineV1alphaInterval
     value: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaSearchResponseGeoSearchDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    errorMessage: str
+    originalAddressQuery: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult(
@@ -976,7 +986,11 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfig(
     facetField: _list[GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField]
     fieldsUiComponentsMap: dict[str, typing.Any]
     llmEnabled: bool
+    minimumDataTermAccepted: bool
     name: str
+    resultDisplayType: typing_extensions.Literal[
+        "RESULT_DISPLAY_TYPE_UNSPECIFIED", "SNIPPET", "EXTRACTIVE_ANSWER"
+    ]
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
         "SOLUTION_TYPE_RECOMMENDATION",

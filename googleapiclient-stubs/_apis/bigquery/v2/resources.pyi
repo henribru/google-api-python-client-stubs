@@ -24,7 +24,12 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
-            self, *, projectId: str, datasetId: str, **kwargs: typing.Any
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            datasetView: str = ...,
+            **kwargs: typing.Any
         ) -> DatasetHttpRequest: ...
         def insert(
             self, *, projectId: str, body: Dataset = ..., **kwargs: typing.Any

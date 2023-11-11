@@ -58,6 +58,9 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipSpec
+    identityservice: IdentityServiceMembershipSpec
+    mesh: ServiceMeshMembershipSpec
+    policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
@@ -590,6 +593,7 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
     identityservice: IdentityServiceMembershipSpec
     mesh: ServiceMeshMembershipSpec
     origin: Origin
+    policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
@@ -597,6 +601,7 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     configmanagement: ConfigManagementMembershipState
     fleetobservability: FleetObservabilityMembershipState
     identityservice: IdentityServiceMembershipState
+    policycontroller: PolicyControllerMembershipState
     servicemesh: ServiceMeshMembershipState
     state: FeatureState
 
@@ -687,6 +692,117 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PolicyControllerBundleInstallSpec(typing_extensions.TypedDict, total=False):
+    exemptedNamespaces: _list[str]
+
+@typing.type_check_only
+class PolicyControllerHubConfig(typing_extensions.TypedDict, total=False):
+    auditIntervalSeconds: str
+    constraintViolationLimit: str
+    deploymentConfigs: dict[str, typing.Any]
+    exemptableNamespaces: _list[str]
+    installSpec: typing_extensions.Literal[
+        "INSTALL_SPEC_UNSPECIFIED",
+        "INSTALL_SPEC_NOT_INSTALLED",
+        "INSTALL_SPEC_ENABLED",
+        "INSTALL_SPEC_SUSPENDED",
+        "INSTALL_SPEC_DETACHED",
+    ]
+    logDeniesEnabled: bool
+    monitoring: PolicyControllerMonitoringConfig
+    mutationEnabled: bool
+    policyContent: PolicyControllerPolicyContentSpec
+    referentialRulesEnabled: bool
+
+@typing.type_check_only
+class PolicyControllerMembershipSpec(typing_extensions.TypedDict, total=False):
+    policyControllerHubConfig: PolicyControllerHubConfig
+    version: str
+
+@typing.type_check_only
+class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
+    componentStates: dict[str, typing.Any]
+    policyContentState: PolicyControllerPolicyContentState
+    state: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "NOT_INSTALLED",
+        "INSTALLING",
+        "ACTIVE",
+        "UPDATING",
+        "DECOMMISSIONING",
+        "CLUSTER_ERROR",
+        "HUB_ERROR",
+        "SUSPENDED",
+        "DETACHED",
+    ]
+
+@typing.type_check_only
+class PolicyControllerMonitoringConfig(typing_extensions.TypedDict, total=False):
+    backends: _list[str]
+
+@typing.type_check_only
+class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):
+    details: str
+    state: typing_extensions.Literal[
+        "LIFECYCLE_STATE_UNSPECIFIED",
+        "NOT_INSTALLED",
+        "INSTALLING",
+        "ACTIVE",
+        "UPDATING",
+        "DECOMMISSIONING",
+        "CLUSTER_ERROR",
+        "HUB_ERROR",
+        "SUSPENDED",
+        "DETACHED",
+    ]
+
+@typing.type_check_only
+class PolicyControllerPolicyContentSpec(typing_extensions.TypedDict, total=False):
+    bundles: dict[str, typing.Any]
+    templateLibrary: PolicyControllerTemplateLibraryConfig
+
+@typing.type_check_only
+class PolicyControllerPolicyContentState(typing_extensions.TypedDict, total=False):
+    bundleStates: dict[str, typing.Any]
+    referentialSyncConfigState: PolicyControllerOnClusterState
+    templateLibraryState: PolicyControllerOnClusterState
+
+@typing.type_check_only
+class PolicyControllerPolicyControllerDeploymentConfig(
+    typing_extensions.TypedDict, total=False
+):
+    containerResources: PolicyControllerResourceRequirements
+    podAffinity: typing_extensions.Literal[
+        "AFFINITY_UNSPECIFIED", "NO_AFFINITY", "ANTI_AFFINITY"
+    ]
+    podAntiAffinity: bool
+    podTolerations: _list[PolicyControllerToleration]
+    replicaCount: str
+
+@typing.type_check_only
+class PolicyControllerResourceList(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
+class PolicyControllerResourceRequirements(typing_extensions.TypedDict, total=False):
+    limits: PolicyControllerResourceList
+    requests: PolicyControllerResourceList
+
+@typing.type_check_only
+class PolicyControllerTemplateLibraryConfig(typing_extensions.TypedDict, total=False):
+    installation: typing_extensions.Literal[
+        "INSTALLATION_UNSPECIFIED", "NOT_INSTALLED", "ALL"
+    ]
+
+@typing.type_check_only
+class PolicyControllerToleration(typing_extensions.TypedDict, total=False):
+    effect: str
+    key: str
+    operator: str
+    value: str
+
+@typing.type_check_only
 class RBACRoleBinding(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
@@ -724,7 +840,6 @@ class Role(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Scope(typing_extensions.TypedDict, total=False):
-    allMemberships: bool
     createTime: str
     deleteTime: str
     labels: dict[str, typing.Any]

@@ -109,10 +109,10 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_6",
         "MYSQL_5_7",
+        "MYSQL_8_0",
         "POSTGRES_9_6",
         "POSTGRES_11",
         "POSTGRES_10",
-        "MYSQL_8_0",
         "POSTGRES_12",
         "POSTGRES_13",
         "POSTGRES_14",
@@ -728,6 +728,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "SOURCE_SIZE_EXCEEDS_THRESHOLD",
         "EXISTING_CONFLICTING_DATABASES",
         "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
+        "EXISTING_DATA",
     ]
     errorDetailMessage: str
     errorMessage: str
@@ -814,6 +815,7 @@ class Position(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
+    alloydbClusterId: str
     cloudSqlId: str
     host: str
     networkArchitecture: typing_extensions.Literal[

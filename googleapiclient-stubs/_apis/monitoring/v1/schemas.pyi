@@ -158,6 +158,12 @@ class DroppedLabels(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ErrorReportingPanel(typing_extensions.TypedDict, total=False):
+    projectNames: _list[str]
+    services: _list[str]
+    versions: _list[str]
+
+@typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
     cardinality: typing_extensions.Literal[
         "CARDINALITY_UNKNOWN",
@@ -307,8 +313,6 @@ class PieChart(typing_extensions.TypedDict, total=False):
     chartType: typing_extensions.Literal["PIE_CHART_TYPE_UNSPECIFIED", "PIE", "DONUT"]
     dataSets: _list[PieChartDataSet]
     showLabels: bool
-    showTotal: bool
-    sliceAggregatedThreshold: float
 
 @typing.type_check_only
 class PieChartDataSet(typing_extensions.TypedDict, total=False):
@@ -523,6 +527,8 @@ class Widget(typing_extensions.TypedDict, total=False):
     alertChart: AlertChart
     blank: Empty
     collapsibleGroup: CollapsibleGroup
+    errorReportingPanel: ErrorReportingPanel
+    id: str
     incidentList: IncidentList
     logsPanel: LogsPanel
     pieChart: PieChart
