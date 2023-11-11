@@ -43,7 +43,7 @@ This ensures that Python doesn't attempt to evaluate the types at runtime.
 Note that the import is only supported in Python 3.7 and above.
 2. Only import the types inside an `if typing.TYPE_CHECKING` block. This ensures that the imports are only evaluated during
 type checking. Note that any type not available at runtime is located under the `googleapiclient._apis` package. 
-For example, `SheetsResource` should be imported from `googleapiclient._apis.sheets.v4.resources`.
+For example, `SheetsResource` should be imported from `googleapiclient._apis.sheets.v4`. Note that nested resources have a nested class structure, e.g. the return type of `sheets_service.spreadsheets().values()` is `SheetsResource.SpreadsheetsResource.ValuesResource`.
 If autocompleting import paths doesn't work you can find the correct path by using Mypy's [reveal_type](https://mypy.readthedocs.io/en/stable/common_issues.html#reveal-type)
 on the thing you want to explicitly annotate. For `TypedDict`s this will also give you useful info about the structure of the dictionary.
 
