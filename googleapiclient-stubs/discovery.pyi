@@ -1,5 +1,5 @@
 from email.generator import BytesGenerator
-from typing import Any, TypeVar, overload
+from typing import Any, Protocol, TypeVar, overload
 
 import google.auth.credentials  # type: ignore
 import httplib2  # type: ignore
@@ -523,6 +523,19 @@ class Resource:
     def __exit__(self, exc_type, exc, exc_tb) -> None: ...
     def close(self) -> None: ...
 
+class _RequestBuilder(Protocol):
+    def __call__(
+        self,
+        http,
+        postproc,
+        uri,
+        method: str = ...,
+        body: Incomplete | None = ...,
+        headers: Incomplete | None = ...,
+        methodId: Incomplete | None = ...,
+        resumable: Incomplete | None = ...,
+    ) -> HttpRequest: ...
+
 @overload
 def build(
     serviceName: Literal["abusiveexperiencereport"],
@@ -531,7 +544,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -553,7 +566,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -575,7 +588,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -595,7 +608,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -615,7 +628,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -635,7 +648,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -655,7 +668,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -675,7 +688,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -695,7 +708,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -715,7 +728,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -735,7 +748,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -755,7 +768,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -775,7 +788,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -795,7 +808,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -815,7 +828,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -835,7 +848,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -855,7 +868,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -875,7 +888,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -895,7 +908,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -915,7 +928,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -935,7 +948,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -955,7 +968,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -975,7 +988,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -995,7 +1008,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1015,7 +1028,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1035,7 +1048,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1055,7 +1068,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1075,7 +1088,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1095,7 +1108,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1115,7 +1128,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1135,7 +1148,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1155,7 +1168,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1175,7 +1188,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1195,7 +1208,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1217,7 +1230,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1237,7 +1250,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1257,7 +1270,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1277,7 +1290,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1297,7 +1310,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1317,7 +1330,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1337,7 +1350,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1357,7 +1370,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1377,7 +1390,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1397,7 +1410,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1417,7 +1430,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1437,7 +1450,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1457,7 +1470,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1477,7 +1490,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1497,7 +1510,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1517,7 +1530,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1537,7 +1550,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1557,7 +1570,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1577,7 +1590,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1597,7 +1610,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1619,7 +1632,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1639,7 +1652,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1659,7 +1672,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1679,7 +1692,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1699,7 +1712,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1719,7 +1732,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1739,7 +1752,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1759,7 +1772,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1779,7 +1792,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1799,7 +1812,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1821,7 +1834,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1841,7 +1854,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1861,7 +1874,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1881,7 +1894,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1901,7 +1914,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1921,7 +1934,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1941,7 +1954,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1961,7 +1974,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -1981,7 +1994,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2001,7 +2014,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2021,7 +2034,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2041,7 +2054,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2061,7 +2074,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2081,7 +2094,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2101,7 +2114,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2123,7 +2136,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2143,7 +2156,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2163,7 +2176,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2183,7 +2196,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2203,7 +2216,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2223,7 +2236,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2243,7 +2256,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2263,7 +2276,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2283,7 +2296,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2303,7 +2316,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2323,7 +2336,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2343,7 +2356,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2363,7 +2376,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2383,7 +2396,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2403,7 +2416,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2423,7 +2436,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2443,7 +2456,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2463,7 +2476,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2483,7 +2496,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2503,7 +2516,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2523,7 +2536,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2543,7 +2556,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2563,7 +2576,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2583,7 +2596,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2605,7 +2618,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2625,7 +2638,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2645,7 +2658,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2665,7 +2678,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2685,7 +2698,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2705,7 +2718,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2725,7 +2738,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2745,7 +2758,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2765,7 +2778,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2785,7 +2798,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2805,7 +2818,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2825,7 +2838,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2845,7 +2858,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2865,7 +2878,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2887,7 +2900,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2907,7 +2920,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2929,7 +2942,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2949,7 +2962,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2969,7 +2982,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -2989,7 +3002,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3009,7 +3022,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3029,7 +3042,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3049,7 +3062,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3069,7 +3082,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3089,7 +3102,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3109,7 +3122,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3129,7 +3142,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3149,7 +3162,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3169,7 +3182,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3189,7 +3202,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3209,7 +3222,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3229,7 +3242,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3249,7 +3262,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3269,7 +3282,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3289,7 +3302,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3309,7 +3322,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3329,7 +3342,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3349,7 +3362,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3369,7 +3382,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3389,7 +3402,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3409,7 +3422,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3429,7 +3442,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3449,7 +3462,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3469,7 +3482,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3489,7 +3502,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3509,7 +3522,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3529,7 +3542,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3549,7 +3562,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3569,7 +3582,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3589,7 +3602,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3609,7 +3622,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3629,7 +3642,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3649,7 +3662,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3669,7 +3682,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3689,7 +3702,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3709,7 +3722,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3729,7 +3742,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3749,7 +3762,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3769,7 +3782,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3789,7 +3802,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3809,7 +3822,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3829,7 +3842,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3849,7 +3862,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3869,7 +3882,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3889,7 +3902,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3909,7 +3922,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3929,7 +3942,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3949,7 +3962,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3969,7 +3982,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -3989,7 +4002,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4009,7 +4022,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4029,7 +4042,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4049,7 +4062,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4069,7 +4082,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4089,7 +4102,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4109,7 +4122,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4129,7 +4142,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4149,7 +4162,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4169,7 +4182,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4189,7 +4202,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4209,7 +4222,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4229,7 +4242,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4249,7 +4262,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4269,7 +4282,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4289,7 +4302,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4309,7 +4322,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4329,7 +4342,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4349,7 +4362,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4369,7 +4382,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4389,7 +4402,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4409,7 +4422,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4429,7 +4442,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4449,7 +4462,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4469,7 +4482,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4489,7 +4502,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4509,7 +4522,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4529,7 +4542,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4549,7 +4562,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4569,7 +4582,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4589,7 +4602,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4609,7 +4622,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4629,7 +4642,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4649,7 +4662,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4669,7 +4682,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4689,7 +4702,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4709,7 +4722,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4729,7 +4742,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4749,7 +4762,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4769,7 +4782,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4789,7 +4802,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4809,7 +4822,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4829,7 +4842,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4849,7 +4862,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4869,7 +4882,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4889,7 +4902,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4909,7 +4922,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4929,7 +4942,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4949,7 +4962,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4971,7 +4984,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -4991,7 +5004,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5011,7 +5024,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5031,7 +5044,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5051,7 +5064,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5071,7 +5084,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5091,7 +5104,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5111,7 +5124,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5131,7 +5144,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5151,7 +5164,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5171,7 +5184,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5191,7 +5204,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5211,7 +5224,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5231,7 +5244,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5251,7 +5264,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5273,7 +5286,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5293,7 +5306,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5313,7 +5326,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5333,7 +5346,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5353,7 +5366,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5373,7 +5386,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5393,7 +5406,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5413,7 +5426,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5433,7 +5446,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5453,7 +5466,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5473,7 +5486,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5493,7 +5506,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5513,7 +5526,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5533,7 +5546,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5553,7 +5566,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5573,7 +5586,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5593,7 +5606,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5613,7 +5626,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5633,7 +5646,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5653,7 +5666,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5673,7 +5686,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5693,7 +5706,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5713,7 +5726,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5733,7 +5746,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5753,7 +5766,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5773,7 +5786,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5793,7 +5806,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5813,7 +5826,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5833,7 +5846,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5853,7 +5866,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5873,7 +5886,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5893,7 +5906,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5913,7 +5926,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5933,7 +5946,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5953,7 +5966,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5973,7 +5986,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -5993,7 +6006,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6013,7 +6026,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6033,7 +6046,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6053,7 +6066,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6073,7 +6086,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6093,7 +6106,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6113,7 +6126,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6133,7 +6146,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6153,7 +6166,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6173,7 +6186,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6193,7 +6206,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6213,7 +6226,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6233,7 +6246,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6253,7 +6266,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6273,7 +6286,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6293,7 +6306,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6313,7 +6326,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6333,7 +6346,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6355,7 +6368,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6377,7 +6390,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6399,7 +6412,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6419,7 +6432,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6439,7 +6452,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6459,7 +6472,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6479,7 +6492,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6499,7 +6512,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6519,7 +6532,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6539,7 +6552,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6559,7 +6572,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6579,7 +6592,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6599,7 +6612,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6619,7 +6632,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6641,7 +6654,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6663,7 +6676,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6685,7 +6698,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6705,7 +6718,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6727,7 +6740,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6747,7 +6760,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6767,7 +6780,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6789,7 +6802,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6809,7 +6822,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6829,7 +6842,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6849,7 +6862,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6869,7 +6882,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6889,7 +6902,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6909,7 +6922,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6929,7 +6942,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6949,7 +6962,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6969,7 +6982,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -6989,7 +7002,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7009,7 +7022,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7029,7 +7042,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7049,7 +7062,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7069,7 +7082,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7089,7 +7102,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7109,7 +7122,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7129,7 +7142,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7149,7 +7162,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7169,7 +7182,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7189,7 +7202,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7209,7 +7222,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7231,7 +7244,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7251,7 +7264,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7271,7 +7284,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7291,7 +7304,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7311,7 +7324,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7333,7 +7346,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7355,7 +7368,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7375,7 +7388,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7395,7 +7408,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7415,7 +7428,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7435,7 +7448,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7455,7 +7468,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7475,7 +7488,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7495,7 +7508,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7515,7 +7528,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7535,7 +7548,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7555,7 +7568,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7575,7 +7588,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7595,7 +7608,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7615,7 +7628,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7635,7 +7648,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7655,7 +7668,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7675,7 +7688,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7695,7 +7708,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7715,7 +7728,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7735,7 +7748,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7755,7 +7768,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7775,7 +7788,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7797,7 +7810,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7819,7 +7832,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7839,7 +7852,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7859,7 +7872,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7879,7 +7892,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7899,7 +7912,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7919,7 +7932,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7939,7 +7952,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7959,7 +7972,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7979,7 +7992,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -7999,7 +8012,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8021,7 +8034,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8041,7 +8054,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8061,7 +8074,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8081,7 +8094,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8101,7 +8114,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8121,7 +8134,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8141,7 +8154,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8161,7 +8174,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8181,7 +8194,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8201,7 +8214,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8221,7 +8234,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8241,7 +8254,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8261,7 +8274,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8281,7 +8294,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8301,7 +8314,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8321,7 +8334,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8341,7 +8354,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8361,7 +8374,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8381,7 +8394,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8401,7 +8414,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8421,7 +8434,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8441,7 +8454,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8461,7 +8474,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8481,7 +8494,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8503,7 +8516,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8525,7 +8538,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8545,7 +8558,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8565,7 +8578,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8585,7 +8598,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8605,7 +8618,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8625,7 +8638,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8645,7 +8658,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8665,7 +8678,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8685,7 +8698,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8705,7 +8718,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8725,7 +8738,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8745,7 +8758,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8765,7 +8778,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8785,7 +8798,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8805,7 +8818,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8825,7 +8838,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8845,7 +8858,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8865,7 +8878,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8885,7 +8898,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8905,7 +8918,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8925,7 +8938,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8945,7 +8958,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8965,7 +8978,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -8985,7 +8998,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9005,7 +9018,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9025,7 +9038,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9045,7 +9058,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9065,7 +9078,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9085,7 +9098,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9105,7 +9118,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9125,7 +9138,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9145,7 +9158,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9165,7 +9178,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9185,7 +9198,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9205,7 +9218,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9225,7 +9238,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9245,7 +9258,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9265,7 +9278,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9285,7 +9298,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9305,7 +9318,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9325,7 +9338,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9345,7 +9358,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9365,7 +9378,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9385,7 +9398,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9405,7 +9418,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9425,7 +9438,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9445,7 +9458,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9465,7 +9478,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9485,7 +9498,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9505,7 +9518,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9525,7 +9538,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9545,7 +9558,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9567,7 +9580,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9589,7 +9602,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9611,7 +9624,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9631,7 +9644,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9651,7 +9664,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9671,7 +9684,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9691,7 +9704,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9711,7 +9724,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9731,7 +9744,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9751,7 +9764,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9771,7 +9784,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9791,7 +9804,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9811,7 +9824,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9831,7 +9844,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9851,7 +9864,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9871,7 +9884,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9891,7 +9904,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9911,7 +9924,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9931,7 +9944,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9951,7 +9964,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9971,7 +9984,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -9991,7 +10004,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10011,7 +10024,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10031,7 +10044,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10051,7 +10064,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10071,7 +10084,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10091,7 +10104,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
@@ -10111,7 +10124,7 @@ def build(
     discoveryServiceUrl: str | None = ...,
     developerKey: str | None = ...,
     model: Model | None = ...,
-    requestBuilder: HttpRequest = ...,
+    requestBuilder: _RequestBuilder = ...,
     credentials: oauth2client.Credentials
     | google.auth.credentials.Credentials
     | None = ...,
