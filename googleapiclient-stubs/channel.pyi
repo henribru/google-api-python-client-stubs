@@ -32,10 +32,10 @@ class Channel:
         id,
         token,
         address,
-        expiration: Incomplete | None = ...,
-        params: Incomplete | None = ...,
-        resource_id: str = ...,
-        resource_uri: str = ...,
+        expiration: Incomplete | None = None,
+        params: Incomplete | None = None,
+        resource_id: str = "",
+        resource_uri: str = "",
     ) -> None: ...
     def body(self): ...
     def update(self, resp) -> None: ...
@@ -43,7 +43,7 @@ class Channel:
 def notification_from_headers(channel, headers): ...
 def new_webhook_channel(
     url,
-    token: Incomplete | None = ...,
-    expiration: Incomplete | None = ...,
-    params: Incomplete | None = ...,
+    token: Incomplete | None = None,
+    expiration: Incomplete | None = None,
+    params: Incomplete | None = None,
 ): ...
