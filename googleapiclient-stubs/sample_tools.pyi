@@ -6,7 +6,7 @@ def init(
     version,
     doc,
     filename,
-    scope: Incomplete | None = ...,
-    parents=...,
-    discovery_filename: Incomplete | None = ...,
+    scope: Incomplete | None = None,
+    parents=[],
+    discovery_filename: Incomplete | None = None,
 ): ...

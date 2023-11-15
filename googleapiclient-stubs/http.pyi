@@ -41,7 +41,9 @@ class MediaUpload:
     def new_from_json(cls, s): ...
 
 class MediaIoBaseUpload(MediaUpload):
-    def __init__(self, fd, mimetype, chunksize=..., resumable: bool = ...) -> None: ...
+    def __init__(
+        self, fd, mimetype, chunksize=104857600, resumable: bool = False
+    ) -> None: ...
     def chunksize(self): ...
     def mimetype(self): ...
     def size(self): ...
@@ -55,9 +57,9 @@ class MediaFileUpload(MediaIoBaseUpload):
     def __init__(
         self,
         filename,
-        mimetype: Incomplete | None = ...,
-        chunksize=...,
-        resumable: bool = ...,
+        mimetype: Incomplete | None = None,
+        chunksize=104857600,
+        resumable: bool = False,
     ) -> None: ...
     def __del__(self) -> None: ...
     def to_json(self): ...
@@ -66,16 +68,20 @@ class MediaFileUpload(MediaIoBaseUpload):
 
 class MediaInMemoryUpload(MediaIoBaseUpload):
     def __init__(
-        self, body, mimetype: str = ..., chunksize=..., resumable: bool = ...
+        self,
+        body,
+        mimetype: str = "application/octet-stream",
+        chunksize=104857600,
+        resumable: bool = False,
     ) -> None: ...
 
 class MediaIoBaseDownload:
-    def __init__(self, fd, request, chunksize=...) -> None: ...
-    def next_chunk(self, num_retries: int = ...): ...
+    def __init__(self, fd, request, chunksize=104857600) -> None: ...
+    def next_chunk(self, num_retries: int = 0): ...
 
 class _StreamSlice:
     def __init__(self, stream, begin, chunksize) -> None: ...
-    def read(self, n: int = ...): ...
+    def read(self, n: int = -1): ...
 
 class HttpRequest:
     uri: Incomplete
@@ -95,15 +101,15 @@ class HttpRequest:
         http,
         postproc,
         uri,
-        method: str = ...,
-        body: Incomplete | None = ...,
-        headers: Incomplete | None = ...,
-        methodId: Incomplete | None = ...,
-        resumable: Incomplete | None = ...,
+        method: str = "GET",
+        body: Incomplete | None = None,
+        headers: Incomplete | None = None,
+        methodId: Incomplete | None = None,
+        resumable: Incomplete | None = None,
     ) -> None: ...
-    def execute(self, http: Incomplete | None = ..., num_retries: int = ...): ...
+    def execute(self, http: Incomplete | None = None, num_retries: int = 0): ...
     def add_response_callback(self, cb) -> None: ...
-    def next_chunk(self, http: Incomplete | None = ..., num_retries: int = ...): ...
+    def next_chunk(self, http: Incomplete | None = None, num_retries: int = 0): ...
     def to_json(self): ...
     @staticmethod
     def from_json(s, http, postproc): ...
@@ -112,37 +118,37 @@ class HttpRequest:
 
 class BatchHttpRequest:
     def __init__(
-        self, callback: Incomplete | None = ..., batch_uri: Incomplete | None = ...
+        self, callback: Incomplete | None = None, batch_uri: Incomplete | None = None
     ) -> None: ...
     def add(
         self,
         request,
-        callback: Incomplete | None = ...,
-        request_id: Incomplete | None = ...,
+        callback: Incomplete | None = None,
+        request_id: Incomplete | None = None,
     ) -> None: ...
-    def execute(self, http: Incomplete | None = ...) -> None: ...
+    def execute(self, http: Incomplete | None = None) -> None: ...
 
 class HttpRequestMock:
     resp: Incomplete
     content: Incomplete
     postproc: Incomplete
     def __init__(self, resp, content, postproc) -> None: ...
-    def execute(self, http: Incomplete | None = ...): ...
+    def execute(self, http: Incomplete | None = None): ...
 
 class RequestMockBuilder:
     responses: Incomplete
     check_unexpected: Incomplete
-    def __init__(self, responses, check_unexpected: bool = ...) -> None: ...
+    def __init__(self, responses, check_unexpected: bool = False) -> None: ...
     def __call__(
         self,
         http,
         postproc,
         uri,
-        method: str = ...,
-        body: Incomplete | None = ...,
-        headers: Incomplete | None = ...,
-        methodId: Incomplete | None = ...,
-        resumable: Incomplete | None = ...,
+        method: str = "GET",
+        body: Incomplete | None = None,
+        headers: Incomplete | None = None,
+        methodId: Incomplete | None = None,
+        resumable: Incomplete | None = None,
     ): ...
 
 class HttpMock:
@@ -153,16 +159,16 @@ class HttpMock:
     method: Incomplete
     body: Incomplete
     def __init__(
-        self, filename: Incomplete | None = ..., headers: Incomplete | None = ...
+        self, filename: Incomplete | None = None, headers: Incomplete | None = None
     ) -> None: ...
     def request(
         self,
         uri,
-        method: str = ...,
-        body: Incomplete | None = ...,
-        headers: Incomplete | None = ...,
-        redirections: int = ...,
-        connection_type: Incomplete | None = ...,
+        method: str = "GET",
+        body: Incomplete | None = None,
+        headers: Incomplete | None = None,
+        redirections: int = 1,
+        connection_type: Incomplete | None = None,
     ): ...
     def close(self) -> None: ...
 
@@ -173,11 +179,11 @@ class HttpMockSequence:
     def request(
         self,
         uri,
-        method: str = ...,
-        body: Incomplete | None = ...,
-        headers: Incomplete | None = ...,
-        redirections: int = ...,
-        connection_type: Incomplete | None = ...,
+        method: str = "GET",
+        body: Incomplete | None = None,
+        headers: Incomplete | None = None,
+        redirections: int = 1,
+        connection_type: Incomplete | None = None,
     ): ...
 
 def set_user_agent(http, user_agent): ...
