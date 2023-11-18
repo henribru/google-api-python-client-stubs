@@ -1,3 +1,4 @@
+import types
 from email.generator import BytesGenerator
 from typing import Any, Protocol, TypeVar, overload
 
@@ -520,7 +521,12 @@ class Resource:
         schema,
     ) -> None: ...
     def __enter__(self: T) -> T: ...
-    def __exit__(self, exc_type, exc, exc_tb) -> None: ...
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        exc_tb: types.TracebackType | None,
+    ) -> None: ...
     def close(self) -> None: ...
 
 class _RequestBuilder(Protocol):

@@ -1,3 +1,4 @@
+__version__: str
 __credits__: str
 
 def parse_mime_type(mime_type): ...
