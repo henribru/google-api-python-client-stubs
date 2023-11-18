@@ -1,9 +1,7 @@
 import abc
 
-from _typeshed import Incomplete
-
 class Cache(metaclass=abc.ABCMeta):
-    __metaclass__: Incomplete
+    __metaclass__ = abc.ABCMeta
     @abc.abstractmethod
     def get(self, url): ...
     @abc.abstractmethod
