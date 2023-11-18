@@ -1,16 +1,19 @@
+import httplib2  # type: ignore[import-untyped]
 from _typeshed import Incomplete
 
 class Error(Exception): ...
 
 class HttpError(Error):
-    resp: Incomplete
-    content: Incomplete
-    uri: Incomplete
+    resp: httplib2.Response
+    content: bytes
+    uri: str | None
     error_details: str
-    reason: Incomplete
-    def __init__(self, resp, content, uri: Incomplete | None = None) -> None: ...
+    reason: str
+    def __init__(
+        self, resp: httplib2.Response, content: bytes, uri: str | None = None
+    ) -> None: ...
     @property
-    def status_code(self): ...
+    def status_code(self) -> int: ...
 
 class InvalidJsonError(Error): ...
 class UnknownFileType(Error): ...
@@ -23,11 +26,14 @@ class InvalidChunkSizeError(Error): ...
 class InvalidNotificationError(Error): ...
 
 class BatchError(HttpError):
-    resp: Incomplete
-    content: Incomplete
-    reason: Incomplete
+    resp: httplib2.Response | None
+    content: str | None  # type: ignore[assignment]
+    reason: str
     def __init__(
-        self, reason, resp: Incomplete | None = None, content: Incomplete | None = None
+        self,
+        reason: str,
+        resp: httplib2.Response | None = None,
+        content: str | None = None,
     ) -> None: ...
 
 class UnexpectedMethodError(Error):
