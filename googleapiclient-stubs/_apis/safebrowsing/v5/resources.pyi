@@ -18,7 +18,6 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
         def search(
             self, *, hashPrefixes: str | _list[str] = ..., **kwargs: typing.Any
         ) -> GoogleSecuritySafebrowsingV5SearchHashesResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

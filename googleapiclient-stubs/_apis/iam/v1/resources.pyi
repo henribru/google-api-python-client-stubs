@@ -21,7 +21,6 @@ class IamResource(googleapiclient.discovery.Resource):
         def queryAuditableServices(
             self, *, body: QueryAuditableServicesRequest = ..., **kwargs: typing.Any
         ) -> QueryAuditableServicesResponseHttpRequest: ...
-
     @typing.type_check_only
     class LocationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -31,7 +30,6 @@ class IamResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class ProvidersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -41,14 +39,13 @@ class IamResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
-
                     def create(
                         self,
                         *,
                         parent: str,
                         body: WorkforcePoolProviderKey = ...,
                         workforcePoolProviderKeyId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -63,7 +60,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         showDeleted: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListWorkforcePoolProviderKeysResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -75,23 +72,21 @@ class IamResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: UndeleteWorkforcePoolProviderKeyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
-
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: WorkforcePoolProvider = ...,
                     workforcePoolProviderId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -106,7 +101,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     showDeleted: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWorkforcePoolProvidersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -119,18 +114,17 @@ class IamResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: WorkforcePoolProvider = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
                     body: UndeleteWorkforcePoolProviderRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def keys(self) -> KeysResource: ...
                 def operations(self) -> OperationsResource: ...
-
             @typing.type_check_only
             class SubjectsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -138,7 +132,6 @@ class IamResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -147,17 +140,16 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: UndeleteWorkforcePoolSubjectRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
-
             def create(
                 self,
                 *,
                 location: str,
                 body: WorkforcePool = ...,
                 workforcePoolId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -170,7 +162,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -180,7 +172,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 parent: str = ...,
                 showDeleted: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListWorkforcePoolsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -193,35 +185,33 @@ class IamResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: WorkforcePool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
                 body: UndeleteWorkforcePoolRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def providers(self) -> ProvidersResource: ...
             def subjects(self) -> SubjectsResource: ...
-
         def workforcePools(self) -> WorkforcePoolsResource: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -231,7 +221,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateRoleRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def delete(
                 self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -245,7 +235,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 showDeleted: bool = ...,
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -258,18 +248,16 @@ class IamResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Role = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
                 body: UndeleteRoleRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
-
         def roles(self) -> RolesResource: ...
-
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def queryTestablePermissions(
@@ -280,7 +268,6 @@ class IamResource(googleapiclient.discovery.Resource):
             previous_request: QueryTestablePermissionsResponseHttpRequest,
             previous_response: QueryTestablePermissionsResponse,
         ) -> QueryTestablePermissionsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -296,7 +283,6 @@ class IamResource(googleapiclient.discovery.Resource):
                             def get(
                                 self, *, name: str, **kwargs: typing.Any
                             ) -> OperationHttpRequest: ...
-
                         @typing.type_check_only
                         class WorkloadSourcesResource(
                             googleapiclient.discovery.Resource
@@ -308,27 +294,21 @@ class IamResource(googleapiclient.discovery.Resource):
                                 def get(
                                     self, *, name: str, **kwargs: typing.Any
                                 ) -> OperationHttpRequest: ...
-
                             def operations(self) -> OperationsResource: ...
-
                         def operations(self) -> OperationsResource: ...
                         def workloadSources(self) -> WorkloadSourcesResource: ...
-
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
-
                     def managedIdentities(self) -> ManagedIdentitiesResource: ...
                     def operations(self) -> OperationsResource: ...
-
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
                 @typing.type_check_only
                 class ProvidersResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -338,14 +318,13 @@ class IamResource(googleapiclient.discovery.Resource):
                             def get(
                                 self, *, name: str, **kwargs: typing.Any
                             ) -> OperationHttpRequest: ...
-
                         def create(
                             self,
                             *,
                             parent: str,
                             body: WorkloadIdentityPoolProviderKey = ...,
                             workloadIdentityPoolProviderKeyId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -360,7 +339,7 @@ class IamResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             showDeleted: bool = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             ListWorkloadIdentityPoolProviderKeysResponseHttpRequest
                         ): ...
@@ -377,23 +356,21 @@ class IamResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: UndeleteWorkloadIdentityPoolProviderKeyRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def operations(self) -> OperationsResource: ...
-
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
-
                     def create(
                         self,
                         *,
                         parent: str,
                         body: WorkloadIdentityPoolProvider = ...,
                         workloadIdentityPoolProviderId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -408,7 +385,7 @@ class IamResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         showDeleted: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListWorkloadIdentityPoolProvidersResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -423,25 +400,24 @@ class IamResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: WorkloadIdentityPoolProvider = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def undelete(
                         self,
                         *,
                         name: str,
                         body: UndeleteWorkloadIdentityPoolProviderRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def keys(self) -> KeysResource: ...
                     def operations(self) -> OperationsResource: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: WorkloadIdentityPool = ...,
                     workloadIdentityPoolId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -456,7 +432,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     showDeleted: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWorkloadIdentityPoolsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -469,21 +445,19 @@ class IamResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: WorkloadIdentityPool = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
                     body: UndeleteWorkloadIdentityPoolRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def namespaces(self) -> NamespacesResource: ...
                 def operations(self) -> OperationsResource: ...
                 def providers(self) -> ProvidersResource: ...
-
             def workloadIdentityPools(self) -> WorkloadIdentityPoolsResource: ...
-
         @typing.type_check_only
         class RolesResource(googleapiclient.discovery.Resource):
             def create(
@@ -491,7 +465,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateRoleRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def delete(
                 self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -505,7 +479,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 showDeleted: bool = ...,
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRolesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -518,16 +492,15 @@ class IamResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Role = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
                 body: UndeleteRoleRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RoleHttpRequest: ...
-
         @typing.type_check_only
         class ServiceAccountsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -537,7 +510,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CreateServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ServiceAccountKeyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -547,14 +520,14 @@ class IamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DisableServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
                     body: EnableServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self,
@@ -563,7 +536,7 @@ class IamResource(googleapiclient.discovery.Resource):
                     publicKeyType: typing_extensions.Literal[
                         "TYPE_NONE", "TYPE_X509_PEM_FILE", "TYPE_RAW_PUBLIC_KEY"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ServiceAccountKeyHttpRequest: ...
                 def list(
                     self,
@@ -577,22 +550,21 @@ class IamResource(googleapiclient.discovery.Resource):
                             "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
                         ]
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
                 def upload(
                     self,
                     *,
                     name: str,
                     body: UploadServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ServiceAccountKeyHttpRequest: ...
-
             def create(
                 self,
                 *,
                 name: str,
                 body: CreateServiceAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ServiceAccountHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -602,14 +574,14 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DisableServiceAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def enable(
                 self,
                 *,
                 name: str,
                 body: EnableServiceAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -619,7 +591,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -627,7 +599,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListServiceAccountsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -639,14 +611,14 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: PatchServiceAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ServiceAccountHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def signBlob(
                 self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any
@@ -659,24 +631,22 @@ class IamResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def undelete(
                 self,
                 *,
                 name: str,
                 body: UndeleteServiceAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> UndeleteServiceAccountResponseHttpRequest: ...
             def update(
                 self, *, name: str, body: ServiceAccount = ..., **kwargs: typing.Any
             ) -> ServiceAccountHttpRequest: ...
             def keys(self) -> KeysResource: ...
-
         def locations(self) -> LocationsResource: ...
         def roles(self) -> RolesResource: ...
         def serviceAccounts(self) -> ServiceAccountsResource: ...
-
     @typing.type_check_only
     class RolesResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> RoleHttpRequest: ...
@@ -688,7 +658,7 @@ class IamResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             showDeleted: bool = ...,
             view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListRolesResponseHttpRequest: ...
         def list_next(
             self,
@@ -703,7 +673,6 @@ class IamResource(googleapiclient.discovery.Resource):
             previous_request: QueryGrantableRolesResponseHttpRequest,
             previous_response: QueryGrantableRolesResponse,
         ) -> QueryGrantableRolesResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

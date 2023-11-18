@@ -20,7 +20,6 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
             def getGoogleUpdated(
                 self, *, name: str, readMask: str = ..., **kwargs: typing.Any
             ) -> GetGoogleUpdatedLodgingResponseHttpRequest: ...
-
         def getLodging(
             self, *, name: str, readMask: str = ..., **kwargs: typing.Any
         ) -> LodgingHttpRequest: ...
@@ -30,10 +29,9 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
             name: str,
             body: Lodging = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LodgingHttpRequest: ...
         def lodging(self) -> LodgingResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

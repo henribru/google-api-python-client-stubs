@@ -28,7 +28,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     skipValidation: bool = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -36,7 +36,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -46,7 +46,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -56,7 +56,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConnectionProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -72,23 +72,22 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     skipValidation: bool = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-
             @typing.type_check_only
             class ConversionWorkspacesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -100,7 +99,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: MappingRule = ...,
                         mappingRuleId: str = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> MappingRuleHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -113,7 +112,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ImportMappingRulesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -121,34 +120,33 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListMappingRulesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListMappingRulesResponseHttpRequest,
                         previous_response: ListMappingRulesResponse,
                     ) -> ListMappingRulesResponseHttpRequest | None: ...
-
                 def apply(
                     self,
                     *,
                     name: str,
                     body: ApplyConversionWorkspaceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def commit(
                     self,
                     *,
                     name: str,
                     body: CommitConversionWorkspaceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def convert(
                     self,
                     *,
                     name: str,
                     body: ConvertConversionWorkspaceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
@@ -157,7 +155,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: ConversionWorkspace = ...,
                     conversionWorkspaceId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -165,14 +163,14 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def describeConversionWorkspaceRevisions(
                     self,
                     *,
                     conversionWorkspace: str,
                     commitId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DescribeConversionWorkspaceRevisionsResponseHttpRequest: ...
                 def describeDatabaseEntities(
                     self,
@@ -195,7 +193,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         "DATABASE_ENTITY_VIEW_FULL",
                         "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DescribeDatabaseEntitiesResponseHttpRequest: ...
                 def describeDatabaseEntities_next(
                     self,
@@ -210,7 +208,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -219,7 +217,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConversionWorkspacesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -233,14 +231,14 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: ConversionWorkspace = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rollback(
                     self,
                     *,
                     name: str,
                     body: RollbackConversionWorkspaceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def searchBackgroundJobs(
                     self,
@@ -249,31 +247,30 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     completedUntilTime: str = ...,
                     maxSize: int = ...,
                     returnMostRecentPerJobType: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SearchBackgroundJobsResponseHttpRequest: ...
                 def seed(
                     self,
                     *,
                     name: str,
                     body: SeedConversionWorkspaceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def mappingRules(self) -> MappingRulesResource: ...
-
             @typing.type_check_only
             class MigrationJobsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -283,7 +280,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: MigrationJob = ...,
                     migrationJobId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -291,21 +288,21 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def generateSshScript(
                     self,
                     *,
                     migrationJob: str,
                     body: GenerateSshScriptRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SshScriptHttpRequest: ...
                 def generateTcpProxyScript(
                     self,
                     *,
                     migrationJob: str,
                     body: GenerateTcpProxyScriptRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TcpProxyScriptHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -315,7 +312,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -325,7 +322,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListMigrationJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -339,65 +336,64 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: MigrationJob = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def promote(
                     self,
                     *,
                     name: str,
                     body: PromoteMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restart(
                     self,
                     *,
                     name: str,
                     body: RestartMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def resume(
                     self,
                     *,
                     name: str,
                     body: ResumeMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
                     body: StartMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: StopMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def verify(
                     self,
                     *,
                     name: str,
                     body: VerifyMigrationJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -405,7 +401,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -420,14 +416,13 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class PrivateConnectionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -438,7 +433,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     privateConnectionId: str = ...,
                     requestId: str = ...,
                     skipValidation: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -451,7 +446,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -461,7 +456,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPrivateConnectionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -473,23 +468,22 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-
             def fetchStaticIps(
                 self,
                 *,
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> FetchStaticIpsResponseHttpRequest: ...
             def fetchStaticIps_next(
                 self,
@@ -506,7 +500,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -518,9 +512,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
             def migrationJobs(self) -> MigrationJobsResource: ...
             def operations(self) -> OperationsResource: ...
             def privateConnections(self) -> PrivateConnectionsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

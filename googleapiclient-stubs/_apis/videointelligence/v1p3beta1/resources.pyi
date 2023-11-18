@@ -19,9 +19,8 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleCloudVideointelligenceV1p3beta1_AnnotateVideoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunning_OperationHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

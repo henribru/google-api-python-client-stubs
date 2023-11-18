@@ -24,7 +24,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -36,14 +36,13 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class PipelinesResource(googleapiclient.discovery.Resource):
                 def run(
@@ -51,9 +50,8 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: RunPipelineRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -64,7 +62,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -73,9 +71,7 @@ class CloudLifeSciencesResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def pipelines(self) -> PipelinesResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -32,14 +32,13 @@ class VaultResource(googleapiclient.discovery.Resource):
                 matterId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListExportsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListExportsResponseHttpRequest,
                 previous_response: ListExportsResponse,
             ) -> ListExportsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class HoldsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -50,7 +49,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                     matterId: str,
                     holdId: str,
                     body: HeldAccount = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> HeldAccountHttpRequest: ...
                 def delete(
                     self,
@@ -58,19 +57,18 @@ class VaultResource(googleapiclient.discovery.Resource):
                     matterId: str,
                     holdId: str,
                     accountId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def list(
                     self, *, matterId: str, holdId: str, **kwargs: typing.Any
                 ) -> ListHeldAccountsResponseHttpRequest: ...
-
             def addHeldAccounts(
                 self,
                 *,
                 matterId: str,
                 holdId: str,
                 body: AddHeldAccountsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AddHeldAccountsResponseHttpRequest: ...
             def create(
                 self, *, matterId: str, body: Hold = ..., **kwargs: typing.Any
@@ -86,7 +84,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> HoldHttpRequest: ...
             def list(
                 self,
@@ -97,7 +95,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "HOLD_VIEW_UNSPECIFIED", "BASIC_HOLD", "FULL_HOLD"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListHoldsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -110,7 +108,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 matterId: str,
                 holdId: str,
                 body: RemoveHeldAccountsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RemoveHeldAccountsResponseHttpRequest: ...
             def update(
                 self,
@@ -118,10 +116,9 @@ class VaultResource(googleapiclient.discovery.Resource):
                 matterId: str,
                 holdId: str,
                 body: Hold = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> HoldHttpRequest: ...
             def accounts(self) -> AccountsResource: ...
-
         @typing.type_check_only
         class SavedQueriesResource(googleapiclient.discovery.Resource):
             def create(
@@ -139,28 +136,29 @@ class VaultResource(googleapiclient.discovery.Resource):
                 matterId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSavedQueriesResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListSavedQueriesResponseHttpRequest,
                 previous_response: ListSavedQueriesResponse,
             ) -> ListSavedQueriesResponseHttpRequest | None: ...
-
         def addPermissions(
             self,
             *,
             matterId: str,
             body: AddMatterPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MatterPermissionHttpRequest: ...
-        def close(self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any) -> CloseMatterResponseHttpRequest: ...  # type: ignore
+        def close(
+            self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any
+        ) -> CloseMatterResponseHttpRequest: ...  # type: ignore
         def count(
             self,
             *,
             matterId: str,
             body: CountArtifactsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def create(
             self, *, body: Matter = ..., **kwargs: typing.Any
@@ -173,7 +171,7 @@ class VaultResource(googleapiclient.discovery.Resource):
             *,
             matterId: str,
             view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MatterHttpRequest: ...
         def list(
             self,
@@ -184,7 +182,7 @@ class VaultResource(googleapiclient.discovery.Resource):
                 "STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"
             ] = ...,
             view: typing_extensions.Literal["VIEW_UNSPECIFIED", "BASIC", "FULL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListMattersResponseHttpRequest: ...
         def list_next(
             self,
@@ -196,21 +194,21 @@ class VaultResource(googleapiclient.discovery.Resource):
             *,
             matterId: str,
             body: RemoveMatterPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def reopen(
             self,
             *,
             matterId: str,
             body: ReopenMatterRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReopenMatterResponseHttpRequest: ...
         def undelete(
             self,
             *,
             matterId: str,
             body: UndeleteMatterRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MatterHttpRequest: ...
         def update(
             self, *, matterId: str, body: Matter = ..., **kwargs: typing.Any
@@ -218,7 +216,6 @@ class VaultResource(googleapiclient.discovery.Resource):
         def exports(self) -> ExportsResource: ...
         def holds(self) -> HoldsResource: ...
         def savedQueries(self) -> SavedQueriesResource: ...
-
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
@@ -233,14 +230,13 @@ class VaultResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

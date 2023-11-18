@@ -26,14 +26,13 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -47,18 +46,14 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
-
                 def operations(self) -> OperationsResource: ...
-
             def customDomains(self) -> CustomDomainsResource: ...
-
         def sites(self) -> SitesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

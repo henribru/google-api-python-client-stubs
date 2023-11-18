@@ -38,9 +38,8 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             queryId: str,
             body: RunQueryRequest = ...,
             asynchronous: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
-
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def listreports(
@@ -49,14 +48,13 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             queryId: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListReportsResponseHttpRequest: ...
         def listreports_next(
             self,
             previous_request: ListReportsResponseHttpRequest,
             previous_response: ListReportsResponse,
         ) -> ListReportsResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

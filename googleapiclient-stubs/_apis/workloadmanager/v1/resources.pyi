@@ -30,14 +30,13 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListExecutionResultsResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListExecutionResultsResponseHttpRequest,
                             previous_response: ListExecutionResultsResponse,
                         ) -> ListExecutionResultsResponseHttpRequest | None: ...
-
                     @typing.type_check_only
                     class ScannedResourcesResource(googleapiclient.discovery.Resource):
                         def list(
@@ -49,14 +48,13 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             rule: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListScannedResourcesResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListScannedResourcesResponseHttpRequest,
                             previous_response: ListScannedResourcesResponse,
                         ) -> ListScannedResourcesResponseHttpRequest | None: ...
-
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
@@ -68,7 +66,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListExecutionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -80,11 +78,10 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: RunEvaluationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def results(self) -> ResultsResource: ...
                     def scannedResources(self) -> ScannedResourcesResource: ...
-
                 def create(
                     self,
                     *,
@@ -92,7 +89,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     body: Evaluation = ...,
                     evaluationId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -105,7 +102,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListEvaluationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -113,7 +110,6 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_response: ListEvaluationsResponse,
                 ) -> ListEvaluationsResponseHttpRequest | None: ...
                 def executions(self) -> ExecutionsResource: ...
-
             @typing.type_check_only
             class InsightsResource(googleapiclient.discovery.Resource):
                 def writeInsight(
@@ -121,9 +117,8 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     *,
                     location: str,
                     body: WriteInsightRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WriteInsightResponseHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -131,7 +126,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -146,14 +141,13 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class RulesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -164,14 +158,13 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRulesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListRulesResponseHttpRequest,
                     previous_response: ListRulesResponse,
                 ) -> ListRulesResponseHttpRequest | None: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -182,7 +175,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -193,9 +186,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
             def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
             def rules(self) -> RulesResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

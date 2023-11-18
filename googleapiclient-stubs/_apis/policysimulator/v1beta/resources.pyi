@@ -26,9 +26,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 def operations(self) -> OperationsResource: ...
-
             @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -43,14 +41,13 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                         previous_response: GoogleLongrunningListOperationsResponse,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class ResultsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -59,7 +56,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -69,13 +66,12 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest
                         | None
                     ): ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudPolicysimulatorV1betaReplay = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -86,7 +82,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudPolicysimulatorV1betaListReplaysResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -98,14 +94,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 ): ...
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
-
             def orgPolicyViolationsPreviews(
-                self,
+                self
             ) -> OrgPolicyViolationsPreviewsResource: ...
             def replays(self) -> ReplaysResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -118,14 +111,13 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
             previous_response: GoogleLongrunningListOperationsResponse,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -139,7 +131,6 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 @typing.type_check_only
                 class OrgPolicyViolationsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -148,7 +139,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -158,7 +149,6 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponseHttpRequest
                         | None
                     ): ...
-
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewHttpRequest: ...
@@ -168,7 +158,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -180,7 +170,6 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 ): ...
                 def operations(self) -> OperationsResource: ...
                 def orgPolicyViolations(self) -> OrgPolicyViolationsResource: ...
-
             @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -195,14 +184,13 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                         previous_response: GoogleLongrunningListOperationsResponse,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class ResultsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -211,7 +199,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -221,13 +209,12 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest
                         | None
                     ): ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudPolicysimulatorV1betaReplay = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -238,7 +225,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudPolicysimulatorV1betaListReplaysResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -250,14 +237,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 ): ...
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
-
             def orgPolicyViolationsPreviews(
-                self,
+                self
             ) -> OrgPolicyViolationsPreviewsResource: ...
             def replays(self) -> ReplaysResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -271,9 +255,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 def operations(self) -> OperationsResource: ...
-
             @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -288,14 +270,13 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                         previous_response: GoogleLongrunningListOperationsResponse,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class ResultsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -304,7 +285,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -314,13 +295,12 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest
                         | None
                     ): ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudPolicysimulatorV1betaReplay = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -331,7 +311,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudPolicysimulatorV1betaListReplaysResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -343,14 +323,11 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 ): ...
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
-
             def orgPolicyViolationsPreviews(
-                self,
+                self
             ) -> OrgPolicyViolationsPreviewsResource: ...
             def replays(self) -> ReplaysResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

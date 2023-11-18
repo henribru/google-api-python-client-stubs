@@ -27,14 +27,13 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReportsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListReportsResponseHttpRequest,
                 previous_response: ListReportsResponse,
             ) -> ListReportsResponseHttpRequest | None: ...
-
         def create(
             self, *, body: Query = ..., **kwargs: typing.Any
         ) -> QueryHttpRequest: ...
@@ -48,7 +47,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListQueriesResponseHttpRequest: ...
         def list_next(
             self,
@@ -61,10 +60,9 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             queryId: str,
             body: RunQueryRequest = ...,
             synchronous: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReportHttpRequest: ...
         def reports(self) -> ReportsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

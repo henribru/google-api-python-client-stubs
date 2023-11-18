@@ -28,14 +28,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListExamplesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListExamplesResponseHttpRequest,
                         previous_response: ListExamplesResponse,
                     ) -> ListExamplesResponseHttpRequest | None: ...
-
                 def create(
                     self, *, parent: str, body: Dataset = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -47,7 +46,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     *,
                     dataset: str,
                     body: ExportDataRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -57,7 +56,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     *,
                     dataset: str,
                     body: ImportDataRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -65,7 +64,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDatasetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -73,7 +72,6 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     previous_response: ListDatasetsResponse,
                 ) -> ListDatasetsResponseHttpRequest | None: ...
                 def examples(self) -> ExamplesResource: ...
-
             @typing.type_check_only
             class GlossariesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -83,7 +81,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GlossaryEntry = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GlossaryEntryHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -97,7 +95,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListGlossaryEntriesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -109,9 +107,8 @@ class TranslateResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GlossaryEntry = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GlossaryEntryHttpRequest: ...
-
                 def create(
                     self, *, parent: str, body: Glossary = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -128,7 +125,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListGlossariesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -141,10 +138,9 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Glossary = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def glossaryEntries(self) -> GlossaryEntriesResource: ...
-
             @typing.type_check_only
             class ModelsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -163,14 +159,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListModelsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListModelsResponseHttpRequest,
                     previous_response: ListModelsResponse,
                 ) -> ListModelsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -178,7 +173,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -193,7 +188,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -205,29 +200,28 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WaitOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             def batchTranslateDocument(
                 self,
                 *,
                 parent: str,
                 body: BatchTranslateDocumentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def batchTranslateText(
                 self,
                 *,
                 parent: str,
                 body: BatchTranslateTextRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def detectLanguage(
                 self,
                 *,
                 parent: str,
                 body: DetectLanguageRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DetectLanguageResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -238,7 +232,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 parent: str,
                 displayLanguageCode: str = ...,
                 model: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SupportedLanguagesHttpRequest: ...
             def list(
                 self,
@@ -247,7 +241,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -259,33 +253,32 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: RomanizeTextRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RomanizeTextResponseHttpRequest: ...
             def translateDocument(
                 self,
                 *,
                 parent: str,
                 body: TranslateDocumentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TranslateDocumentResponseHttpRequest: ...
             def translateText(
                 self,
                 *,
                 parent: str,
                 body: TranslateTextRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TranslateTextResponseHttpRequest: ...
             def datasets(self) -> DatasetsResource: ...
             def glossaries(self) -> GlossariesResource: ...
             def models(self) -> ModelsResource: ...
             def operations(self) -> OperationsResource: ...
-
         def detectLanguage(
             self,
             *,
             parent: str,
             body: DetectLanguageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DetectLanguageResponseHttpRequest: ...
         def getSupportedLanguages(
             self,
@@ -293,7 +286,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             parent: str,
             displayLanguageCode: str = ...,
             model: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SupportedLanguagesHttpRequest: ...
         def romanizeText(
             self, *, parent: str, body: RomanizeTextRequest = ..., **kwargs: typing.Any
@@ -302,7 +295,6 @@ class TranslateResource(googleapiclient.discovery.Resource):
             self, *, parent: str, body: TranslateTextRequest = ..., **kwargs: typing.Any
         ) -> TranslateTextResponseHttpRequest: ...
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

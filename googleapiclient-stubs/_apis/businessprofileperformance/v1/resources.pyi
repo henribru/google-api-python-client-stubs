@@ -33,7 +33,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                         monthlyRange_startMonth_year: int = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSearchKeywordImpressionsMonthlyResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -42,11 +42,8 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                     ) -> (
                         ListSearchKeywordImpressionsMonthlyResponseHttpRequest | None
                     ): ...
-
                 def monthly(self) -> MonthlyResource: ...
-
             def impressions(self) -> ImpressionsResource: ...
-
         def fetchMultiDailyMetricsTimeSeries(
             self,
             *,
@@ -87,7 +84,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             dailyRange_startDate_day: int = ...,
             dailyRange_startDate_month: int = ...,
             dailyRange_startDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FetchMultiDailyMetricsTimeSeriesResponseHttpRequest: ...
         def getDailyMetricsTimeSeries(
             self,
@@ -127,10 +124,9 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             dailySubEntityType_timeOfDay_minutes: int = ...,
             dailySubEntityType_timeOfDay_nanos: int = ...,
             dailySubEntityType_timeOfDay_seconds: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetDailyMetricsTimeSeriesResponseHttpRequest: ...
         def searchkeywords(self) -> SearchkeywordsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

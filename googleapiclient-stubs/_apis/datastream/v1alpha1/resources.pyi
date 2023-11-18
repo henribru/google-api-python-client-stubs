@@ -26,7 +26,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     body: ConnectionProfile = ...,
                     connectionProfileId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -36,7 +36,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: DiscoverConnectionProfileRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DiscoverConnectionProfileResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -49,7 +49,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConnectionProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -64,9 +64,8 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -74,7 +73,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -89,14 +88,13 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class PrivateConnectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -108,7 +106,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         body: Route = ...,
                         requestId: str = ...,
                         routeId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -124,14 +122,13 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListRoutesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListRoutesResponseHttpRequest,
                         previous_response: ListRoutesResponse,
                     ) -> ListRoutesResponseHttpRequest | None: ...
-
                 def create(
                     self,
                     *,
@@ -139,7 +136,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     body: PrivateConnection = ...,
                     privateConnectionId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -147,7 +144,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -160,7 +157,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPrivateConnectionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -168,7 +165,6 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     previous_response: ListPrivateConnectionsResponse,
                 ) -> ListPrivateConnectionsResponseHttpRequest | None: ...
                 def routes(self) -> RoutesResource: ...
-
             @typing.type_check_only
             class StreamsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -182,7 +178,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListStreamObjectsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -195,7 +191,6 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     def stopBackfillJob(
                         self, *, object: str, **kwargs: typing.Any
                     ) -> StopBackfillJobResponseHttpRequest: ...
-
                 def create(
                     self,
                     *,
@@ -205,7 +200,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     streamId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -215,7 +210,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     *,
                     stream: str,
                     body: FetchErrorsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -228,7 +223,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListStreamsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -244,17 +239,16 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def objects(self) -> ObjectsResource: ...
-
             def fetchStaticIps(
                 self,
                 *,
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> FetchStaticIpsResponseHttpRequest: ...
             def fetchStaticIps_next(
                 self,
@@ -271,7 +265,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -282,9 +276,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def privateConnections(self) -> PrivateConnectionsResource: ...
             def streams(self) -> StreamsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

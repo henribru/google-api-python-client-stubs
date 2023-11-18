@@ -21,13 +21,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
         def list(
             self, *, q: str | _list[str], **kwargs: typing.Any
         ) -> DetectionsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class LanguagesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, model: str = ..., target: str = ..., **kwargs: typing.Any
         ) -> LanguagesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class TranslationsResource(googleapiclient.discovery.Resource):
         def list(
@@ -39,12 +37,11 @@ class TranslateResource(googleapiclient.discovery.Resource):
             format: typing_extensions.Literal["html", "text"] = ...,
             model: str = ...,
             source: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TranslationsListResponseHttpRequest: ...
         def translate(
             self, *, body: TranslateTextRequest = ..., **kwargs: typing.Any
         ) -> TranslationsListResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

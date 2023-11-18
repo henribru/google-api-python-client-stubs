@@ -25,7 +25,6 @@ class SA360Resource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleAdsSearchads360V0Services__ListCustomColumnsResponseHttpRequest
             ): ...
-
         @typing.type_check_only
         class SearchAds360Resource(googleapiclient.discovery.Resource):
             def search(
@@ -33,7 +32,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 *,
                 customerId: str,
                 body: GoogleAdsSearchads360V0Services__SearchSearchAds360Request = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
             ): ...
@@ -45,7 +44,6 @@ class SA360Resource(googleapiclient.discovery.Resource):
                 GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest
                 | None
             ): ...
-
         def listAccessibleCustomers(
             self, **kwargs: typing.Any
         ) -> (
@@ -53,7 +51,6 @@ class SA360Resource(googleapiclient.discovery.Resource):
         ): ...
         def customColumns(self) -> CustomColumnsResource: ...
         def searchAds360(self) -> SearchAds360Resource: ...
-
     @typing.type_check_only
     class SearchAds360FieldsResource(googleapiclient.discovery.Resource):
         def get(
@@ -63,7 +60,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest
         ): ...
@@ -75,7 +72,6 @@ class SA360Resource(googleapiclient.discovery.Resource):
             GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpRequest
             | None
         ): ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

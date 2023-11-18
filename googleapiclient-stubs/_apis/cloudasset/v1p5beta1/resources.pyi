@@ -30,14 +30,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             readTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListAssetsResponseHttpRequest,
             previous_response: ListAssetsResponse,
         ) -> ListAssetsResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

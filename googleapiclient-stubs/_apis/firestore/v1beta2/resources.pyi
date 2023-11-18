@@ -31,7 +31,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1beta2ListFieldsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -46,9 +46,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleFirestoreAdminV1beta2Field = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 @typing.type_check_only
                 class IndexesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -56,7 +55,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleFirestoreAdminV1beta2Index = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -71,7 +70,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -80,28 +79,24 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleFirestoreAdminV1beta2ListIndexesResponseHttpRequest | None
                     ): ...
-
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
-
             def exportDocuments(
                 self,
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1beta2ExportDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def importDocuments(
                 self,
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1beta2ImportDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
-
         def databases(self) -> DatabasesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

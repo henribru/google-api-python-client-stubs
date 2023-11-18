@@ -26,14 +26,13 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     dataSourceId: str,
                     limit: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDataPointChangesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListDataPointChangesResponseHttpRequest,
                     previous_response: ListDataPointChangesResponse,
                 ) -> ListDataPointChangesResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -42,7 +41,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> googleapiclient.http.HttpRequest: ...
                 def get(
                     self,
@@ -52,7 +51,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     datasetId: str,
                     limit: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def get_next(
                     self,
@@ -66,14 +65,13 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     dataSourceId: str,
                     datasetId: str,
                     body: Dataset = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def patch_next(
                     self,
                     previous_request: DatasetHttpRequest,
                     previous_response: Dataset,
                 ) -> DatasetHttpRequest | None: ...
-
             def create(
                 self, *, userId: str, body: DataSource = ..., **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
@@ -88,7 +86,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 dataTypeName: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def update(
                 self,
@@ -96,17 +94,15 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 userId: str,
                 dataSourceId: str,
                 body: DataSource = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def dataPointChanges(self) -> DataPointChangesResource: ...
             def datasets(self) -> DatasetsResource: ...
-
         @typing.type_check_only
         class DatasetResource(googleapiclient.discovery.Resource):
             def aggregate(
                 self, *, userId: str, body: AggregateRequest = ..., **kwargs: typing.Any
             ) -> AggregateResponseHttpRequest: ...
-
         @typing.type_check_only
         class SessionsResource(googleapiclient.discovery.Resource):
             def delete(
@@ -121,7 +117,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 includeDeleted: bool = ...,
                 pageToken: str = ...,
                 startTime: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSessionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -134,13 +130,11 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 userId: str,
                 sessionId: str,
                 body: Session = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SessionHttpRequest: ...
-
         def dataSources(self) -> DataSourcesResource: ...
         def dataset(self) -> DatasetResource: ...
         def sessions(self) -> SessionsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

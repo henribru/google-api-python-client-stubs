@@ -25,7 +25,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         ) -> (
             GoogleAnalyticsAdminV1betaListAccountSummariesResponseHttpRequest | None
         ): ...
-
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -43,7 +42,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             showDeleted: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaListAccountsResponseHttpRequest: ...
         def list_next(
             self,
@@ -56,27 +55,27 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             name: str,
             body: GoogleAnalyticsAdminV1betaAccount = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaAccountHttpRequest: ...
         def provisionAccountTicket(
             self,
             *,
             body: GoogleAnalyticsAdminV1betaProvisionAccountTicketRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaProvisionAccountTicketResponseHttpRequest: ...
         def runAccessReport(
             self,
             *,
             entity: str,
             body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def searchChangeHistoryEvents(
             self,
             *,
             account: str,
             body: GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest: ...
         def searchChangeHistoryEvents_next(
             self,
@@ -86,7 +85,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponseHttpRequest
             | None
         ): ...
-
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -96,7 +94,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaConversionEvent = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaConversionEventHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -110,7 +108,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListConversionEventsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -125,9 +123,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleAnalyticsAdminV1betaConversionEvent = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaConversionEventHttpRequest: ...
-
         @typing.type_check_only
         class CustomDimensionsResource(googleapiclient.discovery.Resource):
             def archive(
@@ -135,14 +132,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1betaArchiveCustomDimensionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaCustomDimension = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomDimensionHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -153,7 +150,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListCustomDimensionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -168,9 +165,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleAnalyticsAdminV1betaCustomDimension = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomDimensionHttpRequest: ...
-
         @typing.type_check_only
         class CustomMetricsResource(googleapiclient.discovery.Resource):
             def archive(
@@ -178,14 +174,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleAnalyticsAdminV1betaArchiveCustomMetricRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaCustomMetric = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomMetricHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -196,7 +192,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListCustomMetricsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -211,9 +207,8 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleAnalyticsAdminV1betaCustomMetric = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaCustomMetricHttpRequest: ...
-
         @typing.type_check_only
         class DataStreamsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -225,7 +220,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1betaMeasurementProtocolSecretHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -239,7 +234,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -255,15 +250,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleAnalyticsAdminV1betaMeasurementProtocolSecret = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleAnalyticsAdminV1betaMeasurementProtocolSecretHttpRequest: ...
-
             def create(
                 self,
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaDataStream = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaDataStreamHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -277,7 +271,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListDataStreamsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -292,12 +286,11 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleAnalyticsAdminV1betaDataStream = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaDataStreamHttpRequest: ...
             def measurementProtocolSecrets(
-                self,
+                self
             ) -> MeasurementProtocolSecretsResource: ...
-
         @typing.type_check_only
         class FirebaseLinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -305,7 +298,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaFirebaseLink = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaFirebaseLinkHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -316,7 +309,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListFirebaseLinksResponseHttpRequest: ...
             def list_next(
                 self,
@@ -325,7 +318,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleAnalyticsAdminV1betaListFirebaseLinksResponseHttpRequest | None
             ): ...
-
         @typing.type_check_only
         class GoogleAdsLinksResource(googleapiclient.discovery.Resource):
             def create(
@@ -333,7 +325,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleAnalyticsAdminV1betaGoogleAdsLink = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -344,7 +336,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponseHttpRequest: ...
             def list_next(
                 self,
@@ -359,15 +351,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleAnalyticsAdminV1betaGoogleAdsLink = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest: ...
-
         def acknowledgeUserDataCollection(
             self,
             *,
             property: str,
             body: GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleAnalyticsAdminV1betaAcknowledgeUserDataCollectionResponseHttpRequest
         ): ...
@@ -375,7 +366,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleAnalyticsAdminV1betaProperty = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaPropertyHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -393,7 +384,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             showDeleted: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaListPropertiesResponseHttpRequest: ...
         def list_next(
             self,
@@ -406,14 +397,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             name: str,
             body: GoogleAnalyticsAdminV1betaProperty = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaPropertyHttpRequest: ...
         def runAccessReport(
             self,
             *,
             entity: str,
             body: GoogleAnalyticsAdminV1betaRunAccessReportRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaRunAccessReportResponseHttpRequest: ...
         def updateDataRetentionSettings(
             self,
@@ -421,7 +412,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             name: str,
             body: GoogleAnalyticsAdminV1betaDataRetentionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1betaDataRetentionSettingsHttpRequest: ...
         def conversionEvents(self) -> ConversionEventsResource: ...
         def customDimensions(self) -> CustomDimensionsResource: ...
@@ -429,7 +420,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def dataStreams(self) -> DataStreamsResource: ...
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

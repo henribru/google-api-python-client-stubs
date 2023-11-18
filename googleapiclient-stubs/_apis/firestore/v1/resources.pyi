@@ -24,7 +24,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleFirestoreAdminV1BackupSchedule = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -41,9 +41,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleFirestoreAdminV1BackupSchedule = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleFirestoreAdminV1BackupScheduleHttpRequest: ...
-
             @typing.type_check_only
             class CollectionGroupsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -58,7 +57,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1ListFieldsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -71,9 +70,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleFirestoreAdminV1Field = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 @typing.type_check_only
                 class IndexesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -81,7 +79,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleFirestoreAdminV1Index = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -96,7 +94,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirestoreAdminV1ListIndexesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -105,10 +103,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleFirestoreAdminV1ListIndexesResponseHttpRequest | None
                     ): ...
-
                 def fields(self) -> FieldsResource: ...
                 def indexes(self) -> IndexesResource: ...
-
             @typing.type_check_only
             class DocumentsResource(googleapiclient.discovery.Resource):
                 def batchGet(
@@ -116,28 +112,28 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     database: str,
                     body: BatchGetDocumentsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchGetDocumentsResponseHttpRequest: ...
                 def batchWrite(
                     self,
                     *,
                     database: str,
                     body: BatchWriteRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchWriteResponseHttpRequest: ...
                 def beginTransaction(
                     self,
                     *,
                     database: str,
                     body: BeginTransactionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BeginTransactionResponseHttpRequest: ...
                 def commit(
                     self,
                     *,
                     database: str,
                     body: CommitRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CommitResponseHttpRequest: ...
                 def createDocument(
                     self,
@@ -147,7 +143,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     body: Document = ...,
                     documentId: str = ...,
                     mask_fieldPaths: str | _list[str] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def delete(
                     self,
@@ -155,7 +151,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     currentDocument_exists: bool = ...,
                     currentDocument_updateTime: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self,
@@ -164,7 +160,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     mask_fieldPaths: str | _list[str] = ...,
                     readTime: str = ...,
                     transaction: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def list(
                     self,
@@ -178,7 +174,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     readTime: str = ...,
                     showMissing: bool = ...,
                     transaction: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDocumentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -190,7 +186,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ListCollectionIdsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCollectionIdsResponseHttpRequest: ...
                 def listCollectionIds_next(
                     self,
@@ -209,7 +205,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     readTime: str = ...,
                     showMissing: bool = ...,
                     transaction: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDocumentsResponseHttpRequest: ...
                 def listDocuments_next(
                     self,
@@ -221,14 +217,14 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     database: str,
                     body: ListenRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListenResponseHttpRequest: ...
                 def partitionQuery(
                     self,
                     *,
                     parent: str,
                     body: PartitionQueryRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PartitionQueryResponseHttpRequest: ...
                 def partitionQuery_next(
                     self,
@@ -244,37 +240,36 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     currentDocument_updateTime: str = ...,
                     mask_fieldPaths: str | _list[str] = ...,
                     updateMask_fieldPaths: str | _list[str] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DocumentHttpRequest: ...
                 def rollback(
                     self,
                     *,
                     database: str,
                     body: RollbackRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def runAggregationQuery(
                     self,
                     *,
                     parent: str,
                     body: RunAggregationQueryRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RunAggregationQueryResponseHttpRequest: ...
                 def runQuery(
                     self,
                     *,
                     parent: str,
                     body: RunQueryRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RunQueryResponseHttpRequest: ...
                 def write(
                     self,
                     *,
                     database: str,
                     body: WriteRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WriteResponseHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -282,7 +277,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleLongrunningCancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -297,21 +292,20 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
             def create(
                 self,
                 *,
                 parent: str,
                 body: GoogleFirestoreAdminV1Database = ...,
                 databaseId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
                 self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -321,7 +315,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1ExportDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -331,7 +325,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1ImportDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def list(
                 self, *, parent: str, **kwargs: typing.Any
@@ -342,20 +336,19 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleFirestoreAdminV1Database = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def restore(
                 self,
                 *,
                 parent: str,
                 body: GoogleFirestoreAdminV1RestoreDatabaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def backupSchedules(self) -> BackupSchedulesResource: ...
             def collectionGroups(self) -> CollectionGroupsResource: ...
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -369,7 +362,6 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1ListBackupsResponseHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -380,7 +372,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -388,10 +380,8 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def backups(self) -> BackupsResource: ...
-
         def databases(self) -> DatabasesResource: ...
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -36,7 +36,6 @@ class TasksResource(googleapiclient.discovery.Resource):
         def update(
             self, *, tasklist: str, body: TaskList = ..., **kwargs: typing.Any
         ) -> TaskListHttpRequest: ...
-
     @typing.type_check_only
     class TasksResource(googleapiclient.discovery.Resource):
         def clear(
@@ -55,7 +54,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             body: Task = ...,
             parent: str = ...,
             previous: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def list(
             self,
@@ -71,7 +70,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             showDeleted: bool = ...,
             showHidden: bool = ...,
             updatedMin: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TasksHttpRequest: ...
         def list_next(
             self, previous_request: TasksHttpRequest, previous_response: Tasks
@@ -83,7 +82,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             task: str,
             parent: str = ...,
             previous: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def patch(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
@@ -91,7 +90,6 @@ class TasksResource(googleapiclient.discovery.Resource):
         def update(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any
         ) -> TaskHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

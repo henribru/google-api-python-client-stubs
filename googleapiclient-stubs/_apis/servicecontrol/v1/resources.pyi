@@ -20,7 +20,7 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
             *,
             serviceName: str,
             body: AllocateQuotaRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AllocateQuotaResponseHttpRequest: ...
         def check(
             self, *, serviceName: str, body: CheckRequest = ..., **kwargs: typing.Any
@@ -28,7 +28,6 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
         def report(
             self, *, serviceName: str, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

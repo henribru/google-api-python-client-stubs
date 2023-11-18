@@ -29,14 +29,13 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReleasesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListReleasesResponseHttpRequest,
                         previous_response: ListReleasesResponse,
                     ) -> ListReleasesResponseHttpRequest | None: ...
-
                 def list(
                     self,
                     *,
@@ -45,7 +44,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -53,14 +52,13 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                     previous_response: ListVersionsResponse,
                 ) -> ListVersionsResponseHttpRequest | None: ...
                 def releases(self) -> ReleasesResource: ...
-
             def list(
                 self,
                 *,
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListChannelsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -68,14 +66,13 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                 previous_response: ListChannelsResponse,
             ) -> ListChannelsResponseHttpRequest | None: ...
             def versions(self) -> VersionsResource: ...
-
         def list(
             self,
             *,
             parent: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListPlatformsResponseHttpRequest: ...
         def list_next(
             self,
@@ -83,7 +80,6 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
             previous_response: ListPlatformsResponse,
         ) -> ListPlatformsResponseHttpRequest | None: ...
         def channels(self) -> ChannelsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

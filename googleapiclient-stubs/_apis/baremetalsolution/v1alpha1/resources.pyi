@@ -23,9 +23,8 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 project: str,
                 location: str,
                 body: SubmitProvisioningConfigRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ProvisioningConfigHttpRequest: ...
-
         @typing.type_check_only
         class ProvisioningQuotasResource(googleapiclient.discovery.Resource):
             def list(
@@ -34,17 +33,15 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListProvisioningQuotasResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListProvisioningQuotasResponseHttpRequest,
                 previous_response: ListProvisioningQuotasResponse,
             ) -> ListProvisioningQuotasResponseHttpRequest | None: ...
-
         def locations(self) -> LocationsResource: ...
         def provisioningQuotas(self) -> ProvisioningQuotasResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

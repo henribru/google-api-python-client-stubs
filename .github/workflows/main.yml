@@ -32,11 +32,8 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
-      - name: Register problem matcher
-        run: echo "::add-matcher::.github/workflows/matchers/black.json"
-
-      - name: Run Black
-        run: poetry run black --check --diff googleapiclient-stubs apiclient-stubs
+      - name: Run Ruff format
+        run: poetry run ruff format --check --diff --output-format github googleapiclient-stubs apiclient-stubs
 
   isort:
     runs-on: ubuntu-latest

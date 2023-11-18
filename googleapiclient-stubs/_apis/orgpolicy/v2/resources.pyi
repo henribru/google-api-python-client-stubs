@@ -23,14 +23,13 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -38,7 +37,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -55,7 +54,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -68,12 +67,10 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
-
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -84,14 +81,13 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class CustomConstraintsResource(googleapiclient.discovery.Resource):
             def create(
@@ -99,7 +95,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudOrgpolicyV2CustomConstraint = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2CustomConstraintHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -113,7 +109,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListCustomConstraintsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -127,9 +123,8 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudOrgpolicyV2CustomConstraint = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2CustomConstraintHttpRequest: ...
-
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -137,7 +132,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -154,7 +149,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -167,13 +162,11 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
-
         def constraints(self) -> ConstraintsResource: ...
         def customConstraints(self) -> CustomConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -184,14 +177,13 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest,
                 previous_response: GoogleCloudOrgpolicyV2ListConstraintsResponse,
             ) -> GoogleCloudOrgpolicyV2ListConstraintsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -199,7 +191,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -216,7 +208,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2ListPoliciesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -229,12 +221,10 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudOrgpolicyV2Policy = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
-
         def constraints(self) -> ConstraintsResource: ...
         def policies(self) -> PoliciesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

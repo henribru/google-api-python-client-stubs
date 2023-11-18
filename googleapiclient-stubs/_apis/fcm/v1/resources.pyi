@@ -22,11 +22,9 @@ class FirebaseCloudMessagingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SendMessageRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
-
         def messages(self) -> MessagesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

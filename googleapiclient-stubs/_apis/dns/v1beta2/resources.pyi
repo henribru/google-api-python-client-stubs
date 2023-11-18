@@ -22,7 +22,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             body: Change = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChangeHttpRequest: ...
         def get(
             self,
@@ -31,7 +31,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             changeId: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChangeHttpRequest: ...
         def list(
             self,
@@ -42,14 +42,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             sortBy: typing_extensions.Literal["changeSequence"] = ...,
             sortOrder: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChangesListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ChangesListResponseHttpRequest,
             previous_response: ChangesListResponse,
         ) -> ChangesListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class DnsKeysResource(googleapiclient.discovery.Resource):
         def get(
@@ -60,7 +59,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             dnsKeyId: str,
             clientOperationId: str = ...,
             digestType: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DnsKeyHttpRequest: ...
         def list(
             self,
@@ -70,14 +69,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             digestType: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DnsKeysListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: DnsKeysListResponseHttpRequest,
             previous_response: DnsKeysListResponse,
         ) -> DnsKeysListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ManagedZoneOperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -87,7 +85,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             operation: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
@@ -97,14 +95,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             sortBy: typing_extensions.Literal["startTime", "id"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedZoneOperationsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ManagedZoneOperationsListResponseHttpRequest,
             previous_response: ManagedZoneOperationsListResponse,
         ) -> ManagedZoneOperationsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ManagedZonesResource(googleapiclient.discovery.Resource):
         def create(
@@ -113,7 +110,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             body: ManagedZone = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedZoneHttpRequest: ...
         def delete(
             self,
@@ -121,7 +118,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             managedZone: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -129,14 +126,14 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             managedZone: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedZoneHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             resource: str,
             body: GoogleIamV1GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIamV1PolicyHttpRequest: ...
         def list(
             self,
@@ -145,7 +142,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             dnsName: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedZonesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -159,21 +156,21 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             body: ManagedZone = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
             *,
             resource: str,
             body: GoogleIamV1SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIamV1PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: GoogleIamV1TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
         def update(
             self,
@@ -182,9 +179,8 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             body: ManagedZone = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
-
     @typing.type_check_only
     class PoliciesResource(googleapiclient.discovery.Resource):
         def create(
@@ -193,7 +189,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             body: Policy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def delete(
             self,
@@ -201,7 +197,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             policy: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -209,7 +205,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             policy: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -217,7 +213,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PoliciesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -231,7 +227,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             policy: str,
             body: Policy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PoliciesPatchResponseHttpRequest: ...
         def update(
             self,
@@ -240,15 +236,13 @@ class DnsResource(googleapiclient.discovery.Resource):
             policy: str,
             body: Policy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PoliciesUpdateResponseHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, clientOperationId: str = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
-
     @typing.type_check_only
     class ResourceRecordSetsResource(googleapiclient.discovery.Resource):
         def create(
@@ -258,7 +252,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             managedZone: str,
             body: ResourceRecordSet = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResourceRecordSetHttpRequest: ...
         def delete(
             self,
@@ -268,7 +262,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             name: str,
             type: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -278,7 +272,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             name: str,
             type: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResourceRecordSetHttpRequest: ...
         def list(
             self,
@@ -289,7 +283,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             name: str = ...,
             pageToken: str = ...,
             type: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResourceRecordSetsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -305,9 +299,8 @@ class DnsResource(googleapiclient.discovery.Resource):
             type: str,
             body: ResourceRecordSet = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResourceRecordSetHttpRequest: ...
-
     @typing.type_check_only
     class ResponsePoliciesResource(googleapiclient.discovery.Resource):
         def create(
@@ -316,7 +309,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             body: ResponsePolicy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyHttpRequest: ...
         def delete(
             self,
@@ -324,7 +317,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             responsePolicy: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -332,7 +325,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             responsePolicy: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyHttpRequest: ...
         def list(
             self,
@@ -340,7 +333,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             project: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePoliciesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -354,7 +347,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             body: ResponsePolicy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePoliciesPatchResponseHttpRequest: ...
         def update(
             self,
@@ -363,9 +356,8 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             body: ResponsePolicy = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePoliciesUpdateResponseHttpRequest: ...
-
     @typing.type_check_only
     class ResponsePolicyRulesResource(googleapiclient.discovery.Resource):
         def create(
@@ -375,7 +367,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             body: ResponsePolicyRule = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyRuleHttpRequest: ...
         def delete(
             self,
@@ -384,7 +376,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             responsePolicyRule: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -393,7 +385,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             responsePolicyRule: str,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyRuleHttpRequest: ...
         def list(
             self,
@@ -402,7 +394,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicy: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyRulesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -417,7 +409,7 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicyRule: str,
             body: ResponsePolicyRule = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyRulesPatchResponseHttpRequest: ...
         def update(
             self,
@@ -427,9 +419,8 @@ class DnsResource(googleapiclient.discovery.Resource):
             responsePolicyRule: str,
             body: ResponsePolicyRule = ...,
             clientOperationId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResponsePolicyRulesUpdateResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

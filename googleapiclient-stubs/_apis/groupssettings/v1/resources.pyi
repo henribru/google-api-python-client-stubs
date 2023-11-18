@@ -24,7 +24,6 @@ class GroupssettingsResource(googleapiclient.discovery.Resource):
         def update(
             self, *, groupUniqueId: str, body: Groups = ..., **kwargs: typing.Any
         ) -> GroupsHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

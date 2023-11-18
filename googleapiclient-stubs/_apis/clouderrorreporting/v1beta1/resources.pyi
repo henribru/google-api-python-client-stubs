@@ -35,7 +35,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_1_WEEK",
                     "PERIOD_30_DAYS",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListEventsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,9 +47,8 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 *,
                 projectName: str,
                 body: ReportedErrorEvent = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReportErrorEventResponseHttpRequest: ...
-
         @typing.type_check_only
         class GroupStatsResource(googleapiclient.discovery.Resource):
             def list(
@@ -84,14 +83,13 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_30_DAYS",
                 ] = ...,
                 timedCountDuration: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListGroupStatsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListGroupStatsResponseHttpRequest,
                 previous_response: ListGroupStatsResponse,
             ) -> ListGroupStatsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class GroupsResource(googleapiclient.discovery.Resource):
             def get(
@@ -100,14 +98,12 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
             def update(
                 self, *, name: str, body: ErrorGroup = ..., **kwargs: typing.Any
             ) -> ErrorGroupHttpRequest: ...
-
         def deleteEvents(
             self, *, projectName: str, **kwargs: typing.Any
         ) -> DeleteEventsResponseHttpRequest: ...
         def events(self) -> EventsResource: ...
         def groupStats(self) -> GroupStatsResource: ...
         def groups(self) -> GroupsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

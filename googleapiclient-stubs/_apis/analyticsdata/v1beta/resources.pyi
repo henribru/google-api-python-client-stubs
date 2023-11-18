@@ -20,21 +20,21 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             *,
             property: str,
             body: BatchRunPivotReportsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchRunPivotReportsResponseHttpRequest: ...
         def batchRunReports(
             self,
             *,
             property: str,
             body: BatchRunReportsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchRunReportsResponseHttpRequest: ...
         def checkCompatibility(
             self,
             *,
             property: str,
             body: CheckCompatibilityRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CheckCompatibilityResponseHttpRequest: ...
         def getMetadata(
             self, *, name: str, **kwargs: typing.Any
@@ -44,19 +44,18 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             *,
             property: str,
             body: RunPivotReportRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RunPivotReportResponseHttpRequest: ...
         def runRealtimeReport(
             self,
             *,
             property: str,
             body: RunRealtimeReportRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RunRealtimeReportResponseHttpRequest: ...
         def runReport(
             self, *, property: str, body: RunReportRequest = ..., **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

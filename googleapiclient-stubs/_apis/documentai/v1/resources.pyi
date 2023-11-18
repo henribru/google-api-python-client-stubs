@@ -18,7 +18,6 @@ class DocumentResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleProtobufEmptyHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -38,14 +37,13 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class ProcessorTypesResource(googleapiclient.discovery.Resource):
                 def get(
@@ -57,7 +55,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1ListProcessorTypesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -66,7 +64,6 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 ) -> (
                     GoogleCloudDocumentaiV1ListProcessorTypesResponseHttpRequest | None
                 ): ...
-
             @typing.type_check_only
             class ProcessorsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -76,9 +73,8 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         humanReviewConfig: str,
                         body: GoogleCloudDocumentaiV1ReviewDocumentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
-
                 @typing.type_check_only
                 class ProcessorVersionsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -92,7 +88,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDocumentaiV1ListEvaluationsResponseHttpRequest
                         ): ...
@@ -104,13 +100,12 @@ class DocumentResource(googleapiclient.discovery.Resource):
                             GoogleCloudDocumentaiV1ListEvaluationsResponseHttpRequest
                             | None
                         ): ...
-
                     def batchProcess(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1BatchProcessRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -120,14 +115,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1DeployProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def evaluateProcessorVersion(
                         self,
                         *,
                         processorVersion: str,
                         body: GoogleCloudDocumentaiV1EvaluateProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -138,7 +133,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDocumentaiV1ListProcessorVersionsResponseHttpRequest
                     ): ...
@@ -155,37 +150,36 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1ProcessRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1ProcessResponseHttpRequest: ...
                     def train(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDocumentaiV1TrainProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def undeploy(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1UndeployProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def evaluations(self) -> EvaluationsResource: ...
-
                 def batchProcess(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1BatchProcessRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1Processor = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1ProcessorHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -195,14 +189,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1DisableProcessorRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1EnableProcessorRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -213,7 +207,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1ListProcessorsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -227,18 +221,17 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1ProcessRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1ProcessResponseHttpRequest: ...
                 def setDefaultProcessorVersion(
                     self,
                     *,
                     processor: str,
                     body: GoogleCloudDocumentaiV1SetDefaultProcessorVersionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
                 def processorVersions(self) -> ProcessorVersionsResource: ...
-
             def fetchProcessorTypes(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudDocumentaiV1FetchProcessorTypesResponseHttpRequest: ...
@@ -252,7 +245,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -262,16 +255,13 @@ class DocumentResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def processorTypes(self) -> ProcessorTypesResource: ...
             def processors(self) -> ProcessorsResource: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

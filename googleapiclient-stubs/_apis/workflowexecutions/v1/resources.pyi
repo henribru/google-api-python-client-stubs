@@ -29,14 +29,13 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListCallbacksResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListCallbacksResponseHttpRequest,
                             previous_response: ListCallbacksResponse,
                         ) -> ListCallbacksResponseHttpRequest | None: ...
-
                     @typing.type_check_only
                     class StepEntriesResource(googleapiclient.discovery.Resource):
                         def get(
@@ -51,27 +50,26 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             skip: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListStepEntriesResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListStepEntriesResponseHttpRequest,
                             previous_response: ListStepEntriesResponse,
                         ) -> ListStepEntriesResponseHttpRequest | None: ...
-
                     def cancel(
                         self,
                         *,
                         name: str,
                         body: CancelExecutionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
                         body: Execution = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def exportData(
                         self, *, name: str, **kwargs: typing.Any
@@ -83,7 +81,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def list(
                         self,
@@ -96,7 +94,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListExecutionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -105,20 +103,16 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                     ) -> ListExecutionsResponseHttpRequest | None: ...
                     def callbacks(self) -> CallbacksResource: ...
                     def stepEntries(self) -> StepEntriesResource: ...
-
                 def triggerPubsubExecution(
                     self,
                     *,
                     workflow: str,
                     body: TriggerPubsubExecutionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
-
             def workflows(self) -> WorkflowsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -18,7 +18,6 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
         def search(
             self, *, query: str = ..., **kwargs: typing.Any
         ) -> DivisionSearchResponseHttpRequest: ...
-
     @typing.type_check_only
     class ElectionsResource(googleapiclient.discovery.Resource):
         def electionQuery(
@@ -32,9 +31,8 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
             officialOnly: bool = ...,
             productionDataOnly: bool = ...,
             returnAllAvailableData: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VoterInfoResponseHttpRequest: ...
-
     @typing.type_check_only
     class RepresentativesResource(googleapiclient.discovery.Resource):
         def representativeInfoByAddress(
@@ -96,7 +94,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "otherRole",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RepresentativeInfoResponseHttpRequest: ...
         def representativeInfoByDivision(
             self,
@@ -157,9 +155,8 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "otherRole",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RepresentativeInfoDataHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

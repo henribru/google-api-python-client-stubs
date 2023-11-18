@@ -18,11 +18,9 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
         def lookupKey(
             self, *, keyString: str = ..., **kwargs: typing.Any
         ) -> V2LookupKeyResponseHttpRequest: ...
-
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -35,7 +33,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: V2Key = ...,
                     keyId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -53,7 +51,7 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     showDeleted: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> V2ListKeysResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -66,20 +64,17 @@ class ApiKeysServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: V2Key = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
                     body: V2UndeleteKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             def keys(self) -> KeysResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -25,7 +25,7 @@ class FcmdataResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -35,11 +35,8 @@ class FcmdataResource(googleapiclient.discovery.Resource):
                     GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest
                     | None
                 ): ...
-
             def deliveryData(self) -> DeliveryDataResource: ...
-
         def androidApps(self) -> AndroidAppsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

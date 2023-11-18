@@ -28,7 +28,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> InventoryHttpRequest: ...
                     def list(
                         self,
@@ -40,14 +40,13 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListInventoriesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListInventoriesResponseHttpRequest,
                         previous_response: ListInventoriesResponse,
                     ) -> ListInventoriesResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -62,7 +61,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -71,9 +70,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         ) -> (
                             ListOSPolicyAssignmentReportsResponseHttpRequest | None
                         ): ...
-
                     def reports(self) -> ReportsResource: ...
-
                 @typing.type_check_only
                 class VulnerabilityReportsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -86,18 +83,16 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListVulnerabilityReportsResponseHttpRequest,
                         previous_response: ListVulnerabilityReportsResponse,
                     ) -> ListVulnerabilityReportsResponseHttpRequest | None: ...
-
                 def inventories(self) -> InventoriesResource: ...
                 def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
                 def vulnerabilityReports(self) -> VulnerabilityReportsResource: ...
-
             @typing.type_check_only
             class OsPolicyAssignmentsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -107,19 +102,18 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: OSPolicyAssignment = ...,
                     osPolicyAssignmentId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -133,7 +127,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -146,7 +140,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     name: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest: ...
                 def listRevisions_next(
                     self,
@@ -159,13 +153,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: OSPolicyAssignment = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
-
             def instances(self) -> InstancesResource: ...
             def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
-
         @typing.type_check_only
         class PatchDeploymentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -174,7 +166,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: PatchDeployment = ...,
                 patchDeploymentId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -188,7 +180,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -201,23 +193,22 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: PatchDeployment = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def pause(
                 self,
                 *,
                 name: str,
                 body: PausePatchDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
                 body: ResumePatchDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
-
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -229,27 +220,26 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
                     previous_response: ListPatchJobInstanceDetailsResponse,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
-
             def cancel(
                 self,
                 *,
                 name: str,
                 body: CancelPatchJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchJobHttpRequest: ...
             def execute(
                 self,
                 *,
                 parent: str,
                 body: ExecutePatchJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchJobHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -261,7 +251,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListPatchJobsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -269,11 +259,9 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 previous_response: ListPatchJobsResponse,
             ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
-
         def locations(self) -> LocationsResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
         def patchJobs(self) -> PatchJobsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -36,7 +36,6 @@ class CloudNaturalLanguageResource(googleapiclient.discovery.Resource):
         def moderateText(
             self, *, body: ModerateTextRequest = ..., **kwargs: typing.Any
         ) -> ModerateTextResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

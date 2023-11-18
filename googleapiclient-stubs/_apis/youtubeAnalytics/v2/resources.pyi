@@ -20,23 +20,22 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             *,
             id: str = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyResponseHttpRequest: ...
         def insert(
             self,
             *,
             body: GroupItem = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GroupItemHttpRequest: ...
         def list(
             self,
             *,
             groupId: str = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListGroupItemsResponseHttpRequest: ...
-
     @typing.type_check_only
     class GroupsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -44,14 +43,14 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             *,
             id: str = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyResponseHttpRequest: ...
         def insert(
             self,
             *,
             body: Group = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...
         def list(
             self,
@@ -60,7 +59,7 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             mine: bool = ...,
             onBehalfOfContentOwner: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListGroupsResponseHttpRequest: ...
         def list_next(
             self,
@@ -72,9 +71,8 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             *,
             body: Group = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GroupHttpRequest: ...
-
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def query(
@@ -91,9 +89,8 @@ class YouTubeAnalyticsResource(googleapiclient.discovery.Resource):
             sort: str = ...,
             startDate: str = ...,
             startIndex: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> QueryResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

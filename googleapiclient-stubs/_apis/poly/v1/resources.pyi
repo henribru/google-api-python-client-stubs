@@ -29,14 +29,13 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListAssetsResponseHttpRequest,
             previous_response: ListAssetsResponse,
         ) -> ListAssetsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -52,14 +51,13 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 visibility: typing_extensions.Literal[
                     "VISIBILITY_UNSPECIFIED", "PUBLISHED", "PRIVATE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListUserAssetsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListUserAssetsResponseHttpRequest,
                 previous_response: ListUserAssetsResponse,
             ) -> ListUserAssetsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class LikedassetsResource(googleapiclient.discovery.Resource):
             def list(
@@ -70,17 +68,15 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLikedAssetsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListLikedAssetsResponseHttpRequest,
                 previous_response: ListLikedAssetsResponse,
             ) -> ListLikedAssetsResponseHttpRequest | None: ...
-
         def assets(self) -> AssetsResource: ...
         def likedassets(self) -> LikedassetsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

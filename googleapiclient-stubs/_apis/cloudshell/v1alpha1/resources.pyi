@@ -24,18 +24,17 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CreatePublicKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PublicKeyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
-
             def authorize(
                 self,
                 *,
                 name: str,
                 body: AuthorizeEnvironmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -46,19 +45,17 @@ class CloudShellResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Environment = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EnvironmentHttpRequest: ...
             def start(
                 self,
                 *,
                 name: str,
                 body: StartEnvironmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def publicKeys(self) -> PublicKeysResource: ...
-
         def environments(self) -> EnvironmentsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -18,7 +18,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def get(
             self, *, profileId: str, summaryAccountId: str, **kwargs: typing.Any
         ) -> AccountActiveAdSummaryHttpRequest: ...
-
     @typing.type_check_only
     class AccountPermissionGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -27,7 +26,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> AccountPermissionGroupsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class AccountPermissionsResource(googleapiclient.discovery.Resource):
         def get(
@@ -36,7 +34,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> AccountPermissionsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class AccountUserProfilesResource(googleapiclient.discovery.Resource):
         def get(
@@ -47,7 +44,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             body: AccountUserProfile = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountUserProfileHttpRequest: ...
         def list(
             self,
@@ -62,7 +59,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             subaccountId: str = ...,
             userRoleId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountUserProfilesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -75,16 +72,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: AccountUserProfile = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountUserProfileHttpRequest: ...
         def update(
             self,
             *,
             profileId: str,
             body: AccountUserProfile = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountUserProfileHttpRequest: ...
-
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         def get(
@@ -101,7 +97,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -114,7 +110,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: Account = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
-
     @typing.type_check_only
     class AdsResource(googleapiclient.discovery.Resource):
         def get(
@@ -172,7 +167,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "AD_SERVING_BRAND_SAFE_AD",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -185,7 +180,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: Ad = ..., **kwargs: typing.Any
         ) -> AdHttpRequest: ...
-
     @typing.type_check_only
     class AdvertiserGroupsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -207,7 +201,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdvertiserGroupsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -220,12 +214,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: AdvertiserGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdvertiserGroupHttpRequest: ...
         def update(
             self, *, profileId: str, body: AdvertiserGroup = ..., **kwargs: typing.Any
         ) -> AdvertiserGroupHttpRequest: ...
-
     @typing.type_check_only
     class AdvertiserLandingPagesResource(googleapiclient.discovery.Resource):
         def get(
@@ -248,7 +241,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             subaccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdvertiserLandingPagesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -261,12 +254,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: LandingPage = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LandingPageHttpRequest: ...
         def update(
             self, *, profileId: str, body: LandingPage = ..., **kwargs: typing.Any
         ) -> LandingPageHttpRequest: ...
-
     @typing.type_check_only
     class AdvertisersResource(googleapiclient.discovery.Resource):
         def get(
@@ -291,7 +283,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             status: typing_extensions.Literal["APPROVED", "ON_HOLD"] = ...,
             subaccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdvertisersListResponseHttpRequest: ...
         def list_next(
             self,
@@ -304,18 +296,16 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: Advertiser = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdvertiserHttpRequest: ...
         def update(
             self, *, profileId: str, body: Advertiser = ..., **kwargs: typing.Any
         ) -> AdvertiserHttpRequest: ...
-
     @typing.type_check_only
     class BrowsersResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> BrowsersListResponseHttpRequest: ...
-
     @typing.type_check_only
     class CampaignCreativeAssociationsResource(googleapiclient.discovery.Resource):
         def insert(
@@ -324,7 +314,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             campaignId: str,
             body: CampaignCreativeAssociation = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CampaignCreativeAssociationHttpRequest: ...
         def list(
             self,
@@ -334,14 +324,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CampaignCreativeAssociationsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: CampaignCreativeAssociationsListResponseHttpRequest,
             previous_response: CampaignCreativeAssociationsListResponse,
         ) -> CampaignCreativeAssociationsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class CampaignsResource(googleapiclient.discovery.Resource):
         def get(
@@ -367,7 +356,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             subaccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CampaignsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -380,7 +369,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: Campaign = ..., **kwargs: typing.Any
         ) -> CampaignHttpRequest: ...
-
     @typing.type_check_only
     class ChangeLogsResource(googleapiclient.discovery.Resource):
         def get(
@@ -459,14 +447,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             searchString: str = ...,
             userProfileIds: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChangeLogsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ChangeLogsListResponseHttpRequest,
             previous_response: ChangeLogsListResponse,
         ) -> ChangeLogsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class CitiesResource(googleapiclient.discovery.Resource):
         def list(
@@ -477,9 +464,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             dartIds: str | _list[str] = ...,
             namePrefix: str = ...,
             regionDartIds: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CitiesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class ConnectionTypesResource(googleapiclient.discovery.Resource):
         def get(
@@ -488,7 +474,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> ConnectionTypesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class ContentCategoriesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -510,7 +495,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContentCategoriesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -523,12 +508,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: ContentCategory = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContentCategoryHttpRequest: ...
         def update(
             self, *, profileId: str, body: ContentCategory = ..., **kwargs: typing.Any
         ) -> ContentCategoryHttpRequest: ...
-
     @typing.type_check_only
     class ConversionsResource(googleapiclient.discovery.Resource):
         def batchinsert(
@@ -536,16 +520,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             body: ConversionsBatchInsertRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionsBatchInsertResponseHttpRequest: ...
         def batchupdate(
             self,
             *,
             profileId: str,
             body: ConversionsBatchUpdateRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionsBatchUpdateResponseHttpRequest: ...
-
     @typing.type_check_only
     class CountriesResource(googleapiclient.discovery.Resource):
         def get(
@@ -554,7 +537,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> CountriesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class CreativeAssetsResource(googleapiclient.discovery.Resource):
         def insert(
@@ -563,9 +545,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             advertiserId: str,
             body: CreativeAssetMetadata = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeAssetMetadataHttpRequest: ...
-
     @typing.type_check_only
     class CreativeFieldValuesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -580,7 +561,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             creativeFieldId: str,
             body: CreativeFieldValue = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldValueHttpRequest: ...
         def list(
             self,
@@ -593,7 +574,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "VALUE"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldValuesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -607,7 +588,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             creativeFieldId: str,
             id: str,
             body: CreativeFieldValue = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldValueHttpRequest: ...
         def update(
             self,
@@ -615,9 +596,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             creativeFieldId: str,
             body: CreativeFieldValue = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldValueHttpRequest: ...
-
     @typing.type_check_only
     class CreativeFieldsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -640,7 +620,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -653,12 +633,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: CreativeField = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeFieldHttpRequest: ...
         def update(
             self, *, profileId: str, body: CreativeField = ..., **kwargs: typing.Any
         ) -> CreativeFieldHttpRequest: ...
-
     @typing.type_check_only
     class CreativeGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -679,7 +658,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeGroupsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -692,12 +671,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: CreativeGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeGroupHttpRequest: ...
         def update(
             self, *, profileId: str, body: CreativeGroup = ..., **kwargs: typing.Any
         ) -> CreativeGroupHttpRequest: ...
-
     @typing.type_check_only
     class CreativesResource(googleapiclient.discovery.Resource):
         def get(
@@ -781,7 +759,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "INSTREAM_AUDIO",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -794,7 +772,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: Creative = ..., **kwargs: typing.Any
         ) -> CreativeHttpRequest: ...
-
     @typing.type_check_only
     class DimensionValuesResource(googleapiclient.discovery.Resource):
         def query(
@@ -804,14 +781,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             body: DimensionValueRequest = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DimensionValueListHttpRequest: ...
         def query_next(
             self,
             previous_request: DimensionValueListHttpRequest,
             previous_response: DimensionValueList,
         ) -> DimensionValueListHttpRequest | None: ...
-
     @typing.type_check_only
     class DirectorySitesResource(googleapiclient.discovery.Resource):
         def get(
@@ -835,14 +811,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DirectorySitesListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: DirectorySitesListResponseHttpRequest,
             previous_response: DirectorySitesListResponse,
         ) -> DirectorySitesListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class DynamicTargetingKeysResource(googleapiclient.discovery.Resource):
         def delete(
@@ -854,14 +829,14 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             objectType: typing_extensions.Literal[
                 "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
             ],
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def insert(
             self,
             *,
             profileId: str,
             body: DynamicTargetingKey = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DynamicTargetingKeyHttpRequest: ...
         def list(
             self,
@@ -873,9 +848,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             objectType: typing_extensions.Literal[
                 "OBJECT_ADVERTISER", "OBJECT_AD", "OBJECT_CREATIVE", "OBJECT_PLACEMENT"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DynamicTargetingKeysListResponseHttpRequest: ...
-
     @typing.type_check_only
     class EventTagsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -912,7 +886,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTagsListResponseHttpRequest: ...
         def patch(
             self, *, profileId: str, id: str, body: EventTag = ..., **kwargs: typing.Any
@@ -920,7 +894,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: EventTag = ..., **kwargs: typing.Any
         ) -> EventTagHttpRequest: ...
-
     @typing.type_check_only
     class FilesResource(googleapiclient.discovery.Resource):
         def get(
@@ -938,12 +911,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             scope: typing_extensions.Literal["ALL", "MINE", "SHARED_WITH_ME"] = ...,
             sortField: typing_extensions.Literal["ID", "LAST_MODIFIED_TIME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FileListHttpRequest: ...
         def list_next(
             self, previous_request: FileListHttpRequest, previous_response: FileList
         ) -> FileListHttpRequest | None: ...
-
     @typing.type_check_only
     class FloodlightActivitiesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -954,7 +926,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             floodlightActivityId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivitiesGenerateTagResponseHttpRequest: ...
         def get(
             self, *, profileId: str, id: str, **kwargs: typing.Any
@@ -964,7 +936,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             body: FloodlightActivity = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityHttpRequest: ...
         def list(
             self,
@@ -985,7 +957,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             tagString: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivitiesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -998,16 +970,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: FloodlightActivity = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityHttpRequest: ...
         def update(
             self,
             *,
             profileId: str,
             body: FloodlightActivity = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityHttpRequest: ...
-
     @typing.type_check_only
     class FloodlightActivityGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1018,7 +989,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             *,
             profileId: str,
             body: FloodlightActivityGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityGroupHttpRequest: ...
         def list(
             self,
@@ -1033,7 +1004,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             type: typing_extensions.Literal["COUNTER", "SALE"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityGroupsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1046,16 +1017,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: FloodlightActivityGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityGroupHttpRequest: ...
         def update(
             self,
             *,
             profileId: str,
             body: FloodlightActivityGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightActivityGroupHttpRequest: ...
-
     @typing.type_check_only
     class FloodlightConfigurationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1070,16 +1040,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: FloodlightConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightConfigurationHttpRequest: ...
         def update(
             self,
             *,
             profileId: str,
             body: FloodlightConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FloodlightConfigurationHttpRequest: ...
-
     @typing.type_check_only
     class InventoryItemsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1101,26 +1070,23 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             type: typing_extensions.Literal[
                 "PLANNING_PLACEMENT_TYPE_REGULAR", "PLANNING_PLACEMENT_TYPE_CREDIT"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InventoryItemsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: InventoryItemsListResponseHttpRequest,
             previous_response: InventoryItemsListResponse,
         ) -> InventoryItemsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class LanguagesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> LanguagesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class MetrosResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> MetrosListResponseHttpRequest: ...
-
     @typing.type_check_only
     class MobileAppsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1142,14 +1108,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             searchString: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MobileAppsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: MobileAppsListResponseHttpRequest,
             previous_response: MobileAppsListResponse,
         ) -> MobileAppsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class MobileCarriersResource(googleapiclient.discovery.Resource):
         def get(
@@ -1158,7 +1123,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> MobileCarriersListResponseHttpRequest: ...
-
     @typing.type_check_only
     class OperatingSystemVersionsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1167,7 +1131,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> OperatingSystemVersionsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class OperatingSystemsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1176,7 +1139,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> OperatingSystemsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class OrderDocumentsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1196,14 +1158,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             siteId: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OrderDocumentsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: OrderDocumentsListResponseHttpRequest,
             previous_response: OrderDocumentsListResponse,
         ) -> OrderDocumentsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
         def get(
@@ -1221,14 +1182,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             siteId: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OrdersListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: OrdersListResponseHttpRequest,
             previous_response: OrdersListResponse,
         ) -> OrdersListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class PlacementGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1279,7 +1239,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             siteIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementGroupsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1292,12 +1252,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: PlacementGroup = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementGroupHttpRequest: ...
         def update(
             self, *, profileId: str, body: PlacementGroup = ..., **kwargs: typing.Any
         ) -> PlacementGroupHttpRequest: ...
-
     @typing.type_check_only
     class PlacementStrategiesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -1319,7 +1278,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementStrategiesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1332,12 +1291,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: PlacementStrategy = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementStrategyHttpRequest: ...
         def update(
             self, *, profileId: str, body: PlacementStrategy = ..., **kwargs: typing.Any
         ) -> PlacementStrategyHttpRequest: ...
-
     @typing.type_check_only
     class PlacementsResource(googleapiclient.discovery.Resource):
         def generatetags(
@@ -1392,7 +1350,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementsGenerateTagsResponseHttpRequest: ...
         def get(
             self, *, profileId: str, id: str, **kwargs: typing.Any
@@ -1462,7 +1420,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sizeIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1475,12 +1433,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: Placement = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlacementHttpRequest: ...
         def update(
             self, *, profileId: str, body: Placement = ..., **kwargs: typing.Any
         ) -> PlacementHttpRequest: ...
-
     @typing.type_check_only
     class PlatformTypesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1489,7 +1446,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> PlatformTypesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class PostalCodesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1498,7 +1454,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> PostalCodesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1515,20 +1470,18 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProjectsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ProjectsListResponseHttpRequest,
             previous_response: ProjectsListResponse,
         ) -> ProjectsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class RegionsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> RegionsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class RemarketingListSharesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1540,16 +1493,15 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: RemarketingListShare = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RemarketingListShareHttpRequest: ...
         def update(
             self,
             *,
             profileId: str,
             body: RemarketingListShare = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RemarketingListShareHttpRequest: ...
-
     @typing.type_check_only
     class RemarketingListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1570,7 +1522,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RemarketingListsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1583,12 +1535,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: RemarketingList = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RemarketingListHttpRequest: ...
         def update(
             self, *, profileId: str, body: RemarketingList = ..., **kwargs: typing.Any
         ) -> RemarketingListHttpRequest: ...
-
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -1596,7 +1547,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             def query(
                 self, *, profileId: str, body: Report = ..., **kwargs: typing.Any
             ) -> CompatibleFieldsHttpRequest: ...
-
         @typing.type_check_only
         class FilesResource(googleapiclient.discovery.Resource):
             def get(
@@ -1605,7 +1555,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 profileId: str,
                 reportId: str,
                 fileId: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> FileHttpRequest: ...
             def get_media(
                 self,
@@ -1613,7 +1563,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 profileId: str,
                 reportId: str,
                 fileId: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BytesHttpRequest: ...
             def list(
                 self,
@@ -1624,12 +1574,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 sortField: typing_extensions.Literal["ID", "LAST_MODIFIED_TIME"] = ...,
                 sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> FileListHttpRequest: ...
             def list_next(
                 self, previous_request: FileListHttpRequest, previous_response: FileList
             ) -> FileListHttpRequest | None: ...
-
         def delete(
             self, *, profileId: str, reportId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
@@ -1650,7 +1599,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "ID", "LAST_MODIFIED_TIME", "NAME"
             ] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReportListHttpRequest: ...
         def list_next(
             self, previous_request: ReportListHttpRequest, previous_response: ReportList
@@ -1661,7 +1610,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             reportId: str,
             body: Report = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReportHttpRequest: ...
         def run(
             self,
@@ -1669,7 +1618,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             reportId: str,
             synchronous: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FileHttpRequest: ...
         def update(
             self,
@@ -1677,11 +1626,10 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             reportId: str,
             body: Report = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReportHttpRequest: ...
         def compatibleFields(self) -> CompatibleFieldsResource: ...
         def files(self) -> FilesResource: ...
-
     @typing.type_check_only
     class SitesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1709,7 +1657,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             subaccountId: str = ...,
             unmappedSite: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SitesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1722,7 +1670,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: Site = ..., **kwargs: typing.Any
         ) -> SiteHttpRequest: ...
-
     @typing.type_check_only
     class SizesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1739,9 +1686,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             iabStandard: bool = ...,
             ids: str | _list[str] = ...,
             width: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SizesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class SubaccountsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1760,7 +1706,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubaccountsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1773,12 +1719,11 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: Subaccount = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubaccountHttpRequest: ...
         def update(
             self, *, profileId: str, body: Subaccount = ..., **kwargs: typing.Any
         ) -> SubaccountHttpRequest: ...
-
     @typing.type_check_only
     class TargetableRemarketingListsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1795,14 +1740,13 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TargetableRemarketingListsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: TargetableRemarketingListsListResponseHttpRequest,
             previous_response: TargetableRemarketingListsListResponse,
         ) -> TargetableRemarketingListsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class TargetingTemplatesResource(googleapiclient.discovery.Resource):
         def get(
@@ -1822,7 +1766,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TargetingTemplatesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1835,19 +1779,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             id: str,
             body: TargetingTemplate = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TargetingTemplateHttpRequest: ...
         def update(
             self, *, profileId: str, body: TargetingTemplate = ..., **kwargs: typing.Any
         ) -> TargetingTemplateHttpRequest: ...
-
     @typing.type_check_only
     class UserProfilesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> UserProfileHttpRequest: ...
         def list(self, **kwargs: typing.Any) -> UserProfileListHttpRequest: ...
-
     @typing.type_check_only
     class UserRolePermissionGroupsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1856,7 +1798,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> UserRolePermissionGroupsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class UserRolePermissionsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1865,7 +1806,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, ids: str | _list[str] = ..., **kwargs: typing.Any
         ) -> UserRolePermissionsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class UserRolesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -1889,7 +1829,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             subaccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UserRolesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -1902,7 +1842,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def update(
             self, *, profileId: str, body: UserRole = ..., **kwargs: typing.Any
         ) -> UserRoleHttpRequest: ...
-
     @typing.type_check_only
     class VideoFormatsResource(googleapiclient.discovery.Resource):
         def get(
@@ -1911,7 +1850,6 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         def list(
             self, *, profileId: str, **kwargs: typing.Any
         ) -> VideoFormatsListResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

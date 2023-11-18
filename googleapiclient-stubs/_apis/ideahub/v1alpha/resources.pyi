@@ -23,14 +23,13 @@ class IdeahubResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             parent: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
             previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
         ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class PlatformsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -42,9 +41,8 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleSearchIdeahubV1alphaIdeaActivity = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest: ...
-
             @typing.type_check_only
             class IdeaStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -53,9 +51,8 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1alphaIdeaState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaStateHttpRequest: ...
-
             @typing.type_check_only
             class IdeasResource(googleapiclient.discovery.Resource):
                 def list(
@@ -66,14 +63,13 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest,
                     previous_response: GoogleSearchIdeahubV1alphaListIdeasResponse,
                 ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class LocalesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -82,7 +78,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest
                 ): ...
@@ -94,7 +90,6 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest
                     | None
                 ): ...
-
             @typing.type_check_only
             class TopicStatesResource(googleapiclient.discovery.Resource):
                 def patch(
@@ -103,17 +98,14 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1alphaTopicState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaTopicStateHttpRequest: ...
-
             def ideaActivities(self) -> IdeaActivitiesResource: ...
             def ideaStates(self) -> IdeaStatesResource: ...
             def ideas(self) -> IdeasResource: ...
             def locales(self) -> LocalesResource: ...
             def topicStates(self) -> TopicStatesResource: ...
-
         def properties(self) -> PropertiesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

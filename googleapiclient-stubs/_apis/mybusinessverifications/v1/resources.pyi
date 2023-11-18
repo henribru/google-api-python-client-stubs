@@ -22,7 +22,7 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CompleteVerificationRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> CompleteVerificationResponseHttpRequest: ...
             def list(
                 self,
@@ -30,20 +30,19 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListVerificationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListVerificationsResponseHttpRequest,
                 previous_response: ListVerificationsResponse,
             ) -> ListVerificationsResponseHttpRequest | None: ...
-
         def fetchVerificationOptions(
             self,
             *,
             location: str,
             body: FetchVerificationOptionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FetchVerificationOptionsResponseHttpRequest: ...
         def getVoiceOfMerchantState(
             self, *, name: str, **kwargs: typing.Any
@@ -52,7 +51,6 @@ class MyBusinessVerificationsResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: VerifyLocationRequest = ..., **kwargs: typing.Any
         ) -> VerifyLocationResponseHttpRequest: ...
         def verifications(self) -> VerificationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

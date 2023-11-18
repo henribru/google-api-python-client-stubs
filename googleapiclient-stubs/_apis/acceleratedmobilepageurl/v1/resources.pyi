@@ -18,7 +18,6 @@ class AcceleratedmobilepageurlResource(googleapiclient.discovery.Resource):
         def batchGet(
             self, *, body: BatchGetAmpUrlsRequest = ..., **kwargs: typing.Any
         ) -> BatchGetAmpUrlsResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

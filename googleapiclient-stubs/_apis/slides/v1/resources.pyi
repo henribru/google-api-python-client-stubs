@@ -29,15 +29,14 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 thumbnailProperties_thumbnailSize: typing_extensions.Literal[
                     "THUMBNAIL_SIZE_UNSPECIFIED", "LARGE", "MEDIUM", "SMALL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ThumbnailHttpRequest: ...
-
         def batchUpdate(
             self,
             *,
             presentationId: str,
             body: BatchUpdatePresentationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdatePresentationResponseHttpRequest: ...
         def create(
             self, *, body: Presentation = ..., **kwargs: typing.Any
@@ -46,7 +45,6 @@ class SlidesResource(googleapiclient.discovery.Resource):
             self, *, presentationId: str, **kwargs: typing.Any
         ) -> PresentationHttpRequest: ...
         def pages(self) -> PagesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

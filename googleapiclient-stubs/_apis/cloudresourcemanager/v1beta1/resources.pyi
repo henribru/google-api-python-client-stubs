@@ -23,7 +23,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -31,7 +31,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOrganizationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -43,19 +43,18 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
             self, *, name: str, body: Organization = ..., **kwargs: typing.Any
         ) -> OrganizationHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def create(
@@ -63,7 +62,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             body: Project = ...,
             useLegacyStack: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProjectHttpRequest: ...
         def delete(
             self, *, projectId: str, **kwargs: typing.Any
@@ -76,14 +75,14 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: GetAncestryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetAncestryResponseHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -91,7 +90,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListProjectsResponseHttpRequest: ...
         def list_next(
             self,
@@ -103,26 +102,25 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(
             self,
             *,
             projectId: str,
             body: UndeleteProjectRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def update(
             self, *, projectId: str, body: Project = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

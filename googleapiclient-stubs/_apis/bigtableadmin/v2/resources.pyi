@@ -26,21 +26,18 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             def operations(self) -> OperationsResource: ...
-
         def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -54,7 +51,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: AppProfile = ...,
                     appProfileId: str = ...,
                     ignoreWarnings: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AppProfileHttpRequest: ...
                 def delete(
                     self, *, name: str, ignoreWarnings: bool = ..., **kwargs: typing.Any
@@ -68,7 +65,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAppProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -82,9 +79,8 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: AppProfile = ...,
                     ignoreWarnings: bool = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -94,7 +90,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: CopyBackupRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
                         self,
@@ -102,7 +98,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Backup = ...,
                         backupId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -115,7 +111,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         *,
                         resource: str,
                         body: GetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
@@ -125,7 +121,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListBackupsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -138,23 +134,22 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Backup = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BackupHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
-
                 @typing.type_check_only
                 class HotTabletsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -165,21 +160,20 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         startTime: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListHotTabletsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListHotTabletsResponseHttpRequest,
                         previous_response: ListHotTabletsResponse,
                     ) -> ListHotTabletsResponseHttpRequest | None: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: Cluster = ...,
                     clusterId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -201,14 +195,13 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Cluster = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def update(
                     self, *, name: str, body: Cluster = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
                 def hotTablets(self) -> HotTabletsResource: ...
-
             @typing.type_check_only
             class TablesResource(googleapiclient.discovery.Resource):
                 def checkConsistency(
@@ -216,14 +209,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CheckConsistencyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CheckConsistencyResponseHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: CreateTableRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TableHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -233,14 +226,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DropRowRangeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def generateConsistencyToken(
                     self,
                     *,
                     name: str,
                     body: GenerateConsistencyTokenRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GenerateConsistencyTokenResponseHttpRequest: ...
                 def get(
                     self,
@@ -255,14 +248,14 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "STATS_VIEW",
                         "FULL",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TableHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -279,7 +272,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                         "STATS_VIEW",
                         "FULL",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTablesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -291,7 +284,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ModifyColumnFamiliesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TableHttpRequest: ...
                 def patch(
                     self,
@@ -299,43 +292,42 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Table = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     parent: str,
                     body: RestoreTableRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
                     body: UndeleteTableRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             def create(
                 self,
                 *,
                 parent: str,
                 body: CreateInstanceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -348,7 +340,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
@@ -364,21 +356,21 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Instance = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
                 self, *, name: str, body: Instance = ..., **kwargs: typing.Any
@@ -386,7 +378,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
             def appProfiles(self) -> AppProfilesResource: ...
             def clusters(self) -> ClustersResource: ...
             def tables(self) -> TablesResource: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -399,17 +390,15 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-
         def instances(self) -> InstancesResource: ...
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

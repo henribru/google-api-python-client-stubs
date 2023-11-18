@@ -28,9 +28,8 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             numVersions: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListDeviceConfigVersionsResponseHttpRequest: ...
-
                     @typing.type_check_only
                     class StatesResource(googleapiclient.discovery.Resource):
                         def list(
@@ -38,9 +37,8 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             numStates: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListDeviceStatesResponseHttpRequest: ...
-
                     def create(
                         self, *, parent: str, body: Device = ..., **kwargs: typing.Any
                     ) -> DeviceHttpRequest: ...
@@ -64,7 +62,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListDevicesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -76,7 +74,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ModifyCloudToDeviceConfigRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> DeviceConfigHttpRequest: ...
                     def patch(
                         self,
@@ -84,18 +82,17 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Device = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> DeviceHttpRequest: ...
                     def sendCommandToDevice(
                         self,
                         *,
                         name: str,
                         body: SendCommandToDeviceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SendCommandToDeviceResponseHttpRequest: ...
                     def configVersions(self) -> ConfigVersionsResource: ...
                     def states(self) -> StatesResource: ...
-
                 @typing.type_check_only
                 class GroupsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -114,50 +111,48 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListDevicesResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListDevicesResponseHttpRequest,
                             previous_response: ListDevicesResponse,
                         ) -> ListDevicesResponseHttpRequest | None: ...
-
                     def getIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: GetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def devices(self) -> DevicesResource: ...
-
                 def bindDeviceToGateway(
                     self,
                     *,
                     parent: str,
                     body: BindDeviceToGatewayRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BindDeviceToGatewayResponseHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: DeviceRegistry = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DeviceRegistryHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -170,7 +165,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -178,7 +173,7 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDeviceRegistriesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -191,36 +186,33 @@ class CloudIotResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: DeviceRegistry = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DeviceRegistryHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def unbindDeviceFromGateway(
                     self,
                     *,
                     parent: str,
                     body: UnbindDeviceFromGatewayRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> UnbindDeviceFromGatewayResponseHttpRequest: ...
                 def devices(self) -> DevicesResource: ...
                 def groups(self) -> GroupsResource: ...
-
             def registries(self) -> RegistriesResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

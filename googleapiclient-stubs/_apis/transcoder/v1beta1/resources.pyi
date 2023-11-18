@@ -25,7 +25,7 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: JobTemplate = ...,
                     jobTemplateId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -39,14 +39,13 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListJobTemplatesResponseHttpRequest,
                     previous_response: ListJobTemplatesResponse,
                 ) -> ListJobTemplatesResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -62,19 +61,16 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListJobsResponseHttpRequest,
                     previous_response: ListJobsResponse,
                 ) -> ListJobsResponseHttpRequest | None: ...
-
             def jobTemplates(self) -> JobTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

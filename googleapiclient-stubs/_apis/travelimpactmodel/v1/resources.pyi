@@ -18,7 +18,6 @@ class TravelImpactModelResource(googleapiclient.discovery.Resource):
         def computeFlightEmissions(
             self, *, body: ComputeFlightEmissionsRequest = ..., **kwargs: typing.Any
         ) -> ComputeFlightEmissionsResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

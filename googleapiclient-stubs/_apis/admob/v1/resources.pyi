@@ -23,14 +23,13 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAdUnitsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListAdUnitsResponseHttpRequest,
                 previous_response: ListAdUnitsResponse,
             ) -> ListAdUnitsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
             def list(
@@ -39,14 +38,13 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAppsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListAppsResponseHttpRequest,
                 previous_response: ListAppsResponse,
             ) -> ListAppsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class MediationReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -54,9 +52,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateMediationReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateMediationReportResponseHttpRequest: ...
-
         @typing.type_check_only
         class NetworkReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -64,9 +61,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateNetworkReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateNetworkReportResponseHttpRequest: ...
-
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> PublisherAccountHttpRequest: ...
@@ -82,7 +78,6 @@ class AdMobResource(googleapiclient.discovery.Resource):
         def apps(self) -> AppsResource: ...
         def mediationReport(self) -> MediationReportResource: ...
         def networkReport(self) -> NetworkReportResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -25,21 +25,20 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAdaptersResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListAdaptersResponseHttpRequest,
                     previous_response: ListAdaptersResponse,
                 ) -> ListAdaptersResponseHttpRequest | None: ...
-
             def list(
                 self,
                 *,
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAdSourcesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,7 +46,6 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 previous_response: ListAdSourcesResponse,
             ) -> ListAdSourcesResponseHttpRequest | None: ...
             def adapters(self) -> AdaptersResource: ...
-
         @typing.type_check_only
         class AdUnitMappingsResource(googleapiclient.discovery.Resource):
             def batchCreate(
@@ -55,9 +53,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchCreateAdUnitMappingsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchCreateAdUnitMappingsResponseHttpRequest: ...
-
         @typing.type_check_only
         class AdUnitsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -67,7 +64,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AdUnitMapping = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AdUnitMappingHttpRequest: ...
                 def list(
                     self,
@@ -76,14 +73,13 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAdUnitMappingsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListAdUnitMappingsResponseHttpRequest,
                     previous_response: ListAdUnitMappingsResponse,
                 ) -> ListAdUnitMappingsResponseHttpRequest | None: ...
-
             def create(
                 self, *, parent: str, body: AdUnit = ..., **kwargs: typing.Any
             ) -> AdUnitHttpRequest: ...
@@ -93,7 +89,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAdUnitsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -101,7 +97,6 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 previous_response: ListAdUnitsResponse,
             ) -> ListAdUnitsResponseHttpRequest | None: ...
             def adUnitMappings(self) -> AdUnitMappingsResource: ...
-
         @typing.type_check_only
         class AppsResource(googleapiclient.discovery.Resource):
             def create(
@@ -113,14 +108,13 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAppsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListAppsResponseHttpRequest,
                 previous_response: ListAppsResponse,
             ) -> ListAppsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class CampaignReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -128,9 +122,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateCampaignReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateCampaignReportResponseHttpRequest: ...
-
         @typing.type_check_only
         class MediationGroupsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -140,16 +133,15 @@ class AdMobResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: MediationAbExperiment = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> MediationAbExperimentHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: StopMediationAbExperimentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> MediationAbExperimentHttpRequest: ...
-
             def create(
                 self, *, parent: str, body: MediationGroup = ..., **kwargs: typing.Any
             ) -> MediationGroupHttpRequest: ...
@@ -160,7 +152,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListMediationGroupsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -173,10 +165,9 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: MediationGroup = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> MediationGroupHttpRequest: ...
             def mediationAbExperiments(self) -> MediationAbExperimentsResource: ...
-
         @typing.type_check_only
         class MediationReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -184,9 +175,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateMediationReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateMediationReportResponseHttpRequest: ...
-
         @typing.type_check_only
         class NetworkReportResource(googleapiclient.discovery.Resource):
             def generate(
@@ -194,9 +184,8 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateNetworkReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateNetworkReportResponseHttpRequest: ...
-
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> PublisherAccountHttpRequest: ...
@@ -216,7 +205,6 @@ class AdMobResource(googleapiclient.discovery.Resource):
         def mediationGroups(self) -> MediationGroupsResource: ...
         def mediationReport(self) -> MediationReportResource: ...
         def networkReport(self) -> NetworkReportResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -21,7 +21,6 @@ class KeepResource(googleapiclient.discovery.Resource):
         def download_media(
             self, *, name: str, mimeType: str = ..., **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
-
     @typing.type_check_only
     class NotesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -31,16 +30,15 @@ class KeepResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchCreatePermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchCreatePermissionsResponseHttpRequest: ...
             def batchDelete(
                 self,
                 *,
                 parent: str,
                 body: BatchDeletePermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
-
         def create(
             self, *, body: Note = ..., **kwargs: typing.Any
         ) -> NoteHttpRequest: ...
@@ -52,7 +50,7 @@ class KeepResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListNotesResponseHttpRequest: ...
         def list_next(
             self,
@@ -60,7 +58,6 @@ class KeepResource(googleapiclient.discovery.Resource):
             previous_response: ListNotesResponse,
         ) -> ListNotesResponseHttpRequest | None: ...
         def permissions(self) -> PermissionsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

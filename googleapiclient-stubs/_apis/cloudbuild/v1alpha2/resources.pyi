@@ -24,14 +24,12 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
-
             def operations(self) -> OperationsResource: ...
-
         @typing.type_check_only
         class WorkerPoolsResource(googleapiclient.discovery.Resource):
             def create(
@@ -40,7 +38,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: WorkerPool = ...,
                 workerPoolId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -57,12 +55,10 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: WorkerPool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WorkerPoolHttpRequest: ...
-
         def locations(self) -> LocationsResource: ...
         def workerPools(self) -> WorkerPoolsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -1219,9 +1219,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.androiddeviceprovisioning.v1.AndroidProvisioningPartnerResource
-): ...
+) -> googleapiclient._apis.androiddeviceprovisioning.v1.AndroidProvisioningPartnerResource: ...
 @overload
 def build(
     serviceName: Literal["androidenterprise"],
@@ -1621,9 +1619,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.authorizedbuyersmarketplace.v1.AuthorizedBuyersMarketplaceResource
-): ...
+) -> googleapiclient._apis.authorizedbuyersmarketplace.v1.AuthorizedBuyersMarketplaceResource: ...
 @overload
 def build(
     serviceName: Literal["backupdr"],
@@ -2125,9 +2121,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.businessprofileperformance.v1.BusinessProfilePerformanceResource
-): ...
+) -> googleapiclient._apis.businessprofileperformance.v1.BusinessProfilePerformanceResource: ...
 @overload
 def build(
     serviceName: Literal["calendar"],
@@ -2607,9 +2601,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.cloudcommerceprocurement.v1.CloudCommercePartnerProcurementServiceResource
-): ...
+) -> googleapiclient._apis.cloudcommerceprocurement.v1.CloudCommercePartnerProcurementServiceResource: ...
 @overload
 def build(
     serviceName: Literal["clouddebugger"],
@@ -6357,9 +6349,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -6379,9 +6369,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1alpha1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1alpha1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -6401,9 +6389,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1beta1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1beta1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["manufacturers"],
@@ -6643,9 +6629,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessaccountmanagement.v1.MyBusinessAccountManagementResource
-): ...
+) -> googleapiclient._apis.mybusinessaccountmanagement.v1.MyBusinessAccountManagementResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinessbusinesscalls"],
@@ -6687,9 +6671,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessbusinessinformation.v1.MyBusinessBusinessInformationResource
-): ...
+) -> googleapiclient._apis.mybusinessbusinessinformation.v1.MyBusinessBusinessInformationResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinesslodging"],
@@ -6729,9 +6711,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessnotifications.v1.MyBusinessNotificationSettingsResource
-): ...
+) -> googleapiclient._apis.mybusinessnotifications.v1.MyBusinessNotificationSettingsResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinessplaceactions"],
@@ -7233,9 +7213,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.paymentsresellersubscription.v1.PaymentsResellerSubscriptionResource
-): ...
+) -> googleapiclient._apis.paymentsresellersubscription.v1.PaymentsResellerSubscriptionResource: ...
 @overload
 def build(
     serviceName: Literal["people"],
@@ -7821,9 +7799,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.readerrevenuesubscriptionlinking.v1.SubscriptionLinkingResource
-): ...
+) -> googleapiclient._apis.readerrevenuesubscriptionlinking.v1.SubscriptionLinkingResource: ...
 @overload
 def build(
     serviceName: Literal["realtimebidding"],
@@ -8527,9 +8503,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.serviceconsumermanagement.v1beta1.ServiceConsumerManagementResource
-): ...
+) -> googleapiclient._apis.serviceconsumermanagement.v1beta1.ServiceConsumerManagementResource: ...
 @overload
 def build(
     serviceName: Literal["servicecontrol"],

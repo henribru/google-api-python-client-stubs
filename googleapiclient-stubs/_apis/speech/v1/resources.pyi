@@ -23,14 +23,13 @@ class SpeechResource(googleapiclient.discovery.Resource):
             name: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -42,7 +41,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CreateCustomClassRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CustomClassHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -56,7 +55,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCustomClassesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -69,9 +68,8 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: CustomClass = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CustomClassHttpRequest: ...
-
             @typing.type_check_only
             class PhraseSetsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -79,7 +77,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CreatePhraseSetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PhraseSetHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -93,7 +91,7 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPhraseSetResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -106,14 +104,11 @@ class SpeechResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: PhraseSet = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PhraseSetHttpRequest: ...
-
             def customClasses(self) -> CustomClassesResource: ...
             def phraseSets(self) -> PhraseSetsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     @typing.type_check_only
     class SpeechResource(googleapiclient.discovery.Resource):
         def longrunningrecognize(
@@ -122,7 +117,6 @@ class SpeechResource(googleapiclient.discovery.Resource):
         def recognize(
             self, *, body: RecognizeRequest = ..., **kwargs: typing.Any
         ) -> RecognizeResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

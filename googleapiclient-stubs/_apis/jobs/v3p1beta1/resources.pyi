@@ -22,9 +22,8 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateClientEventRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ClientEventHttpRequest: ...
-
         @typing.type_check_only
         class CompaniesResource(googleapiclient.discovery.Resource):
             def create(
@@ -32,7 +31,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateCompanyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> CompanyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -45,7 +44,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 requireOpenJobs: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListCompaniesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -57,9 +56,8 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UpdateCompanyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> CompanyHttpRequest: ...
-
         @typing.type_check_only
         class JobsResource(googleapiclient.discovery.Resource):
             def batchDelete(
@@ -67,7 +65,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchDeleteJobsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
                 self, *, parent: str, body: CreateJobRequest = ..., **kwargs: typing.Any
@@ -90,7 +88,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -105,7 +103,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SearchJobsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SearchJobsResponseHttpRequest: ...
             def search_next(
                 self,
@@ -117,20 +115,18 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SearchJobsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SearchJobsResponseHttpRequest: ...
             def searchForAlert_next(
                 self,
                 previous_request: SearchJobsResponseHttpRequest,
                 previous_response: SearchJobsResponse,
             ) -> SearchJobsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-
         def complete(
             self,
             *,
@@ -146,13 +142,12 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             type: typing_extensions.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CompleteQueryResponseHttpRequest: ...
         def clientEvents(self) -> ClientEventsResource: ...
         def companies(self) -> CompaniesResource: ...
         def jobs(self) -> JobsResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

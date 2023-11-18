@@ -26,9 +26,8 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: UploadAttachmentRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UploadAttachmentResponseHttpRequest: ...
-
     @typing.type_check_only
     class SpacesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -50,14 +49,13 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 showInvited: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListMembershipsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListMembershipsResponseHttpRequest,
                 previous_response: ListMembershipsResponse,
             ) -> ListMembershipsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class MessagesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -65,7 +63,6 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> AttachmentHttpRequest: ...
-
             @typing.type_check_only
             class ReactionsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -81,14 +78,13 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListReactionsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListReactionsResponseHttpRequest,
                     previous_response: ListReactionsResponse,
                 ) -> ListReactionsResponseHttpRequest | None: ...
-
             def create(
                 self,
                 *,
@@ -102,7 +98,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 requestId: str = ...,
                 threadKey: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def delete(
                 self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -117,7 +113,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 showDeleted: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListMessagesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -131,7 +127,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 body: Message = ...,
                 allowMissing: bool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def update(
                 self,
@@ -140,11 +136,10 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 body: Message = ...,
                 allowMissing: bool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def attachments(self) -> AttachmentsResource: ...
             def reactions(self) -> ReactionsResource: ...
-
         def create(
             self, *, body: Space = ..., requestId: str = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
@@ -159,7 +154,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListSpacesResponseHttpRequest: ...
         def list_next(
             self,
@@ -172,14 +167,13 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             name: str,
             body: Space = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...
         def setup(
             self, *, body: SetUpSpaceRequest = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

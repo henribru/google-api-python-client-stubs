@@ -26,7 +26,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRecommendationengineV1beta1CatalogItem = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudRecommendationengineV1beta1CatalogItemHttpRequest
                     ): ...
@@ -43,7 +43,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudRecommendationengineV1beta1ImportCatalogItemsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
@@ -52,7 +52,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -68,11 +68,10 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudRecommendationengineV1beta1CatalogItem = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudRecommendationengineV1beta1CatalogItemHttpRequest
                     ): ...
-
                 @typing.type_check_only
                 class EventStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -87,7 +86,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -96,7 +95,6 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         ) -> (
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
-
                     @typing.type_check_only
                     class PlacementsResource(googleapiclient.discovery.Resource):
                         def predict(
@@ -104,7 +102,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudRecommendationengineV1beta1PredictRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest: ...
                         def predict_next(
                             self,
@@ -114,7 +112,6 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest
                             | None
                         ): ...
-
                     @typing.type_check_only
                     class PredictionApiKeyRegistrationsResource(
                         googleapiclient.discovery.Resource
@@ -124,7 +121,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudRecommendationengineV1beta1CreatePredictionApiKeyRegistrationRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistrationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -135,7 +132,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -145,7 +142,6 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponseHttpRequest
                             | None
                         ): ...
-
                     @typing.type_check_only
                     class UserEventsResource(googleapiclient.discovery.Resource):
                         def collect(
@@ -155,14 +151,14 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             ets: str = ...,
                             uri: str = ...,
                             userEvent: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleApiHttpBodyHttpRequest: ...
                         def import_(
                             self,
                             *,
                             parent: str,
                             body: GoogleCloudRecommendationengineV1beta1ImportUserEventsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def list(
                             self,
@@ -171,7 +167,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -186,32 +182,30 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudRecommendationengineV1beta1PurgeUserEventsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def rejoin(
                             self,
                             *,
                             parent: str,
                             body: GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def write(
                             self,
                             *,
                             parent: str,
                             body: GoogleCloudRecommendationengineV1beta1UserEvent = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudRecommendationengineV1beta1UserEventHttpRequest
                         ): ...
-
                     def operations(self) -> OperationsResource: ...
                     def placements(self) -> PlacementsResource: ...
                     def predictionApiKeyRegistrations(
-                        self,
+                        self
                     ) -> PredictionApiKeyRegistrationsResource: ...
                     def userEvents(self) -> UserEventsResource: ...
-
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -224,21 +218,20 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                         previous_response: GoogleLongrunningListOperationsResponse,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
                 def list(
                     self,
                     *,
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -254,16 +247,13 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudRecommendationengineV1beta1Catalog = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudRecommendationengineV1beta1CatalogHttpRequest: ...
                 def catalogItems(self) -> CatalogItemsResource: ...
                 def eventStores(self) -> EventStoresResource: ...
                 def operations(self) -> OperationsResource: ...
-
             def catalogs(self) -> CatalogsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

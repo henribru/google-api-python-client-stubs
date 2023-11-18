@@ -27,7 +27,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     backupId: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -36,7 +36,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     etag: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -49,7 +49,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBackupsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -65,9 +65,8 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -80,7 +79,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         instanceId: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def createsecondary(
                         self,
@@ -90,7 +89,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         instanceId: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -99,14 +98,14 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         etag: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def failover(
                         self,
                         *,
                         name: str,
                         body: FailoverInstanceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self,
@@ -117,7 +116,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                             "INSTANCE_VIEW_BASIC",
                             "INSTANCE_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> InstanceHttpRequest: ...
                     def getConnectionInfo(
                         self, *, parent: str, requestId: str = ..., **kwargs: typing.Any
@@ -127,7 +126,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: InjectFaultRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -137,7 +136,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListInstancesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -153,16 +152,15 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         updateMask: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def restart(
                         self,
                         *,
                         name: str,
                         body: RestartInstanceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
-
                 @typing.type_check_only
                 class UsersResource(googleapiclient.discovery.Resource):
                     def create(
@@ -173,7 +171,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         userId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UserHttpRequest: ...
                     def delete(
                         self,
@@ -181,7 +179,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         name: str,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -194,7 +192,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListUsersResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -210,9 +208,8 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         updateMask: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UserHttpRequest: ...
-
                 def create(
                     self,
                     *,
@@ -221,7 +218,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     clusterId: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def createsecondary(
                     self,
@@ -231,7 +228,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     clusterId: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -241,14 +238,14 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     force: bool = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def generateClientCertificate(
                     self,
                     *,
                     parent: str,
                     body: GenerateClientCertificateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GenerateClientCertificateResponseHttpRequest: ...
                 def get(
                     self,
@@ -259,7 +256,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                         "CLUSTER_VIEW_BASIC",
                         "CLUSTER_VIEW_CONTINUOUS_BACKUP",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
                 def list(
                     self,
@@ -269,7 +266,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListClustersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -285,25 +282,24 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def promote(
                     self,
                     *,
                     name: str,
                     body: PromoteClusterRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     parent: str,
                     body: RestoreClusterRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
                 def users(self) -> UsersResource: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -322,14 +318,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class SupportedDatabaseFlagsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -338,14 +333,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSupportedDatabaseFlagsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListSupportedDatabaseFlagsResponseHttpRequest,
                     previous_response: ListSupportedDatabaseFlagsResponse,
                 ) -> ListSupportedDatabaseFlagsResponseHttpRequest | None: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -356,7 +350,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -367,9 +361,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
             def clusters(self) -> ClustersResource: ...
             def operations(self) -> OperationsResource: ...
             def supportedDatabaseFlags(self) -> SupportedDatabaseFlagsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

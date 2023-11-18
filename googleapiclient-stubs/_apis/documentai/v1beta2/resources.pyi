@@ -22,16 +22,15 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def process(
                 self,
                 *,
                 parent: str,
                 body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -41,35 +40,30 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def process(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
-
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-
         def documents(self) -> DocumentsResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

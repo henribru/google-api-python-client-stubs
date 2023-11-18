@@ -27,14 +27,13 @@ class FormsResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListFormResponsesResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListFormResponsesResponseHttpRequest,
                 previous_response: ListFormResponsesResponse,
             ) -> ListFormResponsesResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class WatchesResource(googleapiclient.discovery.Resource):
             def create(
@@ -42,7 +41,7 @@ class FormsResource(googleapiclient.discovery.Resource):
                 *,
                 formId: str,
                 body: CreateWatchRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WatchHttpRequest: ...
             def delete(
                 self, *, formId: str, watchId: str, **kwargs: typing.Any
@@ -56,15 +55,14 @@ class FormsResource(googleapiclient.discovery.Resource):
                 formId: str,
                 watchId: str,
                 body: RenewWatchRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WatchHttpRequest: ...
-
         def batchUpdate(
             self,
             *,
             formId: str,
             body: BatchUpdateFormRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdateFormResponseHttpRequest: ...
         def create(
             self, *, body: Form = ..., **kwargs: typing.Any
@@ -72,7 +70,6 @@ class FormsResource(googleapiclient.discovery.Resource):
         def get(self, *, formId: str, **kwargs: typing.Any) -> FormHttpRequest: ...
         def responses(self) -> ResponsesResource: ...
         def watches(self) -> WatchesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

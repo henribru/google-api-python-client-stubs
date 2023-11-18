@@ -26,20 +26,19 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListNoteOccurrencesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListNoteOccurrencesResponseHttpRequest,
                     previous_response: ListNoteOccurrencesResponse,
                 ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
-
             def batchCreate(
                 self,
                 *,
                 parent: str,
                 body: BatchCreateNotesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchCreateNotesResponseHttpRequest: ...
             def create(
                 self,
@@ -47,7 +46,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Note = ...,
                 noteId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> NoteHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -58,7 +57,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -67,7 +66,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListNotesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -80,24 +79,23 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Note = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> NoteHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def occurrences(self) -> OccurrencesResource: ...
-
         @typing.type_check_only
         class OccurrencesResource(googleapiclient.discovery.Resource):
             def batchCreate(
@@ -105,7 +103,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchCreateOccurrencesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchCreateOccurrencesResponseHttpRequest: ...
             def create(
                 self, *, parent: str, body: Occurrence = ..., **kwargs: typing.Any
@@ -121,7 +119,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def getNotes(
                 self, *, name: str, **kwargs: typing.Any
@@ -136,7 +134,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListOccurrencesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -149,23 +147,22 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Occurrence = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OccurrenceHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
-
         @typing.type_check_only
         class ResourcesResource(googleapiclient.discovery.Resource):
             def exportSBOM(
@@ -176,13 +173,11 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GeneratePackagesSummaryRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PackagesSummaryResponseHttpRequest: ...
-
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
         def resources(self) -> ResourcesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

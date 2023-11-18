@@ -18,7 +18,6 @@ class TestingResource(googleapiclient.discovery.Resource):
         def getApkDetails(
             self, *, body: FileReference = ..., **kwargs: typing.Any
         ) -> GetApkDetailsResponseHttpRequest: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -28,7 +27,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CancelDeviceSessionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
                 self, *, parent: str, body: DeviceSession = ..., **kwargs: typing.Any
@@ -43,7 +42,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDeviceSessionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -56,9 +55,8 @@ class TestingResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: DeviceSession = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeviceSessionHttpRequest: ...
-
         @typing.type_check_only
         class TestMatricesResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -70,15 +68,13 @@ class TestingResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 body: TestMatrix = ...,
                 requestId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestMatrixHttpRequest: ...
             def get(
                 self, *, projectId: str, testMatrixId: str, **kwargs: typing.Any
             ) -> TestMatrixHttpRequest: ...
-
         def deviceSessions(self) -> DeviceSessionsResource: ...
         def testMatrices(self) -> TestMatricesResource: ...
-
     @typing.type_check_only
     class TestEnvironmentCatalogResource(googleapiclient.discovery.Resource):
         def get(
@@ -93,9 +89,8 @@ class TestingResource(googleapiclient.discovery.Resource):
                 "DEVICE_IP_BLOCKS",
             ],
             projectId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestEnvironmentCatalogHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

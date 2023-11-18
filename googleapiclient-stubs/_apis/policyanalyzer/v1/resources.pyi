@@ -28,7 +28,7 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest
                     ): ...
@@ -40,13 +40,9 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
                         GoogleCloudPolicyanalyzerV1QueryActivityResponseHttpRequest
                         | None
                     ): ...
-
                 def activities(self) -> ActivitiesResource: ...
-
             def activityTypes(self) -> ActivityTypesResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

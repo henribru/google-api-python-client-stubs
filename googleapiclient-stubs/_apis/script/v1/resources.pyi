@@ -86,7 +86,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListUserProcessesResponseHttpRequest: ...
         def list_next(
             self,
@@ -163,14 +163,13 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListScriptProcessesResponseHttpRequest: ...
         def listScriptProcesses_next(
             self,
             previous_request: ListScriptProcessesResponseHttpRequest,
             previous_response: ListScriptProcessesResponse,
         ) -> ListScriptProcessesResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -180,7 +179,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 *,
                 scriptId: str,
                 body: DeploymentConfig = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeploymentHttpRequest: ...
             def delete(
                 self, *, scriptId: str, deploymentId: str, **kwargs: typing.Any
@@ -194,7 +193,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -207,9 +206,8 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 deploymentId: str,
                 body: UpdateDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeploymentHttpRequest: ...
-
         @typing.type_check_only
         class VersionsResource(googleapiclient.discovery.Resource):
             def create(
@@ -224,14 +222,13 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListVersionsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListVersionsResponseHttpRequest,
                 previous_response: ListVersionsResponse,
             ) -> ListVersionsResponseHttpRequest | None: ...
-
         def create(
             self, *, body: CreateProjectRequest = ..., **kwargs: typing.Any
         ) -> ProjectHttpRequest: ...
@@ -247,20 +244,18 @@ class ScriptResource(googleapiclient.discovery.Resource):
             metricsGranularity: typing_extensions.Literal[
                 "UNSPECIFIED_GRANULARITY", "WEEKLY", "DAILY"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MetricsHttpRequest: ...
         def updateContent(
             self, *, scriptId: str, body: Content = ..., **kwargs: typing.Any
         ) -> ContentHttpRequest: ...
         def deployments(self) -> DeploymentsResource: ...
         def versions(self) -> VersionsResource: ...
-
     @typing.type_check_only
     class ScriptsResource(googleapiclient.discovery.Resource):
         def run(
             self, *, scriptId: str, body: ExecutionRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

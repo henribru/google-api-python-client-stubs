@@ -29,7 +29,7 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAnswersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -41,9 +41,8 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: UpsertAnswerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AnswerHttpRequest: ...
-
             def create(
                 self, *, parent: str, body: Question = ..., **kwargs: typing.Any
             ) -> QuestionHttpRequest: ...
@@ -59,7 +58,7 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListQuestionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -72,12 +71,10 @@ class MyBusinessQAndAResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Question = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> QuestionHttpRequest: ...
             def answers(self) -> AnswersResource: ...
-
         def questions(self) -> QuestionsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

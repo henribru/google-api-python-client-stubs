@@ -29,14 +29,13 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -46,7 +45,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudAssuredworkloadsV1AcknowledgeViolationResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -60,7 +59,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         interval_startTime: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest
                     ): ...
@@ -72,7 +71,6 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                         GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest
                         | None
                     ): ...
-
                 def analyzeWorkloadMove(
                     self,
                     *,
@@ -81,7 +79,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     project: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest
                 ): ...
@@ -99,7 +97,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudAssuredworkloadsV1Workload = ...,
                     externalId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -114,7 +112,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -128,7 +126,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1WorkloadHttpRequest: ...
                 def patch(
                     self,
@@ -136,22 +134,19 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudAssuredworkloadsV1Workload = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1WorkloadHttpRequest: ...
                 def restrictAllowedResources(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponseHttpRequest: ...
                 def violations(self) -> ViolationsResource: ...
-
             def operations(self) -> OperationsResource: ...
             def workloads(self) -> WorkloadsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

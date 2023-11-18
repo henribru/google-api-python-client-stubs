@@ -33,7 +33,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                     "FIREBASE_RULES_EXECUTABLE_V1",
                     "FIREBASE_RULES_EXECUTABLE_V2",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GetReleaseExecutableResponseHttpRequest: ...
             def list(
                 self,
@@ -42,7 +42,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReleasesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -54,9 +54,8 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UpdateReleaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReleaseHttpRequest: ...
-
         @typing.type_check_only
         class RulesetsResource(googleapiclient.discovery.Resource):
             def create(
@@ -73,20 +72,18 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRulesetsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListRulesetsResponseHttpRequest,
                 previous_response: ListRulesetsResponse,
             ) -> ListRulesetsResponseHttpRequest | None: ...
-
         def test(
             self, *, name: str, body: TestRulesetRequest = ..., **kwargs: typing.Any
         ) -> TestRulesetResponseHttpRequest: ...
         def releases(self) -> ReleasesResource: ...
         def rulesets(self) -> RulesetsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

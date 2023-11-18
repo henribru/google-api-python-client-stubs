@@ -25,7 +25,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 resourceTypes: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
             ): ...
@@ -37,9 +37,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
                 | None
             ): ...
-
         def protectedResources(self) -> ProtectedResourcesResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -50,14 +48,13 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest,
                 previous_response: GoogleCloudKmsInventoryV1ListCryptoKeysResponse,
             ) -> GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -69,14 +66,10 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest
                     ): ...
-
                 def cryptoKeys(self) -> CryptoKeysResource: ...
-
             def keyRings(self) -> KeyRingsResource: ...
-
         def cryptoKeys(self) -> CryptoKeysResource: ...
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

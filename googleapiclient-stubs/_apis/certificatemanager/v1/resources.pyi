@@ -27,7 +27,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: CertificateIssuanceConfig = ...,
                     certificateIssuanceConfigId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -43,14 +43,13 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCertificateIssuanceConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListCertificateIssuanceConfigsResponseHttpRequest,
                     previous_response: ListCertificateIssuanceConfigsResponse,
                 ) -> ListCertificateIssuanceConfigsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class CertificateMapsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -61,7 +60,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: CertificateMapEntry = ...,
                         certificateMapEntryId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -77,7 +76,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListCertificateMapEntriesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -90,16 +89,15 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: CertificateMapEntry = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: CertificateMap = ...,
                     certificateMapId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -115,7 +113,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCertificateMapsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -128,10 +126,9 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: CertificateMap = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def certificateMapEntries(self) -> CertificateMapEntriesResource: ...
-
             @typing.type_check_only
             class CertificatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -140,7 +137,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Certificate = ...,
                     certificateId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -156,7 +153,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCertificatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -169,9 +166,8 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Certificate = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class DnsAuthorizationsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -180,7 +176,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: DnsAuthorization = ...,
                     dnsAuthorizationId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -196,7 +192,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDnsAuthorizationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -209,9 +205,8 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: DnsAuthorization = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -219,7 +214,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -234,14 +229,13 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class TrustConfigsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -250,7 +244,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: TrustConfig = ...,
                     trustConfigId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -266,7 +260,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTrustConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -279,9 +273,8 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: TrustConfig = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -292,7 +285,7 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -300,16 +293,14 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def certificateIssuanceConfigs(
-                self,
+                self
             ) -> CertificateIssuanceConfigsResource: ...
             def certificateMaps(self) -> CertificateMapsResource: ...
             def certificates(self) -> CertificatesResource: ...
             def dnsAuthorizations(self) -> DnsAuthorizationsResource: ...
             def operations(self) -> OperationsResource: ...
             def trustConfigs(self) -> TrustConfigsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

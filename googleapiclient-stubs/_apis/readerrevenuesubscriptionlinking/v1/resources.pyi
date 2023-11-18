@@ -30,11 +30,9 @@ class SubscriptionLinkingResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: ReaderEntitlements = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReaderEntitlementsHttpRequest: ...
-
         def readers(self) -> ReadersResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

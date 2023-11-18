@@ -33,7 +33,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListSubscriptionsResponseHttpRequest: ...
         def list_next(
             self,
@@ -52,7 +52,6 @@ class PubsubResource(googleapiclient.discovery.Resource):
         def pullBatch(
             self, *, body: PullBatchRequest = ..., **kwargs: typing.Any
         ) -> PullBatchResponseHttpRequest: ...
-
     @typing.type_check_only
     class TopicsResource(googleapiclient.discovery.Resource):
         def create(
@@ -66,7 +65,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListTopicsResponseHttpRequest: ...
         def list_next(
             self,
@@ -79,7 +78,6 @@ class PubsubResource(googleapiclient.discovery.Resource):
         def publishBatch(
             self, *, body: PublishBatchRequest = ..., **kwargs: typing.Any
         ) -> PublishBatchResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -21,7 +21,6 @@ class ChromeUXReportResource(googleapiclient.discovery.Resource):
         def queryRecord(
             self, *, body: QueryRequest = ..., **kwargs: typing.Any
         ) -> QueryResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

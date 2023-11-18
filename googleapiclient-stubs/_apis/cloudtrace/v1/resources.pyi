@@ -33,19 +33,17 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "VIEW_TYPE_UNSPECIFIED", "MINIMAL", "ROOTSPAN", "COMPLETE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTracesResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListTracesResponseHttpRequest,
                 previous_response: ListTracesResponse,
             ) -> ListTracesResponseHttpRequest | None: ...
-
         def patchTraces(
             self, *, projectId: str, body: Traces = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def traces(self) -> TracesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

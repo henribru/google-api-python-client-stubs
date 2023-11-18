@@ -26,14 +26,13 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
                 jobRequisitionId: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListCompanyJobsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListCompanyJobsResponseHttpRequest,
                 previous_response: ListCompanyJobsResponse,
             ) -> ListCompanyJobsResponseHttpRequest | None: ...
-
         def create(
             self, *, body: Company = ..., **kwargs: typing.Any
         ) -> CompanyHttpRequest: ...
@@ -45,7 +44,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             mustHaveOpenJobs: bool = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCompaniesResponseHttpRequest: ...
         def list_next(
             self,
@@ -58,10 +57,9 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             name: str,
             body: Company = ...,
             updateCompanyFields: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CompanyHttpRequest: ...
         def jobs(self) -> JobsResource: ...
-
     @typing.type_check_only
     class JobsResource(googleapiclient.discovery.Resource):
         def batchDelete(
@@ -87,7 +85,7 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             idsOnly: bool = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListJobsResponseHttpRequest: ...
         def list_next(
             self,
@@ -113,7 +111,6 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             previous_request: SearchJobsResponseHttpRequest,
             previous_response: SearchJobsResponse,
         ) -> SearchJobsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def complete(
@@ -129,9 +126,8 @@ class CloudTalentSolutionResource(googleapiclient.discovery.Resource):
             type: typing_extensions.Literal[
                 "COMPLETION_TYPE_UNSPECIFIED", "JOB_TITLE", "COMPANY_NAME", "COMBINED"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CompleteQueryResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

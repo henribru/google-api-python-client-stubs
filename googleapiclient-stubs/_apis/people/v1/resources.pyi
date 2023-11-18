@@ -22,16 +22,15 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 *,
                 resourceName: str,
                 body: ModifyContactGroupMembersRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ModifyContactGroupMembersResponseHttpRequest: ...
-
         def batchGet(
             self,
             *,
             groupFields: str = ...,
             maxMembers: int = ...,
             resourceNames: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetContactGroupsResponseHttpRequest: ...
         def create(
             self, *, body: CreateContactGroupRequest = ..., **kwargs: typing.Any
@@ -45,7 +44,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             resourceName: str,
             groupFields: str = ...,
             maxMembers: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContactGroupHttpRequest: ...
         def list(
             self,
@@ -54,7 +53,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             syncToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListContactGroupsResponseHttpRequest: ...
         def list_next(
             self,
@@ -66,10 +65,9 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             resourceName: str,
             body: UpdateContactGroupRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContactGroupHttpRequest: ...
         def members(self) -> MembersResource: ...
-
     @typing.type_check_only
     class OtherContactsResource(googleapiclient.discovery.Resource):
         def copyOtherContactToMyContactsGroup(
@@ -77,7 +75,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             *,
             resourceName: str,
             body: CopyOtherContactToMyContactsGroupRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PersonHttpRequest: ...
         def list(
             self,
@@ -101,7 +99,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 ]
             ] = ...,
             syncToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOtherContactsResponseHttpRequest: ...
         def list_next(
             self,
@@ -114,9 +112,8 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             query: str = ...,
             readMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchResponseHttpRequest: ...
-
     @typing.type_check_only
     class PeopleResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -151,14 +148,13 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     ]
                 ] = ...,
                 syncToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListConnectionsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListConnectionsResponseHttpRequest,
                 previous_response: ListConnectionsResponse,
             ) -> ListConnectionsResponseHttpRequest | None: ...
-
         def batchCreateContacts(
             self, *, body: BatchCreateContactsRequest = ..., **kwargs: typing.Any
         ) -> BatchCreateContactsResponseHttpRequest: ...
@@ -187,7 +183,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PersonHttpRequest: ...
         def deleteContact(
             self, *, resourceName: str, **kwargs: typing.Any
@@ -211,7 +207,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeleteContactPhotoResponseHttpRequest: ...
         def get(
             self,
@@ -233,7 +229,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PersonHttpRequest: ...
         def getBatchGet(
             self,
@@ -255,7 +251,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetPeopleResponseHttpRequest: ...
         def listDirectoryPeople(
             self,
@@ -287,7 +283,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 ]
             ] = ...,
             syncToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListDirectoryPeopleResponseHttpRequest: ...
         def listDirectoryPeople_next(
             self,
@@ -314,7 +310,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchResponseHttpRequest: ...
         def searchDirectoryPeople(
             self,
@@ -345,7 +341,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "DIRECTORY_SOURCE_TYPE_DOMAIN_PROFILE",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchDirectoryPeopleResponseHttpRequest: ...
         def searchDirectoryPeople_next(
             self,
@@ -373,17 +369,16 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 ]
             ] = ...,
             updatePersonFields: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PersonHttpRequest: ...
         def updateContactPhoto(
             self,
             *,
             resourceName: str,
             body: UpdateContactPhotoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UpdateContactPhotoResponseHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

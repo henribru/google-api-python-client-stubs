@@ -25,21 +25,18 @@ class PlayGroupingResource(googleapiclient.discovery.Resource):
                     appPackage: str,
                     token: str,
                     body: CreateOrUpdateTagsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CreateOrUpdateTagsResponseHttpRequest: ...
-
             def verify(
                 self,
                 *,
                 appPackage: str,
                 token: str,
                 body: VerifyTokenRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> VerifyTokenResponseHttpRequest: ...
             def tags(self) -> TagsResource: ...
-
         def tokens(self) -> TokensResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -27,14 +27,13 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -47,7 +46,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DeleteConnectionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
                 self, *, parent: str, network: str = ..., **kwargs: typing.Any
@@ -59,9 +58,8 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 body: Connection = ...,
                 force: bool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
-
         @typing.type_check_only
         class DnsRecordSetsResource(googleapiclient.discovery.Resource):
             def add(
@@ -69,7 +67,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: AddDnsRecordSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
@@ -79,7 +77,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 domain: str = ...,
                 type: str = ...,
                 zone: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DnsRecordSetHttpRequest: ...
             def list(
                 self,
@@ -87,23 +85,22 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 parent: str,
                 consumerNetwork: str = ...,
                 zone: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDnsRecordSetsResponseHttpRequest: ...
             def remove(
                 self,
                 *,
                 parent: str,
                 body: RemoveDnsRecordSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def update(
                 self,
                 *,
                 parent: str,
                 body: UpdateDnsRecordSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
-
         @typing.type_check_only
         class DnsZonesResource(googleapiclient.discovery.Resource):
             def add(
@@ -111,16 +108,15 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: AddDnsZoneRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def remove(
                 self,
                 *,
                 parent: str,
                 body: RemoveDnsZoneRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
-
         @typing.type_check_only
         class ProjectsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -135,7 +131,6 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         def list(
                             self, *, parent: str, **kwargs: typing.Any
                         ) -> ListDnsZonesResponseHttpRequest: ...
-
                     @typing.type_check_only
                     class PeeredDnsDomainsResource(googleapiclient.discovery.Resource):
                         def create(
@@ -143,7 +138,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: PeeredDnsDomain = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -151,13 +146,12 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         def list(
                             self, *, parent: str, **kwargs: typing.Any
                         ) -> ListPeeredDnsDomainsResponseHttpRequest: ...
-
                     def get(
                         self,
                         *,
                         name: str,
                         includeUsedIpRanges: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ConsumerConfigHttpRequest: ...
                     def getVpcServiceControls(
                         self, *, name: str, **kwargs: typing.Any
@@ -167,21 +161,17 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: UpdateConsumerConfigRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def dnsZones(self) -> DnsZonesResource: ...
                     def peeredDnsDomains(self) -> PeeredDnsDomainsResource: ...
-
                 def networks(self) -> NetworksResource: ...
-
             def global_(self) -> GlobalResource: ...
-
         @typing.type_check_only
         class RolesResource(googleapiclient.discovery.Resource):
             def add(
                 self, *, parent: str, body: AddRolesRequest = ..., **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-
         def addSubnetwork(
             self, *, parent: str, body: AddSubnetworkRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -190,14 +180,14 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: DisableVpcServiceControlsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def enableVpcServiceControls(
             self,
             *,
             parent: str,
             body: EnableVpcServiceControlsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def searchRange(
             self, *, parent: str, body: SearchRangeRequest = ..., **kwargs: typing.Any
@@ -207,14 +197,13 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: ValidateConsumerConfigRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ValidateConsumerConfigResponseHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
         def dnsRecordSets(self) -> DnsRecordSetsResource: ...
         def dnsZones(self) -> DnsZonesResource: ...
         def projects(self) -> ProjectsResource: ...
         def roles(self) -> RolesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

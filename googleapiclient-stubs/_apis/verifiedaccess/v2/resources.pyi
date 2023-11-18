@@ -21,7 +21,6 @@ class VerifiedaccessResource(googleapiclient.discovery.Resource):
         def verify(
             self, *, body: VerifyChallengeResponseRequest = ..., **kwargs: typing.Any
         ) -> VerifyChallengeResponseResultHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -20,12 +20,10 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -33,7 +31,6 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-
         def batchGetAssetsHistory(
             self,
             *,
@@ -44,13 +41,12 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -58,7 +54,6 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
-
         def batchGetAssetsHistory(
             self,
             *,
@@ -69,13 +64,12 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

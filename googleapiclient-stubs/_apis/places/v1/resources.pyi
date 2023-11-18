@@ -24,31 +24,29 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
                 maxHeightPx: int = ...,
                 maxWidthPx: int = ...,
                 skipHttpRedirect: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleMapsPlacesV1PhotoMediaHttpRequest: ...
-
         def get(
             self,
             *,
             name: str,
             languageCode: str = ...,
             regionCode: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
         def searchNearby(
             self,
             *,
             body: GoogleMapsPlacesV1SearchNearbyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1SearchNearbyResponseHttpRequest: ...
         def searchText(
             self,
             *,
             body: GoogleMapsPlacesV1SearchTextRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest: ...
         def photos(self) -> PhotosResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

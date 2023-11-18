@@ -30,7 +30,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             criterionId: str = ...,
             customerId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionListHttpRequest: ...
         def getByCustomerId(
             self,
@@ -47,7 +47,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             criterionId: str = ...,
             engineAccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionListHttpRequest: ...
         def insert(
             self, *, body: ConversionList = ..., **kwargs: typing.Any
@@ -58,7 +58,6 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def updateAvailability(
             self, *, body: UpdateAvailabilityRequest = ..., **kwargs: typing.Any
         ) -> UpdateAvailabilityResponseHttpRequest: ...
-
     @typing.type_check_only
     class ReportsResource(googleapiclient.discovery.Resource):
         def generate(
@@ -80,13 +79,11 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
         def request(
             self, *, body: ReportRequest = ..., **kwargs: typing.Any
         ) -> ReportHttpRequest: ...
-
     @typing.type_check_only
     class SavedColumnsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, agencyId: str, advertiserId: str, **kwargs: typing.Any
         ) -> SavedColumnListHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -32,7 +32,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CompositeTypesListResponseHttpRequest: ...
         def list_next(
             self,
@@ -45,7 +45,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             compositeType: str,
             body: CompositeType = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
             self,
@@ -53,9 +53,8 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             compositeType: str,
             body: CompositeType = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
-
     @typing.type_check_only
     class DeploymentsResource(googleapiclient.discovery.Resource):
         def cancelPreview(
@@ -64,7 +63,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             body: DeploymentsCancelPreviewRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
             self,
@@ -72,7 +71,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
             self, *, project: str, deployment: str, **kwargs: typing.Any
@@ -83,7 +82,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             resource: str,
             optionsRequestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def insert(
             self,
@@ -94,7 +93,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
                 "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
             preview: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
@@ -104,7 +103,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeploymentsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -122,7 +121,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             ] = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def setIamPolicy(
             self,
@@ -130,7 +129,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             resource: str,
             body: GlobalSetPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def stop(
             self,
@@ -138,7 +137,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             body: DeploymentsStopRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def testIamPermissions(
             self,
@@ -146,7 +145,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             resource: str,
             body: TestPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
             self,
@@ -159,9 +158,8 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             ] = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
             preview: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
-
     @typing.type_check_only
     class ManifestsResource(googleapiclient.discovery.Resource):
         def get(
@@ -176,14 +174,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManifestsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ManifestsListResponseHttpRequest,
             previous_response: ManifestsListResponse,
         ) -> ManifestsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
@@ -197,14 +194,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: OperationsListResponseHttpRequest,
             previous_response: OperationsListResponse,
         ) -> OperationsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def get(
@@ -219,14 +215,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResourcesListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ResourcesListResponseHttpRequest,
             previous_response: ResourcesListResponse,
         ) -> ResourcesListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class TypeProvidersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -249,7 +244,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TypeProvidersListResponseHttpRequest: ...
         def list_next(
             self,
@@ -265,7 +260,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TypeProvidersListTypesResponseHttpRequest: ...
         def listTypes_next(
             self,
@@ -278,7 +273,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             typeProvider: str,
             body: TypeProvider = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
             self,
@@ -286,9 +281,8 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             typeProvider: str,
             body: TypeProvider = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
-
     @typing.type_check_only
     class TypesResource(googleapiclient.discovery.Resource):
         def get(
@@ -302,14 +296,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             orderBy: str = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TypesListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: TypesListResponseHttpRequest,
             previous_response: TypesListResponse,
         ) -> TypesListResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

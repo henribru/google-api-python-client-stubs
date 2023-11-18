@@ -22,7 +22,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponseHttpRequest
             ): ...
@@ -31,9 +31,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudRecaptchaenterpriseV1Assessment = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest: ...
-
         @typing.type_check_only
         class FirewallpoliciesResource(googleapiclient.discovery.Resource):
             def create(
@@ -41,7 +40,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -55,7 +54,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest
             ): ...
@@ -73,9 +72,8 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1FirewallPolicy = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
-
         @typing.type_check_only
         class KeysResource(googleapiclient.discovery.Resource):
             def create(
@@ -83,7 +81,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudRecaptchaenterpriseV1Key = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -100,7 +98,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest: ...
             def list_next(
                 self,
@@ -112,7 +110,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def patch(
                 self,
@@ -120,12 +118,11 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudRecaptchaenterpriseV1Key = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
             def retrieveLegacySecretKey(
                 self, *, key: str, **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest: ...
-
         @typing.type_check_only
         class RelatedaccountgroupmembershipsResource(
             googleapiclient.discovery.Resource
@@ -135,7 +132,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 body: GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest: ...
             def search_next(
                 self,
@@ -145,7 +142,6 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponseHttpRequest
                 | None
             ): ...
-
         @typing.type_check_only
         class RelatedaccountgroupsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -156,7 +152,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -166,14 +162,13 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                     GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponseHttpRequest
                     | None
                 ): ...
-
             def list(
                 self,
                 *,
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -184,15 +179,13 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 | None
             ): ...
             def memberships(self) -> MembershipsResource: ...
-
         def assessments(self) -> AssessmentsResource: ...
         def firewallpolicies(self) -> FirewallpoliciesResource: ...
         def keys(self) -> KeysResource: ...
         def relatedaccountgroupmemberships(
-            self,
+            self
         ) -> RelatedaccountgroupmembershipsResource: ...
         def relatedaccountgroups(self) -> RelatedaccountgroupsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

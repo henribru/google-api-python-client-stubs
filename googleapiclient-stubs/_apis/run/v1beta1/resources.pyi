@@ -25,9 +25,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             resourceVersion: str = ...,
             watch: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCustomResourceDefinitionsResponseHttpRequest: ...
-
     @typing.type_check_only
     class NamespacesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -35,9 +34,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> CustomResourceDefinitionHttpRequest: ...
-
         def customresourcedefinitions(self) -> CustomresourcedefinitionsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -57,15 +54,12 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCustomResourceDefinitionsResponseHttpRequest: ...
-
             def customresourcedefinitions(
-                self,
+                self
             ) -> CustomresourcedefinitionsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -29,37 +29,32 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             def synthesizeLongAudio(
                 self,
                 *,
                 parent: str,
                 body: SynthesizeLongAudioRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     @typing.type_check_only
     class TextResource(googleapiclient.discovery.Resource):
         def synthesize(
             self, *, body: SynthesizeSpeechRequest = ..., **kwargs: typing.Any
         ) -> SynthesizeSpeechResponseHttpRequest: ...
-
     @typing.type_check_only
     class VoicesResource(googleapiclient.discovery.Resource):
         def list(
             self, *, languageCode: str = ..., **kwargs: typing.Any
         ) -> ListVoicesResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

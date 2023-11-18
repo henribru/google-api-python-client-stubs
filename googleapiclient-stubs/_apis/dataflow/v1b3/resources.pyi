@@ -25,7 +25,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     jobId: str,
                     body: GetDebugConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetDebugConfigResponseHttpRequest: ...
                 def sendCapture(
                     self,
@@ -33,9 +33,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     jobId: str,
                     body: SendDebugCaptureRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SendDebugCaptureResponseHttpRequest: ...
-
             @typing.type_check_only
             class MessagesResource(googleapiclient.discovery.Resource):
                 def list(
@@ -56,14 +55,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     startTime: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobMessagesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListJobMessagesResponseHttpRequest,
                     previous_response: ListJobMessagesResponse,
                 ) -> ListJobMessagesResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class WorkItemsResource(googleapiclient.discovery.Resource):
                 def lease(
@@ -72,7 +70,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     jobId: str,
                     body: LeaseWorkItemRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> LeaseWorkItemResponseHttpRequest: ...
                 def reportStatus(
                     self,
@@ -80,9 +78,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     jobId: str,
                     body: ReportWorkItemStatusRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ReportWorkItemStatusResponseHttpRequest: ...
-
             def aggregated(
                 self,
                 *,
@@ -100,7 +97,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "JOB_VIEW_ALL",
                     "JOB_VIEW_DESCRIPTION",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def aggregated_next(
                 self,
@@ -120,7 +117,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "JOB_VIEW_ALL",
                     "JOB_VIEW_DESCRIPTION",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def get(
                 self,
@@ -134,7 +131,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "JOB_VIEW_ALL",
                     "JOB_VIEW_DESCRIPTION",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def getMetrics(
                 self,
@@ -143,7 +140,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 jobId: str,
                 location: str = ...,
                 startTime: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> JobMetricsHttpRequest: ...
             def list(
                 self,
@@ -162,7 +159,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     "JOB_VIEW_ALL",
                     "JOB_VIEW_DESCRIPTION",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -175,7 +172,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 jobId: str,
                 body: SnapshotJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SnapshotHttpRequest: ...
             def update(
                 self,
@@ -185,12 +182,11 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 body: Job = ...,
                 location: str = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def debug(self) -> DebugResource: ...
             def messages(self) -> MessagesResource: ...
             def workItems(self) -> WorkItemsResource: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -201,9 +197,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     body: LaunchFlexTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> LaunchFlexTemplateResponseHttpRequest: ...
-
             @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -215,7 +210,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         location: str,
                         jobId: str,
                         body: GetDebugConfigRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GetDebugConfigResponseHttpRequest: ...
                     def sendCapture(
                         self,
@@ -224,9 +219,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         location: str,
                         jobId: str,
                         body: SendDebugCaptureRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SendDebugCaptureResponseHttpRequest: ...
-
                 @typing.type_check_only
                 class MessagesResource(googleapiclient.discovery.Resource):
                     def list(
@@ -247,14 +241,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         startTime: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListJobMessagesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListJobMessagesResponseHttpRequest,
                         previous_response: ListJobMessagesResponse,
                     ) -> ListJobMessagesResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class SnapshotsResource(googleapiclient.discovery.Resource):
                     def list(
@@ -263,9 +256,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         location: str,
                         jobId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSnapshotsResponseHttpRequest: ...
-
                 @typing.type_check_only
                 class StagesResource(googleapiclient.discovery.Resource):
                     def getExecutionDetails(
@@ -279,14 +271,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         startTime: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> StageExecutionDetailsHttpRequest: ...
                     def getExecutionDetails_next(
                         self,
                         previous_request: StageExecutionDetailsHttpRequest,
                         previous_response: StageExecutionDetails,
                     ) -> StageExecutionDetailsHttpRequest | None: ...
-
                 @typing.type_check_only
                 class WorkItemsResource(googleapiclient.discovery.Resource):
                     def lease(
@@ -296,7 +287,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         location: str,
                         jobId: str,
                         body: LeaseWorkItemRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> LeaseWorkItemResponseHttpRequest: ...
                     def reportStatus(
                         self,
@@ -305,9 +296,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         location: str,
                         jobId: str,
                         body: ReportWorkItemStatusRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ReportWorkItemStatusResponseHttpRequest: ...
-
                 def create(
                     self,
                     *,
@@ -321,7 +311,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         "JOB_VIEW_ALL",
                         "JOB_VIEW_DESCRIPTION",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def get(
                     self,
@@ -335,7 +325,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         "JOB_VIEW_ALL",
                         "JOB_VIEW_DESCRIPTION",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def getExecutionDetails(
                     self,
@@ -345,7 +335,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     jobId: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobExecutionDetailsHttpRequest: ...
                 def getExecutionDetails_next(
                     self,
@@ -359,7 +349,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     location: str,
                     jobId: str,
                     startTime: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobMetricsHttpRequest: ...
                 def list(
                     self,
@@ -378,7 +368,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         "JOB_VIEW_ALL",
                         "JOB_VIEW_DESCRIPTION",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -392,7 +382,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     location: str,
                     jobId: str,
                     body: SnapshotJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SnapshotHttpRequest: ...
                 def update(
                     self,
@@ -402,14 +392,13 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     jobId: str,
                     body: Job = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def debug(self) -> DebugResource: ...
                 def messages(self) -> MessagesResource: ...
                 def snapshots(self) -> SnapshotsResource: ...
                 def stages(self) -> StagesResource: ...
                 def workItems(self) -> WorkItemsResource: ...
-
             @typing.type_check_only
             class SnapshotsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -418,7 +407,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     snapshotId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DeleteSnapshotResponseHttpRequest: ...
                 def get(
                     self,
@@ -426,7 +415,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     snapshotId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SnapshotHttpRequest: ...
                 def list(
                     self,
@@ -434,9 +423,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     jobId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSnapshotsResponseHttpRequest: ...
-
             @typing.type_check_only
             class TemplatesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -445,7 +433,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     location: str,
                     body: CreateJobFromTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def get(
                     self,
@@ -454,7 +442,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     location: str,
                     gcsPath: str = ...,
                     view: typing_extensions.Literal["METADATA_ONLY"] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetTemplateResponseHttpRequest: ...
                 def launch(
                     self,
@@ -466,22 +454,20 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     dynamicTemplate_stagingLocation: str = ...,
                     gcsPath: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> LaunchTemplateResponseHttpRequest: ...
-
             def workerMessages(
                 self,
                 *,
                 projectId: str,
                 location: str,
                 body: SendWorkerMessagesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SendWorkerMessagesResponseHttpRequest: ...
             def flexTemplates(self) -> FlexTemplatesResource: ...
             def jobs(self) -> JobsResource: ...
             def snapshots(self) -> SnapshotsResource: ...
             def templates(self) -> TemplatesResource: ...
-
         @typing.type_check_only
         class SnapshotsResource(googleapiclient.discovery.Resource):
             def get(
@@ -490,7 +476,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 snapshotId: str,
                 location: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SnapshotHttpRequest: ...
             def list(
                 self,
@@ -498,9 +484,8 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 jobId: str = ...,
                 location: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSnapshotsResponseHttpRequest: ...
-
         @typing.type_check_only
         class TemplatesResource(googleapiclient.discovery.Resource):
             def create(
@@ -508,7 +493,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: CreateJobFromTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> JobHttpRequest: ...
             def get(
                 self,
@@ -517,7 +502,7 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 gcsPath: str = ...,
                 location: str = ...,
                 view: typing_extensions.Literal["METADATA_ONLY"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GetTemplateResponseHttpRequest: ...
             def launch(
                 self,
@@ -529,29 +514,27 @@ class DataflowResource(googleapiclient.discovery.Resource):
                 gcsPath: str = ...,
                 location: str = ...,
                 validateOnly: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> LaunchTemplateResponseHttpRequest: ...
-
         def deleteSnapshots(
             self,
             *,
             projectId: str,
             location: str = ...,
             snapshotId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeleteSnapshotResponseHttpRequest: ...
         def workerMessages(
             self,
             *,
             projectId: str,
             body: SendWorkerMessagesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SendWorkerMessagesResponseHttpRequest: ...
         def jobs(self) -> JobsResource: ...
         def locations(self) -> LocationsResource: ...
         def snapshots(self) -> SnapshotsResource: ...
         def templates(self) -> TemplatesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

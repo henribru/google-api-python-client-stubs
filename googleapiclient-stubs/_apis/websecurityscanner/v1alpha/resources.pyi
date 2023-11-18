@@ -27,20 +27,18 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListCrawledUrlsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListCrawledUrlsResponseHttpRequest,
                         previous_response: ListCrawledUrlsResponse,
                     ) -> ListCrawledUrlsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class FindingTypeStatsResource(googleapiclient.discovery.Resource):
                     def list(
                         self, *, parent: str, **kwargs: typing.Any
                     ) -> ListFindingTypeStatsResponseHttpRequest: ...
-
                 @typing.type_check_only
                 class FindingsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -53,14 +51,13 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListFindingsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListFindingsResponseHttpRequest,
                         previous_response: ListFindingsResponse,
                     ) -> ListFindingsResponseHttpRequest | None: ...
-
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ScanRunHttpRequest: ...
@@ -70,7 +67,7 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListScanRunsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -82,12 +79,11 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: StopScanRunRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ScanRunHttpRequest: ...
                 def crawledUrls(self) -> CrawledUrlsResource: ...
                 def findingTypeStats(self) -> FindingTypeStatsResource: ...
                 def findings(self) -> FindingsResource: ...
-
             def create(
                 self, *, parent: str, body: ScanConfig = ..., **kwargs: typing.Any
             ) -> ScanConfigHttpRequest: ...
@@ -103,7 +99,7 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListScanConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -116,19 +112,17 @@ class WebSecurityScannerResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: ScanConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ScanConfigHttpRequest: ...
             def start(
                 self,
                 *,
                 name: str,
                 body: StartScanRunRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ScanRunHttpRequest: ...
             def scanRuns(self) -> ScanRunsResource: ...
-
         def scanConfigs(self) -> ScanConfigsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

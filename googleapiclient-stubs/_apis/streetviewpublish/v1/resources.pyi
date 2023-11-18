@@ -25,7 +25,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             photoId: str,
             languageCode: str = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
         def startUpload(
             self, *, body: Empty = ..., **kwargs: typing.Any
@@ -36,9 +36,8 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             id: str,
             body: Photo = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PhotoHttpRequest: ...
-
     @typing.type_check_only
     class PhotoSequenceResource(googleapiclient.discovery.Resource):
         def create(
@@ -48,7 +47,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             inputType: typing_extensions.Literal[
                 "INPUT_TYPE_UNSPECIFIED", "VIDEO", "XDM"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
             self, *, sequenceId: str, **kwargs: typing.Any
@@ -59,12 +58,11 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             sequenceId: str,
             filter: str = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def startUpload(
             self, *, body: Empty = ..., **kwargs: typing.Any
         ) -> UploadRefHttpRequest: ...
-
     @typing.type_check_only
     class PhotoSequencesResource(googleapiclient.discovery.Resource):
         def list(
@@ -73,14 +71,13 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListPhotoSequencesResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListPhotoSequencesResponseHttpRequest,
             previous_response: ListPhotoSequencesResponse,
         ) -> ListPhotoSequencesResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class PhotosResource(googleapiclient.discovery.Resource):
         def batchDelete(
@@ -92,7 +89,7 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             languageCode: str = ...,
             photoIds: str | _list[str] = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetPhotosResponseHttpRequest: ...
         def batchUpdate(
             self, *, body: BatchUpdatePhotosRequest = ..., **kwargs: typing.Any
@@ -105,14 +102,13 @@ class StreetViewPublishResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             view: typing_extensions.Literal["BASIC", "INCLUDE_DOWNLOAD_URL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListPhotosResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListPhotosResponseHttpRequest,
             previous_response: ListPhotosResponse,
         ) -> ListPhotosResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

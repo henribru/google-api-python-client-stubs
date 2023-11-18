@@ -23,14 +23,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             name: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -57,7 +56,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -76,7 +75,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -84,7 +83,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListAdminOverridesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -110,9 +109,8 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                             ]
                         ] = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
-
                 @typing.type_check_only
                 class ConsumerOverridesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -133,7 +131,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -152,7 +150,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -160,7 +158,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListConsumerOverridesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -186,9 +184,8 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                             ]
                         ] = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
-
                 def get(
                     self,
                     *,
@@ -196,11 +193,10 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal[
                         "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ConsumerQuotaLimitHttpRequest: ...
                 def adminOverrides(self) -> AdminOverridesResource: ...
                 def consumerOverrides(self) -> ConsumerOverridesResource: ...
-
             def get(
                 self,
                 *,
@@ -208,21 +204,21 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ConsumerQuotaMetricHttpRequest: ...
             def importAdminOverrides(
                 self,
                 *,
                 parent: str,
                 body: ImportAdminOverridesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def importConsumerOverrides(
                 self,
                 *,
                 parent: str,
                 body: ImportConsumerOverridesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
                 self,
@@ -233,7 +229,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListConsumerQuotaMetricsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -241,13 +237,12 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
                 previous_response: ListConsumerQuotaMetricsResponse,
             ) -> ListConsumerQuotaMetricsResponseHttpRequest | None: ...
             def limits(self) -> LimitsResource: ...
-
         def batchEnable(
             self,
             *,
             parent: str,
             body: BatchEnableServicesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def disable(
             self, *, name: str, body: DisableServiceRequest = ..., **kwargs: typing.Any
@@ -266,7 +261,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(
             self,
@@ -274,7 +269,6 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
         def consumerQuotaMetrics(self) -> ConsumerQuotaMetricsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

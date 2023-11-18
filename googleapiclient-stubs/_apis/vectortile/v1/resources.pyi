@@ -45,9 +45,8 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             enableUnclippedBuildings: bool = ...,
             languageCode: str = ...,
             regionCode: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FeatureTileHttpRequest: ...
-
     @typing.type_check_only
     class TerraintilesResource(googleapiclient.discovery.Resource):
         def get(
@@ -81,9 +80,8 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
                     "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TerrainTileHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

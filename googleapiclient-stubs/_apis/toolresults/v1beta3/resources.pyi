@@ -28,7 +28,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         clusterId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ScreenshotClusterHttpRequest: ...
                     def list(
                         self,
@@ -36,9 +36,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         projectId: str,
                         historyId: str,
                         executionId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListScreenshotClustersResponseHttpRequest: ...
-
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
                     def get(
@@ -48,7 +47,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         environmentId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EnvironmentHttpRequest: ...
                     def list(
                         self,
@@ -58,14 +57,13 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListEnvironmentsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListEnvironmentsResponseHttpRequest,
                         previous_response: ListEnvironmentsResponse,
                     ) -> ListEnvironmentsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class StepsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -80,9 +78,8 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             executionId: str,
                             stepId: str,
                             body: PerfMetricsSummary = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PerfMetricsSummaryHttpRequest: ...
-
                     @typing.type_check_only
                     class PerfSampleSeriesResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
@@ -96,7 +93,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 stepId: str,
                                 sampleSeriesId: str,
                                 body: BatchCreatePerfSamplesRequest = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> BatchCreatePerfSamplesResponseHttpRequest: ...
                             def list(
                                 self,
@@ -108,14 +105,13 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                 sampleSeriesId: str,
                                 pageSize: int = ...,
                                 pageToken: str = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> ListPerfSamplesResponseHttpRequest: ...
                             def list_next(
                                 self,
                                 previous_request: ListPerfSamplesResponseHttpRequest,
                                 previous_response: ListPerfSamplesResponse,
                             ) -> ListPerfSamplesResponseHttpRequest | None: ...
-
                         def create(
                             self,
                             *,
@@ -124,7 +120,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             executionId: str,
                             stepId: str,
                             body: PerfSampleSeries = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PerfSampleSeriesHttpRequest: ...
                         def get(
                             self,
@@ -134,7 +130,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             executionId: str,
                             stepId: str,
                             sampleSeriesId: str,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PerfSampleSeriesHttpRequest: ...
                         def list(
                             self,
@@ -159,10 +155,9 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                     "graphics",
                                 ]
                             ] = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListPerfSampleSeriesResponseHttpRequest: ...
                         def samples(self) -> SamplesResource: ...
-
                     @typing.type_check_only
                     class TestCasesResource(googleapiclient.discovery.Resource):
                         def get(
@@ -173,7 +168,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             executionId: str,
                             stepId: str,
                             testCaseId: str,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TestCaseHttpRequest: ...
                         def list(
                             self,
@@ -184,14 +179,13 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             stepId: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListTestCasesResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListTestCasesResponseHttpRequest,
                             previous_response: ListTestCasesResponse,
                         ) -> ListTestCasesResponseHttpRequest | None: ...
-
                     @typing.type_check_only
                     class ThumbnailsResource(googleapiclient.discovery.Resource):
                         def list(
@@ -203,14 +197,13 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             stepId: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListStepThumbnailsResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListStepThumbnailsResponseHttpRequest,
                             previous_response: ListStepThumbnailsResponse,
                         ) -> ListStepThumbnailsResponseHttpRequest | None: ...
-
                     def accessibilityClusters(
                         self, *, name: str, locale: str = ..., **kwargs: typing.Any
                     ) -> ListStepAccessibilityClustersResponseHttpRequest: ...
@@ -222,7 +215,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         body: Step = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def get(
                         self,
@@ -231,7 +224,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         stepId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def getPerfMetricsSummary(
                         self,
@@ -240,7 +233,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         historyId: str,
                         executionId: str,
                         stepId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PerfMetricsSummaryHttpRequest: ...
                     def list(
                         self,
@@ -250,7 +243,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListStepsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -266,7 +259,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         stepId: str,
                         body: Step = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def publishXunitXmlFiles(
                         self,
@@ -276,13 +269,12 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                         executionId: str,
                         stepId: str,
                         body: PublishXunitXmlFilesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> StepHttpRequest: ...
                     def perfMetricsSummary(self) -> PerfMetricsSummaryResource: ...
                     def perfSampleSeries(self) -> PerfSampleSeriesResource: ...
                     def testCases(self) -> TestCasesResource: ...
                     def thumbnails(self) -> ThumbnailsResource: ...
-
                 def create(
                     self,
                     *,
@@ -290,7 +282,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     historyId: str,
                     body: Execution = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def get(
                     self,
@@ -298,7 +290,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     historyId: str,
                     executionId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def list(
                     self,
@@ -307,7 +299,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     historyId: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListExecutionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -322,19 +314,18 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                     executionId: str,
                     body: Execution = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def clusters(self) -> ClustersResource: ...
                 def environments(self) -> EnvironmentsResource: ...
                 def steps(self) -> StepsResource: ...
-
             def create(
                 self,
                 *,
                 projectId: str,
                 body: History = ...,
                 requestId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> HistoryHttpRequest: ...
             def get(
                 self, *, projectId: str, historyId: str, **kwargs: typing.Any
@@ -346,7 +337,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 filterByName: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListHistoriesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -354,7 +345,6 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                 previous_response: ListHistoriesResponse,
             ) -> ListHistoriesResponseHttpRequest | None: ...
             def executions(self) -> ExecutionsResource: ...
-
         def getSettings(
             self, *, projectId: str, **kwargs: typing.Any
         ) -> ProjectSettingsHttpRequest: ...
@@ -362,7 +352,6 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
             self, *, projectId: str, **kwargs: typing.Any
         ) -> ProjectSettingsHttpRequest: ...
         def histories(self) -> HistoriesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

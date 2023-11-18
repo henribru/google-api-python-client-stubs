@@ -22,7 +22,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CheckValidCredsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> CheckValidCredsResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -33,14 +33,13 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListDataSourcesResponseHttpRequest,
                 previous_response: ListDataSourcesResponse,
             ) -> ListDataSourcesResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -50,7 +49,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CheckValidCredsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CheckValidCredsResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -61,14 +60,13 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDataSourcesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListDataSourcesResponseHttpRequest,
                     previous_response: ListDataSourcesResponse,
                 ) -> ListDataSourcesResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class TransferConfigsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
@@ -95,14 +93,13 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             ] = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListTransferLogsResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListTransferLogsResponseHttpRequest,
                             previous_response: ListTransferLogsResponse,
                         ) -> ListTransferLogsResponseHttpRequest | None: ...
-
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
@@ -136,7 +133,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                 "CANCELLED",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListTransferRunsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -144,7 +141,6 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         previous_response: ListTransferRunsResponse,
                     ) -> ListTransferRunsResponseHttpRequest | None: ...
                     def transferLogs(self) -> TransferLogsResource: ...
-
                 def create(
                     self,
                     *,
@@ -153,7 +149,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     authorizationCode: str = ...,
                     serviceAccountName: str = ...,
                     versionInfo: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TransferConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -168,7 +164,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     dataSourceIds: str | _list[str] = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTransferConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -184,30 +180,29 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     serviceAccountName: str = ...,
                     updateMask: str = ...,
                     versionInfo: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TransferConfigHttpRequest: ...
                 def scheduleRuns(
                     self,
                     *,
                     parent: str,
                     body: ScheduleTransferRunsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ScheduleTransferRunsResponseHttpRequest: ...
                 def startManualRuns(
                     self,
                     *,
                     parent: str,
                     body: StartManualTransferRunsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> StartManualTransferRunsResponseHttpRequest: ...
                 def runs(self) -> RunsResource: ...
-
             def enrollDataSources(
                 self,
                 *,
                 name: str,
                 body: EnrollDataSourcesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -219,7 +214,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -228,7 +223,6 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def dataSources(self) -> DataSourcesResource: ...
             def transferConfigs(self) -> TransferConfigsResource: ...
-
         @typing.type_check_only
         class TransferConfigsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -252,14 +246,13 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListTransferLogsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListTransferLogsResponseHttpRequest,
                         previous_response: ListTransferLogsResponse,
                     ) -> ListTransferLogsResponseHttpRequest | None: ...
-
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
@@ -293,7 +286,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             "CANCELLED",
                         ]
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTransferRunsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -301,7 +294,6 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     previous_response: ListTransferRunsResponse,
                 ) -> ListTransferRunsResponseHttpRequest | None: ...
                 def transferLogs(self) -> TransferLogsResource: ...
-
             def create(
                 self,
                 *,
@@ -310,7 +302,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 authorizationCode: str = ...,
                 serviceAccountName: str = ...,
                 versionInfo: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TransferConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -325,7 +317,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 dataSourceIds: str | _list[str] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTransferConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -341,35 +333,33 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 serviceAccountName: str = ...,
                 updateMask: str = ...,
                 versionInfo: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TransferConfigHttpRequest: ...
             def scheduleRuns(
                 self,
                 *,
                 parent: str,
                 body: ScheduleTransferRunsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ScheduleTransferRunsResponseHttpRequest: ...
             def startManualRuns(
                 self,
                 *,
                 parent: str,
                 body: StartManualTransferRunsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StartManualTransferRunsResponseHttpRequest: ...
             def runs(self) -> RunsResource: ...
-
         def enrollDataSources(
             self,
             *,
             name: str,
             body: EnrollDataSourcesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def dataSources(self) -> DataSourcesResource: ...
         def locations(self) -> LocationsResource: ...
         def transferConfigs(self) -> TransferConfigsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

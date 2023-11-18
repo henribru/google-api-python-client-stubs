@@ -52,7 +52,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ActivitiesHttpRequest: ...
         def list_next(
             self, previous_request: ActivitiesHttpRequest, previous_response: Activities
@@ -95,15 +95,13 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
-
     @typing.type_check_only
     class ChannelsResource(googleapiclient.discovery.Resource):
         def stop(
             self, *, body: Channel = ..., **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-
     @typing.type_check_only
     class CustomerUsageReportsResource(googleapiclient.discovery.Resource):
         def get(
@@ -113,14 +111,13 @@ class ReportsResource(googleapiclient.discovery.Resource):
             customerId: str = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
-
     @typing.type_check_only
     class EntityUsageReportsResource(googleapiclient.discovery.Resource):
         def get(
@@ -134,14 +131,13 @@ class ReportsResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
-
     @typing.type_check_only
     class UserUsageReportResource(googleapiclient.discovery.Resource):
         def get(
@@ -156,14 +152,13 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,
             previous_request: UsageReportsHttpRequest,
             previous_response: UsageReports,
         ) -> UsageReportsHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

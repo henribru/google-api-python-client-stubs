@@ -24,14 +24,13 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             customerId: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ApplicationsListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ApplicationsListResponseHttpRequest,
             previous_response: ApplicationsListResponse,
         ) -> ApplicationsListResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class TransfersResource(googleapiclient.discovery.Resource):
         def get(
@@ -49,14 +48,13 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             oldOwnerUserId: str = ...,
             pageToken: str = ...,
             status: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DataTransfersListResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: DataTransfersListResponseHttpRequest,
             previous_response: DataTransfersListResponse,
         ) -> DataTransfersListResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

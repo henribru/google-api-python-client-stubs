@@ -22,7 +22,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -30,7 +30,6 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
             def list(
                 self, *, parent: str, filter: str = ..., **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest: ...
-
         @typing.type_check_only
         class StructuresResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -41,7 +40,6 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1StructureHttpRequest: ...
@@ -49,10 +47,8 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
                 self, *, parent: str, filter: str = ..., **kwargs: typing.Any
             ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest: ...
             def rooms(self) -> RoomsResource: ...
-
         def devices(self) -> DevicesResource: ...
         def structures(self) -> StructuresResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

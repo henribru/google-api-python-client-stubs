@@ -26,7 +26,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ExecuteActionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecuteActionResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -42,14 +42,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             "ACTION_VIEW_BASIC",
                             "ACTION_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListActionsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListActionsResponseHttpRequest,
                         previous_response: ListActionsResponse,
                     ) -> ListActionsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -59,7 +58,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Entity = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -69,7 +68,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             entityType: str,
                             conditions: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -82,7 +81,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             sortBy: str | _list[str] = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListEntitiesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -98,9 +97,8 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             entityType: str,
                             body: Entity = ...,
                             conditions: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> UpdateEntitiesWithConditionsResponseHttpRequest: ...
-
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EntityTypeHttpRequest: ...
@@ -115,7 +113,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             "ENTITY_TYPE_VIEW_BASIC",
                             "ENTITY_TYPE_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListEntityTypesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -123,21 +121,17 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         previous_response: ListEntityTypesResponse,
                     ) -> ListEntityTypesResponseHttpRequest | None: ...
                     def entities(self) -> EntitiesResource: ...
-
                 def executeSqlQuery(
                     self,
                     *,
                     connection: str,
                     body: ExecuteSqlQueryRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecuteSqlQueryResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
-
             def connections(self) -> ConnectionsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

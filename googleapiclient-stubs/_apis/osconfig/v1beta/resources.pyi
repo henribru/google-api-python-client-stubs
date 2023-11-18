@@ -23,7 +23,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GuestPolicy = ...,
                 guestPolicyId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GuestPolicyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -37,7 +37,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListGuestPoliciesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -50,9 +50,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GuestPolicy = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GuestPolicyHttpRequest: ...
-
         @typing.type_check_only
         class PatchDeploymentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -61,7 +60,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: PatchDeployment = ...,
                 patchDeploymentId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -75,7 +74,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListPatchDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -88,23 +87,22 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: PatchDeployment = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def pause(
                 self,
                 *,
                 name: str,
                 body: PausePatchDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
                 body: ResumePatchDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchDeploymentHttpRequest: ...
-
         @typing.type_check_only
         class PatchJobsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -116,27 +114,26 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListPatchJobInstanceDetailsResponseHttpRequest,
                     previous_response: ListPatchJobInstanceDetailsResponse,
                 ) -> ListPatchJobInstanceDetailsResponseHttpRequest | None: ...
-
             def cancel(
                 self,
                 *,
                 name: str,
                 body: CancelPatchJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchJobHttpRequest: ...
             def execute(
                 self,
                 *,
                 parent: str,
                 body: ExecutePatchJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PatchJobHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -148,7 +145,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListPatchJobsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -156,7 +153,6 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                 previous_response: ListPatchJobsResponse,
             ) -> ListPatchJobsResponseHttpRequest | None: ...
             def instanceDetails(self) -> InstanceDetailsResource: ...
-
         @typing.type_check_only
         class ZonesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -166,16 +162,13 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     instance: str,
                     body: LookupEffectiveGuestPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EffectiveGuestPolicyHttpRequest: ...
-
             def instances(self) -> InstancesResource: ...
-
         def guestPolicies(self) -> GuestPoliciesResource: ...
         def patchDeployments(self) -> PatchDeploymentsResource: ...
         def patchJobs(self) -> PatchJobsResource: ...
         def zones(self) -> ZonesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -20,14 +20,13 @@ class IamResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleLongrunningOperationHttpRequest: ...
-
         def createPolicy(
             self,
             *,
             parent: str,
             body: GoogleIamV2betaPolicy = ...,
             policyId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def delete(
             self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -41,7 +40,7 @@ class IamResource(googleapiclient.discovery.Resource):
             parent: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIamV2betaListPoliciesResponseHttpRequest: ...
         def listPolicies_next(
             self,
@@ -52,7 +51,6 @@ class IamResource(googleapiclient.discovery.Resource):
             self, *, name: str, body: GoogleIamV2betaPolicy = ..., **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

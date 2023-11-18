@@ -44,9 +44,8 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             ] = ...,
             utm_campaign: str = ...,
             utm_source: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PagespeedApiPagespeedResponseV5HttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

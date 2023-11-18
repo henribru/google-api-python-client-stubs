@@ -22,14 +22,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
         def searchAll_next(
             self,
             previous_request: SearchAllIamPoliciesResponseHttpRequest,
             previous_response: SearchAllIamPoliciesResponse,
         ) -> SearchAllIamPoliciesResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def searchAll(
@@ -41,14 +40,13 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllResourcesResponseHttpRequest: ...
         def searchAll_next(
             self,
             previous_request: SearchAllResourcesResponseHttpRequest,
             previous_response: SearchAllResourcesResponse,
         ) -> SearchAllResourcesResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

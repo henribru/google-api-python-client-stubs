@@ -20,12 +20,9 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class MeResource(googleapiclient.discovery.Resource):
                 def get(self, **kwargs: typing.Any) -> UserinfoHttpRequest: ...
-
             def me(self) -> MeResource: ...
-
         def get(self, **kwargs: typing.Any) -> UserinfoHttpRequest: ...
         def v2(self) -> V2Resource: ...
-
     def tokeninfo(
         self,
         *,
@@ -42,7 +39,7 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
         trace: str = ...,
         userIp: str = ...,
         userip: str = ...,
-        **kwargs: typing.Any
+        **kwargs: typing.Any,
     ) -> TokeninfoHttpRequest: ...
     def new_batch_http_request(
         self,

@@ -21,14 +21,13 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchCaseClassificationsResponseHttpRequest: ...
         def search_next(
             self,
             previous_request: SearchCaseClassificationsResponseHttpRequest,
             previous_response: SearchCaseClassificationsResponse,
         ) -> SearchCaseClassificationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class CasesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -39,14 +38,13 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAttachmentsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListAttachmentsResponseHttpRequest,
                 previous_response: ListAttachmentsResponse,
             ) -> ListAttachmentsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class CommentsResource(googleapiclient.discovery.Resource):
             def create(
@@ -58,15 +56,16 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListCommentsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListCommentsResponseHttpRequest,
                 previous_response: ListCommentsResponse,
             ) -> ListCommentsResponseHttpRequest | None: ...
-
-        def close(self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any) -> CaseHttpRequest: ...  # type: ignore
+        def close(
+            self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any
+        ) -> CaseHttpRequest: ...  # type: ignore
         def create(
             self, *, parent: str, body: Case = ..., **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
@@ -81,7 +80,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCasesResponseHttpRequest: ...
         def list_next(
             self,
@@ -94,7 +93,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             name: str,
             body: Case = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CaseHttpRequest: ...
         def search(
             self,
@@ -103,7 +102,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             parent: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchCasesResponseHttpRequest: ...
         def search_next(
             self,
@@ -112,7 +111,6 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
         ) -> SearchCasesResponseHttpRequest | None: ...
         def attachments(self) -> AttachmentsResource: ...
         def comments(self) -> CommentsResource: ...
-
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(self, *, name: str, **kwargs: typing.Any) -> MediaHttpRequest: ...
@@ -124,9 +122,8 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: CreateAttachmentRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AttachmentHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

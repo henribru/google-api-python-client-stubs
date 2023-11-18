@@ -18,13 +18,11 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: CreateManagedShortLinkRequest = ..., **kwargs: typing.Any
         ) -> CreateManagedShortLinkResponseHttpRequest: ...
-
     @typing.type_check_only
     class ShortLinksResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: CreateShortDynamicLinkRequest = ..., **kwargs: typing.Any
         ) -> CreateShortDynamicLinkResponseHttpRequest: ...
-
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def getLinkStats(
@@ -33,18 +31,17 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
             dynamicLink: str,
             durationDays: str = ...,
             sdkVersion: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DynamicLinkStatsHttpRequest: ...
         def installAttribution(
             self,
             *,
             body: GetIosPostInstallAttributionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetIosPostInstallAttributionResponseHttpRequest: ...
         def reopenAttribution(
             self, *, body: GetIosReopenAttributionRequest = ..., **kwargs: typing.Any
         ) -> GetIosReopenAttributionResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

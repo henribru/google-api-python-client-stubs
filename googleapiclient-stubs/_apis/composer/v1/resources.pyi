@@ -27,7 +27,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     environment: str,
                     body: DatabaseFailoverRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -37,7 +37,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     environment: str,
                     body: ExecuteAirflowCommandRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecuteAirflowCommandResponseHttpRequest: ...
                 def fetchDatabaseProperties(
                     self, *, environment: str, **kwargs: typing.Any
@@ -51,7 +51,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListEnvironmentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -63,7 +63,7 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     *,
                     environment: str,
                     body: LoadSnapshotRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
@@ -71,30 +71,29 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Environment = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def pollAirflowCommand(
                     self,
                     *,
                     environment: str,
                     body: PollAirflowCommandRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PollAirflowCommandResponseHttpRequest: ...
                 def saveSnapshot(
                     self,
                     *,
                     environment: str,
                     body: SaveSnapshotRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stopAirflowCommand(
                     self,
                     *,
                     environment: str,
                     body: StopAirflowCommandRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> StopAirflowCommandResponseHttpRequest: ...
-
             @typing.type_check_only
             class ImageVersionsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -104,14 +103,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     includePastReleases: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListImageVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListImageVersionsResponseHttpRequest,
                     previous_response: ListImageVersionsResponse,
                 ) -> ListImageVersionsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def delete(
@@ -127,20 +125,17 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             def environments(self) -> EnvironmentsResource: ...
             def imageVersions(self) -> ImageVersionsResource: ...
             def operations(self) -> OperationsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

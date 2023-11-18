@@ -23,14 +23,13 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListProjectBillingInfoResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListProjectBillingInfoResponseHttpRequest,
                 previous_response: ListProjectBillingInfoResponse,
             ) -> ListProjectBillingInfoResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class SubAccountsResource(googleapiclient.discovery.Resource):
             def create(
@@ -43,14 +42,13 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListBillingAccountsResponseHttpRequest,
                 previous_response: ListBillingAccountsResponse,
             ) -> ListBillingAccountsResponseHttpRequest | None: ...
-
         def create(
             self, *, body: BillingAccount = ..., parent: str = ..., **kwargs: typing.Any
         ) -> BillingAccountHttpRequest: ...
@@ -62,7 +60,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             options_requestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -71,7 +69,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             parent: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListBillingAccountsResponseHttpRequest: ...
         def list_next(
             self,
@@ -83,7 +81,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: MoveBillingAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def patch(
             self,
@@ -91,25 +89,24 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             name: str,
             body: BillingAccount = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def setIamPolicy(
             self,
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
         def subAccounts(self) -> SubAccountsResource: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -124,7 +121,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -134,9 +131,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             def move(
                 self, *, destinationParent: str, name: str, **kwargs: typing.Any
             ) -> BillingAccountHttpRequest: ...
-
         def billingAccounts(self) -> BillingAccountsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         def getBillingInfo(
@@ -145,7 +140,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def updateBillingInfo(
             self, *, name: str, body: ProjectBillingInfo = ..., **kwargs: typing.Any
         ) -> ProjectBillingInfoHttpRequest: ...
-
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -159,14 +153,13 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 startTime: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSkusResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListSkusResponseHttpRequest,
                 previous_response: ListSkusResponse,
             ) -> ListSkusResponseHttpRequest | None: ...
-
         def list(
             self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
         ) -> ListServicesResponseHttpRequest: ...
@@ -176,7 +169,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
         def skus(self) -> SkusResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

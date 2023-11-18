@@ -21,7 +21,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 body: GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponseHttpRequest
             ): ...
@@ -29,39 +29,36 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 body: GoogleCloudIdentitytoolkitV2StartMfaEnrollmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponseHttpRequest: ...
             def withdraw(
                 self,
                 *,
                 body: GoogleCloudIdentitytoolkitV2WithdrawMfaRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV2WithdrawMfaResponseHttpRequest: ...
-
         @typing.type_check_only
         class MfaSignInResource(googleapiclient.discovery.Resource):
             def finalize(
                 self,
                 *,
                 body: GoogleCloudIdentitytoolkitV2FinalizeMfaSignInRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponseHttpRequest: ...
             def start(
                 self,
                 *,
                 body: GoogleCloudIdentitytoolkitV2StartMfaSignInRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV2StartMfaSignInResponseHttpRequest: ...
-
         def revokeToken(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV2RevokeTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV2RevokeTokenResponseHttpRequest: ...
         def mfaEnrollment(self) -> MfaEnrollmentResource: ...
         def mfaSignIn(self) -> MfaSignInResource: ...
-
     @typing.type_check_only
     class DefaultSupportedIdpsResource(googleapiclient.discovery.Resource):
         def list(
@@ -77,7 +74,6 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpRequest
             | None
         ): ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -88,7 +84,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                 idpId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest
             ): ...
@@ -106,7 +102,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -122,11 +118,10 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest
             ): ...
-
         @typing.type_check_only
         class IdentityPlatformResource(googleapiclient.discovery.Resource):
             def initializeAuth(
@@ -134,9 +129,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 *,
                 project: str,
                 body: GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponseHttpRequest: ...
-
         @typing.type_check_only
         class InboundSamlConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -145,7 +139,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig = ...,
                 inboundSamlConfigId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2InboundSamlConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -159,7 +153,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -175,9 +169,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2InboundSamlConfigHttpRequest: ...
-
         @typing.type_check_only
         class OauthIdpConfigsResource(googleapiclient.discovery.Resource):
             def create(
@@ -186,7 +179,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig = ...,
                 oauthIdpConfigId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -200,7 +193,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest
             ): ...
@@ -218,9 +211,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest: ...
-
         @typing.type_check_only
         class TenantsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -233,7 +225,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                     idpId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -247,7 +239,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -263,9 +255,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest: ...
-
             @typing.type_check_only
             class InboundSamlConfigsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -274,7 +265,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig = ...,
                     inboundSamlConfigId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2InboundSamlConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -288,7 +279,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -304,9 +295,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2InboundSamlConfigHttpRequest: ...
-
             @typing.type_check_only
             class OauthIdpConfigsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -315,7 +305,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig = ...,
                     oauthIdpConfigId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -329,7 +319,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -345,15 +335,14 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest: ...
-
             def create(
                 self,
                 *,
                 parent: str,
                 body: GoogleCloudIdentitytoolkitAdminV2Tenant = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2TenantHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -366,7 +355,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GoogleIamV1GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleIamV1PolicyHttpRequest: ...
             def list(
                 self,
@@ -374,7 +363,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2ListTenantsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -389,28 +378,27 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudIdentitytoolkitAdminV2Tenant = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitAdminV2TenantHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: GoogleIamV1SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleIamV1PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: GoogleIamV1TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
             def defaultSupportedIdpConfigs(
-                self,
+                self
             ) -> DefaultSupportedIdpConfigsResource: ...
             def inboundSamlConfigs(self) -> InboundSamlConfigsResource: ...
             def oauthIdpConfigs(self) -> OauthIdpConfigsResource: ...
-
         def getConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest: ...
@@ -420,14 +408,13 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             name: str,
             body: GoogleCloudIdentitytoolkitAdminV2Config = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest: ...
         def defaultSupportedIdpConfigs(self) -> DefaultSupportedIdpConfigsResource: ...
         def identityPlatform(self) -> IdentityPlatformResource: ...
         def inboundSamlConfigs(self) -> InboundSamlConfigsResource: ...
         def oauthIdpConfigs(self) -> OauthIdpConfigsResource: ...
         def tenants(self) -> TenantsResource: ...
-
     @typing.type_check_only
     class V2Resource(googleapiclient.discovery.Resource):
         def getPasswordPolicy(
@@ -446,9 +433,8 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             version: typing_extensions.Literal[
                 "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV2RecaptchaConfigHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

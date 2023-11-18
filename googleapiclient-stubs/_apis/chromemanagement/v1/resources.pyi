@@ -22,19 +22,16 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
-
             @typing.type_check_only
             class ChromeResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
-
             @typing.type_check_only
             class WebResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleChromeManagementV1AppDetailsHttpRequest: ...
-
             def countChromeAppRequests(
                 self,
                 *,
@@ -43,7 +40,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 orgUnitId: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest: ...
             def countChromeAppRequests_next(
                 self,
@@ -55,7 +52,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def android(self) -> AndroidResource: ...
             def chrome(self) -> ChromeResource: ...
             def web(self) -> WebResource: ...
-
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def countChromeBrowsersNeedingAttention(
@@ -68,7 +64,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 maxAueDate: str = ...,
                 minAueDate: str = ...,
                 orgUnitId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponseHttpRequest: ...
             def countChromeDevicesThatNeedAttention(
                 self,
@@ -76,7 +72,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 customer: str,
                 orgUnitId: str = ...,
                 readMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponseHttpRequest: ...
             def countChromeHardwareFleetDevices(
                 self,
@@ -84,7 +80,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 customer: str,
                 orgUnitId: str = ...,
                 readMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest: ...
             def countChromeVersions(
                 self,
@@ -94,7 +90,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 orgUnitId: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest: ...
             def countChromeVersions_next(
                 self,
@@ -112,7 +108,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 orgUnitId: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest: ...
             def countInstalledApps_next(
                 self,
@@ -130,7 +126,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 printerOrgUnitId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest: ...
             def countPrintJobsByPrinter_next(
                 self,
@@ -149,7 +145,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 printerOrgUnitId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest: ...
             def countPrintJobsByUser_next(
                 self,
@@ -167,7 +163,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 printerOrgUnitId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1EnumeratePrintJobsResponseHttpRequest: ...
             def enumeratePrintJobs_next(
                 self,
@@ -194,7 +190,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 orgUnitId: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest: ...
             def findInstalledAppDevices_next(
                 self,
@@ -204,7 +200,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest
                 | None
             ): ...
-
         @typing.type_check_only
         class TelemetryResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -220,7 +215,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     readMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest
                 ): ...
@@ -232,7 +227,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest
                     | None
                 ): ...
-
             @typing.type_check_only
             class EventsResource(googleapiclient.discovery.Resource):
                 def list(
@@ -243,7 +237,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     readMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -253,7 +247,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest
                     | None
                 ): ...
-
             @typing.type_check_only
             class NotificationConfigsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -261,7 +254,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleChromeManagementV1TelemetryNotificationConfig = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromeManagementV1TelemetryNotificationConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -272,7 +265,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromeManagementV1ListTelemetryNotificationConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -282,7 +275,6 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     GoogleChromeManagementV1ListTelemetryNotificationConfigsResponseHttpRequest
                     | None
                 ): ...
-
             @typing.type_check_only
             class UsersResource(googleapiclient.discovery.Resource):
                 def get(
@@ -296,7 +288,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     readMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -305,16 +297,13 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 ) -> (
                     GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest | None
                 ): ...
-
             def devices(self) -> DevicesResource: ...
             def events(self) -> EventsResource: ...
             def notificationConfigs(self) -> NotificationConfigsResource: ...
             def users(self) -> UsersResource: ...
-
         def apps(self) -> AppsResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

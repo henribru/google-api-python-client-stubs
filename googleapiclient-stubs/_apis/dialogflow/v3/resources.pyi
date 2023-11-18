@@ -31,7 +31,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -41,7 +41,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         GoogleCloudDialogflowCxV3ListChangelogsResponseHttpRequest
                         | None
                     ): ...
-
                 @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
                     def create(
@@ -50,7 +49,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: GoogleCloudDialogflowCxV3EntityType = ...,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3EntityTypeHttpRequest: ...
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -60,7 +59,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3EntityTypeHttpRequest: ...
                     def list(
                         self,
@@ -69,7 +68,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDialogflowCxV3ListEntityTypesResponseHttpRequest
                     ): ...
@@ -88,9 +87,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowCxV3EntityType = ...,
                         languageCode: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3EntityTypeHttpRequest: ...
-
                 @typing.type_check_only
                 class EnvironmentsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -103,7 +101,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -113,7 +111,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             GoogleCloudDialogflowCxV3ListContinuousTestResultsResponseHttpRequest
                             | None
                         ): ...
-
                     @typing.type_check_only
                     class DeploymentsResource(googleapiclient.discovery.Resource):
                         def get(
@@ -125,7 +122,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3ListDeploymentsResponseHttpRequest
                         ): ...
@@ -137,7 +134,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             GoogleCloudDialogflowCxV3ListDeploymentsResponseHttpRequest
                             | None
                         ): ...
-
                     @typing.type_check_only
                     class ExperimentsResource(googleapiclient.discovery.Resource):
                         def create(
@@ -145,7 +141,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDialogflowCxV3Experiment = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ExperimentHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -159,7 +155,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3ListExperimentsResponseHttpRequest
                         ): ...
@@ -177,23 +173,22 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: GoogleCloudDialogflowCxV3Experiment = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ExperimentHttpRequest: ...
                         def start(
                             self,
                             *,
                             name: str,
                             body: GoogleCloudDialogflowCxV3StartExperimentRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ExperimentHttpRequest: ...
                         def stop(
                             self,
                             *,
                             name: str,
                             body: GoogleCloudDialogflowCxV3StopExperimentRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ExperimentHttpRequest: ...
-
                     @typing.type_check_only
                     class SessionsResource(googleapiclient.discovery.Resource):
                         @typing.type_check_only
@@ -203,7 +198,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 *,
                                 parent: str,
                                 body: GoogleCloudDialogflowCxV3SessionEntityType = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest
                             ): ...
@@ -221,7 +216,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 parent: str,
                                 pageSize: int = ...,
                                 pageToken: str = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> GoogleCloudDialogflowCxV3ListSessionEntityTypesResponseHttpRequest: ...
                             def list_next(
                                 self,
@@ -237,17 +232,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                                 name: str,
                                 body: GoogleCloudDialogflowCxV3SessionEntityType = ...,
                                 updateMask: str = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest
                             ): ...
-
                         def detectIntent(
                             self,
                             *,
                             session: str,
                             body: GoogleCloudDialogflowCxV3DetectIntentRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3DetectIntentResponseHttpRequest
                         ): ...
@@ -256,7 +250,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             session: str,
                             body: GoogleCloudDialogflowCxV3FulfillIntentRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3FulfillIntentResponseHttpRequest
                         ): ...
@@ -265,18 +259,17 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             session: str,
                             body: GoogleCloudDialogflowCxV3MatchIntentRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3MatchIntentResponseHttpRequest
                         ): ...
                         def entityTypes(self) -> EntityTypesResource: ...
-
                     def create(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3Environment = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -286,7 +279,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         environment: str,
                         body: GoogleCloudDialogflowCxV3DeployFlowRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -297,7 +290,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDialogflowCxV3ListEnvironmentsResponseHttpRequest
                     ): ...
@@ -315,7 +308,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         name: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3LookupEnvironmentHistoryResponseHttpRequest: ...
                     def lookupEnvironmentHistory_next(
                         self,
@@ -331,22 +324,21 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudDialogflowCxV3Environment = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def runContinuousTest(
                         self,
                         *,
                         environment: str,
                         body: GoogleCloudDialogflowCxV3RunContinuousTestRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def continuousTestResults(
-                        self,
+                        self
                     ) -> ContinuousTestResultsResource: ...
                     def deployments(self) -> DeploymentsResource: ...
                     def experiments(self) -> ExperimentsResource: ...
                     def sessions(self) -> SessionsResource: ...
-
                 @typing.type_check_only
                 class FlowsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -357,7 +349,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             body: GoogleCloudDialogflowCxV3Page = ...,
                             languageCode: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3PageHttpRequest: ...
                         def delete(
                             self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -367,7 +359,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             languageCode: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3PageHttpRequest: ...
                         def list(
                             self,
@@ -376,7 +368,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             languageCode: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ListPagesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -392,9 +384,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDialogflowCxV3Page = ...,
                             languageCode: str = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3PageHttpRequest: ...
-
                     @typing.type_check_only
                     class TransitionRouteGroupsResource(
                         googleapiclient.discovery.Resource
@@ -405,7 +396,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             body: GoogleCloudDialogflowCxV3TransitionRouteGroup = ...,
                             languageCode: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest
                         ): ...
@@ -417,7 +408,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             languageCode: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest
                         ): ...
@@ -428,7 +419,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             languageCode: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -445,11 +436,10 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             body: GoogleCloudDialogflowCxV3TransitionRouteGroup = ...,
                             languageCode: str = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest
                         ): ...
-
                     @typing.type_check_only
                     class VersionsResource(googleapiclient.discovery.Resource):
                         def compareVersions(
@@ -457,7 +447,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             baseVersion: str,
                             body: GoogleCloudDialogflowCxV3CompareVersionsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3CompareVersionsResponseHttpRequest
                         ): ...
@@ -466,7 +456,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDialogflowCxV3Version = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -480,7 +470,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> (
                             GoogleCloudDialogflowCxV3ListVersionsResponseHttpRequest
                         ): ...
@@ -497,7 +487,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: GoogleCloudDialogflowCxV3LoadVersionRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def patch(
                             self,
@@ -505,16 +495,15 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: GoogleCloudDialogflowCxV3Version = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3VersionHttpRequest: ...
-
                     def create(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3Flow = ...,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FlowHttpRequest: ...
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -524,28 +513,28 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDialogflowCxV3ExportFlowRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self,
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FlowHttpRequest: ...
                     def getValidationResult(
                         self,
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FlowValidationResultHttpRequest: ...
                     def import_(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3ImportFlowRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
@@ -554,7 +543,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListFlowsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -570,28 +559,27 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowCxV3Flow = ...,
                         languageCode: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FlowHttpRequest: ...
                     def train(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDialogflowCxV3TrainFlowRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def validate(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDialogflowCxV3ValidateFlowRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FlowValidationResultHttpRequest: ...
                     def pages(self) -> PagesResource: ...
                     def transitionRouteGroups(
-                        self,
+                        self
                     ) -> TransitionRouteGroupsResource: ...
                     def versions(self) -> VersionsResource: ...
-
                 @typing.type_check_only
                 class IntentsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -600,7 +588,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: GoogleCloudDialogflowCxV3Intent = ...,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3IntentHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -610,21 +598,21 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3ExportIntentsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self,
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3IntentHttpRequest: ...
                     def import_(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3ImportIntentsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
@@ -638,7 +626,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListIntentsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -654,9 +642,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowCxV3Intent = ...,
                         languageCode: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3IntentHttpRequest: ...
-
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -666,7 +653,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDialogflowCxV3SessionEntityType = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -680,7 +667,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ListSessionEntityTypesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -696,32 +683,30 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: GoogleCloudDialogflowCxV3SessionEntityType = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3SessionEntityTypeHttpRequest: ...
-
                     def detectIntent(
                         self,
                         *,
                         session: str,
                         body: GoogleCloudDialogflowCxV3DetectIntentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3DetectIntentResponseHttpRequest: ...
                     def fulfillIntent(
                         self,
                         *,
                         session: str,
                         body: GoogleCloudDialogflowCxV3FulfillIntentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3FulfillIntentResponseHttpRequest: ...
                     def matchIntent(
                         self,
                         *,
                         session: str,
                         body: GoogleCloudDialogflowCxV3MatchIntentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3MatchIntentResponseHttpRequest: ...
                     def entityTypes(self) -> EntityTypesResource: ...
-
                 @typing.type_check_only
                 class TestCasesResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
@@ -736,7 +721,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDialogflowCxV3ListTestCaseResultsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -746,20 +731,19 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             GoogleCloudDialogflowCxV3ListTestCaseResultsResponseHttpRequest
                             | None
                         ): ...
-
                     def batchDelete(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleProtobufEmptyHttpRequest: ...
                     def batchRun(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3BatchRunTestCasesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def calculateCoverage(
                         self,
@@ -771,7 +755,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             "PAGE_TRANSITION",
                             "TRANSITION_ROUTE_GROUP",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDialogflowCxV3CalculateCoverageResponseHttpRequest
                     ): ...
@@ -780,14 +764,14 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3TestCase = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3TestCaseHttpRequest: ...
                     def export(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3ExportTestCasesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -797,7 +781,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3ImportTestCasesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
@@ -808,7 +792,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "TEST_CASE_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListTestCasesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -823,17 +807,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudDialogflowCxV3TestCase = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3TestCaseHttpRequest: ...
                     def run(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDialogflowCxV3RunTestCaseRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def results(self) -> ResultsResource: ...
-
                 @typing.type_check_only
                 class TransitionRouteGroupsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -842,7 +825,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: GoogleCloudDialogflowCxV3TransitionRouteGroup = ...,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest: ...
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -852,7 +835,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         languageCode: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest: ...
                     def list(
                         self,
@@ -861,7 +844,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -878,9 +861,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDialogflowCxV3TransitionRouteGroup = ...,
                         languageCode: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest: ...
-
                 @typing.type_check_only
                 class WebhooksResource(googleapiclient.discovery.Resource):
                     def create(
@@ -888,7 +870,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDialogflowCxV3Webhook = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3WebhookHttpRequest: ...
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -902,7 +884,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3ListWebhooksResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -917,15 +899,14 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudDialogflowCxV3Webhook = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3WebhookHttpRequest: ...
-
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudDialogflowCxV3Agent = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3AgentHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -935,7 +916,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDialogflowCxV3ExportAgentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -952,7 +933,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3ListAgentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -965,14 +946,14 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDialogflowCxV3Agent = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3AgentHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDialogflowCxV3RestoreAgentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def updateGenerativeSettings(
                     self,
@@ -980,14 +961,14 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDialogflowCxV3GenerativeSettings = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3GenerativeSettingsHttpRequest: ...
                 def validate(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDialogflowCxV3ValidateAgentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3AgentValidationResultHttpRequest: ...
                 def changelogs(self) -> ChangelogsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
@@ -998,7 +979,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def testCases(self) -> TestCasesResource: ...
                 def transitionRouteGroups(self) -> TransitionRouteGroupsResource: ...
                 def webhooks(self) -> WebhooksResource: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -1014,14 +994,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class SecuritySettingsResource(googleapiclient.discovery.Resource):
                 def create(
@@ -1029,7 +1008,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDialogflowCxV3SecuritySettings = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3SecuritySettingsHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -1043,7 +1022,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDialogflowCxV3ListSecuritySettingsResponseHttpRequest
                 ): ...
@@ -1061,9 +1040,8 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDialogflowCxV3SecuritySettings = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3SecuritySettingsHttpRequest: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudLocationLocationHttpRequest: ...
@@ -1074,7 +1052,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -1084,7 +1062,6 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def agents(self) -> AgentsResource: ...
             def operations(self) -> OperationsResource: ...
             def securitySettings(self) -> SecuritySettingsResource: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -1100,17 +1077,15 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

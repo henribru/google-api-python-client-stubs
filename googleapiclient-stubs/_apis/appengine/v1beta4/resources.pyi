@@ -27,14 +27,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class ModulesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -49,7 +48,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         versionsId: str,
                         instancesId: str,
                         body: DebugInstanceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -58,7 +57,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         modulesId: str,
                         versionsId: str,
                         instancesId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self,
@@ -67,7 +66,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         modulesId: str,
                         versionsId: str,
                         instancesId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> InstanceHttpRequest: ...
                     def list(
                         self,
@@ -77,21 +76,20 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         versionsId: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListInstancesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListInstancesResponseHttpRequest,
                         previous_response: ListInstancesResponse,
                     ) -> ListInstancesResponseHttpRequest | None: ...
-
                 def create(
                     self,
                     *,
                     appsId: str,
                     modulesId: str,
                     body: Version = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -99,7 +97,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     modulesId: str,
                     versionsId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -108,7 +106,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     modulesId: str,
                     versionsId: str,
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def list(
                     self,
@@ -118,7 +116,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -133,10 +131,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     versionsId: str,
                     body: Version = ...,
                     mask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
-
             def delete(
                 self, *, appsId: str, modulesId: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -149,7 +146,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListModulesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -164,10 +161,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 body: Module = ...,
                 mask: str = ...,
                 migrateTraffic: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def versions(self) -> VersionsResource: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -180,14 +176,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
-
         def create(
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -200,12 +195,11 @@ class AppengineResource(googleapiclient.discovery.Resource):
             appsId: str,
             body: Application = ...,
             mask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def locations(self) -> LocationsResource: ...
         def modules(self) -> ModulesResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

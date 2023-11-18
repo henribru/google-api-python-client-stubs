@@ -27,7 +27,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
             def list(
                 self,
@@ -41,7 +41,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -55,11 +55,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudResourcesettingsV1Setting = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
-
         def settings(self) -> SettingsResource: ...
-
     @typing.type_check_only
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -74,7 +72,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
             def list(
                 self,
@@ -88,7 +86,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -102,11 +100,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudResourcesettingsV1Setting = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
-
         def settings(self) -> SettingsResource: ...
-
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
@@ -121,7 +117,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
             def list(
                 self,
@@ -135,7 +131,7 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                     "SETTING_VIEW_EFFECTIVE_VALUE",
                     "SETTING_VIEW_LOCAL_VALUE",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1ListSettingsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -149,11 +145,9 @@ class ResourceSettingsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudResourcesettingsV1Setting = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudResourcesettingsV1SettingHttpRequest: ...
-
         def settings(self) -> SettingsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

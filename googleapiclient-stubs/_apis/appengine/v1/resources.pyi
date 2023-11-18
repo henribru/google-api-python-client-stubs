@@ -22,14 +22,14 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 *,
                 appsId: str,
                 body: AuthorizedCertificate = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
             def delete(
                 self,
                 *,
                 appsId: str,
                 authorizedCertificatesId: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self,
@@ -39,7 +39,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
             def list(
                 self,
@@ -50,7 +50,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -64,9 +64,8 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 authorizedCertificatesId: str,
                 body: AuthorizedCertificate = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AuthorizedCertificateHttpRequest: ...
-
         @typing.type_check_only
         class AuthorizedDomainsResource(googleapiclient.discovery.Resource):
             def list(
@@ -75,14 +74,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListAuthorizedDomainsResponseHttpRequest,
                 previous_response: ListAuthorizedDomainsResponse,
             ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class DomainMappingsResource(googleapiclient.discovery.Resource):
             def create(
@@ -93,7 +91,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 overrideStrategy: typing_extensions.Literal[
                     "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, appsId: str, domainMappingsId: str, **kwargs: typing.Any
@@ -107,7 +105,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDomainMappingsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -121,9 +119,8 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 domainMappingsId: str,
                 body: DomainMapping = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
-
         @typing.type_check_only
         class FirewallResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -133,7 +130,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     *,
                     appsId: str,
                     body: BatchUpdateIngressRulesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchUpdateIngressRulesResponseHttpRequest: ...
                 def create(
                     self, *, appsId: str, body: FirewallRule = ..., **kwargs: typing.Any
@@ -151,7 +148,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     matchingAddress: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListIngressRulesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -165,11 +162,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     ingressRulesId: str,
                     body: FirewallRule = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> FirewallRuleHttpRequest: ...
-
             def ingressRules(self) -> IngressRulesResource: ...
-
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -182,14 +177,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def get(
@@ -202,14 +196,13 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListOperationsResponseHttpRequest,
                 previous_response: ListOperationsResponse,
             ) -> ListOperationsResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
@@ -224,7 +217,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         versionsId: str,
                         instancesId: str,
                         body: DebugInstanceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -233,7 +226,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         servicesId: str,
                         versionsId: str,
                         instancesId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self,
@@ -242,7 +235,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         servicesId: str,
                         versionsId: str,
                         instancesId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> InstanceHttpRequest: ...
                     def list(
                         self,
@@ -252,21 +245,20 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         versionsId: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListInstancesResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListInstancesResponseHttpRequest,
                         previous_response: ListInstancesResponse,
                     ) -> ListInstancesResponseHttpRequest | None: ...
-
                 def create(
                     self,
                     *,
                     appsId: str,
                     servicesId: str,
                     body: Version = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -274,7 +266,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     appsId: str,
                     servicesId: str,
                     versionsId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -283,7 +275,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     servicesId: str,
                     versionsId: str,
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> VersionHttpRequest: ...
                 def list(
                     self,
@@ -293,7 +285,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -308,10 +300,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     versionsId: str,
                     body: Version = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
-
             def delete(
                 self, *, appsId: str, servicesId: str, **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
@@ -324,7 +315,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 appsId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListServicesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -339,10 +330,9 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 body: Service = ...,
                 migrateTraffic: bool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def versions(self) -> VersionsResource: ...
-
         def create(
             self, *, body: Application = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -355,7 +345,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 "INCLUDE_EXTRA_DATA_NONE",
                 "INCLUDE_GOOGLE_GENERATED_METADATA",
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ApplicationHttpRequest: ...
         def listRuntimes(
             self,
@@ -364,7 +354,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
             environment: typing_extensions.Literal[
                 "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListRuntimesResponseHttpRequest: ...
         def patch(
             self,
@@ -372,14 +362,14 @@ class AppengineResource(googleapiclient.discovery.Resource):
             appsId: str,
             body: Application = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def repair(
             self,
             *,
             appsId: str,
             body: RepairApplicationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
         def authorizedDomains(self) -> AuthorizedDomainsResource: ...
@@ -388,7 +378,6 @@ class AppengineResource(googleapiclient.discovery.Resource):
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
         def services(self) -> ServicesResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

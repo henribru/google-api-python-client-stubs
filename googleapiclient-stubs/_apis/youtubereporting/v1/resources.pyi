@@ -23,7 +23,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 jobId: str,
                 reportId: str,
                 onBehalfOfContentOwner: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReportHttpRequest: ...
             def list(
                 self,
@@ -35,20 +35,19 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 startTimeAtOrAfter: str = ...,
                 startTimeBefore: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReportsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListReportsResponseHttpRequest,
                 previous_response: ListReportsResponse,
             ) -> ListReportsResponseHttpRequest | None: ...
-
         def create(
             self,
             *,
             body: Job = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> JobHttpRequest: ...
         def delete(
             self, *, jobId: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
@@ -63,7 +62,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListJobsResponseHttpRequest: ...
         def list_next(
             self,
@@ -71,7 +70,6 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             previous_response: ListJobsResponse,
         ) -> ListJobsResponseHttpRequest | None: ...
         def reports(self) -> ReportsResource: ...
-
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
@@ -80,7 +78,6 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
         def download_media(
             self, *, resourceName: str, **kwargs: typing.Any
         ) -> BytesHttpRequest: ...
-
     @typing.type_check_only
     class ReportTypesResource(googleapiclient.discovery.Resource):
         def list(
@@ -90,14 +87,13 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListReportTypesResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListReportTypesResponseHttpRequest,
             previous_response: ListReportTypesResponse,
         ) -> ListReportTypesResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -24,14 +24,13 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBusinessCallsInsightsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: ListBusinessCallsInsightsResponseHttpRequest,
                 previous_response: ListBusinessCallsInsightsResponse,
             ) -> ListBusinessCallsInsightsResponseHttpRequest | None: ...
-
         def getBusinesscallssettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> BusinessCallsSettingsHttpRequest: ...
@@ -41,10 +40,9 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
             name: str,
             body: BusinessCallsSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BusinessCallsSettingsHttpRequest: ...
         def businesscallsinsights(self) -> BusinesscallsinsightsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

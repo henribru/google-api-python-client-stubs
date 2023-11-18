@@ -31,7 +31,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             parent: str,
                             body: Backup = ...,
                             backupId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -44,7 +44,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             *,
                             resource: str,
                             options_requestedPolicyVersion: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def list(
                             self,
@@ -54,7 +54,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListBackupsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -67,23 +67,22 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             name: str,
                             body: Backup = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,
                             resource: str,
                             body: SetIamPolicyRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
                             body: TestIamPermissionsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
-
                     @typing.type_check_only
                     class SqlIntegrationsResource(googleapiclient.discovery.Resource):
                         def get(
@@ -97,27 +96,26 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListSqlIntegrationsResponseHttpRequest: ...
                         def list_next(
                             self,
                             previous_request: ListSqlIntegrationsResponseHttpRequest,
                             previous_response: ListSqlIntegrationsResponse,
                         ) -> ListSqlIntegrationsResponseHttpRequest | None: ...
-
                     def attachTrust(
                         self,
                         *,
                         name: str,
                         body: AttachTrustRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def checkMigrationPermission(
                         self,
                         *,
                         domain: str,
                         body: CheckMigrationPermissionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> CheckMigrationPermissionResponseHttpRequest: ...
                     def create(
                         self,
@@ -125,7 +123,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         parent: str,
                         body: Domain = ...,
                         domainName: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -135,35 +133,35 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         name: str,
                         body: DetachTrustRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def disableMigration(
                         self,
                         *,
                         domain: str,
                         body: DisableMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def domainJoinMachine(
                         self,
                         *,
                         domain: str,
                         body: DomainJoinMachineRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> DomainJoinMachineResponseHttpRequest: ...
                     def enableMigration(
                         self,
                         *,
                         domain: str,
                         body: EnableMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def extendSchema(
                         self,
                         *,
                         domain: str,
                         body: ExtendSchemaRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -173,7 +171,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         resource: str,
                         options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def getLdapssettings(
                         self, *, name: str, **kwargs: typing.Any
@@ -186,7 +184,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListDomainsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -199,42 +197,42 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         name: str,
                         body: Domain = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def reconfigureTrust(
                         self,
                         *,
                         name: str,
                         body: ReconfigureTrustRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def resetAdminPassword(
                         self,
                         *,
                         name: str,
                         body: ResetAdminPasswordRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ResetAdminPasswordResponseHttpRequest: ...
                     def restore(
                         self,
                         *,
                         name: str,
                         body: RestoreDomainRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def updateLdapssettings(
                         self,
@@ -242,18 +240,17 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         name: str,
                         body: LDAPSSettings = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def validateTrust(
                         self,
                         *,
                         name: str,
                         body: ValidateTrustRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def backups(self) -> BackupsResource: ...
                     def sqlIntegrations(self) -> SqlIntegrationsResource: ...
-
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
                     def cancel(
@@ -261,7 +258,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -276,14 +273,13 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
                         previous_request: ListOperationsResponseHttpRequest,
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
-
                 @typing.type_check_only
                 class PeeringsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -292,7 +288,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         parent: str,
                         body: Peering = ...,
                         peeringId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -305,7 +301,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         *,
                         resource: str,
                         options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
@@ -315,7 +311,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListPeeringsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -328,27 +324,25 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                         name: str,
                         body: Peering = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
-
                 def domains(self) -> DomainsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def peerings(self) -> PeeringsResource: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -359,7 +353,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -367,9 +361,7 @@ class ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource(
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

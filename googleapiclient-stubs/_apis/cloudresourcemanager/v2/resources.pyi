@@ -25,7 +25,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -34,7 +34,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             parent: str = ...,
             showDeleted: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListFoldersResponseHttpRequest: ...
         def list_next(
             self,
@@ -50,7 +50,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             name: str,
             body: Folder = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FolderHttpRequest: ...
         def search(
             self, *, body: SearchFoldersRequest = ..., **kwargs: typing.Any
@@ -65,23 +65,21 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(
             self, *, name: str, body: UndeleteFolderRequest = ..., **kwargs: typing.Any
         ) -> FolderHttpRequest: ...
-
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

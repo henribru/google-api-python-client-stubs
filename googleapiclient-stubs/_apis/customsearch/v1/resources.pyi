@@ -90,9 +90,8 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 sort: str = ...,
                 start: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SearchHttpRequest: ...
-
         def list(
             self,
             *,
@@ -164,10 +163,9 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
             ] = ...,
             sort: str = ...,
             start: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchHttpRequest: ...
         def siterestrict(self) -> SiterestrictResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

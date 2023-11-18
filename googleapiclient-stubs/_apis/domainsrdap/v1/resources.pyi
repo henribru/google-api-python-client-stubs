@@ -18,31 +18,26 @@ class DomainsRDAPResource(googleapiclient.discovery.Resource):
         def get(
             self, *, autnumId: str, **kwargs: typing.Any
         ) -> RdapResponseHttpRequest: ...
-
     @typing.type_check_only
     class DomainResource(googleapiclient.discovery.Resource):
         def get(
             self, *, domainName: str, **kwargs: typing.Any
         ) -> HttpBodyHttpRequest: ...
-
     @typing.type_check_only
     class EntityResource(googleapiclient.discovery.Resource):
         def get(
             self, *, entityId: str, **kwargs: typing.Any
         ) -> RdapResponseHttpRequest: ...
-
     @typing.type_check_only
     class IpResource(googleapiclient.discovery.Resource):
         def get(
             self, *, ipId: str, ipId1: str, **kwargs: typing.Any
         ) -> RdapResponseHttpRequest: ...
-
     @typing.type_check_only
     class NameserverResource(googleapiclient.discovery.Resource):
         def get(
             self, *, nameserverId: str, **kwargs: typing.Any
         ) -> RdapResponseHttpRequest: ...
-
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def getDomains(self, **kwargs: typing.Any) -> RdapResponseHttpRequest: ...
@@ -50,7 +45,6 @@ class DomainsRDAPResource(googleapiclient.discovery.Resource):
         def getHelp(self, **kwargs: typing.Any) -> HttpBodyHttpRequest: ...
         def getIp(self, **kwargs: typing.Any) -> HttpBodyHttpRequest: ...
         def getNameservers(self, **kwargs: typing.Any) -> RdapResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

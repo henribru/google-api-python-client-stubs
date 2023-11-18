@@ -21,7 +21,6 @@ class DiscoveryResource(googleapiclient.discovery.Resource):
         def list(
             self, *, name: str = ..., preferred: bool = ..., **kwargs: typing.Any
         ) -> DirectoryListHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

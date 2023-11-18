@@ -23,7 +23,6 @@ class DriveActivityResource(googleapiclient.discovery.Resource):
             previous_request: QueryDriveActivityResponseHttpRequest,
             previous_response: QueryDriveActivityResponse,
         ) -> QueryDriveActivityResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -30,14 +30,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAcceleratorTypesResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListAcceleratorTypesResponseHttpRequest,
                     previous_response: ListAcceleratorTypesResponse,
                 ) -> ListAcceleratorTypesResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class NodesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -47,7 +46,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     body: Node = ...,
                     nodeId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -61,7 +60,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListNodesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -73,23 +72,22 @@ class TPUResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ReimageNodeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
                     body: StartNodeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: StopNodeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
@@ -108,14 +106,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
-
             @typing.type_check_only
             class TensorflowVersionsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -129,14 +126,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTensorFlowVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
                     previous_request: ListTensorFlowVersionsResponseHttpRequest,
                     previous_response: ListTensorFlowVersionsResponse,
                 ) -> ListTensorFlowVersionsResponseHttpRequest | None: ...
-
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -147,7 +143,7 @@ class TPUResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -158,9 +154,7 @@ class TPUResource(googleapiclient.discovery.Resource):
             def nodes(self) -> NodesResource: ...
             def operations(self) -> OperationsResource: ...
             def tensorflowVersions(self) -> TensorflowVersionsResource: ...
-
         def locations(self) -> LocationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

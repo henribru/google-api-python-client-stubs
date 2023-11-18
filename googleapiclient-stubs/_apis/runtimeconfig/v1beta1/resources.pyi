@@ -27,9 +27,8 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-
             @typing.type_check_only
             class VariablesResource(googleapiclient.discovery.Resource):
                 def create(
@@ -38,7 +37,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Variable = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> VariableHttpRequest: ...
                 def delete(
                     self, *, name: str, recursive: bool = ..., **kwargs: typing.Any
@@ -54,7 +53,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     returnValues: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListVariablesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -66,7 +65,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
                     self, *, name: str, body: Variable = ..., **kwargs: typing.Any
@@ -76,9 +75,8 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WatchVariableRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> VariableHttpRequest: ...
-
             @typing.type_check_only
             class WaitersResource(googleapiclient.discovery.Resource):
                 def create(
@@ -87,7 +85,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Waiter = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -101,7 +99,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWaitersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -113,16 +111,15 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-
             def create(
                 self,
                 *,
                 parent: str,
                 body: RuntimeConfig = ...,
                 requestId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RuntimeConfigHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -135,7 +132,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -143,7 +140,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -155,14 +152,14 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
                 self, *, name: str, body: RuntimeConfig = ..., **kwargs: typing.Any
@@ -170,9 +167,7 @@ class CloudRuntimeConfigResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def variables(self) -> VariablesResource: ...
             def waiters(self) -> WaitersResource: ...
-
         def configs(self) -> ConfigsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

@@ -22,7 +22,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 *,
                 projectId: str,
                 body: GoogleDatastoreAdminV1Index = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
                 self, *, projectId: str, indexId: str, **kwargs: typing.Any
@@ -37,14 +37,13 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleDatastoreAdminV1ListIndexesResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleDatastoreAdminV1ListIndexesResponseHttpRequest,
                 previous_response: GoogleDatastoreAdminV1ListIndexesResponse,
             ) -> GoogleDatastoreAdminV1ListIndexesResponseHttpRequest | None: ...
-
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -63,27 +62,26 @@ class DatastoreResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
-
         def allocateIds(
             self,
             *,
             projectId: str,
             body: AllocateIdsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AllocateIdsResponseHttpRequest: ...
         def beginTransaction(
             self,
             *,
             projectId: str,
             body: BeginTransactionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BeginTransactionResponseHttpRequest: ...
         def commit(
             self, *, projectId: str, body: CommitRequest = ..., **kwargs: typing.Any
@@ -93,14 +91,14 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: GoogleDatastoreAdminV1ExportEntitiesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def import_(
             self,
             *,
             projectId: str,
             body: GoogleDatastoreAdminV1ImportEntitiesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def lookup(
             self, *, projectId: str, body: LookupRequest = ..., **kwargs: typing.Any
@@ -116,14 +114,13 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: RunAggregationQueryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RunAggregationQueryResponseHttpRequest: ...
         def runQuery(
             self, *, projectId: str, body: RunQueryRequest = ..., **kwargs: typing.Any
         ) -> RunQueryResponseHttpRequest: ...
         def indexes(self) -> IndexesResource: ...
         def operations(self) -> OperationsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

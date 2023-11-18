@@ -34,7 +34,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             body: DeviceState = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeviceStateHttpRequest: ...
         def update(
             self,
@@ -44,9 +44,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             deviceId: str,
             body: Device = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeviceHttpRequest: ...
-
     @typing.type_check_only
     class EnterprisesResource(googleapiclient.discovery.Resource):
         def acknowledgeNotificationSet(
@@ -57,7 +56,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             completionToken: str = ...,
             enterpriseToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...
         def createEnrollmentToken(
             self,
@@ -66,14 +65,14 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             deviceType: typing_extensions.Literal[
                 "unknown", "dedicatedDevice", "knowledgeWorker"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreateEnrollmentTokenResponseHttpRequest: ...
         def createWebToken(
             self,
             *,
             enterpriseId: str,
             body: AdministratorWebTokenSpec = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AdministratorWebTokenHttpRequest: ...
         def enroll(
             self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
@@ -89,7 +88,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             keyType: typing_extensions.Literal["googleCredentials", "pkcs12"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ServiceAccountHttpRequest: ...
         def getStoreLayout(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -103,7 +102,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             requestMode: typing_extensions.Literal[
                 "waitForNotifications", "returnImmediately"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> NotificationSetHttpRequest: ...
         def sendTestPushNotification(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -113,7 +112,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             body: EnterpriseAccount = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EnterpriseAccountHttpRequest: ...
         def setStoreLayout(
             self, *, enterpriseId: str, body: StoreLayout = ..., **kwargs: typing.Any
@@ -121,7 +120,6 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def unenroll(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-
     @typing.type_check_only
     class EntitlementsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -130,7 +128,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             entitlementId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -138,7 +136,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             entitlementId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EntitlementHttpRequest: ...
         def list(
             self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
@@ -151,9 +149,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             entitlementId: str,
             body: Entitlement = ...,
             install: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EntitlementHttpRequest: ...
-
     @typing.type_check_only
     class GrouplicensesResource(googleapiclient.discovery.Resource):
         def get(
@@ -162,13 +159,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> GroupLicensesListResponseHttpRequest: ...
-
     @typing.type_check_only
     class GrouplicenseusersResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, groupLicenseId: str, **kwargs: typing.Any
         ) -> GroupLicenseUsersListResponseHttpRequest: ...
-
     @typing.type_check_only
     class InstallsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -178,7 +173,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             installId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -187,7 +182,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             installId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InstallHttpRequest: ...
         def list(
             self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
@@ -200,9 +195,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             deviceId: str,
             installId: str,
             body: Install = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InstallHttpRequest: ...
-
     @typing.type_check_only
     class ManagedconfigurationsfordeviceResource(googleapiclient.discovery.Resource):
         def delete(
@@ -212,7 +206,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             managedConfigurationForDeviceId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -221,7 +215,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             deviceId: str,
             managedConfigurationForDeviceId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
         def list(
             self, *, enterpriseId: str, userId: str, deviceId: str, **kwargs: typing.Any
@@ -234,9 +228,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             deviceId: str,
             managedConfigurationForDeviceId: str,
             body: ManagedConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
-
     @typing.type_check_only
     class ManagedconfigurationsforuserResource(googleapiclient.discovery.Resource):
         def delete(
@@ -245,7 +238,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             managedConfigurationForUserId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -253,7 +246,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             managedConfigurationForUserId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
         def list(
             self, *, enterpriseId: str, userId: str, **kwargs: typing.Any
@@ -265,21 +258,18 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             userId: str,
             managedConfigurationForUserId: str,
             body: ManagedConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ManagedConfigurationHttpRequest: ...
-
     @typing.type_check_only
     class ManagedconfigurationssettingsResource(googleapiclient.discovery.Resource):
         def list(
             self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
         ) -> ManagedConfigurationsSettingsListResponseHttpRequest: ...
-
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, permissionId: str, language: str = ..., **kwargs: typing.Any
         ) -> PermissionHttpRequest: ...
-
     @typing.type_check_only
     class ProductsResource(googleapiclient.discovery.Resource):
         def approve(
@@ -288,7 +278,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             productId: str,
             body: ProductsApproveRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def generateApprovalUrl(
             self,
@@ -296,7 +286,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             productId: str,
             languageCode: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProductsGenerateApprovalUrlResponseHttpRequest: ...
         def get(
             self,
@@ -304,7 +294,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             productId: str,
             language: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProductHttpRequest: ...
         def getAppRestrictionsSchema(
             self,
@@ -312,7 +302,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             productId: str,
             language: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AppRestrictionsSchemaHttpRequest: ...
         def getPermissions(
             self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
@@ -326,12 +316,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             query: str = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProductsListResponseHttpRequest: ...
         def unapprove(
             self, *, enterpriseId: str, productId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-
     @typing.type_check_only
     class ServiceaccountkeysResource(googleapiclient.discovery.Resource):
         def delete(
@@ -342,12 +331,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             *,
             enterpriseId: str,
             body: ServiceAccountKey = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ServiceAccountKeyHttpRequest: ...
         def list(
             self, *, enterpriseId: str, **kwargs: typing.Any
         ) -> ServiceAccountKeysListResponseHttpRequest: ...
-
     @typing.type_check_only
     class StorelayoutclustersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -356,7 +344,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             pageId: str,
             clusterId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self,
@@ -364,7 +352,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             pageId: str,
             clusterId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> StoreClusterHttpRequest: ...
         def insert(
             self,
@@ -372,7 +360,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             pageId: str,
             body: StoreCluster = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> StoreClusterHttpRequest: ...
         def list(
             self, *, enterpriseId: str, pageId: str, **kwargs: typing.Any
@@ -384,9 +372,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             pageId: str,
             clusterId: str,
             body: StoreCluster = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> StoreClusterHttpRequest: ...
-
     @typing.type_check_only
     class StorelayoutpagesResource(googleapiclient.discovery.Resource):
         def delete(
@@ -407,9 +394,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             pageId: str,
             body: StorePage = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> StorePageHttpRequest: ...
-
     @typing.type_check_only
     class UsersResource(googleapiclient.discovery.Resource):
         def delete(
@@ -439,7 +425,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             body: ProductSet = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProductSetHttpRequest: ...
         def update(
             self,
@@ -447,9 +433,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             userId: str,
             body: User = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UserHttpRequest: ...
-
     @typing.type_check_only
     class WebappsResource(googleapiclient.discovery.Resource):
         def delete(
@@ -470,9 +455,8 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseId: str,
             webAppId: str,
             body: WebApp = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> WebAppHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -492,11 +476,11 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
     def grouplicenseusers(self) -> GrouplicenseusersResource: ...
     def installs(self) -> InstallsResource: ...
     def managedconfigurationsfordevice(
-        self,
+        self
     ) -> ManagedconfigurationsfordeviceResource: ...
     def managedconfigurationsforuser(self) -> ManagedconfigurationsforuserResource: ...
     def managedconfigurationssettings(
-        self,
+        self
     ) -> ManagedconfigurationssettingsResource: ...
     def permissions(self) -> PermissionsResource: ...
     def products(self) -> ProductsResource: ...

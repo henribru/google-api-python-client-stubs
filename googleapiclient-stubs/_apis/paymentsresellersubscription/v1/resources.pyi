@@ -24,7 +24,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest
             ): ...
@@ -36,7 +36,6 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest
                 | None
             ): ...
-
         @typing.type_check_only
         class PromotionsResource(googleapiclient.discovery.Resource):
             def findEligible(
@@ -44,7 +43,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHttpRequest: ...
             def findEligible_next(
                 self,
@@ -61,7 +60,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -71,7 +70,6 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest
                 | None
             ): ...
-
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
             def cancel(
@@ -79,7 +77,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponseHttpRequest: ...
             def create(
                 self,
@@ -87,21 +85,21 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1Subscription = ...,
                 subscriptionId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest: ...
             def entitle(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponseHttpRequest: ...
             def extend(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -112,20 +110,18 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1Subscription = ...,
                 subscriptionId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest: ...
             def undoCancel(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHttpRequest: ...
-
         def products(self) -> ProductsResource: ...
         def promotions(self) -> PromotionsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

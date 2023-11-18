@@ -27,14 +27,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             name: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListOperationsResponseHttpRequest,
             previous_response: ListOperationsResponse,
         ) -> ListOperationsResponseHttpRequest | None: ...
-
     @typing.type_check_only
     class ServicesResource(googleapiclient.discovery.Resource):
         def batchEnable(
@@ -42,7 +41,7 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: BatchEnableServicesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def batchGet(
             self, *, parent: str, names: str | _list[str] = ..., **kwargs: typing.Any
@@ -63,14 +62,13 @@ class ServiceUsageResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(
             self,
             previous_request: ListServicesResponseHttpRequest,
             previous_response: ListServicesResponse,
         ) -> ListServicesResponseHttpRequest | None: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[

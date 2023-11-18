@@ -20,9 +20,8 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: DecodeIntegrityTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DecodeIntegrityTokenResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
