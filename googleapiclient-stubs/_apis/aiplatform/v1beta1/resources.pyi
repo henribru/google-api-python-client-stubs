@@ -3992,7 +3992,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def publishers(self) -> PublishersResource: ...
@@ -4001,8 +4001,8 @@ class AiplatformResource(googleapiclient.discovery.Resource):
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
 
 @typing.type_check_only
@@ -4011,8 +4011,8 @@ class GoogleCloudAiplatformV1beta1AddContextArtifactsAndExecutionsResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1AddContextArtifactsAndExecutionsResponse: ...
 
 @typing.type_check_only
@@ -4021,8 +4021,8 @@ class GoogleCloudAiplatformV1beta1AddContextChildrenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1AddContextChildrenResponse: ...
 
 @typing.type_check_only
@@ -4031,8 +4031,8 @@ class GoogleCloudAiplatformV1beta1AddExecutionEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1AddExecutionEventsResponse: ...
 
 @typing.type_check_only
@@ -4041,16 +4041,16 @@ class GoogleCloudAiplatformV1beta1AnnotationSpecHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1AnnotationSpec: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ArtifactHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Artifact: ...
 
 @typing.type_check_only
@@ -4059,8 +4059,8 @@ class GoogleCloudAiplatformV1beta1BatchCreateTensorboardRunsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1BatchCreateTensorboardRunsResponse: ...
 
 @typing.type_check_only
@@ -4069,8 +4069,8 @@ class GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1BatchCreateTensorboardTimeSeriesResponse: ...
 
 @typing.type_check_only
@@ -4079,8 +4079,8 @@ class GoogleCloudAiplatformV1beta1BatchImportEvaluatedAnnotationsResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1BatchImportEvaluatedAnnotationsResponse: ...
 
 @typing.type_check_only
@@ -4089,8 +4089,8 @@ class GoogleCloudAiplatformV1beta1BatchPredictionJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1BatchPredictionJob: ...
 
 @typing.type_check_only
@@ -4099,16 +4099,16 @@ class GoogleCloudAiplatformV1beta1BatchReadTensorboardTimeSeriesDataResponseHttp
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1BatchReadTensorboardTimeSeriesDataResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ContextHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Context: ...
 
 @typing.type_check_only
@@ -4117,8 +4117,8 @@ class GoogleCloudAiplatformV1beta1CountTokensResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1CountTokensResponse: ...
 
 @typing.type_check_only
@@ -4127,8 +4127,8 @@ class GoogleCloudAiplatformV1beta1CustomJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1CustomJob: ...
 
 @typing.type_check_only
@@ -4137,16 +4137,16 @@ class GoogleCloudAiplatformV1beta1DataLabelingJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1DataLabelingJob: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Dataset: ...
 
 @typing.type_check_only
@@ -4155,8 +4155,8 @@ class GoogleCloudAiplatformV1beta1DatasetVersionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1DatasetVersion: ...
 
 @typing.type_check_only
@@ -4165,16 +4165,16 @@ class GoogleCloudAiplatformV1beta1DeploymentResourcePoolHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1DeploymentResourcePool: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1EndpointHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Endpoint: ...
 
 @typing.type_check_only
@@ -4183,8 +4183,8 @@ class GoogleCloudAiplatformV1beta1EntityTypeHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1EntityType: ...
 
 @typing.type_check_only
@@ -4193,8 +4193,8 @@ class GoogleCloudAiplatformV1beta1ExecutionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Execution: ...
 
 @typing.type_check_only
@@ -4203,8 +4203,8 @@ class GoogleCloudAiplatformV1beta1ExplainResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ExplainResponse: ...
 
 @typing.type_check_only
@@ -4213,16 +4213,16 @@ class GoogleCloudAiplatformV1beta1ExportTensorboardTimeSeriesDataResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ExportTensorboardTimeSeriesDataResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Feature: ...
 
 @typing.type_check_only
@@ -4231,8 +4231,8 @@ class GoogleCloudAiplatformV1beta1FeatureGroupHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FeatureGroup: ...
 
 @typing.type_check_only
@@ -4241,8 +4241,8 @@ class GoogleCloudAiplatformV1beta1FeatureOnlineStoreHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FeatureOnlineStore: ...
 
 @typing.type_check_only
@@ -4251,8 +4251,8 @@ class GoogleCloudAiplatformV1beta1FeatureViewHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FeatureView: ...
 
 @typing.type_check_only
@@ -4261,8 +4261,8 @@ class GoogleCloudAiplatformV1beta1FeatureViewSyncHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FeatureViewSync: ...
 
 @typing.type_check_only
@@ -4271,8 +4271,8 @@ class GoogleCloudAiplatformV1beta1FeaturestoreHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Featurestore: ...
 
 @typing.type_check_only
@@ -4281,8 +4281,8 @@ class GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse: ...
 
 @typing.type_check_only
@@ -4291,8 +4291,8 @@ class GoogleCloudAiplatformV1beta1FindNeighborsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1FindNeighborsResponse: ...
 
 @typing.type_check_only
@@ -4301,8 +4301,8 @@ class GoogleCloudAiplatformV1beta1GenerateAccessTokenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1GenerateAccessTokenResponse: ...
 
 @typing.type_check_only
@@ -4311,16 +4311,16 @@ class GoogleCloudAiplatformV1beta1HyperparameterTuningJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1HyperparameterTuningJob: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1IndexHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Index: ...
 
 @typing.type_check_only
@@ -4329,8 +4329,8 @@ class GoogleCloudAiplatformV1beta1IndexEndpointHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1IndexEndpoint: ...
 
 @typing.type_check_only
@@ -4339,8 +4339,8 @@ class GoogleCloudAiplatformV1beta1LineageSubgraphHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1LineageSubgraph: ...
 
 @typing.type_check_only
@@ -4349,8 +4349,8 @@ class GoogleCloudAiplatformV1beta1ListAnnotationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListAnnotationsResponse: ...
 
 @typing.type_check_only
@@ -4359,8 +4359,8 @@ class GoogleCloudAiplatformV1beta1ListArtifactsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListArtifactsResponse: ...
 
 @typing.type_check_only
@@ -4369,8 +4369,8 @@ class GoogleCloudAiplatformV1beta1ListBatchPredictionJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListBatchPredictionJobsResponse: ...
 
 @typing.type_check_only
@@ -4379,8 +4379,8 @@ class GoogleCloudAiplatformV1beta1ListContextsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListContextsResponse: ...
 
 @typing.type_check_only
@@ -4389,8 +4389,8 @@ class GoogleCloudAiplatformV1beta1ListCustomJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListCustomJobsResponse: ...
 
 @typing.type_check_only
@@ -4399,8 +4399,8 @@ class GoogleCloudAiplatformV1beta1ListDataItemsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListDataItemsResponse: ...
 
 @typing.type_check_only
@@ -4409,8 +4409,8 @@ class GoogleCloudAiplatformV1beta1ListDataLabelingJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListDataLabelingJobsResponse: ...
 
 @typing.type_check_only
@@ -4419,8 +4419,8 @@ class GoogleCloudAiplatformV1beta1ListDatasetVersionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListDatasetVersionsResponse: ...
 
 @typing.type_check_only
@@ -4429,8 +4429,8 @@ class GoogleCloudAiplatformV1beta1ListDatasetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListDatasetsResponse: ...
 
 @typing.type_check_only
@@ -4439,8 +4439,8 @@ class GoogleCloudAiplatformV1beta1ListDeploymentResourcePoolsResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListDeploymentResourcePoolsResponse: ...
 
 @typing.type_check_only
@@ -4449,8 +4449,8 @@ class GoogleCloudAiplatformV1beta1ListEndpointsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListEndpointsResponse: ...
 
 @typing.type_check_only
@@ -4459,8 +4459,8 @@ class GoogleCloudAiplatformV1beta1ListEntityTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListEntityTypesResponse: ...
 
 @typing.type_check_only
@@ -4469,8 +4469,8 @@ class GoogleCloudAiplatformV1beta1ListExecutionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListExecutionsResponse: ...
 
 @typing.type_check_only
@@ -4479,8 +4479,8 @@ class GoogleCloudAiplatformV1beta1ListFeatureGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeatureGroupsResponse: ...
 
 @typing.type_check_only
@@ -4489,8 +4489,8 @@ class GoogleCloudAiplatformV1beta1ListFeatureOnlineStoresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeatureOnlineStoresResponse: ...
 
 @typing.type_check_only
@@ -4499,8 +4499,8 @@ class GoogleCloudAiplatformV1beta1ListFeatureViewSyncsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeatureViewSyncsResponse: ...
 
 @typing.type_check_only
@@ -4509,8 +4509,8 @@ class GoogleCloudAiplatformV1beta1ListFeatureViewsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeatureViewsResponse: ...
 
 @typing.type_check_only
@@ -4519,8 +4519,8 @@ class GoogleCloudAiplatformV1beta1ListFeaturesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeaturesResponse: ...
 
 @typing.type_check_only
@@ -4529,8 +4529,8 @@ class GoogleCloudAiplatformV1beta1ListFeaturestoresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListFeaturestoresResponse: ...
 
 @typing.type_check_only
@@ -4539,8 +4539,8 @@ class GoogleCloudAiplatformV1beta1ListHyperparameterTuningJobsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListHyperparameterTuningJobsResponse: ...
 
 @typing.type_check_only
@@ -4549,8 +4549,8 @@ class GoogleCloudAiplatformV1beta1ListIndexEndpointsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListIndexEndpointsResponse: ...
 
 @typing.type_check_only
@@ -4559,8 +4559,8 @@ class GoogleCloudAiplatformV1beta1ListIndexesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListIndexesResponse: ...
 
 @typing.type_check_only
@@ -4569,8 +4569,8 @@ class GoogleCloudAiplatformV1beta1ListMetadataSchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListMetadataSchemasResponse: ...
 
 @typing.type_check_only
@@ -4579,8 +4579,8 @@ class GoogleCloudAiplatformV1beta1ListMetadataStoresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListMetadataStoresResponse: ...
 
 @typing.type_check_only
@@ -4589,8 +4589,8 @@ class GoogleCloudAiplatformV1beta1ListModelDeploymentMonitoringJobsResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListModelDeploymentMonitoringJobsResponse: ...
 
 @typing.type_check_only
@@ -4599,8 +4599,8 @@ class GoogleCloudAiplatformV1beta1ListModelEvaluationSlicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListModelEvaluationSlicesResponse: ...
 
 @typing.type_check_only
@@ -4609,8 +4609,8 @@ class GoogleCloudAiplatformV1beta1ListModelEvaluationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListModelEvaluationsResponse: ...
 
 @typing.type_check_only
@@ -4619,8 +4619,8 @@ class GoogleCloudAiplatformV1beta1ListModelVersionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListModelVersionsResponse: ...
 
 @typing.type_check_only
@@ -4629,8 +4629,8 @@ class GoogleCloudAiplatformV1beta1ListModelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListModelsResponse: ...
 
 @typing.type_check_only
@@ -4639,8 +4639,8 @@ class GoogleCloudAiplatformV1beta1ListNasJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListNasJobsResponse: ...
 
 @typing.type_check_only
@@ -4649,8 +4649,8 @@ class GoogleCloudAiplatformV1beta1ListNasTrialDetailsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListNasTrialDetailsResponse: ...
 
 @typing.type_check_only
@@ -4659,8 +4659,8 @@ class GoogleCloudAiplatformV1beta1ListNotebookRuntimeTemplatesResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListNotebookRuntimeTemplatesResponse: ...
 
 @typing.type_check_only
@@ -4669,8 +4669,8 @@ class GoogleCloudAiplatformV1beta1ListNotebookRuntimesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListNotebookRuntimesResponse: ...
 
 @typing.type_check_only
@@ -4679,8 +4679,8 @@ class GoogleCloudAiplatformV1beta1ListOptimalTrialsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListOptimalTrialsResponse: ...
 
 @typing.type_check_only
@@ -4689,8 +4689,8 @@ class GoogleCloudAiplatformV1beta1ListPersistentResourcesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListPersistentResourcesResponse: ...
 
 @typing.type_check_only
@@ -4699,8 +4699,8 @@ class GoogleCloudAiplatformV1beta1ListPipelineJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListPipelineJobsResponse: ...
 
 @typing.type_check_only
@@ -4709,8 +4709,8 @@ class GoogleCloudAiplatformV1beta1ListPublisherModelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListPublisherModelsResponse: ...
 
 @typing.type_check_only
@@ -4719,8 +4719,8 @@ class GoogleCloudAiplatformV1beta1ListSavedQueriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListSavedQueriesResponse: ...
 
 @typing.type_check_only
@@ -4729,8 +4729,8 @@ class GoogleCloudAiplatformV1beta1ListSchedulesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListSchedulesResponse: ...
 
 @typing.type_check_only
@@ -4739,8 +4739,8 @@ class GoogleCloudAiplatformV1beta1ListSpecialistPoolsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListSpecialistPoolsResponse: ...
 
 @typing.type_check_only
@@ -4749,8 +4749,8 @@ class GoogleCloudAiplatformV1beta1ListStudiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListStudiesResponse: ...
 
 @typing.type_check_only
@@ -4759,8 +4759,8 @@ class GoogleCloudAiplatformV1beta1ListTensorboardExperimentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTensorboardExperimentsResponse: ...
 
 @typing.type_check_only
@@ -4769,8 +4769,8 @@ class GoogleCloudAiplatformV1beta1ListTensorboardRunsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTensorboardRunsResponse: ...
 
 @typing.type_check_only
@@ -4779,8 +4779,8 @@ class GoogleCloudAiplatformV1beta1ListTensorboardTimeSeriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTensorboardTimeSeriesResponse: ...
 
 @typing.type_check_only
@@ -4789,8 +4789,8 @@ class GoogleCloudAiplatformV1beta1ListTensorboardsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTensorboardsResponse: ...
 
 @typing.type_check_only
@@ -4799,8 +4799,8 @@ class GoogleCloudAiplatformV1beta1ListTrainingPipelinesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTrainingPipelinesResponse: ...
 
 @typing.type_check_only
@@ -4809,8 +4809,8 @@ class GoogleCloudAiplatformV1beta1ListTrialsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ListTrialsResponse: ...
 
 @typing.type_check_only
@@ -4819,8 +4819,8 @@ class GoogleCloudAiplatformV1beta1MetadataSchemaHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1MetadataSchema: ...
 
 @typing.type_check_only
@@ -4829,16 +4829,16 @@ class GoogleCloudAiplatformV1beta1MetadataStoreHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1MetadataStore: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Model: ...
 
 @typing.type_check_only
@@ -4847,8 +4847,8 @@ class GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringJob: ...
 
 @typing.type_check_only
@@ -4857,8 +4857,8 @@ class GoogleCloudAiplatformV1beta1ModelEvaluationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ModelEvaluation: ...
 
 @typing.type_check_only
@@ -4867,16 +4867,16 @@ class GoogleCloudAiplatformV1beta1ModelEvaluationSliceHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ModelEvaluationSlice: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1NasJobHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1NasJob: ...
 
 @typing.type_check_only
@@ -4885,8 +4885,8 @@ class GoogleCloudAiplatformV1beta1NasTrialDetailHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1NasTrialDetail: ...
 
 @typing.type_check_only
@@ -4895,8 +4895,8 @@ class GoogleCloudAiplatformV1beta1NotebookRuntimeHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1NotebookRuntime: ...
 
 @typing.type_check_only
@@ -4905,8 +4905,8 @@ class GoogleCloudAiplatformV1beta1NotebookRuntimeTemplateHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1NotebookRuntimeTemplate: ...
 
 @typing.type_check_only
@@ -4915,8 +4915,8 @@ class GoogleCloudAiplatformV1beta1PersistentResourceHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1PersistentResource: ...
 
 @typing.type_check_only
@@ -4925,8 +4925,8 @@ class GoogleCloudAiplatformV1beta1PipelineJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1PipelineJob: ...
 
 @typing.type_check_only
@@ -4935,8 +4935,8 @@ class GoogleCloudAiplatformV1beta1PredictResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1PredictResponse: ...
 
 @typing.type_check_only
@@ -4945,8 +4945,8 @@ class GoogleCloudAiplatformV1beta1PublisherModelHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1PublisherModel: ...
 
 @typing.type_check_only
@@ -4955,8 +4955,8 @@ class GoogleCloudAiplatformV1beta1QueryDeployedModelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1QueryDeployedModelsResponse: ...
 
 @typing.type_check_only
@@ -4965,8 +4965,8 @@ class GoogleCloudAiplatformV1beta1ReadFeatureValuesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadFeatureValuesResponse: ...
 
 @typing.type_check_only
@@ -4975,8 +4975,8 @@ class GoogleCloudAiplatformV1beta1ReadIndexDatapointsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadIndexDatapointsResponse: ...
 
 @typing.type_check_only
@@ -4985,8 +4985,8 @@ class GoogleCloudAiplatformV1beta1ReadTensorboardBlobDataResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadTensorboardBlobDataResponse: ...
 
 @typing.type_check_only
@@ -4995,8 +4995,8 @@ class GoogleCloudAiplatformV1beta1ReadTensorboardSizeResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadTensorboardSizeResponse: ...
 
 @typing.type_check_only
@@ -5005,8 +5005,8 @@ class GoogleCloudAiplatformV1beta1ReadTensorboardTimeSeriesDataResponseHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadTensorboardTimeSeriesDataResponse: ...
 
 @typing.type_check_only
@@ -5015,8 +5015,8 @@ class GoogleCloudAiplatformV1beta1ReadTensorboardUsageResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReadTensorboardUsageResponse: ...
 
 @typing.type_check_only
@@ -5025,8 +5025,8 @@ class GoogleCloudAiplatformV1beta1RemoveContextChildrenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1RemoveContextChildrenResponse: ...
 
 @typing.type_check_only
@@ -5035,8 +5035,8 @@ class GoogleCloudAiplatformV1beta1RemoveDatapointsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1RemoveDatapointsResponse: ...
 
 @typing.type_check_only
@@ -5045,8 +5045,8 @@ class GoogleCloudAiplatformV1beta1ReportExecutionEventResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReportExecutionEventResponse: ...
 
 @typing.type_check_only
@@ -5055,16 +5055,16 @@ class GoogleCloudAiplatformV1beta1ReportRuntimeEventResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1ReportRuntimeEventResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ScheduleHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Schedule: ...
 
 @typing.type_check_only
@@ -5073,8 +5073,8 @@ class GoogleCloudAiplatformV1beta1SearchDataItemsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SearchDataItemsResponse: ...
 
 @typing.type_check_only
@@ -5083,8 +5083,8 @@ class GoogleCloudAiplatformV1beta1SearchFeaturesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SearchFeaturesResponse: ...
 
 @typing.type_check_only
@@ -5093,8 +5093,8 @@ class GoogleCloudAiplatformV1beta1SearchMigratableResourcesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SearchMigratableResourcesResponse: ...
 
 @typing.type_check_only
@@ -5103,8 +5103,8 @@ class GoogleCloudAiplatformV1beta1SearchModelDeploymentMonitoringStatsAnomaliesR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SearchModelDeploymentMonitoringStatsAnomaliesResponse: ...
 
 @typing.type_check_only
@@ -5113,8 +5113,8 @@ class GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse: ...
 
 @typing.type_check_only
@@ -5123,8 +5123,8 @@ class GoogleCloudAiplatformV1beta1SpecialistPoolHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SpecialistPool: ...
 
 @typing.type_check_only
@@ -5133,16 +5133,16 @@ class GoogleCloudAiplatformV1beta1StreamingPredictResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1StreamingPredictResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1StudyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Study: ...
 
 @typing.type_check_only
@@ -5151,8 +5151,8 @@ class GoogleCloudAiplatformV1beta1SyncFeatureViewResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1SyncFeatureViewResponse: ...
 
 @typing.type_check_only
@@ -5161,8 +5161,8 @@ class GoogleCloudAiplatformV1beta1TensorboardHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Tensorboard: ...
 
 @typing.type_check_only
@@ -5171,8 +5171,8 @@ class GoogleCloudAiplatformV1beta1TensorboardExperimentHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1TensorboardExperiment: ...
 
 @typing.type_check_only
@@ -5181,8 +5181,8 @@ class GoogleCloudAiplatformV1beta1TensorboardRunHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1TensorboardRun: ...
 
 @typing.type_check_only
@@ -5191,8 +5191,8 @@ class GoogleCloudAiplatformV1beta1TensorboardTimeSeriesHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1TensorboardTimeSeries: ...
 
 @typing.type_check_only
@@ -5201,16 +5201,16 @@ class GoogleCloudAiplatformV1beta1TrainingPipelineHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1TrainingPipeline: ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1TrialHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1Trial: ...
 
 @typing.type_check_only
@@ -5219,8 +5219,8 @@ class GoogleCloudAiplatformV1beta1UpsertDatapointsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1UpsertDatapointsResponse: ...
 
 @typing.type_check_only
@@ -5229,8 +5229,8 @@ class GoogleCloudAiplatformV1beta1WriteFeatureValuesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1WriteFeatureValuesResponse: ...
 
 @typing.type_check_only
@@ -5239,8 +5239,8 @@ class GoogleCloudAiplatformV1beta1WriteTensorboardExperimentDataResponseHttpRequ
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1WriteTensorboardExperimentDataResponse: ...
 
 @typing.type_check_only
@@ -5249,8 +5249,8 @@ class GoogleCloudAiplatformV1beta1WriteTensorboardRunDataResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAiplatformV1beta1WriteTensorboardRunDataResponse: ...
 
 @typing.type_check_only
@@ -5259,24 +5259,24 @@ class GoogleCloudLocationListLocationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudLocationListLocationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudLocationLocation: ...
 
 @typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1Policy: ...
 
 @typing.type_check_only
@@ -5285,8 +5285,8 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
@@ -5295,22 +5295,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

@@ -92,7 +92,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -102,8 +102,8 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstanceHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance: ...
 
 @typing.type_check_only
@@ -112,8 +112,8 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse: ...
 
 @typing.type_check_only
@@ -122,8 +122,8 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse: ...
 
 @typing.type_check_only
@@ -132,14 +132,14 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPoolHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...

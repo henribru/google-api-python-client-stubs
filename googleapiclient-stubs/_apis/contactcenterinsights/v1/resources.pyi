@@ -348,7 +348,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -358,8 +358,8 @@ class GoogleCloudContactcenterinsightsV1AnalysisHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Analysis: ...
 
 @typing.type_check_only
@@ -368,8 +368,8 @@ class GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseHttpRequ
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse: ...
 
 @typing.type_check_only
@@ -378,8 +378,8 @@ class GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponse: ...
 
 @typing.type_check_only
@@ -388,8 +388,8 @@ class GoogleCloudContactcenterinsightsV1ConversationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Conversation: ...
 
 @typing.type_check_only
@@ -398,8 +398,8 @@ class GoogleCloudContactcenterinsightsV1IssueHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Issue: ...
 
 @typing.type_check_only
@@ -408,8 +408,8 @@ class GoogleCloudContactcenterinsightsV1IssueModelHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1IssueModel: ...
 
 @typing.type_check_only
@@ -418,8 +418,8 @@ class GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponse: ...
 
 @typing.type_check_only
@@ -428,8 +428,8 @@ class GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponse: ...
 
 @typing.type_check_only
@@ -438,8 +438,8 @@ class GoogleCloudContactcenterinsightsV1ListIssueModelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListIssueModelsResponse: ...
 
 @typing.type_check_only
@@ -448,8 +448,8 @@ class GoogleCloudContactcenterinsightsV1ListIssuesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListIssuesResponse: ...
 
 @typing.type_check_only
@@ -458,8 +458,8 @@ class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse: ...
 
 @typing.type_check_only
@@ -468,8 +468,8 @@ class GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListViewsResponse: ...
 
 @typing.type_check_only
@@ -478,8 +478,8 @@ class GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1PhraseMatcher: ...
 
 @typing.type_check_only
@@ -488,8 +488,8 @@ class GoogleCloudContactcenterinsightsV1SettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Settings: ...
 
 @typing.type_check_only
@@ -498,8 +498,8 @@ class GoogleCloudContactcenterinsightsV1ViewHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1View: ...
 
 @typing.type_check_only
@@ -508,22 +508,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

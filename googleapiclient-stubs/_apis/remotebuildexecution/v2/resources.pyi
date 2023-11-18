@@ -112,7 +112,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def actionResults(self) -> ActionResultsResource: ...
     def actions(self) -> ActionsResource: ...
@@ -126,8 +126,8 @@ class BuildBazelRemoteExecutionV2ActionResultHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2ActionResult: ...
 
 @typing.type_check_only
@@ -136,8 +136,8 @@ class BuildBazelRemoteExecutionV2BatchReadBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2BatchReadBlobsResponse: ...
 
 @typing.type_check_only
@@ -146,8 +146,8 @@ class BuildBazelRemoteExecutionV2BatchUpdateBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse: ...
 
 @typing.type_check_only
@@ -156,8 +156,8 @@ class BuildBazelRemoteExecutionV2FindMissingBlobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2FindMissingBlobsResponse: ...
 
 @typing.type_check_only
@@ -166,8 +166,8 @@ class BuildBazelRemoteExecutionV2GetTreeResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2GetTreeResponse: ...
 
 @typing.type_check_only
@@ -176,14 +176,14 @@ class BuildBazelRemoteExecutionV2ServerCapabilitiesHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildBazelRemoteExecutionV2ServerCapabilities: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...

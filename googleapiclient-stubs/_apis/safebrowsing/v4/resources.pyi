@@ -87,7 +87,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def encodedFullHashes(self) -> EncodedFullHashesResource: ...
     def encodedUpdates(self) -> EncodedUpdatesResource: ...
@@ -101,8 +101,8 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...
 
 @typing.type_check_only
@@ -111,8 +111,8 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse: ...
 
 @typing.type_check_only
@@ -121,8 +121,8 @@ class GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponse: ...
 
 @typing.type_check_only
@@ -131,8 +131,8 @@ class GoogleSecuritySafebrowsingV4FindThreatMatchesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV4FindThreatMatchesResponse: ...
 
 @typing.type_check_only
@@ -141,6 +141,6 @@ class GoogleSecuritySafebrowsingV4ListThreatListsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV4ListThreatListsResponse: ...

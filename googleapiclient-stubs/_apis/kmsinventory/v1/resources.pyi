@@ -87,7 +87,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -98,8 +98,8 @@ class GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudKmsInventoryV1ListCryptoKeysResponse: ...
 
 @typing.type_check_only
@@ -108,8 +108,8 @@ class GoogleCloudKmsInventoryV1ProtectedResourcesSummaryHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudKmsInventoryV1ProtectedResourcesSummary: ...
 
 @typing.type_check_only
@@ -118,6 +118,6 @@ class GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudKmsInventoryV1SearchProtectedResourcesResponse: ...

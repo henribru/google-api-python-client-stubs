@@ -33,7 +33,7 @@ class AdExperienceReportResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def sites(self) -> SitesResource: ...
     def violatingSites(self) -> ViolatingSitesResource: ...
@@ -42,14 +42,14 @@ class AdExperienceReportResource(googleapiclient.discovery.Resource):
 class SiteSummaryResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SiteSummaryResponse: ...
 
 @typing.type_check_only
 class ViolatingSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ViolatingSitesResponse: ...

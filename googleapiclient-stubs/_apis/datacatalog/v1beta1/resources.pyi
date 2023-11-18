@@ -491,7 +491,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def catalog(self) -> CatalogResource: ...
     def entries(self) -> EntriesResource: ...
@@ -501,16 +501,16 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Empty: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1EntryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1Entry: ...
 
 @typing.type_check_only
@@ -519,8 +519,8 @@ class GoogleCloudDatacatalogV1beta1EntryGroupHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1EntryGroup: ...
 
 @typing.type_check_only
@@ -529,8 +529,8 @@ class GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse: ...
 
 @typing.type_check_only
@@ -539,8 +539,8 @@ class GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse: ...
 
 @typing.type_check_only
@@ -549,8 +549,8 @@ class GoogleCloudDatacatalogV1beta1ListEntriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListEntriesResponse: ...
 
 @typing.type_check_only
@@ -559,8 +559,8 @@ class GoogleCloudDatacatalogV1beta1ListEntryGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse: ...
 
 @typing.type_check_only
@@ -569,8 +569,8 @@ class GoogleCloudDatacatalogV1beta1ListPolicyTagsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse: ...
 
 @typing.type_check_only
@@ -579,8 +579,8 @@ class GoogleCloudDatacatalogV1beta1ListTagsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListTagsResponse: ...
 
 @typing.type_check_only
@@ -589,8 +589,8 @@ class GoogleCloudDatacatalogV1beta1ListTaxonomiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse: ...
 
 @typing.type_check_only
@@ -599,8 +599,8 @@ class GoogleCloudDatacatalogV1beta1PolicyTagHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1PolicyTag: ...
 
 @typing.type_check_only
@@ -609,16 +609,16 @@ class GoogleCloudDatacatalogV1beta1SearchCatalogResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1SearchCatalogResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1beta1TagHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1Tag: ...
 
 @typing.type_check_only
@@ -627,8 +627,8 @@ class GoogleCloudDatacatalogV1beta1TagTemplateHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1TagTemplate: ...
 
 @typing.type_check_only
@@ -637,8 +637,8 @@ class GoogleCloudDatacatalogV1beta1TagTemplateFieldHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1TagTemplateField: ...
 
 @typing.type_check_only
@@ -647,22 +647,22 @@ class GoogleCloudDatacatalogV1beta1TaxonomyHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1beta1Taxonomy: ...
 
 @typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Policy: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...

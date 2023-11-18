@@ -521,7 +521,7 @@ class RecommenderResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
     def folders(self) -> FoldersResource: ...
@@ -534,8 +534,8 @@ class RecommenderResource(googleapiclient.discovery.Resource):
 class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1Insight: ...
 
 @typing.type_check_only
@@ -544,8 +544,8 @@ class GoogleCloudRecommenderV1beta1InsightTypeConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1InsightTypeConfig: ...
 
 @typing.type_check_only
@@ -554,8 +554,8 @@ class GoogleCloudRecommenderV1beta1ListInsightTypesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1ListInsightTypesResponse: ...
 
 @typing.type_check_only
@@ -564,8 +564,8 @@ class GoogleCloudRecommenderV1beta1ListInsightsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1ListInsightsResponse: ...
 
 @typing.type_check_only
@@ -574,8 +574,8 @@ class GoogleCloudRecommenderV1beta1ListRecommendationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1ListRecommendationsResponse: ...
 
 @typing.type_check_only
@@ -584,8 +584,8 @@ class GoogleCloudRecommenderV1beta1ListRecommendersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1ListRecommendersResponse: ...
 
 @typing.type_check_only
@@ -594,8 +594,8 @@ class GoogleCloudRecommenderV1beta1RecommendationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1Recommendation: ...
 
 @typing.type_check_only
@@ -604,6 +604,6 @@ class GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommenderV1beta1RecommenderConfig: ...

@@ -29,7 +29,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def hashes(self) -> HashesResource: ...
 
@@ -39,6 +39,6 @@ class GoogleSecuritySafebrowsingV5SearchHashesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSecuritySafebrowsingV5SearchHashesResponse: ...

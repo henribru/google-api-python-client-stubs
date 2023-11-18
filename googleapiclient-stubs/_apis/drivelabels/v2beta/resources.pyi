@@ -274,7 +274,7 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def labels(self) -> LabelsResource: ...
     def limits(self) -> LimitsResource: ...
@@ -286,8 +286,8 @@ class GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponse: ...
 
 @typing.type_check_only
@@ -296,16 +296,16 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponse: ...
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2betaLabelHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaLabel: ...
 
 @typing.type_check_only
@@ -314,8 +314,8 @@ class GoogleAppsDriveLabelsV2betaLabelLimitsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaLabelLimits: ...
 
 @typing.type_check_only
@@ -324,8 +324,8 @@ class GoogleAppsDriveLabelsV2betaLabelPermissionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaLabelPermission: ...
 
 @typing.type_check_only
@@ -334,8 +334,8 @@ class GoogleAppsDriveLabelsV2betaListLabelLocksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaListLabelLocksResponse: ...
 
 @typing.type_check_only
@@ -344,8 +344,8 @@ class GoogleAppsDriveLabelsV2betaListLabelPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse: ...
 
 @typing.type_check_only
@@ -354,8 +354,8 @@ class GoogleAppsDriveLabelsV2betaListLabelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaListLabelsResponse: ...
 
 @typing.type_check_only
@@ -364,14 +364,14 @@ class GoogleAppsDriveLabelsV2betaUserCapabilitiesHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAppsDriveLabelsV2betaUserCapabilities: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

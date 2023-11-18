@@ -161,7 +161,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
     def media(self) -> MediaResource: ...
@@ -172,8 +172,8 @@ class GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1DefineCertificateResponse: ...
 
 @typing.type_check_only
@@ -182,8 +182,8 @@ class GoogleChromePolicyVersionsV1DefineNetworkResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1DefineNetworkResponse: ...
 
 @typing.type_check_only
@@ -192,8 +192,8 @@ class GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponse: ...
 
 @typing.type_check_only
@@ -202,8 +202,8 @@ class GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1ListPolicySchemasResponse: ...
 
 @typing.type_check_only
@@ -212,8 +212,8 @@ class GoogleChromePolicyVersionsV1PolicySchemaHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1PolicySchema: ...
 
 @typing.type_check_only
@@ -222,8 +222,8 @@ class GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1RemoveCertificateResponse: ...
 
 @typing.type_check_only
@@ -232,8 +232,8 @@ class GoogleChromePolicyVersionsV1RemoveNetworkResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1RemoveNetworkResponse: ...
 
 @typing.type_check_only
@@ -242,8 +242,8 @@ class GoogleChromePolicyVersionsV1ResolveResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1ResolveResponse: ...
 
 @typing.type_check_only
@@ -252,14 +252,14 @@ class GoogleChromePolicyVersionsV1UploadPolicyFileResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromePolicyVersionsV1UploadPolicyFileResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

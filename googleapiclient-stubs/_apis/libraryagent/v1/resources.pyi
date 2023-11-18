@@ -63,7 +63,7 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def shelves(self) -> ShelvesResource: ...
 
@@ -71,8 +71,8 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
 class GoogleExampleLibraryagentV1BookHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleExampleLibraryagentV1Book: ...
 
 @typing.type_check_only
@@ -81,8 +81,8 @@ class GoogleExampleLibraryagentV1ListBooksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleExampleLibraryagentV1ListBooksResponse: ...
 
 @typing.type_check_only
@@ -91,14 +91,14 @@ class GoogleExampleLibraryagentV1ListShelvesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleExampleLibraryagentV1ListShelvesResponse: ...
 
 @typing.type_check_only
 class GoogleExampleLibraryagentV1ShelfHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleExampleLibraryagentV1Shelf: ...

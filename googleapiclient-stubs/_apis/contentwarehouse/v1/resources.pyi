@@ -332,7 +332,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -342,8 +342,8 @@ class GoogleCloudContentwarehouseV1CreateDocumentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1CreateDocumentResponse: ...
 
 @typing.type_check_only
@@ -352,8 +352,8 @@ class GoogleCloudContentwarehouseV1DocumentHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1Document: ...
 
 @typing.type_check_only
@@ -362,8 +362,8 @@ class GoogleCloudContentwarehouseV1DocumentLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1DocumentLink: ...
 
 @typing.type_check_only
@@ -372,8 +372,8 @@ class GoogleCloudContentwarehouseV1DocumentSchemaHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1DocumentSchema: ...
 
 @typing.type_check_only
@@ -382,8 +382,8 @@ class GoogleCloudContentwarehouseV1FetchAclResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1FetchAclResponse: ...
 
 @typing.type_check_only
@@ -392,8 +392,8 @@ class GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ListDocumentSchemasResponse: ...
 
 @typing.type_check_only
@@ -402,8 +402,8 @@ class GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ListLinkedSourcesResponse: ...
 
 @typing.type_check_only
@@ -412,8 +412,8 @@ class GoogleCloudContentwarehouseV1ListLinkedTargetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ListLinkedTargetsResponse: ...
 
 @typing.type_check_only
@@ -422,8 +422,8 @@ class GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ListRuleSetsResponse: ...
 
 @typing.type_check_only
@@ -432,8 +432,8 @@ class GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ListSynonymSetsResponse: ...
 
 @typing.type_check_only
@@ -442,16 +442,16 @@ class GoogleCloudContentwarehouseV1ProjectStatusHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1ProjectStatus: ...
 
 @typing.type_check_only
 class GoogleCloudContentwarehouseV1RuleSetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1RuleSet: ...
 
 @typing.type_check_only
@@ -460,8 +460,8 @@ class GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1SearchDocumentsResponse: ...
 
 @typing.type_check_only
@@ -470,8 +470,8 @@ class GoogleCloudContentwarehouseV1SetAclResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1SetAclResponse: ...
 
 @typing.type_check_only
@@ -480,8 +480,8 @@ class GoogleCloudContentwarehouseV1SynonymSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1SynonymSet: ...
 
 @typing.type_check_only
@@ -490,22 +490,22 @@ class GoogleCloudContentwarehouseV1UpdateDocumentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudContentwarehouseV1UpdateDocumentResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

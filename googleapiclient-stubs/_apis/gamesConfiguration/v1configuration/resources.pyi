@@ -95,7 +95,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def achievementConfigurations(self) -> AchievementConfigurationsResource: ...
     def leaderboardConfigurations(self) -> LeaderboardConfigurationsResource: ...
@@ -104,30 +104,30 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
 class AchievementConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> AchievementConfiguration: ...
 
 @typing.type_check_only
 class AchievementConfigurationListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> AchievementConfigurationListResponse: ...
 
 @typing.type_check_only
 class LeaderboardConfigurationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> LeaderboardConfiguration: ...
 
 @typing.type_check_only
 class LeaderboardConfigurationListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> LeaderboardConfigurationListResponse: ...

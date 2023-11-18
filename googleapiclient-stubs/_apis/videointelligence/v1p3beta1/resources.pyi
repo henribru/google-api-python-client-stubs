@@ -32,7 +32,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def videos(self) -> VideosResource: ...
 
@@ -40,6 +40,6 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
 class GoogleLongrunning_OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunning_Operation: ...

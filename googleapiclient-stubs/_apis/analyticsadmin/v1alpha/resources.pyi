@@ -1174,7 +1174,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountSummaries(self) -> AccountSummariesResource: ...
     def accounts(self) -> AccountsResource: ...
@@ -1186,16 +1186,16 @@ class GoogleAnalyticsAdminV1alphaAccessBindingHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAccessBinding: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAccount: ...
 
 @typing.type_check_only
@@ -1204,8 +1204,8 @@ class GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse: ...
 
 @typing.type_check_only
@@ -1214,8 +1214,8 @@ class GoogleAnalyticsAdminV1alphaAdSenseLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAdSenseLink: ...
 
 @typing.type_check_only
@@ -1224,8 +1224,8 @@ class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalRes
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse
     ): ...
@@ -1236,16 +1236,16 @@ class GoogleAnalyticsAdminV1alphaAttributionSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAttributionSettings: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAudienceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaAudience: ...
 
 @typing.type_check_only
@@ -1254,8 +1254,8 @@ class GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaBatchCreateAccessBindingsResponse: ...
 
 @typing.type_check_only
@@ -1264,8 +1264,8 @@ class GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaBatchGetAccessBindingsResponse: ...
 
 @typing.type_check_only
@@ -1274,8 +1274,8 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse: ...
 
 @typing.type_check_only
@@ -1284,8 +1284,8 @@ class GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaBigQueryLink: ...
 
 @typing.type_check_only
@@ -1294,8 +1294,8 @@ class GoogleAnalyticsAdminV1alphaChannelGroupHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaChannelGroup: ...
 
 @typing.type_check_only
@@ -1304,8 +1304,8 @@ class GoogleAnalyticsAdminV1alphaConversionEventHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaConversionEvent: ...
 
 @typing.type_check_only
@@ -1314,8 +1314,8 @@ class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse: ...
 
 @typing.type_check_only
@@ -1324,8 +1324,8 @@ class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse: ...
 
 @typing.type_check_only
@@ -1334,8 +1334,8 @@ class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse: ...
 
 @typing.type_check_only
@@ -1344,8 +1344,8 @@ class GoogleAnalyticsAdminV1alphaCustomDimensionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaCustomDimension: ...
 
 @typing.type_check_only
@@ -1354,8 +1354,8 @@ class GoogleAnalyticsAdminV1alphaCustomMetricHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaCustomMetric: ...
 
 @typing.type_check_only
@@ -1364,8 +1364,8 @@ class GoogleAnalyticsAdminV1alphaDataRedactionSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDataRedactionSettings: ...
 
 @typing.type_check_only
@@ -1374,8 +1374,8 @@ class GoogleAnalyticsAdminV1alphaDataRetentionSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDataRetentionSettings: ...
 
 @typing.type_check_only
@@ -1384,8 +1384,8 @@ class GoogleAnalyticsAdminV1alphaDataSharingSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDataSharingSettings: ...
 
 @typing.type_check_only
@@ -1394,8 +1394,8 @@ class GoogleAnalyticsAdminV1alphaDataStreamHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDataStream: ...
 
 @typing.type_check_only
@@ -1404,8 +1404,8 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink: ...
 
 @typing.type_check_only
@@ -1414,8 +1414,8 @@ class GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposalHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal: ...
 
 @typing.type_check_only
@@ -1424,8 +1424,8 @@ class GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings: ...
 
 @typing.type_check_only
@@ -1434,8 +1434,8 @@ class GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaEventCreateRule: ...
 
 @typing.type_check_only
@@ -1444,8 +1444,8 @@ class GoogleAnalyticsAdminV1alphaExpandedDataSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaExpandedDataSet: ...
 
 @typing.type_check_only
@@ -1454,8 +1454,8 @@ class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse: ...
 
 @typing.type_check_only
@@ -1464,8 +1464,8 @@ class GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse: ...
 
 @typing.type_check_only
@@ -1474,8 +1474,8 @@ class GoogleAnalyticsAdminV1alphaFirebaseLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaFirebaseLink: ...
 
 @typing.type_check_only
@@ -1484,8 +1484,8 @@ class GoogleAnalyticsAdminV1alphaGlobalSiteTagHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaGlobalSiteTag: ...
 
 @typing.type_check_only
@@ -1494,8 +1494,8 @@ class GoogleAnalyticsAdminV1alphaGoogleAdsLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaGoogleAdsLink: ...
 
 @typing.type_check_only
@@ -1504,8 +1504,8 @@ class GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettings: ...
 
 @typing.type_check_only
@@ -1514,8 +1514,8 @@ class GoogleAnalyticsAdminV1alphaListAccessBindingsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListAccessBindingsResponse: ...
 
 @typing.type_check_only
@@ -1524,8 +1524,8 @@ class GoogleAnalyticsAdminV1alphaListAccountSummariesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListAccountSummariesResponse: ...
 
 @typing.type_check_only
@@ -1534,8 +1534,8 @@ class GoogleAnalyticsAdminV1alphaListAccountsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListAccountsResponse: ...
 
 @typing.type_check_only
@@ -1544,8 +1544,8 @@ class GoogleAnalyticsAdminV1alphaListAdSenseLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListAdSenseLinksResponse: ...
 
 @typing.type_check_only
@@ -1554,8 +1554,8 @@ class GoogleAnalyticsAdminV1alphaListAudiencesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListAudiencesResponse: ...
 
 @typing.type_check_only
@@ -1564,8 +1564,8 @@ class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse: ...
 
 @typing.type_check_only
@@ -1574,8 +1574,8 @@ class GoogleAnalyticsAdminV1alphaListChannelGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListChannelGroupsResponse: ...
 
 @typing.type_check_only
@@ -1584,8 +1584,8 @@ class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse: ...
 
 @typing.type_check_only
@@ -1594,8 +1594,8 @@ class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListConversionEventsResponse: ...
 
 @typing.type_check_only
@@ -1604,8 +1604,8 @@ class GoogleAnalyticsAdminV1alphaListCustomDimensionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListCustomDimensionsResponse: ...
 
 @typing.type_check_only
@@ -1614,8 +1614,8 @@ class GoogleAnalyticsAdminV1alphaListCustomMetricsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListCustomMetricsResponse: ...
 
 @typing.type_check_only
@@ -1624,8 +1624,8 @@ class GoogleAnalyticsAdminV1alphaListDataStreamsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListDataStreamsResponse: ...
 
 @typing.type_check_only
@@ -1634,8 +1634,8 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsRespo
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse
     ): ...
@@ -1646,8 +1646,8 @@ class GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinksResponse: ...
 
 @typing.type_check_only
@@ -1656,8 +1656,8 @@ class GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse: ...
 
 @typing.type_check_only
@@ -1666,8 +1666,8 @@ class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse: ...
 
 @typing.type_check_only
@@ -1676,8 +1676,8 @@ class GoogleAnalyticsAdminV1alphaListFirebaseLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse: ...
 
 @typing.type_check_only
@@ -1686,8 +1686,8 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse: ...
 
 @typing.type_check_only
@@ -1696,8 +1696,8 @@ class GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponseHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse: ...
 
 @typing.type_check_only
@@ -1706,8 +1706,8 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponse: ...
 
 @typing.type_check_only
@@ -1716,8 +1716,8 @@ class GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse: ...
 
 @typing.type_check_only
@@ -1726,8 +1726,8 @@ class GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponseHt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListSKAdNetworkConversionValueSchemasResponse: ...
 
 @typing.type_check_only
@@ -1736,8 +1736,8 @@ class GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListSearchAds360LinksResponse: ...
 
 @typing.type_check_only
@@ -1746,8 +1746,8 @@ class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse: ...
 
 @typing.type_check_only
@@ -1756,16 +1756,16 @@ class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaPropertyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaProperty: ...
 
 @typing.type_check_only
@@ -1774,8 +1774,8 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
 
 @typing.type_check_only
@@ -1784,8 +1784,8 @@ class GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaRollupPropertySourceLink: ...
 
 @typing.type_check_only
@@ -1794,8 +1794,8 @@ class GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaRunAccessReportResponse: ...
 
 @typing.type_check_only
@@ -1804,8 +1804,8 @@ class GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchemaHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema: ...
 
 @typing.type_check_only
@@ -1814,8 +1814,8 @@ class GoogleAnalyticsAdminV1alphaSearchAds360LinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSearchAds360Link: ...
 
 @typing.type_check_only
@@ -1824,8 +1824,8 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse: ...
 
 @typing.type_check_only
@@ -1834,8 +1834,8 @@ class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse: ...
 
 @typing.type_check_only
@@ -1844,14 +1844,14 @@ class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilter: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

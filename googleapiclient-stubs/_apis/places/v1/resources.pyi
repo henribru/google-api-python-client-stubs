@@ -59,7 +59,7 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def places(self) -> PlacesResource: ...
 
@@ -67,16 +67,16 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
 class GoogleMapsPlacesV1PhotoMediaHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlacesV1PhotoMedia: ...
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlacesV1Place: ...
 
 @typing.type_check_only
@@ -85,14 +85,14 @@ class GoogleMapsPlacesV1SearchNearbyResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlacesV1SearchNearbyResponse: ...
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlacesV1SearchTextResponse: ...

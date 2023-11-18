@@ -636,7 +636,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def operations(self) -> OperationsResource: ...
@@ -648,8 +648,8 @@ class GoogleCloudChannelV1ChannelPartnerLinkHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ChannelPartnerLink: ...
 
 @typing.type_check_only
@@ -658,8 +658,8 @@ class GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfig: ...
 
 @typing.type_check_only
@@ -668,16 +668,16 @@ class GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1CustomerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1Customer: ...
 
 @typing.type_check_only
@@ -686,16 +686,16 @@ class GoogleCloudChannelV1CustomerRepricingConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1CustomerRepricingConfig: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1EntitlementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1Entitlement: ...
 
 @typing.type_check_only
@@ -704,8 +704,8 @@ class GoogleCloudChannelV1FetchReportResultsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1FetchReportResultsResponse: ...
 
 @typing.type_check_only
@@ -714,8 +714,8 @@ class GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponse: ...
 
 @typing.type_check_only
@@ -724,8 +724,8 @@ class GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponse: ...
 
 @typing.type_check_only
@@ -734,8 +734,8 @@ class GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListCustomerRepricingConfigsResponse: ...
 
 @typing.type_check_only
@@ -744,8 +744,8 @@ class GoogleCloudChannelV1ListCustomersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListCustomersResponse: ...
 
 @typing.type_check_only
@@ -754,8 +754,8 @@ class GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListEntitlementChangesResponse: ...
 
 @typing.type_check_only
@@ -764,8 +764,8 @@ class GoogleCloudChannelV1ListEntitlementsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListEntitlementsResponse: ...
 
 @typing.type_check_only
@@ -774,8 +774,8 @@ class GoogleCloudChannelV1ListOffersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListOffersResponse: ...
 
 @typing.type_check_only
@@ -784,8 +784,8 @@ class GoogleCloudChannelV1ListProductsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListProductsResponse: ...
 
 @typing.type_check_only
@@ -794,8 +794,8 @@ class GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListPurchasableOffersResponse: ...
 
 @typing.type_check_only
@@ -804,8 +804,8 @@ class GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListPurchasableSkusResponse: ...
 
 @typing.type_check_only
@@ -814,8 +814,8 @@ class GoogleCloudChannelV1ListReportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListReportsResponse: ...
 
 @typing.type_check_only
@@ -824,8 +824,8 @@ class GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListSkuGroupBillableSkusResponse: ...
 
 @typing.type_check_only
@@ -834,16 +834,16 @@ class GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListSkuGroupsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListSkusResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListSkusResponse: ...
 
 @typing.type_check_only
@@ -852,8 +852,8 @@ class GoogleCloudChannelV1ListSubscribersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListSubscribersResponse: ...
 
 @typing.type_check_only
@@ -862,8 +862,8 @@ class GoogleCloudChannelV1ListTransferableOffersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListTransferableOffersResponse: ...
 
 @typing.type_check_only
@@ -872,16 +872,16 @@ class GoogleCloudChannelV1ListTransferableSkusResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1ListTransferableSkusResponse: ...
 
 @typing.type_check_only
 class GoogleCloudChannelV1OfferHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1Offer: ...
 
 @typing.type_check_only
@@ -890,8 +890,8 @@ class GoogleCloudChannelV1QueryEligibleBillingAccountsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1QueryEligibleBillingAccountsResponse: ...
 
 @typing.type_check_only
@@ -900,8 +900,8 @@ class GoogleCloudChannelV1RegisterSubscriberResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1RegisterSubscriberResponse: ...
 
 @typing.type_check_only
@@ -910,8 +910,8 @@ class GoogleCloudChannelV1UnregisterSubscriberResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudChannelV1UnregisterSubscriberResponse: ...
 
 @typing.type_check_only
@@ -920,22 +920,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

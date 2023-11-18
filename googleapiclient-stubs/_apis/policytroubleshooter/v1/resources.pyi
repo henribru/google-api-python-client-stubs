@@ -34,7 +34,7 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def iam(self) -> IamResource: ...
 
@@ -44,6 +44,6 @@ class GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse: ...

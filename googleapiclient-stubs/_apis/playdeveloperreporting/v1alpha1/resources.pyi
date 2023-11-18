@@ -311,7 +311,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def anomalies(self) -> AnomaliesResource: ...
     def apps(self) -> AppsResource: ...
@@ -323,8 +323,8 @@ class GooglePlayDeveloperReportingV1alpha1AnrRateMetricSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1AnrRateMetricSet: ...
 
 @typing.type_check_only
@@ -333,8 +333,8 @@ class GooglePlayDeveloperReportingV1alpha1CrashRateMetricSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1CrashRateMetricSet: ...
 
 @typing.type_check_only
@@ -343,8 +343,8 @@ class GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1ErrorCountMetricSet: ...
 
 @typing.type_check_only
@@ -353,8 +353,8 @@ class GooglePlayDeveloperReportingV1alpha1ExcessiveWakeupRateMetricSetHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1ExcessiveWakeupRateMetricSet: ...
 
 @typing.type_check_only
@@ -363,8 +363,8 @@ class GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponse: ...
 
 @typing.type_check_only
@@ -373,8 +373,8 @@ class GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponseHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponse: ...
 
 @typing.type_check_only
@@ -383,8 +383,8 @@ class GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponse: ...
 
 @typing.type_check_only
@@ -393,8 +393,8 @@ class GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponse: ...
 
 @typing.type_check_only
@@ -403,8 +403,8 @@ class GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetRespo
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponse
     ): ...
@@ -415,8 +415,8 @@ class GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetRespons
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponse
     ): ...
@@ -427,8 +427,8 @@ class GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponse: ...
 
 @typing.type_check_only
@@ -437,8 +437,8 @@ class GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetric
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponse: ...
 
 @typing.type_check_only
@@ -447,8 +447,8 @@ class GooglePlayDeveloperReportingV1alpha1ReleaseFilterOptionsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1ReleaseFilterOptions: ...
 
 @typing.type_check_only
@@ -457,8 +457,8 @@ class GooglePlayDeveloperReportingV1alpha1SearchAccessibleAppsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1SearchAccessibleAppsResponse: ...
 
 @typing.type_check_only
@@ -467,8 +467,8 @@ class GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponse: ...
 
 @typing.type_check_only
@@ -477,8 +477,8 @@ class GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponse: ...
 
 @typing.type_check_only
@@ -487,8 +487,8 @@ class GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1SlowRenderingRateMetricSet: ...
 
 @typing.type_check_only
@@ -497,8 +497,8 @@ class GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1SlowStartRateMetricSet: ...
 
 @typing.type_check_only
@@ -507,6 +507,6 @@ class GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSetHt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GooglePlayDeveloperReportingV1alpha1StuckBackgroundWakelockRateMetricSet: ...

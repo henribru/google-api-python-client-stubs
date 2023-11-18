@@ -67,7 +67,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
 
@@ -77,8 +77,8 @@ class GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponse: ...
 
 @typing.type_check_only
@@ -87,8 +87,8 @@ class GoogleCloudAdvisorynotificationsV1NotificationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAdvisorynotificationsV1Notification: ...
 
 @typing.type_check_only
@@ -97,6 +97,6 @@ class GoogleCloudAdvisorynotificationsV1SettingsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudAdvisorynotificationsV1Settings: ...

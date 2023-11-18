@@ -1007,7 +1007,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def callback(self) -> CallbackResource: ...
     def connectorPlatformRegions(self) -> ConnectorPlatformRegionsResource: ...
@@ -1019,8 +1019,8 @@ class GoogleCloudIntegrationsV1alphaAuthConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaAuthConfig: ...
 
 @typing.type_check_only
@@ -1029,8 +1029,8 @@ class GoogleCloudIntegrationsV1alphaCancelExecutionResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaCancelExecutionResponse: ...
 
 @typing.type_check_only
@@ -1039,8 +1039,8 @@ class GoogleCloudIntegrationsV1alphaCertificateHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaCertificate: ...
 
 @typing.type_check_only
@@ -1049,8 +1049,8 @@ class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadataHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata: ...
 
 @typing.type_check_only
@@ -1059,8 +1059,8 @@ class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse: ...
 
 @typing.type_check_only
@@ -1069,8 +1069,8 @@ class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse: ...
 
 @typing.type_check_only
@@ -1079,8 +1079,8 @@ class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse: ...
 
 @typing.type_check_only
@@ -1089,8 +1089,8 @@ class GoogleCloudIntegrationsV1alphaExecuteEventResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaExecuteEventResponse: ...
 
 @typing.type_check_only
@@ -1099,8 +1099,8 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse: ...
 
 @typing.type_check_only
@@ -1109,8 +1109,8 @@ class GoogleCloudIntegrationsV1alphaExecuteTestCaseResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse: ...
 
 @typing.type_check_only
@@ -1119,8 +1119,8 @@ class GoogleCloudIntegrationsV1alphaExecutionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaExecution: ...
 
 @typing.type_check_only
@@ -1129,8 +1129,8 @@ class GoogleCloudIntegrationsV1alphaGenerateTokenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaGenerateTokenResponse: ...
 
 @typing.type_check_only
@@ -1139,8 +1139,8 @@ class GoogleCloudIntegrationsV1alphaIntegrationTemplateVersionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaIntegrationTemplateVersion: ...
 
 @typing.type_check_only
@@ -1149,8 +1149,8 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaIntegrationVersion: ...
 
 @typing.type_check_only
@@ -1159,8 +1159,8 @@ class GoogleCloudIntegrationsV1alphaLiftSuspensionResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaLiftSuspensionResponse: ...
 
 @typing.type_check_only
@@ -1169,8 +1169,8 @@ class GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse: ...
 
 @typing.type_check_only
@@ -1179,8 +1179,8 @@ class GoogleCloudIntegrationsV1alphaListAuthConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListAuthConfigsResponse: ...
 
 @typing.type_check_only
@@ -1189,8 +1189,8 @@ class GoogleCloudIntegrationsV1alphaListCertificatesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListCertificatesResponse: ...
 
 @typing.type_check_only
@@ -1199,8 +1199,8 @@ class GoogleCloudIntegrationsV1alphaListConnectionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListConnectionsResponse: ...
 
 @typing.type_check_only
@@ -1209,8 +1209,8 @@ class GoogleCloudIntegrationsV1alphaListExecutionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListExecutionsResponse: ...
 
 @typing.type_check_only
@@ -1219,8 +1219,8 @@ class GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListIntegrationTemplateVersionsResponse: ...
 
 @typing.type_check_only
@@ -1229,8 +1229,8 @@ class GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListIntegrationVersionsResponse: ...
 
 @typing.type_check_only
@@ -1239,8 +1239,8 @@ class GoogleCloudIntegrationsV1alphaListIntegrationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListIntegrationsResponse: ...
 
 @typing.type_check_only
@@ -1249,8 +1249,8 @@ class GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListRuntimeActionSchemasResponse: ...
 
 @typing.type_check_only
@@ -1259,8 +1259,8 @@ class GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListRuntimeEntitySchemasResponse: ...
 
 @typing.type_check_only
@@ -1269,8 +1269,8 @@ class GoogleCloudIntegrationsV1alphaListSfdcChannelsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListSfdcChannelsResponse: ...
 
 @typing.type_check_only
@@ -1279,8 +1279,8 @@ class GoogleCloudIntegrationsV1alphaListSfdcInstancesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListSfdcInstancesResponse: ...
 
 @typing.type_check_only
@@ -1289,8 +1289,8 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListSuspensionsResponse: ...
 
 @typing.type_check_only
@@ -1299,8 +1299,8 @@ class GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse: ...
 
 @typing.type_check_only
@@ -1309,8 +1309,8 @@ class GoogleCloudIntegrationsV1alphaListTestCasesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaListTestCasesResponse: ...
 
 @typing.type_check_only
@@ -1319,8 +1319,8 @@ class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse: ...
 
 @typing.type_check_only
@@ -1329,8 +1329,8 @@ class GoogleCloudIntegrationsV1alphaResolveSuspensionResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaResolveSuspensionResponse: ...
 
 @typing.type_check_only
@@ -1339,8 +1339,8 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse: ...
 
 @typing.type_check_only
@@ -1349,8 +1349,8 @@ class GoogleCloudIntegrationsV1alphaSfdcChannelHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaSfdcChannel: ...
 
 @typing.type_check_only
@@ -1359,8 +1359,8 @@ class GoogleCloudIntegrationsV1alphaSfdcInstanceHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaSfdcInstance: ...
 
 @typing.type_check_only
@@ -1369,8 +1369,8 @@ class GoogleCloudIntegrationsV1alphaTakeoverEditLockResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse: ...
 
 @typing.type_check_only
@@ -1379,8 +1379,8 @@ class GoogleCloudIntegrationsV1alphaTestCaseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaTestCase: ...
 
 @typing.type_check_only
@@ -1389,14 +1389,14 @@ class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...
