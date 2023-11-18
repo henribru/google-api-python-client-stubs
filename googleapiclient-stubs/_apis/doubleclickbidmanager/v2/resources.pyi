@@ -75,7 +75,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def queries(self) -> QueriesResource: ...
 
@@ -83,30 +83,30 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
 class ListQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListQueriesResponse: ...
 
 @typing.type_check_only
 class ListReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListReportsResponse: ...
 
 @typing.type_check_only
 class QueryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Query: ...
 
 @typing.type_check_only
 class ReportHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Report: ...

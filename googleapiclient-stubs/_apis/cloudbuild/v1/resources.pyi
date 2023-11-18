@@ -597,7 +597,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def githubDotComWebhook(self) -> GithubDotComWebhookResource: ...
     def locations(self) -> LocationsResource: ...
@@ -609,56 +609,56 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
 class BitbucketServerConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BitbucketServerConfig: ...
 
 @typing.type_check_only
 class BuildHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Build: ...
 
 @typing.type_check_only
 class BuildTriggerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BuildTrigger: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Empty: ...
 
 @typing.type_check_only
 class GitHubEnterpriseConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GitHubEnterpriseConfig: ...
 
 @typing.type_check_only
 class GitLabConfigHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GitLabConfig: ...
 
 @typing.type_check_only
 class ListBitbucketServerConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListBitbucketServerConfigsResponse: ...
 
 @typing.type_check_only
@@ -667,78 +667,78 @@ class ListBitbucketServerRepositoriesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListBitbucketServerRepositoriesResponse: ...
 
 @typing.type_check_only
 class ListBuildTriggersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListBuildTriggersResponse: ...
 
 @typing.type_check_only
 class ListBuildsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListBuildsResponse: ...
 
 @typing.type_check_only
 class ListGitLabConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListGitLabConfigsResponse: ...
 
 @typing.type_check_only
 class ListGitLabRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListGitLabRepositoriesResponse: ...
 
 @typing.type_check_only
 class ListGithubEnterpriseConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListGithubEnterpriseConfigsResponse: ...
 
 @typing.type_check_only
 class ListWorkerPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListWorkerPoolsResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Operation: ...
 
 @typing.type_check_only
 class ReceiveTriggerWebhookResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ReceiveTriggerWebhookResponse: ...
 
 @typing.type_check_only
 class WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> WorkerPool: ...

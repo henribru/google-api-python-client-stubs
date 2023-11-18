@@ -91,7 +91,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assets(self) -> AssetsResource: ...
     def users(self) -> UsersResource: ...
@@ -100,30 +100,30 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
 class AssetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Asset: ...
 
 @typing.type_check_only
 class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListAssetsResponse: ...
 
 @typing.type_check_only
 class ListLikedAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListLikedAssetsResponse: ...
 
 @typing.type_check_only
 class ListUserAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListUserAssetsResponse: ...

@@ -67,7 +67,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def applications(self) -> ApplicationsResource: ...
     def transfers(self) -> TransfersResource: ...
@@ -76,30 +76,30 @@ class DataTransferResource(googleapiclient.discovery.Resource):
 class ApplicationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Application: ...
 
 @typing.type_check_only
 class ApplicationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ApplicationsListResponse: ...
 
 @typing.type_check_only
 class DataTransferHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> DataTransfer: ...
 
 @typing.type_check_only
 class DataTransfersListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> DataTransfersListResponse: ...

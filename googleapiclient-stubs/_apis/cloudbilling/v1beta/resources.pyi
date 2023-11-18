@@ -195,7 +195,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
     def skuGroups(self) -> SkuGroupsResource: ...
@@ -208,8 +208,8 @@ class EstimateCostScenarioForBillingAccountResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> EstimateCostScenarioForBillingAccountResponse: ...
 
 @typing.type_check_only
@@ -218,8 +218,8 @@ class EstimateCostScenarioWithListPriceResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> EstimateCostScenarioWithListPriceResponse: ...
 
 @typing.type_check_only
@@ -228,8 +228,8 @@ class GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice: ...
 
 @typing.type_check_only
@@ -238,8 +238,8 @@ class GoogleCloudBillingBillingaccountservicesV1betaBillingAccountServiceHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService: ...
 
 @typing.type_check_only
@@ -248,8 +248,8 @@ class GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse
     ): ...
@@ -260,8 +260,8 @@ class GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroupHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup: ...
 
 @typing.type_check_only
@@ -270,8 +270,8 @@ class GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroups
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse: ...
 
 @typing.type_check_only
@@ -280,8 +280,8 @@ class GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSk
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku
     ): ...
@@ -292,8 +292,8 @@ class GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGro
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse: ...
 
 @typing.type_check_only
@@ -302,8 +302,8 @@ class GoogleCloudBillingBillingaccountskusV1betaBillingAccountSkuHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku: ...
 
 @typing.type_check_only
@@ -312,16 +312,16 @@ class GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponseHt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBillingPricesV1betaPriceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingPricesV1betaPrice: ...
 
 @typing.type_check_only
@@ -330,8 +330,8 @@ class GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse: ...
 
 @typing.type_check_only
@@ -340,8 +340,8 @@ class GoogleCloudBillingSkugroupsV1betaSkuGroupHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingSkugroupsV1betaSkuGroup: ...
 
 @typing.type_check_only
@@ -350,8 +350,8 @@ class GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse: ...
 
 @typing.type_check_only
@@ -360,6 +360,6 @@ class GoogleCloudBillingSkugroupskusV1betaSkuGroupSkuHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingSkugroupskusV1betaSkuGroupSku: ...

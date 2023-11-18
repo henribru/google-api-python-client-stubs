@@ -44,7 +44,7 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
 
@@ -52,14 +52,14 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
 class GetGoogleUpdatedLodgingResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GetGoogleUpdatedLodgingResponse: ...
 
 @typing.type_check_only
 class LodgingHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Lodging: ...

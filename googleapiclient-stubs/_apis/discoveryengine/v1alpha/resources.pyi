@@ -905,7 +905,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -914,8 +914,8 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
 
 @typing.type_check_only
@@ -924,8 +924,8 @@ class GoogleCloudDiscoveryengineV1alphaCompleteQueryResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse: ...
 
 @typing.type_check_only
@@ -934,8 +934,8 @@ class GoogleCloudDiscoveryengineV1alphaConversationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaConversation: ...
 
 @typing.type_check_only
@@ -944,8 +944,8 @@ class GoogleCloudDiscoveryengineV1alphaConverseConversationResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaConverseConversationResponse: ...
 
 @typing.type_check_only
@@ -954,8 +954,8 @@ class GoogleCloudDiscoveryengineV1alphaDocumentHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaDocument: ...
 
 @typing.type_check_only
@@ -964,8 +964,8 @@ class GoogleCloudDiscoveryengineV1alphaListConversationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaListConversationsResponse: ...
 
 @typing.type_check_only
@@ -974,8 +974,8 @@ class GoogleCloudDiscoveryengineV1alphaListDocumentsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaListDocumentsResponse: ...
 
 @typing.type_check_only
@@ -984,8 +984,8 @@ class GoogleCloudDiscoveryengineV1alphaListSchemasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaListSchemasResponse: ...
 
 @typing.type_check_only
@@ -994,8 +994,8 @@ class GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaLookupWidgetConfigResponse: ...
 
 @typing.type_check_only
@@ -1004,8 +1004,8 @@ class GoogleCloudDiscoveryengineV1alphaRecommendResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaRecommendResponse: ...
 
 @typing.type_check_only
@@ -1014,8 +1014,8 @@ class GoogleCloudDiscoveryengineV1alphaSchemaHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaSchema: ...
 
 @typing.type_check_only
@@ -1024,8 +1024,8 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaSearchResponse: ...
 
 @typing.type_check_only
@@ -1034,8 +1034,8 @@ class GoogleCloudDiscoveryengineV1alphaUserEventHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaUserEvent: ...
 
 @typing.type_check_only
@@ -1044,8 +1044,8 @@ class GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaWidgetCompleteQueryResponse: ...
 
 @typing.type_check_only
@@ -1054,8 +1054,8 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse: ...
 
 @typing.type_check_only
@@ -1064,8 +1064,8 @@ class GoogleCloudDiscoveryengineV1alphaWidgetSearchResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaWidgetSearchResponse: ...
 
 @typing.type_check_only
@@ -1074,22 +1074,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

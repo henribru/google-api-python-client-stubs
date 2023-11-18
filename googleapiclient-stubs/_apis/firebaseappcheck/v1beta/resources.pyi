@@ -398,7 +398,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def jwks(self) -> JwksResource: ...
     def oauthClients(self) -> OauthClientsResource: ...
@@ -410,8 +410,8 @@ class GoogleFirebaseAppcheckV1betaAppAttestConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaAppAttestConfig: ...
 
 @typing.type_check_only
@@ -420,8 +420,8 @@ class GoogleFirebaseAppcheckV1betaAppCheckTokenHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaAppCheckToken: ...
 
 @typing.type_check_only
@@ -430,8 +430,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetAppAttestConfigsResponse: ...
 
 @typing.type_check_only
@@ -440,8 +440,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetDeviceCheckConfigsResponse: ...
 
 @typing.type_check_only
@@ -450,8 +450,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetPlayIntegrityConfigsResponse: ...
 
 @typing.type_check_only
@@ -460,8 +460,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaConfigsResponse: ...
 
 @typing.type_check_only
@@ -470,8 +470,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponseHttp
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse: ...
 
 @typing.type_check_only
@@ -480,8 +480,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse: ...
 
 @typing.type_check_only
@@ -490,8 +490,8 @@ class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse: ...
 
 @typing.type_check_only
@@ -500,8 +500,8 @@ class GoogleFirebaseAppcheckV1betaBatchUpdateServicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaBatchUpdateServicesResponse: ...
 
 @typing.type_check_only
@@ -510,8 +510,8 @@ class GoogleFirebaseAppcheckV1betaDebugTokenHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaDebugToken: ...
 
 @typing.type_check_only
@@ -520,8 +520,8 @@ class GoogleFirebaseAppcheckV1betaDeviceCheckConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaDeviceCheckConfig: ...
 
 @typing.type_check_only
@@ -530,8 +530,8 @@ class GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse: ...
 
 @typing.type_check_only
@@ -540,8 +540,8 @@ class GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse: ...
 
 @typing.type_check_only
@@ -550,8 +550,8 @@ class GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponseHttpRequ
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaGeneratePlayIntegrityChallengeResponse: ...
 
 @typing.type_check_only
@@ -560,8 +560,8 @@ class GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaListDebugTokensResponse: ...
 
 @typing.type_check_only
@@ -570,8 +570,8 @@ class GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaListServicesResponse: ...
 
 @typing.type_check_only
@@ -580,8 +580,8 @@ class GoogleFirebaseAppcheckV1betaPlayIntegrityConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaPlayIntegrityConfig: ...
 
 @typing.type_check_only
@@ -590,8 +590,8 @@ class GoogleFirebaseAppcheckV1betaPublicJwkSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaPublicJwkSet: ...
 
 @typing.type_check_only
@@ -600,8 +600,8 @@ class GoogleFirebaseAppcheckV1betaRecaptchaConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaConfig: ...
 
 @typing.type_check_only
@@ -610,8 +610,8 @@ class GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig: ...
 
 @typing.type_check_only
@@ -620,8 +620,8 @@ class GoogleFirebaseAppcheckV1betaRecaptchaV3ConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaV3Config: ...
 
 @typing.type_check_only
@@ -630,16 +630,16 @@ class GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaSafetyNetConfig: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaServiceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaService: ...
 
 @typing.type_check_only
@@ -648,14 +648,14 @@ class GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaVerifyAppCheckTokenResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

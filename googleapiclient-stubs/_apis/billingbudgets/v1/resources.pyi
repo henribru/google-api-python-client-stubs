@@ -65,7 +65,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
 
@@ -73,8 +73,8 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
 class GoogleCloudBillingBudgetsV1BudgetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBudgetsV1Budget: ...
 
 @typing.type_check_only
@@ -83,14 +83,14 @@ class GoogleCloudBillingBudgetsV1ListBudgetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBillingBudgetsV1ListBudgetsResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

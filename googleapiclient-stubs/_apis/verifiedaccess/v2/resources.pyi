@@ -32,7 +32,7 @@ class VerifiedaccessResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def challenge(self) -> ChallengeResource: ...
 
@@ -40,14 +40,14 @@ class VerifiedaccessResource(googleapiclient.discovery.Resource):
 class ChallengeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Challenge: ...
 
 @typing.type_check_only
 class VerifyChallengeResponseResultHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> VerifyChallengeResponseResult: ...

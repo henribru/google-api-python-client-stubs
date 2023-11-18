@@ -59,7 +59,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def iamPolicies(self) -> IamPoliciesResource: ...
     def resources(self) -> ResourcesResource: ...
@@ -68,14 +68,14 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
 class SearchAllIamPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SearchAllIamPoliciesResponse: ...
 
 @typing.type_check_only
 class SearchAllResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SearchAllResourcesResponse: ...

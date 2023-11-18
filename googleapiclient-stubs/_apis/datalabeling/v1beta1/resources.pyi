@@ -471,7 +471,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -481,8 +481,8 @@ class GoogleCloudDatalabelingV1beta1AnnotatedDatasetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1AnnotatedDataset: ...
 
 @typing.type_check_only
@@ -491,8 +491,8 @@ class GoogleCloudDatalabelingV1beta1AnnotationSpecSetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1AnnotationSpecSet: ...
 
 @typing.type_check_only
@@ -501,8 +501,8 @@ class GoogleCloudDatalabelingV1beta1DataItemHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1DataItem: ...
 
 @typing.type_check_only
@@ -511,8 +511,8 @@ class GoogleCloudDatalabelingV1beta1DatasetHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1Dataset: ...
 
 @typing.type_check_only
@@ -521,8 +521,8 @@ class GoogleCloudDatalabelingV1beta1EvaluationHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1Evaluation: ...
 
 @typing.type_check_only
@@ -531,8 +531,8 @@ class GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1EvaluationJob: ...
 
 @typing.type_check_only
@@ -541,8 +541,8 @@ class GoogleCloudDatalabelingV1beta1ExampleHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1Example: ...
 
 @typing.type_check_only
@@ -551,8 +551,8 @@ class GoogleCloudDatalabelingV1beta1FeedbackMessageHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1FeedbackMessage: ...
 
 @typing.type_check_only
@@ -561,8 +561,8 @@ class GoogleCloudDatalabelingV1beta1FeedbackThreadHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1FeedbackThread: ...
 
 @typing.type_check_only
@@ -571,8 +571,8 @@ class GoogleCloudDatalabelingV1beta1InstructionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1Instruction: ...
 
 @typing.type_check_only
@@ -581,8 +581,8 @@ class GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse: ...
 
 @typing.type_check_only
@@ -591,8 +591,8 @@ class GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse: ...
 
 @typing.type_check_only
@@ -601,8 +601,8 @@ class GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponse: ...
 
 @typing.type_check_only
@@ -611,8 +611,8 @@ class GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListDatasetsResponse: ...
 
 @typing.type_check_only
@@ -621,8 +621,8 @@ class GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse: ...
 
 @typing.type_check_only
@@ -631,8 +631,8 @@ class GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListExamplesResponse: ...
 
 @typing.type_check_only
@@ -641,8 +641,8 @@ class GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse: ...
 
 @typing.type_check_only
@@ -651,8 +651,8 @@ class GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse: ...
 
 @typing.type_check_only
@@ -661,8 +661,8 @@ class GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1ListInstructionsResponse: ...
 
 @typing.type_check_only
@@ -671,8 +671,8 @@ class GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse: ...
 
 @typing.type_check_only
@@ -681,8 +681,8 @@ class GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse: ...
 
 @typing.type_check_only
@@ -691,22 +691,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

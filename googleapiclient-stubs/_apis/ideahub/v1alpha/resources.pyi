@@ -124,7 +124,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def ideas(self) -> IdeasResource: ...
     def platforms(self) -> PlatformsResource: ...
@@ -135,16 +135,16 @@ class GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSearchIdeahubV1alphaIdeaActivity: ...
 
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaIdeaStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSearchIdeahubV1alphaIdeaState: ...
 
 @typing.type_check_only
@@ -153,8 +153,8 @@ class GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSearchIdeahubV1alphaListAvailableLocalesResponse: ...
 
 @typing.type_check_only
@@ -163,14 +163,14 @@ class GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSearchIdeahubV1alphaListIdeasResponse: ...
 
 @typing.type_check_only
 class GoogleSearchIdeahubV1alphaTopicStateHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleSearchIdeahubV1alphaTopicState: ...

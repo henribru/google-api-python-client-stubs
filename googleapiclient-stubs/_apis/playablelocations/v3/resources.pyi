@@ -46,7 +46,7 @@ class PlayableLocationsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def v3(self) -> V3Resource: ...
 
@@ -56,8 +56,8 @@ class GoogleMapsPlayablelocationsV3LogImpressionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlayablelocationsV3LogImpressionsResponse: ...
 
 @typing.type_check_only
@@ -66,8 +66,8 @@ class GoogleMapsPlayablelocationsV3LogPlayerReportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlayablelocationsV3LogPlayerReportsResponse: ...
 
 @typing.type_check_only
@@ -76,6 +76,6 @@ class GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse: ...

@@ -1006,7 +1006,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -1015,32 +1015,32 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 class AppGatewayHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> AppGateway: ...
 
 @typing.type_check_only
 class ConnectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Connection: ...
 
 @typing.type_check_only
 class ConnectorHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Connector: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> Empty: ...
 
 @typing.type_check_only
@@ -1049,8 +1049,8 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection: ...
 
 @typing.type_check_only
@@ -1059,8 +1059,8 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaListAppConnectionsResponse: ...
 
 @typing.type_check_only
@@ -1069,8 +1069,8 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectionsV1alphaResolveAppConnectionsResponse: ...
 
 @typing.type_check_only
@@ -1079,8 +1079,8 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnectorHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaAppConnector: ...
 
 @typing.type_check_only
@@ -1089,8 +1089,8 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponseHttpRequ
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaListAppConnectorsResponse: ...
 
 @typing.type_check_only
@@ -1099,8 +1099,8 @@ class GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponseHttp
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpAppconnectorsV1alphaResolveInstanceConfigResponse: ...
 
 @typing.type_check_only
@@ -1109,8 +1109,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRuleHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule: ...
 
 @typing.type_check_only
@@ -1119,8 +1119,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponseHttp
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse: ...
 
 @typing.type_check_only
@@ -1129,8 +1129,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse: ...
 
 @typing.type_check_only
@@ -1139,8 +1139,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponse: ...
 
 @typing.type_check_only
@@ -1149,8 +1149,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenantHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant: ...
 
 @typing.type_check_only
@@ -1159,8 +1159,8 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig: ...
 
 @typing.type_check_only
@@ -1169,8 +1169,8 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponseH
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaConfiguredInsightResponse: ...
 
 @typing.type_check_only
@@ -1179,8 +1179,8 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight: ...
 
 @typing.type_check_only
@@ -1189,8 +1189,8 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpSaasplatformInsightsV1alphaListInsightsResponse: ...
 
 @typing.type_check_only
@@ -1199,8 +1199,8 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResp
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse
     ): ...
@@ -1211,8 +1211,8 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription: ...
 
 @typing.type_check_only
@@ -1221,24 +1221,24 @@ class GoogleCloudLocationListLocationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudLocationListLocationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudLocationLocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudLocationLocation: ...
 
 @typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1Policy: ...
 
 @typing.type_check_only
@@ -1247,8 +1247,8 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
@@ -1257,54 +1257,54 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class ListAppGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListAppGatewaysResponse: ...
 
 @typing.type_check_only
 class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListConnectionsResponse: ...
 
 @typing.type_check_only
 class ListConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListConnectorsResponse: ...
 
 @typing.type_check_only
 class ResolveConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ResolveConnectionsResponse: ...
 
 @typing.type_check_only
 class ResolveInstanceConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ResolveInstanceConfigResponse: ...

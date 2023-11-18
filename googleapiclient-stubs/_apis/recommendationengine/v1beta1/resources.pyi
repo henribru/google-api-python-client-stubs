@@ -274,7 +274,7 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -282,8 +282,8 @@ class RecommendationsAIResource(googleapiclient.discovery.Resource):
 class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
 
 @typing.type_check_only
@@ -292,8 +292,8 @@ class GoogleCloudRecommendationengineV1beta1CatalogHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1Catalog: ...
 
 @typing.type_check_only
@@ -302,8 +302,8 @@ class GoogleCloudRecommendationengineV1beta1CatalogItemHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1CatalogItem: ...
 
 @typing.type_check_only
@@ -312,8 +312,8 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse: ...
 
 @typing.type_check_only
@@ -322,8 +322,8 @@ class GoogleCloudRecommendationengineV1beta1ListCatalogsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1ListCatalogsResponse: ...
 
 @typing.type_check_only
@@ -332,8 +332,8 @@ class GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsRes
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
     ): ...
@@ -344,8 +344,8 @@ class GoogleCloudRecommendationengineV1beta1ListUserEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1ListUserEventsResponse: ...
 
 @typing.type_check_only
@@ -354,8 +354,8 @@ class GoogleCloudRecommendationengineV1beta1PredictResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1PredictResponse: ...
 
 @typing.type_check_only
@@ -364,8 +364,8 @@ class GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistrationHttpRequ
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration: ...
 
 @typing.type_check_only
@@ -374,8 +374,8 @@ class GoogleCloudRecommendationengineV1beta1UserEventHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecommendationengineV1beta1UserEvent: ...
 
 @typing.type_check_only
@@ -384,22 +384,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

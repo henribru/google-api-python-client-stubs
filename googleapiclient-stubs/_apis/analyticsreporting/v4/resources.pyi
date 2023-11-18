@@ -40,7 +40,7 @@ class AnalyticsReportingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def reports(self) -> ReportsResource: ...
     def userActivity(self) -> UserActivityResource: ...
@@ -49,14 +49,14 @@ class AnalyticsReportingResource(googleapiclient.discovery.Resource):
 class GetReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GetReportsResponse: ...
 
 @typing.type_check_only
 class SearchUserActivityResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SearchUserActivityResponse: ...

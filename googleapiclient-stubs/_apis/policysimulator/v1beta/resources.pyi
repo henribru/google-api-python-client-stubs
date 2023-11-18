@@ -361,7 +361,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def folders(self) -> FoldersResource: ...
     def operations(self) -> OperationsResource: ...
@@ -374,8 +374,8 @@ class GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsPreviewsResponse: ...
 
 @typing.type_check_only
@@ -384,8 +384,8 @@ class GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaListOrgPolicyViolationsResponse: ...
 
 @typing.type_check_only
@@ -394,8 +394,8 @@ class GoogleCloudPolicysimulatorV1betaListReplayResultsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaListReplayResultsResponse: ...
 
 @typing.type_check_only
@@ -404,8 +404,8 @@ class GoogleCloudPolicysimulatorV1betaListReplaysResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaListReplaysResponse: ...
 
 @typing.type_check_only
@@ -414,8 +414,8 @@ class GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview: ...
 
 @typing.type_check_only
@@ -424,8 +424,8 @@ class GoogleCloudPolicysimulatorV1betaReplayHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1betaReplay: ...
 
 @typing.type_check_only
@@ -434,14 +434,14 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...

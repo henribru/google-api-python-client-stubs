@@ -76,7 +76,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customresourcedefinitions(self) -> CustomresourcedefinitionsResource: ...
     def namespaces(self) -> NamespacesResource: ...
@@ -86,8 +86,8 @@ class CloudRunResource(googleapiclient.discovery.Resource):
 class CustomResourceDefinitionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> CustomResourceDefinition: ...
 
 @typing.type_check_only
@@ -96,6 +96,6 @@ class ListCustomResourceDefinitionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListCustomResourceDefinitionsResponse: ...

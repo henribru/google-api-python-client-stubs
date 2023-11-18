@@ -55,7 +55,7 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def managedShortLinks(self) -> ManagedShortLinksResource: ...
     def shortLinks(self) -> ShortLinksResource: ...
@@ -65,38 +65,38 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
 class CreateManagedShortLinkResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> CreateManagedShortLinkResponse: ...
 
 @typing.type_check_only
 class CreateShortDynamicLinkResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> CreateShortDynamicLinkResponse: ...
 
 @typing.type_check_only
 class DynamicLinkStatsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> DynamicLinkStats: ...
 
 @typing.type_check_only
 class GetIosPostInstallAttributionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GetIosPostInstallAttributionResponse: ...
 
 @typing.type_check_only
 class GetIosReopenAttributionResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GetIosReopenAttributionResponse: ...

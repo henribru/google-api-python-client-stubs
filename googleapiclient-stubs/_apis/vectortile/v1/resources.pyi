@@ -94,7 +94,7 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def featuretiles(self) -> FeaturetilesResource: ...
     def terraintiles(self) -> TerraintilesResource: ...
@@ -103,14 +103,14 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
 class FeatureTileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> FeatureTile: ...
 
 @typing.type_check_only
 class TerrainTileHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> TerrainTile: ...

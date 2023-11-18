@@ -55,7 +55,7 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
 
@@ -63,14 +63,14 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
 class BusinessCallsSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> BusinessCallsSettings: ...
 
 @typing.type_check_only
 class ListBusinessCallsInsightsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> ListBusinessCallsInsightsResponse: ...

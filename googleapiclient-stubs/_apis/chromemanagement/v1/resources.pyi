@@ -325,7 +325,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
 
@@ -333,8 +333,8 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
 class GoogleChromeManagementV1AppDetailsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1AppDetails: ...
 
 @typing.type_check_only
@@ -343,8 +343,8 @@ class GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeAppRequestsResponse: ...
 
 @typing.type_check_only
@@ -353,8 +353,8 @@ class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse: ...
 
 @typing.type_check_only
@@ -363,8 +363,8 @@ class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateRespon
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse
     ): ...
@@ -375,8 +375,8 @@ class GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeDevicesThatNeedAttentionResponse: ...
 
 @typing.type_check_only
@@ -385,8 +385,8 @@ class GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeHardwareFleetDevicesResponse: ...
 
 @typing.type_check_only
@@ -395,8 +395,8 @@ class GoogleChromeManagementV1CountChromeVersionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountChromeVersionsResponse: ...
 
 @typing.type_check_only
@@ -405,8 +405,8 @@ class GoogleChromeManagementV1CountInstalledAppsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountInstalledAppsResponse: ...
 
 @typing.type_check_only
@@ -415,8 +415,8 @@ class GoogleChromeManagementV1CountPrintJobsByPrinterResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountPrintJobsByPrinterResponse: ...
 
 @typing.type_check_only
@@ -425,8 +425,8 @@ class GoogleChromeManagementV1CountPrintJobsByUserResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1CountPrintJobsByUserResponse: ...
 
 @typing.type_check_only
@@ -435,8 +435,8 @@ class GoogleChromeManagementV1EnumeratePrintJobsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1EnumeratePrintJobsResponse: ...
 
 @typing.type_check_only
@@ -445,8 +445,8 @@ class GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1FindInstalledAppDevicesResponse: ...
 
 @typing.type_check_only
@@ -455,8 +455,8 @@ class GoogleChromeManagementV1ListTelemetryDevicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1ListTelemetryDevicesResponse: ...
 
 @typing.type_check_only
@@ -465,8 +465,8 @@ class GoogleChromeManagementV1ListTelemetryEventsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1ListTelemetryEventsResponse: ...
 
 @typing.type_check_only
@@ -475,8 +475,8 @@ class GoogleChromeManagementV1ListTelemetryNotificationConfigsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1ListTelemetryNotificationConfigsResponse: ...
 
 @typing.type_check_only
@@ -485,8 +485,8 @@ class GoogleChromeManagementV1ListTelemetryUsersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1ListTelemetryUsersResponse: ...
 
 @typing.type_check_only
@@ -495,8 +495,8 @@ class GoogleChromeManagementV1TelemetryDeviceHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1TelemetryDevice: ...
 
 @typing.type_check_only
@@ -505,8 +505,8 @@ class GoogleChromeManagementV1TelemetryNotificationConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1TelemetryNotificationConfig: ...
 
 @typing.type_check_only
@@ -515,14 +515,14 @@ class GoogleChromeManagementV1TelemetryUserHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleChromeManagementV1TelemetryUser: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

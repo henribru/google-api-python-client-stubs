@@ -50,7 +50,7 @@ class FcmdataResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -60,6 +60,6 @@ class GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse: ...

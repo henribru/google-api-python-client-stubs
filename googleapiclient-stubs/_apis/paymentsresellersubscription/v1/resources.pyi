@@ -136,7 +136,7 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def partners(self) -> PartnersResource: ...
 
@@ -146,8 +146,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse: ...
 
 @typing.type_check_only
@@ -156,8 +156,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponseHttpRe
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse: ...
 
 @typing.type_check_only
@@ -166,8 +166,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse: ...
 
 @typing.type_check_only
@@ -176,8 +176,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse: ...
 
 @typing.type_check_only
@@ -186,8 +186,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse: ...
 
 @typing.type_check_only
@@ -196,8 +196,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse: ...
 
 @typing.type_check_only
@@ -206,8 +206,8 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1Subscription: ...
 
 @typing.type_check_only
@@ -216,6 +216,6 @@ class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse: ...

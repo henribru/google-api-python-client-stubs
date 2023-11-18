@@ -42,7 +42,7 @@ class WebfontsResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def webfonts(self) -> WebfontsResource: ...
 
@@ -50,6 +50,6 @@ class WebfontsResource(googleapiclient.discovery.Resource):
 class WebfontListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> WebfontList: ...

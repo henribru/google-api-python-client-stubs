@@ -459,7 +459,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def defaultSupportedIdps(self) -> DefaultSupportedIdpsResource: ...
@@ -472,8 +472,8 @@ class GoogleCloudIdentitytoolkitAdminV2ConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2Config: ...
 
 @typing.type_check_only
@@ -482,8 +482,8 @@ class GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2DefaultSupportedIdpConfig: ...
 
 @typing.type_check_only
@@ -492,8 +492,8 @@ class GoogleCloudIdentitytoolkitAdminV2InboundSamlConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2InboundSamlConfig: ...
 
 @typing.type_check_only
@@ -502,8 +502,8 @@ class GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponseHttpReq
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2InitializeIdentityPlatformResponse: ...
 
 @typing.type_check_only
@@ -512,8 +512,8 @@ class GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponseHtt
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpConfigsResponse: ...
 
 @typing.type_check_only
@@ -522,8 +522,8 @@ class GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponseHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2ListDefaultSupportedIdpsResponse: ...
 
 @typing.type_check_only
@@ -532,8 +532,8 @@ class GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2ListInboundSamlConfigsResponse: ...
 
 @typing.type_check_only
@@ -542,8 +542,8 @@ class GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2ListOAuthIdpConfigsResponse: ...
 
 @typing.type_check_only
@@ -552,8 +552,8 @@ class GoogleCloudIdentitytoolkitAdminV2ListTenantsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse: ...
 
 @typing.type_check_only
@@ -562,8 +562,8 @@ class GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2OAuthIdpConfig: ...
 
 @typing.type_check_only
@@ -572,8 +572,8 @@ class GoogleCloudIdentitytoolkitAdminV2TenantHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitAdminV2Tenant: ...
 
 @typing.type_check_only
@@ -582,8 +582,8 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse: ...
 
 @typing.type_check_only
@@ -592,8 +592,8 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2FinalizeMfaSignInResponse: ...
 
 @typing.type_check_only
@@ -602,8 +602,8 @@ class GoogleCloudIdentitytoolkitV2PasswordPolicyHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2PasswordPolicy: ...
 
 @typing.type_check_only
@@ -612,8 +612,8 @@ class GoogleCloudIdentitytoolkitV2RecaptchaConfigHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2RecaptchaConfig: ...
 
 @typing.type_check_only
@@ -622,8 +622,8 @@ class GoogleCloudIdentitytoolkitV2RevokeTokenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2RevokeTokenResponse: ...
 
 @typing.type_check_only
@@ -632,8 +632,8 @@ class GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2StartMfaEnrollmentResponse: ...
 
 @typing.type_check_only
@@ -642,8 +642,8 @@ class GoogleCloudIdentitytoolkitV2StartMfaSignInResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2StartMfaSignInResponse: ...
 
 @typing.type_check_only
@@ -652,16 +652,16 @@ class GoogleCloudIdentitytoolkitV2WithdrawMfaResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudIdentitytoolkitV2WithdrawMfaResponse: ...
 
 @typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1Policy: ...
 
 @typing.type_check_only
@@ -670,14 +670,14 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

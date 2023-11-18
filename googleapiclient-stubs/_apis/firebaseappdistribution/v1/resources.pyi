@@ -248,7 +248,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def media(self) -> MediaResource: ...
     def projects(self) -> ProjectsResource: ...
@@ -257,8 +257,8 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
 class GoogleFirebaseAppdistroV1AabInfoHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1AabInfo: ...
 
 @typing.type_check_only
@@ -267,8 +267,8 @@ class GoogleFirebaseAppdistroV1BatchAddTestersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1BatchAddTestersResponse: ...
 
 @typing.type_check_only
@@ -277,8 +277,8 @@ class GoogleFirebaseAppdistroV1BatchRemoveTestersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1BatchRemoveTestersResponse: ...
 
 @typing.type_check_only
@@ -287,8 +287,8 @@ class GoogleFirebaseAppdistroV1DistributeReleaseResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1DistributeReleaseResponse: ...
 
 @typing.type_check_only
@@ -297,16 +297,16 @@ class GoogleFirebaseAppdistroV1FeedbackReportHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1FeedbackReport: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1GroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1Group: ...
 
 @typing.type_check_only
@@ -315,8 +315,8 @@ class GoogleFirebaseAppdistroV1ListFeedbackReportsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1ListFeedbackReportsResponse: ...
 
 @typing.type_check_only
@@ -325,8 +325,8 @@ class GoogleFirebaseAppdistroV1ListGroupsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1ListGroupsResponse: ...
 
 @typing.type_check_only
@@ -335,8 +335,8 @@ class GoogleFirebaseAppdistroV1ListReleasesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1ListReleasesResponse: ...
 
 @typing.type_check_only
@@ -345,24 +345,24 @@ class GoogleFirebaseAppdistroV1ListTestersResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1ListTestersResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1ReleaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1Release: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1TesterHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1Tester: ...
 
 @typing.type_check_only
@@ -371,22 +371,22 @@ class GoogleLongrunningListOperationsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningListOperationsResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

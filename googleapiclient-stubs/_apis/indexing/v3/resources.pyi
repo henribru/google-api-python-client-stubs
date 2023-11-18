@@ -32,7 +32,7 @@ class IndexingResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def urlNotifications(self) -> UrlNotificationsResource: ...
 
@@ -40,14 +40,14 @@ class IndexingResource(googleapiclient.discovery.Resource):
 class PublishUrlNotificationResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> PublishUrlNotificationResponse: ...
 
 @typing.type_check_only
 class UrlNotificationMetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> UrlNotificationMetadata: ...

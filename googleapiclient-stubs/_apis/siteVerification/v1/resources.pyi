@@ -62,7 +62,7 @@ class SiteVerificationResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def webResource(self) -> WebResourceResource: ...
 
@@ -72,8 +72,8 @@ class SiteVerificationWebResourceGettokenResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SiteVerificationWebResourceGettokenResponse: ...
 
 @typing.type_check_only
@@ -82,14 +82,14 @@ class SiteVerificationWebResourceListResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SiteVerificationWebResourceListResponse: ...
 
 @typing.type_check_only
 class SiteVerificationWebResourceResourceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> SiteVerificationWebResourceResource: ...

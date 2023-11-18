@@ -33,7 +33,7 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def v1(self) -> V1Resource: ...
 
@@ -41,6 +41,6 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
 class DecodeIntegrityTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> DecodeIntegrityTokenResponse: ...

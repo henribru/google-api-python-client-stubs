@@ -86,7 +86,7 @@ class SA360Resource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
     def searchAds360Fields(self) -> SearchAds360FieldsResource: ...
@@ -97,8 +97,8 @@ class GoogleAdsSearchads360V0Resources__CustomColumnHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Resources__CustomColumn: ...
 
 @typing.type_check_only
@@ -107,8 +107,8 @@ class GoogleAdsSearchads360V0Resources__SearchAds360FieldHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Resources__SearchAds360Field: ...
 
 @typing.type_check_only
@@ -117,8 +117,8 @@ class GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Services__ListAccessibleCustomersResponse: ...
 
 @typing.type_check_only
@@ -127,8 +127,8 @@ class GoogleAdsSearchads360V0Services__ListCustomColumnsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Services__ListCustomColumnsResponse: ...
 
 @typing.type_check_only
@@ -137,8 +137,8 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponseHttpReque
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360FieldsResponse: ...
 
 @typing.type_check_only
@@ -147,6 +147,6 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360ResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsSearchads360V0Services__SearchSearchAds360Response: ...

@@ -203,7 +203,7 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 
@@ -213,8 +213,8 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse: ...
 
 @typing.type_check_only
@@ -223,8 +223,8 @@ class GoogleCloudRecaptchaenterpriseV1AssessmentHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Assessment: ...
 
 @typing.type_check_only
@@ -233,16 +233,16 @@ class GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicy: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1KeyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Key: ...
 
 @typing.type_check_only
@@ -251,8 +251,8 @@ class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse: ...
 
 @typing.type_check_only
@@ -261,8 +261,8 @@ class GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponse: ...
 
 @typing.type_check_only
@@ -271,8 +271,8 @@ class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse: ...
 
 @typing.type_check_only
@@ -281,8 +281,8 @@ class GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse: ...
 
 @typing.type_check_only
@@ -291,8 +291,8 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
 
 @typing.type_check_only
@@ -301,8 +301,8 @@ class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse: ...
 
 @typing.type_check_only
@@ -311,8 +311,8 @@ class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRespon
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> (
         GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse
     ): ...
@@ -321,6 +321,6 @@ class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRespon
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleProtobufEmpty: ...

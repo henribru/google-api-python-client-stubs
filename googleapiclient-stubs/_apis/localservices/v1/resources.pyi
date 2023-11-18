@@ -75,7 +75,7 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountReports(self) -> AccountReportsResource: ...
     def detailedLeadReports(self) -> DetailedLeadReportsResource: ...
@@ -86,8 +86,8 @@ class GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpReques
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse: ...
 
 @typing.type_check_only
@@ -96,6 +96,6 @@ class GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpR
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse: ...

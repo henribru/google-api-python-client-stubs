@@ -63,7 +63,7 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
             ],
             typing.Any,
         ]
-        | None = ...,
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def enterprises(self) -> EnterprisesResource: ...
 
@@ -71,8 +71,8 @@ class SmartDeviceManagementResource(googleapiclient.discovery.Resource):
 class GoogleHomeEnterpriseSdmV1DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1Device: ...
 
 @typing.type_check_only
@@ -81,8 +81,8 @@ class GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse: ...
 
 @typing.type_check_only
@@ -91,8 +91,8 @@ class GoogleHomeEnterpriseSdmV1ListDevicesResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1ListDevicesResponse: ...
 
 @typing.type_check_only
@@ -101,8 +101,8 @@ class GoogleHomeEnterpriseSdmV1ListRoomsResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1ListRoomsResponse: ...
 
 @typing.type_check_only
@@ -111,22 +111,22 @@ class GoogleHomeEnterpriseSdmV1ListStructuresResponseHttpRequest(
 ):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1ListStructuresResponse: ...
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1RoomHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1Room: ...
 
 @typing.type_check_only
 class GoogleHomeEnterpriseSdmV1StructureHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = ...,
-        num_retries: int = ...,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
     ) -> GoogleHomeEnterpriseSdmV1Structure: ...
