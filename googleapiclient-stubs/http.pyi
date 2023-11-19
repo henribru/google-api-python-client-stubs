@@ -4,7 +4,7 @@ import logging
 import typing
 
 import httplib2
-from _typeshed import Incomplete
+from _typeshed import Incomplete, StrPath
 
 from googleapiclient.errors import (
     BatchError as BatchError,
@@ -60,7 +60,7 @@ class MediaIoBaseUpload(MediaUpload):
 class MediaFileUpload(MediaIoBaseUpload):
     def __init__(
         self,
-        filename: str,  # TODO: StrPath?
+        filename: StrPath,
         mimetype: str | None = None,
         chunksize: int = 104857600,
         resumable: bool = False,
@@ -76,7 +76,9 @@ class MediaInMemoryUpload(MediaIoBaseUpload):
     ) -> None: ...
 
 class MediaIoBaseDownload:
-    def __init__(self, fd, request, chunksize: int = 104857600) -> None: ...
+    def __init__(
+        self, fd: io.IOBase, request: HttpRequest, chunksize: int = 104857600
+    ) -> None: ...
     def next_chunk(
         self, num_retries: int = 0
     ) -> tuple[MediaDownloadProgress, bool]: ...
@@ -85,7 +87,7 @@ class HttpRequest:
     uri: str
     method: str
     body: str | None
-    headers: dict | None
+    headers: dict[str, str] | None
     methodId: str | None
     http: httplib2.Http | HttpMock
     postproc: collections.abc.Callable[[httplib2.Response, bytes], typing.Any]
@@ -101,7 +103,7 @@ class HttpRequest:
         uri: str,
         method: str = "GET",
         body: str | None = None,
-        headers: dict | None = None,
+        headers: dict[str, str] | None = None,
         methodId: str | None = None,
         resumable: MediaUpload | None = None,
     ) -> None: ...
