@@ -1,3 +1,9 @@
+import collections.abc
+import io
+import logging
+import typing
+
+import httplib2  # type: ignore[import-untyped]
 from _typeshed import Incomplete
 
 from googleapiclient.errors import (
@@ -10,123 +16,133 @@ from googleapiclient.errors import (
 )
 from googleapiclient.model import JsonModel as JsonModel
 
-LOGGER: Incomplete
-DEFAULT_CHUNK_SIZE: Incomplete
+LOGGER: logging.Logger
+DEFAULT_CHUNK_SIZE: int
 MAX_URI_LENGTH: int
 MAX_BATCH_LIMIT: int
 DEFAULT_HTTP_TIMEOUT_SEC: int
 
 class MediaUploadProgress:
-    resumable_progress: Incomplete
-    total_size: Incomplete
-    def __init__(self, resumable_progress, total_size) -> None: ...
-    def progress(self): ...
+    resumable_progress: int
+    total_size: int
+    def __init__(self, resumable_progress: int, total_size: int) -> None: ...
+    def progress(self) -> float: ...
 
 class MediaDownloadProgress:
-    resumable_progress: Incomplete
-    total_size: Incomplete
-    def __init__(self, resumable_progress, total_size) -> None: ...
-    def progress(self): ...
+    resumable_progress: int
+    total_size: int
+    def __init__(self, resumable_progress: int, total_size: int) -> None: ...
+    def progress(self) -> float: ...
+
+_T = typing.TypeVar("_T")
 
 class MediaUpload:
-    def chunksize(self) -> None: ...
-    def mimetype(self): ...
-    def size(self) -> None: ...
-    def resumable(self): ...
-    def getbytes(self, begin, end) -> None: ...
-    def has_stream(self): ...
-    def stream(self) -> None: ...
-    def to_json(self): ...
+    def chunksize(self) -> int: ...
+    def mimetype(self) -> str: ...
+    def size(self) -> int | None: ...
+    def resumable(self) -> bool: ...
+    def getbytes(self, begin: int, end: int) -> bytes: ...
+    def has_stream(self) -> bool: ...
+    def stream(self) -> io.IOBase: ...
+    def to_json(self) -> str: ...
     @classmethod
-    def new_from_json(cls, s): ...
+    def new_from_json(cls: _T, s: str) -> _T: ...
 
 class MediaIoBaseUpload(MediaUpload):
     def __init__(
-        self, fd, mimetype, chunksize=104857600, resumable: bool = False
+        self,
+        fd: io.IOBase,
+        mimetype: str,
+        chunksize: int = 104857600,
+        resumable: bool = False,
     ) -> None: ...
-    def chunksize(self): ...
-    def mimetype(self): ...
-    def size(self): ...
-    def resumable(self): ...
-    def getbytes(self, begin, length): ...
-    def has_stream(self): ...
-    def stream(self): ...
-    def to_json(self) -> None: ...
 
 class MediaFileUpload(MediaIoBaseUpload):
     def __init__(
         self,
-        filename,
-        mimetype: Incomplete | None = None,
-        chunksize=104857600,
+        filename: str,  # TODO: StrPath?
+        mimetype: str | None = None,
+        chunksize: int = 104857600,
         resumable: bool = False,
     ) -> None: ...
-    def __del__(self) -> None: ...
-    def to_json(self): ...
-    @staticmethod
-    def from_json(s): ...
 
 class MediaInMemoryUpload(MediaIoBaseUpload):
     def __init__(
         self,
-        body,
+        body: bytes,
         mimetype: str = "application/octet-stream",
-        chunksize=104857600,
+        chunksize: int = 104857600,
         resumable: bool = False,
     ) -> None: ...
 
 class MediaIoBaseDownload:
-    def __init__(self, fd, request, chunksize=104857600) -> None: ...
-    def next_chunk(self, num_retries: int = 0): ...
-
-class _StreamSlice:
-    def __init__(self, stream, begin, chunksize) -> None: ...
-    def read(self, n: int = -1): ...
+    def __init__(self, fd, request, chunksize: int = 104857600) -> None: ...
+    def next_chunk(
+        self, num_retries: int = 0
+    ) -> tuple[MediaDownloadProgress, bool]: ...
 
 class HttpRequest:
-    uri: Incomplete
-    method: Incomplete
-    body: Incomplete
-    headers: Incomplete
-    methodId: Incomplete
-    http: Incomplete
-    postproc: Incomplete
-    resumable: Incomplete
-    response_callbacks: Incomplete
-    body_size: Incomplete
-    resumable_uri: Incomplete
+    uri: str
+    method: str
+    body: str | None
+    headers: dict | None
+    methodId: str | None
+    http: httplib2.Http | HttpMock
+    postproc: collections.abc.Callable[[httplib2.Response, bytes], typing.Any]
+    resumable: MediaUpload | None
+    response_callbacks: collections.abc.Callable[[httplib2.Response], typing.Any]
+    body_size: int
+    resumable_uri: str | None
     resumable_progress: int
     def __init__(
         self,
-        http,
-        postproc,
-        uri,
+        http: httplib2.Http | HttpMock,
+        postproc: collections.abc.Callable[[httplib2.Response, bytes], typing.Any],
+        uri: str,
         method: str = "GET",
-        body: Incomplete | None = None,
-        headers: Incomplete | None = None,
-        methodId: Incomplete | None = None,
-        resumable: Incomplete | None = None,
+        body: str | None = None,
+        headers: dict | None = None,
+        methodId: str | None = None,
+        resumable: MediaUpload | None = None,
     ) -> None: ...
-    def execute(self, http: Incomplete | None = None, num_retries: int = 0): ...
-    def add_response_callback(self, cb) -> None: ...
-    def next_chunk(self, http: Incomplete | None = None, num_retries: int = 0): ...
-    def to_json(self): ...
+    def execute(
+        self, http: httplib2.Http | HttpMock | None = None, num_retries: int = 0
+    ) -> typing.Any: ...
+    def add_response_callback(
+        self, cb: collections.abc.Callable[[httplib2.Response], typing.Any]
+    ) -> None: ...
+    def next_chunk(
+        self, http: httplib2.Http | HttpMock | None = None, num_retries: int = 0
+    ) -> tuple[MediaUploadProgress, typing.Any]: ...
+    def to_json(self) -> str: ...
     @staticmethod
-    def from_json(s, http, postproc): ...
+    def from_json(
+        s: str,
+        http: httplib2.Http | HttpMock,
+        postproc: collections.abc.Callable[[httplib2.Response, bytes], typing.Any],
+    ) -> HttpRequest: ...
     @staticmethod
-    def null_postproc(resp, contents): ...
+    def null_postproc(
+        resp: httplib2.Response, contents: bytes
+    ) -> tuple[httplib2.Response, bytes]: ...
 
 class BatchHttpRequest:
     def __init__(
-        self, callback: Incomplete | None = None, batch_uri: Incomplete | None = None
+        self,
+        callback: collections.abc.Callable[
+            [str, typing.Any, HttpError | None], typing.Any
+        ]
+        | None = None,
+        batch_uri: str | None = None,
     ) -> None: ...
     def add(
         self,
-        request,
-        callback: Incomplete | None = None,
-        request_id: Incomplete | None = None,
+        request: HttpRequest,
+        callback: collections.abc.Callable[[str, typing.Any, HttpError], typing.Any]
+        | None = None,
+        request_id: str | None = None,
     ) -> None: ...
-    def execute(self, http: Incomplete | None = None) -> None: ...
+    def execute(self, http: httplib2.Http | HttpMock | None = None) -> None: ...
 
 class HttpRequestMock:
     resp: Incomplete
