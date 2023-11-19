@@ -1,4 +1,4 @@
-import httplib2  # type: ignore[import-untyped]
+import httplib2
 from _typeshed import Incomplete
 
 class Error(Exception): ...

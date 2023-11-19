@@ -3,10 +3,10 @@ from email.generator import BytesGenerator
 from typing import Any, Protocol, TypeVar, overload
 
 import google.auth.credentials  # type: ignore[import-untyped]
-import httplib2  # type: ignore[import-untyped]
+import httplib2
 import oauth2client  # type: ignore[import-not-found]
 from _typeshed import Incomplete
-from google.api_core.client_options import ClientOptions  # type: ignore[import-untyped]
+from google.api_core.client_options import ClientOptions
 from typing_extensions import Literal
 
 import googleapiclient._apis.abusiveexperiencereport.v1
