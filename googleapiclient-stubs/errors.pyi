@@ -26,7 +26,7 @@ class InvalidChunkSizeError(Error): ...
 class InvalidNotificationError(Error): ...
 
 class BatchError(HttpError):
-    resp: httplib2.Response | None
+    resp: httplib2.Response | None  # type: ignore[assignment]
     content: str | None  # type: ignore[assignment]
     reason: str
     def __init__(
