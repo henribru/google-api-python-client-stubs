@@ -489,7 +489,7 @@ from googleapiclient.discovery_cache.base import Cache
 from googleapiclient.http import HttpMock, HttpRequest
 from googleapiclient.model import Model
 
-T = TypeVar("T")
+_T = TypeVar("_T")
 
 class _BytesGenerator(BytesGenerator): ...
 
@@ -520,7 +520,7 @@ class Resource:
         rootDesc,
         schema,
     ) -> None: ...
-    def __enter__(self: T) -> T: ...
+    def __enter__(self: _T) -> _T: ...
     def __exit__(
         self,
         exc_type: type[BaseException] | None,
