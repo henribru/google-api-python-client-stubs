@@ -35,6 +35,9 @@ known_first_party = [
 combine_as_imports = true
 float_to_top = true
 
+[tool.mypy]
+warn_unused_ignores = true
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"

@@ -3,7 +3,7 @@ import io
 import logging
 import typing
 
-import httplib2  # type: ignore[import-untyped]
+import httplib2
 from _typeshed import Incomplete
 
 from googleapiclient.errors import (

@@ -1,11 +1,11 @@
 import collections.abc
 import typing
 
-import httplib2  # type: ignore[import-untyped]
+import httplib2
 import typing_extensions
 
 import googleapiclient.discovery
-import googleapiclient.http  # type: ignore[import-untyped]
+import googleapiclient.http
 
 from .schemas import *
 
