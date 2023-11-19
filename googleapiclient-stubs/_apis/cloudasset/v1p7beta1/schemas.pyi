@@ -206,8 +206,17 @@ class GoogleIdentityAccesscontextmanagerV1CustomLevel(
 class GoogleIdentityAccesscontextmanagerV1DevicePolicy(
     typing_extensions.TypedDict, total=False
 ):
-    allowedDeviceManagementLevels: _list[str]
-    allowedEncryptionStatuses: _list[str]
+    allowedDeviceManagementLevels: _list[
+        typing_extensions.Literal["MANAGEMENT_UNSPECIFIED", "NONE", "BASIC", "COMPLETE"]
+    ]
+    allowedEncryptionStatuses: _list[
+        typing_extensions.Literal[
+            "ENCRYPTION_UNSPECIFIED",
+            "ENCRYPTION_UNSUPPORTED",
+            "UNENCRYPTED",
+            "ENCRYPTED",
+        ]
+    ]
     osConstraints: _list[GoogleIdentityAccesscontextmanagerV1OsConstraint]
     requireAdminApproval: bool
     requireCorpOwned: bool

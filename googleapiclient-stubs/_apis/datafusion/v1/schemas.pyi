@@ -74,7 +74,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     cryptoKeyConfig: CryptoKeyConfig
     dataprocServiceAccount: str
     description: str
-    disabledReason: _list[str]
+    disabledReason: _list[
+        typing_extensions.Literal["DISABLED_REASON_UNSPECIFIED", "KMS_KEY_ISSUE"]
+    ]
     displayName: str
     enableRbac: bool
     enableStackdriverLogging: bool

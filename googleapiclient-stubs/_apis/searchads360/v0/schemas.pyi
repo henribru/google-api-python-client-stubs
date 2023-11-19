@@ -334,7 +334,11 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
     impressions: str
-    interactionEventTypes: _list[str]
+    interactionEventTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED", "UNKNOWN", "CLICK", "ENGAGEMENT", "VIDEO_VIEW", "NONE"
+        ]
+    ]
     interactionRate: float
     interactions: str
     invalidClickRate: float
@@ -1017,7 +1021,15 @@ class GoogleAdsSearchads360V0Resources_Campaign_NetworkSettings(
 class GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSetting(
     typing_extensions.TypedDict, total=False
 ):
-    optimizationGoalTypes: _list[str]
+    optimizationGoalTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "CALL_CLICKS",
+            "DRIVING_DIRECTIONS",
+            "APP_PRE_REGISTRATION",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization(
@@ -1781,7 +1793,39 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     dynamicSearchAdsSetting: GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting
     endDate: str
     engineId: str
-    excludedParentAssetFieldTypes: _list[str]
+    excludedParentAssetFieldTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "HEADLINE",
+            "DESCRIPTION",
+            "MANDATORY_AD_TEXT",
+            "MARKETING_IMAGE",
+            "MEDIA_BUNDLE",
+            "YOUTUBE_VIDEO",
+            "BOOK_ON_GOOGLE",
+            "LEAD_FORM",
+            "PROMOTION",
+            "CALLOUT",
+            "STRUCTURED_SNIPPET",
+            "SITELINK",
+            "MOBILE_APP",
+            "HOTEL_CALLOUT",
+            "CALL",
+            "PRICE",
+            "LONG_HEADLINE",
+            "BUSINESS_NAME",
+            "SQUARE_MARKETING_IMAGE",
+            "PORTRAIT_MARKETING_IMAGE",
+            "LOGO",
+            "LANDSCAPE_LOGO",
+            "VIDEO",
+            "CALL_TO_ACTION_SELECTION",
+            "AD_IMAGE",
+            "BUSINESS_LOGO",
+            "HOTEL_PROPERTY",
+        ]
+    ]
     finalUrlSuffix: str
     frequencyCaps: _list[GoogleAdsSearchads360V0Common__FrequencyCapEntry]
     geoTargetTypeSetting: GoogleAdsSearchads360V0Resources_Campaign_GeoTargetTypeSetting

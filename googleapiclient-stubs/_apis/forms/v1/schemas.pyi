@@ -95,7 +95,20 @@ class FileUploadQuestion(typing_extensions.TypedDict, total=False):
     folderId: str
     maxFileSize: str
     maxFiles: int
-    types: _list[str]
+    types: _list[
+        typing_extensions.Literal[
+            "FILE_TYPE_UNSPECIFIED",
+            "ANY",
+            "DOCUMENT",
+            "PRESENTATION",
+            "SPREADSHEET",
+            "DRAWING",
+            "PDF",
+            "IMAGE",
+            "VIDEO",
+            "AUDIO",
+        ]
+    ]
 
 @typing.type_check_only
 class Form(typing_extensions.TypedDict, total=False):

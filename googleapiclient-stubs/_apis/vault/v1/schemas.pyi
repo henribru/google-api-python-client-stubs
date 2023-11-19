@@ -205,7 +205,11 @@ class HeldOrgUnit(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HeldVoiceQuery(typing_extensions.TypedDict, total=False):
-    coveredData: _list[str]
+    coveredData: _list[
+        typing_extensions.Literal[
+            "COVERED_DATA_UNSPECIFIED", "TEXT_MESSAGES", "VOICEMAILS", "CALL_LOGS"
+        ]
+    ]
 
 @typing.type_check_only
 class Hold(typing_extensions.TypedDict, total=False):
@@ -399,4 +403,8 @@ class VoiceExportOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VoiceOptions(typing_extensions.TypedDict, total=False):
-    coveredData: _list[str]
+    coveredData: _list[
+        typing_extensions.Literal[
+            "COVERED_DATA_UNSPECIFIED", "TEXT_MESSAGES", "VOICEMAILS", "CALL_LOGS"
+        ]
+    ]

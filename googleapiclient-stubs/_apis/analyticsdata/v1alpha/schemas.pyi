@@ -222,7 +222,11 @@ class OrderBy(typing_extensions.TypedDict, total=False):
 class Pivot(typing_extensions.TypedDict, total=False):
     fieldNames: _list[str]
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     offset: str
     orderBys: _list[OrderBy]
 
@@ -295,7 +299,11 @@ class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
     dimensionFilter: FilterExpression
     dimensions: _list[Dimension]
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     metricFilter: FilterExpression
     metrics: _list[Metric]
     orderBys: _list[OrderBy]
@@ -322,7 +330,11 @@ class RunReportRequest(typing_extensions.TypedDict, total=False):
     entity: Entity
     keepEmptyRows: bool
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     metricFilter: FilterExpression
     metrics: _list[Metric]
     offset: str

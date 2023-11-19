@@ -96,7 +96,7 @@ class Application(typing_extensions.TypedDict, total=False):
         "PRIVATE_GOOGLE_HOSTED",
         "PRIVATE_SELF_HOSTED",
     ]
-    features: _list[str]
+    features: _list[typing_extensions.Literal["APP_FEATURE_UNSPECIFIED", "VPN_APP"]]
     fullDescription: str
     iconUrl: str
     managedProperties: _list[ManagedProperty]
@@ -153,7 +153,20 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
-    delegatedScopes: _list[str]
+    delegatedScopes: _list[
+        typing_extensions.Literal[
+            "DELEGATED_SCOPE_UNSPECIFIED",
+            "CERT_INSTALL",
+            "MANAGED_CONFIGURATIONS",
+            "BLOCK_UNINSTALL",
+            "PERMISSION_GRANT",
+            "PACKAGE_ACCESS",
+            "ENABLE_SYSTEM_APP",
+            "NETWORK_ACTIVITY_LOGS",
+            "SECURITY_LOGS",
+            "CERT_SELECTION",
+        ]
+    ]
     disabled: bool
     extensionConfig: ExtensionConfig
     installType: typing_extensions.Literal[
@@ -264,7 +277,14 @@ class Command(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED",
     ]
     newPassword: str
-    resetPasswordFlags: _list[str]
+    resetPasswordFlags: _list[
+        typing_extensions.Literal[
+            "RESET_PASSWORD_FLAG_UNSPECIFIED",
+            "REQUIRE_ENTRY",
+            "DO_NOT_ASK_CREDENTIALS_ON_BOOT",
+            "LOCK_NOW",
+        ]
+    ]
     startLostModeParams: StartLostModeParams
     startLostModeStatus: StartLostModeStatus
     stopLostModeParams: StopLostModeParams
@@ -522,7 +542,16 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
 class Enterprise(typing_extensions.TypedDict, total=False):
     appAutoApprovalEnabled: bool
     contactInfo: ContactInfo
-    enabledNotificationTypes: _list[str]
+    enabledNotificationTypes: _list[
+        typing_extensions.Literal[
+            "NOTIFICATION_TYPE_UNSPECIFIED",
+            "ENROLLMENT",
+            "COMPLIANCE_REPORT",
+            "STATUS_REPORT",
+            "COMMAND",
+            "USAGE_LOGS",
+        ]
+    ]
     enterpriseDisplayName: str
     logo: ExternalData
     name: str
@@ -971,7 +1000,9 @@ class Policy(typing_extensions.TypedDict, total=False):
     adjustVolumeDisabled: bool
     advancedSecurityOverrides: AdvancedSecurityOverrides
     alwaysOnVpnPackage: AlwaysOnVpnPackage
-    androidDevicePolicyTracks: _list[str]
+    androidDevicePolicyTracks: _list[
+        typing_extensions.Literal["APP_TRACK_UNSPECIFIED", "PRODUCTION", "BETA"]
+    ]
     appAutoUpdatePolicy: typing_extensions.Literal[
         "APP_AUTO_UPDATE_POLICY_UNSPECIFIED",
         "CHOICE_TO_THE_USER",
@@ -1023,7 +1054,22 @@ class Policy(typing_extensions.TypedDict, total=False):
     installAppsDisabled: bool
     installUnknownSourcesAllowed: bool
     keyguardDisabled: bool
-    keyguardDisabledFeatures: _list[str]
+    keyguardDisabledFeatures: _list[
+        typing_extensions.Literal[
+            "KEYGUARD_DISABLED_FEATURE_UNSPECIFIED",
+            "CAMERA",
+            "NOTIFICATIONS",
+            "UNREDACTED_NOTIFICATIONS",
+            "TRUST_AGENTS",
+            "DISABLE_FINGERPRINT",
+            "DISABLE_REMOTE_INPUT",
+            "FACE",
+            "IRIS",
+            "BIOMETRICS",
+            "SHORTCUTS",
+            "ALL_FEATURES",
+        ]
+    ]
     kioskCustomLauncherEnabled: bool
     kioskCustomization: KioskCustomization
     locationMode: typing_extensions.Literal[
@@ -1085,7 +1131,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     smsDisabled: bool
     statusBarDisabled: bool
     statusReportingSettings: StatusReportingSettings
-    stayOnPluggedModes: _list[str]
+    stayOnPluggedModes: _list[
+        typing_extensions.Literal[
+            "BATTERY_PLUGGED_MODE_UNSPECIFIED", "AC", "USB", "WIRELESS"
+        ]
+    ]
     systemUpdate: SystemUpdate
     tetheringConfigDisabled: bool
     uninstallAppsDisabled: bool
@@ -1290,8 +1340,16 @@ class TermsAndConditions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UsageLog(typing_extensions.TypedDict, total=False):
-    enabledLogTypes: _list[str]
-    uploadOnCellularAllowed: _list[str]
+    enabledLogTypes: _list[
+        typing_extensions.Literal[
+            "LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"
+        ]
+    ]
+    uploadOnCellularAllowed: _list[
+        typing_extensions.Literal[
+            "LOG_TYPE_UNSPECIFIED", "SECURITY_LOGS", "NETWORK_ACTIVITY_LOGS"
+        ]
+    ]
 
 @typing.type_check_only
 class UsageLogEvent(typing_extensions.TypedDict, total=False):
@@ -1389,10 +1447,22 @@ class WebAppIcon(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WebToken(typing_extensions.TypedDict, total=False):
-    enabledFeatures: _list[str]
+    enabledFeatures: _list[
+        typing_extensions.Literal[
+            "FEATURE_UNSPECIFIED",
+            "PLAY_SEARCH",
+            "PRIVATE_APPS",
+            "WEB_APPS",
+            "STORE_BUILDER",
+            "MANAGED_CONFIGURATIONS",
+            "ZERO_TOUCH_CUSTOMER_MANAGEMENT",
+        ]
+    ]
     name: str
     parentFrameUrl: str
-    permissions: _list[str]
+    permissions: _list[
+        typing_extensions.Literal["WEB_TOKEN_PERMISSION_UNSPECIFIED", "APPROVE_APPS"]
+    ]
     value: str
 
 @typing.type_check_only

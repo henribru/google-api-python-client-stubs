@@ -915,7 +915,16 @@ class GoogleCloudDiscoveryengineV1betaSearchResponseSummary(
     typing_extensions.TypedDict, total=False
 ):
     safetyAttributes: GoogleCloudDiscoveryengineV1betaSearchResponseSummarySafetyAttributes
-    summarySkippedReasons: _list[str]
+    summarySkippedReasons: _list[
+        typing_extensions.Literal[
+            "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
+            "ADVERSARIAL_QUERY_IGNORED",
+            "NON_SUMMARY_SEEKING_QUERY_IGNORED",
+            "OUT_OF_DOMAIN_QUERY_IGNORED",
+            "POTENTIAL_POLICY_VIOLATION",
+            "LLM_ADDON_NOT_ENABLED",
+        ]
+    ]
     summaryText: str
 
 @typing.type_check_only

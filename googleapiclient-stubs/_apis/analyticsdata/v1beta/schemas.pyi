@@ -7,7 +7,11 @@ _list = list
 @typing.type_check_only
 class ActiveMetricRestriction(typing_extensions.TypedDict, total=False):
     metricName: str
-    restrictedMetricTypes: _list[str]
+    restrictedMetricTypes: _list[
+        typing_extensions.Literal[
+            "RESTRICTED_METRIC_TYPE_UNSPECIFIED", "COST_DATA", "REVENUE_DATA"
+        ]
+    ]
 
 @typing.type_check_only
 class AudienceListMetadata(typing_extensions.TypedDict, total=False): ...
@@ -199,7 +203,11 @@ class MetricHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricMetadata(typing_extensions.TypedDict, total=False):
     apiName: str
-    blockedReasons: _list[str]
+    blockedReasons: _list[
+        typing_extensions.Literal[
+            "BLOCKED_REASON_UNSPECIFIED", "NO_REVENUE_METRICS", "NO_COST_METRICS"
+        ]
+    ]
     category: str
     customDefinition: bool
     deprecatedApiNames: _list[str]
@@ -264,7 +272,11 @@ class OrderBy(typing_extensions.TypedDict, total=False):
 class Pivot(typing_extensions.TypedDict, total=False):
     fieldNames: _list[str]
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     offset: str
     orderBys: _list[OrderBy]
 
@@ -346,7 +358,11 @@ class RunRealtimeReportRequest(typing_extensions.TypedDict, total=False):
     dimensionFilter: FilterExpression
     dimensions: _list[Dimension]
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     metricFilter: FilterExpression
     metrics: _list[Metric]
     minuteRanges: _list[MinuteRange]
@@ -374,7 +390,11 @@ class RunReportRequest(typing_extensions.TypedDict, total=False):
     dimensions: _list[Dimension]
     keepEmptyRows: bool
     limit: str
-    metricAggregations: _list[str]
+    metricAggregations: _list[
+        typing_extensions.Literal[
+            "METRIC_AGGREGATION_UNSPECIFIED", "TOTAL", "MINIMUM", "MAXIMUM", "COUNT"
+        ]
+    ]
     metricFilter: FilterExpression
     metrics: _list[Metric]
     offset: str

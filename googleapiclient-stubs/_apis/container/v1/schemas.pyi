@@ -408,7 +408,14 @@ class FastSocket(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
-    eventType: _list[str]
+    eventType: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "UPGRADE_AVAILABLE_EVENT",
+            "UPGRADE_EVENT",
+            "SECURITY_BULLETIN_EVENT",
+        ]
+    ]
 
 @typing.type_check_only
 class Fleet(typing_extensions.TypedDict, total=False):
@@ -581,7 +588,16 @@ class LocalNvmeSsdBlockConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
-    enableComponents: _list[str]
+    enableComponents: _list[
+        typing_extensions.Literal[
+            "COMPONENT_UNSPECIFIED",
+            "SYSTEM_COMPONENTS",
+            "WORKLOADS",
+            "APISERVER",
+            "SCHEDULER",
+            "CONTROLLER_MANAGER",
+        ]
+    ]
 
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
@@ -646,7 +662,21 @@ class Metric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
-    enableComponents: _list[str]
+    enableComponents: _list[
+        typing_extensions.Literal[
+            "COMPONENT_UNSPECIFIED",
+            "SYSTEM_COMPONENTS",
+            "APISERVER",
+            "SCHEDULER",
+            "CONTROLLER_MANAGER",
+            "STORAGE",
+            "HPA",
+            "POD",
+            "DAEMONSET",
+            "DEPLOYMENT",
+            "STATEFULSET",
+        ]
+    ]
 
 @typing.type_check_only
 class MonitoringConfig(typing_extensions.TypedDict, total=False):

@@ -240,8 +240,18 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceMigrationEligibility(typing_extensions.TypedDict, total=False):
-    errors: _list[str]
-    warnings: _list[str]
+    errors: _list[typing_extensions.Literal["ERROR_UNSPECIFIED", "DATAPROC_HUB"]]
+    warnings: _list[
+        typing_extensions.Literal[
+            "WARNING_UNSPECIFIED",
+            "UNSUPPORTED_MACHINE_TYPE",
+            "UNSUPPORTED_ACCELERATOR_TYPE",
+            "UNSUPPORTED_OS",
+            "NO_REMOVE_DATA_DISK",
+            "GCS_BACKUP",
+            "POST_STARTUP_SCRIPT",
+        ]
+    ]
 
 @typing.type_check_only
 class IsInstanceUpgradeableResponse(typing_extensions.TypedDict, total=False):
@@ -483,8 +493,18 @@ class RuntimeMetrics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeMigrationEligibility(typing_extensions.TypedDict, total=False):
-    errors: _list[str]
-    warnings: _list[str]
+    errors: _list[typing_extensions.Literal["ERROR_UNSPECIFIED", "CUSTOM_CONTAINER"]]
+    warnings: _list[
+        typing_extensions.Literal[
+            "WARNING_UNSPECIFIED",
+            "UNSUPPORTED_ACCELERATOR_TYPE",
+            "UNSUPPORTED_OS",
+            "RESERVED_IP_RANGE",
+            "GOOGLE_MANAGED_NETWORK",
+            "POST_STARTUP_SCRIPT",
+            "SINGLE_USER",
+        ]
+    ]
 
 @typing.type_check_only
 class RuntimeShieldedInstanceConfig(typing_extensions.TypedDict, total=False):

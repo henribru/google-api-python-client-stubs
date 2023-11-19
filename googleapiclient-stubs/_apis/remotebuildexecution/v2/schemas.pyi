@@ -85,9 +85,13 @@ class BuildBazelRemoteExecutionV2CacheCapabilities(
 ):
     actionCacheUpdateCapabilities: BuildBazelRemoteExecutionV2ActionCacheUpdateCapabilities
     cachePriorityCapabilities: BuildBazelRemoteExecutionV2PriorityCapabilities
-    digestFunction: _list[str]
+    digestFunction: _list[
+        typing_extensions.Literal[
+            "UNKNOWN", "SHA256", "SHA1", "MD5", "VSO", "SHA384", "SHA512", "MURMUR3"
+        ]
+    ]
     maxBatchTotalSizeBytes: str
-    supportedCompressor: _list[str]
+    supportedCompressor: _list[typing_extensions.Literal["IDENTITY", "ZSTD"]]
     symlinkAbsolutePathStrategy: typing_extensions.Literal[
         "UNKNOWN", "DISALLOWED", "ALLOWED"
     ]

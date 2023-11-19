@@ -647,7 +647,11 @@ class GoogleCloudDialogflowCxV3TransitionRoute(
 class GoogleCloudDialogflowCxV3TurnSignals(typing_extensions.TypedDict, total=False):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -1436,7 +1440,11 @@ class GoogleCloudDialogflowCxV3beta1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -1821,7 +1829,20 @@ class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudDialogflowV2Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -2708,7 +2729,16 @@ class GoogleCloudDialogflowV2beta1Document(typing_extensions.TypedDict, total=Fa
     contentUri: str
     displayName: str
     enableAutoReload: bool
-    knowledgeTypes: _list[str]
+    knowledgeTypes: _list[
+        typing_extensions.Literal[
+            "KNOWLEDGE_TYPE_UNSPECIFIED",
+            "FAQ",
+            "EXTRACTIVE_QA",
+            "ARTICLE_SUGGESTION",
+            "AGENT_FACING_SMART_REPLY",
+            "SMART_REPLY",
+        ]
+    ]
     latestReloadStatus: GoogleCloudDialogflowV2beta1DocumentReloadStatus
     metadata: dict[str, typing.Any]
     mimeType: str
@@ -3037,7 +3067,16 @@ class GoogleCloudDialogflowV2beta1ImportAgentRequest(
 class GoogleCloudDialogflowV2beta1ImportDocumentTemplate(
     typing_extensions.TypedDict, total=False
 ):
-    knowledgeTypes: _list[str]
+    knowledgeTypes: _list[
+        typing_extensions.Literal[
+            "KNOWLEDGE_TYPE_UNSPECIFIED",
+            "FAQ",
+            "EXTRACTIVE_QA",
+            "ARTICLE_SUGGESTION",
+            "AGENT_FACING_SMART_REPLY",
+            "SMART_REPLY",
+        ]
+    ]
     metadata: dict[str, typing.Any]
     mimeType: str
 
@@ -3101,7 +3140,21 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "TELEPHONY",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -4141,7 +4194,27 @@ class GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig(
 class GoogleCloudDialogflowV2beta1TelephonyDtmfEvents(
     typing_extensions.TypedDict, total=False
 ):
-    dtmfEvents: _list[str]
+    dtmfEvents: _list[
+        typing_extensions.Literal[
+            "TELEPHONY_DTMF_UNSPECIFIED",
+            "DTMF_ONE",
+            "DTMF_TWO",
+            "DTMF_THREE",
+            "DTMF_FOUR",
+            "DTMF_FIVE",
+            "DTMF_SIX",
+            "DTMF_SEVEN",
+            "DTMF_EIGHT",
+            "DTMF_NINE",
+            "DTMF_ZERO",
+            "DTMF_A",
+            "DTMF_B",
+            "DTMF_C",
+            "DTMF_D",
+            "DTMF_STAR",
+            "DTMF_POUND",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1TextInput(typing_extensions.TypedDict, total=False):
@@ -4279,7 +4352,11 @@ class GoogleCloudDialogflowV3alpha1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool

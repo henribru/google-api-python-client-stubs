@@ -184,7 +184,11 @@ class DataDiskAssignment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSamplingConfig(typing_extensions.TypedDict, total=False):
-    behaviors: _list[str]
+    behaviors: _list[
+        typing_extensions.Literal[
+            "DATA_SAMPLING_BEHAVIOR_UNSPECIFIED", "DISABLED", "ALWAYS_ON", "EXCEPTIONS"
+        ]
+    ]
 
 @typing.type_check_only
 class DataSamplingReport(typing_extensions.TypedDict, total=False):

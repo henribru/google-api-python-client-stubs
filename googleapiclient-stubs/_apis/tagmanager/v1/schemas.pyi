@@ -13,7 +13,11 @@ class Account(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountAccess(typing_extensions.TypedDict, total=False):
-    permission: _list[str]
+    permission: _list[
+        typing_extensions.Literal[
+            "read", "edit", "publish", "delete", "manage", "editWorkspace"
+        ]
+    ]
 
 @typing.type_check_only
 class Condition(typing_extensions.TypedDict, total=False):
@@ -37,19 +41,135 @@ class Container(typing_extensions.TypedDict, total=False):
     accountId: str
     containerId: str
     domainName: _list[str]
-    enabledBuiltInVariable: _list[str]
+    enabledBuiltInVariable: _list[
+        typing_extensions.Literal[
+            "pageUrl",
+            "pageHostname",
+            "pagePath",
+            "referrer",
+            "event",
+            "clickElement",
+            "clickClasses",
+            "clickId",
+            "clickTarget",
+            "clickUrl",
+            "clickText",
+            "firstPartyServingUrl",
+            "formElement",
+            "formClasses",
+            "formId",
+            "formTarget",
+            "formUrl",
+            "formText",
+            "environmentName",
+            "errorMessage",
+            "errorUrl",
+            "errorLine",
+            "newHistoryUrl",
+            "oldHistoryUrl",
+            "newHistoryFragment",
+            "oldHistoryFragment",
+            "newHistoryState",
+            "oldHistoryState",
+            "historySource",
+            "containerVersion",
+            "debugMode",
+            "randomNumber",
+            "containerId",
+            "appId",
+            "appName",
+            "appVersionCode",
+            "appVersionName",
+            "language",
+            "osVersion",
+            "platform",
+            "sdkVersion",
+            "deviceName",
+            "resolution",
+            "advertiserId",
+            "advertisingTrackingEnabled",
+            "htmlId",
+            "ampBrowserLanguage",
+            "ampCanonicalPath",
+            "ampCanonicalUrl",
+            "ampCanonicalHost",
+            "ampReferrer",
+            "ampTitle",
+            "ampClientId",
+            "ampClientTimezone",
+            "ampClientTimestamp",
+            "ampClientScreenWidth",
+            "ampClientScreenHeight",
+            "ampClientScrollX",
+            "ampClientScrollY",
+            "ampClientMaxScrollX",
+            "ampClientMaxScrollY",
+            "ampTotalEngagedTime",
+            "ampPageViewId",
+            "ampPageLoadTime",
+            "ampPageDownloadTime",
+            "ampGtmEvent",
+            "eventName",
+            "firebaseEventParameterCampaign",
+            "firebaseEventParameterCampaignAclid",
+            "firebaseEventParameterCampaignAnid",
+            "firebaseEventParameterCampaignClickTimestamp",
+            "firebaseEventParameterCampaignContent",
+            "firebaseEventParameterCampaignCp1",
+            "firebaseEventParameterCampaignGclid",
+            "firebaseEventParameterCampaignSource",
+            "firebaseEventParameterCampaignTerm",
+            "firebaseEventParameterCurrency",
+            "firebaseEventParameterDynamicLinkAcceptTime",
+            "firebaseEventParameterDynamicLinkLinkid",
+            "firebaseEventParameterNotificationMessageDeviceTime",
+            "firebaseEventParameterNotificationMessageId",
+            "firebaseEventParameterNotificationMessageName",
+            "firebaseEventParameterNotificationMessageTime",
+            "firebaseEventParameterNotificationTopic",
+            "firebaseEventParameterPreviousAppVersion",
+            "firebaseEventParameterPreviousOsVersion",
+            "firebaseEventParameterPrice",
+            "firebaseEventParameterProductId",
+            "firebaseEventParameterQuantity",
+            "firebaseEventParameterValue",
+            "videoProvider",
+            "videoUrl",
+            "videoTitle",
+            "videoDuration",
+            "videoPercent",
+            "videoVisible",
+            "videoStatus",
+            "videoCurrentTime",
+            "scrollDepthThreshold",
+            "scrollDepthUnits",
+            "scrollDepthDirection",
+            "elementVisibilityRatio",
+            "elementVisibilityTime",
+            "elementVisibilityFirstTime",
+            "elementVisibilityRecentTime",
+        ]
+    ]
     fingerprint: str
     name: str
     notes: str
     publicId: str
     timeZoneCountryId: str
     timeZoneId: str
-    usageContext: _list[str]
+    usageContext: _list[
+        typing_extensions.Literal[
+            "web", "android", "ios", "androidSdk5", "iosSdk5", "amp"
+        ]
+    ]
 
 @typing.type_check_only
 class ContainerAccess(typing_extensions.TypedDict, total=False):
     containerId: str
-    permission: _list[str]
+    permission: _list[
+        typing_extensions.Literal[
+            "read", "edit", "publish", "delete", "manage", "editWorkspace"
+        ]
+    ]
 
 @typing.type_check_only
 class ContainerVersion(typing_extensions.TypedDict, total=False):

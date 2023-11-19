@@ -250,7 +250,11 @@ class InventorySizeTargeting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InventoryTypeTargeting(typing_extensions.TypedDict, total=False):
-    inventoryTypes: _list[str]
+    inventoryTypes: _list[
+        typing_extensions.Literal[
+            "INVENTORY_TYPE_UNSPECIFIED", "BROWSER", "MOBILE_APP", "VIDEO_PLAYER"
+        ]
+    ]
 
 @typing.type_check_only
 class ListAuctionPackagesResponse(typing_extensions.TypedDict, total=False):
@@ -510,5 +514,13 @@ class UriTargeting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoTargeting(typing_extensions.TypedDict, total=False):
-    excludedPositionTypes: _list[str]
-    targetedPositionTypes: _list[str]
+    excludedPositionTypes: _list[
+        typing_extensions.Literal[
+            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
+        ]
+    ]
+    targetedPositionTypes: _list[
+        typing_extensions.Literal[
+            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
+        ]
+    ]

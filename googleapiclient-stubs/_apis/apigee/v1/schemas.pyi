@@ -1500,7 +1500,7 @@ class GoogleCloudApigeeV1QueryTabularStatsResponse(
 ):
     columns: _list[str]
     nextPageToken: str
-    values: _list[list]
+    values: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1QueryTimeSeriesStatsRequest(
@@ -1532,7 +1532,7 @@ class GoogleCloudApigeeV1QueryTimeSeriesStatsResponseSequence(
     typing_extensions.TypedDict, total=False
 ):
     dimensions: dict[str, typing.Any]
-    points: _list[list]
+    points: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Quota(typing_extensions.TypedDict, total=False):

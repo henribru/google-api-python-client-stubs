@@ -327,7 +327,15 @@ class GkeNodePoolConfig(typing_extensions.TypedDict, total=False):
 class GkeNodePoolTarget(typing_extensions.TypedDict, total=False):
     nodePool: str
     nodePoolConfig: GkeNodePoolConfig
-    roles: _list[str]
+    roles: _list[
+        typing_extensions.Literal[
+            "ROLE_UNSPECIFIED",
+            "DEFAULT",
+            "CONTROLLER",
+            "SPARK_DRIVER",
+            "SPARK_EXECUTOR",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataprocV1WorkflowTemplateEncryptionConfig(
@@ -618,7 +626,7 @@ class NodeGroup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     nodeGroupConfig: InstanceGroupConfig
-    roles: _list[str]
+    roles: _list[typing_extensions.Literal["ROLE_UNSPECIFIED", "DRIVER"]]
 
 @typing.type_check_only
 class NodeGroupAffinity(typing_extensions.TypedDict, total=False):
@@ -860,7 +868,25 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
-    optionalComponents: _list[str]
+    optionalComponents: _list[
+        typing_extensions.Literal[
+            "COMPONENT_UNSPECIFIED",
+            "ANACONDA",
+            "DOCKER",
+            "DRUID",
+            "FLINK",
+            "HBASE",
+            "HIVE_WEBHCAT",
+            "HUDI",
+            "JUPYTER",
+            "PRESTO",
+            "TRINO",
+            "RANGER",
+            "SOLR",
+            "ZEPPELIN",
+            "ZOOKEEPER",
+        ]
+    ]
     properties: dict[str, typing.Any]
 
 @typing.type_check_only

@@ -302,7 +302,16 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
     maxResultCount: int
     minRating: float
     openNow: bool
-    priceLevels: _list[str]
+    priceLevels: _list[
+        typing_extensions.Literal[
+            "PRICE_LEVEL_UNSPECIFIED",
+            "PRICE_LEVEL_FREE",
+            "PRICE_LEVEL_INEXPENSIVE",
+            "PRICE_LEVEL_MODERATE",
+            "PRICE_LEVEL_EXPENSIVE",
+            "PRICE_LEVEL_VERY_EXPENSIVE",
+        ]
+    ]
     rankPreference: typing_extensions.Literal[
         "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "RELEVANCE"
     ]

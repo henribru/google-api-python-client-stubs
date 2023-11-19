@@ -397,7 +397,24 @@ class GeneratedUniversalApk(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Grant(typing_extensions.TypedDict, total=False):
-    appLevelPermissions: _list[str]
+    appLevelPermissions: _list[
+        typing_extensions.Literal[
+            "APP_LEVEL_PERMISSION_UNSPECIFIED",
+            "CAN_ACCESS_APP",
+            "CAN_VIEW_FINANCIAL_DATA",
+            "CAN_MANAGE_PERMISSIONS",
+            "CAN_REPLY_TO_REVIEWS",
+            "CAN_MANAGE_PUBLIC_APKS",
+            "CAN_MANAGE_TRACK_APKS",
+            "CAN_MANAGE_TRACK_USERS",
+            "CAN_MANAGE_PUBLIC_LISTING",
+            "CAN_MANAGE_DRAFT_APPS",
+            "CAN_MANAGE_ORDERS",
+            "CAN_MANAGE_APP_CONTENT",
+            "CAN_VIEW_NON_FINANCIAL_DATA",
+            "CAN_VIEW_APP_QUALITY",
+        ]
+    ]
     name: str
     packageName: str
 
@@ -1066,7 +1083,28 @@ class User(typing_extensions.TypedDict, total=False):
         "ACCESS_GRANTED",
         "ACCESS_EXPIRED",
     ]
-    developerAccountPermissions: _list[str]
+    developerAccountPermissions: _list[
+        typing_extensions.Literal[
+            "DEVELOPER_LEVEL_PERMISSION_UNSPECIFIED",
+            "CAN_SEE_ALL_APPS",
+            "CAN_VIEW_FINANCIAL_DATA_GLOBAL",
+            "CAN_MANAGE_PERMISSIONS_GLOBAL",
+            "CAN_EDIT_GAMES_GLOBAL",
+            "CAN_PUBLISH_GAMES_GLOBAL",
+            "CAN_REPLY_TO_REVIEWS_GLOBAL",
+            "CAN_MANAGE_PUBLIC_APKS_GLOBAL",
+            "CAN_MANAGE_TRACK_APKS_GLOBAL",
+            "CAN_MANAGE_TRACK_USERS_GLOBAL",
+            "CAN_MANAGE_PUBLIC_LISTING_GLOBAL",
+            "CAN_MANAGE_DRAFT_APPS_GLOBAL",
+            "CAN_CREATE_MANAGED_PLAY_APPS_GLOBAL",
+            "CAN_CHANGE_MANAGED_PLAY_SETTING_GLOBAL",
+            "CAN_MANAGE_ORDERS_GLOBAL",
+            "CAN_MANAGE_APP_CONTENT_GLOBAL",
+            "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
+            "CAN_VIEW_APP_QUALITY_GLOBAL",
+        ]
+    ]
     email: str
     expirationTime: str
     grants: _list[Grant]

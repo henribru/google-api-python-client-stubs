@@ -383,7 +383,11 @@ class AbuseiamManualReviewTool(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AbuseiamManualReviewerInfo(typing_extensions.TypedDict, total=False):
-    credential: _list[str]
+    credential: _list[
+        typing_extensions.Literal[
+            "UNKNOWN", "LEGAL", "POLICY", "ANALYST", "LEGAL_PANEL"
+        ]
+    ]
     username: str
 
 @typing.type_check_only
@@ -1396,7 +1400,7 @@ class AppsPeopleOzExternalMergedpeopleapiDelegatedGroupInfo(
 class AppsPeopleOzExternalMergedpeopleapiDeviceContactExtraMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    attributes: _list[str]
+    attributes: _list[typing_extensions.Literal["ATTRIBUTE_UNKNOWN", "STARRED"]]
     usageInfo: _list[SocialGraphApiProtoUsageInfo]
 
 @typing.type_check_only
@@ -1548,8 +1552,26 @@ class AppsPeopleOzExternalMergedpeopleapiFieldAcl(
     typing_extensions.TypedDict, total=False
 ):
     aclEntry: _list[AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntry]
-    authorizedViewers: _list[str]
-    predefinedAclEntry: _list[str]
+    authorizedViewers: _list[
+        typing_extensions.Literal[
+            "AUTHORIZED_VIEWER_UNSPECIFIED",
+            "IDENTITY_ACL_ESTABLISHED",
+            "SAME_ORGANIZATION",
+            "SAME_UNICORN_FAMILY",
+            "ALL_USERS",
+        ]
+    ]
+    predefinedAclEntry: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "OWNER",
+            "PUBLIC_READ",
+            "DOMAIN_READ",
+            "YOUR_CIRCLES_READ",
+            "EXTENDED_CIRCLES_READ",
+            "PRIVATE_READ",
+        ]
+    ]
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntry(
@@ -1687,7 +1709,28 @@ class AppsPeopleOzExternalMergedpeopleapiIm(typing_extensions.TypedDict, total=F
 class AppsPeopleOzExternalMergedpeopleapiInAppNotificationTarget(
     typing_extensions.TypedDict, total=False
 ):
-    app: _list[str]
+    app: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "BABEL",
+            "YOUTUBE",
+            "WHOS_DOWN",
+            "YOUTUBE_MANGO",
+            "PHOTOS",
+            "GOOGLE_ASSISTANT",
+            "KABOO",
+            "COMMERCE_PLATFORM",
+            "SPACES",
+            "MAPS",
+            "LOUPE_UNUSED",
+            "POMEROY",
+            "LOUPE",
+            "PEOPLE_PLAYGROUND",
+            "NEWS_360",
+            "DUO",
+            "MEET",
+        ]
+    ]
     clientData: _list[
         AppsPeopleOzExternalMergedpeopleapiInAppNotificationTargetClientData
     ]
@@ -2192,7 +2235,9 @@ class AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata(
     aclChoices: _list[AppsPeopleOzExternalMergedpeopleapiFieldAcl]
     additionalContainerInfo: AppsPeopleOzExternalMergedpeopleapiAdditionalContainerInfo
     affinity: _list[AppsPeopleOzExternalMergedpeopleapiAffinity]
-    contactVisibility: _list[str]
+    contactVisibility: _list[
+        typing_extensions.Literal["CONTACT_VISIBILITY_UNSPECIFIED", "VISIBLE_TO_GUEST"]
+    ]
     container: typing_extensions.Literal[
         "UNKNOWN",
         "PROFILE",
@@ -2263,7 +2308,9 @@ class AppsPeopleOzExternalMergedpeopleapiPersonMetadata(
     affinity: _list[AppsPeopleOzExternalMergedpeopleapiAffinity]
     attribution: _list[str]
     bestDisplayName: AppsPeopleOzExternalMergedpeopleapiBestDisplayName
-    blockType: _list[str]
+    blockType: _list[
+        typing_extensions.Literal["BLOCK_TYPE_UNKNOWN", "CIRCLE", "LEGACY"]
+    ]
     circleId: _list[str]
     contactGroupId: _list[str]
     contactId: _list[str]
@@ -2275,14 +2322,30 @@ class AppsPeopleOzExternalMergedpeopleapiPersonMetadata(
     deviceContactInfo: _list[AppsPeopleOzExternalMergedpeopleapiDeviceContactInfo]
     identityInfo: AppsPeopleOzExternalMergedpeopleapiIdentityInfo
     inViewerDomain: bool
-    incomingBlockType: _list[str]
+    incomingBlockType: _list[
+        typing_extensions.Literal["BLOCK_TYPE_UNKNOWN", "CIRCLE", "LEGACY"]
+    ]
     lastUpdateTimeMicros: str
     model: typing_extensions.Literal[
         "PERSON_MODEL_UNKNOWN", "PROFILE_CENTRIC", "CONTACT_CENTRIC"
     ]
     objectType: typing_extensions.Literal["OBJECT_TYPE_UNKNOWN", "PERSON", "PAGE"]
     ownerId: str
-    ownerUserType: _list[str]
+    ownerUserType: _list[
+        typing_extensions.Literal[
+            "OWNER_USER_TYPE_UNKNOWN",
+            "GOOGLE_USER",
+            "GPLUS_USER",
+            "GPLUS_DISABLED_BY_ADMIN",
+            "GOOGLE_APPS_USER",
+            "GOOGLE_APPS_SELF_MANAGED_USER",
+            "GOOGLE_FAMILY_USER",
+            "GOOGLE_FAMILY_CHILD_USER",
+            "GOOGLE_APPS_ADMIN_DISABLED",
+            "GOOGLE_ONE_USER",
+            "GOOGLE_FAMILY_CONVERTED_CHILD_USER",
+        ]
+    ]
     plusPageType: typing_extensions.Literal[
         "PLUS_PAGE_TYPE_UNKNOWN",
         "LOCAL",
@@ -2531,15 +2594,33 @@ class AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfo(
     typing_extensions.TypedDict, total=False
 ):
     accountEmail: AppsPeopleOzExternalMergedpeopleapiAccountEmail
-    blockType: _list[str]
+    blockType: _list[
+        typing_extensions.Literal["BLOCK_TYPE_UNKNOWN", "CIRCLE", "LEGACY"]
+    ]
     customerInfo: AppsPeopleOzExternalMergedpeopleapiCustomerInfo
     domainInfo: AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfoDomainInfo
     inViewerDomain: bool
-    incomingBlockType: _list[str]
+    incomingBlockType: _list[
+        typing_extensions.Literal["BLOCK_TYPE_UNKNOWN", "CIRCLE", "LEGACY"]
+    ]
     metadata: AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata
     objectType: typing_extensions.Literal["OBJECT_TYPE_UNKNOWN", "PERSON", "PAGE"]
     ownerId: str
-    ownerUserType: _list[str]
+    ownerUserType: _list[
+        typing_extensions.Literal[
+            "OWNER_USER_TYPE_UNKNOWN",
+            "GOOGLE_USER",
+            "GPLUS_USER",
+            "GPLUS_DISABLED_BY_ADMIN",
+            "GOOGLE_APPS_USER",
+            "GOOGLE_APPS_SELF_MANAGED_USER",
+            "GOOGLE_FAMILY_USER",
+            "GOOGLE_FAMILY_CHILD_USER",
+            "GOOGLE_APPS_ADMIN_DISABLED",
+            "GOOGLE_ONE_USER",
+            "GOOGLE_FAMILY_CONVERTED_CHILD_USER",
+        ]
+    ]
     plusPageType: typing_extensions.Literal[
         "PLUS_PAGE_TYPE_UNKNOWN",
         "LOCAL",
@@ -2661,7 +2742,15 @@ class AppsPeopleOzExternalMergedpeopleapiSocialConnection(
     typing_extensions.TypedDict, total=False
 ):
     metadata: AppsPeopleOzExternalMergedpeopleapiPersonFieldMetadata
-    type: _list[str]
+    type: _list[
+        typing_extensions.Literal[
+            "SOCIAL_CONNECTION_UNKNOWN",
+            "NO_CONNECTION",
+            "GPLUS_SECOND_HOP",
+            "DIRECT_CONNECTION",
+            "SELF",
+        ]
+    ]
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiSortKeys(
@@ -2786,7 +2875,17 @@ class AppsPeopleOzExternalMergedpeopleapiTeamsExtendedData(
     admins: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
     dottedLineManagers: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
     dottedLineReports: AppsPeopleOzExternalMergedpeopleapiPersonListWithTotalNumber
-    failures: _list[str]
+    failures: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_FAILURE",
+            "MANAGEMENT_CHAIN",
+            "REPORTS",
+            "DOTTED_LINE_REPORTS",
+            "DOTTED_LINE_MANAGERS",
+            "ADMINS",
+            "ADMIN_TO",
+        ]
+    ]
     managementChain: _list[AppsPeopleOzExternalMergedpeopleapiPerson]
     reports: AppsPeopleOzExternalMergedpeopleapiPersonListWithTotalNumber
 
@@ -2928,11 +3027,36 @@ class AssistantApiBluetoothCapabilities(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class AssistantApiCallCapabilities(typing_extensions.TypedDict, total=False):
-    callFormats: _list[str]
-    callMediums: _list[str]
-    callOptions: _list[str]
+    callFormats: _list[
+        typing_extensions.Literal["UNSPECIFIED_FORMAT", "AUDIO", "VIDEO", "TEXT"]
+    ]
+    callMediums: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED_MEDIUM",
+            "PSTN",
+            "VOIP",
+            "EMAIL",
+            "ONLINE_CHAT",
+            "TEXT_MESSAGING",
+            "MESSAGE",
+        ]
+    ]
+    callOptions: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED_CALL_OPTION", "SPEAKERPHONE", "BLUETOOTH", "HEADSET"
+        ]
+    ]
     fallbackToTetheredDeviceAppCapabilities: bool
-    supportedRecipientTypes: _list[str]
+    supportedRecipientTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED_ENDPOINT",
+            "PHONE_NUMBER",
+            "EMAIL_ADDRESS",
+            "APP_UNIQUE_ID",
+            "EMERGENCY_PHONE_NUMBER",
+            "VOICEMAIL",
+        ]
+    ]
     supportsDuoEmailEndpoint: bool
 
 @typing.type_check_only
@@ -2990,7 +3114,335 @@ class AssistantApiClientOpPropertiesDeviceModifySettingClientOpProperty(
     typing_extensions.TypedDict, total=False
 ):
     skipAndroidAndGsaVersionCheck: bool
-    supportedSettings: _list[str]
+    supportedSettings: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "ABOUT_ME",
+            "ACCESSIBILITY",
+            "ACTIVE_EDGE",
+            "ACTIVE_EDGE_SENSITIVITY",
+            "ADAPTIVE_BATTERY",
+            "ADAPTIVE_BRIGHTNESS",
+            "ADAPTIVE_CHARGING",
+            "ADAPTIVE_CONNECTIVITY",
+            "ADAPTIVE_SOUND",
+            "ADD_ACCOUNT",
+            "ADD_BLUETOOTH_DEVICE",
+            "ADD_DEVICE",
+            "ADD_FINGERPRINT",
+            "ADS_TRACKING",
+            "AIRPLANE_MODE",
+            "ALARM_VOLUME",
+            "ALARM_SOUND",
+            "ALLOW_MULTIPLE_USERS",
+            "AMBIENT_DISPLAY_ALWAYS_ON",
+            "AMBIENT_DISPLAY_NEW_NOTIFICATION",
+            "ANDROID_AUTO",
+            "ANDROID_VERSION",
+            "APP_BATTERY_USAGE",
+            "APP_DATA_USAGE",
+            "APP_DETAILS",
+            "APP_SHORTCUT",
+            "APPS_NOTIFICATIONS",
+            "APPS_STORAGE",
+            "ASSISTANT_ACCOUNT",
+            "ASSISTANT_FACE_MATCH",
+            "ASSISTANT_LANGUAGE",
+            "ASSISTANT_VOICE_MATCH",
+            "AUTO_ROTATE",
+            "AUTO_ROTATE_FACE_DETECTION",
+            "BACKUP",
+            "BATTERY_HEALTH",
+            "BATTERY_LEVEL",
+            "BATTERY_LOW",
+            "BATTERY_PERCENTAGE",
+            "BATTERY_PRESENT",
+            "BATTERY_SAVER",
+            "BATTERY_SAVER_SCHEDULE",
+            "BATTERY_SHARE",
+            "BATTERY_USAGE",
+            "BIOMETRIC",
+            "BLUETOOTH",
+            "BLUETOOTH_NAME",
+            "BLUETOOTH_ADDRESS",
+            "BLUETOOTH_SETTINGS",
+            "BRIGHTNESS_LEVEL",
+            "BUBBLES",
+            "CALL_VOLUME",
+            "CAMERA_DOUBLE_TWIST",
+            "CAST",
+            "CAR_CRASH_DETECTION",
+            "COLOR_INVERSION",
+            "COLOR_CORRECTION",
+            "CONVERSATIONS",
+            "CHARGING_SOUNDS_AND_VIBRATION",
+            "CHARGING_STATE",
+            "CONNECTED_DEVICES",
+            "CONTACTLESS_PAYMENTS",
+            "DATA_ROAMING",
+            "DATA_SAVER",
+            "DATA_USAGE",
+            "DATA_LIMIT",
+            "DATA_LIMIT_LEVEL",
+            "DATA_WARNING",
+            "DATA_WARNING_LEVEL",
+            "DEFAULT_ALARM_SOUND",
+            "DEFAULT_NOTIFICATION_SOUND",
+            "DEFAULT_APPS",
+            "DEVELOPER_OPTIONS",
+            "DEVICE_ASSISTANT_APP",
+            "DEVICE_NAME",
+            "DISPLAY_OVER_OTHER_APPS",
+            "DISPLAY_SIZE",
+            "DO_NOT_DISTURB",
+            "DO_NOT_DISTURB_MESSAGES",
+            "DO_NOT_DISTURB_CALLS",
+            "DO_NOT_DISTURB_ALARMS",
+            "DO_NOT_DISTURB_SCHEDULES",
+            "DOUBLE_TAP_CHECK_PHONE",
+            "DRIVING_MODE",
+            "EARTHQUAKE_ALERTS",
+            "EMERGENCY",
+            "EMERGENCY_ALERTS",
+            "EMERGENCY_CONTACTS",
+            "EMERGENCY_INFORMATION",
+            "ETHERNET_TETHERING",
+            "EXTRA_DIM",
+            "EXTREME_BATTERY_SAVER",
+            "FACTORY_RESET",
+            "FIND_MY_DEVICE",
+            "FLASHLIGHT",
+            "FOCUS_MODE",
+            "FONT_SIZE",
+            "FREE_UP_SPACE",
+            "FINGERPRINT_MANAGER",
+            "GESTURES",
+            "HAPTIC_FEEDBACK_VIBRATION",
+            "HARD_KEYBOARD",
+            "HEADS_UP",
+            "HIGH_REFRESH_RATE",
+            "HOT_SPOT",
+            "HOTSPOT_TETHERING",
+            "HOT_WORD",
+            "HUB_MODE",
+            "IP_ADDRESS",
+            "IMPROVE_LOCATION_ACCURACY",
+            "JUMP_TO_CAMERA",
+            "KEYBOARD_SHORTCUTS",
+            "LIFT_CHECK_PHONE",
+            "LIVE_TRANSLATE",
+            "LOCATION",
+            "LOCATION_HISTORY",
+            "LOCATION_BLUETOOTH_SCANNING",
+            "LOCATION_WIFI_SCANNING",
+            "LOCK_SCREEN",
+            "LOCK_SCREEN_DEVICE_CONTROLS",
+            "LOCK_SCREEN_WALLET",
+            "MAC_ADDRESS",
+            "MAGNIFICATION",
+            "MAGNIFY_BUTTON",
+            "MAGNIFY_TRIPLE_TAP",
+            "MANIFY_BUTTON",
+            "MANIFY_TRIPLE_TAP",
+            "MEDIA",
+            "MEDIA_VOLUME",
+            "MICROPHONE_ACCESS",
+            "MOBILE",
+            "MOBILE_DATA",
+            "MUSIC",
+            "MUTE_MODE",
+            "NETWORK",
+            "NETWORK_RESET",
+            "NFC",
+            "NIGHT_LIGHT_INTENSITY",
+            "NIGHT_LIGHT_SWITCH",
+            "NIGHT_MODE",
+            "NOTIFICATION_BADGE",
+            "NOTIFICATION_SOUND",
+            "NOTIFICATION_ON_SCREEN",
+            "NOTIFICATION_HISTORY",
+            "NOTIFY_FOR_PUBLIC_NETWORKS",
+            "ONEHANDED_MODE",
+            "OS_VERSION",
+            "PASSWORD",
+            "PERMISSION_MANAGER",
+            "PERMISSION_USAGE",
+            "PERSONALIZATION",
+            "PRINTING",
+            "PHONE_NUMBER",
+            "PICTURE_IN_PICTURE",
+            "POINTER_SPEED",
+            "POWER_MENU",
+            "REMINDERS",
+            "REQUIRE_DEVICE_UNLOCK_FOR_NFC",
+            "RINGTONE",
+            "RING_VOLUME",
+            "NEARBY_DEVICES_SCANNING",
+            "NEARBY_SHARE",
+            "SCREEN_LOCKING_SOUND",
+            "SCREEN_MAGNIFICATION",
+            "SCREEN_TIMEOUT",
+            "SCREEN_LOCK",
+            "SCREEN_SAVER",
+            "SELECT_TO_SPEAK",
+            "SET_TIME_AUTOMATICALLY",
+            "SET_TIME_ZONE_AUTOMATICALLY",
+            "SETTINGS",
+            "SIM",
+            "SIM_MANAGER",
+            "SPEECH_RATE",
+            "STORAGE_USAGE",
+            "SWIPE_FOR_NOTIFICATION",
+            "SWITCH_ACCESS",
+            "SYSTEM_UPDATE",
+            "SYSTEM_UPDATES",
+            "SYSTEM_NAVIGATION",
+            "SYSTEM_NAVIGATION_GESTURES",
+            "SYSTEM_NAVIGATION_BUTTONS",
+            "TALKBACK_PASSWORDS",
+            "TEXT_TO_SPEECH",
+            "TIME_ZONE",
+            "UNUSED_APPS",
+            "USB",
+            "USB_TETHERING",
+            "VERBOSE_TTS",
+            "VIBRATE",
+            "VIBRATION",
+            "VIBRATION_MODE",
+            "VOICE",
+            "VOLUME_LEVEL",
+            "WAKE_SCREEN_FOR_NOTIFICATIONS",
+            "WALLPAPERS",
+            "WEBVIEW",
+            "WIFI",
+            "WIFI_ADD_NETWORK",
+            "WIFI_ADD_NETWORK_QR_CODE",
+            "WIFI_CALLING",
+            "WIFI_HOTSPOT",
+            "ACCESSIBILITY_SELECT_TO_SPEAK",
+            "CRISIS_ALERTS",
+            "REGULATORY_LABELS",
+            "SEND_FEEDBACK",
+            "OS_BUILD_NUMBER",
+            "ACCESSIBILITY_SHORTCUTS",
+            "ACCESSIBILITY_MENU",
+            "ACCESSIBILITY_SOUND_AMPLIFIER",
+            "ACCESSIBILITY_LIVE_TRANSCRIBE",
+            "ACCESSIBILITY_SOUND_NOTIFICATIONS",
+            "ACCESSIBILITY_TALKBACK",
+            "ACCESSIBILITY_TIMEOUT",
+            "CAMERA_SETTINGS",
+            "BATTERY_SAVER_TOGGLE",
+            "COVID_NOTIFICATIONS",
+            "APP_LOCATION",
+            "LOCATION_SERVICES",
+            "PRIVATE_DNS",
+            "UNRESTRICTED_DATA",
+            "PREFERRED_NETWORK",
+            "NETWORK_PREFERENCES",
+            "PASSWORDS_AND_ACCOUNTS",
+            "PRIVACY_DASHBOARD",
+            "MORE_SECURITY",
+            "APP_PINNING",
+            "CONFIRM_SIM_DELETION",
+            "ENCRYPT_PHONE",
+            "FACE_UNLOCK",
+            "INSTALL_UNKNOWN_APPS",
+            "NOW_PLAYING",
+            "STAY_AWAKE",
+            "ASSISTANT_VOICE",
+            "RESET_BLUETOOTH_WIFI",
+            "DEFAULT_PHONE_APP",
+            "GOOGLE_ACCOUNT",
+            "ACCESSIBILITY_CAPTION_SIZE_AND_STYLE",
+            "ACCESSIBILITY_CAPTION_STYLE",
+            "ACCESSIBILITY_CAPTION_TEXT",
+            "ACCESSIBILITY_CAPTION_PREFERENCES",
+            "ACCESSIBILITY_COLOR_AND_MOTION",
+            "ACCESSIBILITY_BOLD_TEXT",
+            "LIVE_CAPTION",
+            "POWER_BUTTON_ENDS_CALL",
+            "TOUCH_AND_HOLD_DELAY",
+            "ACCESSIBILITY_VOICE_ACCESS",
+            "SMS_PERMISSIONS",
+            "SPECIAL_APP_ACCESS",
+            "DARK_THEME_SCHEDULE",
+            "LOCK_SCREEN_TEXT",
+            "NIGHT_LIGHT_SCHEDULE",
+            "AUTOFILL",
+            "USAGE_AND_DIAGNOSTICS",
+            "SENSITIVE_NOTIFICATIONS",
+            "ENCRYPTION_AND_CREDENTIALS",
+            "SPACIAL_AUDIO",
+            "RESET_OPTIONS",
+            "QUICK_TAP",
+            "TIPS_AND_SUPPORT",
+            "SCREEN_ATTENTION",
+            "BLUETOOTH_TETHERING",
+            "ALL_APPS",
+            "EXTEND_UNLOCK",
+            "CLEAR_CALLING",
+            "GOOGLE_SETTINGS",
+            "APP_LANGUAGES",
+            "SIM_STATUS",
+            "MICROPHONE_PERMISSIONS",
+            "GOOGLE_PLAY_UPDATE",
+            "ADD_GOOGLE_ACCOUNT",
+            "ASSISTANT_SPOKEN_NOTIFICATIONS",
+            "ABOUT_PHONE",
+            "ACCOUNTS",
+            "APPLICATION",
+            "ASSISTANT",
+            "AUDIO",
+            "BATTERY",
+            "BELL_SCHEDULE",
+            "CONTINUED_CONVERSATION",
+            "DATE_TIME",
+            "DARK_THEME",
+            "DEVICE_INFO",
+            "DICTIONARY",
+            "DIGITAL_WELLBEING",
+            "DISPLAY",
+            "LANGUAGE",
+            "NIGHT_LIGHT",
+            "NOTIFICATION",
+            "NOTIFICATION_VOLUME",
+            "PHONE_RINGTONE",
+            "PRIVACY",
+            "ROAMING",
+            "ROUTINES",
+            "SEARCH",
+            "SECURITY",
+            "SOUND",
+            "SPELL_CHECKER",
+            "SYSTEM",
+            "STORAGE",
+            "VPN",
+            "AUTOCLICK",
+            "CARET_HIGHLIGHT",
+            "CHROMEVOX",
+            "CURSOR_HIGHLIGHT",
+            "DOCKED_MAGNIFIER",
+            "FOCUS_HIGHLIGHT",
+            "FULLSCREEN_MAGNIFIER",
+            "HIGH_CONTRAST_MODE",
+            "LARGE_CURSOR",
+            "MONO_AUDIO",
+            "STICKY_KEYS",
+            "TAP_DRAGGING",
+            "VIRTUAL_KEYBOARD",
+            "WEARABLE_AMBIENT",
+            "WEARABLE_NOISE_CANCELLATION",
+            "WEARABLE_TOUCH_CONTROLS",
+            "RAISE_TO_TALK",
+            "BEDTIME_MODE",
+            "THEATER_MODE",
+            "TOUCH_LOCK",
+            "PRESS_AND_HOLD",
+            "WATCH_FACE",
+            "NOTIFICATION_ANNOUNCEMENT",
+        ]
+    ]
     supportsDoNotDisturbWithDuration: bool
     supportsMuteUnmute: bool
 
@@ -3122,7 +3574,11 @@ class AssistantApiCoreTypesCalendarEventMeetingContact(
     typing_extensions.TypedDict, total=False
 ):
     conferenceId: str
-    dialInNumberClasses: _list[str]
+    dialInNumberClasses: _list[
+        typing_extensions.Literal[
+            "NUMBER_CLASS_UNSPECIFIED", "LOW_COST", "HIGH_COST", "LEGACY"
+        ]
+    ]
     phoneNumberUri: str
     pinNumber: str
     provider: AssistantApiCoreTypesProvider
@@ -3890,7 +4346,15 @@ class AssistantApiDeviceCapabilities(typing_extensions.TypedDict, total=False):
     bluetoothCapabilities: AssistantApiBluetoothCapabilities
     callCapabilities: AssistantApiCallCapabilities
     camera: AssistantApiCameraCapabilities
-    carUxRestrictions: _list[str]
+    carUxRestrictions: _list[
+        typing_extensions.Literal[
+            "UX_RESTRICTIONS_UNSPECIFIED",
+            "UX_RESTRICTIONS_BASELINE",
+            "UX_RESTRICTIONS_FULLY_RESTRICTED",
+            "UX_RESTRICTIONS_NO_KEYBOARD",
+            "UX_RESTRICTIONS_NO_VIDEO",
+        ]
+    ]
     cast: AssistantApiCastCapabilities
     communicationUiCapabilities: AssistantApiCommunicationUiCapabilities
     contactLookupCapabilities: AssistantApiContactLookupCapabilities
@@ -3942,7 +4406,41 @@ class AssistantApiFeatureSpecificActionSupport(
 
 @typing.type_check_only
 class AssistantApiFitnessFeatureSupport(typing_extensions.TypedDict, total=False):
-    supportedActivities: _list[str]
+    supportedActivities: _list[
+        typing_extensions.Literal[
+            "TYPE_UNSPECIFIED",
+            "WALK",
+            "RUN",
+            "ELLIPTICAL",
+            "SWIM",
+            "WEIGHTS",
+            "TREADMILL",
+            "BIKE",
+            "YOGA",
+            "WORKOUT",
+            "BOOT_CAMP",
+            "CIRCUIT_TRAINING",
+            "GOLF",
+            "HIKING",
+            "INTERVAL_TRAINING",
+            "KICKBOXING",
+            "MARTIAL_ARTS",
+            "PILATES",
+            "SPINNING",
+            "STAIR_CLIMBING",
+            "TENNIS",
+            "AEROBICS",
+            "CORE_TRAINING",
+            "DANCING",
+            "HIGH_INTENSITY_INTERVAL_TRAINING",
+            "KAYAKING",
+            "ROWING",
+            "SKIING",
+            "STANDUP_PADDLEBOARDING",
+            "STRENGTH_TRAINING",
+            "SNOWBOARDING",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiFluidActionsSupport(typing_extensions.TypedDict, total=False):
@@ -3998,7 +4496,9 @@ class AssistantApiImmersiveCanvasSupport(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class AssistantApiJwnCapabilities(typing_extensions.TypedDict, total=False):
     librariesVersionMap: dict[str, typing.Any]
-    supportedCompressionMode: _list[str]
+    supportedCompressionMode: _list[
+        typing_extensions.Literal["NONE", "BROTLI", "FLATE"]
+    ]
     supportsJwn: bool
 
 @typing.type_check_only
@@ -4128,7 +4628,16 @@ class AssistantApiMediaControlSupport(typing_extensions.TypedDict, total=False):
 class AssistantApiMessageCapabilities(typing_extensions.TypedDict, total=False):
     fallbackToTetheredDeviceAppCapabilities: bool
     preferTargetingPrimaryDevice: bool
-    supportedRecipientTypes: _list[str]
+    supportedRecipientTypes: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED_ENDPOINT",
+            "PHONE_NUMBER",
+            "EMAIL_ADDRESS",
+            "APP_UNIQUE_ID",
+            "EMERGENCY_PHONE_NUMBER",
+            "VOICEMAIL",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiMovementCapabilities(typing_extensions.TypedDict, total=False):
@@ -4341,7 +4850,7 @@ class AssistantApiRecurrence(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssistantApiScreenCapabilities(typing_extensions.TypedDict, total=False):
     fontScaleFactor: float
-    inputType: _list[str]
+    inputType: _list[typing_extensions.Literal["TOUCHSCREEN"]]
     mask: AssistantApiScreenCapabilitiesMask
     protoLayoutTargetedSchema: AssistantApiScreenCapabilitiesProtoLayoutVersion
     resolution: AssistantApiScreenCapabilitiesResolution
@@ -4354,7 +4863,9 @@ class AssistantApiScreenCapabilities(typing_extensions.TypedDict, total=False):
     supportedRenderingFormat: typing_extensions.Literal[
         "UNKNOWN_RENDERING_FORMAT", "CONCISE_TEXT", "PROTO_LAYOUT", "ELEMENTS"
     ]
-    supportedScreenStates: _list[str]
+    supportedScreenStates: _list[
+        typing_extensions.Literal["UNKNOWN_SCREEN_STATE", "ON", "OFF"]
+    ]
     visionHelpEnabled: bool
 
 @typing.type_check_only
@@ -4420,7 +4931,11 @@ class AssistantApiSettingsDeviceDowntimeSettings(
     typing_extensions.TypedDict, total=False
 ):
     schedules: _list[AssistantApiSettingsLabeledDowntimeSchedule]
-    targets: _list[str]
+    targets: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_DEVICE_SUPERVISION_TARGET", "EVERYONE", "KID_ACCOUNTS", "GUESTS"
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiSettingsDeviceFeatureFilters(
@@ -4428,7 +4943,11 @@ class AssistantApiSettingsDeviceFeatureFilters(
 ):
     enabled: bool
     featureFilters: AssistantApiSettingsFeatureFilters
-    targets: _list[str]
+    targets: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_DEVICE_SUPERVISION_TARGET", "EVERYONE", "KID_ACCOUNTS", "GUESTS"
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiSettingsDeviceLogsOptIn(typing_extensions.TypedDict, total=False):
@@ -4461,7 +4980,23 @@ class AssistantApiSettingsDeviceSettings(typing_extensions.TypedDict, total=Fals
     deviceModelId: str
     deviceModelRevision: int
     dusi: str
-    faceEnrollmentErrors: _list[str]
+    faceEnrollmentErrors: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_FACE_ENROLLMENT_ERROR",
+            "MISSING_FRONTAL_POSE",
+            "FACE_NOT_DETECTED",
+            "MULTIPLE_FACE_DETECTED",
+            "FACE_WITHOUT_SIGNATURE",
+            "FACE_DETECTION_LOW_CONFIDENCE",
+            "FACE_LANDMARK_LOW_CONFIDENCE",
+            "FACE_WITHOUT_CONFIDENCE",
+            "FACE_TOO_SMALL",
+            "FAILED_TO_READ_IMAGE",
+            "FAILED_TO_DECODE_IMAGE",
+            "FACE_DETECTION_ERROR",
+            "FACE_WITHOUT_EMBEDDING_CONFIDENCE",
+        ]
+    ]
     faceEnrollmentStatus: typing_extensions.Literal[
         "UNKNOWN_STATUS", "SUCCESS", "FAILURE", "PENDING"
     ]
@@ -4719,14 +5254,32 @@ class AssistantApiSettingsMasqueradeMode(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class AssistantApiSettingsMusicFilter(typing_extensions.TypedDict, total=False):
-    availableProviders: _list[str]
+    availableProviders: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_MUSIC_PROVIDER",
+            "YOUTUBE_MUSIC",
+            "GOOGLE_PLAY_MUSIC",
+            "SPOTIFY",
+            "APPLE_MUSIC",
+            "PANDORA",
+        ]
+    ]
     providerFilterState: typing_extensions.Literal[
         "UNKNOWN_STATE", "ALLOW_ALL_PROVIDERS", "ALLOW_WHITELISTED_PROVIDERS"
     ]
     state: typing_extensions.Literal[
         "UNKNOWN_STATE", "ALLOW_ALL", "BLOCK_EXPLICIT", "BLOCK_ALL"
     ]
-    whitelistedProviders: _list[str]
+    whitelistedProviders: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_MUSIC_PROVIDER",
+            "YOUTUBE_MUSIC",
+            "GOOGLE_PLAY_MUSIC",
+            "SPOTIFY",
+            "APPLE_MUSIC",
+            "PANDORA",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiSettingsNewsFilter(typing_extensions.TypedDict, total=False):
@@ -4885,14 +5438,22 @@ class AssistantApiSettingsVideoFilter(typing_extensions.TypedDict, total=False):
     autoplayToggleState: typing_extensions.Literal[
         "UNKNOWN_STATE", "ENABLED", "DISABLED"
     ]
-    availableProviders: _list[str]
+    availableProviders: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_VIDEO_PROVIDER", "YOUTUBE", "YOUTUBE_TV", "YOUTUBE_KIDS"
+        ]
+    ]
     providerFilterState: typing_extensions.Literal[
         "UNKNOWN_STATE", "ALLOW_ALL_PROVIDERS", "ALLOW_WHITELISTED_PROVIDERS"
     ]
     state: typing_extensions.Literal[
         "UNKNOWN_STATE", "ALLOW_ALL", "BLOCK_MATURE_CONTENT", "BLOCK_ALL"
     ]
-    whitelistedProviders: _list[str]
+    whitelistedProviders: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_VIDEO_PROVIDER", "YOUTUBE", "YOUTUBE_TV", "YOUTUBE_KIDS"
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiSettingsWebviewFilter(typing_extensions.TypedDict, total=False):
@@ -5112,7 +5673,21 @@ class AssistantApiSupportedProtocolVersionMessageVersionPair(
 
 @typing.type_check_only
 class AssistantApiSupportedProviderTypes(typing_extensions.TypedDict, total=False):
-    supportedTypes: _list[str]
+    supportedTypes: _list[
+        typing_extensions.Literal[
+            "PROVIDER_TYPE_UNSPECIFIED",
+            "ANDROID_APP",
+            "CAST_APP",
+            "CLOUD_PROVIDER",
+            "SIP_PROVIDER",
+            "IOS_APP",
+            "INTERNAL_PROVIDER",
+            "WEB_PROVIDER",
+            "KAIOS_APP",
+            "HOME_APP",
+            "CHROMEOS_APP",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantApiSurfaceProperties(typing_extensions.TypedDict, total=False):
@@ -6340,7 +6915,27 @@ class AssistantLogsDeviceMediaSessionLog(typing_extensions.TypedDict, total=Fals
         "SKIPPING_TO_QUEUE_ITEM",
     ]
     providerMid: str
-    supportedTransportControl: _list[str]
+    supportedTransportControl: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_COMMAND",
+            "PLAY_FROM_SEARCH",
+            "PLAY_FROM_URI",
+            "SEND_CUSTOM_ACTION",
+            "SKIP_TO_NEXT",
+            "SKIP_TO_PREVIOUS",
+            "PLAY",
+            "PAUSE",
+            "STOP",
+            "SET_RATING",
+            "SEEK_TO",
+            "SHUFFLE",
+            "REWIND",
+            "FAST_FORWARD",
+            "SKIP_TO_QUEUE_ITEM",
+            "SET_REPEAT_MODE",
+            "SET_CAPTIONING_ENABLED",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantLogsDeviceSelectionLog(typing_extensions.TypedDict, total=False):
@@ -6531,7 +7126,15 @@ class AssistantLogsMediaDeviceSelectionDecisionSummary(
         "DEVICE_IN_CLOSE_ROOM_TARGETED",
         "TETHERED_DEVICE_TARGETED",
     ]
-    miscSelectionSignal: _list[str]
+    miscSelectionSignal: _list[
+        typing_extensions.Literal[
+            "NONE",
+            "BETTER_MATCH_DEVICE_WITH_HUMAN_FRIENDLY_NAME_FOUND",
+            "LOCAL_DEVICE_IMPLICITLY_MENTIONED",
+            "USED_LOOSE_PLAYBACK_STATE_REQUIREMENTS",
+            "QUERY_3P_DEVICE_ANNOTATION_IGNORED_REQUIREMENTS",
+        ]
+    ]
 
 @typing.type_check_only
 class AssistantLogsMediaFocusInfoLog(typing_extensions.TypedDict, total=False):
@@ -6785,7 +7388,7 @@ class AssistantProductivityListItem(typing_extensions.TypedDict, total=False):
 class AssistantRemindersAttachment(typing_extensions.TypedDict, total=False):
     id: str
     link: AssistantRemindersAttachmentLink
-    surfaceType: _list[str]
+    surfaceType: _list[typing_extensions.Literal["UNSPECIFIED", "ANDROID_PHONE"]]
 
 @typing.type_check_only
 class AssistantRemindersAttachmentLink(typing_extensions.TypedDict, total=False):
@@ -6909,7 +7512,9 @@ class AssistantVerticalsHomeautomationProtoCommonVoiceTrigger(
 class AssistantVerticalsHomeautomationProtoConciergeFeatures(
     typing_extensions.TypedDict, total=False
 ):
-    conciergeProductFeatures: _list[str]
+    conciergeProductFeatures: _list[
+        typing_extensions.Literal["UNKNOWN_PRODUCT_FEATURE", "E911"]
+    ]
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoDeviceTargetingOutputQueryInfo(
@@ -6966,9 +7571,23 @@ class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData(
     opaqueCustomData: str
     operationalNodeId: str
     otherDeviceIds: _list[AssistantVerticalsHomeautomationProtoAgentDeviceId]
-    otherDeviceSources: _list[str]
+    otherDeviceSources: _list[
+        typing_extensions.Literal[
+            "UNKNOWN", "CLOUD_SYNC", "ASSISTANT_SETTING_OOBE", "LOCAL_SYNC", "CHIP_SYNC"
+        ]
+    ]
     parentNode: _list[str]
-    parentType: _list[str]
+    parentType: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_ITEM_TYPE",
+            "DEVICE",
+            "ROOM",
+            "PLACE",
+            "GROUP",
+            "SCENE",
+            "STRUCTURE",
+        ]
+    ]
     personalizedNicknames: _list[str]
     physicalLocation: AssistantVerticalsHomeautomationProtoPhysicalLocation
     plural: _list[str]
@@ -7331,7 +7950,13 @@ class ClassifierPornSiteData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ClassifierPornSiteDataVersionedScore(typing_extensions.TypedDict, total=False):
     score: float
-    siteRule: _list[str]
+    siteRule: _list[
+        typing_extensions.Literal[
+            "HIGH_PORN_FRACTION_RULE",
+            "DEPRECATED_USER_GENERATED_CONTENT_RULE",
+            "DEPRECATED_SITES_WITH_IGNORED_SCORES_LIST",
+        ]
+    ]
     version: int
     verticals4Score: float
 
@@ -7512,7 +8137,56 @@ class CompositeDoc(typing_extensions.TypedDict, total=False):
     scaledIndyRank: int
     sitemap: Sitemap
     storageRowTimestampMicros: str
-    subindexid: _list[str]
+    subindexid: _list[
+        typing_extensions.Literal[
+            "LTG_CANDIDATE",
+            "NOSUBINDEX",
+            "BASE",
+            "CSEINDEX_EXTENDED",
+            "DAILY",
+            "TIMBIT_PROTECTED",
+            "LANDFILL1",
+            "LANDFILL2",
+            "LANDFILL3",
+            "LANDFILL_BLOGSEARCH",
+            "LANDFILL_SOCIAL",
+            "INSTANT",
+            "UNIFIED_LANDFILL",
+            "BLOGSEARCH_DYNAMIC_ASSIMILATED",
+            "BLOGSEARCH_EXTENDED",
+            "MOFFETT",
+            "UNSELECTED_DOCUMENTS",
+            "AQUARIUS",
+            "WEBSEARCH_FRESH",
+            "WEBSEARCH1",
+            "WEBSEARCH2",
+            "WEBSEARCH3",
+            "UNIFIED_ZEPPELIN_HIGH_QUALITY",
+            "ASIANREGIONAL",
+            "EMEAREGIONAL",
+            "CSEINDEX",
+            "BASEREGIONAL",
+            "BLACKHOLE",
+            "XBASE",
+            "FRESHBASE",
+            "XASIANREGIONAL",
+            "XEMEAREGIONAL",
+            "XBASEREGIONAL",
+            "BLIMPIE",
+            "BLIMPIEPP",
+            "GOODYEAR",
+            "GOODYEARPP",
+            "QUASAR",
+            "ZEPPELIN1",
+            "ZEPPELIN2",
+            "ZEPPELIN3",
+            "ZEPPELIN_STAGING",
+            "PULSAR",
+            "TIMBIT",
+            "LANDFILL_CSE",
+            "UNIFIED_ZEPPELIN",
+        ]
+    ]
     syntacticDate: QualityTimebasedSyntacticDate
     url: str
     urldate: str
@@ -7560,9 +8234,25 @@ class CompositeDocIndexingInfo(typing_extensions.TypedDict, total=False):
     contentProtected: bool
     convertToRobotedReason: int
     crawlStatus: int
-    demotionTags: _list[str]
+    demotionTags: _list[
+        typing_extensions.Literal["DEMOTION_TYPE_NONE", "DEMOTION_TYPE_BADURLS_DEMOTE"]
+    ]
     errorType: int
-    freshdocsCorpora: _list[str]
+    freshdocsCorpora: _list[
+        typing_extensions.Literal[
+            "WEB",
+            "REALTIME",
+            "CSE",
+            "CSE_PREMIUM",
+            "BUSTER_IMAGES",
+            "NEWS",
+            "VIDEO",
+            "YOUTUBE",
+            "WEB_INSTANT",
+            "WEB_DAILY",
+            "CACHE_COLON",
+        ]
+    ]
     hostid: str
     ieIdentifier: str
     imageIndexingInfo: ImageSearchImageIndexingInfo
@@ -7833,7 +8523,9 @@ class CopleySourceTypeMetadata(typing_extensions.TypedDict, total=False):
         "PERSONAL_FAVORITE",
         "PERSONAL_GAMER_CONTACT",
     ]
-    provenanceCategory: _list[str]
+    provenanceCategory: _list[
+        typing_extensions.Literal["PROVENANCE_CATEGORY_UNKNOWN", "CORE_APPS_DATA"]
+    ]
     sensitivity: KnowledgeAnswersSensitivitySensitivity
 
 @typing.type_check_only
@@ -7843,7 +8535,43 @@ class CopleySubreferenceMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CopleySubreferenceReference(typing_extensions.TypedDict, total=False):
-    personalReferenceTypes: _list[str]
+    personalReferenceTypes: _list[
+        typing_extensions.Literal[
+            "PERSONAL_UNKNOWN_REFERENCE",
+            "PERSONAL_HOTEL_REFERENCE",
+            "PERSONAL_HOTEL_BOOKING_AGENT_REFERENCE",
+            "PERSONAL_RESTAURANT_REFERENCE",
+            "PERSONAL_RESTAURANT_BOOKING_AGENT_REFERENCE",
+            "PERSONAL_PARKING_REFERENCE",
+            "PERSONAL_FLIGHT_REFERENCE",
+            "PERSONAL_GENERIC_SOCIAL_EVENT_REFERENCE",
+            "PERSONAL_CONCERT_REFERENCE",
+            "PERSONAL_SPORTS_REFERENCE",
+            "PERSONAL_MOVIE_REFERENCE",
+            "PERSONAL_TOUR_REFERENCE",
+            "PERSONAL_HOME_REFERENCE",
+            "PERSONAL_WORK_REFERENCE",
+            "PERSONAL_MAPS_ALIAS_REFERENCE",
+            "PERSONAL_CONTACT_REFERENCE",
+            "PERSONAL_CONTACT_PERSON_REFERENCE",
+            "PERSONAL_CONTACT_LOCATION_REFERENCE",
+            "PERSONAL_FAMILY_MEMBER_REFERENCE",
+            "PERSONAL_CONTACT_BIRTHDAY_REFERENCE",
+            "PERSONAL_CONTACT_ADDRESS_REFERENCE",
+            "PERSONAL_RELATIONSHIP_REFERENCE",
+            "PERSONAL_RELATIONSHIP_PERSON_REFERENCE",
+            "PERSONAL_RELATIONSHIP_LOCATION_REFERENCE",
+            "PERSONAL_MEMORABLE_DATE_REFERENCE",
+            "PERSONAL_MEMORY_ANNIVERSARY_DATE_REFERENCE",
+            "PERSONAL_MEMORY_PAYDAY_DATE_REFERENCE",
+            "PERSONAL_MEMORY_WEDDING_DATE_REFERENCE",
+            "PERSONAL_MEMORY_BIRTHDAY_DATE_REFERENCE",
+            "PERSONAL_MEMORY_EXAM_DATE_REFERENCE",
+            "PERSONAL_MEMORY_MATHEXAM_DATE_REFERENCE",
+            "PERSONAL_MEMORY_OILCHANGE_DATE_REFERENCE",
+            "PERSONAL_MEMORY_GRADUATION_DATE_REFERENCE",
+        ]
+    ]
     referenceScore: float
     relationshipLexicalInfo: CopleyLexicalMetadata
 
@@ -8764,7 +9492,439 @@ class EmbedsEmbedClientItem(typing_extensions.TypedDict, total=False):
     renderId: str
     signature: str
     transientData: EmbedsTransientData
-    type: _list[str]
+    type: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "ACTION_V2",
+            "ADD_ACTION_V2",
+            "AGGREGATE_RATING_V2",
+            "ARTICLE_V2",
+            "ASSESS_ACTION_V2",
+            "AUDIO_OBJECT_V2",
+            "BASIC_INTERACTION_V2",
+            "BLOG_POSTING_V2",
+            "BLOG_V2",
+            "BOOK_V2",
+            "BUY_ACTION_V2",
+            "CHECK_IN_ACTION_V2",
+            "CHECKIN_V2",
+            "COLLEXION_V2",
+            "COMMENT_ACTION_V2",
+            "COMMENT_V2",
+            "COMMUNICATE_ACTION_V2",
+            "CONSUME_ACTION_V2",
+            "CREATE_ACTION_V2",
+            "CREATIVE_WORK_V2",
+            "DISCOVER_ACTION_V2",
+            "DOCUMENT_OBJECT_V2",
+            "DRAWING_OBJECT_V2",
+            "DRIVE_OBJECT_V2",
+            "EMOTISHARE_V2",
+            "ENTRY_POINT_V2",
+            "EVENT_TIME_V2",
+            "EVENT_V2",
+            "FILE_OBJECT_V2",
+            "FIND_ACTION_V2",
+            "FINANCIAL_QUOTE_V2",
+            "FORM_OBJECT_V2",
+            "GEO_COORDINATES_V2",
+            "GOOGLE_OFFER_V2",
+            "HANGOUT_CHAT_MESSAGE",
+            "HANGOUT_QUOTE",
+            "HANGOUT_V2",
+            "HOA_PLUS_EVENT_V2",
+            "IMAGE_OBJECT_V2",
+            "INTERACT_ACTION_V2",
+            "INTERACTION_V2",
+            "LISTEN_ACTION_V2",
+            "LOCAL_BUSINESS_V2",
+            "LOCAL_PLUS_PHOTO_ALBUM_V2",
+            "MAGAZINE_V2",
+            "MEDIA_OBJECT_V2",
+            "MOBILE_APPLICATION_V2",
+            "MOVIE_V2",
+            "MUSIC_ALBUM_V2",
+            "MUSIC_GROUP_V2",
+            "MUSIC_PLAYLIST_V2",
+            "MUSIC_RECORDING_V2",
+            "NEWS_ARTICLE_V2",
+            "OFFER_V2",
+            "ORGANIZATION_V2",
+            "ORGANIZE_ACTION_V2",
+            "PERSON_V2",
+            "PLACE_REVIEW_V2",
+            "PLACE_V2",
+            "PLAN_ACTION_V2",
+            "PLAY_MUSIC_ALBUM_V2",
+            "PLAY_MUSIC_TRACK_V2",
+            "PLAY_OBJECT_V2",
+            "PLUS_AUDIO_V2",
+            "PLUS_EVENT_V2",
+            "PLUS_MEDIA_COLLECTION_V2",
+            "PLUS_MEDIA_OBJECT_V2",
+            "PLUS_PAGE_V2",
+            "PLUS_PHOTOS_ADDED_TO_COLLECTION_V2",
+            "PLUS_PHOTO_ALBUM_V2",
+            "PLUS_PHOTO_COLLECTION_V2",
+            "PLUS_PHOTO_V2",
+            "PLUS_POST_V2",
+            "PLUS_RESHARE_V2",
+            "PLUS_SOFTWARE_APPLICATION_V2",
+            "POLL_OPTION_V2",
+            "POLL_V2",
+            "POSTAL_ADDRESS_V2",
+            "PRESENTATION_OBJECT_V2",
+            "PRODUCT_REVIEW_V2",
+            "RATING_V2",
+            "REACT_ACTION_V2",
+            "RESERVATION_V2",
+            "RESERVE_ACTION_V2",
+            "REVIEW_V2",
+            "REVIEW_ACTION_V2",
+            "SOFTWARE_APPLICATION_V2",
+            "SPREADSHEET_OBJECT_V2",
+            "SQUARE_INVITE_V2",
+            "SQUARE_V2",
+            "STICKER_V2",
+            "STORY_V2",
+            "THING_V2",
+            "TRADE_ACTION_V2",
+            "DEPRECATED_TOUR_OBJECT_V2",
+            "TV_EPISODE_V2",
+            "TV_SERIES_V2",
+            "UPDATE_ACTION_V2",
+            "VIEW_ACTION_V2",
+            "VIDEO_OBJECT_V2",
+            "VIDEO_GALLERY_V2",
+            "WANT_ACTION_V2",
+            "WEB_PAGE_V2",
+            "WRITE_ACTION_V2",
+            "YOUTUBE_CHANNEL_V2",
+            "GOOGLE_USER_PHOTO_V2",
+            "GOOGLE_USER_PHOTO_ALBUM",
+            "GOOGLE_PHOTO_RECIPE",
+            "THING",
+            "CREATIVE_WORK",
+            "EVENT",
+            "INTANGIBLE",
+            "ORGANIZATION",
+            "PERSON",
+            "PLACE",
+            "PRODUCT",
+            "ARTICLE",
+            "BLOG_POSTING",
+            "NEWS_ARTICLE",
+            "SCHOLARLY_ARTICLE",
+            "BLOG",
+            "BOOK",
+            "COMMENT",
+            "ITEM_LIST",
+            "MAP",
+            "MEDIA_OBJECT",
+            "AUDIO_OBJECT",
+            "IMAGE_OBJECT",
+            "MUSIC_VIDEO_OBJECT",
+            "VIDEO_OBJECT",
+            "MOVIE",
+            "MUSIC_PLAYLIST",
+            "MUSIC_ALBUM",
+            "MUSIC_RECORDING",
+            "PAINTING",
+            "PHOTOGRAPH",
+            "RECIPE",
+            "REVIEW",
+            "SCULPTURE",
+            "SOFTWARE_APPLICATION",
+            "MOBILE_APPLICATION",
+            "WEB_APPLICATION",
+            "TV_EPISODE",
+            "TV_SEASON",
+            "TV_SERIES",
+            "WEB_PAGE",
+            "ABOUT_PAGE",
+            "CHECKOUT_PAGE",
+            "COLLECTION_PAGE",
+            "IMAGE_GALLERY",
+            "VIDEO_GALLERY",
+            "CONTACT_PAGE",
+            "ITEM_PAGE",
+            "PROFILE_PAGE",
+            "SEARCH_RESULTS_PAGE",
+            "WEB_PAGE_ELEMENT",
+            "SITE_NAVIGATION_ELEMENT",
+            "TABLE",
+            "WP_AD_BLOCK",
+            "WP_FOOTER",
+            "WP_HEADER",
+            "WP_SIDEBAR",
+            "APP_INVITE",
+            "EMOTISHARE",
+            "BUSINESS_EVENT",
+            "CHILDRENS_EVENT",
+            "COMEDY_EVENT",
+            "DANCE_EVENT",
+            "EDUCATION_EVENT",
+            "FESTIVAL",
+            "FOOD_EVENT",
+            "LITERARY_EVENT",
+            "MUSIC_EVENT",
+            "SALE_EVENT",
+            "SOCIAL_EVENT",
+            "SPORTS_EVENT",
+            "THEATER_EVENT",
+            "VISUAL_ARTS_EVENT",
+            "RESERVATION",
+            "TRAVEL_EVENT",
+            "CORPORATION",
+            "EDUCATIONAL_ORGANIZATION",
+            "COLLEGE_OR_UNIVERSITY",
+            "ELEMENTARY_SCHOOL",
+            "HIGH_SCHOOL",
+            "MIDDLE_SCHOOL",
+            "PRESCHOOL",
+            "SCHOOL",
+            "GOVERNMENT_ORGANIZATION",
+            "LOCAL_BUSINESS",
+            "ANIMAL_SHELTER",
+            "AUTOMOTIVE_BUSINESS",
+            "AUTO_BODY_SHOP",
+            "AUTO_DEALER",
+            "AUTO_PARTS_STORE",
+            "AUTO_RENTAL",
+            "AUTO_REPAIR",
+            "AUTO_WASH",
+            "GAS_STATION",
+            "MOTORCYCLE_DEALER",
+            "MOTORCYCLE_REPAIR",
+            "CHILD_CARE",
+            "DRY_CLEANING_OR_LAUNDRY",
+            "EMERGENCY_SERVICE",
+            "FIRE_STATION",
+            "HOSPITAL",
+            "POLICE_STATION",
+            "EMPLOYMENT_AGENGY",
+            "ENTERTAINMENT_BUSINESS",
+            "ADULT_ENTERTAINMENT",
+            "AMUSEMENT_PARK",
+            "ART_GALLERY",
+            "CASINO",
+            "COMEDY_CLUB",
+            "MOVIE_THEATER",
+            "NIGHT_CLUB",
+            "FINANCIAL_SERVICE",
+            "ACCOUNTING_SERVICE",
+            "AUTOMATED_TELLER",
+            "BANK_OR_CREDIT_UNION",
+            "INSURANCE_AGENCY",
+            "FOOD_ESTABLISHMENT",
+            "BAKERY",
+            "BAR_OR_PUB",
+            "BREWERY",
+            "CAFE_OR_COFFEE_SHOP",
+            "FAST_FOOD_RESTAURANT",
+            "ICE_CREAM_SHOP",
+            "RESTAURANT",
+            "WINERY",
+            "GOVERNMENT_OFFICE",
+            "POST_OFFICE",
+            "HEALTH_AND_BEAUTY_BUSINESS",
+            "BEAUTY_SALON",
+            "DAY_SPA",
+            "HAIR_SALON",
+            "HEALTH_CLUB",
+            "NAIL_SALON",
+            "TATTOO_PARLOR",
+            "HOME_AND_CONSTRUCTION_BUSINESS",
+            "ELECTRICIAN",
+            "GENERAL_CONTRACTOR",
+            "HVAC_BUSINESS",
+            "HOUSE_PAINTER",
+            "LOCKSMITH",
+            "MOVING_COMPANY",
+            "PLUMBER",
+            "ROOFING_CONTRACTOR",
+            "INTERNET_CAFE",
+            "LIBRARY",
+            "LODGING_BUSINESS",
+            "BED_AND_BREAKFAST",
+            "HOSTEL",
+            "HOTEL",
+            "MOTEL",
+            "MEDICAL_ORGANIZATION",
+            "DENTIST",
+            "MEDICAL_CLINIC",
+            "OPTICIAN",
+            "PHARMACY",
+            "PHYSICIAN",
+            "VETERINARY_CARE",
+            "PROFESSIONAL_SERVICE",
+            "ATTORNEY",
+            "NOTARY",
+            "RADIO_STATION",
+            "REAL_ESTATE_AGENT",
+            "RECYCLING_CENTER",
+            "SELF_STORAGE",
+            "SHOPPING_CENTER",
+            "SPORTS_ACTIVITY_LOCATION",
+            "BOWLING_ALLEY",
+            "EXERCISE_GYM",
+            "GOLF_COURSE",
+            "PUBLIC_SWIMMING_POOL",
+            "SKI_RESORT",
+            "SPORTS_CLUB",
+            "STADIUM_OR_ARENA",
+            "TENNIS_COMPLEX",
+            "STORE",
+            "BIKE_STORE",
+            "BOOK_STORE",
+            "CLOTHING_STORE",
+            "COMPUTER_STORE",
+            "CONVENIENCE_STORE",
+            "DEPARTMENT_STORE",
+            "ELECTRONICS_STORE",
+            "FLORIST",
+            "FURNITURE_STORE",
+            "GARDEN_STORE",
+            "GROCERY_STORE",
+            "HARDWARE_STORE",
+            "HOBBY_SHOP",
+            "HOME_GOODS_STORE",
+            "JEWELRY_STORE",
+            "LIQUOR_STORE",
+            "MENS_CLOTHING_STORE",
+            "MOBILE_PHONE_STORE",
+            "MOVIE_RENTAL_STORE",
+            "MUSIC_STORE",
+            "OFFICE_EQUIPMENT_STORE",
+            "OUTLET_STORE",
+            "PAWN_SHOP",
+            "PET_STORE",
+            "SHOE_STORE",
+            "SPORTING_GOODS_STORE",
+            "TIRE_SHOP",
+            "TOY_STORE",
+            "WHOLESALE_STORE",
+            "TELEVISION_STATION",
+            "TOURIST_INFORMATION_CENTER",
+            "TRAVEL_AGENCY",
+            "PERFORMING_GROUP",
+            "MUSIC_GROUP",
+            "ADMINISTRATIVE_AREA",
+            "CITY",
+            "COUNTRY",
+            "STATE",
+            "CIVIC_STRUCTURE",
+            "AIRPORT",
+            "AQUARIUM",
+            "BEACH",
+            "BUS_STATION",
+            "BUS_STOP",
+            "CAMPGROUND",
+            "CEMETERY",
+            "CREMATORIUM",
+            "EVENT_VENUE",
+            "GOVERNMENT_BUILDING",
+            "CITY_HALL",
+            "COURTHOUSE",
+            "DEFENCE_ESTABLISHMENT",
+            "EMBASSY",
+            "LEGISLATIVE_BUILDING",
+            "MUSEUM",
+            "MUSIC_VENUE",
+            "PARK",
+            "PARKING_FACILITY",
+            "PERFORMING_ARTS_THEATER",
+            "PLACE_OF_WORSHIP",
+            "BUDDHIST_TEMPLE",
+            "CATHOLIC_CHURCH",
+            "CHURCH",
+            "HINDU_TEMPLE",
+            "MOSQUE",
+            "SYNAGOGUE",
+            "PLAYGROUND",
+            "R_V_PARK",
+            "RESIDENCE",
+            "APARTMENT_COMPLEX",
+            "GATED_RESIDENCE_COMMUNITY",
+            "SINGLE_FAMILY_RESIDENCE",
+            "TOURIST_ATTRACTION",
+            "SUBWAY_STATION",
+            "TAXI_STAND",
+            "TRAIN_STATION",
+            "ZOO",
+            "LANDFORM",
+            "BODY_OF_WATER",
+            "CANAL",
+            "LAKE_BODY_OF_WATER",
+            "OCEAN_BODY_OF_WATER",
+            "POND",
+            "RESERVOIR",
+            "RIVER_BODY_OF_WATER",
+            "SEA_BODY_OF_WATER",
+            "WATERFALL",
+            "CONTINENT",
+            "MOUNTAIN",
+            "VOLCANO",
+            "LANDMARKS_OR_HISTORICAL_BUILDINGS",
+            "USER_INTERACTION",
+            "USER_PLUS_ONES",
+            "ENUMERATION",
+            "BOOK_FORMAT_TYPE",
+            "ITEM_AVAILABILITY",
+            "OFFER_ITEM_CONDITION",
+            "JOB_POSTING",
+            "LANGUAGE",
+            "OFFER",
+            "QUANTITY",
+            "DISTANCE",
+            "DURATION",
+            "ENERGY",
+            "MASS",
+            "RATING",
+            "AGGREGATE_RATING",
+            "STRUCTURED_VALUE",
+            "CONTACT_POINT",
+            "POSTAL_ADDRESS",
+            "GEO_COORDINATES",
+            "GEO_SHAPE",
+            "NUTRITION_INFORMATION",
+            "PRESENTATION_OBJECT",
+            "DOCUMENT_OBJECT",
+            "SPREADSHEET_OBJECT",
+            "FORM_OBJECT",
+            "DRAWING_OBJECT",
+            "PLACE_REVIEW",
+            "FILE_OBJECT",
+            "PLAY_MUSIC_TRACK",
+            "PLAY_MUSIC_ALBUM",
+            "MAGAZINE",
+            "CAROUSEL_FRAME",
+            "PLUS_EVENT",
+            "HANGOUT",
+            "HANGOUT_BROADCAST",
+            "HANGOUT_CONSUMER",
+            "CHECKIN",
+            "EXAMPLE_OBJECT",
+            "SQUARE",
+            "SQUARE_INVITE",
+            "PLUS_PHOTO",
+            "PLUS_PHOTO_ALBUM",
+            "LOCAL_PLUS_PHOTO_ALBUM",
+            "PRODUCT_REVIEW",
+            "FINANCIAL_QUOTE",
+            "DEPRECATED_TOUR_OBJECT",
+            "PLUS_PAGE",
+            "GOOGLE_CHART",
+            "PLUS_PHOTOS_ADDED_TO_COLLECTION",
+            "RECOMMENDED_PEOPLE",
+            "PLUS_POST",
+            "DATE",
+            "DRIVE_OBJECT_COLLECTION",
+            "NEWS_MEDIA_ORGANIZATION",
+            "DYNAMITE_ATTACHMENT_METADATA",
+            "DYNAMITE_MESSAGE_METADATA",
+        ]
+    ]
 
 @typing.type_check_only
 class EmbedsPackagingServiceClient(typing_extensions.TypedDict, total=False):
@@ -9115,7 +10275,16 @@ class GeostoreAccessPointProto(typing_extensions.TypedDict, total=False):
     pointOnSegment: GeostorePointProto
     priority: typing_extensions.Literal["TYPE_PRIMARY", "TYPE_SECONDARY"]
     segmentPosition: float
-    unsuitableTravelMode: _list[str]
+    unsuitableTravelMode: _list[
+        typing_extensions.Literal[
+            "TRAVEL_MODE_MOTOR_VEHICLE",
+            "TRAVEL_MODE_AUTO",
+            "TRAVEL_MODE_TWO_WHEELER",
+            "TRAVEL_MODE_BICYCLE",
+            "TRAVEL_MODE_PEDESTRIAN",
+            "TRAVEL_MODE_PUBLIC_TRANSIT",
+        ]
+    ]
 
 @typing.type_check_only
 class GeostoreAddressComponentProto(typing_extensions.TypedDict, total=False):
@@ -9227,7 +10396,16 @@ class GeostoreAttributeValueDisplayProto(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class GeostoreBarrierLogicalMaterialProto(typing_extensions.TypedDict, total=False):
-    material: _list[str]
+    material: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_LOGICAL_MATERIAL",
+            "CONCRETE",
+            "METAL",
+            "PLASTIC",
+            "STONE",
+            "TIMBER",
+        ]
+    ]
 
 @typing.type_check_only
 class GeostoreBestLocaleProto(typing_extensions.TypedDict, total=False):
@@ -11447,17 +12625,71 @@ class GeostoreFlowLineProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeostoreFoodMenuItemOptionProto(typing_extensions.TypedDict, total=False):
-    allergenAbsent: _list[str]
-    allergenPresent: _list[str]
+    allergenAbsent: _list[
+        typing_extensions.Literal[
+            "ALLERGEN_DAIRY",
+            "ALLERGEN_EGG",
+            "ALLERGEN_FISH",
+            "ALLERGEN_PEANUT",
+            "ALLERGEN_SHELLFISH",
+            "ALLERGEN_SOY",
+            "ALLERGEN_TREE_NUT",
+            "ALLERGEN_WHEAT",
+        ]
+    ]
+    allergenPresent: _list[
+        typing_extensions.Literal[
+            "ALLERGEN_DAIRY",
+            "ALLERGEN_EGG",
+            "ALLERGEN_FISH",
+            "ALLERGEN_PEANUT",
+            "ALLERGEN_SHELLFISH",
+            "ALLERGEN_SOY",
+            "ALLERGEN_TREE_NUT",
+            "ALLERGEN_WHEAT",
+        ]
+    ]
     calories: int
     ingredients: _list[GeostoreFoodMenuItemOptionProtoIngredient]
     media: _list[GeostoreMediaItemProto]
     nameInfo: _list[GeostorePriceListNameInfoProto]
     nutritionFacts: GeostorePriceInfoFoodNutritionFacts
     portionSize: GeostoreFoodMenuItemOptionProtoPortionSize
-    preparationMethods: _list[str]
+    preparationMethods: _list[
+        typing_extensions.Literal[
+            "METHOD_UNDEFINED",
+            "BAKED",
+            "BOILED",
+            "BLANCHED",
+            "BRAISED",
+            "CODDLED",
+            "PRESSURE_COOKED",
+            "SIMMERED",
+            "STEAMED",
+            "STEEPED",
+            "GRILLED",
+            "FRIED",
+            "PAN_FRIED",
+            "STIR_FRIED",
+            "SAUTEED",
+            "ROASTED",
+            "BARBECUED",
+            "SEARED",
+            "SMOKED",
+            "FERMENTED",
+            "MARINATED",
+            "PICKLED",
+            "BASTED",
+            "KNEADED",
+            "OTHER_METHOD",
+        ]
+    ]
     price: GeostorePriceRangeProto
-    restriction: _list[str]
+    restriction: _list[
+        typing_extensions.Literal[
+            "DIET_HALAL", "DIET_KOSHER", "DIET_ORGANIC", "DIET_VEGAN", "DIET_VEGETARIAN"
+        ]
+    ]
     servesNumPeople: int
     spiciness: typing_extensions.Literal[
         "SPICINESS_NONE", "SPICINESS_MILD", "SPICINESS_MEDIUM", "SPICINESS_HOT"
@@ -12315,7 +13547,16 @@ class GeostoreKnowledgeGraphReferenceProto(typing_extensions.TypedDict, total=Fa
 class GeostoreLandmarkReferenceProto(typing_extensions.TypedDict, total=False):
     featureType: int
     landmark: GeostoreFeatureIdProto
-    travelMode: _list[str]
+    travelMode: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "TRAVEL_MOTOR_VEHICLE",
+            "TRAVEL_AUTO",
+            "TRAVEL_TWO_WHEELER",
+            "TRAVEL_BICYCLE",
+            "TRAVEL_PEDESTRIAN",
+        ]
+    ]
 
 @typing.type_check_only
 class GeostoreLaneMarkerProto(typing_extensions.TypedDict, total=False):
@@ -12451,7 +13692,47 @@ class GeostoreMediaItemProtoMediaSize(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeostoreNameProto(typing_extensions.TypedDict, total=False):
-    flag: _list[str]
+    flag: _list[
+        typing_extensions.Literal[
+            "FLAG_ANY",
+            "FLAG_IN_LOCAL_LANGUAGE",
+            "FLAG_PREFERRED",
+            "FLAG_OFFICIAL",
+            "FLAG_OBSCURE",
+            "FLAG_ON_SIGNS",
+            "FLAG_EXIT_NAME_NUMBER",
+            "FLAG_EXIT_NAME",
+            "FLAG_INTERCHANGE_NAME",
+            "FLAG_EXIT_NUMBER",
+            "FLAG_INTERCHANGE_NUMBER",
+            "FLAG_TRANSIT_HEADSIGN",
+            "FLAG_CONNECTS_DIRECTLY",
+            "FLAG_CONNECTS_INDIRECTLY",
+            "FLAG_INTERSECTION_NAME",
+            "FLAG_VANITY",
+            "FLAG_ROUTE_NUMBER",
+            "FLAG_COUNTRY_CODE_2",
+            "FLAG_ABBREVIATED",
+            "FLAG_ID",
+            "FLAG_DESIGNATED_MARKET_AREA_ID",
+            "FLAG_IATA_ID",
+            "FLAG_ICAO_ID",
+            "FLAG_ISO_3166_2",
+            "FLAG_COUNTRY_SPECIFIC_ID",
+            "FLAG_LANGUAGE_CODE",
+            "FLAG_TIMEZONE_ID",
+            "FLAG_PHONE_NUMBER_PREFIX",
+            "FLAG_PHONE_NUMBER_AREA_CODE",
+            "FLAG_TRANSLITERATED",
+            "FLAG_NOT_ON_SIGNS",
+            "FLAG_NOT_IN_LOCAL_LANGUAGE",
+            "FLAG_ROUNDABOUT_ROUTE",
+            "FLAG_NEVER_DISPLAY",
+            "FLAG_BICYCLE_ROUTE",
+            "FLAG_MACHINE_GENERATED",
+            "FLAG_SUSPICIOUS",
+        ]
+    ]
     language: str
     metadata: GeostoreFieldMetadataProto
     rawText: str
@@ -13242,7 +14523,15 @@ class GeostoreParkingAllowanceProto(typing_extensions.TypedDict, total=False):
     isDiscount: bool
     minPurchaseForValidation: _list[FreebaseTopic]
     permitType: _list[GeostoreLanguageTaggedTextProto]
-    serviceType: _list[str]
+    serviceType: _list[
+        typing_extensions.Literal[
+            "SERVICE_ALL",
+            "SERVICE_GENERAL_DRIVER",
+            "SERVICE_RIDESHARE",
+            "SERVICE_TAXI",
+            "SERVICE_COMMERCIAL",
+        ]
+    ]
     timeBasedRate: _list[GeostoreTimeBasedRateProto]
     vehicleType: typing_extensions.Literal["ANY", "CAR", "MOTORCYCLE", "TRUCK"]
 
@@ -13265,8 +14554,16 @@ class GeostoreParkingRestrictionProto(typing_extensions.TypedDict, total=False):
         "RESTRICTION_PICKUP_GOODS",
         "RESTRICTION_PICKUP_PASSENGERS",
     ]
-    serviceType: _list[str]
-    vehicleType: _list[str]
+    serviceType: _list[
+        typing_extensions.Literal[
+            "SERVICE_ALL",
+            "SERVICE_GENERAL_DRIVER",
+            "SERVICE_RIDESHARE",
+            "SERVICE_TAXI",
+            "SERVICE_COMMERCIAL",
+        ]
+    ]
+    vehicleType: _list[typing_extensions.Literal["ANY", "CAR", "MOTORCYCLE", "TRUCK"]]
 
 @typing.type_check_only
 class GeostorePeakProto(typing_extensions.TypedDict, total=False):
@@ -13288,7 +14585,11 @@ class GeostorePhysicalLineProto(typing_extensions.TypedDict, total=False):
     dashLengthMeters: float
     gapColor: GeostorePaintedElementLogicalColorProto
     gapLengthMeters: float
-    material: _list[str]
+    material: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_STRIPE_MATERIAL", "PAINT_STRIPE", "ROUND_DOT", "SQUARE_DOT"
+        ]
+    ]
     paintColor: GeostorePaintedElementLogicalColorProto
     pattern: typing_extensions.Literal[
         "UNKNOWN_DASH_PATTERN", "SOLID", "DASHED", "DOTTED", "DOTTED_DASHED"
@@ -13396,7 +14697,42 @@ class GeostorePriceListNameInfoProto(typing_extensions.TypedDict, total=False):
 class GeostorePriceListProto(typing_extensions.TypedDict, total=False):
     aggregatorId: str
     availableTime: GeostoreTimeScheduleProto
-    cuisines: _list[str]
+    cuisines: _list[
+        typing_extensions.Literal[
+            "CUISINE_UNDEFINED",
+            "FAST_FOOD",
+            "AMERICAN",
+            "JAPANESE",
+            "BREAK_FAST",
+            "PIZZA",
+            "HAMBURGER",
+            "ITALIAN",
+            "SEAFOOD",
+            "FAMILY",
+            "MEXICAN",
+            "CHINESE",
+            "VEGETARIAN",
+            "SUSHI",
+            "CHICKEN",
+            "INDIAN",
+            "ASIAN",
+            "MEDITERRANEAN",
+            "FRENCH",
+            "BRUNCH",
+            "KOREAN",
+            "THAI",
+            "SPANISH",
+            "VIETNAMESE",
+            "LATIN_AMERICAN",
+            "INDONESIAN",
+            "GREEK",
+            "GERMAN",
+            "TURKISH",
+            "BRAZILIAN",
+            "PAKISTANI",
+            "OTHER_CUISINE",
+        ]
+    ]
     nameInfo: _list[GeostorePriceListNameInfoProto]
     section: _list[GeostorePriceListSectionProto]
     sourceUrl: GeostoreUrlListProto
@@ -13406,7 +14742,16 @@ class GeostorePriceListSectionProto(typing_extensions.TypedDict, total=False):
     callToAction: GeostoreCallToActionProto
     foodItem: _list[GeostoreFoodMenuItemProto]
     item: _list[GeostoreComposableItemProto]
-    itemType: _list[str]
+    itemType: _list[
+        typing_extensions.Literal[
+            "TYPE_ANY",
+            "TYPE_FOOD",
+            "TYPE_SERVICE",
+            "TYPE_PRODUCT",
+            "TYPE_JOB",
+            "TYPE_3P_JOB",
+        ]
+    ]
     language: str
     media: _list[GeostoreMediaItemProto]
     nameInfo: _list[GeostorePriceListNameInfoProto]
@@ -14387,7 +15732,11 @@ class GeostoreRestrictionGroupProto(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GeostoreRestrictionProto(typing_extensions.TypedDict, total=False):
-    autonomousDrivingProducts: _list[str]
+    autonomousDrivingProducts: _list[
+        typing_extensions.Literal[
+            "UNKNOWN", "HD_L4", "HD_L2", "ADAS", "AUTO_DRIVING_EXPERIENCE"
+        ]
+    ]
     intersectionGroup: GeostoreFeatureIdProto
     metadata: GeostoreFieldMetadataProto
     restrictionGroup: GeostoreFeatureIdProto
@@ -14399,7 +15748,24 @@ class GeostoreRestrictionProto(typing_extensions.TypedDict, total=False):
     ]
     subpath: _list[GeostoreFeatureIdProto]
     temporaryData: Proto2BridgeMessageSet
-    travelMode: _list[str]
+    travelMode: _list[
+        typing_extensions.Literal[
+            "TRAVEL_ANY",
+            "TRAVEL_MOTOR_VEHICLE",
+            "TRAVEL_AUTO",
+            "TRAVEL_CARPOOL",
+            "TRAVEL_MOTORCYCLE",
+            "TRAVEL_BUS",
+            "TRAVEL_TRUCK",
+            "TRAVEL_DELIVERY",
+            "TRAVEL_TAXI",
+            "TRAVEL_EMERGENCY",
+            "TRAVEL_THROUGH_TRAFFIC",
+            "TRAVEL_AUTONOMOUS_VEHICLE",
+            "TRAVEL_PEDESTRIAN",
+            "TRAVEL_BICYCLE",
+        ]
+    ]
     type: typing_extensions.Literal[
         "RESTRICTION_TRAVEL_RESTRICTED",
         "RESTRICTION_ILLEGAL",
@@ -14433,7 +15799,9 @@ class GeostoreRightsStatusProto(typing_extensions.TypedDict, total=False):
 class GeostoreRoadConditionalProto(typing_extensions.TypedDict, total=False):
     timeSchedule: GeostoreTimeScheduleProto
     vehicleAttribute: GeostoreVehicleAttributeFilterProto
-    vehicleType: _list[str]
+    vehicleType: _list[
+        typing_extensions.Literal["UNKNOWN", "ANY", "CAR", "MOTORCYCLE", "TRUCK", "BUS"]
+    ]
 
 @typing.type_check_only
 class GeostoreRoadMonitorProto(typing_extensions.TypedDict, total=False):
@@ -14861,7 +16229,7 @@ class GeostoreTelephoneProto(typing_extensions.TypedDict, total=False):
     contactCategory: typing_extensions.Literal[
         "CONTACT_CATEGORY_UNSPECIFIED", "CUSTOMER_SERVICE", "RESERVATIONS", "SALES"
     ]
-    flag: _list[str]
+    flag: _list[typing_extensions.Literal["FLAG_NO_COLD_CALLS", "FLAG_PREFERRED"]]
     isSharedNumber: bool
     label: _list[GeostoreNameProto]
     language: _list[str]
@@ -15066,7 +16434,22 @@ class GeostoreVariableSpeedProto(typing_extensions.TypedDict, total=False): ...
 class GeostoreVehicleAttributeFilterProto(typing_extensions.TypedDict, total=False):
     axleCount: _list[GeostoreCountComparisonProto]
     hasTrailer: bool
-    hazardousGoods: _list[str]
+    hazardousGoods: _list[
+        typing_extensions.Literal[
+            "HAZARDOUS_GOODS_TYPE_UNSPECIFIED",
+            "EXPLOSIVES",
+            "GASES",
+            "FLAMMABLE",
+            "COMBUSTIBLE",
+            "ORGANIC",
+            "POISON",
+            "RADIOACTIVE",
+            "CORROSIVE",
+            "ASPIRATION_HAZARD",
+            "ENVIRONMENTAL_HAZARD",
+            "OTHER",
+        ]
+    ]
     numTrailers: _list[GeostoreCountComparisonProto]
     trailerLength: _list[GeostoreDimensionComparisonProto]
     vehicleHeight: _list[GeostoreDimensionComparisonProto]
@@ -15591,7 +16974,335 @@ class GoogleAssistantAccessoryV1DeviceState(typing_extensions.TypedDict, total=F
     installedApps: GoogleAssistantAccessoryV1DeviceStateInstalledAppsState
     installedAppsZlib: str
     timerState: GoogleAssistantEmbeddedV1Timers
-    unavailableSettings: _list[str]
+    unavailableSettings: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "ABOUT_ME",
+            "ACCESSIBILITY",
+            "ACTIVE_EDGE",
+            "ACTIVE_EDGE_SENSITIVITY",
+            "ADAPTIVE_BATTERY",
+            "ADAPTIVE_BRIGHTNESS",
+            "ADAPTIVE_CHARGING",
+            "ADAPTIVE_CONNECTIVITY",
+            "ADAPTIVE_SOUND",
+            "ADD_ACCOUNT",
+            "ADD_BLUETOOTH_DEVICE",
+            "ADD_DEVICE",
+            "ADD_FINGERPRINT",
+            "ADS_TRACKING",
+            "AIRPLANE_MODE",
+            "ALARM_VOLUME",
+            "ALARM_SOUND",
+            "ALLOW_MULTIPLE_USERS",
+            "AMBIENT_DISPLAY_ALWAYS_ON",
+            "AMBIENT_DISPLAY_NEW_NOTIFICATION",
+            "ANDROID_AUTO",
+            "ANDROID_VERSION",
+            "APP_BATTERY_USAGE",
+            "APP_DATA_USAGE",
+            "APP_DETAILS",
+            "APP_SHORTCUT",
+            "APPS_NOTIFICATIONS",
+            "APPS_STORAGE",
+            "ASSISTANT_ACCOUNT",
+            "ASSISTANT_FACE_MATCH",
+            "ASSISTANT_LANGUAGE",
+            "ASSISTANT_VOICE_MATCH",
+            "AUTO_ROTATE",
+            "AUTO_ROTATE_FACE_DETECTION",
+            "BACKUP",
+            "BATTERY_HEALTH",
+            "BATTERY_LEVEL",
+            "BATTERY_LOW",
+            "BATTERY_PERCENTAGE",
+            "BATTERY_PRESENT",
+            "BATTERY_SAVER",
+            "BATTERY_SAVER_SCHEDULE",
+            "BATTERY_SHARE",
+            "BATTERY_USAGE",
+            "BIOMETRIC",
+            "BLUETOOTH",
+            "BLUETOOTH_NAME",
+            "BLUETOOTH_ADDRESS",
+            "BLUETOOTH_SETTINGS",
+            "BRIGHTNESS_LEVEL",
+            "BUBBLES",
+            "CALL_VOLUME",
+            "CAMERA_DOUBLE_TWIST",
+            "CAST",
+            "CAR_CRASH_DETECTION",
+            "COLOR_INVERSION",
+            "COLOR_CORRECTION",
+            "CONVERSATIONS",
+            "CHARGING_SOUNDS_AND_VIBRATION",
+            "CHARGING_STATE",
+            "CONNECTED_DEVICES",
+            "CONTACTLESS_PAYMENTS",
+            "DATA_ROAMING",
+            "DATA_SAVER",
+            "DATA_USAGE",
+            "DATA_LIMIT",
+            "DATA_LIMIT_LEVEL",
+            "DATA_WARNING",
+            "DATA_WARNING_LEVEL",
+            "DEFAULT_ALARM_SOUND",
+            "DEFAULT_NOTIFICATION_SOUND",
+            "DEFAULT_APPS",
+            "DEVELOPER_OPTIONS",
+            "DEVICE_ASSISTANT_APP",
+            "DEVICE_NAME",
+            "DISPLAY_OVER_OTHER_APPS",
+            "DISPLAY_SIZE",
+            "DO_NOT_DISTURB",
+            "DO_NOT_DISTURB_MESSAGES",
+            "DO_NOT_DISTURB_CALLS",
+            "DO_NOT_DISTURB_ALARMS",
+            "DO_NOT_DISTURB_SCHEDULES",
+            "DOUBLE_TAP_CHECK_PHONE",
+            "DRIVING_MODE",
+            "EARTHQUAKE_ALERTS",
+            "EMERGENCY",
+            "EMERGENCY_ALERTS",
+            "EMERGENCY_CONTACTS",
+            "EMERGENCY_INFORMATION",
+            "ETHERNET_TETHERING",
+            "EXTRA_DIM",
+            "EXTREME_BATTERY_SAVER",
+            "FACTORY_RESET",
+            "FIND_MY_DEVICE",
+            "FLASHLIGHT",
+            "FOCUS_MODE",
+            "FONT_SIZE",
+            "FREE_UP_SPACE",
+            "FINGERPRINT_MANAGER",
+            "GESTURES",
+            "HAPTIC_FEEDBACK_VIBRATION",
+            "HARD_KEYBOARD",
+            "HEADS_UP",
+            "HIGH_REFRESH_RATE",
+            "HOT_SPOT",
+            "HOTSPOT_TETHERING",
+            "HOT_WORD",
+            "HUB_MODE",
+            "IP_ADDRESS",
+            "IMPROVE_LOCATION_ACCURACY",
+            "JUMP_TO_CAMERA",
+            "KEYBOARD_SHORTCUTS",
+            "LIFT_CHECK_PHONE",
+            "LIVE_TRANSLATE",
+            "LOCATION",
+            "LOCATION_HISTORY",
+            "LOCATION_BLUETOOTH_SCANNING",
+            "LOCATION_WIFI_SCANNING",
+            "LOCK_SCREEN",
+            "LOCK_SCREEN_DEVICE_CONTROLS",
+            "LOCK_SCREEN_WALLET",
+            "MAC_ADDRESS",
+            "MAGNIFICATION",
+            "MAGNIFY_BUTTON",
+            "MAGNIFY_TRIPLE_TAP",
+            "MANIFY_BUTTON",
+            "MANIFY_TRIPLE_TAP",
+            "MEDIA",
+            "MEDIA_VOLUME",
+            "MICROPHONE_ACCESS",
+            "MOBILE",
+            "MOBILE_DATA",
+            "MUSIC",
+            "MUTE_MODE",
+            "NETWORK",
+            "NETWORK_RESET",
+            "NFC",
+            "NIGHT_LIGHT_INTENSITY",
+            "NIGHT_LIGHT_SWITCH",
+            "NIGHT_MODE",
+            "NOTIFICATION_BADGE",
+            "NOTIFICATION_SOUND",
+            "NOTIFICATION_ON_SCREEN",
+            "NOTIFICATION_HISTORY",
+            "NOTIFY_FOR_PUBLIC_NETWORKS",
+            "ONEHANDED_MODE",
+            "OS_VERSION",
+            "PASSWORD",
+            "PERMISSION_MANAGER",
+            "PERMISSION_USAGE",
+            "PERSONALIZATION",
+            "PRINTING",
+            "PHONE_NUMBER",
+            "PICTURE_IN_PICTURE",
+            "POINTER_SPEED",
+            "POWER_MENU",
+            "REMINDERS",
+            "REQUIRE_DEVICE_UNLOCK_FOR_NFC",
+            "RINGTONE",
+            "RING_VOLUME",
+            "NEARBY_DEVICES_SCANNING",
+            "NEARBY_SHARE",
+            "SCREEN_LOCKING_SOUND",
+            "SCREEN_MAGNIFICATION",
+            "SCREEN_TIMEOUT",
+            "SCREEN_LOCK",
+            "SCREEN_SAVER",
+            "SELECT_TO_SPEAK",
+            "SET_TIME_AUTOMATICALLY",
+            "SET_TIME_ZONE_AUTOMATICALLY",
+            "SETTINGS",
+            "SIM",
+            "SIM_MANAGER",
+            "SPEECH_RATE",
+            "STORAGE_USAGE",
+            "SWIPE_FOR_NOTIFICATION",
+            "SWITCH_ACCESS",
+            "SYSTEM_UPDATE",
+            "SYSTEM_UPDATES",
+            "SYSTEM_NAVIGATION",
+            "SYSTEM_NAVIGATION_GESTURES",
+            "SYSTEM_NAVIGATION_BUTTONS",
+            "TALKBACK_PASSWORDS",
+            "TEXT_TO_SPEECH",
+            "TIME_ZONE",
+            "UNUSED_APPS",
+            "USB",
+            "USB_TETHERING",
+            "VERBOSE_TTS",
+            "VIBRATE",
+            "VIBRATION",
+            "VIBRATION_MODE",
+            "VOICE",
+            "VOLUME_LEVEL",
+            "WAKE_SCREEN_FOR_NOTIFICATIONS",
+            "WALLPAPERS",
+            "WEBVIEW",
+            "WIFI",
+            "WIFI_ADD_NETWORK",
+            "WIFI_ADD_NETWORK_QR_CODE",
+            "WIFI_CALLING",
+            "WIFI_HOTSPOT",
+            "ACCESSIBILITY_SELECT_TO_SPEAK",
+            "CRISIS_ALERTS",
+            "REGULATORY_LABELS",
+            "SEND_FEEDBACK",
+            "OS_BUILD_NUMBER",
+            "ACCESSIBILITY_SHORTCUTS",
+            "ACCESSIBILITY_MENU",
+            "ACCESSIBILITY_SOUND_AMPLIFIER",
+            "ACCESSIBILITY_LIVE_TRANSCRIBE",
+            "ACCESSIBILITY_SOUND_NOTIFICATIONS",
+            "ACCESSIBILITY_TALKBACK",
+            "ACCESSIBILITY_TIMEOUT",
+            "CAMERA_SETTINGS",
+            "BATTERY_SAVER_TOGGLE",
+            "COVID_NOTIFICATIONS",
+            "APP_LOCATION",
+            "LOCATION_SERVICES",
+            "PRIVATE_DNS",
+            "UNRESTRICTED_DATA",
+            "PREFERRED_NETWORK",
+            "NETWORK_PREFERENCES",
+            "PASSWORDS_AND_ACCOUNTS",
+            "PRIVACY_DASHBOARD",
+            "MORE_SECURITY",
+            "APP_PINNING",
+            "CONFIRM_SIM_DELETION",
+            "ENCRYPT_PHONE",
+            "FACE_UNLOCK",
+            "INSTALL_UNKNOWN_APPS",
+            "NOW_PLAYING",
+            "STAY_AWAKE",
+            "ASSISTANT_VOICE",
+            "RESET_BLUETOOTH_WIFI",
+            "DEFAULT_PHONE_APP",
+            "GOOGLE_ACCOUNT",
+            "ACCESSIBILITY_CAPTION_SIZE_AND_STYLE",
+            "ACCESSIBILITY_CAPTION_STYLE",
+            "ACCESSIBILITY_CAPTION_TEXT",
+            "ACCESSIBILITY_CAPTION_PREFERENCES",
+            "ACCESSIBILITY_COLOR_AND_MOTION",
+            "ACCESSIBILITY_BOLD_TEXT",
+            "LIVE_CAPTION",
+            "POWER_BUTTON_ENDS_CALL",
+            "TOUCH_AND_HOLD_DELAY",
+            "ACCESSIBILITY_VOICE_ACCESS",
+            "SMS_PERMISSIONS",
+            "SPECIAL_APP_ACCESS",
+            "DARK_THEME_SCHEDULE",
+            "LOCK_SCREEN_TEXT",
+            "NIGHT_LIGHT_SCHEDULE",
+            "AUTOFILL",
+            "USAGE_AND_DIAGNOSTICS",
+            "SENSITIVE_NOTIFICATIONS",
+            "ENCRYPTION_AND_CREDENTIALS",
+            "SPACIAL_AUDIO",
+            "RESET_OPTIONS",
+            "QUICK_TAP",
+            "TIPS_AND_SUPPORT",
+            "SCREEN_ATTENTION",
+            "BLUETOOTH_TETHERING",
+            "ALL_APPS",
+            "EXTEND_UNLOCK",
+            "CLEAR_CALLING",
+            "GOOGLE_SETTINGS",
+            "APP_LANGUAGES",
+            "SIM_STATUS",
+            "MICROPHONE_PERMISSIONS",
+            "GOOGLE_PLAY_UPDATE",
+            "ADD_GOOGLE_ACCOUNT",
+            "ASSISTANT_SPOKEN_NOTIFICATIONS",
+            "ABOUT_PHONE",
+            "ACCOUNTS",
+            "APPLICATION",
+            "ASSISTANT",
+            "AUDIO",
+            "BATTERY",
+            "BELL_SCHEDULE",
+            "CONTINUED_CONVERSATION",
+            "DATE_TIME",
+            "DARK_THEME",
+            "DEVICE_INFO",
+            "DICTIONARY",
+            "DIGITAL_WELLBEING",
+            "DISPLAY",
+            "LANGUAGE",
+            "NIGHT_LIGHT",
+            "NOTIFICATION",
+            "NOTIFICATION_VOLUME",
+            "PHONE_RINGTONE",
+            "PRIVACY",
+            "ROAMING",
+            "ROUTINES",
+            "SEARCH",
+            "SECURITY",
+            "SOUND",
+            "SPELL_CHECKER",
+            "SYSTEM",
+            "STORAGE",
+            "VPN",
+            "AUTOCLICK",
+            "CARET_HIGHLIGHT",
+            "CHROMEVOX",
+            "CURSOR_HIGHLIGHT",
+            "DOCKED_MAGNIFIER",
+            "FOCUS_HIGHLIGHT",
+            "FULLSCREEN_MAGNIFIER",
+            "HIGH_CONTRAST_MODE",
+            "LARGE_CURSOR",
+            "MONO_AUDIO",
+            "STICKY_KEYS",
+            "TAP_DRAGGING",
+            "VIRTUAL_KEYBOARD",
+            "WEARABLE_AMBIENT",
+            "WEARABLE_NOISE_CANCELLATION",
+            "WEARABLE_TOUCH_CONTROLS",
+            "RAISE_TO_TALK",
+            "BEDTIME_MODE",
+            "THEATER_MODE",
+            "TOUCH_LOCK",
+            "PRESS_AND_HOLD",
+            "WATCH_FACE",
+            "NOTIFICATION_ANNOUNCEMENT",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1DeviceStateInstalledAppsState(
@@ -15650,7 +17361,18 @@ class GoogleAssistantEmbeddedV1Alarm(typing_extensions.TypedDict, total=False):
 class GoogleAssistantEmbeddedV1AlarmRecurrence(
     typing_extensions.TypedDict, total=False
 ):
-    dayOfWeek: _list[str]
+    dayOfWeek: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleAssistantEmbeddedV1Alarms(typing_extensions.TypedDict, total=False):
@@ -18320,7 +20042,23 @@ class ImageData(typing_extensions.TypedDict, total=False):
     nearDupFeaturesVersion: int
     nimaAva: ImageRepositoryNimaOutput
     nimaVq: ImageRepositoryNimaOutput
-    noIndexReason: _list[str]
+    noIndexReason: _list[
+        typing_extensions.Literal[
+            "NO_INDEX_IMAGE_URL_NOT_SELECTED",
+            "NO_INDEX_REFERRER_URL_NOT_SELECTED",
+            "NO_INDEX_X_RAW_IMAGE",
+            "NO_INDEX_FAVICON",
+            "NO_INDEX_DETECTED_VIA_CONTENT",
+            "NO_INDEX_EXTERNAL_VIDEO_THUMBNAIL",
+            "NO_INDEX_ONSITE_ANCHOR",
+            "NO_INDEX_RSS_FEED",
+            "NO_INDEX_REJECTED_BY_IMAGE_SELECTION",
+            "NO_INDEX_EXPIRED_THUMBNAIL",
+            "NO_INDEX_REJECTED_BY_IMAGE_SELECTION_V1",
+            "NO_INDEX_REJECTED_BY_PYTHIA",
+            "NO_INDEX_EMPTY_THUMBNAIL",
+        ]
+    ]
     numberFaces: int
     ocrGoodoc: GoodocDocument
     ocrTaser: GoodocDocument
@@ -18649,7 +20387,11 @@ class ImageMustangImageLinkSelectionInfo(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class ImageMustangShoppingOffer(typing_extensions.TypedDict, total=False):
-    inferredImageTypes: _list[str]
+    inferredImageTypes: _list[
+        typing_extensions.Literal[
+            "UNKNOWN", "MERCHANT_IMAGE", "ML_INFERRED_IMAGE", "NEARDUP_INFERRED_IMAGE"
+        ]
+    ]
     ipsOfferId: str
 
 @typing.type_check_only
@@ -19211,7 +20953,23 @@ class ImageRepositoryWordInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageRepositoryYoutubeProcessingFilter(typing_extensions.TypedDict, total=False):
-    previewsFilteredReason: _list[str]
+    previewsFilteredReason: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "CONTENT_CLAIMS",
+            "MATURE_CONTENT",
+            "INVALID_VIDEO_DATA",
+            "NO_VSI",
+            "SHORT_DURATION",
+            "NO_DURATION",
+            "EMPTY_DATA",
+            "DELETED",
+            "OFFICIAL_MUSIC_VIDEO",
+            "PREMIUM_CONTENT",
+            "ART_TRACK",
+            "PHARMA_CHANNEL",
+        ]
+    ]
 
 @typing.type_check_only
 class ImageSafesearchContentBrainPornAnnotation(
@@ -21331,7 +23089,9 @@ class IndexingMobileVoltVoltPerDocData(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class IndexingPrivacyAccessAccessRequirements(typing_extensions.TypedDict, total=False):
-    restrictionCategories: _list[str]
+    restrictionCategories: _list[
+        typing_extensions.Literal["UNSPECIFIED", "CHILD_SAFETY_CONTENT"]
+    ]
 
 @typing.type_check_only
 class IndexingSignalAggregatorAdaptiveIntervalData(
@@ -22400,7 +24160,9 @@ class KnowledgeAnswersIntentQueryFunctionCallSignals(
     ]
     groundingSignals: KnowledgeAnswersIntentQueryGroundingSignals
     highConfidence: bool
-    intentAnnotationSources: _list[str]
+    intentAnnotationSources: _list[
+        typing_extensions.Literal["UNKNOWN_SOURCE", "ORBIT", "LEXICON"]
+    ]
     intentComposingMid: str
     intentProvenance: _list[KnowledgeAnswersIntentQueryArgumentProvenance]
     intentRelevantMid: _list[str]
@@ -22789,7 +24551,11 @@ class KnowledgeAnswersNumberType(typing_extensions.TypedDict, total=False):
     keepAsString: bool
     rangeConstraint: KnowledgeAnswersRangeConstraint
     remodelings: NlpMeaningMeaningRemodelings
-    subType: _list[str]
+    subType: _list[
+        typing_extensions.Literal[
+            "NONE", "ORDINAL", "NUMERIC", "INTEGER", "FLOAT", "NUMBER_PROTO"
+        ]
+    ]
 
 @typing.type_check_only
 class KnowledgeAnswersOpaqueAogType(typing_extensions.TypedDict, total=False): ...
@@ -23120,7 +24886,28 @@ class KnowledgeAnswersSensitivityMyActivityPolicy(
 class KnowledgeAnswersSensitivitySensitivity(typing_extensions.TypedDict, total=False):
     accountProvenance: _list[QualityQrewriteAccountProvenance]
     instruction: KnowledgeAnswersSensitivityInstruction
-    source: _list[str]
+    source: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_SOURCE",
+            "INTENT_CATALOG",
+            "GENIE_REWRITER",
+            "FUNCTION_CALL_ARGUMENT_VALUE",
+            "ATTENTIONAL_ENTITY",
+            "PII_DETECTOR",
+            "DIALOG_STATE",
+            "ON_DEVICE",
+            "FUNCTION_CALL",
+            "END_OF_QREWRITE",
+            "SYSTEM_RESPONSE",
+            "DIALOG_INTENT_STATE",
+            "ANALYZER_POST_PROCESSOR",
+            "SAGE",
+            "ANNOTATION_ARGUMENT_VALUE",
+            "DIALOG_INTENT_STATE_INTENT",
+            "DIALOG_INTENT_STATE_INTENT_CONTEXTUAL",
+            "IGDP",
+        ]
+    ]
     type: typing_extensions.Literal["UNKNOWN_TYPE", "INTENT", "CONTEXTUAL"]
 
 @typing.type_check_only
@@ -23262,7 +25049,13 @@ class KnowledgeGraphTripleProvenance(typing_extensions.TypedDict, total=False):
     lgMetadata: StorageGraphBfgLivegraphProvenanceMetadata
     policyMetadata: StorageGraphBfgPolicyMetadata
     process: str
-    restrictions: _list[str]
+    restrictions: _list[
+        typing_extensions.Literal[
+            "REQUIRES_CITATION",
+            "REQUIRES_PCOUNSEL_REVIEW",
+            "UNRESTRICTED_WITHIN_GOOGLE_NO_3P_USE",
+        ]
+    ]
     sourceCategory: typing_extensions.Literal[
         "THIRD_PARTY", "CURATION", "PARTNER_FEED", "EXTRACTION"
     ]
@@ -24166,7 +25959,9 @@ class NetFabricRpcVirtualNetworkId(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NlpMeaningComponentSpecificContracts(typing_extensions.TypedDict, total=False):
-    componentSpecificContracts: _list[str]
+    componentSpecificContracts: _list[
+        typing_extensions.Literal["UNSPECIFIED", "P2_LWA"]
+    ]
 
 @typing.type_check_only
 class NlpMeaningMeaningRemodeling(typing_extensions.TypedDict, total=False):
@@ -24486,7 +26281,145 @@ class NlpSaftMentionResolution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NlpSaftMorphology(typing_extensions.TypedDict, total=False):
-    attrValue: _list[str]
+    attrValue: _list[
+        typing_extensions.Literal[
+            "OTHER",
+            "ATTR_ANIMACY",
+            "UNSP_ANIMACY",
+            "ANIMATE",
+            "INANIMATE",
+            "IRRATIONAL",
+            "RATIONAL",
+            "PERSONAL",
+            "ATTR_ASPECT",
+            "UNSP_ASPECT",
+            "PERFECT",
+            "IMPERFECT",
+            "PROGRESSIVE",
+            "ATTR_CASE",
+            "UNSP_CASE",
+            "NOMINATIVE",
+            "ACCUSATIVE",
+            "DATIVE",
+            "GENITIVE",
+            "PREPOSITIONAL",
+            "INSTRUMENTAL",
+            "VOCATIVE",
+            "ADVERBIAL",
+            "COMPLEMENTIVE",
+            "LOCATIVE",
+            "OBLIQUE",
+            "PARTITIVE",
+            "REFLEXIVE_CASE",
+            "RELATIVE_CASE",
+            "DIRECT_CASE",
+            "ERGATIVE",
+            "ATTR_DEFINITENESS",
+            "UNSP_DEFINITENESS",
+            "DEFINITE",
+            "INDEFINITE",
+            "ATTR_DEGREE",
+            "UNSP_DEGREE",
+            "COMPARATIVE",
+            "SUPERLATIVE",
+            "POSITIVE",
+            "ABSOLUTE_DEGREE",
+            "RELATIVE_DEGREE",
+            "ATTR_FORM",
+            "UNSP_FORM",
+            "ADNOMIAL",
+            "AUXILIARY",
+            "COMPLEMENTIZER",
+            "FINAL_ENDING",
+            "GERUND",
+            "IRREALIS",
+            "LONG_FORM",
+            "ORDER_FORM",
+            "REALIS",
+            "SHORT_FORM",
+            "SPECIFIC_FORM",
+            "ATTR_GENDER_AGR",
+            "UNSP_GENDER_AGR",
+            "FEMININE_AGR",
+            "MASCULINE_AGR",
+            "NEUTER_AGR",
+            "ATTR_GENDER",
+            "UNSP_GENDER",
+            "FEMININE",
+            "MASCULINE",
+            "NEUTER",
+            "PLURALE_TANTUM",
+            "COMMON",
+            "ATTR_MOOD",
+            "UNSP_MOOD",
+            "CONDITIONAL_MOOD",
+            "IMPERATIVE",
+            "INDICATIVE",
+            "INTERROGATIVE",
+            "JUSSIVE",
+            "SUBJUNCTIVE",
+            "SUBJUNCTIVE1",
+            "SUBJUNCTIVE2",
+            "OPTATIVE",
+            "ATTR_NUMBER_AGR",
+            "UNSP_NUMBER_AGR",
+            "SINGULAR_AGR",
+            "PLURAL_AGR",
+            "ATTR_NUMBER",
+            "UNSP_NUMBER",
+            "SINGULAR",
+            "PLURAL",
+            "DUAL",
+            "ATTR_PERSON",
+            "UNSP_PERSON",
+            "FIRST",
+            "SECOND",
+            "THIRD",
+            "REFLEXIVE_PERSON",
+            "ATTR_PROPER",
+            "UNSP_PROPER",
+            "NOT_PROPER",
+            "PROPER",
+            "ATTR_RECIPROCITY",
+            "UNSP_RECIPROCITY",
+            "NON_RECIPROCAL",
+            "RECIPROCAL",
+            "ATTR_TENSE",
+            "UNSP_TENSE",
+            "CONDITIONAL_TENSE",
+            "FUTURE",
+            "PAST",
+            "PRESENT",
+            "PLUPERFECT",
+            "IMPERFECT_TENSE",
+            "ATTR_VOICE",
+            "UNSP_VOICE",
+            "ACTIVE",
+            "CAUSATIVE",
+            "PASSIVE",
+            "ATTR_GENDER_ANTECEDENT",
+            "UNSP_GENDER_ANTECEDENT",
+            "FEMININE_ANTECEDENT",
+            "MASCULINE_ANTECEDENT",
+            "NEUTER_ANTECEDENT",
+            "ATTR_NUMBER_ANTECEDENT",
+            "UNSP_NUMBER_ANTECEDENT",
+            "SINGULAR_ANTECEDENT",
+            "PLURAL_ANTECEDENT",
+            "ATTR_HONORIFIC",
+            "UNSP_HONORIFIC",
+            "HONORIFIC",
+            "ATTR_FORMALITY",
+            "UNSP_FORMALITY",
+            "FORMAL",
+            "INFORMAL",
+            "ATTR_INFLECTION_TYPE",
+            "UNSP_INFLECTION_TYPE",
+            "WEAK_INFLECTION",
+            "STRONG_INFLECTION",
+            "MIXED_INFLECTION",
+        ]
+    ]
 
 @typing.type_check_only
 class NlpSaftPhrase(typing_extensions.TypedDict, total=False):
@@ -24628,7 +26561,9 @@ class NlpSciencelitArticleMetadata(typing_extensions.TypedDict, total=False):
     journal: str
     language: str
     lastRevisedDateStr: str
-    metadataSource: _list[str]
+    metadataSource: _list[
+        typing_extensions.Literal["UNKNOWN", "PUBMED", "PMC", "SCHOLAR", "CORD"]
+    ]
     parsedFrom: str
     pmid: str
     publicationType: _list[NlpSciencelitPublicationType]
@@ -24944,7 +26879,11 @@ class NlpSemanticParsingDatetimeDateTimeProperty(
         "ISLAMIC_UMALQURA",
     ]
     sourceTypeList: CopleySourceTypeList
-    timeFormat: _list[str]
+    timeFormat: _list[
+        typing_extensions.Literal[
+            "DEFAULT", "SEPARATED_HMS", "AM_PM_TOKEN", "WITH_TIMEWORD"
+        ]
+    ]
     timezoneIsExplicit: bool
 
 @typing.type_check_only
@@ -25683,7 +27622,19 @@ class NlpSemanticParsingDatetimeTargetToFetch(typing_extensions.TypedDict, total
         "MILLENNIUM",
         "NIGHT",
     ]
-    weekday: _list[str]
+    weekday: _list[
+        typing_extensions.Literal[
+            "NO_DAY_OF_WEEK",
+            "SUNDAY",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "WEEKEND",
+        ]
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingDatetimeTimeZone(typing_extensions.TypedDict, total=False):
@@ -25691,7 +27642,14 @@ class NlpSemanticParsingDatetimeTimeZone(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class NlpSemanticParsingEntitySourceData(typing_extensions.TypedDict, total=False):
-    entitySources: _list[str]
+    entitySources: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_ENTITY_SOURCE",
+            "QREF_PERSONAL_WALDREF",
+            "QREF_PERSONAL_TOPIC_SERVER",
+            "MYENTITIES_MODEL_T",
+        ]
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingExpressionStatus(typing_extensions.TypedDict, total=False):
@@ -25702,7 +27660,67 @@ class NlpSemanticParsingExpressionStatus(typing_extensions.TypedDict, total=Fals
 
 @typing.type_check_only
 class NlpSemanticParsingLocalAmenities(typing_extensions.TypedDict, total=False):
-    type: _list[str]
+    type: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_TYPE",
+            "AIR_CONDITIONED",
+            "BAR",
+            "BEACH",
+            "BREAKFAST",
+            "FREE_BREAKFAST",
+            "FREE_PARKING",
+            "FREE_WIFI",
+            "GYM",
+            "HEATED_POOL",
+            "HOT_TUB",
+            "IN_ROOM_HOT_TUB",
+            "INDOOR_POOL",
+            "KID_FRIENDLY",
+            "NON_SMOKING",
+            "PET_FRIENDLY",
+            "POOL",
+            "RESTAURANT",
+            "SMOKING",
+            "TRUCK_PARKING",
+            "WIFI",
+            "DEAL",
+            "LAST_MINUTE",
+            "ALL_INCLUSIVE",
+            "PARKING",
+            "SPA",
+            "FREE_PET_FRIENDLY",
+            "WIFI_IN_ROOM",
+            "ALL_INCLUSIVE_ONLY",
+            "ROOM_SERVICE",
+            "OUTDOOR_POOL",
+            "HAS_24_HOUR_FRONT_DESK",
+            "FREE_GYM",
+            "MASSAGE",
+            "SAUNA",
+            "KIDS_ACTIVITIES",
+            "KIDS_CLUB",
+            "SUITE",
+            "BALCONY",
+            "BATHTUB",
+            "HOUSEKEEPING",
+            "DAILY_HOUSEKEEPING",
+            "DOG_FRIENDLY",
+            "THERMAL_POOL",
+            "TREADMILL",
+            "PRIVATE_BEACH",
+            "VIEW_OF_CITY",
+            "VIEW_OF_GARDEN",
+            "VIEW_OF_LAKE",
+            "VIEW_OF_LANDMARK",
+            "VIEW_OF_OCEAN",
+            "VIEW_OF_POOL",
+            "VIEW_OF_VALLEY",
+            "CASINO",
+            "KITCHEN",
+            "AVAILABLE_FOR_ESSENTIAL_WORKERS",
+            "FREE_CANCELLATION",
+        ]
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingLocalBasicLocation(typing_extensions.TypedDict, total=False):
@@ -25747,7 +27765,31 @@ class NlpSemanticParsingLocalBusinessType(typing_extensions.TypedDict, total=Fal
     transitOperator: bool
     transitStation: bool
     university: bool
-    vehicleType: _list[str]
+    vehicleType: _list[
+        typing_extensions.Literal[
+            "VEHICLE_TYPE_ANY",
+            "VEHICLE_TYPE_RAIL",
+            "VEHICLE_TYPE_METRO_RAIL",
+            "VEHICLE_TYPE_SUBWAY",
+            "VEHICLE_TYPE_TRAM",
+            "VEHICLE_TYPE_MONORAIL",
+            "VEHICLE_TYPE_HEAVY_RAIL",
+            "VEHICLE_TYPE_COMMUTER_TRAIN",
+            "VEHICLE_TYPE_HIGH_SPEED_TRAIN",
+            "VEHICLE_TYPE_LONG_DISTANCE_TRAIN",
+            "VEHICLE_TYPE_BUS",
+            "VEHICLE_TYPE_INTERCITY_BUS",
+            "VEHICLE_TYPE_TROLLEYBUS",
+            "VEHICLE_TYPE_SHARE_TAXI",
+            "VEHICLE_TYPE_FERRY",
+            "VEHICLE_TYPE_CABLE_CAR",
+            "VEHICLE_TYPE_GONDOLA_LIFT",
+            "VEHICLE_TYPE_FUNICULAR",
+            "VEHICLE_TYPE_SPECIAL",
+            "VEHICLE_TYPE_HORSE_CARRIAGE",
+            "VEHICLE_TYPE_AIRPLANE",
+        ]
+    ]
     venue: bool
 
 @typing.type_check_only
@@ -26278,7 +28320,17 @@ class NlpSemanticParsingModelsMediaAudio(typing_extensions.TypedDict, total=Fals
     scoreType: typing_extensions.Literal["UNKNOWN", "SOUNDTRACK", "THEME_SONG"]
     seasonConstraint: NlpSemanticParsingModelsMediaSeasonConstraint
     song: NlpSemanticParsingModelsMediaSong
-    tag: _list[str]
+    tag: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_TAG",
+            "SEED_RADIO",
+            "VIDEO_TAG",
+            "TOP_TRACKS",
+            "RECORDED",
+            "LIVE",
+            "FOLLOWED_BY_SEED_RADIO",
+        ]
+    ]
     tvShow: NlpSemanticParsingModelsMediaTVShow
 
 @typing.type_check_only
@@ -26340,12 +28392,45 @@ class NlpSemanticParsingModelsMediaDeeplinkInfo(
     deeplink: str
     deeplinkForExecution: str
     incompatibleWithCredentials: bool
-    offer: _list[str]
+    offer: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_SUBSCRIPTION",
+            "NO_ACCOUNT_REQUIRED",
+            "FREE",
+            "BASIC_SUBSCRIPTION",
+            "PREMIUM_SUBSCRIPTION",
+            "PAY_PER_USE",
+        ]
+    ]
     paidOfferDetail: _list[NlpSemanticParsingModelsMediaPaidOfferDetail]
-    platform: _list[str]
+    platform: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_PLATFORM",
+            "ANDROID_PLATFORM",
+            "CAST_AUDIO",
+            "CAST_VIDEO",
+            "IOS_PLATFORM",
+            "DESKTOP_WEB",
+            "MOBILE_WEB",
+            "CHROMECAST",
+            "ANDROID_TV",
+            "KAIOS_PLATFORM",
+            "MEDIA_3P_DEVICE",
+        ]
+    ]
     score: float
     subscriptionPackageName: _list[str]
-    tag: _list[str]
+    tag: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_TAG",
+            "SEED_RADIO",
+            "VIDEO_TAG",
+            "TOP_TRACKS",
+            "RECORDED",
+            "LIVE",
+            "FOLLOWED_BY_SEED_RADIO",
+        ]
+    ]
     validTimeWindow: NlpSemanticParsingModelsMediaDeeplinkInfoTimeWindow
     vuiId: str
     youtubeDeeplinkInfo: NlpSemanticParsingModelsMediaYouTubeDeeplinkInfo
@@ -26722,7 +28807,18 @@ class NlpSemanticParsingModelsOnDevice(typing_extensions.TypedDict, total=False)
 class NlpSemanticParsingModelsPersonPerson(typing_extensions.TypedDict, total=False):
     alternativeNameInfo: _list[QualityQrewriteAlternativeNameInfo]
     alternativeNames: _list[str]
-    annotationSource: _list[str]
+    annotationSource: _list[
+        typing_extensions.Literal[
+            "PERSONAL_CONTACT",
+            "RELATIONSHIP",
+            "NAMES",
+            "NAME_DETECTION",
+            "SAFT",
+            "PERSONAL_KNOWLEDGE_GRAPH",
+            "PRESENCE_PEOPLE_SEARCH",
+            "LOOSE_TEXT",
+        ]
+    ]
     contactData: _list[QualityQrewritePersonalContactData]
     evalData: NlpSemanticParsingAnnotationEvalData
     isPersonGroupReference: bool
@@ -26788,7 +28884,11 @@ class NlpSemanticParsingModelsRecurrenceRecurrenceStart(
 class NlpSemanticParsingModelsRecurrenceWeeklyPattern(
     typing_extensions.TypedDict, total=False
 ):
-    weekDay: _list[str]
+    weekDay: _list[
+        typing_extensions.Literal[
+            "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"
+        ]
+    ]
     weeklyPatternEnd: typing_extensions.Literal[
         "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"
     ]
@@ -26801,7 +28901,22 @@ class NlpSemanticParsingModelsRecurrenceYearlyPattern(
     typing_extensions.TypedDict, total=False
 ):
     monthlyPattern: NlpSemanticParsingModelsRecurrenceMonthlyPattern
-    yearMonth: _list[str]
+    yearMonth: _list[
+        typing_extensions.Literal[
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+        ]
+    ]
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantBrandPhrase(
@@ -29459,7 +31574,97 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrecomputedRestricts(typing_extensions.TypedDict, total=False):
-    restricts: _list[str]
+    restricts: _list[
+        typing_extensions.Literal[
+            "INVALID",
+            "COLOR_BLACK",
+            "COLOR_BLUE",
+            "COLOR_BROWN",
+            "COLOR_GRAY",
+            "COLOR_GREEN",
+            "COLOR_ORANGE",
+            "COLOR_PINK",
+            "COLOR_PURPLE",
+            "COLOR_RED",
+            "COLOR_TEAL",
+            "COLOR_WHITE",
+            "COLOR_YELLOW",
+            "HAS_SIMILAR",
+            "ALL",
+            "CLIPART",
+            "CLIPART_HR",
+            "LINEART",
+            "PHOTO",
+            "ANIMATED",
+            "TRANSPARENT",
+            "PANORAMIC",
+            "STOCK",
+            "MONO",
+            "TOLERANT_GRAY",
+            "COLOR",
+            "NOT_UNIVERSAL",
+            "PORTRAIT",
+            "FACES_ONE",
+            "FACES_TWO",
+            "FACES_SEVERAL",
+            "FACES_MANY",
+            "FACE_MALE",
+            "FACE_FEMALE",
+            "_img_porn_moderate",
+            "_img_porn_strict",
+            "_img_porn_very_strict",
+            "_image_aspect_16x10",
+            "_image_aspect_16x9",
+            "_image_aspect_4x3",
+            "_image_aspect_square",
+            "_image_aspect_nearsquare",
+            "_image_aspect_tall",
+            "_image_aspect_xtall",
+            "_image_aspect_wide",
+            "_image_aspect_xwide",
+            "_image_size_atleast_400x300",
+            "_image_size_atleast_640x480",
+            "_image_size_atleast_800x600",
+            "_image_size_atleast_1024x768",
+            "_image_size_atleast_1280x800",
+            "_image_size_atleast_1440x900",
+            "_image_size_atleast_2MP",
+            "_image_size_atleast_4MP",
+            "_image_size_atleast_6MP",
+            "_image_size_atleast_8MP",
+            "_image_size_atleast_10MP",
+            "_image_size_atleast_12MP",
+            "_image_size_atleast_15MP",
+            "_image_size_atleast_20MP",
+            "_image_size_atleast_40MP",
+            "_image_size_atleast_70MP",
+            "_image_size_atleast_140MP",
+            "_image_size_icon",
+            "_image_size_small",
+            "_image_size_medium",
+            "FILETYPE_JPG",
+            "FILETYPE_GIF",
+            "FILETYPE_PNG",
+            "FILETYPE_BMP",
+            "FILETYPE_SVG",
+            "FILETYPE_WEBP",
+            "FILETYPE_ICO",
+            "FILETYPE_CRAW",
+            "FILETYPE_HEIF",
+            "CC_LICENSE",
+            "NON_CC_LICENSE",
+            "BEST",
+            "ICON",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "XLARGE",
+            "XXLARGE",
+            "_imagehuge",
+            "DEPRECATED_65",
+            "DEPRECATED_72",
+        ]
+    ]
 
 @typing.type_check_only
 class PremiumPerDocData(typing_extensions.TypedDict, total=False):
@@ -30272,7 +32477,20 @@ class QualityDialogManagerExternalIds(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QualityDialogManagerLocalIntentOptions(typing_extensions.TypedDict, total=False):
-    intent: _list[str]
+    intent: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "ADDRESS",
+            "CALL",
+            "DIRECTIONS",
+            "HOURS",
+            "INTERNAL_FOOD_ORDERING",
+            "NEXT",
+            "MENU",
+            "PHONE_NUMBER",
+            "RESERVATIONS",
+        ]
+    ]
 
 @typing.type_check_only
 class QualityDialogManagerLocalResult(typing_extensions.TypedDict, total=False):
@@ -30750,10 +32968,328 @@ class QualityNsrVersionedFloatSignal(typing_extensions.TypedDict, total=False):
 class QualityOrbitAsteroidBeltDocumentIntentScores(
     typing_extensions.TypedDict, total=False
 ):
-    belowThresholdIntents: _list[str]
+    belowThresholdIntents: _list[
+        typing_extensions.Literal[
+            "NONE",
+            "TUTORIAL",
+            "MAP",
+            "TRANSLATE",
+            "LISTEN",
+            "PROMOTION",
+            "GIF",
+            "REGISTER",
+            "EVENT_LISTING",
+            "RANKING",
+            "DISCOGRAPHY",
+            "DIRECTIONS",
+            "NEWS",
+            "SOCIAL_MEDIA",
+            "FAN_FICTION",
+            "RECIPES",
+            "HOURS_OF_OPERATION",
+            "DEFINITION",
+            "REAL_ESTATE_LISTING",
+            "PREVIEW",
+            "MENU",
+            "UNBOXING",
+            "NUTRITION_FACTS",
+            "TRAVEL_GUIDE",
+            "SPECS",
+            "CALCULATOR",
+            "DOWNLOAD",
+            "SCORES",
+            "QUOTES",
+            "SHOWTIMES",
+            "CATALOG",
+            "CALENDAR",
+            "LOCATION_FINDER",
+            "RENT",
+            "STUDY_GUIDE",
+            "REVIEW",
+            "SHEET_MUSIC",
+            "LOGIN",
+            "TRIVIA",
+            "CONTACT_PAGE",
+            "RESERVATION",
+            "CUSTOMER_SUPPORT",
+            "INTERVIEW",
+            "COUPON",
+            "FLIGHT_TRACKER",
+            "COMPANY_FINANCIALS",
+            "FORUM",
+            "THESAURUS",
+            "MANUAL",
+            "JOB_POSTING",
+            "LYRICS",
+            "SYMPTOMS",
+            "REPAIR",
+            "BUYING_GUIDE",
+            "PRODUCT_EDITORIAL_REVIEW",
+            "SHOPPING_MERCHANT_PRODUCT",
+            "SHOPPING_REVIEW_OR_BUYING_GUIDE",
+            "PRODUCT_REVIEW",
+            "PRODUCT_COMPARISON",
+            "PRODUCT_BUYING_GUIDE",
+            "SHOPAHOLIC",
+            "GOOGLE_SCREENSHOT",
+            "MUGSHOT",
+            "CRIME",
+            "PRODUCT_TOPN",
+            "AUTHENTICITY",
+            "INFORMATION_SOURCE_OTHER",
+            "INFORMATION_SOURCE_NEWS_PUBLISHER",
+            "INFORMATION_SOURCE_ENCYCLOPEDIA",
+            "INFORMATION_SOURCE_MERCHANT",
+            "INFORMATION_SOURCE_GOVERNMENT",
+            "INFORMATION_SOURCE_UGC",
+            "INFORMATION_SOURCE_RESEARCH_INSTITUTE",
+            "QNA",
+            "UGC_DISCUSSION",
+            "SHOPPING",
+            "RESERVED_FOR_NEW_ENUM_135",
+            "RESERVED_FOR_NEW_ENUM_136",
+            "RESERVED_FOR_NEW_ENUM_137",
+            "RESERVED_FOR_NEW_ENUM_138",
+            "RESERVED_FOR_NEW_ENUM_139",
+            "RESERVED_FOR_NEW_ENUM_140",
+            "RESERVED_FOR_NEW_ENUM_141",
+            "RESERVED_FOR_NEW_ENUM_142",
+            "RESERVED_FOR_NEW_ENUM_143",
+            "RESERVED_FOR_NEW_ENUM_144",
+            "RESERVED_FOR_NEW_ENUM_145",
+            "RESERVED_FOR_NEW_ENUM_146",
+            "RESERVED_FOR_NEW_ENUM_147",
+            "RESERVED_FOR_NEW_ENUM_148",
+            "RESERVED_FOR_NEW_ENUM_149",
+            "RESERVED_FOR_NEW_ENUM_150",
+            "RESERVED_FOR_NEW_ENUM_151",
+            "RESERVED_FOR_NEW_ENUM_152",
+            "RESERVED_FOR_NEW_ENUM_153",
+            "RESERVED_FOR_NEW_ENUM_154",
+            "RESERVED_FOR_NEW_ENUM_155",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_101",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_102",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_103",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_104",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_105",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_106",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_107",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_108",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_109",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_110",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_111",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_112",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_113",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_114",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_115",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_116",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_117",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_118",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_119",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_120",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_121",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_122",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_123",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_124",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_125",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_126",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_127",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_2",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_5",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_8",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_10",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_17",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_18",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_21",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_23",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_24",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_28",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_29",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_31",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_32",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_34",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_36",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_38",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_39",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_40",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_46",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_50",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_52",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_54",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_56",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_57",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_59",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_60",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_63",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_67",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_71",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_75",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_78",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_81",
+        ]
+    ]
     belowThresholdScores: _list[int]
     imageIntentScores: dict[str, typing.Any]
-    intents: _list[str]
+    intents: _list[
+        typing_extensions.Literal[
+            "NONE",
+            "TUTORIAL",
+            "MAP",
+            "TRANSLATE",
+            "LISTEN",
+            "PROMOTION",
+            "GIF",
+            "REGISTER",
+            "EVENT_LISTING",
+            "RANKING",
+            "DISCOGRAPHY",
+            "DIRECTIONS",
+            "NEWS",
+            "SOCIAL_MEDIA",
+            "FAN_FICTION",
+            "RECIPES",
+            "HOURS_OF_OPERATION",
+            "DEFINITION",
+            "REAL_ESTATE_LISTING",
+            "PREVIEW",
+            "MENU",
+            "UNBOXING",
+            "NUTRITION_FACTS",
+            "TRAVEL_GUIDE",
+            "SPECS",
+            "CALCULATOR",
+            "DOWNLOAD",
+            "SCORES",
+            "QUOTES",
+            "SHOWTIMES",
+            "CATALOG",
+            "CALENDAR",
+            "LOCATION_FINDER",
+            "RENT",
+            "STUDY_GUIDE",
+            "REVIEW",
+            "SHEET_MUSIC",
+            "LOGIN",
+            "TRIVIA",
+            "CONTACT_PAGE",
+            "RESERVATION",
+            "CUSTOMER_SUPPORT",
+            "INTERVIEW",
+            "COUPON",
+            "FLIGHT_TRACKER",
+            "COMPANY_FINANCIALS",
+            "FORUM",
+            "THESAURUS",
+            "MANUAL",
+            "JOB_POSTING",
+            "LYRICS",
+            "SYMPTOMS",
+            "REPAIR",
+            "BUYING_GUIDE",
+            "PRODUCT_EDITORIAL_REVIEW",
+            "SHOPPING_MERCHANT_PRODUCT",
+            "SHOPPING_REVIEW_OR_BUYING_GUIDE",
+            "PRODUCT_REVIEW",
+            "PRODUCT_COMPARISON",
+            "PRODUCT_BUYING_GUIDE",
+            "SHOPAHOLIC",
+            "GOOGLE_SCREENSHOT",
+            "MUGSHOT",
+            "CRIME",
+            "PRODUCT_TOPN",
+            "AUTHENTICITY",
+            "INFORMATION_SOURCE_OTHER",
+            "INFORMATION_SOURCE_NEWS_PUBLISHER",
+            "INFORMATION_SOURCE_ENCYCLOPEDIA",
+            "INFORMATION_SOURCE_MERCHANT",
+            "INFORMATION_SOURCE_GOVERNMENT",
+            "INFORMATION_SOURCE_UGC",
+            "INFORMATION_SOURCE_RESEARCH_INSTITUTE",
+            "QNA",
+            "UGC_DISCUSSION",
+            "SHOPPING",
+            "RESERVED_FOR_NEW_ENUM_135",
+            "RESERVED_FOR_NEW_ENUM_136",
+            "RESERVED_FOR_NEW_ENUM_137",
+            "RESERVED_FOR_NEW_ENUM_138",
+            "RESERVED_FOR_NEW_ENUM_139",
+            "RESERVED_FOR_NEW_ENUM_140",
+            "RESERVED_FOR_NEW_ENUM_141",
+            "RESERVED_FOR_NEW_ENUM_142",
+            "RESERVED_FOR_NEW_ENUM_143",
+            "RESERVED_FOR_NEW_ENUM_144",
+            "RESERVED_FOR_NEW_ENUM_145",
+            "RESERVED_FOR_NEW_ENUM_146",
+            "RESERVED_FOR_NEW_ENUM_147",
+            "RESERVED_FOR_NEW_ENUM_148",
+            "RESERVED_FOR_NEW_ENUM_149",
+            "RESERVED_FOR_NEW_ENUM_150",
+            "RESERVED_FOR_NEW_ENUM_151",
+            "RESERVED_FOR_NEW_ENUM_152",
+            "RESERVED_FOR_NEW_ENUM_153",
+            "RESERVED_FOR_NEW_ENUM_154",
+            "RESERVED_FOR_NEW_ENUM_155",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_101",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_102",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_103",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_104",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_105",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_106",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_107",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_108",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_109",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_110",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_111",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_112",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_113",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_114",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_115",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_116",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_117",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_118",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_119",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_120",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_121",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_122",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_123",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_124",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_125",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_126",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_127",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_2",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_5",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_8",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_10",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_17",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_18",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_21",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_23",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_24",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_28",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_29",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_31",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_32",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_34",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_36",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_38",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_39",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_40",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_46",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_50",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_52",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_54",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_56",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_57",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_59",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_60",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_63",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_67",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_71",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_75",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_78",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_81",
+        ]
+    ]
     scores: _list[int]
     version: int
 
@@ -30761,7 +33297,166 @@ class QualityOrbitAsteroidBeltDocumentIntentScores(
 class QualityOrbitAsteroidBeltImageIntentScores(
     typing_extensions.TypedDict, total=False
 ):
-    intents: _list[str]
+    intents: _list[
+        typing_extensions.Literal[
+            "NONE",
+            "TUTORIAL",
+            "MAP",
+            "TRANSLATE",
+            "LISTEN",
+            "PROMOTION",
+            "GIF",
+            "REGISTER",
+            "EVENT_LISTING",
+            "RANKING",
+            "DISCOGRAPHY",
+            "DIRECTIONS",
+            "NEWS",
+            "SOCIAL_MEDIA",
+            "FAN_FICTION",
+            "RECIPES",
+            "HOURS_OF_OPERATION",
+            "DEFINITION",
+            "REAL_ESTATE_LISTING",
+            "PREVIEW",
+            "MENU",
+            "UNBOXING",
+            "NUTRITION_FACTS",
+            "TRAVEL_GUIDE",
+            "SPECS",
+            "CALCULATOR",
+            "DOWNLOAD",
+            "SCORES",
+            "QUOTES",
+            "SHOWTIMES",
+            "CATALOG",
+            "CALENDAR",
+            "LOCATION_FINDER",
+            "RENT",
+            "STUDY_GUIDE",
+            "REVIEW",
+            "SHEET_MUSIC",
+            "LOGIN",
+            "TRIVIA",
+            "CONTACT_PAGE",
+            "RESERVATION",
+            "CUSTOMER_SUPPORT",
+            "INTERVIEW",
+            "COUPON",
+            "FLIGHT_TRACKER",
+            "COMPANY_FINANCIALS",
+            "FORUM",
+            "THESAURUS",
+            "MANUAL",
+            "JOB_POSTING",
+            "LYRICS",
+            "SYMPTOMS",
+            "REPAIR",
+            "BUYING_GUIDE",
+            "PRODUCT_EDITORIAL_REVIEW",
+            "SHOPPING_MERCHANT_PRODUCT",
+            "SHOPPING_REVIEW_OR_BUYING_GUIDE",
+            "PRODUCT_REVIEW",
+            "PRODUCT_COMPARISON",
+            "PRODUCT_BUYING_GUIDE",
+            "SHOPAHOLIC",
+            "GOOGLE_SCREENSHOT",
+            "MUGSHOT",
+            "CRIME",
+            "PRODUCT_TOPN",
+            "AUTHENTICITY",
+            "INFORMATION_SOURCE_OTHER",
+            "INFORMATION_SOURCE_NEWS_PUBLISHER",
+            "INFORMATION_SOURCE_ENCYCLOPEDIA",
+            "INFORMATION_SOURCE_MERCHANT",
+            "INFORMATION_SOURCE_GOVERNMENT",
+            "INFORMATION_SOURCE_UGC",
+            "INFORMATION_SOURCE_RESEARCH_INSTITUTE",
+            "QNA",
+            "UGC_DISCUSSION",
+            "SHOPPING",
+            "RESERVED_FOR_NEW_ENUM_135",
+            "RESERVED_FOR_NEW_ENUM_136",
+            "RESERVED_FOR_NEW_ENUM_137",
+            "RESERVED_FOR_NEW_ENUM_138",
+            "RESERVED_FOR_NEW_ENUM_139",
+            "RESERVED_FOR_NEW_ENUM_140",
+            "RESERVED_FOR_NEW_ENUM_141",
+            "RESERVED_FOR_NEW_ENUM_142",
+            "RESERVED_FOR_NEW_ENUM_143",
+            "RESERVED_FOR_NEW_ENUM_144",
+            "RESERVED_FOR_NEW_ENUM_145",
+            "RESERVED_FOR_NEW_ENUM_146",
+            "RESERVED_FOR_NEW_ENUM_147",
+            "RESERVED_FOR_NEW_ENUM_148",
+            "RESERVED_FOR_NEW_ENUM_149",
+            "RESERVED_FOR_NEW_ENUM_150",
+            "RESERVED_FOR_NEW_ENUM_151",
+            "RESERVED_FOR_NEW_ENUM_152",
+            "RESERVED_FOR_NEW_ENUM_153",
+            "RESERVED_FOR_NEW_ENUM_154",
+            "RESERVED_FOR_NEW_ENUM_155",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_101",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_102",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_103",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_104",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_105",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_106",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_107",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_108",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_109",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_110",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_111",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_112",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_113",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_114",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_115",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_116",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_117",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_118",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_119",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_120",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_121",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_122",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_123",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_124",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_125",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_126",
+            "RESERVED_FOR_NEW_ENUM_LARGE_PLEASE_ASK_ORBIT_127",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_2",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_5",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_8",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_10",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_17",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_18",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_21",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_23",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_24",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_28",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_29",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_31",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_32",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_34",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_36",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_38",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_39",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_40",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_46",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_50",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_52",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_54",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_56",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_57",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_59",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_60",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_63",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_67",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_71",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_75",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_78",
+            "RESERVED_FOR_DELETED_ENUM_DO_NOT_REUSE_81",
+        ]
+    ]
     scores: _list[int]
 
 @typing.type_check_only
@@ -30769,7 +33464,11 @@ class QualityOrbitOrbitImageIntent(typing_extensions.TypedDict, total=False):
     imageIntent: typing_extensions.Literal[
         "UNSPECIFIED_INTENT", "HUMAN", "ANIMAL", "HATEFUL_SYMBOL"
     ]
-    missingInputs: _list[str]
+    missingInputs: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED_INPUT", "IMAGE_INPUT", "IMAGE_DOC_INFO_INPUT"
+        ]
+    ]
     score: float
     trigger: bool
 
@@ -31175,7 +33874,14 @@ class QualityProseCSEUrlInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QualityQrewriteAccountProvenance(typing_extensions.TypedDict, total=False):
-    dataSources: _list[str]
+    dataSources: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_MULTI_ACCOUNT_DATA_SOURCE",
+            "PRODUCTIVITY_ACCOUNT",
+            "ASSISTANT_SHARED_CONTACT",
+            "CALENDAR_EVENT_TITLES",
+        ]
+    ]
     googleAccount: QualityQrewriteAccountProvenanceGoogleAccount
     thirdPartyAccount: QualityQrewriteAccountProvenanceThirdPartyAccount
 
@@ -31812,7 +34518,9 @@ class QualitySitemapCoClickTargetDocCoClickByLocale(
 
 @typing.type_check_only
 class QualitySitemapScoringSignals(typing_extensions.TypedDict, total=False):
-    annotations: _list[str]
+    annotations: _list[
+        typing_extensions.Literal["UNSET", "LOW_RELATIVE_CONFIDENCE_IMPRESSIONS"]
+    ]
     chromeTransCount: str
     chromeTransProb: float
     chromeWeight: float
@@ -32388,8 +35096,12 @@ class RepositoryAnnotationsRdfaRdfaRichSnippetsApplication(
     operatingSystems: _list[str]
     optionalResult: bool
     originalRating: str
-    physicalDeviceTags: _list[str]
-    platformTags: _list[str]
+    physicalDeviceTags: _list[
+        typing_extensions.Literal["UNKNOWN_MOBILE", "IOS_IPHONE_OR_IPOD", "IOS_IPAD"]
+    ]
+    platformTags: _list[
+        typing_extensions.Literal["UNKNOWN_BROWSER", "CHROME", "FIREFOX"]
+    ]
     popularScore: float
     price: str
     rankData: RepositoryAnnotationsRdfaRdfaRichSnippetsApplicationRankData
@@ -33201,7 +35913,11 @@ class RepositoryWebrefLatentEntities(typing_extensions.TypedDict, total=False):
 class RepositoryWebrefLatentEntity(typing_extensions.TypedDict, total=False):
     broaderImportance: _list[float]
     mid: str
-    sources: _list[str]
+    sources: _list[
+        typing_extensions.Literal[
+            "INVALID", "VERTICAL_SPECIFIC_RELATIONS", "NN_HIERARCHY_V1"
+        ]
+    ]
 
 @typing.type_check_only
 class RepositoryWebrefLexicalAnnotation(typing_extensions.TypedDict, total=False):
@@ -33567,7 +36283,7 @@ class RepositoryWebrefMentionEvalInfo(typing_extensions.TypedDict, total=False):
 class RepositoryWebrefMentionRatings(typing_extensions.TypedDict, total=False):
     begin: int
     end: int
-    mentionMatch: _list[str]
+    mentionMatch: _list[typing_extensions.Literal["SUBPART", "SUPER", "EXACT"]]
     singleMentionRating: _list[RepositoryWebrefMentionRatingsSingleMentionRating]
 
 @typing.type_check_only
@@ -33591,7 +36307,11 @@ class RepositoryWebrefMentionRatingsSingleMentionRating(
     ]
     resultCount: int
     taskData: RepositoryWebrefTaskData
-    topicMentionedInResult: _list[str]
+    topicMentionedInResult: _list[
+        typing_extensions.Literal[
+            "RESULT_MENTIONED", "RESULT_MAYBE_MENTIONED", "RESULT_NOT_MENTIONED"
+        ]
+    ]
 
 @typing.type_check_only
 class RepositoryWebrefMetaTagIndices(typing_extensions.TypedDict, total=False):
@@ -33915,7 +36635,28 @@ class RepositoryWebrefRefconDocumentMentionSpans(
 
 @typing.type_check_only
 class RepositoryWebrefRefconMentionSpans(typing_extensions.TypedDict, total=False):
-    segment: _list[str]
+    segment: _list[
+        typing_extensions.Literal[
+            "CONTENT",
+            "ANCHOR",
+            "QUERY",
+            "URL",
+            "TITLE",
+            "IMAGE_QUERY",
+            "PASSAGE_QUERY",
+            "CONTEXT_ENTITY",
+            "CONTEXT_QUERY",
+            "SPORE_GRAPH",
+            "META_CONTENT_TAG",
+            "IMG_ALT_TAG",
+            "INSTANT_QUERY",
+            "VIDEO_TRANSCRIPT",
+            "VIDEO_OCR",
+            "IMAGE_OCR",
+            "LENS",
+            "VIDEO_DESCRIPTION",
+        ]
+    ]
     shortToken: _list[int]
     token: _list[str]
 
@@ -34978,7 +37719,19 @@ class ResearchScienceSearchReconciledMetadata(typing_extensions.TypedDict, total
     dateModified: ResearchScienceSearchDate
     datePublished: ResearchScienceSearchDate
     dateUpdated: ResearchScienceSearchDate
-    denylistStatus: _list[str]
+    denylistStatus: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_STATUS",
+            "FILE_NAME",
+            "NO_DESCRIPTION",
+            "DENYLIST_REGEX_MATCH",
+            "DENYLIST_NAME_MATCH",
+            "NAME_SIZE_OUT_OF_BOUNDS",
+            "DESCRIPTION_TOO_SHORT",
+            "NOT_IN_CATALOG_FOR_DOMAIN",
+            "MIRRORS_POPULAR_DATASET",
+        ]
+    ]
     description: _list[str]
     descriptionInHtml: _list[str]
     doi: str
@@ -35077,7 +37830,9 @@ class ResearchScienceSearchSourceUrlDocjoinInfoWebrefEntityInfo(
         "UNKNOWN", "FIELD_OF_STUDY", "GEO", "ORGANIZATION"
     ]
     description: str
-    entityCollectionType: _list[str]
+    entityCollectionType: _list[
+        typing_extensions.Literal["UNKNOWN", "FIELD_OF_STUDY", "GEO", "ORGANIZATION"]
+    ]
     kgCollection: _list[str]
     mid: str
 
@@ -36896,12 +39651,39 @@ class SocialGraphApiProtoUsageInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SocialGraphApiProtoWeeklyRecurrence(typing_extensions.TypedDict, total=False):
-    weekDay: _list[str]
+    weekDay: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
 
 @typing.type_check_only
 class SocialGraphApiProtoYearlyRecurrence(typing_extensions.TypedDict, total=False):
     monthlyPattern: SocialGraphApiProtoMonthlyRecurrence
-    months: _list[str]
+    months: _list[
+        typing_extensions.Literal[
+            "MONTH_UNSPECIFIED",
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+        ]
+    ]
 
 @typing.type_check_only
 class SocialGraphWireProtoPeopleapiAffinityMetadata(
@@ -37035,7 +39817,33 @@ class SocialStanzaStanzaRestriction(typing_extensions.TypedDict, total=False):
         "UNKNOWN_APPEAL_STATE", "APPEALED", "APPEAL_REJECTED", "APPEAL_APPROVED"
     ]
     contentRestriction: AbuseiamContentRestriction
-    deleteReason: _list[str]
+    deleteReason: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_DELETE_REASON",
+            "USER_ACCOUNT_DELETE",
+            "OWNER_DELETE",
+            "SPAM_ADMIN_DELETE",
+            "SPAM_ADMIN_DELETE_CHILD_PORN",
+            "SYSTEM_DELETE",
+            "USER_ACCOUNT_DISABLE",
+            "DESTINATION_STREAM_OWNER_DELETE",
+            "SBE_ADMIN_TAKEDOWN",
+            "CLIENT_ADMIN_TAKEDOWN",
+            "SPAM_ADMIN_SUSPEND",
+            "ANCESTOR_DELETE",
+            "USER_PRODUCT_DOWNGRADE",
+            "USER_PRODUCT_SUSPENDED",
+            "ENTITY_STATE_CHANGE",
+            "ENTITY_ADMIN_DELETED",
+            "ENTITY_DELETED_DUE_TO_CLASSIFICATION",
+            "ENTITY_PURGED",
+            "USER_UNDERAGE",
+            "YOUTUBE_CHANNEL_HIDDEN",
+            "YOUTUBE_SERVICE_REMOVED",
+            "YOUTUBE_LIGHTWEIGHT_DELETED",
+            "YOUTUBE_LIGHTWEIGHT_HIDDEN",
+        ]
+    ]
     deliveryRestriction: SocialStanzaDeliveryRestriction
     destinationStream: AppsPeopleActivityBackendDestinationStream
     moderationInfo: SocialStanzaModerationInfo
@@ -37363,9 +40171,20 @@ class StorageGraphBfgTripleProvenance(typing_extensions.TypedDict, total=False):
     provenanceExtension: Proto2BridgeMessageSet
     rankingToken: str
     requiresTriangulation: bool
-    restrictions: _list[str]
+    restrictions: _list[
+        typing_extensions.Literal[
+            "REQUIRES_CITATION",
+            "REQUIRES_PCOUNSEL_REVIEW",
+            "REQUIRES_ACCESS_CONTROL",
+            "UNRESTRICTED_WITHIN_GOOGLE_NO_3P_USE",
+        ]
+    ]
     source: str
-    sourceCategory: _list[str]
+    sourceCategory: _list[
+        typing_extensions.Literal[
+            "THIRD_PARTY", "CURATION", "PARTNER_FEED", "EXTRACTION"
+        ]
+    ]
     sourceDocId: _list[str]
     spiiCertification: StorageGraphBfgSpiiCertification
 
@@ -38313,7 +41132,1416 @@ class VendingConsumerProtoTrustedGenomeAnnotation(
     typing_extensions.TypedDict, total=False
 ):
     policy: VendingConsumerProtoTrustedGenomePolicy
-    testCode: _list[str]
+    testCode: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "RESERVED",
+            "RESERVED_2",
+            "RESERVED_3",
+            "CRSCORE_EQ_0",
+            "CRSCORE_GT_0",
+            "STORIES_IN_MOVIES_HOME",
+            "RELATED_X_DC_CLUSTERS_IN_MOVIE_DETAILS_PAGES",
+            "TC_IN_PSS_CHECK_A",
+            "TC_IN_PSS_CHECK_B",
+            "QUERY_IS_BOOTS_ELIGIBLE",
+            "QUERY_HAS_SELECTED_BOOTS_CHIP",
+            "QUERY_HAS_ONLY_UNSELECTED_BOOTS_CHIPS",
+            "SPONSORED_ADS_CLUSTER",
+            "IRON_THRONE_QUERY",
+            "GUIDED_DISCOVERY",
+            "BOOKS_AUTHOR_QUERY",
+            "BOOTS_PROD_V1_QUERY",
+            "SHOULD_SEE_LIVE_OP_CLUSTER_CANDIDATES",
+            "ENTERTAINMENT_CLUSTER_TRIGGERING",
+            "BOOTS_EN_IN",
+            "BOOTS_EN_GB",
+            "BOOTS_EN_PH",
+            "BOOTS_EN_CA",
+            "ENTERTAINMENT_CLUSTER_CONTAINER_SEARCH_ENABLED",
+            "SEARCH_NAV_SPONSORED_ADS_CLUSTER",
+            "TOP_CHART_RANKING_INFO",
+            "APPS_PUB_QUERY",
+            "ABUSIVE_QUERY_SQUASHING_EVENT",
+            "APP_SUPPORTS_INSTANT_LAUNCH",
+            "LOW_RESULT_CLUSTER",
+            "PERSONALIZED_CLUSTER",
+            "GAME_SEEKING_PERSONALIZED_CLUSTER_AT_EVENT_LEVEL",
+            "VX_CLUSTER",
+            "MOVIES_GROOT_20",
+            "MOVIES_GROOT_10",
+            "MOVIES_GROOT_5",
+            "MOVIES_GROOT_3",
+            "MOVIES_GROOT_1",
+            "MOVIES_DORA_SEARCH",
+            "MOVIES_MDP_SEARCH",
+            "MOVIES_ORGANIC_SEARCH",
+            "FULL_PAGE_REPLACEMENT",
+            "AUDIOBOOKS_KIDS_CATEGORICAL_SEARCH",
+            "ZERO_RESULT",
+            "BOOTS_I18N_100_THRESH",
+            "DISPLAY_ADS_RESPONSE_RECEIVED_EVENT_LEVEL",
+            "BEST_SELLER_CART_TAG_FOR_MENDEL_AT_EVENT_LEVEL",
+            "ABUSIVE_QUERY",
+            "HOME_SPONSORED_ADS_CLUSTER_NO_ADS",
+            "BOOKS_XSELL_ELIGIBLE_APP",
+            "NAV_EXT_EVENT",
+            "ADS_CUSTOM_DETAILS_PAGE_ASSETS_SERVED_EVENT_LEVEL",
+            "BOOKS_DETAILS_PAGE_SIMILAR_CLUSTER",
+            "BOOKS_DETAILS_PAGE_POST_ACQUIRE_SIMILAR_CLUSTER",
+            "APPS_PERSONALIZED_TOPIC_QUERY_EVENT_LEVEL",
+            "APPS_PERSONALIZED_TG_QUERY_EVENT_LEVEL",
+            "APPS_PERSONALIZED_ALL_GAME_QUERIES_EVENT_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_GAME_SEEKING_QUERIES_EVENT_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_NON_TG_QUERIES_EVENT_LEVEL",
+            "BOOKS_ELIGIBLE_FOR_BUNDLE_EVENT_LEVEL",
+            "GAMES_PROFILE_CREATION_EVENT",
+            "MOVIES_QUERY_ELIGIBLE_FOR_APPS_CLUSTER",
+            "MOVIES_WALLE_SEARCH",
+            "TRUSTED_ENTITY_SEARCH_QUERY_EVENT",
+            "BUNDLE_FBT_DISCOUNT",
+            "BUNDLE_SERIES_DISCOUNT",
+            "APPS_SEARCH_TOPIC_RFY_CLUSTER_AT_EVENT_LEVEL",
+            "APPS_SEARCH_MINI_TOP_CHARTS_CLUSTER_AT_EVENT_LEVEL",
+            "APPS_SEARCH_TOPIC_RFY_CLUSTER_COUNTERFACTUAL",
+            "APPS_SEARCH_MINI_TOP_CHARTS_CLUSTER_COUNTERFACTUAL",
+            "GEARHEAD_TOOLTIP_ASSISTANT_FIRST_RUN",
+            "GEARHEAD_TOOLTIP_ASSISTANT_NTH_RUN",
+            "GEARHEAD_TOOLTIP_ASSISTANT_NTH_RUN_BUTTON",
+            "GEARHEAD_TOOLTIP_LAUNCHER_FIRST_RUN",
+            "GEARHEAD_TOOLTIP_LAUNCHER_NTH_RUN",
+            "GEARHEAD_TOOLTIP_NOTIFICATION_FIRST_RUN",
+            "GEARHEAD_TOOLTIP_NOTIFICATION_NEW",
+            "GEARHEAD_TOOLTIP_NOTIFICATION_NTH_NEW",
+            "KIDS_AGE_SCORE_BONUS_AT_EVENT_LEVEL",
+            "KIDS_QUALITY_TAG_SCORE_BONUS_AT_EVENT_LEVEL",
+            "LB_TARGETED_AT_EVENT_LEVEL",
+            "LB_IMPRESSED_AT_EVENT_LEVEL",
+            "GEARHEAD_INPUT_TOUCH_PRESENT",
+            "GEARHEAD_INPUT_ROTARY_PRESENT",
+            "GEARHEAD_INPUT_TOUCHPAD_PRESENT",
+            "GEARHEAD_INPUT_TOUCH_ABSENT",
+            "GEARHEAD_INPUT_ROTARY_ABSENT",
+            "GEARHEAD_INPUT_TOUCHPAD_ABSENT",
+            "CANCEL_SUBSCRIPTION_CONFIRMATION_DIALOG_SHOWN_WHEN_ELIGIBLE_FOR_ENTITLEMENT_BENEFITS_EVENT_LEVEL_AT_EVENT_LEVEL",
+            "SMART_FOP_AT_EVENT_LEVEL",
+            "VX_CLUSTER_IN_APPS_SERP_IMPRESSION",
+            "KIDS_CONTENT_SEEKING_QUERY",
+            "KIDS_CONTENT_SEEKING_QUERY_TREATMENT_APPLIED",
+            "PREFERRED_FOP",
+            "REDEEM_NOT_ENROLLED_TO_LOYALTY",
+            "GEARHEAD_TOOLTIP_SETTINGS",
+            "SEARCH_MDP_TRIGGERED_EVENT_LEVEL",
+            "DEVELOPER_PAGE_AT_EVENT_LEVEL",
+            "BOOKS_FREE_FIXED_DURATION_RENTAL_EVENT_LEVEL",
+            "BOOKS_FREE_FIXED_DATE_RENTAL_EVENT_LEVEL",
+            "BOOKS_PRICE_DROP_EVENT_LEVEL",
+            "TG_VALIDATED_CRISPR_TAG_AT_EVENT_LEVEL",
+            "GEARHEAD_TOOLTIP_ASSISTANT_DIALER_FIRST_OPEN",
+            "GEARHEAD_TOOLTIP_ASSISTANT_MEDIA_OPEN",
+            "GEARHEAD_WIDESCREEN_DISPLAY",
+            "GEARHEAD_TOOLTIP_ASSISTANT_PHONE_CALL_ENDED",
+            "SERIES_BUNDLE_MULTI_TIER_DISCOUNT_EVENT_LEVEL",
+            "GEARHEAD_TOOLTIP_FEEDBACK",
+            "GEARHEAD_TOOLTIP_ASSISTANT_MEDIA_REC_FIRST_RUN",
+            "GEARHEAD_WORK_PROFILE_DETECTED",
+            "GEARHEAD_WORK_PROFILE_DETECTED_AND_COMPATIBLE",
+            "GEARHEAD_WORK_PROFILE_QUERYING_ALLOWED",
+            "PLAY_ADS_REENGAGEMENT_COUNTERFACTUAL",
+            "PLAY_ADS_THIRD_LIST_VIEW_ADS_COUNTERFACTUAL",
+            "GEARHEAD_TOOLTIP_ASSISTANT_LAUNCHER_OPEN",
+            "GEARHEAD_MULTIPLE_CALLABLE_PHONE_ACCOUNTS_DETECTED",
+            "GEARHEAD_USER_HAS_SELECTED_OUTGOING_PHONE_ACCOUNT",
+            "GEARHEAD_TOOLTIP_ASSISTANT_LONG_DRIVE_START",
+            "GEARHEAD_TOOLTIP_DIALER_MULTI_SIM",
+            "GEARHEAD_AUDIO_SERVICE_MIGRATION",
+            "GEARHEAD_TOOLTIP_ASSISTANT_MEDIA_REC_MEDIA_IDLE",
+            "GEARHEAD_DO_NOT_DISTURB_CALLS_ENABLED",
+            "REGIONAL_NAV_EXT_EVENT_LEVEL",
+            "GEARHEAD_TOOLTIP_BUGREPORT",
+            "GENERAL_QUERY_PAGINATION_EVENT_LEVEL",
+            "GEARHEAD_SESSION_ELIGIBLE_FOR_MEDIA_AUTOPLAY",
+            "GEARHEAD_AUDIO_FLOW_CONTROL_PERMIT_UNAVAILABLE",
+            "SHOULD_SEE_SEARCH_MEDIA_RESULT_CLUSTER",
+            "FRESH_RESULTS_SEEKING_SEARCH_QUERY_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_1_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_2_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_3_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_4_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_5_EVENT_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_6_EVENT_LEVEL",
+            "TRUSTED_GENOME_RELATED_QUERY_CLUSTER_EVENT",
+            "NAV_TG_RELATED_QUERY_EVENT",
+            "PROMOTABLE_APPS_EVENT",
+            "PROMOTABLE_APPS_STRONG_CAT_EVENT",
+            "INLINE_DETAILS_TQUALITY_CHECK_PASS",
+            "INLINE_DETAILS_TQUALITY_CHECK_FAIL",
+            "INLINE_DETAILS_IS_INLINE_URL",
+            "EDITORS_CHOICE_CLUSTER_SERP_EVENT_LEVEL",
+            "BESTK_CLUSTER_SERP_EVENT_LEVEL",
+            "LIVEOPS_CLUSTER_SERP_EVENT_LEVEL",
+            "LIVEOPS_CLUSTER_SERP_TRIGGERING_EVENT_LEVEL",
+            "QUICKPICKS_CLUSTER_SERP_EVENT_LEVEL",
+            "INLINE_DETAILS_AQUALITY_CHECK_PASS",
+            "INLINE_DETAILS_AQUALITY_CHECK_FAIL",
+            "FRESH_RESULTS_SEEKING_CURRENT_YEAR_EVENT_LEVEL",
+            "FILTER_TQ_FAILURE_APP",
+            "EDITORIAL_CONTENT_CLUSTER_FHR_SERP_EVENT_LEVEL",
+            "HAVE_LOCALIZATION_QUALITY_DIFF_AT_FILTER",
+            "PGSS_DETAILS_PAGE_TQUALITY_UNKNOWN_EVENT_LEVEL",
+            "PGSS_DETAILS_PAGE_TQUALITY_FAILED_EVENT_LEVEL",
+            "PGSS_DETAILS_PAGE_TQUALITY_PASSED_EVENT_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_UNKNOWN_EVENT_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_FAILED_EVENT_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_PASSED_EVENT_LEVEL",
+            "INLINE_DETAILS_CALLER_AQUALITY_CHECK_PASS",
+            "INLINE_DETAILS_CALLER_AQUALITY_CHECK_FAIL",
+            "HSDP_AD_NETWORK_CALLER_TABLET_AQUALITY_CHECK_PASS",
+            "HSDP_AD_NETWORK_CALLER_TABLET_AQUALITY_CHECK_FAIL",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_UNKNOWN",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_PASS",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_FAIL",
+            "PTP_CLUSTER_SERP_P13N_RANKING_EVENT_LEVEL",
+            "BROAD_INTENT_REWEIGHTING_EVENT_LEVEL",
+            "QUERY_DEPENDENT_SNIPPET_EVENT_LEVEL",
+            "EXPANDED_DEV_SUCCESS_CLUSTER_EVENT_LEVEL",
+            "COLLAPSED_DEV_SUCCESS_CLUSTER_EVENT_LEVEL",
+            "TRIGGERED_DEV_SUCCESS_CLUSTER_EVENT_LEVEL",
+            "BROAD_INTENT_GAMES_TIMESPENT_EVENT_LEVEL",
+            "GEARHEAD_ATTEMPT_USB_RECOVERY",
+            "MDP_P13N_ALL_EVENT_LEVEL",
+            "MDP_P13N_GAME_QUERY_L5_EVENT_LEVEL",
+            "MDP_P13N_GAME_QUERY_L6_EVENT_LEVEL",
+            "MDP_P13N_GAME_QUERY_L7_EVENT_LEVEL",
+            "MDP_P13N_GAME_QUERY_L8_EVENT_LEVEL",
+            "MDP_P13N_GAME_QUERY_L9_EVENT_LEVEL",
+            "MDP_P13N_RERANKING_UNKNOWN_EVENT_LEVEL",
+            "MDP_P13N_RERANKING_CATEGORICAL_EVENT_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_EVENT_LEVEL",
+            "MDP_P13N_RERANKING_MULTI_NAVIGATIONAL_EVENT_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_EXT_EVENT_LEVEL",
+            "SECOND_PASS_POLARIS_RERANKING_EVENT_LEVEL",
+            "SECOND_PASS_POLARIS_WITH_RANKING_CHANGE_EVENT_LEVEL",
+            "GEARHEAD_TOOLTIP_COOLWALK_DASHBOARD_UNAVAILABLE",
+            "TIMESLICED_SAFE_SELF_UPDATE",
+            "NORMAL_SELF_UPDATE",
+            "SECOND_PASS_BROAD_INTENT_QUERY_EVENT_LEVEL",
+            "SECOND_PASS_REWEIGHTING_TRIGGERED_EVENT_LEVEL",
+            "GEARHEAD_TOOLTIP_COOLWALK_RAIL_WIDGET",
+            "INLINE_DETAILS_TQUALITY_CHECK_UNKNOWN",
+            "SUPERROOT_PDS_SHORT_DESCRIPTION_EVENT_LEVEL",
+            "PGSS_SHORT_DESCRIPTION_DIFF_EVENT_LEVEL",
+            "SECOND_PASS_QUALITY_REWEIGTHING_EVENT_LEVEL",
+            "SECOND_PASS_QUALITY_REWEIGTHING_MDP_EVENT_LEVEL",
+            "PLAY_STORE_IAP_SALES_MINI_DETAILS_PAGE_EVENT_LEVEL",
+            "UNACK_IN_APP_SUBSCRIPTION_WARNING_DETAIL_PAGE_EVENT_LEVEL",
+            "PACKAGE_NAME_SEARCH_EVENT_LEVEL",
+            "ZERO_COPY_NOT_SUFFICIENT_EVENT_LEVEL",
+            "ZERO_COPY_ALLOWS_INSTALL_EVENT_LEVEL",
+            "ZERO_COPY_NOT_REQUIRED_EVENT_LEVEL",
+            "SHOULD_SEE_SCREENSHOT_XSELL_CLUSTER_LOW_Q_DP_EVENT_LEVEL",
+            "SHOULD_SEE_RICH_LIST_XSELL_CLUSTER_LOW_Q_DP_EVENT_LEVEL",
+            "DEVICE_TIER_HIGH_EVENT_LEVEL",
+            "DEVICE_TIER_MED_EVENT_LEVEL",
+            "DEVICE_TIER_LOW_EVENT_LEVEL",
+            "QUERY_TYPE_UNKNOWN_EVENT_LEVEL",
+            "QUERY_TYPE_CATEGORICAL_EVENT_LEVEL",
+            "QUERY_TYPE_NAVIGATIONAL_EVENT_LEVEL",
+            "QUERY_TYPE_MULTI_NAVIGATIONAL_EVENT_LEVEL",
+            "QUERY_TYPE_NAVIGATIONAL_EXT_EVENT_LEVEL",
+            "MR_HIGH_QUALITY_ZERO_EVENT_LEVEL",
+            "MR_HIGH_QUALITY_ONE_OR_TWO_EVENT_LEVEL",
+            "MR_HIGH_QUALITY_TRHEE_OR_MORE_EVENT_LEVEL",
+            "MR_HIGH_QUALITY_TOP_EVENT_LEVEL",
+            "MR_HIGH_RELEVANCE_ZERO_EVENT_LEVEL",
+            "MR_HIGH_RELEVANCE_ONE_OR_TWO_EVENT_LEVEL",
+            "MR_HIGH_RELEVANCE_TRHEE_OR_MORE_EVENT_LEVEL",
+            "MR_HIGH_RELEVANCE_TOP_EVENT_LEVEL",
+            "SR_HIGH_QUALITY_ZERO_EVENT_LEVEL",
+            "SR_HIGH_QUALITY_ONE_OR_TWO_EVENT_LEVEL",
+            "SR_HIGH_QUALITY_TRHEE_OR_MORE_EVENT_LEVEL",
+            "SR_HIGH_QUALITY_TOP_EVENT_LEVEL",
+            "SR_HIGH_RELEVANCE_ZERO_EVENT_LEVEL",
+            "SR_HIGH_RELEVANCE_ONE_OR_TWO_EVENT_LEVEL",
+            "SR_HIGH_RELEVANCE_TRHEE_OR_MORE_EVENT_LEVEL",
+            "SR_HIGH_RELEVANCE_TOP_EVENT_LEVEL",
+            "RAM_0GB_TO_1GB_EVENT_LEVEL",
+            "RAM_1GB_TO_2GB_EVENT_LEVEL",
+            "RAM_2GB_TO_3GB_EVENT_LEVEL",
+            "RAM_3GB_TO_4GB_EVENT_LEVEL",
+            "RAM_4GB_TO_6GB_EVENT_LEVEL",
+            "RAM_6GB_AND_MORE_EVENT_LEVEL",
+            "LOW_STORAGE_AT_INSTALL_PREPROCESSING_EVENT_LEVEL",
+            "DSA_P13N_OPTED_IN_AT_EVENT_LEVEL",
+            "DSA_P13N_OPTED_OUT_AT_EVENT_LEVEL",
+            "USER_P13N_SETTING_UNSPECIFIED_AT_EVENT_LEVEL",
+            "BOOKS_USER_P13N_SETTING_UNSPECIFIED_AT_EVENT_LEVEL",
+            "USER_P13N_SETTING_ON_AT_EVENT_LEVEL",
+            "BOOKS_USER_P13N_SETTING_ON_AT_EVENT_LEVEL",
+            "USER_P13N_SETTING_OFF_AT_EVENT_LEVEL",
+            "BOOKS_USER_P13N_SETTING_OFF_AT_EVENT_LEVEL",
+            "BATTLESTAR_GAME_IN_MDP_EVENT_LEVEL",
+            "BATTLESTAR_PSEUDO_CREDIT_OFFER_IN_DP_EVENT_LEVEL",
+            "REVIEW_HIGHLIGHTS_TRIGGERING_EVENT_LEVEL",
+            "TRUSTED_VERTICAL_VPN_INTENT_EVENT_LEVEL",
+            "TRUSTED_VERTICAL_LOAN_INTENT_EVENT_LEVEL",
+            "SERP_YOUTUBE_VIDEO_CLUSTER_POPULATED_EVENT_LEVEL",
+            "LOWQ_APPS_DEMOTION_EVENT_LEVEL",
+            "QUERY_TYPE_MDP_EVENT_LEVEL",
+            "QUERY_TYPE_NON_MDP_EVENT_LEVEL",
+            "NAV_CARD_EVENT_LEVEL",
+            "MDP_WITH_LIVE_OPS_EVER_INSTALLED_USERS_EVENT_LEVEL",
+            "MDP_WITH_LIVE_OPS_NEVER_INSTALLED_USERS_EVENT_LEVEL",
+            "BROAD_RELATED_QUERIES_CLUSTER_EVENT",
+            "SUPPLEMENTAL_TG_RETRIEVAL_EVENT_LEVEL",
+            "FIRST_PARTY_OFFERS_REQUEST_TRIGGER_EVENT_LEVEL",
+            "REVIEW_SUMMARY_HIGHLIGHTS_CLICK_EVENT_LEVEL",
+            "BATTLESTAR_SELF_SHARE_EVENT_LEVEL",
+            "SUPPLEMENTAL_TG_ANNOTATION_FOR_WEAR_EVENT_LEVEL",
+            "PGS_THIRD_PARTY_REVIEW_EVENT_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_AT_EVENT_LEVEL",
+            "BATTLESTAR_GAME_CENTRIC_BOTTOM_SHEET_ASSETS_EVENT_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_ELIGIBLE_AT_EVENT_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_ELIGIBLE_EVENT_LEVEL",
+            "FOP_ORDERING_NO_RECOMMENDATION_EVENT_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_OUTDATED_EVENT_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_SAME_FOP_EVENT_LEVEL",
+            "FOP_ORDERING_STORED_VALUE_EVENT_LEVEL",
+            "GEARHEAD_DUPLEX_COMPATIBLE_DIALER_ENABLED",
+            "CUSTOMER_UPDATE_CHALLENGE_EVENT_LEVEL",
+            "EXPERIMENTAL_TG_QUERY_EVENT_LEVEL",
+            "FEATURED_PRODUCTS_LIVE_OPS_CLIENT_AT_EVENT_LEVEL",
+            "EVENT_LEVEL_TEST_CODE_LIMIT",
+            "ENTERTAINMENT_CLUSTER_TRIGGERING_AT_SESSION_LEVEL",
+            "BEST_SELLER_CART_TAG_AT_SESSION_LEVEL",
+            "SHOULD_SEE_BOOKS_WISHLIST_CLUSTER",
+            "PRIMETIME_CONTENT_IN_DETAILS_PAGES",
+            "SEARCH_NON_NAV_SPONSORED_ADS_CLUSTER",
+            "BOOTS_NO_DIFF_AT_SESSION_LEVEL",
+            "ABUSIVE_QUERY_SQUASHING_AT_SESSION_LEVEL",
+            "CART_ABANDONMENT_TEST_CODE",
+            "APP_SUPPORTS_INSTANT_LAUNCH_AT_SESSION_LEVEL",
+            "LOW_RESULT_CLUSTER_AT_SESSION_LEVEL",
+            "PERSONALIZED_CLUSTER_AT_SESSION_LEVEL",
+            "GAME_SEEKING_PERSONALIZED_CLUSTER_AT_SESSION_LEVEL",
+            "VX_CLUSTER_AT_SESSION_LEVEL",
+            "MOVIES_GROOT_20_AT_SESSION_LEVEL",
+            "MOVIES_GROOT_10_AT_SESSION_LEVEL",
+            "MOVIES_GROOT_5_AT_SESSION_LEVEL",
+            "MOVIES_GROOT_3_AT_SESSION_LEVEL",
+            "MOVIES_GROOT_1_AT_SESSION_LEVEL",
+            "GEARHEAD_MESSAGING_AUTO_REPLY_CANDIDATE",
+            "MOVIES_DORA_SEARCH_AT_SESSION_LEVEL",
+            "MOVIES_MDP_SEARCH_AT_SESSION_LEVEL",
+            "MOVIES_ORGANIC_SEARCH_AT_SESSION_LEVEL",
+            "BUY_NOW_BUTTON",
+            "AUDIOBOOKS_KIDS_CATEGORICAL_SEARCH_AT_SESSION_LEVEL",
+            "ZERO_RESULT_AT_SESSION_LEVEL",
+            "ABUSIVE_QUERY_AT_SESSION_LEVEL",
+            "HOME_SPONSORED_ADS_CLUSTER_NO_ADS_AT_SESSION_LEVEL",
+            "BOOKS_XSELL_ELIGIBLE_APP_AT_SESSION_LEVEL",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_SESSION_LEVEL",
+            "NAV_EXT_SESSION",
+            "FAST_REINSTALL_TEST_CODE",
+            "APPS_DETAILS_PAGE_PROMOTION_SESSION_LEVEL",
+            "BOOKS_DETAILS_PAGE_PROMOTION_SESSION_LEVEL",
+            "DETAILS_PAGE_PROMOTION_SESSION_LEVEL",
+            "SHOULD_SEE_LIVE_OPS_V2_CLUSTER",
+            "BOOKS_DETAILS_PAGE_SIMILAR_CLUSTER_AT_SESSION_LEVEL",
+            "BOOKS_DETAILS_PAGE_POST_ACQUIRE_SIMILAR_CLUSTER_AT_SESSION_LEVEL",
+            "FLOATING_HIGHLIGHTS_ROW_TRIGGERING_AT_SESSION_LEVEL",
+            "APPS_DETAILS_PAGE_EXISTING_PROMOTION_SESSION_LEVEL",
+            "BOOKS_DETAILS_PAGE_EXISTING_PROMOTION_SESSION_LEVEL",
+            "BOOKS_ELIGIBLE_FOR_BUNDLE",
+            "FALLBACK_FOP_OPTIONS_RECOMMENDED",
+            "SHOULD_SEE_PREREG_LIVE_OPS_EH",
+            "SHOULD_SEE_PREREG_LIVE_OPS_DP",
+            "HERO_CARD_CLUSTER_AT_SESSION_LEVEL",
+            "FALLBACK_FOP_OPTIONS_AVAILABLE",
+            "SWOOP_10P_OFF_SESSION_LEVEL",
+            "SWOOP_25P_OFF_SESSION_LEVEL",
+            "SWOOP_50P_OFF_SESSION_LEVEL",
+            "SWOOP_75P_OFF_SESSION_LEVEL",
+            "CANCEL_SUBSCRIPTION_CONFIRMATION_DIALOG_SHOWN_WHEN_ELIGIBLE_FOR_ENTITLEMENT_BENEFITS",
+            "PREREGISTRATION_AT_SESSION_LEVEL",
+            "GAMES_PROFILE_CREATION",
+            "IN_APP_SALE_IN_CART",
+            "MOVIES_MAX_NUMBER_MEESEEKS_CLUSTERS_SHOWN",
+            "MOVIES_MAX_NUMBER_BYW_CLUSTERS_SHOWN",
+            "RANDOM_FOP_OPTIONS_RECOMMENDED",
+            "MOVIES_QUERY_ELIGIBLE_FOR_APPS_CLUSTER_AT_SESSION_LEVEL",
+            "INSTANT_BANNER_ELIGIBLE",
+            "SUGGEST_NAV_SUGGEST_TRIGGERED",
+            "TRUSTED_ENTITY_SEARCH_QUERY",
+            "BURNSIE_ADD_FOP_PROMOTION_SESSION_LEVEL",
+            "MOVIES_WALLE_SEARCH_AT_SESSION_LEVEL",
+            "BUNDLE_FBT_DISCOUNT_AT_SESSION_LEVEL",
+            "BUNDLE_SERIES_DISCOUNT_AT_SESSION_LEVEL",
+            "MOVIES_REPEATED_BUYER",
+            "SUBSCRIPTION_CANCELLATION_PROMOTION_SESSION_LEVEL",
+            "SUBSCRIPTION_RETRY_FOP_FOR_DCB_AS_PRIMARY_SESSION_LEVEL",
+            "SUBSCRIPTION_DCB_AS_ADD_FOP_OPTION_SESSION_LEVEL",
+            "APPS_SEARCH_TOPIC_RFY_CLUSTER_AT_SESSION_LEVEL",
+            "APPS_SEARCH_MINI_TOP_CHARTS_CLUSTER_AT_SESSION_LEVEL",
+            "APPS_PERSONALIZED_TOPIC_QUERY_SESSION_LEVEL",
+            "APPS_PERSONALIZED_TG_QUERY_SESSION_LEVEL",
+            "APPS_PERSONALIZED_ALL_GAME_QUERIES_SESSION_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_GAME_SEEKING_QUERIES_SESSION_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_NON_TG_QUERIES_SESSION_LEVEL",
+            "PLAY_STORE_SHOW_CART",
+            "MOVIES_RENTER",
+            "APPS_SEARCH_TOPIC_RFY_CLUSTER_COUNTERFACTUAL_AT_SESSION_LEVEL",
+            "APPS_SEARCH_MINI_TOP_CHARTS_CLUSTER_COUNTERFACTUAL_AT_SESSION_LEVEL",
+            "FREE_TRIAL_SUBSCRIPTION_CANCELATION_APP_INSTALLED",
+            "FREE_TRIAL_SUBSCRIPTION_CANCELATION_APP_NOT_INSTALLED",
+            "NON_FREE_TRIAL_SUBSCRIPTION_CANCELATION_APP_INSTALLED",
+            "NON_FREE_TRIAL_SUBSCRIPTION_CANCELATION_APP_NOT_INSTALLED",
+            "CLIENT_NOTIFICATION_APP_UNINSTALLED_WITH_SUBSCRIPTION",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_APP_1_AT_SESSION_LEVEL",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_APP_3_AT_SESSION_LEVEL",
+            "KIDS_AGE_SCORE_BONUS",
+            "UPDATE_SUBSCRIPTION_INSTRUMENT_PAYMENT_DECLINED_FOP_IMPRESSION",
+            "UPDATE_SUBSCRIPTION_INSTRUMENT_PAYMENT_DECLINED_FOP_MESSAGE_IMPRESSION",
+            "KIDS_QUALITY_TAG_SCORE_BONUS_AT_SESSION_LEVEL",
+            "SHOULD_SEE_REVIEW_MORE_LINK",
+            "INCENTIVIZED_OPTIN_INTERSTITIAL_AT_SESSION_LEVEL",
+            "PREMIUM_GAME_HOME",
+            "LB_TARGETED_AT_SESSION_LEVEL",
+            "PCD_APP_DETAILS",
+            "MIXED_AUDIENCE_APP_DETAILS",
+            "LB_IMPRESSED_AT_SESSION_LEVEL",
+            "HERO_CARD_CLUSTER_INSTANT_ELIGIBLE",
+            "LOYALTY_SHOULD_NOT_SEE_FREE_TRIAL_SUBSCRIPTION_POINTS_EARN_MESSAGE",
+            "MOVIES_USER_INTERESTS_NONE_AT_SESSION_LEVEL",
+            "MOVIES_USER_INTERESTS_LOW_AT_SESSION_LEVEL",
+            "MOVIES_USER_INTERESTS_MEDIUM_AT_SESSION_LEVEL",
+            "MOVIES_USER_INTERESTS_HIGH_AT_SESSION_LEVEL",
+            "MOVIES_BOY_SEEDS_NONE_AT_SESSION_LEVEL",
+            "MOVIES_BOY_SEEDS_LOW_AT_SESSION_LEVEL",
+            "MOVIES_BOY_SEEDS_MEDIUM_AT_SESSION_LEVEL",
+            "MOVIES_BOY_SEEDS_HIGH_AT_SESSION_LEVEL",
+            "RENEWAL_REMINDER_SET_IN_CANCEL_FLOW",
+            "RENEWAL_REMINDER_CAN_BE_SET_IN_CANCEL_FLOW",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_ELIGIBLE_SESSION_LEVEL",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_TARGETED_SESSION_LEVEL",
+            "PLAY_PASS_IPD_ELIGIBLE_SESSION_LEVEL",
+            "PLAY_PASS_FHR_ELIGIBLE_SESSION_LEVEL",
+            "DOUBLE_WIDE_SCREENSHOT_CLUSTER_TRIGGERING_AT_SESSION_LEVEL",
+            "TRIPLE_WIDE_VIDEO_CLUSTER_TRIGGERING_AT_SESSION_LEVEL",
+            "WIDE_MEDIA_CLUSTER_TRIGGERING_AT_SESSION_LEVEL",
+            "SMART_FOP_AT_SESSION_LEVEL",
+            "BILLING_PROFILE_DCB_ELIGIBLE",
+            "LOYALTY_UPSELL_AFTER_IN_APP_PURCHASE_AT_SESSION_LEVEL",
+            "SHOULD_SEE_APPS_COMPARISON_CLUSTER",
+            "RESIGNUP_FROM_SUBS_CENTER",
+            "VX_CLUSTER_IN_APPS_SERP_IMPRESSION_SESSIONS",
+            "PARTNER_REWARD_ON_LOYALTY_SIGNUP_PAGE",
+            "UGC_CLUSTER_AT_SESSION_LEVEL",
+            "REGIONAL_TRENDING_CLUSTER",
+            "USABLE_ANON_ML_FOP_OPTIONS_FOUND",
+            "ANON_ML_FOP_OPTIONS_RECOMMENDED",
+            "BUY_BUTTON_CLICK",
+            "TV_BUTTON_CLICK",
+            "LOYALTY_SEES_POINTS_EARN_PROMOTIONS_AT_SESSION_LEVEL",
+            "KIDS_CONTENT_SEEKING_QUERY_SESSION",
+            "KIDS_CONTENT_SEEKING_QUERY_TREATMENT_APPLIED_SESSION",
+            "UGC_CLUSTER_NON_FIRST_PAGE_AT_SESSION_LEVEL",
+            "UGC_CLUSTER_ELIGIBLE_AT_SESSION_LEVEL",
+            "LOYALTY_SEES_FREE_TRIAL_SUBSCRIPTION_AT_SESSION_LEVEL",
+            "APPS_SEARCH_FILTERS_TRIGGERED",
+            "APPS_SEARCH_FILTERS_ACTIVATED",
+            "PLAY_SUBMANAGEMENT_LOG_HOOK_SESSION_EXAMPLE",
+            "LOYALTY_SIGNUP_INTERSTITIAL_AT_SESSION_LEVEL",
+            "BOOTS_CHIPS_NOT_TRIGGERED_COUNTERFACTUAL",
+            "BOOTS_CHIPS_TRIGGERED_COUNTERFACTUAL",
+            "APPS_SEARCH_FILTERS_NOT_TRIGGERED",
+            "PREFERRED_FOP_AT_SESSION_LEVEL",
+            "REDEEM_NOT_ENROLLED_TO_LOYALTY_AT_SESSION_LEVEL",
+            "VIDEO_CLUSTER_EXPANDED",
+            "LOYALTY_UPSELL_SEEN_AT_SESSION_LEVEL",
+            "TRIPLE_WIDE_SCREENSHOT_CLUSTER_TRIGGERING_AT_SESSION_LEVEL",
+            "LOYALTY_LIVE_OPS_RETURNED_AT_SESSION_LEVEL",
+            "SEARCH_MDP_TRIGGERED_SESSION_LEVEL",
+            "PROMOLINK_CDP_SESSION_LEVEL",
+            "PROMOLINK_CDP_TITLE_PAGE_SESSION_LEVEL",
+            "PROMOLINK_CDP_TOPIC_PAGE_SESSION_LEVEL",
+            "PROMOLINK_CDP_GENERIC_PAGE_SESSION_LEVEL",
+            "WMC_INSTANT_PREVIEW_CLUSTER_AT_SESSION_LEVEL",
+            "POINTS_PROMOTION_CONTENT_PAGE_AT_SESSION_LEVEL",
+            "SEARCH_SYN_APPS_SESSION_LEVEL",
+            "IN_APP_OFFER_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_APP_1_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_APP_2_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_APP_3_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_APP_4_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_GAMELOFT_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_EVONY_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ASPHALT_9_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_MAGIC_RAMPAGE_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_LAST_SURVIVOR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_SUMMONERS_WAR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_TOWER_OF_GOD_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_JACKPOT_WORLD_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_LOTSA_SLOTS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_CASH_FRENZY_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_WAR_PLANET_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ESKYFUN_LEGENDS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_MAHJONG_VILLAGE_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ONE_PUNCH_MAN_KR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ONE_PUNCH_MAN_TW_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_GRAND_CROSS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_1_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_2_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_3_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_4_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_GAMELOFT_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_EVONY_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ASPHALT_9_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_MAGIC_RAMPAGE_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_LAST_SURVIVOR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_SUMMONERS_WAR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_TOWER_OF_GOD_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_JACKPOT_WORLD_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_LOTSA_SLOTS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_CASH_FRENZY_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_WAR_PLANET_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ESKYFUN_LEGENDS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_MAHJONG_VILLAGE_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ONE_PUNCH_MAN_KR_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ONE_PUNCH_MAN_TW_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_GRAND_CROSS_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_SAVED_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_1_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_2_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_3_AT_SESSION_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_4_AT_SESSION_LEVEL",
+            "QUICK_BUY_AT_SESSION_LEVEL",
+            "DEVELOPER_PAGE_AT_SESSION_LEVEL",
+            "GAMES_SUBNAV_SHUFFLE_APPLIED",
+            "APPS_SUBNAV_SHUFFLE_APPLIED",
+            "BOOKS_FREE_FIXED_DURATION_RENTAL_SESSION_LEVEL",
+            "BOOKS_FREE_FIXED_DATE_RENTAL_SESSION_LEVEL",
+            "PAYMENTS_DELAYED_CHARGING_AT_SESSION_LEVEL",
+            "BOOKS_PRICE_DROP_SESSION_LEVEL",
+            "NON_EMPTY_HOME_STREAM_LIVE_OPS_CLUSTER_SERVED",
+            "SHOULD_SEE_LIVE_OPS_CARD_IN_SEARCH_MDP",
+            "CART_ABANDONMENT_SUBSCRIPTION_ONE_TIME_PASS_SESSION_LEVEL",
+            "MY_REVIEWS_PAGE_VISIT_USER_LEVEL",
+            "SERIES_BUNDLE_MULTI_TIER_DISCOUNT_SESSION_LEVEL",
+            "GOOGLE_PROMOTIONS_ELIGIBLE_SESSION_LEVEL",
+            "USER_TRIGGERED_IAP_PROMOTION_RETRIEVAL_SESSION_LEVEL",
+            "IAP_HAS_UNREDEEMED_PROMOTIONS_CLIENT_SESSION_LEVEL",
+            "SUBSCRIPTION_UPDATE_FOP_FOR_DCB_AS_PRIMARY_SIGNUP_SESSION_LEVEL",
+            "SUBSCRIPTION_UPDATE_FOP_FOR_DCB_AS_PRIMARY_SUB_CENTER_SESSION_LEVEL",
+            "RENEW_TASK_DELAYED_SUBSCRIPTION_TARGETED",
+            "RENEW_TASK_DELAYED_SUBSCRIPTION_NOT_TARGETED",
+            "PRE_AUTH_TASK_DELAYED_SUBSCRIPTION_TARGETED",
+            "PRE_AUTH_TASK_DELAYED_SUBSCRIPTION_NOT_TARGETED",
+            "REDEEM_REDIRECT_CHALLENGE_AT_SESSION_LEVEL",
+            "PLAY_STORE_IAP_SALES",
+            "PLAY_STORE_IAP_SALES_APP_1",
+            "PLAY_STORE_IAP_SALES_MINI_DETAILS_PAGE",
+            "CROSS_DEVICE_INSTALL_OPTIONS_FETCHED_IN_SESSION",
+            "CROSS_DEVICE_INSTALL_OPTIONS_ITEM_FIELDS_TRIGGERED",
+            "OTHER_DEVICES_SUBNAV_RETURNED_IN_SESSION",
+            "GEARHEAD_FRX_SENSITIVE_PERMISSION_SCREEN_SEEN",
+            "POST_PURCHASE_ITEM_UPSELL_SESSION_LEVEL",
+            "POST_PURCHASE_ITEM_UPSELL_WAVE_2_SESSION_LEVEL",
+            "POST_PURCHASE_ITEM_UPSELL_WAVE_2_SESSION_LEVEL_2",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_SHOWN_SESSION_LEVEL",
+            "FETCH_PROMOTION_BANNER_FROM_P3_SESSION_LEVEL",
+            "AVP_SWOOP_10P_OFF_SESSION_LEVEL",
+            "AVP_SWOOP_25P_OFF_SESSION_LEVEL",
+            "AVP_SWOOP_50P_OFF_SESSION_LEVEL",
+            "AVP_SWOOP_75P_OFF_SESSION_LEVEL",
+            "CLUSTER_TRIGGER_CONDITION_IS_PARENT",
+            "CDP_ENABLE_PREFETCH_SESSION_LEVEL",
+            "P13N_INTERSTITIAL_SESSION_LEVEL",
+            "GEARHEAD_SKIP_LEGACY_FRX_FOR_CAKEWALK",
+            "FEATURED_SUBSCRIPTIONS_PRESENT",
+            "SHOULD_NOT_SEE_HOME_LIVE_OPS_CLUSTER",
+            "SHOULD_SEE_HOME_LIVE_OPS_CLUSTER_K1_2",
+            "SHOULD_SEE_HOME_LIVE_OPS_CLUSTER_K1",
+            "SHOULD_SEE_HOME_LIVE_OPS_CLUSTER_K2",
+            "SHOULD_SEE_HOME_LIVE_OPS_CLUSTER_K3_4",
+            "SHOULD_SEE_HOME_LIVE_OPS_CLUSTER_GTE_K5",
+            "SHOULD_NOT_SEE_HOME_OFFER_CLUSTER",
+            "SHOULD_SEE_HOME_OFFER_CLUSTER_K1",
+            "SHOULD_SEE_HOME_OFFER_CLUSTER_K2",
+            "SHOULD_SEE_HOME_OFFER_CLUSTER_K3_4",
+            "SHOULD_SEE_HOME_OFFER_CLUSTER_GTE_K5",
+            "SHOULD_NOT_SEE_DEALS_HOME_OFFER",
+            "SHOULD_SEE_DEALS_HOME_OFFER_K1",
+            "SHOULD_SEE_DEALS_HOME_OFFER_K2",
+            "SHOULD_SEE_DEALS_HOME_OFFER_K3_4",
+            "SHOULD_SEE_DEALS_HOME_OFFER_GTE_K5",
+            "SHOULD_SEE_DEALS_HOME_GAME_K1",
+            "SHOULD_SEE_DEALS_HOME_GAME_K2",
+            "SHOULD_SEE_DEALS_HOME_GAME_K3",
+            "SHOULD_SEE_DEALS_HOME_GAME_K4",
+            "SHOULD_SEE_DEALS_HOME_GAME_GTE_K5",
+            "SHOULD_SEE_DEALS_HOME_APP_K1",
+            "SHOULD_SEE_DEALS_HOME_APP_K2",
+            "SHOULD_SEE_DEALS_HOME_APP_K3",
+            "SHOULD_SEE_DEALS_HOME_APP_K4",
+            "SHOULD_SEE_DEALS_HOME_APP_GTE_K5",
+            "SHOULD_SEE_DEALS_HOME_EVER_INSTALL_K1",
+            "SHOULD_SEE_DEALS_HOME_EVER_INSTALL_K2",
+            "SHOULD_SEE_DEALS_HOME_EVER_INSTALL_K3",
+            "SHOULD_SEE_DEALS_HOME_EVER_INSTALL_K4",
+            "SHOULD_SEE_DEALS_HOME_EVER_INSTALL_GTE_K5",
+            "SHOULD_SEE_DEALS_HOME_NEVER_INSTALL_K1",
+            "SHOULD_SEE_DEALS_HOME_NEVER_INSTALL_K2",
+            "SHOULD_SEE_DEALS_HOME_NEVER_INSTALL_K3",
+            "SHOULD_SEE_DEALS_HOME_NEVER_INSTALL_K4",
+            "SHOULD_SEE_DEALS_HOME_NEVER_INSTALL_GTE_K5",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_SESSION_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_PREVIEW_BATCH_SESSION_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_SKU_DETAILS_SESSION_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_PREVIEW_BATCH_SKU_DETAILS_SESSION_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_FOR_ALL_SUBS_SESSION_LEVEL",
+            "LEON_LIVEOPS_DEAL_STATE_SYNC_SESSION_LEVEL",
+            "SURVEY_AHC_AT_SESSION_LEVEL",
+            "PLAY_PASS_CART_MAREKTING_BANNER_ELIGIBLE_AND_SHOWN_CART_SESSION_LEVEL",
+            "PLAY_PASS_PERKS_VOUCHER_IN_CART_SESSION_LEVEL",
+            "PLAY_SEARCH_MDP_TRIGGERING",
+            "PLAY_SEARCH_NON_MDP_TRIGGERING",
+            "PRICE_TRANSPARENCY_IS_OFFER_PERSONALIZED_SESSION_LEVEL",
+            "GEARHEAD_SKIP_LEGACY_FRX_FOR_CAKEWALK_USB_CANDIDATE",
+            "PLAY_PASS_PARENT_FOCUSED_SPLASH_PAGE_SESSION_LEVEL",
+            "PLAY_PASS_SPLASH_PAGE_FOR_UNICORN_SESSION_LEVEL",
+            "REVIEW_SUBMITTED_SESSION_LEVEL",
+            "REVIEW_TOPIC_FILTER_SELECTED_SESSION_LEVEL",
+            "PLAY_SEARCH_GENERAL_QUERY_PAGINATION_SESSION_LEVEL",
+            "IN_CART_EXCHANGE_OPTIONS_ELIGIBLE_SESSION_LEVEL",
+            "PLAY_SEARCH_MULTINAV_PAGINATION_SESSION_LEVEL",
+            "REGIONAL_NAV_EXT_SESSION_LEVEL",
+            "IAP_SKU_DEALS_LIVE_OP_DEALS_HOME_SESSION_LEVEL",
+            "IAP_SKU_DEALS_LIVE_OP_GAMES_HOME_SESSION_LEVEL",
+            "FEATURING_AHC_OR_FHR_TRIGGERED_SESSION_LEVEL",
+            "ALLOWLIST_EXPANSION_FOR_P13N_INTERSTITIAL_SESSION_LEVEL",
+            "SURVEY_RECS_LIST_AT_SESSION_LEVEL",
+            "GEARHEAD_FRX_RUNNING_CW175_IN_GH",
+            "RANDOM_SHUFFLE_CLUSTERS_ON_TARGET_USERS_SESSION_LEVEL",
+            "RANDOM_SHUFFLE_CLUSTERS_AND_APPS_ON_TARGET_USERS_SESSION_LEVEL",
+            "ALLOWLIST_EXPANSION_FOR_P13N_NOTIFICATIONS_SESSION_LEVEL",
+            "FRESH_RESULTS_SEEKING_SEARCH_QUERY_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_1_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_2_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_3_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_4_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_5_SESSION_LEVEL",
+            "GOOGLE_FUNDED_BUNDLE_DISCOUNT_BUCKET_6_SESSION_LEVEL",
+            "TRUSTED_GENOME_RELATED_QUERY_CLUSTER_SESSION",
+            "NAV_TG_RELATED_QUERY_SESSION",
+            "PROMOTABLE_APPS_SESSION",
+            "PROMOTABLE_APPS_STRONG_CAT_SESSION",
+            "GROWTH_COFFEE_CARD_IN_PURCHASE_FLOW_SESSION_LEVEL",
+            "GROWTH_COFFEE_CARD_IN_PURCHASE_FLOW_SERVER_SESSION_LEVEL",
+            "LIVE_OPS_ROI_HOLDBACK",
+            "EDITORS_CHOICE_CLUSTER_SERP_SESSION_LEVEL",
+            "BESTK_CLUSTER_SERP_SESSION_LEVEL",
+            "LIVEOPS_CLUSTER_SERP_SESSION_LEVEL",
+            "LIVEOPS_CLUSTER_SERP_TRIGGERING_SESSION_LEVEL",
+            "QUICKPICKS_CLUSTER_SERP_SESSION_LEVEL",
+            "WIDE_MEDIA_CLUSTER_INVALID_VIDEO_ASSET_SESSION_LEVEL",
+            "ALTERNATE_DEVICE_PRESENT_SESSION_LEVEL",
+            "MULTIPLE_ALTERNATE_DEVICES_PER_FORM_FACTOR_SESSION_LEVEL",
+            "APPS_SEARCH_DISCOVERY_CLUSTER_TRIGGERED_SESSION_LEVEL",
+            "SUGGEST_CROSS_FORM_FACTOR_APPS_WEAR_SUGGESTIONS_ENABLED",
+            "SUGGEST_CROSS_FORM_FACTOR_APPS_WEAR_SUGGESTIONS_AVAILABLE",
+            "SUGGEST_CROSS_FORM_FACTOR_APPS_TV_SUGGESTIONS_ENABLED",
+            "SUGGEST_CROSS_FORM_FACTOR_APPS_TV_SUGGESTIONS_AVAILABLE",
+            "SUGGEST_APPS_SUBTEXT_SUGGESTIONS_SESSION_LEVEL",
+            "SUGGEST_ZERO_PREFIX_LIVE_OPS_AVAILABLE",
+            "INLINE_DETAILS_TQUALITY_CHECK_PASS_SESSION_LEVEL",
+            "INLINE_DETAILS_TQUALITY_CHECK_FAIL_SESSION_LEVEL",
+            "INLINE_DETAILS_AQUALITY_CHECK_PASS_SESSION_LEVEL",
+            "INLINE_DETAILS_AQUALITY_CHECK_FAIL_SESSION_LEVEL",
+            "INLINE_DETAILS_CALLER_AQUALITY_CHECK_PASS_SESSION_LEVEL",
+            "INLINE_DETAILS_CALLER_AQUALITY_CHECK_FAIL_SESSION_LEVEL",
+            "HSDP_AD_NETWORK_CALLER_TABLET_AQUALITY_CHECK_PASS_SESSION_LEVEL",
+            "HSDP_AD_NETWORK_CALLER_TABLET_AQUALITY_CHECK_FAIL_SESSION_LEVEL",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_UNKNOWN_SESSION_LEVEL",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_PASS_SESSION_LEVEL",
+            "HSDP_INDEPENDENT_APP_TABLET_AQUALITY_CHECK_FAIL_SESSION_LEVEL",
+            "INLINE_DETAILS_IS_INLINE_URL_SESSION_LEVEL",
+            "SENT_EMAIL_ENTER_GRACE_PERIOD_SESSION_LEVEL",
+            "SENT_EMAIL_ENTER_SUSPENDED_PERIOD_SESSION_LEVEL",
+            "SENT_EMAIL_ENTER_SUSPENDED_PERIOD_WITHOUT_GRACE_PERIOD_SESSION_LEVEL",
+            "ANALYTICS_AD_LINKING_RECOMMENDATION_ELIGIBLE_SESSION_LEVEL",
+            "EDITORIAL_FCC_AT_SESSION_LEVEL",
+            "FRESH_RESULTS_SEEKING_CURRENT_YEAR_SESSION_LEVEL",
+            "FILTER_TQ_FAILURE_APP_SESSION_LEVEL",
+            "EDITORIAL_CONTENT_CLUSTER_FHR_SERP_SESSION_LEVEL",
+            "HAVE_LOCALIZATION_QUALITY_DIFF_AT_FILTER_SESSION_LEVEL",
+            "EXPERIMENTAL_TG_QUERY_SESSION_LEVEL",
+            "NAV_CARD_HIGH_QUALITY_MDP_SESSION_LEVEL",
+            "HAS_DECLINE_REASON_IN_PAYMENT_DECLINE_EMAIL_SESSION_LEVEL",
+            "QUEST_CONTENT_CARD_IN_DEALS_HOME_SESSION_LEVEL",
+            "PRE_INSTALL_LOW_QUALITY_DEEP_LINK_DETAILS_PAGE_SESSION_LEVEL",
+            "COLLAPSED_DETAILS_PAGE_EXPANDED_BY_SHOW_MORE_SESSION_LEVEL",
+            "COLLAPSED_DETAILS_PAGE_EXPANDED_BY_INSTALL_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_TQUALITY_UNKNOWN_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_TQUALITY_FAILED_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_TQUALITY_PASSED_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_UNKNOWN_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_FAILED_SESSION_LEVEL",
+            "PGSS_DETAILS_PAGE_AQUALITY_PASSED_SESSION_LEVEL",
+            "PRE_INSTALL_LOW_QUALITY_DETAILS_PAGE_WITH_GAME_SESSION_LEVEL",
+            "PRE_INSTALL_LOW_QUALITY_DETAILS_PAGE_WITH_NON_GAME_SESSION_LEVEL",
+            "QUERY_DEPENDENT_SNIPPET_SESSION_LEVEL",
+            "FOP_STEERING_PROMOTION_INITIAL_BILLING_PROFILE_SESSION_LEVEL",
+            "FOP_STEERING_PROMOTION_CART_ADD_FOP_SESSION_LEVEL",
+            "FOP_STEERING_PROMOTION_CART_CHANGE_FOP_SESSION_LEVEL",
+            "FOP_STEERING_PROMOTION_CART_APPLY_PROMOTION_SESSION_LEVEL",
+            "PTP_CLUSTER_SERP_P13N_RANKING_SESSION_LEVEL",
+            "QUERY_DEPENDENT_SNIPPET_FRONT_END_SESSION_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_SESSION_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_SESSION_LEVEL_V2",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_WITH_EXISTING_FOP_SESSION_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_WITHOUT_EXISTING_FOP_SESSION_LEVEL",
+            "MDP_WITHOUT_QUALITY_SESSION_LEVEL",
+            "MDP_WITH_HIGH_QUALITY_SESSION_LEVEL",
+            "MDP_WITH_MEDIUM_QUALITY_SESSION_LEVEL",
+            "MDP_WITH_LOW_QUALITY_SESSION_LEVEL",
+            "MDP_TRIGGERED_AND_GAME_SEEKING_SESSION_LEVEL",
+            "PLAY_SEARCH_GENERAL_QUERY_MDP_PAGINATION_WITH_GAME_SEEKING_RYF_CLUSTER_SESSION_LEVEL",
+            "PLAY_SEARCH_GENERAL_QUERY_NON_MDP_PAGINATION_WITH_GAME_SEEKING_RYF_CLUSTER_SESSION_LEVEL",
+            "PSS_GENERAL_PAGINATION_SESSION_LEVEL",
+            "PSS_GENERAL_PAGINATION_GAME_SEEKING_SESSION_LEVEL",
+            "INLINE_ADD_PAYMENT_CREDIT_CARD_ELIGIBLE",
+            "INLINE_ADD_PAYMENT_CARRIER_BILLING_ELIGIBLE",
+            "INLINE_ADD_PAYMENT_EWALLET_ELIGIBLE",
+            "INLINE_ADD_PAYMENT_NO_ELIGIBLE_TYPE",
+            "SHOULD_NOT_SEE_NOW_CONTENT_AH",
+            "SHOULD_SEE_NOW_CONTENT_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_AH_GTE_K5",
+            "SHOULD_NOT_SEE_NOW_CONTENT_GH",
+            "SHOULD_SEE_NOW_CONTENT_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_GH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_AH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_GH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_AH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_GH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_AH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_GH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_AH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_GH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_AH_K1",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_AH_K2",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_AH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_AH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_GH_K1",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_GH_K2",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_GH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_WEEKLY_REWARD_GH_GTE_K5",
+            "SHOULD_NOT_SEE_TOP_NOW_CONTENT_AH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_AH_GTE_K5",
+            "SHOULD_NOT_SEE_TOP_NOW_CONTENT_GH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_GH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_AH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_NEW_RELEASE_GH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_AH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_EDITORIAL_GH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_AH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_LIVE_OPS_GH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_AH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_PRE_REGISTRATION_GH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_NEW_RELEASE_AH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_PRE_REGISTRATION_AH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_LIVE_OPS_AH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_NEW_RELEASE_GH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_PRE_REGISTRATION_GH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_MERCH_LIVE_OPS_GH",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_AH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_AH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_AH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_AH_GTE_K5",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_GH_K1",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_GH_K2",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_GH_K3_4",
+            "SHOULD_SEE_TOP_NOW_CONTENT_WEEKLY_REWARD_GH_GTE_K5",
+            "SHOULD_NOT_SEE_NOW_CONTENT_NH",
+            "SHOULD_SEE_NOW_CONTENT_NH_K1",
+            "SHOULD_SEE_NOW_CONTENT_NH_K2",
+            "SHOULD_SEE_NOW_CONTENT_NH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_NH_K1",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_NH_K2",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_NH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_NEW_RELEASE_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_NH_K1",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_NH_K2",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_NH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_EDITORIAL_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_NH_K1",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_NH_K2",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_NH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_LIVE_OPS_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_NH_K1",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_NH_K2",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_NH_K3_4",
+            "SHOULD_SEE_NOW_CONTENT_PRE_REGISTRATION_NH_GTE_K5",
+            "SHOULD_NOT_SEE_NOW_CLUSTER_CONTENT_NH",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NH_K1",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NH_K2",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NH_K3_4",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NEW_RELEASE_NH_K1",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NEW_RELEASE_NH_K2",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NEW_RELEASE_NH_K3_4",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_NEW_RELEASE_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_EDITORIAL_NH_K1",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_EDITORIAL_NH_K2",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_EDITORIAL_NH_K3_4",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_EDITORIAL_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_LIVE_OPS_NH_K1",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_LIVE_OPS_NH_K2",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_LIVE_OPS_NH_K3_4",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_LIVE_OPS_NH_GTE_K5",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_PRE_REGISTRATION_NH_K1",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_PRE_REGISTRATION_NH_K2",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_PRE_REGISTRATION_NH_K3_4",
+            "SHOULD_SEE_NOW_CLUSTER_CONTENT_PRE_REGISTRATION_NH_GTE_K5",
+            "FEATURED_PRODUCTS_LIVE_OPS_AT_SESSION_LEVEL",
+            "FEATURED_PRODUCTS_LIVE_OPS_CLIENT_AT_SESSION_LEVEL",
+            "BUYFLOW_AUTH_RECOVERY_CLIENT_AT_SESSION_LEVEL",
+            "SUPPLEMENTAL_TG_RETRIEVAL_SESSION_LEVEL",
+            "FIRST_PARTY_OFFERS_REQUEST_TRIGGER_SESSION_LEVEL",
+            "WALLET_WELLBEING_ALERT_SESSION_LEVEL",
+            "BROAD_INTENT_REWEIGHTING_SESSION_LEVEL",
+            "DYNASTY_DEVICE_HANDOFF_SESSION_LEVEL",
+            "EXPANDED_DEV_SUCCESS_CLUSTER_SESSION_LEVEL",
+            "COLLAPSED_DEV_SUCCESS_CLUSTER_SESSION_LEVEL",
+            "TRIGGERED_DEV_SUCCESS_CLUSTER_SESSION_LEVEL",
+            "PLANOGRAM_MERCH_AMERICAS_GAMES_PAYPAL_SESSION_LEVEL",
+            "BROAD_INTENT_GAMES_TIMESPENT_SESSION_LEVEL",
+            "ELIGIBLE_FOR_MANAGE_IN_APP_DETAILS_SESSION_LEVEL",
+            "ELIGIBLE_FOR_ACC_SESSION_LEVEL",
+            "ELIGIBLE_FOR_ACQUISITION_ACC_SESSION_LEVEL",
+            "ELIGIBLE_FOR_REENGAGEMENT_ACC_SESSION_LEVEL",
+            "MDP_P13N_ALL_SESSION_LEVEL",
+            "MDP_P13N_GAME_QUERY_L5_SESSION_LEVEL",
+            "MDP_P13N_GAME_QUERY_L6_SESSION_LEVEL",
+            "MDP_P13N_GAME_QUERY_L7_SESSION_LEVEL",
+            "MDP_P13N_GAME_QUERY_L8_SESSION_LEVEL",
+            "MDP_P13N_GAME_QUERY_L9_SESSION_LEVEL",
+            "MDP_P13N_RERANKING_UNKNOWN_SESSION_LEVEL",
+            "MDP_P13N_RERANKING_CATEGORICAL_SESSION_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_SESSION_LEVEL",
+            "MDP_P13N_RERANKING_MULTI_NAVIGATIONAL_SESSION_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_EXT_SESSION_LEVEL",
+            "YOUTUBE_FROM_LANDING_PAGE_SESSION_LEVEL",
+            "SECOND_PASS_POLARIS_RERANKING_SESSION_LEVEL",
+            "SECOND_PASS_POLARIS_WITH_RANKING_CHANGE_SESSION_LEVEL",
+            "PLAY_BOOKS_READING_PROGRESS_TOOLTIP_SESSION_LEVEL",
+            "NAV_SEARCH_D2D_EMBEDDING_BOOST_SESSION_LEVEL",
+            "HAS_NO_BACKUP_FOP_FOR_ORDER_SESSION_LEVEL",
+            "SECOND_PASS_BROAD_INTENT_QUERY_SESSION_LEVEL",
+            "SECOND_PASS_REWEIGHTING_TRIGGERED_SESSION_LEVEL",
+            "BOOKS_SEARCH_PAGE_DORA_QUERY_SESSION_LEVEL",
+            "INLINE_DETAILS_TQUALITY_CHECK_UNKNOWN_SESSION_LEVEL",
+            "APPS_LAUNCHER_CLUSTER_AT_SESSION_LEVEL",
+            "SUPERROOT_PDS_SHORT_DESCRIPTION_SESSION_LEVEL",
+            "PGSS_SHORT_DESCRIPTION_DIFF_SESSION_LEVEL",
+            "WEAR_AQ_SEARCH_PHONE_DEVICE_WITH_WEAR_FILTER",
+            "WEAR_AQ_SEARCH_WEAR_DEVICE",
+            "WEAR_AQ_SEARCH_COMBINED",
+            "NAV_ADS_DUPLICATE_SERVED_SESSION_LEVEL",
+            "NAV_ADS_NON_DUPLICATE_SERVED_SESSION_LEVEL",
+            "NAV_ADS_NO_AD_SERVED_SESSION_LEVEL",
+            "PAYMENTS_TOS_ACCEPTANCE_SESSION_LEVEL",
+            "WEBSKY_SEARCH_THIRD_PARTY_CONTENT_ELIGIBLE_QUERY_SESSION_LEVEL",
+            "SHORTEN_COMMERCE_CACHE_TTL_SESSION_LEVEL",
+            "SKIP_CHECK_MARK_SCREEN_FOR_BACKUP_FLOW_SESSION_LEVEL",
+            "ONE_CLICK_BACKUP_FOP_SESSION_LEVEL",
+            "KIDS_LAUNCHER_USER_FEATURES_PRESENT",
+            "KIDS_LAUNCHER_USER_FEATURES_MISSING",
+            "SECOND_PASS_QUALITY_REWEIGTHING_SESSION_LEVEL",
+            "SECOND_PASS_QUALITY_REWEIGTHING_MDP_SESSION_LEVEL",
+            "UNACK_IN_APP_SUBSCRIPTION_WARNING_DETAIL_PAGE_SESSION_LEVEL",
+            "ELIGIBLE_FOR_FORM_FACTOR_FILTER_ON_TOP_CHARTS",
+            "PACKAGE_NAME_SEARCH_SESSION_LEVEL",
+            "SUBSCRIPTION_PENDING_ACKNOWLEDGEMENT_EMAIL_SESSION_LEVEL",
+            "SUBSCRIPTION_PENDING_ACKNOWLEDGEMENT_NOTIFICATION_SESSION_LEVEL",
+            "ZERO_COPY_NOT_SUFFICIENT_SESSION_LEVEL",
+            "ZERO_COPY_ALLOWS_INSTALL_SESSION_LEVEL",
+            "ZERO_COPY_NOT_REQUIRED_SESSION_LEVEL",
+            "BOOKS_SEARCH_SERIES_EXPANSION_SESSION_LEVEL",
+            "SHOULD_SEE_SCREENSHOT_XSELL_CLUSTER_LOW_Q_DP_SESSION_LEVEL",
+            "SHOULD_SEE_RICH_LIST_XSELL_CLUSTER_LOW_Q_DP_SESSION_LEVEL",
+            "DEVICE_TIER_HIGH_SESSION_LEVEL",
+            "DEVICE_TIER_MED_SESSION_LEVEL",
+            "DEVICE_TIER_LOW_SESSION_LEVEL",
+            "QUERY_TYPE_UNKNOWN_SESSION_LEVEL",
+            "QUERY_TYPE_CATEGORICAL_SESSION_LEVEL",
+            "QUERY_TYPE_NAVIGATIONAL_SESSION_LEVEL",
+            "QUERY_TYPE_MULTI_NAVIGATIONAL_SESSION_LEVEL",
+            "QUERY_TYPE_NAVIGATIONAL_EXT_SESSION_LEVEL",
+            "MR_HIGH_QUALITY_ZERO_SESSION_LEVEL",
+            "MR_HIGH_QUALITY_ONE_OR_TWO_SESSION_LEVEL",
+            "MR_HIGH_QUALITY_TRHEE_OR_MORE_SESSION_LEVEL",
+            "MR_HIGH_QUALITY_TOP_SESSION_LEVEL",
+            "MR_HIGH_RELEVANCE_ZERO_SESSION_LEVEL",
+            "MR_HIGH_RELEVANCE_ONE_OR_TWO_SESSION_LEVEL",
+            "MR_HIGH_RELEVANCE_TRHEE_OR_MORE_SESSION_LEVEL",
+            "MR_HIGH_RELEVANCE_TOP_SESSION_LEVEL",
+            "SR_HIGH_QUALITY_ZERO_SESSION_LEVEL",
+            "SR_HIGH_QUALITY_ONE_OR_TWO_SESSION_LEVEL",
+            "SR_HIGH_QUALITY_TRHEE_OR_MORE_SESSION_LEVEL",
+            "SR_HIGH_QUALITY_TOP_SESSION_LEVEL",
+            "SR_HIGH_RELEVANCE_ZERO_SESSION_LEVEL",
+            "SR_HIGH_RELEVANCE_ONE_OR_TWO_SESSION_LEVEL",
+            "SR_HIGH_RELEVANCE_TRHEE_OR_MORE_SESSION_LEVEL",
+            "SR_HIGH_RELEVANCE_TOP_SESSION_LEVEL",
+            "RAM_0GB_TO_1GB_SESSION_LEVEL",
+            "RAM_1GB_TO_2GB_SESSION_LEVEL",
+            "RAM_2GB_TO_3GB_SESSION_LEVEL",
+            "RAM_3GB_TO_4GB_SESSION_LEVEL",
+            "RAM_4GB_TO_6GB_SESSION_LEVEL",
+            "RAM_6GB_AND_MORE_SESSION_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_ELIGIBLE_SESSION_LEVEL",
+            "FOP_ORDERING_NO_RECOMMENDATION_SESSION_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_OUTDATED_SESSION_LEVEL",
+            "FOP_ORDERING_RECOMMENDATION_SAME_FOP_SESSION_LEVEL",
+            "FOP_ORDERING_STORED_VALUE_SESSION_LEVEL",
+            "DMA_PRE_CONSENT_PROMPT_SHOWN_SESSION_LEVEL",
+            "DMA_PRE_CONSENT_DECISION_MADE_SESSION_LEVEL",
+            "DMA_PRE_CONSENT_FLOW_DISMISSED_SESSION_LEVEL",
+            "BOOKS_LOYALTY_PROMO_BANNER_UNENROLLED_SESSION_LEVEL",
+            "BOOKS_LOYALTY_PROMO_BANNER_MULTIPLIER_SESSION_LEVEL",
+            "BOOKS_LOYALTY_PROMO_BANNER_BOOSTER_SESSION_LEVEL",
+            "BOOKS_LOYALTY_PROMO_BANNER_WEEKLY_PRIZE_SESSION_LEVEL",
+            "MDP_WITH_LIVE_OPS_EVER_INSTALLED_USERS_SESSION_LEVEL",
+            "MDP_WITH_LIVE_OPS_NEVER_INSTALLED_USERS_SESSION_LEVEL",
+            "LOW_STORAGE_AT_INSTALL_PREPROCESSING_SESSION_LEVEL",
+            "DSA_P13N_OPTED_IN_AT_SESSION_LEVEL",
+            "DSA_P13N_OPTED_OUT_AT_SESSION_LEVEL",
+            "LANGUAGE_SWITCHER_SERVED_SESSION_LEVEL",
+            "HAS_INSUFFICIENT_STORED_VALUE_BALANCE_BEFORE_RENEWAL_SESSION_LEVEL",
+            "USER_P13N_SETTING_UNSPECIFIED_AT_SESSION_LEVEL",
+            "BOOKS_USER_P13N_SETTING_UNSPECIFIED_AT_SESSION_LEVEL",
+            "USER_P13N_SETTING_ON_AT_SESSION_LEVEL",
+            "BOOKS_USER_P13N_SETTING_ON_AT_SESSION_LEVEL",
+            "USER_P13N_SETTING_OFF_AT_SESSION_LEVEL",
+            "BOOKS_USER_P13N_SETTING_OFF_AT_SESSION_LEVEL",
+            "BATTLESTAR_GAME_IN_MDP_SESSION_LEVEL",
+            "BATTLESTAR_PSEUDO_CREDIT_OFFER_IN_DP_SESSION_LEVEL",
+            "BATTLESTAR_BOTTOMSHEET_FROM_FCP_AUTOSEND",
+            "BATTLESTAR_BOTTOMSHEET_FHR_ON_FPC",
+            "BATTLESTAR_MERCH_FCP_FROM_FCC_CONTROL",
+            "REVIEW_HIGHLIGHTS_SESSION_LEVEL",
+            "BOOKS_NOTIFICATION_RECEIVED_SESSION_LEVEL",
+            "LANGUAGE_SWITCHER_ELIGIBLE_SESSION_LEVEL",
+            "SUBS_OFFER_ON_BUYFLOW_AT_SESSION_LEVEL",
+            "SUBS_OFFER_ON_BUYFLOW_ELIGIBLE_AT_SESSION_LEVEL",
+            "TRUSTED_VERTICAL_VPN_INTENT_SESSION_LEVEL",
+            "TRUSTED_VERTICAL_LOAN_INTENT_SESSION_LEVEL",
+            "FOP_PARTNER_PROMOTION_SESSION_LEVEL",
+            "SERP_YOUTUBE_VIDEO_CLUSTER_POPULATED_SESSION_LEVEL",
+            "LOWQ_APPS_DEMOTION_SESSION_LEVEL",
+            "PLANOGRAM_MERCH_TW_DYNASTY_EXTRA_FEATURING",
+            "AMPLIFY_FORM_OF_PAYMENT_ELIGIBLE_SESSION_LEVEL",
+            "AMPLIFY_FORM_OF_PAYMENT_ELIGIBLE_WITH_OFFER_SESSION_LEVEL",
+            "QUERY_TYPE_MDP_SESSION_LEVEL",
+            "QUERY_TYPE_NON_MDP_SESSION_LEVEL",
+            "NAV_CARD_SESSION_LEVEL",
+            "CART_WITH_BROKEN_FOP_SESSION_LEVEL",
+            "IS_ELIGIBLE_FOR_DYNAMIC_AUTH_SESSION_LEVEL",
+            "CLICKED_INSTALL_IN_DEEP_LINK_DETAILS",
+            "ONE_TIME_PRODUCT_VARIANT_OFFER_DARK_LAUNCH_SESSION_LEVEL",
+            "ONE_TIME_PRODUCT_VARIANT_OFFER_LAUNCH_SESSION_LEVEL",
+            "AMPLIFY_FORM_OF_PAYMENT_ABANDONMENT_ELIGIBLE_SESSION_LEVEL",
+            "SUBSCRIPTION_FREE_TRIAL_OFFER_HIGHLIGHT_SESSION_LEVEL",
+            "SUBSCRIPTION_INTRO_PRICE_OFFER_HIGHLIGHT_SESSION_LEVEL",
+            "SUBSCRIPTION_CANCELLATION_ELIGIBLE_FOR_RENEWAL_REMINDER",
+            "SUBSCRIPTION_CANCELLATION_NOT_ELIGIBLE_FOR_RENEWAL_REMINDER",
+            "USER_HAS_SET_RENEWAL_REMINDER",
+            "REVIEW_SUMMARY_HIGHLIGHTS_CLICK_SESSION_LEVEL",
+            "O2_MIGRATION_CARDS_CONTROL",
+            "O2_MIGRATION_CARDS_TREATMENT_TRIGGER_LATENCY",
+            "BATTLESTAR_SELF_SHARE_SESSION_LEVEL",
+            "APPS_NEW_USER_ONBOARDING_FCP_V2",
+            "SUPPLEMENTAL_TG_ANNOTATION_FOR_WEAR_SESSION_LEVEL",
+            "SEARCH_ADS_NON_MDP_RUC_RATE_SESSION_LEVEL",
+            "PGS_THIRD_PARTY_REVIEW_SESSION_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_AT_SESSION_LEVEL",
+            "BATTLESTAR_GAME_CENTRIC_BOTTOM_SHEET_ASSETS_SESSION_LEVEL",
+            "CART_ABANDONMENT_SUBSCRIPTION_BENEFITS_SESSION_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_ELIGIBLE_AT_SESSION_LEVEL",
+            "SHOULD_SEE_FIRST_PARTY_PROMO_LIVE_OP_SUBSCRIPTION_SESSION_LEVEL",
+            "SUBS_PAYMENT_DECLINE_SESSION_LEVEL",
+            "CART_ABANDONMENT_REMINDER_SESSION_LEVEL",
+            "CART_ABANDONMENT_REMINDER_POPULAR_APPS_SESSION_LEVEL",
+            "SUBSCRIPTION_OFFER_SWITCH_DATA_PRESENT_SESSION_LEVEL",
+            "BOOKS_READ_NOW_DUAL_FORMAT_REQUEST_SESSION_LEVEL",
+            "BOOKS_READ_NOW_WITH_HEADER_REQUEST_SESSION_LEVEL",
+            "FCC_FIRST_PARTY_CATEGORICAL_SEARCH_OFFERS_SESSION_LEVEL",
+            "MERCH_NOMADS_CN_EXP_CLUSTER_TARGETED_AT_SESSION_LEVEL",
+            "MERCH_NOMADS_CN_PROD_CLUSTER_TARGETED_AT_SESSION_LEVEL",
+            "MULTI_COLUMN_HP_GH_FIRST_4_ROWS_SESSION_LEVEL",
+            "MULTI_COLUMN_HP_AH_FIRST_4_ROWS_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_INSTRUMENT_3D_SECURE1_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_INSTRUMENT_3D_SECURE2_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_INSTRUMENT_CVN_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_INSTRUMENT_PIN_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_INSTRUMENT_REDIRECT_SESSION_LEVEL",
+            "PENDING_CARD_CHALLENGE_TYPE_OTHERS_SESSION_LEVEL",
+            "PLAY_SEARCH_SPAM_QUERY_LOW_QUALITY_APP_DEMOTION_SESSION_LEVEL",
+            "PURCHASE_ADD_FOP_OPTIONS_SCREEN_SESSION_LEVEL",
+            "PLAY_PASS_SUPERHERO_CLUSTER_APP_WITH_VIDEO",
+            "PLAY_PASS_SUPERHERO_CLUSTER_APP_WITH_PROMOTIONAL_DESCRIPTION",
+            "CART_ABANDONMENT_ITEM_RECOMMENDATION_SESSION_LEVEL",
+            "BATTLESTAR_GAME_CENTRIC_CUJ_EMAIL_SESSION_LEVEL",
+            "PREREGISTRATION_START_PURCHASE_FLOW_ON_CLICK",
+            "CUSTOMER_UPDATE_CHALLENGE_SESSION_LEVEL",
+            "WEBSKY_DISPLAY_SUBSCRIPTION_ENTITLEMENT_BENEFITS_SESSION_LEVEL",
+            "BATTLESTAR_BOTTOMSHEET_LARGER_LOADING_STATE",
+            "BATTLESTAR_BOTTOMSHEET_GDP_RIBBON_ONLY_CTA_CLICKABLE",
+            "PLAY_ONBOARDING_FLOW_SESSION_LEVEL",
+            "BECAUSE_YOU_PLAYED_FIRST_3_ROWS_SESSION_LEVEL",
+            "BECAUSE_YOU_INSTALLED_FIRST_3_ROWS_SESSION_LEVEL",
+            "LOYALTY_WEEKLY_REWARDS_ICC_FORMAT_NOW_HOME_SESSION_LEVEL",
+            "MULTILINE_SUBSCRIPTION_ADDON_TITLE_SESSION_LEVEL",
+            "PAYTM_WALLET_FAILURE_SESSION_LEVEL",
+            "CART_ABANDONMENT_SUBSCRIPTION_BENEFITS_SESSION_LEVEL_V2",
+            "MULTILINE_SUBSCRIPTION_BASIC_RESTORE_ENABLED_SESSION_LEVEL",
+            "DECLINE_MESSAGE_IN_SUBSCENTER_FIX_FLOW_SESSION_LEVEL_V1",
+            "SAVE_FOR_LATER_CART_ABANDONMENT_SCREEN_SESSION_LEVEL",
+            "CROSS_FORM_FACTOR_DETAILS_PAGEN_SESSION_LEVEL",
+            "CART_ABANDONMENT_NOTIFICATION_SESSION_LEVEL",
+            "DECLINE_RECOVERY_BETTER_CTA_ELIGIBLE_SESSION_LEVEL",
+            "DECLINE_RECOVERY_SUGGEST_NEXT_FOP_ELIGIBLE_SESSION_LEVEL",
+            "SESSION_LEVEL_TEST_CODE_LIMIT",
+            "CART_ABANDONMENT_USER_LEVEL",
+            "IN_APP_PRODUCTS_IN_DETAILS_PAGE_USER_LEVEL",
+            "BOOKS_DETAILS_PAGE_PROMOTION_USER_LEVEL",
+            "BURNSIE_ADD_FOP_PROMOTION_USER_LEVEL",
+            "BOOKS_DETAILS_PAGE_EXISTING_PROMOTION_USER_LEVEL",
+            "SWOOP_CAMPAIGN_10P_OFF_USER_LEVEL",
+            "SWOOP_CAMPAIGN_25P_OFF_USER_LEVEL",
+            "SWOOP_CAMPAIGN_50P_OFF_USER_LEVEL",
+            "SWOOP_CAMPAIGN_75P_OFF_USER_LEVEL",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_WAVE_2_USER_LEVEL",
+            "CART_ABANDONMENT_ELIGIBLE_USER_LEVEL",
+            "APPS_DETAILS_PAGE_PROMOTION_EXP_2_USER_LEVEL",
+            "APPS_DETAILS_PAGE_EXISTING_PROMOTION_EXP_2_USER_LEVEL",
+            "APPS_DETAILS_PAGE_PROMOTION_EXP_2_IN_APP_ITEM_NEVERS_USER_LEVEL",
+            "APPS_PERSONALIZED_TOPIC_QUERY_USER_LEVEL",
+            "APPS_PERSONALIZED_TG_QUERY_USER_LEVEL",
+            "APPS_PERSONALIZED_ALL_GAME_QUERIES_USER_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_GAME_SEEKING_QUERIES_USER_LEVEL",
+            "APPS_PERSONALIZED_CATEGORICAL_NON_TG_QUERIES_USER_LEVEL",
+            "SUBSCRIPTION_CANCELLATION_PROMOTION_USER_LEVEL",
+            "SUBSCRIPTION_UPDATE_FOP_FOR_DCB_AS_PRIMARY_SIGNUP_USER_LEVEL",
+            "SUBSCRIPTION_UPDATE_FOP_FOR_DCB_AS_PRIMARY_USER_LEVEL",
+            "SUBSCRIPTION_RETRY_FOP_FOR_DCB_AS_PRIMARY_USER_LEVEL",
+            "SUBSCRIPTION_DCB_AS_ADD_FOP_OPTION_USER_LEVEL",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_APP_1_AT_USER_LEVEL",
+            "PURCHASABLE_SUBSCRIPTIONS_IN_DETAILS_PAGE_APP_3_AT_USER_LEVEL",
+            "DETAILS_PAGE_PROMOTION_HOLDBACK_USER_LEVEL",
+            "LB_TARGETED_AT_USER_LEVEL",
+            "LB_IMPRESSED_AT_USER_LEVEL",
+            "MOVIES_USER_INTERESTS_NONE_AT_USER_LEVEL",
+            "MOVIES_USER_INTERESTS_LOW_AT_USER_LEVEL",
+            "MOVIES_USER_INTERESTS_MEDIUM_AT_USER_LEVEL",
+            "MOVIES_USER_INTERESTS_HIGH_AT_USER_LEVEL",
+            "MOVIES_BOY_SEEDS_NONE_AT_USER_LEVEL",
+            "MOVIES_BOY_SEEDS_LOW_AT_USER_LEVEL",
+            "MOVIES_BOY_SEEDS_MEDIUM_AT_USER_LEVEL",
+            "MOVIES_BOY_SEEDS_HIGH_AT_USER_LEVEL",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_ELIGIBLE_USER_LEVEL",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_TARGETED_USER_LEVEL",
+            "PLAY_PASS_IPD_ELIGIBLE_USER_LEVEL",
+            "PLAY_PASS_FHR_ELIGIBLE_USER_LEVEL",
+            "LOYALTY_UPSELL_AFTER_IN_APP_PURCHASE_AT_USER_LEVEL",
+            "PROMOTION_BANNER_ELIGIBLE_USER_LEVEL",
+            "LOYALTY_SEES_POINTS_EARN_PROMOTIONS_AT_USER_LEVEL",
+            "LOYALTY_SEES_FREE_TRIAL_SUBSCRIPTION_AT_USER_LEVEL",
+            "LOYALTY_SIGNUP_INTERSTITIAL_AT_USER_LEVEL",
+            "PLAY_SUBMANAGEMENT_LOG_HOOK_USER_EXAMPLE",
+            "NEW_USER_FOP_PROMOTION_SEEN",
+            "LOYALTY_UPSELL_SEEN_AT_USER_LEVEL",
+            "LOYALTY_ELIGIBLE_TO_SEE_UPSELL_AT_USER_LEVEL",
+            "LOYALTY_LIVE_OPS_RETURNED_AT_USER_LEVEL",
+            "PROMOLINK_CDP_USER_LEVEL",
+            "PROMOLINK_CDP_TITLE_PAGE_USER_LEVEL",
+            "PROMOLINK_CDP_TOPIC_PAGE_USER_LEVEL",
+            "PROMOLINK_CDP_GENERIC_PAGE_USER_LEVEL",
+            "POINTS_PROMOTION_CONTENT_PAGE_AT_USER_LEVEL",
+            "IN_APP_OFFER_AT_USER_LEVEL",
+            "IN_APP_OFFER_APP_1_AT_USER_LEVEL",
+            "IN_APP_OFFER_APP_2_AT_USER_LEVEL",
+            "IN_APP_OFFER_APP_3_AT_USER_LEVEL",
+            "IN_APP_OFFER_APP_4_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_GAMELOFT_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_EVONY_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ASPHALT_9_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_MAGIC_RAMPAGE_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_LAST_SURVIVOR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_SUMMONERS_WAR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_TOWER_OF_GOD_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_JACKPOT_WORLD_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_LOTSA_SLOTS_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_CASH_FRENZY_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_WAR_PLANET_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ESKYFUN_LEGENDS_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_MAHJONG_VILLAGE_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ONE_PUNCH_MAN_KR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_ONE_PUNCH_MAN_TW_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_APP_GRAND_CROSS_AT_USER_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_AT_USER_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_1_AT_USER_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_2_AT_USER_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_3_AT_USER_LEVEL",
+            "IN_APP_OFFER_ELIGIBLE_APP_4_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_GAMELOFT_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_EVONY_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ASPHALT_9_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_MAGIC_RAMPAGE_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_LAST_SURVIVOR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_SUMMONERS_WAR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_TOWER_OF_GOD_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_JACKPOT_WORLD_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_LOTSA_SLOTS_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_CASH_FRENZY_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_WAR_PLANET_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ESKYFUN_LEGENDS_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_MAHJONG_VILLAGE_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ONE_PUNCH_MAN_KR_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_ONE_PUNCH_MAN_TW_AT_USER_LEVEL",
+            "IN_APP_OFFER_BATTLESTAR_ELIGIBLE_APP_GRAND_CROSS_AT_USER_LEVEL",
+            "IN_APP_OFFER_SAVED_AT_USER_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_1_AT_USER_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_2_AT_USER_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_3_AT_USER_LEVEL",
+            "IN_APP_OFFER_SAVED_APP_4_AT_USER_LEVEL",
+            "SHOULD_SEE_FIRST_PARTY_PROMO_LIVE_OP_ON_SERP_MDP_USER_LEVEL",
+            "SHOULD_SEE_FIRST_PARTY_PROMO_LIVE_OP_ON_APP_DP_USER_LEVEL",
+            "CART_ABANDONMENT_SUBSCRIPTION_ONE_TIME_PASS_USER_LEVEL",
+            "GOOGLE_PROMOTIONS_ELIGIBLE_USER_LEVEL",
+            "USER_TRIGGERED_IAP_PROMOTION_RETRIEVAL_USER_LEVEL",
+            "LOYALTY_IAP_UPSELL_USER_LEVEL",
+            "IAP_HAS_UNREDEEMED_PROMOTIONS_CLIENT_USER_LEVEL",
+            "PLAY_STORE_IAP_SALES_USER_LEVEL",
+            "PLAY_STORE_IAP_SALES_APP_1_USER_LEVEL",
+            "PLAY_STORE_IAP_SALES_MINI_DETAILS_PAGE_USER_LEVEL",
+            "PLAY_GROWTH_IS_SCHEDULED",
+            "GEARHEAD_VISUAL_PREVIEW_UNCHAINED_ELIGIBLE",
+            "POST_PURCHASE_ITEM_UPSELL_USER_LEVEL",
+            "POST_PURCHASE_ITEM_UPSELL_WAVE_2_USER_LEVEL",
+            "POST_PURCHASE_ITEM_UPSELL_WAVE_2_USER_LEVEL_2",
+            "PLAY_PASS_SIGNUP_INTERSTITIAL_SHOWN_USER_LEVEL",
+            "DISABLE_TOPUP_EXPERIMENT_CONTROL_GROUP_USER_LEVEL",
+            "DISABLE_TOPUP_EXPERIMENT_TREATMENT_GROUP_USER_LEVEL",
+            "AVP_SWOOP_CAMPAIGN_10P_OFF_USER_LEVEL",
+            "AVP_SWOOP_CAMPAIGN_25P_OFF_USER_LEVEL",
+            "AVP_SWOOP_CAMPAIGN_50P_OFF_USER_LEVEL",
+            "AVP_SWOOP_CAMPAIGN_75P_OFF_USER_LEVEL",
+            "CDP_ENABLE_PREFETCH_USER_LEVEL",
+            "P13N_INTERSTITIAL_USER_LEVEL",
+            "PLAY_EVENT_SERVICE_LOG_HOOK_USER_EXAMPLE",
+            "FEATURED_SUBSCRIPTIONS_PRESENT_USER_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_USER_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_PREVIEW_BATCH_USER_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_SKU_DETAILS_USER_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_PREVIEW_BATCH_SKU_DETAILS_USER_LEVEL",
+            "USE_SUBSCRIPTION_NEW_DOCUMENT_FORMAT_FOR_ALL_SUBS_USER_LEVEL",
+            "LEON_LIVEOPS_DEAL_STATE_SYNC_USER_LEVEL",
+            "SURVEY_AHC_AT_USER_LEVEL",
+            "PLAY_PASS_CART_MAREKTING_BANNER_ELIGIBLE_AND_SHOWN_CART_USER_LEVEL",
+            "PLAY_PASS_PERKS_VOUCHER_IN_CART_USER_LEVEL",
+            "PLAY_PASS_PARENT_FOCUSED_SPLASH_PAGE_USER_LEVEL",
+            "PLAY_PASS_SPLASH_PAGE_FOR_UNICORN_USER_LEVEL",
+            "IN_CART_EXCHANGE_OPTIONS_ELIGIBLE_USER_LEVEL",
+            "GE_STAMP_CARD_INDIVIDUALIZATION_COUNTERFACTUAL",
+            "GE_USER_BUYER_STATE_UNKNOWN",
+            "GE_USER_BUYER_STATE_NEVER",
+            "GE_USER_BUYER_STATE_NEW",
+            "GE_USER_BUYER_STATE_CHURN",
+            "GE_USER_BUYER_STATE_REPEAT",
+            "GE_USER_VALUE_SEGMENT_UNKNOWN",
+            "GE_USER_VALUE_SEGMENT_LOW",
+            "GE_USER_VALUE_SEGMENT_MEDIUM",
+            "GE_USER_VALUE_SEGMENT_HIGH",
+            "GE_USER_VALUE_SEGMENT_NEVER",
+            "GE_POINTS_BOOSTER_MODEL_LAUNCH",
+            "GE_MULTIPLIER_EXPLORATION_WITH_ALL_NEGATIVE_GAINS",
+            "GE_IS_SCHEDULED_UNKNOWN_SURFACE",
+            "GE_IS_SCHEDULED_LEON",
+            "GE_IS_SCHEDULED_NOTIFICATION",
+            "GE_IS_SCHEDULED_CART_ABANDONMENT",
+            "GE_IS_SCHEDULED_SWOOP",
+            "GE_IS_SCHEDULED_LIVE_OP",
+            "GE_IS_SCHEDULED_REDEEM_SAVE",
+            "GE_IS_SCHEDULED_APP_HERO_CARD",
+            "GE_IS_SCHEDULED_POINTS_BOOSTER",
+            "GE_IS_SCHEDULED_INTERSTITIAL",
+            "GE_IS_SCHEDULED_COFFEE_CARD",
+            "GE_IS_SCHEDULED_QUEST",
+            "GE_IS_SCHEDULED_LOYALTY_MULTIPLIER",
+            "GE_IS_SCHEDULED_POST_PURCHASE_OFFER",
+            "GE_IS_USER_OPT_IN_P13N",
+            "GE_LOYALTY_PURCHASE_QUEST_INDIVIDUALIZATION_EXPERIMENT",
+            "GE_POST_PURCHASE_OFFER_INDIVIDUALIZATION_EXPERIMENT",
+            "IAP_SKU_DEALS_LIVE_OP_DEALS_HOME_USER_LEVEL",
+            "IAP_SKU_DEALS_LIVE_OP_GAMES_HOME_USER_LEVEL",
+            "FEATURING_AHC_OR_FHR_TRIGGERED_USER_LEVEL",
+            "ALLOWLIST_EXPANSION_FOR_P13N_INTERSTITIAL_USER_LEVEL",
+            "SURVEY_RECS_LIST_AT_USER_LEVEL",
+            "DEV_OFFER_SWGOH_USER_LEVEL",
+            "ALLOWLIST_EXPANSION_FOR_P13N_NOTIFICATIONS_USER_LEVEL",
+            "GROWTH_COFFEE_CARD_IN_PURCHASE_FLOW_USER_LEVEL",
+            "GROWTH_COFFEE_CARD_IN_PURCHASE_FLOW_SERVER_USER_LEVEL",
+            "GROWTH_CORPUS_WIDE_STAMP_CARD_PURCHASE_FLOW_CLIENT_USER_LEVEL",
+            "GROWTH_CORPUS_WIDE_STAMP_CARD_PURCHASE_FLOW_SERVER_USER_LEVEL",
+            "GROWTH_CORPUS_WIDE_STAMP_CARD_GAMES_HOME_USER_LEVEL",
+            "LOYALTY_PURCHASE_QUEST_GAMES_HOME_USER_LEVEL",
+            "LOYALTY_CORPUS_WIDE_STAMP_CARD_GAMES_HOME_CLIENT_USER_LEVEL",
+            "GROWTH_CORPUS_WIDE_STAMP_CARD_GAMES_HOME_SERVER_USER_LEVEL",
+            "LOYALTY_PURCHASE_QUEST_GAMES_HOME_SERVER_USER_LEVEL",
+            "LOYALTY_PURCHASE_QUEST_SERP_SERVER_USER_LEVEL",
+            "LOYALTY_CORPUS_WIDE_STAMP_CARD_GAMES_HOME_SERVER_USER_LEVEL",
+            "LOYALTY_CORPUS_WIDE_STAMP_CARD_DETAILS_PAGE_SERVER_USER_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_USER_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_USER_LEVEL_V2",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_WITH_EXISTING_FOP_USER_LEVEL",
+            "SUBS_HIGH_CHURN_FOP_OPTIONS_AVAILABLE_WITHOUT_EXISTING_FOP_USER_LEVEL",
+            "WIDE_MEDIA_CLUSTER_INVALID_VIDEO_ASSET_USER_LEVEL",
+            "WEBSKY_SEARCH_THIRD_PARTY_CONTENT_ELIGIBLE_QUERY_USER_LEVEL",
+            "EDITORIAL_FCC_AT_USER_LEVEL",
+            "QUEST_CONTENT_CARD_IN_DEALS_HOME_USER_LEVEL",
+            "FOP_STEERING_PROMOTION_INITIAL_BILLING_PROFILE_USER_LEVEL_V2",
+            "FOP_STEERING_PROMOTION_CART_ADD_FOP_USER_LEVEL_V2",
+            "FOP_STEERING_PROMOTION_CART_CHANGE_FOP_USER_LEVEL_V2",
+            "FOP_STEERING_PROMOTION_CART_APPLY_PROMOTION_USER_LEVEL_V2",
+            "FOP_STEERING_PROMOTION_USER_LEVEL",
+            "FOP_STEERING_PROMOTION_EXCLUDE_CUJ4_USER_LEVEL",
+            "SUBSCRIPTION_PENDING_ACKNOWLEDGEMENT_EMAIL_USER_LEVEL",
+            "SUBSCRIPTION_PENDING_ACKNOWLEDGEMENT_NOTIFICATION_USER_LEVEL",
+            "LOYALTY_STAMP_CARD_IN_PURCHASE_FLOW_USER_LEVEL",
+            "HAS_MONETIZATION_BEHAVIOR_USER_LEVEL",
+            "HAS_MONETIZATION_BEHAVIOR_LAST_180D_USER_LEVEL",
+            "HAS_LAST_28D_CART_ABANDONMENT_USER_LEVEL",
+            "HAS_LAST_7D_CART_ABANDONMENT_USER_LEVEL",
+            "LINK_BIOMETRICS_NEW_SETUP_USER_LEVEL_V3_6",
+            "LINK_BIOMETRICS_NEW_SETUP_USER_LEVEL_BEFORE_SNOOZE_V3_7",
+            "POST_SUCCESS_ADD_BACKUP_FLOW_USER_LEVEL",
+            "SKIP_CHECK_MARK_SCREEN_WITH_BACKUP_FLOW_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_ONE_CLICK_BACKUP_FOP_USER_LEVEL",
+            "LOYALTY_STAMP_CARD_IN_PURCHASE_FLOW_SERVER_USER_LEVEL",
+            "ELIGIBLE_FOR_MANAGE_IN_APP_DETAILS_USER_LEVEL",
+            "PLAY_ONBOARDING_QUEST_GAMES_HOME_USER_LEVEL",
+            "SERVED_GPP_ONBOARDING_QUEST_USER_LEVEL",
+            "PLAY_ONBOARDING_QUEST_GAMES_HOME_SERVER_USER_LEVEL",
+            "PCH_O2_WITH_CRE_USER_LEVEL",
+            "MERCH_USER_JOURNEY_SPEND_USER_LEVEL",
+            "MERCH_USER_JOURNEY_PUBG_NPU",
+            "MERCH_USER_JOURNEY_PUBG_REPEAT_SPEND",
+            "MERCH_USER_JOURNEY_APEX_NEW_ACTIVE_USERS",
+            "MERCH_USER_JOURNEY_APEX_NEW_CHURN",
+            "MERCH_USER_JOURNEY_PUBG_NEW_USERS",
+            "MERCH_USER_JOURNEY_PUBG_ADVANCED_AND_CHURN",
+            "MERCH_USER_JOURNEY_FREE_FIRE_ADVANCED_AND_CHURN",
+            "MERCH_USER_JOURNEY_GARENA_REPEAT",
+            "MERCH_USER_JOURNEY_NIKKE_NEW_UPDATE",
+            "MERCH_USER_JOURNEY_NIKKE_ADVANCED_UPDATE",
+            "MERCH_USER_JOURNEY_POKEMON_GO_ADVANCED_AND_CHURN",
+            "PLAY_GAMES_ACHIEVEMENT_LOYALTY_QUEST_USER_LEVEL",
+            "PLAY_BOOKS_READING_PROGRESS_TOOLTIP_USER_LEVEL",
+            "IAP_SKU_DEALS_LIVE_OP_GAMES_HOME_USER_LEVEL1",
+            "POST_PURCHASE_OFFER_POST_PURCHASE_CONFIRMATION_DIALOG_SERVER_USER_LEVEL",
+            "POST_PURCHASE_OFFER_POST_PURCHASE_OFFER_SAVED_DIALOG_SERVER_USER_LEVEL",
+            "POST_PURCHASE_OFFER_VALUE_PROMOTION_DIALOG_SHOWN_SERVER_USER_LEVEL",
+            "MDP_P13N_RERANKING_UNKNOWN_USER_LEVEL",
+            "MDP_P13N_RERANKING_CATEGORICAL_USER_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_USER_LEVEL",
+            "MDP_P13N_RERANKING_MULTI_NAVIGATIONAL_USER_LEVEL",
+            "MDP_P13N_RERANKING_NAVIGATIONAL_EXT_USER_LEVEL",
+            "PLAY_ONBOARDING_QUEST_PLATFORM_SERVING_USER_LEVEL",
+            "APPS_LAUNCHER_CLUSTER_AT_USER_LEVEL",
+            "TRIGGERED_DEV_SUCCESS_CLUSTER_USER_LEVEL",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_INVALID_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_0_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_1_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_2_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_3_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_4_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_5_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_6_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_7_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_8_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_9_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_10_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_11_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_12_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_13_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_14_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_15_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_16_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_17_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_18_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_19_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_20_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_21_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_22_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_23_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_24_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_25_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_26_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_27_USER_LEVEL_V2",
+            "PREPERIOD_PAGE_VISIT_28D_FREQUENCY_28_USER_LEVEL_V2",
+            "HAS_REINSTALL_APP_PASSING_FILTERING_USER_LEVEL",
+            "HAS_RECOMMENDED_APP_WITH_OOP_REINSTALL_ELIGIBILITY_USER_LEVEL",
+            "HAS_PAST_OOP_SPEND_ON_GAME_USER_LEVEL",
+            "HAS_PAST_OOP_SPEND_ON_APPLICATION_USER_LEVEL",
+            "NOTIFICATION_PREDICTED_REV_GAIN_FILTERING_USER_LEVEL",
+            "NOTIFICATION_PUBLICITY_GAIN_DISABLED_USER_LEVEL",
+            "UNACK_IN_APP_SUBSCRIPTION_WARNING_DETAIL_PAGE_USER_LEVEL",
+            "PURCHASE_READINESS_ADD_FOP_USER_LEVEL",
+            "PURCHASE_READINESS_ADD_AUTH_USER_LEVEL",
+            "PURCHASE_READINESS_ADD_FOP_AUTH_USER_LEVEL",
+            "SUBS_PAYMENT_DECLINE_USER_LEVEL",
+            "CART_ABANDONMENT_REMINDER_USER_LEVEL",
+            "CART_ABANDONMENT_REMINDER_POPULAR_APPS_USER_LEVEL",
+            "SUBSCRIPTION_OFFER_SWITCH_DATA_PRESENT_USER_LEVEL",
+            "FCC_FIRST_PARTY_CATEGORICAL_SEARCH_OFFERS_USER_LEVEL",
+            "MERCH_CONTENT_EXP_ACTIVE_PUBG_USER_LEVEL",
+            "MERCH_CONTENT_EXP_ACTIVE_GENSHIN_USER_LEVEL",
+            "MERCH_CONTENT_EXP_ACTIVE_ROBLOX_USER_LEVEL",
+            "MERCH_CONTENT_EXP_ACTIVE_POKEMON_GO_USER_LEVEL",
+            "DMA_PRE_CONSENT_PROMPT_SHOWN_USER_LEVEL",
+            "DMA_PRE_CONSENT_DECISION_MADE_USER_LEVEL",
+            "DMA_PRE_CONSENT_FLOW_DISMISSED_USER_LEVEL",
+            "DSA_P13N_OPTED_IN_AT_USER_LEVEL",
+            "DSA_P13N_OPTED_OUT_AT_USER_LEVEL",
+            "LIVEOPS_INSTALL_NOTIFICATION_USER_LEVEL",
+            "USER_P13N_SETTING_UNSPECIFIED_AT_USER_LEVEL",
+            "BOOKS_USER_P13N_SETTING_UNSPECIFIED_AT_USER_LEVEL",
+            "USER_P13N_SETTING_ON_AT_USER_LEVEL",
+            "BOOKS_USER_P13N_SETTING_ON_AT_USER_LEVEL",
+            "USER_P13N_SETTING_OFF_AT_USER_LEVEL",
+            "BOOKS_USER_P13N_SETTING_OFF_AT_USER_LEVEL",
+            "LIVEOPS_CLUSTER_SERP_TRIGGERING_USER_LEVEL",
+            "BOOKS_NOTIFICATION_RECEIVED_USER_LEVEL",
+            "LIVEOPS_INSTALL_NOTIFICATION_CHURNED_USER_LEVEL",
+            "SUBS_OFFER_ON_BUYFLOW_AT_USER_LEVEL",
+            "SUBS_OFFER_ON_BUYFLOW_ELIGIBLE_AT_USER_LEVEL",
+            "FOP_PARTNER_PROMOTION_USER_LEVEL",
+            "BOOKS_LOYALTY_PROMO_BANNER_WEEKLY_PRIZE_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_DYNAMIC_AUTH_USER_LEVEL",
+            "GE_LIVEOPS_PSPEND_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_RENEWAL_REMINDER_USER_LEVEL",
+            "FEATURED_PRODUCTS_LIVE_OPS_AT_USER_LEVEL",
+            "FEATURED_PRODUCTS_LIVE_OPS_CLIENT_AT_USER_LEVEL",
+            "FIRST_PARTY_OFFERS_REQUEST_TRIGGER_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_APP_TARGETED_REWARD_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_APP_TARGETED_REWARD_ZYNGA_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_APP_TARGETED_REWARD_SUPERCELL_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_APP_TARGETED_REWARD_KING_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_APP_TARGETED_REWARD_MINICLIP_USER_LEVEL",
+            "IS_APP_TARGETED_REWARD_BANNER_VISIBLE_USER_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_AT_USER_LEVEL",
+            "CART_ABANDONMENT_SUBSCRIPTION_BENEFITS_USER_LEVEL",
+            "GAME_HUB_DEVELOPER_VIDEO_ELIGIBLE_AT_USER_LEVEL",
+            "SHOULD_SEE_FIRST_PARTY_PROMO_LIVE_OP_SUBSCRIPTION_USER_LEVEL",
+            "SUBS_PAYMENT_DECLINE_V2_USER_LEVEL",
+            "MERCH_NOMADS_CN_EXP_CLUSTER_TARGETED_AT_USER_LEVEL",
+            "MERCH_NOMADS_CN_PROD_CLUSTER_TARGETED_AT_USER_LEVEL",
+            "NOTIFICATION_GUM_FINE_TUNING_MODEL_USER_LEVEL",
+            "ELIGIBLE_FOR_COMICS_CLUSTER_AH_USER_LEVEL",
+            "HIGH_COMIC_APP_USAGE_USER_LEVEL",
+            "MODERATE_COMIC_APP_USAGE_USER_LEVEL",
+            "COMIC_SAMPLING_PICCOMA_INSTALLED_USER_LEVEL",
+            "COMIC_SAMPLING_MANGA_ONE_INSTALLED_USER_LEVEL",
+            "COMIC_SAMPLING_MAGAPOKE_INSTALLED_USER_LEVEL",
+            "COMIC_SAMPLING_JUMP_INSTALLED_USER_LEVEL",
+            "COMIC_SAMPLING_LINE_MANGA_INSTALLED_USER_LEVEL",
+            "COMIC_SAMPLING_ANY_INSTALLED_USER_LEVEL",
+            "REDEEM_SAVE_BUYER_SPEND_MODEL_USER_LEVEL",
+            "PURCHASE_ADD_FOP_OPTIONS_SCREEN_USER_LEVEL",
+            "CART_ABANDONMENT_ITEM_RECOMMENDATION_USER_LEVEL",
+            "CART_ABANDONMENT_ITEM_RECOMMENDATION_LOWER_PRICED_USER_LEVEL",
+            "CART_ABANDONMENT_ITEM_RECOMMENDATION_POPULAR_USER_LEVEL",
+            "HAS_INSUFFICIENT_STORED_VALUE_BALANCE_BEFORE_RENEWAL_USER_LEVEL",
+            "IS_ELIGIBLE_FOR_ONE_CLICK_BAKCUP_FOP_IN_FIX_FLOW_USER_LEVEL",
+            "WEBSKY_DISPLAY_SUBSCRIPTION_ENTITLEMENT_BENEFITS_USER_LEVEL",
+            "HAS_INSUFFICIENT_STORED_VALUE_BALANCE_BEFORE_RENEWAL_V2_USER_LEVEL",
+            "LOYALTY_WEEKLY_REWARDS_ICC_FORMAT_NOW_HOME_USER_LEVEL",
+            "PREREGISTRATION_SHOULD_SEE_NOTIFICATION_DIALOG_USER_LEVEL",
+            "MULTILINE_SUBSCRIPTION_ADDON_TITLE_USER_LEVEL",
+            "UNIFIED_ITEM_RECOMMENDATION_USER_LEVEL",
+            "UNIFIED_ITEM_RECOMMENDATION_LOWER_PRICED_USER_LEVEL",
+            "UNIFIED_ITEM_RECOMMENDATION_POPULAR_USER_LEVEL",
+            "CART_WITH_BROKEN_FOP_USER_LEVEL",
+            "CART_ABANDONMENT_SUBSCRIPTION_BENEFITS_USER_LEVEL_V2",
+            "DECLINE_MESSAGE_IN_SUBSCENTER_FIX_FLOW_USER_LEVEL",
+            "MULTILINE_SUBSCRIPTION_BASIC_RESTORE_ENABLED_USER_LEVEL",
+            "SAVE_FOR_LATER_CART_ABANDONMENT_SCREEN_USER_LEVEL",
+            "CART_ABANDONMENT_NOTIFICATION_USER_LEVEL",
+            "USER_LEVEL_TEST_CODE_LIMIT",
+        ]
+    ]
     trustedGenomeHierarchy: _list[VendingConsumerProtoTrustedGenomeHierarchy]
 
 @typing.type_check_only
@@ -38364,7 +42592,14 @@ class VendingConsumerProtoTrustedGenomeHierarchy(
 @typing.type_check_only
 class VendingConsumerProtoTrustedGenomePolicy(typing_extensions.TypedDict, total=False):
     localizedRegionOverride: str
-    policyType: _list[str]
+    policyType: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_POLICY_TYPE",
+            "GOVERNMENT_COMMISSIONED",
+            "APOLLO_APPROVED",
+            "APOLLO_EXPRESS",
+        ]
+    ]
     targetRegion: _list[VendingConsumerProtoTrustedGenomePolicyTargetRegion]
 
 @typing.type_check_only
@@ -39420,7 +43655,26 @@ class VideoContentSearchVideoAnchor(typing_extensions.TypedDict, total=False):
     destinationUrl: str
     duration: str
     entityScore: float
-    filterReason: _list[str]
+    filterReason: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_REASON",
+            "DISPLAY_SIZE_LIMIT",
+            "THUMBNAIL_MISSING",
+            "THUMBNAIL_UNSAFE",
+            "LABEL_UNSAFE",
+            "TITLE_DUPLICATE_AND_CLOSE_TO_START",
+            "POLICY",
+            "INVALID_TIMESTAMP",
+            "NO_ANCHOR_DESTINATION_URL",
+            "LABEL_WITH_RESTRICTED_ENTITIES",
+            "LABEL_WITH_PERSON_NAMES",
+            "LABEL_IN_VIDEO_WITH_RESTRICTED_PETACATS",
+            "LABEL_REMOVED_BY_GENERAL_SAFE_SEARCH",
+            "LABEL_REMOVED_BY_FRINGE_SAFE_SEARCH",
+            "LABEL_REMOVED_BY_OFFENSIVE_SAFE_SEARCH",
+            "LABEL_IN_VIDEO_GENERAL_SAFE_SEARCH",
+        ]
+    ]
     isFiltered: bool
     isSafe: bool
     isScutiBad: bool
@@ -39532,9 +43786,61 @@ class VideoContentSearchVideoAnchors(typing_extensions.TypedDict, total=False):
     ]
     entityGroupInfo: VideoContentSearchEntityGroupInfo
     experimentalPredictedQuerylessTocUsefulness: float
-    filterReason: _list[str]
+    filterReason: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_REASON",
+            "DISPLAY_SIZE_LIMIT",
+            "THUMBNAIL_MISSING",
+            "THUMBNAIL_UNSAFE",
+            "LABEL_UNSAFE",
+            "TITLE_DUPLICATE_AND_CLOSE_TO_START",
+            "POLICY",
+            "INVALID_TIMESTAMP",
+            "NO_ANCHOR_DESTINATION_URL",
+            "LABEL_WITH_RESTRICTED_ENTITIES",
+            "LABEL_WITH_PERSON_NAMES",
+            "LABEL_IN_VIDEO_WITH_RESTRICTED_PETACATS",
+            "LABEL_REMOVED_BY_GENERAL_SAFE_SEARCH",
+            "LABEL_REMOVED_BY_FRINGE_SAFE_SEARCH",
+            "LABEL_REMOVED_BY_OFFENSIVE_SAFE_SEARCH",
+            "LABEL_IN_VIDEO_GENERAL_SAFE_SEARCH",
+        ]
+    ]
     isFiltered: bool
-    mergedAnchorsSources: _list[str]
+    mergedAnchorsSources: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "DESCRIPTION_ANCHOR",
+            "LIST",
+            "OCR",
+            "LIST_ENTITY",
+            "CAPTION_ENTITY",
+            "KEY_MOMENT",
+            "QUESTION_AND_ANSWER",
+            "MARKUP",
+            "OCR_ASR",
+            "ASR_SPAN",
+            "INSTRUCTION",
+            "DESCRIPTION_SPAN",
+            "EXPERIMENTAL_MORE_VIDEO_ANSWERS",
+            "SHOPPING_OPINIONS",
+            "GENERATED_QUERY",
+            "HIGHLIGHTED_SNIPPET",
+            "SHORT_TOPIC_HEADING_GROUP",
+            "SHOPPING_ASR_SPAN",
+            "RADISH_QA",
+            "GENERATIVE_ASR",
+            "ASR_TRANSCRIPT",
+            "COMMENT",
+            "GENERATIVE_ASR_V2",
+            "SUMMARY_SEGMENT",
+            "OCR_EDU",
+            "ASR_SPAN_EDU",
+            "GENERATIVE_ASR_I18N",
+            "YT_AUTO_CHAPTERS",
+            "OCR_I18N",
+        ]
+    ]
     predictedQuerylessTocUsefulness: float
     score: float
     scoreInfo: VideoContentSearchVideoAnchorsScoreInfo
@@ -41836,7 +46142,36 @@ class VideoVideoStreamInfo(typing_extensions.TypedDict, total=False):
 class VideoVideoStreamInfoAudioStream(typing_extensions.TypedDict, total=False):
     ambisonics: VideoAmbisonicsAmbisonicsMetadata
     bitrate: str
-    channelPosition: _list[str]
+    channelPosition: _list[
+        typing_extensions.Literal[
+            "CHANNEL_UNKNOWN",
+            "CHANNEL_FRONT_LEFT",
+            "CHANNEL_FRONT_RIGHT",
+            "CHANNEL_FRONT_CENTER",
+            "CHANNEL_LOW_FREQUENCY",
+            "CHANNEL_BACK_LEFT",
+            "CHANNEL_BACK_RIGHT",
+            "CHANNEL_FRONT_LEFT_OF_CENTER",
+            "CHANNEL_FRONT_RIGHT_OF_CENTER",
+            "CHANNEL_BACK_CENTER",
+            "CHANNEL_SIDE_LEFT",
+            "CHANNEL_SIDE_RIGHT",
+            "CHANNEL_TOP_CENTER",
+            "CHANNEL_TOP_FRONT_LEFT",
+            "CHANNEL_TOP_FRONT_CENTER",
+            "CHANNEL_TOP_FRONT_RIGHT",
+            "CHANNEL_TOP_BACK_LEFT",
+            "CHANNEL_TOP_BACK_CENTER",
+            "CHANNEL_TOP_BACK_RIGHT",
+            "CHANNEL_STEREO_LEFT",
+            "CHANNEL_STEREO_RIGHT",
+            "CHANNEL_WIDE_LEFT",
+            "CHANNEL_WIDE_RIGHT",
+            "CHANNEL_SURROUND_DIRECT_LEFT",
+            "CHANNEL_SURROUND_DIRECT_RIGHT",
+            "CHANNEL_LOW_FREQUENCY_2",
+        ]
+    ]
     channels: int
     clockDiscontinuityUs: str
     codecFourcc: str

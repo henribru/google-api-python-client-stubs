@@ -13,7 +13,11 @@ class GoogleSecuritySafebrowsingV5FullHash(typing_extensions.TypedDict, total=Fa
 class GoogleSecuritySafebrowsingV5FullHashFullHashDetail(
     typing_extensions.TypedDict, total=False
 ):
-    attributes: _list[str]
+    attributes: _list[
+        typing_extensions.Literal[
+            "THREAT_ATTRIBUTE_UNSPECIFIED", "CANARY", "FRAME_ONLY"
+        ]
+    ]
     threatType: typing_extensions.Literal[
         "THREAT_TYPE_UNSPECIFIED",
         "MALWARE",

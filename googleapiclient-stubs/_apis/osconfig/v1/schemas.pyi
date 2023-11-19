@@ -761,7 +761,20 @@ class WeeklySchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WindowsUpdateSettings(typing_extensions.TypedDict, total=False):
-    classifications: _list[str]
+    classifications: _list[
+        typing_extensions.Literal[
+            "CLASSIFICATION_UNSPECIFIED",
+            "CRITICAL",
+            "SECURITY",
+            "DEFINITION",
+            "DRIVER",
+            "FEATURE_PACK",
+            "SERVICE_PACK",
+            "TOOL",
+            "UPDATE_ROLLUP",
+            "UPDATE",
+        ]
+    ]
     excludes: _list[str]
     exclusivePatches: _list[str]
 

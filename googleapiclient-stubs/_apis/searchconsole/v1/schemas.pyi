@@ -213,7 +213,11 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     ]
     dataState: typing_extensions.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL"]
     dimensionFilterGroups: _list[ApiDimensionFilterGroup]
-    dimensions: _list[str]
+    dimensions: _list[
+        typing_extensions.Literal[
+            "DATE", "QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE"
+        ]
+    ]
     endDate: str
     rowLimit: int
     searchType: typing_extensions.Literal[

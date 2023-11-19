@@ -659,7 +659,11 @@ class NotificationChannelDescriptor(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     name: str
-    supportedTiers: _list[str]
+    supportedTiers: _list[
+        typing_extensions.Literal[
+            "SERVICE_TIER_UNSPECIFIED", "SERVICE_TIER_BASIC", "SERVICE_TIER_PREMIUM"
+        ]
+    ]
     type: str
 
 @typing.type_check_only
@@ -918,7 +922,18 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
     name: str
     period: str
     resourceGroup: ResourceGroup
-    selectedRegions: _list[str]
+    selectedRegions: _list[
+        typing_extensions.Literal[
+            "REGION_UNSPECIFIED",
+            "USA",
+            "EUROPE",
+            "SOUTH_AMERICA",
+            "ASIA_PACIFIC",
+            "USA_OREGON",
+            "USA_IOWA",
+            "USA_VIRGINIA",
+        ]
+    ]
     syntheticMonitor: SyntheticMonitorTarget
     tcpCheck: TcpCheck
     timeout: str

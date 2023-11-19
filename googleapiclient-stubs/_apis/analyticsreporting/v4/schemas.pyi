@@ -310,7 +310,16 @@ class ScreenviewData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchUserActivityRequest(typing_extensions.TypedDict, total=False):
-    activityTypes: _list[str]
+    activityTypes: _list[
+        typing_extensions.Literal[
+            "ACTIVITY_TYPE_UNSPECIFIED",
+            "PAGEVIEW",
+            "SCREENVIEW",
+            "GOAL",
+            "ECOMMERCE",
+            "EVENT",
+        ]
+    ]
     dateRange: DateRange
     pageSize: int
     pageToken: str

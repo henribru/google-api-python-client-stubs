@@ -81,7 +81,9 @@ class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequestListUpdateRequest
     maxDatabaseEntries: int
     maxUpdateEntries: int
     region: str
-    supportedCompressions: _list[str]
+    supportedCompressions: _list[
+        typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
+    ]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponse(
@@ -291,10 +293,53 @@ class GoogleSecuritySafebrowsingV4ThreatHitUserInfo(
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatInfo(typing_extensions.TypedDict, total=False):
-    platformTypes: _list[str]
+    platformTypes: _list[
+        typing_extensions.Literal[
+            "PLATFORM_TYPE_UNSPECIFIED",
+            "WINDOWS",
+            "LINUX",
+            "ANDROID",
+            "OSX",
+            "IOS",
+            "ANY_PLATFORM",
+            "ALL_PLATFORMS",
+            "CHROME",
+        ]
+    ]
     threatEntries: _list[GoogleSecuritySafebrowsingV4ThreatEntry]
-    threatEntryTypes: _list[str]
-    threatTypes: _list[str]
+    threatEntryTypes: _list[
+        typing_extensions.Literal[
+            "THREAT_ENTRY_TYPE_UNSPECIFIED",
+            "URL",
+            "EXECUTABLE",
+            "IP_RANGE",
+            "CHROME_EXTENSION",
+            "FILENAME",
+            "CERT",
+        ]
+    ]
+    threatTypes: _list[
+        typing_extensions.Literal[
+            "THREAT_TYPE_UNSPECIFIED",
+            "MALWARE",
+            "SOCIAL_ENGINEERING",
+            "UNWANTED_SOFTWARE",
+            "POTENTIALLY_HARMFUL_APPLICATION",
+            "SOCIAL_ENGINEERING_INTERNAL",
+            "API_ABUSE",
+            "MALICIOUS_BINARY",
+            "CSD_WHITELIST",
+            "CSD_DOWNLOAD_WHITELIST",
+            "CLIENT_INCIDENT",
+            "CLIENT_INCIDENT_WHITELIST",
+            "APK_MALWARE_OFFLINE",
+            "SUBRESOURCE_FILTER",
+            "SUSPICIOUS",
+            "TRICK_TO_BILL",
+            "HIGH_CONFIDENCE_ALLOWLIST",
+            "ACCURACY_TIPS",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleSecuritySafebrowsingV4ThreatListDescriptor(

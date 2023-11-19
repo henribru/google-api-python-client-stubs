@@ -16,7 +16,11 @@ class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
         "ALTERNATIVE_OUTPUT_FORMAT_UNSPECIFIED", "FHIR_BUNDLE"
     ]
     documentContent: str
-    licensedVocabularies: _list[str]
+    licensedVocabularies: _list[
+        typing_extensions.Literal[
+            "LICENSED_VOCABULARY_UNSPECIFIED", "ICD10CM", "SNOMEDCT_US"
+        ]
+    ]
 
 @typing.type_check_only
 class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):

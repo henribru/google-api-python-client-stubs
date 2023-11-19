@@ -417,7 +417,11 @@ class PerfMetricsSummary(typing_extensions.TypedDict, total=False):
     graphicsStats: GraphicsStats
     historyId: str
     perfEnvironment: PerfEnvironment
-    perfMetrics: _list[str]
+    perfMetrics: _list[
+        typing_extensions.Literal[
+            "perfMetricTypeUnspecified", "memory", "cpu", "network", "graphics"
+        ]
+    ]
     projectId: str
     stepId: str
 

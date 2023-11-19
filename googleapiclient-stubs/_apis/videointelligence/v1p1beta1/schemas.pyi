@@ -600,7 +600,20 @@ class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoProgress(
 class GoogleCloudVideointelligenceV1p1beta1_AnnotateVideoRequest(
     typing_extensions.TypedDict, total=False
 ):
-    features: _list[str]
+    features: _list[
+        typing_extensions.Literal[
+            "FEATURE_UNSPECIFIED",
+            "LABEL_DETECTION",
+            "SHOT_CHANGE_DETECTION",
+            "EXPLICIT_CONTENT_DETECTION",
+            "FACE_DETECTION",
+            "SPEECH_TRANSCRIPTION",
+            "TEXT_DETECTION",
+            "OBJECT_TRACKING",
+            "LOGO_RECOGNITION",
+            "PERSON_DETECTION",
+        ]
+    ]
     inputContent: str
     inputUri: str
     locationId: str

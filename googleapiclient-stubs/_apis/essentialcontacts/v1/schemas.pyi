@@ -16,7 +16,19 @@ class GoogleCloudEssentialcontactsV1Contact(typing_extensions.TypedDict, total=F
     email: str
     languageTag: str
     name: str
-    notificationCategorySubscriptions: _list[str]
+    notificationCategorySubscriptions: _list[
+        typing_extensions.Literal[
+            "NOTIFICATION_CATEGORY_UNSPECIFIED",
+            "ALL",
+            "SUSPENSION",
+            "SECURITY",
+            "TECHNICAL",
+            "BILLING",
+            "LEGAL",
+            "PRODUCT_UPDATES",
+            "TECHNICAL_INCIDENTS",
+        ]
+    ]
     validateTime: str
     validationState: typing_extensions.Literal[
         "VALIDATION_STATE_UNSPECIFIED", "VALID", "INVALID"

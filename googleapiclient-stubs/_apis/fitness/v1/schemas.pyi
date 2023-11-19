@@ -28,7 +28,20 @@ class AggregateRequest(typing_extensions.TypedDict, total=False):
     bucketBySession: BucketBySession
     bucketByTime: BucketByTime
     endTimeMillis: str
-    filteredDataQualityStandard: _list[str]
+    filteredDataQualityStandard: _list[
+        typing_extensions.Literal[
+            "dataQualityUnknown",
+            "dataQualityBloodPressureEsh2002",
+            "dataQualityBloodPressureEsh2010",
+            "dataQualityBloodPressureAami",
+            "dataQualityBloodPressureBhsAA",
+            "dataQualityBloodPressureBhsAB",
+            "dataQualityBloodPressureBhsBA",
+            "dataQualityBloodPressureBhsBB",
+            "dataQualityBloodGlucoseIso151972003",
+            "dataQualityBloodGlucoseIso151972013",
+        ]
+    ]
     startTimeMillis: str
 
 @typing.type_check_only
@@ -76,7 +89,20 @@ class DataPoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
     application: Application
-    dataQualityStandard: _list[str]
+    dataQualityStandard: _list[
+        typing_extensions.Literal[
+            "dataQualityUnknown",
+            "dataQualityBloodPressureEsh2002",
+            "dataQualityBloodPressureEsh2010",
+            "dataQualityBloodPressureAami",
+            "dataQualityBloodPressureBhsAA",
+            "dataQualityBloodPressureBhsAB",
+            "dataQualityBloodPressureBhsBA",
+            "dataQualityBloodPressureBhsBB",
+            "dataQualityBloodGlucoseIso151972003",
+            "dataQualityBloodGlucoseIso151972013",
+        ]
+    ]
     dataStreamId: str
     dataStreamName: str
     dataType: DataType

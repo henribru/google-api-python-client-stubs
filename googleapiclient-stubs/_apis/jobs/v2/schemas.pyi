@@ -119,7 +119,18 @@ class CompensationFilter(typing_extensions.TypedDict, total=False):
         "ANNUALIZED_BASE_AMOUNT",
         "ANNUALIZED_TOTAL_AMOUNT",
     ]
-    units: _list[str]
+    units: _list[
+        typing_extensions.Literal[
+            "COMPENSATION_UNIT_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY",
+            "ONE_TIME",
+            "OTHER_COMPENSATION_UNIT",
+        ]
+    ]
 
 @typing.type_check_only
 class CompensationHistogramRequest(typing_extensions.TypedDict, total=False):
@@ -233,7 +244,18 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ExtendedCompensationFilter(typing_extensions.TypedDict, total=False):
     compensationRange: ExtendedCompensationInfoCompensationRange
-    compensationUnits: _list[str]
+    compensationUnits: _list[
+        typing_extensions.Literal[
+            "EXTENDED_COMPENSATION_UNIT_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY",
+            "ONE_TIME",
+            "OTHER_COMPENSATION_UNIT",
+        ]
+    ]
     currency: str
     includeJobWithUnspecifiedCompensationRange: bool
     type: typing_extensions.Literal[
@@ -306,7 +328,48 @@ class GetHistogramRequest(typing_extensions.TypedDict, total=False):
     filters: JobFilters
     query: JobQuery
     requestMetadata: RequestMetadata
-    searchTypes: _list[str]
+    searchTypes: _list[
+        typing_extensions.Literal[
+            "JOB_FIELD_UNSPECIFIED",
+            "COMPANY_ID",
+            "EMPLOYMENT_TYPE",
+            "COMPANY_SIZE",
+            "DATE_PUBLISHED",
+            "CUSTOM_FIELD_1",
+            "CUSTOM_FIELD_2",
+            "CUSTOM_FIELD_3",
+            "CUSTOM_FIELD_4",
+            "CUSTOM_FIELD_5",
+            "CUSTOM_FIELD_6",
+            "CUSTOM_FIELD_7",
+            "CUSTOM_FIELD_8",
+            "CUSTOM_FIELD_9",
+            "CUSTOM_FIELD_10",
+            "CUSTOM_FIELD_11",
+            "CUSTOM_FIELD_12",
+            "CUSTOM_FIELD_13",
+            "CUSTOM_FIELD_14",
+            "CUSTOM_FIELD_15",
+            "CUSTOM_FIELD_16",
+            "CUSTOM_FIELD_17",
+            "CUSTOM_FIELD_18",
+            "CUSTOM_FIELD_19",
+            "CUSTOM_FIELD_20",
+            "EDUCATION_LEVEL",
+            "EXPERIENCE_LEVEL",
+            "ADMIN1",
+            "COUNTRY",
+            "CITY",
+            "LOCALE",
+            "LANGUAGE",
+            "CATEGORY",
+            "CITY_COORDINATE",
+            "ADMIN1_COUNTRY",
+            "COMPANY_TITLE",
+            "COMPANY_DISPLAY_NAME",
+            "BASE_COMPENSATION_UNIT",
+        ]
+    ]
 
 @typing.type_check_only
 class GetHistogramResponse(typing_extensions.TypedDict, total=False):
@@ -410,13 +473,54 @@ class GoogleCloudTalentV4Job(typing_extensions.TypedDict, total=False):
     companyDisplayName: str
     compensationInfo: GoogleCloudTalentV4CompensationInfo
     customAttributes: dict[str, typing.Any]
-    degreeTypes: _list[str]
+    degreeTypes: _list[
+        typing_extensions.Literal[
+            "DEGREE_TYPE_UNSPECIFIED",
+            "PRIMARY_EDUCATION",
+            "LOWER_SECONDARY_EDUCATION",
+            "UPPER_SECONDARY_EDUCATION",
+            "ADULT_REMEDIAL_EDUCATION",
+            "ASSOCIATES_OR_EQUIVALENT",
+            "BACHELORS_OR_EQUIVALENT",
+            "MASTERS_OR_EQUIVALENT",
+            "DOCTORAL_OR_EQUIVALENT",
+        ]
+    ]
     department: str
     derivedInfo: GoogleCloudTalentV4JobDerivedInfo
     description: str
-    employmentTypes: _list[str]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "CONTRACT_TO_HIRE",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "FLY_IN_FLY_OUT",
+            "OTHER_EMPLOYMENT_TYPE",
+        ]
+    ]
     incentives: str
-    jobBenefits: _list[str]
+    jobBenefits: _list[
+        typing_extensions.Literal[
+            "JOB_BENEFIT_UNSPECIFIED",
+            "CHILD_CARE",
+            "DENTAL",
+            "DOMESTIC_PARTNER",
+            "FLEXIBLE_HOURS",
+            "MEDICAL",
+            "LIFE_INSURANCE",
+            "PARENTAL_LEAVE",
+            "RETIREMENT_PLAN",
+            "SICK_DAYS",
+            "VACATION",
+            "VISION",
+        ]
+    ]
     jobEndTime: str
     jobLevel: typing_extensions.Literal[
         "JOB_LEVEL_UNSPECIFIED",
@@ -457,7 +561,41 @@ class GoogleCloudTalentV4JobApplicationInfo(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudTalentV4JobDerivedInfo(typing_extensions.TypedDict, total=False):
-    jobCategories: _list[str]
+    jobCategories: _list[
+        typing_extensions.Literal[
+            "JOB_CATEGORY_UNSPECIFIED",
+            "ACCOUNTING_AND_FINANCE",
+            "ADMINISTRATIVE_AND_OFFICE",
+            "ADVERTISING_AND_MARKETING",
+            "ANIMAL_CARE",
+            "ART_FASHION_AND_DESIGN",
+            "BUSINESS_OPERATIONS",
+            "CLEANING_AND_FACILITIES",
+            "COMPUTER_AND_IT",
+            "CONSTRUCTION",
+            "CUSTOMER_SERVICE",
+            "EDUCATION",
+            "ENTERTAINMENT_AND_TRAVEL",
+            "FARMING_AND_OUTDOORS",
+            "HEALTHCARE",
+            "HUMAN_RESOURCES",
+            "INSTALLATION_MAINTENANCE_AND_REPAIR",
+            "LEGAL",
+            "MANAGEMENT",
+            "MANUFACTURING_AND_WAREHOUSE",
+            "MEDIA_COMMUNICATIONS_AND_WRITING",
+            "OIL_GAS_AND_MINING",
+            "PERSONAL_CARE_AND_SERVICES",
+            "PROTECTIVE_SERVICES",
+            "REAL_ESTATE",
+            "RESTAURANT_AND_HOSPITALITY",
+            "SALES_AND_RETAIL",
+            "SCIENCE_AND_ENGINEERING",
+            "SOCIAL_SERVICES_AND_NON_PROFIT",
+            "SPORTS_FITNESS_AND_RECREATION",
+            "TRANSPORTATION_AND_LOGISTICS",
+        ]
+    ]
     locations: _list[GoogleCloudTalentV4Location]
 
 @typing.type_check_only
@@ -497,7 +635,48 @@ class GoogleCloudTalentV4Location(typing_extensions.TypedDict, total=False):
 class HistogramFacets(typing_extensions.TypedDict, total=False):
     compensationHistogramFacets: _list[CompensationHistogramRequest]
     customAttributeHistogramFacets: _list[CustomAttributeHistogramRequest]
-    simpleHistogramFacets: _list[str]
+    simpleHistogramFacets: _list[
+        typing_extensions.Literal[
+            "JOB_FIELD_UNSPECIFIED",
+            "COMPANY_ID",
+            "EMPLOYMENT_TYPE",
+            "COMPANY_SIZE",
+            "DATE_PUBLISHED",
+            "CUSTOM_FIELD_1",
+            "CUSTOM_FIELD_2",
+            "CUSTOM_FIELD_3",
+            "CUSTOM_FIELD_4",
+            "CUSTOM_FIELD_5",
+            "CUSTOM_FIELD_6",
+            "CUSTOM_FIELD_7",
+            "CUSTOM_FIELD_8",
+            "CUSTOM_FIELD_9",
+            "CUSTOM_FIELD_10",
+            "CUSTOM_FIELD_11",
+            "CUSTOM_FIELD_12",
+            "CUSTOM_FIELD_13",
+            "CUSTOM_FIELD_14",
+            "CUSTOM_FIELD_15",
+            "CUSTOM_FIELD_16",
+            "CUSTOM_FIELD_17",
+            "CUSTOM_FIELD_18",
+            "CUSTOM_FIELD_19",
+            "CUSTOM_FIELD_20",
+            "EDUCATION_LEVEL",
+            "EXPERIENCE_LEVEL",
+            "ADMIN1",
+            "COUNTRY",
+            "CITY",
+            "LOCALE",
+            "LANGUAGE",
+            "CATEGORY",
+            "CITY_COORDINATE",
+            "ADMIN1_COUNTRY",
+            "COMPANY_TITLE",
+            "COMPANY_DISPLAY_NAME",
+            "BASE_COMPENSATION_UNIT",
+        ]
+    ]
 
 @typing.type_check_only
 class HistogramResult(typing_extensions.TypedDict, total=False):
@@ -554,7 +733,23 @@ class Job(typing_extensions.TypedDict, total=False):
     applicationEmailList: _list[str]
     applicationInstruction: str
     applicationUrls: _list[str]
-    benefits: _list[str]
+    benefits: _list[
+        typing_extensions.Literal[
+            "JOB_BENEFIT_TYPE_UNSPECIFIED",
+            "CHILD_CARE",
+            "DENTAL",
+            "DOMESTIC_PARTNER",
+            "FLEXIBLE_HOURS",
+            "MEDICAL",
+            "LIFE_INSURANCE",
+            "PARENTAL_LEAVE",
+            "RETIREMENT_PLAN",
+            "SICK_DAYS",
+            "TELECOMMUTE",
+            "VACATION",
+            "VISION",
+        ]
+    ]
     companyDisplayName: str
     companyName: str
     companyTitle: str
@@ -564,8 +759,32 @@ class Job(typing_extensions.TypedDict, total=False):
     department: str
     description: str
     distributorCompanyId: str
-    educationLevels: _list[str]
-    employmentTypes: _list[str]
+    educationLevels: _list[
+        typing_extensions.Literal[
+            "EDUCATION_LEVEL_UNSPECIFIED",
+            "HIGH_SCHOOL",
+            "ASSOCIATE",
+            "BACHELORS",
+            "MASTERS",
+            "DOCTORATE",
+            "NO_DEGREE_REQUIRED",
+        ]
+    ]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "CONTRACT_TO_HIRE",
+            "FLY_IN_FLY_OUT",
+            "OTHER",
+        ]
+    ]
     endDate: Date
     expireTime: str
     expiryDate: Date
@@ -603,7 +822,41 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobFilters(typing_extensions.TypedDict, total=False):
-    categories: _list[str]
+    categories: _list[
+        typing_extensions.Literal[
+            "JOB_CATEGORY_UNSPECIFIED",
+            "ACCOUNTING_AND_FINANCE",
+            "ADMINISTRATIVE_AND_OFFICE",
+            "ADVERTISING_AND_MARKETING",
+            "ANIMAL_CARE",
+            "ART_FASHION_AND_DESIGN",
+            "BUSINESS_OPERATIONS",
+            "CLEANING_AND_FACILITIES",
+            "COMPUTER_AND_IT",
+            "CONSTRUCTION",
+            "CUSTOMER_SERVICE",
+            "EDUCATION",
+            "ENTERTAINMENT_AND_TRAVEL",
+            "FARMING_AND_OUTDOORS",
+            "HEALTHCARE",
+            "HUMAN_RESOURCES",
+            "INSTALLATION_MAINTENANCE_AND_REPAIR",
+            "LEGAL",
+            "MANAGEMENT",
+            "MANUFACTURING_AND_WAREHOUSE",
+            "MEDIA_COMMUNICATIONS_AND_WRITING",
+            "OIL_GAS_AND_MINING",
+            "PERSONAL_CARE_AND_SERVICES",
+            "PROTECTIVE_SERVICES",
+            "REAL_ESTATE",
+            "RESTAURANT_AND_HOSPITALITY",
+            "SALES_AND_RETAIL",
+            "SCIENCE_AND_ENGINEERING",
+            "SOCIAL_SERVICES_AND_NON_PROFIT",
+            "SPORTS_FITNESS_AND_RECREATION",
+            "TRANSPORTATION_AND_LOGISTICS",
+        ]
+    ]
     commuteFilter: CommutePreference
     companyNames: _list[str]
     companyTitles: _list[str]
@@ -611,7 +864,21 @@ class JobFilters(typing_extensions.TypedDict, total=False):
     customAttributeFilter: str
     customFieldFilters: dict[str, typing.Any]
     disableSpellCheck: bool
-    employmentTypes: _list[str]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "CONTRACT_TO_HIRE",
+            "FLY_IN_FLY_OUT",
+            "OTHER",
+        ]
+    ]
     extendedCompensationFilter: ExtendedCompensationFilter
     languageCodes: _list[str]
     locationFilters: _list[LocationFilter]
@@ -656,14 +923,62 @@ class JobProcessingOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobQuery(typing_extensions.TypedDict, total=False):
-    categories: _list[str]
+    categories: _list[
+        typing_extensions.Literal[
+            "JOB_CATEGORY_UNSPECIFIED",
+            "ACCOUNTING_AND_FINANCE",
+            "ADMINISTRATIVE_AND_OFFICE",
+            "ADVERTISING_AND_MARKETING",
+            "ANIMAL_CARE",
+            "ART_FASHION_AND_DESIGN",
+            "BUSINESS_OPERATIONS",
+            "CLEANING_AND_FACILITIES",
+            "COMPUTER_AND_IT",
+            "CONSTRUCTION",
+            "CUSTOMER_SERVICE",
+            "EDUCATION",
+            "ENTERTAINMENT_AND_TRAVEL",
+            "FARMING_AND_OUTDOORS",
+            "HEALTHCARE",
+            "HUMAN_RESOURCES",
+            "INSTALLATION_MAINTENANCE_AND_REPAIR",
+            "LEGAL",
+            "MANAGEMENT",
+            "MANUFACTURING_AND_WAREHOUSE",
+            "MEDIA_COMMUNICATIONS_AND_WRITING",
+            "OIL_GAS_AND_MINING",
+            "PERSONAL_CARE_AND_SERVICES",
+            "PROTECTIVE_SERVICES",
+            "REAL_ESTATE",
+            "RESTAURANT_AND_HOSPITALITY",
+            "SALES_AND_RETAIL",
+            "SCIENCE_AND_ENGINEERING",
+            "SOCIAL_SERVICES_AND_NON_PROFIT",
+            "SPORTS_FITNESS_AND_RECREATION",
+            "TRANSPORTATION_AND_LOGISTICS",
+        ]
+    ]
     commuteFilter: CommutePreference
     companyDisplayNames: _list[str]
     companyNames: _list[str]
     compensationFilter: CompensationFilter
     customAttributeFilter: str
     disableSpellCheck: bool
-    employmentTypes: _list[str]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "CONTRACT_TO_HIRE",
+            "FLY_IN_FLY_OUT",
+            "OTHER",
+        ]
+    ]
     languageCodes: _list[str]
     locationFilters: _list[LocationFilter]
     publishDateRange: typing_extensions.Literal[

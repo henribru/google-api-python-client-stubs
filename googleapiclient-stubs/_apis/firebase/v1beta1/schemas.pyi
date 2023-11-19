@@ -141,7 +141,11 @@ class ListWebAppsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
-    features: _list[str]
+    features: _list[
+        typing_extensions.Literal[
+            "LOCATION_FEATURE_UNSPECIFIED", "FIRESTORE", "DEFAULT_STORAGE", "FUNCTIONS"
+        ]
+    ]
     locationId: str
     type: typing_extensions.Literal[
         "LOCATION_TYPE_UNSPECIFIED", "REGIONAL", "MULTI_REGIONAL"

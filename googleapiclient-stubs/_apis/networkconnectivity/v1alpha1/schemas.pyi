@@ -77,7 +77,13 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
-    overlaps: _list[str]
+    overlaps: _list[
+        typing_extensions.Literal[
+            "OVERLAP_UNSPECIFIED",
+            "OVERLAP_ROUTE_RANGE",
+            "OVERLAP_EXISTING_SUBNET_RANGE",
+        ]
+    ]
     peering: typing_extensions.Literal[
         "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
     ]

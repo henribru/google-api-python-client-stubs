@@ -257,8 +257,20 @@ class GoogleCloudRetailV2Control(typing_extensions.TypedDict, total=False):
     displayName: str
     name: str
     rule: GoogleCloudRetailV2Rule
-    searchSolutionUseCase: _list[str]
-    solutionTypes: _list[str]
+    searchSolutionUseCase: _list[
+        typing_extensions.Literal[
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE",
+        ]
+    ]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2CreateModelMetadata(typing_extensions.TypedDict, total=False):
@@ -945,7 +957,13 @@ class GoogleCloudRetailV2ServingConfig(typing_extensions.TypedDict, total=False)
     priceRerankingLevel: str
     redirectControlIds: _list[str]
     replacementControlIds: _list[str]
-    solutionTypes: _list[str]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
     twowaySynonymsControlIds: _list[str]
 
 @typing.type_check_only

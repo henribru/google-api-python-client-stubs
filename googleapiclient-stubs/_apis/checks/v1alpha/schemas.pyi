@@ -321,7 +321,14 @@ class GoogleChecksReportV1alphaCheckSdkRestrictionViolationEvidenceSdkDetails(
 class GoogleChecksReportV1alphaCheckStateMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    badges: _list[str]
+    badges: _list[
+        typing_extensions.Literal[
+            "CHECK_STATE_BADGE_UNSPECIFIED",
+            "NEWLY_FAILING",
+            "RECENTLY_FAILING",
+            "RESOLVED",
+        ]
+    ]
     firstFailingTime: str
     lastFailingTime: str
 
@@ -398,7 +405,9 @@ class GoogleChecksReportV1alphaDataMonitoringPermissionResult(
 class GoogleChecksReportV1alphaDataMonitoringResultMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    badges: _list[str]
+    badges: _list[
+        typing_extensions.Literal["DATA_MONITORING_RESULT_BADGE_UNSPECIFIED", "NEW"]
+    ]
     firstDetectedTime: str
     lastDetectedAppVersion: str
     lastDetectedTime: str

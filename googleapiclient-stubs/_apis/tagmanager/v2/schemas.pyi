@@ -197,7 +197,18 @@ class Container(typing_extensions.TypedDict, total=False):
     tagIds: _list[str]
     tagManagerUrl: str
     taggingServerUrls: _list[str]
-    usageContext: _list[str]
+    usageContext: _list[
+        typing_extensions.Literal[
+            "usageContextUnspecified",
+            "web",
+            "android",
+            "ios",
+            "androidSdk5",
+            "iosSdk5",
+            "amp",
+            "server",
+        ]
+    ]
 
 @typing.type_check_only
 class ContainerAccess(typing_extensions.TypedDict, total=False):

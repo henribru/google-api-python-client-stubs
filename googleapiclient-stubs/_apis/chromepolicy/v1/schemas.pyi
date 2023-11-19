@@ -202,7 +202,9 @@ class GoogleChromePolicyVersionsV1PolicySchema(
     policyDescription: str
     schemaName: str
     supportUri: str
-    validTargetResources: _list[str]
+    validTargetResources: _list[
+        typing_extensions.Literal["TARGET_RESOURCE_UNSPECIFIED", "ORG_UNIT", "GROUP"]
+    ]
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1PolicySchemaFieldDependencies(

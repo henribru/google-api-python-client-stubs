@@ -390,7 +390,19 @@ class Version(typing_extensions.TypedDict, total=False):
     handlers: _list[UrlMap]
     healthCheck: HealthCheck
     id: str
-    inboundServices: _list[str]
+    inboundServices: _list[
+        typing_extensions.Literal[
+            "INBOUND_SERVICE_UNSPECIFIED",
+            "INBOUND_SERVICE_MAIL",
+            "INBOUND_SERVICE_MAIL_BOUNCE",
+            "INBOUND_SERVICE_XMPP_ERROR",
+            "INBOUND_SERVICE_XMPP_MESSAGE",
+            "INBOUND_SERVICE_XMPP_SUBSCRIBE",
+            "INBOUND_SERVICE_XMPP_PRESENCE",
+            "INBOUND_SERVICE_CHANNEL_PRESENCE",
+            "INBOUND_SERVICE_WARMUP",
+        ]
+    ]
     instanceClass: str
     libraries: _list[Library]
     manualScaling: ManualScaling

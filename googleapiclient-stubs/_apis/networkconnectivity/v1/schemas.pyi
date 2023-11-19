@@ -166,7 +166,13 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
-    overlaps: _list[str]
+    overlaps: _list[
+        typing_extensions.Literal[
+            "OVERLAP_UNSPECIFIED",
+            "OVERLAP_ROUTE_RANGE",
+            "OVERLAP_EXISTING_SUBNET_RANGE",
+        ]
+    ]
     peering: typing_extensions.Literal[
         "PEERING_UNSPECIFIED", "FOR_SELF", "FOR_PEER", "NOT_SHARED"
     ]
@@ -286,7 +292,13 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
-    locationFeatures: _list[str]
+    locationFeatures: _list[
+        typing_extensions.Literal[
+            "LOCATION_FEATURE_UNSPECIFIED",
+            "SITE_TO_CLOUD_SPOKES",
+            "SITE_TO_SITE_SPOKES",
+        ]
+    ]
 
 @typing.type_check_only
 class NextHopVpcNetwork(typing_extensions.TypedDict, total=False):

@@ -7,7 +7,18 @@ _list = list
 @typing.type_check_only
 class CreateProfileRequest(typing_extensions.TypedDict, total=False):
     deployment: Deployment
-    profileType: _list[str]
+    profileType: _list[
+        typing_extensions.Literal[
+            "PROFILE_TYPE_UNSPECIFIED",
+            "CPU",
+            "WALL",
+            "HEAP",
+            "THREADS",
+            "CONTENTION",
+            "PEAK_HEAP",
+            "HEAP_ALLOC",
+        ]
+    ]
 
 @typing.type_check_only
 class Deployment(typing_extensions.TypedDict, total=False):

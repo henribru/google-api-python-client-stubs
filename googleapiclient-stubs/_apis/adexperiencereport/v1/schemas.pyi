@@ -12,7 +12,9 @@ class PlatformSummary(typing_extensions.TypedDict, total=False):
     enforcementTime: str
     filterStatus: typing_extensions.Literal["UNKNOWN", "ON", "OFF", "PAUSED", "PENDING"]
     lastChangeTime: str
-    region: _list[str]
+    region: _list[
+        typing_extensions.Literal["REGION_UNKNOWN", "REGION_A", "REGION_B", "REGION_C"]
+    ]
     reportUrl: str
     underReview: bool
 

@@ -953,9 +953,9 @@ class SslConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SslConfigTemplate(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[ConfigVariableTemplate]
-    clientCertType: _list[str]
+    clientCertType: _list[typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
     isTlsMandatory: bool
-    serverCertType: _list[str]
+    serverCertType: _list[typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
     sslType: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
 
 @typing.type_check_only

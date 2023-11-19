@@ -509,8 +509,20 @@ class GoogleCloudRetailV2alphaControl(typing_extensions.TypedDict, total=False):
     facetSpec: GoogleCloudRetailV2alphaSearchRequestFacetSpec
     name: str
     rule: GoogleCloudRetailV2alphaRule
-    searchSolutionUseCase: _list[str]
-    solutionTypes: _list[str]
+    searchSolutionUseCase: _list[
+        typing_extensions.Literal[
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE",
+        ]
+    ]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCreateMerchantCenterAccountLinkMetadata(
@@ -714,7 +726,13 @@ class GoogleCloudRetailV2alphaListControlsResponse(
 class GoogleCloudRetailV2alphaListEnrolledSolutionsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    enrolledSolutions: _list[str]
+    enrolledSolutions: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaListMerchantCenterAccountLinksResponse(
@@ -1031,7 +1049,13 @@ class GoogleCloudRetailV2alphaProductLevelConfig(
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaProject(typing_extensions.TypedDict, total=False):
-    enrolledSolutions: _list[str]
+    enrolledSolutions: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
     name: str
 
 @typing.type_check_only
@@ -1429,7 +1453,13 @@ class GoogleCloudRetailV2alphaServingConfig(typing_extensions.TypedDict, total=F
     priceRerankingLevel: str
     redirectControlIds: _list[str]
     replacementControlIds: _list[str]
-    solutionTypes: _list[str]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
     twowaySynonymsControlIds: _list[str]
 
 @typing.type_check_only

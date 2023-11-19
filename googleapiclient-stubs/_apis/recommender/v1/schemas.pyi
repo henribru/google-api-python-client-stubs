@@ -210,7 +210,11 @@ class GoogleCloudRecommenderV1ReliabilityProjection(
     typing_extensions.TypedDict, total=False
 ):
     details: dict[str, typing.Any]
-    risks: _list[str]
+    risks: _list[
+        typing_extensions.Literal[
+            "RISK_TYPE_UNSPECIFIED", "SERVICE_DISRUPTION", "DATA_LOSS", "ACCESS_DENY"
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1SecurityProjection(

@@ -97,16 +97,62 @@ class Creative(typing_extensions.TypedDict, total=False):
     creativeId: str
     creativeServingDecision: CreativeServingDecision
     dealIds: _list[str]
-    declaredAttributes: _list[str]
+    declaredAttributes: _list[
+        typing_extensions.Literal[
+            "ATTRIBUTE_UNSPECIFIED",
+            "IMAGE_RICH_MEDIA",
+            "ADOBE_FLASH_FLV",
+            "IS_TAGGED",
+            "IS_COOKIE_TARGETED",
+            "IS_USER_INTEREST_TARGETED",
+            "EXPANDING_DIRECTION_NONE",
+            "EXPANDING_DIRECTION_UP",
+            "EXPANDING_DIRECTION_DOWN",
+            "EXPANDING_DIRECTION_LEFT",
+            "EXPANDING_DIRECTION_RIGHT",
+            "EXPANDING_DIRECTION_UP_LEFT",
+            "EXPANDING_DIRECTION_UP_RIGHT",
+            "EXPANDING_DIRECTION_DOWN_LEFT",
+            "EXPANDING_DIRECTION_DOWN_RIGHT",
+            "CREATIVE_TYPE_HTML",
+            "CREATIVE_TYPE_VAST_VIDEO",
+            "EXPANDING_DIRECTION_UP_OR_DOWN",
+            "EXPANDING_DIRECTION_LEFT_OR_RIGHT",
+            "EXPANDING_DIRECTION_ANY_DIAGONAL",
+            "EXPANDING_ACTION_ROLLOVER_TO_EXPAND",
+            "INSTREAM_VAST_VIDEO_TYPE_VPAID_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_MRAID",
+            "RICH_MEDIA_CAPABILITY_TYPE_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_HTML5",
+            "SKIPPABLE_INSTREAM_VIDEO",
+            "RICH_MEDIA_CAPABILITY_TYPE_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_NON_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_INTERSTITIAL",
+            "NON_SKIPPABLE_INSTREAM_VIDEO",
+            "NATIVE_ELIGIBILITY_ELIGIBLE",
+            "NON_VPAID",
+            "NATIVE_ELIGIBILITY_NOT_ELIGIBLE",
+            "ANY_INTERSTITIAL",
+            "NON_INTERSTITIAL",
+            "IN_BANNER_VIDEO",
+            "RENDERING_SIZELESS_ADX",
+            "OMSDK_1_0",
+            "RENDERING_PLAYABLE",
+        ]
+    ]
     declaredClickThroughUrls: _list[str]
-    declaredRestrictedCategories: _list[str]
+    declaredRestrictedCategories: _list[
+        typing_extensions.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
+    ]
     declaredVendorIds: _list[int]
     html: HtmlContent
     impressionTrackingUrls: _list[str]
     name: str
     native: NativeContent
     renderUrl: str
-    restrictedCategories: _list[str]
+    restrictedCategories: _list[
+        typing_extensions.Literal["RESTRICTED_CATEGORY_UNSPECIFIED", "ALCOHOL"]
+    ]
     version: int
     video: VideoContent
 
@@ -121,7 +167,49 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
     chinaPolicyCompliance: PolicyCompliance
     dealsPolicyCompliance: PolicyCompliance
     detectedAdvertisers: _list[AdvertiserAndBrand]
-    detectedAttributes: _list[str]
+    detectedAttributes: _list[
+        typing_extensions.Literal[
+            "ATTRIBUTE_UNSPECIFIED",
+            "IMAGE_RICH_MEDIA",
+            "ADOBE_FLASH_FLV",
+            "IS_TAGGED",
+            "IS_COOKIE_TARGETED",
+            "IS_USER_INTEREST_TARGETED",
+            "EXPANDING_DIRECTION_NONE",
+            "EXPANDING_DIRECTION_UP",
+            "EXPANDING_DIRECTION_DOWN",
+            "EXPANDING_DIRECTION_LEFT",
+            "EXPANDING_DIRECTION_RIGHT",
+            "EXPANDING_DIRECTION_UP_LEFT",
+            "EXPANDING_DIRECTION_UP_RIGHT",
+            "EXPANDING_DIRECTION_DOWN_LEFT",
+            "EXPANDING_DIRECTION_DOWN_RIGHT",
+            "CREATIVE_TYPE_HTML",
+            "CREATIVE_TYPE_VAST_VIDEO",
+            "EXPANDING_DIRECTION_UP_OR_DOWN",
+            "EXPANDING_DIRECTION_LEFT_OR_RIGHT",
+            "EXPANDING_DIRECTION_ANY_DIAGONAL",
+            "EXPANDING_ACTION_ROLLOVER_TO_EXPAND",
+            "INSTREAM_VAST_VIDEO_TYPE_VPAID_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_MRAID",
+            "RICH_MEDIA_CAPABILITY_TYPE_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_HTML5",
+            "SKIPPABLE_INSTREAM_VIDEO",
+            "RICH_MEDIA_CAPABILITY_TYPE_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_NON_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_INTERSTITIAL",
+            "NON_SKIPPABLE_INSTREAM_VIDEO",
+            "NATIVE_ELIGIBILITY_ELIGIBLE",
+            "NON_VPAID",
+            "NATIVE_ELIGIBILITY_NOT_ELIGIBLE",
+            "ANY_INTERSTITIAL",
+            "NON_INTERSTITIAL",
+            "IN_BANNER_VIDEO",
+            "RENDERING_SIZELESS_ADX",
+            "OMSDK_1_0",
+            "RENDERING_PLAYABLE",
+        ]
+    ]
     detectedClickThroughUrls: _list[str]
     detectedDomains: _list[str]
     detectedLanguages: _list[str]
@@ -351,19 +439,46 @@ class PolicyTopicEvidence(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PretargetingConfig(typing_extensions.TypedDict, total=False):
-    allowedUserTargetingModes: _list[str]
+    allowedUserTargetingModes: _list[
+        typing_extensions.Literal[
+            "USER_TARGETING_MODE_UNSPECIFIED",
+            "REMARKETING_ADS",
+            "INTEREST_BASED_TARGETING",
+        ]
+    ]
     appTargeting: AppTargeting
     billingId: str
     displayName: str
     excludedContentLabelIds: _list[str]
     geoTargeting: NumericTargetingDimension
     includedCreativeDimensions: _list[CreativeDimensions]
-    includedEnvironments: _list[str]
-    includedFormats: _list[str]
+    includedEnvironments: _list[
+        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "APP", "WEB"]
+    ]
+    includedFormats: _list[
+        typing_extensions.Literal[
+            "CREATIVE_FORMAT_UNSPECIFIED", "HTML", "VAST", "NATIVE"
+        ]
+    ]
     includedLanguages: _list[str]
     includedMobileOperatingSystemIds: _list[str]
-    includedPlatforms: _list[str]
-    includedUserIdTypes: _list[str]
+    includedPlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "PERSONAL_COMPUTER",
+            "PHONE",
+            "TABLET",
+            "CONNECTED_TV",
+        ]
+    ]
+    includedUserIdTypes: _list[
+        typing_extensions.Literal[
+            "USER_ID_TYPE_UNSPECIFIED",
+            "HOSTED_MATCH_DATA",
+            "GOOGLE_COOKIE",
+            "DEVICE_ID",
+        ]
+    ]
     interstitialTargeting: typing_extensions.Literal[
         "INTERSTITIAL_TARGETING_UNSPECIFIED",
         "ONLY_INTERSTITIAL_REQUESTS",

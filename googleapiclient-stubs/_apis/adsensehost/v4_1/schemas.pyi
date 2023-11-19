@@ -93,7 +93,7 @@ class Report(typing_extensions.TypedDict, total=False):
     averages: _list[str]
     headers: _list[dict[str, typing.Any]]
     kind: str
-    rows: _list[list]
+    rows: _list[_list[str]]
     totalMatchedRows: str
     totals: _list[str]
     warnings: _list[str]

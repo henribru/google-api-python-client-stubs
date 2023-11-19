@@ -17,7 +17,11 @@ class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=
     condition: str
     description: str
     displayName: str
-    methodTypes: _list[str]
+    methodTypes: _list[
+        typing_extensions.Literal[
+            "METHOD_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+        ]
+    ]
     name: str
     resourceTypes: _list[str]
     updateTime: str

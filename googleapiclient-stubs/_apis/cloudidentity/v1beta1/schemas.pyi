@@ -155,7 +155,16 @@ class Device(typing_extensions.TypedDict, total=False):
     bootloaderVersion: str
     brand: str
     buildNumber: str
-    clientTypes: _list[str]
+    clientTypes: _list[
+        typing_extensions.Literal[
+            "CLIENT_TYPE_UNSPECIFIED",
+            "DRIVE_FS",
+            "FUNDAMENTAL",
+            "ENDPOINT_VERIFICATION",
+            "WINDOWS_ADVANCED",
+            "GOOGLE_CREDENTIALS_PROVIDER_FOR_WINDOWS",
+        ]
+    ]
     compromisedState: typing_extensions.Literal[
         "COMPROMISED_STATE_UNSPECIFIED", "COMPROMISED", "UNCOMPROMISED"
     ]

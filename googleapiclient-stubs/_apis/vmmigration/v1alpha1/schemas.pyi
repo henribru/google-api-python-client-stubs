@@ -806,7 +806,13 @@ class VmAttachmentDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VmCapabilities(typing_extensions.TypedDict, total=False):
     lastOsCapabilitiesUpdateTime: str
-    osCapabilities: _list[str]
+    osCapabilities: _list[
+        typing_extensions.Literal[
+            "OS_CAPABILITY_UNSPECIFIED",
+            "OS_CAPABILITY_NVME_STORAGE_ACCESS",
+            "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE",
+        ]
+    ]
 
 @typing.type_check_only
 class VmUtilizationInfo(typing_extensions.TypedDict, total=False):

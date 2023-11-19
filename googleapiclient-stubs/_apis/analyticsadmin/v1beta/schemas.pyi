@@ -285,7 +285,11 @@ class GoogleAnalyticsAdminV1betaCustomMetric(typing_extensions.TypedDict, total=
     ]
     name: str
     parameterName: str
-    restrictedMetricType: _list[str]
+    restrictedMetricType: _list[
+        typing_extensions.Literal[
+            "RESTRICTED_METRIC_TYPE_UNSPECIFIED", "COST_DATA", "REVENUE_DATA"
+        ]
+    ]
     scope: typing_extensions.Literal["METRIC_SCOPE_UNSPECIFIED", "EVENT"]
 
 @typing.type_check_only
@@ -562,14 +566,34 @@ class GoogleAnalyticsAdminV1betaRunAccessReportResponse(
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(
     typing_extensions.TypedDict, total=False
 ):
-    action: _list[str]
+    action: _list[
+        typing_extensions.Literal[
+            "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
+        ]
+    ]
     actorEmail: _list[str]
     earliestChangeTime: str
     latestChangeTime: str
     pageSize: int
     pageToken: str
     property: str
-    resourceType: _list[str]
+    resourceType: _list[
+        typing_extensions.Literal[
+            "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED",
+            "ACCOUNT",
+            "PROPERTY",
+            "FIREBASE_LINK",
+            "GOOGLE_ADS_LINK",
+            "GOOGLE_SIGNALS_SETTINGS",
+            "CONVERSION_EVENT",
+            "MEASUREMENT_PROTOCOL_SECRET",
+            "DATA_RETENTION_SETTINGS",
+            "DISPLAY_VIDEO_360_ADVERTISER_LINK",
+            "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
+            "DATA_STREAM",
+            "ATTRIBUTION_SETTINGS",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsResponse(

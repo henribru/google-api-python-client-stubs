@@ -393,7 +393,7 @@ class KeyRangeInfos(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class KeySet(typing_extensions.TypedDict, total=False):
     all: bool
-    keys: _list[list]
+    keys: _list[_list[typing.Any]]
     ranges: _list[KeyRange]
 
 @typing.type_check_only
@@ -669,7 +669,7 @@ class RestoreInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResultSet(typing_extensions.TypedDict, total=False):
     metadata: ResultSetMetadata
-    rows: _list[list]
+    rows: _list[_list[typing.Any]]
     stats: ResultSetStats
 
 @typing.type_check_only
@@ -853,4 +853,4 @@ class VisualizationData(typing_extensions.TypedDict, total=False):
 class Write(typing_extensions.TypedDict, total=False):
     columns: _list[str]
     table: str
-    values: _list[list]
+    values: _list[_list[typing.Any]]

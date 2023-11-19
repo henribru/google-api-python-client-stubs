@@ -56,7 +56,9 @@ class AccountActiveAdSummary(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccountPermission(typing_extensions.TypedDict, total=False):
-    accountProfiles: _list[str]
+    accountProfiles: _list[
+        typing_extensions.Literal["ACCOUNT_PROFILE_BASIC", "ACCOUNT_PROFILE_STANDARD"]
+    ]
     id: str
     kind: str
     level: typing_extensions.Literal["USER", "ADMINISTRATOR"]
@@ -555,13 +557,91 @@ class Creative(typing_extensions.TypedDict, total=False):
     autoAdvanceImages: bool
     backgroundColor: str
     backupImageClickThroughUrl: CreativeClickThroughUrl
-    backupImageFeatures: _list[str]
+    backupImageFeatures: _list[
+        typing_extensions.Literal[
+            "CSS_FONT_FACE",
+            "CSS_BACKGROUND_SIZE",
+            "CSS_BORDER_IMAGE",
+            "CSS_BORDER_RADIUS",
+            "CSS_BOX_SHADOW",
+            "CSS_FLEX_BOX",
+            "CSS_HSLA",
+            "CSS_MULTIPLE_BGS",
+            "CSS_OPACITY",
+            "CSS_RGBA",
+            "CSS_TEXT_SHADOW",
+            "CSS_ANIMATIONS",
+            "CSS_COLUMNS",
+            "CSS_GENERATED_CONTENT",
+            "CSS_GRADIENTS",
+            "CSS_REFLECTIONS",
+            "CSS_TRANSFORMS",
+            "CSS_TRANSFORMS3D",
+            "CSS_TRANSITIONS",
+            "APPLICATION_CACHE",
+            "CANVAS",
+            "CANVAS_TEXT",
+            "DRAG_AND_DROP",
+            "HASH_CHANGE",
+            "HISTORY",
+            "AUDIO",
+            "VIDEO",
+            "INDEXED_DB",
+            "INPUT_ATTR_AUTOCOMPLETE",
+            "INPUT_ATTR_AUTOFOCUS",
+            "INPUT_ATTR_LIST",
+            "INPUT_ATTR_PLACEHOLDER",
+            "INPUT_ATTR_MAX",
+            "INPUT_ATTR_MIN",
+            "INPUT_ATTR_MULTIPLE",
+            "INPUT_ATTR_PATTERN",
+            "INPUT_ATTR_REQUIRED",
+            "INPUT_ATTR_STEP",
+            "INPUT_TYPE_SEARCH",
+            "INPUT_TYPE_TEL",
+            "INPUT_TYPE_URL",
+            "INPUT_TYPE_EMAIL",
+            "INPUT_TYPE_DATETIME",
+            "INPUT_TYPE_DATE",
+            "INPUT_TYPE_MONTH",
+            "INPUT_TYPE_WEEK",
+            "INPUT_TYPE_TIME",
+            "INPUT_TYPE_DATETIME_LOCAL",
+            "INPUT_TYPE_NUMBER",
+            "INPUT_TYPE_RANGE",
+            "INPUT_TYPE_COLOR",
+            "LOCAL_STORAGE",
+            "POST_MESSAGE",
+            "SESSION_STORAGE",
+            "WEB_SOCKETS",
+            "WEB_SQL_DATABASE",
+            "WEB_WORKERS",
+            "GEO_LOCATION",
+            "INLINE_SVG",
+            "SMIL",
+            "SVG_HREF",
+            "SVG_CLIP_PATHS",
+            "TOUCH",
+            "WEBGL",
+            "SVG_FILTERS",
+            "SVG_FE_IMAGE",
+        ]
+    ]
     backupImageReportingLabel: str
     backupImageTargetWindow: TargetWindow
     clickTags: _list[ClickTag]
     commercialId: str
     companionCreatives: _list[str]
-    compatibility: _list[str]
+    compatibility: _list[
+        typing_extensions.Literal[
+            "DISPLAY",
+            "DISPLAY_INTERSTITIAL",
+            "APP",
+            "APP_INTERSTITIAL",
+            "IN_STREAM_VIDEO",
+            "IN_STREAM_AUDIO",
+        ]
+    ]
     convertFlashToHtml5: bool
     counterCustomEvents: _list[CreativeCustomEvent]
     creativeAssetSelection: CreativeAssetSelection
@@ -661,7 +741,76 @@ class CreativeAsset(typing_extensions.TypedDict, total=False):
     collapsedSize: Size
     companionCreativeIds: _list[str]
     customStartTimeValue: int
-    detectedFeatures: _list[str]
+    detectedFeatures: _list[
+        typing_extensions.Literal[
+            "CSS_FONT_FACE",
+            "CSS_BACKGROUND_SIZE",
+            "CSS_BORDER_IMAGE",
+            "CSS_BORDER_RADIUS",
+            "CSS_BOX_SHADOW",
+            "CSS_FLEX_BOX",
+            "CSS_HSLA",
+            "CSS_MULTIPLE_BGS",
+            "CSS_OPACITY",
+            "CSS_RGBA",
+            "CSS_TEXT_SHADOW",
+            "CSS_ANIMATIONS",
+            "CSS_COLUMNS",
+            "CSS_GENERATED_CONTENT",
+            "CSS_GRADIENTS",
+            "CSS_REFLECTIONS",
+            "CSS_TRANSFORMS",
+            "CSS_TRANSFORMS3D",
+            "CSS_TRANSITIONS",
+            "APPLICATION_CACHE",
+            "CANVAS",
+            "CANVAS_TEXT",
+            "DRAG_AND_DROP",
+            "HASH_CHANGE",
+            "HISTORY",
+            "AUDIO",
+            "VIDEO",
+            "INDEXED_DB",
+            "INPUT_ATTR_AUTOCOMPLETE",
+            "INPUT_ATTR_AUTOFOCUS",
+            "INPUT_ATTR_LIST",
+            "INPUT_ATTR_PLACEHOLDER",
+            "INPUT_ATTR_MAX",
+            "INPUT_ATTR_MIN",
+            "INPUT_ATTR_MULTIPLE",
+            "INPUT_ATTR_PATTERN",
+            "INPUT_ATTR_REQUIRED",
+            "INPUT_ATTR_STEP",
+            "INPUT_TYPE_SEARCH",
+            "INPUT_TYPE_TEL",
+            "INPUT_TYPE_URL",
+            "INPUT_TYPE_EMAIL",
+            "INPUT_TYPE_DATETIME",
+            "INPUT_TYPE_DATE",
+            "INPUT_TYPE_MONTH",
+            "INPUT_TYPE_WEEK",
+            "INPUT_TYPE_TIME",
+            "INPUT_TYPE_DATETIME_LOCAL",
+            "INPUT_TYPE_NUMBER",
+            "INPUT_TYPE_RANGE",
+            "INPUT_TYPE_COLOR",
+            "LOCAL_STORAGE",
+            "POST_MESSAGE",
+            "SESSION_STORAGE",
+            "WEB_SOCKETS",
+            "WEB_SQL_DATABASE",
+            "WEB_WORKERS",
+            "GEO_LOCATION",
+            "INLINE_SVG",
+            "SMIL",
+            "SVG_HREF",
+            "SVG_CLIP_PATHS",
+            "TOUCH",
+            "WEBGL",
+            "SVG_FILTERS",
+            "SVG_FE_IMAGE",
+        ]
+    ]
     displayType: typing_extensions.Literal[
         "ASSET_DISPLAY_TYPE_INPAGE",
         "ASSET_DISPLAY_TYPE_FLOATING",
@@ -742,14 +891,111 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     assetIdentifier: CreativeAssetId
     clickTags: _list[ClickTag]
     counterCustomEvents: _list[CreativeCustomEvent]
-    detectedFeatures: _list[str]
+    detectedFeatures: _list[
+        typing_extensions.Literal[
+            "CSS_FONT_FACE",
+            "CSS_BACKGROUND_SIZE",
+            "CSS_BORDER_IMAGE",
+            "CSS_BORDER_RADIUS",
+            "CSS_BOX_SHADOW",
+            "CSS_FLEX_BOX",
+            "CSS_HSLA",
+            "CSS_MULTIPLE_BGS",
+            "CSS_OPACITY",
+            "CSS_RGBA",
+            "CSS_TEXT_SHADOW",
+            "CSS_ANIMATIONS",
+            "CSS_COLUMNS",
+            "CSS_GENERATED_CONTENT",
+            "CSS_GRADIENTS",
+            "CSS_REFLECTIONS",
+            "CSS_TRANSFORMS",
+            "CSS_TRANSFORMS3D",
+            "CSS_TRANSITIONS",
+            "APPLICATION_CACHE",
+            "CANVAS",
+            "CANVAS_TEXT",
+            "DRAG_AND_DROP",
+            "HASH_CHANGE",
+            "HISTORY",
+            "AUDIO",
+            "VIDEO",
+            "INDEXED_DB",
+            "INPUT_ATTR_AUTOCOMPLETE",
+            "INPUT_ATTR_AUTOFOCUS",
+            "INPUT_ATTR_LIST",
+            "INPUT_ATTR_PLACEHOLDER",
+            "INPUT_ATTR_MAX",
+            "INPUT_ATTR_MIN",
+            "INPUT_ATTR_MULTIPLE",
+            "INPUT_ATTR_PATTERN",
+            "INPUT_ATTR_REQUIRED",
+            "INPUT_ATTR_STEP",
+            "INPUT_TYPE_SEARCH",
+            "INPUT_TYPE_TEL",
+            "INPUT_TYPE_URL",
+            "INPUT_TYPE_EMAIL",
+            "INPUT_TYPE_DATETIME",
+            "INPUT_TYPE_DATE",
+            "INPUT_TYPE_MONTH",
+            "INPUT_TYPE_WEEK",
+            "INPUT_TYPE_TIME",
+            "INPUT_TYPE_DATETIME_LOCAL",
+            "INPUT_TYPE_NUMBER",
+            "INPUT_TYPE_RANGE",
+            "INPUT_TYPE_COLOR",
+            "LOCAL_STORAGE",
+            "POST_MESSAGE",
+            "SESSION_STORAGE",
+            "WEB_SOCKETS",
+            "WEB_SQL_DATABASE",
+            "WEB_WORKERS",
+            "GEO_LOCATION",
+            "INLINE_SVG",
+            "SMIL",
+            "SVG_HREF",
+            "SVG_CLIP_PATHS",
+            "TOUCH",
+            "WEBGL",
+            "SVG_FILTERS",
+            "SVG_FE_IMAGE",
+        ]
+    ]
     exitCustomEvents: _list[CreativeCustomEvent]
     id: str
     idDimensionValue: DimensionValue
     kind: str
     richMedia: bool
     timerCustomEvents: _list[CreativeCustomEvent]
-    warnedValidationRules: _list[str]
+    warnedValidationRules: _list[
+        typing_extensions.Literal[
+            "CLICK_TAG_NON_TOP_LEVEL",
+            "CLICK_TAG_MISSING",
+            "CLICK_TAG_MORE_THAN_ONE",
+            "CLICK_TAG_INVALID",
+            "ORPHANED_ASSET",
+            "PRIMARY_HTML_MISSING",
+            "EXTERNAL_FILE_REFERENCED",
+            "MRAID_REFERENCED",
+            "ADMOB_REFERENCED",
+            "FILE_TYPE_INVALID",
+            "ZIP_INVALID",
+            "LINKED_FILE_NOT_FOUND",
+            "MAX_FLASH_VERSION_11",
+            "NOT_SSL_COMPLIANT",
+            "FILE_DETAIL_EMPTY",
+            "ASSET_INVALID",
+            "GWD_PROPERTIES_INVALID",
+            "ENABLER_UNSUPPORTED_METHOD_DCM",
+            "ASSET_FORMAT_UNSUPPORTED_DCM",
+            "COMPONENT_UNSUPPORTED_DCM",
+            "HTML5_FEATURE_UNSUPPORTED",
+            "CLICK_TAG_IN_GWD",
+            "CLICK_TAG_HARD_CODED",
+            "SVG_INVALID",
+            "CLICK_TAG_IN_RICH_MEDIA",
+        ]
+    ]
 
 @typing.type_check_only
 class CreativeAssetSelection(typing_extensions.TypedDict, total=False):
@@ -1123,7 +1369,11 @@ class DateRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DayPartTargeting(typing_extensions.TypedDict, total=False):
-    daysOfWeek: _list[str]
+    daysOfWeek: _list[
+        typing_extensions.Literal[
+            "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"
+        ]
+    ]
     hoursOfDay: _list[int]
     userLocalTime: bool
 
@@ -1213,8 +1463,21 @@ class DimensionValueRequest(typing_extensions.TypedDict, total=False):
 class DirectorySite(typing_extensions.TypedDict, total=False):
     id: str
     idDimensionValue: DimensionValue
-    inpageTagFormats: _list[str]
-    interstitialTagFormats: _list[str]
+    inpageTagFormats: _list[
+        typing_extensions.Literal[
+            "STANDARD",
+            "IFRAME_JAVASCRIPT_INPAGE",
+            "INTERNAL_REDIRECT_INPAGE",
+            "JAVASCRIPT_INPAGE",
+        ]
+    ]
+    interstitialTagFormats: _list[
+        typing_extensions.Literal[
+            "IFRAME_JAVASCRIPT_INTERSTITIAL",
+            "INTERNAL_REDIRECT_INTERSTITIAL",
+            "JAVASCRIPT_INTERSTITIAL",
+        ]
+    ]
     kind: str
     name: str
     settings: DirectorySiteSettings
@@ -1390,7 +1653,110 @@ class FloodlightActivity(typing_extensions.TypedDict, total=False):
     subaccountId: str
     tagFormat: typing_extensions.Literal["HTML", "XHTML"]
     tagString: str
-    userDefinedVariableTypes: _list[str]
+    userDefinedVariableTypes: _list[
+        typing_extensions.Literal[
+            "U1",
+            "U2",
+            "U3",
+            "U4",
+            "U5",
+            "U6",
+            "U7",
+            "U8",
+            "U9",
+            "U10",
+            "U11",
+            "U12",
+            "U13",
+            "U14",
+            "U15",
+            "U16",
+            "U17",
+            "U18",
+            "U19",
+            "U20",
+            "U21",
+            "U22",
+            "U23",
+            "U24",
+            "U25",
+            "U26",
+            "U27",
+            "U28",
+            "U29",
+            "U30",
+            "U31",
+            "U32",
+            "U33",
+            "U34",
+            "U35",
+            "U36",
+            "U37",
+            "U38",
+            "U39",
+            "U40",
+            "U41",
+            "U42",
+            "U43",
+            "U44",
+            "U45",
+            "U46",
+            "U47",
+            "U48",
+            "U49",
+            "U50",
+            "U51",
+            "U52",
+            "U53",
+            "U54",
+            "U55",
+            "U56",
+            "U57",
+            "U58",
+            "U59",
+            "U60",
+            "U61",
+            "U62",
+            "U63",
+            "U64",
+            "U65",
+            "U66",
+            "U67",
+            "U68",
+            "U69",
+            "U70",
+            "U71",
+            "U72",
+            "U73",
+            "U74",
+            "U75",
+            "U76",
+            "U77",
+            "U78",
+            "U79",
+            "U80",
+            "U81",
+            "U82",
+            "U83",
+            "U84",
+            "U85",
+            "U86",
+            "U87",
+            "U88",
+            "U89",
+            "U90",
+            "U91",
+            "U92",
+            "U93",
+            "U94",
+            "U95",
+            "U96",
+            "U97",
+            "U98",
+            "U99",
+            "U100",
+        ]
+    ]
 
 @typing.type_check_only
 class FloodlightActivityDynamicTag(typing_extensions.TypedDict, total=False):
@@ -1860,7 +2226,30 @@ class Placement(typing_extensions.TypedDict, total=False):
         "DRAFT",
     ]
     subaccountId: str
-    tagFormats: _list[str]
+    tagFormats: _list[
+        typing_extensions.Literal[
+            "PLACEMENT_TAG_STANDARD",
+            "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
+            "PLACEMENT_TAG_IFRAME_ILAYER",
+            "PLACEMENT_TAG_INTERNAL_REDIRECT",
+            "PLACEMENT_TAG_JAVASCRIPT",
+            "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT",
+            "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT",
+            "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT",
+            "PLACEMENT_TAG_CLICK_COMMANDS",
+            "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH",
+            "PLACEMENT_TAG_TRACKING",
+            "PLACEMENT_TAG_TRACKING_IFRAME",
+            "PLACEMENT_TAG_TRACKING_JAVASCRIPT",
+            "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3",
+            "PLACEMENT_TAG_IFRAME_JAVASCRIPT_LEGACY",
+            "PLACEMENT_TAG_JAVASCRIPT_LEGACY",
+            "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
+            "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
+            "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+            "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
+        ]
+    ]
     tagSetting: TagSetting
     videoActiveViewOptOut: bool
     videoSettings: VideoSettings

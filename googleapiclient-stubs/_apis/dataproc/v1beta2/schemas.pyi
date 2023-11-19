@@ -495,7 +495,24 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
-    optionalComponents: _list[str]
+    optionalComponents: _list[
+        typing_extensions.Literal[
+            "COMPONENT_UNSPECIFIED",
+            "ANACONDA",
+            "DOCKER",
+            "DRUID",
+            "FLINK",
+            "HBASE",
+            "HIVE_WEBHCAT",
+            "JUPYTER",
+            "KERBEROS",
+            "PRESTO",
+            "RANGER",
+            "SOLR",
+            "ZEPPELIN",
+            "ZOOKEEPER",
+        ]
+    ]
     properties: dict[str, typing.Any]
 
 @typing.type_check_only

@@ -267,7 +267,11 @@ class Resource(typing_extensions.TypedDict, total=False):
     manifest: str
     name: str
     properties: str
-    runtimePolicies: _list[str]
+    runtimePolicies: _list[
+        typing_extensions.Literal[
+            "CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"
+        ]
+    ]
     type: str
     update: ResourceUpdate
     updateTime: str
@@ -289,7 +293,11 @@ class ResourceUpdate(typing_extensions.TypedDict, total=False):
     ]
     manifest: str
     properties: str
-    runtimePolicies: _list[str]
+    runtimePolicies: _list[
+        typing_extensions.Literal[
+            "CREATE", "DELETE", "UPDATE_ON_CHANGE", "UPDATE_ALWAYS"
+        ]
+    ]
     state: typing_extensions.Literal[
         "PENDING", "IN_PROGRESS", "IN_PREVIEW", "FAILED", "ABORTED"
     ]

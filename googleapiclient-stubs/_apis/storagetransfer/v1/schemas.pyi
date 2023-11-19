@@ -130,8 +130,16 @@ class ListTransferJobsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LoggingConfig(typing_extensions.TypedDict, total=False):
     enableOnpremGcsTransferLogs: bool
-    logActionStates: _list[str]
-    logActions: _list[str]
+    logActionStates: _list[
+        typing_extensions.Literal[
+            "LOGGABLE_ACTION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"
+        ]
+    ]
+    logActions: _list[
+        typing_extensions.Literal[
+            "LOGGABLE_ACTION_UNSPECIFIED", "FIND", "DELETE", "COPY"
+        ]
+    ]
 
 @typing.type_check_only
 class MetadataOptions(typing_extensions.TypedDict, total=False):
@@ -167,7 +175,14 @@ class MetadataOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
-    eventTypes: _list[str]
+    eventTypes: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "TRANSFER_OPERATION_SUCCESS",
+            "TRANSFER_OPERATION_FAILED",
+            "TRANSFER_OPERATION_ABORTED",
+        ]
+    ]
     payloadFormat: typing_extensions.Literal[
         "PAYLOAD_FORMAT_UNSPECIFIED", "NONE", "JSON"
     ]

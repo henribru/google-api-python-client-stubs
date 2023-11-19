@@ -816,8 +816,20 @@ class GoogleCloudRetailV2betaControl(typing_extensions.TypedDict, total=False):
     facetSpec: GoogleCloudRetailV2betaSearchRequestFacetSpec
     name: str
     rule: GoogleCloudRetailV2betaRule
-    searchSolutionUseCase: _list[str]
-    solutionTypes: _list[str]
+    searchSolutionUseCase: _list[
+        typing_extensions.Literal[
+            "SEARCH_SOLUTION_USE_CASE_UNSPECIFIED",
+            "SEARCH_SOLUTION_USE_CASE_SEARCH",
+            "SEARCH_SOLUTION_USE_CASE_BROWSE",
+        ]
+    ]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata(
@@ -1627,7 +1639,13 @@ class GoogleCloudRetailV2betaServingConfig(typing_extensions.TypedDict, total=Fa
     priceRerankingLevel: str
     redirectControlIds: _list[str]
     replacementControlIds: _list[str]
-    solutionTypes: _list[str]
+    solutionTypes: _list[
+        typing_extensions.Literal[
+            "SOLUTION_TYPE_UNSPECIFIED",
+            "SOLUTION_TYPE_RECOMMENDATION",
+            "SOLUTION_TYPE_SEARCH",
+        ]
+    ]
     twowaySynonymsControlIds: _list[str]
 
 @typing.type_check_only

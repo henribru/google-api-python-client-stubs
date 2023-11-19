@@ -655,7 +655,11 @@ class GoogleCloudDatacatalogV1SerializedPolicyTag(
 class GoogleCloudDatacatalogV1SerializedTaxonomy(
     typing_extensions.TypedDict, total=False
 ):
-    activatedPolicyTypes: _list[str]
+    activatedPolicyTypes: _list[
+        typing_extensions.Literal[
+            "POLICY_TYPE_UNSPECIFIED", "FINE_GRAINED_ACCESS_CONTROL"
+        ]
+    ]
     description: str
     displayName: str
     policyTags: _list[GoogleCloudDatacatalogV1SerializedPolicyTag]
@@ -752,7 +756,11 @@ class GoogleCloudDatacatalogV1TaggedEntry(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Taxonomy(typing_extensions.TypedDict, total=False):
-    activatedPolicyTypes: _list[str]
+    activatedPolicyTypes: _list[
+        typing_extensions.Literal[
+            "POLICY_TYPE_UNSPECIFIED", "FINE_GRAINED_ACCESS_CONTROL"
+        ]
+    ]
     description: str
     displayName: str
     name: str

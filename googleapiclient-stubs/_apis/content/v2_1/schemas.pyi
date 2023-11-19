@@ -485,7 +485,15 @@ class BusinessDayConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
-    businessModel: _list[str]
+    businessModel: _list[
+        typing_extensions.Literal[
+            "BUSINESS_MODEL_UNSPECIFIED",
+            "MANUFACTURER",
+            "IMPORTER",
+            "RESELLER",
+            "OTHER",
+        ]
+    ]
     customerServicePendingEmail: str
     customerServicePendingPhoneNumber: str
     customerServicePendingPhoneRegionCode: str
@@ -2656,7 +2664,11 @@ class Promotion(typing_extensions.TypedDict, total=False):
     promotionId: str
     promotionStatus: PromotionPromotionStatus
     promotionUrl: str
-    redemptionChannel: _list[str]
+    redemptionChannel: _list[
+        typing_extensions.Literal[
+            "REDEMPTION_CHANNEL_UNSPECIFIED", "IN_STORE", "ONLINE"
+        ]
+    ]
     shippingServiceNames: _list[str]
     storeApplicability: typing_extensions.Literal[
         "STORE_APPLICABILITY_UNSPECIFIED", "ALL_STORES", "SPECIFIC_STORES"
@@ -3026,12 +3038,18 @@ class ReturnPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReturnPolicyOnline(typing_extensions.TypedDict, total=False):
     countries: _list[str]
-    itemConditions: _list[str]
+    itemConditions: _list[
+        typing_extensions.Literal["ITEM_CONDITION_UNSPECIFIED", "NEW", "USED"]
+    ]
     label: str
     name: str
     policy: ReturnPolicyOnlinePolicy
     restockingFee: ReturnPolicyOnlineRestockingFee
-    returnMethods: _list[str]
+    returnMethods: _list[
+        typing_extensions.Literal[
+            "RETURN_METHOD_UNSPECIFIED", "BY_MAIL", "IN_STORE", "AT_A_KIOSK"
+        ]
+    ]
     returnPolicyId: str
     returnPolicyUri: str
     returnReasonCategoryInfo: _list[ReturnPolicyOnlineReturnReasonCategoryInfo]

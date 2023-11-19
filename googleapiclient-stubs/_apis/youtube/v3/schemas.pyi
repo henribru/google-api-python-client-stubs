@@ -661,7 +661,23 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "djctq1618",
         "djctqUnrated",
     ]
-    djctqRatingReasons: _list[str]
+    djctqRatingReasons: _list[
+        typing_extensions.Literal[
+            "djctqRatingReasonUnspecified",
+            "djctqViolence",
+            "djctqExtremeViolence",
+            "djctqSexualContent",
+            "djctqNudity",
+            "djctqSex",
+            "djctqExplicitSex",
+            "djctqDrugs",
+            "djctqLegalDrugs",
+            "djctqIllegalDrugs",
+            "djctqInappropriateLanguage",
+            "djctqCriminalActs",
+            "djctqImpactingContent",
+        ]
+    ]
     ecbmctRating: typing_extensions.Literal[
         "ecbmctUnspecified",
         "ecbmctG",
@@ -736,7 +752,22 @@ class ContentRating(typing_extensions.TypedDict, total=False):
         "fpbUnrated",
         "fpb10",
     ]
-    fpbRatingReasons: _list[str]
+    fpbRatingReasons: _list[
+        typing_extensions.Literal[
+            "fpbRatingReasonUnspecified",
+            "fpbBlasphemy",
+            "fpbLanguage",
+            "fpbNudity",
+            "fpbPrejudice",
+            "fpbSex",
+            "fpbViolence",
+            "fpbDrugs",
+            "fpbSexualViolence",
+            "fpbHorror",
+            "fpbCriminalTechniques",
+            "fpbImitativeActsTechniques",
+        ]
+    ]
     fskRating: typing_extensions.Literal[
         "fskUnspecified", "fsk0", "fsk6", "fsk12", "fsk16", "fsk18", "fskUnrated"
     ]
@@ -2255,10 +2286,48 @@ class VideoStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoSuggestions(typing_extensions.TypedDict, total=False):
-    editorSuggestions: _list[str]
-    processingErrors: _list[str]
-    processingHints: _list[str]
-    processingWarnings: _list[str]
+    editorSuggestions: _list[
+        typing_extensions.Literal[
+            "videoAutoLevels", "videoStabilize", "videoCrop", "audioQuietAudioSwap"
+        ]
+    ]
+    processingErrors: _list[
+        typing_extensions.Literal[
+            "audioFile",
+            "imageFile",
+            "projectFile",
+            "notAVideoFile",
+            "docFile",
+            "archiveFile",
+            "unsupportedSpatialAudioLayout",
+        ]
+    ]
+    processingHints: _list[
+        typing_extensions.Literal[
+            "nonStreamableMov",
+            "sendBestQualityVideo",
+            "sphericalVideo",
+            "spatialAudio",
+            "vrVideo",
+            "hdrVideo",
+        ]
+    ]
+    processingWarnings: _list[
+        typing_extensions.Literal[
+            "unknownContainer",
+            "unknownVideoCodec",
+            "unknownAudioCodec",
+            "inconsistentResolution",
+            "hasEditlist",
+            "problematicVideoCodec",
+            "problematicAudioCodec",
+            "unsupportedVrStereoMode",
+            "unsupportedSphericalProjectionType",
+            "unsupportedHdrPixelFormat",
+            "unsupportedHdrColorMetadata",
+            "problematicHdrLookupTable",
+        ]
+    ]
     tagSuggestions: _list[VideoSuggestionsTagSuggestion]
 
 @typing.type_check_only

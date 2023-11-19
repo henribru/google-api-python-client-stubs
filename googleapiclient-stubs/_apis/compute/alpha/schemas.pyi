@@ -3122,7 +3122,7 @@ class Int64RangeMatch(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Interconnect(typing_extensions.TypedDict, total=False):
     adminEnabled: bool
-    availableFeatures: _list[str]
+    availableFeatures: _list[typing_extensions.Literal["IF_MACSEC"]]
     circuitInfos: _list[InterconnectCircuitInfo]
     creationTimestamp: str
     customerName: str
@@ -3148,7 +3148,7 @@ class Interconnect(typing_extensions.TypedDict, total=False):
     peerIpAddress: str
     provisionedLinkCount: int
     remoteLocation: str
-    requestedFeatures: _list[str]
+    requestedFeatures: _list[typing_extensions.Literal["IF_MACSEC"]]
     requestedLinkCount: int
     satisfiesPzs: bool
     selfLink: str
@@ -3339,8 +3339,12 @@ class InterconnectList(typing_extensions.TypedDict, total=False):
 class InterconnectLocation(typing_extensions.TypedDict, total=False):
     address: str
     availabilityZone: str
-    availableFeatures: _list[str]
-    availableLinkTypes: _list[str]
+    availableFeatures: _list[typing_extensions.Literal["IF_MACSEC"]]
+    availableLinkTypes: _list[
+        typing_extensions.Literal[
+            "LINK_TYPE_ETHERNET_100G_LR", "LINK_TYPE_ETHERNET_10G_LR"
+        ]
+    ]
     city: str
     continent: typing_extensions.Literal[
         "AFRICA",
@@ -5920,7 +5924,11 @@ class RouterAggregatedList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RouterBgp(typing_extensions.TypedDict, total=False):
     advertiseMode: typing_extensions.Literal["CUSTOM", "DEFAULT"]
-    advertisedGroups: _list[str]
+    advertisedGroups: _list[
+        typing_extensions.Literal[
+            "ALL_PEER_VPC_SUBNETS", "ALL_SUBNETS", "ALL_VPC_SUBNETS"
+        ]
+    ]
     advertisedIpRanges: _list[RouterAdvertisedIpRange]
     asn: int
     identifierRange: str
@@ -5929,7 +5937,11 @@ class RouterBgp(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     advertiseMode: typing_extensions.Literal["CUSTOM", "DEFAULT"]
-    advertisedGroups: _list[str]
+    advertisedGroups: _list[
+        typing_extensions.Literal[
+            "ALL_PEER_VPC_SUBNETS", "ALL_SUBNETS", "ALL_VPC_SUBNETS"
+        ]
+    ]
     advertisedIpRanges: _list[RouterAdvertisedIpRange]
     advertisedRoutePriority: int
     bfd: RouterBgpPeerBfd
@@ -6011,7 +6023,11 @@ class RouterNat(typing_extensions.TypedDict, total=False):
     drainNatIps: _list[str]
     enableDynamicPortAllocation: bool
     enableEndpointIndependentMapping: bool
-    endpointTypes: _list[str]
+    endpointTypes: _list[
+        typing_extensions.Literal[
+            "ENDPOINT_TYPE_MANAGED_PROXY_LB", "ENDPOINT_TYPE_SWG", "ENDPOINT_TYPE_VM"
+        ]
+    ]
     icmpIdleTimeoutSec: int
     logConfig: RouterNatLogConfig
     maxPortsPerVm: int
@@ -6055,7 +6071,11 @@ class RouterNatRuleAction(typing_extensions.TypedDict, total=False):
 class RouterNatSubnetworkToNat(typing_extensions.TypedDict, total=False):
     name: str
     secondaryIpRangeNames: _list[str]
-    sourceIpRangesToNat: _list[str]
+    sourceIpRangesToNat: _list[
+        typing_extensions.Literal[
+            "ALL_IP_RANGES", "LIST_OF_SECONDARY_IP_RANGES", "PRIMARY_IP_RANGE"
+        ]
+    ]
 
 @typing.type_check_only
 class RouterStatus(typing_extensions.TypedDict, total=False):
@@ -7840,7 +7860,11 @@ class UrlMapsScopedList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UrlMapsValidateRequest(typing_extensions.TypedDict, total=False):
-    loadBalancingSchemes: _list[str]
+    loadBalancingSchemes: _list[
+        typing_extensions.Literal[
+            "EXTERNAL", "EXTERNAL_MANAGED", "LOAD_BALANCING_SCHEME_UNSPECIFIED"
+        ]
+    ]
     resource: UrlMap
 
 @typing.type_check_only
