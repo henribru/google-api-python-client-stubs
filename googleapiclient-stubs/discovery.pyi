@@ -2,11 +2,11 @@ import types
 from email.generator import BytesGenerator
 from typing import Any, Protocol, TypeVar, overload
 
-import google.auth.credentials  # type: ignore
-import httplib2  # type: ignore
-import oauth2client  # type: ignore
+import google.auth.credentials  # type: ignore[import-untyped]
+import httplib2  # type: ignore[import-untyped]
+import oauth2client  # type: ignore[import-not-found]
 from _typeshed import Incomplete
-from google.api_core.client_options import ClientOptions  # type: ignore
+from google.api_core.client_options import ClientOptions  # type: ignore[import-untyped]
 from typing_extensions import Literal
 
 import googleapiclient._apis.abusiveexperiencereport.v1

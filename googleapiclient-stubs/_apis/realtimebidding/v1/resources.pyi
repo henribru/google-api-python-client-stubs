@@ -1,11 +1,11 @@
 import collections.abc
 import typing
 
-import httplib2  # type: ignore
+import httplib2  # type: ignore[import-untyped]
 import typing_extensions
 
 import googleapiclient.discovery
-import googleapiclient.http  # type: ignore
+import googleapiclient.http  # type: ignore[import-untyped]
 
 from .schemas import *
 
@@ -255,7 +255,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class UserListsResource(googleapiclient.discovery.Resource):
-            def close(self, *, name: str, body: CloseUserListRequest = ..., **kwargs: typing.Any) -> UserListHttpRequest: ...  # type: ignore
+            def close(self, *, name: str, body: CloseUserListRequest = ..., **kwargs: typing.Any) -> UserListHttpRequest: ...  # type: ignore[override]
             def create(
                 self, *, parent: str, body: UserList = ..., **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
