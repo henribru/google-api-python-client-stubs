@@ -675,7 +675,19 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
 class GoogleChromeManagementV1TelemetryEventNotificationFilter(
     typing_extensions.TypedDict, total=False
 ):
-    eventTypes: _list[str]
+    eventTypes: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "AUDIO_SEVERE_UNDERRUN",
+            "NETWORK_STATE_CHANGE",
+            "USB_ADDED",
+            "USB_REMOVED",
+            "NETWORK_HTTPS_LATENCY_CHANGE",
+            "WIFI_SIGNAL_STRENGTH_LOW",
+            "WIFI_SIGNAL_STRENGTH_RECOVERED",
+            "VPN_CONNECTION_STATE_CHANGE",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent(

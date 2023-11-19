@@ -36,11 +36,11 @@ class AddNoteRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppContext(typing_extensions.TypedDict, total=False):
-    appTypes: _list[str]
+    appTypes: _list[typing_extensions.Literal["NATIVE", "WEB"]]
 
 @typing.type_check_only
 class AuctionContext(typing_extensions.TypedDict, total=False):
-    auctionTypes: _list[str]
+    auctionTypes: _list[typing_extensions.Literal["OPEN_AUCTION", "DIRECT_DEALS"]]
 
 @typing.type_check_only
 class BidMetricsRow(typing_extensions.TypedDict, total=False):
@@ -150,7 +150,49 @@ class Creative(typing_extensions.TypedDict, total=False):
     advertiserName: str
     agencyId: str
     apiUpdateTime: str
-    attributes: _list[str]
+    attributes: _list[
+        typing_extensions.Literal[
+            "ATTRIBUTE_UNSPECIFIED",
+            "IMAGE_RICH_MEDIA",
+            "ADOBE_FLASH_FLV",
+            "IS_TAGGED",
+            "IS_COOKIE_TARGETED",
+            "IS_USER_INTEREST_TARGETED",
+            "EXPANDING_DIRECTION_NONE",
+            "EXPANDING_DIRECTION_UP",
+            "EXPANDING_DIRECTION_DOWN",
+            "EXPANDING_DIRECTION_LEFT",
+            "EXPANDING_DIRECTION_RIGHT",
+            "EXPANDING_DIRECTION_UP_LEFT",
+            "EXPANDING_DIRECTION_UP_RIGHT",
+            "EXPANDING_DIRECTION_DOWN_LEFT",
+            "EXPANDING_DIRECTION_DOWN_RIGHT",
+            "CREATIVE_TYPE_HTML",
+            "CREATIVE_TYPE_VAST_VIDEO",
+            "EXPANDING_DIRECTION_UP_OR_DOWN",
+            "EXPANDING_DIRECTION_LEFT_OR_RIGHT",
+            "EXPANDING_DIRECTION_ANY_DIAGONAL",
+            "EXPANDING_ACTION_ROLLOVER_TO_EXPAND",
+            "INSTREAM_VAST_VIDEO_TYPE_VPAID_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_MRAID",
+            "RICH_MEDIA_CAPABILITY_TYPE_FLASH",
+            "RICH_MEDIA_CAPABILITY_TYPE_HTML5",
+            "SKIPPABLE_INSTREAM_VIDEO",
+            "RICH_MEDIA_CAPABILITY_TYPE_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_NON_SSL",
+            "RICH_MEDIA_CAPABILITY_TYPE_INTERSTITIAL",
+            "NON_SKIPPABLE_INSTREAM_VIDEO",
+            "NATIVE_ELIGIBILITY_ELIGIBLE",
+            "NON_VPAID",
+            "NATIVE_ELIGIBILITY_NOT_ELIGIBLE",
+            "ANY_INTERSTITIAL",
+            "NON_INTERSTITIAL",
+            "IN_BANNER_VIDEO",
+            "RENDERING_SIZELESS_ADX",
+            "OMSDK_1_0",
+            "RENDERING_PLAYABLE",
+        ]
+    ]
     clickThroughUrls: _list[str]
     corrections: _list[Correction]
     creativeId: str
@@ -181,7 +223,9 @@ class Creative(typing_extensions.TypedDict, total=False):
         "PENDING_REVIEW",
         "STATUS_TYPE_UNSPECIFIED",
     ]
-    restrictedCategories: _list[str]
+    restrictedCategories: _list[
+        typing_extensions.Literal["NO_RESTRICTED_CATEGORIES", "ALCOHOL"]
+    ]
     servingRestrictions: _list[ServingRestriction]
     vendorIds: _list[int]
     version: int
@@ -205,7 +249,7 @@ class CreativeRestrictions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreativeSize(typing_extensions.TypedDict, total=False):
-    allowedFormats: _list[str]
+    allowedFormats: _list[typing_extensions.Literal["UNKNOWN", "AUDIO"]]
     companionSizes: _list[Size]
     creativeSizeType: typing_extensions.Literal[
         "CREATIVE_SIZE_TYPE_UNSPECIFIED", "REGULAR", "INTERSTITIAL", "VIDEO", "NATIVE"
@@ -460,7 +504,11 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class FilterSet(typing_extensions.TypedDict, total=False):
     absoluteDateRange: AbsoluteDateRange
-    breakdownDimensions: _list[str]
+    breakdownDimensions: _list[
+        typing_extensions.Literal[
+            "BREAKDOWN_DIMENSION_UNSPECIFIED", "PUBLISHER_IDENTIFIER"
+        ]
+    ]
     creativeId: str
     dealId: str
     environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "WEB", "APP"]
@@ -471,9 +519,19 @@ class FilterSet(typing_extensions.TypedDict, total=False):
         "NON_NATIVE_DISPLAY",
         "NON_NATIVE_VIDEO",
     ]
-    formats: _list[str]
+    formats: _list[
+        typing_extensions.Literal[
+            "FORMAT_UNSPECIFIED",
+            "NATIVE_DISPLAY",
+            "NATIVE_VIDEO",
+            "NON_NATIVE_DISPLAY",
+            "NON_NATIVE_VIDEO",
+        ]
+    ]
     name: str
-    platforms: _list[str]
+    platforms: _list[
+        typing_extensions.Literal["PLATFORM_UNSPECIFIED", "DESKTOP", "TABLET", "MOBILE"]
+    ]
     publisherIdentifiers: _list[str]
     realtimeTimeRange: RealtimeTimeRange
     relativeDateRange: RelativeDateRange
@@ -760,7 +818,7 @@ class PlacementTargeting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlatformContext(typing_extensions.TypedDict, total=False):
-    platforms: _list[str]
+    platforms: _list[typing_extensions.Literal["DESKTOP", "ANDROID", "IOS"]]
 
 @typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
@@ -900,7 +958,7 @@ class RowDimensions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
-    securities: _list[str]
+    securities: _list[typing_extensions.Literal["INSECURE", "SSL"]]
 
 @typing.type_check_only
 class Seller(typing_extensions.TypedDict, total=False):
@@ -976,8 +1034,16 @@ class VideoContent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoTargeting(typing_extensions.TypedDict, total=False):
-    excludedPositionTypes: _list[str]
-    targetedPositionTypes: _list[str]
+    excludedPositionTypes: _list[
+        typing_extensions.Literal[
+            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
+        ]
+    ]
+    targetedPositionTypes: _list[
+        typing_extensions.Literal[
+            "POSITION_TYPE_UNSPECIFIED", "PREROLL", "MIDROLL", "POSTROLL"
+        ]
+    ]
 
 @typing.type_check_only
 class WatchCreativeRequest(typing_extensions.TypedDict, total=False):

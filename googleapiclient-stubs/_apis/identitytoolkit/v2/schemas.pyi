@@ -276,7 +276,9 @@ class GoogleCloudIdentitytoolkitAdminV2MonitoringConfig(
 class GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig(
     typing_extensions.TypedDict, total=False
 ):
-    enabledProviders: _list[str]
+    enabledProviders: _list[
+        typing_extensions.Literal["PROVIDER_UNSPECIFIED", "PHONE_SMS"]
+    ]
     providerConfigs: _list[GoogleCloudIdentitytoolkitAdminV2ProviderConfig]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "DISABLED", "ENABLED", "MANDATORY"

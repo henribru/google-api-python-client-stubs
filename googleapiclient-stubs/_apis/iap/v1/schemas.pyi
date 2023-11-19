@@ -35,7 +35,11 @@ class ApplicationSettings(typing_extensions.TypedDict, total=False):
 class AttributePropagationSettings(typing_extensions.TypedDict, total=False):
     enable: bool
     expression: str
-    outputCredentials: _list[str]
+    outputCredentials: _list[
+        typing_extensions.Literal[
+            "OUTPUT_CREDENTIALS_UNSPECIFIED", "HEADER", "JWT", "RCTOKEN"
+        ]
+    ]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):

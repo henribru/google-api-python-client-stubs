@@ -435,7 +435,17 @@ class GoogleCloudIdentitytoolkitV1SetAccountInfoRequest(
     createdAt: str
     customAttributes: str
     delegatedProjectNumber: str
-    deleteAttribute: _list[str]
+    deleteAttribute: _list[
+        typing_extensions.Literal[
+            "USER_ATTRIBUTE_NAME_UNSPECIFIED",
+            "EMAIL",
+            "DISPLAY_NAME",
+            "PROVIDER",
+            "PHOTO_URL",
+            "PASSWORD",
+            "RAW_USER_INFO",
+        ]
+    ]
     deleteProvider: _list[str]
     disableUser: bool
     displayName: str

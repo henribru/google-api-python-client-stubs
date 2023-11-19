@@ -86,7 +86,7 @@ class QueryResponse(typing_extensions.TypedDict, total=False):
     columnHeaders: _list[ResultTableColumnHeader]
     errors: Errors
     kind: str
-    rows: _list[list]
+    rows: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class ResultTableColumnHeader(typing_extensions.TypedDict, total=False):

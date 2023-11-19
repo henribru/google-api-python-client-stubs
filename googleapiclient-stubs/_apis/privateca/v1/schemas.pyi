@@ -124,7 +124,17 @@ class CertificateDescription(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CertificateExtensionConstraints(typing_extensions.TypedDict, total=False):
     additionalExtensions: _list[ObjectId]
-    knownExtensions: _list[str]
+    knownExtensions: _list[
+        typing_extensions.Literal[
+            "KNOWN_CERTIFICATE_EXTENSION_UNSPECIFIED",
+            "BASE_KEY_USAGE",
+            "EXTENDED_KEY_USAGE",
+            "CA_OPTIONS",
+            "POLICY_IDS",
+            "AIA_OCSP_SERVERS",
+            "NAME_CONSTRAINTS",
+        ]
+    ]
 
 @typing.type_check_only
 class CertificateFingerprint(typing_extensions.TypedDict, total=False):

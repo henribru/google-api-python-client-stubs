@@ -105,7 +105,9 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2LocationMetadata(typing_extensions.TypedDict, total=False):
-    environments: _list[str]
+    environments: _list[
+        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
+    ]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -151,7 +153,9 @@ class GoogleCloudFunctionsV2StateMessage(typing_extensions.TypedDict, total=Fals
 class GoogleCloudFunctionsV2alphaLocationMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    environments: _list[str]
+    environments: _list[
+        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
+    ]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaOperationMetadata(
@@ -199,7 +203,9 @@ class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total
 class GoogleCloudFunctionsV2betaLocationMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    environments: _list[str]
+    environments: _list[
+        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
+    ]
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2betaOperationMetadata(

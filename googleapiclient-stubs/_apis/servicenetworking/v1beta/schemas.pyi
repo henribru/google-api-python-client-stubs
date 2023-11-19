@@ -130,7 +130,11 @@ class CloudSQLConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
-    destinations: _list[str]
+    destinations: _list[
+        typing_extensions.Literal[
+            "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED", "GITHUB", "PACKAGE_MANAGER"
+        ]
+    ]
     referenceDocsUri: str
 
 @typing.type_check_only

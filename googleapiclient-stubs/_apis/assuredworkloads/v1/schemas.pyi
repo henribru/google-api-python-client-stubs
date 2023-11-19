@@ -314,7 +314,15 @@ class GoogleCloudAssuredworkloadsV1WorkloadResourceSettings(
 class GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse(
     typing_extensions.TypedDict, total=False
 ):
-    setupErrors: _list[str]
+    setupErrors: _list[
+        typing_extensions.Literal[
+            "SETUP_ERROR_UNSPECIFIED",
+            "ERROR_INVALID_BASE_SETUP",
+            "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+            "ERROR_NOT_ALL_SERVICES_ENROLLED",
+            "ERROR_SETUP_CHECK_FAILED",
+        ]
+    ]
     setupStatus: typing_extensions.Literal[
         "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
     ]

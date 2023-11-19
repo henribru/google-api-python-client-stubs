@@ -195,9 +195,18 @@ class GoogleCloudChannelV1Customer(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudChannelV1CustomerConstraints(typing_extensions.TypedDict, total=False):
-    allowedCustomerTypes: _list[str]
+    allowedCustomerTypes: _list[
+        typing_extensions.Literal["CUSTOMER_TYPE_UNSPECIFIED", "DOMAIN", "TEAM"]
+    ]
     allowedRegions: _list[str]
-    promotionalOrderTypes: _list[str]
+    promotionalOrderTypes: _list[
+        typing_extensions.Literal[
+            "PROMOTIONAL_TYPE_UNSPECIFIED",
+            "NEW_UPGRADE",
+            "TRANSFER",
+            "PROMOTION_SWITCH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudChannelV1CustomerEvent(typing_extensions.TypedDict, total=False):
@@ -252,7 +261,16 @@ class GoogleCloudChannelV1Entitlement(typing_extensions.TypedDict, total=False):
         "PROVISIONING_STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"
     ]
     purchaseOrderId: str
-    suspensionReasons: _list[str]
+    suspensionReasons: _list[
+        typing_extensions.Literal[
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "RESELLER_INITIATED",
+            "TRIAL_ENDED",
+            "RENEWAL_WITH_TYPE_CANCEL",
+            "PENDING_TOS_ACCEPTANCE",
+            "OTHER",
+        ]
+    ]
     trialSettings: GoogleCloudChannelV1TrialSettings
     updateTime: str
 
@@ -944,7 +962,16 @@ class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=F
         "SUSPENDED",
     ]
     purchaseOrderId: str
-    suspensionReasons: _list[str]
+    suspensionReasons: _list[
+        typing_extensions.Literal[
+            "SUSPENSION_REASON_UNSPECIFIED",
+            "RESELLER_INITIATED",
+            "TRIAL_ENDED",
+            "RENEWAL_WITH_TYPE_CANCEL",
+            "PENDING_TOS_ACCEPTANCE",
+            "OTHER",
+        ]
+    ]
     trialSettings: GoogleCloudChannelV1alpha1TrialSettings
     updateTime: str
 

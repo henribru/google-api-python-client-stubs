@@ -155,7 +155,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
-    sourceProvenanceHash: _list[str]
+    sourceProvenanceHash: _list[typing_extensions.Literal["NONE", "SHA256", "MD5"]]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[Volume]
     workerPool: str

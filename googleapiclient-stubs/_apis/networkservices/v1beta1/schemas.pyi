@@ -68,7 +68,15 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     forwardHeaders: _list[str]
     name: str
     service: str
-    supportedEvents: _list[str]
+    supportedEvents: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "REQUEST_HEADERS",
+            "REQUEST_BODY",
+            "RESPONSE_HEADERS",
+            "RESPONSE_BODY",
+        ]
+    ]
     timeout: str
 
 @typing.type_check_only

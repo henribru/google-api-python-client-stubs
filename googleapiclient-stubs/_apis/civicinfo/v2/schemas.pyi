@@ -52,7 +52,19 @@ class Contest(typing_extensions.TypedDict, total=False):
     candidates: _list[Candidate]
     district: ElectoralDistrict
     electorateSpecifications: str
-    level: _list[str]
+    level: _list[
+        typing_extensions.Literal[
+            "international",
+            "country",
+            "administrativeArea1",
+            "regional",
+            "administrativeArea2",
+            "locality",
+            "subLocality1",
+            "subLocality2",
+            "special",
+        ]
+    ]
     numberElected: str
     numberVotingFor: str
     office: str
@@ -67,7 +79,22 @@ class Contest(typing_extensions.TypedDict, total=False):
     referendumText: str
     referendumTitle: str
     referendumUrl: str
-    roles: _list[str]
+    roles: _list[
+        typing_extensions.Literal[
+            "headOfState",
+            "headOfGovernment",
+            "deputyHeadOfGovernment",
+            "governmentOfficer",
+            "executiveCouncil",
+            "legislatorUpperBody",
+            "legislatorLowerBody",
+            "highestCourtJudge",
+            "judge",
+            "schoolBoard",
+            "specialPurposeOfficer",
+            "otherRole",
+        ]
+    ]
     sources: _list[Source]
     special: str
     type: str
@@ -136,10 +163,37 @@ class GeographicDivision(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Office(typing_extensions.TypedDict, total=False):
     divisionId: str
-    levels: _list[str]
+    levels: _list[
+        typing_extensions.Literal[
+            "international",
+            "country",
+            "administrativeArea1",
+            "regional",
+            "administrativeArea2",
+            "locality",
+            "subLocality1",
+            "subLocality2",
+            "special",
+        ]
+    ]
     name: str
     officialIndices: _list[int]
-    roles: _list[str]
+    roles: _list[
+        typing_extensions.Literal[
+            "headOfState",
+            "headOfGovernment",
+            "deputyHeadOfGovernment",
+            "governmentOfficer",
+            "executiveCouncil",
+            "legislatorUpperBody",
+            "legislatorLowerBody",
+            "highestCourtJudge",
+            "judge",
+            "schoolBoard",
+            "specialPurposeOfficer",
+            "otherRole",
+        ]
+    ]
     sources: _list[Source]
 
 @typing.type_check_only

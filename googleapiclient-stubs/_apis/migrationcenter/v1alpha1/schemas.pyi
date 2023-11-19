@@ -809,7 +809,14 @@ class ReportSummaryHistogramChartDataBucket(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class ReportSummaryMachineFinding(typing_extensions.TypedDict, total=False):
     allocatedAssetCount: str
-    allocatedDiskTypes: _list[str]
+    allocatedDiskTypes: _list[
+        typing_extensions.Literal[
+            "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+            "PERSISTENT_DISK_TYPE_STANDARD",
+            "PERSISTENT_DISK_TYPE_BALANCED",
+            "PERSISTENT_DISK_TYPE_SSD",
+        ]
+    ]
     allocatedRegions: _list[str]
     machineSeriesAllocations: _list[ReportSummaryMachineSeriesAllocation]
 

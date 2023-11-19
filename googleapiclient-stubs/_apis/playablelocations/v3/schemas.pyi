@@ -45,7 +45,16 @@ class GoogleMapsPlayablelocationsV3PlayerReport(
     languageCode: str
     locationName: str
     reasonDetails: str
-    reasons: _list[str]
+    reasons: _list[
+        typing_extensions.Literal[
+            "BAD_LOCATION_REASON_UNSPECIFIED",
+            "OTHER",
+            "NOT_PEDESTRIAN_ACCESSIBLE",
+            "NOT_OPEN_TO_PUBLIC",
+            "PERMANENTLY_CLOSED",
+            "TEMPORARILY_INACCESSIBLE",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleMapsPlayablelocationsV3SampleAreaFilter(

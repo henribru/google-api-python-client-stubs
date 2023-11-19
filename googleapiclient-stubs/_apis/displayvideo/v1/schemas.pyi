@@ -57,7 +57,19 @@ class ActiveViewVideoViewabilityMetricConfig(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class Adloox(typing_extensions.TypedDict, total=False):
-    excludedAdlooxCategories: _list[str]
+    excludedAdlooxCategories: _list[
+        typing_extensions.Literal[
+            "ADLOOX_UNSPECIFIED",
+            "ADULT_CONTENT_HARD",
+            "ADULT_CONTENT_SOFT",
+            "ILLEGAL_CONTENT",
+            "BORDERLINE_CONTENT",
+            "DISCRIMINATORY_CONTENT",
+            "VIOLENT_CONTENT_WEAPONS",
+            "LOW_VIEWABILITY_DOMAINS",
+            "FRAUD",
+        ]
+    ]
 
 @typing.type_check_only
 class Advertiser(typing_extensions.TypedDict, total=False):
@@ -956,7 +968,14 @@ class Creative(typing_extensions.TypedDict, total=False):
     companionCreativeIds: _list[str]
     counterEvents: _list[CounterEvent]
     createTime: str
-    creativeAttributes: _list[str]
+    creativeAttributes: _list[
+        typing_extensions.Literal[
+            "CREATIVE_ATTRIBUTE_UNSPECIFIED",
+            "CREATIVE_ATTRIBUTE_VAST",
+            "CREATIVE_ATTRIBUTE_VPAID_LINEAR",
+            "CREATIVE_ATTRIBUTE_VPAID_NON_LINEAR",
+        ]
+    ]
     creativeId: str
     creativeType: typing_extensions.Literal[
         "CREATIVE_TYPE_UNSPECIFIED",
@@ -1287,7 +1306,17 @@ class Dimensions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DoubleVerify(typing_extensions.TypedDict, total=False):
     appStarRating: DoubleVerifyAppStarRating
-    avoidedAgeRatings: _list[str]
+    avoidedAgeRatings: _list[
+        typing_extensions.Literal[
+            "AGE_RATING_UNSPECIFIED",
+            "APP_AGE_RATE_UNKNOWN",
+            "APP_AGE_RATE_4_PLUS",
+            "APP_AGE_RATE_9_PLUS",
+            "APP_AGE_RATE_12_PLUS",
+            "APP_AGE_RATE_17_PLUS",
+            "APP_AGE_RATE_18_PLUS",
+        ]
+    ]
     brandSafetyCategories: DoubleVerifyBrandSafetyCategories
     customSegmentId: str
     displayViewability: DoubleVerifyDisplayViewability
@@ -1311,8 +1340,43 @@ class DoubleVerifyAppStarRating(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DoubleVerifyBrandSafetyCategories(typing_extensions.TypedDict, total=False):
     avoidUnknownBrandSafetyCategory: bool
-    avoidedHighSeverityCategories: _list[str]
-    avoidedMediumSeverityCategories: _list[str]
+    avoidedHighSeverityCategories: _list[
+        typing_extensions.Literal[
+            "HIGHER_SEVERITY_UNSPECIFIED",
+            "ADULT_CONTENT_PORNOGRAPHY",
+            "COPYRIGHT_INFRINGEMENT",
+            "SUBSTANCE_ABUSE",
+            "GRAPHIC_VIOLENCE_WEAPONS",
+            "HATE_PROFANITY",
+            "CRIMINAL_SKILLS",
+            "NUISANCE_INCENTIVIZED_MALWARE_CLUTTER",
+        ]
+    ]
+    avoidedMediumSeverityCategories: _list[
+        typing_extensions.Literal[
+            "MEDIUM_SEVERITY_UNSPECIFIED",
+            "AD_SERVERS",
+            "ADULT_CONTENT_SWIMSUIT",
+            "ALTERNATIVE_LIFESTYLES",
+            "CELEBRITY_GOSSIP",
+            "GAMBLING",
+            "OCCULT",
+            "SEX_EDUCATION",
+            "DISASTER_AVIATION",
+            "DISASTER_MAN_MADE",
+            "DISASTER_NATURAL",
+            "DISASTER_TERRORIST_EVENTS",
+            "DISASTER_VEHICLE",
+            "ALCOHOL",
+            "SMOKING",
+            "NEGATIVE_NEWS_FINANCIAL",
+            "NON_ENGLISH",
+            "PARKING_PAGE",
+            "UNMODERATED_UGC",
+            "INFLAMMATORY_POLITICS_AND_NEWS",
+            "NEGATIVE_NEWS_PHARMACEUTICAL",
+        ]
+    ]
 
 @typing.type_check_only
 class DoubleVerifyDisplayViewability(typing_extensions.TypedDict, total=False):
@@ -2518,7 +2582,29 @@ class LineItem(typing_extensions.TypedDict, total=False):
     ]
     targetingExpansion: TargetingExpansionConfig
     updateTime: str
-    warningMessages: _list[str]
+    warningMessages: _list[
+        typing_extensions.Literal[
+            "LINE_ITEM_WARNING_MESSAGE_UNSPECIFIED",
+            "INVALID_FLIGHT_DATES",
+            "EXPIRED",
+            "PENDING_FLIGHT",
+            "ALL_PARTNER_ENABLED_EXCHANGES_NEGATIVELY_TARGETED",
+            "INVALID_INVENTORY_SOURCE",
+            "APP_INVENTORY_INVALID_SITE_TARGETING",
+            "APP_INVENTORY_INVALID_AUDIENCE_LISTS",
+            "NO_VALID_CREATIVE",
+            "PARENT_INSERTION_ORDER_PAUSED",
+            "PARENT_INSERTION_ORDER_EXPIRED",
+            "NO_POSITIVE_AUDIENCE_LIST_TARGETED",
+            "APP_INSTALL_NO_CONVERSION_PIXEL",
+            "TARGETING_REVOKED_OR_CLOSED_USER_LIST",
+            "APP_INSTALL_NO_OPTIMAL_BIDDING_STRATEGY",
+            "CREATIVE_SIZE_NOT_IN_USE_FOR_TARGETED_DEALS",
+            "NO_CREATIVE_FOR_TARGETED_DEALS",
+            "TARGETING_DEPRECATED_GEO_TARGET",
+            "DEPRECATED_FIRST_PARTY_AUDIENCE_EXCLUSION",
+        ]
+    ]
 
 @typing.type_check_only
 class LineItemBudget(typing_extensions.TypedDict, total=False):
@@ -2910,7 +2996,17 @@ class Pacing(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ParentEntityFilter(typing_extensions.TypedDict, total=False):
-    fileType: _list[str]
+    fileType: _list[
+        typing_extensions.Literal[
+            "FILE_TYPE_UNSPECIFIED",
+            "FILE_TYPE_CAMPAIGN",
+            "FILE_TYPE_MEDIA_PRODUCT",
+            "FILE_TYPE_INSERTION_ORDER",
+            "FILE_TYPE_LINE_ITEM",
+            "FILE_TYPE_AD_GROUP",
+            "FILE_TYPE_AD",
+        ]
+    ]
     filterIds: _list[str]
     filterType: typing_extensions.Literal[
         "FILTER_TYPE_UNSPECIFIED",

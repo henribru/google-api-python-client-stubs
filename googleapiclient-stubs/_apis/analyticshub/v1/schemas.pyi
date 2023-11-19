@@ -111,7 +111,30 @@ class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Listing(typing_extensions.TypedDict, total=False):
     bigqueryDataset: BigQueryDatasetSource
-    categories: _list[str]
+    categories: _list[
+        typing_extensions.Literal[
+            "CATEGORY_UNSPECIFIED",
+            "CATEGORY_OTHERS",
+            "CATEGORY_ADVERTISING_AND_MARKETING",
+            "CATEGORY_COMMERCE",
+            "CATEGORY_CLIMATE_AND_ENVIRONMENT",
+            "CATEGORY_DEMOGRAPHICS",
+            "CATEGORY_ECONOMICS",
+            "CATEGORY_EDUCATION",
+            "CATEGORY_ENERGY",
+            "CATEGORY_FINANCIAL",
+            "CATEGORY_GAMING",
+            "CATEGORY_GEOSPATIAL",
+            "CATEGORY_HEALTHCARE_AND_LIFE_SCIENCE",
+            "CATEGORY_MEDIA",
+            "CATEGORY_PUBLIC_SECTOR",
+            "CATEGORY_RETAIL",
+            "CATEGORY_SPORTS",
+            "CATEGORY_SCIENCE_AND_RESEARCH",
+            "CATEGORY_TRANSPORTATION_AND_LOGISTICS",
+            "CATEGORY_TRAVEL_AND_TOURISM",
+        ]
+    ]
     dataProvider: DataProvider
     description: str
     displayName: str

@@ -83,7 +83,13 @@ class SasPortalDeviceConfig(typing_extensions.TypedDict, total=False):
     ]
     installationParams: SasPortalInstallationParams
     isSigned: bool
-    measurementCapabilities: _list[str]
+    measurementCapabilities: _list[
+        typing_extensions.Literal[
+            "MEASUREMENT_CAPABILITY_UNSPECIFIED",
+            "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITH_GRANT",
+            "MEASUREMENT_CAPABILITY_RECEIVED_POWER_WITHOUT_GRANT",
+        ]
+    ]
     model: SasPortalDeviceModel
     state: typing_extensions.Literal[
         "DEVICE_CONFIG_STATE_UNSPECIFIED", "DRAFT", "FINAL"

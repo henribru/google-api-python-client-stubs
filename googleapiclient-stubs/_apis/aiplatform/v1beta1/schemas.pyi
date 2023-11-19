@@ -2710,7 +2710,14 @@ class GoogleCloudAiplatformV1beta1Model(typing_extensions.TypedDict, total=False
     name: str
     originalModelInfo: GoogleCloudAiplatformV1beta1ModelOriginalModelInfo
     predictSchemata: GoogleCloudAiplatformV1beta1PredictSchemata
-    supportedDeploymentResourcesTypes: _list[str]
+    supportedDeploymentResourcesTypes: _list[
+        typing_extensions.Literal[
+            "DEPLOYMENT_RESOURCES_TYPE_UNSPECIFIED",
+            "DEDICATED_RESOURCES",
+            "AUTOMATIC_RESOURCES",
+            "SHARED_RESOURCES",
+        ]
+    ]
     supportedExportFormats: _list[GoogleCloudAiplatformV1beta1ModelExportFormat]
     supportedInputStorageFormats: _list[str]
     supportedOutputStorageFormats: _list[str]
@@ -2900,7 +2907,9 @@ class GoogleCloudAiplatformV1beta1ModelExplanation(
 class GoogleCloudAiplatformV1beta1ModelExportFormat(
     typing_extensions.TypedDict, total=False
 ):
-    exportableContents: _list[str]
+    exportableContents: _list[
+        typing_extensions.Literal["EXPORTABLE_CONTENT_UNSPECIFIED", "ARTIFACT", "IMAGE"]
+    ]
     id: str
 
 @typing.type_check_only
@@ -4183,7 +4192,7 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix(
     annotationSpecs: _list[
         GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrixAnnotationSpecRef
     ]
-    rows: _list[list]
+    rows: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrixAnnotationSpecRef(
@@ -4499,7 +4508,7 @@ class GoogleCloudAiplatformV1beta1SchemaPredictPredictionClassificationPredictio
 class GoogleCloudAiplatformV1beta1SchemaPredictPredictionImageObjectDetectionPredictionResult(
     typing_extensions.TypedDict, total=False
 ):
-    bboxes: _list[list]
+    bboxes: _list[_list[typing.Any]]
     confidences: _list[float]
     displayNames: _list[str]
     ids: _list[str]

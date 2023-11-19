@@ -16,7 +16,19 @@ class Action(typing_extensions.TypedDict, total=False):
     encryptedEnvironment: Secret
     entrypoint: str
     environment: dict[str, typing.Any]
-    flags: _list[str]
+    flags: _list[
+        typing_extensions.Literal[
+            "FLAG_UNSPECIFIED",
+            "IGNORE_EXIT_STATUS",
+            "RUN_IN_BACKGROUND",
+            "ALWAYS_RUN",
+            "ENABLE_FUSE",
+            "PUBLISH_EXPOSED_PORTS",
+            "DISABLE_IMAGE_PREFETCH",
+            "DISABLE_STANDARD_ERROR_CAPTURE",
+            "BLOCK_EXTERNAL_NETWORK",
+        ]
+    ]
     imageUri: str
     labels: dict[str, typing.Any]
     mounts: _list[Mount]

@@ -33,7 +33,14 @@ class AgeRangeType(typing_extensions.TypedDict, total=False):
 class BatchCreateContactsRequest(typing_extensions.TypedDict, total=False):
     contacts: _list[ContactToCreate]
     readMask: str
-    sources: _list[str]
+    sources: _list[
+        typing_extensions.Literal[
+            "READ_SOURCE_TYPE_UNSPECIFIED",
+            "READ_SOURCE_TYPE_PROFILE",
+            "READ_SOURCE_TYPE_CONTACT",
+            "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+        ]
+    ]
 
 @typing.type_check_only
 class BatchCreateContactsResponse(typing_extensions.TypedDict, total=False):
@@ -51,7 +58,14 @@ class BatchGetContactGroupsResponse(typing_extensions.TypedDict, total=False):
 class BatchUpdateContactsRequest(typing_extensions.TypedDict, total=False):
     contacts: dict[str, typing.Any]
     readMask: str
-    sources: _list[str]
+    sources: _list[
+        typing_extensions.Literal[
+            "READ_SOURCE_TYPE_UNSPECIFIED",
+            "READ_SOURCE_TYPE_PROFILE",
+            "READ_SOURCE_TYPE_CONTACT",
+            "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+        ]
+    ]
     updateMask: str
 
 @typing.type_check_only
@@ -130,7 +144,14 @@ class CopyOtherContactToMyContactsGroupRequest(
 ):
     copyMask: str
     readMask: str
-    sources: _list[str]
+    sources: _list[
+        typing_extensions.Literal[
+            "READ_SOURCE_TYPE_UNSPECIFIED",
+            "READ_SOURCE_TYPE_PROFILE",
+            "READ_SOURCE_TYPE_CONTACT",
+            "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+        ]
+    ]
 
 @typing.type_check_only
 class CoverPhoto(typing_extensions.TypedDict, total=False):
@@ -438,7 +459,11 @@ class Photo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProfileMetadata(typing_extensions.TypedDict, total=False):
     objectType: typing_extensions.Literal["OBJECT_TYPE_UNSPECIFIED", "PERSON", "PAGE"]
-    userTypes: _list[str]
+    userTypes: _list[
+        typing_extensions.Literal[
+            "USER_TYPE_UNKNOWN", "GOOGLE_USER", "GPLUS_USER", "GOOGLE_APPS_USER"
+        ]
+    ]
 
 @typing.type_check_only
 class Relation(typing_extensions.TypedDict, total=False):
@@ -528,7 +553,14 @@ class UpdateContactGroupRequest(typing_extensions.TypedDict, total=False):
 class UpdateContactPhotoRequest(typing_extensions.TypedDict, total=False):
     personFields: str
     photoBytes: str
-    sources: _list[str]
+    sources: _list[
+        typing_extensions.Literal[
+            "READ_SOURCE_TYPE_UNSPECIFIED",
+            "READ_SOURCE_TYPE_PROFILE",
+            "READ_SOURCE_TYPE_CONTACT",
+            "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+        ]
+    ]
 
 @typing.type_check_only
 class UpdateContactPhotoResponse(typing_extensions.TypedDict, total=False):

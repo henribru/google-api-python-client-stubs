@@ -556,7 +556,16 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsight(
 class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    aggregations: _list[str]
+    aggregations: _list[
+        typing_extensions.Literal[
+            "AGGREGATION_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "CUSTOM_DATE_RANGE",
+        ]
+    ]
     category: str
     displayName: str
     fields: _list[GoogleCloudBeyondcorpSaasplatformInsightsV1alphaInsightMetadataField]

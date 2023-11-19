@@ -129,7 +129,11 @@ class ClientLibrarySettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
-    destinations: _list[str]
+    destinations: _list[
+        typing_extensions.Literal[
+            "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED", "GITHUB", "PACKAGE_MANAGER"
+        ]
+    ]
     referenceDocsUri: str
 
 @typing.type_check_only
@@ -433,7 +437,13 @@ class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ..
 @typing.type_check_only
 class ImportAdminOverridesRequest(typing_extensions.TypedDict, total=False):
     force: bool
-    forceOnly: _list[str]
+    forceOnly: _list[
+        typing_extensions.Literal[
+            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+            "LIMIT_DECREASE_BELOW_USAGE",
+            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+        ]
+    ]
     inlineSource: OverrideInlineSource
 
 @typing.type_check_only
@@ -453,7 +463,13 @@ class ImportConsumerOverridesMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ImportConsumerOverridesRequest(typing_extensions.TypedDict, total=False):
     force: bool
-    forceOnly: _list[str]
+    forceOnly: _list[
+        typing_extensions.Literal[
+            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
+            "LIMIT_DECREASE_BELOW_USAGE",
+            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
+        ]
+    ]
     inlineSource: OverrideInlineSource
 
 @typing.type_check_only

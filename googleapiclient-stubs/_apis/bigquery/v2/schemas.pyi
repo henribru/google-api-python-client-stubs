@@ -47,7 +47,17 @@ class ArimaForecastingMetrics(typing_extensions.TypedDict, total=False):
     arimaSingleModelForecastingMetrics: _list[ArimaSingleModelForecastingMetrics]
     hasDrift: _list[bool]
     nonSeasonalOrder: _list[ArimaOrder]
-    seasonalPeriods: _list[str]
+    seasonalPeriods: _list[
+        typing_extensions.Literal[
+            "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+            "NO_SEASONALITY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "YEARLY",
+        ]
+    ]
     timeSeriesId: _list[str]
 
 @typing.type_check_only
@@ -59,7 +69,17 @@ class ArimaModelInfo(typing_extensions.TypedDict, total=False):
     hasSpikesAndDips: bool
     hasStepChanges: bool
     nonSeasonalOrder: ArimaOrder
-    seasonalPeriods: _list[str]
+    seasonalPeriods: _list[
+        typing_extensions.Literal[
+            "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+            "NO_SEASONALITY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "YEARLY",
+        ]
+    ]
     timeSeriesId: str
     timeSeriesIds: _list[str]
 
@@ -72,7 +92,17 @@ class ArimaOrder(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ArimaResult(typing_extensions.TypedDict, total=False):
     arimaModelInfo: _list[ArimaModelInfo]
-    seasonalPeriods: _list[str]
+    seasonalPeriods: _list[
+        typing_extensions.Literal[
+            "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+            "NO_SEASONALITY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "YEARLY",
+        ]
+    ]
 
 @typing.type_check_only
 class ArimaSingleModelForecastingMetrics(typing_extensions.TypedDict, total=False):
@@ -82,7 +112,17 @@ class ArimaSingleModelForecastingMetrics(typing_extensions.TypedDict, total=Fals
     hasSpikesAndDips: bool
     hasStepChanges: bool
     nonSeasonalOrder: ArimaOrder
-    seasonalPeriods: _list[str]
+    seasonalPeriods: _list[
+        typing_extensions.Literal[
+            "SEASONAL_PERIOD_TYPE_UNSPECIFIED",
+            "NO_SEASONALITY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "YEARLY",
+        ]
+    ]
     timeSeriesId: str
     timeSeriesIds: _list[str]
 
@@ -284,7 +324,9 @@ class Dataset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatasetAccessEntry(typing_extensions.TypedDict, total=False):
     dataset: DatasetReference
-    targetTypes: _list[str]
+    targetTypes: _list[
+        typing_extensions.Literal["TARGET_TYPE_UNSPECIFIED", "VIEWS", "ROUTINES"]
+    ]
 
 @typing.type_check_only
 class DatasetList(typing_extensions.TypedDict, total=False):
@@ -1473,9 +1515,101 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "VN",
         "ZA",
     ]
-    holidayRegions: _list[str]
+    holidayRegions: _list[
+        typing_extensions.Literal[
+            "HOLIDAY_REGION_UNSPECIFIED",
+            "GLOBAL",
+            "NA",
+            "JAPAC",
+            "EMEA",
+            "LAC",
+            "AE",
+            "AR",
+            "AT",
+            "AU",
+            "BE",
+            "BR",
+            "CA",
+            "CH",
+            "CL",
+            "CN",
+            "CO",
+            "CS",
+            "CZ",
+            "DE",
+            "DK",
+            "DZ",
+            "EC",
+            "EE",
+            "EG",
+            "ES",
+            "FI",
+            "FR",
+            "GB",
+            "GR",
+            "HK",
+            "HU",
+            "ID",
+            "IE",
+            "IL",
+            "IN",
+            "IR",
+            "IT",
+            "JP",
+            "KR",
+            "LV",
+            "MA",
+            "MX",
+            "MY",
+            "NG",
+            "NL",
+            "NO",
+            "NZ",
+            "PE",
+            "PH",
+            "PK",
+            "PL",
+            "PT",
+            "RO",
+            "RS",
+            "RU",
+            "SA",
+            "SE",
+            "SG",
+            "SI",
+            "SK",
+            "TH",
+            "TR",
+            "TW",
+            "UA",
+            "US",
+            "VE",
+            "VN",
+            "ZA",
+        ]
+    ]
     horizon: str
-    hparamTuningObjectives: _list[str]
+    hparamTuningObjectives: _list[
+        typing_extensions.Literal[
+            "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED",
+            "MEAN_ABSOLUTE_ERROR",
+            "MEAN_SQUARED_ERROR",
+            "MEAN_SQUARED_LOG_ERROR",
+            "MEDIAN_ABSOLUTE_ERROR",
+            "R_SQUARED",
+            "EXPLAINED_VARIANCE",
+            "PRECISION",
+            "RECALL",
+            "ACCURACY",
+            "F1_SCORE",
+            "LOG_LOSS",
+            "ROC_AUC",
+            "DAVIES_BOULDIN_INDEX",
+            "MEAN_AVERAGE_PRECISION",
+            "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN",
+            "AVERAGE_RANK",
+        ]
+    ]
     includeDrift: bool
     initialLearnRate: float
     inputLabelColumns: _list[str]

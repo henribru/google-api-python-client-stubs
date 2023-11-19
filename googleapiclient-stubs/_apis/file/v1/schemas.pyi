@@ -179,7 +179,9 @@ class Instance(typing_extensions.TypedDict, total=False):
         "REVERTING",
     ]
     statusMessage: str
-    suspensionReasons: _list[str]
+    suspensionReasons: _list[
+        typing_extensions.Literal["SUSPENSION_REASON_UNSPECIFIED", "KMS_KEY_ISSUE"]
+    ]
     tier: typing_extensions.Literal[
         "TIER_UNSPECIFIED",
         "STANDARD",
@@ -248,7 +250,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
         "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
     ]
     ipAddresses: _list[str]
-    modes: _list[str]
+    modes: _list[typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4"]]
     network: str
     reservedIpRange: str
 

@@ -126,7 +126,18 @@ class CompensationFilter(typing_extensions.TypedDict, total=False):
         "ANNUALIZED_BASE_AMOUNT",
         "ANNUALIZED_TOTAL_AMOUNT",
     ]
-    units: _list[str]
+    units: _list[
+        typing_extensions.Literal[
+            "COMPENSATION_UNIT_UNSPECIFIED",
+            "HOURLY",
+            "DAILY",
+            "WEEKLY",
+            "MONTHLY",
+            "YEARLY",
+            "ONE_TIME",
+            "OTHER_COMPENSATION_UNIT",
+        ]
+    ]
 
 @typing.type_check_only
 class CompensationHistogramRequest(typing_extensions.TypedDict, total=False):
@@ -216,7 +227,27 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class HistogramFacets(typing_extensions.TypedDict, total=False):
     compensationHistogramFacets: _list[CompensationHistogramRequest]
     customAttributeHistogramFacets: _list[CustomAttributeHistogramRequest]
-    simpleHistogramFacets: _list[str]
+    simpleHistogramFacets: _list[
+        typing_extensions.Literal[
+            "SEARCH_TYPE_UNSPECIFIED",
+            "COMPANY_ID",
+            "EMPLOYMENT_TYPE",
+            "COMPANY_SIZE",
+            "DATE_PUBLISHED",
+            "EDUCATION_LEVEL",
+            "EXPERIENCE_LEVEL",
+            "ADMIN_1",
+            "COUNTRY",
+            "CITY",
+            "LOCALE",
+            "LANGUAGE",
+            "CATEGORY",
+            "CITY_COORDINATE",
+            "ADMIN_1_COUNTRY",
+            "COMPANY_DISPLAY_NAME",
+            "BASE_COMPENSATION_UNIT",
+        ]
+    ]
 
 @typing.type_check_only
 class HistogramResult(typing_extensions.TypedDict, total=False):
@@ -255,13 +286,54 @@ class Job(typing_extensions.TypedDict, total=False):
     companyName: str
     compensationInfo: CompensationInfo
     customAttributes: dict[str, typing.Any]
-    degreeTypes: _list[str]
+    degreeTypes: _list[
+        typing_extensions.Literal[
+            "DEGREE_TYPE_UNSPECIFIED",
+            "PRIMARY_EDUCATION",
+            "LOWER_SECONDARY_EDUCATION",
+            "UPPER_SECONDARY_EDUCATION",
+            "ADULT_REMEDIAL_EDUCATION",
+            "ASSOCIATES_OR_EQUIVALENT",
+            "BACHELORS_OR_EQUIVALENT",
+            "MASTERS_OR_EQUIVALENT",
+            "DOCTORAL_OR_EQUIVALENT",
+        ]
+    ]
     department: str
     derivedInfo: JobDerivedInfo
     description: str
-    employmentTypes: _list[str]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "CONTRACT_TO_HIRE",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "FLY_IN_FLY_OUT",
+            "OTHER_EMPLOYMENT_TYPE",
+        ]
+    ]
     incentives: str
-    jobBenefits: _list[str]
+    jobBenefits: _list[
+        typing_extensions.Literal[
+            "JOB_BENEFIT_UNSPECIFIED",
+            "CHILD_CARE",
+            "DENTAL",
+            "DOMESTIC_PARTNER",
+            "FLEXIBLE_HOURS",
+            "MEDICAL",
+            "LIFE_INSURANCE",
+            "PARENTAL_LEAVE",
+            "RETIREMENT_PLAN",
+            "SICK_DAYS",
+            "VACATION",
+            "VISION",
+        ]
+    ]
     jobEndTime: str
     jobLevel: typing_extensions.Literal[
         "JOB_LEVEL_UNSPECIFIED",
@@ -296,7 +368,41 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobDerivedInfo(typing_extensions.TypedDict, total=False):
-    jobCategories: _list[str]
+    jobCategories: _list[
+        typing_extensions.Literal[
+            "JOB_CATEGORY_UNSPECIFIED",
+            "ACCOUNTING_AND_FINANCE",
+            "ADMINISTRATIVE_AND_OFFICE",
+            "ADVERTISING_AND_MARKETING",
+            "ANIMAL_CARE",
+            "ART_FASHION_AND_DESIGN",
+            "BUSINESS_OPERATIONS",
+            "CLEANING_AND_FACILITIES",
+            "COMPUTER_AND_IT",
+            "CONSTRUCTION",
+            "CUSTOMER_SERVICE",
+            "EDUCATION",
+            "ENTERTAINMENT_AND_TRAVEL",
+            "FARMING_AND_OUTDOORS",
+            "HEALTHCARE",
+            "HUMAN_RESOURCES",
+            "INSTALLATION_MAINTENANCE_AND_REPAIR",
+            "LEGAL",
+            "MANAGEMENT",
+            "MANUFACTURING_AND_WAREHOUSE",
+            "MEDIA_COMMUNICATIONS_AND_WRITING",
+            "OIL_GAS_AND_MINING",
+            "PERSONAL_CARE_AND_SERVICES",
+            "PROTECTIVE_SERVICES",
+            "REAL_ESTATE",
+            "RESTAURANT_AND_HOSPITALITY",
+            "SALES_AND_RETAIL",
+            "SCIENCE_AND_ENGINEERING",
+            "SOCIAL_SERVICES_AND_NON_PROFIT",
+            "SPORTS_FITNESS_AND_RECREATION",
+            "TRANSPORTATION_AND_LOGISTICS",
+        ]
+    ]
     locations: _list[Location]
 
 @typing.type_check_only
@@ -330,8 +436,56 @@ class JobQuery(typing_extensions.TypedDict, total=False):
     compensationFilter: CompensationFilter
     customAttributeFilter: str
     disableSpellCheck: bool
-    employmentTypes: _list[str]
-    jobCategories: _list[str]
+    employmentTypes: _list[
+        typing_extensions.Literal[
+            "EMPLOYMENT_TYPE_UNSPECIFIED",
+            "FULL_TIME",
+            "PART_TIME",
+            "CONTRACTOR",
+            "CONTRACT_TO_HIRE",
+            "TEMPORARY",
+            "INTERN",
+            "VOLUNTEER",
+            "PER_DIEM",
+            "FLY_IN_FLY_OUT",
+            "OTHER_EMPLOYMENT_TYPE",
+        ]
+    ]
+    jobCategories: _list[
+        typing_extensions.Literal[
+            "JOB_CATEGORY_UNSPECIFIED",
+            "ACCOUNTING_AND_FINANCE",
+            "ADMINISTRATIVE_AND_OFFICE",
+            "ADVERTISING_AND_MARKETING",
+            "ANIMAL_CARE",
+            "ART_FASHION_AND_DESIGN",
+            "BUSINESS_OPERATIONS",
+            "CLEANING_AND_FACILITIES",
+            "COMPUTER_AND_IT",
+            "CONSTRUCTION",
+            "CUSTOMER_SERVICE",
+            "EDUCATION",
+            "ENTERTAINMENT_AND_TRAVEL",
+            "FARMING_AND_OUTDOORS",
+            "HEALTHCARE",
+            "HUMAN_RESOURCES",
+            "INSTALLATION_MAINTENANCE_AND_REPAIR",
+            "LEGAL",
+            "MANAGEMENT",
+            "MANUFACTURING_AND_WAREHOUSE",
+            "MEDIA_COMMUNICATIONS_AND_WRITING",
+            "OIL_GAS_AND_MINING",
+            "PERSONAL_CARE_AND_SERVICES",
+            "PROTECTIVE_SERVICES",
+            "REAL_ESTATE",
+            "RESTAURANT_AND_HOSPITALITY",
+            "SALES_AND_RETAIL",
+            "SCIENCE_AND_ENGINEERING",
+            "SOCIAL_SERVICES_AND_NON_PROFIT",
+            "SPORTS_FITNESS_AND_RECREATION",
+            "TRANSPORTATION_AND_LOGISTICS",
+        ]
+    ]
     languageCodes: _list[str]
     locationFilters: _list[LocationFilter]
     publishTimeRange: TimestampRange

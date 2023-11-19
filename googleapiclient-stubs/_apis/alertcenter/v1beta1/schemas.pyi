@@ -17,7 +17,16 @@ class AbuseDetected(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AccessApproval(typing_extensions.TypedDict, total=False):
-    justificationReason: _list[str]
+    justificationReason: _list[
+        typing_extensions.Literal[
+            "JUSTIFICATION_UNSPECIFIED",
+            "CUSTOMER_INITIATED_SUPPORT",
+            "GOOGLE_INITIATED_REVIEW",
+            "GOOGLE_INITIATED_SERVICE",
+            "THIRD_PARTY_DATA_REQUEST",
+            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+        ]
+    ]
     officeLocation: str
     products: _list[str]
     requestId: str
@@ -352,10 +361,30 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
     recipients: _list[str]
     resourceInfo: ResourceInfo
     ruleInfo: RuleInfo
-    suppressedActionTypes: _list[str]
+    suppressedActionTypes: _list[
+        typing_extensions.Literal[
+            "ACTION_TYPE_UNSPECIFIED",
+            "DRIVE_BLOCK_EXTERNAL_SHARING",
+            "DRIVE_WARN_ON_EXTERNAL_SHARING",
+            "DELETE_WEBPROTECT_EVIDENCE",
+            "ALERT",
+            "RULE_ACTIVATE",
+            "RULE_DEACTIVATE",
+        ]
+    ]
     trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "DRIVE_SHARE"]
     triggeredActionInfo: _list[ActionInfo]
-    triggeredActionTypes: _list[str]
+    triggeredActionTypes: _list[
+        typing_extensions.Literal[
+            "ACTION_TYPE_UNSPECIFIED",
+            "DRIVE_BLOCK_EXTERNAL_SHARING",
+            "DRIVE_WARN_ON_EXTERNAL_SHARING",
+            "DELETE_WEBPROTECT_EVIDENCE",
+            "ALERT",
+            "RULE_ACTIVATE",
+            "RULE_DEACTIVATE",
+        ]
+    ]
     triggeringUserEmail: str
 
 @typing.type_check_only

@@ -118,7 +118,22 @@ class EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries(
 class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(
     typing_extensions.TypedDict, total=False
 ):
-    allowedCredentialTypes: _list[str]
+    allowedCredentialTypes: _list[
+        typing_extensions.Literal[
+            "CREDENTIAL_TYPE_UNSPECIFIED",
+            "USERNAME_AND_PASSWORD",
+            "API_KEY",
+            "OAUTH2_AUTHORIZATION_CODE",
+            "OAUTH2_IMPLICIT",
+            "OAUTH2_CLIENT_CREDENTIALS",
+            "OAUTH2_RESOURCE_OWNER_CREDENTIALS",
+            "JWT",
+            "AUTH_TOKEN",
+            "SERVICE_ACCOUNT",
+            "CLIENT_CERTIFICATE_ONLY",
+            "OIDC_TOKEN",
+        ]
+    ]
     allowedServiceAccountInContext: bool
     authConfigId: str
     scope: str
@@ -1650,7 +1665,9 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
 @typing.type_check_only
 class EnterpriseCrmLoggingGwsFieldLimits(typing_extensions.TypedDict, total=False):
     logAction: typing_extensions.Literal["LOG_ACTION_UNSPECIFIED", "DONT_LOG", "LOG"]
-    logType: _list[str]
+    logType: _list[
+        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
+    ]
     maxArraySize: int
     maxStringLength: int
     shortenerType: typing_extensions.Literal[
@@ -1666,7 +1683,9 @@ class EnterpriseCrmLoggingGwsFieldLimits(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=False):
     isAlreadySanitized: bool
-    logType: _list[str]
+    logType: _list[
+        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
+    ]
     privacy: typing_extensions.Literal[
         "PRIVACY_TYPE_UNSPECIFIED", "NOT_PII", "PII", "SPII", "UNSURE"
     ]

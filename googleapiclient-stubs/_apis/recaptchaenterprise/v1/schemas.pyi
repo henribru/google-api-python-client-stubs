@@ -8,7 +8,15 @@ _list = list
 class GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment(
     typing_extensions.TypedDict, total=False
 ):
-    labels: _list[str]
+    labels: _list[
+        typing_extensions.Literal[
+            "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
+            "PROFILE_MATCH",
+            "SUSPICIOUS_LOGIN_ACTIVITY",
+            "SUSPICIOUS_ACCOUNT_CREATION",
+            "RELATED_ACCOUNTS_NUMBER_HIGH",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo(
@@ -51,7 +59,25 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
         "PASSWORD_INCORRECT",
     ]
     hashedAccountId: str
-    reasons: _list[str]
+    reasons: _list[
+        typing_extensions.Literal[
+            "REASON_UNSPECIFIED",
+            "CHARGEBACK",
+            "CHARGEBACK_FRAUD",
+            "CHARGEBACK_DISPUTE",
+            "REFUND",
+            "REFUND_FRAUD",
+            "TRANSACTION_ACCEPTED",
+            "TRANSACTION_DECLINED",
+            "PAYMENT_HEURISTICS",
+            "INITIATED_TWO_FACTOR",
+            "PASSED_TWO_FACTOR",
+            "FAILED_TWO_FACTOR",
+            "CORRECT_PASSWORD",
+            "INCORRECT_PASSWORD",
+            "SOCIAL_SPAM",
+        ]
+    ]
     transactionEvent: GoogleCloudRecaptchaenterpriseV1TransactionEvent
 
 @typing.type_check_only
@@ -210,7 +236,11 @@ class GoogleCloudRecaptchaenterpriseV1FraudSignals(
 class GoogleCloudRecaptchaenterpriseV1FraudSignalsCardSignals(
     typing_extensions.TypedDict, total=False
 ):
-    cardLabels: _list[str]
+    cardLabels: _list[
+        typing_extensions.Literal[
+            "CARD_LABEL_UNSPECIFIED", "PREPAID", "VIRTUAL", "UNEXPECTED_LOCATION"
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudSignalsUserSignals(
@@ -315,7 +345,18 @@ class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
     typing_extensions.TypedDict, total=False
 ):
     extendedVerdictReasons: _list[str]
-    reasons: _list[str]
+    reasons: _list[
+        typing_extensions.Literal[
+            "CLASSIFICATION_REASON_UNSPECIFIED",
+            "AUTOMATION",
+            "UNEXPECTED_ENVIRONMENT",
+            "TOO_MUCH_TRAFFIC",
+            "UNEXPECTED_USAGE_PATTERNS",
+            "LOW_CONFIDENCE_SCORE",
+            "SUSPECTED_CARDING",
+            "SUSPECTED_CHARGEBACK",
+        ]
+    ]
     score: float
 
 @typing.type_check_only

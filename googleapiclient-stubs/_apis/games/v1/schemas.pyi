@@ -84,7 +84,7 @@ class Application(typing_extensions.TypedDict, total=False):
     author: str
     category: ApplicationCategory
     description: str
-    enabledFeatures: _list[str]
+    enabledFeatures: _list[typing_extensions.Literal["SNAPSHOTS"]]
     id: str
     instances: _list[Instance]
     kind: str
@@ -425,7 +425,9 @@ class PlayerScoreListResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlayerScoreResponse(typing_extensions.TypedDict, total=False):
-    beatenScoreTimeSpans: _list[str]
+    beatenScoreTimeSpans: _list[
+        typing_extensions.Literal["ALL_TIME", "WEEKLY", "DAILY"]
+    ]
     formattedScore: str
     kind: str
     leaderboardId: str

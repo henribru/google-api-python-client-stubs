@@ -647,7 +647,11 @@ class GoogleCloudDialogflowCxV3TransitionRoute(
 class GoogleCloudDialogflowCxV3TurnSignals(typing_extensions.TypedDict, total=False):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -1436,7 +1440,11 @@ class GoogleCloudDialogflowCxV3beta1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -2034,7 +2042,15 @@ class GoogleCloudDialogflowV2Document(typing_extensions.TypedDict, total=False):
     contentUri: str
     displayName: str
     enableAutoReload: bool
-    knowledgeTypes: _list[str]
+    knowledgeTypes: _list[
+        typing_extensions.Literal[
+            "KNOWLEDGE_TYPE_UNSPECIFIED",
+            "FAQ",
+            "EXTRACTIVE_QA",
+            "ARTICLE_SUGGESTION",
+            "AGENT_FACING_SMART_REPLY",
+        ]
+    ]
     latestReloadStatus: GoogleCloudDialogflowV2DocumentReloadStatus
     metadata: dict[str, typing.Any]
     mimeType: str
@@ -2398,7 +2414,15 @@ class GoogleCloudDialogflowV2ImportConversationDataRequest(
 class GoogleCloudDialogflowV2ImportDocumentTemplate(
     typing_extensions.TypedDict, total=False
 ):
-    knowledgeTypes: _list[str]
+    knowledgeTypes: _list[
+        typing_extensions.Literal[
+            "KNOWLEDGE_TYPE_UNSPECIFIED",
+            "FAQ",
+            "EXTRACTIVE_QA",
+            "ARTICLE_SUGGESTION",
+            "AGENT_FACING_SMART_REPLY",
+        ]
+    ]
     metadata: dict[str, typing.Any]
     mimeType: str
 
@@ -2467,7 +2491,20 @@ class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudDialogflowV2Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -3546,7 +3583,21 @@ class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest(
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "TELEPHONY",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -4215,7 +4266,11 @@ class GoogleCloudDialogflowV3alpha1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool

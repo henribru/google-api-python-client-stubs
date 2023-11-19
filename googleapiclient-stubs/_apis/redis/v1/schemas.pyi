@@ -139,7 +139,11 @@ class Instance(typing_extensions.TypedDict, total=False):
         "FAILING_OVER",
     ]
     statusMessage: str
-    suspensionReasons: _list[str]
+    suspensionReasons: _list[
+        typing_extensions.Literal[
+            "SUSPENSION_REASON_UNSPECIFIED", "CUSTOMER_MANAGED_KEY_ISSUE"
+        ]
+    ]
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "BASIC", "STANDARD_HA"]
     transitEncryptionMode: typing_extensions.Literal[
         "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED", "SERVER_AUTHENTICATION", "DISABLED"

@@ -647,7 +647,11 @@ class GoogleCloudDialogflowCxV3TransitionRoute(
 class GoogleCloudDialogflowCxV3TurnSignals(typing_extensions.TypedDict, total=False):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -2109,7 +2113,9 @@ class GoogleCloudDialogflowCxV3beta1SecuritySettings(
     insightsExportSettings: GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings
     inspectTemplate: str
     name: str
-    purgeDataTypes: _list[str]
+    purgeDataTypes: _list[
+        typing_extensions.Literal["PURGE_DATA_TYPE_UNSPECIFIED", "DIALOGFLOW_HISTORY"]
+    ]
     redactionScope: typing_extensions.Literal[
         "REDACTION_SCOPE_UNSPECIFIED", "REDACT_DISK_STORAGE"
     ]
@@ -2331,7 +2337,11 @@ class GoogleCloudDialogflowCxV3beta1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool
@@ -2800,7 +2810,20 @@ class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudDialogflowV2Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -3442,7 +3465,21 @@ class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest(
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Intent(typing_extensions.TypedDict, total=False):
     action: str
-    defaultResponsePlatforms: _list[str]
+    defaultResponsePlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "FACEBOOK",
+            "SLACK",
+            "TELEGRAM",
+            "KIK",
+            "SKYPE",
+            "LINE",
+            "VIBER",
+            "ACTIONS_ON_GOOGLE",
+            "TELEPHONY",
+            "GOOGLE_HANGOUTS",
+        ]
+    ]
     displayName: str
     endInteraction: bool
     events: _list[str]
@@ -4111,7 +4148,11 @@ class GoogleCloudDialogflowV3alpha1TurnSignals(
 ):
     agentEscalated: bool
     dtmfUsed: bool
-    failureReasons: _list[str]
+    failureReasons: _list[
+        typing_extensions.Literal[
+            "FAILURE_REASON_UNSPECIFIED", "FAILED_INTENT", "FAILED_WEBHOOK"
+        ]
+    ]
     noMatch: bool
     noUserInput: bool
     reachedEndPage: bool

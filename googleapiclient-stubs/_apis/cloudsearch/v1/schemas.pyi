@@ -49,7 +49,7 @@ class Content(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
-    app: _list[str]
+    app: _list[typing_extensions.Literal["UNKNOWN_APP", "TOPAZ", "MOMA"]]
     dayOfWeek: _list[int]
     endDateSec: str
     endDayOffsetSec: str
@@ -58,8 +58,16 @@ class Context(typing_extensions.TypedDict, total=False):
     query: _list[str]
     startDateSec: str
     startDayOffsetSec: str
-    surface: _list[str]
-    type: _list[str]
+    surface: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_SURFACE", "DESKTOP", "ANDROID", "IOS", "MOBILE", "ANY"
+        ]
+    ]
+    type: _list[
+        typing_extensions.Literal[
+            "UNKNOWN_CARD_TYPE", "HOMEPAGE_CARD", "ANSWER_CARD", "RHS_CARD"
+        ]
+    ]
 
 @typing.type_check_only
 class ContextAttribute(typing_extensions.TypedDict, total=False):
@@ -639,7 +647,7 @@ class EnterpriseTopazSidekickMeetingNotesCardProto(
 class EnterpriseTopazSidekickMeetingNotesCardRequest(
     typing_extensions.TypedDict, total=False
 ):
-    canCreateFor: _list[str]
+    canCreateFor: _list[typing_extensions.Literal["UNKNOWN", "MYSELF", "ALL_ATTENDEES"]]
     error: EnterpriseTopazSidekickMeetingNotesCardError
     event: EnterpriseTopazSidekickAgendaEntry
 
@@ -1220,7 +1228,11 @@ class PollItemsRequest(typing_extensions.TypedDict, total=False):
     debugOptions: DebugOptions
     limit: int
     queue: str
-    statusCodes: _list[str]
+    statusCodes: _list[
+        typing_extensions.Literal[
+            "CODE_UNSPECIFIED", "ERROR", "MODIFIED", "NEW_ITEM", "ACCEPTED"
+        ]
+    ]
 
 @typing.type_check_only
 class PollItemsResponse(typing_extensions.TypedDict, total=False):

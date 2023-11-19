@@ -52,7 +52,15 @@ class GoogleCloudWebriskV1SearchHashesResponseThreatHash(
 ):
     expireTime: str
     hash: str
-    threatTypes: _list[str]
+    threatTypes: _list[
+        typing_extensions.Literal[
+            "THREAT_TYPE_UNSPECIFIED",
+            "MALWARE",
+            "SOCIAL_ENGINEERING",
+            "UNWANTED_SOFTWARE",
+            "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1SearchUrisResponse(typing_extensions.TypedDict, total=False):
@@ -63,7 +71,15 @@ class GoogleCloudWebriskV1SearchUrisResponseThreatUri(
     typing_extensions.TypedDict, total=False
 ):
     expireTime: str
-    threatTypes: _list[str]
+    threatTypes: _list[
+        typing_extensions.Literal[
+            "THREAT_TYPE_UNSPECIFIED",
+            "MALWARE",
+            "SOCIAL_ENGINEERING",
+            "UNWANTED_SOFTWARE",
+            "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudWebriskV1Submission(typing_extensions.TypedDict, total=False):

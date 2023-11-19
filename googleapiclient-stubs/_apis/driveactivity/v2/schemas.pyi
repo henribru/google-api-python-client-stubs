@@ -57,7 +57,15 @@ class AppliedLabelChangeDetail(typing_extensions.TypedDict, total=False):
     fieldChanges: _list[FieldValueChange]
     label: str
     title: str
-    types: _list[str]
+    types: _list[
+        typing_extensions.Literal[
+            "TYPE_UNSPECIFIED",
+            "LABEL_ADDED",
+            "LABEL_REMOVED",
+            "LABEL_FIELD_VALUE_CHANGED",
+            "LABEL_APPLIED_BY_ITEM_CREATE",
+        ]
+    ]
 
 @typing.type_check_only
 class Assignment(typing_extensions.TypedDict, total=False):

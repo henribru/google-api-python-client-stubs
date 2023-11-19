@@ -16,7 +16,7 @@ class AdministratorWebToken(typing_extensions.TypedDict, total=False):
 class AdministratorWebTokenSpec(typing_extensions.TypedDict, total=False):
     managedConfigurations: AdministratorWebTokenSpecManagedConfigurations
     parent: str
-    permission: _list[str]
+    permission: _list[typing_extensions.Literal["unknown", "approveApps", "manageMcm"]]
     playSearch: AdministratorWebTokenSpecPlaySearch
     privateApps: AdministratorWebTokenSpecPrivateApps
     storeBuilder: AdministratorWebTokenSpecStoreBuilder
@@ -419,7 +419,9 @@ class Product(typing_extensions.TypedDict, total=False):
     appVersion: _list[AppVersion]
     authorName: str
     availableCountries: _list[str]
-    availableTracks: _list[str]
+    availableTracks: _list[
+        typing_extensions.Literal["appTrackUnspecified", "production", "beta", "alpha"]
+    ]
     category: str
     contentRating: typing_extensions.Literal[
         "ratingUnknown", "all", "preTeen", "teen", "mature"
@@ -429,7 +431,7 @@ class Product(typing_extensions.TypedDict, total=False):
     distributionChannel: typing_extensions.Literal[
         "publicGoogleHosted", "privateGoogleHosted", "privateSelfHosted"
     ]
-    features: _list[str]
+    features: _list[typing_extensions.Literal["featureUnknown", "vpnApp"]]
     fullDescription: str
     iconUrl: str
     lastUpdatedTimestampMillis: str
@@ -482,7 +484,9 @@ class ProductPolicy(typing_extensions.TypedDict, total=False):
     managedConfiguration: ManagedConfiguration
     productId: str
     trackIds: _list[str]
-    tracks: _list[str]
+    tracks: _list[
+        typing_extensions.Literal["appTrackUnspecified", "production", "beta", "alpha"]
+    ]
 
 @typing.type_check_only
 class ProductSet(typing_extensions.TypedDict, total=False):
@@ -501,7 +505,9 @@ class ProductSigningCertificate(typing_extensions.TypedDict, total=False):
 class ProductVisibility(typing_extensions.TypedDict, total=False):
     productId: str
     trackIds: _list[str]
-    tracks: _list[str]
+    tracks: _list[
+        typing_extensions.Literal["appTrackUnspecified", "production", "beta", "alpha"]
+    ]
 
 @typing.type_check_only
 class ProductsApproveRequest(typing_extensions.TypedDict, total=False):

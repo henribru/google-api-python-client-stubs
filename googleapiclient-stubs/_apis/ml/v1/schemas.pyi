@@ -162,7 +162,22 @@ class GoogleCloudMlV1__CancelJobRequest(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class GoogleCloudMlV1__Capability(typing_extensions.TypedDict, total=False):
-    availableAccelerators: _list[str]
+    availableAccelerators: _list[
+        typing_extensions.Literal[
+            "ACCELERATOR_TYPE_UNSPECIFIED",
+            "NVIDIA_TESLA_K80",
+            "NVIDIA_TESLA_P100",
+            "NVIDIA_TESLA_V100",
+            "NVIDIA_TESLA_P4",
+            "NVIDIA_TESLA_T4",
+            "NVIDIA_TESLA_A100",
+            "TPU_V2",
+            "TPU_V3",
+            "TPU_V2_POD",
+            "TPU_V3_POD",
+            "TPU_V4_POD",
+        ]
+    ]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "TRAINING", "BATCH_PREDICTION", "ONLINE_PREDICTION"
     ]

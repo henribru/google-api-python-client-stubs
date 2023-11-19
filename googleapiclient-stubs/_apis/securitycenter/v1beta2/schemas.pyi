@@ -552,8 +552,66 @@ class MemoryHashSignature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MitreAttack(typing_extensions.TypedDict, total=False):
-    additionalTactics: _list[str]
-    additionalTechniques: _list[str]
+    additionalTactics: _list[
+        typing_extensions.Literal[
+            "TACTIC_UNSPECIFIED",
+            "RECONNAISSANCE",
+            "RESOURCE_DEVELOPMENT",
+            "INITIAL_ACCESS",
+            "EXECUTION",
+            "PERSISTENCE",
+            "PRIVILEGE_ESCALATION",
+            "DEFENSE_EVASION",
+            "CREDENTIAL_ACCESS",
+            "DISCOVERY",
+            "LATERAL_MOVEMENT",
+            "COLLECTION",
+            "COMMAND_AND_CONTROL",
+            "EXFILTRATION",
+            "IMPACT",
+        ]
+    ]
+    additionalTechniques: _list[
+        typing_extensions.Literal[
+            "TECHNIQUE_UNSPECIFIED",
+            "ACTIVE_SCANNING",
+            "SCANNING_IP_BLOCKS",
+            "INGRESS_TOOL_TRANSFER",
+            "NATIVE_API",
+            "SHARED_MODULES",
+            "COMMAND_AND_SCRIPTING_INTERPRETER",
+            "UNIX_SHELL",
+            "RESOURCE_HIJACKING",
+            "PROXY",
+            "EXTERNAL_PROXY",
+            "MULTI_HOP_PROXY",
+            "DYNAMIC_RESOLUTION",
+            "UNSECURED_CREDENTIALS",
+            "VALID_ACCOUNTS",
+            "LOCAL_ACCOUNTS",
+            "CLOUD_ACCOUNTS",
+            "NETWORK_DENIAL_OF_SERVICE",
+            "PERMISSION_GROUPS_DISCOVERY",
+            "CLOUD_GROUPS",
+            "EXFILTRATION_OVER_WEB_SERVICE",
+            "EXFILTRATION_TO_CLOUD_STORAGE",
+            "ACCOUNT_MANIPULATION",
+            "SSH_AUTHORIZED_KEYS",
+            "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "STEAL_WEB_SESSION_COOKIE",
+            "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
+            "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "MODIFY_AUTHENTICATION_PROCESS",
+            "DATA_DESTRUCTION",
+            "DOMAIN_POLICY_MODIFICATION",
+            "IMPAIR_DEFENSES",
+            "NETWORK_SERVICE_DISCOVERY",
+            "ACCESS_TOKEN_MANIPULATION",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "DEFAULT_ACCOUNTS",
+            "INHIBIT_SYSTEM_RECOVERY",
+        ]
+    ]
     primaryTactic: typing_extensions.Literal[
         "TACTIC_UNSPECIFIED",
         "RECONNAISSANCE",
@@ -571,7 +629,47 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
         "EXFILTRATION",
         "IMPACT",
     ]
-    primaryTechniques: _list[str]
+    primaryTechniques: _list[
+        typing_extensions.Literal[
+            "TECHNIQUE_UNSPECIFIED",
+            "ACTIVE_SCANNING",
+            "SCANNING_IP_BLOCKS",
+            "INGRESS_TOOL_TRANSFER",
+            "NATIVE_API",
+            "SHARED_MODULES",
+            "COMMAND_AND_SCRIPTING_INTERPRETER",
+            "UNIX_SHELL",
+            "RESOURCE_HIJACKING",
+            "PROXY",
+            "EXTERNAL_PROXY",
+            "MULTI_HOP_PROXY",
+            "DYNAMIC_RESOLUTION",
+            "UNSECURED_CREDENTIALS",
+            "VALID_ACCOUNTS",
+            "LOCAL_ACCOUNTS",
+            "CLOUD_ACCOUNTS",
+            "NETWORK_DENIAL_OF_SERVICE",
+            "PERMISSION_GROUPS_DISCOVERY",
+            "CLOUD_GROUPS",
+            "EXFILTRATION_OVER_WEB_SERVICE",
+            "EXFILTRATION_TO_CLOUD_STORAGE",
+            "ACCOUNT_MANIPULATION",
+            "SSH_AUTHORIZED_KEYS",
+            "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "STEAL_WEB_SESSION_COOKIE",
+            "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
+            "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "MODIFY_AUTHENTICATION_PROCESS",
+            "DATA_DESTRUCTION",
+            "DOMAIN_POLICY_MODIFICATION",
+            "IMPAIR_DEFENSES",
+            "NETWORK_SERVICE_DISCOVERY",
+            "ACCESS_TOKEN_MANIPULATION",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "DEFAULT_ACCOUNTS",
+            "INHIBIT_SYSTEM_RECOVERY",
+        ]
+    ]
     version: str
 
 @typing.type_check_only

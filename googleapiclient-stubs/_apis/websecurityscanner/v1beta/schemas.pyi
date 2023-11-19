@@ -123,7 +123,15 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     schedule: Schedule
     startingUrls: _list[str]
     staticIpScan: bool
-    targetPlatforms: _list[str]
+    targetPlatforms: _list[
+        typing_extensions.Literal[
+            "TARGET_PLATFORM_UNSPECIFIED",
+            "APP_ENGINE",
+            "COMPUTE",
+            "CLOUD_RUN",
+            "CLOUD_FUNCTIONS",
+        ]
+    ]
     userAgent: typing_extensions.Literal[
         "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
     ]

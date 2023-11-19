@@ -328,7 +328,16 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
     executionTimeout: str
     privatePool: PrivatePool
     serviceAccount: str
-    usages: _list[str]
+    usages: _list[
+        typing_extensions.Literal[
+            "EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED",
+            "RENDER",
+            "DEPLOY",
+            "VERIFY",
+            "PREDEPLOY",
+            "POSTDEPLOY",
+        ]
+    ]
     workerPool: str
 
 @typing.type_check_only

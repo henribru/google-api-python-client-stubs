@@ -128,7 +128,18 @@ class ContinuousBackupInfo(typing_extensions.TypedDict, total=False):
     earliestRestorableTime: str
     enabledTime: str
     encryptionInfo: EncryptionInfo
-    schedule: _list[str]
+    schedule: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
 
 @typing.type_check_only
 class ContinuousBackupSource(typing_extensions.TypedDict, total=False):
@@ -619,7 +630,11 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
     name: str
     requiresDbRestart: bool
     stringRestrictions: StringRestrictions
-    supportedDbVersions: _list[str]
+    supportedDbVersions: _list[
+        typing_extensions.Literal[
+            "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_13", "POSTGRES_14"
+        ]
+    ]
     valueType: typing_extensions.Literal[
         "VALUE_TYPE_UNSPECIFIED", "STRING", "INTEGER", "FLOAT", "NONE"
     ]
@@ -644,5 +659,16 @@ class UserPassword(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WeeklySchedule(typing_extensions.TypedDict, total=False):
-    daysOfWeek: _list[str]
+    daysOfWeek: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
     startTimes: _list[GoogleTypeTimeOfDay]

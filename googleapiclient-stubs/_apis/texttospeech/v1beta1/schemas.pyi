@@ -78,7 +78,9 @@ class SynthesizeLongAudioRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SynthesizeSpeechRequest(typing_extensions.TypedDict, total=False):
     audioConfig: AudioConfig
-    enableTimePointing: _list[str]
+    enableTimePointing: _list[
+        typing_extensions.Literal["TIMEPOINT_TYPE_UNSPECIFIED", "SSML_MARK"]
+    ]
     input: SynthesisInput
     voice: VoiceSelectionParams
 

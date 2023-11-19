@@ -155,7 +155,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     pool: PoolOption
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
-    sourceProvenanceHash: _list[str]
+    sourceProvenanceHash: _list[typing_extensions.Literal["NONE", "SHA256", "MD5"]]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[Volume]
     workerPool: str
@@ -570,7 +570,11 @@ class WorkerPool(typing_extensions.TypedDict, total=False):
     deleteTime: str
     name: str
     projectId: str
-    regions: _list[str]
+    regions: _list[
+        typing_extensions.Literal[
+            "REGION_UNSPECIFIED", "us-central1", "us-west1", "us-east1", "us-east4"
+        ]
+    ]
     serviceAccountEmail: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "CREATING", "RUNNING", "DELETING", "DELETED"

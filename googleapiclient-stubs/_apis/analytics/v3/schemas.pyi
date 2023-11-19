@@ -329,7 +329,7 @@ class GaData(typing_extensions.TypedDict, total=False):
     previousLink: str
     profileInfo: dict[str, typing.Any]
     query: dict[str, typing.Any]
-    rows: _list[list]
+    rows: _list[_list[str]]
     sampleSize: str
     sampleSpace: str
     selfLink: str
@@ -413,7 +413,7 @@ class McfData(typing_extensions.TypedDict, total=False):
     previousLink: str
     profileInfo: dict[str, typing.Any]
     query: dict[str, typing.Any]
-    rows: _list[list]
+    rows: _list[_list[dict[str, typing.Any]]]
     sampleSize: str
     sampleSpace: str
     selfLink: str
@@ -505,7 +505,7 @@ class RealtimeData(typing_extensions.TypedDict, total=False):
     kind: str
     profileInfo: dict[str, typing.Any]
     query: dict[str, typing.Any]
-    rows: _list[list]
+    rows: _list[_list[str]]
     selfLink: str
     totalResults: int
     totalsForAllResults: dict[str, typing.Any]

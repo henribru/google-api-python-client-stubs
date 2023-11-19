@@ -407,7 +407,11 @@ class TaskResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TaskSpec(typing_extensions.TypedDict, total=False):
     description: str
-    managedSidecars: _list[str]
+    managedSidecars: _list[
+        typing_extensions.Literal[
+            "MANAGED_SIDECAR_UNSPECIFIED", "PRIVILEGED_DOCKER_DAEMON"
+        ]
+    ]
     params: _list[ParamSpec]
     results: _list[TaskResult]
     sidecars: _list[Sidecar]

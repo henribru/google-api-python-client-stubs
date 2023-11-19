@@ -839,7 +839,16 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseSummary(
     typing_extensions.TypedDict, total=False
 ):
     safetyAttributes: GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes
-    summarySkippedReasons: _list[str]
+    summarySkippedReasons: _list[
+        typing_extensions.Literal[
+            "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
+            "ADVERSARIAL_QUERY_IGNORED",
+            "NON_SUMMARY_SEEKING_QUERY_IGNORED",
+            "OUT_OF_DOMAIN_QUERY_IGNORED",
+            "POTENTIAL_POLICY_VIOLATION",
+            "LLM_ADDON_NOT_ENABLED",
+        ]
+    ]
     summaryText: str
 
 @typing.type_check_only
@@ -1010,7 +1019,9 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConfigFacetField(
 class GoogleCloudDiscoveryengineV1alphaWidgetConfigUIComponentField(
     typing_extensions.TypedDict, total=False
 ):
-    deviceVisibility: _list[str]
+    deviceVisibility: _list[
+        typing_extensions.Literal["DEVICE_VISIBILITY_UNSPECIFIED", "MOBILE", "DESKTOP"]
+    ]
     displayTemplate: str
     field: str
 

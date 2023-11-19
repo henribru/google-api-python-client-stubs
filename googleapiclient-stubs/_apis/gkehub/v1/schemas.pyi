@@ -254,7 +254,11 @@ class ConfigManagementPolicyControllerMigration(
 class ConfigManagementPolicyControllerMonitoring(
     typing_extensions.TypedDict, total=False
 ):
-    backends: _list[str]
+    backends: _list[
+        typing_extensions.Literal[
+            "MONITORING_BACKEND_UNSPECIFIED", "PROMETHEUS", "CLOUD_MONITORING"
+        ]
+    ]
 
 @typing.type_check_only
 class ConfigManagementPolicyControllerState(typing_extensions.TypedDict, total=False):
@@ -738,7 +742,11 @@ class PolicyControllerMembershipState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PolicyControllerMonitoringConfig(typing_extensions.TypedDict, total=False):
-    backends: _list[str]
+    backends: _list[
+        typing_extensions.Literal[
+            "MONITORING_BACKEND_UNSPECIFIED", "PROMETHEUS", "CLOUD_MONITORING"
+        ]
+    ]
 
 @typing.type_check_only
 class PolicyControllerOnClusterState(typing_extensions.TypedDict, total=False):

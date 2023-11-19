@@ -28,7 +28,11 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigureContactSettingsRequest(typing_extensions.TypedDict, total=False):
-    contactNotices: _list[str]
+    contactNotices: _list[
+        typing_extensions.Literal[
+            "CONTACT_NOTICE_UNSPECIFIED", "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT"
+        ]
+    ]
     contactSettings: ContactSettings
     updateMask: str
     validateOnly: bool
@@ -222,8 +226,14 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RegisterDomainRequest(typing_extensions.TypedDict, total=False):
-    contactNotices: _list[str]
-    domainNotices: _list[str]
+    contactNotices: _list[
+        typing_extensions.Literal[
+            "CONTACT_NOTICE_UNSPECIFIED", "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT"
+        ]
+    ]
+    domainNotices: _list[
+        typing_extensions.Literal["DOMAIN_NOTICE_UNSPECIFIED", "HSTS_PRELOADED"]
+    ]
     registration: Registration
     validateOnly: bool
     yearlyPrice: Money
@@ -234,8 +244,17 @@ class RegisterParameters(typing_extensions.TypedDict, total=False):
         "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "UNAVAILABLE", "UNSUPPORTED", "UNKNOWN"
     ]
     domainName: str
-    domainNotices: _list[str]
-    supportedPrivacy: _list[str]
+    domainNotices: _list[
+        typing_extensions.Literal["DOMAIN_NOTICE_UNSPECIFIED", "HSTS_PRELOADED"]
+    ]
+    supportedPrivacy: _list[
+        typing_extensions.Literal[
+            "CONTACT_PRIVACY_UNSPECIFIED",
+            "PUBLIC_CONTACT_DATA",
+            "PRIVATE_CONTACT_DATA",
+            "REDACTED_CONTACT_DATA",
+        ]
+    ]
     yearlyPrice: Money
 
 @typing.type_check_only
@@ -245,7 +264,11 @@ class Registration(typing_extensions.TypedDict, total=False):
     dnsSettings: DnsSettings
     domainName: str
     expireTime: str
-    issues: _list[str]
+    issues: _list[
+        typing_extensions.Literal[
+            "ISSUE_UNSPECIFIED", "CONTACT_SUPPORT", "UNVERIFIED_EMAIL"
+        ]
+    ]
     labels: dict[str, typing.Any]
     managementSettings: ManagementSettings
     name: str
@@ -268,7 +291,14 @@ class Registration(typing_extensions.TypedDict, total=False):
         "EXPORTED",
         "EXPIRED",
     ]
-    supportedPrivacy: _list[str]
+    supportedPrivacy: _list[
+        typing_extensions.Literal[
+            "CONTACT_PRIVACY_UNSPECIFIED",
+            "PUBLIC_CONTACT_DATA",
+            "PRIVATE_CONTACT_DATA",
+            "REDACTED_CONTACT_DATA",
+        ]
+    ]
     transferFailureReason: typing_extensions.Literal[
         "TRANSFER_FAILURE_REASON_UNSPECIFIED",
         "TRANSFER_FAILURE_REASON_UNKNOWN",
@@ -325,7 +355,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransferDomainRequest(typing_extensions.TypedDict, total=False):
     authorizationCode: AuthorizationCode
-    contactNotices: _list[str]
+    contactNotices: _list[
+        typing_extensions.Literal[
+            "CONTACT_NOTICE_UNSPECIFIED", "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT"
+        ]
+    ]
     registration: Registration
     validateOnly: bool
     yearlyPrice: Money
@@ -336,7 +370,14 @@ class TransferParameters(typing_extensions.TypedDict, total=False):
     currentRegistrarUri: str
     domainName: str
     nameServers: _list[str]
-    supportedPrivacy: _list[str]
+    supportedPrivacy: _list[
+        typing_extensions.Literal[
+            "CONTACT_PRIVACY_UNSPECIFIED",
+            "PUBLIC_CONTACT_DATA",
+            "PRIVATE_CONTACT_DATA",
+            "REDACTED_CONTACT_DATA",
+        ]
+    ]
     transferLockState: typing_extensions.Literal[
         "TRANSFER_LOCK_STATE_UNSPECIFIED", "UNLOCKED", "LOCKED"
     ]

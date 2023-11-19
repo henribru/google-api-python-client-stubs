@@ -41,7 +41,16 @@ class DecodeIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceIntegrity(typing_extensions.TypedDict, total=False):
-    deviceRecognitionVerdict: _list[str]
+    deviceRecognitionVerdict: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "MEETS_BASIC_INTEGRITY",
+            "MEETS_DEVICE_INTEGRITY",
+            "MEETS_STRONG_INTEGRITY",
+            "MEETS_VIRTUAL_INTEGRITY",
+            "MEETS_WEAK_INTEGRITY",
+        ]
+    ]
 
 @typing.type_check_only
 class EnvironmentDetails(typing_extensions.TypedDict, total=False):

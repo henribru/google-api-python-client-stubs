@@ -109,7 +109,13 @@ class GooglePrivacyDlpV2BigQueryTableCollection(
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BigQueryTableTypes(typing_extensions.TypedDict, total=False):
-    types: _list[str]
+    types: _list[
+        typing_extensions.Literal[
+            "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
+            "BIG_QUERY_TABLE_TYPE_TABLE",
+            "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+        ]
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BoundingBox(typing_extensions.TypedDict, total=False):
@@ -205,7 +211,21 @@ class GooglePrivacyDlpV2CloudStorageOptions(typing_extensions.TypedDict, total=F
     bytesLimitPerFile: str
     bytesLimitPerFilePercent: int
     fileSet: GooglePrivacyDlpV2FileSet
-    fileTypes: _list[str]
+    fileTypes: _list[
+        typing_extensions.Literal[
+            "FILE_TYPE_UNSPECIFIED",
+            "BINARY_FILE",
+            "TEXT_FILE",
+            "IMAGE",
+            "WORD",
+            "PDF",
+            "AVRO",
+            "CSV",
+            "TSV",
+            "POWERPOINT",
+            "EXCEL",
+        ]
+    ]
     filesLimitPercent: int
     sampleMethod: typing_extensions.Literal[
         "SAMPLE_METHOD_UNSPECIFIED", "TOP", "RANDOM_START"
@@ -519,7 +539,21 @@ class GooglePrivacyDlpV2DateTime(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Deidentify(typing_extensions.TypedDict, total=False):
     cloudStorageOutput: str
-    fileTypesToTransform: _list[str]
+    fileTypesToTransform: _list[
+        typing_extensions.Literal[
+            "FILE_TYPE_UNSPECIFIED",
+            "BINARY_FILE",
+            "TEXT_FILE",
+            "IMAGE",
+            "WORD",
+            "PDF",
+            "AVRO",
+            "CSV",
+            "TSV",
+            "POWERPOINT",
+            "EXCEL",
+        ]
+    ]
     transformationConfig: GooglePrivacyDlpV2TransformationConfig
     transformationDetailsStorageConfig: GooglePrivacyDlpV2TransformationDetailsStorageConfig
 
@@ -668,7 +702,13 @@ class GooglePrivacyDlpV2DiscoverySchemaModifiedCadence(
         "UPDATE_FREQUENCY_DAILY",
         "UPDATE_FREQUENCY_MONTHLY",
     ]
-    types: _list[str]
+    types: _list[
+        typing_extensions.Literal[
+            "SCHEMA_MODIFICATION_UNSPECIFIED",
+            "SCHEMA_NEW_COLUMNS",
+            "SCHEMA_REMOVED_COLUMNS",
+        ]
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DiscoveryStartingLocation(
@@ -687,7 +727,11 @@ class GooglePrivacyDlpV2DiscoveryTableModifiedCadence(
         "UPDATE_FREQUENCY_DAILY",
         "UPDATE_FREQUENCY_MONTHLY",
     ]
-    types: _list[str]
+    types: _list[
+        typing_extensions.Literal[
+            "TABLE_MODIFICATION_UNSPECIFIED", "TABLE_MODIFIED_TIMESTAMP"
+        ]
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DiscoveryTarget(typing_extensions.TypedDict, total=False):
@@ -967,7 +1011,9 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     displayName: str
     name: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
-    supportedBy: _list[str]
+    supportedBy: _list[
+        typing_extensions.Literal["ENUM_TYPE_UNSPECIFIED", "INSPECT", "RISK_ANALYSIS"]
+    ]
     versions: _list[GooglePrivacyDlpV2VersionDescription]
 
 @typing.type_check_only
@@ -1012,7 +1058,11 @@ class GooglePrivacyDlpV2InfoTypeTransformations(
 
 @typing.type_check_only
 class GooglePrivacyDlpV2InspectConfig(typing_extensions.TypedDict, total=False):
-    contentOptions: _list[str]
+    contentOptions: _list[
+        typing_extensions.Literal[
+            "CONTENT_UNSPECIFIED", "CONTENT_TEXT", "CONTENT_IMAGE"
+        ]
+    ]
     customInfoTypes: _list[GooglePrivacyDlpV2CustomInfoType]
     excludeInfoTypes: bool
     includeQuote: bool

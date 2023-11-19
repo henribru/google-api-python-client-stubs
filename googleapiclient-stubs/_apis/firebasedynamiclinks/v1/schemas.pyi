@@ -210,7 +210,7 @@ class IosInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedShortLink(typing_extensions.TypedDict, total=False):
     creationTime: str
-    flaggedAttribute: _list[str]
+    flaggedAttribute: _list[typing_extensions.Literal["UNSPECIFIED_ATTRIBUTE", "SPAM"]]
     info: DynamicLinkInfo
     link: str
     linkName: str

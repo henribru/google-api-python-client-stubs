@@ -740,7 +740,7 @@ class DataFilterValueRange(typing_extensions.TypedDict, total=False):
     majorDimension: typing_extensions.Literal[
         "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
     ]
-    values: _list[list]
+    values: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class DataLabel(typing_extensions.TypedDict, total=False):
@@ -827,7 +827,18 @@ class DataSourceRefreshSchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceRefreshWeeklySchedule(typing_extensions.TypedDict, total=False):
-    daysOfWeek: _list[str]
+    daysOfWeek: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
     startTime: TimeOfDay
 
 @typing.type_check_only
@@ -2006,7 +2017,7 @@ class ValueRange(typing_extensions.TypedDict, total=False):
         "DIMENSION_UNSPECIFIED", "ROWS", "COLUMNS"
     ]
     range: str
-    values: _list[list]
+    values: _list[_list[typing.Any]]
 
 @typing.type_check_only
 class WaterfallChartColumnStyle(typing_extensions.TypedDict, total=False):

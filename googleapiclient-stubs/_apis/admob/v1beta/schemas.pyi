@@ -61,7 +61,17 @@ class App(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppLinkedAppInfo(typing_extensions.TypedDict, total=False):
-    androidAppStores: _list[str]
+    androidAppStores: _list[
+        typing_extensions.Literal[
+            "ANDROID_APP_STORE_UNSPECIFIED",
+            "GOOGLE_PLAY_APP_STORE",
+            "AMAZON_APP_STORE",
+            "OPPO_APP_STORE",
+            "SAMSUNG_APP_STORE",
+            "VIVO_APP_STORE",
+            "XIAOMI_APP_STORE",
+        ]
+    ]
     appStoreId: str
     displayName: str
 
@@ -80,9 +90,34 @@ class BatchCreateAdUnitMappingsResponse(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class CampaignReportSpec(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
-    dimensions: _list[str]
+    dimensions: _list[
+        typing_extensions.Literal[
+            "DIMENSION_UNSPECIFIED",
+            "DATE",
+            "CAMPAIGN_ID",
+            "CAMPAIGN_NAME",
+            "AD_ID",
+            "AD_NAME",
+            "PLACEMENT_ID",
+            "PLACEMENT_NAME",
+            "PLACEMENT_PLATFORM",
+            "COUNTRY",
+            "FORMAT",
+        ]
+    ]
     languageCode: str
-    metrics: _list[str]
+    metrics: _list[
+        typing_extensions.Literal[
+            "METRIC_UNSPECIFIED",
+            "IMPRESSIONS",
+            "CLICKS",
+            "CLICK_THROUGH_RATE",
+            "INSTALLS",
+            "ESTIMATED_COST",
+            "AVERAGE_CPI",
+            "INTERACTIONS",
+        ]
+    ]
 
 @typing.type_check_only
 class CreateAdUnitMappingRequest(typing_extensions.TypedDict, total=False):
@@ -228,10 +263,41 @@ class MediationGroupTargeting(typing_extensions.TypedDict, total=False):
 class MediationReportSpec(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
     dimensionFilters: _list[MediationReportSpecDimensionFilter]
-    dimensions: _list[str]
+    dimensions: _list[
+        typing_extensions.Literal[
+            "DIMENSION_UNSPECIFIED",
+            "DATE",
+            "MONTH",
+            "WEEK",
+            "AD_SOURCE",
+            "AD_SOURCE_INSTANCE",
+            "AD_UNIT",
+            "APP",
+            "MEDIATION_GROUP",
+            "COUNTRY",
+            "FORMAT",
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION",
+        ]
+    ]
     localizationSettings: LocalizationSettings
     maxReportRows: int
-    metrics: _list[str]
+    metrics: _list[
+        typing_extensions.Literal[
+            "METRIC_UNSPECIFIED",
+            "AD_REQUESTS",
+            "CLICKS",
+            "ESTIMATED_EARNINGS",
+            "IMPRESSIONS",
+            "IMPRESSION_CTR",
+            "MATCHED_REQUESTS",
+            "MATCH_RATE",
+            "OBSERVED_ECPM",
+        ]
+    ]
     sortConditions: _list[MediationReportSpecSortCondition]
     timeZone: str
 
@@ -296,10 +362,40 @@ class MediationReportSpecSortCondition(typing_extensions.TypedDict, total=False)
 class NetworkReportSpec(typing_extensions.TypedDict, total=False):
     dateRange: DateRange
     dimensionFilters: _list[NetworkReportSpecDimensionFilter]
-    dimensions: _list[str]
+    dimensions: _list[
+        typing_extensions.Literal[
+            "DIMENSION_UNSPECIFIED",
+            "DATE",
+            "MONTH",
+            "WEEK",
+            "AD_UNIT",
+            "APP",
+            "AD_TYPE",
+            "COUNTRY",
+            "FORMAT",
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION",
+        ]
+    ]
     localizationSettings: LocalizationSettings
     maxReportRows: int
-    metrics: _list[str]
+    metrics: _list[
+        typing_extensions.Literal[
+            "METRIC_UNSPECIFIED",
+            "AD_REQUESTS",
+            "CLICKS",
+            "ESTIMATED_EARNINGS",
+            "IMPRESSIONS",
+            "IMPRESSION_CTR",
+            "IMPRESSION_RPM",
+            "MATCHED_REQUESTS",
+            "MATCH_RATE",
+            "SHOW_RATE",
+        ]
+    ]
     sortConditions: _list[NetworkReportSpecSortCondition]
     timeZone: str
 
