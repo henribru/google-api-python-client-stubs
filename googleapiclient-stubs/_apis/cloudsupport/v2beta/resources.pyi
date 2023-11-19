@@ -1,11 +1,11 @@
 import collections.abc
 import typing
 
-import httplib2  # type: ignore
+import httplib2  # type: ignore[import-untyped]
 import typing_extensions
 
 import googleapiclient.discovery
-import googleapiclient.http  # type: ignore
+import googleapiclient.http  # type: ignore[import-untyped]
 
 from .schemas import *
 
@@ -66,7 +66,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 previous_response: ListCommentsResponse,
             ) -> ListCommentsResponseHttpRequest | None: ...
 
-        def close(self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any) -> CaseHttpRequest: ...  # type: ignore
+        def close(self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any) -> CaseHttpRequest: ...  # type: ignore[override]
         def create(
             self, *, parent: str, body: Case = ..., **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
