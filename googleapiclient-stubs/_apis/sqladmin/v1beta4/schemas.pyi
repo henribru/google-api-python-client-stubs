@@ -21,6 +21,8 @@ class ApiWarning(typing_extensions.TypedDict, total=False):
         "SQL_API_WARNING_CODE_UNSPECIFIED",
         "REGION_UNREACHABLE",
         "MAX_RESULTS_EXCEEDS_LIMIT",
+        "COMPROMISED_CREDENTIALS",
+        "INTERNAL_STATE_FAILURE",
     ]
     message: str
     region: str
@@ -268,6 +270,11 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     serverCaCert: SslCert
     serviceAccountEmailAddress: str
     settings: Settings
+    sqlNetworkArchitecture: typing_extensions.Literal[
+        "SQL_NETWORK_ARCHITECTURE_UNSPECIFIED",
+        "NEW_NETWORK_ARCHITECTURE",
+        "OLD_NETWORK_ARCHITECTURE",
+    ]
     state: typing_extensions.Literal[
         "SQL_INSTANCE_STATE_UNSPECIFIED",
         "RUNNABLE",
@@ -556,7 +563,7 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     hour: int
     kind: str
     updateTrack: typing_extensions.Literal[
-        "SQL_UPDATE_TRACK_UNSPECIFIED", "canary", "stable"
+        "SQL_UPDATE_TRACK_UNSPECIFIED", "canary", "stable", "week5"
     ]
 
 @typing.type_check_only
@@ -591,6 +598,7 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
+    apiWarning: ApiWarning
     backupContext: BackupContext
     endTime: str
     error: OperationErrors
@@ -687,6 +695,7 @@ class PasswordValidationPolicy(typing_extensions.TypedDict, total=False):
     complexity: typing_extensions.Literal[
         "COMPLEXITY_UNSPECIFIED", "COMPLEXITY_DEFAULT"
     ]
+    disallowCompromisedCredentials: bool
     disallowUsernameSubstring: bool
     enablePasswordPolicy: bool
     minLength: int
@@ -827,6 +836,10 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "MYSQL_PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
         "LOCAL_INFILE_OFF",
         "TURN_ON_PITR_AFTER_PROMOTE",
+        "INCOMPATIBLE_DATABASE_MINOR_VERSION",
+        "SOURCE_MAX_SUBSCRIPTIONS",
+        "UNABLE_TO_VERIFY_DEFINERS",
+        "SUBSCRIPTION_CALCULATION_STATUS",
     ]
 
 @typing.type_check_only

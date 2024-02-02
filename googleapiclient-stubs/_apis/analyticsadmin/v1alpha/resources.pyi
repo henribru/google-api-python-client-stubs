@@ -330,6 +330,49 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ): ...
 
         @typing.type_check_only
+        class CalculatedMetricsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaCalculatedMetric = ...,
+                calculatedMetricId: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponseHttpRequest
+                | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaCalculatedMetric = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest: ...
+
+        @typing.type_check_only
         class ChannelGroupsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -1146,6 +1189,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def adSenseLinks(self) -> AdSenseLinksResource: ...
         def audiences(self) -> AudiencesResource: ...
         def bigQueryLinks(self) -> BigQueryLinksResource: ...
+        def calculatedMetrics(self) -> CalculatedMetricsResource: ...
         def channelGroups(self) -> ChannelGroupsResource: ...
         def conversionEvents(self) -> ConversionEventsResource: ...
         def customDimensions(self) -> CustomDimensionsResource: ...
@@ -1287,6 +1331,16 @@ class GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaBigQueryLink: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCalculatedMetricHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaCalculatedMetric: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChannelGroupHttpRequest(
@@ -1567,6 +1621,16 @@ class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListChannelGroupsResponseHttpRequest(

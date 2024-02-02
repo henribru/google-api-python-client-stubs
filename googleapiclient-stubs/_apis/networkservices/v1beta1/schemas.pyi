@@ -89,7 +89,11 @@ class Gateway(typing_extensions.TypedDict, total=False):
     certificateUrls: _list[str]
     createTime: str
     description: str
+    envoyHeaders: typing_extensions.Literal[
+        "ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"
+    ]
     gatewaySecurityPolicy: str
+    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     labels: dict[str, typing.Any]
     name: str
     network: str
@@ -158,6 +162,7 @@ class GrpcRouteRetryPolicy(typing_extensions.TypedDict, total=False):
 class GrpcRouteRouteAction(typing_extensions.TypedDict, total=False):
     destinations: _list[GrpcRouteDestination]
     faultInjectionPolicy: GrpcRouteFaultInjectionPolicy
+    idleTimeout: str
     retryPolicy: GrpcRouteRetryPolicy
     statefulSessionAffinity: GrpcRouteStatefulSessionAffinityPolicy
     timeout: str
@@ -202,6 +207,8 @@ class HttpRouteCorsPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class HttpRouteDestination(typing_extensions.TypedDict, total=False):
+    requestHeaderModifier: HttpRouteHeaderModifier
+    responseHeaderModifier: HttpRouteHeaderModifier
     serviceName: str
     weight: int
 
@@ -243,6 +250,12 @@ class HttpRouteHeaderModifier(typing_extensions.TypedDict, total=False):
     set: dict[str, typing.Any]
 
 @typing.type_check_only
+class HttpRouteHttpDirectResponse(typing_extensions.TypedDict, total=False):
+    bytesBody: str
+    status: int
+    stringBody: str
+
+@typing.type_check_only
 class HttpRouteQueryParameterMatch(typing_extensions.TypedDict, total=False):
     exactMatch: str
     presentMatch: bool
@@ -269,6 +282,7 @@ class HttpRouteRedirect(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpRouteRequestMirrorPolicy(typing_extensions.TypedDict, total=False):
     destination: HttpRouteDestination
+    mirrorPercent: float
 
 @typing.type_check_only
 class HttpRouteRetryPolicy(typing_extensions.TypedDict, total=False):
@@ -280,7 +294,9 @@ class HttpRouteRetryPolicy(typing_extensions.TypedDict, total=False):
 class HttpRouteRouteAction(typing_extensions.TypedDict, total=False):
     corsPolicy: HttpRouteCorsPolicy
     destinations: _list[HttpRouteDestination]
+    directResponse: HttpRouteHttpDirectResponse
     faultInjectionPolicy: HttpRouteFaultInjectionPolicy
+    idleTimeout: str
     redirect: HttpRouteRedirect
     requestHeaderModifier: HttpRouteHeaderModifier
     requestMirrorPolicy: HttpRouteRequestMirrorPolicy
@@ -419,6 +435,9 @@ class Location(typing_extensions.TypedDict, total=False):
 class Mesh(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    envoyHeaders: typing_extensions.Literal[
+        "ENVOY_HEADERS_UNSPECIFIED", "NONE", "DEBUG_HEADERS"
+    ]
     interceptionPort: int
     labels: dict[str, typing.Any]
     name: str
@@ -523,6 +542,7 @@ class TcpRoute(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TcpRouteRouteAction(typing_extensions.TypedDict, total=False):
     destinations: _list[TcpRouteRouteDestination]
+    idleTimeout: str
     originalDestination: bool
 
 @typing.type_check_only
@@ -563,6 +583,7 @@ class TlsRoute(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TlsRouteRouteAction(typing_extensions.TypedDict, total=False):
     destinations: _list[TlsRouteRouteDestination]
+    idleTimeout: str
 
 @typing.type_check_only
 class TlsRouteRouteDestination(typing_extensions.TypedDict, total=False):

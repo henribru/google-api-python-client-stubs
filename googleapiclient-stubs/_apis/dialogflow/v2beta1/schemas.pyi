@@ -33,6 +33,11 @@ class GoogleCloudDialogflowCxV3AudioInput(typing_extensions.TypedDict, total=Fal
     config: GoogleCloudDialogflowCxV3InputAudioConfig
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3BargeInConfig(typing_extensions.TypedDict, total=False):
+    noBargeInDuration: str
+    totalDuration: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3BatchRunTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -356,6 +361,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
     ]
+    bargeInConfig: GoogleCloudDialogflowCxV3BargeInConfig
     enableWordInfo: bool
     model: str
     modelVariant: typing_extensions.Literal[
@@ -364,6 +370,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
+    optOutConformerModelMigration: bool
     phraseHints: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
@@ -420,6 +427,7 @@ class GoogleCloudDialogflowCxV3KnowledgeConnectorSettings(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3Page(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3AdvancedSettings
+    description: str
     displayName: str
     entryFulfillment: GoogleCloudDialogflowCxV3Fulfillment
     eventHandlers: _list[GoogleCloudDialogflowCxV3EventHandler]
@@ -804,6 +812,13 @@ class GoogleCloudDialogflowCxV3beta1AudioInput(
     config: GoogleCloudDialogflowCxV3beta1InputAudioConfig
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1BargeInConfig(
+    typing_extensions.TypedDict, total=False
+):
+    noBargeInDuration: str
+    totalDuration: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1BatchRunTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1141,6 +1156,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
     ]
+    bargeInConfig: GoogleCloudDialogflowCxV3beta1BargeInConfig
     enableWordInfo: bool
     model: str
     modelVariant: typing_extensions.Literal[
@@ -1149,6 +1165,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
+    optOutConformerModelMigration: bool
     phraseHints: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
@@ -1207,6 +1224,7 @@ class GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Page(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
+    description: str
     displayName: str
     entryFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
     eventHandlers: _list[GoogleCloudDialogflowCxV3beta1EventHandler]
@@ -1727,11 +1745,6 @@ class GoogleCloudDialogflowV2DeployConversationModelOperationMetadata(
     createTime: str
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2EncryptionSpec(typing_extensions.TypedDict, total=False):
-    kmsKey: str
-    name: str
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -1809,18 +1822,6 @@ class GoogleCloudDialogflowV2ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
-
-@typing.type_check_only
-class GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    request: GoogleCloudDialogflowV2InitializeEncryptionSpecRequest
-
-@typing.type_check_only
-class GoogleCloudDialogflowV2InitializeEncryptionSpecRequest(
-    typing_extensions.TypedDict, total=False
-):
-    encryptionSpec: GoogleCloudDialogflowV2EncryptionSpec
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=False):
@@ -2762,13 +2763,6 @@ class GoogleCloudDialogflowV2beta1DtmfParameters(
     acceptsDtmfInput: bool
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2beta1EncryptionSpec(
-    typing_extensions.TypedDict, total=False
-):
-    kmsKey: str
-    name: str
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2beta1EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -2970,6 +2964,7 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConf
     conversationModelConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig
     conversationProcessConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig
     disableAgentQueryLogging: bool
+    enableConversationAugmentedQuery: bool
     enableEventBasedSuggestion: bool
     queryConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
     suggestionFeature: GoogleCloudDialogflowV2beta1SuggestionFeature
@@ -2985,6 +2980,7 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
     documentQuerySource: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDocumentQuerySource
     knowledgeBaseQuerySource: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigKnowledgeBaseQuerySource
     maxResults: int
+    sections: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSections
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings(
@@ -3018,6 +3014,22 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
     typing_extensions.TypedDict, total=False
 ):
     knowledgeBases: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigSections(
+    typing_extensions.TypedDict, total=False
+):
+    sectionTypes: _list[
+        typing_extensions.Literal[
+            "SECTION_TYPE_UNSPECIFIED",
+            "SITUATION",
+            "ACTION",
+            "RESOLUTION",
+            "REASON_FOR_CANCELLATION",
+            "CUSTOMER_SATISFACTION",
+            "ENTITIES",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings(
@@ -3095,18 +3107,6 @@ class GoogleCloudDialogflowV2beta1ImportDocumentsResponse(
     warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
-class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    request: GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest
-
-@typing.type_check_only
-class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest(
-    typing_extensions.TypedDict, total=False
-):
-    encryptionSpec: GoogleCloudDialogflowV2beta1EncryptionSpec
-
-@typing.type_check_only
 class GoogleCloudDialogflowV2beta1InputAudioConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3132,6 +3132,7 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(
         "USE_STANDARD",
         "USE_ENHANCED",
     ]
+    optOutConformerModelMigration: bool
     phraseHints: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
@@ -3918,7 +3919,7 @@ class GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer(
     answerRecord: str
     answerSources: _list[GoogleCloudDialogflowV2beta1SearchKnowledgeAnswerAnswerSource]
     answerType: typing_extensions.Literal[
-        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE"
+        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE", "INTENT"
     ]
 
 @typing.type_check_only
@@ -3945,6 +3946,7 @@ class GoogleCloudDialogflowV2beta1SearchKnowledgeResponse(
     typing_extensions.TypedDict, total=False
 ):
     answers: _list[GoogleCloudDialogflowV2beta1SearchKnowledgeAnswer]
+    rewrittenQuery: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1Sentiment(typing_extensions.TypedDict, total=False):

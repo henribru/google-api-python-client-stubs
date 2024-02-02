@@ -5,6 +5,46 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdaptiveMtDataset(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    exampleCount: int
+    name: str
+    sourceLanguageCode: str
+    targetLanguageCode: str
+    updateTime: str
+
+@typing.type_check_only
+class AdaptiveMtFile(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    entryCount: int
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class AdaptiveMtSentence(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    sourceSentence: str
+    targetSentence: str
+    updateTime: str
+
+@typing.type_check_only
+class AdaptiveMtTranslateRequest(typing_extensions.TypedDict, total=False):
+    content: _list[str]
+    dataset: str
+
+@typing.type_check_only
+class AdaptiveMtTranslateResponse(typing_extensions.TypedDict, total=False):
+    languageCode: str
+    translations: _list[AdaptiveMtTranslation]
+
+@typing.type_check_only
+class AdaptiveMtTranslation(typing_extensions.TypedDict, total=False):
+    translatedText: str
+
+@typing.type_check_only
 class BatchDocumentInputConfig(typing_extensions.TypedDict, total=False):
     gcsSource: GcsSource
 
@@ -107,6 +147,12 @@ class ExportDataRequest(typing_extensions.TypedDict, total=False):
     outputConfig: DatasetOutputConfig
 
 @typing.type_check_only
+class FileInputSource(typing_extensions.TypedDict, total=False):
+    content: str
+    displayName: str
+    mimeType: str
+
+@typing.type_check_only
 class GcsDestination(typing_extensions.TypedDict, total=False):
     outputUriPrefix: str
 
@@ -159,6 +205,15 @@ class GlossaryTermsSet(typing_extensions.TypedDict, total=False):
     terms: _list[GlossaryTerm]
 
 @typing.type_check_only
+class ImportAdaptiveMtFileRequest(typing_extensions.TypedDict, total=False):
+    fileInputSource: FileInputSource
+    gcsInputSource: GcsInputSource
+
+@typing.type_check_only
+class ImportAdaptiveMtFileResponse(typing_extensions.TypedDict, total=False):
+    adaptiveMtFile: AdaptiveMtFile
+
+@typing.type_check_only
 class ImportDataRequest(typing_extensions.TypedDict, total=False):
     inputConfig: DatasetInputConfig
 
@@ -180,6 +235,21 @@ class LanguageCodePair(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LanguageCodesSet(typing_extensions.TypedDict, total=False):
     languageCodes: _list[str]
+
+@typing.type_check_only
+class ListAdaptiveMtDatasetsResponse(typing_extensions.TypedDict, total=False):
+    adaptiveMtDatasets: _list[AdaptiveMtDataset]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAdaptiveMtFilesResponse(typing_extensions.TypedDict, total=False):
+    adaptiveMtFiles: _list[AdaptiveMtFile]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAdaptiveMtSentencesResponse(typing_extensions.TypedDict, total=False):
+    adaptiveMtSentences: _list[AdaptiveMtSentence]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListDatasetsResponse(typing_extensions.TypedDict, total=False):

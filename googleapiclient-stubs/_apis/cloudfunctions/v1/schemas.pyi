@@ -17,6 +17,9 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutomaticUpdatePolicy(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -34,6 +37,7 @@ class CallFunctionResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudFunction(typing_extensions.TypedDict, total=False):
+    automaticUpdatePolicy: AutomaticUpdatePolicy
     availableMemoryMb: int
     buildEnvironmentVariables: dict[str, typing.Any]
     buildId: str
@@ -60,6 +64,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     minInstances: int
     name: str
     network: str
+    onDeployUpdatePolicy: OnDeployUpdatePolicy
     runtime: str
     secretEnvironmentVariables: _list[SecretEnvVar]
     secretVolumes: _list[SecretVolume]
@@ -132,6 +137,17 @@ class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2Stage]
@@ -182,6 +198,17 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2alphaStage]
@@ -232,6 +259,17 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2betaStage]
@@ -296,6 +334,10 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class OnDeployUpdatePolicy(typing_extensions.TypedDict, total=False):
+    runtimeVersion: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

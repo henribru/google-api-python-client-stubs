@@ -55,6 +55,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             parent: str,
             body: SshPublicKey = ...,
             projectId: str = ...,
+            regions: str | _list[str] = ...,
             **kwargs: typing.Any
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...

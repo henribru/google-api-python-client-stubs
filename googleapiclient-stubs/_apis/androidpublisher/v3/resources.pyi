@@ -42,7 +42,51 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 previous_response: ListDeviceTierConfigsResponse,
             ) -> ListDeviceTierConfigsResponseHttpRequest | None: ...
 
+        def dataSafety(
+            self,
+            *,
+            packageName: str,
+            body: SafetyLabelsUpdateRequest = ...,
+            **kwargs: typing.Any
+        ) -> SafetyLabelsUpdateResponseHttpRequest: ...
         def deviceTierConfigs(self) -> DeviceTierConfigsResource: ...
+
+    @typing.type_check_only
+    class ApprecoveryResource(googleapiclient.discovery.Resource):
+        def addTargeting(
+            self,
+            *,
+            packageName: str,
+            appRecoveryId: str,
+            body: AddTargetingRequest = ...,
+            **kwargs: typing.Any
+        ) -> AddTargetingResponseHttpRequest: ...
+        def appRecoveries(
+            self, *, packageName: str, versionCode: str = ..., **kwargs: typing.Any
+        ) -> ListAppRecoveriesResponseHttpRequest: ...
+        def cancel(
+            self,
+            *,
+            packageName: str,
+            appRecoveryId: str,
+            body: CancelAppRecoveryRequest = ...,
+            **kwargs: typing.Any
+        ) -> CancelAppRecoveryResponseHttpRequest: ...
+        def create(
+            self,
+            *,
+            packageName: str,
+            body: CreateDraftAppRecoveryRequest = ...,
+            **kwargs: typing.Any
+        ) -> AppRecoveryActionHttpRequest: ...
+        def deploy(
+            self,
+            *,
+            packageName: str,
+            appRecoveryId: str,
+            body: DeployAppRecoveryRequest = ...,
+            **kwargs: typing.Any
+        ) -> DeployAppRecoveryResponseHttpRequest: ...
 
     @typing.type_check_only
     class EditsResource(googleapiclient.discovery.Resource):
@@ -318,6 +362,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class TracksResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                packageName: str,
+                editId: str,
+                body: TrackConfig = ...,
+                **kwargs: typing.Any
+            ) -> TrackHttpRequest: ...
             def get(
                 self, *, packageName: str, editId: str, track: str, **kwargs: typing.Any
             ) -> TrackHttpRequest: ...
@@ -436,8 +488,34 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InappproductsResource(googleapiclient.discovery.Resource):
+        def batchDelete(
+            self,
+            *,
+            packageName: str,
+            body: InappproductsBatchDeleteRequest = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def batchGet(
+            self, *, packageName: str, sku: str | _list[str] = ..., **kwargs: typing.Any
+        ) -> InappproductsBatchGetResponseHttpRequest: ...
+        def batchUpdate(
+            self,
+            *,
+            packageName: str,
+            body: InappproductsBatchUpdateRequest = ...,
+            **kwargs: typing.Any
+        ) -> InappproductsBatchUpdateResponseHttpRequest: ...
         def delete(
-            self, *, packageName: str, sku: str, **kwargs: typing.Any
+            self,
+            *,
+            packageName: str,
+            sku: str,
+            latencyTolerance: typing_extensions.Literal[
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+            ] = ...,
+            **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self, *, packageName: str, sku: str, **kwargs: typing.Any
@@ -466,6 +544,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             sku: str,
             body: InAppProduct = ...,
             autoConvertMissingPrices: bool = ...,
+            latencyTolerance: typing_extensions.Literal[
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+            ] = ...,
             **kwargs: typing.Any
         ) -> InAppProductHttpRequest: ...
         def update(
@@ -476,6 +559,11 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: InAppProduct = ...,
             allowMissing: bool = ...,
             autoConvertMissingPrices: bool = ...,
+            latencyTolerance: typing_extensions.Literal[
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+            ] = ...,
             **kwargs: typing.Any
         ) -> InAppProductHttpRequest: ...
 
@@ -506,6 +594,33 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         body: ActivateSubscriptionOfferRequest = ...,
                         **kwargs: typing.Any
                     ) -> SubscriptionOfferHttpRequest: ...
+                    def batchGet(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        body: BatchGetSubscriptionOffersRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BatchGetSubscriptionOffersResponseHttpRequest: ...
+                    def batchUpdate(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        body: BatchUpdateSubscriptionOffersRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BatchUpdateSubscriptionOffersResponseHttpRequest: ...
+                    def batchUpdateStates(
+                        self,
+                        *,
+                        packageName: str,
+                        productId: str,
+                        basePlanId: str,
+                        body: BatchUpdateSubscriptionOfferStatesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BatchUpdateSubscriptionOfferStatesResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -568,6 +683,12 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         basePlanId: str,
                         offerId: str,
                         body: SubscriptionOffer = ...,
+                        allowMissing: bool = ...,
+                        latencyTolerance: typing_extensions.Literal[
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+                        ] = ...,
                         regionsVersion_version: str = ...,
                         updateMask: str = ...,
                         **kwargs: typing.Any
@@ -582,6 +703,22 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     body: ActivateBasePlanRequest = ...,
                     **kwargs: typing.Any
                 ) -> SubscriptionHttpRequest: ...
+                def batchMigratePrices(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    body: BatchMigrateBasePlanPricesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchMigrateBasePlanPricesResponseHttpRequest: ...
+                def batchUpdateStates(
+                    self,
+                    *,
+                    packageName: str,
+                    productId: str,
+                    body: BatchUpdateBasePlanStatesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchUpdateBasePlanStatesResponseHttpRequest: ...
                 def deactivate(
                     self,
                     *,
@@ -618,6 +755,20 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: ArchiveSubscriptionRequest = ...,
                 **kwargs: typing.Any
             ) -> SubscriptionHttpRequest: ...
+            def batchGet(
+                self,
+                *,
+                packageName: str,
+                productIds: str | _list[str] = ...,
+                **kwargs: typing.Any
+            ) -> BatchGetSubscriptionsResponseHttpRequest: ...
+            def batchUpdate(
+                self,
+                *,
+                packageName: str,
+                body: BatchUpdateSubscriptionsRequest = ...,
+                **kwargs: typing.Any
+            ) -> BatchUpdateSubscriptionsResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -653,6 +804,12 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 body: Subscription = ...,
+                allowMissing: bool = ...,
+                latencyTolerance: typing_extensions.Literal[
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+                ] = ...,
                 regionsVersion_version: str = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any
@@ -767,6 +924,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, packageName: str, token: str, **kwargs: typing.Any
             ) -> SubscriptionPurchaseV2HttpRequest: ...
+            def revoke(
+                self,
+                *,
+                packageName: str,
+                token: str,
+                body: RevokeSubscriptionPurchaseRequest = ...,
+                **kwargs: typing.Any
+            ) -> RevokeSubscriptionPurchaseResponseHttpRequest: ...
 
         @typing.type_check_only
         class VoidedpurchasesResource(googleapiclient.discovery.Resource):
@@ -902,6 +1067,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def applications(self) -> ApplicationsResource: ...
+    def apprecovery(self) -> ApprecoveryResource: ...
     def edits(self) -> EditsResource: ...
     def externaltransactions(self) -> ExternaltransactionsResource: ...
     def generatedapks(self) -> GeneratedapksResource: ...
@@ -914,6 +1080,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
     def reviews(self) -> ReviewsResource: ...
     def systemapks(self) -> SystemapksResource: ...
     def users(self) -> UsersResource: ...
+
+@typing.type_check_only
+class AddTargetingResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AddTargetingResponse: ...
 
 @typing.type_check_only
 class ApkHttpRequest(googleapiclient.http.HttpRequest):
@@ -956,6 +1130,74 @@ class AppEditHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AppEdit: ...
 
 @typing.type_check_only
+class AppRecoveryActionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AppRecoveryAction: ...
+
+@typing.type_check_only
+class BatchGetSubscriptionOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetSubscriptionOffersResponse: ...
+
+@typing.type_check_only
+class BatchGetSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetSubscriptionsResponse: ...
+
+@typing.type_check_only
+class BatchMigrateBasePlanPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchMigrateBasePlanPricesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateBasePlanStatesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateBasePlanStatesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOfferStatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateSubscriptionOfferStatesResponse: ...
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOffersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateSubscriptionOffersResponse: ...
+
+@typing.type_check_only
+class BatchUpdateSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchUpdateSubscriptionsResponse: ...
+
+@typing.type_check_only
 class BundleHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -972,6 +1214,14 @@ class BundlesListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BundlesListResponse: ...
 
 @typing.type_check_only
+class CancelAppRecoveryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelAppRecoveryResponse: ...
+
+@typing.type_check_only
 class ConvertRegionPricesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -986,6 +1236,14 @@ class DeobfuscationFilesUploadResponseHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DeobfuscationFilesUploadResponse: ...
+
+@typing.type_check_only
+class DeployAppRecoveryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeployAppRecoveryResponse: ...
 
 @typing.type_check_only
 class DeviceTierConfigHttpRequest(googleapiclient.http.HttpRequest):
@@ -1068,6 +1326,22 @@ class InAppProductHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InAppProduct: ...
 
 @typing.type_check_only
+class InappproductsBatchGetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InappproductsBatchGetResponse: ...
+
+@typing.type_check_only
+class InappproductsBatchUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InappproductsBatchUpdateResponse: ...
+
+@typing.type_check_only
 class InappproductsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1082,6 +1356,14 @@ class InternalAppSharingArtifactHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InternalAppSharingArtifact: ...
+
+@typing.type_check_only
+class ListAppRecoveriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAppRecoveriesResponse: ...
 
 @typing.type_check_only
 class ListDeviceTierConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1170,6 +1452,22 @@ class ReviewsReplyResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ReviewsReplyResponse: ...
+
+@typing.type_check_only
+class RevokeSubscriptionPurchaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RevokeSubscriptionPurchaseResponse: ...
+
+@typing.type_check_only
+class SafetyLabelsUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SafetyLabelsUpdateResponse: ...
 
 @typing.type_check_only
 class SubscriptionHttpRequest(googleapiclient.http.HttpRequest):

@@ -167,6 +167,7 @@ class PhotoSequence(typing_extensions.TypedDict, total=False):
         "NOT_OUTDOORS",
         "INSUFFICIENT_VIDEO_FRAMES",
         "INSUFFICIENT_MOVEMENT",
+        "MAST_DOWN",
     ]
     filename: str
     gpsSource: typing_extensions.Literal[

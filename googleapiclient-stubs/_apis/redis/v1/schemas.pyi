@@ -125,6 +125,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     redisVersion: str
     replicaCount: int
     reservedIpRange: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     secondaryIpRange: str
     serverCaCerts: _list[TlsCertificate]
     state: typing_extensions.Literal[

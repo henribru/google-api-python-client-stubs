@@ -208,6 +208,7 @@ class GoogleCloudContactcenterinsightsV1Conversation(
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
     obfuscatedUserId: str
+    qualityMetadata: GoogleCloudContactcenterinsightsV1ConversationQualityMetadata
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1RuntimeAnnotation]
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1ConversationTranscript
@@ -247,6 +248,26 @@ class GoogleCloudContactcenterinsightsV1ConversationParticipant(
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER", "ANY_AGENT"
     ]
     userId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationQualityMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    agentInfo: _list[
+        GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo
+    ]
+    customerSatisfactionRating: int
+    menuPath: str
+    waitDuration: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+    displayName: str
+    dispositionCode: str
+    team: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData(
@@ -1010,6 +1031,7 @@ class GoogleCloudContactcenterinsightsV1alpha1Conversation(
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
     name: str
     obfuscatedUserId: str
+    qualityMetadata: GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata
     runtimeAnnotations: _list[GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation]
     startTime: str
     transcript: GoogleCloudContactcenterinsightsV1alpha1ConversationTranscript
@@ -1049,6 +1071,26 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationParticipant(
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER", "ANY_AGENT"
     ]
     userId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    agentInfo: _list[
+        GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo
+    ]
+    customerSatisfactionRating: int
+    menuPath: str
+    waitDuration: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadataAgentInfo(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+    displayName: str
+    dispositionCode: str
+    team: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData(

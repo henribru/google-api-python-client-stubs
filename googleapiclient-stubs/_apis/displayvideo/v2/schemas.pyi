@@ -784,6 +784,7 @@ class ChannelAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class CmHybridConfig(typing_extensions.TypedDict, total=False):
     cmAccountId: str
+    cmAdvertiserIds: _list[str]
     cmFloodlightConfigId: str
     cmFloodlightLinkingAuthorized: bool
     cmSyncableSiteIds: _list[str]
@@ -821,6 +822,15 @@ class CommonInStreamAttribute(typing_extensions.TypedDict, total=False):
     video: YoutubeVideoDetails
 
 @typing.type_check_only
+class Consent(typing_extensions.TypedDict, total=False):
+    adPersonalization: typing_extensions.Literal[
+        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
+    ]
+    adUserData: typing_extensions.Literal[
+        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
+    ]
+
+@typing.type_check_only
 class ContactInfo(typing_extensions.TypedDict, total=False):
     countryCode: str
     hashedEmails: _list[str]
@@ -831,6 +841,7 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContactInfoList(typing_extensions.TypedDict, total=False):
+    consent: Consent
     contactInfos: _list[ContactInfo]
 
 @typing.type_check_only
@@ -2056,6 +2067,21 @@ class FixedBidStrategy(typing_extensions.TypedDict, total=False):
     bidAmountMicros: str
 
 @typing.type_check_only
+class FloodlightActivity(typing_extensions.TypedDict, total=False):
+    advertiserIds: _list[str]
+    displayName: str
+    floodlightActivityId: str
+    floodlightGroupId: str
+    name: str
+    remarketingConfigs: _list[RemarketingConfig]
+    servingStatus: typing_extensions.Literal[
+        "FLOODLIGHT_ACTIVITY_SERVING_STATUS_UNSPECIFIED",
+        "FLOODLIGHT_ACTIVITY_SERVING_STATUS_ENABLED",
+        "FLOODLIGHT_ACTIVITY_SERVING_STATUS_DISABLED",
+    ]
+    sslRequired: bool
+
+@typing.type_check_only
 class FloodlightGroup(typing_extensions.TypedDict, total=False):
     activeViewConfig: ActiveViewVideoViewabilityMetricConfig
     customVariables: dict[str, typing.Any]
@@ -2922,6 +2948,11 @@ class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total
     nextPageToken: str
 
 @typing.type_check_only
+class ListFloodlightActivitiesResponse(typing_extensions.TypedDict, total=False):
+    floodlightActivities: _list[FloodlightActivity]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
     googleAudiences: _list[GoogleAudience]
     nextPageToken: str
@@ -3113,6 +3144,7 @@ class MobileApp(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
+    consent: Consent
     mobileDeviceIds: _list[str]
 
 @typing.type_check_only
@@ -3527,6 +3559,11 @@ class RegionalLocationListAssignedTargetingOptionDetails(
     regionalLocationListId: str
 
 @typing.type_check_only
+class RemarketingConfig(typing_extensions.TypedDict, total=False):
+    advertiserId: str
+    remarketingEnabled: bool
+
+@typing.type_check_only
 class ReplaceNegativeKeywordsRequest(typing_extensions.TypedDict, total=False):
     newNegativeKeywords: _list[NegativeKeyword]
 
@@ -3932,6 +3969,7 @@ class User(typing_extensions.TypedDict, total=False):
     assignedUserRoles: _list[AssignedUserRole]
     displayName: str
     email: str
+    lastLoginTime: str
     name: str
     userId: str
 
@@ -4146,6 +4184,7 @@ class YoutubeAndPartnersBiddingStrategy(typing_extensions.TypedDict, total=False
 
 @typing.type_check_only
 class YoutubeAndPartnersInventorySourceConfig(typing_extensions.TypedDict, total=False):
+    includeGoogleTv: bool
     includeYoutubeSearch: bool
     includeYoutubeVideoPartners: bool
     includeYoutubeVideos: bool

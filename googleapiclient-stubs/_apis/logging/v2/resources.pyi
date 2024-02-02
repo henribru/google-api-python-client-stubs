@@ -226,6 +226,49 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RecentQueriesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRecentQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRecentQueriesResponseHttpRequest,
+                    previous_response: ListRecentQueriesResponse,
+                ) -> ListRecentQueriesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SavedQueriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SavedQuery = ...,
+                    savedQueryId: str = ...,
+                    **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSavedQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSavedQueriesResponseHttpRequest,
+                    previous_response: ListSavedQueriesResponse,
+                ) -> ListSavedQueriesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -245,6 +288,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+            def recentQueries(self) -> RecentQueriesResource: ...
+            def savedQueries(self) -> SavedQueriesResource: ...
 
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
@@ -592,6 +637,49 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RecentQueriesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRecentQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRecentQueriesResponseHttpRequest,
+                    previous_response: ListRecentQueriesResponse,
+                ) -> ListRecentQueriesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SavedQueriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SavedQuery = ...,
+                    savedQueryId: str = ...,
+                    **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSavedQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSavedQueriesResponseHttpRequest,
+                    previous_response: ListSavedQueriesResponse,
+                ) -> ListSavedQueriesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -611,6 +699,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+            def recentQueries(self) -> RecentQueriesResource: ...
+            def savedQueries(self) -> SavedQueriesResource: ...
 
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
@@ -1122,6 +1212,49 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RecentQueriesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRecentQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRecentQueriesResponseHttpRequest,
+                    previous_response: ListRecentQueriesResponse,
+                ) -> ListRecentQueriesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SavedQueriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SavedQuery = ...,
+                    savedQueryId: str = ...,
+                    **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSavedQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSavedQueriesResponseHttpRequest,
+                    previous_response: ListSavedQueriesResponse,
+                ) -> ListSavedQueriesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -1141,6 +1274,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+            def recentQueries(self) -> RecentQueriesResource: ...
+            def savedQueries(self) -> SavedQueriesResource: ...
 
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
@@ -1453,6 +1588,49 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RecentQueriesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListRecentQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRecentQueriesResponseHttpRequest,
+                    previous_response: ListRecentQueriesResponse,
+                ) -> ListRecentQueriesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SavedQueriesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SavedQuery = ...,
+                    savedQueryId: str = ...,
+                    **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSavedQueriesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSavedQueriesResponseHttpRequest,
+                    previous_response: ListSavedQueriesResponse,
+                ) -> ListSavedQueriesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -1472,6 +1650,8 @@ class LoggingResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def buckets(self) -> BucketsResource: ...
             def operations(self) -> OperationsResource: ...
+            def recentQueries(self) -> RecentQueriesResource: ...
+            def savedQueries(self) -> SavedQueriesResource: ...
 
         @typing.type_check_only
         class LogsResource(googleapiclient.discovery.Resource):
@@ -1771,6 +1951,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListRecentQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRecentQueriesResponse: ...
+
+@typing.type_check_only
+class ListSavedQueriesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSavedQueriesResponse: ...
+
+@typing.type_check_only
 class ListSinksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1841,6 +2037,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SavedQueryHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SavedQuery: ...
 
 @typing.type_check_only
 class SettingsHttpRequest(googleapiclient.http.HttpRequest):

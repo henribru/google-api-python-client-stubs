@@ -60,6 +60,9 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
     mutationRecord: MutationRecord
     name: str
     notificationChannels: _list[str]
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"
+    ]
     userLabels: dict[str, typing.Any]
     validity: Status
 

@@ -17,6 +17,9 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutomaticUpdatePolicy(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -24,6 +27,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildConfig(typing_extensions.TypedDict, total=False):
+    automaticUpdatePolicy: AutomaticUpdatePolicy
     build: str
     dockerRegistry: typing_extensions.Literal[
         "DOCKER_REGISTRY_UNSPECIFIED", "CONTAINER_REGISTRY", "ARTIFACT_REGISTRY"
@@ -31,7 +35,9 @@ class BuildConfig(typing_extensions.TypedDict, total=False):
     dockerRepository: str
     entryPoint: str
     environmentVariables: dict[str, typing.Any]
+    onDeployUpdatePolicy: OnDeployUpdatePolicy
     runtime: str
+    serviceAccount: str
     source: Source
     sourceProvenance: SourceProvenance
     sourceToken: str
@@ -58,6 +64,7 @@ class EventTrigger(typing_extensions.TypedDict, total=False):
     retryPolicy: typing_extensions.Literal[
         "RETRY_POLICY_UNSPECIFIED", "RETRY_POLICY_DO_NOT_RETRY", "RETRY_POLICY_RETRY"
     ]
+    service: str
     serviceAccountEmail: str
     trigger: str
     triggerRegion: str
@@ -96,6 +103,7 @@ class GenerateDownloadUrlResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenerateUploadUrlRequest(typing_extensions.TypedDict, total=False):
+    environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
     kmsKeyName: str
 
 @typing.type_check_only
@@ -115,6 +123,17 @@ class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2Stage]
@@ -165,6 +184,17 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2alphaStage]
@@ -215,6 +245,17 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     cancelRequested: bool
     createTime: str
     endTime: str
+    operationType: typing_extensions.Literal[
+        "OPERATIONTYPE_UNSPECIFIED",
+        "CREATE_FUNCTION",
+        "UPDATE_FUNCTION",
+        "DELETE_FUNCTION",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
+        "SETUP_FUNCTION_UPGRADE_CONFIG",
+        "ABORT_FUNCTION_UPGRADE",
+        "COMMIT_FUNCTION_UPGRADE",
+    ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
     stages: _list[GoogleCloudFunctionsV2betaStage]
@@ -276,6 +317,10 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class OnDeployUpdatePolicy(typing_extensions.TypedDict, total=False):
+    runtimeVersion: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

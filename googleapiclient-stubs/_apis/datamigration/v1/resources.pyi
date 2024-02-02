@@ -293,6 +293,13 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def demoteDestination(
+                    self,
+                    *,
+                    name: str,
+                    body: DemoteDestinationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def generateSshScript(
                     self,
                     *,

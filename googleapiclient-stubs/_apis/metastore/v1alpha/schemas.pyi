@@ -15,6 +15,12 @@ class AlterMetadataResourceLocationResponse(
 ): ...
 
 @typing.type_check_only
+class AlterTablePropertiesRequest(typing_extensions.TypedDict, total=False):
+    properties: dict[str, typing.Any]
+    tableName: str
+    updateMask: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str

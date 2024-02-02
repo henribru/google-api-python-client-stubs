@@ -319,6 +319,7 @@ class MethodPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
+    autoPopulatedFields: _list[str]
     longRunning: LongRunning
     selector: str
 
@@ -460,6 +461,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "GENERATIVE_AI",
     ]
     protoReferenceDocumentationUri: str
+    restReferenceDocumentationUri: str
 
 @typing.type_check_only
 class PythonSettings(typing_extensions.TypedDict, total=False):

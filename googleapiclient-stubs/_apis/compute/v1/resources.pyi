@@ -2236,6 +2236,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: InstanceListReferrersHttpRequest,
             previous_response: InstanceListReferrers,
         ) -> InstanceListReferrersHttpRequest | None: ...
+        def performMaintenance(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def removeResourcePolicies(
             self,
             *,
@@ -2414,6 +2423,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             requestId: str = ...,
+            withExtendedNotifications: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def start(
@@ -5705,6 +5715,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> UrlMapsValidateResponseHttpRequest: ...
 
     @typing.type_check_only
+    class RegionZonesResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> ZoneListHttpRequest: ...
+        def list_next(
+            self, previous_request: ZoneListHttpRequest, previous_response: ZoneList
+        ) -> ZoneListHttpRequest | None: ...
+
+    @typing.type_check_only
     class RegionsResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, region: str, **kwargs: typing.Any
@@ -7692,6 +7720,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionTargetHttpsProxies(self) -> RegionTargetHttpsProxiesResource: ...
     def regionTargetTcpProxies(self) -> RegionTargetTcpProxiesResource: ...
     def regionUrlMaps(self) -> RegionUrlMapsResource: ...
+    def regionZones(self) -> RegionZonesResource: ...
     def regions(self) -> RegionsResource: ...
     def reservations(self) -> ReservationsResource: ...
     def resourcePolicies(self) -> ResourcePoliciesResource: ...

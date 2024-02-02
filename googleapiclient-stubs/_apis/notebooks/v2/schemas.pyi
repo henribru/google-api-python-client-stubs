@@ -169,6 +169,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "SUSPENDING",
         "SUSPENDED",
     ]
+    thirdPartyProxyUrl: str
     updateTime: str
     upgradeHistory: _list[UpgradeHistoryEntry]
 
@@ -234,6 +235,11 @@ class ReportInstanceInfoSystemRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResizeDiskRequest(typing_extensions.TypedDict, total=False):
+    bootDisk: BootDisk
+    dataDisk: DataDisk
 
 @typing.type_check_only
 class RollbackInstanceRequest(typing_extensions.TypedDict, total=False):

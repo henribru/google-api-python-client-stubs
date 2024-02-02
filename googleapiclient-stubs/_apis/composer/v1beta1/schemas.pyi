@@ -33,6 +33,17 @@ class CloudDataLineageIntegration(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class DagProcessorResource(typing_extensions.TypedDict, total=False):
+    count: int
+    cpu: float
+    memoryGb: float
+    storageGb: float
+
+@typing.type_check_only
+class DataRetentionConfig(typing_extensions.TypedDict, total=False):
+    taskLogsRetentionConfig: TaskLogsRetentionConfig
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
     zone: str
@@ -75,6 +86,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     airflowByoidUri: str
     airflowUri: str
     dagGcsPrefix: str
+    dataRetentionConfig: DataRetentionConfig
     databaseConfig: DatabaseConfig
     encryptionConfig: EncryptionConfig
     environmentSize: typing_extensions.Literal[
@@ -189,6 +201,8 @@ class NetworkingConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodeConfig(typing_extensions.TypedDict, total=False):
+    composerInternalIpv4CidrBlock: str
+    composerNetworkAttachment: str
     diskSizeGb: int
     enableIpMasqAgent: bool
     ipAllocationPolicy: IPAllocationPolicy
@@ -254,6 +268,7 @@ class PrivateEnvironmentConfig(typing_extensions.TypedDict, total=False):
     cloudComposerNetworkIpv4CidrBlock: str
     cloudComposerNetworkIpv4ReservedRange: str
     cloudSqlIpv4CidrBlock: str
+    enablePrivateBuildsOnly: bool
     enablePrivateEnvironment: bool
     enablePrivatelyUsedPublicIps: bool
     networkingConfig: NetworkingConfig
@@ -299,6 +314,9 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
     pypiPackages: dict[str, typing.Any]
     pythonVersion: str
     schedulerCount: int
+    webServerPluginsMode: typing_extensions.Literal[
+        "WEB_SERVER_PLUGINS_MODE_UNSPECIFIED", "PLUGINS_DISABLED", "PLUGINS_ENABLED"
+    ]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -321,6 +339,14 @@ class StopAirflowCommandResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StorageConfig(typing_extensions.TypedDict, total=False):
     bucket: str
+
+@typing.type_check_only
+class TaskLogsRetentionConfig(typing_extensions.TypedDict, total=False):
+    storageMode: typing_extensions.Literal[
+        "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+        "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+        "CLOUD_LOGGING_ONLY",
+    ]
 
 @typing.type_check_only
 class TriggererResource(typing_extensions.TypedDict, total=False):
@@ -352,6 +378,7 @@ class WorkerResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkloadsConfig(typing_extensions.TypedDict, total=False):
+    dagProcessor: DagProcessorResource
     scheduler: SchedulerResource
     triggerer: TriggererResource
     webServer: WebServerResource

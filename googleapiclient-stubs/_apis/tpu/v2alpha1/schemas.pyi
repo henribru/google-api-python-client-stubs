@@ -7,7 +7,7 @@ _list = list
 @typing.type_check_only
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     topology: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "V2", "V3", "V4"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5P"]
 
 @typing.type_check_only
 class AcceleratorType(typing_extensions.TypedDict, total=False):
@@ -153,6 +153,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     canIpForward: bool
     enableExternalIps: bool
     network: str
+    queueCount: int
     subnetwork: str
 
 @typing.type_check_only
@@ -168,6 +169,7 @@ class Node(typing_extensions.TypedDict, total=False):
     apiVersion: typing_extensions.Literal[
         "API_VERSION_UNSPECIFIED", "V1_ALPHA1", "V1", "V2_ALPHA1"
     ]
+    autocheckpointEnabled: bool
     bootDiskConfig: BootDiskConfig
     cidrBlock: str
     createTime: str

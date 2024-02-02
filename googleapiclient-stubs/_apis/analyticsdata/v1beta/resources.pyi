@@ -15,6 +15,35 @@ _list = list
 class AnalyticsDataResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class PropertiesResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class AudienceExportsResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: AudienceExport = ..., **kwargs: typing.Any
+            ) -> OperationHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AudienceExportHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListAudienceExportsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAudienceExportsResponseHttpRequest,
+                previous_response: ListAudienceExportsResponse,
+            ) -> ListAudienceExportsResponseHttpRequest | None: ...
+            def query(
+                self,
+                *,
+                name: str,
+                body: QueryAudienceExportRequest = ...,
+                **kwargs: typing.Any
+            ) -> QueryAudienceExportResponseHttpRequest: ...
+
         def batchRunPivotReports(
             self,
             *,
@@ -56,6 +85,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         def runReport(
             self, *, property: str, body: RunReportRequest = ..., **kwargs: typing.Any
         ) -> RunReportResponseHttpRequest: ...
+        def audienceExports(self) -> AudienceExportsResource: ...
 
     def new_batch_http_request(
         self,
@@ -70,6 +100,14 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def properties(self) -> PropertiesResource: ...
+
+@typing.type_check_only
+class AudienceExportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AudienceExport: ...
 
 @typing.type_check_only
 class BatchRunPivotReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -96,12 +134,36 @@ class CheckCompatibilityResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CheckCompatibilityResponse: ...
 
 @typing.type_check_only
+class ListAudienceExportsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAudienceExportsResponse: ...
+
+@typing.type_check_only
 class MetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Metadata: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Operation: ...
+
+@typing.type_check_only
+class QueryAudienceExportResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryAudienceExportResponse: ...
 
 @typing.type_check_only
 class RunPivotReportResponseHttpRequest(googleapiclient.http.HttpRequest):

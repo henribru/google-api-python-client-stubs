@@ -9,6 +9,7 @@ class Actor(typing_extensions.TypedDict, total=False):
     displayName: str
     email: str
     googleSupport: bool
+    username: str
 
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):
@@ -61,6 +62,7 @@ class Case(typing_extensions.TypedDict, total=False):
 class CaseClassification(typing_extensions.TypedDict, total=False):
     displayName: str
     id: str
+    product: Product
 
 @typing.type_check_only
 class CloseCaseRequest(typing_extensions.TypedDict, total=False): ...
@@ -215,6 +217,13 @@ class ObjectId(typing_extensions.TypedDict, total=False):
     bucketName: str
     generation: str
     objectName: str
+
+@typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    productLine: typing_extensions.Literal[
+        "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
+    ]
+    productSubline: str
 
 @typing.type_check_only
 class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False):

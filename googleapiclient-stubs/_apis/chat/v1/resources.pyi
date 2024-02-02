@@ -49,6 +49,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                showGroups: bool = ...,
                 showInvited: bool = ...,
                 **kwargs: typing.Any
             ) -> ListMembershipsResponseHttpRequest: ...
@@ -145,6 +146,13 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             def attachments(self) -> AttachmentsResource: ...
             def reactions(self) -> ReactionsResource: ...
 
+        def completeImport(
+            self,
+            *,
+            name: str,
+            body: CompleteImportSpaceRequest = ...,
+            **kwargs: typing.Any
+        ) -> CompleteImportSpaceResponseHttpRequest: ...
         def create(
             self, *, body: Space = ..., requestId: str = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
@@ -202,6 +210,14 @@ class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Attachment: ...
+
+@typing.type_check_only
+class CompleteImportSpaceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CompleteImportSpaceResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

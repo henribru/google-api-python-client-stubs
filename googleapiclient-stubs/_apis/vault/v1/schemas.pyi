@@ -46,6 +46,28 @@ class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
     sendEmails: bool
 
 @typing.type_check_only
+class CalendarExportOptions(typing_extensions.TypedDict, total=False):
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+    ]
+
+@typing.type_check_only
+class CalendarOptions(typing_extensions.TypedDict, total=False):
+    locationQuery: _list[str]
+    minusWords: _list[str]
+    peopleQuery: _list[str]
+    responseStatuses: _list[
+        typing_extensions.Literal[
+            "ATTENDEE_RESPONSE_UNSPECIFIED",
+            "ATTENDEE_RESPONSE_NEEDS_ACTION",
+            "ATTENDEE_RESPONSE_ACCEPTED",
+            "ATTENDEE_RESPONSE_DECLINED",
+            "ATTENDEE_RESPONSE_TENTATIVE",
+        ]
+    ]
+    versionDate: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -121,6 +143,7 @@ class Export(typing_extensions.TypedDict, total=False):
     id: str
     matterId: str
     name: str
+    parentExportId: str
     query: Query
     requester: UserInfo
     stats: ExportStats
@@ -130,6 +153,7 @@ class Export(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportOptions(typing_extensions.TypedDict, total=False):
+    calendarOptions: CalendarExportOptions
     driveOptions: DriveExportOptions
     groupsOptions: GroupsExportOptions
     hangoutsChatOptions: HangoutsChatExportOptions
@@ -155,11 +179,15 @@ class GroupsCountResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GroupsExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+    ]
 
 @typing.type_check_only
 class HangoutsChatExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+    ]
 
 @typing.type_check_only
 class HangoutsChatInfo(typing_extensions.TypedDict, total=False):
@@ -215,7 +243,13 @@ class HeldVoiceQuery(typing_extensions.TypedDict, total=False):
 class Hold(typing_extensions.TypedDict, total=False):
     accounts: _list[HeldAccount]
     corpus: typing_extensions.Literal[
-        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT", "VOICE"
+        "CORPUS_TYPE_UNSPECIFIED",
+        "DRIVE",
+        "MAIL",
+        "GROUPS",
+        "HANGOUTS_CHAT",
+        "VOICE",
+        "CALENDAR",
     ]
     holdId: str
     name: str
@@ -262,7 +296,10 @@ class MailCountResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MailExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+    ]
+    exportLinkedDriveFiles: bool
     showConfidentialModeContent: bool
     useNewExport: bool
 
@@ -304,8 +341,15 @@ class OrgUnitInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Query(typing_extensions.TypedDict, total=False):
     accountInfo: AccountInfo
+    calendarOptions: CalendarOptions
     corpus: typing_extensions.Literal[
-        "CORPUS_TYPE_UNSPECIFIED", "DRIVE", "MAIL", "GROUPS", "HANGOUTS_CHAT", "VOICE"
+        "CORPUS_TYPE_UNSPECIFIED",
+        "DRIVE",
+        "MAIL",
+        "GROUPS",
+        "HANGOUTS_CHAT",
+        "VOICE",
+        "CALENDAR",
     ]
     dataScope: typing_extensions.Literal[
         "DATA_SCOPE_UNSPECIFIED", "ALL_DATA", "HELD_DATA", "UNPROCESSED_DATA"
@@ -399,7 +443,9 @@ class UserInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VoiceExportOptions(typing_extensions.TypedDict, total=False):
-    exportFormat: typing_extensions.Literal["EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST"]
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+    ]
 
 @typing.type_check_only
 class VoiceOptions(typing_extensions.TypedDict, total=False):

@@ -234,6 +234,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
     env: dict[str, typing.Any]
     etag: str
     host: str
+    kmsKey: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -276,6 +277,7 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     degraded: bool
     deleteTime: str
+    disableTcpConnections: bool
     displayName: str
     enableAuditAgent: bool
     encryptionKey: CustomerEncryptionKey

@@ -5,12 +5,30 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class GoogleCloudLocationListLocationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    locations: _list[GoogleCloudLocationLocation]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    labels: dict[str, typing.Any]
+    locationId: str
+    metadata: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
 class GoogleCloudRecommenderV1beta1CostProjection(
     typing_extensions.TypedDict, total=False
 ):
     cost: GoogleTypeMoney
     costInLocalCurrency: GoogleTypeMoney
     duration: str
+    pricingType: typing_extensions.Literal[
+        "PRICING_TYPE_UNSPECIFIED", "LIST_PRICE", "CUSTOM_PRICE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1Impact(typing_extensions.TypedDict, total=False):

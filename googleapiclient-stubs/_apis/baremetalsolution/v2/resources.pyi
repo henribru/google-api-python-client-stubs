@@ -57,6 +57,9 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     previous_request: ListInstancesResponseHttpRequest,
                     previous_response: ListInstancesResponse,
                 ) -> ListInstancesResponseHttpRequest | None: ...
+                def loadAuthInfo(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> LoadInstanceAuthInfoResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -530,6 +533,14 @@ class ListVolumesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListVolumesResponse: ...
+
+@typing.type_check_only
+class LoadInstanceAuthInfoResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LoadInstanceAuthInfoResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):

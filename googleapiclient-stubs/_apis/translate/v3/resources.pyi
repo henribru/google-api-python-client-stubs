@@ -18,6 +18,102 @@ class TranslateResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AdaptiveMtDatasetsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AdaptiveMtFilesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class AdaptiveMtSentencesResource(
+                        googleapiclient.discovery.Resource
+                    ):
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListAdaptiveMtSentencesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListAdaptiveMtSentencesResponseHttpRequest,
+                            previous_response: ListAdaptiveMtSentencesResponse,
+                        ) -> ListAdaptiveMtSentencesResponseHttpRequest | None: ...
+
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AdaptiveMtFileHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAdaptiveMtFilesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAdaptiveMtFilesResponseHttpRequest,
+                        previous_response: ListAdaptiveMtFilesResponse,
+                    ) -> ListAdaptiveMtFilesResponseHttpRequest | None: ...
+                    def adaptiveMtSentences(self) -> AdaptiveMtSentencesResource: ...
+
+                @typing.type_check_only
+                class AdaptiveMtSentencesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAdaptiveMtSentencesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAdaptiveMtSentencesResponseHttpRequest,
+                        previous_response: ListAdaptiveMtSentencesResponse,
+                    ) -> ListAdaptiveMtSentencesResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AdaptiveMtDataset = ...,
+                    **kwargs: typing.Any
+                ) -> AdaptiveMtDatasetHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AdaptiveMtDatasetHttpRequest: ...
+                def importAdaptiveMtFile(
+                    self,
+                    *,
+                    parent: str,
+                    body: ImportAdaptiveMtFileRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ImportAdaptiveMtFileResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListAdaptiveMtDatasetsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAdaptiveMtDatasetsResponseHttpRequest,
+                    previous_response: ListAdaptiveMtDatasetsResponse,
+                ) -> ListAdaptiveMtDatasetsResponseHttpRequest | None: ...
+                def adaptiveMtFiles(self) -> AdaptiveMtFilesResource: ...
+                def adaptiveMtSentences(self) -> AdaptiveMtSentencesResource: ...
+
+            @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExamplesResource(googleapiclient.discovery.Resource):
@@ -208,6 +304,13 @@ class TranslateResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
+            def adaptiveMtTranslate(
+                self,
+                *,
+                parent: str,
+                body: AdaptiveMtTranslateRequest = ...,
+                **kwargs: typing.Any
+            ) -> AdaptiveMtTranslateResponseHttpRequest: ...
             def batchTranslateDocument(
                 self,
                 *,
@@ -275,6 +378,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
                 body: TranslateTextRequest = ...,
                 **kwargs: typing.Any
             ) -> TranslateTextResponseHttpRequest: ...
+            def adaptiveMtDatasets(self) -> AdaptiveMtDatasetsResource: ...
             def datasets(self) -> DatasetsResource: ...
             def glossaries(self) -> GlossariesResource: ...
             def models(self) -> ModelsResource: ...
@@ -318,6 +422,30 @@ class TranslateResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class AdaptiveMtDatasetHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdaptiveMtDataset: ...
+
+@typing.type_check_only
+class AdaptiveMtFileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdaptiveMtFile: ...
+
+@typing.type_check_only
+class AdaptiveMtTranslateResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdaptiveMtTranslateResponse: ...
+
+@typing.type_check_only
 class DatasetHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -356,6 +484,38 @@ class GlossaryEntryHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GlossaryEntry: ...
+
+@typing.type_check_only
+class ImportAdaptiveMtFileResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImportAdaptiveMtFileResponse: ...
+
+@typing.type_check_only
+class ListAdaptiveMtDatasetsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAdaptiveMtDatasetsResponse: ...
+
+@typing.type_check_only
+class ListAdaptiveMtFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAdaptiveMtFilesResponse: ...
+
+@typing.type_check_only
+class ListAdaptiveMtSentencesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAdaptiveMtSentencesResponse: ...
 
 @typing.type_check_only
 class ListDatasetsResponseHttpRequest(googleapiclient.http.HttpRequest):

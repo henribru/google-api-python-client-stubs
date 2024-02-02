@@ -280,6 +280,20 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
 
         def gcpUserAccessBindings(self) -> GcpUserAccessBindingsResource: ...
 
+    @typing.type_check_only
+    class ServicesResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> SupportedServiceHttpRequest: ...
+        def list(
+            self, *, pageSize: int = ..., pageToken: str = ..., **kwargs: typing.Any
+        ) -> ListSupportedServicesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListSupportedServicesResponseHttpRequest,
+            previous_response: ListSupportedServicesResponse,
+        ) -> ListSupportedServicesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -295,6 +309,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
     def accessPolicies(self) -> AccessPoliciesResource: ...
     def operations(self) -> OperationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
+    def services(self) -> ServicesResource: ...
 
 @typing.type_check_only
 class AccessLevelHttpRequest(googleapiclient.http.HttpRequest):
@@ -385,6 +400,14 @@ class ListServicePerimetersResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListServicePerimetersResponse: ...
 
 @typing.type_check_only
+class ListSupportedServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSupportedServicesResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -407,6 +430,14 @@ class ServicePerimeterHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ServicePerimeter: ...
+
+@typing.type_check_only
+class SupportedServiceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SupportedService: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -210,6 +210,13 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SubscriptionHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -238,6 +245,13 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                     body: RevokeSubscriptionRequest = ...,
                     **kwargs: typing.Any
                 ) -> RevokeSubscriptionResponseHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> PolicyHttpRequest: ...
 
             def dataExchanges(self) -> DataExchangesResource: ...
             def subscriptions(self) -> SubscriptionsResource: ...

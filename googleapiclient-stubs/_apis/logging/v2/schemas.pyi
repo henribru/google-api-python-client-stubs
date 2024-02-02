@@ -26,6 +26,7 @@ class BucketMetadata(typing_extensions.TypedDict, total=False):
         "OPERATION_STATE_SUCCEEDED",
         "OPERATION_STATE_FAILED",
         "OPERATION_STATE_CANCELLED",
+        "OPERATION_STATE_PENDING",
     ]
     updateBucketRequest: UpdateBucketRequest
 
@@ -48,9 +49,11 @@ class CmekSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
     cancellationRequested: bool
+    destination: str
     endTime: str
     progress: int
     request: CopyLogEntriesRequest
+    source: str
     startTime: str
     state: typing_extensions.Literal[
         "OPERATION_STATE_UNSPECIFIED",
@@ -60,7 +63,9 @@ class CopyLogEntriesMetadata(typing_extensions.TypedDict, total=False):
         "OPERATION_STATE_SUCCEEDED",
         "OPERATION_STATE_FAILED",
         "OPERATION_STATE_CANCELLED",
+        "OPERATION_STATE_PENDING",
     ]
+    verb: str
     writerIdentity: str
 
 @typing.type_check_only
@@ -84,6 +89,14 @@ class CreateLinkRequest(typing_extensions.TypedDict, total=False):
     link: Link
     linkId: str
     parent: str
+
+@typing.type_check_only
+class DefaultSinkConfig(typing_extensions.TypedDict, total=False):
+    exclusions: _list[LogExclusion]
+    filter: str
+    mode: typing_extensions.Literal[
+        "FILTER_WRITE_MODE_UNSPECIFIED", "APPEND", "OVERWRITE"
+    ]
 
 @typing.type_check_only
 class DeleteLinkRequest(typing_extensions.TypedDict, total=False):
@@ -169,6 +182,7 @@ class LinkMetadata(typing_extensions.TypedDict, total=False):
         "OPERATION_STATE_SUCCEEDED",
         "OPERATION_STATE_FAILED",
         "OPERATION_STATE_CANCELLED",
+        "OPERATION_STATE_PENDING",
     ]
 
 @typing.type_check_only
@@ -226,6 +240,18 @@ class ListMonitoredResourceDescriptorsResponse(
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListRecentQueriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    recentQueries: _list[RecentQuery]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListSavedQueriesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    savedQueries: _list[SavedQuery]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSinksResponse(typing_extensions.TypedDict, total=False):
@@ -392,6 +418,13 @@ class LogView(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class LoggingQuery(typing_extensions.TypedDict, total=False):
+    filter: str
+    summaryFieldEnd: int
+    summaryFieldStart: int
+    summaryFields: _list[SummaryField]
+
+@typing.type_check_only
 class MetricDescriptor(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
@@ -476,6 +509,17 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
+    sqlQueryText: str
+
+@typing.type_check_only
+class RecentQuery(typing_extensions.TypedDict, total=False):
+    lastRunTime: str
+    loggingQuery: LoggingQuery
+    name: str
+    opsAnalyticsQuery: OpsAnalyticsQuery
+
+@typing.type_check_only
 class RequestLog(typing_extensions.TypedDict, total=False):
     appEngineRelease: str
     appId: str
@@ -513,7 +557,18 @@ class RequestLog(typing_extensions.TypedDict, total=False):
     wasLoadingRequest: bool
 
 @typing.type_check_only
+class SavedQuery(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    loggingQuery: LoggingQuery
+    name: str
+    opsAnalyticsQuery: OpsAnalyticsQuery
+    updateTime: str
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
+    defaultSinkConfig: DefaultSinkConfig
     disableDefaultSink: bool
     kmsKeyName: str
     kmsServiceAccountId: str
@@ -537,6 +592,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class SummaryField(typing_extensions.TypedDict, total=False):
+    field: str
 
 @typing.type_check_only
 class SuppressionInfo(typing_extensions.TypedDict, total=False):

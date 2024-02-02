@@ -207,13 +207,19 @@ class LocalizationSettings(typing_extensions.TypedDict, total=False):
 class MediationAbExperiment(typing_extensions.TypedDict, total=False):
     controlMediationLines: _list[MediationAbExperimentExperimentMediationLine]
     displayName: str
+    endTime: str
     experimentId: str
+    mediationGroupId: str
     name: str
+    startTime: str
     state: typing_extensions.Literal[
         "EXPERIMENT_STATE_UNSPECIFIED", "EXPIRED", "RUNNING", "ENDED"
     ]
     treatmentMediationLines: _list[MediationAbExperimentExperimentMediationLine]
     treatmentTrafficPercentage: str
+    variantLeader: typing_extensions.Literal[
+        "VARIANT_LEADER_UNSPECIFIED", "CONTROL", "TREATMENT"
+    ]
 
 @typing.type_check_only
 class MediationAbExperimentExperimentMediationLine(

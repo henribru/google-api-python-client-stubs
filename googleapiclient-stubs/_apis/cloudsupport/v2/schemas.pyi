@@ -9,6 +9,7 @@ class Actor(typing_extensions.TypedDict, total=False):
     displayName: str
     email: str
     googleSupport: bool
+    username: str
 
 @typing.type_check_only
 class Attachment(typing_extensions.TypedDict, total=False):

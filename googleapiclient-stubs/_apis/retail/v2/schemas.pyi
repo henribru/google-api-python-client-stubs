@@ -162,9 +162,11 @@ class GoogleCloudRetailV2CatalogAttributeFacetConfig(
     ignoredFacetValues: _list[
         GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues
     ]
+    mergedFacet: GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet
     mergedFacetValues: _list[
         GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue
     ]
+    rerankConfig: GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig
 
 @typing.type_check_only
 class GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues(
@@ -175,11 +177,27 @@ class GoogleCloudRetailV2CatalogAttributeFacetConfigIgnoredFacetValues(
     values: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet(
+    typing_extensions.TypedDict, total=False
+):
+    mergedFacetKey: str
+    mergedFacetValues: _list[
+        GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue(
     typing_extensions.TypedDict, total=False
 ):
     mergedValue: str
     values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig(
+    typing_extensions.TypedDict, total=False
+):
+    facetValues: _list[str]
+    rerankFacet: bool
 
 @typing.type_check_only
 class GoogleCloudRetailV2ColorInfo(typing_extensions.TypedDict, total=False):
@@ -1109,6 +1127,14 @@ class GoogleCloudRetailV2alphaEnrollSolutionResponse(
     ]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2alphaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2alphaOutputResult
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1421,6 +1447,14 @@ class GoogleCloudRetailV2betaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
     model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2betaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaExportErrorsConfig(

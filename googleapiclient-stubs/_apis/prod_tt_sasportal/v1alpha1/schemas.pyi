@@ -15,12 +15,6 @@ class SasPortalChannelWithScore(typing_extensions.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
-class SasPortalCheckHasProvisionedDeploymentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    hasProvisionedDeployment: bool
-
-@typing.type_check_only
 class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
     encodedDevice: str
     installerId: str
@@ -148,6 +142,11 @@ class SasPortalFrequencyRange(typing_extensions.TypedDict, total=False):
     lowFrequencyMhz: float
 
 @typing.type_check_only
+class SasPortalGcpProjectDeployment(typing_extensions.TypedDict, total=False):
+    deployment: SasPortalDeployment
+    hasEnabledAnalytics: bool
+
+@typing.type_check_only
 class SasPortalGenerateSecretRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -164,11 +163,9 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     antennaBeamwidth: int
     antennaDowntilt: int
     antennaGain: int
-    antennaGainNewField: float
     antennaModel: str
     cpeCbsdIndication: bool
     eirpCapability: int
-    eirpCapabilityNewField: float
     height: float
     heightType: typing_extensions.Literal[
         "HEIGHT_TYPE_UNSPECIFIED", "HEIGHT_TYPE_AGL", "HEIGHT_TYPE_AMSL"
@@ -193,6 +190,18 @@ class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False)
 class SasPortalListDevicesResponse(typing_extensions.TypedDict, total=False):
     devices: _list[SasPortalDevice]
     nextPageToken: str
+
+@typing.type_check_only
+class SasPortalListGcpProjectDeploymentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployments: _list[SasPortalGcpProjectDeployment]
+
+@typing.type_check_only
+class SasPortalListLegacyOrganizationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    organizations: _list[SasPortalOrganization]
 
 @typing.type_check_only
 class SasPortalListNodesResponse(typing_extensions.TypedDict, total=False):
@@ -250,6 +259,11 @@ class SasPortalOperation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class SasPortalOrganization(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
 
 @typing.type_check_only
 class SasPortalPolicy(typing_extensions.TypedDict, total=False):

@@ -43,6 +43,33 @@ class AuxiliaryMessage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BatchChangeChromeOsDeviceStatusRequest(typing_extensions.TypedDict, total=False):
+    changeChromeOsDeviceStatusAction: typing_extensions.Literal[
+        "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_UNSPECIFIED",
+        "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DEPROVISION",
+        "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_DISABLE",
+        "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_REENABLE",
+    ]
+    deprovisionReason: typing_extensions.Literal[
+        "DEPROVISION_REASON_UNSPECIFIED",
+        "DEPROVISION_REASON_SAME_MODEL_REPLACEMENT",
+        "DEPROVISION_REASON_UPGRADE",
+        "DEPROVISION_REASON_DOMAIN_MOVE",
+        "DEPROVISION_REASON_SERVICE_EXPIRATION",
+        "DEPROVISION_REASON_OTHER",
+        "DEPROVISION_REASON_DIFFERENT_MODEL_REPLACEMENT",
+        "DEPROVISION_REASON_RETIRING_DEVICE",
+        "DEPROVISION_REASON_UPGRADE_TRANSFER",
+        "DEPROVISION_REASON_NOT_REQUIRED",
+        "DEPROVISION_REASON_REPAIR_CENTER",
+    ]
+    deviceIds: _list[str]
+
+@typing.type_check_only
+class BatchChangeChromeOsDeviceStatusResponse(typing_extensions.TypedDict, total=False):
+    changeChromeOsDeviceStatusResults: _list[ChangeChromeOsDeviceStatusResult]
+
+@typing.type_check_only
 class BatchCreatePrintServersRequest(typing_extensions.TypedDict, total=False):
     requests: _list[CreatePrintServerRequest]
 
@@ -135,6 +162,15 @@ class CalendarResources(typing_extensions.TypedDict, total=False):
     items: _list[CalendarResource]
     kind: str
     nextPageToken: str
+
+@typing.type_check_only
+class ChangeChromeOsDeviceStatusResult(typing_extensions.TypedDict, total=False):
+    deviceId: str
+    error: Status
+    response: ChangeChromeOsDeviceStatusSucceeded
+
+@typing.type_check_only
+class ChangeChromeOsDeviceStatusSucceeded(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
@@ -689,6 +725,12 @@ class Schemas(typing_extensions.TypedDict, total=False):
     schemas: _list[Schema]
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class Token(typing_extensions.TypedDict, total=False):
     anonymous: bool
     clientId: str
@@ -791,6 +833,7 @@ class UserEmail(typing_extensions.TypedDict, total=False):
     address: str
     customType: str
     primary: bool
+    public_key_encryption_certificates: dict[str, typing.Any]
     type: str
 
 @typing.type_check_only

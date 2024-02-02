@@ -121,6 +121,28 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             ) -> ListEnrollmentTokensResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class MigrationTokensResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: MigrationToken = ..., **kwargs: typing.Any
+            ) -> MigrationTokenHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> MigrationTokenHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListMigrationTokensResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListMigrationTokensResponseHttpRequest,
+                previous_response: ListMigrationTokensResponse,
+            ) -> ListMigrationTokensResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class PoliciesResource(googleapiclient.discovery.Resource):
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -224,6 +246,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
         def applications(self) -> ApplicationsResource: ...
         def devices(self) -> DevicesResource: ...
         def enrollmentTokens(self) -> EnrollmentTokensResource: ...
+        def migrationTokens(self) -> MigrationTokensResource: ...
         def policies(self) -> PoliciesResource: ...
         def webApps(self) -> WebAppsResource: ...
         def webTokens(self) -> WebTokensResource: ...
@@ -321,6 +344,14 @@ class ListEnterprisesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListEnterprisesResponse: ...
 
 @typing.type_check_only
+class ListMigrationTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMigrationTokensResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -343,6 +374,14 @@ class ListWebAppsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListWebAppsResponse: ...
+
+@typing.type_check_only
+class MigrationTokenHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MigrationToken: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

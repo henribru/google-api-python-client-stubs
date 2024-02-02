@@ -7,7 +7,9 @@ _list = list
 @typing.type_check_only
 class Connector(typing_extensions.TypedDict, total=False):
     connectedProjects: _list[str]
+    createTime: str
     ipCidrRange: str
+    lastRestartTime: str
     machineType: str
     maxInstances: int
     maxThroughput: int

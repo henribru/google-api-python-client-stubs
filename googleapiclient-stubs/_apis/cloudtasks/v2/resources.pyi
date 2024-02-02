@@ -21,6 +21,14 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
             class QueuesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TasksResource(googleapiclient.discovery.Resource):
+                    def buffer(
+                        self,
+                        *,
+                        queue: str,
+                        taskId: str,
+                        body: BufferTaskRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> BufferTaskResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -184,6 +192,14 @@ class CloudTasksResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class BufferTaskResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BufferTaskResponse: ...
 
 @typing.type_check_only
 class CmekConfigHttpRequest(googleapiclient.http.HttpRequest):

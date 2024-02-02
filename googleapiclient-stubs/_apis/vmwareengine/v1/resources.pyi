@@ -18,7 +18,126 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DnsBindPermissionResource(googleapiclient.discovery.Resource):
+                def grant(
+                    self,
+                    *,
+                    name: str,
+                    body: GrantDnsBindPermissionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def revoke(
+                    self,
+                    *,
+                    name: str,
+                    body: RevokeDnsBindPermissionRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class NetworkPeeringsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class PeeringRoutesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListPeeringRoutesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListPeeringRoutesResponseHttpRequest,
+                        previous_response: ListPeeringRoutesResponse,
+                    ) -> ListPeeringRoutesResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: NetworkPeering = ...,
+                    networkPeeringId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> NetworkPeeringHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListNetworkPeeringsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNetworkPeeringsResponseHttpRequest,
+                    previous_response: ListNetworkPeeringsResponse,
+                ) -> ListNetworkPeeringsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: NetworkPeering = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def peeringRoutes(self) -> PeeringRoutesResource: ...
+
+            @typing.type_check_only
             class NetworkPoliciesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ExternalAccessRulesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: ExternalAccessRule = ...,
+                        externalAccessRuleId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ExternalAccessRuleHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListExternalAccessRulesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListExternalAccessRulesResponseHttpRequest,
+                        previous_response: ListExternalAccessRulesResponse,
+                    ) -> ListExternalAccessRulesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: ExternalAccessRule = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -31,6 +150,19 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def fetchExternalAddresses(
+                    self,
+                    *,
+                    networkPolicy: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> FetchNetworkPolicyExternalAddressesResponseHttpRequest: ...
+                def fetchExternalAddresses_next(
+                    self,
+                    previous_request: FetchNetworkPolicyExternalAddressesResponseHttpRequest,
+                    previous_response: FetchNetworkPolicyExternalAddressesResponse,
+                ) -> FetchNetworkPolicyExternalAddressesResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NetworkPolicyHttpRequest: ...
@@ -58,6 +190,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def externalAccessRules(self) -> ExternalAccessRulesResource: ...
 
             @typing.type_check_only
             class NodeTypesResource(googleapiclient.discovery.Resource):
@@ -106,6 +239,25 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
             class PrivateCloudsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ClustersResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class NodesResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> NodeHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListNodesResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListNodesResponseHttpRequest,
+                            previous_response: ListNodesResponse,
+                        ) -> ListNodesResponseHttpRequest | None: ...
+
                     def create(
                         self,
                         *,
@@ -168,6 +320,49 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def nodes(self) -> NodesResource: ...
+
+                @typing.type_check_only
+                class ExternalAddressesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: ExternalAddress = ...,
+                        externalAddressId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ExternalAddressHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListExternalAddressesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListExternalAddressesResponseHttpRequest,
+                        previous_response: ListExternalAddressesResponse,
+                    ) -> ListExternalAddressesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: ExternalAddress = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
                 class HcxActivationKeysResource(googleapiclient.discovery.Resource):
@@ -219,6 +414,99 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
                 @typing.type_check_only
+                class LoggingServersResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: LoggingServer = ...,
+                        loggingServerId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> LoggingServerHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListLoggingServersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListLoggingServersResponseHttpRequest,
+                        previous_response: ListLoggingServersResponse,
+                    ) -> ListLoggingServersResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: LoggingServer = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
+                class ManagementDnsZoneBindingsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: ManagementDnsZoneBinding = ...,
+                        managementDnsZoneBindingId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ManagementDnsZoneBindingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListManagementDnsZoneBindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListManagementDnsZoneBindingsResponseHttpRequest,
+                        previous_response: ListManagementDnsZoneBindingsResponse,
+                    ) -> ListManagementDnsZoneBindingsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: ManagementDnsZoneBinding = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def repair(
+                        self,
+                        *,
+                        name: str,
+                        body: RepairManagementDnsZoneBindingRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class SubnetsResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -267,6 +555,9 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> PrivateCloudHttpRequest: ...
+                def getDnsForwarding(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DnsForwardingHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -323,7 +614,11 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     self, *, privateCloud: str, **kwargs: typing.Any
                 ) -> CredentialsHttpRequest: ...
                 def showVcenterCredentials(
-                    self, *, privateCloud: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    privateCloud: str,
+                    username: str = ...,
+                    **kwargs: typing.Any
                 ) -> CredentialsHttpRequest: ...
                 def testIamPermissions(
                     self,
@@ -339,8 +634,22 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     body: UndeletePrivateCloudRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def updateDnsForwarding(
+                    self,
+                    *,
+                    name: str,
+                    body: DnsForwarding = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def clusters(self) -> ClustersResource: ...
+                def externalAddresses(self) -> ExternalAddressesResource: ...
                 def hcxActivationKeys(self) -> HcxActivationKeysResource: ...
+                def loggingServers(self) -> LoggingServersResource: ...
+                def managementDnsZoneBindings(
+                    self,
+                ) -> ManagementDnsZoneBindingsResource: ...
                 def subnets(self) -> SubnetsResource: ...
 
             @typing.type_check_only
@@ -454,6 +763,9 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getDnsBindPermission(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> DnsBindPermissionHttpRequest: ...
             def list(
                 self,
                 *,
@@ -468,6 +780,8 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def dnsBindPermission(self) -> DnsBindPermissionResource: ...
+            def networkPeerings(self) -> NetworkPeeringsResource: ...
             def networkPolicies(self) -> NetworkPoliciesResource: ...
             def nodeTypes(self) -> NodeTypesResource: ...
             def operations(self) -> OperationsResource: ...
@@ -508,12 +822,54 @@ class CredentialsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Credentials: ...
 
 @typing.type_check_only
+class DnsBindPermissionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DnsBindPermission: ...
+
+@typing.type_check_only
+class DnsForwardingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DnsForwarding: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ExternalAccessRuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExternalAccessRule: ...
+
+@typing.type_check_only
+class ExternalAddressHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExternalAddress: ...
+
+@typing.type_check_only
+class FetchNetworkPolicyExternalAddressesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchNetworkPolicyExternalAddressesResponse: ...
 
 @typing.type_check_only
 class HcxActivationKeyHttpRequest(googleapiclient.http.HttpRequest):
@@ -532,6 +888,22 @@ class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListClustersResponse: ...
 
 @typing.type_check_only
+class ListExternalAccessRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListExternalAccessRulesResponse: ...
+
+@typing.type_check_only
+class ListExternalAddressesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListExternalAddressesResponse: ...
+
+@typing.type_check_only
 class ListHcxActivationKeysResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -546,6 +918,32 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListLoggingServersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListLoggingServersResponse: ...
+
+@typing.type_check_only
+class ListManagementDnsZoneBindingsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListManagementDnsZoneBindingsResponse: ...
+
+@typing.type_check_only
+class ListNetworkPeeringsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListNetworkPeeringsResponse: ...
 
 @typing.type_check_only
 class ListNetworkPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -564,12 +962,28 @@ class ListNodeTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListNodeTypesResponse: ...
 
 @typing.type_check_only
+class ListNodesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListNodesResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListPeeringRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPeeringRoutesResponse: ...
 
 @typing.type_check_only
 class ListPrivateCloudsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -622,12 +1036,44 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Location: ...
 
 @typing.type_check_only
+class LoggingServerHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LoggingServer: ...
+
+@typing.type_check_only
+class ManagementDnsZoneBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ManagementDnsZoneBinding: ...
+
+@typing.type_check_only
+class NetworkPeeringHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkPeering: ...
+
+@typing.type_check_only
 class NetworkPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> NetworkPolicy: ...
+
+@typing.type_check_only
+class NodeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Node: ...
 
 @typing.type_check_only
 class NodeTypeHttpRequest(googleapiclient.http.HttpRequest):

@@ -230,6 +230,11 @@ class ListServicePerimetersResponse(typing_extensions.TypedDict, total=False):
     servicePerimeters: _list[ServicePerimeter]
 
 @typing.type_check_only
+class ListSupportedServicesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    supportedServices: _list[SupportedService]
+
+@typing.type_check_only
 class MethodSelector(typing_extensions.TypedDict, total=False):
     method: str
     permission: str
@@ -312,6 +317,24 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class SupportedService(typing_extensions.TypedDict, total=False):
+    availableOnRestrictedVip: bool
+    knownLimitations: bool
+    name: str
+    supportStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
+    supportedMethods: _list[MethodSelector]
+    title: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

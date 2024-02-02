@@ -18,6 +18,18 @@ class DriveResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> AboutHttpRequest: ...
 
     @typing.type_check_only
+    class AppsResource(googleapiclient.discovery.Resource):
+        def get(self, *, appId: str, **kwargs: typing.Any) -> AppHttpRequest: ...
+        def list(
+            self,
+            *,
+            appFilterExtensions: str = ...,
+            appFilterMimeTypes: str = ...,
+            languageCode: str = ...,
+            **kwargs: typing.Any
+        ) -> AppListHttpRequest: ...
+
+    @typing.type_check_only
     class ChangesResource(googleapiclient.discovery.Resource):
         def getStartPageToken(
             self,
@@ -518,6 +530,7 @@ class DriveResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def about(self) -> AboutResource: ...
+    def apps(self) -> AppsResource: ...
     def changes(self) -> ChangesResource: ...
     def channels(self) -> ChannelsResource: ...
     def comments(self) -> CommentsResource: ...
@@ -535,6 +548,22 @@ class AboutHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> About: ...
+
+@typing.type_check_only
+class AppHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> App: ...
+
+@typing.type_check_only
+class AppListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AppList: ...
 
 @typing.type_check_only
 class ChangeListHttpRequest(googleapiclient.http.HttpRequest):

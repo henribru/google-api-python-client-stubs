@@ -380,6 +380,36 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                def wait(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleLongrunningWaitOperationRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
             class RevisionsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self,
@@ -508,6 +538,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def configurations(self) -> ConfigurationsResource: ...
             def domainmappings(self) -> DomainmappingsResource: ...
             def jobs(self) -> JobsResource: ...
+            def operations(self) -> OperationsResource: ...
             def revisions(self) -> RevisionsResource: ...
             def routes(self) -> RoutesResource: ...
             def services(self) -> ServicesResource: ...
@@ -547,12 +578,38 @@ class DomainMappingHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DomainMapping: ...
 
 @typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
+
+@typing.type_check_only
 class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Execution: ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class JobHttpRequest(googleapiclient.http.HttpRequest):

@@ -11,6 +11,9 @@ class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlloyDbSettings(typing_extensions.TypedDict, total=False):
+    databaseVersion: typing_extensions.Literal[
+        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_14", "POSTGRES_15"
+    ]
     encryptionConfig: EncryptionConfig
     initialUser: UserPassword
     labels: dict[str, typing.Any]
@@ -110,6 +113,16 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_5_6",
         "MYSQL_5_7",
         "MYSQL_8_0",
+        "MYSQL_8_0_18",
+        "MYSQL_8_0_26",
+        "MYSQL_8_0_27",
+        "MYSQL_8_0_28",
+        "MYSQL_8_0_30",
+        "MYSQL_8_0_31",
+        "MYSQL_8_0_32",
+        "MYSQL_8_0_33",
+        "MYSQL_8_0_34",
+        "MYSQL_8_0_35",
         "POSTGRES_9_6",
         "POSTGRES_11",
         "POSTGRES_10",
@@ -295,6 +308,9 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
     provider: typing_extensions.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
     ]
+
+@typing.type_check_only
+class DemoteDestinationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DescribeConversionWorkspaceRevisionsResponse(

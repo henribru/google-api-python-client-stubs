@@ -19,7 +19,9 @@ class ActionResponse(typing_extensions.TypedDict, total=False):
         "UPDATE_USER_MESSAGE_CARDS",
         "REQUEST_CONFIG",
         "DIALOG",
+        "UPDATE_WIDGET",
     ]
+    updatedWidget: UpdatedWidget
     url: str
 
 @typing.type_check_only
@@ -146,6 +148,13 @@ class CommonEventObject(typing_extensions.TypedDict, total=False):
     userLocale: str
 
 @typing.type_check_only
+class CompleteImportSpaceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CompleteImportSpaceResponse(typing_extensions.TypedDict, total=False):
+    space: Space
+
+@typing.type_check_only
 class CustomEmoji(typing_extensions.TypedDict, total=False):
     uid: str
 
@@ -186,7 +195,12 @@ class DeprecatedEvent(typing_extensions.TypedDict, total=False):
     threadKey: str
     token: str
     type: typing_extensions.Literal[
-        "UNSPECIFIED", "MESSAGE", "ADDED_TO_SPACE", "REMOVED_FROM_SPACE", "CARD_CLICKED"
+        "UNSPECIFIED",
+        "MESSAGE",
+        "ADDED_TO_SPACE",
+        "REMOVED_FROM_SPACE",
+        "CARD_CLICKED",
+        "WIDGET_UPDATED",
     ]
     user: User
 
@@ -485,6 +499,10 @@ class GoogleAppsCardV1Widgets(typing_extensions.TypedDict, total=False):
     textParagraph: GoogleAppsCardV1TextParagraph
 
 @typing.type_check_only
+class Group(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class HostAppDataSourceMarkup(typing_extensions.TypedDict, total=False):
     chatDataSource: ChatClientDataSourceMarkup
 
@@ -614,6 +632,8 @@ class Media(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     createTime: str
+    deleteTime: str
+    groupMember: Group
     member: User
     name: str
     role: typing_extensions.Literal[
@@ -642,6 +662,7 @@ class Message(typing_extensions.TypedDict, total=False):
     lastUpdateTime: str
     matchedUrl: MatchedUrl
     name: str
+    privateMessageViewer: User
     quotedMessageMetadata: QuotedMessageMetadata
     sender: User
     slashCommand: SlashCommand
@@ -676,6 +697,10 @@ class Section(typing_extensions.TypedDict, total=False):
     widgets: _list[WidgetMarkup]
 
 @typing.type_check_only
+class SelectionItems(typing_extensions.TypedDict, total=False):
+    items: _list[GoogleAppsCardV1SelectionItem]
+
+@typing.type_check_only
 class SetUpSpaceRequest(typing_extensions.TypedDict, total=False):
     memberships: _list[Membership]
     requestId: str
@@ -696,8 +721,10 @@ class SlashCommandMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Space(typing_extensions.TypedDict, total=False):
     adminInstalled: bool
+    createTime: str
     displayName: str
     externalUserAllowed: bool
+    importMode: bool
     name: str
     singleUserBotDm: bool
     spaceDetails: SpaceDetails
@@ -758,6 +785,11 @@ class TimeInput(typing_extensions.TypedDict, total=False):
 class TimeZone(typing_extensions.TypedDict, total=False):
     id: str
     offset: int
+
+@typing.type_check_only
+class UpdatedWidget(typing_extensions.TypedDict, total=False):
+    suggestions: SelectionItems
+    widget: str
 
 @typing.type_check_only
 class UploadAttachmentRequest(typing_extensions.TypedDict, total=False):

@@ -60,6 +60,36 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class SsdCachesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
+
             def create(
                 self,
                 *,
@@ -99,6 +129,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
+            def ssdCaches(self) -> SsdCachesResource: ...
 
         @typing.type_check_only
         class InstancesResource(googleapiclient.discovery.Resource):

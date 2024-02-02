@@ -223,6 +223,11 @@ class IncidentList(typing_extensions.TypedDict, total=False):
     policyNames: _list[str]
 
 @typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class ListDashboardsResponse(typing_extensions.TypedDict, total=False):
     dashboards: _list[Dashboard]
     nextPageToken: str
@@ -298,6 +303,7 @@ class Parameter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PickTimeSeriesFilter(typing_extensions.TypedDict, total=False):
     direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "TOP", "BOTTOM"]
+    interval: Interval
     numTimeSeries: int
     rankingMethod: typing_extensions.Literal[
         "METHOD_UNSPECIFIED",
@@ -316,6 +322,8 @@ class PieChart(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PieChartDataSet(typing_extensions.TypedDict, total=False):
+    dimensions: _list[Dimension]
+    measures: _list[Measure]
     minAlignmentPeriod: str
     sliceNameTemplate: str
     timeSeriesQuery: TimeSeriesQuery
@@ -372,6 +380,14 @@ class Scorecard(typing_extensions.TypedDict, total=False):
     sparkChartView: SparkChartView
     thresholds: _list[Threshold]
     timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
+class SectionHeader(typing_extensions.TypedDict, total=False):
+    dividerBelow: bool
+    subtitle: str
+
+@typing.type_check_only
+class SingleViewGroup(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
@@ -533,6 +549,8 @@ class Widget(typing_extensions.TypedDict, total=False):
     logsPanel: LogsPanel
     pieChart: PieChart
     scorecard: Scorecard
+    sectionHeader: SectionHeader
+    singleViewGroup: SingleViewGroup
     text: Text
     timeSeriesTable: TimeSeriesTable
     title: str

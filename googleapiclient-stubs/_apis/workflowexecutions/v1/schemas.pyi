@@ -30,6 +30,8 @@ class Execution(typing_extensions.TypedDict, total=False):
     callLogLevel: typing_extensions.Literal[
         "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY", "LOG_NONE"
     ]
+    createTime: str
+    disableConcurrencyQuotaOverflowBuffering: bool
     duration: str
     endTime: str
     error: Error

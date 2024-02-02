@@ -41,7 +41,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -140,7 +140,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -202,7 +202,7 @@ class OrgPolicyAPIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleCloudOrgpolicyV2PolicyHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, etag: str = ..., **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any

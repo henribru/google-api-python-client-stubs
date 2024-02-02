@@ -799,6 +799,216 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
         def accounts(self) -> AccountsResource: ...
         def filterSets(self) -> FilterSetsResource: ...
 
+    @typing.type_check_only
+    class BuyersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class FilterSetsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class BidMetricsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBidMetricsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBidMetricsResponseHttpRequest,
+                    previous_response: ListBidMetricsResponse,
+                ) -> ListBidMetricsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class BidResponseErrorsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBidResponseErrorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBidResponseErrorsResponseHttpRequest,
+                    previous_response: ListBidResponseErrorsResponse,
+                ) -> ListBidResponseErrorsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class BidResponsesWithoutBidsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListBidResponsesWithoutBidsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBidResponsesWithoutBidsResponseHttpRequest,
+                    previous_response: ListBidResponsesWithoutBidsResponse,
+                ) -> ListBidResponsesWithoutBidsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class FilteredBidRequestsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFilteredBidRequestsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFilteredBidRequestsResponseHttpRequest,
+                    previous_response: ListFilteredBidRequestsResponse,
+                ) -> ListFilteredBidRequestsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class FilteredBidsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class CreativesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        filterSetName: str,
+                        creativeStatusId: int,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCreativeStatusBreakdownByCreativeResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCreativeStatusBreakdownByCreativeResponseHttpRequest,
+                        previous_response: ListCreativeStatusBreakdownByCreativeResponse,
+                    ) -> (
+                        ListCreativeStatusBreakdownByCreativeResponseHttpRequest | None
+                    ): ...
+
+                @typing.type_check_only
+                class DetailsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        filterSetName: str,
+                        creativeStatusId: int,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCreativeStatusBreakdownByDetailResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCreativeStatusBreakdownByDetailResponseHttpRequest,
+                        previous_response: ListCreativeStatusBreakdownByDetailResponse,
+                    ) -> (
+                        ListCreativeStatusBreakdownByDetailResponseHttpRequest | None
+                    ): ...
+
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFilteredBidsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFilteredBidsResponseHttpRequest,
+                    previous_response: ListFilteredBidsResponse,
+                ) -> ListFilteredBidsResponseHttpRequest | None: ...
+                def creatives(self) -> CreativesResource: ...
+                def details(self) -> DetailsResource: ...
+
+            @typing.type_check_only
+            class ImpressionMetricsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListImpressionMetricsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListImpressionMetricsResponseHttpRequest,
+                    previous_response: ListImpressionMetricsResponse,
+                ) -> ListImpressionMetricsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class LosingBidsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListLosingBidsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListLosingBidsResponseHttpRequest,
+                    previous_response: ListLosingBidsResponse,
+                ) -> ListLosingBidsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class NonBillableWinningBidsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    filterSetName: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListNonBillableWinningBidsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNonBillableWinningBidsResponseHttpRequest,
+                    previous_response: ListNonBillableWinningBidsResponse,
+                ) -> ListNonBillableWinningBidsResponseHttpRequest | None: ...
+
+            def create(
+                self,
+                *,
+                ownerName: str,
+                body: FilterSet = ...,
+                isTransient: bool = ...,
+                **kwargs: typing.Any
+            ) -> FilterSetHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> FilterSetHttpRequest: ...
+            def list(
+                self,
+                *,
+                ownerName: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListFilterSetsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListFilterSetsResponseHttpRequest,
+                previous_response: ListFilterSetsResponse,
+            ) -> ListFilterSetsResponseHttpRequest | None: ...
+            def bidMetrics(self) -> BidMetricsResource: ...
+            def bidResponseErrors(self) -> BidResponseErrorsResource: ...
+            def bidResponsesWithoutBids(self) -> BidResponsesWithoutBidsResource: ...
+            def filteredBidRequests(self) -> FilteredBidRequestsResource: ...
+            def filteredBids(self) -> FilteredBidsResource: ...
+            def impressionMetrics(self) -> ImpressionMetricsResource: ...
+            def losingBids(self) -> LosingBidsResource: ...
+            def nonBillableWinningBids(self) -> NonBillableWinningBidsResource: ...
+
+        def filterSets(self) -> FilterSetsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -813,6 +1023,7 @@ class AdExchangeBuyerIIResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def bidders(self) -> BiddersResource: ...
+    def buyers(self) -> BuyersResource: ...
 
 @typing.type_check_only
 class ClientHttpRequest(googleapiclient.http.HttpRequest):

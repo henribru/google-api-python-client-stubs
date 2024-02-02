@@ -309,6 +309,7 @@ class Modification(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
+    ignoreWarnings: bool
     modifications: _list[Modification]
 
 @typing.type_check_only

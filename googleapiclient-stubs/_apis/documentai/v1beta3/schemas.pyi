@@ -19,7 +19,6 @@ class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabe
     typing_extensions.TypedDict, total=False
 ):
     documentId: GoogleCloudDocumentaiUiv1beta3DocumentId
-    gcsUri: str
     status: GoogleRpcStatus
 
 @typing.type_check_only
@@ -1624,6 +1623,7 @@ class GoogleCloudDocumentaiV1beta3BatchProcessRequest(
     documentOutputConfig: GoogleCloudDocumentaiV1beta3DocumentOutputConfig
     inputConfigs: _list[GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig]
     inputDocuments: GoogleCloudDocumentaiV1beta3BatchDocumentsInputConfig
+    labels: dict[str, typing.Any]
     outputConfig: GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig
     processOptions: GoogleCloudDocumentaiV1beta3ProcessOptions
     skipHumanReview: bool
@@ -2576,6 +2576,7 @@ class GoogleCloudDocumentaiV1beta3ProcessRequest(
     fieldMask: str
     gcsDocument: GoogleCloudDocumentaiV1beta3GcsDocument
     inlineDocument: GoogleCloudDocumentaiV1beta3Document
+    labels: dict[str, typing.Any]
     processOptions: GoogleCloudDocumentaiV1beta3ProcessOptions
     rawDocument: GoogleCloudDocumentaiV1beta3RawDocument
     skipHumanReview: bool
@@ -2648,6 +2649,9 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersion(
     kmsKeyName: str
     kmsKeyVersionName: str
     latestEvaluation: GoogleCloudDocumentaiV1beta3EvaluationReference
+    modelType: typing_extensions.Literal[
+        "MODEL_TYPE_UNSPECIFIED", "MODEL_TYPE_GENERATIVE", "MODEL_TYPE_CUSTOM"
+    ]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -2780,6 +2784,7 @@ class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest(
     baseProcessorVersion: str
     customDocumentExtractionOptions: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtractionOptions
     documentSchema: GoogleCloudDocumentaiV1beta3DocumentSchema
+    foundationModelTuningOptions: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions
     inputData: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData
     processorVersion: GoogleCloudDocumentaiV1beta3ProcessorVersion
 
@@ -2790,6 +2795,13 @@ class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestCustomDocumentExtr
     trainingMethod: typing_extensions.Literal[
         "TRAINING_METHOD_UNSPECIFIED", "MODEL_BASED", "TEMPLATE_BASED"
     ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestFoundationModelTuningOptions(
+    typing_extensions.TypedDict, total=False
+):
+    learningRateMultiplier: float
+    trainSteps: int
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequestInputData(

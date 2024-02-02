@@ -1085,26 +1085,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class ProductstatusesResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class RepricingreportsResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                merchantId: str,
-                productId: str,
-                endDate: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                ruleId: str = ...,
-                startDate: str = ...,
-                **kwargs: typing.Any
-            ) -> ListRepricingProductReportsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: ListRepricingProductReportsResponseHttpRequest,
-                previous_response: ListRepricingProductReportsResponse,
-            ) -> ListRepricingProductReportsResponseHttpRequest | None: ...
-
         def custombatch(
             self, *, body: ProductstatusesCustomBatchRequest = ..., **kwargs: typing.Any
         ) -> ProductstatusesCustomBatchResponseHttpRequest: ...
@@ -1130,7 +1110,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: ProductstatusesListResponseHttpRequest,
             previous_response: ProductstatusesListResponse,
         ) -> ProductstatusesListResponseHttpRequest | None: ...
-        def repricingreports(self) -> RepricingreportsResource: ...
 
     @typing.type_check_only
     class PromotionsResource(googleapiclient.discovery.Resource):
@@ -1269,66 +1248,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             previous_request: SearchResponseHttpRequest,
             previous_response: SearchResponse,
         ) -> SearchResponseHttpRequest | None: ...
-
-    @typing.type_check_only
-    class RepricingrulesResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class RepricingreportsResource(googleapiclient.discovery.Resource):
-            def list(
-                self,
-                *,
-                merchantId: str,
-                ruleId: str,
-                endDate: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                startDate: str = ...,
-                **kwargs: typing.Any
-            ) -> ListRepricingRuleReportsResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: ListRepricingRuleReportsResponseHttpRequest,
-                previous_response: ListRepricingRuleReportsResponse,
-            ) -> ListRepricingRuleReportsResponseHttpRequest | None: ...
-
-        def create(
-            self,
-            *,
-            merchantId: str,
-            body: RepricingRule = ...,
-            ruleId: str = ...,
-            **kwargs: typing.Any
-        ) -> RepricingRuleHttpRequest: ...
-        def delete(
-            self, *, merchantId: str, ruleId: str, **kwargs: typing.Any
-        ) -> googleapiclient.http.HttpRequest: ...
-        def get(
-            self, *, merchantId: str, ruleId: str, **kwargs: typing.Any
-        ) -> RepricingRuleHttpRequest: ...
-        def list(
-            self,
-            *,
-            merchantId: str,
-            countryCode: str = ...,
-            languageCode: str = ...,
-            pageSize: int = ...,
-            pageToken: str = ...,
-            **kwargs: typing.Any
-        ) -> ListRepricingRulesResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: ListRepricingRulesResponseHttpRequest,
-            previous_response: ListRepricingRulesResponse,
-        ) -> ListRepricingRulesResponseHttpRequest | None: ...
-        def patch(
-            self,
-            *,
-            merchantId: str,
-            ruleId: str,
-            body: RepricingRule = ...,
-            **kwargs: typing.Any
-        ) -> RepricingRuleHttpRequest: ...
-        def repricingreports(self) -> RepricingreportsResource: ...
 
     @typing.type_check_only
     class ReturnaddressResource(googleapiclient.discovery.Resource):
@@ -1540,7 +1459,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def regionalinventory(self) -> RegionalinventoryResource: ...
     def regions(self) -> RegionsResource: ...
     def reports(self) -> ReportsResource: ...
-    def repricingrules(self) -> RepricingrulesResource: ...
     def returnaddress(self) -> ReturnaddressResource: ...
     def returnpolicy(self) -> ReturnpolicyResource: ...
     def returnpolicyonline(self) -> ReturnpolicyonlineResource: ...
@@ -1974,30 +1892,6 @@ class ListRegionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListRegionsResponse: ...
-
-@typing.type_check_only
-class ListRepricingProductReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListRepricingProductReportsResponse: ...
-
-@typing.type_check_only
-class ListRepricingRuleReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListRepricingRuleReportsResponse: ...
-
-@typing.type_check_only
-class ListRepricingRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListRepricingRulesResponse: ...
 
 @typing.type_check_only
 class ListReturnPolicyOnlineResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -2434,14 +2328,6 @@ class RenderProductIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RenderProductIssuesResponse: ...
-
-@typing.type_check_only
-class RepricingRuleHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> RepricingRule: ...
 
 @typing.type_check_only
 class RequestPhoneVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):

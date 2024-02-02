@@ -440,6 +440,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     visitorId: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaCompleteQueryResponseHttpRequest: ...
+                def exportAnalyticsMetrics(
+                    self,
+                    *,
+                    catalog: str,
+                    body: GoogleCloudRetailV2betaExportAnalyticsMetricsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def getAttributesConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaAttributesConfigHttpRequest: ...

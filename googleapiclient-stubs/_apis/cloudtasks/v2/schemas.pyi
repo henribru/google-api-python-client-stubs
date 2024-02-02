@@ -42,6 +42,14 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BufferTaskRequest(typing_extensions.TypedDict, total=False):
+    body: HttpBody
+
+@typing.type_check_only
+class BufferTaskResponse(typing_extensions.TypedDict, total=False):
+    task: Task
+
+@typing.type_check_only
 class CmekConfig(typing_extensions.TypedDict, total=False):
     kmsKey: str
     name: str
@@ -70,6 +78,21 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class Header(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class HeaderOverride(typing_extensions.TypedDict, total=False):
+    header: Header
+
+@typing.type_check_only
+class HttpBody(typing_extensions.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class HttpRequest(typing_extensions.TypedDict, total=False):
     body: str
     headers: dict[str, typing.Any]
@@ -86,6 +109,23 @@ class HttpRequest(typing_extensions.TypedDict, total=False):
     oauthToken: OAuthToken
     oidcToken: OidcToken
     url: str
+
+@typing.type_check_only
+class HttpTarget(typing_extensions.TypedDict, total=False):
+    headerOverrides: _list[HeaderOverride]
+    httpMethod: typing_extensions.Literal[
+        "HTTP_METHOD_UNSPECIFIED",
+        "POST",
+        "GET",
+        "HEAD",
+        "PUT",
+        "DELETE",
+        "PATCH",
+        "OPTIONS",
+    ]
+    oauthToken: OAuthToken
+    oidcToken: OidcToken
+    uriOverride: UriOverride
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -121,6 +161,10 @@ class OidcToken(typing_extensions.TypedDict, total=False):
     serviceAccountEmail: str
 
 @typing.type_check_only
+class PathOverride(typing_extensions.TypedDict, total=False):
+    path: str
+
+@typing.type_check_only
 class PauseQueueRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -133,8 +177,13 @@ class Policy(typing_extensions.TypedDict, total=False):
 class PurgeQueueRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class QueryOverride(typing_extensions.TypedDict, total=False):
+    queryParams: str
+
+@typing.type_check_only
 class Queue(typing_extensions.TypedDict, total=False):
     appEngineRoutingOverride: AppEngineRouting
+    httpTarget: HttpTarget
     name: str
     purgeTime: str
     rateLimits: RateLimits
@@ -200,3 +249,14 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class UriOverride(typing_extensions.TypedDict, total=False):
+    host: str
+    pathOverride: PathOverride
+    port: str
+    queryOverride: QueryOverride
+    scheme: typing_extensions.Literal["SCHEME_UNSPECIFIED", "HTTP", "HTTPS"]
+    uriOverrideEnforceMode: typing_extensions.Literal[
+        "URI_OVERRIDE_ENFORCE_MODE_UNSPECIFIED", "IF_NOT_EXISTS", "ALWAYS"
+    ]

@@ -50,7 +50,6 @@ class CleanupPolicyCondition(typing_extensions.TypedDict, total=False):
     tagState: typing_extensions.Literal[
         "TAG_STATE_UNSPECIFIED", "TAGGED", "UNTAGGED", "ANY"
     ]
-    versionAge: str
     versionNamePrefixes: _list[str]
 
 @typing.type_check_only
@@ -117,7 +116,7 @@ class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicR
     typing_extensions.TypedDict, total=False
 ):
     repositoryBase: typing_extensions.Literal[
-        "REPOSITORY_BASE_UNSPECIFIED", "DEBIAN", "UBUNTU"
+        "REPOSITORY_BASE_UNSPECIFIED", "DEBIAN", "UBUNTU", "DEBIAN_SNAPSHOT"
     ]
     repositoryPath: str
 
@@ -372,6 +371,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     cleanupPolicyDryRun: bool
     createTime: str
     description: str
+    disallowUnspecifiedMode: bool
     dockerConfig: DockerRepositoryConfig
     format: typing_extensions.Literal[
         "FORMAT_UNSPECIFIED",

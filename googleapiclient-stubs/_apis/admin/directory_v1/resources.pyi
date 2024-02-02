@@ -117,6 +117,13 @@ class DirectoryResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> DirectoryChromeosdevicesCommandHttpRequest: ...
 
+                def batchChangeStatus(
+                    self,
+                    *,
+                    customerId: str,
+                    body: BatchChangeChromeOsDeviceStatusRequest = ...,
+                    **kwargs: typing.Any
+                ) -> BatchChangeChromeOsDeviceStatusResponseHttpRequest: ...
                 def issueCommand(
                     self,
                     *,
@@ -926,6 +933,16 @@ class AspsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Asps: ...
+
+@typing.type_check_only
+class BatchChangeChromeOsDeviceStatusResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchChangeChromeOsDeviceStatusResponse: ...
 
 @typing.type_check_only
 class BatchCreatePrintServersResponseHttpRequest(googleapiclient.http.HttpRequest):

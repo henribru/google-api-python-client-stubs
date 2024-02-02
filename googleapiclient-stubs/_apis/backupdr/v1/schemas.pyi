@@ -81,6 +81,8 @@ class ManagementServer(typing_extensions.TypedDict, total=False):
     ]
     type: typing_extensions.Literal["INSTANCE_TYPE_UNSPECIFIED", "BACKUP_RESTORE"]
     updateTime: str
+    workforceIdentityBasedManagementUri: WorkforceIdentityBasedManagementURI
+    workforceIdentityBasedOauth2ClientId: WorkforceIdentityBasedOAuth2ClientID
 
 @typing.type_check_only
 class ManagementURI(typing_extensions.TypedDict, total=False):
@@ -138,3 +140,13 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class WorkforceIdentityBasedManagementURI(typing_extensions.TypedDict, total=False):
+    firstPartyManagementUri: str
+    thirdPartyManagementUri: str
+
+@typing.type_check_only
+class WorkforceIdentityBasedOAuth2ClientID(typing_extensions.TypedDict, total=False):
+    firstPartyOauth2ClientId: str
+    thirdPartyOauth2ClientId: str

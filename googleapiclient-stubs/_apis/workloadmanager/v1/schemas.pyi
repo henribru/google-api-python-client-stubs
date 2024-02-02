@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class BigQueryDestination(typing_extensions.TypedDict, total=False):
+    createNewResultsTable: bool
+    destinationDataset: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -12,6 +17,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Evaluation(typing_extensions.TypedDict, total=False):
+    bigQueryDestination: BigQueryDestination
     createTime: str
     customRulesBucket: str
     description: str
@@ -152,6 +158,7 @@ class Rule(typing_extensions.TypedDict, total=False):
     revisionId: str
     secondaryCategory: str
     severity: str
+    tags: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -165,6 +172,7 @@ class SapDiscovery(typing_extensions.TypedDict, total=False):
     applicationLayer: SapDiscoveryComponent
     databaseLayer: SapDiscoveryComponent
     metadata: SapDiscoveryMetadata
+    projectNumber: str
     systemId: str
     updateTime: str
 
@@ -172,18 +180,24 @@ class SapDiscovery(typing_extensions.TypedDict, total=False):
 class SapDiscoveryComponent(typing_extensions.TypedDict, total=False):
     applicationProperties: SapDiscoveryComponentApplicationProperties
     databaseProperties: SapDiscoveryComponentDatabaseProperties
+    haHosts: _list[str]
     hostProject: str
     resources: _list[SapDiscoveryResource]
     sid: str
+    topologyType: typing_extensions.Literal[
+        "TOPOLOGY_TYPE_UNSPECIFIED", "TOPOLOGY_SCALE_UP", "TOPOLOGY_SCALE_OUT"
+    ]
 
 @typing.type_check_only
 class SapDiscoveryComponentApplicationProperties(
     typing_extensions.TypedDict, total=False
 ):
+    abap: bool
     applicationType: typing_extensions.Literal[
         "APPLICATION_TYPE_UNSPECIFIED", "NETWEAVER"
     ]
     ascsUri: str
+    kernelVersion: str
     nfsUri: str
 
 @typing.type_check_only
@@ -191,6 +205,7 @@ class SapDiscoveryComponentDatabaseProperties(typing_extensions.TypedDict, total
     databaseType: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "HANA", "MAX_DB", "DB2"
     ]
+    databaseVersion: str
     primaryInstanceUri: str
     sharedNfsUri: str
 
@@ -203,6 +218,7 @@ class SapDiscoveryMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SapDiscoveryResource(typing_extensions.TypedDict, total=False):
+    instanceProperties: SapDiscoveryResourceInstanceProperties
     relatedResources: _list[str]
     resourceKind: typing_extensions.Literal[
         "RESOURCE_KIND_UNSPECIFIED",
@@ -228,12 +244,20 @@ class SapDiscoveryResource(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class SapDiscoveryResourceInstanceProperties(typing_extensions.TypedDict, total=False):
+    clusterInstances: _list[str]
+    virtualHostname: str
+
+@typing.type_check_only
 class SapValidation(typing_extensions.TypedDict, total=False):
+    projectId: str
     validationDetails: _list[SapValidationValidationDetail]
+    zone: str
 
 @typing.type_check_only
 class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
     details: dict[str, typing.Any]
+    isPresent: bool
     sapValidationType: typing_extensions.Literal[
         "SAP_VALIDATION_TYPE_UNSPECIFIED",
         "SYSTEM",
@@ -248,6 +272,7 @@ class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ScannedResource(typing_extensions.TypedDict, total=False):
     resource: str
+    type: str
 
 @typing.type_check_only
 class SqlserverValidation(typing_extensions.TypedDict, total=False):

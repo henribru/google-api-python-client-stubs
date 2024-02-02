@@ -173,8 +173,17 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagementSettings(typing_extensions.TypedDict, total=False):
+    preferredRenewalMethod: typing_extensions.Literal[
+        "RENEWAL_METHOD_UNSPECIFIED",
+        "AUTOMATIC_RENEWAL",
+        "MANUAL_RENEWAL",
+        "RENEWAL_DISABLED",
+    ]
     renewalMethod: typing_extensions.Literal[
-        "RENEWAL_METHOD_UNSPECIFIED", "AUTOMATIC_RENEWAL", "MANUAL_RENEWAL"
+        "RENEWAL_METHOD_UNSPECIFIED",
+        "AUTOMATIC_RENEWAL",
+        "MANUAL_RENEWAL",
+        "RENEWAL_DISABLED",
     ]
     transferLockState: typing_extensions.Literal[
         "TRANSFER_LOCK_STATE_UNSPECIFIED", "UNLOCKED", "LOCKED"
@@ -266,7 +275,10 @@ class Registration(typing_extensions.TypedDict, total=False):
     expireTime: str
     issues: _list[
         typing_extensions.Literal[
-            "ISSUE_UNSPECIFIED", "CONTACT_SUPPORT", "UNVERIFIED_EMAIL"
+            "ISSUE_UNSPECIFIED",
+            "CONTACT_SUPPORT",
+            "UNVERIFIED_EMAIL",
+            "PROBLEM_WITH_BILLING",
         ]
     ]
     labels: dict[str, typing.Any]

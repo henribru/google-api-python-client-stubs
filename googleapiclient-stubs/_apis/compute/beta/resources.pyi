@@ -2565,6 +2565,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: InstanceListReferrersHttpRequest,
             previous_response: InstanceListReferrers,
         ) -> InstanceListReferrersHttpRequest | None: ...
+        def performMaintenance(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def removeResourcePolicies(
             self,
             *,
@@ -2754,6 +2763,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             requestId: str = ...,
+            withExtendedNotifications: bool = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def start(

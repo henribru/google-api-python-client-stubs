@@ -195,6 +195,9 @@ class DiagnoseClusterRequest(typing_extensions.TypedDict, total=False):
     diagnosisInterval: Interval
     job: str
     jobs: _list[str]
+    tarballAccess: typing_extensions.Literal[
+        "TARBALL_ACCESS_UNSPECIFIED", "GOOGLE_CLOUD_SUPPORT", "GOOGLE_DATAPROC_DIAGNOSE"
+    ]
     tarballGcsDir: str
     yarnApplicationId: str
     yarnApplicationIds: _list[str]
@@ -548,6 +551,7 @@ class ListAutoscalingPoliciesResponse(typing_extensions.TypedDict, total=False):
 class ListBatchesResponse(typing_extensions.TypedDict, total=False):
     batches: _list[Batch]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):

@@ -43,6 +43,13 @@ class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
+class DataResidencyAugmentedView(typing_extensions.TypedDict, total=False):
+    crGopoGuris: _list[str]
+    crGopoPrefixes: _list[str]
+    serviceData: ServiceData
+    tpIds: _list[str]
+
+@typing.type_check_only
 class DnsPeering(typing_extensions.TypedDict, total=False):
     description: str
     domain: str
@@ -72,6 +79,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     availableVersion: _list[Version]
     createTime: str
     cryptoKeyConfig: CryptoKeyConfig
+    dataplexDataLineageIntegrationEnabled: bool
     dataprocServiceAccount: str
     description: str
     disabledReason: _list[
@@ -153,8 +161,14 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "VPC_PEERING",
+        "PRIVATE_SERVICE_CONNECT_INTERFACES",
+    ]
     ipAllocation: str
     network: str
+    privateServiceConnectConfig: PrivateServiceConnectConfig
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -176,6 +190,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PersistentDiskData(typing_extensions.TypedDict, total=False):
+    cfsRoots: _list[str]
+    gcsBucketNames: _list[str]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -183,7 +202,17 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PrivateServiceConnectConfig(typing_extensions.TypedDict, total=False):
+    effectiveUnreachableCidrBlock: str
+    networkAttachment: str
+    unreachableCidrBlock: str
+
+@typing.type_check_only
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ServiceData(typing_extensions.TypedDict, total=False):
+    pd: PersistentDiskData
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

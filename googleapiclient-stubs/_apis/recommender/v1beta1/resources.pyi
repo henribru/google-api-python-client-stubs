@@ -132,6 +132,20 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
 
@@ -232,6 +246,20 @@ class RecommenderResource(googleapiclient.discovery.Resource):
 
                 def recommendations(self) -> RecommendationsResource: ...
 
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
 
@@ -369,6 +397,20 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
 
@@ -493,6 +535,20 @@ class RecommenderResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudRecommenderV1beta1RecommenderConfigHttpRequest: ...
                 def recommendations(self) -> RecommendationsResource: ...
 
+            def list(
+                self,
+                *,
+                name: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudLocationListLocationsResponseHttpRequest,
+                previous_response: GoogleCloudLocationListLocationsResponse,
+            ) -> GoogleCloudLocationListLocationsResponseHttpRequest | None: ...
             def insightTypes(self) -> InsightTypesResource: ...
             def recommenders(self) -> RecommendersResource: ...
 
@@ -529,6 +585,16 @@ class RecommenderResource(googleapiclient.discovery.Resource):
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def recommenders(self) -> RecommendersResource: ...
+
+@typing.type_check_only
+class GoogleCloudLocationListLocationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudLocationListLocationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecommenderV1beta1InsightHttpRequest(googleapiclient.http.HttpRequest):

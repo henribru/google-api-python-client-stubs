@@ -277,9 +277,6 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
             def devices(self) -> DevicesResource: ...
             def nodes(self) -> NodesResource: ...
 
-        def checkHasProvisionedDeployment(
-            self, **kwargs: typing.Any
-        ) -> SasPortalCheckHasProvisionedDeploymentResponseHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> SasPortalCustomerHttpRequest: ...
@@ -291,6 +288,12 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
             previous_request: SasPortalListCustomersResponseHttpRequest,
             previous_response: SasPortalListCustomersResponse,
         ) -> SasPortalListCustomersResponseHttpRequest | None: ...
+        def listGcpProjectDeployments(
+            self, **kwargs: typing.Any
+        ) -> SasPortalListGcpProjectDeploymentsResponseHttpRequest: ...
+        def listLegacyOrganizations(
+            self, **kwargs: typing.Any
+        ) -> SasPortalListLegacyOrganizationsResponseHttpRequest: ...
         def migrateOrganization(
             self,
             *,
@@ -667,16 +670,6 @@ class SASPortalTestingResource(googleapiclient.discovery.Resource):
     def policies(self) -> PoliciesResource: ...
 
 @typing.type_check_only
-class SasPortalCheckHasProvisionedDeploymentResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SasPortalCheckHasProvisionedDeploymentResponse: ...
-
-@typing.type_check_only
 class SasPortalCustomerHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -739,6 +732,26 @@ class SasPortalListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SasPortalListDevicesResponse: ...
+
+@typing.type_check_only
+class SasPortalListGcpProjectDeploymentsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SasPortalListGcpProjectDeploymentsResponse: ...
+
+@typing.type_check_only
+class SasPortalListLegacyOrganizationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SasPortalListLegacyOrganizationsResponse: ...
 
 @typing.type_check_only
 class SasPortalListNodesResponseHttpRequest(googleapiclient.http.HttpRequest):

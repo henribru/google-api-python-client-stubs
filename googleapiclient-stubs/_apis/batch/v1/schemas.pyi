@@ -117,6 +117,7 @@ class AllocationPolicy(typing_extensions.TypedDict, total=False):
     network: NetworkPolicy
     placement: PlacementPolicy
     serviceAccount: ServiceAccount
+    tags: _list[str]
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -132,7 +133,8 @@ class Barrier(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CloudLoggingOption(typing_extensions.TypedDict, total=False): ...
+class CloudLoggingOption(typing_extensions.TypedDict, total=False):
+    useGenericTaskMonitoredResource: bool
 
 @typing.type_check_only
 class ComputeResource(typing_extensions.TypedDict, total=False):
@@ -144,6 +146,7 @@ class ComputeResource(typing_extensions.TypedDict, total=False):
 class Container(typing_extensions.TypedDict, total=False):
     blockExternalNetwork: bool
     commands: _list[str]
+    enableImageStreaming: bool
     entrypoint: str
     imageUri: str
     options: str
@@ -420,6 +423,7 @@ class TaskGroup(typing_extensions.TypedDict, total=False):
     parallelism: str
     permissiveSsh: bool
     requireHostsFile: bool
+    runAsNonRoot: bool
     schedulingPolicy: typing_extensions.Literal[
         "SCHEDULING_POLICY_UNSPECIFIED", "AS_SOON_AS_POSSIBLE", "IN_ORDER"
     ]

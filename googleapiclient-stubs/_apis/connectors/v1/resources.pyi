@@ -23,6 +23,46 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 class ConnectionSchemaMetadataResource(
                     googleapiclient.discovery.Resource
                 ):
+                    def getAction(
+                        self, *, name: str, actionId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def getEntityType(
+                        self, *, name: str, entityId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def listActions(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "VIEW_UNSPECIFIED", "BASIC"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListActionsResponseHttpRequest: ...
+                    def listActions_next(
+                        self,
+                        previous_request: ListActionsResponseHttpRequest,
+                        previous_response: ListActionsResponse,
+                    ) -> ListActionsResponseHttpRequest | None: ...
+                    def listEntityTypes(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "VIEW_UNSPECIFIED", "BASIC"
+                        ] = ...,
+                        **kwargs: typing.Any
+                    ) -> ListEntityTypesResponseHttpRequest: ...
+                    def listEntityTypes_next(
+                        self,
+                        previous_request: ListEntityTypesResponseHttpRequest,
+                        previous_response: ListEntityTypesResponse,
+                    ) -> ListEntityTypesResponseHttpRequest | None: ...
                     def refresh(
                         self,
                         *,
@@ -160,6 +200,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     previous_request: ListConnectionsResponseHttpRequest,
                     previous_response: ListConnectionsResponse,
                 ) -> ListConnectionsResponseHttpRequest | None: ...
+                def listenEvent(
+                    self,
+                    *,
+                    resourcePath: str,
+                    body: ListenEventRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ListenEventResponseHttpRequest: ...
                 def patch(
                     self,
                     *,
@@ -239,6 +286,88 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class GlobalResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class CustomConnectorsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class CustomConnectorVersionsResource(
+                        googleapiclient.discovery.Resource
+                    ):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: CustomConnectorVersion = ...,
+                            customConnectorVersionId: str = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> CustomConnectorVersionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> ListCustomConnectorVersionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListCustomConnectorVersionsResponseHttpRequest,
+                            previous_response: ListCustomConnectorVersionsResponse,
+                        ) -> ListCustomConnectorVersionsResponseHttpRequest | None: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: CustomConnectorVersion = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: CustomConnector = ...,
+                        customConnectorId: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> CustomConnectorHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListCustomConnectorsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListCustomConnectorsResponseHttpRequest,
+                        previous_response: ListCustomConnectorsResponse,
+                    ) -> ListCustomConnectorsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: CustomConnector = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def customConnectorVersions(
+                        self,
+                    ) -> CustomConnectorVersionsResource: ...
+
+                @typing.type_check_only
                 class ManagedZonesResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -289,6 +418,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def customConnectors(self) -> CustomConnectorsResource: ...
                 def managedZones(self) -> ManagedZonesResource: ...
 
             @typing.type_check_only
@@ -521,6 +651,22 @@ class ConnectorVersionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ConnectorVersion: ...
 
 @typing.type_check_only
+class CustomConnectorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CustomConnector: ...
+
+@typing.type_check_only
+class CustomConnectorVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CustomConnectorVersion: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -553,6 +699,14 @@ class EventTypeHttpRequest(googleapiclient.http.HttpRequest):
     ) -> EventType: ...
 
 @typing.type_check_only
+class ListActionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListActionsResponse: ...
+
+@typing.type_check_only
 class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -577,12 +731,36 @@ class ListConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListConnectorsResponse: ...
 
 @typing.type_check_only
+class ListCustomConnectorVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCustomConnectorVersionsResponse: ...
+
+@typing.type_check_only
+class ListCustomConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCustomConnectorsResponse: ...
+
+@typing.type_check_only
 class ListEndpointAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEndpointAttachmentsResponse: ...
+
+@typing.type_check_only
+class ListEntityTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListEntityTypesResponse: ...
 
 @typing.type_check_only
 class ListEventSubscriptionsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -647,6 +825,14 @@ class ListRuntimeEntitySchemasResponseHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListRuntimeEntitySchemasResponse: ...
+
+@typing.type_check_only
+class ListenEventResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListenEventResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):

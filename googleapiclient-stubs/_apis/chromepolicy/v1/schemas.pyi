@@ -87,6 +87,7 @@ class GoogleChromePolicyVersionsV1FieldConstraints(
     typing_extensions.TypedDict, total=False
 ):
     numericRangeConstraint: GoogleChromePolicyVersionsV1NumericRangeConstraint
+    uploadedFileConstraints: GoogleChromePolicyVersionsV1UploadedFileConstraints
 
 @typing.type_check_only
 class GoogleChromePolicyVersionsV1InheritOrgUnitPolicyRequest(
@@ -202,6 +203,15 @@ class GoogleChromePolicyVersionsV1PolicySchema(
     policyDescription: str
     schemaName: str
     supportUri: str
+    supportedPlatforms: _list[
+        typing_extensions.Literal[
+            "PLATFORM_UNSPECIFIED",
+            "CHROME_OS",
+            "CHROME_BROWSER",
+            "CHROME_BROWSER_FOR_ANDROID",
+            "CHROME_BROWSER_FOR_IOS",
+        ]
+    ]
     validTargetResources: _list[
         typing_extensions.Literal["TARGET_RESOURCE_UNSPECIFIED", "ORG_UNIT", "GROUP"]
     ]
@@ -344,6 +354,28 @@ class GoogleChromePolicyVersionsV1UploadPolicyFileResponse(
     typing_extensions.TypedDict, total=False
 ):
     downloadUri: str
+
+@typing.type_check_only
+class GoogleChromePolicyVersionsV1UploadedFileConstraints(
+    typing_extensions.TypedDict, total=False
+):
+    sizeLimitBytes: str
+    supportedContentTypes: _list[
+        typing_extensions.Literal[
+            "CONTENT_TYPE_UNSPECIFIED",
+            "CONTENT_TYPE_PLAIN_TEXT",
+            "CONTENT_TYPE_HTML",
+            "CONTENT_TYPE_IMAGE_JPEG",
+            "CONTENT_TYPE_IMAGE_GIF",
+            "CONTENT_TYPE_IMAGE_PNG",
+            "CONTENT_TYPE_JSON",
+            "CONTENT_TYPE_ZIP",
+            "CONTENT_TYPE_GZIP",
+            "CONTENT_TYPE_CSV",
+            "CONTENT_TYPE_YAML",
+            "CONTENT_TYPE_IMAGE_WEBP",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

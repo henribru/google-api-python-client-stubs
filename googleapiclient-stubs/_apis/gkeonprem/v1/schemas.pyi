@@ -701,10 +701,15 @@ class VmwareAdminAddonNodeConfig(typing_extensions.TypedDict, total=False):
     autoResizeConfig: VmwareAutoResizeConfig
 
 @typing.type_check_only
+class VmwareAdminAuthorizationConfig(typing_extensions.TypedDict, total=False):
+    viewerUsers: _list[ClusterUser]
+
+@typing.type_check_only
 class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     addonNode: VmwareAdminAddonNodeConfig
     annotations: dict[str, typing.Any]
     antiAffinityGroups: VmwareAAGConfig
+    authorization: VmwareAdminAuthorizationConfig
     autoRepairConfig: VmwareAutoRepairConfig
     bootstrapClusterMembership: str
     controlPlaneNode: VmwareAdminControlPlaneNodeConfig
@@ -804,6 +809,7 @@ class VmwareAdminVCenterConfig(typing_extensions.TypedDict, total=False):
     datastore: str
     folder: str
     resourcePool: str
+    storagePolicyName: str
 
 @typing.type_check_only
 class VmwareAdminVipConfig(typing_extensions.TypedDict, total=False):

@@ -161,6 +161,13 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         | None
                     ): ...
 
+                def generate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewHttpRequest: ...

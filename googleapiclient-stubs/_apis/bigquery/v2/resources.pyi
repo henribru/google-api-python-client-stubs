@@ -28,7 +28,9 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
-            datasetView: str = ...,
+            datasetView: typing_extensions.Literal[
+                "DATASET_VIEW_UNSPECIFIED", "METADATA", "ACL", "FULL"
+            ] = ...,
             **kwargs: typing.Any
         ) -> DatasetHttpRequest: ...
         def insert(
@@ -55,6 +57,14 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             body: Dataset = ...,
+            **kwargs: typing.Any
+        ) -> DatasetHttpRequest: ...
+        def undelete(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            body: UndeleteDatasetRequest = ...,
             **kwargs: typing.Any
         ) -> DatasetHttpRequest: ...
         def update(
@@ -97,6 +107,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             jobId: str,
+            formatOptions_useInt64Timestamp: bool = ...,
             location: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -282,6 +293,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             tableId: str,
+            formatOptions_useInt64Timestamp: bool = ...,
             maxResults: int = ...,
             pageToken: str = ...,
             selectedFields: str = ...,
@@ -307,7 +319,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             tableId: str,
             selectedFields: str = ...,
             view: typing_extensions.Literal[
-                "BASIC", "FULL", "STORAGE_STATS", "TABLE_METADATA_VIEW_UNSPECIFIED"
+                "TABLE_METADATA_VIEW_UNSPECIFIED", "BASIC", "STORAGE_STATS", "FULL"
             ] = ...,
             **kwargs: typing.Any
         ) -> TableHttpRequest: ...

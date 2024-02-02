@@ -24,6 +24,7 @@ class BigQueryConfig(typing_extensions.TypedDict, total=False):
         "IN_TRANSIT_LOCATION_RESTRICTION",
     ]
     table: str
+    useTableSchema: bool
     useTopicSchema: bool
     writeMetadata: bool
 
@@ -119,6 +120,7 @@ class ListTopicsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
     allowedPersistenceRegions: _list[str]
+    enforceInTransit: bool
 
 @typing.type_check_only
 class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):

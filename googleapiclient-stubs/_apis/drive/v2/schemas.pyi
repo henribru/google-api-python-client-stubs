@@ -179,6 +179,7 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     reason: str
     restrictingUser: User
     restrictionDate: str
+    systemRestricted: bool
     type: str
 
 @typing.type_check_only

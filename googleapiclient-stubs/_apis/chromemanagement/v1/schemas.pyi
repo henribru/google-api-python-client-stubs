@@ -479,6 +479,13 @@ class GoogleChromeManagementV1MemoryStatusReport(
     systemRamFreeBytes: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1NetworkBandwidthReport(
+    typing_extensions.TypedDict, total=False
+):
+    downloadSpeedKbps: str
+    reportTime: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1NetworkDevice(typing_extensions.TypedDict, total=False):
     iccid: str
     imei: str
@@ -629,6 +636,7 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     memoryInfo: GoogleChromeManagementV1MemoryInfo
     memoryStatusReport: _list[GoogleChromeManagementV1MemoryStatusReport]
     name: str
+    networkBandwidthReport: _list[GoogleChromeManagementV1NetworkBandwidthReport]
     networkDiagnosticsReport: _list[GoogleChromeManagementV1NetworkDiagnosticsReport]
     networkInfo: GoogleChromeManagementV1NetworkInfo
     networkStatusReport: _list[GoogleChromeManagementV1NetworkStatusReport]
@@ -760,6 +768,7 @@ class GoogleChromeManagementV1TelemetryUserDevice(
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     deviceActivityReport: _list[GoogleChromeManagementV1DeviceActivityReport]
     deviceId: str
+    networkBandwidthReport: _list[GoogleChromeManagementV1NetworkBandwidthReport]
     peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
 
 @typing.type_check_only

@@ -711,6 +711,7 @@ class ChannelAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class CmHybridConfig(typing_extensions.TypedDict, total=False):
     cmAccountId: str
+    cmAdvertiserIds: _list[str]
     cmFloodlightConfigId: str
     cmFloodlightLinkingAuthorized: bool
     cmSyncableSiteIds: _list[str]
@@ -738,6 +739,15 @@ class CombinedAudienceTargetingSetting(typing_extensions.TypedDict, total=False)
     combinedAudienceId: str
 
 @typing.type_check_only
+class Consent(typing_extensions.TypedDict, total=False):
+    adPersonalization: typing_extensions.Literal[
+        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
+    ]
+    adUserData: typing_extensions.Literal[
+        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
+    ]
+
+@typing.type_check_only
 class ContactInfo(typing_extensions.TypedDict, total=False):
     countryCode: str
     hashedEmails: _list[str]
@@ -748,6 +758,7 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ContactInfoList(typing_extensions.TypedDict, total=False):
+    consent: Consent
     contactInfos: _list[ContactInfo]
 
 @typing.type_check_only
@@ -2856,6 +2867,7 @@ class MobileApp(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
+    consent: Consent
     mobileDeviceIds: _list[str]
 
 @typing.type_check_only
@@ -3612,6 +3624,7 @@ class User(typing_extensions.TypedDict, total=False):
     assignedUserRoles: _list[AssignedUserRole]
     displayName: str
     email: str
+    lastLoginTime: str
     name: str
     userId: str
 

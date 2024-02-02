@@ -74,6 +74,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     hyperthreadingEnabled: bool
     id: str
     interactiveSerialConsoleEnabled: bool
+    kmsKeyVersion: str
     labels: dict[str, typing.Any]
     logicalInterfaces: _list[GoogleCloudBaremetalsolutionV2LogicalInterface]
     loginInfo: str
@@ -84,6 +85,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     networks: _list[Network]
     osImage: str
     pod: str
+    sshKeys: _list[str]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "PROVISIONING",
@@ -109,6 +111,7 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     hyperthreading: bool
     id: str
     instanceType: str
+    kmsKeyVersion: str
     logicalInterfaces: _list[GoogleCloudBaremetalsolutionV2LogicalInterface]
     name: str
     networkConfig: typing_extensions.Literal[
@@ -192,6 +195,11 @@ class ListVolumesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     volumes: _list[Volume]
+
+@typing.type_check_only
+class LoadInstanceAuthInfoResponse(typing_extensions.TypedDict, total=False):
+    sshKeys: _list[SSHKey]
+    userAccounts: dict[str, typing.Any]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -463,6 +471,11 @@ class SubmitProvisioningConfigRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubmitProvisioningConfigResponse(typing_extensions.TypedDict, total=False):
     provisioningConfig: ProvisioningConfig
+
+@typing.type_check_only
+class UserAccount(typing_extensions.TypedDict, total=False):
+    encryptedPassword: str
+    kmsKeyVersion: str
 
 @typing.type_check_only
 class VRF(typing_extensions.TypedDict, total=False):

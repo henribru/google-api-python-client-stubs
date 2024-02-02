@@ -388,11 +388,13 @@ class Device(typing_extensions.TypedDict, total=False):
         "DELETED",
         "PROVISIONING",
         "LOST",
+        "PREPARING_FOR_MIGRATION",
     ]
     commonCriteriaModeInfo: CommonCriteriaModeInfo
     deviceSettings: DeviceSettings
     disabledReason: UserFacingMessage
     displays: _list[Display]
+    dpcMigrationInfo: DpcMigrationInfo
     enrollmentTime: str
     enrollmentTokenData: str
     enrollmentTokenName: str
@@ -425,6 +427,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "DELETED",
         "PROVISIONING",
         "LOST",
+        "PREPARING_FOR_MIGRATION",
     ]
     systemProperties: dict[str, typing.Any]
     user: User
@@ -465,6 +468,12 @@ class DeviceRadioState(typing_extensions.TypedDict, total=False):
         "CELLULAR_TWO_G_STATE_UNSPECIFIED",
         "CELLULAR_TWO_G_USER_CHOICE",
         "CELLULAR_TWO_G_DISABLED",
+    ]
+    minimumWifiSecurityLevel: typing_extensions.Literal[
+        "MINIMUM_WIFI_SECURITY_LEVEL_UNSPECIFIED",
+        "OPEN_NETWORK_SECURITY",
+        "PERSONAL_NETWORK_SECURITY",
+        "ENTERPRISE_NETWORK_SECURITY",
     ]
     ultraWidebandState: typing_extensions.Literal[
         "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
@@ -514,6 +523,11 @@ class DnsEvent(typing_extensions.TypedDict, total=False):
     ipAddresses: _list[str]
     packageName: str
     totalIpAddressesReturned: str
+
+@typing.type_check_only
+class DpcMigrationInfo(typing_extensions.TypedDict, total=False):
+    additionalData: str
+    previousDpc: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -707,6 +721,11 @@ class ListEnterprisesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMigrationTokensResponse(typing_extensions.TypedDict, total=False):
+    migrationTokens: _list[MigrationToken]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -802,6 +821,25 @@ class MemoryInfo(typing_extensions.TypedDict, total=False):
     totalRam: str
 
 @typing.type_check_only
+class MigrationToken(typing_extensions.TypedDict, total=False):
+    additionalData: str
+    createTime: str
+    device: str
+    deviceId: str
+    expireTime: str
+    managementMode: typing_extensions.Literal[
+        "MANAGEMENT_MODE_UNSPECIFIED",
+        "WORK_PROFILE_PERSONALLY_OWNED",
+        "WORK_PROFILE_COMPANY_OWNED",
+        "FULLY_MANAGED",
+    ]
+    name: str
+    policy: str
+    ttl: str
+    userId: str
+    value: str
+
+@typing.type_check_only
 class NetworkInfo(typing_extensions.TypedDict, total=False):
     imei: str
     meid: str
@@ -853,6 +891,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "ONC_WIFI_INVALID_VALUE",
         "ONC_WIFI_API_LEVEL",
         "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
+        "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK",
     ]
 
 @typing.type_check_only
