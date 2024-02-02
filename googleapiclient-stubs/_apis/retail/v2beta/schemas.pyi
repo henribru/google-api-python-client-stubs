@@ -301,6 +301,14 @@ class GoogleCloudRetailV2alphaEnrollSolutionResponse(
     ]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2alphaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2alphaOutputResult
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportErrorsConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -714,9 +722,11 @@ class GoogleCloudRetailV2betaCatalogAttributeFacetConfig(
     ignoredFacetValues: _list[
         GoogleCloudRetailV2betaCatalogAttributeFacetConfigIgnoredFacetValues
     ]
+    mergedFacet: GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet
     mergedFacetValues: _list[
         GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue
     ]
+    rerankConfig: GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaCatalogAttributeFacetConfigIgnoredFacetValues(
@@ -727,11 +737,27 @@ class GoogleCloudRetailV2betaCatalogAttributeFacetConfigIgnoredFacetValues(
     values: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacet(
+    typing_extensions.TypedDict, total=False
+):
+    mergedFacetKey: str
+    mergedFacetValues: _list[
+        GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue(
     typing_extensions.TypedDict, total=False
 ):
     mergedValue: str
     values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaCatalogAttributeFacetConfigRerankConfig(
+    typing_extensions.TypedDict, total=False
+):
+    facetValues: _list[str]
+    rerankFacet: bool
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaColorInfo(typing_extensions.TypedDict, total=False):
@@ -862,6 +888,21 @@ class GoogleCloudRetailV2betaExperimentInfoServingConfigExperiment(
 ):
     experimentServingConfig: str
     originalServingConfig: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaExportAnalyticsMetricsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    outputConfig: GoogleCloudRetailV2betaOutputConfig
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2betaExportErrorsConfig
+    outputResult: GoogleCloudRetailV2betaOutputResult
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaExportErrorsConfig(
@@ -1132,6 +1173,25 @@ class GoogleCloudRetailV2betaModelServingConfigList(
     typing_extensions.TypedDict, total=False
 ):
     servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaOutputConfig(typing_extensions.TypedDict, total=False):
+    bigqueryDestination: GoogleCloudRetailV2betaOutputConfigBigQueryDestination
+    gcsDestination: GoogleCloudRetailV2betaOutputConfigGcsDestination
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaOutputConfigBigQueryDestination(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+    tableIdPrefix: str
+    tableType: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaOutputConfigGcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    outputUriPrefix: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaOutputResult(typing_extensions.TypedDict, total=False):

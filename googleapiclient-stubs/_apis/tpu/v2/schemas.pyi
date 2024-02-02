@@ -99,6 +99,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     canIpForward: bool
     enableExternalIps: bool
     network: str
+    queueCount: int
     subnetwork: str
 
 @typing.type_check_only

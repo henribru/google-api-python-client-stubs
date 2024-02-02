@@ -148,6 +148,12 @@ class ComputeEnginePreferences(typing_extensions.TypedDict, total=False):
         "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE",
     ]
     machinePreferences: MachinePreferences
+    persistentDiskType: typing_extensions.Literal[
+        "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+        "PERSISTENT_DISK_TYPE_STANDARD",
+        "PERSISTENT_DISK_TYPE_BALANCED",
+        "PERSISTENT_DISK_TYPE_SSD",
+    ]
 
 @typing.type_check_only
 class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
@@ -339,6 +345,7 @@ class GuestConfigDetails(typing_extensions.TypedDict, total=False):
 class GuestInstalledApplication(typing_extensions.TypedDict, total=False):
     applicationName: str
     installTime: str
+    licenses: _list[str]
     path: str
     vendor: str
     version: str

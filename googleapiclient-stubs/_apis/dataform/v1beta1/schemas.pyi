@@ -121,6 +121,10 @@ class DirectoryEntry(typing_extensions.TypedDict, total=False):
     file: str
 
 @typing.type_check_only
+class DirectorySearchResult(typing_extensions.TypedDict, total=False):
+    path: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -156,6 +160,10 @@ class FetchRepositoryHistoryResponse(typing_extensions.TypedDict, total=False):
 class FileOperation(typing_extensions.TypedDict, total=False):
     deleteFile: DeleteFile
     writeFile: WriteFile
+
+@typing.type_check_only
+class FileSearchResult(typing_extensions.TypedDict, total=False):
+    path: str
 
 @typing.type_check_only
 class GitRemoteSettings(typing_extensions.TypedDict, total=False):
@@ -365,6 +373,7 @@ class RelationDescriptor(typing_extensions.TypedDict, total=False):
 class ReleaseConfig(typing_extensions.TypedDict, total=False):
     codeCompilationConfig: CodeCompilationConfig
     cronSchedule: str
+    disabled: bool
     gitCommitish: str
     name: str
     recentScheduledReleaseRecords: _list[ScheduledReleaseRecord]
@@ -406,6 +415,16 @@ class ScheduledReleaseRecord(typing_extensions.TypedDict, total=False):
     compilationResult: str
     errorStatus: Status
     releaseTime: str
+
+@typing.type_check_only
+class SearchFilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    searchResults: _list[SearchResult]
+
+@typing.type_check_only
+class SearchResult(typing_extensions.TypedDict, total=False):
+    directory: DirectorySearchResult
+    file: FileSearchResult
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -458,6 +477,7 @@ class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
+    resolvedCompilationResult: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RUNNING", "SUCCEEDED", "CANCELLED", "FAILED", "CANCELING"
     ]

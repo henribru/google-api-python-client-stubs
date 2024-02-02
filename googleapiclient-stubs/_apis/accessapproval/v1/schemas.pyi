@@ -37,6 +37,7 @@ class AccessReason(typing_extensions.TypedDict, total=False):
         "GOOGLE_INITIATED_REVIEW",
         "THIRD_PARTY_DATA_REQUEST",
         "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+        "CLOUD_INITIATED_ACCESS",
     ]
 
 @typing.type_check_only
@@ -97,5 +98,43 @@ class ResourceProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SignatureInfo(typing_extensions.TypedDict, total=False):
     customerKmsKeyVersion: str
+    googleKeyAlgorithm: typing_extensions.Literal[
+        "CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
+        "GOOGLE_SYMMETRIC_ENCRYPTION",
+        "AES_128_GCM",
+        "AES_256_GCM",
+        "AES_128_CBC",
+        "AES_256_CBC",
+        "AES_128_CTR",
+        "AES_256_CTR",
+        "RSA_SIGN_PSS_2048_SHA256",
+        "RSA_SIGN_PSS_3072_SHA256",
+        "RSA_SIGN_PSS_4096_SHA256",
+        "RSA_SIGN_PSS_4096_SHA512",
+        "RSA_SIGN_PKCS1_2048_SHA256",
+        "RSA_SIGN_PKCS1_3072_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA256",
+        "RSA_SIGN_PKCS1_4096_SHA512",
+        "RSA_SIGN_RAW_PKCS1_2048",
+        "RSA_SIGN_RAW_PKCS1_3072",
+        "RSA_SIGN_RAW_PKCS1_4096",
+        "RSA_DECRYPT_OAEP_2048_SHA256",
+        "RSA_DECRYPT_OAEP_3072_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA256",
+        "RSA_DECRYPT_OAEP_4096_SHA512",
+        "RSA_DECRYPT_OAEP_2048_SHA1",
+        "RSA_DECRYPT_OAEP_3072_SHA1",
+        "RSA_DECRYPT_OAEP_4096_SHA1",
+        "EC_SIGN_P256_SHA256",
+        "EC_SIGN_P384_SHA384",
+        "EC_SIGN_SECP256K1_SHA256",
+        "HMAC_SHA256",
+        "HMAC_SHA1",
+        "HMAC_SHA384",
+        "HMAC_SHA512",
+        "HMAC_SHA224",
+        "EXTERNAL_SYMMETRIC_ENCRYPTION",
+    ]
     googlePublicKeyPem: str
+    serializedApprovalRequest: str
     signature: str

@@ -25,6 +25,14 @@ class CidrBlock(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
+class CloudDataLineageIntegration(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class DataRetentionConfig(typing_extensions.TypedDict, total=False):
+    taskLogsRetentionConfig: TaskLogsRetentionConfig
+
+@typing.type_check_only
 class DatabaseConfig(typing_extensions.TypedDict, total=False):
     machineType: str
     zone: str
@@ -67,6 +75,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
     airflowByoidUri: str
     airflowUri: str
     dagGcsPrefix: str
+    dataRetentionConfig: DataRetentionConfig
     databaseConfig: DatabaseConfig
     encryptionConfig: EncryptionConfig
     environmentSize: typing_extensions.Literal[
@@ -281,6 +290,7 @@ class SchedulerResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     airflowConfigOverrides: dict[str, typing.Any]
+    cloudDataLineageIntegration: CloudDataLineageIntegration
     envVariables: dict[str, typing.Any]
     imageVersion: str
     pypiPackages: dict[str, typing.Any]
@@ -308,6 +318,14 @@ class StopAirflowCommandResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StorageConfig(typing_extensions.TypedDict, total=False):
     bucket: str
+
+@typing.type_check_only
+class TaskLogsRetentionConfig(typing_extensions.TypedDict, total=False):
+    storageMode: typing_extensions.Literal[
+        "TASK_LOGS_STORAGE_MODE_UNSPECIFIED",
+        "CLOUD_LOGGING_AND_CLOUD_STORAGE",
+        "CLOUD_LOGGING_ONLY",
+    ]
 
 @typing.type_check_only
 class TriggererResource(typing_extensions.TypedDict, total=False):

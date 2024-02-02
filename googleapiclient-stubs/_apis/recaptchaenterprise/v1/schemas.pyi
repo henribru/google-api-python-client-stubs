@@ -331,8 +331,20 @@ class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup(
 class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
     typing_extensions.TypedDict, total=False
 ):
+    accountId: str
     hashedAccountId: str
     name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    names: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse(
@@ -376,6 +388,7 @@ class GoogleCloudRecaptchaenterpriseV1ScoreMetrics(
 class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest(
     typing_extensions.TypedDict, total=False
 ):
+    accountId: str
     hashedAccountId: str
     pageSize: int
     pageToken: str

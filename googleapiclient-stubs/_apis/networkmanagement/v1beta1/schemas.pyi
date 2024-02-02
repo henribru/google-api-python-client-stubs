@@ -29,6 +29,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
         "SOURCE_FORWARDING_RULE_UNSUPPORTED",
+        "NON_ROUTABLE_IP_ADDRESS",
     ]
     projectsMissingPermission: _list[str]
     resourceUri: str
@@ -126,6 +127,11 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "PSC_GOOGLE_API",
         "PSC_VPC_SC",
         "SERVERLESS_NEG",
+        "STORAGE_BUCKET",
+        "PRIVATE_NETWORK",
+        "CLOUD_FUNCTION",
+        "APP_ENGINE_VERSION",
+        "CLOUD_RUN_REVISION",
     ]
 
 @typing.type_check_only
@@ -138,12 +144,22 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NO_ROUTE",
         "ROUTE_BLACKHOLE",
         "ROUTE_WRONG_NETWORK",
+        "ROUTE_NEXT_HOP_IP_ADDRESS_NOT_RESOLVED",
+        "ROUTE_NEXT_HOP_RESOURCE_NOT_FOUND",
+        "ROUTE_NEXT_HOP_INSTANCE_WRONG_NETWORK",
+        "ROUTE_NEXT_HOP_INSTANCE_NON_PRIMARY_IP",
+        "ROUTE_NEXT_HOP_FORWARDING_RULE_IP_MISMATCH",
+        "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
+        "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
+        "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+        "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
+        "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
         "PRIVATE_TRAFFIC_TO_INTERNET",
         "PRIVATE_GOOGLE_ACCESS_DISALLOWED",
+        "PRIVATE_GOOGLE_ACCESS_VIA_VPN_TUNNEL_UNSUPPORTED",
         "NO_EXTERNAL_ADDRESS",
         "UNKNOWN_INTERNAL_ADDRESS",
         "FORWARDING_RULE_MISMATCH",
-        "FORWARDING_RULE_REGION_MISMATCH",
         "FORWARDING_RULE_NO_INSTANCES",
         "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
         "INSTANCE_NOT_RUNNING",
@@ -167,12 +183,19 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_FUNCTION_NOT_ACTIVE",
         "VPC_CONNECTOR_NOT_SET",
         "VPC_CONNECTOR_NOT_RUNNING",
+        "FORWARDING_RULE_REGION_MISMATCH",
         "PSC_CONNECTION_NOT_ACCEPTED",
+        "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
+        "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
         "CLOUD_RUN_REVISION_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
+        "CLOUD_NAT_NO_ADDRESSES",
     ]
+    destinationIp: str
+    region: str
     resourceUri: str
+    sourceIp: str
 
 @typing.type_check_only
 class EdgeLocation(typing_extensions.TypedDict, total=False):
@@ -250,6 +273,8 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "SERVERLESS_VPC_ACCESS_MANAGED_FIREWALL_RULE",
         "NETWORK_FIREWALL_POLICY_RULE",
         "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
+        "UNSUPPORTED_FIREWALL_POLICY_RULE",
+        "TRACKING_STATE",
     ]
     networkUri: str
     policy: str
@@ -271,6 +296,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_INSTANCE",
         "ANOTHER_PROJECT",
         "NCC_HUB",
+        "ROUTER_APPLIANCE",
     ]
 
 @typing.type_check_only
@@ -297,6 +323,9 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
         "IAP",
         "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
         "CLOUD_DNS",
+        "GOOGLE_API",
+        "GOOGLE_API_PSC",
+        "GOOGLE_API_VPC_SC",
     ]
     sourceIp: str
 
@@ -347,6 +376,22 @@ class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class LoadBalancerBackendInfo(typing_extensions.TypedDict, total=False):
+    backendServiceUri: str
+    healthCheckFirewallsConfigState: typing_extensions.Literal[
+        "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
+        "FIREWALLS_CONFIGURED",
+        "FIREWALLS_PARTIALLY_CONFIGURED",
+        "FIREWALLS_NOT_CONFIGURED",
+        "FIREWALLS_UNSUPPORTED",
+    ]
+    healthCheckUri: str
+    instanceGroupUri: str
+    instanceUri: str
+    name: str
+    networkEndpointGroupUri: str
+
+@typing.type_check_only
 class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
         "BACKEND_TYPE_UNSPECIFIED", "BACKEND_SERVICE", "TARGET_POOL", "TARGET_INSTANCE"
@@ -370,6 +415,28 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class NatInfo(typing_extensions.TypedDict, total=False):
+    natGatewayName: str
+    networkUri: str
+    newDestinationIp: str
+    newDestinationPort: int
+    newSourceIp: str
+    newSourcePort: int
+    oldDestinationIp: str
+    oldDestinationPort: int
+    oldSourceIp: str
+    oldSourcePort: int
+    protocol: str
+    routerUri: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "INTERNAL_TO_EXTERNAL",
+        "EXTERNAL_TO_INTERNAL",
+        "CLOUD_NAT",
+        "PRIVATE_SERVICE_CONNECT",
+    ]
 
 @typing.type_check_only
 class NetworkInfo(typing_extensions.TypedDict, total=False):
@@ -421,6 +488,20 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     sentProbeCount: int
     successfulProbeCount: int
     verifyTime: str
+
+@typing.type_check_only
+class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
+    networkUri: str
+    newDestinationIp: str
+    newDestinationPort: int
+    newSourceIp: str
+    newSourcePort: int
+    oldDestinationIp: str
+    oldDestinationPort: int
+    oldSourceIp: str
+    oldSourcePort: int
+    protocol: str
+    subnetUri: str
 
 @typing.type_check_only
 class ReachabilityDetails(typing_extensions.TypedDict, total=False):
@@ -508,8 +589,11 @@ class Step(typing_extensions.TypedDict, total=False):
     googleService: GoogleServiceInfo
     instance: InstanceInfo
     loadBalancer: LoadBalancerInfo
+    loadBalancerBackendInfo: LoadBalancerBackendInfo
+    nat: NatInfo
     network: NetworkInfo
     projectId: str
+    proxyConnection: ProxyConnectionInfo
     route: RouteInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -522,10 +606,13 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_CLOUD_FUNCTION",
         "START_FROM_APP_ENGINE_VERSION",
         "START_FROM_CLOUD_RUN_REVISION",
+        "START_FROM_STORAGE_BUCKET",
+        "START_FROM_PSC_PUBLISHED_SERVICE",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",
         "APPLY_FORWARDING_RULE",
+        "ANALYZE_LOAD_BALANCER_BACKEND",
         "SPOOFING_APPROVED",
         "ARRIVE_AT_INSTANCE",
         "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
@@ -541,9 +628,14 @@ class Step(typing_extensions.TypedDict, total=False):
         "ABORT",
         "VIEWER_PERMISSION_MISSING",
     ]
+    storageBucket: StorageBucketInfo
     vpcConnector: VpcConnectorInfo
     vpnGateway: VpnGatewayInfo
     vpnTunnel: VpnTunnelInfo
+
+@typing.type_check_only
+class StorageBucketInfo(typing_extensions.TypedDict, total=False):
+    bucket: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

@@ -170,6 +170,11 @@ class GoogleCloudRunV2ExecutionTemplate(typing_extensions.TypedDict, total=False
     template: GoogleCloudRunV2TaskTemplate
 
 @typing.type_check_only
+class GoogleCloudRunV2GCSVolumeSource(typing_extensions.TypedDict, total=False):
+    bucket: str
+    readOnly: bool
+
+@typing.type_check_only
 class GoogleCloudRunV2GRPCAction(typing_extensions.TypedDict, total=False):
     port: int
     service: str
@@ -245,6 +250,12 @@ class GoogleCloudRunV2ListServicesResponse(typing_extensions.TypedDict, total=Fa
 class GoogleCloudRunV2ListTasksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tasks: _list[GoogleCloudRunV2Task]
+
+@typing.type_check_only
+class GoogleCloudRunV2NFSVolumeSource(typing_extensions.TypedDict, total=False):
+    path: str
+    readOnly: bool
+    server: str
 
 @typing.type_check_only
 class GoogleCloudRunV2NetworkInterface(typing_extensions.TypedDict, total=False):
@@ -515,7 +526,9 @@ class GoogleCloudRunV2VersionToPath(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2Volume(typing_extensions.TypedDict, total=False):
     cloudSqlInstance: GoogleCloudRunV2CloudSqlInstance
     emptyDir: GoogleCloudRunV2EmptyDirVolumeSource
+    gcs: GoogleCloudRunV2GCSVolumeSource
     name: str
+    nfs: GoogleCloudRunV2NFSVolumeSource
     secret: GoogleCloudRunV2SecretVolumeSource
 
 @typing.type_check_only

@@ -200,6 +200,7 @@ class RecognizeResponse(typing_extensions.TypedDict, total=False):
     results: _list[SpeechRecognitionResult]
     speechAdaptationInfo: SpeechAdaptationInfo
     totalBilledTime: str
+    usingLegacyModels: bool
 
 @typing.type_check_only
 class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):

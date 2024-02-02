@@ -168,6 +168,11 @@ class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
     storage: _list[ComputeStorageDescriptor]
 
 @typing.type_check_only
+class ComputeEngineSoleTenantMigrationTarget(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class ComputeStorageDescriptor(typing_extensions.TypedDict, total=False):
     sizeGb: int
     type: typing_extensions.Literal[
@@ -369,6 +374,7 @@ class GuestConfigDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GuestInstalledApplication(typing_extensions.TypedDict, total=False):
+    licenses: _list[str]
     name: str
     path: str
     time: str
@@ -569,6 +575,7 @@ class MemoryUsageSample(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigrationInsight(typing_extensions.TypedDict, total=False):
+    computeEngineSoleTenantTarget: ComputeEngineSoleTenantMigrationTarget
     computeEngineTarget: ComputeEngineMigrationTarget
     fit: FitDescriptor
     gkeTarget: GoogleKubernetesEngineMigrationTarget

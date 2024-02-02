@@ -81,6 +81,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
+            productLine: typing_extensions.Literal[
+                "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
+            ] = ...,
             **kwargs: typing.Any
         ) -> ListCasesResponseHttpRequest: ...
         def list_next(

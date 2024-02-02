@@ -14,6 +14,21 @@ class ActiveMetricRestriction(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AudienceExport(typing_extensions.TypedDict, total=False):
+    audience: str
+    audienceDisplayName: str
+    beginCreatingTime: str
+    creationQuotaTokensCharged: int
+    dimensions: _list[V1betaAudienceDimension]
+    errorMessage: str
+    name: str
+    percentageCompleted: float
+    rowCount: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "FAILED"
+    ]
+
+@typing.type_check_only
 class AudienceListMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -163,6 +178,11 @@ class InListFilter(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class ListAudienceExportsResponse(typing_extensions.TypedDict, total=False):
+    audienceExports: _list[AudienceExport]
+    nextPageToken: str
+
+@typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     dimensions: _list[DimensionMetadata]
     metrics: _list[MetricMetadata]
@@ -262,6 +282,14 @@ class NumericValue(typing_extensions.TypedDict, total=False):
     int64Value: str
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class OrderBy(typing_extensions.TypedDict, total=False):
     desc: bool
     dimension: DimensionOrderBy
@@ -307,6 +335,17 @@ class PropertyQuota(typing_extensions.TypedDict, total=False):
     tokensPerDay: QuotaStatus
     tokensPerHour: QuotaStatus
     tokensPerProjectPerHour: QuotaStatus
+
+@typing.type_check_only
+class QueryAudienceExportRequest(typing_extensions.TypedDict, total=False):
+    limit: str
+    offset: str
+
+@typing.type_check_only
+class QueryAudienceExportResponse(typing_extensions.TypedDict, total=False):
+    audienceExport: AudienceExport
+    audienceRows: _list[V1betaAudienceRow]
+    rowCount: int
 
 @typing.type_check_only
 class QuotaStatus(typing_extensions.TypedDict, total=False):
@@ -425,6 +464,12 @@ class SchemaRestrictionResponse(typing_extensions.TypedDict, total=False):
     activeMetricRestrictions: _list[ActiveMetricRestriction]
 
 @typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
+
+@typing.type_check_only
 class StringFilter(typing_extensions.TypedDict, total=False):
     caseSensitive: bool
     matchType: typing_extensions.Literal[
@@ -437,3 +482,15 @@ class StringFilter(typing_extensions.TypedDict, total=False):
         "PARTIAL_REGEXP",
     ]
     value: str
+
+@typing.type_check_only
+class V1betaAudienceDimension(typing_extensions.TypedDict, total=False):
+    dimensionName: str
+
+@typing.type_check_only
+class V1betaAudienceDimensionValue(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
+class V1betaAudienceRow(typing_extensions.TypedDict, total=False):
+    dimensionValues: _list[V1betaAudienceDimensionValue]

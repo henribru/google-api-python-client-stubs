@@ -15,6 +15,8 @@ class Channel(typing_extensions.TypedDict, total=False):
         "CANARY_ASAN",
         "ALL",
         "EXTENDED",
+        "LTS",
+        "LTC",
     ]
     name: str
 

@@ -27,6 +27,19 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
             def createOffline(
                 self, *, parent: str, body: Profile = ..., **kwargs: typing.Any
             ) -> ProfileHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> ListProfilesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListProfilesResponseHttpRequest,
+                previous_response: ListProfilesResponse,
+            ) -> ListProfilesResponseHttpRequest | None: ...
             def patch(
                 self,
                 *,
@@ -51,6 +64,14 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class ListProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListProfilesResponse: ...
 
 @typing.type_check_only
 class ProfileHttpRequest(googleapiclient.http.HttpRequest):

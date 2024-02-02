@@ -26,6 +26,9 @@ class GoogleChecksAccountV1alphaListAppsResponse(
 class GoogleChecksReportV1alphaAnalyzeUploadRequest(
     typing_extensions.TypedDict, total=False
 ):
+    appBinaryFileType: typing_extensions.Literal[
+        "APP_BINARY_FILE_TYPE_UNSPECIFIED", "ANDROID_APK", "ANDROID_AAB", "IOS_IPA"
+    ]
     codeReferenceId: str
 
 @typing.type_check_only

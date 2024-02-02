@@ -233,7 +233,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             alwaysIncludeEmail: bool = ...,
-            eventTypes: str | _list[str] = ...,
+            eventTypes: typing_extensions.Literal[
+                "default", "focusTime", "outOfOffice", "workingLocation"
+            ]
+            | _list[
+                typing_extensions.Literal[
+                    "default", "focusTime", "outOfOffice", "workingLocation"
+                ]
+            ] = ...,
             iCalUID: str = ...,
             maxAttendees: int = ...,
             maxResults: int = ...,
@@ -308,7 +315,14 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Channel = ...,
             alwaysIncludeEmail: bool = ...,
-            eventTypes: str | _list[str] = ...,
+            eventTypes: typing_extensions.Literal[
+                "default", "focusTime", "outOfOffice", "workingLocation"
+            ]
+            | _list[
+                typing_extensions.Literal[
+                    "default", "focusTime", "outOfOffice", "workingLocation"
+                ]
+            ] = ...,
             iCalUID: str = ...,
             maxAttendees: int = ...,
             maxResults: int = ...,

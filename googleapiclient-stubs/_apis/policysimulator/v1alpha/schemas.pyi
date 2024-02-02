@@ -30,6 +30,7 @@ class GoogleCloudOrgpolicyV2CustomConstraint(typing_extensions.TypedDict, total=
 class GoogleCloudOrgpolicyV2Policy(typing_extensions.TypedDict, total=False):
     alternate: GoogleCloudOrgpolicyV2AlternatePolicySpec
     dryRunSpec: GoogleCloudOrgpolicyV2PolicySpec
+    etag: str
     name: str
     spec: GoogleCloudOrgpolicyV2PolicySpec
 

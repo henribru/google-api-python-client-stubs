@@ -86,6 +86,7 @@ class Result(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Ruleset(typing_extensions.TypedDict, total=False):
+    attachmentPoint: str
     createTime: str
     metadata: Metadata
     name: str

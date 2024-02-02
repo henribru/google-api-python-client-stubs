@@ -96,6 +96,99 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
 
         @typing.type_check_only
+        class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListEventThreatDetectionCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEventThreatDetectionCustomModulesResponseHttpRequest | None
+                ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EffectiveEventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
+            def validateCustomModule(
+                self,
+                *,
+                parent: str,
+                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                **kwargs: typing.Any
+            ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
+            def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
+
+        @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
             def bulkMute(
                 self,
@@ -386,6 +479,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
 
         def assets(self) -> AssetsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
+        def eventThreatDetectionSettings(
+            self,
+        ) -> EventThreatDetectionSettingsResource: ...
         def findings(self) -> FindingsResource: ...
         def locations(self) -> LocationsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
@@ -516,6 +612,24 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 ) -> (
                     ListEventThreatDetectionCustomModulesResponseHttpRequest | None
                 ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
                 def patch(
                     self,
                     *,
@@ -525,6 +639,30 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> EventThreatDetectionCustomModuleHttpRequest: ...
 
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EffectiveEventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
             def validateCustomModule(
                 self,
                 *,
@@ -533,6 +671,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
             def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
 
         @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
@@ -825,6 +964,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         filter: str = ...,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -874,11 +1014,15 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                         previous_response: ListAttackPathsResponse,
                     ) -> ListAttackPathsResponseHttpRequest | None: ...
 
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ValuedResourceHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
                     filter: str = ...,
+                    orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any
@@ -1136,6 +1280,99 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudSecuritycenterV1BigQueryExportHttpRequest: ...
+
+        @typing.type_check_only
+        class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CustomModulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListEventThreatDetectionCustomModulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEventThreatDetectionCustomModulesResponseHttpRequest | None
+                ): ...
+                def listDescendant(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def listDescendant_next(
+                    self,
+                    previous_request: ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListDescendantEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: EventThreatDetectionCustomModule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> EventThreatDetectionCustomModuleHttpRequest: ...
+
+            @typing.type_check_only
+            class EffectiveCustomModulesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EffectiveEventThreatDetectionCustomModuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest,
+                    previous_response: ListEffectiveEventThreatDetectionCustomModulesResponse,
+                ) -> (
+                    ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest
+                    | None
+                ): ...
+
+            def validateCustomModule(
+                self,
+                *,
+                parent: str,
+                body: ValidateEventThreatDetectionCustomModuleRequest = ...,
+                **kwargs: typing.Any
+            ) -> ValidateEventThreatDetectionCustomModuleResponseHttpRequest: ...
+            def customModules(self) -> CustomModulesResource: ...
+            def effectiveCustomModules(self) -> EffectiveCustomModulesResource: ...
 
         @typing.type_check_only
         class FindingsResource(googleapiclient.discovery.Resource):
@@ -1428,6 +1665,9 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
 
         def assets(self) -> AssetsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
+        def eventThreatDetectionSettings(
+            self,
+        ) -> EventThreatDetectionSettingsResource: ...
         def findings(self) -> FindingsResource: ...
         def locations(self) -> LocationsResource: ...
         def muteConfigs(self) -> MuteConfigsResource: ...
@@ -1462,6 +1702,16 @@ class BatchCreateResourceValueConfigsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BatchCreateResourceValueConfigsResponse: ...
+
+@typing.type_check_only
+class EffectiveEventThreatDetectionCustomModuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EffectiveEventThreatDetectionCustomModule: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1588,6 +1838,16 @@ class ListBigQueryExportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListBigQueryExportsResponse: ...
 
 @typing.type_check_only
+class ListDescendantEventThreatDetectionCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDescendantEventThreatDetectionCustomModulesResponse: ...
+
+@typing.type_check_only
 class ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1596,6 +1856,16 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDescendantSecurityHealthAnalyticsCustomModulesResponse: ...
+
+@typing.type_check_only
+class ListEffectiveEventThreatDetectionCustomModulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListEffectiveEventThreatDetectionCustomModulesResponse: ...
 
 @typing.type_check_only
 class ListEffectiveSecurityHealthAnalyticsCustomModulesResponseHttpRequest(
@@ -1766,3 +2036,11 @@ class ValidateEventThreatDetectionCustomModuleResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ValidateEventThreatDetectionCustomModuleResponse: ...
+
+@typing.type_check_only
+class ValuedResourceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ValuedResource: ...

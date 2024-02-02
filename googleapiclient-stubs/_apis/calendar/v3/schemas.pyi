@@ -167,6 +167,7 @@ class Event(typing_extensions.TypedDict, total=False):
     etag: str
     eventType: str
     extendedProperties: dict[str, typing.Any]
+    focusTimeProperties: EventFocusTimeProperties
     gadget: dict[str, typing.Any]
     guestsCanInviteOthers: bool
     guestsCanModify: bool
@@ -180,6 +181,7 @@ class Event(typing_extensions.TypedDict, total=False):
     locked: bool
     organizer: dict[str, typing.Any]
     originalStartTime: EventDateTime
+    outOfOfficeProperties: EventOutOfOfficeProperties
     privateCopy: bool
     recurrence: _list[str]
     recurringEventId: str
@@ -220,6 +222,17 @@ class EventDateTime(typing_extensions.TypedDict, total=False):
     date: str
     dateTime: str
     timeZone: str
+
+@typing.type_check_only
+class EventFocusTimeProperties(typing_extensions.TypedDict, total=False):
+    autoDeclineMode: str
+    chatStatus: str
+    declineMessage: str
+
+@typing.type_check_only
+class EventOutOfOfficeProperties(typing_extensions.TypedDict, total=False):
+    autoDeclineMode: str
+    declineMessage: str
 
 @typing.type_check_only
 class EventReminder(typing_extensions.TypedDict, total=False):

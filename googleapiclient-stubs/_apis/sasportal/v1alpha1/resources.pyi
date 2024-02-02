@@ -291,6 +291,9 @@ class SasportalResource(googleapiclient.discovery.Resource):
             previous_request: SasPortalListCustomersResponseHttpRequest,
             previous_response: SasPortalListCustomersResponse,
         ) -> SasPortalListCustomersResponseHttpRequest | None: ...
+        def listLegacyOrganizations(
+            self, **kwargs: typing.Any
+        ) -> SasPortalListLegacyOrganizationsResponseHttpRequest: ...
         def migrateOrganization(
             self,
             *,
@@ -739,6 +742,16 @@ class SasPortalListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SasPortalListDevicesResponse: ...
+
+@typing.type_check_only
+class SasPortalListLegacyOrganizationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SasPortalListLegacyOrganizationsResponse: ...
 
 @typing.type_check_only
 class SasPortalListNodesResponseHttpRequest(googleapiclient.http.HttpRequest):

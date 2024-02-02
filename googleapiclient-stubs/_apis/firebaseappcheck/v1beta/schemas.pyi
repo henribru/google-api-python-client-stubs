@@ -69,6 +69,19 @@ class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse(
     configs: _list[GoogleFirebaseAppcheckV1betaSafetyNetConfig]
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest]
+    updateMask: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    resourcePolicies: _list[GoogleFirebaseAppcheckV1betaResourcePolicy]
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchUpdateServicesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -209,6 +222,13 @@ class GoogleFirebaseAppcheckV1betaListDebugTokensResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    resourcePolicies: _list[GoogleFirebaseAppcheckV1betaResourcePolicy]
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListServicesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -264,6 +284,16 @@ class GoogleFirebaseAppcheckV1betaRecaptchaV3Config(
     tokenTtl: str
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaResourcePolicy(
+    typing_extensions.TypedDict, total=False
+):
+    enforcementMode: typing_extensions.Literal["OFF", "UNENFORCED", "ENFORCED"]
+    etag: str
+    name: str
+    targetResource: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaSafetyNetConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -276,6 +306,13 @@ class GoogleFirebaseAppcheckV1betaService(typing_extensions.TypedDict, total=Fal
     etag: str
     name: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaUpdateResourcePolicyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    resourcePolicy: GoogleFirebaseAppcheckV1betaResourcePolicy
+    updateMask: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaUpdateServiceRequest(

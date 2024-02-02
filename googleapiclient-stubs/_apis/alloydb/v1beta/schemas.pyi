@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AuthorizedNetwork(typing_extensions.TypedDict, total=False):
+    cidrRange: str
+
+@typing.type_check_only
 class AutomatedBackupPolicy(typing_extensions.TypedDict, total=False):
     backupWindow: str
     enabled: bool
@@ -35,6 +39,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    satisfiesPzs: bool
     sizeBytes: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "READY", "CREATING", "FAILED", "DELETING"
@@ -91,6 +96,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     networkConfig: NetworkConfig
     primaryConfig: PrimaryConfig
     reconciling: bool
+    satisfiesPzs: bool
     secondaryConfig: SecondaryConfig
     sslConfig: SslConfig
     state: typing_extensions.Literal[
@@ -114,6 +120,7 @@ class ConnectionInfo(typing_extensions.TypedDict, total=False):
     ipAddress: str
     name: str
     pemCertificateChain: _list[str]
+    publicIpAddress: str
 
 @typing.type_check_only
 class ContinuousBackupConfig(typing_extensions.TypedDict, total=False):
@@ -225,10 +232,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     machineConfig: MachineConfig
     name: str
+    networkConfig: InstanceNetworkConfig
     nodes: _list[Node]
+    publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
     readPoolConfig: ReadPoolConfig
     reconciling: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "READY",
@@ -244,6 +254,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     updatePolicy: UpdatePolicy
     updateTime: str
     writableNode: Node
+
+@typing.type_check_only
+class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
+    authorizedExternalNetworks: _list[AuthorizedNetwork]
+    enablePublicIp: bool
 
 @typing.type_check_only
 class IntegerRestrictions(typing_extensions.TypedDict, total=False):
@@ -429,6 +444,22 @@ class StorageDatabasecenterPartnerapiV1mainCompliance(
     version: str
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainCustomMetadataData(
+    typing_extensions.TypedDict, total=False
+):
+    databaseMetadata: _list[StorageDatabasecenterPartnerapiV1mainDatabaseMetadata]
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
+    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    product: StorageDatabasecenterProtoCommonProduct
+    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+    resourceName: str
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
     typing_extensions.TypedDict, total=False
 ):
@@ -560,7 +591,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "DELETED",
         "STATE_OTHER",
     ]
-    customMetadata: dict[str, typing.Any]
+    customMetadata: StorageDatabasecenterPartnerapiV1mainCustomMetadataData
     expectedState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "HEALTHY",
@@ -571,7 +602,16 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     ]
     id: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     instanceType: typing_extensions.Literal[
-        "INSTANCE_TYPE_UNSPECIFIED", "PRIMARY", "SECONDARY", "READ_REPLICA", "OTHER"
+        "INSTANCE_TYPE_UNSPECIFIED",
+        "SUB_RESOURCE_TYPE_UNSPECIFIED",
+        "PRIMARY",
+        "SECONDARY",
+        "READ_REPLICA",
+        "OTHER",
+        "SUB_RESOURCE_TYPE_PRIMARY",
+        "SUB_RESOURCE_TYPE_SECONDARY",
+        "SUB_RESOURCE_TYPE_READ_REPLICA",
+        "SUB_RESOURCE_TYPE_OTHER",
     ]
     location: str
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
@@ -602,18 +642,26 @@ class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
 class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
         "ENGINE_UNSPECIFIED",
+        "ENGINE_MYSQL",
         "MYSQL",
+        "ENGINE_POSTGRES",
         "POSTGRES",
+        "ENGINE_SQL_SERVER",
         "SQL_SERVER",
+        "ENGINE_NATIVE",
         "NATIVE",
-        "SPANGRES",
+        "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
+        "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
         "ENGINE_OTHER",
     ]
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
+        "PRODUCT_TYPE_CLOUD_SQL",
         "CLOUD_SQL",
+        "PRODUCT_TYPE_ALLOYDB",
         "ALLOYDB",
-        "SPANNER",
+        "PRODUCT_TYPE_SPANNER",
+        "PRODUCT_TYPE_ON_PREM",
         "ON_PREM",
         "PRODUCT_TYPE_OTHER",
     ]

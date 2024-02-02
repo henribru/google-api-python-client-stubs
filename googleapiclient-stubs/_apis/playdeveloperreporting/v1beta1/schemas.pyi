@@ -102,6 +102,7 @@ class GooglePlayDeveloperReportingV1beta1ErrorIssue(
 class GooglePlayDeveloperReportingV1beta1ErrorReport(
     typing_extensions.TypedDict, total=False
 ):
+    appVersion: GooglePlayDeveloperReportingV1beta1AppVersion
     deviceModel: GooglePlayDeveloperReportingV1beta1DeviceModelSummary
     eventTime: str
     issue: str
@@ -111,6 +112,7 @@ class GooglePlayDeveloperReportingV1beta1ErrorReport(
     type: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH"
     ]
+    vcsInformation: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1ExcessiveWakeupRateMetricSet(

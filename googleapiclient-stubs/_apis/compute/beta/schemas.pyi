@@ -844,6 +844,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
     endTimestamp: str
+    existingReservations: _list[str]
     id: str
     kind: str
     licenseResource: LicenseResourceCommitment
@@ -925,7 +926,7 @@ class Condition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     confidentialInstanceType: typing_extensions.Literal[
-        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP"
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
     ]
     enableConfidentialCompute: bool
 
@@ -1028,6 +1029,7 @@ class Disk(typing_extensions.TypedDict, total=False):
     replicaZones: _list[str]
     resourcePolicies: _list[str]
     resourceStatus: DiskResourceStatus
+    satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
     sizeGb: str
@@ -1685,12 +1687,14 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "FEATURE_TYPE_UNSPECIFIED",
         "GVNIC",
+        "IDPF",
         "MULTI_IP_SUBNET",
         "SECURE_BOOT",
         "SEV_CAPABLE",
         "SEV_LIVE_MIGRATABLE",
         "SEV_LIVE_MIGRATABLE_V2",
         "SEV_SNP_CAPABLE",
+        "TDX_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
         "WINDOWS",
@@ -1825,6 +1829,8 @@ class HealthStatus(typing_extensions.TypedDict, total=False):
     healthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     instance: str
     ipAddress: str
+    ipv6Address: str
+    ipv6HealthState: typing_extensions.Literal["HEALTHY", "UNHEALTHY"]
     port: int
     weight: str
     weightError: typing_extensions.Literal[
@@ -2041,6 +2047,7 @@ class Image(typing_extensions.TypedDict, total=False):
     name: str
     rawDisk: dict[str, typing.Any]
     rolloutOverride: RolloutPolicy
+    satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
     shieldedInstanceInitialState: InitialStateConfig
@@ -2122,6 +2129,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     reservationAffinity: ReservationAffinity
     resourcePolicies: _list[str]
     resourceStatus: ResourceStatus
+    satisfiesPzi: bool
     satisfiesPzs: bool
     scheduling: Scheduling
     selfLink: str
@@ -2280,6 +2288,7 @@ class InstanceGroupManagerInstanceFlexibilityPolicy(
     typing_extensions.TypedDict, total=False
 ):
     instanceSelectionLists: dict[str, typing.Any]
+    instanceSelections: dict[str, typing.Any]
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
@@ -2312,6 +2321,7 @@ class InstanceGroupManagerResizeRequest(typing_extensions.TypedDict, total=False
     id: str
     kind: str
     name: str
+    requestedRunDuration: Duration
     resizeBy: int
     selfLink: str
     selfLinkWithId: str
@@ -2826,6 +2836,7 @@ class InstantSnapshot(typing_extensions.TypedDict, total=False):
     name: str
     region: str
     resourceStatus: InstantSnapshotResourceStatus
+    satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
     selfLinkWithId: str
@@ -3350,6 +3361,7 @@ class MachineImage(typing_extensions.TypedDict, total=False):
     kind: str
     machineImageEncryptionKey: CustomerEncryptionKey
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     savedDisks: _list[SavedDisk]
     selfLink: str
@@ -3451,6 +3463,10 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     name: str
     preservedStateFromConfig: PreservedState
     preservedStateFromPolicy: PreservedState
+    propertiesFromFlexibilityPolicy: ManagedInstancePropertiesFromFlexibilityPolicy
+    targetStatus: typing_extensions.Literal[
+        "ABANDONED", "DELETED", "RUNNING", "STOPPED", "SUSPENDED"
+    ]
     version: ManagedInstanceVersion
 
 @typing.type_check_only
@@ -3473,6 +3489,12 @@ class ManagedInstanceInstanceHealth(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedInstanceLastAttempt(typing_extensions.TypedDict, total=False):
     errors: dict[str, typing.Any]
+
+@typing.type_check_only
+class ManagedInstancePropertiesFromFlexibilityPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    machineType: str
 
 @typing.type_check_only
 class ManagedInstanceVersion(typing_extensions.TypedDict, total=False):
@@ -4523,6 +4545,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_N2_CPUS",
         "COMMITTED_NVIDIA_A100_80GB_GPUS",
         "COMMITTED_NVIDIA_A100_GPUS",
+        "COMMITTED_NVIDIA_H100_GPUS",
         "COMMITTED_NVIDIA_K80_GPUS",
         "COMMITTED_NVIDIA_L4_GPUS",
         "COMMITTED_NVIDIA_P100_GPUS",
@@ -4598,6 +4621,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_LOCAL_SSD_GB",
         "PREEMPTIBLE_NVIDIA_A100_80GB_GPUS",
         "PREEMPTIBLE_NVIDIA_A100_GPUS",
+        "PREEMPTIBLE_NVIDIA_H100_GPUS",
         "PREEMPTIBLE_NVIDIA_K80_GPUS",
         "PREEMPTIBLE_NVIDIA_L4_GPUS",
         "PREEMPTIBLE_NVIDIA_P100_GPUS",
@@ -4607,6 +4631,9 @@ class Quota(typing_extensions.TypedDict, total=False):
         "PREEMPTIBLE_NVIDIA_T4_GPUS",
         "PREEMPTIBLE_NVIDIA_T4_VWS_GPUS",
         "PREEMPTIBLE_NVIDIA_V100_GPUS",
+        "PREEMPTIBLE_TPU_LITE_DEVICE_V5",
+        "PREEMPTIBLE_TPU_LITE_PODSLICE_V5",
+        "PREEMPTIBLE_TPU_PODSLICE_V4",
         "PRIVATE_V6_ACCESS_SUBNETWORKS",
         "PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK",
         "PSC_INTERNAL_LB_FORWARDING_RULES",
@@ -4645,6 +4672,9 @@ class Quota(typing_extensions.TypedDict, total=False):
         "TARGET_SSL_PROXIES",
         "TARGET_TCP_PROXIES",
         "TARGET_VPN_GATEWAYS",
+        "TPU_LITE_DEVICE_V5",
+        "TPU_LITE_PODSLICE_V5",
+        "TPU_PODSLICE_V4",
         "URL_MAPS",
         "VPN_GATEWAYS",
         "VPN_TUNNELS",
@@ -5195,6 +5225,7 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
 class ResourceStatus(typing_extensions.TypedDict, total=False):
     physicalHost: str
     scheduling: ResourceStatusScheduling
+    upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
 class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
@@ -5285,6 +5316,7 @@ class RouterBgp(typing_extensions.TypedDict, total=False):
     advertisedGroups: _list[typing_extensions.Literal["ALL_SUBNETS"]]
     advertisedIpRanges: _list[RouterAdvertisedIpRange]
     asn: int
+    identifierRange: str
     keepaliveInterval: int
 
 @typing.type_check_only
@@ -5297,9 +5329,11 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     customLearnedIpRanges: _list[RouterBgpPeerCustomLearnedIpRange]
     customLearnedRoutePriority: int
     enable: typing_extensions.Literal["FALSE", "TRUE"]
+    enableIpv4: bool
     enableIpv6: bool
     interfaceName: str
     ipAddress: str
+    ipv4NexthopAddress: str
     ipv6NexthopAddress: str
     managementType: typing_extensions.Literal[
         "MANAGED_BY_ATTACHMENT", "MANAGED_BY_USER"
@@ -5308,6 +5342,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     name: str
     peerAsn: int
     peerIpAddress: str
+    peerIpv4NexthopAddress: str
     peerIpv6NexthopAddress: str
     routerApplianceInstance: str
 
@@ -5327,6 +5362,7 @@ class RouterBgpPeerCustomLearnedIpRange(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class RouterInterface(typing_extensions.TypedDict, total=False):
     ipRange: str
+    ipVersion: typing_extensions.Literal["IPV4", "IPV6"]
     linkedInterconnectAttachment: str
     linkedVpnTunnel: str
     managementType: typing_extensions.Literal[
@@ -5425,20 +5461,26 @@ class RouterStatus(typing_extensions.TypedDict, total=False):
 class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     advertisedRoutes: _list[Route]
     bfdStatus: BfdStatus
+    enableIpv4: bool
     enableIpv6: bool
     ipAddress: str
+    ipv4NexthopAddress: str
     ipv6NexthopAddress: str
     linkedVpnTunnel: str
     md5AuthEnabled: bool
     name: str
     numLearnedRoutes: int
     peerIpAddress: str
+    peerIpv4NexthopAddress: str
     peerIpv6NexthopAddress: str
     routerApplianceInstance: str
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     statusReason: typing_extensions.Literal[
-        "MD5_AUTH_INTERNAL_PROBLEM", "STATUS_REASON_UNSPECIFIED"
+        "IPV4_PEER_ON_IPV6_ONLY_CONNECTION",
+        "IPV6_PEER_ON_IPV4_ONLY_CONNECTION",
+        "MD5_AUTH_INTERNAL_PROBLEM",
+        "STATUS_REASON_UNSPECIFIED",
     ]
     uptime: str
     uptimeSeconds: str
@@ -5650,7 +5692,21 @@ class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConf
     autoDeployExpirationSec: int
     autoDeployImpactedBaselineThreshold: float
     autoDeployLoadThreshold: float
+    detectionAbsoluteQps: float
+    detectionLoadThreshold: float
+    detectionRelativeToBaselineQps: float
     name: str
+    trafficGranularityConfigs: _list[
+        SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig
+    ]
+
+@typing.type_check_only
+class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfigThresholdConfigTrafficGranularityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enableEachUniqueValue: bool
+    type: typing_extensions.Literal["HTTP_HEADER_HOST", "HTTP_PATH", "UNSPECIFIED_TYPE"]
+    value: str
 
 @typing.type_check_only
 class SecurityPolicyAdvancedOptionsConfig(typing_extensions.TypedDict, total=False):
@@ -5824,6 +5880,8 @@ class SecurityPolicyRuleRateLimitOptions(typing_extensions.TypedDict, total=Fals
         "IP",
         "REGION_CODE",
         "SNI",
+        "TLS_JA3_FINGERPRINT",
+        "USER_IP",
         "XFF_IP",
     ]
     enforceOnKeyConfigs: _list[SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig]
@@ -5846,6 +5904,8 @@ class SecurityPolicyRuleRateLimitOptionsEnforceOnKeyConfig(
         "IP",
         "REGION_CODE",
         "SNI",
+        "TLS_JA3_FINGERPRINT",
+        "USER_IP",
         "XFF_IP",
     ]
 
@@ -6073,6 +6133,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     licenses: _list[str]
     locationHint: str
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
     snapshotEncryptionKey: CustomerEncryptionKey
@@ -6989,7 +7050,7 @@ class VpnGateway(typing_extensions.TypedDict, total=False):
     network: str
     region: str
     selfLink: str
-    stackType: typing_extensions.Literal["IPV4_IPV6", "IPV4_ONLY"]
+    stackType: typing_extensions.Literal["IPV4_IPV6", "IPV4_ONLY", "IPV6_ONLY"]
     vpnInterfaces: _list[VpnGatewayVpnGatewayInterface]
 
 @typing.type_check_only

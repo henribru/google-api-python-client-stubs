@@ -882,6 +882,7 @@ class ExternalAction(typing_extensions.TypedDict, total=False):
         "REVIEW_PRODUCT_ISSUE_IN_MERCHANT_CENTER",
         "REVIEW_ACCOUNT_ISSUE_IN_MERCHANT_CENTER",
         "LEGAL_APPEAL_IN_HELP_CENTER",
+        "VERIFY_IDENTITY_IN_MERCHANT_CENTER",
     ]
     uri: str
 
@@ -977,21 +978,6 @@ class HolidaysHoliday(typing_extensions.TypedDict, total=False):
     deliveryGuaranteeHour: str
     id: str
     type: str
-
-@typing.type_check_only
-class InapplicabilityDetails(typing_extensions.TypedDict, total=False):
-    inapplicableCount: str
-    inapplicableReason: typing_extensions.Literal[
-        "INAPPLICABLE_REASON_UNSPECIFIED",
-        "CANNOT_BEAT_BUYBOX_WINNER",
-        "ALREADY_WINNING_BUYBOX",
-        "TRIUMPHED_OVER_BY_SAME_TYPE_RULE",
-        "TRIUMPHED_OVER_BY_OTHER_RULE_ON_OFFER",
-        "RESTRICTIONS_NOT_MET",
-        "UNCATEGORIZED",
-        "INVALID_AUTO_PRICE_MIN",
-        "INVALID_FLOOR_CONFIG",
-    ]
 
 @typing.type_check_only
 class InsertCheckoutSettingsRequest(typing_extensions.TypedDict, total=False):
@@ -1187,21 +1173,6 @@ class ListPromotionResponse(typing_extensions.TypedDict, total=False):
 class ListRegionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     regions: _list[Region]
-
-@typing.type_check_only
-class ListRepricingProductReportsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    repricingProductReports: _list[RepricingProductReport]
-
-@typing.type_check_only
-class ListRepricingRuleReportsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    repricingRuleReports: _list[RepricingRuleReport]
-
-@typing.type_check_only
-class ListRepricingRulesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    repricingRules: _list[RepricingRule]
 
 @typing.type_check_only
 class ListReturnPolicyOnlineResponse(typing_extensions.TypedDict, total=False):
@@ -2173,6 +2144,8 @@ class PosSaleResponse(typing_extensions.TypedDict, total=False):
 class PosStore(typing_extensions.TypedDict, total=False):
     gcidCategory: _list[str]
     kind: str
+    matchingStatus: str
+    matchingStatusHint: str
     phoneNumber: str
     placeId: str
     storeAddress: str
@@ -2858,126 +2831,6 @@ class ReportRow(typing_extensions.TypedDict, total=False):
     productCluster: ProductCluster
     productView: ProductView
     segments: Segments
-
-@typing.type_check_only
-class RepricingProductReport(typing_extensions.TypedDict, total=False):
-    applicationCount: str
-    buyboxWinningProductStats: RepricingProductReportBuyboxWinningProductStats
-    date: Date
-    highWatermark: PriceAmount
-    inapplicabilityDetails: _list[InapplicabilityDetails]
-    lowWatermark: PriceAmount
-    orderItemCount: int
-    ruleIds: _list[str]
-    totalGmv: PriceAmount
-    type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED",
-        "TYPE_STATS_BASED",
-        "TYPE_COGS_BASED",
-        "TYPE_SALES_VOLUME_BASED",
-        "TYPE_COMPETITIVE_PRICE",
-    ]
-
-@typing.type_check_only
-class RepricingProductReportBuyboxWinningProductStats(
-    typing_extensions.TypedDict, total=False
-):
-    buyboxWinsCount: int
-
-@typing.type_check_only
-class RepricingRule(typing_extensions.TypedDict, total=False):
-    cogsBasedRule: RepricingRuleCostOfGoodsSaleRule
-    countryCode: str
-    effectiveTimePeriod: RepricingRuleEffectiveTime
-    eligibleOfferMatcher: RepricingRuleEligibleOfferMatcher
-    languageCode: str
-    merchantId: str
-    paused: bool
-    restriction: RepricingRuleRestriction
-    ruleId: str
-    statsBasedRule: RepricingRuleStatsBasedRule
-    title: str
-    type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED",
-        "TYPE_STATS_BASED",
-        "TYPE_COGS_BASED",
-        "TYPE_SALES_VOLUME_BASED",
-        "TYPE_COMPETITIVE_PRICE",
-    ]
-
-@typing.type_check_only
-class RepricingRuleCostOfGoodsSaleRule(typing_extensions.TypedDict, total=False):
-    percentageDelta: int
-    priceDelta: str
-
-@typing.type_check_only
-class RepricingRuleEffectiveTime(typing_extensions.TypedDict, total=False):
-    fixedTimePeriods: _list[RepricingRuleEffectiveTimeFixedTimePeriod]
-
-@typing.type_check_only
-class RepricingRuleEffectiveTimeFixedTimePeriod(
-    typing_extensions.TypedDict, total=False
-):
-    endTime: str
-    startTime: str
-
-@typing.type_check_only
-class RepricingRuleEligibleOfferMatcher(typing_extensions.TypedDict, total=False):
-    brandMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
-    itemGroupIdMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
-    matcherOption: typing_extensions.Literal[
-        "MATCHER_OPTION_UNSPECIFIED",
-        "MATCHER_OPTION_CUSTOM_FILTER",
-        "MATCHER_OPTION_USE_FEED_ATTRIBUTE",
-        "MATCHER_OPTION_ALL_PRODUCTS",
-    ]
-    offerIdMatcher: RepricingRuleEligibleOfferMatcherStringMatcher
-    skipWhenOnPromotion: bool
-
-@typing.type_check_only
-class RepricingRuleEligibleOfferMatcherStringMatcher(
-    typing_extensions.TypedDict, total=False
-):
-    strAttributes: _list[str]
-
-@typing.type_check_only
-class RepricingRuleReport(typing_extensions.TypedDict, total=False):
-    buyboxWinningRuleStats: RepricingRuleReportBuyboxWinningRuleStats
-    date: Date
-    impactedProducts: _list[str]
-    inapplicabilityDetails: _list[InapplicabilityDetails]
-    inapplicableProducts: _list[str]
-    orderItemCount: int
-    ruleId: str
-    totalGmv: PriceAmount
-    type: typing_extensions.Literal[
-        "REPRICING_RULE_TYPE_UNSPECIFIED",
-        "TYPE_STATS_BASED",
-        "TYPE_COGS_BASED",
-        "TYPE_SALES_VOLUME_BASED",
-        "TYPE_COMPETITIVE_PRICE",
-    ]
-
-@typing.type_check_only
-class RepricingRuleReportBuyboxWinningRuleStats(
-    typing_extensions.TypedDict, total=False
-):
-    buyboxWonProductCount: int
-
-@typing.type_check_only
-class RepricingRuleRestriction(typing_extensions.TypedDict, total=False):
-    floor: RepricingRuleRestrictionBoundary
-    useAutoPricingMinPrice: bool
-
-@typing.type_check_only
-class RepricingRuleRestrictionBoundary(typing_extensions.TypedDict, total=False):
-    percentageDelta: int
-    priceDelta: str
-
-@typing.type_check_only
-class RepricingRuleStatsBasedRule(typing_extensions.TypedDict, total=False):
-    percentageDelta: int
-    priceDelta: str
 
 @typing.type_check_only
 class RequestPhoneVerificationRequest(typing_extensions.TypedDict, total=False):

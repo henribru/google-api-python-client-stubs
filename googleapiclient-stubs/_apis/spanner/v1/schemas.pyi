@@ -231,6 +231,11 @@ class DiagnosticMessage(typing_extensions.TypedDict, total=False):
     shortMessage: LocalizedString
 
 @typing.type_check_only
+class DirectedReadOptions(typing_extensions.TypedDict, total=False):
+    excludeReplicas: ExcludeReplicas
+    includeReplicas: IncludeReplicas
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -244,6 +249,10 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "GOOGLE_DEFAULT_ENCRYPTION", "CUSTOMER_MANAGED_ENCRYPTION"
     ]
     kmsKeyVersion: str
+
+@typing.type_check_only
+class ExcludeReplicas(typing_extensions.TypedDict, total=False):
+    replicaSelections: _list[ReplicaSelection]
 
 @typing.type_check_only
 class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
@@ -260,6 +269,7 @@ class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
     dataBoostEnabled: bool
+    directedReadOptions: DirectedReadOptions
     paramTypes: dict[str, typing.Any]
     params: dict[str, typing.Any]
     partitionToken: str
@@ -305,6 +315,11 @@ class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class IncludeReplicas(typing_extensions.TypedDict, total=False):
+    autoFailoverDisabled: bool
+    replicaSelections: _list[ReplicaSelection]
 
 @typing.type_check_only
 class IndexAdvice(typing_extensions.TypedDict, total=False):
@@ -359,6 +374,7 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     reconciling: bool
     replicas: _list[ReplicaInfo]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+    storageLimitPerProcessingUnit: str
 
 @typing.type_check_only
 class InstanceOperationProgress(typing_extensions.TypedDict, total=False):
@@ -605,6 +621,7 @@ class ReadOnly(typing_extensions.TypedDict, total=False):
 class ReadRequest(typing_extensions.TypedDict, total=False):
     columns: _list[str]
     dataBoostEnabled: bool
+    directedReadOptions: DirectedReadOptions
     index: str
     keySet: KeySet
     limit: str
@@ -627,6 +644,11 @@ class ReplicaInfo(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "READ_WRITE", "READ_ONLY", "WITNESS"
     ]
+
+@typing.type_check_only
+class ReplicaSelection(typing_extensions.TypedDict, total=False):
+    location: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "READ_WRITE", "READ_ONLY"]
 
 @typing.type_check_only
 class RequestOptions(typing_extensions.TypedDict, total=False):

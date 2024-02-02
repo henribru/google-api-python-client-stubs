@@ -18,6 +18,16 @@ class BackupdrResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class BackupVaultsResource(googleapiclient.discovery.Resource):
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class ManagementServersResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -118,6 +128,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def backupVaults(self) -> BackupVaultsResource: ...
             def managementServers(self) -> ManagementServersResource: ...
             def operations(self) -> OperationsResource: ...
 

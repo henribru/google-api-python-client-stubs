@@ -245,6 +245,15 @@ class GoogleCloudBillingBillingaccountpricesV1betaFloatingDiscount(
     skuGroup: str
 
 @typing.type_check_only
+class GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    billingAccountPrices: _list[
+        GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaListPriceAsCeiling(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -477,6 +486,13 @@ class GoogleCloudBillingPricesV1betaAggregationInfo(
     level: typing_extensions.Literal[
         "LEVEL_UNSPECIFIED", "LEVEL_ACCOUNT", "LEVEL_PROJECT"
     ]
+
+@typing.type_check_only
+class GoogleCloudBillingPricesV1betaListPricesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    prices: _list[GoogleCloudBillingPricesV1betaPrice]
 
 @typing.type_check_only
 class GoogleCloudBillingPricesV1betaPrice(typing_extensions.TypedDict, total=False):

@@ -48,6 +48,11 @@ class AutoscalingSettings(typing_extensions.TypedDict, total=False):
     maxNumWorkers: int
 
 @typing.type_check_only
+class Base2Exponent(typing_extensions.TypedDict, total=False):
+    numberOfBuckets: int
+    scale: int
+
+@typing.type_check_only
 class BigQueryIODetails(typing_extensions.TypedDict, total=False):
     dataset: str
     projectId: str
@@ -59,6 +64,11 @@ class BigTableIODetails(typing_extensions.TypedDict, total=False):
     instanceId: str
     projectId: str
     tableId: str
+
+@typing.type_check_only
+class BucketOptions(typing_extensions.TypedDict, total=False):
+    exponential: Base2Exponent
+    linear: Linear
 
 @typing.type_check_only
 class CPUTime(typing_extensions.TypedDict, total=False):
@@ -201,6 +211,13 @@ class DataSamplingReport(typing_extensions.TypedDict, total=False):
     translationErrorsCount: str
 
 @typing.type_check_only
+class DataflowHistogramValue(typing_extensions.TypedDict, total=False):
+    bucketCounts: _list[str]
+    bucketOptions: BucketOptions
+    count: str
+    outlierStats: OutlierStats
+
+@typing.type_check_only
 class DatastoreIODetails(typing_extensions.TypedDict, total=False):
     namespace: str
     projectId: str
@@ -274,6 +291,11 @@ class Environment(typing_extensions.TypedDict, total=False):
     serviceOptions: _list[str]
     shuffleMode: typing_extensions.Literal[
         "SHUFFLE_MODE_UNSPECIFIED", "VM_BASED", "SERVICE_BASED"
+    ]
+    streamingMode: typing_extensions.Literal[
+        "STREAMING_MODE_UNSPECIFIED",
+        "STREAMING_MODE_EXACTLY_ONCE",
+        "STREAMING_MODE_AT_LEAST_ONCE",
     ]
     tempStoragePrefix: str
     useStreamingEngineResourceBasedBilling: bool
@@ -365,6 +387,11 @@ class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     sdkContainerImage: str
     serviceAccountEmail: str
     stagingLocation: str
+    streamingMode: typing_extensions.Literal[
+        "STREAMING_MODE_UNSPECIFIED",
+        "STREAMING_MODE_EXACTLY_ONCE",
+        "STREAMING_MODE_AT_LEAST_ONCE",
+    ]
     subnetwork: str
     tempLocation: str
     workerRegion: str
@@ -611,6 +638,12 @@ class LeaseWorkItemResponse(typing_extensions.TypedDict, total=False):
     workItems: _list[WorkItem]
 
 @typing.type_check_only
+class Linear(typing_extensions.TypedDict, total=False):
+    numberOfBuckets: int
+    start: float
+    width: float
+
+@typing.type_check_only
 class ListJobMessagesResponse(typing_extensions.TypedDict, total=False):
     autoscalingEvents: _list[AutoscalingEvent]
     jobMessages: _list[JobMessage]
@@ -667,6 +700,13 @@ class MetricUpdate(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MetricValue(typing_extensions.TypedDict, total=False):
+    metric: str
+    metricLabels: dict[str, typing.Any]
+    valueHistogram: DataflowHistogramValue
+    valueInt64: str
+
+@typing.type_check_only
 class MountedDataDisk(typing_extensions.TypedDict, total=False):
     dataDisk: str
 
@@ -689,6 +729,13 @@ class NameAndKind(typing_extensions.TypedDict, total=False):
         "LATEST_VALUE",
     ]
     name: str
+
+@typing.type_check_only
+class OutlierStats(typing_extensions.TypedDict, total=False):
+    overflowCount: str
+    overflowMean: float
+    underflowCount: str
+    underflowMean: float
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
@@ -727,6 +774,7 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
     enumOptions: _list[ParameterMetadataEnumOption]
     groupName: str
     helpText: str
+    hiddenUi: bool
     isOptional: bool
     label: str
     name: str
@@ -770,6 +818,16 @@ class PartialGroupByKeyInstruction(typing_extensions.TypedDict, total=False):
     originalCombineValuesStepName: str
     sideInputs: _list[SideInputInfo]
     valueCombiningFn: dict[str, typing.Any]
+
+@typing.type_check_only
+class PerStepNamespaceMetrics(typing_extensions.TypedDict, total=False):
+    metricValues: _list[MetricValue]
+    metricsNamespace: str
+    originalStep: str
+
+@typing.type_check_only
+class PerWorkerMetrics(typing_extensions.TypedDict, total=False):
+    perStepNamespaceMetrics: _list[PerStepNamespaceMetrics]
 
 @typing.type_check_only
 class PipelineDescription(typing_extensions.TypedDict, total=False):
@@ -866,6 +924,11 @@ class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
     network: str
     numWorkers: int
     serviceAccountEmail: str
+    streamingMode: typing_extensions.Literal[
+        "STREAMING_MODE_UNSPECIFIED",
+        "STREAMING_MODE_EXACTLY_ONCE",
+        "STREAMING_MODE_AT_LEAST_ONCE",
+    ]
     subnetwork: str
     tempLocation: str
     workerRegion: str
@@ -881,6 +944,7 @@ class RuntimeMetadata(typing_extensions.TypedDict, total=False):
 class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
     maxNumWorkers: int
     minNumWorkers: int
+    workerUtilizationHint: float
 
 @typing.type_check_only
 class SDKInfo(typing_extensions.TypedDict, total=False):
@@ -1183,6 +1247,18 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     windmillServicePort: str
 
 @typing.type_check_only
+class StreamingScalingReport(typing_extensions.TypedDict, total=False):
+    activeBundleCount: int
+    activeThreadCount: int
+    maximumBundleCount: int
+    maximumBytes: str
+    maximumBytesCount: int
+    maximumThreadCount: int
+    outstandingBundleCount: int
+    outstandingBytes: str
+    outstandingBytesCount: int
+
+@typing.type_check_only
 class StreamingSetupTask(typing_extensions.TypedDict, total=False):
     drain: bool
     receiveWorkPort: int
@@ -1244,6 +1320,9 @@ class TemplateMetadata(typing_extensions.TypedDict, total=False):
     description: str
     name: str
     parameters: _list[ParameterMetadata]
+    streaming: bool
+    supportsAtLeastOnce: bool
+    supportsExactlyOnce: bool
 
 @typing.type_check_only
 class TopologyConfig(typing_extensions.TypedDict, total=False):
@@ -1376,6 +1455,8 @@ class WorkerLifecycleEvent(typing_extensions.TypedDict, total=False):
 class WorkerMessage(typing_extensions.TypedDict, total=False):
     dataSamplingReport: DataSamplingReport
     labels: dict[str, typing.Any]
+    perWorkerMetrics: PerWorkerMetrics
+    streamingScalingReport: StreamingScalingReport
     time: str
     workerHealthReport: WorkerHealthReport
     workerLifecycleEvent: WorkerLifecycleEvent

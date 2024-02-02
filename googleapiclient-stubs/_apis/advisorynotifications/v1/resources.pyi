@@ -57,6 +57,40 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
 
         def locations(self) -> LocationsResource: ...
 
+    @typing.type_check_only
+    class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class NotificationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, languageCode: str = ..., **kwargs: typing.Any
+                ) -> GoogleCloudAdvisorynotificationsV1NotificationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    languageCode: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "NOTIFICATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
+                    ] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest,
+                    previous_response: GoogleCloudAdvisorynotificationsV1ListNotificationsResponse,
+                ) -> (
+                    GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest
+                    | None
+                ): ...
+
+            def notifications(self) -> NotificationsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -70,6 +104,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def organizations(self) -> OrganizationsResource: ...
+    def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
 class GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest(

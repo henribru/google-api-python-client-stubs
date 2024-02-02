@@ -74,6 +74,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FirewallEndpoint(typing_extensions.TypedDict, total=False):
     associatedNetworks: _list[str]
+    associations: _list[FirewallEndpointAssociationReference]
     billingProjectId: str
     createTime: str
     description: str
@@ -98,6 +99,11 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
     ]
     tlsInspectionPolicy: str
     updateTime: str
+
+@typing.type_check_only
+class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=False):
+    name: str
+    network: str
 
 @typing.type_check_only
 class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):

@@ -465,6 +465,7 @@ class GooglePrivacyDlpV2DataProfileConfigSnapshot(
     typing_extensions.TypedDict, total=False
 ):
     dataProfileJob: GooglePrivacyDlpV2DataProfileJobConfig
+    discoveryConfig: GooglePrivacyDlpV2DiscoveryConfig
     inspectConfig: GooglePrivacyDlpV2InspectConfig
 
 @typing.type_check_only
@@ -503,6 +504,10 @@ class GooglePrivacyDlpV2DataRiskLevel(typing_extensions.TypedDict, total=False):
     score: typing_extensions.Literal[
         "RISK_SCORE_UNSPECIFIED", "RISK_LOW", "RISK_MODERATE", "RISK_HIGH"
     ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataSourceType(typing_extensions.TypedDict, total=False):
+    dataSource: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DatastoreKey(typing_extensions.TypedDict, total=False):
@@ -1713,6 +1718,7 @@ class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=Fals
     configSnapshot: GooglePrivacyDlpV2DataProfileConfigSnapshot
     createTime: str
     dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
+    dataSourceType: GooglePrivacyDlpV2DataSourceType
     datasetId: str
     datasetLocation: str
     datasetProjectId: str

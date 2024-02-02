@@ -248,6 +248,11 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     versionRetentionPeriod: str
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1DatabaseSnapshot(typing_extensions.TypedDict, total=False):
+    database: str
+    snapshotTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -475,6 +480,7 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
 ):
     backup: str
     databaseId: str
+    databaseSnapshot: GoogleFirestoreAdminV1DatabaseSnapshot
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Stats(typing_extensions.TypedDict, total=False):
@@ -615,6 +621,10 @@ class Projection(typing_extensions.TypedDict, total=False):
     fields: _list[FieldReference]
 
 @typing.type_check_only
+class QueryPlan(typing_extensions.TypedDict, total=False):
+    planInfo: dict[str, typing.Any]
+
+@typing.type_check_only
 class QueryTarget(typing_extensions.TypedDict, total=False):
     parent: str
     structuredQuery: StructuredQuery
@@ -628,11 +638,17 @@ class ReadWrite(typing_extensions.TypedDict, total=False):
     retryTransaction: str
 
 @typing.type_check_only
+class ResultSetStats(typing_extensions.TypedDict, total=False):
+    queryPlan: QueryPlan
+    queryStats: dict[str, typing.Any]
+
+@typing.type_check_only
 class RollbackRequest(typing_extensions.TypedDict, total=False):
     transaction: str
 
 @typing.type_check_only
 class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     newTransaction: TransactionOptions
     readTime: str
     structuredAggregationQuery: StructuredAggregationQuery
@@ -642,10 +658,12 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
     readTime: str
     result: AggregationResult
+    stats: ResultSetStats
     transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     newTransaction: TransactionOptions
     readTime: str
     structuredQuery: StructuredQuery
@@ -657,6 +675,7 @@ class RunQueryResponse(typing_extensions.TypedDict, total=False):
     done: bool
     readTime: str
     skippedResults: int
+    stats: ResultSetStats
     transaction: str
 
 @typing.type_check_only

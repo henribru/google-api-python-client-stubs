@@ -236,6 +236,7 @@ class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset(
 class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy(
     typing_extensions.TypedDict, total=False
 ):
+    assetType: str
     attachedResource: str
     folders: _list[str]
     organization: str
@@ -246,6 +247,8 @@ class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy(
 class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource(
     typing_extensions.TypedDict, total=False
 ):
+    assetType: str
+    effectiveTags: _list[EffectiveTagDetails]
     folders: _list[str]
     fullResourceName: str
     organization: str
@@ -299,9 +302,13 @@ class GoogleCloudAssetV1GcsDestination(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class GoogleCloudAssetV1GovernedContainer(typing_extensions.TypedDict, total=False):
     consolidatedPolicy: AnalyzerOrgPolicy
+    effectiveTags: _list[EffectiveTagDetails]
+    folders: _list[str]
     fullResourceName: str
+    organization: str
     parent: str
     policyBundle: _list[AnalyzerOrgPolicy]
+    project: str
 
 @typing.type_check_only
 class GoogleCloudAssetV1Identity(typing_extensions.TypedDict, total=False):
@@ -335,6 +342,7 @@ class GoogleCloudAssetV1Resource(typing_extensions.TypedDict, total=False):
 class GoogleCloudAssetV1Rule(typing_extensions.TypedDict, total=False):
     allowAll: bool
     condition: Expr
+    conditionEvaluation: ConditionEvaluation
     denyAll: bool
     enforce: bool
     values: GoogleCloudAssetV1StringValues
@@ -763,7 +771,10 @@ class Options(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OrgPolicyResult(typing_extensions.TypedDict, total=False):
     consolidatedPolicy: AnalyzerOrgPolicy
+    folders: _list[str]
+    organization: str
     policyBundle: _list[AnalyzerOrgPolicy]
+    project: str
 
 @typing.type_check_only
 class OsInfo(typing_extensions.TypedDict, total=False):

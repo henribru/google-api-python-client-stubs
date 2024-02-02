@@ -75,6 +75,13 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1FirewallPolicyHttpRequest: ...
+            def reorder(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponseHttpRequest: ...
 
         @typing.type_check_only
         class KeysResource(googleapiclient.discovery.Resource):
@@ -294,6 +301,16 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest(

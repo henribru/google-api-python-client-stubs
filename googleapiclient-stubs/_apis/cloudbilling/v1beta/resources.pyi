@@ -90,6 +90,26 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                     self, *, name: str, currencyCode: str = ..., **kwargs: typing.Any
                 ) -> GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest: ...
 
+            @typing.type_check_only
+            class PricesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    currencyCode: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponseHttpRequest,
+                    previous_response: GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse,
+                ) -> (
+                    GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponseHttpRequest
+                    | None
+                ): ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> (
@@ -113,6 +133,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 | None
             ): ...
             def price(self) -> PriceResource: ...
+            def prices(self) -> PricesResource: ...
 
         def estimateCostScenario(
             self,
@@ -174,7 +195,25 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 self, *, name: str, currencyCode: str = ..., **kwargs: typing.Any
             ) -> GoogleCloudBillingPricesV1betaPriceHttpRequest: ...
 
+        @typing.type_check_only
+        class PricesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                currencyCode: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any
+            ) -> GoogleCloudBillingPricesV1betaListPricesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudBillingPricesV1betaListPricesResponseHttpRequest,
+                previous_response: GoogleCloudBillingPricesV1betaListPricesResponse,
+            ) -> GoogleCloudBillingPricesV1betaListPricesResponseHttpRequest | None: ...
+
         def price(self) -> PriceResource: ...
+        def prices(self) -> PricesResource: ...
 
     @typing.type_check_only
     class V1betaResource(googleapiclient.discovery.Resource):
@@ -231,6 +270,18 @@ class GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice: ...
+
+@typing.type_check_only
+class GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleCloudBillingBillingaccountservicesV1betaBillingAccountServiceHttpRequest(
@@ -315,6 +366,16 @@ class GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponseHt
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse: ...
+
+@typing.type_check_only
+class GoogleCloudBillingPricesV1betaListPricesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudBillingPricesV1betaListPricesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBillingPricesV1betaPriceHttpRequest(googleapiclient.http.HttpRequest):

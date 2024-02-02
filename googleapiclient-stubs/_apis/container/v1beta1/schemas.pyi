@@ -48,6 +48,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdvancedDatapathObservabilityConfig(typing_extensions.TypedDict, total=False):
     enableMetrics: bool
+    enableRelay: bool
     relayMode: typing_extensions.Literal[
         "RELAY_MODE_UNSPECIFIED", "DISABLED", "INTERNAL_VPC_LB", "EXTERNAL_LB"
     ]
@@ -68,6 +69,7 @@ class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Autopilot(typing_extensions.TypedDict, total=False):
+    conversionStatus: AutopilotConversionStatus
     enabled: bool
     workloadPolicyConfig: WorkloadPolicyConfig
 
@@ -86,6 +88,10 @@ class AutopilotCompatibilityIssue(typing_extensions.TypedDict, total=False):
     subjects: _list[str]
 
 @typing.type_check_only
+class AutopilotConversionStatus(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "DONE"]
+
+@typing.type_check_only
 class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False):
     bootDiskKmsKey: str
     diskSizeGb: int
@@ -98,6 +104,9 @@ class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False)
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
     upgradeSettings: UpgradeSettings
+
+@typing.type_check_only
+class AutoscaledRolloutPolicy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AvailableVersion(typing_extensions.TypedDict, total=False):
@@ -145,6 +154,7 @@ class BlueGreenInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BlueGreenSettings(typing_extensions.TypedDict, total=False):
+    autoscaledRolloutPolicy: AutoscaledRolloutPolicy
     nodePoolSoakDuration: str
     standardRolloutPolicy: StandardRolloutPolicy
 
@@ -913,6 +923,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     networkConfig: NodeNetworkConfig
     placementPolicy: PlacementPolicy
     podIpv4CidrSize: int
+    queuedProvisioning: QueuedProvisioning
     selfLink: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -1074,6 +1085,10 @@ class PubSub(typing_extensions.TypedDict, total=False):
     enabled: bool
     filter: Filter
     topic: str
+
+@typing.type_check_only
+class QueuedProvisioning(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class RangeInfo(typing_extensions.TypedDict, total=False):

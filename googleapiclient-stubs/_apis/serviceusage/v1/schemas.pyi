@@ -406,6 +406,28 @@ class GoogleApiServiceusageV1beta1ServiceIdentity(
     uniqueId: str
 
 @typing.type_check_only
+class GoogleApiServiceusageV2alphaConsumerPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    enableRules: _list[GoogleApiServiceusageV2alphaEnableRule]
+    etag: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaEnableRule(typing_extensions.TypedDict, total=False):
+    categories: _list[str]
+    groups: _list[str]
+    services: _list[str]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
     rules: _list[HttpRule]
@@ -516,6 +538,7 @@ class MethodPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
+    autoPopulatedFields: _list[str]
     longRunning: LongRunning
     selector: str
 
@@ -661,6 +684,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
         "GENERATIVE_AI",
     ]
     protoReferenceDocumentationUri: str
+    restReferenceDocumentationUri: str
 
 @typing.type_check_only
 class PythonSettings(typing_extensions.TypedDict, total=False):

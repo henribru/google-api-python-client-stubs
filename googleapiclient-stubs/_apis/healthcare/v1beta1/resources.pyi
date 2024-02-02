@@ -468,6 +468,18 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             @typing.type_check_only
                             class InstancesResource(googleapiclient.discovery.Resource):
                                 @typing.type_check_only
+                                class BulkdataResource(
+                                    googleapiclient.discovery.Resource
+                                ):
+                                    def retrieveBulkdata(
+                                        self,
+                                        *,
+                                        parent: str,
+                                        dicomWebPath: str,
+                                        **kwargs: typing.Any
+                                    ) -> HttpBodyHttpRequest: ...
+
+                                @typing.type_check_only
                                 class FramesResource(
                                     googleapiclient.discovery.Resource
                                 ):
@@ -514,6 +526,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     dicomWebPath: str,
                                     **kwargs: typing.Any
                                 ) -> HttpBodyHttpRequest: ...
+                                def bulkdata(self) -> BulkdataResource: ...
                                 def frames(self) -> FramesResource: ...
 
                             def delete(

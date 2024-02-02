@@ -32,6 +32,7 @@ class BillingAccount(typing_extensions.TypedDict, total=False):
     masterBillingAccount: str
     name: str
     open: bool
+    parent: str
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):

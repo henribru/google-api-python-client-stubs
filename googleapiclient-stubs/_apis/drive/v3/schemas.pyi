@@ -21,6 +21,46 @@ class About(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
+class App(typing_extensions.TypedDict, total=False):
+    authorized: bool
+    createInFolderTemplate: str
+    createUrl: str
+    hasDriveWideScope: bool
+    icons: _list[AppIcons]
+    id: str
+    installed: bool
+    kind: str
+    longDescription: str
+    name: str
+    objectType: str
+    openUrlTemplate: str
+    primaryFileExtensions: _list[str]
+    primaryMimeTypes: _list[str]
+    productId: str
+    productUrl: str
+    secondaryFileExtensions: _list[str]
+    secondaryMimeTypes: _list[str]
+    shortDescription: str
+    supportsCreate: bool
+    supportsImport: bool
+    supportsMultiOpen: bool
+    supportsOfflineCreate: bool
+    useByDefault: bool
+
+@typing.type_check_only
+class AppIcons(typing_extensions.TypedDict, total=False):
+    category: str
+    iconUrl: str
+    size: int
+
+@typing.type_check_only
+class AppList(typing_extensions.TypedDict, total=False):
+    defaultAppIds: _list[str]
+    items: _list[App]
+    kind: str
+    selfLink: str
+
+@typing.type_check_only
 class Change(typing_extensions.TypedDict, total=False):
     changeType: str
     drive: Drive
@@ -82,6 +122,7 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     reason: str
     restrictingUser: User
     restrictionTime: str
+    systemRestricted: bool
     type: str
 
 @typing.type_check_only

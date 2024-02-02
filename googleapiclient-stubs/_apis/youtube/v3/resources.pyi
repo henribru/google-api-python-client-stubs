@@ -159,6 +159,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             *,
             part: str | _list[str],
             categoryId: str = ...,
+            forHandle: str = ...,
             forUsername: str = ...,
             hl: str = ...,
             id: str | _list[str] = ...,

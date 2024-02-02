@@ -81,7 +81,7 @@ class Contact(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreativeRequirements(typing_extensions.TypedDict, total=False):
     creativeFormat: typing_extensions.Literal[
-        "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO"
+        "CREATIVE_FORMAT_UNSPECIFIED", "DISPLAY", "VIDEO", "AUDIO"
     ]
     creativePreApprovalPolicy: typing_extensions.Literal[
         "CREATIVE_PRE_APPROVAL_POLICY_UNSPECIFIED",

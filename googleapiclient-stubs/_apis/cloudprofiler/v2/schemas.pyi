@@ -27,6 +27,12 @@ class Deployment(typing_extensions.TypedDict, total=False):
     target: str
 
 @typing.type_check_only
+class ListProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    profiles: _list[Profile]
+    skippedProfiles: int
+
+@typing.type_check_only
 class Profile(typing_extensions.TypedDict, total=False):
     deployment: Deployment
     duration: str

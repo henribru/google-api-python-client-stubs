@@ -124,6 +124,19 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     ) -> ListEntityTypesResponseHttpRequest | None: ...
                     def entities(self) -> EntitiesResource: ...
 
+                def checkReadiness(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CheckReadinessResponseHttpRequest: ...
+                def checkStatus(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CheckStatusResponseHttpRequest: ...
+                def exchangeAuthCode(
+                    self,
+                    *,
+                    name: str,
+                    body: ExchangeAuthCodeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ExchangeAuthCodeResponseHttpRequest: ...
                 def executeSqlQuery(
                     self,
                     *,
@@ -131,6 +144,13 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: ExecuteSqlQueryRequest = ...,
                     **kwargs: typing.Any
                 ) -> ExecuteSqlQueryResponseHttpRequest: ...
+                def refreshAccessToken(
+                    self,
+                    *,
+                    name: str,
+                    body: RefreshAccessTokenRequest = ...,
+                    **kwargs: typing.Any
+                ) -> RefreshAccessTokenResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
 
@@ -161,6 +181,22 @@ class ActionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Action: ...
 
 @typing.type_check_only
+class CheckReadinessResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckReadinessResponse: ...
+
+@typing.type_check_only
+class CheckStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckStatusResponse: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -183,6 +219,14 @@ class EntityTypeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EntityType: ...
+
+@typing.type_check_only
+class ExchangeAuthCodeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExchangeAuthCodeResponse: ...
 
 @typing.type_check_only
 class ExecuteActionResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -223,6 +267,14 @@ class ListEntityTypesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEntityTypesResponse: ...
+
+@typing.type_check_only
+class RefreshAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RefreshAccessTokenResponse: ...
 
 @typing.type_check_only
 class UpdateEntitiesWithConditionsResponseHttpRequest(googleapiclient.http.HttpRequest):

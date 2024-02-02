@@ -31,6 +31,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING", "REPAIRING"
     ]
+    stretchedClusterConfig: StretchedClusterConfig
     uid: str
     updateTime: str
 
@@ -38,6 +39,18 @@ class Cluster(typing_extensions.TypedDict, total=False):
 class Credentials(typing_extensions.TypedDict, total=False):
     password: str
     username: str
+
+@typing.type_check_only
+class DnsBindPermission(typing_extensions.TypedDict, total=False):
+    name: str
+    principals: _list[Principal]
+
+@typing.type_check_only
+class DnsForwarding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    forwardingRules: _list[ForwardingRule]
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -48,6 +61,54 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ExternalAccessRule(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
+    createTime: str
+    description: str
+    destinationIpRanges: _list[IpRange]
+    destinationPorts: _list[str]
+    ipProtocol: str
+    name: str
+    priority: int
+    sourceIpRanges: _list[IpRange]
+    sourcePorts: _list[str]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING"
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class ExternalAddress(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    externalIp: str
+    internalIp: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING"
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class FetchNetworkPolicyExternalAddressesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    externalAddresses: _list[ExternalAddress]
+    nextPageToken: str
+
+@typing.type_check_only
+class ForwardingRule(typing_extensions.TypedDict, total=False):
+    domain: str
+    nameServers: _list[str]
+
+@typing.type_check_only
+class GrantDnsBindPermissionRequest(typing_extensions.TypedDict, total=False):
+    principal: Principal
+    requestId: str
 
 @typing.type_check_only
 class Hcx(typing_extensions.TypedDict, total=False):
@@ -67,8 +128,26 @@ class HcxActivationKey(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class IpRange(typing_extensions.TypedDict, total=False):
+    externalAddress: str
+    ipAddress: str
+    ipAddressRange: str
+
+@typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
     clusters: _list[Cluster]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListExternalAccessRulesResponse(typing_extensions.TypedDict, total=False):
+    externalAccessRules: _list[ExternalAccessRule]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListExternalAddressesResponse(typing_extensions.TypedDict, total=False):
+    externalAddresses: _list[ExternalAddress]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -84,6 +163,24 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLoggingServersResponse(typing_extensions.TypedDict, total=False):
+    loggingServers: _list[LoggingServer]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListManagementDnsZoneBindingsResponse(typing_extensions.TypedDict, total=False):
+    managementDnsZoneBindings: _list[ManagementDnsZoneBinding]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListNetworkPeeringsResponse(typing_extensions.TypedDict, total=False):
+    networkPeerings: _list[NetworkPeering]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListNetworkPoliciesResponse(typing_extensions.TypedDict, total=False):
     networkPolicies: _list[NetworkPolicy]
     nextPageToken: str
@@ -96,9 +193,19 @@ class ListNodeTypesResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListNodesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    nodes: _list[Node]
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListPeeringRoutesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    peeringRoutes: _list[PeeringRoute]
 
 @typing.type_check_only
 class ListPrivateCloudsResponse(typing_extensions.TypedDict, total=False):
@@ -140,16 +247,77 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    capabilities: _list[
+        typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "STRETCHED_CLUSTERS"]
+    ]
+
+@typing.type_check_only
+class LoggingServer(typing_extensions.TypedDict, total=False):
+    createTime: str
+    hostname: str
+    name: str
+    port: int
+    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "UDP", "TCP"]
+    sourceType: typing_extensions.Literal["SOURCE_TYPE_UNSPECIFIED", "ESXI", "VCSA"]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class ManagementCluster(typing_extensions.TypedDict, total=False):
     clusterId: str
     nodeTypeConfigs: dict[str, typing.Any]
+    stretchedClusterConfig: StretchedClusterConfig
+
+@typing.type_check_only
+class ManagementDnsZoneBinding(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "UPDATING", "DELETING", "FAILED"
+    ]
+    uid: str
+    updateTime: str
+    vmwareEngineNetwork: str
+    vpcNetwork: str
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
+    dnsServerIp: str
     managementCidr: str
     managementIpAddressLayoutVersion: int
     vmwareEngineNetwork: str
     vmwareEngineNetworkCanonical: str
+
+@typing.type_check_only
+class NetworkPeering(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    exchangeSubnetRoutes: bool
+    exportCustomRoutes: bool
+    exportCustomRoutesWithPublicIp: bool
+    importCustomRoutes: bool
+    importCustomRoutesWithPublicIp: bool
+    name: str
+    peerMtu: int
+    peerNetwork: str
+    peerNetworkType: typing_extensions.Literal[
+        "PEER_NETWORK_TYPE_UNSPECIFIED",
+        "STANDARD",
+        "VMWARE_ENGINE_NETWORK",
+        "PRIVATE_SERVICES_ACCESS",
+        "NETAPP_CLOUD_VOLUMES",
+        "THIRD_PARTY_SERVICE",
+        "DELL_POWERSCALE",
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "CREATING", "DELETING"
+    ]
+    stateDetails: str
+    uid: str
+    updateTime: str
+    vmwareEngineNetwork: str
 
 @typing.type_check_only
 class NetworkPolicy(typing_extensions.TypedDict, total=False):
@@ -172,10 +340,27 @@ class NetworkService(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Node(typing_extensions.TypedDict, total=False):
+    customCoreCount: str
+    fqdn: str
+    internalIp: str
+    name: str
+    nodeTypeId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "FAILED", "UPGRADING"
+    ]
+    version: str
+
+@typing.type_check_only
 class NodeType(typing_extensions.TypedDict, total=False):
     availableCustomCoreCounts: _list[int]
+    capabilities: _list[
+        typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "STRETCHED_CLUSTERS"]
+    ]
     diskSizeGb: int
     displayName: str
+    families: _list[str]
+    kind: typing_extensions.Literal["KIND_UNSPECIFIED", "STANDARD", "STORAGE_ONLY"]
     memoryGb: int
     name: str
     nodeTypeId: str
@@ -236,6 +421,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Principal(typing_extensions.TypedDict, total=False):
+    serviceAccount: str
+    user: str
+
+@typing.type_check_only
 class PrivateCloud(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
@@ -255,7 +445,7 @@ class PrivateCloud(typing_extensions.TypedDict, total=False):
         "DELETED",
         "PURGING",
     ]
-    type: typing_extensions.Literal["STANDARD", "TIME_LIMITED"]
+    type: typing_extensions.Literal["STANDARD", "TIME_LIMITED", "STRETCHED"]
     uid: str
     updateTime: str
     vcenter: Vcenter
@@ -295,11 +485,21 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     vmwareEngineNetworkCanonical: str
 
 @typing.type_check_only
+class RepairManagementDnsZoneBindingRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class ResetNsxCredentialsRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
 class ResetVcenterCredentialsRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    username: str
+
+@typing.type_check_only
+class RevokeDnsBindPermissionRequest(typing_extensions.TypedDict, total=False):
+    principal: Principal
     requestId: str
 
 @typing.type_check_only
@@ -312,6 +512,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StretchedClusterConfig(typing_extensions.TypedDict, total=False):
+    preferredLocation: str
+    secondaryLocation: str
 
 @typing.type_check_only
 class Subnet(typing_extensions.TypedDict, total=False):
@@ -328,6 +533,7 @@ class Subnet(typing_extensions.TypedDict, total=False):
         "FAILED",
     ]
     type: str
+    vlanId: int
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -357,7 +563,7 @@ class VmwareEngineNetwork(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
     ]
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "LEGACY"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "LEGACY", "STANDARD"]
     uid: str
     updateTime: str
     vpcNetworks: _list[VpcNetwork]

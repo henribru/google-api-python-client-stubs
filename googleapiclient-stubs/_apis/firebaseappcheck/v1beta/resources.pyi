@@ -346,6 +346,56 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ResourcePoliciesResource(googleapiclient.discovery.Resource):
+                def batchUpdate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirebaseAppcheckV1betaResourcePolicy = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaResourcePolicyHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaResourcePolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> (
+                    GoogleFirebaseAppcheckV1betaListResourcePoliciesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleFirebaseAppcheckV1betaListResourcePoliciesResponseHttpRequest,
+                    previous_response: GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse,
+                ) -> (
+                    GoogleFirebaseAppcheckV1betaListResourcePoliciesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirebaseAppcheckV1betaResourcePolicy = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleFirebaseAppcheckV1betaResourcePolicyHttpRequest: ...
+
             def batchUpdate(
                 self,
                 *,
@@ -377,6 +427,7 @@ class FirebaseappcheckResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any
             ) -> GoogleFirebaseAppcheckV1betaServiceHttpRequest: ...
+            def resourcePolicies(self) -> ResourcePoliciesResource: ...
 
         def verifyAppCheckToken(
             self,
@@ -495,6 +546,16 @@ class GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponseHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppcheckV1betaBatchUpdateResourcePoliciesResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaBatchUpdateServicesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -565,6 +626,16 @@ class GoogleFirebaseAppcheckV1betaListDebugTokensResponseHttpRequest(
     ) -> GoogleFirebaseAppcheckV1betaListDebugTokensResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppcheckV1betaListResourcePoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppcheckV1betaListResourcePoliciesResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppcheckV1betaListServicesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -623,6 +694,16 @@ class GoogleFirebaseAppcheckV1betaRecaptchaV3ConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppcheckV1betaRecaptchaV3Config: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1betaResourcePolicyHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppcheckV1betaResourcePolicy: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaSafetyNetConfigHttpRequest(

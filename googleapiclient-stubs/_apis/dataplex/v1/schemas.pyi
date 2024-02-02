@@ -364,6 +364,13 @@ class GoogleCloudDataplexV1DataProfileSpecSelectedFields(
     fieldNames: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataQualityColumnResult(
+    typing_extensions.TypedDict, total=False
+):
+    column: str
+    score: float
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataQualityDimension(
     typing_extensions.TypedDict, total=False
 ):
@@ -375,15 +382,18 @@ class GoogleCloudDataplexV1DataQualityDimensionResult(
 ):
     dimension: GoogleCloudDataplexV1DataQualityDimension
     passed: bool
+    score: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=False):
+    columns: _list[GoogleCloudDataplexV1DataQualityColumnResult]
     dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
     passed: bool
     postScanActionsResult: GoogleCloudDataplexV1DataQualityResultPostScanActionsResult
     rowCount: str
     rules: _list[GoogleCloudDataplexV1DataQualityRuleResult]
     scannedData: GoogleCloudDataplexV1ScannedData
+    score: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResultPostScanActionsResult(
@@ -601,9 +611,12 @@ class GoogleCloudDataplexV1DataScanEventDataQualityAppliedConfigs(
 class GoogleCloudDataplexV1DataScanEventDataQualityResult(
     typing_extensions.TypedDict, total=False
 ):
+    columnScore: dict[str, typing.Any]
     dimensionPassed: dict[str, typing.Any]
+    dimensionScore: dict[str, typing.Any]
     passed: bool
     rowCount: str
+    score: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanEventPostScanActionsResult(
@@ -841,6 +854,10 @@ class GoogleCloudDataplexV1GovernanceEvent(typing_extensions.TypedDict, total=Fa
         "BIGQUERY_POLICY_TAG_DELETE",
         "BIGQUERY_POLICY_TAG_SET_IAM_POLICY",
         "ACCESS_POLICY_UPDATE",
+        "GOVERNANCE_RULE_MATCHED_RESOURCES",
+        "GOVERNANCE_RULE_SEARCH_LIMIT_EXCEEDS",
+        "GOVERNANCE_RULE_ERRORS",
+        "GOVERNANCE_RULE_PROCESSING",
     ]
     message: str
 

@@ -297,6 +297,18 @@ class GoogleCloudApigeeV1Attributes(typing_extensions.TypedDict, total=False):
     attribute: _list[GoogleCloudApigeeV1Attribute]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleCloudApigeeV1UpdateSecurityIncidentRequest]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchUpdateSecurityIncidentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    securityIncidents: _list[GoogleCloudApigeeV1SecurityIncident]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1CanaryEvaluation(typing_extensions.TypedDict, total=False):
     control: str
     createTime: str
@@ -1832,7 +1844,11 @@ class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=Fal
     displayName: str
     firstDetectedTime: str
     lastDetectedTime: str
+    lastObservabilityChangeTime: str
     name: str
+    observability: typing_extensions.Literal[
+        "OBSERVABILITY_UNSPECIFIED", "ACTIVE", "ARCHIVED"
+    ]
     riskLevel: typing_extensions.Literal[
         "RISK_LEVEL_UNSPECIFIED", "LOW", "MODERATE", "SEVERE"
     ]
@@ -1943,6 +1959,11 @@ class GoogleCloudApigeeV1SecurityReportResultView(
     metadata: GoogleCloudApigeeV1SecurityReportMetadata
     rows: _list[typing.Any]
     state: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecuritySettings(typing_extensions.TypedDict, total=False):
+    mlRetrainingFeedbackEnabled: bool
+    name: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ServiceIssuersMapping(
@@ -2138,6 +2159,13 @@ class GoogleCloudApigeeV1UpdateError(typing_extensions.TypedDict, total=False):
     message: str
     resource: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1UpdateSecurityIncidentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    securityIncident: GoogleCloudApigeeV1SecurityIncident
+    updateMask: str
 
 @typing.type_check_only
 class GoogleIamV1AuditConfig(typing_extensions.TypedDict, total=False):

@@ -19,7 +19,6 @@ class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabe
     typing_extensions.TypedDict, total=False
 ):
     documentId: GoogleCloudDocumentaiUiv1beta3DocumentId
-    gcsUri: str
     status: GoogleRpcStatus
 
 @typing.type_check_only
@@ -487,6 +486,7 @@ class GoogleCloudDocumentaiV1BatchProcessRequest(
 ):
     documentOutputConfig: GoogleCloudDocumentaiV1DocumentOutputConfig
     inputDocuments: GoogleCloudDocumentaiV1BatchDocumentsInputConfig
+    labels: dict[str, typing.Any]
     processOptions: GoogleCloudDocumentaiV1ProcessOptions
     skipHumanReview: bool
 
@@ -1191,6 +1191,7 @@ class GoogleCloudDocumentaiV1ProcessRequest(typing_extensions.TypedDict, total=F
     fieldMask: str
     gcsDocument: GoogleCloudDocumentaiV1GcsDocument
     inlineDocument: GoogleCloudDocumentaiV1Document
+    labels: dict[str, typing.Any]
     processOptions: GoogleCloudDocumentaiV1ProcessOptions
     rawDocument: GoogleCloudDocumentaiV1RawDocument
     skipHumanReview: bool
@@ -1256,6 +1257,9 @@ class GoogleCloudDocumentaiV1ProcessorVersion(typing_extensions.TypedDict, total
     kmsKeyName: str
     kmsKeyVersionName: str
     latestEvaluation: GoogleCloudDocumentaiV1EvaluationReference
+    modelType: typing_extensions.Literal[
+        "MODEL_TYPE_UNSPECIFIED", "MODEL_TYPE_GENERATIVE", "MODEL_TYPE_CUSTOM"
+    ]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

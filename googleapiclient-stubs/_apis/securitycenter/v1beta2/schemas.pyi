@@ -29,6 +29,11 @@ class AccessReview(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class Application(typing_extensions.TypedDict, total=False):
+    baseUri: str
+    fullUri: str
+
+@typing.type_check_only
 class AttackExposure(typing_extensions.TypedDict, total=False):
     attackExposureResult: str
     exposedHighValueResourcesCount: int
@@ -39,6 +44,19 @@ class AttackExposure(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
     ]
+
+@typing.type_check_only
+class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
+    appliance: str
+    applications: _list[str]
+    backupCreateTime: str
+    backupTemplate: str
+    backupType: str
+    host: str
+    policies: _list[str]
+    policyOptions: _list[str]
+    profile: str
+    storagePool: str
 
 @typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
@@ -179,6 +197,11 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
+class DiskPath(typing_extensions.TypedDict, total=False):
+    partitionUuid: str
+    relativePath: str
+
+@typing.type_check_only
 class EnvironmentVariable(typing_extensions.TypedDict, total=False):
     name: str
     val: str
@@ -213,6 +236,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
     contents: str
+    diskPath: DiskPath
     hashedSize: str
     partiallyHashed: bool
     path: str
@@ -222,7 +246,9 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    application: Application
     attackExposure: AttackExposure
+    backupDisasterRecovery: BackupDisasterRecovery
     canonicalName: str
     category: str
     cloudDlpDataProfile: CloudDlpDataProfile
@@ -342,10 +368,14 @@ class GoogleCloudSecuritycenterV1ExternalSystem(
     typing_extensions.TypedDict, total=False
 ):
     assignees: _list[str]
+    casePriority: str
+    caseSla: str
+    caseUri: str
     externalSystemUpdateTime: str
     externalUid: str
     name: str
     status: str
+    ticketInfo: TicketInfo
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
@@ -694,11 +724,24 @@ class OrgPolicy(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Package(typing_extensions.TypedDict, total=False):
+    cpeUri: str
+    packageName: str
+    packageType: str
+    packageVersion: str
+
+@typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     labels: _list[Label]
     name: str
     ns: str
+
+@typing.type_check_only
+class PolicyDriftDetails(typing_extensions.TypedDict, total=False):
+    detectedValue: str
+    expectedValue: str
+    field: str
 
 @typing.type_check_only
 class Process(typing_extensions.TypedDict, total=False):
@@ -716,6 +759,9 @@ class Process(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProcessSignature(typing_extensions.TypedDict, total=False):
     memoryHashSignature: MemoryHashSignature
+    signatureType: typing_extensions.Literal[
+        "SIGNATURE_TYPE_UNSPECIFIED", "SIGNATURE_TYPE_PROCESS", "SIGNATURE_TYPE_FILE"
+    ]
     yaraRuleSignature: YaraRuleSignature
 
 @typing.type_check_only
@@ -737,6 +783,12 @@ class Role(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal["KIND_UNSPECIFIED", "ROLE", "CLUSTER_ROLE"]
     name: str
     ns: str
+
+@typing.type_check_only
+class SecurityBulletin(typing_extensions.TypedDict, total=False):
+    bulletinId: str
+    submissionTime: str
+    suggestedUpgradeVersion: str
 
 @typing.type_check_only
 class SecurityCenterSettings(typing_extensions.TypedDict, total=False):
@@ -765,6 +817,9 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
 class SecurityPosture(typing_extensions.TypedDict, total=False):
     changedPolicy: str
     name: str
+    policy: str
+    policyDriftDetails: _list[PolicyDriftDetails]
+    policySet: str
     postureDeployment: str
     postureDeploymentResource: str
     revisionId: str
@@ -791,6 +846,15 @@ class Subscription(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class TicketInfo(typing_extensions.TypedDict, total=False):
+    assignee: str
+    description: str
+    id: str
+    status: str
+    updateTime: str
+    uri: str
+
+@typing.type_check_only
 class VirtualMachineThreatDetectionSettings(typing_extensions.TypedDict, total=False):
     modules: dict[str, typing.Any]
     name: str
@@ -803,6 +867,9 @@ class VirtualMachineThreatDetectionSettings(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
     cve: Cve
+    fixedPackage: Package
+    offendingPackage: Package
+    securityBulletin: SecurityBulletin
 
 @typing.type_check_only
 class WebSecurityScannerSettings(typing_extensions.TypedDict, total=False):

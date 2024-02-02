@@ -257,6 +257,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         ) -> (
                             GoogleCloudDialogflowCxV3beta1MatchIntentResponseHttpRequest
                         ): ...
+                        def serverStreamingDetectIntent(
+                            self,
+                            *,
+                            session: str,
+                            body: GoogleCloudDialogflowCxV3beta1DetectIntentRequest = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3beta1DetectIntentResponseHttpRequest: ...
                         def entityTypes(self) -> EntityTypesResource: ...
 
                     def create(
@@ -577,6 +584,55 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def versions(self) -> VersionsResource: ...
 
                 @typing.type_check_only
+                class GeneratorsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3beta1Generator = ...,
+                        languageCode: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3beta1GeneratorHttpRequest: ...
+                    def delete(
+                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        languageCode: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3beta1GeneratorHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        languageCode: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudDialogflowCxV3beta1ListGeneratorsResponseHttpRequest
+                    ): ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowCxV3beta1ListGeneratorsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse,
+                    ) -> (
+                        GoogleCloudDialogflowCxV3beta1ListGeneratorsResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3beta1Generator = ...,
+                        languageCode: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3beta1GeneratorHttpRequest: ...
+
+                @typing.type_check_only
                 class IntentsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -719,6 +775,22 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudDialogflowCxV3beta1MatchIntentResponseHttpRequest
                     ): ...
+                    def serverStreamingDetectIntent(
+                        self,
+                        *,
+                        session: str,
+                        body: GoogleCloudDialogflowCxV3beta1DetectIntentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudDialogflowCxV3beta1DetectIntentResponseHttpRequest
+                    ): ...
+                    def submitAnswerFeedback(
+                        self,
+                        *,
+                        session: str,
+                        body: GoogleCloudDialogflowCxV3beta1SubmitAnswerFeedbackRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3beta1AnswerFeedbackHttpRequest: ...
                     def entityTypes(self) -> EntityTypesResource: ...
 
                 @typing.type_check_only
@@ -1006,6 +1078,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def entityTypes(self) -> EntityTypesResource: ...
                 def environments(self) -> EnvironmentsResource: ...
                 def flows(self) -> FlowsResource: ...
+                def generators(self) -> GeneratorsResource: ...
                 def intents(self) -> IntentsResource: ...
                 def sessions(self) -> SessionsResource: ...
                 def testCases(self) -> TestCasesResource: ...
@@ -1155,6 +1228,16 @@ class GoogleCloudDialogflowCxV3beta1AgentValidationResultHttpRequest(
     ) -> GoogleCloudDialogflowCxV3beta1AgentValidationResult: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1AnswerFeedbackHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1AnswerFeedback: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1CalculateCoverageResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1273,6 +1356,16 @@ class GoogleCloudDialogflowCxV3beta1GenerativeSettingsHttpRequest(
     ) -> GoogleCloudDialogflowCxV3beta1GenerativeSettings: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1GeneratorHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1Generator: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1IntentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1359,6 +1452,16 @@ class GoogleCloudDialogflowCxV3beta1ListFlowsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3beta1ListFlowsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ListGeneratorsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1ListGeneratorsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ListIntentsResponseHttpRequest(

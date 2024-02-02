@@ -1966,6 +1966,32 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class FloodlightGroupsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class FloodlightActivitiesResource(googleapiclient.discovery.Resource):
+            def get(
+                self,
+                *,
+                floodlightGroupId: str,
+                floodlightActivityId: str,
+                partnerId: str = ...,
+                **kwargs: typing.Any
+            ) -> FloodlightActivityHttpRequest: ...
+            def list(
+                self,
+                *,
+                floodlightGroupId: str,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                partnerId: str = ...,
+                **kwargs: typing.Any
+            ) -> ListFloodlightActivitiesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListFloodlightActivitiesResponseHttpRequest,
+                previous_response: ListFloodlightActivitiesResponse,
+            ) -> ListFloodlightActivitiesResponseHttpRequest | None: ...
+
         def get(
             self, *, floodlightGroupId: str, partnerId: str = ..., **kwargs: typing.Any
         ) -> FloodlightGroupHttpRequest: ...
@@ -1978,6 +2004,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any
         ) -> FloodlightGroupHttpRequest: ...
+        def floodlightActivities(self) -> FloodlightActivitiesResource: ...
 
     @typing.type_check_only
     class GoogleAudiencesResource(googleapiclient.discovery.Resource):
@@ -3189,6 +3216,14 @@ class FirstAndThirdPartyAudienceHttpRequest(googleapiclient.http.HttpRequest):
     ) -> FirstAndThirdPartyAudience: ...
 
 @typing.type_check_only
+class FloodlightActivityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FloodlightActivity: ...
+
+@typing.type_check_only
 class FloodlightGroupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -3405,6 +3440,14 @@ class ListFirstAndThirdPartyAudiencesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListFirstAndThirdPartyAudiencesResponse: ...
+
+@typing.type_check_only
+class ListFloodlightActivitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListFloodlightActivitiesResponse: ...
 
 @typing.type_check_only
 class ListGoogleAudiencesResponseHttpRequest(googleapiclient.http.HttpRequest):

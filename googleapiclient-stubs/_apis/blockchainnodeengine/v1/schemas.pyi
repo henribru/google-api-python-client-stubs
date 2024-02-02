@@ -12,6 +12,7 @@ class BlockchainNode(typing_extensions.TypedDict, total=False):
     ethereumDetails: EthereumDetails
     labels: dict[str, typing.Any]
     name: str
+    privateServiceConnectEnabled: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -42,7 +43,6 @@ class EthereumDetails(typing_extensions.TypedDict, total=False):
     additionalEndpoints: EthereumEndpoints
     apiEnableAdmin: bool
     apiEnableDebug: bool
-    beaconFeeRecipient: str
     consensusClient: typing_extensions.Literal[
         "CONSENSUS_CLIENT_UNSPECIFIED", "LIGHTHOUSE", "ERIGON_EMBEDDED_CONSENSUS_LAYER"
     ]
@@ -51,11 +51,16 @@ class EthereumDetails(typing_extensions.TypedDict, total=False):
     ]
     gethDetails: GethDetails
     network: typing_extensions.Literal[
-        "NETWORK_UNSPECIFIED", "MAINNET", "TESTNET_GOERLI_PRATER", "TESTNET_SEPOLIA"
+        "NETWORK_UNSPECIFIED",
+        "MAINNET",
+        "TESTNET_GOERLI_PRATER",
+        "TESTNET_SEPOLIA",
+        "TESTNET_HOLESKY",
     ]
     nodeType: typing_extensions.Literal[
         "NODE_TYPE_UNSPECIFIED", "LIGHT", "FULL", "ARCHIVE"
     ]
+    validatorConfig: ValidatorConfig
 
 @typing.type_check_only
 class EthereumEndpoints(typing_extensions.TypedDict, total=False):
@@ -119,3 +124,7 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class ValidatorConfig(typing_extensions.TypedDict, total=False):
+    mevRelayUrls: _list[str]

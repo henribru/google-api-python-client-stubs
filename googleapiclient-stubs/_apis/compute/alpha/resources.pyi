@@ -2421,6 +2421,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def addNetworkInterface(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instance: str,
+            body: NetworkInterface = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def addResourcePolicies(
             self,
             *,
@@ -2475,6 +2485,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instance: str,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -2862,6 +2873,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instance: str,
             discardLocalSsd: bool = ...,
+            noGracefulShutdown: bool = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -2980,16 +2992,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             zone: str,
             instantSnapshot: str,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
-        def export(
-            self,
-            *,
-            project: str,
-            zone: str,
-            instantSnapshot: str,
-            body: InstantSnapshotsExportRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -5940,16 +5942,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
-        def export(
-            self,
-            *,
-            project: str,
-            region: str,
-            instantSnapshot: str,
-            body: RegionInstantSnapshotsExportRequest = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any
-        ) -> OperationHttpRequest: ...
         def get(
             self,
             *,
@@ -6483,6 +6475,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             securityPolicy: str,
             priority: int = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class RegionSnapshotSettingsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, region: str, **kwargs: typing.Any
+        ) -> SnapshotSettingsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            region: str,
+            body: SnapshotSettings = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
 
@@ -9447,6 +9455,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionNotificationEndpoints(self) -> RegionNotificationEndpointsResource: ...
     def regionOperations(self) -> RegionOperationsResource: ...
     def regionSecurityPolicies(self) -> RegionSecurityPoliciesResource: ...
+    def regionSnapshotSettings(self) -> RegionSnapshotSettingsResource: ...
     def regionSnapshots(self) -> RegionSnapshotsResource: ...
     def regionSslCertificates(self) -> RegionSslCertificatesResource: ...
     def regionSslPolicies(self) -> RegionSslPoliciesResource: ...

@@ -32,6 +32,12 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CSIVolumeSource(typing_extensions.TypedDict, total=False):
+    driver: str
+    readOnly: bool
+    volumeAttributes: dict[str, typing.Any]
+
+@typing.type_check_only
 class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -131,6 +137,9 @@ class DomainMappingStatus(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
     medium: str
     sizeLimit: str
@@ -214,6 +223,23 @@ class GoogleCloudRunV1Condition(typing_extensions.TypedDict, total=False):
     severity: str
     status: str
     type: str
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[GoogleLongrunningOperation]
+
+@typing.type_check_only
+class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: GoogleRpcStatus
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleLongrunningWaitOperationRequest(typing_extensions.TypedDict, total=False):
+    timeout: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
@@ -357,6 +383,12 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class NFSVolumeSource(typing_extensions.TypedDict, total=False):
+    path: str
+    readOnly: bool
+    server: str
 
 @typing.type_check_only
 class ObjectMeta(typing_extensions.TypedDict, total=False):
@@ -614,8 +646,10 @@ class TrafficTarget(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Volume(typing_extensions.TypedDict, total=False):
     configMap: ConfigMapVolumeSource
+    csi: CSIVolumeSource
     emptyDir: EmptyDirVolumeSource
     name: str
+    nfs: NFSVolumeSource
     secret: SecretVolumeSource
 
 @typing.type_check_only

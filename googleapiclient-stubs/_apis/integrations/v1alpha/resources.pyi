@@ -242,6 +242,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         pageToken: str = ...,
                         readMask: str = ...,
                         refreshAcl: bool = ...,
+                        snapshotMetadataWithoutParams: bool = ...,
                         truncateParams: bool = ...,
                         **kwargs: typing.Any
                     ) -> (
@@ -331,6 +332,18 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         name: str,
                         fileFormat: typing_extensions.Literal[
                             "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                        ] = ...,
+                        files: typing_extensions.Literal[
+                            "INTEGRATION_FILE_UNSPECIFIED",
+                            "INTEGRATION",
+                            "INTEGRATION_CONFIG_VARIABLES",
+                        ]
+                        | _list[
+                            typing_extensions.Literal[
+                                "INTEGRATION_FILE_UNSPECIFIED",
+                                "INTEGRATION",
+                                "INTEGRATION_CONFIG_VARIABLES",
+                            ]
                         ] = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponseHttpRequest: ...
@@ -613,6 +626,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             pageToken: str = ...,
                             readMask: str = ...,
                             refreshAcl: bool = ...,
+                            snapshotMetadataWithoutParams: bool = ...,
                             truncateParams: bool = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudIntegrationsV1alphaListExecutionsResponseHttpRequest: ...
@@ -670,6 +684,18 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             name: str,
                             fileFormat: typing_extensions.Literal[
                                 "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                            ] = ...,
+                            files: typing_extensions.Literal[
+                                "INTEGRATION_FILE_UNSPECIFIED",
+                                "INTEGRATION",
+                                "INTEGRATION_CONFIG_VARIABLES",
+                            ]
+                            | _list[
+                                typing_extensions.Literal[
+                                    "INTEGRATION_FILE_UNSPECIFIED",
+                                    "INTEGRATION",
+                                    "INTEGRATION_CONFIG_VARIABLES",
+                                ]
                             ] = ...,
                             **kwargs: typing.Any
                         ) -> GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponseHttpRequest: ...

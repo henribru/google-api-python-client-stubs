@@ -32,6 +32,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    lastUpdateTime: str
     progressPercentage: float
     startTime: str
 
@@ -65,6 +66,7 @@ class SynthesisInput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SynthesizeLongAudioMetadata(typing_extensions.TypedDict, total=False):
+    lastUpdateTime: str
     progressPercentage: float
     startTime: str
 

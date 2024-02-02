@@ -310,83 +310,6 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 def rbacrolebindings(self) -> RbacrolebindingsResource: ...
 
             @typing.type_check_only
-            class NamespacesResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class RbacrolebindingsResource(googleapiclient.discovery.Resource):
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: RBACRoleBinding = ...,
-                        rbacrolebindingId: str = ...,
-                        **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> RBACRoleBindingHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any
-                    ) -> ListRBACRoleBindingsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListRBACRoleBindingsResponseHttpRequest,
-                        previous_response: ListRBACRoleBindingsResponse,
-                    ) -> ListRBACRoleBindingsResponseHttpRequest | None: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: RBACRoleBinding = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any
-                    ) -> OperationHttpRequest: ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: Namespace = ...,
-                    namespaceId: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> NamespaceHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any
-                ) -> ListNamespacesResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListNamespacesResponseHttpRequest,
-                    previous_response: ListNamespacesResponse,
-                ) -> ListNamespacesResponseHttpRequest | None: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: Namespace = ...,
-                    updateMask: str = ...,
-                    **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def rbacrolebindings(self) -> RbacrolebindingsResource: ...
-
-            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -573,7 +496,6 @@ class GKEHubResource(googleapiclient.discovery.Resource):
             def features(self) -> FeaturesResource: ...
             def fleets(self) -> FleetsResource: ...
             def memberships(self) -> MembershipsResource: ...
-            def namespaces(self) -> NamespacesResource: ...
             def operations(self) -> OperationsResource: ...
             def scopes(self) -> ScopesResource: ...
 
@@ -687,28 +609,12 @@ class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMembershipsResponse: ...
 
 @typing.type_check_only
-class ListNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListNamespacesResponse: ...
-
-@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOperationsResponse: ...
-
-@typing.type_check_only
-class ListRBACRoleBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListRBACRoleBindingsResponse: ...
 
 @typing.type_check_only
 class ListScopeNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):

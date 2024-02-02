@@ -205,6 +205,9 @@ class ChildRolloutJobs(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudRunConfig(typing_extensions.TypedDict, total=False):
     automaticTrafficControl: bool
+    canaryRevisionTags: _list[str]
+    priorRevisionTags: _list[str]
+    stableRevisionTags: _list[str]
 
 @typing.type_check_only
 class CloudRunLocation(typing_extensions.TypedDict, total=False):
@@ -240,6 +243,37 @@ class CustomCanaryDeployment(typing_extensions.TypedDict, total=False):
     phaseConfigs: _list[PhaseConfig]
 
 @typing.type_check_only
+class CustomMetadata(typing_extensions.TypedDict, total=False):
+    values: dict[str, typing.Any]
+
+@typing.type_check_only
+class CustomTarget(typing_extensions.TypedDict, total=False):
+    customTargetType: str
+
+@typing.type_check_only
+class CustomTargetDeployMetadata(typing_extensions.TypedDict, total=False):
+    skipMessage: str
+
+@typing.type_check_only
+class CustomTargetSkaffoldActions(typing_extensions.TypedDict, total=False):
+    deployAction: str
+    includeSkaffoldModules: _list[SkaffoldModules]
+    renderAction: str
+
+@typing.type_check_only
+class CustomTargetType(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    customActions: CustomTargetSkaffoldActions
+    customTargetTypeId: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -268,6 +302,7 @@ class DeliveryPipeline(typing_extensions.TypedDict, total=False):
 class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False):
     deliveryPipeline: str
     message: str
+    pipelineUid: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
@@ -298,6 +333,7 @@ class DeployJobRun(typing_extensions.TypedDict, total=False):
         "DEADLINE_EXCEEDED",
         "MISSING_RESOURCES_FOR_CANARY",
         "CLOUD_BUILD_REQUEST_FAILED",
+        "DEPLOY_FEATURE_NOT_SUPPORTED",
     ]
     failureMessage: str
     metadata: DeployJobRunMetadata
@@ -305,6 +341,8 @@ class DeployJobRun(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeployJobRunMetadata(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRunMetadata
+    custom: CustomMetadata
+    customTarget: CustomTargetDeployMetadata
 
 @typing.type_check_only
 class DeployParameters(typing_extensions.TypedDict, total=False):
@@ -353,6 +391,7 @@ class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
     httpRoute: str
     routeUpdateWaitTime: str
     service: str
+    stableCutbackDuration: str
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
@@ -420,7 +459,9 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
     jobRun: str
     message: str
     pipelineUid: str
+    release: str
     releaseUid: str
+    rollout: str
     rolloutUid: str
     targetId: str
     type: typing_extensions.Literal[
@@ -448,6 +489,12 @@ class ListAutomationRunsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAutomationsResponse(typing_extensions.TypedDict, total=False):
     automations: _list[Automation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListCustomTargetTypesResponse(typing_extensions.TypedDict, total=False):
+    customTargetTypes: _list[CustomTargetType]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -503,6 +550,7 @@ class Location(typing_extensions.TypedDict, total=False):
 class Metadata(typing_extensions.TypedDict, total=False):
     automation: AutomationRolloutMetadata
     cloudRun: CloudRunMetadata
+    custom: CustomMetadata
 
 @typing.type_check_only
 class MultiTarget(typing_extensions.TypedDict, total=False):
@@ -643,6 +691,7 @@ class Release(typing_extensions.TypedDict, total=False):
     buildArtifacts: _list[BuildArtifact]
     condition: ReleaseCondition
     createTime: str
+    customTargetTypeSnapshots: _list[CustomTargetType]
     deliveryPipelineSnapshot: DeliveryPipeline
     deployParameters: dict[str, typing.Any]
     description: str
@@ -670,7 +719,9 @@ class ReleaseCondition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
     message: str
+    pipelineUid: str
     release: str
+    releaseUid: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "TYPE_PUBSUB_NOTIFICATION_FAILURE",
@@ -689,11 +740,26 @@ class ReleaseReadyCondition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
     message: str
+    pipelineUid: str
     release: str
+    releaseRenderState: typing_extensions.Literal[
+        "RENDER_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "IN_PROGRESS"
+    ]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+        "TYPE_RESOURCE_STATE_CHANGE",
+        "TYPE_PROCESS_ABORTED",
+        "TYPE_RESTRICTION_VIOLATED",
+        "TYPE_RESOURCE_DELETED",
+        "TYPE_ROLLOUT_UPDATE",
+        "TYPE_RENDER_STATUES_CHANGE",
+    ]
 
 @typing.type_check_only
 class RenderMetadata(typing_extensions.TypedDict, total=False):
     cloudRun: CloudRunRenderMetadata
+    custom: CustomMetadata
 
 @typing.type_check_only
 class RepairMode(typing_extensions.TypedDict, total=False):
@@ -708,6 +774,8 @@ class RepairPhase(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RepairRolloutOperation(typing_extensions.TypedDict, total=False):
     currentRepairModeIndex: str
+    jobId: str
+    phaseId: str
     repairPhases: _list[RepairPhase]
     rollout: str
 
@@ -820,6 +888,7 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "RELEASE_ABANDONED",
         "VERIFICATION_CONFIG_NOT_FOUND",
         "CLOUD_BUILD_REQUEST_FAILED",
+        "OPERATION_FEATURE_NOT_SUPPORTED",
     ]
     deployStartTime: str
     deployingBuild: str
@@ -853,8 +922,10 @@ class Rollout(typing_extensions.TypedDict, total=False):
 class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
     message: str
     pipelineUid: str
+    release: str
     releaseUid: str
     rollout: str
+    rolloutUid: str
     targetId: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
@@ -871,6 +942,7 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
 class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
     message: str
     pipelineUid: str
+    release: str
     releaseUid: str
     rollout: str
     rolloutUpdateType: typing_extensions.Literal[
@@ -922,6 +994,23 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SkaffoldGCSSource(typing_extensions.TypedDict, total=False):
+    path: str
+    source: str
+
+@typing.type_check_only
+class SkaffoldGitSource(typing_extensions.TypedDict, total=False):
+    path: str
+    ref: str
+    repo: str
+
+@typing.type_check_only
+class SkaffoldModules(typing_extensions.TypedDict, total=False):
+    configs: _list[str]
+    git: SkaffoldGitSource
+    googleCloudStorage: SkaffoldGCSSource
+
+@typing.type_check_only
 class SkaffoldSupportedCondition(typing_extensions.TypedDict, total=False):
     maintenanceModeTime: str
     skaffoldSupportState: typing_extensions.Literal[
@@ -969,6 +1058,7 @@ class Target(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     anthosCluster: AnthosCluster
     createTime: str
+    customTarget: CustomTarget
     deployParameters: dict[str, typing.Any]
     description: str
     etag: str
@@ -1019,6 +1109,8 @@ class TargetRender(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
         "VERIFICATION_CONFIG_NOT_FOUND",
         "CUSTOM_ACTION_NOT_FOUND",
+        "DEPLOYMENT_STRATEGY_NOT_SUPPORTED",
+        "RENDER_FEATURE_NOT_SUPPORTED",
     ]
     failureMessage: str
     metadata: RenderMetadata

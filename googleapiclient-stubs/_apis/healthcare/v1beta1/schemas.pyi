@@ -525,6 +525,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
+    enableHistoryModifications: bool
     enableUpdateCreate: bool
     labels: dict[str, typing.Any]
     name: str

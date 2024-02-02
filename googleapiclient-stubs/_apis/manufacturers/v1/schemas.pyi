@@ -10,6 +10,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     ageGroup: str
     brand: str
     capacity: Capacity
+    certification: _list[GoogleShoppingManufacturersV1ProductCertification]
     color: str
     count: Count
     description: str
@@ -85,6 +86,14 @@ class FeatureDescription(typing_extensions.TypedDict, total=False):
 class FloatUnit(typing_extensions.TypedDict, total=False):
     amount: float
     unit: str
+
+@typing.type_check_only
+class GoogleShoppingManufacturersV1ProductCertification(
+    typing_extensions.TypedDict, total=False
+):
+    authority: str
+    code: str
+    name: str
 
 @typing.type_check_only
 class Grocery(typing_extensions.TypedDict, total=False):

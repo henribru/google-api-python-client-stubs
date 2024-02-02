@@ -317,6 +317,10 @@ class OracleSchema(typing_extensions.TypedDict, total=False):
     schema: str
 
 @typing.type_check_only
+class OracleScnPosition(typing_extensions.TypedDict, total=False):
+    scn: str
+
+@typing.type_check_only
 class OracleSourceConfig(typing_extensions.TypedDict, total=False):
     dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
@@ -441,6 +445,7 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     mysqlLogPosition: MysqlLogPosition
+    oracleScnPosition: OracleScnPosition
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -510,7 +515,7 @@ class Validation(typing_extensions.TypedDict, total=False):
     description: str
     message: _list[ValidationMessage]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_EXECUTED", "FAILED", "PASSED"
+        "STATE_UNSPECIFIED", "NOT_EXECUTED", "FAILED", "PASSED", "WARNING"
     ]
 
 @typing.type_check_only

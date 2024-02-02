@@ -36,8 +36,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
 
             def operations(self) -> OperationsResource: ...
 
-        def cancel(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
 
@@ -389,9 +387,6 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> LocationHttpRequest: ...
             def list(
                 self,
                 *,
@@ -544,14 +539,6 @@ class ListTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListTablesResponse: ...
-
-@typing.type_check_only
-class LocationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> Location: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

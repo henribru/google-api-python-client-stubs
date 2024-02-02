@@ -402,7 +402,12 @@ class GitFileSource(typing_extensions.TypedDict, total=False):
     githubEnterpriseConfig: str
     path: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
+        "UNKNOWN",
+        "CLOUD_SOURCE_REPOSITORIES",
+        "GITHUB",
+        "BITBUCKET_SERVER",
+        "GITLAB",
+        "BITBUCKET_CLOUD",
     ]
     repository: str
     revision: str
@@ -496,7 +501,12 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
     githubEnterpriseConfig: str
     ref: str
     repoType: typing_extensions.Literal[
-        "UNKNOWN", "CLOUD_SOURCE_REPOSITORIES", "GITHUB", "BITBUCKET_SERVER", "GITLAB"
+        "UNKNOWN",
+        "CLOUD_SOURCE_REPOSITORIES",
+        "GITHUB",
+        "BITBUCKET_SERVER",
+        "GITLAB",
+        "BITBUCKET_CLOUD",
     ]
     repository: str
     uri: str
@@ -686,6 +696,8 @@ class RepositoryEventConfig(typing_extensions.TypedDict, total=False):
         "GITHUB",
         "GITHUB_ENTERPRISE",
         "GITLAB_ENTERPRISE",
+        "BITBUCKET_DATA_CENTER",
+        "BITBUCKET_CLOUD",
     ]
 
 @typing.type_check_only

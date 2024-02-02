@@ -406,8 +406,10 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Maintainer(typing_extensions.TypedDict, total=False):
+    email: str
     kind: str
     name: str
+    url: str
 
 @typing.type_check_only
 class Material(typing_extensions.TypedDict, total=False):
@@ -487,7 +489,17 @@ class PackageData(typing_extensions.TypedDict, total=False):
     osVersion: str
     package: str
     packageType: typing_extensions.Literal[
-        "PACKAGE_TYPE_UNSPECIFIED", "OS", "MAVEN", "GO", "GO_STDLIB", "PYPI", "NPM"
+        "PACKAGE_TYPE_UNSPECIFIED",
+        "OS",
+        "MAVEN",
+        "GO",
+        "GO_STDLIB",
+        "PYPI",
+        "NPM",
+        "NUGET",
+        "RUBYGEMS",
+        "RUST",
+        "COMPOSER",
     ]
     patchedCve: _list[str]
     sourceVersion: PackageVersion

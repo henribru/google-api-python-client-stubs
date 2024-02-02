@@ -41,10 +41,12 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     httpLoadBalancing: HttpLoadBalancing
     kubernetesDashboard: KubernetesDashboard
     networkPolicyConfig: NetworkPolicyConfig
+    statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
 class AdvancedDatapathObservabilityConfig(typing_extensions.TypedDict, total=False):
     enableMetrics: bool
+    enableRelay: bool
     relayMode: typing_extensions.Literal[
         "RELAY_MODE_UNSPECIFIED", "DISABLED", "INTERNAL_VPC_LB", "EXTERNAL_LB"
     ]
@@ -279,6 +281,11 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredGcfsConfig: GcfsConfig
     desiredIdentityServiceConfig: IdentityServiceConfig
     desiredImageType: str
+    desiredInTransitEncryptionConfig: typing_extensions.Literal[
+        "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
+        "IN_TRANSIT_ENCRYPTION_DISABLED",
+        "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT",
+    ]
     desiredIntraNodeVisibilityConfig: IntraNodeVisibilityConfig
     desiredK8sBetaApis: K8sBetaAPIConfig
     desiredL4ilbSubsettingConfig: ILBSubsettingConfig
@@ -696,6 +703,11 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     enableL4ilbSubsetting: bool
     enableMultiNetworking: bool
     gatewayApiConfig: GatewayAPIConfig
+    inTransitEncryptionConfig: typing_extensions.Literal[
+        "IN_TRANSIT_ENCRYPTION_CONFIG_UNSPECIFIED",
+        "IN_TRANSIT_ENCRYPTION_DISABLED",
+        "IN_TRANSIT_ENCRYPTION_INTER_NODE_TRANSPARENT",
+    ]
     network: str
     networkPerformanceConfig: ClusterNetworkPerformanceConfig
     privateIpv6GoogleAccess: typing_extensions.Literal[
@@ -819,6 +831,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
     networkConfig: NodeNetworkConfig
     placementPolicy: PlacementPolicy
     podIpv4CidrSize: int
+    queuedProvisioning: QueuedProvisioning
     selfLink: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -961,6 +974,10 @@ class PubSub(typing_extensions.TypedDict, total=False):
     topic: str
 
 @typing.type_check_only
+class QueuedProvisioning(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class RangeInfo(typing_extensions.TypedDict, total=False):
     rangeName: str
     utilization: float
@@ -1041,6 +1058,7 @@ class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
         "VULNERABILITY_MODE_UNSPECIFIED",
         "VULNERABILITY_DISABLED",
         "VULNERABILITY_BASIC",
+        "VULNERABILITY_ENTERPRISE",
     ]
 
 @typing.type_check_only
@@ -1185,6 +1203,10 @@ class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     projectId: str
     rotateCredentials: bool
     zone: str
+
+@typing.type_check_only
+class StatefulHAConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

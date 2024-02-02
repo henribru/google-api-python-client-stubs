@@ -34,6 +34,11 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Capabilities(typing_extensions.TypedDict, total=False):
+    add: _list[str]
+    drop: _list[str]
+
+@typing.type_check_only
 class ChildStatusReference(typing_extensions.TypedDict, total=False):
     name: str
     pipelineTaskName: str
@@ -75,6 +80,10 @@ class EmptyDirVolumeSource(typing_extensions.TypedDict, total=False): ...
 class EnvVar(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class ExecAction(typing_extensions.TypedDict, total=False):
+    command: _list[str]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -264,6 +273,7 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
     conditions: _list[GoogleDevtoolsCloudbuildV2Condition]
     createTime: str
     etag: str
+    finallyStartTime: str
     name: str
     params: _list[Param]
     pipelineRef: PipelineRef
@@ -316,6 +326,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class Probe(typing_extensions.TypedDict, total=False):
+    exec: ExecAction
+    periodSeconds: int
+
+@typing.type_check_only
 class PropertySpec(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING"]
 
@@ -346,7 +361,12 @@ class SecretVolumeSource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
+    allowPrivilegeEscalation: bool
+    capabilities: Capabilities
     privileged: bool
+    runAsGroup: str
+    runAsNonRoot: bool
+    runAsUser: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -360,6 +380,7 @@ class Sidecar(typing_extensions.TypedDict, total=False):
     env: _list[EnvVar]
     image: str
     name: str
+    readinessProbe: Probe
     script: str
     securityContext: SecurityContext
     volumeMounts: _list[VolumeMount]
@@ -385,9 +406,15 @@ class Step(typing_extensions.TypedDict, total=False):
     image: str
     name: str
     script: str
+    securityContext: SecurityContext
     timeout: str
     volumeMounts: _list[VolumeMount]
     workingDir: str
+
+@typing.type_check_only
+class StepTemplate(typing_extensions.TypedDict, total=False):
+    env: _list[EnvVar]
+    volumeMounts: _list[VolumeMount]
 
 @typing.type_check_only
 class TaskRef(typing_extensions.TypedDict, total=False):
@@ -415,6 +442,7 @@ class TaskSpec(typing_extensions.TypedDict, total=False):
     params: _list[ParamSpec]
     results: _list[TaskResult]
     sidecars: _list[Sidecar]
+    stepTemplate: StepTemplate
     steps: _list[Step]
     volumes: _list[VolumeSource]
     workspaces: _list[WorkspaceDeclaration]
@@ -474,6 +502,7 @@ class WhenExpression(typing_extensions.TypedDict, total=False):
 class WorkspaceBinding(typing_extensions.TypedDict, total=False):
     name: str
     secret: SecretVolumeSource
+    subPath: str
     volumeClaim: VolumeClaim
 
 @typing.type_check_only
@@ -481,9 +510,11 @@ class WorkspaceDeclaration(typing_extensions.TypedDict, total=False):
     description: str
     mountPath: str
     name: str
+    optional: bool
     readOnly: bool
 
 @typing.type_check_only
 class WorkspacePipelineTaskBinding(typing_extensions.TypedDict, total=False):
     name: str
+    subPath: str
     workspace: str

@@ -19,7 +19,6 @@ class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadataIndividualAutoLabe
     typing_extensions.TypedDict, total=False
 ):
     documentId: GoogleCloudDocumentaiUiv1beta3DocumentId
-    gcsUri: str
     status: GoogleRpcStatus
 
 @typing.type_check_only

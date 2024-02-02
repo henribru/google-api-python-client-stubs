@@ -59,6 +59,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
+                        filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any
@@ -325,7 +326,12 @@ class DataformResource(googleapiclient.discovery.Resource):
                         previous_response: QueryDirectoryContentsResponse,
                     ) -> QueryDirectoryContentsResponseHttpRequest | None: ...
                     def readFile(
-                        self, *, workspace: str, path: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        workspace: str,
+                        path: str = ...,
+                        revision: str = ...,
+                        **kwargs: typing.Any
                     ) -> ReadFileResponseHttpRequest: ...
                     def removeDirectory(
                         self,
@@ -348,6 +354,20 @@ class DataformResource(googleapiclient.discovery.Resource):
                         body: ResetWorkspaceChangesRequest = ...,
                         **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def searchFiles(
+                        self,
+                        *,
+                        workspace: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> SearchFilesResponseHttpRequest: ...
+                    def searchFiles_next(
+                        self,
+                        previous_request: SearchFilesResponseHttpRequest,
+                        previous_response: SearchFilesResponse,
+                    ) -> SearchFilesResponseHttpRequest | None: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -758,6 +778,14 @@ class RepositoryHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Repository: ...
+
+@typing.type_check_only
+class SearchFilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchFilesResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

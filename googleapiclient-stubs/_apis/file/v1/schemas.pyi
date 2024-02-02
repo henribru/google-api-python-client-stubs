@@ -13,6 +13,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     kmsKey: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     sourceFileShare: str
     sourceInstance: str
@@ -164,6 +165,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     networks: _list[NetworkConfig]
+    satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

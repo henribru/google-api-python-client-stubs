@@ -41,7 +41,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Duration(
     typing_extensions.TypedDict, total=False
 ):
     count: int
-    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "MONTH", "DAY"]
+    unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"]
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest(

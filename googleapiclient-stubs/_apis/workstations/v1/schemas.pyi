@@ -40,6 +40,10 @@ class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
     kmsKeyServiceAccount: str
 
 @typing.type_check_only
+class DomainConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -222,8 +226,10 @@ class Workstation(typing_extensions.TypedDict, total=False):
     createTime: str
     deleteTime: str
     displayName: str
+    env: dict[str, typing.Any]
     etag: str
     host: str
+    kmsKey: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -247,6 +253,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     degraded: bool
     deleteTime: str
     displayName: str
+    domainConfig: DomainConfig
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -265,7 +272,9 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     degraded: bool
     deleteTime: str
+    disableTcpConnections: bool
     displayName: str
+    enableAuditAgent: bool
     encryptionKey: CustomerEncryptionKey
     etag: str
     host: Host

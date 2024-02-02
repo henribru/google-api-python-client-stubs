@@ -145,7 +145,6 @@ class GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldTypeRequest(
     dateOptions: GoogleAppsDriveLabelsV2FieldDateOptions
     id: str
     integerOptions: GoogleAppsDriveLabelsV2FieldIntegerOptions
-    longTextOptions: GoogleAppsDriveLabelsV2FieldLongTextOptions
     selectionOptions: GoogleAppsDriveLabelsV2FieldSelectionOptions
     textOptions: GoogleAppsDriveLabelsV2FieldTextOptions
     updateMask: str
@@ -346,13 +345,6 @@ class GoogleAppsDriveLabelsV2FieldLimits(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2FieldListOptions(typing_extensions.TypedDict, total=False):
     maxEntries: int
-
-@typing.type_check_only
-class GoogleAppsDriveLabelsV2FieldLongTextOptions(
-    typing_extensions.TypedDict, total=False
-):
-    maxLength: int
-    minLength: int
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2FieldProperties(typing_extensions.TypedDict, total=False):

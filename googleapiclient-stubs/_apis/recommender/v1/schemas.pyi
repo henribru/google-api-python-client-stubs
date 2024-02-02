@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class GoogleCloudRecommenderV1CostProjection(typing_extensions.TypedDict, total=False):
     cost: GoogleTypeMoney
+    costInLocalCurrency: GoogleTypeMoney
     duration: str
 
 @typing.type_check_only
@@ -163,6 +164,7 @@ class GoogleCloudRecommenderV1Recommendation(typing_extensions.TypedDict, total=
     priority: typing_extensions.Literal["PRIORITY_UNSPECIFIED", "P4", "P3", "P2", "P1"]
     recommenderSubtype: str
     stateInfo: GoogleCloudRecommenderV1RecommendationStateInfo
+    targetResources: _list[str]
     xorGroupId: str
 
 @typing.type_check_only

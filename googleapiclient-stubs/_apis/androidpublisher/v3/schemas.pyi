@@ -26,10 +26,42 @@ class AcquisitionTargetingRule(typing_extensions.TypedDict, total=False):
     scope: TargetingRuleScope
 
 @typing.type_check_only
-class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
 
 @typing.type_check_only
-class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False): ...
+class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
+
+@typing.type_check_only
+class AddTargetingRequest(typing_extensions.TypedDict, total=False):
+    targetingUpdate: TargetingUpdate
+
+@typing.type_check_only
+class AddTargetingResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AllUsers(typing_extensions.TypedDict, total=False):
+    isAllUsersRequested: bool
+
+@typing.type_check_only
+class AndroidSdks(typing_extensions.TypedDict, total=False):
+    sdkLevels: _list[str]
 
 @typing.type_check_only
 class Apk(typing_extensions.TypedDict, total=False):
@@ -90,6 +122,31 @@ class AppEdit(typing_extensions.TypedDict, total=False):
     id: str
 
 @typing.type_check_only
+class AppRecoveryAction(typing_extensions.TypedDict, total=False):
+    appRecoveryId: str
+    cancelTime: str
+    createTime: str
+    deployTime: str
+    lastUpdateTime: str
+    remoteInAppUpdateData: RemoteInAppUpdateData
+    status: typing_extensions.Literal[
+        "RECOVERY_STATUS_UNSPECIFIED",
+        "RECOVERY_STATUS_ACTIVE",
+        "RECOVERY_STATUS_CANCELED",
+        "RECOVERY_STATUS_DRAFT",
+    ]
+    targeting: Targeting
+
+@typing.type_check_only
+class AppVersionList(typing_extensions.TypedDict, total=False):
+    versionCodes: _list[str]
+
+@typing.type_check_only
+class AppVersionRange(typing_extensions.TypedDict, total=False):
+    versionCodeEnd: str
+    versionCodeStart: str
+
+@typing.type_check_only
 class ArchiveSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -137,6 +194,62 @@ class BasePlan(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
+class BatchGetSubscriptionOffersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[GetSubscriptionOfferRequest]
+
+@typing.type_check_only
+class BatchGetSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+    subscriptionOffers: _list[SubscriptionOffer]
+
+@typing.type_check_only
+class BatchGetSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    subscriptions: _list[Subscription]
+
+@typing.type_check_only
+class BatchMigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[MigrateBasePlanPricesRequest]
+
+@typing.type_check_only
+class BatchMigrateBasePlanPricesResponse(typing_extensions.TypedDict, total=False):
+    responses: _list[MigrateBasePlanPricesResponse]
+
+@typing.type_check_only
+class BatchUpdateBasePlanStatesRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdateBasePlanStateRequest]
+
+@typing.type_check_only
+class BatchUpdateBasePlanStatesResponse(typing_extensions.TypedDict, total=False):
+    subscriptions: _list[Subscription]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOfferStatesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[UpdateSubscriptionOfferStateRequest]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOfferStatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    subscriptionOffers: _list[SubscriptionOffer]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOffersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdateSubscriptionOfferRequest]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
+    subscriptionOffers: _list[SubscriptionOffer]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionsRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdateSubscriptionRequest]
+
+@typing.type_check_only
+class BatchUpdateSubscriptionsResponse(typing_extensions.TypedDict, total=False):
+    subscriptions: _list[Subscription]
+
+@typing.type_check_only
 class Bundle(typing_extensions.TypedDict, total=False):
     sha1: str
     sha256: str
@@ -146,6 +259,12 @@ class Bundle(typing_extensions.TypedDict, total=False):
 class BundlesListResponse(typing_extensions.TypedDict, total=False):
     bundles: _list[Bundle]
     kind: str
+
+@typing.type_check_only
+class CancelAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelAppRecoveryResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelSurveyResult(typing_extensions.TypedDict, total=False):
@@ -197,10 +316,32 @@ class CountryTargeting(typing_extensions.TypedDict, total=False):
     includeRestOfWorld: bool
 
 @typing.type_check_only
-class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False): ...
+class CreateDraftAppRecoveryRequest(typing_extensions.TypedDict, total=False):
+    remoteInAppUpdate: RemoteInAppUpdate
+    targeting: Targeting
 
 @typing.type_check_only
-class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False): ...
+class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
+
+@typing.type_check_only
+class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
 
 @typing.type_check_only
 class DeferredItemReplacement(typing_extensions.TypedDict, total=False):
@@ -215,6 +356,12 @@ class DeobfuscationFile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeobfuscationFilesUploadResponse(typing_extensions.TypedDict, total=False):
     deobfuscationFile: DeobfuscationFile
+
+@typing.type_check_only
+class DeployAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeployAppRecoveryResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeveloperComment(typing_extensions.TypedDict, total=False):
@@ -333,6 +480,7 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalTransactionAddress(typing_extensions.TypedDict, total=False):
+    administrativeArea: str
     regionCode: str
 
 @typing.type_check_only
@@ -367,6 +515,7 @@ class GeneratedApksListResponse(typing_extensions.TypedDict, total=False):
 class GeneratedApksPerSigningKey(typing_extensions.TypedDict, total=False):
     certificateSha256Hash: str
     generatedAssetPackSlices: _list[GeneratedAssetPackSlice]
+    generatedRecoveryModules: _list[GeneratedRecoveryApk]
     generatedSplitApks: _list[GeneratedSplitApk]
     generatedStandaloneApks: _list[GeneratedStandaloneApk]
     generatedUniversalApk: GeneratedUniversalApk
@@ -378,6 +527,18 @@ class GeneratedAssetPackSlice(typing_extensions.TypedDict, total=False):
     moduleName: str
     sliceId: str
     version: str
+
+@typing.type_check_only
+class GeneratedRecoveryApk(typing_extensions.TypedDict, total=False):
+    downloadId: str
+    moduleName: str
+    recoveryId: str
+    recoveryStatus: typing_extensions.Literal[
+        "RECOVERY_STATUS_UNSPECIFIED",
+        "RECOVERY_STATUS_ACTIVE",
+        "RECOVERY_STATUS_CANCELED",
+        "RECOVERY_STATUS_DRAFT",
+    ]
 
 @typing.type_check_only
 class GeneratedSplitApk(typing_extensions.TypedDict, total=False):
@@ -394,6 +555,13 @@ class GeneratedStandaloneApk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GeneratedUniversalApk(typing_extensions.TypedDict, total=False):
     downloadId: str
+
+@typing.type_check_only
+class GetSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    offerId: str
+    packageName: str
+    productId: str
 
 @typing.type_check_only
 class Grant(typing_extensions.TypedDict, total=False):
@@ -462,11 +630,50 @@ class InAppProductListing(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class InappproductsBatchDeleteRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[InappproductsDeleteRequest]
+
+@typing.type_check_only
+class InappproductsBatchGetResponse(typing_extensions.TypedDict, total=False):
+    inappproduct: _list[InAppProduct]
+
+@typing.type_check_only
+class InappproductsBatchUpdateRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[InappproductsUpdateRequest]
+
+@typing.type_check_only
+class InappproductsBatchUpdateResponse(typing_extensions.TypedDict, total=False):
+    inappproducts: _list[InAppProduct]
+
+@typing.type_check_only
+class InappproductsDeleteRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    sku: str
+
+@typing.type_check_only
 class InappproductsListResponse(typing_extensions.TypedDict, total=False):
     inappproduct: _list[InAppProduct]
     kind: str
     pageInfo: PageInfo
     tokenPagination: TokenPagination
+
+@typing.type_check_only
+class InappproductsUpdateRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    autoConvertMissingPrices: bool
+    inappproduct: InAppProduct
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    sku: str
 
 @typing.type_check_only
 class InternalAppSharingArtifact(typing_extensions.TypedDict, total=False):
@@ -485,6 +692,10 @@ class IntroductoryPriceInfo(typing_extensions.TypedDict, total=False):
 class LanguageTargeting(typing_extensions.TypedDict, total=False):
     alternatives: _list[str]
     value: _list[str]
+
+@typing.type_check_only
+class ListAppRecoveriesResponse(typing_extensions.TypedDict, total=False):
+    recoveryActions: _list[AppRecoveryAction]
 
 @typing.type_check_only
 class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -536,6 +747,14 @@ class ManagedProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class MigrateBasePlanPricesRequest(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
     regionalPriceMigrations: _list[RegionalPriceMigrationConfig]
     regionsVersion: RegionsVersion
 
@@ -669,6 +888,11 @@ class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
     externalSubscription: ExternalSubscription
     externalTransactionToken: str
     initialExternalTransactionId: str
+    migratedTransactionProgram: typing_extensions.Literal[
+        "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
+        "USER_CHOICE_BILLING",
+        "ALTERTNATIVE_BILLING_ONLY",
+    ]
 
 @typing.type_check_only
 class RefundExternalTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -726,8 +950,26 @@ class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Regions(typing_extensions.TypedDict, total=False):
+    regionCode: _list[str]
+
+@typing.type_check_only
 class RegionsVersion(typing_extensions.TypedDict, total=False):
     version: str
+
+@typing.type_check_only
+class RemoteInAppUpdate(typing_extensions.TypedDict, total=False):
+    isRemoteInAppUpdateRequested: bool
+
+@typing.type_check_only
+class RemoteInAppUpdateData(typing_extensions.TypedDict, total=False):
+    remoteAppUpdateDataPerBundle: _list[RemoteInAppUpdateDataPerBundle]
+
+@typing.type_check_only
+class RemoteInAppUpdateDataPerBundle(typing_extensions.TypedDict, total=False):
+    recoveredDeviceCount: str
+    totalDeviceCount: str
+    versionCode: str
 
 @typing.type_check_only
 class ReplacementCancellation(typing_extensions.TypedDict, total=False): ...
@@ -756,6 +998,27 @@ class ReviewsReplyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
     result: ReviewReplyResult
+
+@typing.type_check_only
+class RevocationContext(typing_extensions.TypedDict, total=False):
+    proratedRefund: RevocationContextProratedRefund
+
+@typing.type_check_only
+class RevocationContextProratedRefund(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RevokeSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+    revocationContext: RevocationContext
+
+@typing.type_check_only
+class RevokeSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SafetyLabelsUpdateRequest(typing_extensions.TypedDict, total=False):
+    safetyLabels: str
+
+@typing.type_check_only
+class SafetyLabelsUpdateResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ScreenDensity(typing_extensions.TypedDict, total=False):
@@ -989,6 +1252,14 @@ class SystemFeature(typing_extensions.TypedDict, total=False):
 class SystemInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Targeting(typing_extensions.TypedDict, total=False):
+    allUsers: AllUsers
+    androidSdks: AndroidSdks
+    regions: Regions
+    versionList: AppVersionList
+    versionRange: AppVersionRange
+
+@typing.type_check_only
 class TargetingInfo(typing_extensions.TypedDict, total=False):
     assetSliceSet: _list[AssetSliceSet]
     packageName: str
@@ -997,6 +1268,12 @@ class TargetingInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TargetingRuleScope(typing_extensions.TypedDict, total=False):
     specificSubscriptionInApp: str
+
+@typing.type_check_only
+class TargetingUpdate(typing_extensions.TypedDict, total=False):
+    allUsers: AllUsers
+    androidSdks: AndroidSdks
+    regions: Regions
 
 @typing.type_check_only
 class TestPurchase(typing_extensions.TypedDict, total=False): ...
@@ -1042,6 +1319,14 @@ class Track(typing_extensions.TypedDict, total=False):
     track: str
 
 @typing.type_check_only
+class TrackConfig(typing_extensions.TypedDict, total=False):
+    formFactor: typing_extensions.Literal[
+        "FORM_FACTOR_UNSPECIFIED", "DEFAULT", "WEAR", "AUTOMOTIVE"
+    ]
+    track: str
+    type: typing_extensions.Literal["TRACK_TYPE_UNSPECIFIED", "CLOSED_TESTING"]
+
+@typing.type_check_only
 class TrackCountryAvailability(typing_extensions.TypedDict, total=False):
     countries: _list[TrackTargetedCountry]
     restOfWorld: bool
@@ -1067,6 +1352,40 @@ class TrackTargetedCountry(typing_extensions.TypedDict, total=False):
 class TracksListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     tracks: _list[Track]
+
+@typing.type_check_only
+class UpdateBasePlanStateRequest(typing_extensions.TypedDict, total=False):
+    activateBasePlanRequest: ActivateBasePlanRequest
+    deactivateBasePlanRequest: DeactivateBasePlanRequest
+
+@typing.type_check_only
+class UpdateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    regionsVersion: RegionsVersion
+    subscriptionOffer: SubscriptionOffer
+    updateMask: str
+
+@typing.type_check_only
+class UpdateSubscriptionOfferStateRequest(typing_extensions.TypedDict, total=False):
+    activateSubscriptionOfferRequest: ActivateSubscriptionOfferRequest
+    deactivateSubscriptionOfferRequest: DeactivateSubscriptionOfferRequest
+
+@typing.type_check_only
+class UpdateSubscriptionRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    regionsVersion: RegionsVersion
+    subscription: Subscription
+    updateMask: str
 
 @typing.type_check_only
 class UpgradeTargetingRule(typing_extensions.TypedDict, total=False):

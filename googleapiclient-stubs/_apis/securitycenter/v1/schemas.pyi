@@ -29,6 +29,11 @@ class AccessReview(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class Application(typing_extensions.TypedDict, total=False):
+    baseUri: str
+    fullUri: str
+
+@typing.type_check_only
 class Asset(typing_extensions.TypedDict, total=False):
     canonicalName: str
     createTime: str
@@ -104,6 +109,19 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
+    appliance: str
+    applications: _list[str]
+    backupCreateTime: str
+    backupTemplate: str
+    backupType: str
+    host: str
+    policies: _list[str]
+    policyOptions: _list[str]
+    profile: str
+    storagePool: str
 
 @typing.type_check_only
 class BatchCreateResourceValueConfigsRequest(typing_extensions.TypedDict, total=False):
@@ -254,6 +272,24 @@ class Detection(typing_extensions.TypedDict, total=False):
     percentPagesMatched: float
 
 @typing.type_check_only
+class DiskPath(typing_extensions.TypedDict, total=False):
+    partitionUuid: str
+    relativePath: str
+
+@typing.type_check_only
+class EffectiveEventThreatDetectionCustomModule(
+    typing_extensions.TypedDict, total=False
+):
+    config: dict[str, typing.Any]
+    description: str
+    displayName: str
+    enablementState: typing_extensions.Literal[
+        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
+    name: str
+    type: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -263,11 +299,12 @@ class EnvironmentVariable(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False):
+    ancestorModule: str
     config: dict[str, typing.Any]
     description: str
     displayName: str
     enablementState: typing_extensions.Literal[
-        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"
+        "ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED", "INHERITED"
     ]
     lastEditor: str
     name: str
@@ -295,6 +332,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
     contents: str
+    diskPath: DiskPath
     hashedSize: str
     partiallyHashed: bool
     path: str
@@ -304,7 +342,9 @@ class File(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    application: Application
     attackExposure: AttackExposure
+    backupDisasterRecovery: BackupDisasterRecovery
     canonicalName: str
     category: str
     cloudDlpDataProfile: CloudDlpDataProfile
@@ -432,10 +472,14 @@ class GoogleCloudSecuritycenterV1ExternalSystem(
     typing_extensions.TypedDict, total=False
 ):
     assignees: _list[str]
+    casePriority: str
+    caseSla: str
+    caseUri: str
     externalSystemUpdateTime: str
     externalUid: str
     name: str
     status: str
+    ticketInfo: TicketInfo
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=False):
@@ -691,6 +735,13 @@ class ListBigQueryExportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDescendantEventThreatDetectionCustomModulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    eventThreatDetectionCustomModules: _list[EventThreatDetectionCustomModule]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListDescendantSecurityHealthAnalyticsCustomModulesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -698,6 +749,15 @@ class ListDescendantSecurityHealthAnalyticsCustomModulesResponse(
     securityHealthAnalyticsCustomModules: _list[
         GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule
     ]
+
+@typing.type_check_only
+class ListEffectiveEventThreatDetectionCustomModulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveEventThreatDetectionCustomModules: _list[
+        EffectiveEventThreatDetectionCustomModule
+    ]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListEffectiveSecurityHealthAnalyticsCustomModulesResponse(
@@ -949,6 +1009,13 @@ class OrganizationSettings(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Package(typing_extensions.TypedDict, total=False):
+    cpeUri: str
+    packageName: str
+    packageType: str
+    packageVersion: str
+
+@typing.type_check_only
 class PathNodeAssociatedFinding(typing_extensions.TypedDict, total=False):
     canonicalFinding: str
     findingCategory: str
@@ -967,6 +1034,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PolicyDriftDetails(typing_extensions.TypedDict, total=False):
+    detectedValue: str
+    expectedValue: str
+    field: str
 
 @typing.type_check_only
 class Position(typing_extensions.TypedDict, total=False):
@@ -989,6 +1062,9 @@ class Process(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProcessSignature(typing_extensions.TypedDict, total=False):
     memoryHashSignature: MemoryHashSignature
+    signatureType: typing_extensions.Literal[
+        "SIGNATURE_TYPE_UNSPECIFIED", "SIGNATURE_TYPE_PROCESS", "SIGNATURE_TYPE_FILE"
+    ]
     yaraRuleSignature: YaraRuleSignature
 
 @typing.type_check_only
@@ -1021,6 +1097,12 @@ class Role(typing_extensions.TypedDict, total=False):
 class RunAssetDiscoveryRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class SecurityBulletin(typing_extensions.TypedDict, total=False):
+    bulletinId: str
+    submissionTime: str
+    suggestedUpgradeVersion: str
+
+@typing.type_check_only
 class SecurityCenterProperties(typing_extensions.TypedDict, total=False):
     folders: _list[Folder]
     resourceDisplayName: str
@@ -1042,6 +1124,9 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
 class SecurityPosture(typing_extensions.TypedDict, total=False):
     changedPolicy: str
     name: str
+    policy: str
+    policyDriftDetails: _list[PolicyDriftDetails]
+    policySet: str
     postureDeployment: str
     postureDeploymentResource: str
     revisionId: str
@@ -1130,6 +1215,15 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class TicketInfo(typing_extensions.TypedDict, total=False):
+    assignee: str
+    description: str
+    id: str
+    status: str
+    updateTime: str
+    uri: str
+
+@typing.type_check_only
 class ValidateEventThreatDetectionCustomModuleRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1160,6 +1254,9 @@ class ValuedResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
     cve: Cve
+    fixedPackage: Package
+    offendingPackage: Package
+    securityBulletin: SecurityBulletin
 
 @typing.type_check_only
 class YaraRuleSignature(typing_extensions.TypedDict, total=False):

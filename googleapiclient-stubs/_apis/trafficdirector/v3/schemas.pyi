@@ -194,6 +194,10 @@ class NodeMatcher(typing_extensions.TypedDict, total=False):
 class NullMatch(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class OrMatcher(typing_extensions.TypedDict, total=False):
+    valueMatchers: _list[ValueMatcher]
+
+@typing.type_check_only
 class PathSegment(typing_extensions.TypedDict, total=False):
     key: str
 
@@ -291,5 +295,6 @@ class ValueMatcher(typing_extensions.TypedDict, total=False):
     doubleMatch: DoubleMatcher
     listMatch: ListMatcher
     nullMatch: NullMatch
+    orMatch: OrMatcher
     presentMatch: bool
     stringMatch: StringMatcher

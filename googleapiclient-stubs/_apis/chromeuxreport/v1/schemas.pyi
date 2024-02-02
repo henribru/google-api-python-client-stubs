@@ -22,6 +22,10 @@ class Date(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
+class FractionTimeseries(typing_extensions.TypedDict, total=False):
+    fractions: _list[float]
+
+@typing.type_check_only
 class HistoryKey(typing_extensions.TypedDict, total=False):
     formFactor: typing_extensions.Literal[
         "ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"
@@ -52,6 +56,7 @@ class Metric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricTimeseries(typing_extensions.TypedDict, total=False):
+    fractionTimeseries: dict[str, typing.Any]
     histogramTimeseries: _list[TimeseriesBin]
     percentilesTimeseries: TimeseriesPercentiles
 

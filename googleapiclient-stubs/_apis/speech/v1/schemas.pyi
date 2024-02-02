@@ -42,6 +42,12 @@ class CustomClass(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Entry(typing_extensions.TypedDict, total=False):
+    caseSensitive: bool
+    replace: str
+    search: str
+
+@typing.type_check_only
 class ListCustomClassesResponse(typing_extensions.TypedDict, total=False):
     customClasses: _list[CustomClass]
     nextPageToken: str
@@ -133,6 +139,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "AMR_WB",
         "OGG_OPUS",
         "SPEEX_WITH_HEADER_BYTE",
+        "MP3",
         "WEBM_OPUS",
     ]
     languageCode: str
@@ -142,6 +149,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
     profanityFilter: bool
     sampleRateHertz: int
     speechContexts: _list[SpeechContext]
+    transcriptNormalization: TranscriptNormalization
     useEnhanced: bool
 
 @typing.type_check_only
@@ -188,6 +196,7 @@ class RecognizeResponse(typing_extensions.TypedDict, total=False):
     results: _list[SpeechRecognitionResult]
     speechAdaptationInfo: SpeechAdaptationInfo
     totalBilledTime: str
+    usingLegacyModels: bool
 
 @typing.type_check_only
 class SpeakerDiarizationConfig(typing_extensions.TypedDict, total=False):
@@ -231,6 +240,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TranscriptNormalization(typing_extensions.TypedDict, total=False):
+    entries: _list[Entry]
 
 @typing.type_check_only
 class TranscriptOutputConfig(typing_extensions.TypedDict, total=False):

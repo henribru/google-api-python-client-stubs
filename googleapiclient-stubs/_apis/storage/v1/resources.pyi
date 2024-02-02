@@ -14,7 +14,7 @@ _list = list
 @typing.type_check_only
 class StorageResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class AnywhereCacheResource(googleapiclient.discovery.Resource):
+    class AnywhereCachesResource(googleapiclient.discovery.Resource):
         def disable(
             self, *, bucket: str, anywhereCacheId: str, **kwargs: typing.Any
         ) -> AnywhereCacheHttpRequest: ...
@@ -304,6 +304,60 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any
         ) -> ObjectAccessControlHttpRequest: ...
+
+    @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        def delete(
+            self,
+            *,
+            bucket: str,
+            folder: str,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            bucket: str,
+            folder: str,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any
+        ) -> FolderHttpRequest: ...
+        def insert(
+            self,
+            *,
+            bucket: str,
+            body: Folder = ...,
+            recursive: bool = ...,
+            **kwargs: typing.Any
+        ) -> FolderHttpRequest: ...
+        def list(
+            self,
+            *,
+            bucket: str,
+            delimiter: str = ...,
+            endOffset: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            prefix: str = ...,
+            startOffset: str = ...,
+            **kwargs: typing.Any
+        ) -> FoldersHttpRequest: ...
+        def list_next(
+            self, previous_request: FoldersHttpRequest, previous_response: Folders
+        ) -> FoldersHttpRequest | None: ...
+        def rename(
+            self,
+            *,
+            bucket: str,
+            sourceFolder: str,
+            destinationFolder: str,
+            ifSourceMetagenerationMatch: str = ...,
+            ifSourceMetagenerationNotMatch: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
 
     @typing.type_check_only
     class ManagedFoldersResource(googleapiclient.discovery.Resource):
@@ -853,11 +907,12 @@ class StorageResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def anywhereCache(self) -> AnywhereCacheResource: ...
+    def anywhereCaches(self) -> AnywhereCachesResource: ...
     def bucketAccessControls(self) -> BucketAccessControlsResource: ...
     def buckets(self) -> BucketsResource: ...
     def channels(self) -> ChannelsResource: ...
     def defaultObjectAccessControls(self) -> DefaultObjectAccessControlsResource: ...
+    def folders(self) -> FoldersResource: ...
     def managedFolders(self) -> ManagedFoldersResource: ...
     def notifications(self) -> NotificationsResource: ...
     def objectAccessControls(self) -> ObjectAccessControlsResource: ...
@@ -920,6 +975,22 @@ class ChannelHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Channel: ...
+
+@typing.type_check_only
+class FolderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Folder: ...
+
+@typing.type_check_only
+class FoldersHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Folders: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

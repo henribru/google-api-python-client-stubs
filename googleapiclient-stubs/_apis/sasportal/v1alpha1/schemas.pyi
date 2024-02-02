@@ -164,11 +164,9 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     antennaBeamwidth: int
     antennaDowntilt: int
     antennaGain: int
-    antennaGainNewField: float
     antennaModel: str
     cpeCbsdIndication: bool
     eirpCapability: int
-    eirpCapabilityNewField: float
     height: float
     heightType: typing_extensions.Literal[
         "HEIGHT_TYPE_UNSPECIFIED", "HEIGHT_TYPE_AGL", "HEIGHT_TYPE_AMSL"
@@ -193,6 +191,12 @@ class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False)
 class SasPortalListDevicesResponse(typing_extensions.TypedDict, total=False):
     devices: _list[SasPortalDevice]
     nextPageToken: str
+
+@typing.type_check_only
+class SasPortalListLegacyOrganizationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    organizations: _list[SasPortalOrganization]
 
 @typing.type_check_only
 class SasPortalListNodesResponse(typing_extensions.TypedDict, total=False):
@@ -250,6 +254,11 @@ class SasPortalOperation(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+
+@typing.type_check_only
+class SasPortalOrganization(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
 
 @typing.type_check_only
 class SasPortalPolicy(typing_extensions.TypedDict, total=False):

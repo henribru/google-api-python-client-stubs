@@ -8,6 +8,11 @@ _list = list
 class GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest(
     typing_extensions.TypedDict, total=False
 ):
+    acknowledgeType: typing_extensions.Literal[
+        "ACKNOWLEDGE_TYPE_UNSPECIFIED",
+        "SINGLE_VIOLATION",
+        "EXISTING_CHILD_RESOURCE_VIOLATIONS",
+    ]
     comment: str
     nonCompliantOrgPolicy: str
 
@@ -59,6 +64,11 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
     createTime: str
     displayName: str
     parent: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListViolationsResponse(
@@ -121,6 +131,7 @@ class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse(
 class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=False):
     acknowledged: bool
     acknowledgementTime: str
+    associatedOrgPolicyViolationId: str
     auditLogLink: str
     beginTime: str
     category: str
@@ -130,12 +141,18 @@ class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=
     name: str
     nonCompliantOrgPolicy: str
     orgPolicyConstraint: str
+    parentProjectNumber: str
     remediation: GoogleCloudAssuredworkloadsV1ViolationRemediation
     resolveTime: str
+    resourceName: str
+    resourceType: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "RESOLVED", "UNRESOLVED", "EXCEPTION"
     ]
     updateTime: str
+    violationType: typing_extensions.Literal[
+        "VIOLATION_TYPE_UNSPECIFIED", "ORG_POLICY", "RESOURCE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ViolationExceptionContext(
@@ -157,6 +174,7 @@ class GoogleCloudAssuredworkloadsV1ViolationRemediation(
         "REMEDIATION_LIST_ALLOWED_VALUES_ORG_POLICY_VIOLATION",
         "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
         "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
+        "REMEDIATION_RESOURCE_VIOLATION",
     ]
 
 @typing.type_check_only
@@ -240,7 +258,9 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
 class GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus(
     typing_extensions.TypedDict, total=False
 ):
+    acknowledgedResourceViolationCount: int
     acknowledgedViolationCount: int
+    activeResourceViolationCount: int
     activeViolationCount: int
 
 @typing.type_check_only

@@ -23,6 +23,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     kmsKey: str
     labels: dict[str, typing.Any]
     name: str
+    privateComponents: _list[str]
     samlParams: SAMLParams
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

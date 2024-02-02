@@ -35,6 +35,13 @@ class Authority(typing_extensions.TypedDict, total=False):
     workloadIdentityPool: str
 
 @typing.type_check_only
+class BinaryAuthorizationConfig(typing_extensions.TypedDict, total=False):
+    evaluationMode: typing_extensions.Literal[
+        "EVALUATION_MODE_UNSPECIFIED", "DISABLED", "POLICY_BINDINGS"
+    ]
+    policyBindings: _list[PolicyBinding]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -44,14 +51,92 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ClusterUpgradeFleetSpec(typing_extensions.TypedDict, total=False):
+    gkeUpgradeOverrides: _list[ClusterUpgradeGKEUpgradeOverride]
+    postConditions: ClusterUpgradePostConditions
+    upstreamFleets: _list[str]
+
+@typing.type_check_only
+class ClusterUpgradeFleetState(typing_extensions.TypedDict, total=False):
+    downstreamFleets: _list[str]
+    gkeState: ClusterUpgradeGKEUpgradeFeatureState
+    ignored: dict[str, typing.Any]
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgrade(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeFeatureCondition(
+    typing_extensions.TypedDict, total=False
+):
+    reason: str
+    status: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeFeatureState(typing_extensions.TypedDict, total=False):
+    conditions: _list[ClusterUpgradeGKEUpgradeFeatureCondition]
+    upgradeState: _list[ClusterUpgradeGKEUpgradeState]
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeOverride(typing_extensions.TypedDict, total=False):
+    postConditions: ClusterUpgradePostConditions
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeGKEUpgradeState(typing_extensions.TypedDict, total=False):
+    stats: dict[str, typing.Any]
+    status: ClusterUpgradeUpgradeStatus
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeIgnoredMembership(typing_extensions.TypedDict, total=False):
+    ignoredTime: str
+    reason: str
+
+@typing.type_check_only
+class ClusterUpgradeMembershipGKEUpgradeState(typing_extensions.TypedDict, total=False):
+    status: ClusterUpgradeUpgradeStatus
+    upgrade: ClusterUpgradeGKEUpgrade
+
+@typing.type_check_only
+class ClusterUpgradeMembershipState(typing_extensions.TypedDict, total=False):
+    ignored: ClusterUpgradeIgnoredMembership
+    upgrades: _list[ClusterUpgradeMembershipGKEUpgradeState]
+
+@typing.type_check_only
+class ClusterUpgradePostConditions(typing_extensions.TypedDict, total=False):
+    soaking: str
+
+@typing.type_check_only
+class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "INELIGIBLE",
+        "PENDING",
+        "IN_PROGRESS",
+        "SOAKING",
+        "FORCED_SOAKING",
+        "COMPLETE",
+    ]
+    reason: str
+    updateTime: str
+
+@typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureSpec
+    clusterupgrade: ClusterUpgradeFleetSpec
+    dataplanev2: DataplaneV2FeatureSpec
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
+    clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
     state: FeatureState
 
@@ -71,32 +156,31 @@ class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
-    stopSyncing: bool
 
 @typing.type_check_only
 class ConfigManagementConfigSyncDeploymentState(
     typing_extensions.TypedDict, total=False
 ):
     admissionWebhook: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     gitSync: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     importer: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     monitor: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     reconcilerManager: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     rootReconciler: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     syncer: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
@@ -107,6 +191,20 @@ class ConfigManagementConfigSyncError(typing_extensions.TypedDict, total=False):
 class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
     deploymentState: ConfigManagementConfigSyncDeploymentState
     errors: _list[ConfigManagementConfigSyncError]
+    reposyncCrd: typing_extensions.Literal[
+        "CRD_STATE_UNSPECIFIED",
+        "NOT_INSTALLED",
+        "INSTALLED",
+        "TERMINATING",
+        "INSTALLING",
+    ]
+    rootsyncCrd: typing_extensions.Literal[
+        "CRD_STATE_UNSPECIFIED",
+        "NOT_INSTALLED",
+        "INSTALLED",
+        "TERMINATING",
+        "INSTALLING",
+    ]
     syncState: ConfigManagementSyncState
     version: ConfigManagementConfigSyncVersion
 
@@ -132,13 +230,13 @@ class ConfigManagementGatekeeperDeploymentState(
     typing_extensions.TypedDict, total=False
 ):
     gatekeeperAudit: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     gatekeeperControllerManagerState: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     gatekeeperMutation: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
@@ -171,10 +269,10 @@ class ConfigManagementHierarchyControllerDeploymentState(
     typing_extensions.TypedDict, total=False
 ):
     extension: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     hnc: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
 
 @typing.type_check_only
@@ -200,9 +298,6 @@ class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
     cluster: str
     configSync: ConfigManagementConfigSync
     hierarchyController: ConfigManagementHierarchyControllerConfig
-    management: typing_extensions.Literal[
-        "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
-    ]
     policyController: ConfigManagementPolicyController
     version: str
 
@@ -226,7 +321,7 @@ class ConfigManagementOciConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfigManagementOperatorState(typing_extensions.TypedDict, total=False):
     deploymentState: typing_extensions.Literal[
-        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR"
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     errors: _list[ConfigManagementInstallError]
     version: str
@@ -301,6 +396,15 @@ class ConnectAgentResource(typing_extensions.TypedDict, total=False):
     type: TypeMeta
 
 @typing.type_check_only
+class DataplaneV2FeatureSpec(typing_extensions.TypedDict, total=False):
+    enableEncryption: bool
+
+@typing.type_check_only
+class DefaultClusterConfig(typing_extensions.TypedDict, total=False):
+    binaryAuthorizationConfig: BinaryAuthorizationConfig
+    securityPostureConfig: SecurityPostureConfig
+
+@typing.type_check_only
 class EdgeCluster(typing_extensions.TypedDict, total=False):
     resourceLink: str
 
@@ -350,6 +454,7 @@ class FeatureState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Fleet(typing_extensions.TypedDict, total=False):
     createTime: str
+    defaultClusterConfig: DefaultClusterConfig
     deleteTime: str
     displayName: str
     labels: dict[str, typing.Any]
@@ -602,6 +707,7 @@ class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
+    clusterupgrade: ClusterUpgradeMembershipState
     configmanagement: ConfigManagementMembershipState
     fleetobservability: FleetObservabilityMembershipState
     identityservice: IdentityServiceMembershipState
@@ -694,6 +800,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PolicyBinding(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class PolicyControllerBundleInstallSpec(typing_extensions.TypedDict, total=False):
@@ -868,6 +978,16 @@ class ScopeFeatureState(typing_extensions.TypedDict, total=False):
 class ScopeLifecycleState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
+    ]
+
+@typing.type_check_only
+class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "BASIC"]
+    vulnerabilityMode: typing_extensions.Literal[
+        "VULNERABILITY_MODE_UNSPECIFIED",
+        "VULNERABILITY_DISABLED",
+        "VULNERABILITY_BASIC",
+        "VULNERABILITY_ENTERPRISE",
     ]
 
 @typing.type_check_only

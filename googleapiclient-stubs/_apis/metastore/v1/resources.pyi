@@ -205,6 +205,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     body: AlterMetadataResourceLocationRequest = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def alterTableProperties(
+                    self,
+                    *,
+                    service: str,
+                    body: AlterTablePropertiesRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,

@@ -252,10 +252,6 @@ class GoogleAnalyticsAdminV1alphaAttributionSettings(
         "REPORTING_ATTRIBUTION_MODEL_UNSPECIFIED",
         "PAID_AND_ORGANIC_CHANNELS_DATA_DRIVEN",
         "PAID_AND_ORGANIC_CHANNELS_LAST_CLICK",
-        "PAID_AND_ORGANIC_CHANNELS_FIRST_CLICK",
-        "PAID_AND_ORGANIC_CHANNELS_LINEAR",
-        "PAID_AND_ORGANIC_CHANNELS_POSITION_BASED",
-        "PAID_AND_ORGANIC_CHANNELS_TIME_DECAY",
         "GOOGLE_PAID_CHANNELS_LAST_CLICK",
     ]
 
@@ -463,6 +459,35 @@ class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total
     streamingExportEnabled: bool
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaCalculatedMetric(
+    typing_extensions.TypedDict, total=False
+):
+    calculatedMetricId: str
+    description: str
+    displayName: str
+    formula: str
+    invalidMetricReference: bool
+    metricUnit: typing_extensions.Literal[
+        "METRIC_UNIT_UNSPECIFIED",
+        "STANDARD",
+        "CURRENCY",
+        "FEET",
+        "MILES",
+        "METERS",
+        "KILOMETERS",
+        "MILLISECONDS",
+        "SECONDS",
+        "MINUTES",
+        "HOURS",
+    ]
+    name: str
+    restrictedMetricType: _list[
+        typing_extensions.Literal[
+            "RESTRICTED_METRIC_TYPE_UNSPECIFIED", "COST_DATA", "REVENUE_DATA"
+        ]
+    ]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCancelDisplayVideo360AdvertiserLinkProposalRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -487,6 +512,7 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     attributionSettings: GoogleAnalyticsAdminV1alphaAttributionSettings
     audience: GoogleAnalyticsAdminV1alphaAudience
     bigqueryLink: GoogleAnalyticsAdminV1alphaBigQueryLink
+    calculatedMetric: GoogleAnalyticsAdminV1alphaCalculatedMetric
     channelGroup: GoogleAnalyticsAdminV1alphaChannelGroup
     conversionEvent: GoogleAnalyticsAdminV1alphaConversionEvent
     customDimension: GoogleAnalyticsAdminV1alphaCustomDimension
@@ -1024,6 +1050,13 @@ class GoogleAnalyticsAdminV1alphaListBigQueryLinksResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListCalculatedMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    calculatedMetrics: _list[GoogleAnalyticsAdminV1alphaCalculatedMetric]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListChannelGroupsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1391,6 +1424,7 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
             "ADSENSE_LINK",
             "AUDIENCE",
             "EVENT_CREATE_RULE",
+            "CALCULATED_METRIC",
         ]
     ]
 

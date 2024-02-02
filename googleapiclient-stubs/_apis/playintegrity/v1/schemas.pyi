@@ -23,6 +23,25 @@ class AccountDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AppAccessRiskVerdict(typing_extensions.TypedDict, total=False):
+    otherApps: typing_extensions.Literal[
+        "UNKNOWN",
+        "UNEVALUATED",
+        "NOT_INSTALLED",
+        "INSTALLED",
+        "CAPTURING",
+        "CONTROLLING",
+    ]
+    playOrSystemApps: typing_extensions.Literal[
+        "UNKNOWN",
+        "UNEVALUATED",
+        "NOT_INSTALLED",
+        "INSTALLED",
+        "CAPTURING",
+        "CONTROLLING",
+    ]
+
+@typing.type_check_only
 class AppIntegrity(typing_extensions.TypedDict, total=False):
     appRecognitionVerdict: typing_extensions.Literal[
         "UNKNOWN", "PLAY_RECOGNIZED", "UNRECOGNIZED_VERSION", "UNEVALUATED"
@@ -48,12 +67,13 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
             "MEETS_DEVICE_INTEGRITY",
             "MEETS_STRONG_INTEGRITY",
             "MEETS_VIRTUAL_INTEGRITY",
-            "MEETS_WEAK_INTEGRITY",
         ]
     ]
+    recentDeviceActivity: RecentDeviceActivity
 
 @typing.type_check_only
 class EnvironmentDetails(typing_extensions.TypedDict, total=False):
+    appAccessRiskVerdict: AppAccessRiskVerdict
     playProtectVerdict: typing_extensions.Literal[
         "PLAY_PROTECT_VERDICT_UNSPECIFIED",
         "UNEVALUATED",
@@ -65,8 +85,15 @@ class EnvironmentDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class GuidanceDetails(typing_extensions.TypedDict, total=False):
-    userRemediationDetails: _list[UserRemediationDetails]
+class RecentDeviceActivity(typing_extensions.TypedDict, total=False):
+    deviceActivityLevel: typing_extensions.Literal[
+        "DEVICE_ACTIVITY_LEVEL_UNSPECIFIED",
+        "UNEVALUATED",
+        "LEVEL_1",
+        "LEVEL_2",
+        "LEVEL_3",
+        "LEVEL_4",
+    ]
 
 @typing.type_check_only
 class RequestDetails(typing_extensions.TypedDict, total=False):
@@ -85,17 +112,5 @@ class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
     appIntegrity: AppIntegrity
     deviceIntegrity: DeviceIntegrity
     environmentDetails: EnvironmentDetails
-    guidanceDetails: GuidanceDetails
     requestDetails: RequestDetails
     testingDetails: TestingDetails
-
-@typing.type_check_only
-class UserRemediationDetails(typing_extensions.TypedDict, total=False):
-    remediation: typing_extensions.Literal[
-        "UNKNOWN_USER_REMEDIATION",
-        "RESTORE_FACTORY_ROM",
-        "LOCK_BOOTLOADER",
-        "GET_UNMODIFIED_APP",
-        "SIGN_INTO_GOOGLE_ACCOUNT",
-        "INSTALL_APP_FROM_PLAY",
-    ]
