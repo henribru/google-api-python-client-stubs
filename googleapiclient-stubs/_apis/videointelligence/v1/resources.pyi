@@ -48,7 +48,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleLongrunning_CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobuf_EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -63,7 +63,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunning_ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -81,7 +81,7 @@ class CloudVideoIntelligenceResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleCloudVideointelligenceV1_AnnotateVideoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunning_OperationHttpRequest: ...
 
     def new_batch_http_request(

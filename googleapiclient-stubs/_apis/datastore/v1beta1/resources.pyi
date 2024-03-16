@@ -20,14 +20,14 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: GoogleDatastoreAdminV1beta1ExportEntitiesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def import_(
             self,
             *,
             projectId: str,
             body: GoogleDatastoreAdminV1beta1ImportEntitiesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
 
     def new_batch_http_request(

@@ -23,7 +23,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAdUnitsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -39,7 +39,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAppsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -54,7 +54,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateMediationReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateMediationReportResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -64,7 +64,7 @@ class AdMobResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GenerateNetworkReportRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateNetworkReportResponseHttpRequest: ...
 
         def get(

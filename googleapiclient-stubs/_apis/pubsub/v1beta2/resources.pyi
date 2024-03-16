@@ -22,7 +22,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 subscription: str,
                 body: AcknowledgeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def create(
                 self, *, name: str, body: Subscription = ..., **kwargs: typing.Any
@@ -38,7 +38,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -46,7 +46,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 project: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSubscriptionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -58,35 +58,35 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 subscription: str,
                 body: ModifyAckDeadlineRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def modifyPushConfig(
                 self,
                 *,
                 subscription: str,
                 body: ModifyPushConfigRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def pull(
                 self,
                 *,
                 subscription: str,
                 body: PullRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PullResponseHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -99,7 +99,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                     topic: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTopicSubscriptionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -119,7 +119,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -127,7 +127,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 project: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTopicsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -142,14 +142,14 @@ class PubsubResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def subscriptions(self) -> SubscriptionsResource: ...
 

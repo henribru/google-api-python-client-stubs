@@ -29,7 +29,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReleasesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -45,7 +45,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -60,7 +60,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListChannelsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -75,7 +75,7 @@ class VersionHistoryResource(googleapiclient.discovery.Resource):
             parent: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListPlatformsResponseHttpRequest: ...
         def list_next(
             self,

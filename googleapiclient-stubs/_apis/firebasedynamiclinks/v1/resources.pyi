@@ -33,13 +33,13 @@ class FirebaseDynamicLinksResource(googleapiclient.discovery.Resource):
             dynamicLink: str,
             durationDays: str = ...,
             sdkVersion: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DynamicLinkStatsHttpRequest: ...
         def installAttribution(
             self,
             *,
             body: GetIosPostInstallAttributionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetIosPostInstallAttributionResponseHttpRequest: ...
         def reopenAttribution(
             self, *, body: GetIosReopenAttributionRequest = ..., **kwargs: typing.Any

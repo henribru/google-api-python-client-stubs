@@ -21,7 +21,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             encodedRequest: str,
             clientId: str = ...,
             clientVersion: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -32,7 +32,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             encodedRequest: str,
             clientId: str = ...,
             clientVersion: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -41,7 +41,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleSecuritySafebrowsingV4FindFullHashesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FindFullHashesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -50,7 +50,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleSecuritySafebrowsingV4ThreatHit = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
 
     @typing.type_check_only
@@ -59,7 +59,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleSecuritySafebrowsingV4FetchThreatListUpdatesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FetchThreatListUpdatesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -74,7 +74,7 @@ class SafebrowsingResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleSecuritySafebrowsingV4FindThreatMatchesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSecuritySafebrowsingV4FindThreatMatchesResponseHttpRequest: ...
 
     def new_batch_http_request(

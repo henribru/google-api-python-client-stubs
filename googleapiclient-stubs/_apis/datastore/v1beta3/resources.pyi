@@ -20,14 +20,14 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: AllocateIdsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AllocateIdsResponseHttpRequest: ...
         def beginTransaction(
             self,
             *,
             projectId: str,
             body: BeginTransactionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BeginTransactionResponseHttpRequest: ...
         def commit(
             self, *, projectId: str, body: CommitRequest = ..., **kwargs: typing.Any
@@ -46,7 +46,7 @@ class DatastoreResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             body: RunAggregationQueryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RunAggregationQueryResponseHttpRequest: ...
         def runQuery(
             self, *, projectId: str, body: RunQueryRequest = ..., **kwargs: typing.Any

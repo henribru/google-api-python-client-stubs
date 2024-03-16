@@ -32,7 +32,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Admin = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AdminHttpRequest: ...
 
         @typing.type_check_only
@@ -42,14 +42,14 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: AcceptInvitationRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def decline(
                 self,
                 *,
                 name: str,
                 body: DeclineInvitationRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def list(
                 self, *, parent: str, filter: str = ..., **kwargs: typing.Any
@@ -66,7 +66,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             parentAccount: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAccountsResponseHttpRequest: ...
         def list_next(
             self,
@@ -80,7 +80,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             body: Account = ...,
             updateMask: str = ...,
             validateOnly: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def admins(self) -> AdminsResource: ...
         def invitations(self) -> InvitationsResource: ...
@@ -104,7 +104,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Admin = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AdminHttpRequest: ...
 
         def transfer(
@@ -112,7 +112,7 @@ class MyBusinessAccountManagementResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: TransferLocationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def admins(self) -> AdminsResource: ...
 

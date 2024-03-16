@@ -29,7 +29,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListCallbacksResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -51,7 +51,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             skip: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListStepEntriesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -64,14 +64,14 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelExecutionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def create(
                         self,
                         *,
                         parent: str,
                         body: Execution = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def exportData(
                         self, *, name: str, **kwargs: typing.Any
@@ -83,7 +83,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
                     def list(
                         self,
@@ -96,7 +96,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "EXECUTION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListExecutionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -111,7 +111,7 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                     *,
                     workflow: str,
                     body: TriggerPubsubExecutionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecutionHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
 

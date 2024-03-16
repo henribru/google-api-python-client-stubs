@@ -22,14 +22,14 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ActivateBiddingFunctionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BiddingFunctionHttpRequest: ...
             def archive(
                 self,
                 *,
                 name: str,
                 body: ArchiveBiddingFunctionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BiddingFunctionHttpRequest: ...
             def create(
                 self, *, parent: str, body: BiddingFunction = ..., **kwargs: typing.Any
@@ -40,7 +40,7 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBiddingFunctionsResponseHttpRequest: ...
             def list_next(
                 self,

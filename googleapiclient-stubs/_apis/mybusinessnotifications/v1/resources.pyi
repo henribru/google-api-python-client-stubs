@@ -24,7 +24,7 @@ class MyBusinessNotificationSettingsResource(googleapiclient.discovery.Resource)
             name: str,
             body: NotificationSetting = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> NotificationSettingHttpRequest: ...
 
     def new_batch_http_request(

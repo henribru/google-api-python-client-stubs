@@ -24,7 +24,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

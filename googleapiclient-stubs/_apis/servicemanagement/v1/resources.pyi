@@ -23,7 +23,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             name: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -44,7 +44,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 serviceName: str,
                 configId: str,
                 view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
             def list(
                 self,
@@ -52,7 +52,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 serviceName: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListServiceConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -64,7 +64,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 *,
                 serviceName: str,
                 body: SubmitConfigSourceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
@@ -74,21 +74,21 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -106,7 +106,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListServiceRolloutsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -132,14 +132,14 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             serviceName: str,
             configId: str = ...,
             view: typing_extensions.Literal["BASIC", "FULL"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ServiceHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -148,7 +148,7 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             producerProjectId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListServicesResponseHttpRequest: ...
         def list_next(
             self,
@@ -160,14 +160,14 @@ class ServiceManagementResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def undelete(
             self, *, serviceName: str, **kwargs: typing.Any

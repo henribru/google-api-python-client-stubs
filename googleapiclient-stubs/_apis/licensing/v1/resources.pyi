@@ -27,7 +27,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             productId: str,
             skuId: str,
             body: LicenseAssignmentInsert = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LicenseAssignmentHttpRequest: ...
         def listForProduct(
             self,
@@ -36,7 +36,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             customerId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LicenseAssignmentListHttpRequest: ...
         def listForProduct_next(
             self,
@@ -51,7 +51,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             customerId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LicenseAssignmentListHttpRequest: ...
         def listForProductAndSku_next(
             self,
@@ -65,7 +65,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             skuId: str,
             userId: str,
             body: LicenseAssignment = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LicenseAssignmentHttpRequest: ...
         def update(
             self,
@@ -74,7 +74,7 @@ class LicensingResource(googleapiclient.discovery.Resource):
             skuId: str,
             userId: str,
             body: LicenseAssignment = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LicenseAssignmentHttpRequest: ...
 
     def new_batch_http_request(

@@ -20,7 +20,7 @@ class WebmastersResource(googleapiclient.discovery.Resource):
             *,
             siteUrl: str,
             body: SearchAnalyticsQueryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAnalyticsQueryResponseHttpRequest: ...
 
     @typing.type_check_only

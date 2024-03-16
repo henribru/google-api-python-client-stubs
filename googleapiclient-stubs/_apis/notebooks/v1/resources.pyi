@@ -25,7 +25,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Environment = ...,
                     environmentId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -39,7 +39,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListEnvironmentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -55,7 +55,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Execution = ...,
                     executionId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -71,7 +71,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListExecutionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -87,7 +87,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Instance = ...,
                     instanceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -97,7 +97,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DiagnoseInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -107,7 +107,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def getInstanceHealth(
                     self, *, name: str, **kwargs: typing.Any
@@ -123,7 +123,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                         "UPGRADE_CUDA",
                         "UPGRADE_ALL",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> IsInstanceUpgradeableResponseHttpRequest: ...
                 def list(
                     self,
@@ -133,7 +133,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListInstancesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -145,126 +145,126 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: MigrateInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def register(
                     self,
                     *,
                     parent: str,
                     body: RegisterInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def report(
                     self,
                     *,
                     name: str,
                     body: ReportInstanceInfoRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def reportEvent(
                     self,
                     *,
                     name: str,
                     body: ReportInstanceEventRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def reset(
                     self,
                     *,
                     name: str,
                     body: ResetInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rollback(
                     self,
                     *,
                     name: str,
                     body: RollbackInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setAccelerator(
                     self,
                     *,
                     name: str,
                     body: SetInstanceAcceleratorRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setLabels(
                     self,
                     *,
                     name: str,
                     body: SetInstanceLabelsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setMachineType(
                     self,
                     *,
                     name: str,
                     body: SetInstanceMachineTypeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
                     body: StartInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: StopInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def updateConfig(
                     self,
                     *,
                     name: str,
                     body: UpdateInstanceConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def updateMetadataItems(
                     self,
                     *,
                     name: str,
                     body: UpdateInstanceMetadataItemsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> UpdateInstanceMetadataItemsResponseHttpRequest: ...
                 def updateShieldedInstanceConfig(
                     self,
                     *,
                     name: str,
                     body: UpdateShieldedInstanceConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
                     body: UpgradeInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgradeInternal(
                     self,
                     *,
                     name: str,
                     body: UpgradeInstanceInternalRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -274,7 +274,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -289,7 +289,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -306,7 +306,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: Runtime = ...,
                     requestId: str = ...,
                     runtimeId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -316,7 +316,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DiagnoseRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -326,7 +326,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -336,7 +336,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRuntimesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -348,7 +348,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: MigrateRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def patch(
                     self,
@@ -357,70 +357,70 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: Runtime = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def refreshRuntimeTokenInternal(
                     self,
                     *,
                     name: str,
                     body: RefreshRuntimeTokenInternalRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RefreshRuntimeTokenInternalResponseHttpRequest: ...
                 def reportEvent(
                     self,
                     *,
                     name: str,
                     body: ReportRuntimeEventRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def reset(
                     self,
                     *,
                     name: str,
                     body: ResetRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def start(
                     self,
                     *,
                     name: str,
                     body: StartRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: StopRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def switch(
                     self,
                     *,
                     name: str,
                     body: SwitchRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
                     body: UpgradeRuntimeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -431,7 +431,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Schedule = ...,
                     scheduleId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -447,7 +447,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSchedulesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -459,7 +459,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: TriggerScheduleRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             def get(
@@ -472,7 +472,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

@@ -27,7 +27,7 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,

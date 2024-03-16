@@ -23,7 +23,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 body: DeviceTierConfig = ...,
                 allowUnknownDevices: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeviceTierConfigHttpRequest: ...
             def get(
                 self, *, packageName: str, deviceTierConfigId: str, **kwargs: typing.Any
@@ -34,7 +34,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDeviceTierConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,7 +47,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: SafetyLabelsUpdateRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SafetyLabelsUpdateResponseHttpRequest: ...
         def deviceTierConfigs(self) -> DeviceTierConfigsResource: ...
 
@@ -59,7 +59,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             appRecoveryId: str,
             body: AddTargetingRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AddTargetingResponseHttpRequest: ...
         def appRecoveries(
             self, *, packageName: str, versionCode: str = ..., **kwargs: typing.Any
@@ -70,14 +70,14 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             appRecoveryId: str,
             body: CancelAppRecoveryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CancelAppRecoveryResponseHttpRequest: ...
         def create(
             self,
             *,
             packageName: str,
             body: CreateDraftAppRecoveryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AppRecoveryActionHttpRequest: ...
         def deploy(
             self,
@@ -85,7 +85,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             appRecoveryId: str,
             body: DeployAppRecoveryRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeployAppRecoveryResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -98,7 +98,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 body: ApksAddExternallyHostedRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApksAddExternallyHostedResponseHttpRequest: ...
             def list(
                 self, *, packageName: str, editId: str, **kwargs: typing.Any
@@ -119,7 +119,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 ackBundleInstallationWarning: bool = ...,
                 deviceTierConfigId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BundleHttpRequest: ...
 
         @typing.type_check_only
@@ -139,7 +139,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 deobfuscationFileType: typing_extensions.Literal[
                     "deobfuscationFileTypeUnspecified", "proguard", "nativeCode"
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeobfuscationFilesUploadResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -153,7 +153,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 body: AppDetails = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AppDetailsHttpRequest: ...
             def update(
                 self,
@@ -161,7 +161,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 body: AppDetails = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AppDetailsHttpRequest: ...
 
         @typing.type_check_only
@@ -175,7 +175,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 expansionFileType: typing_extensions.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ExpansionFileHttpRequest: ...
             def patch(
                 self,
@@ -187,7 +187,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 body: ExpansionFile = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ExpansionFileHttpRequest: ...
             def update(
                 self,
@@ -199,7 +199,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
                 body: ExpansionFile = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ExpansionFileHttpRequest: ...
             def upload(
                 self,
@@ -210,7 +210,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 expansionFileType: typing_extensions.Literal[
                     "expansionFileTypeUnspecified", "main", "patch"
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ExpansionFilesUploadResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -233,7 +233,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "tvBanner",
                 ],
                 imageId: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def deleteall(
                 self,
@@ -252,7 +252,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "featureGraphic",
                     "tvBanner",
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ImagesDeleteAllResponseHttpRequest: ...
             def list(
                 self,
@@ -271,7 +271,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "featureGraphic",
                     "tvBanner",
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ImagesListResponseHttpRequest: ...
             def upload(
                 self,
@@ -290,7 +290,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     "featureGraphic",
                     "tvBanner",
                 ],
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ImagesUploadResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -301,7 +301,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def deleteall(
                 self, *, packageName: str, editId: str, **kwargs: typing.Any
@@ -312,7 +312,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 language: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListingHttpRequest: ...
             def list(
                 self, *, packageName: str, editId: str, **kwargs: typing.Any
@@ -324,7 +324,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 language: str,
                 body: Listing = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListingHttpRequest: ...
             def update(
                 self,
@@ -333,7 +333,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 language: str,
                 body: Listing = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListingHttpRequest: ...
 
         @typing.type_check_only
@@ -348,7 +348,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 track: str,
                 body: Testers = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestersHttpRequest: ...
             def update(
                 self,
@@ -357,7 +357,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 track: str,
                 body: Testers = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestersHttpRequest: ...
 
         @typing.type_check_only
@@ -368,7 +368,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 editId: str,
                 body: TrackConfig = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TrackHttpRequest: ...
             def get(
                 self, *, packageName: str, editId: str, track: str, **kwargs: typing.Any
@@ -383,7 +383,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 track: str,
                 body: Track = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TrackHttpRequest: ...
             def update(
                 self,
@@ -392,7 +392,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 editId: str,
                 track: str,
                 body: Track = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TrackHttpRequest: ...
 
         def commit(
@@ -401,7 +401,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             editId: str,
             changesNotSentForReview: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AppEditHttpRequest: ...
         def delete(
             self, *, packageName: str, editId: str, **kwargs: typing.Any
@@ -434,7 +434,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             parent: str,
             body: ExternalTransaction = ...,
             externalTransactionId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ExternalTransactionHttpRequest: ...
         def getexternaltransaction(
             self, *, name: str, **kwargs: typing.Any
@@ -444,7 +444,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: RefundExternalTransactionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ExternalTransactionHttpRequest: ...
 
     @typing.type_check_only
@@ -455,7 +455,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             versionCode: int,
             downloadId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def download_media(
             self,
@@ -463,7 +463,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             versionCode: int,
             downloadId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BytesHttpRequest: ...
         def list(
             self, *, packageName: str, versionCode: int, **kwargs: typing.Any
@@ -483,7 +483,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             name: str,
             body: Grant = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GrantHttpRequest: ...
 
     @typing.type_check_only
@@ -493,7 +493,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: InappproductsBatchDeleteRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def batchGet(
             self, *, packageName: str, sku: str | _list[str] = ..., **kwargs: typing.Any
@@ -503,7 +503,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: InappproductsBatchUpdateRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InappproductsBatchUpdateResponseHttpRequest: ...
         def delete(
             self,
@@ -515,7 +515,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self, *, packageName: str, sku: str, **kwargs: typing.Any
@@ -526,7 +526,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             body: InAppProduct = ...,
             autoConvertMissingPrices: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
         def list(
             self,
@@ -535,7 +535,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             startIndex: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InappproductsListResponseHttpRequest: ...
         def patch(
             self,
@@ -549,7 +549,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
         def update(
             self,
@@ -564,7 +564,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
                 "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> InAppProductHttpRequest: ...
 
     @typing.type_check_only
@@ -592,7 +592,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         basePlanId: str,
                         offerId: str,
                         body: ActivateSubscriptionOfferRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
                     def batchGet(
                         self,
@@ -601,7 +601,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         body: BatchGetSubscriptionOffersRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BatchGetSubscriptionOffersResponseHttpRequest: ...
                     def batchUpdate(
                         self,
@@ -610,7 +610,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         body: BatchUpdateSubscriptionOffersRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BatchUpdateSubscriptionOffersResponseHttpRequest: ...
                     def batchUpdateStates(
                         self,
@@ -619,7 +619,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         body: BatchUpdateSubscriptionOfferStatesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BatchUpdateSubscriptionOfferStatesResponseHttpRequest: ...
                     def create(
                         self,
@@ -630,7 +630,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         body: SubscriptionOffer = ...,
                         offerId: str = ...,
                         regionsVersion_version: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
                     def deactivate(
                         self,
@@ -640,7 +640,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         basePlanId: str,
                         offerId: str,
                         body: DeactivateSubscriptionOfferRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
                     def delete(
                         self,
@@ -649,7 +649,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         offerId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> googleapiclient.http.HttpRequest: ...
                     def get(
                         self,
@@ -658,7 +658,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         productId: str,
                         basePlanId: str,
                         offerId: str,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
                     def list(
                         self,
@@ -668,7 +668,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         basePlanId: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSubscriptionOffersResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -691,7 +691,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         regionsVersion_version: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionOfferHttpRequest: ...
 
                 def activate(
@@ -701,7 +701,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     productId: str,
                     basePlanId: str,
                     body: ActivateBasePlanRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
                 def batchMigratePrices(
                     self,
@@ -709,7 +709,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     packageName: str,
                     productId: str,
                     body: BatchMigrateBasePlanPricesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchMigrateBasePlanPricesResponseHttpRequest: ...
                 def batchUpdateStates(
                     self,
@@ -717,7 +717,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     packageName: str,
                     productId: str,
                     body: BatchUpdateBasePlanStatesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchUpdateBasePlanStatesResponseHttpRequest: ...
                 def deactivate(
                     self,
@@ -726,7 +726,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     productId: str,
                     basePlanId: str,
                     body: DeactivateBasePlanRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SubscriptionHttpRequest: ...
                 def delete(
                     self,
@@ -734,7 +734,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     packageName: str,
                     productId: str,
                     basePlanId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> googleapiclient.http.HttpRequest: ...
                 def migratePrices(
                     self,
@@ -743,7 +743,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                     productId: str,
                     basePlanId: str,
                     body: MigrateBasePlanPricesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> MigrateBasePlanPricesResponseHttpRequest: ...
                 def offers(self) -> OffersResource: ...
 
@@ -753,21 +753,21 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 body: ArchiveSubscriptionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def batchGet(
                 self,
                 *,
                 packageName: str,
                 productIds: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchGetSubscriptionsResponseHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
                 packageName: str,
                 body: BatchUpdateSubscriptionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchUpdateSubscriptionsResponseHttpRequest: ...
             def create(
                 self,
@@ -776,7 +776,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 body: Subscription = ...,
                 productId: str = ...,
                 regionsVersion_version: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def delete(
                 self, *, packageName: str, productId: str, **kwargs: typing.Any
@@ -791,7 +791,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 showArchived: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSubscriptionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -812,7 +812,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 regionsVersion_version: str = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SubscriptionHttpRequest: ...
             def basePlans(self) -> BasePlansResource: ...
 
@@ -821,7 +821,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             *,
             packageName: str,
             body: ConvertRegionPricesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConvertRegionPricesResponseHttpRequest: ...
         def subscriptions(self) -> SubscriptionsResource: ...
 
@@ -833,7 +833,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             orderId: str,
             revoke: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -847,7 +847,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 productId: str,
                 token: str,
                 body: ProductPurchasesAcknowledgeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def consume(
                 self,
@@ -855,7 +855,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def get(
                 self,
@@ -863,7 +863,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 productId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ProductPurchaseHttpRequest: ...
 
         @typing.type_check_only
@@ -875,7 +875,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 subscriptionId: str,
                 token: str,
                 body: SubscriptionPurchasesAcknowledgeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def cancel(
                 self,
@@ -883,7 +883,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 subscriptionId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def defer(
                 self,
@@ -892,7 +892,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 subscriptionId: str,
                 token: str,
                 body: SubscriptionPurchasesDeferRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SubscriptionPurchasesDeferResponseHttpRequest: ...
             def get(
                 self,
@@ -900,7 +900,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 subscriptionId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SubscriptionPurchaseHttpRequest: ...
             def refund(
                 self,
@@ -908,7 +908,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 subscriptionId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def revoke(
                 self,
@@ -916,7 +916,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 subscriptionId: str,
                 token: str,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
 
         @typing.type_check_only
@@ -930,7 +930,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 token: str,
                 body: RevokeSubscriptionPurchaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> RevokeSubscriptionPurchaseResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -945,7 +945,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 startTime: str = ...,
                 token: str = ...,
                 type: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> VoidedPurchasesListResponseHttpRequest: ...
 
         def products(self) -> ProductsResource: ...
@@ -961,7 +961,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             reviewId: str,
             translationLanguage: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReviewHttpRequest: ...
         def list(
             self,
@@ -971,7 +971,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             startIndex: int = ...,
             token: str = ...,
             translationLanguage: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReviewsListResponseHttpRequest: ...
         def reply(
             self,
@@ -979,7 +979,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             packageName: str,
             reviewId: str,
             body: ReviewsReplyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ReviewsReplyResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -992,7 +992,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 versionCode: str,
                 body: Variant = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> VariantHttpRequest: ...
             def download(
                 self,
@@ -1000,7 +1000,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 versionCode: str,
                 variantId: int,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> googleapiclient.http.HttpRequest: ...
             def download_media(
                 self,
@@ -1008,7 +1008,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 versionCode: str,
                 variantId: int,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BytesHttpRequest: ...
             def get(
                 self,
@@ -1016,7 +1016,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 packageName: str,
                 versionCode: str,
                 variantId: int,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> VariantHttpRequest: ...
             def list(
                 self, *, packageName: str, versionCode: str, **kwargs: typing.Any
@@ -1038,7 +1038,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             parent: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListUsersResponseHttpRequest: ...
         def list_next(
             self,
@@ -1051,7 +1051,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             name: str,
             body: User = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UserHttpRequest: ...
 
     def new_batch_http_request(

@@ -22,7 +22,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudBillingBudgetsV1beta1CreateBudgetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -37,7 +37,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 scope: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1beta1ListBudgetsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -51,7 +51,7 @@ class CloudBillingBudgetResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudBillingBudgetsV1beta1UpdateBudgetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudBillingBudgetsV1beta1BudgetHttpRequest: ...
 
         def budgets(self) -> BudgetsResource: ...

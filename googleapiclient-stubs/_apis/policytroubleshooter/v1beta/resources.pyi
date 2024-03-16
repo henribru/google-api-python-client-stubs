@@ -19,7 +19,7 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudPolicytroubleshooterV1betaTroubleshootIamPolicyResponseHttpRequest: ...
 
     def new_batch_http_request(

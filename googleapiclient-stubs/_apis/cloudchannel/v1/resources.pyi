@@ -26,7 +26,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudChannelV1ChannelPartnerRepricingConfig = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -41,7 +41,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListChannelPartnerRepricingConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -56,7 +56,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudChannelV1ChannelPartnerRepricingConfig = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ChannelPartnerRepricingConfigHttpRequest: ...
 
             @typing.type_check_only
@@ -66,7 +66,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudChannelV1Customer = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -79,7 +79,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudChannelV1ImportCustomerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
                 def list(
                     self,
@@ -88,7 +88,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -101,7 +101,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudChannelV1Customer = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
 
             def create(
@@ -109,14 +109,14 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudChannelV1ChannelPartnerLink = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
                 view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def list(
                 self,
@@ -125,7 +125,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 view: typing_extensions.Literal["UNSPECIFIED", "BASIC", "FULL"] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListChannelPartnerLinksResponseHttpRequest: ...
             def list_next(
                 self,
@@ -139,7 +139,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudChannelV1UpdateChannelPartnerLinkRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ChannelPartnerLinkHttpRequest: ...
             def channelPartnerRepricingConfigs(
                 self,
@@ -155,7 +155,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudChannelV1CustomerRepricingConfig = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerRepricingConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -170,7 +170,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudChannelV1ListCustomerRepricingConfigsResponseHttpRequest
                 ): ...
@@ -187,7 +187,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudChannelV1CustomerRepricingConfig = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1CustomerRepricingConfigHttpRequest: ...
 
             @typing.type_check_only
@@ -197,42 +197,42 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudChannelV1ActivateEntitlementRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def cancel(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudChannelV1CancelEntitlementRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def changeOffer(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudChannelV1ChangeOfferRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def changeParameters(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudChannelV1ChangeParametersRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def changeRenewalSettings(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudChannelV1ChangeRenewalSettingsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudChannelV1CreateEntitlementRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -243,7 +243,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListEntitlementsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -257,7 +257,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudChannelV1ListEntitlementChangesResponseHttpRequest: ...
                 def listEntitlementChanges_next(
                     self,
@@ -274,14 +274,14 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudChannelV1StartPaidServiceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def suspend(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudChannelV1SuspendEntitlementRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             def create(
@@ -289,7 +289,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudChannelV1Customer = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -302,7 +302,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudChannelV1ImportCustomerRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
             def list(
                 self,
@@ -311,7 +311,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListCustomersResponseHttpRequest: ...
             def list_next(
                 self,
@@ -330,7 +330,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListPurchasableOffersResponseHttpRequest: ...
             def listPurchasableOffers_next(
                 self,
@@ -351,7 +351,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListPurchasableSkusResponseHttpRequest: ...
             def listPurchasableSkus_next(
                 self,
@@ -364,21 +364,21 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudChannelV1Customer = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1CustomerHttpRequest: ...
             def provisionCloudIdentity(
                 self,
                 *,
                 customer: str,
                 body: GoogleCloudChannelV1ProvisionCloudIdentityRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def queryEligibleBillingAccounts(
                 self,
                 *,
                 customer: str,
                 skus: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudChannelV1QueryEligibleBillingAccountsResponseHttpRequest
             ): ...
@@ -387,14 +387,14 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudChannelV1TransferEntitlementsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def transferEntitlementsToGoogle(
                 self,
                 *,
                 parent: str,
                 body: GoogleCloudChannelV1TransferEntitlementsToGoogleRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def customerRepricingConfigs(self) -> CustomerRepricingConfigsResource: ...
             def entitlements(self) -> EntitlementsResource: ...
@@ -410,7 +410,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 showFutureOffers: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListOffersResponseHttpRequest: ...
             def list_next(
                 self,
@@ -425,7 +425,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 reportJob: str,
                 body: GoogleCloudChannelV1FetchReportResultsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1FetchReportResultsResponseHttpRequest: ...
             def fetchReportResults_next(
                 self,
@@ -442,7 +442,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListReportsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -454,7 +454,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudChannelV1RunReportJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
 
         @typing.type_check_only
@@ -467,7 +467,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudChannelV1ListSkuGroupBillableSkusResponseHttpRequest
                 ): ...
@@ -486,7 +486,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListSkuGroupsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -500,7 +500,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponseHttpRequest: ...
         def listSubscribers(
             self,
@@ -508,7 +508,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             account: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest: ...
         def listSubscribers_next(
             self,
@@ -520,7 +520,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleCloudChannelV1ListTransferableOffersRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListTransferableOffersResponseHttpRequest: ...
         def listTransferableOffers_next(
             self,
@@ -532,7 +532,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleCloudChannelV1ListTransferableSkusRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListTransferableSkusResponseHttpRequest: ...
         def listTransferableSkus_next(
             self,
@@ -544,14 +544,14 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             *,
             account: str,
             body: GoogleCloudChannelV1RegisterSubscriberRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1RegisterSubscriberResponseHttpRequest: ...
         def unregister(
             self,
             *,
             account: str,
             body: GoogleCloudChannelV1UnregisterSubscriberRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1UnregisterSubscriberResponseHttpRequest: ...
         def channelPartnerLinks(self) -> ChannelPartnerLinksResource: ...
         def customers(self) -> CustomersResource: ...
@@ -567,7 +567,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleLongrunningCancelOperationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -582,7 +582,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -602,7 +602,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudChannelV1ListSkusResponseHttpRequest: ...
             def list_next(
                 self,
@@ -617,7 +617,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             languageCode: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudChannelV1ListProductsResponseHttpRequest: ...
         def list_next(
             self,

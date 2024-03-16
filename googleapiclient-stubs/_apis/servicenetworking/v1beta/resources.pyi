@@ -26,7 +26,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudServicenetworkingV1betaConnection = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
                 self, *, parent: str, network: str = ..., **kwargs: typing.Any
@@ -45,7 +45,7 @@ class ServiceNetworkingResource(googleapiclient.discovery.Resource):
             body: GoogleCloudServicenetworkingV1betaConnection = ...,
             force: bool = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def connections(self) -> ConnectionsResource: ...
 

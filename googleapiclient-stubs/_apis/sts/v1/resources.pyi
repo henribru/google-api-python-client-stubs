@@ -19,19 +19,19 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleIdentityStsV1IntrospectTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIdentityStsV1IntrospectTokenResponseHttpRequest: ...
         def oauthtoken(
             self,
             *,
             body: GoogleIdentityStsV1ExchangeOauthTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIdentityStsV1ExchangeOauthTokenResponseHttpRequest: ...
         def token(
             self,
             *,
             body: GoogleIdentityStsV1ExchangeTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIdentityStsV1ExchangeTokenResponseHttpRequest: ...
 
     def new_batch_http_request(

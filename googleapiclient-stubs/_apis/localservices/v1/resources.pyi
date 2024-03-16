@@ -27,7 +27,7 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             startDate_day: int = ...,
             startDate_month: int = ...,
             startDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponseHttpRequest
         ): ...
@@ -54,7 +54,7 @@ class LocalservicesResource(googleapiclient.discovery.Resource):
             startDate_day: int = ...,
             startDate_month: int = ...,
             startDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponseHttpRequest: ...
         def search_next(
             self,

@@ -27,7 +27,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 apiVersion: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
             def list(
@@ -40,7 +40,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
 
         def jobs(self) -> JobsResource: ...

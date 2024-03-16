@@ -23,7 +23,7 @@ class ACMEDNSResource(googleapiclient.discovery.Resource):
             *,
             rootDomain: str,
             body: RotateChallengesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AcmeChallengeSetHttpRequest: ...
 
     def new_batch_http_request(

@@ -42,7 +42,7 @@ class Oauth2Resource(googleapiclient.discovery.Resource):
         trace: str = ...,
         userIp: str = ...,
         userip: str = ...,
-        **kwargs: typing.Any
+        **kwargs: typing.Any,
     ) -> TokeninfoHttpRequest: ...
     def new_batch_http_request(
         self,

@@ -31,7 +31,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListInstanceOSPoliciesCompliancesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -50,7 +50,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> InventoryHttpRequest: ...
                     def list(
                         self,
@@ -62,7 +62,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "INVENTORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListInventoriesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -84,7 +84,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListOSPolicyAssignmentReportsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -108,7 +108,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListVulnerabilityReportsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -129,7 +129,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -141,7 +141,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: OSPolicyAssignment = ...,
                     osPolicyAssignmentId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -155,7 +155,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -168,7 +168,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     name: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOSPolicyAssignmentRevisionsResponseHttpRequest: ...
                 def listRevisions_next(
                     self,
@@ -181,7 +181,7 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: OSPolicyAssignment = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 

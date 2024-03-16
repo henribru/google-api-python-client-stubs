@@ -25,7 +25,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Backup = ...,
                     backupId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -41,7 +41,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBackupsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -54,7 +54,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Backup = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -67,7 +67,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Share = ...,
                         shareId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -83,7 +83,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSharesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -96,7 +96,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Share = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -107,7 +107,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Snapshot = ...,
                         snapshotId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -123,7 +123,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSnapshotsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -136,7 +136,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Snapshot = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 def create(
@@ -145,7 +145,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Instance = ...,
                     instanceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -161,7 +161,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListInstancesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -174,28 +174,28 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Instance = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def promoteReplica(
                     self,
                     *,
                     name: str,
                     body: PromoteReplicaRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
                     body: RestoreInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def revert(
                     self,
                     *,
                     name: str,
                     body: RevertInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def shares(self) -> SharesResource: ...
                 def snapshots(self) -> SnapshotsResource: ...
@@ -207,7 +207,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -222,7 +222,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -241,7 +241,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                 includeUnrevealedLocations: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

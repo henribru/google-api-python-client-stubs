@@ -20,21 +20,21 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def setIamPolicy(
             self,
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
 
     def new_batch_http_request(

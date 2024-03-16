@@ -33,7 +33,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListTasksResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -50,7 +50,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     body: Job = ...,
                     jobId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def delete(
                     self,
@@ -58,7 +58,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     name: str,
                     reason: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
                 def list(
@@ -69,7 +69,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -85,7 +85,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -100,7 +100,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -115,7 +115,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ReportAgentStateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ReportAgentStateResponseHttpRequest: ...
 
             def get(
@@ -128,7 +128,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

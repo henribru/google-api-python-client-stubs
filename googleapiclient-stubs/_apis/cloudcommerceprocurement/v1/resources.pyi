@@ -24,7 +24,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 *,
                 name: str,
                 body: ApproveAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
             def list(
@@ -33,7 +33,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAccountsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -45,14 +45,14 @@ class CloudCommercePartnerProcurementServiceResource(
                 *,
                 name: str,
                 body: RejectAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def reset(
                 self,
                 *,
                 name: str,
                 body: ResetAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         @typing.type_check_only
@@ -62,14 +62,14 @@ class CloudCommercePartnerProcurementServiceResource(
                 *,
                 name: str,
                 body: ApproveEntitlementRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def approvePlanChange(
                 self,
                 *,
                 name: str,
                 body: ApproveEntitlementPlanChangeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -81,7 +81,7 @@ class CloudCommercePartnerProcurementServiceResource(
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListEntitlementsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -94,28 +94,28 @@ class CloudCommercePartnerProcurementServiceResource(
                 name: str,
                 body: Entitlement = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EntitlementHttpRequest: ...
             def reject(
                 self,
                 *,
                 name: str,
                 body: RejectEntitlementRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def rejectPlanChange(
                 self,
                 *,
                 name: str,
                 body: RejectEntitlementPlanChangeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def suspend(
                 self,
                 *,
                 name: str,
                 body: SuspendEntitlementRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         def accounts(self) -> AccountsResource: ...

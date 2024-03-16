@@ -22,7 +22,7 @@ class DLPResource(googleapiclient.discovery.Resource):
             languageCode: str = ...,
             locationId: str = ...,
             parent: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -36,7 +36,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 languageCode: str = ...,
                 locationId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInfoTypesResponseHttpRequest: ...
 
         def infoTypes(self) -> InfoTypesResource: ...
@@ -50,7 +50,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -66,7 +66,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -80,7 +80,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
         @typing.type_check_only
@@ -90,7 +90,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -106,7 +106,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -118,7 +118,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
         @typing.type_check_only
@@ -136,7 +136,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -153,7 +153,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -169,7 +169,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -183,7 +183,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
             @typing.type_check_only
@@ -193,7 +193,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -208,7 +208,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -222,7 +222,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
 
             @typing.type_check_only
@@ -239,7 +239,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -254,7 +254,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -270,7 +270,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -284,7 +284,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
             @typing.type_check_only
@@ -294,7 +294,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -314,7 +314,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -326,7 +326,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
             @typing.type_check_only
@@ -342,7 +342,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -359,7 +359,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -375,7 +375,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -389,7 +389,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
             @typing.type_check_only
@@ -405,7 +405,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -432,7 +432,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -448,7 +448,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -460,7 +460,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
         def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
@@ -477,21 +477,21 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2DeidentifyContentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest: ...
             def inspect(
                 self,
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2InspectContentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectContentResponseHttpRequest: ...
             def reidentify(
                 self,
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2ReidentifyContentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -501,7 +501,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -517,7 +517,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -531,7 +531,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
         @typing.type_check_only
@@ -541,14 +541,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2CancelDlpJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateDlpJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -568,7 +568,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 type: typing_extensions.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -583,7 +583,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2RedactImageRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2RedactImageResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -593,7 +593,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -609,7 +609,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -621,7 +621,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
         @typing.type_check_only
@@ -631,14 +631,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2ActivateJobTriggerRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -658,7 +658,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 type: typing_extensions.Literal[
                     "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
             def list_next(
                 self,
@@ -670,7 +670,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
         @typing.type_check_only
@@ -688,7 +688,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -705,21 +705,21 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2DeidentifyContentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest: ...
                 def inspect(
                     self,
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2InspectContentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectContentResponseHttpRequest: ...
                 def reidentify(
                     self,
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2ReidentifyContentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ReidentifyContentResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -729,7 +729,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateDeidentifyTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -745,7 +745,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -759,7 +759,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DeidentifyTemplateHttpRequest: ...
 
             @typing.type_check_only
@@ -769,7 +769,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateDiscoveryConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -784,7 +784,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDiscoveryConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -798,7 +798,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateDiscoveryConfigRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DiscoveryConfigHttpRequest: ...
 
             @typing.type_check_only
@@ -808,14 +808,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2CancelDlpJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateDlpJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -825,7 +825,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2FinishDlpJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -835,7 +835,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2HybridInspectDlpJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2HybridInspectResponseHttpRequest: ...
                 def list(
                     self,
@@ -849,7 +849,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListDlpJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -864,7 +864,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2RedactImageRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2RedactImageResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -874,7 +874,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateInspectTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -890,7 +890,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListInspectTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -904,7 +904,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateInspectTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2InspectTemplateHttpRequest: ...
 
             @typing.type_check_only
@@ -914,14 +914,14 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2ActivateJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2DlpJobHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -934,7 +934,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2HybridInspectJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2HybridInspectResponseHttpRequest: ...
                 def list(
                     self,
@@ -948,7 +948,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     type: typing_extensions.Literal[
                         "DLP_JOB_TYPE_UNSPECIFIED", "INSPECT_JOB", "RISK_ANALYSIS_JOB"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -960,7 +960,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateJobTriggerRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
             @typing.type_check_only
@@ -976,7 +976,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -993,7 +993,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -1009,7 +1009,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -1023,7 +1023,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
             @typing.type_check_only
@@ -1039,7 +1039,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -1068,7 +1068,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GooglePrivacyDlpV2CreateStoredInfoTypeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -1084,7 +1084,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -1096,7 +1096,7 @@ class DLPResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePrivacyDlpV2UpdateStoredInfoTypeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
         def content(self) -> ContentResource: ...

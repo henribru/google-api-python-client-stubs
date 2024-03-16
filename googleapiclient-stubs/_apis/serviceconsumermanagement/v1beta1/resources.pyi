@@ -43,7 +43,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -62,7 +62,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                                 "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH",
                             ]
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(
                         self,
@@ -70,7 +70,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> V1Beta1ListProducerOverridesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -96,7 +96,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                             ]
                         ] = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 def get(
@@ -106,7 +106,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal[
                         "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> V1Beta1ConsumerQuotaLimitHttpRequest: ...
                 def producerOverrides(self) -> ProducerOverridesResource: ...
 
@@ -117,14 +117,14 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> V1Beta1ConsumerQuotaMetricHttpRequest: ...
             def importProducerOverrides(
                 self,
                 *,
                 parent: str,
                 body: V1Beta1ImportProducerOverridesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
                 self,
@@ -135,7 +135,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 view: typing_extensions.Literal[
                     "QUOTA_VIEW_UNSPECIFIED", "BASIC", "FULL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> V1Beta1ListConsumerQuotaMetricsResponseHttpRequest: ...
             def list_next(
                 self,

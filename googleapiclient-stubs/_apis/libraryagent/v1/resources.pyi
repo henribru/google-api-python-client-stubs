@@ -29,7 +29,7 @@ class LibraryagentResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleExampleLibraryagentV1ListBooksResponseHttpRequest: ...
             def list_next(
                 self,

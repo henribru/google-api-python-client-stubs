@@ -23,7 +23,7 @@ class DataPortabilityResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: RetryPortabilityArchiveRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RetryPortabilityArchiveResponseHttpRequest: ...
 
     @typing.type_check_only

@@ -23,7 +23,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -46,7 +46,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListConfigurationsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -57,7 +57,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: DomainMapping = ...,
                 dryRun: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DomainMappingHttpRequest: ...
             def delete(
                 self,
@@ -67,7 +67,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StatusHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -82,7 +82,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDomainMappingsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -92,7 +92,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: CancelExecutionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ExecutionHttpRequest: ...
             def delete(
                 self,
@@ -101,7 +101,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 apiVersion: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StatusHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -116,7 +116,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListExecutionsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -131,7 +131,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 apiVersion: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StatusHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> JobHttpRequest: ...
             def list(
@@ -144,7 +144,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListJobsResponseHttpRequest: ...
             def replaceJob(
                 self, *, name: str, body: Job = ..., **kwargs: typing.Any
@@ -163,7 +163,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StatusHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -178,7 +178,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRevisionsResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -194,7 +194,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRoutesResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -205,7 +205,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Service = ...,
                 dryRun: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
             def delete(
                 self,
@@ -215,7 +215,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 dryRun: str = ...,
                 kind: str = ...,
                 propagationPolicy: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> StatusHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> ServiceHttpRequest: ...
             def list(
@@ -228,7 +228,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListServicesResponseHttpRequest: ...
             def replaceService(
                 self,
@@ -236,7 +236,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Service = ...,
                 dryRun: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ServiceHttpRequest: ...
 
         @typing.type_check_only
@@ -252,7 +252,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 limit: int = ...,
                 resourceVersion: str = ...,
                 watch: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTasksResponseHttpRequest: ...
 
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
@@ -275,7 +275,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAuthorizedDomainsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -293,7 +293,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAuthorizedDomainsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -316,7 +316,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConfigurationsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -327,7 +327,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: DomainMapping = ...,
                     dryRun: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DomainMappingHttpRequest: ...
                 def delete(
                     self,
@@ -337,7 +337,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> StatusHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -352,7 +352,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDomainMappingsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -362,21 +362,21 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -394,7 +394,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -406,7 +406,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleLongrunningWaitOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
@@ -419,7 +419,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> StatusHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -434,7 +434,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRevisionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -452,7 +452,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRoutesResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -463,7 +463,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Service = ...,
                     dryRun: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ServiceHttpRequest: ...
                 def delete(
                     self,
@@ -473,7 +473,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     dryRun: str = ...,
                     kind: str = ...,
                     propagationPolicy: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> StatusHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -483,7 +483,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -495,7 +495,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListServicesResponseHttpRequest: ...
                 def replaceService(
                     self,
@@ -503,21 +503,21 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Service = ...,
                     dryRun: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ServiceHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             def list(
@@ -527,7 +527,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

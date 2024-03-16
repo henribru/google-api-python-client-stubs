@@ -29,7 +29,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
             self,
@@ -52,7 +52,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 visibility: typing_extensions.Literal[
                     "VISIBILITY_UNSPECIFIED", "PUBLISHED", "PRIVATE"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListUserAssetsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -70,7 +70,7 @@ class PolyServiceResource(googleapiclient.discovery.Resource):
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLikedAssetsResponseHttpRequest: ...
             def list_next(
                 self,

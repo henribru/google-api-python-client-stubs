@@ -29,7 +29,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -37,7 +37,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReposResponseHttpRequest: ...
             def list_next(
                 self,
@@ -52,7 +52,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def sync(
                 self, *, name: str, body: SyncRepoRequest = ..., **kwargs: typing.Any
@@ -62,7 +62,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         def getConfig(
@@ -73,7 +73,7 @@ class CloudSourceRepositoriesResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: UpdateProjectConfigRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProjectConfigHttpRequest: ...
         def repos(self) -> ReposResource: ...
 

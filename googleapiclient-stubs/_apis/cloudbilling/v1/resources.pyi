@@ -23,7 +23,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 name: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListProjectBillingInfoResponseHttpRequest: ...
             def list_next(
                 self,
@@ -43,7 +43,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -62,7 +62,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             options_requestedPolicyVersion: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def list(
             self,
@@ -71,7 +71,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             parent: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListBillingAccountsResponseHttpRequest: ...
         def list_next(
             self,
@@ -83,7 +83,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: MoveBillingAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def patch(
             self,
@@ -91,21 +91,21 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             name: str,
             body: BillingAccount = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BillingAccountHttpRequest: ...
         def setIamPolicy(
             self,
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
         def subAccounts(self) -> SubAccountsResource: ...
@@ -124,7 +124,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBillingAccountsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -159,7 +159,7 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 startTime: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSkusResponseHttpRequest: ...
             def list_next(
                 self,

@@ -26,7 +26,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     dataSourceId: str,
                     limit: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDataPointChangesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -42,7 +42,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     userId: str,
                     dataSourceId: str,
                     datasetId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> googleapiclient.http.HttpRequest: ...
                 def get(
                     self,
@@ -52,7 +52,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     datasetId: str,
                     limit: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def get_next(
                     self,
@@ -66,7 +66,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                     dataSourceId: str,
                     datasetId: str,
                     body: Dataset = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatasetHttpRequest: ...
                 def patch_next(
                     self,
@@ -88,7 +88,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 *,
                 userId: str,
                 dataTypeName: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDataSourcesResponseHttpRequest: ...
             def update(
                 self,
@@ -96,7 +96,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 userId: str,
                 dataSourceId: str,
                 body: DataSource = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def dataPointChanges(self) -> DataPointChangesResource: ...
             def datasets(self) -> DatasetsResource: ...
@@ -121,7 +121,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 includeDeleted: bool = ...,
                 pageToken: str = ...,
                 startTime: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSessionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -134,7 +134,7 @@ class FitnessResource(googleapiclient.discovery.Resource):
                 userId: str,
                 sessionId: str,
                 body: Session = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SessionHttpRequest: ...
 
         def dataSources(self) -> DataSourcesResource: ...

@@ -22,7 +22,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
         def searchAll_next(
             self,
@@ -41,7 +41,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllResourcesResponseHttpRequest: ...
         def searchAll_next(
             self,

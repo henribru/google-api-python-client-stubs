@@ -20,7 +20,7 @@ class ServiceControlResource(googleapiclient.discovery.Resource):
             *,
             serviceName: str,
             body: AllocateQuotaRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AllocateQuotaResponseHttpRequest: ...
         def check(
             self, *, serviceName: str, body: CheckRequest = ..., **kwargs: typing.Any

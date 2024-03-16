@@ -24,7 +24,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1DocumentSchema = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1DocumentSchemaHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -38,7 +38,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListDocumentSchemasResponseHttpRequest
                 ): ...
@@ -55,7 +55,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1UpdateDocumentSchemaRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1DocumentSchemaHttpRequest: ...
 
             @typing.type_check_only
@@ -67,14 +67,14 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudContentwarehouseV1CreateDocumentLinkRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudContentwarehouseV1DocumentLinkHttpRequest: ...
                     def delete(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudContentwarehouseV1DeleteDocumentLinkRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleProtobufEmptyHttpRequest: ...
 
                 @typing.type_check_only
@@ -84,21 +84,21 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudContentwarehouseV1DeleteDocumentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleProtobufEmptyHttpRequest: ...
                     def get(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudContentwarehouseV1GetDocumentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudContentwarehouseV1DocumentHttpRequest: ...
                     def patch(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudContentwarehouseV1UpdateDocumentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudContentwarehouseV1UpdateDocumentResponseHttpRequest
                     ): ...
@@ -108,35 +108,35 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1CreateDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1CreateDocumentResponseHttpRequest: ...
                 def delete(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1DeleteDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def fetchAcl(
                     self,
                     *,
                     resource: str,
                     body: GoogleCloudContentwarehouseV1FetchAclRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1FetchAclResponseHttpRequest: ...
                 def get(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1GetDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1DocumentHttpRequest: ...
                 def linkedSources(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1ListLinkedSourcesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListLinkedSourcesResponseHttpRequest
                 ): ...
@@ -153,7 +153,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1ListLinkedTargetsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListLinkedTargetsResponseHttpRequest
                 ): ...
@@ -162,21 +162,21 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1LockDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1DocumentHttpRequest: ...
                 def patch(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1UpdateDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1UpdateDocumentResponseHttpRequest: ...
                 def search(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1SearchDocumentsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1SearchDocumentsResponseHttpRequest
                 ): ...
@@ -193,7 +193,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GoogleCloudContentwarehouseV1SetAclRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1SetAclResponseHttpRequest: ...
                 def documentLinks(self) -> DocumentLinksResource: ...
                 def referenceId(self) -> ReferenceIdResource: ...
@@ -211,7 +211,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1RuleSet = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1RuleSetHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -225,7 +225,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1ListRuleSetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -239,7 +239,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1UpdateRuleSetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1RuleSetHttpRequest: ...
 
             @typing.type_check_only
@@ -249,7 +249,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudContentwarehouseV1SynonymSet = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1SynonymSetHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -263,7 +263,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudContentwarehouseV1ListSynonymSetsResponseHttpRequest
                 ): ...
@@ -280,7 +280,7 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudContentwarehouseV1SynonymSet = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudContentwarehouseV1SynonymSetHttpRequest: ...
 
             def getStatus(
@@ -291,14 +291,14 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
                 *,
                 location: str,
                 body: GoogleCloudContentwarehouseV1InitializeProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def runPipeline(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudContentwarehouseV1RunPipelineRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def documentSchemas(self) -> DocumentSchemasResource: ...
             def documents(self) -> DocumentsResource: ...
@@ -311,14 +311,14 @@ class ContentwarehouseResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: GoogleCloudContentwarehouseV1FetchAclRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudContentwarehouseV1FetchAclResponseHttpRequest: ...
         def setAcl(
             self,
             *,
             resource: str,
             body: GoogleCloudContentwarehouseV1SetAclRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudContentwarehouseV1SetAclResponseHttpRequest: ...
         def locations(self) -> LocationsResource: ...
 

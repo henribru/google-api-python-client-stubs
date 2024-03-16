@@ -25,7 +25,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 *,
                 spreadsheetId: str,
                 body: SearchDeveloperMetadataRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SearchDeveloperMetadataResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -36,7 +36,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 spreadsheetId: str,
                 sheetId: int,
                 body: CopySheetToAnotherSpreadsheetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SheetPropertiesHttpRequest: ...
 
         @typing.type_check_only
@@ -60,21 +60,21 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 valueInputOption: typing_extensions.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AppendValuesResponseHttpRequest: ...
             def batchClear(
                 self,
                 *,
                 spreadsheetId: str,
                 body: BatchClearValuesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchClearValuesResponseHttpRequest: ...
             def batchClearByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
                 body: BatchClearValuesByDataFilterRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchClearValuesByDataFilterResponseHttpRequest: ...
             def batchGet(
                 self,
@@ -90,28 +90,28 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 valueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchGetValuesResponseHttpRequest: ...
             def batchGetByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
                 body: BatchGetValuesByDataFilterRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchGetValuesByDataFilterResponseHttpRequest: ...
             def batchUpdate(
                 self,
                 *,
                 spreadsheetId: str,
                 body: BatchUpdateValuesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchUpdateValuesResponseHttpRequest: ...
             def batchUpdateByDataFilter(
                 self,
                 *,
                 spreadsheetId: str,
                 body: BatchUpdateValuesByDataFilterRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchUpdateValuesByDataFilterResponseHttpRequest: ...
             def clear(
                 self,
@@ -119,7 +119,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 spreadsheetId: str,
                 range: str,
                 body: ClearValuesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ClearValuesResponseHttpRequest: ...
             def get(
                 self,
@@ -135,7 +135,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 valueRenderOption: typing_extensions.Literal[
                     "FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ValueRangeHttpRequest: ...
             def update(
                 self,
@@ -153,7 +153,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
                 valueInputOption: typing_extensions.Literal[
                     "INPUT_VALUE_OPTION_UNSPECIFIED", "RAW", "USER_ENTERED"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> UpdateValuesResponseHttpRequest: ...
 
         def batchUpdate(
@@ -161,7 +161,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
             *,
             spreadsheetId: str,
             body: BatchUpdateSpreadsheetRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdateSpreadsheetResponseHttpRequest: ...
         def create(
             self, *, body: Spreadsheet = ..., **kwargs: typing.Any
@@ -172,14 +172,14 @@ class SheetsResource(googleapiclient.discovery.Resource):
             spreadsheetId: str,
             includeGridData: bool = ...,
             ranges: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SpreadsheetHttpRequest: ...
         def getByDataFilter(
             self,
             *,
             spreadsheetId: str,
             body: GetSpreadsheetByDataFilterRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SpreadsheetHttpRequest: ...
         def developerMetadata(self) -> DeveloperMetadataResource: ...
         def sheets(self) -> SheetsResource: ...

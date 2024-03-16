@@ -27,7 +27,7 @@ class IamResource(googleapiclient.discovery.Resource):
             parent: str,
             body: GoogleIamV2Policy = ...,
             policyId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningOperationHttpRequest: ...
         def delete(
             self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -41,7 +41,7 @@ class IamResource(googleapiclient.discovery.Resource):
             parent: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleIamV2ListPoliciesResponseHttpRequest: ...
         def listPolicies_next(
             self,

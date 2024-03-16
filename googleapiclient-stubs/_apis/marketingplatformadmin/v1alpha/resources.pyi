@@ -22,7 +22,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 *,
                 parent: str,
                 body: AnalyticsAccountLink = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AnalyticsAccountLinkHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -33,7 +33,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAnalyticsAccountLinksResponseHttpRequest: ...
             def list_next(
                 self,
@@ -45,7 +45,7 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 *,
                 analyticsAccountLink: str,
                 body: SetPropertyServiceLevelRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SetPropertyServiceLevelResponseHttpRequest: ...
 
         def analyticsAccountLinks(self) -> AnalyticsAccountLinksResource: ...

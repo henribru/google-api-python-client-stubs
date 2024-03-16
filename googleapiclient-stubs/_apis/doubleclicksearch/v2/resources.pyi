@@ -30,7 +30,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             criterionId: str = ...,
             customerId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionListHttpRequest: ...
         def getByCustomerId(
             self,
@@ -47,7 +47,7 @@ class DoubleclicksearchResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             criterionId: str = ...,
             engineAccountId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ConversionListHttpRequest: ...
         def insert(
             self, *, body: ConversionList = ..., **kwargs: typing.Any

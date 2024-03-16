@@ -24,14 +24,14 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ApplyParametersRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def applySoftwareUpdate(
                     self,
                     *,
                     instance: str,
                     body: ApplySoftwareUpdateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
@@ -39,7 +39,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Instance = ...,
                     instanceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -55,7 +55,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListInstancesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -68,28 +68,28 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Instance = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rescheduleMaintenance(
                     self,
                     *,
                     instance: str,
                     body: RescheduleMaintenanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def updateParameters(
                     self,
                     *,
                     name: str,
                     body: UpdateParametersRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upgrade(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudMemcacheV1beta2UpgradeInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -99,7 +99,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -114,7 +114,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -132,7 +132,7 @@ class CloudMemorystoreForMemcachedResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

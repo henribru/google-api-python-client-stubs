@@ -24,7 +24,7 @@ class PublicCertificateAuthorityResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ExternalAccountKey = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExternalAccountKeyHttpRequest: ...
 
             def externalAccountKeys(self) -> ExternalAccountKeysResource: ...

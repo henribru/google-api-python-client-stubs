@@ -20,7 +20,7 @@ class DocsResource(googleapiclient.discovery.Resource):
             *,
             documentId: str,
             body: BatchUpdateDocumentRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdateDocumentResponseHttpRequest: ...
         def create(
             self, *, body: Document = ..., **kwargs: typing.Any
@@ -35,7 +35,7 @@ class DocsResource(googleapiclient.discovery.Resource):
                 "PREVIEW_SUGGESTIONS_ACCEPTED",
                 "PREVIEW_WITHOUT_SUGGESTIONS",
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DocumentHttpRequest: ...
 
     def new_batch_http_request(

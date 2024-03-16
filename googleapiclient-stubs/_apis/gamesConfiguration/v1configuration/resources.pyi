@@ -26,7 +26,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             *,
             applicationId: str,
             body: AchievementConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AchievementConfigurationHttpRequest: ...
         def list(
             self,
@@ -34,7 +34,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             applicationId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AchievementConfigurationListResponseHttpRequest: ...
         def list_next(
             self,
@@ -46,7 +46,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             *,
             achievementId: str,
             body: AchievementConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AchievementConfigurationHttpRequest: ...
 
     @typing.type_check_only
@@ -62,7 +62,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             *,
             applicationId: str,
             body: LeaderboardConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardConfigurationHttpRequest: ...
         def list(
             self,
@@ -70,7 +70,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             applicationId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardConfigurationListResponseHttpRequest: ...
         def list_next(
             self,
@@ -82,7 +82,7 @@ class GamesConfigurationResource(googleapiclient.discovery.Resource):
             *,
             leaderboardId: str,
             body: LeaderboardConfiguration = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardConfigurationHttpRequest: ...
 
     def new_batch_http_request(

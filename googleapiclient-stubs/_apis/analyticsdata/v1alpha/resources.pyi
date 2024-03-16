@@ -23,7 +23,7 @@ class AnalyticsDataResource(googleapiclient.discovery.Resource):
             *,
             property: str,
             body: RunRealtimeReportRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RunRealtimeReportResponseHttpRequest: ...
 
     @typing.type_check_only

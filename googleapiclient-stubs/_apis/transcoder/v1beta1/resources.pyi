@@ -25,7 +25,7 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: JobTemplate = ...,
                     jobTemplateId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -39,7 +39,7 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -62,7 +62,7 @@ class TranscoderResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,

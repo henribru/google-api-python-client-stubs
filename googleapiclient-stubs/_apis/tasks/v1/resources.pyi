@@ -55,7 +55,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             body: Task = ...,
             parent: str = ...,
             previous: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def list(
             self,
@@ -71,7 +71,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             showDeleted: bool = ...,
             showHidden: bool = ...,
             updatedMin: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TasksHttpRequest: ...
         def list_next(
             self, previous_request: TasksHttpRequest, previous_response: Tasks
@@ -83,7 +83,7 @@ class TasksResource(googleapiclient.discovery.Resource):
             task: str,
             parent: str = ...,
             previous: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TaskHttpRequest: ...
         def patch(
             self, *, tasklist: str, task: str, body: Task = ..., **kwargs: typing.Any

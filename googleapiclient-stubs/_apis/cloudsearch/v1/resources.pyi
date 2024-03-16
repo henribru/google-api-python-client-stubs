@@ -28,7 +28,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         debugOptions_enableDebugging: bool = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -42,14 +42,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Principal = ...,
                     debugOptions_enableDebugging: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> CheckAccessResponseHttpRequest: ...
                 def searchByViewUrl(
                     self,
                     *,
                     name: str,
                     body: SearchItemsByViewUrlRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SearchItemsByViewUrlResponseHttpRequest: ...
                 def searchByViewUrl_next(
                     self,
@@ -73,7 +73,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     userResourceName: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListItemNamesForUnmappedIdentityResponseHttpRequest: ...
                 def listForunmappedidentity_next(
                     self,
@@ -98,7 +98,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         "TOO_MANY_MAPPINGS_FOUND",
                         "INTERNAL_ERROR",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListUnmappedIdentitiesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -128,14 +128,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                         "UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
                     ] = ...,
                     version: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def deleteQueueItems(
                     self,
                     *,
                     name: str,
                     body: DeleteQueueItemsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -143,14 +143,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     name: str,
                     connectorName: str = ...,
                     debugOptions_enableDebugging: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ItemHttpRequest: ...
                 def index(
                     self,
                     *,
                     name: str,
                     body: IndexItemRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -161,7 +161,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     debugOptions_enableDebugging: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListItemsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -173,28 +173,28 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: PollItemsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PollItemsResponseHttpRequest: ...
                 def push(
                     self,
                     *,
                     name: str,
                     body: PushItemRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ItemHttpRequest: ...
                 def unreserve(
                     self,
                     *,
                     name: str,
                     body: UnreserveItemsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def upload(
                     self,
                     *,
                     name: str,
                     body: StartUploadItemRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> UploadItemRefHttpRequest: ...
 
             def deleteSchema(
@@ -202,21 +202,21 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def getSchema(
                 self,
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SchemaHttpRequest: ...
             def updateSchema(
                 self,
                 *,
                 name: str,
                 body: UpdateSchemaRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def items(self) -> ItemsResource: ...
 
@@ -239,7 +239,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -262,7 +262,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 requestOptions_languageCode: str = ...,
                 requestOptions_searchApplicationId: str = ...,
                 requestOptions_timeZone: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListQuerySourcesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -293,14 +293,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
             def list(
                 self,
@@ -308,7 +308,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 debugOptions_enableDebugging: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDataSourceResponseHttpRequest: ...
             def list_next(
                 self,
@@ -322,14 +322,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 body: DataSource = ...,
                 debugOptions_enableDebugging: bool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def update(
                 self,
                 *,
                 name: str,
                 body: UpdateDataSourceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
@@ -342,14 +342,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
                 debugOptions_enableDebugging: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SearchApplicationHttpRequest: ...
             def list(
                 self,
@@ -357,7 +357,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 debugOptions_enableDebugging: bool = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSearchApplicationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -370,14 +370,14 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SearchApplication = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def reset(
                 self,
                 *,
                 name: str,
                 body: ResetSearchApplicationRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def update(
                 self,
@@ -385,7 +385,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SearchApplication = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         def getCustomer(self, **kwargs: typing.Any) -> CustomerSettingsHttpRequest: ...
@@ -394,7 +394,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             *,
             body: CustomerSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def datasources(self) -> DatasourcesResource: ...
         def searchapplications(self) -> SearchapplicationsResource: ...
@@ -415,7 +415,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_day: int = ...,
                     toDate_month: int = ...,
                     toDate_year: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetDataSourceIndexStatsResponseHttpRequest: ...
 
             def datasources(self) -> DatasourcesResource: ...
@@ -434,7 +434,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_day: int = ...,
                     toDate_month: int = ...,
                     toDate_year: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetSearchApplicationQueryStatsResponseHttpRequest: ...
 
             def searchapplications(self) -> SearchapplicationsResource: ...
@@ -453,7 +453,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_day: int = ...,
                     toDate_month: int = ...,
                     toDate_year: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetSearchApplicationSessionStatsResponseHttpRequest: ...
 
             def searchapplications(self) -> SearchapplicationsResource: ...
@@ -472,7 +472,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
                     toDate_day: int = ...,
                     toDate_month: int = ...,
                     toDate_year: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetSearchApplicationUserStatsResponseHttpRequest: ...
 
             def searchapplications(self) -> SearchapplicationsResource: ...
@@ -486,7 +486,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             toDate_day: int = ...,
             toDate_month: int = ...,
             toDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetCustomerIndexStatsResponseHttpRequest: ...
         def getQuery(
             self,
@@ -497,7 +497,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             toDate_day: int = ...,
             toDate_month: int = ...,
             toDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetCustomerQueryStatsResponseHttpRequest: ...
         def getSearchapplication(
             self,
@@ -508,7 +508,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             startDate_day: int = ...,
             startDate_month: int = ...,
             startDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetCustomerSearchApplicationStatsResponseHttpRequest: ...
         def getSession(
             self,
@@ -519,7 +519,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             toDate_day: int = ...,
             toDate_month: int = ...,
             toDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetCustomerSessionStatsResponseHttpRequest: ...
         def getUser(
             self,
@@ -530,7 +530,7 @@ class CloudSearchResource(googleapiclient.discovery.Resource):
             toDate_day: int = ...,
             toDate_month: int = ...,
             toDate_year: int = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetCustomerUserStatsResponseHttpRequest: ...
         def index(self) -> IndexResource: ...
         def query(self) -> QueryResource: ...

@@ -25,7 +25,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: EndpointPolicy = ...,
                     endpointPolicyId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -38,7 +38,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -46,7 +46,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListEndpointPoliciesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -59,21 +59,21 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: EndpointPolicy = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -84,7 +84,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Gateway = ...,
                     gatewayId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -97,7 +97,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -105,7 +105,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListGatewaysResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -118,21 +118,21 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Gateway = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -143,7 +143,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GrpcRoute = ...,
                     grpcRouteId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -157,7 +157,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListGrpcRoutesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -170,7 +170,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GrpcRoute = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -181,7 +181,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: HttpRoute = ...,
                     httpRouteId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -195,7 +195,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListHttpRoutesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -208,7 +208,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: HttpRoute = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -220,7 +220,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     body: LbRouteExtension = ...,
                     lbRouteExtensionId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -236,7 +236,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListLbRouteExtensionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -250,7 +250,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     body: LbRouteExtension = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -262,7 +262,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     body: LbTrafficExtension = ...,
                     lbTrafficExtensionId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -278,7 +278,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListLbTrafficExtensionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -292,7 +292,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     body: LbTrafficExtension = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -303,7 +303,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Mesh = ...,
                     meshId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -316,7 +316,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -324,7 +324,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListMeshesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -337,21 +337,21 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Mesh = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -361,7 +361,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -376,7 +376,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -392,7 +392,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: ServiceBinding = ...,
                     serviceBindingId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -405,7 +405,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -413,7 +413,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListServiceBindingsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -425,14 +425,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -443,7 +443,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: ServiceLbPolicy = ...,
                     serviceLbPolicyId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -456,7 +456,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -464,7 +464,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListServiceLbPoliciesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -477,21 +477,21 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: ServiceLbPolicy = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -502,7 +502,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: TcpRoute = ...,
                     tcpRouteId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -516,7 +516,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTcpRoutesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -529,7 +529,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: TcpRoute = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -540,7 +540,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: TlsRoute = ...,
                     tlsRouteId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -554,7 +554,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTlsRoutesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -567,7 +567,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: TlsRoute = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             def get(
@@ -580,7 +580,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

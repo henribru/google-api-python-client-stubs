@@ -36,7 +36,7 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -49,7 +49,7 @@ class TexttospeechResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SynthesizeLongAudioRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
 

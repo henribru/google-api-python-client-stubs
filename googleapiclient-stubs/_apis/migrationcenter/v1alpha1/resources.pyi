@@ -24,21 +24,21 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AggregateAssetsValuesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AggregateAssetsValuesResponseHttpRequest: ...
                 def batchDelete(
                     self,
                     *,
                     parent: str,
                     body: BatchDeleteAssetsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def batchUpdate(
                     self,
                     *,
                     parent: str,
                     body: BatchUpdateAssetsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchUpdateAssetsResponseHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -53,7 +53,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         "ASSET_VIEW_FULL",
                         "ASSET_VIEW_STANDARD",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AssetHttpRequest: ...
                 def list(
                     self,
@@ -70,7 +70,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         "ASSET_VIEW_FULL",
                         "ASSET_VIEW_STANDARD",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAssetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -84,7 +84,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: Asset = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AssetHttpRequest: ...
                 def reportAssetFrames(
                     self,
@@ -92,7 +92,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Frames = ...,
                     source: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ReportAssetFramesResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -102,7 +102,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     *,
                     group: str,
                     body: AddAssetsToGroupRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
@@ -111,7 +111,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: Group = ...,
                     groupId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -127,7 +127,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListGroupsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -141,14 +141,14 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: Group = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeAssets(
                     self,
                     *,
                     group: str,
                     body: RemoveAssetsFromGroupRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -162,7 +162,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         body: ImportDataFile = ...,
                         importDataFileId: str = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -178,7 +178,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListImportDataFilesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -193,7 +193,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: ImportJob = ...,
                     importJobId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -201,7 +201,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -212,7 +212,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         "IMPORT_JOB_VIEW_BASIC",
                         "IMPORT_JOB_VIEW_FULL",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ImportJobHttpRequest: ...
                 def list(
                     self,
@@ -227,7 +227,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         "IMPORT_JOB_VIEW_BASIC",
                         "IMPORT_JOB_VIEW_FULL",
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListImportJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -241,21 +241,21 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: ImportJob = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def run(
                     self,
                     *,
                     name: str,
                     body: RunImportJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def validate(
                     self,
                     *,
                     name: str,
                     body: ValidateImportJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def importDataFiles(self) -> ImportDataFilesResource: ...
 
@@ -266,7 +266,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -281,7 +281,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -298,7 +298,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: PreferenceSet = ...,
                     preferenceSetId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -313,7 +313,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListPreferenceSetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -327,7 +327,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: PreferenceSet = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -341,7 +341,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                         body: Report = ...,
                         reportId: str = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -356,7 +356,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                             "REPORT_VIEW_FULL",
                             "REPORT_VIEW_STANDARD",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ReportHttpRequest: ...
                     def list(
                         self,
@@ -372,7 +372,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                             "REPORT_VIEW_FULL",
                             "REPORT_VIEW_STANDARD",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReportsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -387,7 +387,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: ReportConfig = ...,
                     reportConfigId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -395,7 +395,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     name: str,
                     force: bool = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -408,7 +408,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListReportConfigsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -430,7 +430,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                             "ERROR_FRAME_VIEW_BASIC",
                             "ERROR_FRAME_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ErrorFrameHttpRequest: ...
                     def list(
                         self,
@@ -443,7 +443,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                             "ERROR_FRAME_VIEW_BASIC",
                             "ERROR_FRAME_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListErrorFramesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -458,7 +458,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: Source = ...,
                     requestId: str = ...,
                     sourceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -474,7 +474,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSourcesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -488,7 +488,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     body: Source = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def errorFrames(self) -> ErrorFramesResource: ...
 
@@ -505,7 +505,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -519,7 +519,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 body: Settings = ...,
                 requestId: str = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def assets(self) -> AssetsResource: ...
             def groups(self) -> GroupsResource: ...

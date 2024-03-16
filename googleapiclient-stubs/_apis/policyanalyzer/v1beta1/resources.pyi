@@ -28,7 +28,7 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest
                     ): ...

@@ -33,7 +33,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                     mobilesdkAppId: str,
                     releaseId: str,
                     body: GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponseHttpRequest
                 ): ...
@@ -44,7 +44,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 mobilesdkAppId: str,
                 releaseId: str,
                 body: GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponseHttpRequest
             ): ...
@@ -69,7 +69,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
             appView: typing_extensions.Literal[
                 "APP_VIEW_UNSPECIFIED", "BASIC", "FULL"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleFirebaseAppdistroV1alphaAppHttpRequest: ...
         def getJwt(
             self, *, mobilesdkAppId: str, **kwargs: typing.Any
@@ -96,7 +96,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: GoogleFirebaseAppdistroV1alphaReleaseTest = ...,
                         releaseTestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirebaseAppdistroV1alphaReleaseTestHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -107,7 +107,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleFirebaseAppdistroV1alphaListReleaseTestsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -129,7 +129,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleFirebaseAppdistroV1alphaTestConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest: ...
             def releases(self) -> ReleasesResource: ...
 

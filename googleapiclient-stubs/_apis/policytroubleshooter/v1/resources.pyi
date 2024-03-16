@@ -19,7 +19,7 @@ class PolicyTroubleshooterResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponseHttpRequest
         ): ...

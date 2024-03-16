@@ -22,7 +22,7 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateProfileRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ProfileHttpRequest: ...
             def createOffline(
                 self, *, parent: str, body: Profile = ..., **kwargs: typing.Any
@@ -33,7 +33,7 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListProfilesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -46,7 +46,7 @@ class CloudProfilerResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Profile = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ProfileHttpRequest: ...
 
         def profiles(self) -> ProfilesResource: ...

@@ -26,7 +26,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -47,7 +47,7 @@ class FirebaseHostingResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any

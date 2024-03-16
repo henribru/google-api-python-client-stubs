@@ -26,7 +26,7 @@ class DisplayVideoResource(googleapiclient.discovery.Resource):
             *,
             resourceName: str,
             body: GoogleBytestreamMedia = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleBytestreamMediaHttpRequest: ...
 
     @typing.type_check_only

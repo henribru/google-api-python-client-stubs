@@ -24,14 +24,14 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDevice = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def createSigned(
                     self,
                     *,
                     parent: str,
                     body: SasPortalCreateSignedDeviceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def list(
                     self,
@@ -40,7 +40,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -53,7 +53,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SasPortalDeployment = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeploymentHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -68,7 +68,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -80,7 +80,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -88,7 +88,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalDeployment = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
 
@@ -102,7 +102,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SasPortalCreateSignedDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -117,7 +117,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListDevicesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -129,7 +129,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -137,21 +137,21 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalDevice = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
                 self,
                 *,
                 name: str,
                 body: SasPortalSignDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalEmptyHttpRequest: ...
             def updateSigned(
                 self,
                 *,
                 name: str,
                 body: SasPortalUpdateSignedDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
 
         @typing.type_check_only
@@ -163,7 +163,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDeployment = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeploymentHttpRequest: ...
                 def list(
                     self,
@@ -172,7 +172,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -187,14 +187,14 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDevice = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def createSigned(
                     self,
                     *,
                     parent: str,
                     body: SasPortalCreateSignedDeviceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def list(
                     self,
@@ -203,7 +203,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -218,7 +218,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalNode = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalNodeHttpRequest: ...
                 def list(
                     self,
@@ -227,7 +227,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListNodesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -251,7 +251,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListNodesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -263,7 +263,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveNodeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -271,7 +271,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalNode = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalNodeHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...
@@ -298,7 +298,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: SasPortalMigrateOrganizationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SasPortalOperationHttpRequest: ...
         def patch(
             self,
@@ -306,13 +306,13 @@ class SasportalResource(googleapiclient.discovery.Resource):
             name: str,
             body: SasPortalCustomer = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SasPortalCustomerHttpRequest: ...
         def provisionDeployment(
             self,
             *,
             body: SasPortalProvisionDeploymentRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SasPortalProvisionDeploymentResponseHttpRequest: ...
         def setupSasAnalytics(
             self, *, body: SasPortalSetupSasAnalyticsRequest = ..., **kwargs: typing.Any
@@ -336,7 +336,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -344,21 +344,21 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalDevice = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
                 self,
                 *,
                 name: str,
                 body: SasPortalSignDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalEmptyHttpRequest: ...
             def updateSigned(
                 self,
                 *,
                 name: str,
                 body: SasPortalUpdateSignedDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
 
         def get(
@@ -386,14 +386,14 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDevice = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def createSigned(
                     self,
                     *,
                     parent: str,
                     body: SasPortalCreateSignedDeviceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def list(
                     self,
@@ -402,7 +402,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -423,7 +423,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -435,7 +435,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -443,7 +443,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalDeployment = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeploymentHttpRequest: ...
             def devices(self) -> DevicesResource: ...
 
@@ -457,7 +457,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: SasPortalCreateSignedDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -472,7 +472,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListDevicesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -484,7 +484,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -492,21 +492,21 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalDevice = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
             def signDevice(
                 self,
                 *,
                 name: str,
                 body: SasPortalSignDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalEmptyHttpRequest: ...
             def updateSigned(
                 self,
                 *,
                 name: str,
                 body: SasPortalUpdateSignedDeviceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalDeviceHttpRequest: ...
 
         @typing.type_check_only
@@ -518,7 +518,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDeployment = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeploymentHttpRequest: ...
                 def list(
                     self,
@@ -527,7 +527,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDeploymentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -542,14 +542,14 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalDevice = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def createSigned(
                     self,
                     *,
                     parent: str,
                     body: SasPortalCreateSignedDeviceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalDeviceHttpRequest: ...
                 def list(
                     self,
@@ -558,7 +558,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListDevicesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -573,7 +573,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SasPortalNode = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalNodeHttpRequest: ...
                 def list(
                     self,
@@ -582,7 +582,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SasPortalListNodesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -606,7 +606,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalListNodesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -618,7 +618,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: SasPortalMoveNodeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalOperationHttpRequest: ...
             def patch(
                 self,
@@ -626,7 +626,7 @@ class SasportalResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SasPortalNode = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SasPortalNodeHttpRequest: ...
             def deployments(self) -> DeploymentsResource: ...
             def devices(self) -> DevicesResource: ...

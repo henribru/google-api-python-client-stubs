@@ -22,7 +22,7 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 *,
                 bucket: str,
                 body: AddFirebaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BucketHttpRequest: ...
             def get(self, *, name: str, **kwargs: typing.Any) -> BucketHttpRequest: ...
             def list(
@@ -31,7 +31,7 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBucketsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -43,7 +43,7 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 *,
                 bucket: str,
                 body: RemoveFirebaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         def buckets(self) -> BucketsResource: ...

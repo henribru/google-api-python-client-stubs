@@ -24,28 +24,28 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1BatchDeleteGroupPoliciesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchModify(
                     self,
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1BatchModifyGroupPoliciesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def listGroupPriorityOrdering(
                     self,
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1ListGroupPriorityOrderingRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromePolicyVersionsV1ListGroupPriorityOrderingResponseHttpRequest: ...
                 def updateGroupPriorityOrdering(
                     self,
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1UpdateGroupPriorityOrderingRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
 
             @typing.type_check_only
@@ -55,7 +55,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1DefineCertificateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleChromePolicyVersionsV1DefineCertificateResponseHttpRequest
                 ): ...
@@ -64,14 +64,14 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1DefineNetworkRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromePolicyVersionsV1DefineNetworkResponseHttpRequest: ...
                 def removeCertificate(
                     self,
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1RemoveCertificateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleChromePolicyVersionsV1RemoveCertificateResponseHttpRequest
                 ): ...
@@ -80,7 +80,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1RemoveNetworkRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChromePolicyVersionsV1RemoveNetworkResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -90,14 +90,14 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1BatchInheritOrgUnitPoliciesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
                 def batchModify(
                     self,
                     *,
                     customer: str,
                     body: GoogleChromePolicyVersionsV1BatchModifyOrgUnitPoliciesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleProtobufEmptyHttpRequest: ...
 
             def resolve(
@@ -105,7 +105,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 *,
                 customer: str,
                 body: GoogleChromePolicyVersionsV1ResolveRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromePolicyVersionsV1ResolveResponseHttpRequest: ...
             def resolve_next(
                 self,
@@ -128,7 +128,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChromePolicyVersionsV1ListPolicySchemasResponseHttpRequest: ...
             def list_next(
                 self,
@@ -148,7 +148,7 @@ class ChromePolicyResource(googleapiclient.discovery.Resource):
             *,
             customer: str,
             body: GoogleChromePolicyVersionsV1UploadPolicyFileRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleChromePolicyVersionsV1UploadPolicyFileResponseHttpRequest: ...
 
     def new_batch_http_request(

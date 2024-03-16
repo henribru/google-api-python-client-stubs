@@ -26,7 +26,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelOperationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -41,7 +41,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -59,7 +59,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             name: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListReservationTopicsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -73,7 +73,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Reservation = ...,
                         reservationId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ReservationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -87,7 +87,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReservationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -100,7 +100,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Reservation = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ReservationHttpRequest: ...
                     def topics(self) -> TopicsResource: ...
 
@@ -113,7 +113,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         body: Subscription = ...,
                         skipBacklog: bool = ...,
                         subscriptionId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -127,7 +127,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSubscriptionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -140,14 +140,14 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Subscription = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SubscriptionHttpRequest: ...
                     def seek(
                         self,
                         *,
                         name: str,
                         body: SeekSubscriptionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -160,7 +160,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             name: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListTopicSubscriptionsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -174,7 +174,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Topic = ...,
                         topicId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -191,7 +191,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListTopicsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -204,7 +204,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Topic = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TopicHttpRequest: ...
                     def subscriptions(self) -> SubscriptionsResource: ...
 
@@ -233,7 +233,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListPartitionCursorsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -246,7 +246,7 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         *,
                         subscription: str,
                         body: CommitCursorRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> CommitCursorResponseHttpRequest: ...
                     def cursors(self) -> CursorsResource: ...
 
@@ -269,21 +269,21 @@ class PubsubLiteResource(googleapiclient.discovery.Resource):
                         *,
                         topic: str,
                         body: ComputeHeadCursorRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ComputeHeadCursorResponseHttpRequest: ...
                     def computeMessageStats(
                         self,
                         *,
                         topic: str,
                         body: ComputeMessageStatsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ComputeMessageStatsResponseHttpRequest: ...
                     def computeTimeCursor(
                         self,
                         *,
                         topic: str,
                         body: ComputeTimeCursorRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ComputeTimeCursorResponseHttpRequest: ...
 
                 def topics(self) -> TopicsResource: ...

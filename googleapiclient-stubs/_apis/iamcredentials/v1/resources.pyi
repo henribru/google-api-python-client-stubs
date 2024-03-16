@@ -22,14 +22,14 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GenerateAccessTokenRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateAccessTokenResponseHttpRequest: ...
             def generateIdToken(
                 self,
                 *,
                 name: str,
                 body: GenerateIdTokenRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GenerateIdTokenResponseHttpRequest: ...
             def signBlob(
                 self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any

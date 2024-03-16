@@ -21,7 +21,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AchievementDefinitionsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -37,7 +37,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             achievementId: str,
             stepsToIncrement: int,
             requestId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AchievementIncrementResponseHttpRequest: ...
         def list(
             self,
@@ -49,7 +49,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             state: typing_extensions.Literal[
                 "ALL", "HIDDEN", "REVEALED", "UNLOCKED"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerAchievementListResponseHttpRequest: ...
         def list_next(
             self,
@@ -77,7 +77,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             applicationId: str,
             language: str = ...,
             platformType: typing_extensions.Literal["ANDROID", "IOS", "WEB_APP"] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ApplicationHttpRequest: ...
         def getEndPoint(
             self,
@@ -86,7 +86,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             endPointType: typing_extensions.Literal[
                 "PROFILE_CREATION", "PROFILE_SETTINGS"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EndPointHttpRequest: ...
         def played(self, **kwargs: typing.Any) -> googleapiclient.http.HttpRequest: ...
         def verify(
@@ -101,7 +101,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerEventListResponseHttpRequest: ...
         def listByPlayer_next(
             self,
@@ -114,7 +114,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventDefinitionListResponseHttpRequest: ...
         def listDefinitions_next(
             self,
@@ -126,7 +126,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             *,
             body: EventRecordRequest = ...,
             language: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventUpdateResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -140,7 +140,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardListResponseHttpRequest: ...
         def list_next(
             self,
@@ -161,7 +161,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CategoryListResponseHttpRequest: ...
         def listCategoriesByPlayer_next(
             self,
@@ -177,7 +177,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             playerId: str,
             language: str = ...,
             playerIdConsistencyToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerHttpRequest: ...
         def getMultipleApplicationPlayerIds(
             self, *, applicationIds: str | _list[str] = ..., **kwargs: typing.Any
@@ -194,7 +194,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerListResponseHttpRequest: ...
         def list_next(
             self,
@@ -237,7 +237,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerLeaderboardScoreListResponseHttpRequest: ...
         def get_next(
             self,
@@ -253,7 +253,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardScoresHttpRequest: ...
         def list_next(
             self,
@@ -271,7 +271,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             resultsAbove: int = ...,
             returnTopIfAbsent: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LeaderboardScoresHttpRequest: ...
         def listWindow_next(
             self,
@@ -285,14 +285,14 @@ class GamesResource(googleapiclient.discovery.Resource):
             score: str,
             language: str = ...,
             scoreTag: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerScoreResponseHttpRequest: ...
         def submitMultiple(
             self,
             *,
             body: PlayerScoreSubmissionList = ...,
             language: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PlayerScoreListResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -307,7 +307,7 @@ class GamesResource(googleapiclient.discovery.Resource):
             language: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SnapshotListResponseHttpRequest: ...
         def list_next(
             self,

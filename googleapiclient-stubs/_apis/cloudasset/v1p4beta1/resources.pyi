@@ -30,14 +30,14 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             options_expandRoles: bool = ...,
             options_outputGroupEdges: bool = ...,
             options_outputResourceEdges: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeIamPolicyResponseHttpRequest: ...
         def exportIamPolicyAnalysis(
             self,
             *,
             parent: str,
             body: ExportIamPolicyAnalysisRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(

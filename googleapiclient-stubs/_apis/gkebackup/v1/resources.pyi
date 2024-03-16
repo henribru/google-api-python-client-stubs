@@ -31,7 +31,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             *,
                             resource: str,
                             options_requestedPolicyVersion: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def list(
                             self,
@@ -41,7 +41,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListVolumeBackupsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -53,14 +53,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             *,
                             resource: str,
                             body: SetIamPolicyRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
                             body: TestIamPermissionsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
                     def create(
@@ -69,7 +69,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Backup = ...,
                         backupId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self,
@@ -77,7 +77,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         name: str,
                         etag: str = ...,
                         force: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -87,7 +87,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         *,
                         resource: str,
                         options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
@@ -97,7 +97,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListBackupsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -110,21 +110,21 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Backup = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def volumeBackups(self) -> VolumeBackupsResource: ...
 
@@ -134,7 +134,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: BackupPlan = ...,
                     backupPlanId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
@@ -147,7 +147,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -157,7 +157,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBackupPlansResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -170,21 +170,21 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: BackupPlan = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
 
@@ -195,7 +195,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleLongrunningCancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -210,7 +210,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -232,7 +232,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             *,
                             resource: str,
                             options_requestedPolicyVersion: int = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def list(
                             self,
@@ -242,7 +242,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListVolumeRestoresResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -254,14 +254,14 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                             *,
                             resource: str,
                             body: SetIamPolicyRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> PolicyHttpRequest: ...
                         def testIamPermissions(
                             self,
                             *,
                             resource: str,
                             body: TestIamPermissionsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TestIamPermissionsResponseHttpRequest: ...
 
                     def create(
@@ -270,7 +270,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Restore = ...,
                         restoreId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self,
@@ -278,7 +278,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         name: str,
                         etag: str = ...,
                         force: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -288,7 +288,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         *,
                         resource: str,
                         options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
@@ -298,7 +298,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListRestoresResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -311,21 +311,21 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Restore = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def volumeRestores(self) -> VolumeRestoresResource: ...
 
@@ -335,7 +335,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: RestorePlan = ...,
                     restorePlanId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self,
@@ -343,7 +343,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     name: str,
                     etag: str = ...,
                     force: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -353,7 +353,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -363,7 +363,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRestorePlansResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -376,21 +376,21 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: RestorePlan = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def restores(self) -> RestoresResource: ...
 
@@ -404,7 +404,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

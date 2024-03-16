@@ -53,7 +53,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ActivitiesHttpRequest: ...
         def list_next(
             self, previous_request: ActivitiesHttpRequest, previous_response: Activities
@@ -96,7 +96,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
 
     @typing.type_check_only
@@ -114,7 +114,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             customerId: str = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,
@@ -135,7 +135,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,
@@ -157,7 +157,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
             orgUnitID: str = ...,
             pageToken: str = ...,
             parameters: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UsageReportsHttpRequest: ...
         def get_next(
             self,

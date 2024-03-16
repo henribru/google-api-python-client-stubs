@@ -24,7 +24,7 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListBusinessCallsInsightsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -41,7 +41,7 @@ class MyBusinessBusinessCallsResource(googleapiclient.discovery.Resource):
             name: str,
             body: BusinessCallsSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BusinessCallsSettingsHttpRequest: ...
         def businesscallsinsights(self) -> BusinesscallsinsightsResource: ...
 

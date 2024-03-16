@@ -41,14 +41,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ImportAptArtifactsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
                         body: UploadAptArtifactRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UploadAptArtifactMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -63,7 +63,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListDockerImagesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -84,7 +84,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListFilesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -99,7 +99,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: UploadGoModuleRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UploadGoModuleMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -109,14 +109,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ImportGoogetArtifactsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
                         body: UploadGoogetArtifactRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UploadGoogetArtifactMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -126,7 +126,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: UploadKfpArtifactRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UploadKfpArtifactMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -140,7 +140,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListMavenArtifactsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -159,7 +159,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListNpmPackagesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -177,7 +177,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             parent: str,
                             body: Tag = ...,
                             tagId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -192,7 +192,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             filter: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListTagsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -205,7 +205,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: Tag = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> TagHttpRequest: ...
 
                     @typing.type_check_only
@@ -215,7 +215,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: BatchDeleteVersionsRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def delete(
                             self, *, name: str, force: bool = ..., **kwargs: typing.Any
@@ -227,7 +227,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             view: typing_extensions.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                             ] = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> VersionHttpRequest: ...
                         def list(
                             self,
@@ -239,7 +239,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             view: typing_extensions.Literal[
                                 "VERSION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                             ] = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListVersionsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -259,7 +259,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListPackagesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -272,7 +272,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Package = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PackageHttpRequest: ...
                     def tags(self) -> TagsResource: ...
                     def versions(self) -> VersionsResource: ...
@@ -288,7 +288,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListPythonPackagesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -303,14 +303,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: ImportYumArtifactsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def upload(
                         self,
                         *,
                         parent: str,
                         body: UploadYumArtifactRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UploadYumArtifactMediaResponseHttpRequest: ...
 
                 def create(
@@ -319,7 +319,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Repository = ...,
                     repositoryId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -332,7 +332,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -340,7 +340,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListRepositoriesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -353,21 +353,21 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Repository = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RepositoryHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def aptArtifacts(self) -> AptArtifactsResource: ...
                 def dockerImages(self) -> DockerImagesResource: ...
@@ -394,7 +394,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -407,7 +407,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: VPCSCConfig = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> VPCSCConfigHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def repositories(self) -> RepositoriesResource: ...
@@ -421,7 +421,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
             name: str,
             body: ProjectSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProjectSettingsHttpRequest: ...
         def locations(self) -> LocationsResource: ...
 

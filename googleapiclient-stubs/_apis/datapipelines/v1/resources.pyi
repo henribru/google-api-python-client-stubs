@@ -27,7 +27,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDatapipelinesV1ListJobsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -42,7 +42,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDatapipelinesV1Pipeline = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -57,7 +57,7 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1ListPipelinesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -72,21 +72,21 @@ class DatapipelinesResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDatapipelinesV1Pipeline = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def run(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDatapipelinesV1RunPipelineRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1RunPipelineResponseHttpRequest: ...
                 def stop(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDatapipelinesV1StopPipelineRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatapipelinesV1PipelineHttpRequest: ...
                 def jobs(self) -> JobsResource: ...
 

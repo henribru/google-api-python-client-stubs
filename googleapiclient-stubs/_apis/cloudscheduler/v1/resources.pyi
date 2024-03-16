@@ -32,7 +32,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -45,21 +45,21 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Job = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def pause(
                     self,
                     *,
                     name: str,
                     body: PauseJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def resume(
                     self,
                     *,
                     name: str,
                     body: ResumeJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def run(
                     self, *, name: str, body: RunJobRequest = ..., **kwargs: typing.Any
@@ -75,7 +75,7 @@ class CloudSchedulerResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

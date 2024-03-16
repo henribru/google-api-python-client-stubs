@@ -23,7 +23,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Attestor = ...,
                 attestorId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AttestorHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -36,7 +36,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def list(
                 self,
@@ -44,7 +44,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAttestorsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -56,14 +56,14 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def update(
                 self, *, name: str, body: Attestor = ..., **kwargs: typing.Any
@@ -73,7 +73,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 attestor: str,
                 body: ValidateAttestationOccurrenceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ValidateAttestationOccurrenceResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -83,21 +83,21 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> IamPolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
         def getPolicy(

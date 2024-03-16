@@ -31,7 +31,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListProductCertificationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -44,7 +44,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: ProductCertification = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ProductCertificationHttpRequest: ...
 
             def productCertifications(self) -> ProductCertificationsResource: ...
@@ -67,7 +67,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                     ]
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ProductHttpRequest: ...
             def list(
                 self,
@@ -83,7 +83,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListProductsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -96,7 +96,7 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 parent: str,
                 name: str,
                 body: Attributes = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         def languages(self) -> LanguagesResource: ...

@@ -24,7 +24,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 body: Location = ...,
                 requestId: str = ...,
                 validateOnly: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> LocationHttpRequest: ...
             def list(
                 self,
@@ -35,7 +35,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 readMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -57,7 +57,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             regionCode: str = ...,
             showAll: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAttributeMetadataResponseHttpRequest: ...
         def list_next(
             self,
@@ -76,7 +76,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetCategoriesResponseHttpRequest: ...
         def list(
             self,
@@ -89,7 +89,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "CATEGORY_VIEW_UNSPECIFIED", "BASIC", "FULL"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCategoriesResponseHttpRequest: ...
         def list_next(
             self,
@@ -135,7 +135,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             body: Location = ...,
             updateMask: str = ...,
             validateOnly: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LocationHttpRequest: ...
         def updateAttributes(
             self,
@@ -143,7 +143,7 @@ class MyBusinessBusinessInformationResource(googleapiclient.discovery.Resource):
             name: str,
             body: Attributes = ...,
             attributeMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AttributesHttpRequest: ...
         def attributes(self) -> AttributesResource: ...
 

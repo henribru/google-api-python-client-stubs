@@ -27,7 +27,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,21 +47,21 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DestroySecretVersionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def disable(
                     self,
                     *,
                     name: str,
                     body: DisableSecretVersionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
                     body: EnableSecretVersionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SecretVersionHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -72,7 +72,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSecretVersionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -85,7 +85,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: AddSecretVersionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SecretVersionHttpRequest: ...
             def create(
                 self,
@@ -93,7 +93,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 body: Secret = ...,
                 secretId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -104,7 +104,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 options_requestedPolicyVersion: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -112,7 +112,7 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListSecretsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -125,21 +125,21 @@ class SecretManagerResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Secret = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SecretHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def versions(self) -> VersionsResource: ...
 

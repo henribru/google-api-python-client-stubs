@@ -44,7 +44,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
@@ -69,7 +69,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             ] = ...,
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any

@@ -22,7 +22,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDatalabelingV1beta1CreateAnnotationSpecSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1AnnotationSpecSetHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -37,7 +37,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponseHttpRequest
             ): ...
@@ -66,7 +66,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest
                     ): ...
@@ -91,7 +91,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDatalabelingV1beta1ListExamplesResponseHttpRequest
                     ): ...
@@ -113,7 +113,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: GoogleCloudDatalabelingV1beta1FeedbackMessage = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -129,7 +129,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -152,7 +152,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -177,7 +177,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -203,7 +203,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDatalabelingV1beta1ListDataItemsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -223,7 +223,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDatalabelingV1beta1SearchExampleComparisonsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponseHttpRequest: ...
                     def search_next(
                         self,
@@ -246,7 +246,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDatalabelingV1beta1LabelImageRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
@@ -256,7 +256,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDatalabelingV1beta1LabelTextRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             @typing.type_check_only
@@ -266,7 +266,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDatalabelingV1beta1LabelVideoRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             def create(
@@ -274,7 +274,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDatalabelingV1beta1CreateDatasetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1DatasetHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -284,7 +284,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1ExportDataRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -294,7 +294,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1ImportDataRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def list(
                 self,
@@ -303,7 +303,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1ListDatasetsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -326,7 +326,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDatalabelingV1beta1CreateEvaluationJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -341,7 +341,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponseHttpRequest
             ): ...
@@ -359,21 +359,21 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1EvaluationJob = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1EvaluationJobHttpRequest: ...
             def pause(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1PauseEvaluationJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def resume(
                 self,
                 *,
                 name: str,
                 body: GoogleCloudDatalabelingV1beta1ResumeEvaluationJobRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
 
         @typing.type_check_only
@@ -385,7 +385,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1SearchEvaluationsResponseHttpRequest: ...
             def search_next(
                 self,
@@ -403,7 +403,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDatalabelingV1beta1CreateInstructionRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -418,7 +418,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDatalabelingV1beta1ListInstructionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -446,7 +446,7 @@ class DataLabelingResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
                 self,

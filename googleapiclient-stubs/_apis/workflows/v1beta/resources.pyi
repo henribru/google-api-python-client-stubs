@@ -32,7 +32,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -48,7 +48,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Workflow = ...,
                     workflowId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -64,7 +64,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWorkflowsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -77,7 +77,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Workflow = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             def get(
@@ -90,7 +90,7 @@ class WorkflowsResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

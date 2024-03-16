@@ -24,7 +24,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListInstanceConfigOperationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -52,7 +52,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -80,7 +80,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -95,7 +95,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateInstanceConfigRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self,
@@ -103,7 +103,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 name: str,
                 etag: str = ...,
                 validateOnly: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -114,7 +114,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListInstanceConfigsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -126,7 +126,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UpdateInstanceConfigRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def operations(self) -> OperationsResource: ...
             def ssdCaches(self) -> SsdCachesResource: ...
@@ -142,7 +142,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBackupOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -170,7 +170,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -183,7 +183,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CopyBackupRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
@@ -198,7 +198,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         "CUSTOMER_MANAGED_ENCRYPTION",
                     ] = ...,
                     encryptionConfig_kmsKeyName: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -211,7 +211,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -220,7 +220,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBackupsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -233,21 +233,21 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Backup = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BackupHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
@@ -260,7 +260,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDatabaseOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -278,7 +278,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListDatabaseRolesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -290,7 +290,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
 
                 @typing.type_check_only
@@ -311,7 +311,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -326,35 +326,35 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         database: str,
                         body: BatchCreateSessionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BatchCreateSessionsResponseHttpRequest: ...
                     def batchWrite(
                         self,
                         *,
                         session: str,
                         body: BatchWriteRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> BatchWriteResponseHttpRequest: ...
                     def beginTransaction(
                         self,
                         *,
                         session: str,
                         body: BeginTransactionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TransactionHttpRequest: ...
                     def commit(
                         self,
                         *,
                         session: str,
                         body: CommitRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> CommitResponseHttpRequest: ...
                     def create(
                         self,
                         *,
                         database: str,
                         body: CreateSessionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> SessionHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -364,21 +364,21 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         session: str,
                         body: ExecuteBatchDmlRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecuteBatchDmlResponseHttpRequest: ...
                     def executeSql(
                         self,
                         *,
                         session: str,
                         body: ExecuteSqlRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ResultSetHttpRequest: ...
                     def executeStreamingSql(
                         self,
                         *,
                         session: str,
                         body: ExecuteSqlRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PartialResultSetHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -390,7 +390,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListSessionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -402,35 +402,35 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         *,
                         session: str,
                         body: PartitionQueryRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PartitionResponseHttpRequest: ...
                     def partitionRead(
                         self,
                         *,
                         session: str,
                         body: PartitionReadRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PartitionResponseHttpRequest: ...
                     def read(
                         self,
                         *,
                         session: str,
                         body: ReadRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ResultSetHttpRequest: ...
                     def rollback(
                         self,
                         *,
                         session: str,
                         body: RollbackRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def streamingRead(
                         self,
                         *,
                         session: str,
                         body: ReadRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PartialResultSetHttpRequest: ...
 
                 def create(
@@ -438,7 +438,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: CreateDatabaseRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def dropDatabase(
                     self, *, database: str, **kwargs: typing.Any
@@ -454,7 +454,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def getScans(
                     self,
@@ -465,7 +465,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal[
                         "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ScanHttpRequest: ...
                 def list(
                     self,
@@ -473,7 +473,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDatabasesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -486,35 +486,35 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Database = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     parent: str,
                     body: RestoreDatabaseRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def updateDdl(
                     self,
                     *,
                     database: str,
                     body: UpdateDatabaseDdlRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def databaseRoles(self) -> DatabaseRolesResource: ...
                 def operations(self) -> OperationsResource: ...
@@ -540,7 +540,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -568,7 +568,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -581,7 +581,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: CreateInstanceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -594,7 +594,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 resource: str,
                 body: GetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def list(
                 self,
@@ -604,7 +604,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 instanceDeadline: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListInstancesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -616,21 +616,21 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UpdateInstanceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def setIamPolicy(
                 self,
                 *,
                 resource: str,
                 body: SetIamPolicyRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
             def testIamPermissions(
                 self,
                 *,
                 resource: str,
                 body: TestIamPermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def backupOperations(self) -> BackupOperationsResource: ...
             def backups(self) -> BackupsResource: ...
@@ -655,7 +655,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "VIEW_UNSPECIFIED", "SUMMARY", "FULL"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListScansResponseHttpRequest: ...
         def list_next(
             self,

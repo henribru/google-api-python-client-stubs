@@ -25,7 +25,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Connector = ...,
                     connectorId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -39,7 +39,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConnectorsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -52,7 +52,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Connector = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -67,7 +67,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -82,7 +82,7 @@ class ServerlessVPCAccessResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

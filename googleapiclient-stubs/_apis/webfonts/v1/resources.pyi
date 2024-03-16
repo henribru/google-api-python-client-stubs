@@ -29,7 +29,7 @@ class WebfontsResource(googleapiclient.discovery.Resource):
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"
             ] = ...,
             subset: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> WebfontListHttpRequest: ...
 
     def new_batch_http_request(

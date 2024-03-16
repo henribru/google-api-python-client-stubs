@@ -24,7 +24,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     group: str,
                     body: AddGroupMigrationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
                     self,
@@ -33,7 +33,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: Group = ...,
                     groupId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -49,7 +49,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListGroupsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -63,14 +63,14 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: Group = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def removeGroupMigration(
                     self,
                     *,
                     group: str,
                     body: RemoveGroupMigrationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -82,7 +82,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelImageImportJobRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -95,7 +95,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListImageImportJobsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -110,7 +110,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: ImageImport = ...,
                     imageImportId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -126,7 +126,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListImageImportsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -142,7 +142,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -157,7 +157,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -176,7 +176,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: DatacenterConnector = ...,
                         datacenterConnectorId: str = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -192,7 +192,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListDatacenterConnectorsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -204,7 +204,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         *,
                         datacenterConnector: str,
                         body: UpgradeApplianceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -216,7 +216,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: CancelCloneJobRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def create(
                             self,
@@ -225,7 +225,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             body: CloneJob = ...,
                             cloneJobId: str = ...,
                             requestId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -238,7 +238,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListCloneJobsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -253,7 +253,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: CancelCutoverJobRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def create(
                             self,
@@ -262,7 +262,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             body: CutoverJob = ...,
                             cutoverJobId: str = ...,
                             requestId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -275,7 +275,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListCutoverJobsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -296,7 +296,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListReplicationCyclesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -311,7 +311,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: MigratingVm = ...,
                         migratingVmId: str = ...,
                         requestId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -321,7 +321,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         *,
                         migratingVm: str,
                         body: FinalizeMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self,
@@ -332,7 +332,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             "MIGRATING_VM_VIEW_BASIC",
                             "MIGRATING_VM_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> MigratingVmHttpRequest: ...
                     def list(
                         self,
@@ -347,7 +347,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                             "MIGRATING_VM_VIEW_BASIC",
                             "MIGRATING_VM_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListMigratingVmsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -361,28 +361,28 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: MigratingVm = ...,
                         requestId: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def pauseMigration(
                         self,
                         *,
                         migratingVm: str,
                         body: PauseMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def resumeMigration(
                         self,
                         *,
                         migratingVm: str,
                         body: ResumeMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def startMigration(
                         self,
                         *,
                         migratingVm: str,
                         body: StartMigrationRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def cloneJobs(self) -> CloneJobsResource: ...
                     def cutoverJobs(self) -> CutoverJobsResource: ...
@@ -397,7 +397,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         body: UtilizationReport = ...,
                         requestId: str = ...,
                         utilizationReportId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -409,7 +409,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "UTILIZATION_REPORT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> UtilizationReportHttpRequest: ...
                     def list(
                         self,
@@ -422,7 +422,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         view: typing_extensions.Literal[
                             "UTILIZATION_REPORT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListUtilizationReportsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -437,7 +437,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: Source = ...,
                     requestId: str = ...,
                     sourceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -449,7 +449,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     forceRefresh: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> FetchInventoryResponseHttpRequest: ...
                 def fetchInventory_next(
                     self,
@@ -467,7 +467,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListSourcesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -481,7 +481,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: Source = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def datacenterConnectors(self) -> DatacenterConnectorsResource: ...
                 def migratingVms(self) -> MigratingVmsResource: ...
@@ -496,7 +496,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: TargetProject = ...,
                     requestId: str = ...,
                     targetProjectId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -512,7 +512,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTargetProjectsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -526,7 +526,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: TargetProject = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             def get(
@@ -539,7 +539,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

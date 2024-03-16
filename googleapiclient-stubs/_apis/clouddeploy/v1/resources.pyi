@@ -27,7 +27,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     customTargetTypeId: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -37,7 +37,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     etag: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -47,7 +47,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -57,7 +57,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCustomTargetTypesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -73,14 +73,14 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
 
             @typing.type_check_only
@@ -92,7 +92,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: CancelAutomationRunRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> CancelAutomationRunResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -105,7 +105,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListAutomationRunsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -123,7 +123,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         automationId: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -133,7 +133,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         etag: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -146,7 +146,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListAutomationsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -162,7 +162,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         updateMask: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -182,7 +182,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                                 orderBy: str = ...,
                                 pageSize: int = ...,
                                 pageToken: str = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> ListJobRunsResponseHttpRequest: ...
                             def list_next(
                                 self,
@@ -194,7 +194,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                                 *,
                                 name: str,
                                 body: TerminateJobRunRequest = ...,
-                                **kwargs: typing.Any
+                                **kwargs: typing.Any,
                             ) -> TerminateJobRunResponseHttpRequest: ...
 
                         def advance(
@@ -202,21 +202,21 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             body: AdvanceRolloutRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> AdvanceRolloutResponseHttpRequest: ...
                         def approve(
                             self,
                             *,
                             name: str,
                             body: ApproveRolloutRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ApproveRolloutResponseHttpRequest: ...
                         def cancel(
                             self,
                             *,
                             name: str,
                             body: CancelRolloutRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> CancelRolloutResponseHttpRequest: ...
                         def create(
                             self,
@@ -227,7 +227,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             rolloutId: str = ...,
                             startingPhaseId: str = ...,
                             validateOnly: bool = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -237,7 +237,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             *,
                             rollout: str,
                             body: IgnoreJobRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> IgnoreJobResponseHttpRequest: ...
                         def list(
                             self,
@@ -247,7 +247,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListRolloutsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -259,7 +259,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             *,
                             rollout: str,
                             body: RetryJobRequest = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> RetryJobResponseHttpRequest: ...
                         def jobRuns(self) -> JobRunsResource: ...
 
@@ -268,7 +268,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: AbandonReleaseRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> AbandonReleaseResponseHttpRequest: ...
                     def create(
                         self,
@@ -278,7 +278,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         releaseId: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -291,7 +291,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReleasesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -308,7 +308,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     deliveryPipelineId: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -319,7 +319,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     force: bool = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -329,7 +329,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -339,7 +339,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDeliveryPipelinesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -355,28 +355,28 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rollbackTarget(
                     self,
                     *,
                     name: str,
                     body: RollbackTargetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RollbackTargetResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def automationRuns(self) -> AutomationRunsResource: ...
                 def automations(self) -> AutomationsResource: ...
@@ -389,7 +389,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -404,7 +404,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -422,7 +422,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     targetId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -432,7 +432,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     etag: str = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -442,7 +442,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -452,7 +452,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListTargetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -468,21 +468,21 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             def get(
@@ -498,7 +498,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

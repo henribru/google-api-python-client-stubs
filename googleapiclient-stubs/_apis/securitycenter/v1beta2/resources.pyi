@@ -86,7 +86,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: ContainerThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
             self,
@@ -94,7 +94,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: EventThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
             self,
@@ -102,7 +102,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
@@ -110,7 +110,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
             self,
@@ -118,7 +118,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
@@ -126,7 +126,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: WebSecurityScannerSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(
             self,
@@ -221,7 +221,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: ContainerThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
             self,
@@ -229,7 +229,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: EventThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
             self,
@@ -237,7 +237,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
@@ -245,7 +245,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
             self,
@@ -253,7 +253,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
@@ -261,7 +261,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: WebSecurityScannerSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(
             self,
@@ -317,7 +317,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: ContainerThreatDetectionSettings = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ContainerThreatDetectionSettingsHttpRequest: ...
                 def containerThreatDetectionSettings(
                     self,
@@ -382,7 +382,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: ContainerThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ContainerThreatDetectionSettingsHttpRequest: ...
         def updateEventThreatDetectionSettings(
             self,
@@ -390,7 +390,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: EventThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventThreatDetectionSettingsHttpRequest: ...
         def updateRapidVulnerabilityDetectionSettings(
             self,
@@ -398,7 +398,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: RapidVulnerabilityDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> RapidVulnerabilityDetectionSettingsHttpRequest: ...
         def updateSecurityHealthAnalyticsSettings(
             self,
@@ -406,7 +406,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: SecurityHealthAnalyticsSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
         def updateVirtualMachineThreatDetectionSettings(
             self,
@@ -414,7 +414,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: VirtualMachineThreatDetectionSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
         def updateWebSecurityScannerSettings(
             self,
@@ -422,7 +422,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             name: str,
             body: WebSecurityScannerSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> WebSecurityScannerSettingsHttpRequest: ...
         def containerThreatDetectionSettings(
             self,

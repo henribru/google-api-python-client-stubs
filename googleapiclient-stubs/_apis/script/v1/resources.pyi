@@ -86,7 +86,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListUserProcessesResponseHttpRequest: ...
         def list_next(
             self,
@@ -163,7 +163,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListScriptProcessesResponseHttpRequest: ...
         def listScriptProcesses_next(
             self,
@@ -180,7 +180,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 *,
                 scriptId: str,
                 body: DeploymentConfig = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeploymentHttpRequest: ...
             def delete(
                 self, *, scriptId: str, deploymentId: str, **kwargs: typing.Any
@@ -194,7 +194,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDeploymentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -207,7 +207,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 deploymentId: str,
                 body: UpdateDeploymentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DeploymentHttpRequest: ...
 
         @typing.type_check_only
@@ -224,7 +224,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
                 scriptId: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListVersionsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -247,7 +247,7 @@ class ScriptResource(googleapiclient.discovery.Resource):
             metricsGranularity: typing_extensions.Literal[
                 "UNSPECIFIED_GRANULARITY", "WEEKLY", "DAILY"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> MetricsHttpRequest: ...
         def updateContent(
             self, *, scriptId: str, body: Content = ..., **kwargs: typing.Any

@@ -26,7 +26,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             *,
             resourceName: str,
             body: GoogleBytestreamMedia = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleBytestreamMediaHttpRequest: ...
 
     @typing.type_check_only
@@ -36,7 +36,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleLongrunningCancelOperationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleProtobufEmptyHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
@@ -48,7 +48,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
         def list_next(
             self,

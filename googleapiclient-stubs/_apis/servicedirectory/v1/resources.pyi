@@ -29,7 +29,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             parent: str,
                             body: Endpoint = ...,
                             endpointId: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EndpointHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -45,7 +45,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListEndpointsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -58,7 +58,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: Endpoint = ...,
                             updateMask: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EndpointHttpRequest: ...
 
                     def create(
@@ -67,7 +67,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Service = ...,
                         serviceId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ServiceHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -80,7 +80,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         *,
                         resource: str,
                         body: GetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def list(
                         self,
@@ -90,7 +90,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListServicesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -103,28 +103,28 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: Service = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ServiceHttpRequest: ...
                     def resolve(
                         self,
                         *,
                         name: str,
                         body: ResolveServiceRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ResolveServiceResponseHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
                         resource: str,
                         body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
                     def testIamPermissions(
                         self,
                         *,
                         resource: str,
                         body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def endpoints(self) -> EndpointsResource: ...
 
@@ -134,7 +134,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Namespace = ...,
                     namespaceId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> NamespaceHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -147,7 +147,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -157,7 +157,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListNamespacesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -170,21 +170,21 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Namespace = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> NamespaceHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def services(self) -> ServicesResource: ...
 
@@ -198,7 +198,7 @@ class ServiceDirectoryResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

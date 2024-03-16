@@ -25,7 +25,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             query: str = ...,
             reviewPublisherSiteFilter: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest: ...
         def search_next(
             self,
@@ -42,7 +42,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
         ): ...
@@ -62,7 +62,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             url: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponseHttpRequest: ...
         def list_next(
             self,
@@ -77,7 +77,7 @@ class FactCheckToolsResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> (
             GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest
         ): ...

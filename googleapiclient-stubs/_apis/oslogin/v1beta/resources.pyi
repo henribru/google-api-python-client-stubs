@@ -24,7 +24,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SignSshPublicKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SignSshPublicKeyResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -34,7 +34,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: SignSshPublicKeyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SignSshPublicKeyResponseHttpRequest: ...
 
             def delete(
@@ -60,7 +60,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: SshPublicKey = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> SshPublicKeyHttpRequest: ...
 
         def getLoginProfile(
@@ -72,7 +72,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoginProfileHttpRequest: ...
         def importSshPublicKey(
             self,
@@ -84,7 +84,7 @@ class CloudOSLoginResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "LOGIN_PROFILE_VIEW_UNSPECIFIED", "BASIC", "SECURITY_KEY"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ImportSshPublicKeyResponseHttpRequest: ...
         def projects(self) -> ProjectsResource: ...
         def sshPublicKeys(self) -> SshPublicKeysResource: ...

@@ -27,7 +27,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -44,28 +44,28 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: AddTenantProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def applyProjectConfig(
                 self,
                 *,
                 name: str,
                 body: ApplyTenantProjectConfigRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def attachProject(
                 self,
                 *,
                 name: str,
                 body: AttachTenantProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def create(
                 self,
                 *,
                 parent: str,
                 body: CreateTenancyUnitRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TenancyUnitHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -75,7 +75,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DeleteTenantProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
                 self,
@@ -84,7 +84,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTenancyUnitsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -96,14 +96,14 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: RemoveTenantProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def undeleteProject(
                 self,
                 *,
                 name: str,
                 body: UndeleteTenantProjectRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         def search(
@@ -113,7 +113,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchTenancyUnitsResponseHttpRequest: ...
         def search_next(
             self,

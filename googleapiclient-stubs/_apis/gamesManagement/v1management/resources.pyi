@@ -31,7 +31,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: AchievementResetMultipleForAllRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -42,7 +42,7 @@ class GamesManagementResource(googleapiclient.discovery.Resource):
             applicationId: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> HiddenPlayerListHttpRequest: ...
         def listHidden_next(
             self,

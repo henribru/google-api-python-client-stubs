@@ -26,7 +26,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ExecuteActionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ExecuteActionResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -42,7 +42,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             "ACTION_VIEW_BASIC",
                             "ACTION_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListActionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -59,7 +59,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Entity = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EntityHttpRequest: ...
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
@@ -69,7 +69,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             entityType: str,
                             conditions: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> EmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
@@ -82,7 +82,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             sortBy: str | _list[str] = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> ListEntitiesResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -98,7 +98,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             entityType: str,
                             body: Entity = ...,
                             conditions: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> UpdateEntitiesWithConditionsResponseHttpRequest: ...
 
                     def get(
@@ -115,7 +115,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             "ENTITY_TYPE_VIEW_BASIC",
                             "ENTITY_TYPE_VIEW_FULL",
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListEntityTypesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -135,21 +135,21 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ExchangeAuthCodeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExchangeAuthCodeResponseHttpRequest: ...
                 def executeSqlQuery(
                     self,
                     *,
                     connection: str,
                     body: ExecuteSqlQueryRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ExecuteSqlQueryResponseHttpRequest: ...
                 def refreshAccessToken(
                     self,
                     *,
                     name: str,
                     body: RefreshAccessTokenRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> RefreshAccessTokenResponseHttpRequest: ...
                 def actions(self) -> ActionsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...

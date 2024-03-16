@@ -40,7 +40,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             statusFilter: typing_extensions.Literal[
                 "approved", "disapproved", "not_checked"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...
         def list_next(
             self,

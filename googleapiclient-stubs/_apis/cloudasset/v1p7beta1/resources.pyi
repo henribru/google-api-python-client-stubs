@@ -24,7 +24,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleCloudAssetV1p7beta1ExportAssetsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(

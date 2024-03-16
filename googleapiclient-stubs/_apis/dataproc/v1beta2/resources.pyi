@@ -24,7 +24,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AutoscalingPolicyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -37,7 +37,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -45,7 +45,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -57,21 +57,21 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
                     self,
                     *,
                     name: str,
                     body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AutoscalingPolicyHttpRequest: ...
 
             @typing.type_check_only
@@ -81,7 +81,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, version: int = ..., **kwargs: typing.Any
@@ -94,14 +94,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def instantiate(
                     self,
                     *,
                     name: str,
                     body: InstantiateWorkflowTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instantiateInline(
                     self,
@@ -110,7 +110,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     instanceId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -118,7 +118,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -130,21 +130,21 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
                     self,
                     *,
                     name: str,
                     body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
 
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...
@@ -159,7 +159,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AutoscalingPolicyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -172,7 +172,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -180,7 +180,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListAutoscalingPoliciesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -192,21 +192,21 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
                     self,
                     *,
                     name: str,
                     body: AutoscalingPolicy = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> AutoscalingPolicyHttpRequest: ...
 
             @typing.type_check_only
@@ -218,7 +218,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     body: Cluster = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -228,7 +228,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     clusterName: str,
                     clusterUuid: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def diagnose(
                     self,
@@ -237,7 +237,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     body: DiagnoseClusterRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
                     self,
@@ -245,14 +245,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     clusterName: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def injectCredentials(
                     self,
@@ -261,7 +261,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     cluster: str,
                     body: InjectCredentialsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -271,7 +271,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListClustersResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -288,14 +288,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     gracefulDecommissionTimeout: str = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def start(
                     self,
@@ -304,7 +304,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     body: StartClusterRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def stop(
                     self,
@@ -313,14 +313,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     clusterName: str,
                     body: StopClusterRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -332,7 +332,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     region: str,
                     jobId: str,
                     body: CancelJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def delete(
                     self,
@@ -340,7 +340,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     jobId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self,
@@ -348,14 +348,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     jobId: str,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -369,7 +369,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListJobsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -384,14 +384,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     jobId: str,
                     body: Job = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def submit(
                     self,
@@ -399,7 +399,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     body: SubmitJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> JobHttpRequest: ...
                 def submitAsOperation(
                     self,
@@ -407,14 +407,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     projectId: str,
                     region: str,
                     body: SubmitJobRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -433,7 +433,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -442,7 +442,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -454,14 +454,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
@@ -471,7 +471,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
                 def delete(
                     self, *, name: str, version: int = ..., **kwargs: typing.Any
@@ -484,14 +484,14 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def instantiate(
                     self,
                     *,
                     name: str,
                     body: InstantiateWorkflowTemplateRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def instantiateInline(
                     self,
@@ -500,7 +500,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     body: WorkflowTemplate = ...,
                     instanceId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -508,7 +508,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListWorkflowTemplatesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -520,21 +520,21 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def update(
                     self,
                     *,
                     name: str,
                     body: WorkflowTemplate = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> WorkflowTemplateHttpRequest: ...
 
             def autoscalingPolicies(self) -> AutoscalingPoliciesResource: ...

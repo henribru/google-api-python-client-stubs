@@ -23,7 +23,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 jobId: str,
                 reportId: str,
                 onBehalfOfContentOwner: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReportHttpRequest: ...
             def list(
                 self,
@@ -35,7 +35,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 startTimeAtOrAfter: str = ...,
                 startTimeBefore: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReportsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -48,7 +48,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             *,
             body: Job = ...,
             onBehalfOfContentOwner: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> JobHttpRequest: ...
         def delete(
             self, *, jobId: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
@@ -63,7 +63,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListJobsResponseHttpRequest: ...
         def list_next(
             self,
@@ -90,7 +90,7 @@ class YouTubeReportingResource(googleapiclient.discovery.Resource):
             onBehalfOfContentOwner: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListReportTypesResponseHttpRequest: ...
         def list_next(
             self,

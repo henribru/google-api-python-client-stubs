@@ -31,14 +31,14 @@ class KeepResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchCreatePermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchCreatePermissionsResponseHttpRequest: ...
             def batchDelete(
                 self,
                 *,
                 parent: str,
                 body: BatchDeletePermissionsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
         def create(
@@ -52,7 +52,7 @@ class KeepResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListNotesResponseHttpRequest: ...
         def list_next(
             self,

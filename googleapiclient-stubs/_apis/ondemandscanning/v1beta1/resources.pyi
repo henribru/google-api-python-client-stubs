@@ -35,7 +35,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -56,7 +56,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListVulnerabilitiesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -69,7 +69,7 @@ class OnDemandScanningResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: AnalyzePackagesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def vulnerabilities(self) -> VulnerabilitiesResource: ...
 

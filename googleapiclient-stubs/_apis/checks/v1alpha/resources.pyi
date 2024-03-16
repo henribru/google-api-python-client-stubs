@@ -24,7 +24,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -39,7 +39,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -51,7 +51,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: WaitOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -67,7 +67,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleChecksReportV1alphaListReportsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -84,7 +84,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleChecksAccountV1alphaListAppsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -103,7 +103,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: GoogleChecksReportV1alphaAnalyzeUploadRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(

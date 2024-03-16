@@ -24,7 +24,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateWorkerPoolRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -42,7 +42,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateWorkerPoolRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
 
             def create(
@@ -50,7 +50,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleDevtoolsRemotebuildexecutionAdminV1alphaCreateInstanceRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -69,7 +69,7 @@ class RemoteBuildExecutionResource(googleapiclient.discovery.Resource):
                 loggingEnabled: bool = ...,
                 name1: str = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def workerpools(self) -> WorkerpoolsResource: ...
 

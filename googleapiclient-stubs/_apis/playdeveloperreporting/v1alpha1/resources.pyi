@@ -22,7 +22,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GooglePlayDeveloperReportingV1alpha1ListAnomaliesResponseHttpRequest: ...
         def list_next(
             self,
@@ -63,7 +63,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QueryAnrRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,
@@ -84,7 +84,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QueryCrashRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,
@@ -109,7 +109,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePlayDeveloperReportingV1alpha1QueryErrorCountMetricSetResponseHttpRequest: ...
                 def query_next(
                     self,
@@ -151,7 +151,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     sampleErrorReportLimit: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePlayDeveloperReportingV1alpha1SearchErrorIssuesResponseHttpRequest: ...
                 def search_next(
                     self,
@@ -191,7 +191,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     interval_startTime_year: int = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GooglePlayDeveloperReportingV1alpha1SearchErrorReportsResponseHttpRequest: ...
                 def search_next(
                     self,
@@ -216,7 +216,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QueryExcessiveWakeupRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,
@@ -237,7 +237,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowRenderingRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,
@@ -260,7 +260,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QuerySlowStartRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,
@@ -281,7 +281,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GooglePlayDeveloperReportingV1alpha1QueryStuckBackgroundWakelockRateMetricSetResponseHttpRequest: ...
             def query_next(
                 self,

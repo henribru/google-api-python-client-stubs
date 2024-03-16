@@ -22,14 +22,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def process(
                 self,
                 *,
                 parent: str,
                 body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
 
         @typing.type_check_only
@@ -41,14 +41,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1beta2BatchProcessDocumentsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def process(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1beta2ProcessDocumentRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta2DocumentHttpRequest: ...
 
             @typing.type_check_only

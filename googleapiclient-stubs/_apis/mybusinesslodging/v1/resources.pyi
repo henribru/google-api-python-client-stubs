@@ -30,7 +30,7 @@ class MyBusinessLodgingResource(googleapiclient.discovery.Resource):
             name: str,
             body: Lodging = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LodgingHttpRequest: ...
         def lodging(self) -> LodgingResource: ...
 

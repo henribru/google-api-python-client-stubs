@@ -32,7 +32,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CommentListHttpRequest: ...
         def list_next(
             self,
@@ -62,7 +62,7 @@ class BloggerResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             startDate: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PostListHttpRequest: ...
         def list_next(
             self, previous_request: PostListHttpRequest, previous_response: PostList

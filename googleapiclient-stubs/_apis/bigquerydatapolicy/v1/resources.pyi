@@ -33,7 +33,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -42,7 +42,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDataPoliciesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -55,28 +55,28 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: DataPolicy = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DataPolicyHttpRequest: ...
                 def rename(
                     self,
                     *,
                     name: str,
                     body: RenameDataPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DataPolicyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
             def dataPolicies(self) -> DataPoliciesResource: ...

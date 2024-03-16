@@ -19,97 +19,97 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1CreateAuthUriRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1CreateAuthUriResponseHttpRequest: ...
         def delete(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1DeleteAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1DeleteAccountResponseHttpRequest: ...
         def issueSamlResponse(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1IssueSamlResponseRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1IssueSamlResponseResponseHttpRequest: ...
         def lookup(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1GetAccountInfoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1GetAccountInfoResponseHttpRequest: ...
         def resetPassword(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1ResetPasswordRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1ResetPasswordResponseHttpRequest: ...
         def sendOobCode(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1GetOobCodeRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1GetOobCodeResponseHttpRequest: ...
         def sendVerificationCode(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SendVerificationCodeResponseHttpRequest: ...
         def signInWithCustomToken(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithCustomTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithCustomTokenResponseHttpRequest: ...
         def signInWithEmailLink(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithEmailLinkRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithEmailLinkResponseHttpRequest: ...
         def signInWithGameCenter(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithGameCenterRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithGameCenterResponseHttpRequest: ...
         def signInWithIdp(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithIdpRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithIdpResponseHttpRequest: ...
         def signInWithPassword(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithPasswordRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithPasswordResponseHttpRequest: ...
         def signInWithPhoneNumber(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignInWithPhoneNumberResponseHttpRequest: ...
         def signUp(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SignUpRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SignUpResponseHttpRequest: ...
         def update(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1SetAccountInfoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1SetAccountInfoResponseHttpRequest: ...
         def verifyIosClient(
             self,
             *,
             body: GoogleCloudIdentitytoolkitV1VerifyIosClientRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1VerifyIosClientResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -121,14 +121,14 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1UploadAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1UploadAccountResponseHttpRequest: ...
             def batchDelete(
                 self,
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1BatchDeleteAccountsRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponseHttpRequest: ...
             def batchGet(
                 self,
@@ -138,7 +138,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 maxResults: int = ...,
                 nextPageToken: str = ...,
                 tenantId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest: ...
             def batchGet_next(
                 self,
@@ -152,35 +152,35 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1DeleteAccountRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1DeleteAccountResponseHttpRequest: ...
             def lookup(
                 self,
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1GetAccountInfoRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1GetAccountInfoResponseHttpRequest: ...
             def query(
                 self,
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1QueryUserInfoRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1QueryUserInfoResponseHttpRequest: ...
             def sendOobCode(
                 self,
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1GetOobCodeRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1GetOobCodeResponseHttpRequest: ...
             def update(
                 self,
                 *,
                 targetProjectId: str,
                 body: GoogleCloudIdentitytoolkitV1SetAccountInfoRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1SetAccountInfoResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -193,7 +193,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1UploadAccountRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1UploadAccountResponseHttpRequest: ...
                 def batchDelete(
                     self,
@@ -201,7 +201,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1BatchDeleteAccountsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudIdentitytoolkitV1BatchDeleteAccountsResponseHttpRequest
                 ): ...
@@ -213,7 +213,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     delegatedProjectNumber: str = ...,
                     maxResults: int = ...,
                     nextPageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1DownloadAccountResponseHttpRequest: ...
                 def batchGet_next(
                     self,
@@ -229,7 +229,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1DeleteAccountRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1DeleteAccountResponseHttpRequest: ...
                 def lookup(
                     self,
@@ -237,7 +237,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1GetAccountInfoRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1GetAccountInfoResponseHttpRequest: ...
                 def query(
                     self,
@@ -245,7 +245,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1QueryUserInfoRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1QueryUserInfoResponseHttpRequest: ...
                 def sendOobCode(
                     self,
@@ -253,7 +253,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1GetOobCodeRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1GetOobCodeResponseHttpRequest: ...
                 def update(
                     self,
@@ -261,7 +261,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                     targetProjectId: str,
                     tenantId: str,
                     body: GoogleCloudIdentitytoolkitV1SetAccountInfoRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudIdentitytoolkitV1SetAccountInfoResponseHttpRequest: ...
 
             def createSessionCookie(
@@ -270,7 +270,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
                 targetProjectId: str,
                 tenantId: str,
                 body: GoogleCloudIdentitytoolkitV1CreateSessionCookieRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudIdentitytoolkitV1CreateSessionCookieResponseHttpRequest: ...
             def accounts(self) -> AccountsResource: ...
 
@@ -279,14 +279,14 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             *,
             targetProjectId: str,
             body: GoogleCloudIdentitytoolkitV1CreateSessionCookieRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1CreateSessionCookieResponseHttpRequest: ...
         def queryAccounts(
             self,
             *,
             targetProjectId: str,
             body: GoogleCloudIdentitytoolkitV1QueryUserInfoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1QueryUserInfoResponseHttpRequest: ...
         def accounts(self) -> AccountsResource: ...
         def tenants(self) -> TenantsResource: ...
@@ -304,7 +304,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             projectNumber: str = ...,
             returnDynamicLink: bool = ...,
             sha1Cert: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudIdentitytoolkitV1GetProjectConfigResponseHttpRequest: ...
         def getPublicKeys(
             self, **kwargs: typing.Any

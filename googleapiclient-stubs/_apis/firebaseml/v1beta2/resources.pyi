@@ -34,7 +34,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListModelsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,7 +47,7 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Model = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only

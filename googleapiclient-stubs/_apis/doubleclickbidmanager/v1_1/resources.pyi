@@ -38,7 +38,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             queryId: str,
             body: RunQueryRequest = ...,
             asynchronous: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -49,7 +49,7 @@ class DoubleClickBidManagerResource(googleapiclient.discovery.Resource):
             queryId: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListReportsResponseHttpRequest: ...
         def listreports_next(
             self,

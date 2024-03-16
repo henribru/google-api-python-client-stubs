@@ -25,7 +25,7 @@ class FcmdataResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseHttpRequest: ...
                 def list_next(
                     self,

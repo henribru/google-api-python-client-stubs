@@ -21,7 +21,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             advertiserId: str,
             body: CreativeAssetMetadata = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativeAssetMetadataHttpRequest: ...
 
     def new_batch_http_request(

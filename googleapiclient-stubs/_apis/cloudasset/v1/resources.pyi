@@ -33,7 +33,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             readTime: str = ...,
             relationshipTypes: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
             self,
@@ -73,7 +73,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             parent: str,
             body: SavedQuery = ...,
             savedQueryId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SavedQueryHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> SavedQueryHttpRequest: ...
@@ -84,7 +84,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListSavedQueriesResponseHttpRequest: ...
         def list_next(
             self,
@@ -97,7 +97,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             name: str,
             body: SavedQuery = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SavedQueryHttpRequest: ...
 
     @typing.type_check_only
@@ -119,14 +119,14 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             analysisQuery_resourceSelector_fullResourceName: str = ...,
             executionTimeout: str = ...,
             savedAnalysisQuery: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeIamPolicyResponseHttpRequest: ...
         def analyzeIamPolicyLongrunning(
             self,
             *,
             scope: str,
             body: AnalyzeIamPolicyLongrunningRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def analyzeMove(
             self,
@@ -136,7 +136,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             view: typing_extensions.Literal[
                 "ANALYSIS_VIEW_UNSPECIFIED", "FULL", "BASIC"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeMoveResponseHttpRequest: ...
         def analyzeOrgPolicies(
             self,
@@ -146,7 +146,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeOrgPoliciesResponseHttpRequest: ...
         def analyzeOrgPolicies_next(
             self,
@@ -161,7 +161,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeOrgPolicyGovernedAssetsResponseHttpRequest: ...
         def analyzeOrgPolicyGovernedAssets_next(
             self,
@@ -176,7 +176,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AnalyzeOrgPolicyGovernedContainersResponseHttpRequest: ...
         def analyzeOrgPolicyGovernedContainers_next(
             self,
@@ -200,7 +200,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             readTimeWindow_endTime: str = ...,
             readTimeWindow_startTime: str = ...,
             relationshipTypes: str | _list[str] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchGetAssetsHistoryResponseHttpRequest: ...
         def exportAssets(
             self, *, parent: str, body: ExportAssetsRequest = ..., **kwargs: typing.Any
@@ -217,7 +217,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllIamPoliciesResponseHttpRequest: ...
         def searchAllIamPolicies_next(
             self,
@@ -234,7 +234,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             query: str = ...,
             readMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchAllResourcesResponseHttpRequest: ...
         def searchAllResources_next(
             self,

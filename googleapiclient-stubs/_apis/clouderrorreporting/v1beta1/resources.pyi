@@ -35,7 +35,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_1_WEEK",
                     "PERIOD_30_DAYS",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListEventsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -47,7 +47,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                 *,
                 projectName: str,
                 body: ReportedErrorEvent = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReportErrorEventResponseHttpRequest: ...
 
         @typing.type_check_only
@@ -84,7 +84,7 @@ class ClouderrorreportingResource(googleapiclient.discovery.Resource):
                     "PERIOD_30_DAYS",
                 ] = ...,
                 timedCountDuration: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListGroupStatsResponseHttpRequest: ...
             def list_next(
                 self,

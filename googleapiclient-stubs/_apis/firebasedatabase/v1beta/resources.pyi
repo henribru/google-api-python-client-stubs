@@ -26,7 +26,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     body: DatabaseInstance = ...,
                     databaseId: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -36,7 +36,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DisableDatabaseInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -48,7 +48,7 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     pageSize: int = ...,
                     pageToken: str = ...,
                     showDeleted: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDatabaseInstancesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -60,14 +60,14 @@ class FirebaseRealtimeDatabaseResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ReenableDatabaseInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
                 def undelete(
                     self,
                     *,
                     name: str,
                     body: UndeleteDatabaseInstanceRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> DatabaseInstanceHttpRequest: ...
 
             def instances(self) -> InstancesResource: ...

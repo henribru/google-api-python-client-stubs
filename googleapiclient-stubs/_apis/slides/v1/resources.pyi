@@ -29,7 +29,7 @@ class SlidesResource(googleapiclient.discovery.Resource):
                 thumbnailProperties_thumbnailSize: typing_extensions.Literal[
                     "THUMBNAIL_SIZE_UNSPECIFIED", "LARGE", "MEDIUM", "SMALL"
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ThumbnailHttpRequest: ...
 
         def batchUpdate(
@@ -37,7 +37,7 @@ class SlidesResource(googleapiclient.discovery.Resource):
             *,
             presentationId: str,
             body: BatchUpdatePresentationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdatePresentationResponseHttpRequest: ...
         def create(
             self, *, body: Presentation = ..., **kwargs: typing.Any

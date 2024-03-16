@@ -21,7 +21,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchCaseClassificationsResponseHttpRequest: ...
         def search_next(
             self,
@@ -39,7 +39,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAttachmentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -58,7 +58,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListCommentsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -81,7 +81,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCasesResponseHttpRequest: ...
         def list_next(
             self,
@@ -94,7 +94,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             name: str,
             body: Case = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CaseHttpRequest: ...
         def search(
             self,
@@ -103,7 +103,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SearchCasesResponseHttpRequest: ...
         def search_next(
             self,
@@ -124,7 +124,7 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             parent: str,
             body: CreateAttachmentRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AttachmentHttpRequest: ...
 
     def new_batch_http_request(

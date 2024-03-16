@@ -24,7 +24,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             customerId: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ApplicationsListResponseHttpRequest: ...
         def list_next(
             self,
@@ -49,7 +49,7 @@ class DataTransferResource(googleapiclient.discovery.Resource):
             oldOwnerUserId: str = ...,
             pageToken: str = ...,
             status: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DataTransfersListResponseHttpRequest: ...
         def list_next(
             self,

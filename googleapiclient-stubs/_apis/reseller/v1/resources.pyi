@@ -23,7 +23,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             *,
             body: Customer = ...,
             customerAuthToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CustomerHttpRequest: ...
         def patch(
             self, *, customerId: str, body: Customer = ..., **kwargs: typing.Any
@@ -55,7 +55,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             customerId: str,
             subscriptionId: str,
             body: ChangePlanRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubscriptionHttpRequest: ...
         def changeRenewalSettings(
             self,
@@ -63,7 +63,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             customerId: str,
             subscriptionId: str,
             body: RenewalSettings = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubscriptionHttpRequest: ...
         def changeSeats(
             self,
@@ -71,7 +71,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             customerId: str,
             subscriptionId: str,
             body: Seats = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubscriptionHttpRequest: ...
         def delete(
             self,
@@ -81,7 +81,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             deletionType: typing_extensions.Literal[
                 "deletion_type_undefined", "cancel", "transfer_to_direct"
             ],
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self, *, customerId: str, subscriptionId: str, **kwargs: typing.Any
@@ -96,7 +96,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             ] = ...,
             customerAuthToken: str = ...,
             sourceSkuId: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubscriptionHttpRequest: ...
         def list(
             self,
@@ -106,7 +106,7 @@ class ResellerResource(googleapiclient.discovery.Resource):
             customerNamePrefix: str = ...,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SubscriptionsHttpRequest: ...
         def list_next(
             self,

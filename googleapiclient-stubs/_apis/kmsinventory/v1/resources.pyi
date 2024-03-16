@@ -25,7 +25,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 pageSize: int = ...,
                 pageToken: str = ...,
                 resourceTypes: str | _list[str] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> (
                 GoogleCloudKmsInventoryV1SearchProtectedResourcesResponseHttpRequest
             ): ...
@@ -50,7 +50,7 @@ class KmsinventoryResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudKmsInventoryV1ListCryptoKeysResponseHttpRequest: ...
             def list_next(
                 self,

@@ -24,7 +24,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleSearchIdeahubV1betaIdeaActivity = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaIdeaActivityHttpRequest: ...
 
             @typing.type_check_only
@@ -35,7 +35,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1betaIdeaState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaIdeaStateHttpRequest: ...
 
             @typing.type_check_only
@@ -48,7 +48,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaListIdeasResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -64,7 +64,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleSearchIdeahubV1betaListAvailableLocalesResponseHttpRequest
                 ): ...
@@ -85,7 +85,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1betaTopicState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1betaTopicStateHttpRequest: ...
 
             def ideaActivities(self) -> IdeaActivitiesResource: ...

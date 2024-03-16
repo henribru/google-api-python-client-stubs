@@ -23,7 +23,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
                 alertId: str,
                 body: AlertFeedback = ...,
                 customerId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AlertFeedbackHttpRequest: ...
             def list(
                 self,
@@ -31,7 +31,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
                 alertId: str,
                 customerId: str = ...,
                 filter: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAlertFeedbackResponseHttpRequest: ...
 
         def batchDelete(
@@ -57,7 +57,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAlertsResponseHttpRequest: ...
         def list_next(
             self,
@@ -69,7 +69,7 @@ class AlertCenterResource(googleapiclient.discovery.Resource):
             *,
             alertId: str,
             body: UndeleteAlertRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AlertHttpRequest: ...
         def feedback(self) -> FeedbackResource: ...
 

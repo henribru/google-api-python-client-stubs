@@ -22,14 +22,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ApproveApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
                 body: DismissApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -39,7 +39,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: InvalidateApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,
@@ -48,7 +48,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -71,7 +71,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             name: str,
             body: AccessApprovalSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
 
@@ -84,14 +84,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ApproveApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
                 body: DismissApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -101,7 +101,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: InvalidateApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,
@@ -110,7 +110,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -133,7 +133,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             name: str,
             body: AccessApprovalSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
 
@@ -146,14 +146,14 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: ApproveApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def dismiss(
                 self,
                 *,
                 name: str,
                 body: DismissApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -163,7 +163,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: InvalidateApprovalRequestMessage = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ApprovalRequestHttpRequest: ...
             def list(
                 self,
@@ -172,7 +172,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListApprovalRequestsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -195,7 +195,7 @@ class AccessApprovalResource(googleapiclient.discovery.Resource):
             name: str,
             body: AccessApprovalSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccessApprovalSettingsHttpRequest: ...
         def approvalRequests(self) -> ApprovalRequestsResource: ...
 

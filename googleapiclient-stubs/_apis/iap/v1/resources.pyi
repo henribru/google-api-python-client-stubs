@@ -24,7 +24,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: IdentityAwareProxyClient = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> IdentityAwareProxyClientHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -38,7 +38,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListIdentityAwareProxyClientsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -50,7 +50,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: ResetIdentityAwareProxyClientSecretRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> IdentityAwareProxyClientHttpRequest: ...
 
             def create(
@@ -76,7 +76,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: TunnelDestGroup = ...,
                         tunnelDestGroupId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TunnelDestGroupHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -90,7 +90,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListTunnelDestGroupsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -103,7 +103,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: TunnelDestGroup = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> TunnelDestGroupHttpRequest: ...
 
                 def destGroups(self) -> DestGroupsResource: ...
@@ -120,7 +120,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: GetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def getIapSettings(
             self, *, name: str, **kwargs: typing.Any
@@ -130,14 +130,14 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             *,
             resource: str,
             body: SetIamPolicyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
         def testIamPermissions(
             self,
             *,
             resource: str,
             body: TestIamPermissionsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
         def updateIapSettings(
             self,
@@ -145,7 +145,7 @@ class CloudIAPResource(googleapiclient.discovery.Resource):
             name: str,
             body: IapSettings = ...,
             updateMask: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IapSettingsHttpRequest: ...
         def validateAttributeExpression(
             self, *, name: str, expression: str = ..., **kwargs: typing.Any

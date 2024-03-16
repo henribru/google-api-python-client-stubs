@@ -30,7 +30,7 @@ class CloudAssetResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             readTime: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListAssetsResponseHttpRequest: ...
         def list_next(
             self,

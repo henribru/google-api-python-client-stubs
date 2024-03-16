@@ -24,7 +24,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             *,
             body: Subscription = ...,
             validateOnly: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
             self,
@@ -33,7 +33,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             allowMissing: bool = ...,
             etag: str = ...,
             validateOnly: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
@@ -44,7 +44,7 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListSubscriptionsResponseHttpRequest: ...
         def list_next(
             self,
@@ -58,14 +58,14 @@ class WorkspaceEventsResource(googleapiclient.discovery.Resource):
             body: Subscription = ...,
             updateMask: str = ...,
             validateOnly: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def reactivate(
             self,
             *,
             name: str,
             body: ReactivateSubscriptionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     def new_batch_http_request(

@@ -29,7 +29,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 projectId: str,
                 body: AgentPool = ...,
                 agentPoolId: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AgentPoolHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -44,7 +44,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListAgentPoolsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -57,7 +57,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: AgentPool = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> AgentPoolHttpRequest: ...
 
         def agentPools(self) -> AgentPoolsResource: ...
@@ -79,7 +79,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             filter: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListTransferJobsResponseHttpRequest: ...
         def list_next(
             self,
@@ -91,14 +91,14 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             *,
             jobName: str,
             body: UpdateTransferJobRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransferJobHttpRequest: ...
         def run(
             self,
             *,
             jobName: str,
             body: RunTransferJobRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
@@ -114,7 +114,7 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             filter: str,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -126,14 +126,14 @@ class StoragetransferResource(googleapiclient.discovery.Resource):
             *,
             name: str,
             body: PauseTransferOperationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
         def resume(
             self,
             *,
             name: str,
             body: ResumeTransferOperationRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmptyHttpRequest: ...
 
     def new_batch_http_request(

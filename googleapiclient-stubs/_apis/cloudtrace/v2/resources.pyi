@@ -28,7 +28,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: BatchWriteSpansRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
             def spans(self) -> SpansResource: ...
 

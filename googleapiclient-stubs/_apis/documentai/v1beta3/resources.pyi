@@ -32,7 +32,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -51,7 +51,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleCloudDocumentaiV1beta3ListProcessorTypesResponseHttpRequest
                 ): ...
@@ -73,14 +73,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         dataset: str,
                         body: GoogleCloudDocumentaiV1beta3BatchDeleteDocumentsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def getDatasetSchema(
                         self,
                         *,
                         name: str,
                         visibleFieldsOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1beta3DatasetSchemaHttpRequest: ...
                     def getDocument(
                         self,
@@ -100,21 +100,21 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         pageRange_end: int = ...,
                         pageRange_start: int = ...,
                         readMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1beta3GetDocumentResponseHttpRequest: ...
                     def importDocuments(
                         self,
                         *,
                         dataset: str,
                         body: GoogleCloudDocumentaiV1beta3ImportDocumentsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def listDocuments(
                         self,
                         *,
                         dataset: str,
                         body: GoogleCloudDocumentaiV1beta3ListDocumentsRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> (
                         GoogleCloudDocumentaiV1beta3ListDocumentsResponseHttpRequest
                     ): ...
@@ -132,7 +132,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3DatasetSchema = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1beta3DatasetSchemaHttpRequest: ...
 
                 @typing.type_check_only
@@ -142,7 +142,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         humanReviewConfig: str,
                         body: GoogleCloudDocumentaiV1beta3ReviewDocumentRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -158,7 +158,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                             parent: str,
                             pageSize: int = ...,
                             pageToken: str = ...,
-                            **kwargs: typing.Any
+                            **kwargs: typing.Any,
                         ) -> GoogleCloudDocumentaiV1beta3ListEvaluationsResponseHttpRequest: ...
                         def list_next(
                             self,
@@ -174,7 +174,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3BatchProcessRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -184,14 +184,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def evaluateProcessorVersion(
                         self,
                         *,
                         processorVersion: str,
                         body: GoogleCloudDocumentaiV1beta3EvaluateProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -201,7 +201,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: GoogleCloudDocumentaiV1beta3ImportProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
@@ -209,7 +209,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -224,21 +224,21 @@ class DocumentResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3ProcessRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
                     def train(
                         self,
                         *,
                         parent: str,
                         body: GoogleCloudDocumentaiV1beta3TrainProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def undeploy(
                         self,
                         *,
                         name: str,
                         body: GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def evaluations(self) -> EvaluationsResource: ...
 
@@ -247,14 +247,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1beta3BatchProcessRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def create(
                     self,
                     *,
                     parent: str,
                     body: GoogleCloudDocumentaiV1beta3Processor = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta3ProcessorHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -264,14 +264,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1beta3DisableProcessorRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def enable(
                     self,
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1beta3EnableProcessorRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -282,7 +282,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta3ListProcessorsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -296,14 +296,14 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: GoogleCloudDocumentaiV1beta3ProcessRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudDocumentaiV1beta3ProcessResponseHttpRequest: ...
                 def setDefaultProcessorVersion(
                     self,
                     *,
                     processor: str,
                     body: GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def updateDataset(
                     self,
@@ -311,7 +311,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDocumentaiV1beta3Dataset = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def dataset(self) -> DatasetResource: ...
                 def humanReviewConfig(self) -> HumanReviewConfigResource: ...
@@ -330,7 +330,7 @@ class DocumentResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudLocationListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

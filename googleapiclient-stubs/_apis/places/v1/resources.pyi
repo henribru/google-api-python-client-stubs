@@ -24,14 +24,14 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
                 maxHeightPx: int = ...,
                 maxWidthPx: int = ...,
                 skipHttpRedirect: bool = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleMapsPlacesV1PhotoMediaHttpRequest: ...
 
         def autocomplete(
             self,
             *,
             body: GoogleMapsPlacesV1AutocompletePlacesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1AutocompletePlacesResponseHttpRequest: ...
         def get(
             self,
@@ -40,19 +40,19 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
             languageCode: str = ...,
             regionCode: str = ...,
             sessionToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
         def searchNearby(
             self,
             *,
             body: GoogleMapsPlacesV1SearchNearbyRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1SearchNearbyResponseHttpRequest: ...
         def searchText(
             self,
             *,
             body: GoogleMapsPlacesV1SearchTextRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest: ...
         def photos(self) -> PhotosResource: ...
 

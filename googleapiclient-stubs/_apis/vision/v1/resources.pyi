@@ -55,7 +55,7 @@ class VisionResource(googleapiclient.discovery.Resource):
             filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListOperationsResponseHttpRequest: ...
         def list_next(
             self,
@@ -72,14 +72,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchAnnotateFilesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchAnnotateFilesResponseHttpRequest: ...
             def asyncBatchAnnotate(
                 self,
                 *,
                 parent: str,
                 body: AsyncBatchAnnotateFilesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
@@ -89,14 +89,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: BatchAnnotateImagesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> BatchAnnotateImagesResponseHttpRequest: ...
             def asyncBatchAnnotate(
                 self,
                 *,
                 parent: str,
                 body: AsyncBatchAnnotateImagesRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
 
         @typing.type_check_only
@@ -108,14 +108,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BatchAnnotateFilesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchAnnotateFilesResponseHttpRequest: ...
                 def asyncBatchAnnotate(
                     self,
                     *,
                     parent: str,
                     body: AsyncBatchAnnotateFilesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -125,14 +125,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BatchAnnotateImagesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> BatchAnnotateImagesResponseHttpRequest: ...
                 def asyncBatchAnnotate(
                     self,
                     *,
                     parent: str,
                     body: AsyncBatchAnnotateImagesRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
@@ -151,7 +151,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         name: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListProductsInProductSetResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -164,7 +164,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: AddProductToProductSetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def create(
                     self,
@@ -172,7 +172,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: ProductSet = ...,
                     productSetId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ProductSetHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -185,7 +185,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: ImportProductSetsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def list(
                     self,
@@ -193,7 +193,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListProductSetsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -206,14 +206,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: ProductSet = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ProductSetHttpRequest: ...
                 def removeProduct(
                     self,
                     *,
                     name: str,
                     body: RemoveProductFromProductSetRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def products(self) -> ProductsResource: ...
 
@@ -227,7 +227,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: ReferenceImage = ...,
                         referenceImageId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ReferenceImageHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -241,7 +241,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListReferenceImagesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -255,7 +255,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Product = ...,
                     productId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ProductHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -269,7 +269,7 @@ class VisionResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListProductsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -282,14 +282,14 @@ class VisionResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Product = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ProductHttpRequest: ...
                 def purge(
                     self,
                     *,
                     parent: str,
                     body: PurgeProductsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def referenceImages(self) -> ReferenceImagesResource: ...
 

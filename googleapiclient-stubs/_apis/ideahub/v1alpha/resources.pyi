@@ -23,7 +23,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
             pageSize: int = ...,
             pageToken: str = ...,
             parent: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
         def list_next(
             self,
@@ -42,7 +42,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: GoogleSearchIdeahubV1alphaIdeaActivity = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaActivityHttpRequest: ...
 
             @typing.type_check_only
@@ -53,7 +53,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1alphaIdeaState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaIdeaStateHttpRequest: ...
 
             @typing.type_check_only
@@ -66,7 +66,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaListIdeasResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -82,7 +82,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> (
                     GoogleSearchIdeahubV1alphaListAvailableLocalesResponseHttpRequest
                 ): ...
@@ -103,7 +103,7 @@ class IdeahubResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleSearchIdeahubV1alphaTopicState = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleSearchIdeahubV1alphaTopicStateHttpRequest: ...
 
             def ideaActivities(self) -> IdeaActivitiesResource: ...

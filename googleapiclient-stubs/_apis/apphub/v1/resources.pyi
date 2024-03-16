@@ -28,7 +28,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         body: Service = ...,
                         requestId: str = ...,
                         serviceId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -44,7 +44,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListServicesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -58,7 +58,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         body: Service = ...,
                         requestId: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
@@ -70,7 +70,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         body: Workload = ...,
                         requestId: str = ...,
                         workloadId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -86,7 +86,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListWorkloadsResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -100,7 +100,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                         body: Workload = ...,
                         requestId: str = ...,
                         updateMask: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
                 def create(
@@ -110,7 +110,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     body: Application = ...,
                     applicationId: str = ...,
                     requestId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -123,7 +123,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -133,7 +133,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListApplicationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -147,21 +147,21 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     body: Application = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def services(self) -> ServicesResource: ...
                 def workloads(self) -> WorkloadsResource: ...
@@ -179,7 +179,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDiscoveredServicesResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -203,7 +203,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListDiscoveredWorkloadsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -221,7 +221,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -236,7 +236,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -253,7 +253,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     body: ServiceProjectAttachment = ...,
                     requestId: str = ...,
                     serviceProjectAttachmentId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
@@ -269,7 +269,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListServiceProjectAttachmentsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -282,7 +282,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: DetachServiceProjectAttachmentRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> DetachServiceProjectAttachmentResponseHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -294,7 +294,7 @@ class AppHubResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

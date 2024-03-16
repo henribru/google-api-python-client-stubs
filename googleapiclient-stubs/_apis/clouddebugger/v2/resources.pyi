@@ -26,7 +26,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     agentId: str = ...,
                     successOnTimeout: bool = ...,
                     waitToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListActiveBreakpointsResponseHttpRequest: ...
                 def update(
                     self,
@@ -34,7 +34,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     debuggeeId: str,
                     id: str,
                     body: UpdateActiveBreakpointRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> UpdateActiveBreakpointResponseHttpRequest: ...
 
             def register(
@@ -56,7 +56,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     debuggeeId: str,
                     breakpointId: str,
                     clientVersion: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self,
@@ -64,7 +64,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     debuggeeId: str,
                     breakpointId: str,
                     clientVersion: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GetBreakpointResponseHttpRequest: ...
                 def list(
                     self,
@@ -76,7 +76,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                     includeInactive: bool = ...,
                     stripResults: bool = ...,
                     waitToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListBreakpointsResponseHttpRequest: ...
                 def set(
                     self,
@@ -89,7 +89,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                         "CANARY_OPTION_TRY_DISABLE",
                     ] = ...,
                     clientVersion: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> SetBreakpointResponseHttpRequest: ...
 
             def list(
@@ -98,7 +98,7 @@ class CloudDebuggerResource(googleapiclient.discovery.Resource):
                 clientVersion: str = ...,
                 includeInactive: bool = ...,
                 project: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListDebuggeesResponseHttpRequest: ...
             def breakpoints(self) -> BreakpointsResource: ...
 

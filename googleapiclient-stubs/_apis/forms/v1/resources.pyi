@@ -27,7 +27,7 @@ class FormsResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListFormResponsesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -42,7 +42,7 @@ class FormsResource(googleapiclient.discovery.Resource):
                 *,
                 formId: str,
                 body: CreateWatchRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WatchHttpRequest: ...
             def delete(
                 self, *, formId: str, watchId: str, **kwargs: typing.Any
@@ -56,7 +56,7 @@ class FormsResource(googleapiclient.discovery.Resource):
                 formId: str,
                 watchId: str,
                 body: RenewWatchRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> WatchHttpRequest: ...
 
         def batchUpdate(
@@ -64,7 +64,7 @@ class FormsResource(googleapiclient.discovery.Resource):
             *,
             formId: str,
             body: BatchUpdateFormRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BatchUpdateFormResponseHttpRequest: ...
         def create(
             self, *, body: Form = ..., **kwargs: typing.Any

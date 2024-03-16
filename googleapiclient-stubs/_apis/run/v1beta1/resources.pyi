@@ -25,7 +25,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             parent: str = ...,
             resourceVersion: str = ...,
             watch: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListCustomResourceDefinitionsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -57,7 +57,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     limit: int = ...,
                     resourceVersion: str = ...,
                     watch: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListCustomResourceDefinitionsResponseHttpRequest: ...
 
             def customresourcedefinitions(

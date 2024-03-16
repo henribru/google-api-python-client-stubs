@@ -23,7 +23,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             id: int,
             body: Account = ...,
             confirmUnsafeAccountChange: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def update(
             self,
@@ -31,7 +31,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             id: int,
             body: Account = ...,
             confirmUnsafeAccountChange: bool = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
 
     @typing.type_check_only
@@ -52,7 +52,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             billingId: str,
             body: Budget = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BudgetHttpRequest: ...
         def update(
             self,
@@ -60,7 +60,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             billingId: str,
             body: Budget = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BudgetHttpRequest: ...
 
     @typing.type_check_only
@@ -71,7 +71,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: int,
             buyerCreativeId: str,
             dealId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
         def get(
             self, *, accountId: int, buyerCreativeId: str, **kwargs: typing.Any
@@ -92,7 +92,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
                 "approved", "conditionally_approved", "disapproved", "not_checked"
             ] = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...
         def list_next(
             self,
@@ -108,7 +108,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: int,
             buyerCreativeId: str,
             dealId: str,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -118,14 +118,14 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             proposalId: str,
             body: DeleteOrderDealsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeleteOrderDealsResponseHttpRequest: ...
         def insert(
             self,
             *,
             proposalId: str,
             body: AddOrderDealsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AddOrderDealsResponseHttpRequest: ...
         def list(
             self, *, proposalId: str, pqlQuery: str = ..., **kwargs: typing.Any
@@ -135,7 +135,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             proposalId: str,
             body: EditAllOrderDealsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EditAllOrderDealsResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -145,7 +145,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             proposalId: str,
             body: AddOrderNotesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> AddOrderNotesResponseHttpRequest: ...
         def list(
             self, *, proposalId: str, pqlQuery: str = ..., **kwargs: typing.Any
@@ -158,7 +158,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             privateAuctionId: str,
             body: UpdatePrivateAuctionProposalRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
 
     @typing.type_check_only
@@ -171,7 +171,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             startDateTime: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PerformanceReportListHttpRequest: ...
 
     @typing.type_check_only
@@ -187,7 +187,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def list(
             self, *, accountId: str, **kwargs: typing.Any
@@ -198,7 +198,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             configId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def update(
             self,
@@ -206,7 +206,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             configId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
 
     @typing.type_check_only
@@ -240,7 +240,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
                 "updateNonTerms",
             ],
             body: Proposal = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProposalHttpRequest: ...
         def search(
             self, *, pqlQuery: str = ..., **kwargs: typing.Any
@@ -262,7 +262,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
                 "updateNonTerms",
             ],
             body: Proposal = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ProposalHttpRequest: ...
 
     @typing.type_check_only

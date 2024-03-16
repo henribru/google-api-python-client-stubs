@@ -25,7 +25,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Connection = ...,
                     connectionId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
@@ -38,7 +38,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     body: GetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -46,7 +46,7 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     parent: str,
                     maxResults: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -59,28 +59,28 @@ class BigQueryConnectionServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Connection = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ConnectionHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def updateCredential(
                     self,
                     *,
                     name: str,
                     body: ConnectionCredential = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
 
             def connections(self) -> ConnectionsResource: ...

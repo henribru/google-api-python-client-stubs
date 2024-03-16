@@ -32,7 +32,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal[
                         "NOTIFICATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -51,7 +51,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleCloudAdvisorynotificationsV1Settings = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
             def notifications(self) -> NotificationsResource: ...
 
@@ -76,7 +76,7 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                     view: typing_extensions.Literal[
                         "NOTIFICATION_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> GoogleCloudAdvisorynotificationsV1ListNotificationsResponseHttpRequest: ...
                 def list_next(
                     self,

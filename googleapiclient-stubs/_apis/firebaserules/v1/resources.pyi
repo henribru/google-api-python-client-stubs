@@ -33,7 +33,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                     "FIREBASE_RULES_EXECUTABLE_V1",
                     "FIREBASE_RULES_EXECUTABLE_V2",
                 ] = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GetReleaseExecutableResponseHttpRequest: ...
             def list(
                 self,
@@ -42,7 +42,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListReleasesResponseHttpRequest: ...
             def list_next(
                 self,
@@ -54,7 +54,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: UpdateReleaseRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ReleaseHttpRequest: ...
 
         @typing.type_check_only
@@ -73,7 +73,7 @@ class FirebaseRulesResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListRulesetsResponseHttpRequest: ...
             def list_next(
                 self,

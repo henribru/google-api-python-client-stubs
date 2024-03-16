@@ -39,7 +39,7 @@ class TranslateResource(googleapiclient.discovery.Resource):
             format: typing_extensions.Literal["html", "text"] = ...,
             model: str = ...,
             source: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TranslationsListResponseHttpRequest: ...
         def translate(
             self, *, body: TranslateTextRequest = ..., **kwargs: typing.Any

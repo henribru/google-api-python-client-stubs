@@ -32,7 +32,7 @@ class PostmasterToolsResource(googleapiclient.discovery.Resource):
                 startDate_day: int = ...,
                 startDate_month: int = ...,
                 startDate_year: int = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTrafficStatsResponseHttpRequest: ...
             def list_next(
                 self,

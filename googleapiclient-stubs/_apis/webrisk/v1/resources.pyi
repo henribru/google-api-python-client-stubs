@@ -35,7 +35,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchHashesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -47,7 +47,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GoogleLongrunningCancelOperationRequest = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleProtobufEmptyHttpRequest: ...
             def delete(
                 self, *, name: str, **kwargs: typing.Any
@@ -62,7 +62,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
             def list_next(
                 self,
@@ -77,7 +77,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: GoogleCloudWebriskV1Submission = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> GoogleCloudWebriskV1SubmissionHttpRequest: ...
 
         def operations(self) -> OperationsResource: ...
@@ -104,7 +104,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
             ] = ...,
             versionToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1ComputeThreatListDiffResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -129,7 +129,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                 ]
             ] = ...,
             uri: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchUrisResponseHttpRequest: ...
 
     def new_batch_http_request(

@@ -19,19 +19,19 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: IdentitytoolkitRelyingpartyCreateAuthUriRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreateAuthUriResponseHttpRequest: ...
         def deleteAccount(
             self,
             *,
             body: IdentitytoolkitRelyingpartyDeleteAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DeleteAccountResponseHttpRequest: ...
         def downloadAccount(
             self,
             *,
             body: IdentitytoolkitRelyingpartyDownloadAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> DownloadAccountResponseHttpRequest: ...
         def downloadAccount_next(
             self,
@@ -42,13 +42,13 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: IdentitytoolkitRelyingpartyEmailLinkSigninRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EmailLinkSigninResponseHttpRequest: ...
         def getAccountInfo(
             self,
             *,
             body: IdentitytoolkitRelyingpartyGetAccountInfoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GetAccountInfoResponseHttpRequest: ...
         def getOobConfirmationCode(
             self, *, body: Relyingparty = ..., **kwargs: typing.Any
@@ -58,7 +58,7 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             *,
             delegatedProjectNumber: str = ...,
             projectNumber: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartyGetProjectConfigResponseHttpRequest: ...
         def getPublicKeys(
             self, **kwargs: typing.Any
@@ -70,67 +70,67 @@ class IdentityToolkitResource(googleapiclient.discovery.Resource):
             self,
             *,
             body: IdentitytoolkitRelyingpartyResetPasswordRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ResetPasswordResponseHttpRequest: ...
         def sendVerificationCode(
             self,
             *,
             body: IdentitytoolkitRelyingpartySendVerificationCodeRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartySendVerificationCodeResponseHttpRequest: ...
         def setAccountInfo(
             self,
             *,
             body: IdentitytoolkitRelyingpartySetAccountInfoRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SetAccountInfoResponseHttpRequest: ...
         def setProjectConfig(
             self,
             *,
             body: IdentitytoolkitRelyingpartySetProjectConfigRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartySetProjectConfigResponseHttpRequest: ...
         def signOutUser(
             self,
             *,
             body: IdentitytoolkitRelyingpartySignOutUserRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartySignOutUserResponseHttpRequest: ...
         def signupNewUser(
             self,
             *,
             body: IdentitytoolkitRelyingpartySignupNewUserRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> SignupNewUserResponseHttpRequest: ...
         def uploadAccount(
             self,
             *,
             body: IdentitytoolkitRelyingpartyUploadAccountRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> UploadAccountResponseHttpRequest: ...
         def verifyAssertion(
             self,
             *,
             body: IdentitytoolkitRelyingpartyVerifyAssertionRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VerifyAssertionResponseHttpRequest: ...
         def verifyCustomToken(
             self,
             *,
             body: IdentitytoolkitRelyingpartyVerifyCustomTokenRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VerifyCustomTokenResponseHttpRequest: ...
         def verifyPassword(
             self,
             *,
             body: IdentitytoolkitRelyingpartyVerifyPasswordRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> VerifyPasswordResponseHttpRequest: ...
         def verifyPhoneNumber(
             self,
             *,
             body: IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> IdentitytoolkitRelyingpartyVerifyPhoneNumberResponseHttpRequest: ...
 
     def new_batch_http_request(

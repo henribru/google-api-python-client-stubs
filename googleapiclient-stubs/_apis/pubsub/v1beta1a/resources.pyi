@@ -33,7 +33,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListSubscriptionsResponseHttpRequest: ...
         def list_next(
             self,
@@ -66,7 +66,7 @@ class PubsubResource(googleapiclient.discovery.Resource):
             maxResults: int = ...,
             pageToken: str = ...,
             query: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListTopicsResponseHttpRequest: ...
         def list_next(
             self,

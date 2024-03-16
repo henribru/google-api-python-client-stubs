@@ -20,7 +20,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -34,7 +34,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: EventTicketClass = ..., **kwargs: typing.Any
@@ -50,7 +50,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -64,28 +64,28 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketObjectListResponseHttpRequest: ...
         def modifylinkedofferobjects(
             self,
             *,
             resourceId: str,
             body: ModifyLinkedOfferObjectsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketObjectHttpRequest: ...
         def patch(
             self,
             *,
             resourceId: str,
             body: EventTicketObject = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketObjectHttpRequest: ...
         def update(
             self,
             *,
             resourceId: str,
             body: EventTicketObject = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> EventTicketObjectHttpRequest: ...
 
     @typing.type_check_only
@@ -95,7 +95,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FlightClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -109,7 +109,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FlightClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: FlightClass = ..., **kwargs: typing.Any
@@ -125,7 +125,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FlightObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -139,7 +139,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> FlightObjectListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: FlightObject = ..., **kwargs: typing.Any
@@ -155,7 +155,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GenericClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -169,7 +169,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GenericClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: GenericClass = ..., **kwargs: typing.Any
@@ -185,7 +185,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GenericObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -199,7 +199,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GenericObjectListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: GenericObject = ..., **kwargs: typing.Any
@@ -215,7 +215,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GiftCardClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -229,7 +229,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GiftCardClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: GiftCardClass = ..., **kwargs: typing.Any
@@ -245,7 +245,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GiftCardObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -259,7 +259,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> GiftCardObjectListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: GiftCardObject = ..., **kwargs: typing.Any
@@ -297,7 +297,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoyaltyClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -311,7 +311,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoyaltyClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: LoyaltyClass = ..., **kwargs: typing.Any
@@ -327,7 +327,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoyaltyObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -341,14 +341,14 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoyaltyObjectListResponseHttpRequest: ...
         def modifylinkedofferobjects(
             self,
             *,
             resourceId: str,
             body: ModifyLinkedOfferObjectsRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> LoyaltyObjectHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: LoyaltyObject = ..., **kwargs: typing.Any
@@ -370,7 +370,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: TransitObjectUploadRotatingBarcodeValuesRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransitObjectUploadRotatingBarcodeValuesResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -380,7 +380,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OfferClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -394,7 +394,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OfferClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: OfferClass = ..., **kwargs: typing.Any
@@ -410,7 +410,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OfferObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -424,7 +424,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> OfferObjectListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: OfferObject = ..., **kwargs: typing.Any
@@ -455,7 +455,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransitClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -469,7 +469,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             issuerId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransitClassListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: TransitClass = ..., **kwargs: typing.Any
@@ -485,7 +485,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             *,
             resourceId: str,
             body: AddMessageRequest = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransitObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
@@ -499,7 +499,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             classId: str = ...,
             maxResults: int = ...,
             token: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> TransitObjectListResponseHttpRequest: ...
         def patch(
             self, *, resourceId: str, body: TransitObject = ..., **kwargs: typing.Any

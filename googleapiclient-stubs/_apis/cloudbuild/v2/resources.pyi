@@ -26,21 +26,21 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         *,
                         repository: str,
                         body: FetchReadTokenRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> FetchReadTokenResponseHttpRequest: ...
                     def accessReadWriteToken(
                         self,
                         *,
                         repository: str,
                         body: FetchReadWriteTokenRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> FetchReadWriteTokenResponseHttpRequest: ...
                     def batchCreate(
                         self,
                         *,
                         parent: str,
                         body: BatchCreateRepositoriesRequest = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def create(
                         self,
@@ -48,7 +48,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: Repository = ...,
                         repositoryId: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def delete(
                         self,
@@ -56,7 +56,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         name: str,
                         etag: str = ...,
                         validateOnly: bool = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def fetchGitRefs(
                         self,
@@ -67,7 +67,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         refType: typing_extensions.Literal[
                             "REF_TYPE_UNSPECIFIED", "TAG", "BRANCH"
                         ] = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> FetchGitRefsResponseHttpRequest: ...
                     def fetchGitRefs_next(
                         self,
@@ -84,7 +84,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
-                        **kwargs: typing.Any
+                        **kwargs: typing.Any,
                     ) -> ListRepositoriesResponseHttpRequest: ...
                     def list_next(
                         self,
@@ -98,7 +98,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: Connection = ...,
                     connectionId: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
                     self,
@@ -106,7 +106,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     name: str,
                     etag: str = ...,
                     validateOnly: bool = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def fetchLinkableRepositories(
                     self,
@@ -114,7 +114,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     connection: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> FetchLinkableRepositoriesResponseHttpRequest: ...
                 def fetchLinkableRepositories_next(
                     self,
@@ -129,7 +129,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     resource: str,
                     options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def list(
                     self,
@@ -137,7 +137,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> ListConnectionsResponseHttpRequest: ...
                 def list_next(
                     self,
@@ -152,7 +152,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     allowMissing: bool = ...,
                     etag: str = ...,
                     updateMask: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def processWebhook(
                     self,
@@ -160,21 +160,21 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: HttpBody = ...,
                     webhookKey: str = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
                     resource: str,
                     body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
                     resource: str,
                     body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def repositories(self) -> RepositoriesResource: ...
 
@@ -185,7 +185,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: CancelOperationRequest = ...,
-                    **kwargs: typing.Any
+                    **kwargs: typing.Any,
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -201,7 +201,7 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListLocationsResponseHttpRequest: ...
             def list_next(
                 self,

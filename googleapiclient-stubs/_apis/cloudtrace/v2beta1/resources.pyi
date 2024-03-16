@@ -32,7 +32,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 parent: str,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> ListTraceSinksResponseHttpRequest: ...
             def list_next(
                 self,
@@ -45,7 +45,7 @@ class CloudTraceResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: TraceSink = ...,
                 updateMask: str = ...,
-                **kwargs: typing.Any
+                **kwargs: typing.Any,
             ) -> TraceSinkHttpRequest: ...
 
         def traceSinks(self) -> TraceSinksResource: ...

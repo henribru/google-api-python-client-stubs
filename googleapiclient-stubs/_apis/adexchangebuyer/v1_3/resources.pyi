@@ -42,7 +42,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             billingId: str,
             body: Budget = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BudgetHttpRequest: ...
         def update(
             self,
@@ -50,7 +50,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             billingId: str,
             body: Budget = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> BudgetHttpRequest: ...
 
     @typing.type_check_only
@@ -71,7 +71,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             statusFilter: typing_extensions.Literal[
                 "approved", "disapproved", "not_checked"
             ] = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CreativesListHttpRequest: ...
         def list_next(
             self,
@@ -94,7 +94,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             startDateTime: str,
             maxResults: int = ...,
             pageToken: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PerformanceReportListHttpRequest: ...
 
     @typing.type_check_only
@@ -110,7 +110,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             *,
             accountId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def list(
             self, *, accountId: str, **kwargs: typing.Any
@@ -121,7 +121,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             configId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
         def update(
             self,
@@ -129,7 +129,7 @@ class AdExchangeBuyerResource(googleapiclient.discovery.Resource):
             accountId: str,
             configId: str,
             body: PretargetingConfig = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> PretargetingConfigHttpRequest: ...
 
     def new_batch_http_request(

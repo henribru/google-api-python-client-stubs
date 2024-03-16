@@ -28,7 +28,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             target_androidApp_certificate_sha256Fingerprint: str = ...,
             target_androidApp_packageName: str = ...,
             target_web_site: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> CheckResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -40,7 +40,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             source_androidApp_certificate_sha256Fingerprint: str = ...,
             source_androidApp_packageName: str = ...,
             source_web_site: str = ...,
-            **kwargs: typing.Any
+            **kwargs: typing.Any,
         ) -> ListResponseHttpRequest: ...
 
     def new_batch_http_request(
