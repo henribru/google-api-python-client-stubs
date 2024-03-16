@@ -79,22 +79,20 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             self,
                             *,
                             parent: str,
-                            messageTypes: (
+                            messageTypes: typing_extensions.Literal[
+                                "MESSAGE_SEVERITY_UNSPECIFIED",
+                                "INFO",
+                                "WARNING",
+                                "ERROR",
+                            ]
+                            | _list[
                                 typing_extensions.Literal[
                                     "MESSAGE_SEVERITY_UNSPECIFIED",
                                     "INFO",
                                     "WARNING",
                                     "ERROR",
                                 ]
-                                | _list[
-                                    typing_extensions.Literal[
-                                        "MESSAGE_SEVERITY_UNSPECIFIED",
-                                        "INFO",
-                                        "WARNING",
-                                        "ERROR",
-                                    ]
-                                ]
-                            ) = ...,
+                            ] = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
                             **kwargs: typing.Any,
@@ -120,7 +118,15 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         runAttempt: typing_extensions.Literal[
                             "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
                         ] = ...,
-                        states: (
+                        states: typing_extensions.Literal[
+                            "TRANSFER_STATE_UNSPECIFIED",
+                            "PENDING",
+                            "RUNNING",
+                            "SUCCEEDED",
+                            "FAILED",
+                            "CANCELLED",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "TRANSFER_STATE_UNSPECIFIED",
                                 "PENDING",
@@ -129,17 +135,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                                 "FAILED",
                                 "CANCELLED",
                             ]
-                            | _list[
-                                typing_extensions.Literal[
-                                    "TRANSFER_STATE_UNSPECIFIED",
-                                    "PENDING",
-                                    "RUNNING",
-                                    "SUCCEEDED",
-                                    "FAILED",
-                                    "CANCELLED",
-                                ]
-                            ]
-                        ) = ...,
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> ListTransferRunsResponseHttpRequest: ...
                     def list_next(
@@ -250,22 +246,17 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        messageTypes: (
+                        messageTypes: typing_extensions.Literal[
+                            "MESSAGE_SEVERITY_UNSPECIFIED", "INFO", "WARNING", "ERROR"
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "MESSAGE_SEVERITY_UNSPECIFIED",
                                 "INFO",
                                 "WARNING",
                                 "ERROR",
                             ]
-                            | _list[
-                                typing_extensions.Literal[
-                                    "MESSAGE_SEVERITY_UNSPECIFIED",
-                                    "INFO",
-                                    "WARNING",
-                                    "ERROR",
-                                ]
-                            ]
-                        ) = ...,
+                        ] = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -291,7 +282,15 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                     runAttempt: typing_extensions.Literal[
                         "RUN_ATTEMPT_UNSPECIFIED", "LATEST"
                     ] = ...,
-                    states: (
+                    states: typing_extensions.Literal[
+                        "TRANSFER_STATE_UNSPECIFIED",
+                        "PENDING",
+                        "RUNNING",
+                        "SUCCEEDED",
+                        "FAILED",
+                        "CANCELLED",
+                    ]
+                    | _list[
                         typing_extensions.Literal[
                             "TRANSFER_STATE_UNSPECIFIED",
                             "PENDING",
@@ -300,17 +299,7 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                             "FAILED",
                             "CANCELLED",
                         ]
-                        | _list[
-                            typing_extensions.Literal[
-                                "TRANSFER_STATE_UNSPECIFIED",
-                                "PENDING",
-                                "RUNNING",
-                                "SUCCEEDED",
-                                "FAILED",
-                                "CANCELLED",
-                            ]
-                        ]
-                    ) = ...,
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListTransferRunsResponseHttpRequest: ...
                 def list_next(
@@ -390,17 +379,15 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 

@@ -26,7 +26,19 @@ class ScriptResource(googleapiclient.discovery.Resource):
             userProcessFilter_projectName: str = ...,
             userProcessFilter_scriptId: str = ...,
             userProcessFilter_startTime: str = ...,
-            userProcessFilter_statuses: (
+            userProcessFilter_statuses: typing_extensions.Literal[
+                "PROCESS_STATUS_UNSPECIFIED",
+                "RUNNING",
+                "PAUSED",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "TIMED_OUT",
+                "UNKNOWN",
+                "DELAYED",
+                "EXECUTION_DISABLED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -39,22 +51,20 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "DELAYED",
                     "EXECUTION_DISABLED",
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "PROCESS_STATUS_UNSPECIFIED",
-                        "RUNNING",
-                        "PAUSED",
-                        "COMPLETED",
-                        "CANCELED",
-                        "FAILED",
-                        "TIMED_OUT",
-                        "UNKNOWN",
-                        "DELAYED",
-                        "EXECUTION_DISABLED",
-                    ]
-                ]
-            ) = ...,
-            userProcessFilter_types: (
+            ] = ...,
+            userProcessFilter_types: typing_extensions.Literal[
+                "PROCESS_TYPE_UNSPECIFIED",
+                "ADD_ON",
+                "EXECUTION_API",
+                "TIME_DRIVEN",
+                "TRIGGER",
+                "WEBAPP",
+                "EDITOR",
+                "SIMPLE_TRIGGER",
+                "MENU",
+                "BATCH_TASK",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
@@ -67,35 +77,15 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "MENU",
                     "BATCH_TASK",
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "PROCESS_TYPE_UNSPECIFIED",
-                        "ADD_ON",
-                        "EXECUTION_API",
-                        "TIME_DRIVEN",
-                        "TRIGGER",
-                        "WEBAPP",
-                        "EDITOR",
-                        "SIMPLE_TRIGGER",
-                        "MENU",
-                        "BATCH_TASK",
-                    ]
-                ]
-            ) = ...,
-            userProcessFilter_userAccessLevels: (
+            ] = ...,
+            userProcessFilter_userAccessLevels: typing_extensions.Literal[
+                "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
-                    ]
-                ]
-            ) = ...,
+            ] = ...,
             **kwargs: typing.Any,
         ) -> ListUserProcessesResponseHttpRequest: ...
         def list_next(
@@ -113,7 +103,19 @@ class ScriptResource(googleapiclient.discovery.Resource):
             scriptProcessFilter_endTime: str = ...,
             scriptProcessFilter_functionName: str = ...,
             scriptProcessFilter_startTime: str = ...,
-            scriptProcessFilter_statuses: (
+            scriptProcessFilter_statuses: typing_extensions.Literal[
+                "PROCESS_STATUS_UNSPECIFIED",
+                "RUNNING",
+                "PAUSED",
+                "COMPLETED",
+                "CANCELED",
+                "FAILED",
+                "TIMED_OUT",
+                "UNKNOWN",
+                "DELAYED",
+                "EXECUTION_DISABLED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_STATUS_UNSPECIFIED",
                     "RUNNING",
@@ -126,22 +128,20 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "DELAYED",
                     "EXECUTION_DISABLED",
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "PROCESS_STATUS_UNSPECIFIED",
-                        "RUNNING",
-                        "PAUSED",
-                        "COMPLETED",
-                        "CANCELED",
-                        "FAILED",
-                        "TIMED_OUT",
-                        "UNKNOWN",
-                        "DELAYED",
-                        "EXECUTION_DISABLED",
-                    ]
-                ]
-            ) = ...,
-            scriptProcessFilter_types: (
+            ] = ...,
+            scriptProcessFilter_types: typing_extensions.Literal[
+                "PROCESS_TYPE_UNSPECIFIED",
+                "ADD_ON",
+                "EXECUTION_API",
+                "TIME_DRIVEN",
+                "TRIGGER",
+                "WEBAPP",
+                "EDITOR",
+                "SIMPLE_TRIGGER",
+                "MENU",
+                "BATCH_TASK",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "PROCESS_TYPE_UNSPECIFIED",
                     "ADD_ON",
@@ -154,35 +154,15 @@ class ScriptResource(googleapiclient.discovery.Resource):
                     "MENU",
                     "BATCH_TASK",
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "PROCESS_TYPE_UNSPECIFIED",
-                        "ADD_ON",
-                        "EXECUTION_API",
-                        "TIME_DRIVEN",
-                        "TRIGGER",
-                        "WEBAPP",
-                        "EDITOR",
-                        "SIMPLE_TRIGGER",
-                        "MENU",
-                        "BATCH_TASK",
-                    ]
-                ]
-            ) = ...,
-            scriptProcessFilter_userAccessLevels: (
+            ] = ...,
+            scriptProcessFilter_userAccessLevels: typing_extensions.Literal[
+                "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "USER_ACCESS_LEVEL_UNSPECIFIED", "NONE", "READ", "WRITE", "OWNER"
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "USER_ACCESS_LEVEL_UNSPECIFIED",
-                        "NONE",
-                        "READ",
-                        "WRITE",
-                        "OWNER",
-                    ]
-                ]
-            ) = ...,
+            ] = ...,
             **kwargs: typing.Any,
         ) -> ListScriptProcessesResponseHttpRequest: ...
         def listScriptProcesses_next(
@@ -283,17 +263,15 @@ class ScriptResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def processes(self) -> ProcessesResource: ...
     def projects(self) -> ProjectsResource: ...

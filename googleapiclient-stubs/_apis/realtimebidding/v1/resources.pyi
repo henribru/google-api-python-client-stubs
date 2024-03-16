@@ -255,7 +255,13 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class UserListsResource(googleapiclient.discovery.Resource):
-            def close(self, *, name: str, body: CloseUserListRequest = ..., **kwargs: typing.Any) -> UserListHttpRequest: ...  # type: ignore[override]
+            def close(  # type: ignore[override]
+                self,
+                *,
+                name: str,
+                body: CloseUserListRequest = ...,
+                **kwargs: typing.Any,
+            ) -> UserListHttpRequest: ...
             def create(
                 self, *, parent: str, body: UserList = ..., **kwargs: typing.Any
             ) -> UserListHttpRequest: ...
@@ -306,17 +312,15 @@ class RealTimeBiddingResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def bidders(self) -> BiddersResource: ...
     def buyers(self) -> BuyersResource: ...

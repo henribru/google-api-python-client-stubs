@@ -317,17 +317,15 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
 

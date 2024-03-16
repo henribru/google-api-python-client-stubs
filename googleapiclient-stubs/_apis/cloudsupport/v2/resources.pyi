@@ -66,7 +66,9 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
                 previous_response: ListCommentsResponse,
             ) -> ListCommentsResponseHttpRequest | None: ...
 
-        def close(self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any) -> CaseHttpRequest: ...  # type: ignore[override]
+        def close(  # type: ignore[override]
+            self, *, name: str, body: CloseCaseRequest = ..., **kwargs: typing.Any
+        ) -> CaseHttpRequest: ...
         def create(
             self, *, parent: str, body: Case = ..., **kwargs: typing.Any
         ) -> CaseHttpRequest: ...
@@ -129,17 +131,15 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def caseClassifications(self) -> CaseClassificationsResource: ...
     def cases(self) -> CasesResource: ...

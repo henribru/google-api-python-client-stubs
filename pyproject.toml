@@ -22,20 +22,18 @@ types-httplib2 = ">=0.22.0.2"
 
 [tool.poetry.group.dev.dependencies]
 mypy = {version = "^1.9.0", python = "^3.8"}
-black = {version = "^24.3.0", python = "^3.8"}
-isort = {version = "^5.13.2", python = "^3.8"}
 stubdefaulter = "^0.1.0"
+ruff = "^0.3.3"
 
-[tool.black]
-target_version = ["py38"]
+[tool.ruff.lint]
+select = ["UP", "I"]
 
-[tool.isort]
-profile = "black"
-known_first_party = [
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = [
     "apiclient",
     "googleapiclient",
 ]
-combine_as_imports = true
 
 [tool.mypy]
 warn_unused_ignores = true

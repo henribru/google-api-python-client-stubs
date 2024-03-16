@@ -50,20 +50,18 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
-                wipeDataFlags: (
+                wipeDataFlags: typing_extensions.Literal[
+                    "WIPE_DATA_FLAG_UNSPECIFIED",
+                    "PRESERVE_RESET_PROTECTION_DATA",
+                    "WIPE_EXTERNAL_STORAGE",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "WIPE_DATA_FLAG_UNSPECIFIED",
                         "PRESERVE_RESET_PROTECTION_DATA",
                         "WIPE_EXTERNAL_STORAGE",
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "WIPE_DATA_FLAG_UNSPECIFIED",
-                            "PRESERVE_RESET_PROTECTION_DATA",
-                            "WIPE_EXTERNAL_STORAGE",
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 wipeReasonMessage: str = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
@@ -264,17 +262,15 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def enterprises(self) -> EnterprisesResource: ...
     def provisioningInfo(self) -> ProvisioningInfoResource: ...

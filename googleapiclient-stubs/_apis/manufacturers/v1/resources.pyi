@@ -59,32 +59,28 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 name: str,
-                include: (
+                include: typing_extensions.Literal[
+                    "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 **kwargs: typing.Any,
             ) -> ProductHttpRequest: ...
             def list(
                 self,
                 *,
                 parent: str,
-                include: (
+                include: typing_extensions.Literal[
+                    "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "UNKNOWN", "ATTRIBUTES", "ISSUES", "DESTINATION_STATUSES"
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -108,17 +104,15 @@ class ManufacturerCenterResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
 

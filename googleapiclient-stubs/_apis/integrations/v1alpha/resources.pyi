@@ -281,20 +281,18 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         fileFormat: typing_extensions.Literal[
                             "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                         ] = ...,
-                        files: (
+                        files: typing_extensions.Literal[
+                            "INTEGRATION_FILE_UNSPECIFIED",
+                            "INTEGRATION",
+                            "INTEGRATION_CONFIG_VARIABLES",
+                        ]
+                        | _list[
                             typing_extensions.Literal[
                                 "INTEGRATION_FILE_UNSPECIFIED",
                                 "INTEGRATION",
                                 "INTEGRATION_CONFIG_VARIABLES",
                             ]
-                            | _list[
-                                typing_extensions.Literal[
-                                    "INTEGRATION_FILE_UNSPECIFIED",
-                                    "INTEGRATION",
-                                    "INTEGRATION_CONFIG_VARIABLES",
-                                ]
-                            ]
-                        ) = ...,
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponseHttpRequest: ...
                     def get(
@@ -612,20 +610,18 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                             fileFormat: typing_extensions.Literal[
                                 "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
                             ] = ...,
-                            files: (
+                            files: typing_extensions.Literal[
+                                "INTEGRATION_FILE_UNSPECIFIED",
+                                "INTEGRATION",
+                                "INTEGRATION_CONFIG_VARIABLES",
+                            ]
+                            | _list[
                                 typing_extensions.Literal[
                                     "INTEGRATION_FILE_UNSPECIFIED",
                                     "INTEGRATION",
                                     "INTEGRATION_CONFIG_VARIABLES",
                                 ]
-                                | _list[
-                                    typing_extensions.Literal[
-                                        "INTEGRATION_FILE_UNSPECIFIED",
-                                        "INTEGRATION",
-                                        "INTEGRATION_CONFIG_VARIABLES",
-                                    ]
-                                ]
-                            ) = ...,
+                            ] = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponseHttpRequest: ...
                         def get(
@@ -953,17 +949,15 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def callback(self) -> CallbackResource: ...
     def connectorPlatformRegions(self) -> ConnectorPlatformRegionsResource: ...

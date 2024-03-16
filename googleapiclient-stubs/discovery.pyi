@@ -15,10 +15,10 @@ import googleapiclient._apis.accessapproval.v1
 import googleapiclient._apis.accesscontextmanager.v1
 import googleapiclient._apis.accesscontextmanager.v1beta
 import googleapiclient._apis.acmedns.v1
-import googleapiclient._apis.adexchangebuyer2.v2beta1
 import googleapiclient._apis.adexchangebuyer.v1_2
 import googleapiclient._apis.adexchangebuyer.v1_3
 import googleapiclient._apis.adexchangebuyer.v1_4
+import googleapiclient._apis.adexchangebuyer2.v2beta1
 import googleapiclient._apis.adexperiencereport.v1
 import googleapiclient._apis.admin.datatransfer_v1
 import googleapiclient._apis.admin.directory_v1
@@ -510,7 +510,6 @@ def fix_method_name(name): ...
 def key2param(key): ...
 
 class ResourceMethodParameters:
-
     argmap: Incomplete
 
     required_params: Incomplete
@@ -573,9 +572,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -595,9 +594,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -617,9 +616,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -637,9 +636,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -657,9 +656,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -677,9 +676,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -697,9 +696,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -717,9 +716,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -737,9 +736,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -757,9 +756,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -777,9 +776,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -797,9 +796,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -817,9 +816,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -837,9 +836,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -857,9 +856,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -877,9 +876,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -897,9 +896,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -917,9 +916,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -937,9 +936,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -957,9 +956,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -977,9 +976,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -997,9 +996,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1017,9 +1016,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1037,9 +1036,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1057,9 +1056,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1077,9 +1076,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1097,9 +1096,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1117,9 +1116,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1137,9 +1136,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1157,9 +1156,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1177,9 +1176,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1197,9 +1196,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1217,9 +1216,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1237,9 +1236,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1247,9 +1246,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.androiddeviceprovisioning.v1.AndroidProvisioningPartnerResource
-): ...
+) -> googleapiclient._apis.androiddeviceprovisioning.v1.AndroidProvisioningPartnerResource: ...
 @overload
 def build(
     serviceName: Literal["androidenterprise"],
@@ -1259,9 +1256,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1279,9 +1276,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1299,9 +1296,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1319,9 +1316,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1339,9 +1336,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1359,9 +1356,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1379,9 +1376,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1399,9 +1396,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1419,9 +1416,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1439,9 +1436,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1459,9 +1456,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1479,9 +1476,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1499,9 +1496,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1519,9 +1516,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1539,9 +1536,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1559,9 +1556,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1579,9 +1576,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1599,9 +1596,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1619,9 +1616,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1639,9 +1636,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1659,9 +1656,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1679,9 +1676,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1689,9 +1686,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.authorizedbuyersmarketplace.v1.AuthorizedBuyersMarketplaceResource
-): ...
+) -> googleapiclient._apis.authorizedbuyersmarketplace.v1.AuthorizedBuyersMarketplaceResource: ...
 @overload
 def build(
     serviceName: Literal["backupdr"],
@@ -1701,9 +1696,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1721,9 +1716,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1741,9 +1736,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1761,9 +1756,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1781,9 +1776,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1801,9 +1796,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1821,9 +1816,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1841,9 +1836,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1861,9 +1856,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1881,9 +1876,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1901,9 +1896,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1923,9 +1918,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1943,9 +1938,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1963,9 +1958,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -1983,9 +1978,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2003,9 +1998,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2023,9 +2018,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2043,9 +2038,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2063,9 +2058,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2083,9 +2078,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2103,9 +2098,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2123,9 +2118,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2143,9 +2138,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2163,9 +2158,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2183,9 +2178,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2203,9 +2198,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2223,9 +2218,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2233,9 +2228,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.businessprofileperformance.v1.BusinessProfilePerformanceResource
-): ...
+) -> googleapiclient._apis.businessprofileperformance.v1.BusinessProfilePerformanceResource: ...
 @overload
 def build(
     serviceName: Literal["calendar"],
@@ -2245,9 +2238,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2265,9 +2258,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2285,9 +2278,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2305,9 +2298,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2325,9 +2318,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2345,9 +2338,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2365,9 +2358,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2385,9 +2378,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2405,9 +2398,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2425,9 +2418,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2445,9 +2438,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2465,9 +2458,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2485,9 +2478,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2505,9 +2498,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2525,9 +2518,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2545,9 +2538,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2565,9 +2558,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2585,9 +2578,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2605,9 +2598,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2625,9 +2618,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2645,9 +2638,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2665,9 +2658,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2685,9 +2678,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2705,9 +2698,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2715,9 +2708,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.cloudcommerceprocurement.v1.CloudCommercePartnerProcurementServiceResource
-): ...
+) -> googleapiclient._apis.cloudcommerceprocurement.v1.CloudCommercePartnerProcurementServiceResource: ...
 @overload
 def build(
     serviceName: Literal["clouddebugger"],
@@ -2727,9 +2718,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2747,9 +2738,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2767,9 +2758,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2787,9 +2778,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2807,9 +2798,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2827,9 +2818,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2847,9 +2838,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2867,9 +2858,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2887,9 +2878,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2907,9 +2898,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2927,9 +2918,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2947,9 +2938,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2967,9 +2958,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -2987,9 +2978,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3009,9 +3000,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3029,9 +3020,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3051,9 +3042,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3071,9 +3062,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3091,9 +3082,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3111,9 +3102,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3131,9 +3122,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3151,9 +3142,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3171,9 +3162,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3191,9 +3182,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3211,9 +3202,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3231,9 +3222,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3251,9 +3242,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3271,9 +3262,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3291,9 +3282,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3311,9 +3302,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3331,9 +3322,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3351,9 +3342,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3371,9 +3362,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3391,9 +3382,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3411,9 +3402,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3431,9 +3422,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3451,9 +3442,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3471,9 +3462,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3491,9 +3482,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3511,9 +3502,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3531,9 +3522,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3551,9 +3542,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3571,9 +3562,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3591,9 +3582,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3611,9 +3602,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3631,9 +3622,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3651,9 +3642,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3671,9 +3662,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3691,9 +3682,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3711,9 +3702,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3731,9 +3722,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3751,9 +3742,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3771,9 +3762,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3791,9 +3782,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3811,9 +3802,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3831,9 +3822,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3851,9 +3842,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3871,9 +3862,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3891,9 +3882,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3911,9 +3902,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3931,9 +3922,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3951,9 +3942,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3971,9 +3962,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -3991,9 +3982,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4011,9 +4002,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4031,9 +4022,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4051,9 +4042,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4071,9 +4062,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4091,9 +4082,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4111,9 +4102,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4131,9 +4122,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4151,9 +4142,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4171,9 +4162,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4191,9 +4182,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4211,9 +4202,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4231,9 +4222,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4251,9 +4242,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4271,9 +4262,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4291,9 +4282,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4311,9 +4302,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4331,9 +4322,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4351,9 +4342,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4371,9 +4362,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4391,9 +4382,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4411,9 +4402,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4431,9 +4422,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4451,9 +4442,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4471,9 +4462,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4491,9 +4482,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4511,9 +4502,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4531,9 +4522,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4551,9 +4542,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4571,9 +4562,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4591,9 +4582,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4611,9 +4602,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4631,9 +4622,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4651,9 +4642,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4671,9 +4662,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4691,9 +4682,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4711,9 +4702,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4731,9 +4722,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4751,9 +4742,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4771,9 +4762,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4791,9 +4782,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4811,9 +4802,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4831,9 +4822,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4851,9 +4842,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4871,9 +4862,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4891,9 +4882,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4911,9 +4902,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4931,9 +4922,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4951,9 +4942,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4971,9 +4962,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -4991,9 +4982,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5011,9 +5002,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5031,9 +5022,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5051,9 +5042,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5071,9 +5062,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5091,9 +5082,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5111,9 +5102,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5131,9 +5122,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5153,9 +5144,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5163,9 +5154,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.firebaseappdistribution.v1alpha.FirebaseAppDistributionResource
-): ...
+) -> googleapiclient._apis.firebaseappdistribution.v1alpha.FirebaseAppDistributionResource: ...
 @overload
 def build(
     serviceName: Literal["firebasedatabase"],
@@ -5175,9 +5164,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5195,9 +5184,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5215,9 +5204,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5235,9 +5224,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5255,9 +5244,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5275,9 +5264,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5295,9 +5284,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5315,9 +5304,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5335,9 +5324,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5355,9 +5344,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5375,9 +5364,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5395,9 +5384,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5415,9 +5404,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5435,9 +5424,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5455,9 +5444,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5477,9 +5466,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5497,9 +5486,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5517,9 +5506,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5537,9 +5526,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5557,9 +5546,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5577,9 +5566,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5597,9 +5586,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5617,9 +5606,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5637,9 +5626,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5657,9 +5646,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5677,9 +5666,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5697,9 +5686,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5717,9 +5706,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5737,9 +5726,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5757,9 +5746,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5777,9 +5766,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5797,9 +5786,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5817,9 +5806,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5837,9 +5826,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5857,9 +5846,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5877,9 +5866,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5897,9 +5886,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5917,9 +5906,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5937,9 +5926,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5957,9 +5946,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5977,9 +5966,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -5997,9 +5986,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6017,9 +6006,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6037,9 +6026,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6057,9 +6046,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6077,9 +6066,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6097,9 +6086,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6117,9 +6106,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6137,9 +6126,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6157,9 +6146,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6177,9 +6166,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6197,9 +6186,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6217,9 +6206,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6237,9 +6226,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6257,9 +6246,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6277,9 +6266,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6297,9 +6286,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6317,9 +6306,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6337,9 +6326,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6357,9 +6346,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6377,9 +6366,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6397,9 +6386,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6417,9 +6406,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6437,9 +6426,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6457,9 +6446,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6477,9 +6466,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6497,9 +6486,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6517,9 +6506,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6537,9 +6526,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6557,9 +6546,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6567,9 +6556,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -6579,9 +6566,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6589,9 +6576,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1alpha1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1alpha1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["managedidentities"],
@@ -6601,9 +6586,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6611,9 +6596,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.managedidentities.v1beta1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource
-): ...
+) -> googleapiclient._apis.managedidentities.v1beta1.ManagedServiceForMicrosoftActiveDirectoryConsumerAPIResource: ...
 @overload
 def build(
     serviceName: Literal["manufacturers"],
@@ -6623,9 +6606,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6643,9 +6626,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6653,9 +6636,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.marketingplatformadmin.v1alpha.GoogleMarketingPlatformAdminAPIResource
-): ...
+) -> googleapiclient._apis.marketingplatformadmin.v1alpha.GoogleMarketingPlatformAdminAPIResource: ...
 @overload
 def build(
     serviceName: Literal["memcache"],
@@ -6665,9 +6646,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6685,9 +6666,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6705,9 +6686,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6725,9 +6706,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6745,9 +6726,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6765,9 +6746,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6785,9 +6766,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6805,9 +6786,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6825,9 +6806,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6845,9 +6826,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6865,9 +6846,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6875,9 +6856,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessaccountmanagement.v1.MyBusinessAccountManagementResource
-): ...
+) -> googleapiclient._apis.mybusinessaccountmanagement.v1.MyBusinessAccountManagementResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinessbusinesscalls"],
@@ -6887,9 +6866,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6909,9 +6888,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6919,9 +6898,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessbusinessinformation.v1.MyBusinessBusinessInformationResource
-): ...
+) -> googleapiclient._apis.mybusinessbusinessinformation.v1.MyBusinessBusinessInformationResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinesslodging"],
@@ -6931,9 +6908,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6951,9 +6928,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6961,9 +6938,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.mybusinessnotifications.v1.MyBusinessNotificationSettingsResource
-): ...
+) -> googleapiclient._apis.mybusinessnotifications.v1.MyBusinessNotificationSettingsResource: ...
 @overload
 def build(
     serviceName: Literal["mybusinessplaceactions"],
@@ -6973,9 +6948,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -6993,9 +6968,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7013,9 +6988,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7035,9 +7010,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7055,9 +7030,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7075,9 +7050,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7095,9 +7070,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7115,9 +7090,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7135,9 +7110,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7155,9 +7130,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7175,9 +7150,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7195,9 +7170,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7215,9 +7190,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7235,9 +7210,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7255,9 +7230,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7275,9 +7250,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7295,9 +7270,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7315,9 +7290,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7335,9 +7310,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7355,9 +7330,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7375,9 +7350,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7395,9 +7370,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7415,9 +7390,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7435,9 +7410,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7455,9 +7430,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7465,9 +7440,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.paymentsresellersubscription.v1.PaymentsResellerSubscriptionResource
-): ...
+) -> googleapiclient._apis.paymentsresellersubscription.v1.PaymentsResellerSubscriptionResource: ...
 @overload
 def build(
     serviceName: Literal["people"],
@@ -7477,9 +7450,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7497,9 +7470,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7517,9 +7490,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7537,9 +7510,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7557,9 +7530,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7579,9 +7552,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7601,9 +7574,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7621,9 +7594,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7641,9 +7614,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7661,9 +7634,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7681,9 +7654,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7701,9 +7674,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7721,9 +7694,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7741,9 +7714,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7761,9 +7734,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7781,9 +7754,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7801,9 +7774,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7821,9 +7794,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7841,9 +7814,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7861,9 +7834,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7881,9 +7854,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7901,9 +7874,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7921,9 +7894,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7941,9 +7914,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7961,9 +7934,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -7981,9 +7954,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8001,9 +7974,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8021,9 +7994,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8043,9 +8016,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8053,9 +8026,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.readerrevenuesubscriptionlinking.v1.SubscriptionLinkingResource
-): ...
+) -> googleapiclient._apis.readerrevenuesubscriptionlinking.v1.SubscriptionLinkingResource: ...
 @overload
 def build(
     serviceName: Literal["realtimebidding"],
@@ -8065,9 +8036,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8085,9 +8056,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8105,9 +8076,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8125,9 +8096,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8145,9 +8116,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8165,9 +8136,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8185,9 +8156,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8205,9 +8176,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8225,9 +8196,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8245,9 +8216,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8267,9 +8238,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8287,9 +8258,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8307,9 +8278,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8327,9 +8298,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8347,9 +8318,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8367,9 +8338,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8387,9 +8358,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8407,9 +8378,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8427,9 +8398,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8447,9 +8418,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8467,9 +8438,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8487,9 +8458,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8507,9 +8478,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8527,9 +8498,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8547,9 +8518,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8567,9 +8538,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8587,9 +8558,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8607,9 +8578,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8627,9 +8598,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8647,9 +8618,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8667,9 +8638,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8687,9 +8658,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8707,9 +8678,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8727,9 +8698,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8747,9 +8718,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8769,9 +8740,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8779,9 +8750,7 @@ def build(
     adc_key_path: str | None = None,
     num_retries: int = 1,
     static_discovery: bool | None = None,
-) -> (
-    googleapiclient._apis.serviceconsumermanagement.v1beta1.ServiceConsumerManagementResource
-): ...
+) -> googleapiclient._apis.serviceconsumermanagement.v1beta1.ServiceConsumerManagementResource: ...
 @overload
 def build(
     serviceName: Literal["servicecontrol"],
@@ -8791,9 +8760,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8811,9 +8780,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8831,9 +8800,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8851,9 +8820,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8871,9 +8840,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8891,9 +8860,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8911,9 +8880,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8931,9 +8900,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8951,9 +8920,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8971,9 +8940,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -8991,9 +8960,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9011,9 +8980,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9031,9 +9000,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9051,9 +9020,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9071,9 +9040,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9091,9 +9060,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9111,9 +9080,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9131,9 +9100,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9151,9 +9120,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9171,9 +9140,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9191,9 +9160,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9211,9 +9180,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9231,9 +9200,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9251,9 +9220,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9271,9 +9240,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9291,9 +9260,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9311,9 +9280,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9331,9 +9300,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9351,9 +9320,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9371,9 +9340,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9391,9 +9360,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9411,9 +9380,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9431,9 +9400,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9451,9 +9420,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9471,9 +9440,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9491,9 +9460,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9511,9 +9480,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9531,9 +9500,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9551,9 +9520,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9571,9 +9540,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9591,9 +9560,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9611,9 +9580,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9631,9 +9600,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9651,9 +9620,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9671,9 +9640,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9691,9 +9660,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9711,9 +9680,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9731,9 +9700,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9751,9 +9720,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9771,9 +9740,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9791,9 +9760,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9811,9 +9780,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9833,9 +9802,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9855,9 +9824,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9877,9 +9846,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9897,9 +9866,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9917,9 +9886,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9937,9 +9906,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9957,9 +9926,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9977,9 +9946,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -9997,9 +9966,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10017,9 +9986,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10037,9 +10006,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10057,9 +10026,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10077,9 +10046,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10097,9 +10066,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10117,9 +10086,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10137,9 +10106,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10157,9 +10126,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10177,9 +10146,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10197,9 +10166,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10217,9 +10186,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10237,9 +10206,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10257,9 +10226,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10277,9 +10246,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10297,9 +10266,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10317,9 +10286,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10337,9 +10306,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10357,9 +10326,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10377,9 +10346,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10397,9 +10366,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,
@@ -10417,9 +10386,9 @@ def build(
     developerKey: str | None = None,
     model: Model | None = None,
     requestBuilder: _RequestBuilder = HttpRequest,
-    credentials: (
-        oauth2client.Credentials | google.auth.credentials.Credentials | None
-    ) = None,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
     cache_discovery: bool = True,
     cache: Cache | None = None,
     client_options: dict[str, Any] | ClientOptions | None = None,

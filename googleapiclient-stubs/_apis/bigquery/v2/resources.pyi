@@ -134,10 +134,8 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             parentJobId: str = ...,
             projection: typing_extensions.Literal["full", "minimal"] = ...,
-            stateFilter: (
-                typing_extensions.Literal["done", "pending", "running"]
-                | _list[typing_extensions.Literal["done", "pending", "running"]]
-            ) = ...,
+            stateFilter: typing_extensions.Literal["done", "pending", "running"]
+            | _list[typing_extensions.Literal["done", "pending", "running"]] = ...,
             **kwargs: typing.Any,
         ) -> JobListHttpRequest: ...
         def list_next(
@@ -389,17 +387,15 @@ class BigqueryResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def datasets(self) -> DatasetsResource: ...
     def jobs(self) -> JobsResource: ...

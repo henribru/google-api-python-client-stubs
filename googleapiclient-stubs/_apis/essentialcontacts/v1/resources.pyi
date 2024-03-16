@@ -21,7 +21,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: (
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -33,20 +44,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -112,7 +110,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: (
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -124,20 +133,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -203,7 +199,18 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
-                notificationCategories: (
+                notificationCategories: typing_extensions.Literal[
+                    "NOTIFICATION_CATEGORY_UNSPECIFIED",
+                    "ALL",
+                    "SUSPENSION",
+                    "SECURITY",
+                    "TECHNICAL",
+                    "BILLING",
+                    "LEGAL",
+                    "PRODUCT_UPDATES",
+                    "TECHNICAL_INCIDENTS",
+                ]
+                | _list[
                     typing_extensions.Literal[
                         "NOTIFICATION_CATEGORY_UNSPECIFIED",
                         "ALL",
@@ -215,20 +222,7 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
                         "PRODUCT_UPDATES",
                         "TECHNICAL_INCIDENTS",
                     ]
-                    | _list[
-                        typing_extensions.Literal[
-                            "NOTIFICATION_CATEGORY_UNSPECIFIED",
-                            "ALL",
-                            "SUSPENSION",
-                            "SECURITY",
-                            "TECHNICAL",
-                            "BILLING",
-                            "LEGAL",
-                            "PRODUCT_UPDATES",
-                            "TECHNICAL_INCIDENTS",
-                        ]
-                    ]
-                ) = ...,
+                ] = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -288,17 +282,15 @@ class EssentialcontactsResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def folders(self) -> FoldersResource: ...
     def organizations(self) -> OrganizationsResource: ...

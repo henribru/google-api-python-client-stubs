@@ -569,16 +569,14 @@ class IamResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
-                    keyTypes: (
+                    keyTypes: typing_extensions.Literal[
+                        "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
+                    ]
+                    | _list[
                         typing_extensions.Literal[
                             "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
                         ]
-                        | _list[
-                            typing_extensions.Literal[
-                                "KEY_TYPE_UNSPECIFIED", "USER_MANAGED", "SYSTEM_MANAGED"
-                            ]
-                        ]
-                    ) = ...,
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
                 def upload(
@@ -708,17 +706,15 @@ class IamResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def iamPolicies(self) -> IamPoliciesResource: ...
     def locations(self) -> LocationsResource: ...

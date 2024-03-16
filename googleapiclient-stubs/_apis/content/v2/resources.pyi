@@ -476,7 +476,20 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             placedDateEnd: str = ...,
             placedDateStart: str = ...,
-            statuses: (
+            statuses: typing_extensions.Literal[
+                "ACTIVE",
+                "COMPLETED",
+                "CANCELED",
+                "IN_PROGRESS",
+                "PENDING_SHIPMENT",
+                "PARTIALLY_SHIPPED",
+                "SHIPPED",
+                "PARTIALLY_DELIVERED",
+                "DELIVERED",
+                "PARTIALLY_RETURNED",
+                "RETURNED",
+            ]
+            | _list[
                 typing_extensions.Literal[
                     "ACTIVE",
                     "COMPLETED",
@@ -490,22 +503,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                     "PARTIALLY_RETURNED",
                     "RETURNED",
                 ]
-                | _list[
-                    typing_extensions.Literal[
-                        "ACTIVE",
-                        "COMPLETED",
-                        "CANCELED",
-                        "IN_PROGRESS",
-                        "PENDING_SHIPMENT",
-                        "PARTIALLY_SHIPPED",
-                        "SHIPPED",
-                        "PARTIALLY_DELIVERED",
-                        "DELIVERED",
-                        "PARTIALLY_RETURNED",
-                        "RETURNED",
-                    ]
-                ]
-            ) = ...,
+            ] = ...,
             **kwargs: typing.Any,
         ) -> OrdersListResponseHttpRequest: ...
         def list_next(
@@ -767,17 +765,15 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def accountstatuses(self) -> AccountstatusesResource: ...

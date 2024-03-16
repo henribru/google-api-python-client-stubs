@@ -143,7 +143,14 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                             historyId: str,
                             executionId: str,
                             stepId: str,
-                            filter: (
+                            filter: typing_extensions.Literal[
+                                "perfMetricTypeUnspecified",
+                                "memory",
+                                "cpu",
+                                "network",
+                                "graphics",
+                            ]
+                            | _list[
                                 typing_extensions.Literal[
                                     "perfMetricTypeUnspecified",
                                     "memory",
@@ -151,16 +158,7 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
                                     "network",
                                     "graphics",
                                 ]
-                                | _list[
-                                    typing_extensions.Literal[
-                                        "perfMetricTypeUnspecified",
-                                        "memory",
-                                        "cpu",
-                                        "network",
-                                        "graphics",
-                                    ]
-                                ]
-                            ) = ...,
+                            ] = ...,
                             **kwargs: typing.Any,
                         ) -> ListPerfSampleSeriesResponseHttpRequest: ...
                         def samples(self) -> SamplesResource: ...
@@ -367,17 +365,15 @@ class ToolResultsResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
 

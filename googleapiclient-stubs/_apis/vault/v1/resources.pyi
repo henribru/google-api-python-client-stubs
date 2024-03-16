@@ -154,7 +154,9 @@ class VaultResource(googleapiclient.discovery.Resource):
             body: AddMatterPermissionsRequest = ...,
             **kwargs: typing.Any,
         ) -> MatterPermissionHttpRequest: ...
-        def close(self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any) -> CloseMatterResponseHttpRequest: ...  # type: ignore[override]
+        def close(  # type: ignore[override]
+            self, *, matterId: str, body: CloseMatterRequest = ..., **kwargs: typing.Any
+        ) -> CloseMatterResponseHttpRequest: ...
         def count(
             self,
             *,
@@ -243,17 +245,15 @@ class VaultResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: (
-            collections.abc.Callable[
-                [
-                    str,
-                    googleapiclient.http.HttpRequest,
-                    googleapiclient.errors.HttpError | None,
-                ],
-                typing.Any,
-            ]
-            | None
-        ) = None,
+        callback: collections.abc.Callable[
+            [
+                str,
+                googleapiclient.http.HttpRequest,
+                googleapiclient.errors.HttpError | None,
+            ],
+            typing.Any,
+        ]
+        | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def matters(self) -> MattersResource: ...
     def operations(self) -> OperationsResource: ...
