@@ -286,7 +286,9 @@ class EnterpriseCrmEventbusProtoCoordinate(typing_extensions.TypedDict, total=Fa
 class EnterpriseCrmEventbusProtoCustomSuspensionRequest(
     typing_extensions.TypedDict, total=False
 ):
-    postToQueueWithTriggerIdRequest: GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest
+    postToQueueWithTriggerIdRequest: (
+        GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest
+    )
     suspensionInfoEventParameterKey: str
 
 @typing.type_check_only
@@ -401,7 +403,9 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
     diffParams: EnterpriseCrmEventbusProtoEventParameters
     eventExecutionInfoId: str
     eventExecutionSnapshotId: str
-    eventExecutionSnapshotMetadata: EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata
+    eventExecutionSnapshotMetadata: (
+        EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata
+    )
     eventParams: EnterpriseCrmEventbusProtoEventParameters
     exceedMaxSize: bool
     snapshotTime: str
@@ -1341,7 +1345,9 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot(
     diffParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
     eventExecutionInfoId: str
     eventExecutionSnapshotId: str
-    eventExecutionSnapshotMetadata: EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata
+    eventExecutionSnapshotMetadata: (
+        EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata
+    )
     eventParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
     snapshotTime: str
     taskExecutionDetails: _list[EnterpriseCrmEventbusProtoTaskExecutionDetails]
@@ -2133,7 +2139,9 @@ class GoogleCloudIntegrationsV1alphaCredential(
     jwt: GoogleCloudIntegrationsV1alphaJwt
     oauth2AuthorizationCode: GoogleCloudIntegrationsV1alphaOAuth2AuthorizationCode
     oauth2ClientCredentials: GoogleCloudIntegrationsV1alphaOAuth2ClientCredentials
-    oauth2ResourceOwnerCredentials: GoogleCloudIntegrationsV1alphaOAuth2ResourceOwnerCredentials
+    oauth2ResourceOwnerCredentials: (
+        GoogleCloudIntegrationsV1alphaOAuth2ResourceOwnerCredentials
+    )
     oidcToken: GoogleCloudIntegrationsV1alphaOidcToken
     serviceAccountCredentials: GoogleCloudIntegrationsV1alphaServiceAccountCredentials
     usernameAndPassword: GoogleCloudIntegrationsV1alphaUsernameAndPassword
@@ -2249,7 +2257,9 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshot(
     typing_extensions.TypedDict, total=False
 ):
     checkpointTaskNumber: str
-    executionSnapshotMetadata: GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata
+    executionSnapshotMetadata: (
+        GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata
+    )
     params: dict[str, typing.Any]
     taskExecutionDetails: _list[GoogleCloudIntegrationsV1alphaTaskExecutionDetails]
 

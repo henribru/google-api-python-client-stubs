@@ -493,8 +493,12 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
     ]
-    recommendationSignalData: StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData
-    resourceHealthSignalData: StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData
+    recommendationSignalData: (
+        StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData
+    )
+    resourceHealthSignalData: (
+        StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData
+    )
     resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     resourceMetadata: StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata
 
@@ -614,7 +618,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceId(
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    availabilityConfiguration: StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration
+    availabilityConfiguration: (
+        StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration
+    )
     backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
     backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
     creationTime: str

@@ -118,16 +118,30 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest(
     typing_extensions.TypedDict, total=False
 ):
     createField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest
-    createSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest
+    createSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest
+    )
     deleteField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteFieldRequest
-    deleteSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest
+    deleteSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest
+    )
     disableField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest
-    disableSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest
+    disableSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest
+    )
     enableField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableFieldRequest
-    enableSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest
-    updateField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest
-    updateFieldType: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest
-    updateLabel: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest
+    enableSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest
+    )
+    updateField: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest
+    )
+    updateFieldType: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest
+    )
+    updateLabel: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest
+    )
     updateSelectionChoiceProperties: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest
 
 @typing.type_check_only
@@ -222,16 +236,30 @@ class GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseResponse(
     typing_extensions.TypedDict, total=False
 ):
     createField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse
-    createSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse
+    createSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse
+    )
     deleteField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteFieldResponse
-    deleteSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse
-    disableField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse
+    deleteSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse
+    )
+    disableField: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse
+    )
     disableSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableSelectionChoiceResponse
     enableField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableFieldResponse
-    enableSelectionChoice: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse
-    updateField: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse
-    updateFieldType: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse
-    updateLabel: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse
+    enableSelectionChoice: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse
+    )
+    updateField: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse
+    )
+    updateFieldType: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse
+    )
+    updateLabel: (
+        GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse
+    )
     updateSelectionChoiceProperties: GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse
 
 @typing.type_check_only
@@ -378,7 +406,9 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptions(
 class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice(
     typing_extensions.TypedDict, total=False
 ):
-    appliedCapabilities: GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceAppliedCapabilities
+    appliedCapabilities: (
+        GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceAppliedCapabilities
+    )
     createTime: str
     creator: GoogleAppsDriveLabelsV2betaUserInfo
     disableTime: str
@@ -390,7 +420,9 @@ class GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice(
     properties: GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceProperties
     publishTime: str
     publisher: GoogleAppsDriveLabelsV2betaUserInfo
-    schemaCapabilities: GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceSchemaCapabilities
+    schemaCapabilities: (
+        GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceSchemaCapabilities
+    )
     updateTime: str
     updater: GoogleAppsDriveLabelsV2betaUserInfo
 

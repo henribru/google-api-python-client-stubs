@@ -1055,7 +1055,9 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
     computeEnginePreferences: ComputeEnginePreferences
     networkCostParameters: VirtualMachinePreferencesNetworkCostParameters
     regionPreferences: RegionPreferences
-    sizingOptimizationCustomParameters: VirtualMachinePreferencesSizingOptimizationCustomParameters
+    sizingOptimizationCustomParameters: (
+        VirtualMachinePreferencesSizingOptimizationCustomParameters
+    )
     sizingOptimizationStrategy: typing_extensions.Literal[
         "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
         "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",

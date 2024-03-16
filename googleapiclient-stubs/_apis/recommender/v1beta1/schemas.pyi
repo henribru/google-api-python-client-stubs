@@ -101,7 +101,9 @@ class GoogleCloudRecommenderV1beta1InsightTypeConfig(
     annotations: dict[str, typing.Any]
     displayName: str
     etag: str
-    insightTypeGenerationConfig: GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig
+    insightTypeGenerationConfig: (
+        GoogleCloudRecommenderV1beta1InsightTypeGenerationConfig
+    )
     name: str
     revisionId: str
     updateTime: str
@@ -243,7 +245,9 @@ class GoogleCloudRecommenderV1beta1RecommenderConfig(
     displayName: str
     etag: str
     name: str
-    recommenderGenerationConfig: GoogleCloudRecommenderV1beta1RecommenderGenerationConfig
+    recommenderGenerationConfig: (
+        GoogleCloudRecommenderV1beta1RecommenderGenerationConfig
+    )
     revisionId: str
     updateTime: str
 

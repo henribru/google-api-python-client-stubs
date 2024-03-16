@@ -456,7 +456,9 @@ class GoogleCloudSecuritycenterV1ResourceValueConfig(
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
     scope: str
-    sensitiveDataProtectionMapping: GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping
+    sensitiveDataProtectionMapping: (
+        GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping
+    )
     tagValues: _list[str]
     updateTime: str
 
@@ -1228,7 +1230,9 @@ class GoogleCloudSecuritycenterV2ResourceValueConfig(
         "RESOURCE_VALUE_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "NONE"
     ]
     scope: str
-    sensitiveDataProtectionMapping: GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping
+    sensitiveDataProtectionMapping: (
+        GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping
+    )
     tagValues: _list[str]
     updateTime: str
 

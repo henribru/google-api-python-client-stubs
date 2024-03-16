@@ -1160,14 +1160,18 @@ class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType(
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=False):
     displayUrl: str
-    expandedDynamicSearchAd: GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo
+    expandedDynamicSearchAd: (
+        GoogleAdsSearchads360V0Common__SearchAds360ExpandedDynamicSearchAdInfo
+    )
     expandedTextAd: GoogleAdsSearchads360V0Common__SearchAds360ExpandedTextAdInfo
     finalUrls: _list[str]
     id: str
     name: str
     productAd: GoogleAdsSearchads360V0Common__SearchAds360ProductAdInfo
     resourceName: str
-    responsiveSearchAd: GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo
+    responsiveSearchAd: (
+        GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo
+    )
     textAd: GoogleAdsSearchads360V0Common__SearchAds360TextAdInfo
     type: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1385,7 +1389,9 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     listingGroup: GoogleAdsSearchads360V0Common__ListingGroupInfo
     location: GoogleAdsSearchads360V0Common__LocationInfo
     negative: bool
-    positionEstimates: GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates
+    positionEstimates: (
+        GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates
+    )
     qualityInfo: GoogleAdsSearchads360V0Resources_AdGroupCriterion_QualityInfo
     resourceName: str
     status: typing_extensions.Literal[
@@ -1805,7 +1811,9 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     campaignBudget: str
     createTime: str
     creationTime: str
-    dynamicSearchAdsSetting: GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting
+    dynamicSearchAdsSetting: (
+        GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting
+    )
     endDate: str
     engineId: str
     excludedParentAssetFieldTypes: _list[
@@ -1854,11 +1862,15 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     maximizeConversions: GoogleAdsSearchads360V0Common__MaximizeConversions
     name: str
     networkSettings: GoogleAdsSearchads360V0Resources_Campaign_NetworkSettings
-    optimizationGoalSetting: GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSetting
+    optimizationGoalSetting: (
+        GoogleAdsSearchads360V0Resources_Campaign_OptimizationGoalSetting
+    )
     percentCpc: GoogleAdsSearchads360V0Common__PercentCpc
     realTimeBiddingSetting: GoogleAdsSearchads360V0Common__RealTimeBiddingSetting
     resourceName: str
-    selectiveOptimization: GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization
+    selectiveOptimization: (
+        GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization
+    )
     servingStatus: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "SERVING", "NONE", "ENDED", "PENDING", "SUSPENDED"
     ]
@@ -2062,7 +2074,9 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
     typing_extensions.TypedDict, total=False
 ):
     appId: str
-    attributionModelSettings: GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings
+    attributionModelSettings: (
+        GoogleAdsSearchads360V0Resources_ConversionAction_AttributionModelSettings
+    )
     category: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -2091,7 +2105,9 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
     ]
     clickThroughLookbackWindowDays: str
     creationTime: str
-    floodlightSettings: GoogleAdsSearchads360V0Resources_ConversionAction_FloodlightSettings
+    floodlightSettings: (
+        GoogleAdsSearchads360V0Resources_ConversionAction_FloodlightSettings
+    )
     id: str
     includeInClientAccountConversionsMetric: bool
     includeInConversionsMetric: bool
@@ -2229,11 +2245,15 @@ class GoogleAdsSearchads360V0Resources__Customer(
         "YAHOO_JAPAN",
     ]
     autoTaggingEnabled: bool
-    conversionTrackingSetting: GoogleAdsSearchads360V0Resources__ConversionTrackingSetting
+    conversionTrackingSetting: (
+        GoogleAdsSearchads360V0Resources__ConversionTrackingSetting
+    )
     creationTime: str
     currencyCode: str
     descriptiveName: str
-    doubleClickCampaignManagerSetting: GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting
+    doubleClickCampaignManagerSetting: (
+        GoogleAdsSearchads360V0Resources__DoubleClickCampaignManagerSetting
+    )
     engineId: str
     finalUrlSuffix: str
     id: str
@@ -2360,12 +2380,22 @@ class GoogleAdsSearchads360V0Resources__ListingGroupFilterDimension(
     typing_extensions.TypedDict, total=False
 ):
     productBiddingCategory: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory
-    productBrand: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand
-    productChannel: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel
-    productCondition: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition
+    productBrand: (
+        GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBrand
+    )
+    productChannel: (
+        GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductChannel
+    )
+    productCondition: (
+        GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCondition
+    )
     productCustomAttribute: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductCustomAttribute
-    productItemId: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId
-    productType: GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType
+    productItemId: (
+        GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductItemId
+    )
+    productType: (
+        GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType
+    )
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ListingGroupFilterDimensionPath(
@@ -2580,9 +2610,13 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     asset: GoogleAdsSearchads360V0Resources__Asset
     assetGroup: GoogleAdsSearchads360V0Resources__AssetGroup
     assetGroupAsset: GoogleAdsSearchads360V0Resources__AssetGroupAsset
-    assetGroupListingGroupFilter: GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter
+    assetGroupListingGroupFilter: (
+        GoogleAdsSearchads360V0Resources__AssetGroupListingGroupFilter
+    )
     assetGroupSignal: GoogleAdsSearchads360V0Resources__AssetGroupSignal
-    assetGroupTopCombinationView: GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView
+    assetGroupTopCombinationView: (
+        GoogleAdsSearchads360V0Resources__AssetGroupTopCombinationView
+    )
     assetSet: GoogleAdsSearchads360V0Resources__AssetSet
     assetSetAsset: GoogleAdsSearchads360V0Resources__AssetSetAsset
     audience: GoogleAdsSearchads360V0Resources__Audience
@@ -2604,7 +2638,9 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     customerAssetSet: GoogleAdsSearchads360V0Resources__CustomerAssetSet
     customerClient: GoogleAdsSearchads360V0Resources__CustomerClient
     customerManagerLink: GoogleAdsSearchads360V0Resources__CustomerManagerLink
-    dynamicSearchAdsSearchTermView: GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView
+    dynamicSearchAdsSearchTermView: (
+        GoogleAdsSearchads360V0Resources__DynamicSearchAdsSearchTermView
+    )
     genderView: GoogleAdsSearchads360V0Resources__GenderView
     geoTargetConstant: GoogleAdsSearchads360V0Resources__GeoTargetConstant
     keywordView: GoogleAdsSearchads360V0Resources__KeywordView
@@ -2612,7 +2648,9 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     languageConstant: GoogleAdsSearchads360V0Resources__LanguageConstant
     locationView: GoogleAdsSearchads360V0Resources__LocationView
     metrics: GoogleAdsSearchads360V0Common__Metrics
-    productBiddingCategoryConstant: GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant
+    productBiddingCategoryConstant: (
+        GoogleAdsSearchads360V0Resources__ProductBiddingCategoryConstant
+    )
     productGroupView: GoogleAdsSearchads360V0Resources__ProductGroupView
     segments: GoogleAdsSearchads360V0Common__Segments
     shoppingPerformanceView: GoogleAdsSearchads360V0Resources__ShoppingPerformanceView

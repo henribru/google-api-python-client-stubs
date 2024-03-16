@@ -20,15 +20,7 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
             *,
             url: str,
             captchaToken: str = ...,
-            category: typing_extensions.Literal[
-                "CATEGORY_UNSPECIFIED",
-                "ACCESSIBILITY",
-                "BEST_PRACTICES",
-                "PERFORMANCE",
-                "PWA",
-                "SEO",
-            ]
-            | _list[
+            category: (
                 typing_extensions.Literal[
                     "CATEGORY_UNSPECIFIED",
                     "ACCESSIBILITY",
@@ -37,7 +29,17 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
                     "PWA",
                     "SEO",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "CATEGORY_UNSPECIFIED",
+                        "ACCESSIBILITY",
+                        "BEST_PRACTICES",
+                        "PERFORMANCE",
+                        "PWA",
+                        "SEO",
+                    ]
+                ]
+            ) = ...,
             locale: str = ...,
             strategy: typing_extensions.Literal[
                 "STRATEGY_UNSPECIFIED", "DESKTOP", "MOBILE"
@@ -49,15 +51,17 @@ class PagespeedInsightsResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def pagespeedapi(self) -> PagespeedapiResource: ...
 

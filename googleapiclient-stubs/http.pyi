@@ -131,17 +131,18 @@ class HttpRequest:
 class BatchHttpRequest:
     def __init__(
         self,
-        callback: collections.abc.Callable[
-            [str, typing.Any, HttpError | None], typing.Any
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[[str, typing.Any, HttpError | None], typing.Any]
+            | None
+        ) = None,
         batch_uri: str | None = None,
     ) -> None: ...
     def add(
         self,
         request: HttpRequest,
-        callback: collections.abc.Callable[[str, typing.Any, HttpError], typing.Any]
-        | None = None,
+        callback: (
+            collections.abc.Callable[[str, typing.Any, HttpError], typing.Any] | None
+        ) = None,
         request_id: str | None = None,
     ) -> None: ...
     def execute(self, http: httplib2.Http | HttpMock | None = None) -> None: ...

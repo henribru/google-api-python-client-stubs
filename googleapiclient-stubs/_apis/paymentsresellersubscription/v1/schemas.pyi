@@ -154,7 +154,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1Product(
     typing_extensions.TypedDict, total=False
 ):
     bundleDetails: ProductBundleDetails
-    finiteBillingCycleDetails: GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
+    finiteBillingCycleDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
+    )
     name: str
     priceConfigs: _list[GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig]
     productType: typing_extensions.Literal[
@@ -193,7 +195,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1Promotion(
     applicableProducts: _list[str]
     endTime: str
     freeTrialDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
-    introductoryPricingDetails: GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
+    introductoryPricingDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
+    )
     name: str
     promotionType: typing_extensions.Literal[
         "PROMOTION_TYPE_UNSPECIFIED",
@@ -232,7 +236,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod(
 class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
     typing_extensions.TypedDict, total=False
 ):
-    cancellationDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails
+    cancellationDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails
+    )
     createTime: str
     cycleEndTime: str
     endUserEntitled: bool
@@ -263,7 +269,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         "STATE_SUSPENDED",
     ]
     updateTime: str
-    upgradeDowngradeDetails: GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails
+    upgradeDowngradeDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails
+    )
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails(
@@ -290,7 +298,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem(
     amount: GoogleCloudPaymentsResellerSubscriptionV1Amount
     bundleDetails: SubscriptionLineItemBundleDetails
     description: str
-    finiteBillingCycleDetails: GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
+    finiteBillingCycleDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails
+    )
     lineItemFreeTrialEndTime: str
     lineItemIndex: int
     lineItemPromotionSpecs: _list[
@@ -333,7 +343,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec(
     typing_extensions.TypedDict, total=False
 ):
     freeTrialDuration: GoogleCloudPaymentsResellerSubscriptionV1Duration
-    introductoryPricingDetails: GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
+    introductoryPricingDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails
+    )
     promotion: str
     type: typing_extensions.Literal[
         "PROMOTION_TYPE_UNSPECIFIED",

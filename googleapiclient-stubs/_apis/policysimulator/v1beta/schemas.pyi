@@ -157,7 +157,9 @@ class GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreview(
     customConstraints: _list[str]
     name: str
     overlay: GoogleCloudPolicysimulatorV1alphaOrgPolicyOverlay
-    resourceCounts: GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts
+    resourceCounts: (
+        GoogleCloudPolicysimulatorV1alphaOrgPolicyViolationsPreviewResourceCounts
+    )
     state: typing_extensions.Literal[
         "PREVIEW_STATE_UNSPECIFIED",
         "PREVIEW_PENDING",
@@ -379,7 +381,9 @@ class GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreview(
     customConstraints: _list[str]
     name: str
     overlay: GoogleCloudPolicysimulatorV1betaOrgPolicyOverlay
-    resourceCounts: GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts
+    resourceCounts: (
+        GoogleCloudPolicysimulatorV1betaOrgPolicyViolationsPreviewResourceCounts
+    )
     state: typing_extensions.Literal[
         "PREVIEW_STATE_UNSPECIFIED",
         "PREVIEW_PENDING",

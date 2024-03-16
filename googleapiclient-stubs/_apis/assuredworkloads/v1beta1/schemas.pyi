@@ -180,8 +180,12 @@ class GoogleCloudAssuredworkloadsV1beta1ViolationRemediation(
 class GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructions(
     typing_extensions.TypedDict, total=False
 ):
-    consoleInstructions: GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole
-    gcloudInstructions: GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud
+    consoleInstructions: (
+        GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole
+    )
+    gcloudInstructions: (
+        GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud
+    )
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsConsole(
@@ -230,11 +234,15 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     compliantButDisallowedServices: _list[str]
     createTime: str
     displayName: str
-    ekmProvisioningResponse: GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse
+    ekmProvisioningResponse: (
+        GoogleCloudAssuredworkloadsV1beta1WorkloadEkmProvisioningResponse
+    )
     enableSovereignControls: bool
     etag: str
     fedrampHighSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings
-    fedrampModerateSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings
+    fedrampModerateSettings: (
+        GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings
+    )
     il4Settings: GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings
     kajEnrollmentState: typing_extensions.Literal[
         "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
@@ -256,7 +264,9 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
     resourceMonitoringEnabled: bool
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
     resources: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceInfo]
-    saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse
+    saaEnrollmentResponse: (
+        GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse
+    )
     violationNotificationsEnabled: bool
 
 @typing.type_check_only

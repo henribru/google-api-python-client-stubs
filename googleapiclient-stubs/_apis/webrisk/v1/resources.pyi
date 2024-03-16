@@ -19,14 +19,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             self,
             *,
             hashPrefix: str = ...,
-            threatTypes: typing_extensions.Literal[
-                "THREAT_TYPE_UNSPECIFIED",
-                "MALWARE",
-                "SOCIAL_ENGINEERING",
-                "UNWANTED_SOFTWARE",
-                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
-            ]
-            | _list[
+            threatTypes: (
                 typing_extensions.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
@@ -34,7 +27,16 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "UNWANTED_SOFTWARE",
                     "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "THREAT_TYPE_UNSPECIFIED",
+                        "MALWARE",
+                        "SOCIAL_ENGINEERING",
+                        "UNWANTED_SOFTWARE",
+                        "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchHashesResponseHttpRequest: ...
 
@@ -90,12 +92,14 @@ class WebRiskResource(googleapiclient.discovery.Resource):
             *,
             constraints_maxDatabaseEntries: int = ...,
             constraints_maxDiffEntries: int = ...,
-            constraints_supportedCompressions: typing_extensions.Literal[
-                "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
-            ]
-            | _list[
+            constraints_supportedCompressions: (
                 typing_extensions.Literal["COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "COMPRESSION_TYPE_UNSPECIFIED", "RAW", "RICE"
+                    ]
+                ]
+            ) = ...,
             threatType: typing_extensions.Literal[
                 "THREAT_TYPE_UNSPECIFIED",
                 "MALWARE",
@@ -112,14 +116,7 @@ class WebRiskResource(googleapiclient.discovery.Resource):
         def search(
             self,
             *,
-            threatTypes: typing_extensions.Literal[
-                "THREAT_TYPE_UNSPECIFIED",
-                "MALWARE",
-                "SOCIAL_ENGINEERING",
-                "UNWANTED_SOFTWARE",
-                "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
-            ]
-            | _list[
+            threatTypes: (
                 typing_extensions.Literal[
                     "THREAT_TYPE_UNSPECIFIED",
                     "MALWARE",
@@ -127,22 +124,33 @@ class WebRiskResource(googleapiclient.discovery.Resource):
                     "UNWANTED_SOFTWARE",
                     "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "THREAT_TYPE_UNSPECIFIED",
+                        "MALWARE",
+                        "SOCIAL_ENGINEERING",
+                        "UNWANTED_SOFTWARE",
+                        "SOCIAL_ENGINEERING_EXTENDED_COVERAGE",
+                    ]
+                ]
+            ) = ...,
             uri: str = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudWebriskV1SearchUrisResponseHttpRequest: ...
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def hashes(self) -> HashesResource: ...
     def projects(self) -> ProjectsResource: ...

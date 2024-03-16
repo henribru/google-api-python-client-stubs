@@ -1515,7 +1515,9 @@ class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig(
 class GoogleCloudVideointelligenceV1p3beta1_StreamingAnnotateVideoResponse(
     typing_extensions.TypedDict, total=False
 ):
-    annotationResults: GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults
+    annotationResults: (
+        GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults
+    )
     annotationResultsUri: str
     error: GoogleRpc_Status
 
@@ -1606,7 +1608,9 @@ class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress(
 class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults(
     typing_extensions.TypedDict, total=False
 ):
-    celebrityRecognitionAnnotations: GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation
+    celebrityRecognitionAnnotations: (
+        GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation
+    )
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation
     faceAnnotations: _list[GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation]
@@ -1645,14 +1649,20 @@ class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults(
 class GoogleCloudVideointelligenceV1p3beta1_VideoContext(
     typing_extensions.TypedDict, total=False
 ):
-    explicitContentDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig
+    explicitContentDetectionConfig: (
+        GoogleCloudVideointelligenceV1p3beta1_ExplicitContentDetectionConfig
+    )
     faceDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_FaceDetectionConfig
     labelDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_LabelDetectionConfig
     objectTrackingConfig: GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingConfig
     personDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_PersonDetectionConfig
     segments: _list[GoogleCloudVideointelligenceV1p3beta1_VideoSegment]
-    shotChangeDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig
-    speechTranscriptionConfig: GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig
+    shotChangeDetectionConfig: (
+        GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig
+    )
+    speechTranscriptionConfig: (
+        GoogleCloudVideointelligenceV1p3beta1_SpeechTranscriptionConfig
+    )
     textDetectionConfig: GoogleCloudVideointelligenceV1p3beta1_TextDetectionConfig
 
 @typing.type_check_only

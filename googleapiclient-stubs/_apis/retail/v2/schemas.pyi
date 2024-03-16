@@ -519,7 +519,9 @@ class GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig(
 class GoogleCloudRetailV2ModelModelFeaturesConfig(
     typing_extensions.TypedDict, total=False
 ):
-    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig
+    frequentlyBoughtTogetherConfig: (
+        GoogleCloudRetailV2ModelFrequentlyBoughtTogetherFeaturesConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudRetailV2ModelServingConfigList(
@@ -1331,7 +1333,9 @@ class GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig(
 class GoogleCloudRetailV2alphaModelModelFeaturesConfig(
     typing_extensions.TypedDict, total=False
 ):
-    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig
+    frequentlyBoughtTogetherConfig: (
+        GoogleCloudRetailV2alphaModelFrequentlyBoughtTogetherFeaturesConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaModelPageOptimizationConfig(
@@ -1651,7 +1655,9 @@ class GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig(
 class GoogleCloudRetailV2betaModelModelFeaturesConfig(
     typing_extensions.TypedDict, total=False
 ):
-    frequentlyBoughtTogetherConfig: GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig
+    frequentlyBoughtTogetherConfig: (
+        GoogleCloudRetailV2betaModelFrequentlyBoughtTogetherFeaturesConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaModelServingConfigList(

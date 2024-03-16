@@ -104,7 +104,9 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
     fraudPreventionAssessment: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment
     fraudSignals: GoogleCloudRecaptchaenterpriseV1FraudSignals
     name: str
-    privatePasswordLeakVerification: GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
+    privatePasswordLeakVerification: (
+        GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
+    )
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
     tokenProperties: GoogleCloudRecaptchaenterpriseV1TokenProperties
 
@@ -149,7 +151,9 @@ class GoogleCloudRecaptchaenterpriseV1FirewallAction(
 ):
     allow: GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction
     block: GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction
-    includeRecaptchaScript: GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction
+    includeRecaptchaScript: (
+        GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction
+    )
     redirect: GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction
     setHeader: GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction
     substitute: GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction
@@ -208,9 +212,15 @@ class GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment(
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
     typing_extensions.TypedDict, total=False
 ):
-    behavioralTrustVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict
-    cardTestingVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict
-    stolenInstrumentVerdict: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict
+    behavioralTrustVerdict: (
+        GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentBehavioralTrustVerdict
+    )
+    cardTestingVerdict: (
+        GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict
+    )
+    stolenInstrumentVerdict: (
+        GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict
+    )
     transactionRisk: float
 
 @typing.type_check_only

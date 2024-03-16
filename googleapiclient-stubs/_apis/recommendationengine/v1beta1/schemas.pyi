@@ -94,7 +94,9 @@ class GoogleCloudRecommendationengineV1beta1CatalogItemLevelConfig(
 class GoogleCloudRecommendationengineV1beta1CreatePredictionApiKeyRegistrationRequest(
     typing_extensions.TypedDict, total=False
 ):
-    predictionApiKeyRegistration: GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
+    predictionApiKeyRegistration: (
+        GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
+    )
 
 @typing.type_check_only
 class GoogleCloudRecommendationengineV1beta1EventDetail(

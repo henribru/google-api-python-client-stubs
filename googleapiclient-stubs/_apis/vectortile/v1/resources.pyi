@@ -73,28 +73,34 @@ class SemanticTileResource(googleapiclient.discovery.Resource):
             clientInfo_userId: str = ...,
             maxElevationResolutionCells: int = ...,
             minElevationResolutionCells: int = ...,
-            terrainFormats: typing_extensions.Literal[
-                "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
-            ]
-            | _list[
+            terrainFormats: (
                 typing_extensions.Literal[
                     "TERRAIN_FORMAT_UNKNOWN", "FIRST_DERIVATIVE", "SECOND_DERIVATIVE"
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "TERRAIN_FORMAT_UNKNOWN",
+                        "FIRST_DERIVATIVE",
+                        "SECOND_DERIVATIVE",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> TerrainTileHttpRequest: ...
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def featuretiles(self) -> FeaturetilesResource: ...
     def terraintiles(self) -> TerraintilesResource: ...

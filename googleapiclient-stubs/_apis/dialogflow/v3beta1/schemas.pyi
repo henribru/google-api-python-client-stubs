@@ -335,7 +335,9 @@ class GoogleCloudDialogflowCxV3ImportEntityTypesMetadata(
 class GoogleCloudDialogflowCxV3ImportEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources
+    )
     entityTypes: _list[str]
 
 @typing.type_check_only
@@ -360,7 +362,9 @@ class GoogleCloudDialogflowCxV3ImportIntentsMetadata(
 class GoogleCloudDialogflowCxV3ImportIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources
+    )
     intents: _list[str]
 
 @typing.type_check_only
@@ -759,7 +763,9 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
     payload: dict[str, typing.Any]
-    sentimentAnalysisResult: GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
+    sentimentAnalysisResult: (
+        GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
+    )
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
     text: str
     transcript: str
@@ -893,7 +899,9 @@ class GoogleCloudDialogflowCxV3beta1AgentGenAppBuilderSettings(
 class GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings(
     typing_extensions.TypedDict, total=False
 ):
-    githubSettings: GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings
+    githubSettings: (
+        GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings(
@@ -1562,7 +1570,9 @@ class GoogleCloudDialogflowCxV3beta1GenerativeSettings(
 ):
     fallbackSettings: GoogleCloudDialogflowCxV3beta1GenerativeSettingsFallbackSettings
     generativeSafetySettings: GoogleCloudDialogflowCxV3beta1SafetySettings
-    knowledgeConnectorSettings: GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings
+    knowledgeConnectorSettings: (
+        GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings
+    )
     languageCode: str
     name: str
 
@@ -1651,7 +1661,9 @@ class GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest(
 class GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources
+    )
     entityTypes: _list[str]
 
 @typing.type_check_only
@@ -1703,7 +1715,9 @@ class GoogleCloudDialogflowCxV3beta1ImportIntentsRequest(
 class GoogleCloudDialogflowCxV3beta1ImportIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources
+    )
     intents: _list[str]
 
 @typing.type_check_only
@@ -2157,7 +2171,9 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     typing_extensions.TypedDict, total=False
 ):
     channel: str
-    conversationSuccess: GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess
+    conversationSuccess: (
+        GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess
+    )
     endInteraction: GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction
     knowledgeInfoCard: GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard
     liveAgentHandoff: GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff
@@ -2165,7 +2181,9 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     outputAudioText: GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText
     payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio
-    telephonyTransferCall: GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
+    telephonyTransferCall: (
+        GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
+    )
     text: GoogleCloudDialogflowCxV3beta1ResponseMessageText
 
 @typing.type_check_only
@@ -2331,10 +2349,14 @@ class GoogleCloudDialogflowCxV3beta1SearchConfig(
 class GoogleCloudDialogflowCxV3beta1SecuritySettings(
     typing_extensions.TypedDict, total=False
 ):
-    audioExportSettings: GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings
+    audioExportSettings: (
+        GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings
+    )
     deidentifyTemplate: str
     displayName: str
-    insightsExportSettings: GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings
+    insightsExportSettings: (
+        GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings
+    )
     inspectTemplate: str
     name: str
     purgeDataTypes: _list[
@@ -2718,7 +2740,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: dict[str, typing.Any]
-    sentimentAnalysisResult: GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
+    sentimentAnalysisResult: (
+        GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
+    )
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
     text: str
     transcript: str
@@ -2758,7 +2782,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult(
 class GoogleCloudDialogflowCxV3beta1WebhookResponse(
     typing_extensions.TypedDict, total=False
 ):
-    fulfillmentResponse: GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse
+    fulfillmentResponse: (
+        GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse
+    )
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: dict[str, typing.Any]
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
@@ -2863,7 +2889,9 @@ class GoogleCloudDialogflowV2ConversationEvent(
 class GoogleCloudDialogflowV2ConversationModel(
     typing_extensions.TypedDict, total=False
 ):
-    articleSuggestionModelMetadata: GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+    articleSuggestionModelMetadata: (
+        GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+    )
     createTime: str
     datasets: _list[GoogleCloudDialogflowV2InputDataset]
     displayName: str
@@ -3741,8 +3769,12 @@ class GoogleCloudDialogflowV2beta1IntentMessage(
     suggestions: GoogleCloudDialogflowV2beta1IntentMessageSuggestions
     tableCard: GoogleCloudDialogflowV2beta1IntentMessageTableCard
     telephonyPlayAudio: GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio
-    telephonySynthesizeSpeech: GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech
-    telephonyTransferCall: GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall
+    telephonySynthesizeSpeech: (
+        GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech
+    )
+    telephonyTransferCall: (
+        GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall
+    )
     text: GoogleCloudDialogflowV2beta1IntentMessageText
 
 @typing.type_check_only
@@ -4267,8 +4299,12 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
 ):
     error: GoogleRpcStatus
     suggestArticlesResponse: GoogleCloudDialogflowV2beta1SuggestArticlesResponse
-    suggestDialogflowAssistsResponse: GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
-    suggestEntityExtractionResponse: GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    suggestDialogflowAssistsResponse: (
+        GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    )
+    suggestEntityExtractionResponse: (
+        GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    )
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse
 

@@ -928,7 +928,9 @@ class FreeListingsProgramStatusRegionStatus(typing_extensions.TypedDict, total=F
         "ALREADY_REVIEWED",
     ]
     reviewIneligibilityReasonDescription: str
-    reviewIneligibilityReasonDetails: FreeListingsProgramStatusReviewIneligibilityReasonDetails
+    reviewIneligibilityReasonDetails: (
+        FreeListingsProgramStatusReviewIneligibilityReasonDetails
+    )
     reviewIssues: _list[str]
 
 @typing.type_check_only
@@ -1634,7 +1636,9 @@ class OrderinvoicesCreateChargeInvoiceResponse(
 class OrderinvoicesCreateRefundInvoiceRequest(typing_extensions.TypedDict, total=False):
     invoiceId: str
     operationId: str
-    refundOnlyOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
+    refundOnlyOption: (
+        OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
+    )
     returnOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption
     shipmentInvoices: _list[ShipmentInvoice]
 
@@ -1992,7 +1996,9 @@ class OrdersUpdateShipmentRequest(typing_extensions.TypedDict, total=False):
     lastPickupDate: str
     operationId: str
     readyPickupDate: str
-    scheduledDeliveryDetails: OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails
+    scheduledDeliveryDetails: (
+        OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails
+    )
     shipmentId: str
     status: str
     trackingId: str
@@ -3303,7 +3309,9 @@ class ShoppingAdsProgramStatusRegionStatus(typing_extensions.TypedDict, total=Fa
         "ALREADY_REVIEWED",
     ]
     reviewIneligibilityReasonDescription: str
-    reviewIneligibilityReasonDetails: ShoppingAdsProgramStatusReviewIneligibilityReasonDetails
+    reviewIneligibilityReasonDetails: (
+        ShoppingAdsProgramStatusReviewIneligibilityReasonDetails
+    )
     reviewIssues: _list[str]
 
 @typing.type_check_only

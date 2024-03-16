@@ -335,7 +335,9 @@ class GoogleCloudDialogflowCxV3ImportEntityTypesMetadata(
 class GoogleCloudDialogflowCxV3ImportEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources
+    )
     entityTypes: _list[str]
 
 @typing.type_check_only
@@ -360,7 +362,9 @@ class GoogleCloudDialogflowCxV3ImportIntentsMetadata(
 class GoogleCloudDialogflowCxV3ImportIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3ImportIntentsResponseConflictingResources
+    )
     intents: _list[str]
 
 @typing.type_check_only
@@ -759,7 +763,9 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
     payload: dict[str, typing.Any]
-    sentimentAnalysisResult: GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
+    sentimentAnalysisResult: (
+        GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult
+    )
     sessionInfo: GoogleCloudDialogflowCxV3SessionInfo
     text: str
     transcript: str
@@ -1171,7 +1177,9 @@ class GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata(
 class GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources
+    )
     entityTypes: _list[str]
 
 @typing.type_check_only
@@ -1196,7 +1204,9 @@ class GoogleCloudDialogflowCxV3beta1ImportIntentsMetadata(
 class GoogleCloudDialogflowCxV3beta1ImportIntentsResponse(
     typing_extensions.TypedDict, total=False
 ):
-    conflictingResources: GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources
+    conflictingResources: (
+        GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources
+    )
     intents: _list[str]
 
 @typing.type_check_only
@@ -1362,7 +1372,9 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     typing_extensions.TypedDict, total=False
 ):
     channel: str
-    conversationSuccess: GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess
+    conversationSuccess: (
+        GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess
+    )
     endInteraction: GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction
     knowledgeInfoCard: GoogleCloudDialogflowCxV3beta1ResponseMessageKnowledgeInfoCard
     liveAgentHandoff: GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff
@@ -1370,7 +1382,9 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
     outputAudioText: GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText
     payload: dict[str, typing.Any]
     playAudio: GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio
-    telephonyTransferCall: GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
+    telephonyTransferCall: (
+        GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
+    )
     text: GoogleCloudDialogflowCxV3beta1ResponseMessageText
 
 @typing.type_check_only
@@ -1605,7 +1619,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: dict[str, typing.Any]
-    sentimentAnalysisResult: GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
+    sentimentAnalysisResult: (
+        GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult
+    )
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
     text: str
     transcript: str
@@ -1645,7 +1661,9 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult(
 class GoogleCloudDialogflowCxV3beta1WebhookResponse(
     typing_extensions.TypedDict, total=False
 ):
-    fulfillmentResponse: GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse
+    fulfillmentResponse: (
+        GoogleCloudDialogflowCxV3beta1WebhookResponseFulfillmentResponse
+    )
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: dict[str, typing.Any]
     sessionInfo: GoogleCloudDialogflowCxV3beta1SessionInfo
@@ -1750,7 +1768,9 @@ class GoogleCloudDialogflowV2ConversationEvent(
 class GoogleCloudDialogflowV2ConversationModel(
     typing_extensions.TypedDict, total=False
 ):
-    articleSuggestionModelMetadata: GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+    articleSuggestionModelMetadata: (
+        GoogleCloudDialogflowV2ArticleSuggestionModelMetadata
+    )
     createTime: str
     datasets: _list[GoogleCloudDialogflowV2InputDataset]
     displayName: str
@@ -2435,8 +2455,12 @@ class GoogleCloudDialogflowV2beta1AgentAssistantFeedback(
     documentEfficiency: typing_extensions.Literal[
         "DOCUMENT_EFFICIENCY_UNSPECIFIED", "INEFFICIENT", "EFFICIENT"
     ]
-    knowledgeSearchFeedback: GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback
-    summarizationFeedback: GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback
+    knowledgeSearchFeedback: (
+        GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback
+    )
+    summarizationFeedback: (
+        GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback(
@@ -2979,7 +3003,9 @@ class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest(
     conversationProfile: GoogleCloudDialogflowV2beta1ConversationProfile
     latestMessage: str
     maxContextSize: int
-    statelessConversation: GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequestMinimalConversation
+    statelessConversation: (
+        GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequestMinimalConversation
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequestMinimalConversation(
@@ -3007,9 +3033,15 @@ class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponseSummary(
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig(
     typing_extensions.TypedDict, total=False
 ):
-    endUserSuggestionConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig
-    humanAgentSuggestionConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig
-    messageAnalysisConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig
+    endUserSuggestionConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig
+    )
+    humanAgentSuggestionConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig
+    )
+    messageAnalysisConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig
+    )
     notificationConfig: GoogleCloudDialogflowV2beta1NotificationConfig
 
 @typing.type_check_only
@@ -3045,14 +3077,22 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig(
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig(
     typing_extensions.TypedDict, total=False
 ):
-    conversationModelConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig
-    conversationProcessConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig
+    conversationModelConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig
+    )
+    conversationProcessConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig
+    )
     disableAgentQueryLogging: bool
     enableConversationAugmentedQuery: bool
     enableEventBasedSuggestion: bool
-    queryConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
+    queryConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
+    )
     suggestionFeature: GoogleCloudDialogflowV2beta1SuggestionFeature
-    suggestionTriggerSettings: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings
+    suggestionTriggerSettings: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig(
@@ -3134,8 +3174,12 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent(
 class GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig(
     typing_extensions.TypedDict, total=False
 ):
-    livePersonConfig: GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig
-    salesforceLiveAgentConfig: GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig
+    livePersonConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig
+    )
+    salesforceLiveAgentConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig(
@@ -3314,8 +3358,12 @@ class GoogleCloudDialogflowV2beta1IntentMessage(
     suggestions: GoogleCloudDialogflowV2beta1IntentMessageSuggestions
     tableCard: GoogleCloudDialogflowV2beta1IntentMessageTableCard
     telephonyPlayAudio: GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio
-    telephonySynthesizeSpeech: GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech
-    telephonyTransferCall: GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall
+    telephonySynthesizeSpeech: (
+        GoogleCloudDialogflowV2beta1IntentMessageTelephonySynthesizeSpeech
+    )
+    telephonyTransferCall: (
+        GoogleCloudDialogflowV2beta1IntentMessageTelephonyTransferCall
+    )
     text: GoogleCloudDialogflowV2beta1IntentMessageText
 
 @typing.type_check_only
@@ -3899,7 +3947,9 @@ class GoogleCloudDialogflowV2beta1QueryParameters(
     payload: dict[str, typing.Any]
     platform: str
     resetContexts: bool
-    sentimentAnalysisRequestConfig: GoogleCloudDialogflowV2beta1SentimentAnalysisRequestConfig
+    sentimentAnalysisRequestConfig: (
+        GoogleCloudDialogflowV2beta1SentimentAnalysisRequestConfig
+    )
     sessionEntityTypes: _list[GoogleCloudDialogflowV2beta1SessionEntityType]
     subAgents: _list[GoogleCloudDialogflowV2beta1SubAgent]
     timeZone: str
@@ -3940,7 +3990,9 @@ class GoogleCloudDialogflowV2beta1ResponseMessage(
     liveAgentHandoff: GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff
     mixedAudio: GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio
     payload: dict[str, typing.Any]
-    telephonyTransferCall: GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall
+    telephonyTransferCall: (
+        GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall
+    )
     text: GoogleCloudDialogflowV2beta1ResponseMessageText
 
 @typing.type_check_only
@@ -4087,7 +4139,9 @@ class GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest(
     participantRole: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
     ]
-    suggestionFeatureConfig: GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig
+    suggestionFeatureConfig: (
+        GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SmartReplyAnswer(
@@ -4261,8 +4315,12 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
 ):
     error: GoogleRpcStatus
     suggestArticlesResponse: GoogleCloudDialogflowV2beta1SuggestArticlesResponse
-    suggestDialogflowAssistsResponse: GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
-    suggestEntityExtractionResponse: GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    suggestDialogflowAssistsResponse: (
+        GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    )
+    suggestEntityExtractionResponse: (
+        GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
+    )
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse
 

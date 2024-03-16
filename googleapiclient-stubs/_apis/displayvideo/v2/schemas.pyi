@@ -275,13 +275,19 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
     channelDetails: ChannelAssignedTargetingOptionDetails
     contentDurationDetails: ContentDurationAssignedTargetingOptionDetails
     contentGenreDetails: ContentGenreAssignedTargetingOptionDetails
-    contentInstreamPositionDetails: ContentInstreamPositionAssignedTargetingOptionDetails
-    contentOutstreamPositionDetails: ContentOutstreamPositionAssignedTargetingOptionDetails
+    contentInstreamPositionDetails: (
+        ContentInstreamPositionAssignedTargetingOptionDetails
+    )
+    contentOutstreamPositionDetails: (
+        ContentOutstreamPositionAssignedTargetingOptionDetails
+    )
     contentStreamTypeDetails: ContentStreamTypeAssignedTargetingOptionDetails
     dayAndTimeDetails: DayAndTimeAssignedTargetingOptionDetails
     deviceMakeModelDetails: DeviceMakeModelAssignedTargetingOptionDetails
     deviceTypeDetails: DeviceTypeAssignedTargetingOptionDetails
-    digitalContentLabelExclusionDetails: DigitalContentLabelAssignedTargetingOptionDetails
+    digitalContentLabelExclusionDetails: (
+        DigitalContentLabelAssignedTargetingOptionDetails
+    )
     environmentDetails: EnvironmentAssignedTargetingOptionDetails
     exchangeDetails: ExchangeAssignedTargetingOptionDetails
     genderDetails: GenderAssignedTargetingOptionDetails

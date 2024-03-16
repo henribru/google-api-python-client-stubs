@@ -170,7 +170,9 @@ class GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse(
 class GoogleCloudDiscoveryengineV1DocumentProcessingConfig(
     typing_extensions.TypedDict, total=False
 ):
-    defaultParsingConfig: GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig
+    defaultParsingConfig: (
+        GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig
+    )
     name: str
     parsingConfigOverrides: dict[str, typing.Any]
 
@@ -218,7 +220,9 @@ class GoogleCloudDiscoveryengineV1Engine(typing_extensions.TypedDict, total=Fals
 class GoogleCloudDiscoveryengineV1EngineChatEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
-    agentCreationConfig: GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig
+    agentCreationConfig: (
+        GoogleCloudDiscoveryengineV1EngineChatEngineConfigAgentCreationConfig
+    )
     dialogflowAgentToLink: str
 
 @typing.type_check_only
@@ -534,7 +538,9 @@ class GoogleCloudDiscoveryengineV1alphaConverseConversationRequest(
     query: GoogleCloudDiscoveryengineV1alphaTextInput
     safeSearch: bool
     servingConfig: str
-    summarySpec: GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec
+    summarySpec: (
+        GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec
+    )
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -720,8 +726,12 @@ class GoogleCloudDiscoveryengineV1alphaDocumentInfo(
 class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig(
     typing_extensions.TypedDict, total=False
 ):
-    chunkingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig
-    defaultParsingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig
+    chunkingConfig: (
+        GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig
+    )
+    defaultParsingConfig: (
+        GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig
+    )
     name: str
     ocrConfig: GoogleCloudDiscoveryengineV1alphaOcrConfig
     parsingConfigOverrides: dict[str, typing.Any]
@@ -788,11 +798,17 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA"
     ]
-    mediaRecommendationEngineConfig: GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig
+    mediaRecommendationEngineConfig: (
+        GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig
+    )
     name: str
-    recommendationMetadata: GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata
+    recommendationMetadata: (
+        GoogleCloudDiscoveryengineV1alphaEngineRecommendationMetadata
+    )
     searchEngineConfig: GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig
-    similarDocumentsConfig: GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig
+    similarDocumentsConfig: (
+        GoogleCloudDiscoveryengineV1alphaEngineSimilarDocumentsEngineConfig
+    )
     solutionType: typing_extensions.Literal[
         "SOLUTION_TYPE_UNSPECIFIED",
         "SOLUTION_TYPE_RECOMMENDATION",
@@ -805,7 +821,9 @@ class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total
 class GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
-    agentCreationConfig: GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig
+    agentCreationConfig: (
+        GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfigAgentCreationConfig
+    )
     dialogflowAgentToLink: str
 
 @typing.type_check_only
@@ -886,8 +904,12 @@ class GoogleCloudDiscoveryengineV1alphaEstimateDataSizeMetadata(
 class GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest(
     typing_extensions.TypedDict, total=False
 ):
-    fileDataSource: GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource
-    websiteDataSource: GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource
+    fileDataSource: (
+        GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource
+    )
+    websiteDataSource: (
+        GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestWebsiteDataSource
+    )
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequestFileDataSource(
@@ -1429,7 +1451,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequest(
     rankingExpression: str
     safeSearch: bool
     servingConfig: str
-    spellCorrectionSpec: GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec
+    spellCorrectionSpec: (
+        GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec
+    )
     userInfo: GoogleCloudDiscoveryengineV1alphaUserInfo
     userLabels: dict[str, typing.Any]
     userPseudoId: str
@@ -1457,8 +1481,12 @@ class GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec(
     searchResultMode: typing_extensions.Literal[
         "SEARCH_RESULT_MODE_UNSPECIFIED", "DOCUMENTS", "CHUNKS"
     ]
-    snippetSpec: GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSnippetSpec
-    summarySpec: GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec
+    snippetSpec: (
+        GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSnippetSpec
+    )
+    summarySpec: (
+        GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec
+    )
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec(
@@ -1567,9 +1595,13 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponse(
     geoSearchDebugInfo: _list[
         GoogleCloudDiscoveryengineV1alphaSearchResponseGeoSearchDebugInfo
     ]
-    guidedSearchResult: GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult
+    guidedSearchResult: (
+        GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult
+    )
     nextPageToken: str
-    queryExpansionInfo: GoogleCloudDiscoveryengineV1alphaSearchResponseQueryExpansionInfo
+    queryExpansionInfo: (
+        GoogleCloudDiscoveryengineV1alphaSearchResponseQueryExpansionInfo
+    )
     redirectUri: str
     results: _list[GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResult]
     summary: GoogleCloudDiscoveryengineV1alphaSearchResponseSummary
@@ -1634,7 +1666,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResult(
 class GoogleCloudDiscoveryengineV1alphaSearchResponseSummary(
     typing_extensions.TypedDict, total=False
 ):
-    safetyAttributes: GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes
+    safetyAttributes: (
+        GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes
+    )
     summarySkippedReasons: _list[
         typing_extensions.Literal[
             "SUMMARY_SKIPPED_REASON_UNSPECIFIED",
@@ -1646,7 +1680,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseSummary(
         ]
     ]
     summaryText: str
-    summaryWithMetadata: GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata
+    summaryWithMetadata: (
+        GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitation(
@@ -1687,7 +1723,9 @@ class GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySafetyAttributes(
 class GoogleCloudDiscoveryengineV1alphaSearchResponseSummarySummaryWithMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    citationMetadata: GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationMetadata
+    citationMetadata: (
+        GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryCitationMetadata
+    )
     references: _list[GoogleCloudDiscoveryengineV1alphaSearchResponseSummaryReference]
     summary: str
 
@@ -1809,7 +1847,9 @@ class GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequest(
     typing_extensions.TypedDict, total=False
 ):
     errorConfig: GoogleCloudDiscoveryengineV1alphaImportErrorConfig
-    gcsTrainingInput: GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput
+    gcsTrainingInput: (
+        GoogleCloudDiscoveryengineV1alphaTrainCustomModelRequestGcsTrainingInput
+    )
     modelType: str
 
 @typing.type_check_only
@@ -1991,14 +2031,18 @@ class GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationRequest(
     additionalParams: GoogleCloudDiscoveryengineV1alphaAdditionalParams
     configId: str
     conversationId: str
-    converseConversationRequest: GoogleCloudDiscoveryengineV1alphaConverseConversationRequest
+    converseConversationRequest: (
+        GoogleCloudDiscoveryengineV1alphaConverseConversationRequest
+    )
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaWidgetConverseConversationResponse(
     typing_extensions.TypedDict, total=False
 ):
     conversationId: str
-    converseConversationResponse: GoogleCloudDiscoveryengineV1alphaConverseConversationResponse
+    converseConversationResponse: (
+        GoogleCloudDiscoveryengineV1alphaConverseConversationResponse
+    )
     uToken: str
 
 @typing.type_check_only
@@ -2131,7 +2175,9 @@ class GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchResponse(
 class GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig(
     typing_extensions.TypedDict, total=False
 ):
-    defaultParsingConfig: GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig
+    defaultParsingConfig: (
+        GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig
+    )
     name: str
     parsingConfigOverrides: dict[str, typing.Any]
 
@@ -2179,7 +2225,9 @@ class GoogleCloudDiscoveryengineV1betaEngine(typing_extensions.TypedDict, total=
 class GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig(
     typing_extensions.TypedDict, total=False
 ):
-    agentCreationConfig: GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig
+    agentCreationConfig: (
+        GoogleCloudDiscoveryengineV1betaEngineChatEngineConfigAgentCreationConfig
+    )
     dialogflowAgentToLink: str
 
 @typing.type_check_only

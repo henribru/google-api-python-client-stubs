@@ -391,8 +391,12 @@ class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata
-    testDatasetValidation: GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
-    trainingDatasetValidation: GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
+    testDatasetValidation: (
+        GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
+    )
+    trainingDatasetValidation: (
+        GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation(
@@ -582,8 +586,12 @@ class GoogleCloudDocumentaiV1TrainProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiV1CommonOperationMetadata
-    testDatasetValidation: GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
-    trainingDatasetValidation: GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
+    testDatasetValidation: (
+        GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
+    )
+    trainingDatasetValidation: (
+        GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1TrainProcessorVersionMetadataDatasetValidation(
@@ -1542,7 +1550,9 @@ class GoogleCloudDocumentaiV1beta3BatchDatasetDocuments(
     typing_extensions.TypedDict, total=False
 ):
     filter: str
-    individualDocumentIds: GoogleCloudDocumentaiV1beta3BatchDatasetDocumentsIndividualDocumentIds
+    individualDocumentIds: (
+        GoogleCloudDocumentaiV1beta3BatchDatasetDocumentsIndividualDocumentIds
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3BatchDatasetDocumentsIndividualDocumentIds(
@@ -1853,7 +1863,9 @@ class GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig(
 ):
     fieldMask: str
     gcsUri: str
-    shardingConfig: GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig
+    shardingConfig: (
+        GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfigShardingConfig(
@@ -2559,7 +2571,9 @@ class GoogleCloudDocumentaiV1beta3ProcessOptions(
 ):
     fromEnd: int
     fromStart: int
-    individualPageSelector: GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector
+    individualPageSelector: (
+        GoogleCloudDocumentaiV1beta3ProcessOptionsIndividualPageSelector
+    )
     ocrConfig: GoogleCloudDocumentaiV1beta3OcrConfig
     schemaOverride: GoogleCloudDocumentaiV1beta3DocumentSchema
 
@@ -2766,8 +2780,12 @@ class GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     commonMetadata: GoogleCloudDocumentaiV1beta3CommonOperationMetadata
-    testDatasetValidation: GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
-    trainingDatasetValidation: GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
+    testDatasetValidation: (
+        GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
+    )
+    trainingDatasetValidation: (
+        GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3TrainProcessorVersionMetadataDatasetValidation(

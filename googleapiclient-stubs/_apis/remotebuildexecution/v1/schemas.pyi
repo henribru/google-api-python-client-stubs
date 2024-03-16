@@ -355,14 +355,20 @@ class GoogleDevtoolsRemotebuildexecutionAdminV1alphaDeleteWorkerPoolRequest(
 class GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicy(
     typing_extensions.TypedDict, total=False
 ):
-    containerImageSources: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
-    dockerAddCapabilities: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
+    containerImageSources: (
+        GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
+    )
+    dockerAddCapabilities: (
+        GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
+    )
     dockerChrootPath: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
     dockerNetwork: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
     dockerPrivileged: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
     dockerRunAsRoot: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
     dockerRuntime: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
-    dockerSiblingContainers: GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
+    dockerSiblingContainers: (
+        GoogleDevtoolsRemotebuildexecutionAdminV1alphaFeaturePolicyFeature
+    )
     linuxIsolation: typing_extensions.Literal[
         "LINUX_ISOLATION_UNSPECIFIED", "GVISOR", "OFF"
     ]

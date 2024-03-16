@@ -739,7 +739,9 @@ class GoogleCloudChannelV1RepricingCondition(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudChannelV1RepricingConfig(typing_extensions.TypedDict, total=False):
     adjustment: GoogleCloudChannelV1RepricingAdjustment
-    channelPartnerGranularity: GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity
+    channelPartnerGranularity: (
+        GoogleCloudChannelV1RepricingConfigChannelPartnerGranularity
+    )
     conditionalOverrides: _list[GoogleCloudChannelV1ConditionalOverride]
     effectiveInvoiceMonth: GoogleTypeDate
     entitlementGranularity: GoogleCloudChannelV1RepricingConfigEntitlementGranularity

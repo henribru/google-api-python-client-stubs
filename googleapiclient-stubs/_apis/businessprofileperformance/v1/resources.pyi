@@ -51,21 +51,7 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
             self,
             *,
             location: str,
-            dailyMetrics: typing_extensions.Literal[
-                "DAILY_METRIC_UNKNOWN",
-                "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
-                "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
-                "BUSINESS_IMPRESSIONS_MOBILE_MAPS",
-                "BUSINESS_IMPRESSIONS_MOBILE_SEARCH",
-                "BUSINESS_CONVERSATIONS",
-                "BUSINESS_DIRECTION_REQUESTS",
-                "CALL_CLICKS",
-                "WEBSITE_CLICKS",
-                "BUSINESS_BOOKINGS",
-                "BUSINESS_FOOD_ORDERS",
-                "BUSINESS_FOOD_MENU_CLICKS",
-            ]
-            | _list[
+            dailyMetrics: (
                 typing_extensions.Literal[
                     "DAILY_METRIC_UNKNOWN",
                     "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
@@ -80,7 +66,23 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
                     "BUSINESS_FOOD_ORDERS",
                     "BUSINESS_FOOD_MENU_CLICKS",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "DAILY_METRIC_UNKNOWN",
+                        "BUSINESS_IMPRESSIONS_DESKTOP_MAPS",
+                        "BUSINESS_IMPRESSIONS_DESKTOP_SEARCH",
+                        "BUSINESS_IMPRESSIONS_MOBILE_MAPS",
+                        "BUSINESS_IMPRESSIONS_MOBILE_SEARCH",
+                        "BUSINESS_CONVERSATIONS",
+                        "BUSINESS_DIRECTION_REQUESTS",
+                        "CALL_CLICKS",
+                        "WEBSITE_CLICKS",
+                        "BUSINESS_BOOKINGS",
+                        "BUSINESS_FOOD_ORDERS",
+                        "BUSINESS_FOOD_MENU_CLICKS",
+                    ]
+                ]
+            ) = ...,
             dailyRange_endDate_day: int = ...,
             dailyRange_endDate_month: int = ...,
             dailyRange_endDate_year: int = ...,
@@ -133,15 +135,17 @@ class BusinessProfilePerformanceResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def locations(self) -> LocationsResource: ...
 

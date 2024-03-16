@@ -228,8 +228,12 @@ class GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedAsset(
     typing_extensions.TypedDict, total=False
 ):
     consolidatedPolicy: AnalyzerOrgPolicy
-    governedIamPolicy: GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy
-    governedResource: GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource
+    governedIamPolicy: (
+        GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedIamPolicy
+    )
+    governedResource: (
+        GoogleCloudAssetV1AnalyzeOrgPolicyGovernedAssetsResponseGovernedResource
+    )
     policyBundle: _list[AnalyzerOrgPolicy]
 
 @typing.type_check_only

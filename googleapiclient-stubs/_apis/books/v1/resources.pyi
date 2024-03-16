@@ -219,8 +219,10 @@ class BooksResource(googleapiclient.discovery.Resource):
             cpksver: str,
             nonce: str,
             source: str,
-            features: typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]
-            | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]] = ...,
+            features: (
+                typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]
+                | _list[typing_extensions.Literal["FEATURES_UNDEFINED", "RENTALS"]]
+            ) = ...,
             includeNonComicsSeries: bool = ...,
             locale: str = ...,
             showPreorders: bool = ...,
@@ -511,18 +513,7 @@ class BooksResource(googleapiclient.discovery.Resource):
             def list(
                 self,
                 *,
-                acquireMethod: typing_extensions.Literal[
-                    "ACQUIRE_METHOD_UNDEFINED",
-                    "FAMILY_SHARED",
-                    "PREORDERED",
-                    "PREVIOUSLY_RENTED",
-                    "PUBLIC_DOMAIN",
-                    "PURCHASED",
-                    "RENTED",
-                    "SAMPLE",
-                    "UPLOADED",
-                ]
-                | _list[
+                acquireMethod: (
                     typing_extensions.Literal[
                         "ACQUIRE_METHOD_UNDEFINED",
                         "FAMILY_SHARED",
@@ -534,24 +525,39 @@ class BooksResource(googleapiclient.discovery.Resource):
                         "SAMPLE",
                         "UPLOADED",
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "ACQUIRE_METHOD_UNDEFINED",
+                            "FAMILY_SHARED",
+                            "PREORDERED",
+                            "PREVIOUSLY_RENTED",
+                            "PUBLIC_DOMAIN",
+                            "PURCHASED",
+                            "RENTED",
+                            "SAMPLE",
+                            "UPLOADED",
+                        ]
+                    ]
+                ) = ...,
                 country: str = ...,
                 locale: str = ...,
                 maxResults: int = ...,
-                processingState: typing_extensions.Literal[
-                    "PROCESSING_STATE_UNDEFINED",
-                    "COMPLETED_FAILED",
-                    "COMPLETED_SUCCESS",
-                    "RUNNING",
-                ]
-                | _list[
+                processingState: (
                     typing_extensions.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
                         "RUNNING",
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "PROCESSING_STATE_UNDEFINED",
+                            "COMPLETED_FAILED",
+                            "COMPLETED_SUCCESS",
+                            "RUNNING",
+                        ]
+                    ]
+                ) = ...,
                 source: str = ...,
                 startIndex: int = ...,
                 **kwargs: typing.Any,
@@ -588,20 +594,22 @@ class BooksResource(googleapiclient.discovery.Resource):
                 *,
                 locale: str = ...,
                 maxResults: int = ...,
-                processingState: typing_extensions.Literal[
-                    "PROCESSING_STATE_UNDEFINED",
-                    "COMPLETED_FAILED",
-                    "COMPLETED_SUCCESS",
-                    "RUNNING",
-                ]
-                | _list[
+                processingState: (
                     typing_extensions.Literal[
                         "PROCESSING_STATE_UNDEFINED",
                         "COMPLETED_FAILED",
                         "COMPLETED_SUCCESS",
                         "RUNNING",
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "PROCESSING_STATE_UNDEFINED",
+                            "COMPLETED_FAILED",
+                            "COMPLETED_SUCCESS",
+                            "RUNNING",
+                        ]
+                    ]
+                ) = ...,
                 source: str = ...,
                 startIndex: int = ...,
                 volumeId: str | _list[str] = ...,
@@ -665,15 +673,17 @@ class BooksResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def bookshelves(self) -> BookshelvesResource: ...
     def cloudloading(self) -> CloudloadingResource: ...

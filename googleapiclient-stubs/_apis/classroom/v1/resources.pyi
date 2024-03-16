@@ -52,17 +52,22 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                announcementStates: typing_extensions.Literal[
-                    "ANNOUNCEMENT_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
-                ]
-                | _list[
+                announcementStates: (
                     typing_extensions.Literal[
                         "ANNOUNCEMENT_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
                         "DELETED",
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "ANNOUNCEMENT_STATE_UNSPECIFIED",
+                            "PUBLISHED",
+                            "DRAFT",
+                            "DELETED",
+                        ]
+                    ]
+                ) = ...,
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -113,15 +118,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
-                    states: typing_extensions.Literal[
-                        "SUBMISSION_STATE_UNSPECIFIED",
-                        "NEW",
-                        "CREATED",
-                        "TURNED_IN",
-                        "RETURNED",
-                        "RECLAIMED_BY_STUDENT",
-                    ]
-                    | _list[
+                    states: (
                         typing_extensions.Literal[
                             "SUBMISSION_STATE_UNSPECIFIED",
                             "NEW",
@@ -130,7 +127,17 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                             "RETURNED",
                             "RECLAIMED_BY_STUDENT",
                         ]
-                    ] = ...,
+                        | _list[
+                            typing_extensions.Literal[
+                                "SUBMISSION_STATE_UNSPECIFIED",
+                                "NEW",
+                                "CREATED",
+                                "TURNED_IN",
+                                "RETURNED",
+                                "RECLAIMED_BY_STUDENT",
+                            ]
+                        ]
+                    ) = ...,
                     userId: str = ...,
                     **kwargs: typing.Any,
                 ) -> ListStudentSubmissionsResponseHttpRequest: ...
@@ -199,14 +206,19 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkStates: typing_extensions.Literal[
-                    "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
-                ]
-                | _list[
+                courseWorkStates: (
                     typing_extensions.Literal[
                         "COURSE_WORK_STATE_UNSPECIFIED", "PUBLISHED", "DRAFT", "DELETED"
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "COURSE_WORK_STATE_UNSPECIFIED",
+                            "PUBLISHED",
+                            "DRAFT",
+                            "DELETED",
+                        ]
+                    ]
+                ) = ...,
                 orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -255,20 +267,22 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 courseId: str,
-                courseWorkMaterialStates: typing_extensions.Literal[
-                    "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
-                    "PUBLISHED",
-                    "DRAFT",
-                    "DELETED",
-                ]
-                | _list[
+                courseWorkMaterialStates: (
                     typing_extensions.Literal[
                         "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
                         "PUBLISHED",
                         "DRAFT",
                         "DELETED",
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "COURSEWORK_MATERIAL_STATE_UNSPECIFIED",
+                            "PUBLISHED",
+                            "DRAFT",
+                            "DELETED",
+                        ]
+                    ]
+                ) = ...,
                 materialDriveId: str = ...,
                 materialLink: str = ...,
                 orderBy: str = ...,
@@ -388,15 +402,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            courseStates: typing_extensions.Literal[
-                "COURSE_STATE_UNSPECIFIED",
-                "ACTIVE",
-                "ARCHIVED",
-                "PROVISIONED",
-                "DECLINED",
-                "SUSPENDED",
-            ]
-            | _list[
+            courseStates: (
                 typing_extensions.Literal[
                     "COURSE_STATE_UNSPECIFIED",
                     "ACTIVE",
@@ -405,7 +411,17 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                     "DECLINED",
                     "SUSPENDED",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "COURSE_STATE_UNSPECIFIED",
+                        "ACTIVE",
+                        "ARCHIVED",
+                        "PROVISIONED",
+                        "DECLINED",
+                        "SUSPENDED",
+                    ]
+                ]
+            ) = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             studentId: str = ...,
@@ -489,14 +505,18 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 invitedEmailAddress: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                states: typing_extensions.Literal[
-                    "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
-                ]
-                | _list[
+                states: (
                     typing_extensions.Literal[
                         "GUARDIAN_INVITATION_STATE_UNSPECIFIED", "PENDING", "COMPLETE"
                     ]
-                ] = ...,
+                    | _list[
+                        typing_extensions.Literal[
+                            "GUARDIAN_INVITATION_STATE_UNSPECIFIED",
+                            "PENDING",
+                            "COMPLETE",
+                        ]
+                    ]
+                ) = ...,
                 **kwargs: typing.Any,
             ) -> ListGuardianInvitationsResponseHttpRequest: ...
             def list_next(
@@ -545,15 +565,17 @@ class ClassroomResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def courses(self) -> CoursesResource: ...
     def invitations(self) -> InvitationsResource: ...

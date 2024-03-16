@@ -233,14 +233,16 @@ class CalendarResource(googleapiclient.discovery.Resource):
             *,
             calendarId: str,
             alwaysIncludeEmail: bool = ...,
-            eventTypes: typing_extensions.Literal[
-                "default", "focusTime", "outOfOffice", "workingLocation"
-            ]
-            | _list[
+            eventTypes: (
                 typing_extensions.Literal[
                     "default", "focusTime", "outOfOffice", "workingLocation"
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "default", "focusTime", "outOfOffice", "workingLocation"
+                    ]
+                ]
+            ) = ...,
             iCalUID: str = ...,
             maxAttendees: int = ...,
             maxResults: int = ...,
@@ -315,14 +317,16 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             body: Channel = ...,
             alwaysIncludeEmail: bool = ...,
-            eventTypes: typing_extensions.Literal[
-                "default", "focusTime", "outOfOffice", "workingLocation"
-            ]
-            | _list[
+            eventTypes: (
                 typing_extensions.Literal[
                     "default", "focusTime", "outOfOffice", "workingLocation"
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "default", "focusTime", "outOfOffice", "workingLocation"
+                    ]
+                ]
+            ) = ...,
             iCalUID: str = ...,
             maxAttendees: int = ...,
             maxResults: int = ...,
@@ -374,15 +378,17 @@ class CalendarResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def acl(self) -> AclResource: ...
     def calendarList(self) -> CalendarListResource: ...

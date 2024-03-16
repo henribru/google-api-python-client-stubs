@@ -262,7 +262,9 @@ class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1DataProfileResultPostScanActionsResult(
     typing_extensions.TypedDict, total=False
 ):
-    bigqueryExportResult: GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult
+    bigqueryExportResult: (
+        GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult
+    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResultPostScanActionsResultBigQueryExportResult(
@@ -293,10 +295,16 @@ class GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo(
     typing_extensions.TypedDict, total=False
 ):
     distinctRatio: float
-    doubleProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo
-    integerProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo
+    doubleProfile: (
+        GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo
+    )
+    integerProfile: (
+        GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo
+    )
     nullRatio: float
-    stringProfile: GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo
+    stringProfile: (
+        GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo
+    )
     topNValues: _list[
         GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue
     ]
@@ -399,7 +407,9 @@ class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1DataQualityResultPostScanActionsResult(
     typing_extensions.TypedDict, total=False
 ):
-    bigqueryExportResult: GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult
+    bigqueryExportResult: (
+        GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult
+    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResultPostScanActionsResultBigQueryExportResult(
@@ -422,8 +432,12 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     regexExpectation: GoogleCloudDataplexV1DataQualityRuleRegexExpectation
     rowConditionExpectation: GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation
     setExpectation: GoogleCloudDataplexV1DataQualityRuleSetExpectation
-    statisticRangeExpectation: GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation
-    tableConditionExpectation: GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation
+    statisticRangeExpectation: (
+        GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation
+    )
+    tableConditionExpectation: (
+        GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation
+    )
     threshold: float
     uniquenessExpectation: GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation
 
@@ -533,7 +547,9 @@ class GoogleCloudDataplexV1DataQualitySpecPostScanActions(
     typing_extensions.TypedDict, total=False
 ):
     bigqueryExport: GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport
-    notificationReport: GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport
+    notificationReport: (
+        GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport
+    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport(
@@ -556,9 +572,13 @@ class GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport(
     typing_extensions.TypedDict, total=False
 ):
     jobEndTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger
-    jobFailureTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger
+    jobFailureTrigger: (
+        GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger
+    )
     recipients: GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients
-    scoreThresholdTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger
+    scoreThresholdTrigger: (
+        GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger
+    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients(
@@ -654,7 +674,9 @@ class GoogleCloudDataplexV1DataScanEventDataQualityResult(
 class GoogleCloudDataplexV1DataScanEventPostScanActionsResult(
     typing_extensions.TypedDict, total=False
 ):
-    bigqueryExportResult: GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult
+    bigqueryExportResult: (
+        GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult
+    )
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanEventPostScanActionsResultBigQueryExportResult(

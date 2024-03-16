@@ -181,8 +181,12 @@ class GoogleCloudAssuredworkloadsV1ViolationRemediation(
 class GoogleCloudAssuredworkloadsV1ViolationRemediationInstructions(
     typing_extensions.TypedDict, total=False
 ):
-    consoleInstructions: GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsConsole
-    gcloudInstructions: GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsGcloud
+    consoleInstructions: (
+        GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsConsole
+    )
+    gcloudInstructions: (
+        GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsGcloud
+    )
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ViolationRemediationInstructionsConsole(
@@ -228,7 +232,9 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     compliantButDisallowedServices: _list[str]
     createTime: str
     displayName: str
-    ekmProvisioningResponse: GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse
+    ekmProvisioningResponse: (
+        GoogleCloudAssuredworkloadsV1WorkloadEkmProvisioningResponse
+    )
     enableSovereignControls: bool
     etag: str
     kajEnrollmentState: typing_extensions.Literal[

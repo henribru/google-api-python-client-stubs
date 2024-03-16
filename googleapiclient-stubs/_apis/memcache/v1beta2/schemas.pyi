@@ -87,7 +87,9 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     labels: dict[str, typing.Any]
     maintenancePolicyNames: dict[str, typing.Any]
     maintenanceSchedules: dict[str, typing.Any]
-    maintenanceSettings: GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
+    maintenanceSettings: (
+        GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings
+    )
     name: str
     notificationParameters: dict[str, typing.Any]
     producerMetadata: dict[str, typing.Any]
@@ -133,7 +135,9 @@ class GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata(
 ):
     location: str
     nodeId: str
-    perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+    perSliEligibility: (
+        GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+    )
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1NotificationParameter(
@@ -166,7 +170,9 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     typing_extensions.TypedDict, total=False
 ):
     nodes: _list[GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata]
-    perSliEligibility: GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+    perSliEligibility: (
+        GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility
+    )
     tier: str
 
 @typing.type_check_only

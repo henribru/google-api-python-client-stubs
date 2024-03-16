@@ -938,7 +938,9 @@ class OrderinvoicesCreateChargeInvoiceResponse(
 class OrderinvoicesCreateRefundInvoiceRequest(typing_extensions.TypedDict, total=False):
     invoiceId: str
     operationId: str
-    refundOnlyOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
+    refundOnlyOption: (
+        OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
+    )
     returnOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption
     shipmentInvoices: _list[ShipmentInvoice]
 
@@ -1071,7 +1073,9 @@ class OrdersCustomBatchRequestEntry(typing_extensions.TypedDict, total=False):
     returnRefundLineItem: OrdersCustomBatchRequestEntryReturnRefundLineItem
     setLineItemMetadata: OrdersCustomBatchRequestEntrySetLineItemMetadata
     shipLineItems: OrdersCustomBatchRequestEntryShipLineItems
-    updateLineItemShippingDetails: OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails
+    updateLineItemShippingDetails: (
+        OrdersCustomBatchRequestEntryUpdateLineItemShippingDetails
+    )
     updateShipment: OrdersCustomBatchRequestEntryUpdateShipment
 
 @typing.type_check_only

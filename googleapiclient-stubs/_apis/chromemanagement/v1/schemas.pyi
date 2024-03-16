@@ -683,11 +683,15 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
     ]
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
-    networkStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    networkStateChangeEvent: (
+        GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    )
     reportTime: str
     usbPeripheralsEvent: GoogleChromeManagementV1TelemetryUsbPeripheralsEvent
     user: GoogleChromeManagementV1TelemetryUserInfo
-    vpnConnectionStateChangeEvent: GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    vpnConnectionStateChangeEvent: (
+        GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
+    )
     wifiSignalStrengthEvent: GoogleChromeManagementV1TelemetryNetworkSignalStrengthEvent
 
 @typing.type_check_only
@@ -753,7 +757,9 @@ class GoogleChromeManagementV1TelemetryNotificationFilter(
 ):
     deviceId: str
     deviceOrgUnitId: str
-    telemetryEventNotificationFilter: GoogleChromeManagementV1TelemetryEventNotificationFilter
+    telemetryEventNotificationFilter: (
+        GoogleChromeManagementV1TelemetryEventNotificationFilter
+    )
     userEmail: str
     userOrgUnitId: str
 

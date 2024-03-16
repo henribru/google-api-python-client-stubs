@@ -55,8 +55,12 @@ class GoogleMapsPlacesV1AutocompletePlacesResponse(
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion(
     typing_extensions.TypedDict, total=False
 ):
-    placePrediction: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction
-    queryPrediction: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction
+    placePrediction: (
+        GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction
+    )
+    queryPrediction: (
+        GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction
+    )
 
 @typing.type_check_only
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText(
@@ -72,7 +76,9 @@ class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction(
     distanceMeters: int
     place: str
     placeId: str
-    structuredFormat: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    structuredFormat: (
+        GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    )
     text: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
     types: _list[str]
 
@@ -80,7 +86,9 @@ class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction(
 class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction(
     typing_extensions.TypedDict, total=False
 ):
-    structuredFormat: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    structuredFormat: (
+        GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    )
     text: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
 
 @typing.type_check_only

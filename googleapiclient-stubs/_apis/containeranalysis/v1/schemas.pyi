@@ -630,18 +630,24 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
     gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     repoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     storageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
-    storageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    storageSourceManifest: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    )
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
     typing_extensions.TypedDict, total=False
 ):
     fileHashes: dict[str, typing.Any]
-    resolvedConnectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    resolvedConnectedRepository: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    )
     resolvedGitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     resolvedRepoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     resolvedStorageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
-    resolvedStorageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    resolvedStorageSourceManifest: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    )
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(

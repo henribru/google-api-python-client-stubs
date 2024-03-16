@@ -203,8 +203,12 @@ class GoogleAnalyticsAdminV1betaChangeHistoryChange(
         "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
     ]
     resource: str
-    resourceAfterChange: GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource
-    resourceBeforeChange: GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource
+    resourceAfterChange: (
+        GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource
+    )
+    resourceBeforeChange: (
+        GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource
+    )
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaChangeHistoryChangeChangeHistoryResource(
@@ -241,7 +245,9 @@ class GoogleAnalyticsAdminV1betaConversionEvent(
     ]
     createTime: str
     custom: bool
-    defaultConversionValue: GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue
+    defaultConversionValue: (
+        GoogleAnalyticsAdminV1betaConversionEventDefaultConversionValue
+    )
     deletable: bool
     eventName: str
     name: str

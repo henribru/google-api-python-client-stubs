@@ -156,14 +156,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             sslCompliant: bool = ...,
             sslRequired: bool = ...,
-            type: typing_extensions.Literal[
-                "AD_SERVING_STANDARD_AD",
-                "AD_SERVING_DEFAULT_AD",
-                "AD_SERVING_CLICK_TRACKER",
-                "AD_SERVING_TRACKING",
-                "AD_SERVING_BRAND_SAFE_AD",
-            ]
-            | _list[
+            type: (
                 typing_extensions.Literal[
                     "AD_SERVING_STANDARD_AD",
                     "AD_SERVING_DEFAULT_AD",
@@ -171,7 +164,16 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "AD_SERVING_TRACKING",
                     "AD_SERVING_BRAND_SAFE_AD",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "AD_SERVING_STANDARD_AD",
+                        "AD_SERVING_DEFAULT_AD",
+                        "AD_SERVING_CLICK_TRACKER",
+                        "AD_SERVING_TRACKING",
+                        "AD_SERVING_BRAND_SAFE_AD",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> AdsListResponseHttpRequest: ...
         def list_next(
@@ -359,10 +361,10 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
-            status: typing_extensions.Literal["UNDER_REVIEW", "ACTIVE", "ARCHIVED"]
-            | _list[
+            status: (
                 typing_extensions.Literal["UNDER_REVIEW", "ACTIVE", "ARCHIVED"]
-            ] = ...,
+                | _list[typing_extensions.Literal["UNDER_REVIEW", "ACTIVE", "ARCHIVED"]]
+            ) = ...,
             subaccountIds: str | _list[str] = ...,
             **kwargs: typing.Any,
         ) -> BillingProfilesListResponseHttpRequest: ...
@@ -799,34 +801,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
             sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"] = ...,
             studioCreativeId: str = ...,
-            types: typing_extensions.Literal[
-                "IMAGE",
-                "DISPLAY_REDIRECT",
-                "CUSTOM_DISPLAY",
-                "INTERNAL_REDIRECT",
-                "CUSTOM_DISPLAY_INTERSTITIAL",
-                "INTERSTITIAL_INTERNAL_REDIRECT",
-                "TRACKING_TEXT",
-                "RICH_MEDIA_DISPLAY_BANNER",
-                "RICH_MEDIA_INPAGE_FLOATING",
-                "RICH_MEDIA_IM_EXPAND",
-                "RICH_MEDIA_DISPLAY_EXPANDING",
-                "RICH_MEDIA_DISPLAY_INTERSTITIAL",
-                "RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL",
-                "RICH_MEDIA_MOBILE_IN_APP",
-                "FLASH_INPAGE",
-                "INSTREAM_VIDEO",
-                "VPAID_LINEAR_VIDEO",
-                "VPAID_NON_LINEAR_VIDEO",
-                "INSTREAM_VIDEO_REDIRECT",
-                "RICH_MEDIA_PEEL_DOWN",
-                "HTML5_BANNER",
-                "DISPLAY",
-                "DISPLAY_IMAGE_GALLERY",
-                "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
-                "INSTREAM_AUDIO",
-            ]
-            | _list[
+            types: (
                 typing_extensions.Literal[
                     "IMAGE",
                     "DISPLAY_REDIRECT",
@@ -854,7 +829,36 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
                     "INSTREAM_AUDIO",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "IMAGE",
+                        "DISPLAY_REDIRECT",
+                        "CUSTOM_DISPLAY",
+                        "INTERNAL_REDIRECT",
+                        "CUSTOM_DISPLAY_INTERSTITIAL",
+                        "INTERSTITIAL_INTERNAL_REDIRECT",
+                        "TRACKING_TEXT",
+                        "RICH_MEDIA_DISPLAY_BANNER",
+                        "RICH_MEDIA_INPAGE_FLOATING",
+                        "RICH_MEDIA_IM_EXPAND",
+                        "RICH_MEDIA_DISPLAY_EXPANDING",
+                        "RICH_MEDIA_DISPLAY_INTERSTITIAL",
+                        "RICH_MEDIA_DISPLAY_MULTI_FLOATING_INTERSTITIAL",
+                        "RICH_MEDIA_MOBILE_IN_APP",
+                        "FLASH_INPAGE",
+                        "INSTREAM_VIDEO",
+                        "VPAID_LINEAR_VIDEO",
+                        "VPAID_NON_LINEAR_VIDEO",
+                        "INSTREAM_VIDEO_REDIRECT",
+                        "RICH_MEDIA_PEEL_DOWN",
+                        "HTML5_BANNER",
+                        "DISPLAY",
+                        "DISPLAY_IMAGE_GALLERY",
+                        "BRAND_SAFE_DEFAULT_INSTREAM_VIDEO",
+                        "INSTREAM_AUDIO",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> CreativesListResponseHttpRequest: ...
         def list_next(
@@ -970,18 +974,20 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             campaignId: str = ...,
             definitionsOnly: bool = ...,
             enabled: bool = ...,
-            eventTagTypes: typing_extensions.Literal[
-                "IMPRESSION_IMAGE_EVENT_TAG",
-                "IMPRESSION_JAVASCRIPT_EVENT_TAG",
-                "CLICK_THROUGH_EVENT_TAG",
-            ]
-            | _list[
+            eventTagTypes: (
                 typing_extensions.Literal[
                     "IMPRESSION_IMAGE_EVENT_TAG",
                     "IMPRESSION_JAVASCRIPT_EVENT_TAG",
                     "CLICK_THROUGH_EVENT_TAG",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "IMPRESSION_IMAGE_EVENT_TAG",
+                        "IMPRESSION_JAVASCRIPT_EVENT_TAG",
+                        "CLICK_THROUGH_EVENT_TAG",
+                    ]
+                ]
+            ) = ...,
             ids: str | _list[str] = ...,
             searchString: str = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
@@ -1204,20 +1210,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            directories: typing_extensions.Literal[
-                "UNKNOWN",
-                "APPLE_APP_STORE",
-                "GOOGLE_PLAY_STORE",
-                "ROKU_APP_STORE",
-                "AMAZON_FIRETV_APP_STORE",
-                "PLAYSTATION_APP_STORE",
-                "APPLE_TV_APP_STORE",
-                "XBOX_APP_STORE",
-                "SAMSUNG_TV_APP_STORE",
-                "ANDROID_TV_APP_STORE",
-                "GENERIC_CTV_APP_STORE",
-            ]
-            | _list[
+            directories: (
                 typing_extensions.Literal[
                     "UNKNOWN",
                     "APPLE_APP_STORE",
@@ -1231,7 +1224,22 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "ANDROID_TV_APP_STORE",
                     "GENERIC_CTV_APP_STORE",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "UNKNOWN",
+                        "APPLE_APP_STORE",
+                        "GOOGLE_PLAY_STORE",
+                        "ROKU_APP_STORE",
+                        "AMAZON_FIRETV_APP_STORE",
+                        "PLAYSTATION_APP_STORE",
+                        "APPLE_TV_APP_STORE",
+                        "XBOX_APP_STORE",
+                        "SAMSUNG_TV_APP_STORE",
+                        "ANDROID_TV_APP_STORE",
+                        "GENERIC_CTV_APP_STORE",
+                    ]
+                ]
+            ) = ...,
             ids: str | _list[str] = ...,
             maxResults: int = ...,
             pageToken: str = ...,
@@ -1308,14 +1316,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            activeStatus: typing_extensions.Literal[
-                "PLACEMENT_STATUS_UNKNOWN",
-                "PLACEMENT_STATUS_ACTIVE",
-                "PLACEMENT_STATUS_INACTIVE",
-                "PLACEMENT_STATUS_ARCHIVED",
-                "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
-            ]
-            | _list[
+            activeStatus: (
                 typing_extensions.Literal[
                     "PLACEMENT_STATUS_UNKNOWN",
                     "PLACEMENT_STATUS_ACTIVE",
@@ -1323,7 +1324,16 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_STATUS_ARCHIVED",
                     "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "PLACEMENT_STATUS_UNKNOWN",
+                        "PLACEMENT_STATUS_ACTIVE",
+                        "PLACEMENT_STATUS_INACTIVE",
+                        "PLACEMENT_STATUS_ARCHIVED",
+                        "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
+                    ]
+                ]
+            ) = ...,
             advertiserIds: str | _list[str] = ...,
             campaignIds: str | _list[str] = ...,
             contentCategoryIds: str | _list[str] = ...,
@@ -1339,15 +1349,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "PLACEMENT_PACKAGE", "PLACEMENT_ROADBLOCK"
             ] = ...,
             placementStrategyIds: str | _list[str] = ...,
-            pricingTypes: typing_extensions.Literal[
-                "PRICING_TYPE_CPM",
-                "PRICING_TYPE_CPC",
-                "PRICING_TYPE_CPA",
-                "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-                "PRICING_TYPE_FLAT_RATE_CLICKS",
-                "PRICING_TYPE_CPM_ACTIVEVIEW",
-            ]
-            | _list[
+            pricingTypes: (
                 typing_extensions.Literal[
                     "PRICING_TYPE_CPM",
                     "PRICING_TYPE_CPC",
@@ -1356,7 +1358,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PRICING_TYPE_FLAT_RATE_CLICKS",
                     "PRICING_TYPE_CPM_ACTIVEVIEW",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "PRICING_TYPE_CPM",
+                        "PRICING_TYPE_CPC",
+                        "PRICING_TYPE_CPA",
+                        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+                        "PRICING_TYPE_FLAT_RATE_CLICKS",
+                        "PRICING_TYPE_CPM_ACTIVEVIEW",
+                    ]
+                ]
+            ) = ...,
             searchString: str = ...,
             siteIds: str | _list[str] = ...,
             sortField: typing_extensions.Literal["ID", "NAME"] = ...,
@@ -1428,29 +1440,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             profileId: str,
             campaignId: str = ...,
             placementIds: str | _list[str] = ...,
-            tagFormats: typing_extensions.Literal[
-                "PLACEMENT_TAG_STANDARD",
-                "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
-                "PLACEMENT_TAG_IFRAME_ILAYER",
-                "PLACEMENT_TAG_INTERNAL_REDIRECT",
-                "PLACEMENT_TAG_JAVASCRIPT",
-                "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT",
-                "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT",
-                "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT",
-                "PLACEMENT_TAG_CLICK_COMMANDS",
-                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH",
-                "PLACEMENT_TAG_TRACKING",
-                "PLACEMENT_TAG_TRACKING_IFRAME",
-                "PLACEMENT_TAG_TRACKING_JAVASCRIPT",
-                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3",
-                "PLACEMENT_TAG_IFRAME_JAVASCRIPT_LEGACY",
-                "PLACEMENT_TAG_JAVASCRIPT_LEGACY",
-                "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
-                "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
-                "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
-                "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
-            ]
-            | _list[
+            tagFormats: (
                 typing_extensions.Literal[
                     "PLACEMENT_TAG_STANDARD",
                     "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
@@ -1473,7 +1463,31 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
                     "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "PLACEMENT_TAG_STANDARD",
+                        "PLACEMENT_TAG_IFRAME_JAVASCRIPT",
+                        "PLACEMENT_TAG_IFRAME_ILAYER",
+                        "PLACEMENT_TAG_INTERNAL_REDIRECT",
+                        "PLACEMENT_TAG_JAVASCRIPT",
+                        "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT",
+                        "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT",
+                        "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT",
+                        "PLACEMENT_TAG_CLICK_COMMANDS",
+                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH",
+                        "PLACEMENT_TAG_TRACKING",
+                        "PLACEMENT_TAG_TRACKING_IFRAME",
+                        "PLACEMENT_TAG_TRACKING_JAVASCRIPT",
+                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3",
+                        "PLACEMENT_TAG_IFRAME_JAVASCRIPT_LEGACY",
+                        "PLACEMENT_TAG_JAVASCRIPT_LEGACY",
+                        "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT_LEGACY",
+                        "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT_LEGACY",
+                        "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4",
+                        "PLACEMENT_TAG_TRACKING_THIRD_PARTY_MEASUREMENT",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> PlacementsGenerateTagsResponseHttpRequest: ...
         def get(
@@ -1486,14 +1500,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
             self,
             *,
             profileId: str,
-            activeStatus: typing_extensions.Literal[
-                "PLACEMENT_STATUS_UNKNOWN",
-                "PLACEMENT_STATUS_ACTIVE",
-                "PLACEMENT_STATUS_INACTIVE",
-                "PLACEMENT_STATUS_ARCHIVED",
-                "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
-            ]
-            | _list[
+            activeStatus: (
                 typing_extensions.Literal[
                     "PLACEMENT_STATUS_UNKNOWN",
                     "PLACEMENT_STATUS_ACTIVE",
@@ -1501,18 +1508,19 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PLACEMENT_STATUS_ARCHIVED",
                     "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "PLACEMENT_STATUS_UNKNOWN",
+                        "PLACEMENT_STATUS_ACTIVE",
+                        "PLACEMENT_STATUS_INACTIVE",
+                        "PLACEMENT_STATUS_ARCHIVED",
+                        "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
+                    ]
+                ]
+            ) = ...,
             advertiserIds: str | _list[str] = ...,
             campaignIds: str | _list[str] = ...,
-            compatibilities: typing_extensions.Literal[
-                "DISPLAY",
-                "DISPLAY_INTERSTITIAL",
-                "APP",
-                "APP_INTERSTITIAL",
-                "IN_STREAM_VIDEO",
-                "IN_STREAM_AUDIO",
-            ]
-            | _list[
+            compatibilities: (
                 typing_extensions.Literal[
                     "DISPLAY",
                     "DISPLAY_INTERSTITIAL",
@@ -1521,7 +1529,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "IN_STREAM_VIDEO",
                     "IN_STREAM_AUDIO",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "DISPLAY",
+                        "DISPLAY_INTERSTITIAL",
+                        "APP",
+                        "APP_INTERSTITIAL",
+                        "IN_STREAM_VIDEO",
+                        "IN_STREAM_AUDIO",
+                    ]
+                ]
+            ) = ...,
             contentCategoryIds: str | _list[str] = ...,
             directorySiteIds: str | _list[str] = ...,
             groupIds: str | _list[str] = ...,
@@ -1536,15 +1554,7 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                 "PLACEMENT_AGENCY_PAID", "PLACEMENT_PUBLISHER_PAID"
             ] = ...,
             placementStrategyIds: str | _list[str] = ...,
-            pricingTypes: typing_extensions.Literal[
-                "PRICING_TYPE_CPM",
-                "PRICING_TYPE_CPC",
-                "PRICING_TYPE_CPA",
-                "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-                "PRICING_TYPE_FLAT_RATE_CLICKS",
-                "PRICING_TYPE_CPM_ACTIVEVIEW",
-            ]
-            | _list[
+            pricingTypes: (
                 typing_extensions.Literal[
                     "PRICING_TYPE_CPM",
                     "PRICING_TYPE_CPC",
@@ -1553,7 +1563,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
                     "PRICING_TYPE_FLAT_RATE_CLICKS",
                     "PRICING_TYPE_CPM_ACTIVEVIEW",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "PRICING_TYPE_CPM",
+                        "PRICING_TYPE_CPC",
+                        "PRICING_TYPE_CPA",
+                        "PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
+                        "PRICING_TYPE_FLAT_RATE_CLICKS",
+                        "PRICING_TYPE_CPM_ACTIVEVIEW",
+                    ]
+                ]
+            ) = ...,
             searchString: str = ...,
             siteIds: str | _list[str] = ...,
             sizeIds: str | _list[str] = ...,
@@ -2011,15 +2031,17 @@ class DfareportingResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accountActiveAdSummaries(self) -> AccountActiveAdSummariesResource: ...
     def accountPermissionGroups(self) -> AccountPermissionGroupsResource: ...

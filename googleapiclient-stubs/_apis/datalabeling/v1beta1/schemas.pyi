@@ -118,20 +118,42 @@ class GoogleCloudDatalabelingV1alpha1LabelOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    imageBoundingBoxDetails: GoogleCloudDatalabelingV1alpha1LabelImageBoundingBoxOperationMetadata
-    imageBoundingPolyDetails: GoogleCloudDatalabelingV1alpha1LabelImageBoundingPolyOperationMetadata
-    imageClassificationDetails: GoogleCloudDatalabelingV1alpha1LabelImageClassificationOperationMetadata
-    imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1alpha1LabelImageOrientedBoundingBoxOperationMetadata
-    imagePolylineDetails: GoogleCloudDatalabelingV1alpha1LabelImagePolylineOperationMetadata
-    imageSegmentationDetails: GoogleCloudDatalabelingV1alpha1LabelImageSegmentationOperationMetadata
+    imageBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImageBoundingBoxOperationMetadata
+    )
+    imageBoundingPolyDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImageBoundingPolyOperationMetadata
+    )
+    imageClassificationDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImageClassificationOperationMetadata
+    )
+    imageOrientedBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImageOrientedBoundingBoxOperationMetadata
+    )
+    imagePolylineDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImagePolylineOperationMetadata
+    )
+    imageSegmentationDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelImageSegmentationOperationMetadata
+    )
     partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
-    textClassificationDetails: GoogleCloudDatalabelingV1alpha1LabelTextClassificationOperationMetadata
-    textEntityExtractionDetails: GoogleCloudDatalabelingV1alpha1LabelTextEntityExtractionOperationMetadata
-    videoClassificationDetails: GoogleCloudDatalabelingV1alpha1LabelVideoClassificationOperationMetadata
+    textClassificationDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelTextClassificationOperationMetadata
+    )
+    textEntityExtractionDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelTextEntityExtractionOperationMetadata
+    )
+    videoClassificationDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelVideoClassificationOperationMetadata
+    )
     videoEventDetails: GoogleCloudDatalabelingV1alpha1LabelVideoEventOperationMetadata
-    videoObjectDetectionDetails: GoogleCloudDatalabelingV1alpha1LabelVideoObjectDetectionOperationMetadata
-    videoObjectTrackingDetails: GoogleCloudDatalabelingV1alpha1LabelVideoObjectTrackingOperationMetadata
+    videoObjectDetectionDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelVideoObjectDetectionOperationMetadata
+    )
+    videoObjectTrackingDetails: (
+        GoogleCloudDatalabelingV1alpha1LabelVideoObjectTrackingOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1alpha1LabelStats(
@@ -280,15 +302,29 @@ class GoogleCloudDatalabelingV1beta1AnnotationSpecSetConfig(
 class GoogleCloudDatalabelingV1beta1AnnotationValue(
     typing_extensions.TypedDict, total=False
 ):
-    imageBoundingPolyAnnotation: GoogleCloudDatalabelingV1beta1ImageBoundingPolyAnnotation
-    imageClassificationAnnotation: GoogleCloudDatalabelingV1beta1ImageClassificationAnnotation
+    imageBoundingPolyAnnotation: (
+        GoogleCloudDatalabelingV1beta1ImageBoundingPolyAnnotation
+    )
+    imageClassificationAnnotation: (
+        GoogleCloudDatalabelingV1beta1ImageClassificationAnnotation
+    )
     imagePolylineAnnotation: GoogleCloudDatalabelingV1beta1ImagePolylineAnnotation
-    imageSegmentationAnnotation: GoogleCloudDatalabelingV1beta1ImageSegmentationAnnotation
-    textClassificationAnnotation: GoogleCloudDatalabelingV1beta1TextClassificationAnnotation
-    textEntityExtractionAnnotation: GoogleCloudDatalabelingV1beta1TextEntityExtractionAnnotation
-    videoClassificationAnnotation: GoogleCloudDatalabelingV1beta1VideoClassificationAnnotation
+    imageSegmentationAnnotation: (
+        GoogleCloudDatalabelingV1beta1ImageSegmentationAnnotation
+    )
+    textClassificationAnnotation: (
+        GoogleCloudDatalabelingV1beta1TextClassificationAnnotation
+    )
+    textEntityExtractionAnnotation: (
+        GoogleCloudDatalabelingV1beta1TextEntityExtractionAnnotation
+    )
+    videoClassificationAnnotation: (
+        GoogleCloudDatalabelingV1beta1VideoClassificationAnnotation
+    )
     videoEventAnnotation: GoogleCloudDatalabelingV1beta1VideoEventAnnotation
-    videoObjectTrackingAnnotation: GoogleCloudDatalabelingV1beta1VideoObjectTrackingAnnotation
+    videoObjectTrackingAnnotation: (
+        GoogleCloudDatalabelingV1beta1VideoObjectTrackingAnnotation
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1Attempt(typing_extensions.TypedDict, total=False):
@@ -448,7 +484,9 @@ class GoogleCloudDatalabelingV1beta1Evaluation(
 class GoogleCloudDatalabelingV1beta1EvaluationConfig(
     typing_extensions.TypedDict, total=False
 ):
-    boundingBoxEvaluationOptions: GoogleCloudDatalabelingV1beta1BoundingBoxEvaluationOptions
+    boundingBoxEvaluationOptions: (
+        GoogleCloudDatalabelingV1beta1BoundingBoxEvaluationOptions
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1EvaluationJob(
@@ -790,20 +828,42 @@ class GoogleCloudDatalabelingV1beta1LabelOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    imageBoundingBoxDetails: GoogleCloudDatalabelingV1beta1LabelImageBoundingBoxOperationMetadata
-    imageBoundingPolyDetails: GoogleCloudDatalabelingV1beta1LabelImageBoundingPolyOperationMetadata
-    imageClassificationDetails: GoogleCloudDatalabelingV1beta1LabelImageClassificationOperationMetadata
-    imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1beta1LabelImageOrientedBoundingBoxOperationMetadata
-    imagePolylineDetails: GoogleCloudDatalabelingV1beta1LabelImagePolylineOperationMetadata
-    imageSegmentationDetails: GoogleCloudDatalabelingV1beta1LabelImageSegmentationOperationMetadata
+    imageBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImageBoundingBoxOperationMetadata
+    )
+    imageBoundingPolyDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImageBoundingPolyOperationMetadata
+    )
+    imageClassificationDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImageClassificationOperationMetadata
+    )
+    imageOrientedBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImageOrientedBoundingBoxOperationMetadata
+    )
+    imagePolylineDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImagePolylineOperationMetadata
+    )
+    imageSegmentationDetails: (
+        GoogleCloudDatalabelingV1beta1LabelImageSegmentationOperationMetadata
+    )
     partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
-    textClassificationDetails: GoogleCloudDatalabelingV1beta1LabelTextClassificationOperationMetadata
-    textEntityExtractionDetails: GoogleCloudDatalabelingV1beta1LabelTextEntityExtractionOperationMetadata
-    videoClassificationDetails: GoogleCloudDatalabelingV1beta1LabelVideoClassificationOperationMetadata
+    textClassificationDetails: (
+        GoogleCloudDatalabelingV1beta1LabelTextClassificationOperationMetadata
+    )
+    textEntityExtractionDetails: (
+        GoogleCloudDatalabelingV1beta1LabelTextEntityExtractionOperationMetadata
+    )
+    videoClassificationDetails: (
+        GoogleCloudDatalabelingV1beta1LabelVideoClassificationOperationMetadata
+    )
     videoEventDetails: GoogleCloudDatalabelingV1beta1LabelVideoEventOperationMetadata
-    videoObjectDetectionDetails: GoogleCloudDatalabelingV1beta1LabelVideoObjectDetectionOperationMetadata
-    videoObjectTrackingDetails: GoogleCloudDatalabelingV1beta1LabelVideoObjectTrackingOperationMetadata
+    videoObjectDetectionDetails: (
+        GoogleCloudDatalabelingV1beta1LabelVideoObjectDetectionOperationMetadata
+    )
+    videoObjectTrackingDetails: (
+        GoogleCloudDatalabelingV1beta1LabelVideoObjectTrackingOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1beta1LabelStats(
@@ -1314,20 +1374,42 @@ class GoogleCloudDatalabelingV1p1alpha1LabelOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    imageBoundingBoxDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageBoundingBoxOperationMetadata
-    imageBoundingPolyDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageBoundingPolyOperationMetadata
-    imageClassificationDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageClassificationOperationMetadata
-    imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageOrientedBoundingBoxOperationMetadata
-    imagePolylineDetails: GoogleCloudDatalabelingV1p1alpha1LabelImagePolylineOperationMetadata
-    imageSegmentationDetails: GoogleCloudDatalabelingV1p1alpha1LabelImageSegmentationOperationMetadata
+    imageBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImageBoundingBoxOperationMetadata
+    )
+    imageBoundingPolyDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImageBoundingPolyOperationMetadata
+    )
+    imageClassificationDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImageClassificationOperationMetadata
+    )
+    imageOrientedBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImageOrientedBoundingBoxOperationMetadata
+    )
+    imagePolylineDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImagePolylineOperationMetadata
+    )
+    imageSegmentationDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelImageSegmentationOperationMetadata
+    )
     partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
-    textClassificationDetails: GoogleCloudDatalabelingV1p1alpha1LabelTextClassificationOperationMetadata
-    textEntityExtractionDetails: GoogleCloudDatalabelingV1p1alpha1LabelTextEntityExtractionOperationMetadata
-    videoClassificationDetails: GoogleCloudDatalabelingV1p1alpha1LabelVideoClassificationOperationMetadata
+    textClassificationDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelTextClassificationOperationMetadata
+    )
+    textEntityExtractionDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelTextEntityExtractionOperationMetadata
+    )
+    videoClassificationDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelVideoClassificationOperationMetadata
+    )
     videoEventDetails: GoogleCloudDatalabelingV1p1alpha1LabelVideoEventOperationMetadata
-    videoObjectDetectionDetails: GoogleCloudDatalabelingV1p1alpha1LabelVideoObjectDetectionOperationMetadata
-    videoObjectTrackingDetails: GoogleCloudDatalabelingV1p1alpha1LabelVideoObjectTrackingOperationMetadata
+    videoObjectDetectionDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelVideoObjectDetectionOperationMetadata
+    )
+    videoObjectTrackingDetails: (
+        GoogleCloudDatalabelingV1p1alpha1LabelVideoObjectTrackingOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p1alpha1LabelStats(
@@ -1492,20 +1574,42 @@ class GoogleCloudDatalabelingV1p2alpha1LabelOperationMetadata(
     annotatedDataset: str
     createTime: str
     dataset: str
-    imageBoundingBoxDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageBoundingBoxOperationMetadata
-    imageBoundingPolyDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageBoundingPolyOperationMetadata
-    imageClassificationDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageClassificationOperationMetadata
-    imageOrientedBoundingBoxDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageOrientedBoundingBoxOperationMetadata
-    imagePolylineDetails: GoogleCloudDatalabelingV1p2alpha1LabelImagePolylineOperationMetadata
-    imageSegmentationDetails: GoogleCloudDatalabelingV1p2alpha1LabelImageSegmentationOperationMetadata
+    imageBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImageBoundingBoxOperationMetadata
+    )
+    imageBoundingPolyDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImageBoundingPolyOperationMetadata
+    )
+    imageClassificationDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImageClassificationOperationMetadata
+    )
+    imageOrientedBoundingBoxDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImageOrientedBoundingBoxOperationMetadata
+    )
+    imagePolylineDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImagePolylineOperationMetadata
+    )
+    imageSegmentationDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelImageSegmentationOperationMetadata
+    )
     partialFailures: _list[GoogleRpcStatus]
     progressPercent: int
-    textClassificationDetails: GoogleCloudDatalabelingV1p2alpha1LabelTextClassificationOperationMetadata
-    textEntityExtractionDetails: GoogleCloudDatalabelingV1p2alpha1LabelTextEntityExtractionOperationMetadata
-    videoClassificationDetails: GoogleCloudDatalabelingV1p2alpha1LabelVideoClassificationOperationMetadata
+    textClassificationDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelTextClassificationOperationMetadata
+    )
+    textEntityExtractionDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelTextEntityExtractionOperationMetadata
+    )
+    videoClassificationDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelVideoClassificationOperationMetadata
+    )
     videoEventDetails: GoogleCloudDatalabelingV1p2alpha1LabelVideoEventOperationMetadata
-    videoObjectDetectionDetails: GoogleCloudDatalabelingV1p2alpha1LabelVideoObjectDetectionOperationMetadata
-    videoObjectTrackingDetails: GoogleCloudDatalabelingV1p2alpha1LabelVideoObjectTrackingOperationMetadata
+    videoObjectDetectionDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelVideoObjectDetectionOperationMetadata
+    )
+    videoObjectTrackingDetails: (
+        GoogleCloudDatalabelingV1p2alpha1LabelVideoObjectTrackingOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudDatalabelingV1p2alpha1LabelStats(

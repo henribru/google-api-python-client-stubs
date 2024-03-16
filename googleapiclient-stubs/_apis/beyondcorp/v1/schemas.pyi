@@ -75,7 +75,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class GoogleCloudBeyondcorpAppconnectionsV1AppConnection(
     typing_extensions.TypedDict, total=False
 ):
-    applicationEndpoint: GoogleCloudBeyondcorpAppconnectionsV1AppConnectionApplicationEndpoint
+    applicationEndpoint: (
+        GoogleCloudBeyondcorpAppconnectionsV1AppConnectionApplicationEndpoint
+    )
     connectors: _list[str]
     createTime: str
     displayName: str
@@ -196,7 +198,9 @@ class GoogleCloudBeyondcorpAppconnectorsV1AppConnectorOperationMetadata(
 class GoogleCloudBeyondcorpAppconnectorsV1AppConnectorPrincipalInfo(
     typing_extensions.TypedDict, total=False
 ):
-    serviceAccount: GoogleCloudBeyondcorpAppconnectorsV1AppConnectorPrincipalInfoServiceAccount
+    serviceAccount: (
+        GoogleCloudBeyondcorpAppconnectorsV1AppConnectorPrincipalInfoServiceAccount
+    )
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpAppconnectorsV1AppConnectorPrincipalInfoServiceAccount(

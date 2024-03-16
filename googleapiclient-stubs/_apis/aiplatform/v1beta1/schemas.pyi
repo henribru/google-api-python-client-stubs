@@ -1074,7 +1074,9 @@ class GoogleCloudAiplatformV1beta1CreateIndexOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
-    nearestNeighborSearchOperationMetadata: GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata
+    nearestNeighborSearchOperationMetadata: (
+        GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CreateMetadataStoreOperationMetadata(
@@ -1301,7 +1303,9 @@ class GoogleCloudAiplatformV1beta1DeleteFeatureValuesRequest(
     typing_extensions.TypedDict, total=False
 ):
     selectEntity: GoogleCloudAiplatformV1beta1DeleteFeatureValuesRequestSelectEntity
-    selectTimeRangeAndFeature: GoogleCloudAiplatformV1beta1DeleteFeatureValuesRequestSelectTimeRangeAndFeature
+    selectTimeRangeAndFeature: (
+        GoogleCloudAiplatformV1beta1DeleteFeatureValuesRequestSelectTimeRangeAndFeature
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1DeleteFeatureValuesRequestSelectEntity(
@@ -1322,7 +1326,9 @@ class GoogleCloudAiplatformV1beta1DeleteFeatureValuesResponse(
     typing_extensions.TypedDict, total=False
 ):
     selectEntity: GoogleCloudAiplatformV1beta1DeleteFeatureValuesResponseSelectEntity
-    selectTimeRangeAndFeature: GoogleCloudAiplatformV1beta1DeleteFeatureValuesResponseSelectTimeRangeAndFeature
+    selectTimeRangeAndFeature: (
+        GoogleCloudAiplatformV1beta1DeleteFeatureValuesResponseSelectTimeRangeAndFeature
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1DeleteFeatureValuesResponseSelectEntity(
@@ -1529,7 +1535,9 @@ class GoogleCloudAiplatformV1beta1Endpoint(typing_extensions.TypedDict, total=Fa
     modelDeploymentMonitoringJob: str
     name: str
     network: str
-    predictRequestResponseLoggingConfig: GoogleCloudAiplatformV1beta1PredictRequestResponseLoggingConfig
+    predictRequestResponseLoggingConfig: (
+        GoogleCloudAiplatformV1beta1PredictRequestResponseLoggingConfig
+    )
     privateServiceConnectConfig: GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig
     trafficSplit: dict[str, typing.Any]
     updateTime: str
@@ -1724,14 +1732,18 @@ class GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadata(
         "COMBINED_EMBEDDING",
         "CONCAT_EMBEDDING",
     ]
-    featureValueDomain: GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadataFeatureValueDomain
+    featureValueDomain: (
+        GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadataFeatureValueDomain
+    )
     groupName: str
     indexFeatureMapping: _list[str]
     indicesTensorName: str
     inputBaselines: _list[typing.Any]
     inputTensorName: str
     modality: str
-    visualization: GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadataVisualization
+    visualization: (
+        GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadataVisualization
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ExplanationMetadataInputMetadataFeatureValueDomain(
@@ -1790,7 +1802,9 @@ class GoogleCloudAiplatformV1beta1ExplanationParameters(
     typing_extensions.TypedDict, total=False
 ):
     examples: GoogleCloudAiplatformV1beta1Examples
-    integratedGradientsAttribution: GoogleCloudAiplatformV1beta1IntegratedGradientsAttribution
+    integratedGradientsAttribution: (
+        GoogleCloudAiplatformV1beta1IntegratedGradientsAttribution
+    )
     outputIndices: _list[typing.Any]
     sampledShapleyAttribution: GoogleCloudAiplatformV1beta1SampledShapleyAttribution
     topK: int
@@ -2006,8 +2020,12 @@ class GoogleCloudAiplatformV1beta1FeatureOnlineStore(
 ):
     bigtable: GoogleCloudAiplatformV1beta1FeatureOnlineStoreBigtable
     createTime: str
-    dedicatedServingEndpoint: GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint
-    embeddingManagement: GoogleCloudAiplatformV1beta1FeatureOnlineStoreEmbeddingManagement
+    dedicatedServingEndpoint: (
+        GoogleCloudAiplatformV1beta1FeatureOnlineStoreDedicatedServingEndpoint
+    )
+    embeddingManagement: (
+        GoogleCloudAiplatformV1beta1FeatureOnlineStoreEmbeddingManagement
+    )
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -2182,7 +2200,9 @@ class GoogleCloudAiplatformV1beta1FeatureViewSyncSyncSummary(
 class GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig(
     typing_extensions.TypedDict, total=False
 ):
-    bruteForceConfig: GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigBruteForceConfig
+    bruteForceConfig: (
+        GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigBruteForceConfig
+    )
     crowdingColumn: str
     distanceMeasureType: typing_extensions.Literal[
         "DISTANCE_MEASURE_TYPE_UNSPECIFIED",
@@ -2224,10 +2244,18 @@ class GoogleCloudAiplatformV1beta1Featurestore(
 class GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfig(
     typing_extensions.TypedDict, total=False
 ):
-    categoricalThresholdConfig: GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigThresholdConfig
-    importFeaturesAnalysis: GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigImportFeaturesAnalysis
-    numericalThresholdConfig: GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigThresholdConfig
-    snapshotAnalysis: GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigSnapshotAnalysis
+    categoricalThresholdConfig: (
+        GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigThresholdConfig
+    )
+    importFeaturesAnalysis: (
+        GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigImportFeaturesAnalysis
+    )
+    numericalThresholdConfig: (
+        GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigThresholdConfig
+    )
+    snapshotAnalysis: (
+        GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigSnapshotAnalysis
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfigImportFeaturesAnalysis(
@@ -2288,7 +2316,9 @@ class GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest(
 class GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse(
     typing_extensions.TypedDict, total=False
 ):
-    keyValues: GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList
+    keyValues: (
+        GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList
+    )
     protoStruct: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -3205,10 +3235,14 @@ class GoogleCloudAiplatformV1beta1MigratableResource(
 ):
     automlDataset: GoogleCloudAiplatformV1beta1MigratableResourceAutomlDataset
     automlModel: GoogleCloudAiplatformV1beta1MigratableResourceAutomlModel
-    dataLabelingDataset: GoogleCloudAiplatformV1beta1MigratableResourceDataLabelingDataset
+    dataLabelingDataset: (
+        GoogleCloudAiplatformV1beta1MigratableResourceDataLabelingDataset
+    )
     lastMigrateTime: str
     lastUpdateTime: str
-    mlEngineModelVersion: GoogleCloudAiplatformV1beta1MigratableResourceMlEngineModelVersion
+    mlEngineModelVersion: (
+        GoogleCloudAiplatformV1beta1MigratableResourceMlEngineModelVersion
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1MigratableResourceAutomlDataset(
@@ -3252,8 +3286,12 @@ class GoogleCloudAiplatformV1beta1MigratableResourceMlEngineModelVersion(
 class GoogleCloudAiplatformV1beta1MigrateResourceRequest(
     typing_extensions.TypedDict, total=False
 ):
-    migrateAutomlDatasetConfig: GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateAutomlDatasetConfig
-    migrateAutomlModelConfig: GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateAutomlModelConfig
+    migrateAutomlDatasetConfig: (
+        GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateAutomlDatasetConfig
+    )
+    migrateAutomlModelConfig: (
+        GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateAutomlModelConfig
+    )
     migrateDataLabelingDatasetConfig: GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateDataLabelingDatasetConfig
     migrateMlEngineModelVersionConfig: GoogleCloudAiplatformV1beta1MigrateResourceRequestMigrateMlEngineModelVersionConfig
 
@@ -3398,7 +3436,9 @@ class GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringJob(
     modelDeploymentMonitoringObjectiveConfigs: _list[
         GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringObjectiveConfig
     ]
-    modelDeploymentMonitoringScheduleConfig: GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringScheduleConfig
+    modelDeploymentMonitoringScheduleConfig: (
+        GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringScheduleConfig
+    )
     modelMonitoringAlertConfig: GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfig
     name: str
     nextScheduleTime: str
@@ -3548,7 +3588,9 @@ class GoogleCloudAiplatformV1beta1ModelGardenSource(
 class GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfig(
     typing_extensions.TypedDict, total=False
 ):
-    emailAlertConfig: GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfigEmailAlertConfig
+    emailAlertConfig: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfigEmailAlertConfig
+    )
     enableLogging: bool
     notificationChannels: _list[str]
 
@@ -3571,9 +3613,13 @@ class GoogleCloudAiplatformV1beta1ModelMonitoringConfig(
 class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfig(
     typing_extensions.TypedDict, total=False
 ):
-    explanationConfig: GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigExplanationConfig
+    explanationConfig: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigExplanationConfig
+    )
     predictionDriftDetectionConfig: GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigPredictionDriftDetectionConfig
-    trainingDataset: GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigTrainingDataset
+    trainingDataset: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigTrainingDataset
+    )
     trainingPredictionSkewDetectionConfig: GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigTrainingPredictionSkewDetectionConfig
 
 @typing.type_check_only
@@ -3744,7 +3790,9 @@ class GoogleCloudAiplatformV1beta1NasJobOutputMultiTrialJobOutput(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1NasJobSpec(typing_extensions.TypedDict, total=False):
-    multiTrialAlgorithmSpec: GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpec
+    multiTrialAlgorithmSpec: (
+        GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpec
+    )
     resumeNasJobId: str
     searchSpaceSpec: str
 
@@ -3756,8 +3804,12 @@ class GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpec(
     multiTrialAlgorithm: typing_extensions.Literal[
         "MULTI_TRIAL_ALGORITHM_UNSPECIFIED", "REINFORCEMENT_LEARNING", "GRID_SEARCH"
     ]
-    searchTrialSpec: GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpecSearchTrialSpec
-    trainTrialSpec: GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpecTrainTrialSpec
+    searchTrialSpec: (
+        GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpecSearchTrialSpec
+    )
+    trainTrialSpec: (
+        GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpecTrainTrialSpec
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1NasJobSpecMultiTrialAlgorithmSpecMetricSpec(
@@ -4175,8 +4227,12 @@ class GoogleCloudAiplatformV1beta1PipelineTaskDetailPipelineTaskStatus(
 class GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetail(
     typing_extensions.TypedDict, total=False
 ):
-    containerDetail: GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailContainerDetail
-    customJobDetail: GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailCustomJobDetail
+    containerDetail: (
+        GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailContainerDetail
+    )
+    customJobDetail: (
+        GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailCustomJobDetail
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailContainerDetail(
@@ -4321,18 +4377,36 @@ class GoogleCloudAiplatformV1beta1PublisherModel(
 class GoogleCloudAiplatformV1beta1PublisherModelCallToAction(
     typing_extensions.TypedDict, total=False
 ):
-    createApplication: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    createApplication: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
     deploy: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy
     deployGke: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke
-    openEvaluationPipeline: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
-    openFineTuningPipeline: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
-    openFineTuningPipelines: GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenFineTuningPipelines
-    openGenerationAiStudio: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
-    openGenie: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
-    openNotebook: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    openEvaluationPipeline: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
+    openFineTuningPipeline: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
+    openFineTuningPipelines: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenFineTuningPipelines
+    )
+    openGenerationAiStudio: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
+    openGenie: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
+    openNotebook: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
     openNotebooks: GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenNotebooks
-    openPromptTuningPipeline: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
-    requestAccess: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    openPromptTuningPipeline: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
+    requestAccess: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
     viewRestApi: GoogleCloudAiplatformV1beta1PublisherModelCallToActionViewRestApi
 
 @typing.type_check_only
@@ -4905,9 +4979,15 @@ class GoogleCloudAiplatformV1beta1SchemaImageDatasetMetadata(
 class GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotation(
     typing_extensions.TypedDict, total=False
 ):
-    maskAnnotation: GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationMaskAnnotation
-    polygonAnnotation: GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationPolygonAnnotation
-    polylineAnnotation: GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationPolylineAnnotation
+    maskAnnotation: (
+        GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationMaskAnnotation
+    )
+    polygonAnnotation: (
+        GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationPolygonAnnotation
+    )
+    polylineAnnotation: (
+        GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationPolylineAnnotation
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaImageSegmentationAnnotationMaskAnnotation(
@@ -4960,7 +5040,9 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsClassificationEval
     confidenceMetrics: _list[
         GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsClassificationEvaluationMetricsConfidenceMetrics
     ]
-    confusionMatrix: GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    confusionMatrix: (
+        GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    )
     logLoss: float
 
 @typing.type_check_only
@@ -4968,7 +5050,9 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsClassificationEval
     typing_extensions.TypedDict, total=False
 ):
     confidenceThreshold: float
-    confusionMatrix: GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    confusionMatrix: (
+        GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    )
     f1Score: float
     f1ScoreAt1: float
     f1ScoreMacro: float
@@ -5054,7 +5138,9 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsImageSegmentationE
     typing_extensions.TypedDict, total=False
 ):
     confidenceThreshold: float
-    confusionMatrix: GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    confusionMatrix: (
+        GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    )
     diceScoreCoefficient: float
     iouScore: float
     precision: float
@@ -5089,7 +5175,9 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTextExtractionEval
     confidenceMetrics: _list[
         GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTextExtractionEvaluationMetricsConfidenceMetrics
     ]
-    confusionMatrix: GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    confusionMatrix: (
+        GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTextExtractionEvaluationMetricsConfidenceMetrics(
@@ -5104,7 +5192,9 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTextExtractionEval
 class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsTextSentimentEvaluationMetrics(
     typing_extensions.TypedDict, total=False
 ):
-    confusionMatrix: GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    confusionMatrix: (
+        GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsConfusionMatrix
+    )
     f1Score: float
     linearKappa: float
     meanAbsoluteError: float
@@ -5370,7 +5460,9 @@ class GoogleCloudAiplatformV1beta1SchemaPredictPredictionTimeSeriesForecastingPr
 ):
     quantilePredictions: _list[float]
     quantileValues: _list[float]
-    tftFeatureImportance: GoogleCloudAiplatformV1beta1SchemaPredictPredictionTftFeatureImportance
+    tftFeatureImportance: (
+        GoogleCloudAiplatformV1beta1SchemaPredictPredictionTftFeatureImportance
+    )
     value: float
 
 @typing.type_check_only
@@ -5473,7 +5565,9 @@ class GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadataGcsSource(
 class GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadataInputConfig(
     typing_extensions.TypedDict, total=False
 ):
-    bigquerySource: GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadataBigQuerySource
+    bigquerySource: (
+        GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadataBigQuerySource
+    )
     gcsSource: GoogleCloudAiplatformV1beta1SchemaTablesDatasetMetadataGcsSource
 
 @typing.type_check_only
@@ -5558,15 +5652,21 @@ class GoogleCloudAiplatformV1beta1SchemaTimeSeriesDatasetMetadataGcsSource(
 class GoogleCloudAiplatformV1beta1SchemaTimeSeriesDatasetMetadataInputConfig(
     typing_extensions.TypedDict, total=False
 ):
-    bigquerySource: GoogleCloudAiplatformV1beta1SchemaTimeSeriesDatasetMetadataBigQuerySource
+    bigquerySource: (
+        GoogleCloudAiplatformV1beta1SchemaTimeSeriesDatasetMetadataBigQuerySource
+    )
     gcsSource: GoogleCloudAiplatformV1beta1SchemaTimeSeriesDatasetMetadataGcsSource
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecasting(
     typing_extensions.TypedDict, total=False
 ):
-    inputs: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingInputs
-    metadata: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingMetadata
+    inputs: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingInputs
+    )
+    metadata: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingInputs(
@@ -5579,7 +5679,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlForecastingIn
     enableProbabilisticInference: bool
     exportEvaluatedDataItemsConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionExportEvaluatedDataItemsConfig
     forecastHorizon: str
-    hierarchyConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    hierarchyConfig: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    )
     holidayRegions: _list[str]
     optimizationObjective: str
     quantiles: _list[float]
@@ -5761,7 +5863,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTables(
     typing_extensions.TypedDict, total=False
 ):
     inputs: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTablesInputs
-    metadata: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTablesMetadata
+    metadata: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTablesMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTablesInputs(
@@ -5880,7 +5984,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTextExtractio
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTextSentiment(
     typing_extensions.TypedDict, total=False
 ):
-    inputs: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTextSentimentInputs
+    inputs: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTextSentimentInputs
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionAutoMlTextSentimentInputs(
@@ -6025,7 +6131,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionSeq2SeqPlusForecast
     dataGranularity: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionSeq2SeqPlusForecastingInputsGranularity
     exportEvaluatedDataItemsConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionExportEvaluatedDataItemsConfig
     forecastHorizon: str
-    hierarchyConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    hierarchyConfig: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    )
     holidayRegions: _list[str]
     optimizationObjective: str
     quantiles: _list[float]
@@ -6102,7 +6210,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecasting(
     typing_extensions.TypedDict, total=False
 ):
     inputs: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingInputs
-    metadata: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingMetadata
+    metadata: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingInputs(
@@ -6114,7 +6224,9 @@ class GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingInput
     dataGranularity: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionTftForecastingInputsGranularity
     exportEvaluatedDataItemsConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionExportEvaluatedDataItemsConfig
     forecastHorizon: str
-    hierarchyConfig: GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    hierarchyConfig: (
+        GoogleCloudAiplatformV1beta1SchemaTrainingjobDefinitionHierarchyConfig
+    )
     holidayRegions: _list[str]
     optimizationObjective: str
     quantiles: _list[float]
@@ -6436,13 +6548,19 @@ class GoogleCloudAiplatformV1beta1StudySpec(typing_extensions.TypedDict, total=F
     algorithm: typing_extensions.Literal[
         "ALGORITHM_UNSPECIFIED", "GRID_SEARCH", "RANDOM_SEARCH"
     ]
-    convexAutomatedStoppingSpec: GoogleCloudAiplatformV1beta1StudySpecConvexAutomatedStoppingSpec
+    convexAutomatedStoppingSpec: (
+        GoogleCloudAiplatformV1beta1StudySpecConvexAutomatedStoppingSpec
+    )
     convexStopConfig: GoogleCloudAiplatformV1beta1StudySpecConvexStopConfig
-    decayCurveStoppingSpec: GoogleCloudAiplatformV1beta1StudySpecDecayCurveAutomatedStoppingSpec
+    decayCurveStoppingSpec: (
+        GoogleCloudAiplatformV1beta1StudySpecDecayCurveAutomatedStoppingSpec
+    )
     measurementSelectionType: typing_extensions.Literal[
         "MEASUREMENT_SELECTION_TYPE_UNSPECIFIED", "LAST_MEASUREMENT", "BEST_MEASUREMENT"
     ]
-    medianAutomatedStoppingSpec: GoogleCloudAiplatformV1beta1StudySpecMedianAutomatedStoppingSpec
+    medianAutomatedStoppingSpec: (
+        GoogleCloudAiplatformV1beta1StudySpecMedianAutomatedStoppingSpec
+    )
     metrics: _list[GoogleCloudAiplatformV1beta1StudySpecMetricSpec]
     observationNoise: typing_extensions.Literal[
         "OBSERVATION_NOISE_UNSPECIFIED", "LOW", "HIGH"
@@ -6503,11 +6621,15 @@ class GoogleCloudAiplatformV1beta1StudySpecMetricSpecSafetyMetricConfig(
 class GoogleCloudAiplatformV1beta1StudySpecParameterSpec(
     typing_extensions.TypedDict, total=False
 ):
-    categoricalValueSpec: GoogleCloudAiplatformV1beta1StudySpecParameterSpecCategoricalValueSpec
+    categoricalValueSpec: (
+        GoogleCloudAiplatformV1beta1StudySpecParameterSpecCategoricalValueSpec
+    )
     conditionalParameterSpecs: _list[
         GoogleCloudAiplatformV1beta1StudySpecParameterSpecConditionalParameterSpec
     ]
-    discreteValueSpec: GoogleCloudAiplatformV1beta1StudySpecParameterSpecDiscreteValueSpec
+    discreteValueSpec: (
+        GoogleCloudAiplatformV1beta1StudySpecParameterSpecDiscreteValueSpec
+    )
     doubleValueSpec: GoogleCloudAiplatformV1beta1StudySpecParameterSpecDoubleValueSpec
     integerValueSpec: GoogleCloudAiplatformV1beta1StudySpecParameterSpecIntegerValueSpec
     parameterId: str
@@ -6986,7 +7108,9 @@ class GoogleCloudAiplatformV1beta1UpdateIndexOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
-    nearestNeighborSearchOperationMetadata: GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata
+    nearestNeighborSearchOperationMetadata: (
+        GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadata
+    )
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UpdateModelDeploymentMonitoringJobOperationMetadata(
@@ -9026,7 +9150,9 @@ class LearningGenaiRootRoutingDecisionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     scoreBasedRoutingMetadata: LearningGenaiRootRoutingDecisionMetadataScoreBased
-    tokenLengthBasedRoutingMetadata: LearningGenaiRootRoutingDecisionMetadataTokenLengthBased
+    tokenLengthBasedRoutingMetadata: (
+        LearningGenaiRootRoutingDecisionMetadataTokenLengthBased
+    )
 
 @typing.type_check_only
 class LearningGenaiRootRoutingDecisionMetadataScoreBased(

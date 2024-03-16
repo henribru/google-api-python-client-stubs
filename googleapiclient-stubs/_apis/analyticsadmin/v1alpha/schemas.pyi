@@ -209,7 +209,9 @@ class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalReq
 class GoogleAnalyticsAdminV1alphaApproveDisplayVideo360AdvertiserLinkProposalResponse(
     typing_extensions.TypedDict, total=False
 ):
-    displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+    displayVideo360AdvertiserLink: (
+        GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+    )
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaArchiveAudienceRequest(
@@ -275,11 +277,15 @@ class GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilter(
     typing_extensions.TypedDict, total=False
 ):
     atAnyPointInTime: bool
-    betweenFilter: GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter
+    betweenFilter: (
+        GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterBetweenFilter
+    )
     fieldName: str
     inAnyNDayPeriod: int
     inListFilter: GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterInListFilter
-    numericFilter: GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter
+    numericFilter: (
+        GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterNumericFilter
+    )
     stringFilter: GoogleAnalyticsAdminV1alphaAudienceDimensionOrMetricFilterStringFilter
 
 @typing.type_check_only
@@ -500,8 +506,12 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChange(
         "ACTION_TYPE_UNSPECIFIED", "CREATED", "UPDATED", "DELETED"
     ]
     resource: str
-    resourceAfterChange: GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
-    resourceBeforeChange: GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
+    resourceAfterChange: (
+        GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
+    )
+    resourceBeforeChange: (
+        GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource
+    )
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
@@ -520,8 +530,12 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     dataRedactionSettings: GoogleAnalyticsAdminV1alphaDataRedactionSettings
     dataRetentionSettings: GoogleAnalyticsAdminV1alphaDataRetentionSettings
     dataStream: GoogleAnalyticsAdminV1alphaDataStream
-    displayVideo360AdvertiserLink: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
-    displayVideo360AdvertiserLinkProposal: GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
+    displayVideo360AdvertiserLink: (
+        GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink
+    )
+    displayVideo360AdvertiserLinkProposal: (
+        GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal
+    )
     enhancedMeasurementSettings: GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
     eventCreateRule: GoogleAnalyticsAdminV1alphaEventCreateRule
     expandedDataSet: GoogleAnalyticsAdminV1alphaExpandedDataSet
@@ -531,7 +545,9 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     measurementProtocolSecret: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     property: GoogleAnalyticsAdminV1alphaProperty
     searchAds360Link: GoogleAnalyticsAdminV1alphaSearchAds360Link
-    skadnetworkConversionValueSchema: GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
+    skadnetworkConversionValueSchema: (
+        GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
+    )
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
@@ -614,7 +630,9 @@ class GoogleAnalyticsAdminV1alphaConversionEvent(
     ]
     createTime: str
     custom: bool
-    defaultConversionValue: GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue
+    defaultConversionValue: (
+        GoogleAnalyticsAdminV1alphaConversionEventDefaultConversionValue
+    )
     deletable: bool
     eventName: str
     name: str
@@ -880,7 +898,9 @@ class GoogleAnalyticsAdminV1alphaExpandedDataSet(
 ):
     dataCollectionStartTime: str
     description: str
-    dimensionFilterExpression: GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression
+    dimensionFilterExpression: (
+        GoogleAnalyticsAdminV1alphaExpandedDataSetFilterExpression
+    )
     dimensionNames: _list[str]
     displayName: str
     metricNames: _list[str]

@@ -721,9 +721,15 @@ class AppsPeopleOzExternalMergedpeopleapiAbout(
 class AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedData(
     typing_extensions.TypedDict, total=False
 ):
-    nameDisplayOptions: AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataNameDisplayOptions
-    photosCompareData: AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataPhotosCompareData
-    profileEditability: AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataProfileEditability
+    nameDisplayOptions: (
+        AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataNameDisplayOptions
+    )
+    photosCompareData: (
+        AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataPhotosCompareData
+    )
+    profileEditability: (
+        AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataProfileEditability
+    )
     profileNameModificationHistory: AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataProfileNameModificationHistory
 
 @typing.type_check_only
@@ -738,7 +744,9 @@ class AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataNameDisplayOptions(
 class AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataPhotosCompareData(
     typing_extensions.TypedDict, total=False
 ):
-    diffData: AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataPhotosCompareDataDiffData
+    diffData: (
+        AppsPeopleOzExternalMergedpeopleapiAboutMeExtendedDataPhotosCompareDataDiffData
+    )
     highResUrl: str
     inconsistentPhoto: bool
     lowResData: str
@@ -1163,7 +1171,9 @@ class AppsPeopleOzExternalMergedpeopleapiBestDisplayName(
 class AppsPeopleOzExternalMergedpeopleapiBirthday(
     typing_extensions.TypedDict, total=False
 ):
-    ageDisableGracePeriod: AppsPeopleOzExternalMergedpeopleapiBirthdayAgeDisableGracePeriod
+    ageDisableGracePeriod: (
+        AppsPeopleOzExternalMergedpeopleapiBirthdayAgeDisableGracePeriod
+    )
     birthdayDecoration: SocialGraphApiProtoBirthdayDecoration
     birthdayResolution: typing_extensions.Literal[
         "FULL", "MONTH_AND_APPROXIMATED_YEAR", "APPROXIMATED_YEAR"
@@ -1215,7 +1225,9 @@ class AppsPeopleOzExternalMergedpeopleapiCalendar(
 class AppsPeopleOzExternalMergedpeopleapiCallerIdExtendedData(
     typing_extensions.TypedDict, total=False
 ):
-    callerIdSource: AppsPeopleOzExternalMergedpeopleapiCallerIdExtendedDataCallerIdSource
+    callerIdSource: (
+        AppsPeopleOzExternalMergedpeopleapiCallerIdExtendedDataCallerIdSource
+    )
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiCallerIdExtendedDataCallerIdSource(
@@ -1593,7 +1605,9 @@ class AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntryScope(
 class AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntryScopeMembershipAcl(
     typing_extensions.TypedDict, total=False
 ):
-    circle: AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntryScopeMembershipAclCircleAcl
+    circle: (
+        AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntryScopeMembershipAclCircleAcl
+    )
     contactGroup: AppsPeopleOzExternalMergedpeopleapiFieldAclAclEntryScopeMembershipAclContactGroupAcl
 
 @typing.type_check_only
@@ -2222,8 +2236,12 @@ class AppsPeopleOzExternalMergedpeopleapiPersonExtendedData(
     isPlaceholder: bool
     mapsExtendedData: AppsPeopleOzExternalMergedpeopleapiMapsExtendedData
     paisaExtendedData: SocialGraphWireProtoPeopleapiExtensionPaisaExtendedData
-    peopleStackExtendedData: SocialGraphWireProtoPeopleapiExtensionPeopleStackExtendedData
-    peopleStackPersonExtendedData: SocialGraphWireProtoPeopleapiExtensionPeopleStackPersonExtendedData
+    peopleStackExtendedData: (
+        SocialGraphWireProtoPeopleapiExtensionPeopleStackExtendedData
+    )
+    peopleStackPersonExtendedData: (
+        SocialGraphWireProtoPeopleapiExtensionPeopleStackPersonExtendedData
+    )
     playGamesExtendedData: AppsPeopleOzExternalMergedpeopleapiPlayGamesExtendedData
     tlsIsPlaceholder: bool
     youtubeExtendedData: AppsPeopleOzExternalMergedpeopleapiYoutubeExtendedData
@@ -2587,7 +2605,9 @@ class AppsPeopleOzExternalMergedpeopleapiRawDeviceContactInfo(
         "PHOTO_TYPE_UNKNOWN", "NO_PHOTO", "THUMBNAIL", "FULL_SIZE_PHOTO"
     ]
     rawContactId: str
-    rawDeviceContactAnalyticalInfo: AppsPeopleOzExternalMergedpeopleapiRawDeviceContactAnalyticalInfo
+    rawDeviceContactAnalyticalInfo: (
+        AppsPeopleOzExternalMergedpeopleapiRawDeviceContactAnalyticalInfo
+    )
 
 @typing.type_check_only
 class AppsPeopleOzExternalMergedpeopleapiReadOnlyProfileInfo(
@@ -3713,13 +3733,19 @@ class AssistantApiCoreTypesGovernedRingtoneTaskMetadata(
         "ON_DEVICE",
         "FUNTIME",
     ]
-    characterAlarmMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadataCharacterAlarmMetadata
+    characterAlarmMetadata: (
+        AssistantApiCoreTypesGovernedRingtoneTaskMetadataCharacterAlarmMetadata
+    )
     characterTag: str
     entityMid: str
     funtimeMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadataFuntimeMetadata
-    genMlAlarmMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadataGenMlAlarmMetadata
+    genMlAlarmMetadata: (
+        AssistantApiCoreTypesGovernedRingtoneTaskMetadataGenMlAlarmMetadata
+    )
     gentleWakeInfo: AssistantApiCoreTypesGovernedRingtoneTaskMetadataGentleWakeInfo
-    onDeviceAlarmMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadataOnDeviceAlarmMetadata
+    onDeviceAlarmMetadata: (
+        AssistantApiCoreTypesGovernedRingtoneTaskMetadataOnDeviceAlarmMetadata
+    )
     onDeviceAlarmSound: typing_extensions.Literal[
         "DEFAULT",
         "MELLOW",
@@ -3749,7 +3775,9 @@ class AssistantApiCoreTypesGovernedRingtoneTaskMetadata(
         "ACOUSTIC_JAM",
         "EUPHORIC",
     ]
-    routineAlarmMetadata: AssistantApiCoreTypesGovernedRingtoneTaskMetadataRoutineAlarmMetadata
+    routineAlarmMetadata: (
+        AssistantApiCoreTypesGovernedRingtoneTaskMetadataRoutineAlarmMetadata
+    )
 
 @typing.type_check_only
 class AssistantApiCoreTypesGovernedRingtoneTaskMetadataCharacterAlarmMetadata(
@@ -5013,7 +5041,9 @@ class AssistantApiSettingsDeviceSettings(typing_extensions.TypedDict, total=Fals
         "HOTWORD_SENSITIVITY_LOW_2",
         "HOTWORD_SENSITIVITY_HIGH_2",
     ]
-    hotwordThresholdAdjustmentFactor: AssistantApiSettingsHotwordThresholdAdjustmentFactor
+    hotwordThresholdAdjustmentFactor: (
+        AssistantApiSettingsHotwordThresholdAdjustmentFactor
+    )
     humanFriendlyName: str
     internalVersion: AssistantApiSettingsInternalVersion
     isCloudSyncDevice: bool
@@ -5289,7 +5319,9 @@ class AssistantApiSettingsNewsFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AssistantApiSettingsNotificationProfile(typing_extensions.TypedDict, total=False):
-    alloNotificationProfile: AssistantApiSettingsNotificationProfileAlloNotificationProfile
+    alloNotificationProfile: (
+        AssistantApiSettingsNotificationProfileAlloNotificationProfile
+    )
 
 @typing.type_check_only
 class AssistantApiSettingsNotificationProfileAlloNotificationProfile(
@@ -6038,7 +6070,9 @@ class AssistantDevicesPlatformProtoInternalCapability(
     forceTransactionsAuthentication: bool
     hasCustomSearchResultsRendering: bool
     overrideProjectIdForDeviceLookup: str
-    stadiaAssistantConfig: AssistantDevicesPlatformProtoInternalCapabilityStadiaAssistantConfig
+    stadiaAssistantConfig: (
+        AssistantDevicesPlatformProtoInternalCapabilityStadiaAssistantConfig
+    )
     telephoneAttribution: bool
 
 @typing.type_check_only
@@ -6405,12 +6439,24 @@ class AssistantGroundingRankerEndpointGroundingProviderFeatures(
 class AssistantGroundingRankerGroundingProviderFeatures(
     typing_extensions.TypedDict, total=False
 ):
-    contactGroundingProviderFeatures: AssistantGroundingRankerContactGroundingProviderFeatures
-    deviceGroundingProviderFeatures: AssistantGroundingRankerDeviceGroundingProviderFeatures
-    endpointGroundingProviderFeatures: AssistantGroundingRankerEndpointGroundingProviderFeatures
-    mediaGroundingProviderFeatures: AssistantGroundingRankerMediaGroundingProviderFeatures
-    podcastGroundingProviderFeatures: AssistantGroundingRankerPodcastGroundingProviderFeatures
-    providerGroundingProviderFeatures: AssistantGroundingRankerProviderGroundingProviderFeatures
+    contactGroundingProviderFeatures: (
+        AssistantGroundingRankerContactGroundingProviderFeatures
+    )
+    deviceGroundingProviderFeatures: (
+        AssistantGroundingRankerDeviceGroundingProviderFeatures
+    )
+    endpointGroundingProviderFeatures: (
+        AssistantGroundingRankerEndpointGroundingProviderFeatures
+    )
+    mediaGroundingProviderFeatures: (
+        AssistantGroundingRankerMediaGroundingProviderFeatures
+    )
+    podcastGroundingProviderFeatures: (
+        AssistantGroundingRankerPodcastGroundingProviderFeatures
+    )
+    providerGroundingProviderFeatures: (
+        AssistantGroundingRankerProviderGroundingProviderFeatures
+    )
 
 @typing.type_check_only
 class AssistantGroundingRankerLaaFeature(typing_extensions.TypedDict, total=False):
@@ -7456,7 +7502,9 @@ class AssistantVerticalsHomeautomationProtoAgentInformation(
 class AssistantVerticalsHomeautomationProtoAttribute(
     typing_extensions.TypedDict, total=False
 ):
-    structureBasedRoutine: AssistantVerticalsHomeautomationProtoCommonStructureBasedRoutine
+    structureBasedRoutine: (
+        AssistantVerticalsHomeautomationProtoCommonStructureBasedRoutine
+    )
 
 @typing.type_check_only
 class AssistantVerticalsHomeautomationProtoAttributes(
@@ -7598,9 +7646,13 @@ class AssistantVerticalsHomeautomationProtoHomeAutomation_MetaData(
     roleInformation: AssistantVerticalsHomeautomationProtoRoleInformation
     routableViaGcm: bool
     saftDocument: NlpSaftDocument
-    smartDeviceManagementData: AssistantVerticalsHomeautomationProtoSmartDeviceManagementData
+    smartDeviceManagementData: (
+        AssistantVerticalsHomeautomationProtoSmartDeviceManagementData
+    )
     smartHomeFeatures: AssistantVerticalsHomeautomationProtoSmartHomeFeatures
-    supportedStructureFeatures: AssistantVerticalsHomeautomationProtoSupportedStructureFeatures
+    supportedStructureFeatures: (
+        AssistantVerticalsHomeautomationProtoSupportedStructureFeatures
+    )
     supportedTraitsByAgent: dict[str, typing.Any]
     supportsDirectResponse: bool
     targetDeviceSignalStrengths: dict[str, typing.Any]
@@ -8010,7 +8062,9 @@ class CloudAiPlatformTenantresourceIamPolicyBinding(
 class CloudAiPlatformTenantresourceInfraSpannerConfig(
     typing_extensions.TypedDict, total=False
 ):
-    createDatabaseOptions: CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions
+    createDatabaseOptions: (
+        CloudAiPlatformTenantresourceInfraSpannerConfigCreateDatabaseOptions
+    )
     kmsKeyReference: str
     sdlBundlePath: str
     spannerBorgServiceAccount: str
@@ -8450,7 +8504,9 @@ class CopleySourceTypeMetadata(typing_extensions.TypedDict, total=False):
     displayableName: str
     emailIdentifier: str
     eventId: EventIdMessage
-    localDiscoverySettingsMetadata: PersonalizationSettingsApiProtoLocalDiscoveryLocalDiscoverySettingsMetadata
+    localDiscoverySettingsMetadata: (
+        PersonalizationSettingsApiProtoLocalDiscoveryLocalDiscoverySettingsMetadata
+    )
     personalDataProvenance: typing_extensions.Literal[
         "PERSONAL_SOURCE_UNKNOWN",
         "PERSONAL_SOURCE_GMAIL",
@@ -16959,7 +17015,9 @@ class GoogleAssistantAccessoryV1AudioOutConfig(
 
 @typing.type_check_only
 class GoogleAssistantAccessoryV1DeviceConfig(typing_extensions.TypedDict, total=False):
-    deviceModelCapabilitiesOverride: GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride
+    deviceModelCapabilitiesOverride: (
+        GoogleAssistantEmbeddedV1DeviceModelCapabilitiesOverride
+    )
     heterodyneToken: str
     surfaceIdentity: GoogleAssistantEmbeddedV1SurfaceIdentity
 
@@ -18184,13 +18242,19 @@ class GoogleCloudContentwarehouseV1RuleSet(typing_extensions.TypedDict, total=Fa
 class GoogleCloudContentwarehouseV1RunPipelineMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    exportToCdwPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata
+    exportToCdwPipelineMetadata: (
+        GoogleCloudContentwarehouseV1RunPipelineMetadataExportToCdwPipelineMetadata
+    )
     failedFileCount: int
-    gcsIngestPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata
+    gcsIngestPipelineMetadata: (
+        GoogleCloudContentwarehouseV1RunPipelineMetadataGcsIngestPipelineMetadata
+    )
     individualDocumentStatuses: _list[
         GoogleCloudContentwarehouseV1RunPipelineMetadataIndividualDocumentStatus
     ]
-    processWithDocAiPipelineMetadata: GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata
+    processWithDocAiPipelineMetadata: (
+        GoogleCloudContentwarehouseV1RunPipelineMetadataProcessWithDocAiPipelineMetadata
+    )
     totalFileCount: int
     userInfo: GoogleCloudContentwarehouseV1UserInfo
 
@@ -18228,7 +18292,9 @@ class GoogleCloudContentwarehouseV1RunPipelineRequest(
 ):
     exportCdwPipeline: GoogleCloudContentwarehouseV1ExportToCdwPipeline
     gcsIngestPipeline: GoogleCloudContentwarehouseV1GcsIngestPipeline
-    gcsIngestWithDocAiProcessorsPipeline: GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline
+    gcsIngestWithDocAiProcessorsPipeline: (
+        GoogleCloudContentwarehouseV1GcsIngestWithDocAiProcessorsPipeline
+    )
     processWithDocAiPipeline: GoogleCloudContentwarehouseV1ProcessWithDocAiPipeline
     requestMetadata: GoogleCloudContentwarehouseV1RequestMetadata
 
@@ -21557,7 +21623,9 @@ class IndexingDocjoinerCDocBuildInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     acceleratedShoppingSignal: IndexingDocjoinerDataVersionVersionInfo
-    adsAdsaiMagicApfelApfelRegionFinderAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    adsAdsaiMagicApfelApfelRegionFinderAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     adsAdsaiMagicMagicPageTypeAnnotation: IndexingDocjoinerDataVersionVersionInfo
     adsShoppingWebpxRawShoppingAnnotation: IndexingDocjoinerDataVersionVersionInfo
     amphtmlSignedExchangeErrorDetails: IndexingDocjoinerDataVersionVersionInfo
@@ -21571,11 +21639,19 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     boilerplateVisibleBytesEstimates: IndexingDocjoinerDataVersionVersionInfo
     chromeCounts: IndexingDocjoinerDataVersionVersionInfo
     commerceDataqualityOrganicCrawledSellerData: IndexingDocjoinerDataVersionVersionInfo
-    commerceDataqualityOrganicShoppingAnnotationSignal: IndexingDocjoinerDataVersionVersionInfo
-    commerceDataqualityOrganicShoppingSiteQuality: IndexingDocjoinerDataVersionVersionInfo
+    commerceDataqualityOrganicShoppingAnnotationSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    commerceDataqualityOrganicShoppingSiteQuality: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     commonsenseQueriosityGoldmineQnaAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    commonsenseScoredCompoundReferenceAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    commonsenseStoneSoupProtoRaffiaInstructionsSeq: IndexingDocjoinerDataVersionVersionInfo
+    commonsenseScoredCompoundReferenceAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    commonsenseStoneSoupProtoRaffiaInstructionsSeq: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     contraContentReviewAnnotations: IndexingDocjoinerDataVersionVersionInfo
     contraCuratedContent: IndexingDocjoinerDataVersionVersionInfo
     countryCountryAttachment: IndexingDocjoinerDataVersionVersionInfo
@@ -21605,19 +21681,27 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     geostoreAddressProto: IndexingDocjoinerDataVersionVersionInfo
     i2eV2ImageEntitiesInfos: IndexingDocjoinerDataVersionVersionInfo
     imageContentAnnotationLabels: IndexingDocjoinerDataVersionVersionInfo
-    imageContentColorSearchColorDetectionResults: IndexingDocjoinerDataVersionVersionInfo
+    imageContentColorSearchColorDetectionResults: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     imageDataList: IndexingDocjoinerDataVersionVersionInfo
     imageExtraImageExtraTerms: IndexingDocjoinerDataVersionVersionInfo
     imageMonetizationFeaturedDocumentProperties: IndexingDocjoinerDataVersionVersionInfo
     imageMustangFaviconInfo: IndexingDocjoinerDataVersionVersionInfo
     imageMustangWebsearchImageSnippetResponse: IndexingDocjoinerDataVersionVersionInfo
     imageQualityLabelmakerDocMediaLabels: IndexingDocjoinerDataVersionVersionInfo
-    imageQualityLandingPageProtoLandingPageSalientTextSet: IndexingDocjoinerDataVersionVersionInfo
+    imageQualityLandingPageProtoLandingPageSalientTextSet: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     imageQualityLayoutDocument: IndexingDocjoinerDataVersionVersionInfo
     imageQualityRichdataProtoImageAnchor: IndexingDocjoinerDataVersionVersionInfo
     imageQualityRichdataProtoRichdata: IndexingDocjoinerDataVersionVersionInfo
-    imageQualitySalientTermsImageQuerySmearingList: IndexingDocjoinerDataVersionVersionInfo
-    imageQualitySalientTermsImageSalientTermSetMap: IndexingDocjoinerDataVersionVersionInfo
+    imageQualitySalientTermsImageQuerySmearingList: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    imageQualitySalientTermsImageSalientTermSetMap: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     imageQualitySensitiveFaceSkinToneSignals: IndexingDocjoinerDataVersionVersionInfo
     imageQualitySensitiveMediaOrPeopleEntities: IndexingDocjoinerDataVersionVersionInfo
     imageRepositoryGeolocation: IndexingDocjoinerDataVersionVersionInfo
@@ -21627,32 +21711,56 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     imageembed: IndexingDocjoinerDataVersionVersionInfo
     imageembedDomainNorm: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsAnnotationMeta: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsAppMarketAppMarketAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAppMarketAppMarketAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAnnotationsAppsCacheColonAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsAppsDocRestrictionsDocPreviewRestrictionsAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsAutomobileVinAnnotatorAutomobileVinAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsAppsDocRestrictionsDocPreviewRestrictionsAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsAutomobileVinAnnotatorAutomobileVinAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAnnotationsCanonicalUrl: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsCleanTextProto: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsCollectionsDocCollections: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsCollectionsDocCollections: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAnnotationsCommentBlockGroups: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsDatasetModelAnnotation: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsDatesDateTimes: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsDocImportance: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsDocRestrictionsInDocRestrictionsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsDocRestrictionsInDocRestrictionsAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAnnotationsEntityPage: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsFeedbackSet: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsIBertEmbeddingAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsImageRepositoryImageLicenseInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsImageRepositoryImageLicenseInfoAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAnnotationsPcuAmpError: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsPcuSignedExchangeInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsPersonPersonAnnotation: IndexingDocjoinerDataVersionVersionInfo
     indexingAnnotationsSduPageTypeAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsSocialLinksSocialLinksAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsSubscribewithgoogleSwgAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsTwitterEmbeddedTweetsAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsTypedNumberTypedNumberAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsWaPassagesQueryToPassageAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    indexingAnnotationsWaPassagesTrimmedQueryToPassageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingAnnotationsSocialLinksSocialLinksAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsSubscribewithgoogleSwgAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsTwitterEmbeddedTweetsAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsTypedNumberTypedNumberAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsWaPassagesQueryToPassageAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingAnnotationsWaPassagesTrimmedQueryToPassageAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingAppsAffiliatedInstantAppInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingAppsMergedAppInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
     indexingBadpagesBadPageParseResult: IndexingDocjoinerDataVersionVersionInfo
@@ -21676,17 +21784,25 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     indexingDeepwebStoreListAnnotation: IndexingDocjoinerDataVersionVersionInfo
     indexingDocjoinerServingTimeClusterIds: IndexingDocjoinerDataVersionVersionInfo
     indexingDocjoinerWikiInfo: IndexingDocjoinerDataVersionVersionInfo
-    indexingDocskeletonRepeatedPatternRepeatedPatternAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    indexingDocskeletonRepeatedPatternRepeatedPatternAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingDupsLocalizedLocalizedCluster: IndexingDocjoinerDataVersionVersionInfo
-    indexingFreshSchedulerFreshSchedulerDoubleInstantExtension: IndexingDocjoinerDataVersionVersionInfo
-    indexingFreshSchedulerOutlinkDiscoveryHistoricalHubsSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingFreshSchedulerFreshSchedulerDoubleInstantExtension: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingFreshSchedulerOutlinkDiscoveryHistoricalHubsSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingImagesRelatedImageSignal: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantActiveClusterScorerSignal: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantBaseReindexWhitelistData: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantClusterScorerArticle: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantClusterScorerSignal: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantHistoricalContentSignals: IndexingDocjoinerDataVersionVersionInfo
-    indexingInstantNewsHighlyCitedDocumentSignal: IndexingDocjoinerDataVersionVersionInfo
+    indexingInstantNewsHighlyCitedDocumentSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingInstantNewsImagesInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingInstantSignalSourceTagsExtension: IndexingDocjoinerDataVersionVersionInfo
     indexingLatticeLatticeAnnotations: IndexingDocjoinerDataVersionVersionInfo
@@ -21696,13 +21812,19 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     indexingMlPageStructure: IndexingDocjoinerDataVersionVersionInfo
     indexingMlSemanticArticle: IndexingDocjoinerDataVersionVersionInfo
     indexingMlShoppingUniverseAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    indexingMlVerticalVerticalClassificationResult: IndexingDocjoinerDataVersionVersionInfo
+    indexingMlVerticalVerticalClassificationResult: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingMlVerticalVerticalClassificationV2: IndexingDocjoinerDataVersionVersionInfo
     indexingMobileClientDependentInfo: IndexingDocjoinerDataVersionVersionInfo
-    indexingMobileInterstitialsProtoDesktopInterstitials: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileInterstitialsProtoDesktopInterstitials: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingMobileObelixInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingMobileSmartphoneContentAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    indexingMobileSmartphonePatternClassification: IndexingDocjoinerDataVersionVersionInfo
+    indexingMobileSmartphonePatternClassification: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingMobileSpeedPageSpeedFieldData: IndexingDocjoinerDataVersionVersionInfo
     indexingPlusonePlusOneSignal: IndexingDocjoinerDataVersionVersionInfo
     indexingPlusoneSocialScoreSignal: IndexingDocjoinerDataVersionVersionInfo
@@ -21710,14 +21832,22 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     indexingRaffiaIndexingIntermediate: IndexingDocjoinerDataVersionVersionInfo
     indexingRaffiaMediaProcessingMetadata: IndexingDocjoinerDataVersionVersionInfo
     indexingRaffiaOverlayCDocAttachment: IndexingDocjoinerDataVersionVersionInfo
-    indexingSelectionAcquisitionMetadataAttachment: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionAcquisitionMetadataAttachment: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingSelectionDoubleIndexingExtension: IndexingDocjoinerDataVersionVersionInfo
     indexingSelectionFastServingPush: IndexingDocjoinerDataVersionVersionInfo
-    indexingSelectionFreshdocsPassthroughExtension: IndexingDocjoinerDataVersionVersionInfo
-    indexingSelectionImageImageSelectionAttachment: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionFreshdocsPassthroughExtension: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    indexingSelectionImageImageSelectionAttachment: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingSelectionLanguageExtension: IndexingDocjoinerDataVersionVersionInfo
     indexingSelectionPriorScorerParameterSet: IndexingDocjoinerDataVersionVersionInfo
-    indexingSelectionProcessingPriorityExtension: IndexingDocjoinerDataVersionVersionInfo
+    indexingSelectionProcessingPriorityExtension: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingSelectionProtoBasePromotionInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingSelectionTensorFlowExtension: IndexingDocjoinerDataVersionVersionInfo
     indexingSignalAggregatorUrlPatternSignals: IndexingDocjoinerDataVersionVersionInfo
@@ -21729,25 +21859,35 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     indexingThirdpartyThirdPartyInputs: IndexingDocjoinerDataVersionVersionInfo
     indexingUgcPageParamInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingUnionKeyData: IndexingDocjoinerDataVersionVersionInfo
-    indexingUrlPatternUrlTreeUrlPatternAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    indexingUrlPatternUrlTreeUrlPatternAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     indexingVideosVideoAnchorSourceInfo: IndexingDocjoinerDataVersionVersionInfo
     indexingVideosVideoPlaylistAnchorSignal: IndexingDocjoinerDataVersionVersionInfo
     indexingWebChannelsWebChannelAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    infoextractionPinpointPinpointAnnotationSignal: IndexingDocjoinerDataVersionVersionInfo
+    infoextractionPinpointPinpointAnnotationSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     infoextractionPinpointPinpointSignal: IndexingDocjoinerDataVersionVersionInfo
     instantChromeViews: IndexingDocjoinerDataVersionVersionInfo
     instantNavboost: IndexingDocjoinerDataVersionVersionInfo
-    knowledgeGraphAcquisitionFeedsQuotesQuotesAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeGraphAcquisitionFeedsQuotesQuotesAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     knowledgeMiningFactsDocumentSignals: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsFactEvaluationSignals: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsHtmlTableSignal: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsKatsSignals: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsLocalizedFact: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsObjectAnnotationsSignal: IndexingDocjoinerDataVersionVersionInfo
-    knowledgeMiningFactsProductCompositionSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsProductCompositionSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     knowledgeMiningFactsServingData: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsShoppingSignals: IndexingDocjoinerDataVersionVersionInfo
-    knowledgeMiningFactsStructuredSnippetsSignal: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMiningFactsStructuredSnippetsSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     knowledgeMiningFactsUdrExtraFactData: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsUdrExtraFactMentionData: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningFactsUniversalFactMetadata: IndexingDocjoinerDataVersionVersionInfo
@@ -21757,7 +21897,9 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     knowledgeMiningShoppingBrowseonomyData: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMiningShoppingTwdModelVersions: IndexingDocjoinerDataVersionVersionInfo
     knowledgeMumStoryTeaserAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    knowledgeMumStorytimeStampEngagementAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    knowledgeMumStorytimeStampEngagementAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     knowledgeMumStorytimeStampQualityAnnotation: IndexingDocjoinerDataVersionVersionInfo
     knowledgeTablesTableInternalData: IndexingDocjoinerDataVersionVersionInfo
     knowledgeTablesUniversalTableAnnotations: IndexingDocjoinerDataVersionVersionInfo
@@ -21815,7 +21957,9 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     oceanMetadataClusterRecord: IndexingDocjoinerDataVersionVersionInfo
     oceanMetadataClusterVolumes: IndexingDocjoinerDataVersionVersionInfo
     oceanMetadataClusteringSeriesSeriesInfo: IndexingDocjoinerDataVersionVersionInfo
-    oceanMetadataClusteringTomeHorizontalLinkDescriptor: IndexingDocjoinerDataVersionVersionInfo
+    oceanMetadataClusteringTomeHorizontalLinkDescriptor: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     oceanMetadataContributorLinks: IndexingDocjoinerDataVersionVersionInfo
     oceanMetadataItemSpecificBibdataComponent: IndexingDocjoinerDataVersionVersionInfo
     oceanMetadataKgTopicLinks: IndexingDocjoinerDataVersionVersionInfo
@@ -21836,7 +21980,9 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     oceanRightsOptOutRequest: IndexingDocjoinerDataVersionVersionInfo
     officialPagesQuerySet: IndexingDocjoinerDataVersionVersionInfo
     perDocLangidData: IndexingDocjoinerDataVersionVersionInfo
-    personalizationGameWebeventsConsolidatedEvents: IndexingDocjoinerDataVersionVersionInfo
+    personalizationGameWebeventsConsolidatedEvents: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     personalizationGameWebeventsEvent: IndexingDocjoinerDataVersionVersionInfo
     personalizationGameWebeventsEvents: IndexingDocjoinerDataVersionVersionInfo
     photosGeoAnnotation: IndexingDocjoinerDataVersionVersionInfo
@@ -21854,20 +22000,34 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     qualityChardPredictedXlq: IndexingDocjoinerDataVersionVersionInfo
     qualityContraSelectedAttributions: IndexingDocjoinerDataVersionVersionInfo
     qualityCopiaFireflySiteInfo: IndexingDocjoinerDataVersionVersionInfo
-    qualityDiscoverUgcScatScatEmbeddingAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityDiscoverUgcScatScatEmbeddingAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityDniNewsstandPcu: IndexingDocjoinerDataVersionVersionInfo
     qualityDniPcuAuxiliaryData: IndexingDocjoinerDataVersionVersionInfo
     qualityDniPcuMetaAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityDniPcuParsedData: IndexingDocjoinerDataVersionVersionInfo
     qualityDniPcuRawData: IndexingDocjoinerDataVersionVersionInfo
     qualityExploreQueryableFeedEcsAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityExploreQueryableFeedHashtagAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityExploreQueryableFeedHashtagListAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityExploreQueryableFeedTopicFeedScoringSignals: IndexingDocjoinerDataVersionVersionInfo
-    qualityFreshnessAbacusInstantNegativeClicksInfo: IndexingDocjoinerDataVersionVersionInfo
+    qualityExploreQueryableFeedHashtagAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityExploreQueryableFeedHashtagListAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityExploreQueryableFeedTopicFeedScoringSignals: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityFreshnessAbacusInstantNegativeClicksInfo: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityFringeFringeQueryPrior: IndexingDocjoinerDataVersionVersionInfo
-    qualityGeoBrainlocGoldmineBrainlocAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityGeoLoglocGoldmineDocumentLocationAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityGeoBrainlocGoldmineBrainlocAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityGeoLoglocGoldmineDocumentLocationAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityHistoricalContentAge: IndexingDocjoinerDataVersionVersionInfo
     qualityHorizonProtoHorizonEmbeddings: IndexingDocjoinerDataVersionVersionInfo
     qualityHorizonRecordInfoAnnotation: IndexingDocjoinerDataVersionVersionInfo
@@ -21877,8 +22037,12 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     qualityNavboostCrapsCrapsData: IndexingDocjoinerDataVersionVersionInfo
     qualityNavboostCrapsCrapsPatternSignal: IndexingDocjoinerDataVersionVersionInfo
     qualityNegativeClicksNegativeClicksInfo: IndexingDocjoinerDataVersionVersionInfo
-    qualityNlqStructuredSearchAnnotationAnalysisAutomaticExtractionAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    qualityNlqStructuredSearchListingPagesListingPageAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityNlqStructuredSearchAnnotationAnalysisAutomaticExtractionAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityNlqStructuredSearchListingPagesListingPageAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityNsrDokiAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityNsrNsrData: IndexingDocjoinerDataVersionVersionInfo
     qualityNsrNsrSitechunksAnnotation: IndexingDocjoinerDataVersionVersionInfo
@@ -21886,15 +22050,23 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     qualityNsrPqData: IndexingDocjoinerDataVersionVersionInfo
     qualityNsrSiteAuthority: IndexingDocjoinerDataVersionVersionInfo
     qualityNsrUvSitechunksAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityOrbitAsteroidBeltIntermediateDocumentIntentScores: IndexingDocjoinerDataVersionVersionInfo
+    qualityOrbitAsteroidBeltIntermediateDocumentIntentScores: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityPagemasterPagemasterAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    qualityPanopticIndexingDiscoverCorpusAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityPanopticIndexingDiscoverDocumentSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualityPanopticIndexingDiscoverCorpusAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityPanopticIndexingDiscoverDocumentSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityPanopticIndexingPanopticAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityPanopticStorytimeAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityPanopticStorytimeScoringSignals: IndexingDocjoinerDataVersionVersionInfo
     qualityPanopticVoiceUgcAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    qualityPeoplesearchNamedetectorNameOccurrenceAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityPeoplesearchNamedetectorNameOccurrenceAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityPopfeedsChromeBackgroundAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityPopfeedsHubDataAnnotations: IndexingDocjoinerDataVersionVersionInfo
     qualityPopfeedsUrlPredictionAnnotations: IndexingDocjoinerDataVersionVersionInfo
@@ -21907,34 +22079,50 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     qualityQ2SiteQualityFeatures: IndexingDocjoinerDataVersionVersionInfo
     qualityRealtimeBoostRealtimeBoostEvent: IndexingDocjoinerDataVersionVersionInfo
     qualityRealtimeBoostRealtimeBoostResponse: IndexingDocjoinerDataVersionVersionInfo
-    qualityRealtimeBoostSeismographEventAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualityRealtimeBoostSeismographEventAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityRealtimeRealtimeResultInfo: IndexingDocjoinerDataVersionVersionInfo
     qualityRealtimeRtFactAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    qualityResultFilteringIndexingClusterAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    qualityRichsnippetsAppsProtosApplicationInformationAttachment: IndexingDocjoinerDataVersionVersionInfo
+    qualityResultFilteringIndexingClusterAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    qualityRichsnippetsAppsProtosApplicationInformationAttachment: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityRodinRodinSiteSignal: IndexingDocjoinerDataVersionVersionInfo
     qualitySalientCountriesSalientCountrySet: IndexingDocjoinerDataVersionVersionInfo
     qualitySalientStructuresSalientStructureSet: IndexingDocjoinerDataVersionVersionInfo
     qualitySalientStuffSalientStuffSet: IndexingDocjoinerDataVersionVersionInfo
     qualitySalientTermsQuerySmearingModel: IndexingDocjoinerDataVersionVersionInfo
     qualitySalientTermsSalientTermSet: IndexingDocjoinerDataVersionVersionInfo
-    qualitySearchoversiteAnnotatorStructuredResultsAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualitySearchoversiteAnnotatorStructuredResultsAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualitySherlockKnexAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualityShoppingProductReview: IndexingDocjoinerDataVersionVersionInfo
     qualityShoppingProductReviewPage: IndexingDocjoinerDataVersionVersionInfo
-    qualityShoppingShoppingProductReviewAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityShoppingShoppingProductReviewAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualitySimilarpagesRelatedInfoSignal: IndexingDocjoinerDataVersionVersionInfo
     qualitySitemapDocument: IndexingDocjoinerDataVersionVersionInfo
     qualitySitemapThirdPartyCarouselsItemLists: IndexingDocjoinerDataVersionVersionInfo
     qualitySixfaceSixfaceUrlData: IndexingDocjoinerDataVersionVersionInfo
-    qualitySnippetsHiddenTextHiddenSpanAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsHiddenTextHiddenSpanAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualitySnippetsListSnippetsAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    qualitySnippetsMetadescriptionDuplicateMetaSiteSignal: IndexingDocjoinerDataVersionVersionInfo
+    qualitySnippetsMetadescriptionDuplicateMetaSiteSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualitySnippetsSnippetSpansInfo: IndexingDocjoinerDataVersionVersionInfo
     qualitySosGoldmineSosAnnotation: IndexingDocjoinerDataVersionVersionInfo
     qualitySummarySummary: IndexingDocjoinerDataVersionVersionInfo
     qualityTangramInformationTypes: IndexingDocjoinerDataVersionVersionInfo
-    qualityTimebasedTimeSensitivityTimeSensitivityAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    qualityTimebasedTimeSensitivityTimeSensitivityAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     qualityTitlesAlternativeTitlesInfo: IndexingDocjoinerDataVersionVersionInfo
     qualityTitlesSitelinksTargetTitleInfo: IndexingDocjoinerDataVersionVersionInfo
     qualityTwiddlerDomainClassification: IndexingDocjoinerDataVersionVersionInfo
@@ -21949,50 +22137,96 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     rankembed: IndexingDocjoinerDataVersionVersionInfo
     relativeDateAnnotations: IndexingDocjoinerDataVersionVersionInfo
     repositoryAnnotationsAddressAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsAmenitiesAmenitiesAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsAmenitiesAmenitiesAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsCrawzallAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsDiscussionThreadDiscussionViewProto: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsDiscussionThreadDiscussionViewProto: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsLicensedResources: IndexingDocjoinerDataVersionVersionInfo
     repositoryAnnotationsListFilterAnnotations: IndexingDocjoinerDataVersionVersionInfo
     repositoryAnnotationsListSummaryAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsMicrodataMicrodataAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsMicrodataMicrodataAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsMicroformatsHproduct: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsMicroformatsMicroformatAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsPhoneTypePhoneTypeAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsMicroformatsMicroformatAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsPhoneTypePhoneTypeAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsRdfaRdfaAnnotations: IndexingDocjoinerDataVersionVersionInfo
     repositoryAnnotationsRodinArticleAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSectionHeadingAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSnippetSegmentSnippetSegmentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSectionHeadingAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsSnippetSegmentSnippetSegmentAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsSporeAuthoritySignal: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSporeDeeplinkAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSporeExtractorTopicAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSporeExtractorTripleAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSporeSporeEtlAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsSporeSporeEtlInputAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsStorehoursStoreHoursAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsSporeDeeplinkAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsSporeExtractorTopicAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsSporeExtractorTripleAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsSporeSporeEtlAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsSporeSporeEtlInputAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryAnnotationsStorehoursStoreHoursAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryAnnotationsVerseAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryAnnotationsWebanswersContextItemAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    repositoryAnnotationsWebanswersContextItemAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryProtiumEncyclojoinsEncycloJoin: IndexingDocjoinerDataVersionVersionInfo
-    repositoryProtiumGoldmineTriplificationResult: IndexingDocjoinerDataVersionVersionInfo
-    repositoryProtiumGoldmineTypeAssertionOutput: IndexingDocjoinerDataVersionVersionInfo
+    repositoryProtiumGoldmineTriplificationResult: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryProtiumGoldmineTypeAssertionOutput: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryProtiumWebkvWebKv: IndexingDocjoinerDataVersionVersionInfo
     repositoryProtiumWikiaWikiaInfo: IndexingDocjoinerDataVersionVersionInfo
     repositoryUpdaterIndexSelectionAttachment: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefEntityJoin: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefExperimentalWebrefEntitiesAttachment: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefExperimentalWebrefEntitiesAttachment: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWebrefGraphMention: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefJuggernautIndices: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefPageClassificationAnchorSignalsSet: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefPageClassificationSignalsSet: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPageClassificationAnchorSignalsSet: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryWebrefPageClassificationSignalsSet: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWebrefPiannoDocumentIntents: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefPiannoTvSeasonEpisode: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefPreprocessingReferencePageCandidateList: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefPreprocessingReferencePageCandidateList: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWebrefReconcileResponse: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefRefconJugglerReferencePageMappings: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefReferencePagesClassifierScoredPage: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefRefconJugglerReferencePageMappings: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryWebrefReferencePagesClassifierScoredPage: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWebrefSalientEntitySet: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefUndermergedEntities: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWebrefUniversalEmbeddingRetrievalDebug: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWebrefUniversalEmbeddingRetrievalDebug: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWebrefWebitIntermediaryMids: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefWebitScopeFprint: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebrefWebitScopeSignals: IndexingDocjoinerDataVersionVersionInfo
@@ -22003,17 +22237,27 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     repositoryWebtablesDataTableMidAnnotation: IndexingDocjoinerDataVersionVersionInfo
     repositoryWebtablesTranslationMessage: IndexingDocjoinerDataVersionVersionInfo
     repositoryWikipediaAliasList: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWikipediaAnnotatorWikipediaPageComponentAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    repositoryWikipediaSentenceCompressionAnnotation: IndexingDocjoinerDataVersionVersionInfo
+    repositoryWikipediaAnnotatorWikipediaPageComponentAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    repositoryWikipediaSentenceCompressionAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     repositoryWikipediaWikiJoin: IndexingDocjoinerDataVersionVersionInfo
     repositoryWikipediaWikiMapperTripleSet: IndexingDocjoinerDataVersionVersionInfo
     repositoryWikipediaWikibaseEntity: IndexingDocjoinerDataVersionVersionInfo
     repositoryWikipediaWikidataOrgTripleSet: IndexingDocjoinerDataVersionVersionInfo
     repositoryWikipediaWikitrustWikiTrustInfo: IndexingDocjoinerDataVersionVersionInfo
     researchCoauthorOpinionAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    researchStructuredDataInadvertentAnchorScoreAnnotation: IndexingDocjoinerDataVersionVersionInfo
-    researchStructuredDataKnowledgeExplorationAnnotations: IndexingDocjoinerDataVersionVersionInfo
-    researchStructuredDataNewsEmbeddingAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    researchStructuredDataInadvertentAnchorScoreAnnotation: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    researchStructuredDataKnowledgeExplorationAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
+    researchStructuredDataNewsEmbeddingAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     richsnippetsDataObject: IndexingDocjoinerDataVersionVersionInfo
     richsnippetsFeedPageMap: IndexingDocjoinerDataVersionVersionInfo
     richsnippetsPageMap: IndexingDocjoinerDataVersionVersionInfo
@@ -22023,10 +22267,14 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     safesearchPageClassifierOutput: IndexingDocjoinerDataVersionVersionInfo
     safesearchSafeSearchInternalPageSignals: IndexingDocjoinerDataVersionVersionInfo
     scienceIndexSignal: IndexingDocjoinerDataVersionVersionInfo
-    searchEngagementHighlightSharedHighlightSignal: IndexingDocjoinerDataVersionVersionInfo
+    searchEngagementHighlightSharedHighlightSignal: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     searcharSearchArPipelineSignal: IndexingDocjoinerDataVersionVersionInfo
     shoppingQualityShoppingSiteClassifier: IndexingDocjoinerDataVersionVersionInfo
-    shoppingQualityShoppingSiteClassifierShopfab: IndexingDocjoinerDataVersionVersionInfo
+    shoppingQualityShoppingSiteClassifierShopfab: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     shoppingWebentityShoppingAnnotation: IndexingDocjoinerDataVersionVersionInfo
     sitemapsSitemapsSignals: IndexingDocjoinerDataVersionVersionInfo
     smearingSmearedTerms: IndexingDocjoinerDataVersionVersionInfo
@@ -22082,7 +22330,9 @@ class IndexingDocjoinerDataVersion(typing_extensions.TypedDict, total=False):
     videoYoutubeLiveCardioCardioStats: IndexingDocjoinerDataVersionVersionInfo
     volt: IndexingDocjoinerDataVersionVersionInfo
     watchpageLanguageWatchPageLanguageResult: IndexingDocjoinerDataVersionVersionInfo
-    websitetoolsFeedsAnnotationsFeedContentAnnotations: IndexingDocjoinerDataVersionVersionInfo
+    websitetoolsFeedsAnnotationsFeedContentAnnotations: (
+        IndexingDocjoinerDataVersionVersionInfo
+    )
     websitetoolsFeedsLinkedFeedLinkedFeed: IndexingDocjoinerDataVersionVersionInfo
     websitetoolsFeedsPodcastPodcastSignals: IndexingDocjoinerDataVersionVersionInfo
     websitetoolsFeedsSporeFeedsSporeTriples: IndexingDocjoinerDataVersionVersionInfo
@@ -23156,7 +23406,9 @@ class IndexingSignalAggregatorAggregatedScore(typing_extensions.TypedDict, total
     ]
     patternsUsedInMediation: _list[str]
     percentile: _list[float]
-    runningMeanAndVarianceInternalState: IndexingSignalAggregatorRunningMeanAndVarianceInternalState
+    runningMeanAndVarianceInternalState: (
+        IndexingSignalAggregatorRunningMeanAndVarianceInternalState
+    )
     samples: _list[IndexingSignalAggregatorUrlScore]
     scores: _list[float]
     signalId: int
@@ -23456,13 +23708,17 @@ class KnowledgeAnswersIntentModifiers(typing_extensions.TypedDict, total=False):
 class KnowledgeAnswersIntentQueryAnnotationLayerSignals(
     typing_extensions.TypedDict, total=False
 ):
-    customVehicleActionArgumentAnnotatorSignals: KnowledgeAnswersIntentQueryCustomVehicleActionArgumentAnnotatorSignals
+    customVehicleActionArgumentAnnotatorSignals: (
+        KnowledgeAnswersIntentQueryCustomVehicleActionArgumentAnnotatorSignals
+    )
     freetextAnnotationSignals: KnowledgeAnswersIntentQueryFreetextAnnotationSignals
     nimbleAnnotationSignals: KnowledgeAnswersIntentQueryNimbleAnnotationSignals
     ntprAnnotationSignals: KnowledgeAnswersIntentQueryNTPRAnnotationSignals
     qrefAnnotationSignals: KnowledgeAnswersIntentQueryQrefAnnotationSignals
     semanticAnnotationSignals: KnowledgeAnswersIntentQuerySemanticAnnotationSignals
-    teleportArgumentAnnotatorSignals: KnowledgeAnswersIntentQueryTeleportArgumentAnnotatorSignals
+    teleportArgumentAnnotatorSignals: (
+        KnowledgeAnswersIntentQueryTeleportArgumentAnnotatorSignals
+    )
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgPath(typing_extensions.TypedDict, total=False):
@@ -23492,9 +23748,13 @@ class KnowledgeAnswersIntentQueryArgumentProvenance(
     anaphor: KnowledgeAnswersIntentQueryArgumentProvenanceQueryAnaphor
     attentionalEntity: KnowledgeAnswersIntentQueryArgumentProvenanceAttentionalEntity
     currentQuery: KnowledgeAnswersIntentQueryArgumentProvenanceCurrentQuery
-    injectedContextualSchema: KnowledgeAnswersIntentQueryArgumentProvenanceInjectedContextualSchema
+    injectedContextualSchema: (
+        KnowledgeAnswersIntentQueryArgumentProvenanceInjectedContextualSchema
+    )
     previousQuery: KnowledgeAnswersIntentQueryArgumentProvenancePreviousQuery
-    previousResponseMeaning: KnowledgeAnswersIntentQueryArgumentProvenancePreviousResponseMeaning
+    previousResponseMeaning: (
+        KnowledgeAnswersIntentQueryArgumentProvenancePreviousResponseMeaning
+    )
     previousTaskState: KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskState
     searchAnswerValue: KnowledgeAnswersIntentQueryArgumentProvenanceSearchAnswerValue
 
@@ -23510,7 +23770,9 @@ class KnowledgeAnswersIntentQueryArgumentProvenanceCurrentQuery(
     typing_extensions.TypedDict, total=False
 ):
     evalData: _list[NlpSemanticParsingAnnotationEvalData]
-    neuralLocationAnnotator: KnowledgeAnswersIntentQueryArgumentProvenanceNeuralLocationAnnotator
+    neuralLocationAnnotator: (
+        KnowledgeAnswersIntentQueryArgumentProvenanceNeuralLocationAnnotator
+    )
 
 @typing.type_check_only
 class KnowledgeAnswersIntentQueryArgumentProvenanceInjectedContextualSchema(
@@ -23529,7 +23791,9 @@ class KnowledgeAnswersIntentQueryArgumentProvenancePreviousQuery(
     currentQueryEvalData: _list[NlpSemanticParsingAnnotationEvalData]
     evalData: _list[NlpSemanticParsingAnnotationEvalData]
     eventId: EventIdMessage
-    neuralLocationAnnotator: KnowledgeAnswersIntentQueryArgumentProvenanceNeuralLocationAnnotator
+    neuralLocationAnnotator: (
+        KnowledgeAnswersIntentQueryArgumentProvenanceNeuralLocationAnnotator
+    )
     role: KnowledgeAnswersIntentQueryArgumentProvenancePreviousQueryRole
     source: typing_extensions.Literal[
         "UNKNOWN", "QUERY_STRING", "INTERPRETATION", "QUERY_JOIN", "PROMPT"
@@ -23555,7 +23819,9 @@ class KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskState(
     currentQueryEvalData: _list[NlpSemanticParsingAnnotationEvalData]
     dialogIntentStateId: str
     intentName: str
-    listCandidate: KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStateListCandidate
+    listCandidate: (
+        KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStateListCandidate
+    )
     previousFunctionCall: KnowledgeAnswersIntentQueryArgumentProvenancePreviousTaskStatePreviousFunctionCall
 
 @typing.type_check_only
@@ -24012,7 +24278,9 @@ class KnowledgeAnswersIntentQueryArgumentSignals(
     relatednessSignals: KnowledgeAnswersIntentQueryRelatednessSignals
     resolvedFromContext: bool
     resolvedFromPronoun: bool
-    responseMeaningSignals: KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals
+    responseMeaningSignals: (
+        KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals
+    )
     resultSupport: _list[UniversalsearchNewPackerKnowledgeResultSupport]
     saftSignals: KnowledgeAnswersIntentQuerySaftSignals
     shoppingIds: KnowledgeAnswersIntentQueryShoppingIds
@@ -24070,7 +24338,9 @@ class KnowledgeAnswersIntentQueryArgumentValue(
     shoppingMerchant: NlpSemanticParsingModelsShoppingAssistantMerchant
     shoppingOffer: NlpSemanticParsingModelsShoppingAssistantOffer
     shoppingProduct: NlpSemanticParsingModelsShoppingAssistantProduct
-    shoppingProductExpression: NlpSemanticParsingModelsShoppingAssistantProductExpression
+    shoppingProductExpression: (
+        NlpSemanticParsingModelsShoppingAssistantProductExpression
+    )
     shoppingStore: NlpSemanticParsingModelsShoppingAssistantStore
     simpleValue: KnowledgeAnswersIntentQuerySimpleValue
     timer: QualityActionsTimer
@@ -24180,7 +24450,9 @@ class KnowledgeAnswersIntentQueryFunctionCallSignals(
     prefulfillmentSignals: AssistantPrefulfillmentRankerPrefulfillmentSignals
     referentialResolution: KnowledgeAnswersDialogReferentialResolution
     refxSummaryNodeId: str
-    responseMeaningSignals: KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals
+    responseMeaningSignals: (
+        KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals
+    )
     resultSupport: _list[UniversalsearchNewPackerKnowledgeResultSupport]
     role: typing_extensions.Literal[
         "UNKNOWN_ROLE", "QUERY_INTERPRETATION", "DERIVED_INTENT"
@@ -24383,7 +24655,9 @@ class KnowledgeAnswersIntentQueryResponseMeaningSignalsAnswersHeaderSignals(
 class KnowledgeAnswersIntentQueryResponseMeaningSignalsResponseMeaningSignals(
     typing_extensions.TypedDict, total=False
 ):
-    answersHeaderSignals: KnowledgeAnswersIntentQueryResponseMeaningSignalsAnswersHeaderSignals
+    answersHeaderSignals: (
+        KnowledgeAnswersIntentQueryResponseMeaningSignalsAnswersHeaderSignals
+    )
     propertyValue: _list[FreebasePropertyValue]
     responseMeaningApplication: typing_extensions.Literal[
         "DEFAULT", "HEADER", "VOICE_ANSWERS", "DISPLAY_ANSWERS"
@@ -28996,18 +29270,30 @@ class NlpSemanticParsingModelsShoppingAssistantProductExpression(
         "UNKNOWN_NUMBER", "PLURAL", "SINGULAR", "DUAL"
     ]
     phrases: _list[NlpSemanticParsingModelsShoppingAssistantPhrase]
-    productClassification: NlpSemanticParsingModelsShoppingAssistantProductClassification
+    productClassification: (
+        NlpSemanticParsingModelsShoppingAssistantProductClassification
+    )
     shoppingListItemInfo: NlpSemanticParsingModelsShoppingAssistantShoppingListItemInfo
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantProductMediaProduct(
     typing_extensions.TypedDict, total=False
 ):
-    author: NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
-    genre: NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
-    mediaTitle: NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
-    orderInSeries: NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
-    topic: NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    author: (
+        NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    )
+    genre: (
+        NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    )
+    mediaTitle: (
+        NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    )
+    orderInSeries: (
+        NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    )
+    topic: (
+        NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue
+    )
 
 @typing.type_check_only
 class NlpSemanticParsingModelsShoppingAssistantProductMediaProductMediaAttributeValue(
@@ -34024,7 +34310,9 @@ class QualityRankembedMustangMustangRankEmbedInfo(
     typing_extensions.TypedDict, total=False
 ):
     additionalFixedPointEncodings: _list[str]
-    compressedDocumentEmbedding: QualityRankembedMustangMustangRankEmbedInfoCompressedEmbedding
+    compressedDocumentEmbedding: (
+        QualityRankembedMustangMustangRankEmbedInfoCompressedEmbedding
+    )
     fixedPointEncoding: str
     scaledFixedPoint4Encoding: str
     scaledFixedPoint8Encoding: str
@@ -34430,7 +34718,9 @@ class QualityShoppingShoppingAttachmentOffer(typing_extensions.TypedDict, total=
     ]
     nonDisplayableCurrency: str
     nonDisplayableOrganicScoreMillis: int
-    nonDisplayableStaleAvailability: ShoppingWebentityShoppingAnnotationOfferAvailabilityInfo
+    nonDisplayableStaleAvailability: (
+        ShoppingWebentityShoppingAnnotationOfferAvailabilityInfo
+    )
     offerDocid: str
     refType: typing_extensions.Literal[
         "REFERENCE_TYPE_UNKNOWN",
@@ -35089,7 +35379,9 @@ class RepositoryAnnotationsRdfaRdfaRichSnippetsApplication(
     langLocale: str
     lastUpdated: str
     liveOpDetails: QualityCalypsoAppsUniversalAuLiveOpsDetailInfo
-    localizedTrustedGenome: RepositoryAnnotationsRdfaRdfaRichSnippetsApplicationLocalizedTrustedGenome
+    localizedTrustedGenome: (
+        RepositoryAnnotationsRdfaRdfaRichSnippetsApplicationLocalizedTrustedGenome
+    )
     marketplace: str
     name: str
     numDownloads: str
@@ -36237,7 +36529,9 @@ class RepositoryWebrefMention(typing_extensions.TypedDict, total=False):
     lowConfidence: bool
     matchingText: str
     nameMetadata: RepositoryWebrefConceptNameMetadata
-    perMentionLightweightToken: RepositoryWebrefLightweightTokensPerMentionLightweightToken
+    perMentionLightweightToken: (
+        RepositoryWebrefLightweightTokensPerMentionLightweightToken
+    )
     personalizationContextOutputs: RepositoryWebrefPersonalizationContextOutputs
     priorProbability: float
     referenceScore: float
@@ -38087,7 +38381,9 @@ class SafesearchVideoClassifierOutput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SafesearchVideoContentSignals(typing_extensions.TypedDict, total=False):
-    internalMultiLabelClassification: SafesearchVideoContentSignalsMultiLabelClassificationInfo
+    internalMultiLabelClassification: (
+        SafesearchVideoContentSignalsMultiLabelClassificationInfo
+    )
     isAbuseWithHighConfidence: bool
     scores: dict[str, typing.Any]
     versionTag: typing_extensions.Literal[
@@ -39689,8 +39985,12 @@ class SocialGraphApiProtoYearlyRecurrence(typing_extensions.TypedDict, total=Fal
 class SocialGraphWireProtoPeopleapiAffinityMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    clientInteractionInfo: SocialGraphWireProtoPeopleapiAffinityMetadataClientInteractionInfo
-    cloudDeviceDataInfo: SocialGraphWireProtoPeopleapiAffinityMetadataCloudDeviceDataInfo
+    clientInteractionInfo: (
+        SocialGraphWireProtoPeopleapiAffinityMetadataClientInteractionInfo
+    )
+    cloudDeviceDataInfo: (
+        SocialGraphWireProtoPeopleapiAffinityMetadataCloudDeviceDataInfo
+    )
     cloudScore: float
     suggestionConfidence: typing_extensions.Literal[
         "CONFIDENCE_UNSPECIFIED",
@@ -43267,7 +43567,9 @@ class VideoContentSearchMultimodalTopicTrainingFeatures(
     maxFrameSimilarityInterval: VideoContentSearchFrameSimilarityInterval
     normalizedTopic: str
     qbstTermsOverlapFeatures: VideoContentSearchQbstTermsOverlapFeatures
-    rankembedNearestNeighborsFeatures: VideoContentSearchRankEmbedNearestNeighborsFeatures
+    rankembedNearestNeighborsFeatures: (
+        VideoContentSearchRankEmbedNearestNeighborsFeatures
+    )
     saftEntityInfo: VideoContentSearchSaftEntityInfo
     topicDenseVector: _list[float]
 
@@ -43710,7 +44012,9 @@ class VideoContentSearchVideoAnchorScoreInfo(typing_extensions.TypedDict, total=
     filtered: bool
     generativeFeatures: _list[VideoContentSearchGenerativePredictionFeatures]
     instructionAnchorFeatures: VideoContentSearchInstructionAnchorFeatures
-    instructionTrainingDataAnchorFeatures: VideoContentSearchInstructionTrainingDataAnchorFeatures
+    instructionTrainingDataAnchorFeatures: (
+        VideoContentSearchInstructionTrainingDataAnchorFeatures
+    )
     labelLanguage: str
     labelTransformation: _list[
         VideoContentSearchVideoAnchorScoreInfoLabelTransformation
@@ -43721,7 +44025,9 @@ class VideoContentSearchVideoAnchorScoreInfo(typing_extensions.TypedDict, total=
     multimodalTopicTrainingFeatures: VideoContentSearchMultimodalTopicTrainingFeatures
     normalizedBabelEmbedding: _list[float]
     ocrAnchorFeature: VideoContentSearchOnScreenTextFeature
-    ocrDescriptionTrainingDataAnchorFeatures: VideoContentSearchOcrDescriptionTrainingDataAnchorFeatures
+    ocrDescriptionTrainingDataAnchorFeatures: (
+        VideoContentSearchOcrDescriptionTrainingDataAnchorFeatures
+    )
     opinionsAnchorFeatures: VideoContentSearchShoppingOpinionsAnchorFeatures
     qnaAnchorFeatures: VideoContentSearchQnaAnchorFeatures
     ratingScore: VideoContentSearchVideoAnchorRatingScore
@@ -43861,10 +44167,14 @@ class VideoContentSearchVideoAnchorsScoreInfo(typing_extensions.TypedDict, total
     listAnchorSetFeatures: VideoContentSearchListAnchorSetFeatures
     listTrainingDataSetFeatures: VideoContentSearchListTrainingDataSetFeatures
     ocrAnchorClusterFeature: VideoContentSearchOnScreenTextClusterFeature
-    ocrDescriptionTrainingDataSetFeatures: VideoContentSearchOcrDescriptionTrainingDataSetFeatures
+    ocrDescriptionTrainingDataSetFeatures: (
+        VideoContentSearchOcrDescriptionTrainingDataSetFeatures
+    )
     qnaAnchorSetFeatures: VideoContentSearchQnaAnchorSetFeatures
     ratingScore: VideoContentSearchVideoAnchorSetRatingScore
-    sportsKeyMomentsAnchorSetFeatures: VideoContentSearchSportsKeyMomentsAnchorSetFeatures
+    sportsKeyMomentsAnchorSetFeatures: (
+        VideoContentSearchSportsKeyMomentsAnchorSetFeatures
+    )
 
 @typing.type_check_only
 class VideoContentSearchVideoCommonFeatures(typing_extensions.TypedDict, total=False):
@@ -49189,7 +49499,9 @@ class YoutubeCommentsApiCommentModeratedRestrictionAutoModDecisionEnforcement(
 class YoutubeCommentsApiCommentRestrictionIssuer(
     typing_extensions.TypedDict, total=False
 ):
-    channelModeratorDetails: YoutubeCommentsApiCommentRestrictionIssuerChannelModeratorDetails
+    channelModeratorDetails: (
+        YoutubeCommentsApiCommentRestrictionIssuerChannelModeratorDetails
+    )
     channelOwnerDetails: YoutubeCommentsApiCommentRestrictionIssuerChannelOwnerDetails
     issuer: typing_extensions.Literal[
         "ISSUER_UNSPECIFIED",

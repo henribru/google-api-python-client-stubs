@@ -33,7 +33,9 @@ class GoogleCloudIdentitytoolkitAdminV2AppleSignInConfig(
 class GoogleCloudIdentitytoolkitAdminV2BlockingFunctionsConfig(
     typing_extensions.TypedDict, total=False
 ):
-    forwardInboundCredentials: GoogleCloudIdentitytoolkitAdminV2ForwardInboundCredentials
+    forwardInboundCredentials: (
+        GoogleCloudIdentitytoolkitAdminV2ForwardInboundCredentials
+    )
     triggers: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -535,7 +537,9 @@ class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentRequest(
     idToken: str
     phoneVerificationInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaPhoneRequestInfo
     tenantId: str
-    totpVerificationInfo: GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo
+    totpVerificationInfo: (
+        GoogleCloudIdentitytoolkitV2FinalizeMfaTotpEnrollmentRequestInfo
+    )
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2FinalizeMfaEnrollmentResponse(

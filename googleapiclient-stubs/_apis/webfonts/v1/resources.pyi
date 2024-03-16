@@ -18,12 +18,12 @@ class WebfontsResource(googleapiclient.discovery.Resource):
         def list(
             self,
             *,
-            capability: typing_extensions.Literal[
-                "CAPABILITY_UNSPECIFIED", "WOFF2", "VF"
-            ]
-            | _list[
+            capability: (
                 typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF"]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF"]
+                ]
+            ) = ...,
             family: str | _list[str] = ...,
             sort: typing_extensions.Literal[
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"
@@ -34,15 +34,17 @@ class WebfontsResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def webfonts(self) -> WebfontsResource: ...
 

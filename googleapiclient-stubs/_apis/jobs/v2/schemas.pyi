@@ -417,8 +417,12 @@ class GoogleCloudTalentV4BatchUpdateJobsResponse(
 
 @typing.type_check_only
 class GoogleCloudTalentV4CompensationInfo(typing_extensions.TypedDict, total=False):
-    annualizedBaseCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
-    annualizedTotalCompensationRange: GoogleCloudTalentV4CompensationInfoCompensationRange
+    annualizedBaseCompensationRange: (
+        GoogleCloudTalentV4CompensationInfoCompensationRange
+    )
+    annualizedTotalCompensationRange: (
+        GoogleCloudTalentV4CompensationInfoCompensationRange
+    )
     entries: _list[GoogleCloudTalentV4CompensationInfoCompensationEntry]
 
 @typing.type_check_only

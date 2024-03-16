@@ -1739,7 +1739,9 @@ class FutureReservationStatusLastKnownGoodState(
     typing_extensions.TypedDict, total=False
 ):
     description: str
-    futureReservationSpecs: FutureReservationStatusLastKnownGoodStateFutureReservationSpecs
+    futureReservationSpecs: (
+        FutureReservationStatusLastKnownGoodStateFutureReservationSpecs
+    )
     lockTime: str
     namePrefix: str
     procurementStatus: typing_extensions.Literal[
@@ -2532,7 +2534,9 @@ class InstanceGroupManagerInstanceFlexibilityPolicy(
 ):
     instanceSelectionLists: dict[str, typing.Any]
     instanceSelections: dict[str, typing.Any]
-    provisioningModelMix: InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix
+    provisioningModelMix: (
+        InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix
+    )
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
@@ -2554,7 +2558,9 @@ class InstanceGroupManagerInstanceLifecyclePolicy(
 ):
     defaultActionOnFailure: typing_extensions.Literal["DELETE", "DO_NOTHING", "REPAIR"]
     forceUpdateOnRepair: typing_extensions.Literal["NO", "YES"]
-    metadataBasedReadinessSignal: InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal
+    metadataBasedReadinessSignal: (
+        InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal
+    )
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceLifecyclePolicyMetadataBasedReadinessSignal(
@@ -4581,7 +4587,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     selfLinkWithId: str
-    setCommonInstanceMetadataOperationMetadata: SetCommonInstanceMetadataOperationMetadata
+    setCommonInstanceMetadataOperationMetadata: (
+        SetCommonInstanceMetadataOperationMetadata
+    )
     startTime: str
     status: typing_extensions.Literal["DONE", "PENDING", "RUNNING"]
     statusMessage: str
@@ -6440,7 +6448,9 @@ class SecurityPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfig(typing_extensions.TypedDict, total=False):
     autoDeployConfig: SecurityPolicyAdaptiveProtectionConfigAutoDeployConfig
-    layer7DdosDefenseConfig: SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+    layer7DdosDefenseConfig: (
+        SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+    )
 
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfigAutoDeployConfig(

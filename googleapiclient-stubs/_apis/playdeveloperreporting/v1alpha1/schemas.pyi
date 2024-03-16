@@ -149,7 +149,9 @@ class GooglePlayDeveloperReportingV1alpha1MetricValue(
     typing_extensions.TypedDict, total=False
 ):
     decimalValue: GoogleTypeDecimal
-    decimalValueConfidenceInterval: GooglePlayDeveloperReportingV1alpha1DecimalConfidenceInterval
+    decimalValueConfidenceInterval: (
+        GooglePlayDeveloperReportingV1alpha1DecimalConfidenceInterval
+    )
     metric: str
 
 @typing.type_check_only

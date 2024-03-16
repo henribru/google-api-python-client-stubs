@@ -220,7 +220,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     progress: int
     region: str
     selfLink: str
-    setCommonInstanceMetadataOperationMetadata: SetCommonInstanceMetadataOperationMetadata
+    setCommonInstanceMetadataOperationMetadata: (
+        SetCommonInstanceMetadataOperationMetadata
+    )
     startTime: str
     status: typing_extensions.Literal["PENDING", "RUNNING", "DONE"]
     statusMessage: str

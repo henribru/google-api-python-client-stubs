@@ -405,8 +405,12 @@ class GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomy(
     typing_extensions.TypedDict, total=False
 ):
     globalMetadata: GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyGlobal
-    multiRegionalMetadata: GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyMultiRegional
-    regionalMetadata: GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegional
+    multiRegionalMetadata: (
+        GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyMultiRegional
+    )
+    regionalMetadata: (
+        GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegional
+    )
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "TYPE_GLOBAL", "TYPE_REGIONAL", "TYPE_MULTI_REGIONAL"
     ]
@@ -473,7 +477,9 @@ class GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomy(
     typing_extensions.TypedDict, total=False
 ):
     globalMetadata: GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyGlobal
-    multiRegionalMetadata: GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyMultiRegional
+    multiRegionalMetadata: (
+        GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyMultiRegional
+    )
     regionalMetadata: GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegional
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "TYPE_GLOBAL", "TYPE_REGIONAL", "TYPE_MULTI_REGIONAL"

@@ -572,18 +572,24 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
     gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     repoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     storageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
-    storageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    storageSourceManifest: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    )
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1SourceProvenance(
     typing_extensions.TypedDict, total=False
 ):
     fileHashes: dict[str, typing.Any]
-    resolvedConnectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    resolvedConnectedRepository: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    )
     resolvedGitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     resolvedRepoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     resolvedStorageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource
-    resolvedStorageSourceManifest: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    resolvedStorageSourceManifest: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSourceManifest
+    )
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource(
@@ -935,7 +941,9 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSour
 class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation(
     typing_extensions.TypedDict, total=False
 ):
-    configSource: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource
+    configSource: (
+        GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaConfigSource
+    )
     environment: dict[str, typing.Any]
     parameters: dict[str, typing.Any]
 
@@ -953,7 +961,9 @@ class GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMetadata(
     buildFinishedOn: str
     buildInvocationId: str
     buildStartedOn: str
-    completeness: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness
+    completeness: (
+        GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaCompleteness
+    )
     reproducible: bool
 
 @typing.type_check_only
@@ -1526,7 +1536,9 @@ class SlsaProvenanceZeroTwo(typing_extensions.TypedDict, total=False):
     buildConfig: dict[str, typing.Any]
     buildType: str
     builder: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaBuilder
-    invocation: GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation
+    invocation: (
+        GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaInvocation
+    )
     materials: _list[
         GoogleDevtoolsContaineranalysisV1alpha1SlsaProvenanceZeroTwoSlsaMaterial
     ]

@@ -718,25 +718,31 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                 "RETURN_CREATION_TIME_DESC", "RETURN_CREATION_TIME_ASC"
             ] = ...,
             pageToken: str = ...,
-            shipmentStates: typing_extensions.Literal[
-                "NEW", "SHIPPED", "COMPLETED", "UNDELIVERABLE", "PENDING"
-            ]
-            | _list[
+            shipmentStates: (
                 typing_extensions.Literal[
                     "NEW", "SHIPPED", "COMPLETED", "UNDELIVERABLE", "PENDING"
                 ]
-            ] = ...,
-            shipmentStatus: typing_extensions.Literal["NEW", "IN_PROGRESS", "PROCESSED"]
-            | _list[typing_extensions.Literal["NEW", "IN_PROGRESS", "PROCESSED"]] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "NEW", "SHIPPED", "COMPLETED", "UNDELIVERABLE", "PENDING"
+                    ]
+                ]
+            ) = ...,
+            shipmentStatus: (
+                typing_extensions.Literal["NEW", "IN_PROGRESS", "PROCESSED"]
+                | _list[typing_extensions.Literal["NEW", "IN_PROGRESS", "PROCESSED"]]
+            ) = ...,
             shipmentTrackingNumbers: str | _list[str] = ...,
-            shipmentTypes: typing_extensions.Literal[
-                "BY_MAIL", "RETURNLESS", "CONTACT_CUSTOMER_SUPPORT"
-            ]
-            | _list[
+            shipmentTypes: (
                 typing_extensions.Literal[
                     "BY_MAIL", "RETURNLESS", "CONTACT_CUSTOMER_SUPPORT"
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "BY_MAIL", "RETURNLESS", "CONTACT_CUSTOMER_SUPPORT"
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> OrderreturnsListResponseHttpRequest: ...
         def list_next(
@@ -853,20 +859,7 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             placedDateEnd: str = ...,
             placedDateStart: str = ...,
-            statuses: typing_extensions.Literal[
-                "ACTIVE",
-                "COMPLETED",
-                "CANCELED",
-                "IN_PROGRESS",
-                "PENDING_SHIPMENT",
-                "PARTIALLY_SHIPPED",
-                "SHIPPED",
-                "PARTIALLY_DELIVERED",
-                "DELIVERED",
-                "PARTIALLY_RETURNED",
-                "RETURNED",
-            ]
-            | _list[
+            statuses: (
                 typing_extensions.Literal[
                     "ACTIVE",
                     "COMPLETED",
@@ -880,7 +873,22 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
                     "PARTIALLY_RETURNED",
                     "RETURNED",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "ACTIVE",
+                        "COMPLETED",
+                        "CANCELED",
+                        "IN_PROGRESS",
+                        "PENDING_SHIPMENT",
+                        "PARTIALLY_SHIPPED",
+                        "SHIPPED",
+                        "PARTIALLY_DELIVERED",
+                        "DELIVERED",
+                        "PARTIALLY_RETURNED",
+                        "RETURNED",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> OrdersListResponseHttpRequest: ...
         def list_next(
@@ -1419,15 +1427,17 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
     def accountstatuses(self) -> AccountstatusesResource: ...

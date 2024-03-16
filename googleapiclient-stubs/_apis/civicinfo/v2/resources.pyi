@@ -42,18 +42,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
             *,
             address: str = ...,
             includeOffices: bool = ...,
-            levels: typing_extensions.Literal[
-                "international",
-                "country",
-                "administrativeArea1",
-                "regional",
-                "administrativeArea2",
-                "locality",
-                "subLocality1",
-                "subLocality2",
-                "special",
-            ]
-            | _list[
+            levels: (
                 typing_extensions.Literal[
                     "international",
                     "country",
@@ -65,22 +54,21 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "subLocality2",
                     "special",
                 ]
-            ] = ...,
-            roles: typing_extensions.Literal[
-                "headOfState",
-                "headOfGovernment",
-                "deputyHeadOfGovernment",
-                "governmentOfficer",
-                "executiveCouncil",
-                "legislatorUpperBody",
-                "legislatorLowerBody",
-                "highestCourtJudge",
-                "judge",
-                "schoolBoard",
-                "specialPurposeOfficer",
-                "otherRole",
-            ]
-            | _list[
+                | _list[
+                    typing_extensions.Literal[
+                        "international",
+                        "country",
+                        "administrativeArea1",
+                        "regional",
+                        "administrativeArea2",
+                        "locality",
+                        "subLocality1",
+                        "subLocality2",
+                        "special",
+                    ]
+                ]
+            ) = ...,
+            roles: (
                 typing_extensions.Literal[
                     "headOfState",
                     "headOfGovernment",
@@ -95,25 +83,30 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "specialPurposeOfficer",
                     "otherRole",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "headOfState",
+                        "headOfGovernment",
+                        "deputyHeadOfGovernment",
+                        "governmentOfficer",
+                        "executiveCouncil",
+                        "legislatorUpperBody",
+                        "legislatorLowerBody",
+                        "highestCourtJudge",
+                        "judge",
+                        "schoolBoard",
+                        "specialPurposeOfficer",
+                        "otherRole",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> RepresentativeInfoResponseHttpRequest: ...
         def representativeInfoByDivision(
             self,
             *,
             ocdId: str,
-            levels: typing_extensions.Literal[
-                "international",
-                "country",
-                "administrativeArea1",
-                "regional",
-                "administrativeArea2",
-                "locality",
-                "subLocality1",
-                "subLocality2",
-                "special",
-            ]
-            | _list[
+            levels: (
                 typing_extensions.Literal[
                     "international",
                     "country",
@@ -125,23 +118,22 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "subLocality2",
                     "special",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "international",
+                        "country",
+                        "administrativeArea1",
+                        "regional",
+                        "administrativeArea2",
+                        "locality",
+                        "subLocality1",
+                        "subLocality2",
+                        "special",
+                    ]
+                ]
+            ) = ...,
             recursive: bool = ...,
-            roles: typing_extensions.Literal[
-                "headOfState",
-                "headOfGovernment",
-                "deputyHeadOfGovernment",
-                "governmentOfficer",
-                "executiveCouncil",
-                "legislatorUpperBody",
-                "legislatorLowerBody",
-                "highestCourtJudge",
-                "judge",
-                "schoolBoard",
-                "specialPurposeOfficer",
-                "otherRole",
-            ]
-            | _list[
+            roles: (
                 typing_extensions.Literal[
                     "headOfState",
                     "headOfGovernment",
@@ -156,21 +148,39 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
                     "specialPurposeOfficer",
                     "otherRole",
                 ]
-            ] = ...,
+                | _list[
+                    typing_extensions.Literal[
+                        "headOfState",
+                        "headOfGovernment",
+                        "deputyHeadOfGovernment",
+                        "governmentOfficer",
+                        "executiveCouncil",
+                        "legislatorUpperBody",
+                        "legislatorLowerBody",
+                        "highestCourtJudge",
+                        "judge",
+                        "schoolBoard",
+                        "specialPurposeOfficer",
+                        "otherRole",
+                    ]
+                ]
+            ) = ...,
             **kwargs: typing.Any,
         ) -> RepresentativeInfoDataHttpRequest: ...
 
     def new_batch_http_request(
         self,
-        callback: collections.abc.Callable[
-            [
-                str,
-                googleapiclient.http.HttpRequest,
-                googleapiclient.errors.HttpError | None,
-            ],
-            typing.Any,
-        ]
-        | None = None,
+        callback: (
+            collections.abc.Callable[
+                [
+                    str,
+                    googleapiclient.http.HttpRequest,
+                    googleapiclient.errors.HttpError | None,
+                ],
+                typing.Any,
+            ]
+            | None
+        ) = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def divisions(self) -> DivisionsResource: ...
     def elections(self) -> ElectionsResource: ...

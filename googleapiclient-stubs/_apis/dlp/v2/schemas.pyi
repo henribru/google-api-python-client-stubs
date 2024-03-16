@@ -9,7 +9,9 @@ class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
     deidentify: GooglePrivacyDlpV2Deidentify
     jobNotificationEmails: GooglePrivacyDlpV2JobNotificationEmails
     pubSub: GooglePrivacyDlpV2PublishToPubSub
-    publishFindingsToCloudDataCatalog: GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog
+    publishFindingsToCloudDataCatalog: (
+        GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog
+    )
     publishSummaryToCscc: GooglePrivacyDlpV2PublishSummaryToCscc
     publishToStackdriver: GooglePrivacyDlpV2PublishToStackdriver
     saveFindings: GooglePrivacyDlpV2SaveFindings
@@ -562,7 +564,9 @@ class GooglePrivacyDlpV2Deidentify(typing_extensions.TypedDict, total=False):
         ]
     ]
     transformationConfig: GooglePrivacyDlpV2TransformationConfig
-    transformationDetailsStorageConfig: GooglePrivacyDlpV2TransformationDetailsStorageConfig
+    transformationDetailsStorageConfig: (
+        GooglePrivacyDlpV2TransformationDetailsStorageConfig
+    )
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DeidentifyConfig(typing_extensions.TypedDict, total=False):

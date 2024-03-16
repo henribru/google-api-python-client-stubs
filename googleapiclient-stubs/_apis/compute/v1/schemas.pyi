@@ -3747,7 +3747,9 @@ class Operation(typing_extensions.TypedDict, total=False):
     progress: int
     region: str
     selfLink: str
-    setCommonInstanceMetadataOperationMetadata: SetCommonInstanceMetadataOperationMetadata
+    setCommonInstanceMetadataOperationMetadata: (
+        SetCommonInstanceMetadataOperationMetadata
+    )
     startTime: str
     status: typing_extensions.Literal["DONE", "PENDING", "RUNNING"]
     statusMessage: str
@@ -5170,7 +5172,9 @@ class SecurityPolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfig(typing_extensions.TypedDict, total=False):
-    layer7DdosDefenseConfig: SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+    layer7DdosDefenseConfig: (
+        SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig
+    )
 
 @typing.type_check_only
 class SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig(

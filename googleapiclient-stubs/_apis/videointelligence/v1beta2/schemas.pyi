@@ -675,14 +675,20 @@ class GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults(
 class GoogleCloudVideointelligenceV1beta2_VideoContext(
     typing_extensions.TypedDict, total=False
 ):
-    explicitContentDetectionConfig: GoogleCloudVideointelligenceV1beta2_ExplicitContentDetectionConfig
+    explicitContentDetectionConfig: (
+        GoogleCloudVideointelligenceV1beta2_ExplicitContentDetectionConfig
+    )
     faceDetectionConfig: GoogleCloudVideointelligenceV1beta2_FaceDetectionConfig
     labelDetectionConfig: GoogleCloudVideointelligenceV1beta2_LabelDetectionConfig
     objectTrackingConfig: GoogleCloudVideointelligenceV1beta2_ObjectTrackingConfig
     personDetectionConfig: GoogleCloudVideointelligenceV1beta2_PersonDetectionConfig
     segments: _list[GoogleCloudVideointelligenceV1beta2_VideoSegment]
-    shotChangeDetectionConfig: GoogleCloudVideointelligenceV1beta2_ShotChangeDetectionConfig
-    speechTranscriptionConfig: GoogleCloudVideointelligenceV1beta2_SpeechTranscriptionConfig
+    shotChangeDetectionConfig: (
+        GoogleCloudVideointelligenceV1beta2_ShotChangeDetectionConfig
+    )
+    speechTranscriptionConfig: (
+        GoogleCloudVideointelligenceV1beta2_SpeechTranscriptionConfig
+    )
     textDetectionConfig: GoogleCloudVideointelligenceV1beta2_TextDetectionConfig
 
 @typing.type_check_only
@@ -1535,7 +1541,9 @@ class GoogleCloudVideointelligenceV1p3beta1_SpeechTranscription(
 class GoogleCloudVideointelligenceV1p3beta1_StreamingAnnotateVideoResponse(
     typing_extensions.TypedDict, total=False
 ):
-    annotationResults: GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults
+    annotationResults: (
+        GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults
+    )
     annotationResultsUri: str
     error: GoogleRpc_Status
 
@@ -1619,7 +1627,9 @@ class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress(
 class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationResults(
     typing_extensions.TypedDict, total=False
 ):
-    celebrityRecognitionAnnotations: GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation
+    celebrityRecognitionAnnotations: (
+        GoogleCloudVideointelligenceV1p3beta1_CelebrityRecognitionAnnotation
+    )
     error: GoogleRpc_Status
     explicitAnnotation: GoogleCloudVideointelligenceV1p3beta1_ExplicitContentAnnotation
     faceAnnotations: _list[GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation]

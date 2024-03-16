@@ -93,8 +93,12 @@ class GoogleCloudMlV1_StudyConfig_ParameterSpec(
     doubleValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec
     integerValueSpec: GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec
     parameter: str
-    parentCategoricalValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec
-    parentDiscreteValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec
+    parentCategoricalValues: (
+        GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec
+    )
+    parentDiscreteValues: (
+        GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec
+    )
     parentIntValues: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec
     scaleType: typing_extensions.Literal[
         "SCALE_TYPE_UNSPECIFIED",
@@ -147,8 +151,12 @@ class GoogleCloudMlV1__AutoScaling(typing_extensions.TypedDict, total=False):
 class GoogleCloudMlV1__AutomatedStoppingConfig(
     typing_extensions.TypedDict, total=False
 ):
-    decayCurveStoppingConfig: GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig
-    medianAutomatedStoppingConfig: GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig
+    decayCurveStoppingConfig: (
+        GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig
+    )
+    medianAutomatedStoppingConfig: (
+        GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig
+    )
 
 @typing.type_check_only
 class GoogleCloudMlV1__BuiltInAlgorithmOutput(typing_extensions.TypedDict, total=False):
