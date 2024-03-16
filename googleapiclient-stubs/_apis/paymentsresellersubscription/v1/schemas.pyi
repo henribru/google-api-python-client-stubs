@@ -369,6 +369,12 @@ class GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload(
 ):
     accessEndTime: str
     partnerEligibilityIds: _list[str]
+    partnerPlanType: typing_extensions.Literal[
+        "PARTNER_PLAN_TYPE_UNSPECIFIED",
+        "PARTNER_PLAN_TYPE_STANDALONE",
+        "PARTNER_PLAN_TYPE_HARD_BUNDLE",
+        "PARTNER_PLAN_TYPE_SOFT_BUNDLE",
+    ]
 
 @typing.type_check_only
 class GoogleTypeLocalizedText(typing_extensions.TypedDict, total=False):

@@ -150,6 +150,13 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class GenericclassResource(googleapiclient.discovery.Resource):
+        def addmessage(
+            self,
+            *,
+            resourceId: str,
+            body: AddMessageRequest = ...,
+            **kwargs: typing.Any
+        ) -> GenericClassAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GenericClassHttpRequest: ...
@@ -173,6 +180,13 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class GenericobjectResource(googleapiclient.discovery.Resource):
+        def addmessage(
+            self,
+            *,
+            resourceId: str,
+            body: AddMessageRequest = ...,
+            **kwargs: typing.Any
+        ) -> GenericObjectAddMessageResponseHttpRequest: ...
         def get(
             self, *, resourceId: str, **kwargs: typing.Any
         ) -> GenericObjectHttpRequest: ...
@@ -494,26 +508,6 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self, *, resourceId: str, body: TransitObject = ..., **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
 
-    @typing.type_check_only
-    class WalletobjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class V1Resource(googleapiclient.discovery.Resource):
-            @typing.type_check_only
-            class PrivateContentResource(googleapiclient.discovery.Resource):
-                def setPassUpdateNotice(
-                    self,
-                    *,
-                    body: SetPassUpdateNoticeRequest = ...,
-                    **kwargs: typing.Any
-                ) -> SetPassUpdateNoticeResponseHttpRequest: ...
-                def uploadPrivateData(
-                    self, *, body: UploadPrivateDataRequest = ..., **kwargs: typing.Any
-                ) -> UploadPrivateDataResponseHttpRequest: ...
-
-            def privateContent(self) -> PrivateContentResource: ...
-
-        def v1(self) -> V1Resource: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -545,7 +539,6 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
     def smarttap(self) -> SmarttapResource: ...
     def transitclass(self) -> TransitclassResource: ...
     def transitobject(self) -> TransitobjectResource: ...
-    def walletobjects(self) -> WalletobjectsResource: ...
 
 @typing.type_check_only
 class EventTicketClassHttpRequest(googleapiclient.http.HttpRequest):
@@ -652,6 +645,14 @@ class GenericClassHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GenericClass: ...
 
 @typing.type_check_only
+class GenericClassAddMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenericClassAddMessageResponse: ...
+
+@typing.type_check_only
 class GenericClassListResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -666,6 +667,14 @@ class GenericObjectHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GenericObject: ...
+
+@typing.type_check_only
+class GenericObjectAddMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenericObjectAddMessageResponse: ...
 
 @typing.type_check_only
 class GenericObjectListResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -860,14 +869,6 @@ class PermissionsHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Permissions: ...
 
 @typing.type_check_only
-class SetPassUpdateNoticeResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SetPassUpdateNoticeResponse: ...
-
-@typing.type_check_only
 class SmartTapHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -932,14 +933,6 @@ class TransitObjectUploadRotatingBarcodeValuesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TransitObjectUploadRotatingBarcodeValuesResponse: ...
-
-@typing.type_check_only
-class UploadPrivateDataResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> UploadPrivateDataResponse: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

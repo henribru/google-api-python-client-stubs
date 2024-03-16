@@ -606,6 +606,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
             body: GoogleCloudRetailV2alphaEnrollSolutionRequest = ...,
             **kwargs: typing.Any
         ) -> GoogleLongrunningOperationHttpRequest: ...
+        def getAlertConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaAlertConfigHttpRequest: ...
         def getLoggingConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudRetailV2alphaLoggingConfigHttpRequest: ...
@@ -615,6 +618,14 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
         def listEnrolledSolutions(
             self, *, parent: str, **kwargs: typing.Any
         ) -> GoogleCloudRetailV2alphaListEnrolledSolutionsResponseHttpRequest: ...
+        def updateAlertConfig(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudRetailV2alphaAlertConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2alphaAlertConfigHttpRequest: ...
         def updateLoggingConfig(
             self,
             *,
@@ -648,6 +659,14 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaAlertConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2alphaAlertConfig: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaAttributesConfigHttpRequest(

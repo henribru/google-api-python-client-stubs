@@ -546,7 +546,10 @@ class CarriersCarrier(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckoutSettings(typing_extensions.TypedDict, total=False):
     effectiveEnrollmentState: typing_extensions.Literal[
-        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED"
+        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+        "INACTIVE",
+        "ENROLLED",
+        "OPT_OUT",
     ]
     effectiveReviewState: typing_extensions.Literal[
         "CHECKOUT_ON_MERCHANT_REVIEW_STATE_UNSPECIFIED",
@@ -556,7 +559,10 @@ class CheckoutSettings(typing_extensions.TypedDict, total=False):
     ]
     effectiveUriSettings: UrlSettings
     enrollmentState: typing_extensions.Literal[
-        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED"
+        "CHECKOUT_ON_MERCHANT_ENROLLMENT_STATE_UNSPECIFIED",
+        "INACTIVE",
+        "ENROLLED",
+        "OPT_OUT",
     ]
     merchantId: str
     reviewState: typing_extensions.Literal[
@@ -2467,6 +2473,10 @@ class ProductView(typing_extensions.TypedDict, total=False):
     categoryL4: str
     categoryL5: str
     channel: typing_extensions.Literal["CHANNEL_UNSPECIFIED", "LOCAL", "ONLINE"]
+    clickPotential: typing_extensions.Literal[
+        "CLICK_POTENTIAL_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
+    ]
+    clickPotentialRank: str
     condition: str
     creationTime: str
     currencyCode: str
@@ -2831,6 +2841,7 @@ class ReportRow(typing_extensions.TypedDict, total=False):
     productCluster: ProductCluster
     productView: ProductView
     segments: Segments
+    topicTrends: TopicTrends
 
 @typing.type_check_only
 class RequestPhoneVerificationRequest(typing_extensions.TypedDict, total=False):
@@ -3385,6 +3396,18 @@ class TimePeriod(typing_extensions.TypedDict, total=False):
 class TimeZone(typing_extensions.TypedDict, total=False):
     id: str
     version: str
+
+@typing.type_check_only
+class TopicTrends(typing_extensions.TypedDict, total=False):
+    customerCountryCode: str
+    date: Date
+    last120DaysSearchInterest: float
+    last30DaysSearchInterest: float
+    last7DaysSearchInterest: float
+    last90DaysSearchInterest: float
+    next7DaysSearchInterest: float
+    searchInterest: float
+    topic: str
 
 @typing.type_check_only
 class TransitTable(typing_extensions.TypedDict, total=False):

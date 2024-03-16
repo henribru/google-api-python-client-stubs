@@ -837,6 +837,7 @@ class VmwareCluster(typing_extensions.TypedDict, total=False):
     antiAffinityGroups: VmwareAAGConfig
     authorization: Authorization
     autoRepairConfig: VmwareAutoRepairConfig
+    binaryAuthorization: BinaryAuthorization
     controlPlaneNode: VmwareControlPlaneNodeConfig
     createTime: str
     dataplaneV2: VmwareDataplaneV2Config
@@ -896,6 +897,7 @@ class VmwareControlPlaneVsphereConfig(typing_extensions.TypedDict, total=False):
 class VmwareDataplaneV2Config(typing_extensions.TypedDict, total=False):
     advancedNetworking: bool
     dataplaneV2Enabled: bool
+    forwardMode: str
     windowsDataplaneV2Enabled: bool
 
 @typing.type_check_only

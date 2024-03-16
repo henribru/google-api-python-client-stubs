@@ -632,6 +632,52 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityGateways: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    egressIpAddresses: _list[str]
+    region: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    name: str
+    regionConfigs: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "RUNNING",
+        "DOWN",
+        "ERROR",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):

@@ -22,6 +22,9 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class DownloadFileResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -149,6 +152,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     displayName: str
     name: str
@@ -167,6 +171,7 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
         "REDIRECTION_FROM_GCR_IO_DISABLED",
         "REDIRECTION_FROM_GCR_IO_ENABLED",
         "REDIRECTION_FROM_GCR_IO_FINALIZED",
+        "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING",
     ]
     name: str
 

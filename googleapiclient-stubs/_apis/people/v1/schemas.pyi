@@ -39,6 +39,7 @@ class BatchCreateContactsRequest(typing_extensions.TypedDict, total=False):
             "READ_SOURCE_TYPE_PROFILE",
             "READ_SOURCE_TYPE_CONTACT",
             "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            "READ_SOURCE_TYPE_OTHER_CONTACT",
         ]
     ]
 
@@ -64,6 +65,7 @@ class BatchUpdateContactsRequest(typing_extensions.TypedDict, total=False):
             "READ_SOURCE_TYPE_PROFILE",
             "READ_SOURCE_TYPE_CONTACT",
             "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            "READ_SOURCE_TYPE_OTHER_CONTACT",
         ]
     ]
     updateMask: str
@@ -150,6 +152,7 @@ class CopyOtherContactToMyContactsGroupRequest(
             "READ_SOURCE_TYPE_PROFILE",
             "READ_SOURCE_TYPE_CONTACT",
             "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            "READ_SOURCE_TYPE_OTHER_CONTACT",
         ]
     ]
 
@@ -559,6 +562,7 @@ class UpdateContactPhotoRequest(typing_extensions.TypedDict, total=False):
             "READ_SOURCE_TYPE_PROFILE",
             "READ_SOURCE_TYPE_CONTACT",
             "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+            "READ_SOURCE_TYPE_OTHER_CONTACT",
         ]
     ]
 

@@ -149,6 +149,7 @@ class GoogleCloudRecaptchaenterpriseV1FirewallAction(
 ):
     allow: GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction
     block: GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction
+    includeRecaptchaScript: GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction
     redirect: GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction
     setHeader: GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction
     substitute: GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction
@@ -160,6 +161,11 @@ class GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction(
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -543,7 +549,9 @@ class GoogleCloudRecaptchaenterpriseV1WafSettings(
         "ACTION_TOKEN",
         "EXPRESS",
     ]
-    wafService: typing_extensions.Literal["WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY"]
+    wafService: typing_extensions.Literal[
+        "WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY", "CLOUDFLARE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1WebKeySettings(

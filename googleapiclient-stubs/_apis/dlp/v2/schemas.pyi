@@ -467,6 +467,8 @@ class GooglePrivacyDlpV2DataProfileConfigSnapshot(
     dataProfileJob: GooglePrivacyDlpV2DataProfileJobConfig
     discoveryConfig: GooglePrivacyDlpV2DiscoveryConfig
     inspectConfig: GooglePrivacyDlpV2InspectConfig
+    inspectTemplateModifiedTime: str
+    inspectTemplateName: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DataProfileJobConfig(typing_extensions.TypedDict, total=False):
@@ -1284,6 +1286,13 @@ class GooglePrivacyDlpV2LikelihoodAdjustment(typing_extensions.TypedDict, total=
     relativeLikelihood: int
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ListColumnDataProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    columnDataProfiles: _list[GooglePrivacyDlpV2ColumnDataProfile]
+    nextPageToken: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ListDeidentifyTemplatesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1321,11 +1330,25 @@ class GooglePrivacyDlpV2ListJobTriggersResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ListProjectDataProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    projectDataProfiles: _list[GooglePrivacyDlpV2ProjectDataProfile]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ListStoredInfoTypesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
     storedInfoTypes: _list[GooglePrivacyDlpV2StoredInfoType]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ListTableDataProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    tableDataProfiles: _list[GooglePrivacyDlpV2TableDataProfile]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Location(typing_extensions.TypedDict, total=False):
@@ -1421,6 +1444,15 @@ class GooglePrivacyDlpV2PrivacyMetric(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2ProfileStatus(typing_extensions.TypedDict, total=False):
     status: GoogleRpcStatus
     timestamp: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ProjectDataProfile(typing_extensions.TypedDict, total=False):
+    dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
+    name: str
+    profileLastGenerated: str
+    profileStatus: GooglePrivacyDlpV2ProfileStatus
+    projectId: str
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Proximity(typing_extensions.TypedDict, total=False):

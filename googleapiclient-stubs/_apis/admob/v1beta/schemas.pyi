@@ -218,7 +218,12 @@ class MediationAbExperiment(typing_extensions.TypedDict, total=False):
     treatmentMediationLines: _list[MediationAbExperimentExperimentMediationLine]
     treatmentTrafficPercentage: str
     variantLeader: typing_extensions.Literal[
-        "VARIANT_LEADER_UNSPECIFIED", "CONTROL", "TREATMENT"
+        "VARIANT_LEADER_UNSPECIFIED",
+        "CONTROL",
+        "TREATMENT",
+        "INSUFFICIENT_DATA",
+        "TOO_EARLY_TO_CALL",
+        "NO_VARIANT_LEADER",
     ]
 
 @typing.type_check_only

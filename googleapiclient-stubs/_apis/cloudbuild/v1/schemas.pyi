@@ -349,6 +349,11 @@ class CreateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     workerPool: str
 
 @typing.type_check_only
+class DefaultServiceAccount(typing_extensions.TypedDict, total=False):
+    name: str
+    serviceAccountEmail: str
+
+@typing.type_check_only
 class DeleteBitbucketServerConfigOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):

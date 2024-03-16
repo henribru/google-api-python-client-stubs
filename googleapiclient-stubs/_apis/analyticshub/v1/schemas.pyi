@@ -43,7 +43,9 @@ class DataProvider(typing_extensions.TypedDict, total=False):
     primaryContact: str
 
 @typing.type_check_only
-class DcrExchangeConfig(typing_extensions.TypedDict, total=False): ...
+class DcrExchangeConfig(typing_extensions.TypedDict, total=False):
+    singleLinkedDatasetPerCleanroom: bool
+    singleSelectedResourceSharingRestriction: bool
 
 @typing.type_check_only
 class DefaultExchangeConfig(typing_extensions.TypedDict, total=False): ...

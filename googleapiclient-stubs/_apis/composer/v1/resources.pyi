@@ -19,6 +19,97 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class UserWorkloadsConfigMapsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: UserWorkloadsConfigMap = ...,
+                        **kwargs: typing.Any
+                    ) -> UserWorkloadsConfigMapHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> UserWorkloadsConfigMapHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListUserWorkloadsConfigMapsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListUserWorkloadsConfigMapsResponseHttpRequest,
+                        previous_response: ListUserWorkloadsConfigMapsResponse,
+                    ) -> ListUserWorkloadsConfigMapsResponseHttpRequest | None: ...
+                    def update(
+                        self,
+                        *,
+                        name: str,
+                        body: UserWorkloadsConfigMap = ...,
+                        **kwargs: typing.Any
+                    ) -> UserWorkloadsConfigMapHttpRequest: ...
+
+                @typing.type_check_only
+                class UserWorkloadsSecretsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: UserWorkloadsSecret = ...,
+                        **kwargs: typing.Any
+                    ) -> UserWorkloadsSecretHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> UserWorkloadsSecretHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListUserWorkloadsSecretsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListUserWorkloadsSecretsResponseHttpRequest,
+                        previous_response: ListUserWorkloadsSecretsResponse,
+                    ) -> ListUserWorkloadsSecretsResponseHttpRequest | None: ...
+                    def update(
+                        self,
+                        *,
+                        name: str,
+                        body: UserWorkloadsSecret = ...,
+                        **kwargs: typing.Any
+                    ) -> UserWorkloadsSecretHttpRequest: ...
+
+                @typing.type_check_only
+                class WorkloadsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListWorkloadsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWorkloadsResponseHttpRequest,
+                        previous_response: ListWorkloadsResponse,
+                    ) -> ListWorkloadsResponseHttpRequest | None: ...
+
                 def create(
                     self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
@@ -94,6 +185,11 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     body: StopAirflowCommandRequest = ...,
                     **kwargs: typing.Any
                 ) -> StopAirflowCommandResponseHttpRequest: ...
+                def userWorkloadsConfigMaps(
+                    self,
+                ) -> UserWorkloadsConfigMapsResource: ...
+                def userWorkloadsSecrets(self) -> UserWorkloadsSecretsResource: ...
+                def workloads(self) -> WorkloadsResource: ...
 
             @typing.type_check_only
             class ImageVersionsResource(googleapiclient.discovery.Resource):
@@ -212,6 +308,30 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListUserWorkloadsConfigMapsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListUserWorkloadsConfigMapsResponse: ...
+
+@typing.type_check_only
+class ListUserWorkloadsSecretsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListUserWorkloadsSecretsResponse: ...
+
+@typing.type_check_only
+class ListWorkloadsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkloadsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -234,3 +354,19 @@ class StopAirflowCommandResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> StopAirflowCommandResponse: ...
+
+@typing.type_check_only
+class UserWorkloadsConfigMapHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UserWorkloadsConfigMap: ...
+
+@typing.type_check_only
+class UserWorkloadsSecretHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UserWorkloadsSecret: ...

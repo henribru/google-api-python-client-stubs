@@ -390,6 +390,7 @@ class RemoveFileRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
+    createTime: str
     displayName: str
     gitRemoteSettings: GitRemoteSettings
     labels: dict[str, typing.Any]

@@ -44,6 +44,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     kalmConfig: KalmConfig
     kubernetesDashboard: KubernetesDashboard
     networkPolicyConfig: NetworkPolicyConfig
+    statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
 class AdvancedDatapathObservabilityConfig(typing_extensions.TypedDict, total=False):
@@ -253,6 +254,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
+    secretManagerConfig: SecretManagerConfig
     securityPostureConfig: SecurityPostureConfig
     selfLink: str
     servicesIpv4Cidr: str
@@ -310,6 +312,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     ]
     desiredDefaultSnatStatus: DefaultSnatStatus
     desiredDnsConfig: DNSConfig
+    desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
     desiredEnablePrivateEndpoint: bool
     desiredFleet: Fleet
@@ -355,6 +358,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredProtectConfig: ProtectConfig
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
+    desiredSecretManagerConfig: SecretManagerConfig
     desiredSecurityPostureConfig: SecurityPostureConfig
     desiredServiceExternalIpsConfig: ServiceExternalIPsConfig
     desiredShieldedNodes: ShieldedNodes
@@ -783,6 +787,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     ]
     defaultSnatStatus: DefaultSnatStatus
     dnsConfig: DNSConfig
+    enableCiliumClusterwideNetworkPolicy: bool
     enableFqdnNetworkPolicy: bool
     enableIntraNodeVisibility: bool
     enableL4ilbSubsetting: bool
@@ -862,6 +867,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     resourceLabels: dict[str, typing.Any]
     resourceManagerTags: ResourceManagerTags
     sandboxConfig: SandboxConfig
+    secondaryBootDisks: _list[SecondaryBootDisk]
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
     soleTenantConfig: SoleTenantConfig
@@ -1154,6 +1160,15 @@ class SandboxConfig(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
 
 @typing.type_check_only
+class SecondaryBootDisk(typing_extensions.TypedDict, total=False):
+    diskImage: str
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
+
+@typing.type_check_only
+class SecretManagerConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
     affectedSupportedMinors: _list[str]
     briefDescription: str
@@ -1321,6 +1336,10 @@ class StartIPRotationRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class StatefulHAConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -1412,6 +1431,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    queuedProvisioning: QueuedProvisioning
     resourceLabels: ResourceLabels
     resourceManagerTags: ResourceManagerTags
     tags: NetworkTags

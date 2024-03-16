@@ -71,8 +71,34 @@ class GoogleCloudRetailV2AddLocalInventoriesResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2BigQueryOutputResult(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    tableId: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2CreateModelMetadata(typing_extensions.TypedDict, total=False):
     model: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2ExportErrorsConfig
+    outputResult: GoogleCloudRetailV2OutputResult
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportErrorsConfig(typing_extensions.TypedDict, total=False):
+    gcsPrefix: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2GcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2ImportCompletionDataResponse(
@@ -162,6 +188,11 @@ class GoogleCloudRetailV2ModelServingConfigList(
     typing_extensions.TypedDict, total=False
 ):
     servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2OutputResult(typing_extensions.TypedDict, total=False):
+    bigqueryResult: _list[GoogleCloudRetailV2BigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2GcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2PurgeMetadata(typing_extensions.TypedDict, total=False): ...

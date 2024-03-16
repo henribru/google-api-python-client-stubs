@@ -106,6 +106,7 @@ class GoogleCloudDiscoveryengineV1DataStore(typing_extensions.TypedDict, total=F
     createTime: str
     defaultSchemaId: str
     displayName: str
+    documentProcessingConfig: GoogleCloudDiscoveryengineV1DocumentProcessingConfig
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA"
     ]
@@ -118,6 +119,7 @@ class GoogleCloudDiscoveryengineV1DataStore(typing_extensions.TypedDict, total=F
             "SOLUTION_TYPE_CHAT",
         ]
     ]
+    startingSchema: GoogleCloudDiscoveryengineV1Schema
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1DeleteDataStoreMetadata(
@@ -148,6 +150,11 @@ class GoogleCloudDiscoveryengineV1DeleteTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1DigitalParsingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -158,6 +165,21 @@ class GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchMetadata(
 class GoogleCloudDiscoveryengineV1DisableAdvancedSiteSearchResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DocumentProcessingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    defaultParsingConfig: GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig
+    name: str
+    parsingConfigOverrides: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    digitalParsingConfig: GoogleCloudDiscoveryengineV1DigitalParsingConfig
+    ocrParsingConfig: GoogleCloudDiscoveryengineV1OcrParsingConfig
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1EnableAdvancedSiteSearchMetadata(
@@ -287,11 +309,19 @@ class GoogleCloudDiscoveryengineV1ImportUserEventsResponse(
     unjoinedEventsCount: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1OcrParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enhancedDocumentElements: _list[str]
+    useNativeText: bool
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1PurgeDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     failureCount: str
+    ignoredCount: str
     successCount: str
     updateTime: str
 
@@ -372,6 +402,13 @@ class GoogleCloudDiscoveryengineV1UpdateTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaAclConfig(
+    typing_extensions.TypedDict, total=False
+):
+    idpConfig: GoogleCloudDiscoveryengineV1alphaIdpConfig
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaBatchCreateTargetSiteMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -416,12 +453,15 @@ class GoogleCloudDiscoveryengineV1alphaCreateTargetSiteMetadata(
 class GoogleCloudDiscoveryengineV1alphaDataStore(
     typing_extensions.TypedDict, total=False
 ):
+    aclEnabled: bool
     contentConfig: typing_extensions.Literal[
         "CONTENT_CONFIG_UNSPECIFIED", "NO_CONTENT", "CONTENT_REQUIRED", "PUBLIC_WEBSITE"
     ]
     createTime: str
     defaultSchemaId: str
     displayName: str
+    documentProcessingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig
+    idpConfig: GoogleCloudDiscoveryengineV1alphaIdpConfig
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA"
     ]
@@ -434,6 +474,7 @@ class GoogleCloudDiscoveryengineV1alphaDataStore(
             "SOLUTION_TYPE_CHAT",
         ]
     ]
+    startingSchema: GoogleCloudDiscoveryengineV1alphaSchema
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDeleteDataStoreMetadata(
@@ -464,6 +505,11 @@ class GoogleCloudDiscoveryengineV1alphaDeleteTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -479,8 +525,32 @@ class GoogleCloudDiscoveryengineV1alphaDisableAdvancedSiteSearchResponse(
 class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig(
     typing_extensions.TypedDict, total=False
 ):
+    chunkingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig
+    defaultParsingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig
     name: str
     ocrConfig: GoogleCloudDiscoveryengineV1alphaOcrConfig
+    parsingConfigOverrides: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    layoutBasedChunkingConfig: GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigChunkingConfigLayoutBasedChunkingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    chunkSize: int
+    includeAncestorHeadings: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    digitalParsingConfig: GoogleCloudDiscoveryengineV1alphaDigitalParsingConfig
+    layoutParsingConfig: GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig
+    ocrParsingConfig: GoogleCloudDiscoveryengineV1alphaOcrParsingConfig
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchMetadata(
@@ -496,6 +566,7 @@ class GoogleCloudDiscoveryengineV1alphaEnableAdvancedSiteSearchResponse(
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaEngine(typing_extensions.TypedDict, total=False):
+    allowMultipleDataStoresSearchEngine: bool
     chatEngineConfig: GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig
     chatEngineMetadata: GoogleCloudDiscoveryengineV1alphaEngineChatEngineMetadata
     commonConfig: GoogleCloudDiscoveryengineV1alphaEngineCommonConfig
@@ -644,6 +715,19 @@ class GoogleCloudDiscoveryengineV1alphaFieldConfig(
     ]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaIdpConfig(
+    typing_extensions.TypedDict, total=False
+):
+    externalIdpConfig: GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig
+    idpType: typing_extensions.Literal["IDP_TYPE_UNSPECIFIED", "GSUITE", "THIRD_PARTY"]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaIdpConfigExternalIdpConfig(
+    typing_extensions.TypedDict, total=False
+):
+    workforcePoolName: str
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaImportDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -699,10 +783,22 @@ class GoogleCloudDiscoveryengineV1alphaImportUserEventsResponse(
     unjoinedEventsCount: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaLayoutParsingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaOcrConfig(
     typing_extensions.TypedDict, total=False
 ):
     enabled: bool
+    enhancedDocumentElements: _list[str]
+    useNativeText: bool
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaOcrParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
     enhancedDocumentElements: _list[str]
     useNativeText: bool
 
@@ -712,6 +808,7 @@ class GoogleCloudDiscoveryengineV1alphaPurgeDocumentsMetadata(
 ):
     createTime: str
     failureCount: str
+    ignoredCount: str
     successCount: str
     updateTime: str
 
@@ -962,6 +1059,7 @@ class GoogleCloudDiscoveryengineV1betaConversationMessage(
 class GoogleCloudDiscoveryengineV1betaConverseConversationRequest(
     typing_extensions.TypedDict, total=False
 ):
+    boostSpec: GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec
     conversation: GoogleCloudDiscoveryengineV1betaConversation
     filter: str
     query: GoogleCloudDiscoveryengineV1betaTextInput
@@ -1031,6 +1129,7 @@ class GoogleCloudDiscoveryengineV1betaDataStore(
     createTime: str
     defaultSchemaId: str
     displayName: str
+    documentProcessingConfig: GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig
     industryVertical: typing_extensions.Literal[
         "INDUSTRY_VERTICAL_UNSPECIFIED", "GENERIC", "MEDIA"
     ]
@@ -1043,6 +1142,7 @@ class GoogleCloudDiscoveryengineV1betaDataStore(
             "SOLUTION_TYPE_CHAT",
         ]
     ]
+    startingSchema: GoogleCloudDiscoveryengineV1betaSchema
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata(
@@ -1073,6 +1173,11 @@ class GoogleCloudDiscoveryengineV1betaDeleteTargetSiteMetadata(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDigitalParsingConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaDisableAdvancedSiteSearchMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1096,6 +1201,7 @@ class GoogleCloudDiscoveryengineV1betaDocument(
     content: GoogleCloudDiscoveryengineV1betaDocumentContent
     derivedStructData: dict[str, typing.Any]
     id: str
+    indexTime: str
     jsonData: str
     name: str
     parentDocumentId: str
@@ -1121,10 +1227,31 @@ class GoogleCloudDiscoveryengineV1betaDocumentInfo(
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    defaultParsingConfig: GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig
+    name: str
+    parsingConfigOverrides: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    digitalParsingConfig: GoogleCloudDiscoveryengineV1betaDigitalParsingConfig
+    ocrParsingConfig: GoogleCloudDiscoveryengineV1betaOcrParsingConfig
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaDoubleList(
     typing_extensions.TypedDict, total=False
 ):
     values: _list[float]
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaEmbeddingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    fieldPath: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaEnableAdvancedSiteSearchMetadata(
@@ -1366,6 +1493,13 @@ class GoogleCloudDiscoveryengineV1betaListSchemasResponse(
     schemas: _list[GoogleCloudDiscoveryengineV1betaSchema]
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaListServingConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    servingConfigs: _list[GoogleCloudDiscoveryengineV1betaServingConfig]
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaListTargetSitesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1379,6 +1513,13 @@ class GoogleCloudDiscoveryengineV1betaMediaInfo(
 ):
     mediaProgressDuration: str
     mediaProgressPercentage: float
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaOcrParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    enhancedDocumentElements: _list[str]
+    useNativeText: bool
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaPageInfo(
@@ -1404,6 +1545,7 @@ class GoogleCloudDiscoveryengineV1betaPurgeDocumentsMetadata(
 ):
     createTime: str
     failureCount: str
+    ignoredCount: str
     successCount: str
     updateTime: str
 
@@ -1783,6 +1925,51 @@ class GoogleCloudDiscoveryengineV1betaSearchResponseSummarySummaryWithMetadata(
     citationMetadata: GoogleCloudDiscoveryengineV1betaSearchResponseSummaryCitationMetadata
     references: _list[GoogleCloudDiscoveryengineV1betaSearchResponseSummaryReference]
     summary: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaServingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    boostControlIds: _list[str]
+    createTime: str
+    displayName: str
+    dissociateControlIds: _list[str]
+    diversityLevel: str
+    embeddingConfig: GoogleCloudDiscoveryengineV1betaEmbeddingConfig
+    filterControlIds: _list[str]
+    genericConfig: GoogleCloudDiscoveryengineV1betaServingConfigGenericConfig
+    ignoreControlIds: _list[str]
+    mediaConfig: GoogleCloudDiscoveryengineV1betaServingConfigMediaConfig
+    modelId: str
+    name: str
+    onewaySynonymsControlIds: _list[str]
+    rankingExpression: str
+    redirectControlIds: _list[str]
+    replacementControlIds: _list[str]
+    solutionType: typing_extensions.Literal[
+        "SOLUTION_TYPE_UNSPECIFIED",
+        "SOLUTION_TYPE_RECOMMENDATION",
+        "SOLUTION_TYPE_SEARCH",
+        "SOLUTION_TYPE_CHAT",
+    ]
+    synonymsControlIds: _list[str]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaServingConfigGenericConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contentSearchSpec: GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaServingConfigMediaConfig(
+    typing_extensions.TypedDict, total=False
+):
+    contentFreshnessCutoffDays: int
+    contentWatchedMinutesThreshold: float
+    contentWatchedPercentageThreshold: float
+    contentWatchedSecondsThreshold: float
+    demotionEventType: str
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaSiteSearchEngine(

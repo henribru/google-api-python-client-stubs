@@ -20,6 +20,10 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             *,
             pageSize: int = ...,
             pageToken: str = ...,
+            product_productLine: typing_extensions.Literal[
+                "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
+            ] = ...,
+            product_productSubline: str = ...,
             query: str = ...,
             **kwargs: typing.Any
         ) -> SearchCaseClassificationsResponseHttpRequest: ...

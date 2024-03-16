@@ -56,6 +56,7 @@ class GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport(
     currencyCode: str
     disputeStatus: str
     geo: str
+    googleAdsLeadId: str
     leadCategory: str
     leadCreationTimestamp: str
     leadId: str

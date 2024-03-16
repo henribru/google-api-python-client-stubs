@@ -176,6 +176,13 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def promoteReplica(
+                    self,
+                    *,
+                    name: str,
+                    body: PromoteReplicaRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,

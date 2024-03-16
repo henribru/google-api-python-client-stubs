@@ -94,6 +94,7 @@ class GooglePlayDeveloperReportingV1alpha1ErrorIssue(
     lastOsVersion: GooglePlayDeveloperReportingV1alpha1OsVersion
     location: str
     name: str
+    sampleErrorReports: _list[str]
     type: typing_extensions.Literal[
         "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH"
     ]

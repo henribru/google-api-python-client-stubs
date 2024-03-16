@@ -514,6 +514,7 @@ class Volume(typing_extensions.TypedDict, total=False):
         "VOLUME_PERFORMANCE_TIER_SHARED",
         "VOLUME_PERFORMANCE_TIER_ASSIGNED",
         "VOLUME_PERFORMANCE_TIER_HT",
+        "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE",
     ]
     pod: str
     protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "FIBRE_CHANNEL", "NFS"]
@@ -548,6 +549,7 @@ class VolumeConfig(typing_extensions.TypedDict, total=False):
         "VOLUME_PERFORMANCE_TIER_SHARED",
         "VOLUME_PERFORMANCE_TIER_ASSIGNED",
         "VOLUME_PERFORMANCE_TIER_HT",
+        "VOLUME_PERFORMANCE_TIER_QOS2_PERFORMANCE",
     ]
     protocol: typing_extensions.Literal[
         "PROTOCOL_UNSPECIFIED", "PROTOCOL_FC", "PROTOCOL_NFS"

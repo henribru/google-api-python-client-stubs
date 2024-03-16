@@ -469,6 +469,32 @@ class GoogleCloudContactcenterinsightsV1ExportInsightsDataResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ExportIssueModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1ExportIssueModelRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ExportIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    gcsDestination: GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination
+    name: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ExportIssueModelRequestGcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    objectUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ExportIssueModelResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1FaqAnswerData(
     typing_extensions.TypedDict, total=False
 ):
@@ -488,6 +514,33 @@ class GoogleCloudContactcenterinsightsV1GcsSource(
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1HoldData(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ImportIssueModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1ImportIssueModelRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ImportIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    createNewModel: bool
+    gcsSource: GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ImportIssueModelRequestGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    objectUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ImportIssueModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -537,6 +590,8 @@ class GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource(
         "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
     ]
     bucketUri: str
+    customMetadataKeys: _list[str]
+    metadataBucketUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfig(
@@ -1286,6 +1341,32 @@ class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    gcsDestination: GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination
+    name: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelRequestGcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    objectUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ExportIssueModelResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData(
     typing_extensions.TypedDict, total=False
 ):
@@ -1305,6 +1386,33 @@ class GoogleCloudContactcenterinsightsV1alpha1GcsSource(
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1HoldData(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    createNewModel: bool
+    gcsSource: GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelRequestGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    objectUri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1ImportIssueModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -1354,6 +1462,8 @@ class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourc
         "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
     ]
     bucketUri: str
+    customMetadataKeys: _list[str]
+    metadataBucketUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfig(

@@ -9,28 +9,36 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
     cause: typing_extensions.Literal[
         "CAUSE_UNSPECIFIED",
         "UNKNOWN_NETWORK",
-        "UNKNOWN_IP",
         "UNKNOWN_PROJECT",
-        "PERMISSION_DENIED",
-        "NO_SOURCE_LOCATION",
-        "INVALID_ARGUMENT",
         "NO_EXTERNAL_IP",
         "UNINTENDED_DESTINATION",
-        "TRACE_TOO_LONG",
-        "INTERNAL_ERROR",
         "SOURCE_ENDPOINT_NOT_FOUND",
         "MISMATCHED_SOURCE_NETWORK",
         "DESTINATION_ENDPOINT_NOT_FOUND",
         "MISMATCHED_DESTINATION_NETWORK",
+        "UNKNOWN_IP",
+        "SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK",
+        "PERMISSION_DENIED",
+        "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
+        "PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS",
+        "NO_SOURCE_LOCATION",
+        "INVALID_ARGUMENT",
+        "TRACE_TOO_LONG",
+        "INTERNAL_ERROR",
         "UNSUPPORTED",
         "MISMATCHED_IP_VERSION",
         "GKE_KONNECTIVITY_PROXY_UNSUPPORTED",
         "RESOURCE_CONFIG_NOT_FOUND",
+        "VM_INSTANCE_CONFIG_NOT_FOUND",
+        "NETWORK_CONFIG_NOT_FOUND",
+        "FIREWALL_CONFIG_NOT_FOUND",
+        "ROUTE_CONFIG_NOT_FOUND",
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
         "SOURCE_FORWARDING_RULE_UNSUPPORTED",
         "NON_ROUTABLE_IP_ADDRESS",
     ]
+    ipAddress: str
     projectsMissingPermission: _list[str]
     resourceUri: str
 
@@ -114,6 +122,7 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeliverInfo(typing_extensions.TypedDict, total=False):
+    ipAddress: str
     resourceUri: str
     target: typing_extensions.Literal[
         "TARGET_UNSPECIFIED",
@@ -186,6 +195,10 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "PSC_CONNECTION_NOT_ACCEPTED",
         "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
         "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
+        "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
+        "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
+        "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
+        "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
         "CLOUD_RUN_REVISION_NOT_READY",
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
@@ -284,6 +297,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ForwardInfo(typing_extensions.TypedDict, total=False):
+    ipAddress: str
     resourceUri: str
     target: typing_extensions.Literal[
         "TARGET_UNSPECIFIED",
@@ -376,6 +390,7 @@ class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LoadBalancerBackendInfo(typing_extensions.TypedDict, total=False):
+    backendBucketUri: str
     backendServiceUri: str
     healthCheckFirewallsConfigState: typing_extensions.Literal[
         "HEALTH_CHECK_FIREWALLS_CONFIG_STATE_UNSPECIFIED",
@@ -389,6 +404,8 @@ class LoadBalancerBackendInfo(typing_extensions.TypedDict, total=False):
     instanceUri: str
     name: str
     networkEndpointGroupUri: str
+    pscGoogleApiTarget: str
+    pscServiceAttachmentUri: str
 
 @typing.type_check_only
 class LoadBalancerInfo(typing_extensions.TypedDict, total=False):
@@ -647,6 +664,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Trace(typing_extensions.TypedDict, total=False):
     endpointInfo: EndpointInfo
+    forwardTraceId: int
     steps: _list[Step]
 
 @typing.type_check_only

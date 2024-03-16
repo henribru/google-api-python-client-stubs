@@ -16,8 +16,14 @@ class AcceleratorType(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class AcceptedData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AccessConfig(typing_extensions.TypedDict, total=False):
     externalIp: str
+
+@typing.type_check_only
+class ActiveData(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
@@ -25,7 +31,17 @@ class AttachedDisk(typing_extensions.TypedDict, total=False):
     sourceDisk: str
 
 @typing.type_check_only
+class CreatingData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class DeletingData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FailedData(typing_extensions.TypedDict, total=False):
+    error: Status
 
 @typing.type_check_only
 class GenerateServiceIdentityRequest(typing_extensions.TypedDict, total=False): ...
@@ -44,6 +60,10 @@ class GetGuestAttributesResponse(typing_extensions.TypedDict, total=False):
     guestAttributes: _list[GuestAttributes]
 
 @typing.type_check_only
+class Guaranteed(typing_extensions.TypedDict, total=False):
+    minDuration: str
+
+@typing.type_check_only
 class GuestAttributes(typing_extensions.TypedDict, total=False):
     queryPath: str
     queryValue: GuestAttributesValue
@@ -57,6 +77,11 @@ class GuestAttributesEntry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GuestAttributesValue(typing_extensions.TypedDict, total=False):
     items: _list[GuestAttributesEntry]
+
+@typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class ListAcceleratorTypesResponse(typing_extensions.TypedDict, total=False):
@@ -81,6 +106,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListQueuedResourcesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    queuedResources: _list[QueuedResource]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListRuntimeVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     runtimeVersions: _list[RuntimeVersion]
@@ -93,6 +124,11 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class MultisliceParams(typing_extensions.TypedDict, total=False):
+    nodeCount: int
+    nodeIdPrefix: str
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -160,6 +196,13 @@ class Node(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
+class NodeSpec(typing_extensions.TypedDict, total=False):
+    multisliceParams: MultisliceParams
+    node: Node
+    nodeId: str
+    parent: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -178,6 +221,57 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class ProvisioningData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class QueuedResource(typing_extensions.TypedDict, total=False):
+    createTime: str
+    guaranteed: Guaranteed
+    name: str
+    queueingPolicy: QueueingPolicy
+    reservationName: str
+    spot: Spot
+    state: QueuedResourceState
+    tpu: Tpu
+
+@typing.type_check_only
+class QueuedResourceState(typing_extensions.TypedDict, total=False):
+    acceptedData: AcceptedData
+    activeData: ActiveData
+    creatingData: CreatingData
+    deletingData: DeletingData
+    failedData: FailedData
+    provisioningData: ProvisioningData
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "ACCEPTED",
+        "PROVISIONING",
+        "FAILED",
+        "DELETING",
+        "ACTIVE",
+        "SUSPENDING",
+        "SUSPENDED",
+        "WAITING_FOR_RESOURCES",
+    ]
+    stateInitiator: typing_extensions.Literal[
+        "STATE_INITIATOR_UNSPECIFIED", "USER", "SERVICE"
+    ]
+    suspendedData: SuspendedData
+    suspendingData: SuspendingData
+
+@typing.type_check_only
+class QueueingPolicy(typing_extensions.TypedDict, total=False):
+    validAfterDuration: str
+    validAfterTime: str
+    validInterval: Interval
+    validUntilDuration: str
+    validUntilTime: str
+
+@typing.type_check_only
+class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RuntimeVersion(typing_extensions.TypedDict, total=False):
     name: str
     version: str
@@ -186,6 +280,7 @@ class RuntimeVersion(typing_extensions.TypedDict, total=False):
 class SchedulingConfig(typing_extensions.TypedDict, total=False):
     preemptible: bool
     reserved: bool
+    spot: bool
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
@@ -201,6 +296,9 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
     enableSecureBoot: bool
 
 @typing.type_check_only
+class Spot(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class StartNodeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -211,6 +309,12 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StopNodeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SuspendedData(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SuspendingData(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Symptom(typing_extensions.TypedDict, total=False):
@@ -226,3 +330,7 @@ class Symptom(typing_extensions.TypedDict, total=False):
         "PROJECT_ABUSE",
     ]
     workerId: str
+
+@typing.type_check_only
+class Tpu(typing_extensions.TypedDict, total=False):
+    nodeSpec: _list[NodeSpec]

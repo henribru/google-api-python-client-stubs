@@ -14,6 +14,15 @@ _list = list
 @typing.type_check_only
 class ArtifactRegistryResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class MediaResource(googleapiclient.discovery.Resource):
+        def download(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> DownloadFileResponseHttpRequest: ...
+        def download_media(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> BytesHttpRequest: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -257,6 +266,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         previous_request: ListPackagesResponseHttpRequest,
                         previous_response: ListPackagesResponse,
                     ) -> ListPackagesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Package = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any
+                    ) -> PackageHttpRequest: ...
                     def tags(self) -> TagsResource: ...
                     def versions(self) -> VersionsResource: ...
 
@@ -420,6 +437,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def media(self) -> MediaResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -429,6 +447,14 @@ class DockerImageHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DockerImage: ...
+
+@typing.type_check_only
+class DownloadFileResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DownloadFileResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -669,3 +695,11 @@ class VersionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Version: ...
+
+@typing.type_check_only
+class BytesHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> bytes: ...

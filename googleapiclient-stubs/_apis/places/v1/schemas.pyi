@@ -16,6 +16,88 @@ class GoogleMapsPlacesV1AuthorAttribution(typing_extensions.TypedDict, total=Fal
     uri: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    includeQueryPredictions: bool
+    includedPrimaryTypes: _list[str]
+    includedRegionCodes: _list[str]
+    input: str
+    inputOffset: int
+    languageCode: str
+    locationBias: GoogleMapsPlacesV1AutocompletePlacesRequestLocationBias
+    locationRestriction: GoogleMapsPlacesV1AutocompletePlacesRequestLocationRestriction
+    origin: GoogleTypeLatLng
+    regionCode: str
+    sessionToken: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesRequestLocationBias(
+    typing_extensions.TypedDict, total=False
+):
+    circle: GoogleMapsPlacesV1Circle
+    rectangle: GoogleGeoTypeViewport
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesRequestLocationRestriction(
+    typing_extensions.TypedDict, total=False
+):
+    circle: GoogleMapsPlacesV1Circle
+    rectangle: GoogleGeoTypeViewport
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    suggestions: _list[GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    placePrediction: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction
+    queryPrediction: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText(
+    typing_extensions.TypedDict, total=False
+):
+    matches: _list[GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange]
+    text: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionPlacePrediction(
+    typing_extensions.TypedDict, total=False
+):
+    distanceMeters: int
+    place: str
+    placeId: str
+    structuredFormat: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    text: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
+    types: _list[str]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionQueryPrediction(
+    typing_extensions.TypedDict, total=False
+):
+    structuredFormat: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat
+    text: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStringRange(
+    typing_extensions.TypedDict, total=False
+):
+    endOffset: int
+    startOffset: int
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionStructuredFormat(
+    typing_extensions.TypedDict, total=False
+):
+    mainText: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
+    secondaryText: GoogleMapsPlacesV1AutocompletePlacesResponseSuggestionFormattableText
+
+@typing.type_check_only
 class GoogleMapsPlacesV1Circle(typing_extensions.TypedDict, total=False):
     center: GoogleTypeLatLng
     radius: float
@@ -295,6 +377,7 @@ class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
+    evOptions: GoogleMapsPlacesV1SearchTextRequestEVOptions
     includedType: str
     languageCode: str
     locationBias: GoogleMapsPlacesV1SearchTextRequestLocationBias
@@ -318,6 +401,26 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
     regionCode: str
     strictTypeFiltering: bool
     textQuery: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1SearchTextRequestEVOptions(
+    typing_extensions.TypedDict, total=False
+):
+    connectorTypes: _list[
+        typing_extensions.Literal[
+            "EV_CONNECTOR_TYPE_UNSPECIFIED",
+            "EV_CONNECTOR_TYPE_OTHER",
+            "EV_CONNECTOR_TYPE_J1772",
+            "EV_CONNECTOR_TYPE_TYPE_2",
+            "EV_CONNECTOR_TYPE_CHADEMO",
+            "EV_CONNECTOR_TYPE_CCS_COMBO_1",
+            "EV_CONNECTOR_TYPE_CCS_COMBO_2",
+            "EV_CONNECTOR_TYPE_TESLA",
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
+            "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+        ]
+    ]
+    minimumChargingRateKw: float
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequestLocationBias(

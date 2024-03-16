@@ -110,6 +110,7 @@ class Folder(typing_extensions.TypedDict, total=False):
     name: str
     parent: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only
@@ -247,6 +248,7 @@ class Project(typing_extensions.TypedDict, total=False):
     parent: str
     projectId: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
+    tags: dict[str, typing.Any]
     updateTime: str
 
 @typing.type_check_only

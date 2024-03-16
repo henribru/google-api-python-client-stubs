@@ -177,6 +177,28 @@ class AppengineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class ApplicationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AuthorizedDomainsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListAuthorizedDomainsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAuthorizedDomainsResponseHttpRequest,
+                        previous_response: ListAuthorizedDomainsResponse,
+                    ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
+
+                def authorizedDomains(self) -> AuthorizedDomainsResource: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def get(
                     self,
@@ -219,6 +241,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def applications(self) -> ApplicationsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...

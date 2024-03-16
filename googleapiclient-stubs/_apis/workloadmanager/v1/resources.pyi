@@ -57,6 +57,9 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                             previous_response: ListScannedResourcesResponse,
                         ) -> ListScannedResourcesResponseHttpRequest | None: ...
 
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ExecutionHttpRequest: ...
@@ -93,6 +96,9 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     evaluationId: str = ...,
                     requestId: str = ...,
                     **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -172,6 +178,26 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_response: ListRulesResponse,
                 ) -> ListRulesResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class WorkloadProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkloadProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListWorkloadProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWorkloadProfilesResponseHttpRequest,
+                    previous_response: ListWorkloadProfilesResponse,
+                ) -> ListWorkloadProfilesResponseHttpRequest | None: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -193,6 +219,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
             def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
             def rules(self) -> RulesResource: ...
+            def workloadProfiles(self) -> WorkloadProfilesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -291,6 +318,14 @@ class ListScannedResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListScannedResourcesResponse: ...
 
 @typing.type_check_only
+class ListWorkloadProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkloadProfilesResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -305,6 +340,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class WorkloadProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadProfile: ...
 
 @typing.type_check_only
 class WriteInsightResponseHttpRequest(googleapiclient.http.HttpRequest):

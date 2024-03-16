@@ -499,6 +499,9 @@ class CloudBuildResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
+            def getDefaultServiceAccount(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> DefaultServiceAccountHttpRequest: ...
             def bitbucketServerConfigs(self) -> BitbucketServerConfigsResource: ...
             def builds(self) -> BuildsResource: ...
             def gitLabConfigs(self) -> GitLabConfigsResource: ...
@@ -628,6 +631,14 @@ class BuildTriggerHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BuildTrigger: ...
+
+@typing.type_check_only
+class DefaultServiceAccountHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DefaultServiceAccount: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

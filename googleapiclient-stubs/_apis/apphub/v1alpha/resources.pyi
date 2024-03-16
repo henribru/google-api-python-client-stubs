@@ -201,6 +201,9 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     previous_request: ListDiscoveredServicesResponseHttpRequest,
                     previous_response: ListDiscoveredServicesResponse,
                 ) -> ListDiscoveredServicesResponseHttpRequest | None: ...
+                def lookup(
+                    self, *, parent: str, uri: str = ..., **kwargs: typing.Any
+                ) -> LookupDiscoveredServiceResponseHttpRequest: ...
 
             @typing.type_check_only
             class DiscoveredWorkloadsResource(googleapiclient.discovery.Resource):
@@ -237,6 +240,9 @@ class AppHubResource(googleapiclient.discovery.Resource):
                     previous_request: ListDiscoveredWorkloadsResponseHttpRequest,
                     previous_response: ListDiscoveredWorkloadsResponse,
                 ) -> ListDiscoveredWorkloadsResponseHttpRequest | None: ...
+                def lookup(
+                    self, *, parent: str, uri: str = ..., **kwargs: typing.Any
+                ) -> LookupDiscoveredWorkloadResponseHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -483,6 +489,22 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class LookupDiscoveredServiceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LookupDiscoveredServiceResponse: ...
+
+@typing.type_check_only
+class LookupDiscoveredWorkloadResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LookupDiscoveredWorkloadResponse: ...
 
 @typing.type_check_only
 class LookupServiceProjectAttachmentResponseHttpRequest(

@@ -769,6 +769,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudAiplatformV1beta1ExplainRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAiplatformV1beta1ExplainResponseHttpRequest: ...
+                def generateContent(
+                    self,
+                    *,
+                    model: str,
+                    body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAiplatformV1beta1EndpointHttpRequest: ...
@@ -862,6 +869,36 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudAiplatformV1beta1UndeployModelRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class EvaluationTasksResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                    def wait(
+                        self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -1226,6 +1263,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudAiplatformV1beta1FeatureViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1261,6 +1305,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAiplatformV1beta1SearchNearestEntitiesRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponseHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def sync(
                         self,
                         *,
@@ -1270,6 +1321,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudAiplatformV1beta1SyncFeatureViewResponseHttpRequest
                     ): ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        permissions: str | _list[str] = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                     def featureViewSyncs(self) -> FeatureViewSyncsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -1313,6 +1371,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAiplatformV1beta1FeatureOnlineStoreHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -1339,6 +1404,20 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    permissions: str | _list[str] = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def featureViews(self) -> FeatureViewsResource: ...
                 def operations(self) -> OperationsResource: ...
 
@@ -3178,7 +3257,6 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudAiplatformV1beta1PipelineJob = ...,
                     pipelineJobId: str = ...,
-                    preflightValidations: bool = ...,
                     **kwargs: typing.Any
                 ) -> GoogleCloudAiplatformV1beta1PipelineJobHttpRequest: ...
                 def delete(
@@ -3230,6 +3308,15 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAiplatformV1beta1CountTokensRequest = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudAiplatformV1beta1CountTokensResponseHttpRequest: ...
+                    def generateContent(
+                        self,
+                        *,
+                        model: str,
+                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest
+                    ): ...
                     def getIamPolicy(
                         self,
                         *,
@@ -3271,6 +3358,75 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     ): ...
 
                 def models(self) -> ModelsResource: ...
+
+            @typing.type_check_only
+            class RagCorporaResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+                    def wait(
+                        self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                @typing.type_check_only
+                class RagFilesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            name: str,
+                            filter: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any
+                        ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                            previous_response: GoogleLongrunningListOperationsResponse,
+                        ) -> (
+                            GoogleLongrunningListOperationsResponseHttpRequest | None
+                        ): ...
+                        def wait(
+                            self, *, name: str, timeout: str = ..., **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                    def operations(self) -> OperationsResource: ...
+
+                def operations(self) -> OperationsResource: ...
+                def ragFiles(self) -> RagFilesResource: ...
 
             @typing.type_check_only
             class ReasoningEnginesResource(googleapiclient.discovery.Resource):
@@ -4164,6 +4320,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             def deploymentResourcePools(self) -> DeploymentResourcePoolsResource: ...
             def edgeDevices(self) -> EdgeDevicesResource: ...
             def endpoints(self) -> EndpointsResource: ...
+            def evaluationTasks(self) -> EvaluationTasksResource: ...
             def exampleStores(self) -> ExampleStoresResource: ...
             def extensionControllers(self) -> ExtensionControllersResource: ...
             def extensions(self) -> ExtensionsResource: ...
@@ -4188,6 +4345,7 @@ class AiplatformResource(googleapiclient.discovery.Resource):
             def persistentResources(self) -> PersistentResourcesResource: ...
             def pipelineJobs(self) -> PipelineJobsResource: ...
             def publishers(self) -> PublishersResource: ...
+            def ragCorpora(self) -> RagCorporaResource: ...
             def reasoningEngines(self) -> ReasoningEnginesResource: ...
             def schedules(self) -> SchedulesResource: ...
             def solvers(self) -> SolversResource: ...

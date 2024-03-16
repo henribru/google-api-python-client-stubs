@@ -2168,6 +2168,7 @@ class GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeEnumValues(
 class GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",

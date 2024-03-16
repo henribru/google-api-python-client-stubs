@@ -31,6 +31,23 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BitbucketCloudConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    readAuthorizerCredential: UserCredential
+    webhookSecretSecretVersion: str
+    workspace: str
+
+@typing.type_check_only
+class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    hostUri: str
+    readAuthorizerCredential: UserCredential
+    serverVersion: str
+    serviceDirectoryConfig: GoogleDevtoolsCloudbuildV2ServiceDirectoryConfig
+    sslCa: str
+    webhookSecretSecretVersion: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -48,6 +65,8 @@ class ChildStatusReference(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    bitbucketCloudConfig: BitbucketCloudConfig
+    bitbucketDataCenterConfig: BitbucketDataCenterConfig
     createTime: str
     disabled: bool
     etag: str
@@ -266,6 +285,13 @@ class PipelineRef(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PipelineResult(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    value: ResultValue
+
+@typing.type_check_only
 class PipelineRun(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     childReferences: _list[ChildStatusReference]
@@ -274,6 +300,7 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
     createTime: str
     etag: str
     finallyStartTime: str
+    gcbParams: dict[str, typing.Any]
     name: str
     params: _list[Param]
     pipelineRef: PipelineRef
@@ -281,22 +308,33 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
         "PIPELINE_RUN_STATUS_UNSPECIFIED", "PIPELINE_RUN_CANCELLED"
     ]
     pipelineSpec: PipelineSpec
+    provenance: Provenance
+    record: str
     resolvedPipelineSpec: PipelineSpec
+    results: _list[PipelineRunResult]
+    security: Security
     serviceAccount: str
     skippedTasks: _list[SkippedTask]
     startTime: str
     timeouts: TimeoutFields
     uid: str
     updateTime: str
+    worker: Worker
     workerPool: str
     workflow: str
     workspaces: _list[WorkspaceBinding]
+
+@typing.type_check_only
+class PipelineRunResult(typing_extensions.TypedDict, total=False):
+    name: str
+    value: ResultValue
 
 @typing.type_check_only
 class PipelineSpec(typing_extensions.TypedDict, total=False):
     finallyTasks: _list[PipelineTask]
     generatedYaml: str
     params: _list[ParamSpec]
+    results: _list[PipelineResult]
     tasks: _list[PipelineTask]
     workspaces: _list[PipelineWorkspaceDeclaration]
 
@@ -335,6 +373,19 @@ class PropertySpec(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING"]
 
 @typing.type_check_only
+class Provenance(typing_extensions.TypedDict, total=False):
+    enabled: typing_extensions.Literal[
+        "ENABLED_UNSPECIFIED", "REQUIRED", "OPTIMISTIC", "DISABLED"
+    ]
+    region: typing_extensions.Literal["REGION_UNSPECIFIED", "GLOBAL"]
+    storage: typing_extensions.Literal[
+        "STORAGE_UNSPECIFIED",
+        "PREFER_ARTIFACT_PROJECT",
+        "ARTIFACT_PROJECT_ONLY",
+        "BUILD_PROJECT_ONLY",
+    ]
+
+@typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
@@ -343,6 +394,13 @@ class Repository(typing_extensions.TypedDict, total=False):
     remoteUri: str
     updateTime: str
     webhookId: str
+
+@typing.type_check_only
+class ResultValue(typing_extensions.TypedDict, total=False):
+    arrayVal: _list[str]
+    objectVal: dict[str, typing.Any]
+    stringVal: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
 class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -358,6 +416,13 @@ class RunWorkflowCustomOperationMetadata(typing_extensions.TypedDict, total=Fals
 class SecretVolumeSource(typing_extensions.TypedDict, total=False):
     secretName: str
     secretVersion: str
+
+@typing.type_check_only
+class Security(typing_extensions.TypedDict, total=False):
+    privilegeMode: typing_extensions.Literal[
+        "PRIVILEGE_MODE_UNSPECIFIED", "PRIVILEGED", "UNPRIVILEGED"
+    ]
+    serviceAccount: str
 
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
@@ -474,10 +539,6 @@ class UserCredential(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
-class VolumeClaim(typing_extensions.TypedDict, total=False):
-    storage: str
-
-@typing.type_check_only
 class VolumeMount(typing_extensions.TypedDict, total=False):
     mountPath: str
     name: str
@@ -499,11 +560,14 @@ class WhenExpression(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class Worker(typing_extensions.TypedDict, total=False):
+    machineType: str
+
+@typing.type_check_only
 class WorkspaceBinding(typing_extensions.TypedDict, total=False):
     name: str
     secret: SecretVolumeSource
     subPath: str
-    volumeClaim: VolumeClaim
 
 @typing.type_check_only
 class WorkspaceDeclaration(typing_extensions.TypedDict, total=False):

@@ -5,6 +5,31 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
+    availabilityType: typing_extensions.Literal[
+        "AVAILABILITY_TYPE_UNSPECIFIED",
+        "ZONAL",
+        "REGIONAL",
+        "MULTI_REGIONAL",
+        "AVAILABILITY_TYPE_OTHER",
+    ]
+    externalReplicaConfigured: bool
+    promotableReplicaConfigured: bool
+
+@typing.type_check_only
+class BackupConfiguration(typing_extensions.TypedDict, total=False):
+    automatedBackupEnabled: bool
+    backupRetentionSettings: RetentionSettings
+    pointInTimeRecoveryEnabled: bool
+
+@typing.type_check_only
+class BackupRun(typing_extensions.TypedDict, total=False):
+    endTime: str
+    error: OperationError
+    startTime: str
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "SUCCESSFUL", "FAILED"]
+
+@typing.type_check_only
 class CertChain(typing_extensions.TypedDict, total=False):
     certificates: _list[str]
 
@@ -38,6 +63,268 @@ class Cluster(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class Compliance(typing_extensions.TypedDict, total=False):
+    standard: str
+    version: str
+
+@typing.type_check_only
+class CustomMetadataData(typing_extensions.TypedDict, total=False):
+    databaseMetadata: _list[DatabaseMetadata]
+
+@typing.type_check_only
+class DatabaseMetadata(typing_extensions.TypedDict, total=False):
+    backupConfiguration: BackupConfiguration
+    backupRun: BackupRun
+    product: Product
+    resourceId: DatabaseResourceId
+    resourceName: str
+
+@typing.type_check_only
+class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
+    feedTimestamp: str
+    feedType: typing_extensions.Literal[
+        "FEEDTYPE_UNSPECIFIED",
+        "RESOURCE_METADATA",
+        "OBSERVABILITY_DATA",
+        "SECURITY_FINDING_DATA",
+        "RECOMMENDATION_SIGNAL_DATA",
+    ]
+    recommendationSignalData: DatabaseResourceRecommendationSignalData
+    resourceHealthSignalData: DatabaseResourceHealthSignalData
+    resourceId: DatabaseResourceId
+    resourceMetadata: DatabaseResourceMetadata
+
+@typing.type_check_only
+class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False):
+    additionalMetadata: dict[str, typing.Any]
+    compliance: _list[Compliance]
+    description: str
+    eventTime: str
+    externalUri: str
+    name: str
+    provider: typing_extensions.Literal[
+        "PROVIDER_UNSPECIFIED",
+        "GCP",
+        "AWS",
+        "AZURE",
+        "ONPREM",
+        "SELFMANAGED",
+        "PROVIDER_OTHER",
+    ]
+    resourceContainer: str
+    resourceName: str
+    signalClass: typing_extensions.Literal[
+        "CLASS_UNSPECIFIED",
+        "THREAT",
+        "VULNERABILITY",
+        "MISCONFIGURATION",
+        "OBSERVATION",
+        "ERROR",
+    ]
+    signalId: str
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+        "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
+        "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
+        "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
+        "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
+        "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+        "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+        "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+        "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+        "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+        "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+        "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+        "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+        "SIGNAL_TYPE_QUERY_STATISTICS_LOGGED",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATISTICS",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATISTICS",
+        "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+        "SIGNAL_TYPE_LOGGING_QUERY_STATISTICS",
+        "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+        "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+        "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+        "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+        "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+        "SIGNAL_TYPE_EXPOSED_BY_OWNERSHIP_CHAINING",
+        "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+        "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+        "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+        "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+        "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+        "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+        "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+        "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+        "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+        "SIGNAL_TYPE_IDLE",
+        "SIGNAL_TYPE_OVERPROVISIONED",
+        "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+        "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+        "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+        "SIGNAL_TYPE_UNDERPROVISIONED",
+        "SIGNAL_TYPE_OUT_OF_DISK",
+        "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+        "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
+
+@typing.type_check_only
+class DatabaseResourceId(typing_extensions.TypedDict, total=False):
+    provider: typing_extensions.Literal[
+        "PROVIDER_UNSPECIFIED",
+        "GCP",
+        "AWS",
+        "AZURE",
+        "ONPREM",
+        "SELFMANAGED",
+        "PROVIDER_OTHER",
+    ]
+    providerDescription: str
+    resourceType: str
+    uniqueId: str
+
+@typing.type_check_only
+class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
+    availabilityConfiguration: AvailabilityConfiguration
+    backupConfiguration: BackupConfiguration
+    backupRun: BackupRun
+    creationTime: str
+    currentState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "HEALTHY",
+        "UNHEALTHY",
+        "SUSPENDED",
+        "DELETED",
+        "STATE_OTHER",
+    ]
+    customMetadata: CustomMetadataData
+    entitlements: _list[Entitlement]
+    expectedState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "HEALTHY",
+        "UNHEALTHY",
+        "SUSPENDED",
+        "DELETED",
+        "STATE_OTHER",
+    ]
+    id: DatabaseResourceId
+    instanceType: typing_extensions.Literal[
+        "INSTANCE_TYPE_UNSPECIFIED",
+        "SUB_RESOURCE_TYPE_UNSPECIFIED",
+        "PRIMARY",
+        "SECONDARY",
+        "READ_REPLICA",
+        "OTHER",
+        "SUB_RESOURCE_TYPE_PRIMARY",
+        "SUB_RESOURCE_TYPE_SECONDARY",
+        "SUB_RESOURCE_TYPE_READ_REPLICA",
+        "SUB_RESOURCE_TYPE_OTHER",
+    ]
+    location: str
+    primaryResourceId: DatabaseResourceId
+    product: Product
+    resourceContainer: str
+    resourceName: str
+    updationTime: str
+    userLabels: dict[str, typing.Any]
+
+@typing.type_check_only
+class DatabaseResourceRecommendationSignalData(
+    typing_extensions.TypedDict, total=False
+):
+    additionalMetadata: dict[str, typing.Any]
+    lastRefreshTime: str
+    recommendationState: typing_extensions.Literal[
+        "UNSPECIFIED", "ACTIVE", "CLAIMED", "SUCCEEDED", "FAILED", "DISMISSED"
+    ]
+    recommender: str
+    recommenderId: str
+    recommenderSubtype: str
+    resourceName: str
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
+        "SIGNAL_TYPE_GROUP_NOT_REPLICATING_ACROSS_REGIONS",
+        "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_ZONES",
+        "SIGNAL_TYPE_NOT_AVAILABLE_IN_MULTIPLE_REGIONS",
+        "SIGNAL_TYPE_NO_PROMOTABLE_REPLICA",
+        "SIGNAL_TYPE_NO_AUTOMATED_BACKUP_POLICY",
+        "SIGNAL_TYPE_SHORT_BACKUP_RETENTION",
+        "SIGNAL_TYPE_LAST_BACKUP_FAILED",
+        "SIGNAL_TYPE_LAST_BACKUP_OLD",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_2_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_3",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
+        "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
+        "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
+        "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
+        "SIGNAL_TYPE_QUERY_LOCK_WAITS_NOT_LOGGED",
+        "SIGNAL_TYPE_LOGGING_MOST_ERRORS",
+        "SIGNAL_TYPE_LOGGING_ONLY_CRITICAL_ERRORS",
+        "SIGNAL_TYPE_MINIMAL_ERROR_LOGGING",
+        "SIGNAL_TYPE_QUERY_STATISTICS_LOGGED",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_CLIENT_HOSTNAME",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PARSER_STATISTICS",
+        "SIGNAL_TYPE_EXCESSIVE_LOGGING_OF_PLANNER_STATISTICS",
+        "SIGNAL_TYPE_NOT_LOGGING_ONLY_DDL_STATEMENTS",
+        "SIGNAL_TYPE_LOGGING_QUERY_STATISTICS",
+        "SIGNAL_TYPE_NOT_LOGGING_TEMPORARY_FILES",
+        "SIGNAL_TYPE_CONNECTION_MAX_NOT_CONFIGURED",
+        "SIGNAL_TYPE_USER_OPTIONS_CONFIGURED",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_WEAK_ROOT_PASSWORD",
+        "SIGNAL_TYPE_ENCRYPTION_KEY_NOT_CUSTOMER_MANAGED",
+        "SIGNAL_TYPE_SERVER_AUTHENTICATION_NOT_REQUIRED",
+        "SIGNAL_TYPE_EXPOSED_BY_OWNERSHIP_CHAINING",
+        "SIGNAL_TYPE_EXPOSED_TO_EXTERNAL_SCRIPTS",
+        "SIGNAL_TYPE_EXPOSED_TO_LOCAL_DATA_LOADS",
+        "SIGNAL_TYPE_CONNECTION_ATTEMPTS_NOT_LOGGED",
+        "SIGNAL_TYPE_DISCONNECTIONS_NOT_LOGGED",
+        "SIGNAL_TYPE_LOGGING_EXCESSIVE_STATEMENT_INFO",
+        "SIGNAL_TYPE_EXPOSED_TO_REMOTE_ACCESS",
+        "SIGNAL_TYPE_DATABASE_NAMES_EXPOSED",
+        "SIGNAL_TYPE_SENSITIVE_TRACE_INFO_NOT_MASKED",
+        "SIGNAL_TYPE_PUBLIC_IP_ENABLED",
+        "SIGNAL_TYPE_IDLE",
+        "SIGNAL_TYPE_OVERPROVISIONED",
+        "SIGNAL_TYPE_HIGH_NUMBER_OF_OPEN_TABLES",
+        "SIGNAL_TYPE_HIGH_NUMBER_OF_TABLES",
+        "SIGNAL_TYPE_HIGH_TRANSACTION_ID_UTILIZATION",
+        "SIGNAL_TYPE_UNDERPROVISIONED",
+        "SIGNAL_TYPE_OUT_OF_DISK",
+        "SIGNAL_TYPE_SERVER_CERTIFICATE_NEAR_EXPIRY",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
+        "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+    ]
+
+@typing.type_check_only
 class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
     address: str
     port: int
@@ -45,6 +332,13 @@ class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Entitlement(typing_extensions.TypedDict, total=False):
+    entitlementState: typing_extensions.Literal[
+        "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
+    ]
+    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "DUET_AI", "GEMINI"]
 
 @typing.type_check_only
 class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -217,6 +511,20 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OperationError(typing_extensions.TypedDict, total=False):
+    code: str
+    errorType: typing_extensions.Literal[
+        "OPERATION_ERROR_TYPE_UNSPECIFIED",
+        "KMS_KEY_ERROR",
+        "DATABASE_ERROR",
+        "STOCKOUT_ERROR",
+        "CANCELLATION_ERROR",
+        "SQLSERVER_ERROR",
+        "INTERNAL_ERROR",
+    ]
+    message: str
+
+@typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     createTime: str
@@ -246,6 +554,38 @@ class PersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbSnapshotStartTime: str
 
 @typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    engine: typing_extensions.Literal[
+        "ENGINE_UNSPECIFIED",
+        "ENGINE_MYSQL",
+        "MYSQL",
+        "ENGINE_POSTGRES",
+        "POSTGRES",
+        "ENGINE_SQL_SERVER",
+        "SQL_SERVER",
+        "ENGINE_NATIVE",
+        "NATIVE",
+        "ENGINE_CLOUD_SPANNER_WITH_POSTGRES_DIALECT",
+        "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
+        "ENGINE_MEMORYSTORE_FOR_REDIS",
+        "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
+        "ENGINE_OTHER",
+    ]
+    type: typing_extensions.Literal[
+        "PRODUCT_TYPE_UNSPECIFIED",
+        "PRODUCT_TYPE_CLOUD_SQL",
+        "CLOUD_SQL",
+        "PRODUCT_TYPE_ALLOYDB",
+        "ALLOYDB",
+        "PRODUCT_TYPE_SPANNER",
+        "PRODUCT_TYPE_ON_PREM",
+        "ON_PREM",
+        "PRODUCT_TYPE_MEMORYSTORE",
+        "PRODUCT_TYPE_OTHER",
+    ]
+    version: str
+
+@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     network: str
 
@@ -273,6 +613,14 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
         "SPECIFIC_TIME",
     ]
     scheduleTime: str
+
+@typing.type_check_only
+class RetentionSettings(typing_extensions.TypedDict, total=False):
+    quantityBasedRetention: int
+    retentionUnit: typing_extensions.Literal[
+        "RETENTION_UNIT_UNSPECIFIED", "COUNT", "TIME", "RETENTION_UNIT_OTHER"
+    ]
+    timeBasedRetention: str
 
 @typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):

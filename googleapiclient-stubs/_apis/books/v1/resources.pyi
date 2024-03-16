@@ -269,7 +269,12 @@ class BooksResource(googleapiclient.discovery.Resource):
                 previous_response: Annotations,
             ) -> AnnotationsHttpRequest | None: ...
             def summary(
-                self, *, layerIds: str | _list[str], volumeId: str, **kwargs: typing.Any
+                self,
+                *,
+                layerIds: str | _list[str],
+                volumeId: str,
+                source: str = ...,
+                **kwargs: typing.Any
             ) -> AnnotationsSummaryHttpRequest: ...
             def update(
                 self,

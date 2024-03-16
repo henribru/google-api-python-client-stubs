@@ -305,6 +305,7 @@ class Quota(typing_extensions.TypedDict, total=False):
     managedZones: int
     managedZonesPerGkeCluster: int
     managedZonesPerNetwork: int
+    nameserversPerDelegation: int
     networksPerManagedZone: int
     networksPerPolicy: int
     networksPerResponsePolicy: int

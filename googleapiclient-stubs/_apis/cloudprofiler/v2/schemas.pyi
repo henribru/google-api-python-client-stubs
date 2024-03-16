@@ -49,3 +49,4 @@ class Profile(typing_extensions.TypedDict, total=False):
         "PEAK_HEAP",
         "HEAP_ALLOC",
     ]
+    startTime: str

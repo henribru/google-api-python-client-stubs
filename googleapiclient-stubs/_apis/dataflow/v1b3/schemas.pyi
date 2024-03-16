@@ -1259,6 +1259,10 @@ class StreamingScalingReport(typing_extensions.TypedDict, total=False):
     outstandingBytesCount: int
 
 @typing.type_check_only
+class StreamingScalingReportResponse(typing_extensions.TypedDict, total=False):
+    maximumThreadCount: int
+
+@typing.type_check_only
 class StreamingSetupTask(typing_extensions.TypedDict, total=False):
     drain: bool
     receiveWorkPort: int
@@ -1472,6 +1476,7 @@ class WorkerMessageCode(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkerMessageResponse(typing_extensions.TypedDict, total=False):
+    streamingScalingReportResponse: StreamingScalingReportResponse
     workerHealthReportResponse: WorkerHealthReportResponse
     workerMetricsResponse: ResourceUtilizationReportResponse
     workerShutdownNoticeResponse: WorkerShutdownNoticeResponse

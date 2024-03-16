@@ -305,6 +305,7 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     contentBudgetLostImpressionShare: float
     contentImpressionShare: float
     contentRankLostImpressionShare: float
+    conversionCustomMetrics: _list[GoogleAdsSearchads360V0Common__Value]
     conversions: float
     conversionsByConversionDate: float
     conversionsFromInteractionsRate: float
@@ -348,6 +349,7 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     leadRevenueMicros: str
     leadUnitsSold: float
     mobileFriendlyClicksPercentage: float
+    rawEventConversionMetrics: _list[GoogleAdsSearchads360V0Common__Value]
     searchAbsoluteTopImpressionShare: float
     searchBudgetLostAbsoluteTopImpressionShare: float
     searchBudgetLostImpressionShare: float
@@ -474,6 +476,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
         "CONVERTED_LEAD",
     ]
     conversionActionName: str
+    conversionCustomDimensions: _list[GoogleAdsSearchads360V0Common__Value]
     date: str
     dayOfWeek: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -543,6 +546,7 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     productTypeL4: str
     productTypeL5: str
     quarter: str
+    rawEventConversionDimensions: _list[GoogleAdsSearchads360V0Common__Value]
     week: str
     year: int
 
@@ -1088,6 +1092,17 @@ class GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings(
     alwaysUseDefaultValue: bool
     defaultCurrencyCode: str
     defaultValue: float
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo(
+    typing_extensions.TypedDict, total=False
+):
+    floodlightVariableDataType: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "NUMBER", "STRING"
+    ]
+    floodlightVariableType: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "DIMENSION", "METRIC", "UNSET"
+    ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductBiddingCategory(
@@ -2134,6 +2149,32 @@ class GoogleAdsSearchads360V0Resources__ConversionAction(
     valueSettings: GoogleAdsSearchads360V0Resources_ConversionAction_ValueSettings
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__ConversionCustomVariable(
+    typing_extensions.TypedDict, total=False
+):
+    cardinality: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "BELOW_ALL_LIMITS",
+        "EXCEEDS_SEGMENTATION_LIMIT_BUT_NOT_STATS_LIMIT",
+        "APPROACHES_STATS_LIMIT",
+        "EXCEEDS_STATS_LIMIT",
+    ]
+    customColumnIds: _list[str]
+    family: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "STANDARD", "FLOODLIGHT"
+    ]
+    floodlightConversionCustomVariableInfo: GoogleAdsSearchads360V0Resources_ConversionCustomVariable_FloodlightConversionCustomVariableInfo
+    id: str
+    name: str
+    ownerCustomer: str
+    resourceName: str
+    status: typing_extensions.Literal[
+        "UNSPECIFIED", "UNKNOWN", "ACTIVATION_NEEDED", "ENABLED", "PAUSED"
+    ]
+    tag: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__ConversionTrackingSetting(
     typing_extensions.TypedDict, total=False
 ):
@@ -2474,6 +2515,20 @@ class GoogleAdsSearchads360V0Resources__WebpageView(
     resourceName: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Services__CustomColumnHeader(
     typing_extensions.TypedDict, total=False
 ):
@@ -2492,6 +2547,20 @@ class GoogleAdsSearchads360V0Services__ListCustomColumnsResponse(
     typing_extensions.TypedDict, total=False
 ):
     customColumns: _list[GoogleAdsSearchads360V0Resources__CustomColumn]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Services__SearchAds360Row(
@@ -2528,6 +2597,7 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     cartDataSalesView: GoogleAdsSearchads360V0Resources__CartDataSalesView
     conversion: GoogleAdsSearchads360V0Resources__Conversion
     conversionAction: GoogleAdsSearchads360V0Resources__ConversionAction
+    conversionCustomVariable: GoogleAdsSearchads360V0Resources__ConversionCustomVariable
     customColumns: _list[GoogleAdsSearchads360V0Common__Value]
     customer: GoogleAdsSearchads360V0Resources__Customer
     customerAsset: GoogleAdsSearchads360V0Resources__CustomerAsset
@@ -2587,9 +2657,21 @@ class GoogleAdsSearchads360V0Services__SearchSearchAds360Request(
 class GoogleAdsSearchads360V0Services__SearchSearchAds360Response(
     typing_extensions.TypedDict, total=False
 ):
+    conversionCustomDimensionHeaders: _list[
+        GoogleAdsSearchads360V0Services__ConversionCustomDimensionHeader
+    ]
+    conversionCustomMetricHeaders: _list[
+        GoogleAdsSearchads360V0Services__ConversionCustomMetricHeader
+    ]
     customColumnHeaders: _list[GoogleAdsSearchads360V0Services__CustomColumnHeader]
     fieldMask: str
     nextPageToken: str
+    rawEventConversionDimensionHeaders: _list[
+        GoogleAdsSearchads360V0Services__RawEventConversionDimensionHeader
+    ]
+    rawEventConversionMetricHeaders: _list[
+        GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader
+    ]
     results: _list[GoogleAdsSearchads360V0Services__SearchAds360Row]
     summaryRow: GoogleAdsSearchads360V0Services__SearchAds360Row
     totalResultsCount: str

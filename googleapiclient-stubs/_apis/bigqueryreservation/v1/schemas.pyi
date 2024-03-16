@@ -8,7 +8,12 @@ _list = list
 class Assignment(typing_extensions.TypedDict, total=False):
     assignee: str
     jobType: typing_extensions.Literal[
-        "JOB_TYPE_UNSPECIFIED", "PIPELINE", "QUERY", "ML_EXTERNAL", "BACKGROUND"
+        "JOB_TYPE_UNSPECIFIED",
+        "PIPELINE",
+        "QUERY",
+        "ML_EXTERNAL",
+        "BACKGROUND",
+        "CONTINUOUS",
     ]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]

@@ -42,6 +42,7 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     buildEnvironmentVariables: dict[str, typing.Any]
     buildId: str
     buildName: str
+    buildServiceAccount: str
     buildWorkerPool: str
     description: str
     dockerRegistry: typing_extensions.Literal[

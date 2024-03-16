@@ -114,6 +114,11 @@ class GoogleCloudRetailV2Audience(typing_extensions.TypedDict, total=False):
     genders: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2BigQueryOutputResult(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    tableId: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2BigQuerySource(typing_extensions.TypedDict, total=False):
     dataSchema: str
     datasetId: str
@@ -314,9 +319,37 @@ class GoogleCloudRetailV2ExperimentInfoServingConfigExperiment(
     originalServingConfig: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2ExportAnalyticsMetricsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    outputConfig: GoogleCloudRetailV2OutputConfig
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportAnalyticsMetricsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    errorSamples: _list[GoogleRpcStatus]
+    errorsConfig: GoogleCloudRetailV2ExportErrorsConfig
+    outputResult: GoogleCloudRetailV2OutputResult
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportErrorsConfig(typing_extensions.TypedDict, total=False):
+    gcsPrefix: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ExportMetadata(typing_extensions.TypedDict, total=False):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2FulfillmentInfo(typing_extensions.TypedDict, total=False):
     placeIds: _list[str]
     type: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2GcsOutputResult(typing_extensions.TypedDict, total=False):
+    outputUri: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2GcsSource(typing_extensions.TypedDict, total=False):
@@ -493,6 +526,30 @@ class GoogleCloudRetailV2ModelServingConfigList(
     typing_extensions.TypedDict, total=False
 ):
     servingConfigIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2OutputConfig(typing_extensions.TypedDict, total=False):
+    bigqueryDestination: GoogleCloudRetailV2OutputConfigBigQueryDestination
+    gcsDestination: GoogleCloudRetailV2OutputConfigGcsDestination
+
+@typing.type_check_only
+class GoogleCloudRetailV2OutputConfigBigQueryDestination(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+    tableIdPrefix: str
+    tableType: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2OutputConfigGcsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    outputUriPrefix: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2OutputResult(typing_extensions.TypedDict, total=False):
+    bigqueryResult: _list[GoogleCloudRetailV2BigQueryOutputResult]
+    gcsResult: _list[GoogleCloudRetailV2GcsOutputResult]
 
 @typing.type_check_only
 class GoogleCloudRetailV2PauseModelRequest(

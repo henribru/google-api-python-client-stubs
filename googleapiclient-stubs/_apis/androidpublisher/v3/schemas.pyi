@@ -134,6 +134,8 @@ class AppRecoveryAction(typing_extensions.TypedDict, total=False):
         "RECOVERY_STATUS_ACTIVE",
         "RECOVERY_STATUS_CANCELED",
         "RECOVERY_STATUS_DRAFT",
+        "RECOVERY_STATUS_GENERATION_IN_PROGRESS",
+        "RECOVERY_STATUS_GENERATION_FAILED",
     ]
     targeting: Targeting
 
@@ -163,6 +165,7 @@ class AssetSliceSet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
+    accountHoldDuration: str
     billingPeriodDuration: str
     gracePeriodDuration: str
     legacyCompatible: bool
@@ -538,6 +541,8 @@ class GeneratedRecoveryApk(typing_extensions.TypedDict, total=False):
         "RECOVERY_STATUS_ACTIVE",
         "RECOVERY_STATUS_CANCELED",
         "RECOVERY_STATUS_DRAFT",
+        "RECOVERY_STATUS_GENERATION_IN_PROGRESS",
+        "RECOVERY_STATUS_GENERATION_FAILED",
     ]
 
 @typing.type_check_only
@@ -891,7 +896,7 @@ class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
     migratedTransactionProgram: typing_extensions.Literal[
         "EXTERNAL_TRANSACTION_PROGRAM_UNSPECIFIED",
         "USER_CHOICE_BILLING",
-        "ALTERTNATIVE_BILLING_ONLY",
+        "ALTERNATIVE_BILLING_ONLY",
     ]
 
 @typing.type_check_only

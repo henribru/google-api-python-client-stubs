@@ -72,6 +72,41 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class FirewallEndpoint(typing_extensions.TypedDict, total=False):
+    associatedNetworks: _list[str]
+    associations: _list[FirewallEndpointAssociationReference]
+    billingProjectId: str
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    disabled: bool
+    firewallEndpoint: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+    ]
+    tlsInspectionPolicy: str
+    updateTime: str
+
+@typing.type_check_only
+class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=False):
+    name: str
+    network: str
+
+@typing.type_check_only
 class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -163,6 +198,7 @@ class ListAddressGroupReferencesResponseAddressGroupReference(
 ):
     firewallPolicy: str
     rulePriority: int
+    securityPolicy: str
 
 @typing.type_check_only
 class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):
@@ -178,6 +214,20 @@ class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False
 class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     clientTlsPolicies: _list[ClientTlsPolicy]
     nextPageToken: str
+
+@typing.type_check_only
+class ListFirewallEndpointAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    firewallEndpointAssociations: _list[FirewallEndpointAssociation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListFirewallEndpointsResponse(typing_extensions.TypedDict, total=False):
+    firewallEndpoints: _list[FirewallEndpoint]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGatewaySecurityPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -200,6 +250,16 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListSecurityProfileGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    securityProfileGroups: _list[SecurityProfileGroup]
+
+@typing.type_check_only
+class ListSecurityProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    securityProfiles: _list[SecurityProfile]
 
 @typing.type_check_only
 class ListServerTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -265,6 +325,27 @@ class Rule(typing_extensions.TypedDict, total=False):
     sources: _list[Source]
 
 @typing.type_check_only
+class SecurityProfile(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    threatPreventionProfile: ThreatPreventionProfile
+    type: typing_extensions.Literal["PROFILE_TYPE_UNSPECIFIED", "THREAT_PREVENTION"]
+    updateTime: str
+
+@typing.type_check_only
+class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    threatPreventionProfile: str
+    updateTime: str
+
+@typing.type_check_only
 class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
     allowOpen: bool
     createTime: str
@@ -276,6 +357,15 @@ class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class SeverityOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
+    ]
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
+    ]
+
+@typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
     ipBlocks: _list[str]
     principals: _list[str]
@@ -285,6 +375,26 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class ThreatOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
+    ]
+    threatId: str
+    type: typing_extensions.Literal[
+        "THREAT_TYPE_UNSPECIFIED",
+        "UNKNOWN",
+        "VULNERABILITY",
+        "ANTIVIRUS",
+        "SPYWARE",
+        "DNS",
+    ]
+
+@typing.type_check_only
+class ThreatPreventionProfile(typing_extensions.TypedDict, total=False):
+    severityOverrides: _list[SeverityOverride]
+    threatOverrides: _list[ThreatOverride]
 
 @typing.type_check_only
 class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):

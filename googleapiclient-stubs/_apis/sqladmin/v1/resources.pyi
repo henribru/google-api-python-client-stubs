@@ -109,6 +109,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InstancesResource(googleapiclient.discovery.Resource):
+        def acquireSsrsLease(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesAcquireSsrsLeaseRequest = ...,
+            **kwargs: typing.Any
+        ) -> SqlInstancesAcquireSsrsLeaseResponseHttpRequest: ...
         def addServerCa(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -210,6 +218,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: InstancesReencryptRequest = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def releaseSsrsLease(
+            self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> SqlInstancesReleaseSsrsLeaseResponseHttpRequest: ...
         def resetSslConfig(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -548,6 +559,14 @@ class OperationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> OperationsListResponse: ...
 
 @typing.type_check_only
+class SqlInstancesAcquireSsrsLeaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SqlInstancesAcquireSsrsLeaseResponse: ...
+
+@typing.type_check_only
 class SqlInstancesGetDiskShrinkConfigResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -566,6 +585,14 @@ class SqlInstancesGetLatestRecoveryTimeResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SqlInstancesGetLatestRecoveryTimeResponse: ...
+
+@typing.type_check_only
+class SqlInstancesReleaseSsrsLeaseResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SqlInstancesReleaseSsrsLeaseResponse: ...
 
 @typing.type_check_only
 class SqlInstancesVerifyExternalSyncSettingsResponseHttpRequest(

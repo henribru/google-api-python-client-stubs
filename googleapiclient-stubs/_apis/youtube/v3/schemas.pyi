@@ -374,9 +374,19 @@ class ChannelStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
+    billingDetails: ChannelToStoreLinkDetailsBillingDetails
     merchantId: str
     storeName: str
     storeUrl: str
+
+@typing.type_check_only
+class ChannelToStoreLinkDetailsBillingDetails(typing_extensions.TypedDict, total=False):
+    billingStatus: typing_extensions.Literal[
+        "billingStatusUnspecified",
+        "billingStatusPending",
+        "billingStatusActive",
+        "billingStatusInactive",
+    ]
 
 @typing.type_check_only
 class ChannelTopicDetails(typing_extensions.TypedDict, total=False):
@@ -1420,6 +1430,7 @@ class LiveChatMessageDeletedDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LiveChatMessageListResponse(typing_extensions.TypedDict, total=False):
+    activePollItem: LiveChatMessage
     etag: str
     eventId: str
     items: _list[LiveChatMessage]
@@ -1448,6 +1459,7 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
     messageDeletedDetails: LiveChatMessageDeletedDetails
     messageRetractedDetails: LiveChatMessageRetractedDetails
     newSponsorDetails: LiveChatNewSponsorDetails
+    pollDetails: LiveChatPollDetails
     publishedAt: str
     superChatDetails: LiveChatSuperChatDetails
     superStickerDetails: LiveChatSuperStickerDetails
@@ -1469,6 +1481,7 @@ class LiveChatMessageSnippet(typing_extensions.TypedDict, total=False):
         "userBannedEvent",
         "superChatEvent",
         "superStickerEvent",
+        "pollEvent",
     ]
     userBannedDetails: LiveChatUserBannedMessageDetails
 
@@ -1500,6 +1513,23 @@ class LiveChatModeratorSnippet(typing_extensions.TypedDict, total=False):
 class LiveChatNewSponsorDetails(typing_extensions.TypedDict, total=False):
     isUpgrade: bool
     memberLevelName: str
+
+@typing.type_check_only
+class LiveChatPollDetails(typing_extensions.TypedDict, total=False):
+    metadata: LiveChatPollDetailsPollMetadata
+    status: typing_extensions.Literal["unknown", "active", "closed"]
+
+@typing.type_check_only
+class LiveChatPollDetailsPollMetadata(typing_extensions.TypedDict, total=False):
+    options: _list[LiveChatPollDetailsPollMetadataPollOption]
+    questionText: str
+
+@typing.type_check_only
+class LiveChatPollDetailsPollMetadataPollOption(
+    typing_extensions.TypedDict, total=False
+):
+    optionText: str
+    tally: str
 
 @typing.type_check_only
 class LiveChatSuperChatDetails(typing_extensions.TypedDict, total=False):

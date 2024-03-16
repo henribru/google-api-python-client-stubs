@@ -42,6 +42,7 @@ class AppLinkDataAppLinkInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppLinkDataAppLinkInfoAppTarget(typing_extensions.TypedDict, total=False):
+    packageName: str
     targetUri: Uri
 
 @typing.type_check_only
@@ -679,6 +680,7 @@ class GenericClass(typing_extensions.TypedDict, total=False):
     id: str
     imageModulesData: _list[ImageModuleData]
     linksModuleData: LinksModuleData
+    messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
         "MULTIPLE_HOLDERS",
@@ -696,6 +698,10 @@ class GenericClass(typing_extensions.TypedDict, total=False):
         "UNLOCK_NOT_REQUIRED",
         "UNLOCK_REQUIRED_TO_VIEW",
     ]
+
+@typing.type_check_only
+class GenericClassAddMessageResponse(typing_extensions.TypedDict, total=False):
+    resource: GenericClass
 
 @typing.type_check_only
 class GenericClassListResponse(typing_extensions.TypedDict, total=False):
@@ -751,6 +757,10 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
     wideLogo: Image
+
+@typing.type_check_only
+class GenericObjectAddMessageResponse(typing_extensions.TypedDict, total=False):
+    resource: GenericObject
 
 @typing.type_check_only
 class GenericObjectListResponse(typing_extensions.TypedDict, total=False):
@@ -1379,16 +1389,6 @@ class Permissions(typing_extensions.TypedDict, total=False):
     permissions: _list[Permission]
 
 @typing.type_check_only
-class PrivateText(typing_extensions.TypedDict, total=False):
-    body: LocalizedString
-    header: LocalizedString
-
-@typing.type_check_only
-class PrivateUri(typing_extensions.TypedDict, total=False):
-    description: LocalizedString
-    uri: str
-
-@typing.type_check_only
 class PurchaseDetails(typing_extensions.TypedDict, total=False):
     accountId: str
     confirmationCode: str
@@ -1485,12 +1485,6 @@ class SecurityAnimation(typing_extensions.TypedDict, total=False):
     animationType: typing_extensions.Literal[
         "ANIMATION_UNSPECIFIED", "FOIL_SHIMMER", "foilShimmer"
     ]
-
-@typing.type_check_only
-class SetPassUpdateNoticeRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class SetPassUpdateNoticeResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SignUpInfo(typing_extensions.TypedDict, total=False):
@@ -1783,25 +1777,6 @@ class TranslatedString(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpcomingNotification(typing_extensions.TypedDict, total=False):
     enableNotification: bool
-
-@typing.type_check_only
-class UploadPrivateDataRequest(typing_extensions.TypedDict, total=False):
-    issuerId: str
-    text: PrivateText
-    uri: PrivateUri
-
-@typing.type_check_only
-class UploadPrivateDataResponse(typing_extensions.TypedDict, total=False):
-    privateContentId: str
-
-@typing.type_check_only
-class UploadPrivateImageRequest(typing_extensions.TypedDict, total=False):
-    blob: Media
-    mediaRequestInfo: MediaRequestInfo
-
-@typing.type_check_only
-class UploadPrivateImageResponse(typing_extensions.TypedDict, total=False):
-    privateContentId: str
 
 @typing.type_check_only
 class Uri(typing_extensions.TypedDict, total=False):

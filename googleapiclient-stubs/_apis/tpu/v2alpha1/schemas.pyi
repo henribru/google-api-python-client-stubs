@@ -306,6 +306,7 @@ class RuntimeVersion(typing_extensions.TypedDict, total=False):
 class SchedulingConfig(typing_extensions.TypedDict, total=False):
     preemptible: bool
     reserved: bool
+    spot: bool
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):

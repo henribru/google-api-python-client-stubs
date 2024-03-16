@@ -28,9 +28,6 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...

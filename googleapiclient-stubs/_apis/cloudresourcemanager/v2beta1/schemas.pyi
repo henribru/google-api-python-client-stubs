@@ -98,6 +98,7 @@ class Folder(typing_extensions.TypedDict, total=False):
     ]
     name: str
     parent: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class FolderOperation(typing_extensions.TypedDict, total=False):

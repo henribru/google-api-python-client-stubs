@@ -13,8 +13,24 @@ class AvroConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
+class AwsKinesis(typing_extensions.TypedDict, total=False):
+    awsRoleArn: str
+    consumerArn: str
+    gcpServiceAccount: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "KINESIS_PERMISSION_DENIED",
+        "PUBLISH_PERMISSION_DENIED",
+        "STREAM_NOT_FOUND",
+        "CONSUMER_NOT_FOUND",
+    ]
+    streamArn: str
+
+@typing.type_check_only
 class BigQueryConfig(typing_extensions.TypedDict, total=False):
     dropUnknownFields: bool
+    serviceAccountEmail: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
@@ -42,6 +58,7 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     filenameSuffix: str
     maxBytes: str
     maxDuration: str
+    serviceAccountEmail: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
@@ -81,6 +98,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class IngestionDataSourceSettings(typing_extensions.TypedDict, total=False):
+    awsKinesis: AwsKinesis
 
 @typing.type_check_only
 class ListSchemaRevisionsResponse(typing_extensions.TypedDict, total=False):
@@ -265,6 +286,7 @@ class TextConfig(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Topic(typing_extensions.TypedDict, total=False):
+    ingestionDataSourceSettings: IngestionDataSourceSettings
     kmsKeyName: str
     labels: dict[str, typing.Any]
     messageRetentionDuration: str
@@ -272,6 +294,9 @@ class Topic(typing_extensions.TypedDict, total=False):
     name: str
     satisfiesPzs: bool
     schemaSettings: SchemaSettings
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "INGESTION_RESOURCE_ERROR"
+    ]
 
 @typing.type_check_only
 class UpdateSnapshotRequest(typing_extensions.TypedDict, total=False):

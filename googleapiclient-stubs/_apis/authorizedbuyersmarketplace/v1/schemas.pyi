@@ -152,9 +152,11 @@ class Deal(typing_extensions.TypedDict, total=False):
     deliveryControl: DeliveryControl
     description: str
     displayName: str
+    eligibleSeatIds: _list[str]
     estimatedGrossSpend: Money
     flightEndTime: str
     flightStartTime: str
+    mediaPlanner: MediaPlanner
     name: str
     preferredDealTerms: PreferredDealTerms
     privateAuctionTerms: PrivateAuctionTerms
@@ -301,6 +303,10 @@ class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
     technologyTargeting: TechnologyTargeting
     userListTargeting: CriteriaTargeting
     videoTargeting: VideoTargeting
+
+@typing.type_check_only
+class MediaPlanner(typing_extensions.TypedDict, total=False):
+    accountId: str
 
 @typing.type_check_only
 class MobileApplicationTargeting(typing_extensions.TypedDict, total=False):

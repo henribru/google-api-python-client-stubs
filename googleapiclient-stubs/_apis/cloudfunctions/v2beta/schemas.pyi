@@ -5,6 +5,9 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AbortFunctionUpgradeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -44,6 +47,9 @@ class BuildConfig(typing_extensions.TypedDict, total=False):
     workerPool: str
 
 @typing.type_check_only
+class CommitFunctionUpgradeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -79,6 +85,7 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Function(typing_extensions.TypedDict, total=False):
     buildConfig: BuildConfig
+    createTime: str
     description: str
     environment: typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
     eventTrigger: EventTrigger
@@ -92,6 +99,7 @@ class Function(typing_extensions.TypedDict, total=False):
     ]
     stateMessages: _list[GoogleCloudFunctionsV2betaStateMessage]
     updateTime: str
+    upgradeInfo: UpgradeInfo
     url: str
 
 @typing.type_check_only
@@ -351,6 +359,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class RedirectFunctionUpgradeTrafficRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class RepoSource(typing_extensions.TypedDict, total=False):
     branchName: str
     commitSha: str
@@ -358,6 +371,11 @@ class RepoSource(typing_extensions.TypedDict, total=False):
     projectId: str
     repoName: str
     tagName: str
+
+@typing.type_check_only
+class RollbackFunctionUpgradeTrafficRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class Runtime(typing_extensions.TypedDict, total=False):
@@ -434,6 +452,9 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SetupFunctionUpgradeConfigRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
     gitUri: str
     repoSource: RepoSource
@@ -464,3 +485,21 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class UpgradeInfo(typing_extensions.TypedDict, total=False):
+    buildConfig: BuildConfig
+    eventTrigger: EventTrigger
+    serviceConfig: ServiceConfig
+    upgradeState: typing_extensions.Literal[
+        "UPGRADE_STATE_UNSPECIFIED",
+        "ELIGIBLE_FOR_2ND_GEN_UPGRADE",
+        "UPGRADE_OPERATION_IN_PROGRESS",
+        "SETUP_FUNCTION_UPGRADE_CONFIG_SUCCESSFUL",
+        "SETUP_FUNCTION_UPGRADE_CONFIG_ERROR",
+        "ABORT_FUNCTION_UPGRADE_ERROR",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
+        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
+        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
+        "COMMIT_FUNCTION_UPGRADE_ERROR",
+    ]

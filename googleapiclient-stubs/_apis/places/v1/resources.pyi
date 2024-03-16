@@ -27,12 +27,19 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> GoogleMapsPlacesV1PhotoMediaHttpRequest: ...
 
+        def autocomplete(
+            self,
+            *,
+            body: GoogleMapsPlacesV1AutocompletePlacesRequest = ...,
+            **kwargs: typing.Any
+        ) -> GoogleMapsPlacesV1AutocompletePlacesResponseHttpRequest: ...
         def get(
             self,
             *,
             name: str,
             languageCode: str = ...,
             regionCode: str = ...,
+            sessionToken: str = ...,
             **kwargs: typing.Any
         ) -> GoogleMapsPlacesV1PlaceHttpRequest: ...
         def searchNearby(
@@ -62,6 +69,16 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def places(self) -> PlacesResource: ...
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AutocompletePlacesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleMapsPlacesV1AutocompletePlacesResponse: ...
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PhotoMediaHttpRequest(googleapiclient.http.HttpRequest):

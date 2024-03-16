@@ -83,6 +83,9 @@ class DnsAuthorization(typing_extensions.TypedDict, total=False):
     domain: str
     labels: dict[str, typing.Any]
     name: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "FIXED_RECORD", "PER_PROJECT_RECORD"
+    ]
     updateTime: str
 
 @typing.type_check_only

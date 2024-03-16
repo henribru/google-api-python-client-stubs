@@ -364,6 +364,13 @@ class DataprocResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> NodeGroupHttpRequest: ...
+                    def repair(
+                        self,
+                        *,
+                        name: str,
+                        body: RepairNodeGroupRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def resize(
                         self,
                         *,

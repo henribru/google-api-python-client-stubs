@@ -16,7 +16,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-google-api-python-client = ">=2.116.0"
+google-api-python-client = ">=2.122.0"
 typing-extensions = ">=3.10.0"
 types-httplib2 = ">=0.22.0.2"
 
@@ -33,7 +33,6 @@ known_first_party = [
     "googleapiclient",
 ]
 combine_as_imports = true
-float_to_top = true
 
 [tool.mypy]
 warn_unused_ignores = true

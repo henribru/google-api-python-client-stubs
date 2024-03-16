@@ -91,6 +91,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -98,6 +99,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             syncToken: str = ...,
@@ -141,6 +143,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
                 | _list[
                     typing_extensions.Literal[
@@ -148,6 +151,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                         "READ_SOURCE_TYPE_PROFILE",
                         "READ_SOURCE_TYPE_CONTACT",
                         "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                        "READ_SOURCE_TYPE_OTHER_CONTACT",
                     ]
                 ] = ...,
                 syncToken: str = ...,
@@ -178,6 +182,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -185,6 +190,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -202,6 +208,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -209,6 +216,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -224,6 +232,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -231,6 +240,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -246,6 +256,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -253,6 +264,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -305,6 +317,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -312,6 +325,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             **kwargs: typing.Any
@@ -363,6 +377,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                 "READ_SOURCE_TYPE_PROFILE",
                 "READ_SOURCE_TYPE_CONTACT",
                 "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                "READ_SOURCE_TYPE_OTHER_CONTACT",
             ]
             | _list[
                 typing_extensions.Literal[
@@ -370,6 +385,7 @@ class PeopleServiceResource(googleapiclient.discovery.Resource):
                     "READ_SOURCE_TYPE_PROFILE",
                     "READ_SOURCE_TYPE_CONTACT",
                     "READ_SOURCE_TYPE_DOMAIN_CONTACT",
+                    "READ_SOURCE_TYPE_OTHER_CONTACT",
                 ]
             ] = ...,
             updatePersonFields: str = ...,

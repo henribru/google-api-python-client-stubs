@@ -744,6 +744,28 @@ class RevokeConsentRequest(typing_extensions.TypedDict, total=False):
     consentArtifact: str
 
 @typing.type_check_only
+class RollbackFhirResourceFilteringFields(typing_extensions.TypedDict, total=False):
+    metadataFilter: str
+    operationIds: _list[str]
+
+@typing.type_check_only
+class RollbackFhirResourcesRequest(typing_extensions.TypedDict, total=False):
+    changeType: typing_extensions.Literal[
+        "CHANGE_TYPE_UNSPECIFIED", "ALL", "CREATE", "UPDATE", "DELETE"
+    ]
+    excludeRollbacks: bool
+    filteringFields: RollbackFhirResourceFilteringFields
+    force: bool
+    inputGcsObject: str
+    resultGcsBucket: str
+    rollbackTime: str
+    type: _list[str]
+
+@typing.type_check_only
+class RollbackFhirResourcesResponse(typing_extensions.TypedDict, total=False):
+    fhirStore: str
+
+@typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):
     lastUpdatedPartitionConfig: TimePartitioning
     recursiveStructureDepth: str

@@ -84,6 +84,7 @@ class ChildLink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
+    maxCommitDelay: str
     mutations: _list[Mutation]
     requestOptions: RequestOptions
     returnCommitStats: bool
@@ -169,6 +170,11 @@ class CreateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
 class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
     cancelTime: str
     endTime: str
+    expectedFulfillmentPeriod: typing_extensions.Literal[
+        "FULFILLMENT_PERIOD_UNSPECIFIED",
+        "FULFILLMENT_PERIOD_NORMAL",
+        "FULFILLMENT_PERIOD_EXTENDED",
+    ]
     instance: Instance
     startTime: str
 
@@ -791,6 +797,7 @@ class Type(typing_extensions.TypedDict, total=False):
         "BOOL",
         "INT64",
         "FLOAT64",
+        "FLOAT32",
         "TIMESTAMP",
         "DATE",
         "STRING",
@@ -850,6 +857,11 @@ class UpdateInstanceConfigRequest(typing_extensions.TypedDict, total=False):
 class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
     cancelTime: str
     endTime: str
+    expectedFulfillmentPeriod: typing_extensions.Literal[
+        "FULFILLMENT_PERIOD_UNSPECIFIED",
+        "FULFILLMENT_PERIOD_NORMAL",
+        "FULFILLMENT_PERIOD_EXTENDED",
+    ]
     instance: Instance
     startTime: str
 

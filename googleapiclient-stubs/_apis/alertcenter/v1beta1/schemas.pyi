@@ -218,6 +218,16 @@ class DeviceCompromisedSecurityDetail(typing_extensions.TypedDict, total=False):
     serialNumber: str
 
 @typing.type_check_only
+class DeviceManagementRule(typing_extensions.TypedDict, total=False):
+    deviceId: str
+    deviceModel: str
+    deviceType: str
+    email: str
+    iosVendorId: str
+    resourceId: str
+    serialNumber: str
+
+@typing.type_check_only
 class DlpRuleViolation(typing_extensions.TypedDict, total=False):
     ruleViolationInfo: RuleViolationInfo
 

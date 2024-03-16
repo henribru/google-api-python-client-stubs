@@ -11,6 +11,7 @@ class GoogleCloudDialogflowCxV3AdvancedSettings(
     audioExportGcsDestination: GoogleCloudDialogflowCxV3GcsDestination
     dtmfSettings: GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings
     loggingSettings: GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings
+    speechSettings: GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings(
@@ -26,6 +27,15 @@ class GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings(
 ):
     enableInteractionLogging: bool
     enableStackdriverLogging: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3AdvancedSettingsSpeechSettings(
+    typing_extensions.TypedDict, total=False
+):
+    endpointerSensitivity: int
+    models: dict[str, typing.Any]
+    noSpeechTimeout: str
+    useTimeoutBasedEndpointing: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3AudioInput(typing_extensions.TypedDict, total=False):
@@ -190,6 +200,18 @@ class GoogleCloudDialogflowCxV3ExportAgentResponse(
     commitSha: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ExportEntityTypesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ExportEntityTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entityTypesContent: GoogleCloudDialogflowCxV3InlineDestination
+    entityTypesUri: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ExportFlowResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -303,6 +325,25 @@ class GoogleCloudDialogflowCxV3ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ImportEntityTypesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ImportEntityTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conflictingResources: GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources
+    entityTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ImportEntityTypesResponseConflictingResources(
+    typing_extensions.TypedDict, total=False
+):
+    entityDisplayNames: _list[str]
+    entityTypeDisplayNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ImportFlowResponse(
@@ -788,6 +829,7 @@ class GoogleCloudDialogflowCxV3beta1AdvancedSettings(
     audioExportGcsDestination: GoogleCloudDialogflowCxV3beta1GcsDestination
     dtmfSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings
     loggingSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings
+    speechSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings(
@@ -805,6 +847,15 @@ class GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings(
     enableStackdriverLogging: bool
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings(
+    typing_extensions.TypedDict, total=False
+):
+    endpointerSensitivity: int
+    models: dict[str, typing.Any]
+    noSpeechTimeout: str
+    useTimeoutBasedEndpointing: bool
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Agent(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
     answerFeedbackSettings: GoogleCloudDialogflowCxV3beta1AgentAnswerFeedbackSettings
@@ -818,6 +869,7 @@ class GoogleCloudDialogflowCxV3beta1Agent(typing_extensions.TypedDict, total=Fal
     gitIntegrationSettings: GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettings
     locked: bool
     name: str
+    personalizationSettings: GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings
     securitySettings: str
     speechToTextSettings: GoogleCloudDialogflowCxV3beta1SpeechToTextSettings
     startFlow: str
@@ -852,6 +904,12 @@ class GoogleCloudDialogflowCxV3beta1AgentGitIntegrationSettingsGithubSettings(
     displayName: str
     repositoryUri: str
     trackingBranch: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings(
+    typing_extensions.TypedDict, total=False
+):
+    defaultEndUserMetadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1AgentValidationResult(
@@ -948,6 +1006,7 @@ class GoogleCloudDialogflowCxV3beta1Changelog(typing_extensions.TypedDict, total
     action: str
     createTime: str
     displayName: str
+    languageCode: str
     name: str
     resource: str
     type: str
@@ -1286,6 +1345,30 @@ class GoogleCloudDialogflowCxV3beta1ExportAgentResponse(
     commitSha: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportEntityTypesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportEntityTypesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataFormat: typing_extensions.Literal[
+        "DATA_FORMAT_UNSPECIFIED", "BLOB", "JSON_PACKAGE"
+    ]
+    entityTypes: _list[str]
+    entityTypesContentInline: bool
+    entityTypesUri: str
+    languageCode: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportEntityTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entityTypesContent: GoogleCloudDialogflowCxV3beta1InlineDestination
+    entityTypesUri: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ExportFlowRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1542,6 +1625,41 @@ class GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    entityTypesContent: GoogleCloudDialogflowCxV3beta1InlineSource
+    entityTypesUri: str
+    mergeOption: typing_extensions.Literal[
+        "MERGE_OPTION_UNSPECIFIED",
+        "REPLACE",
+        "MERGE",
+        "RENAME",
+        "REPORT_CONFLICT",
+        "KEEP",
+    ]
+    targetEntityType: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    conflictingResources: GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources
+    entityTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportEntityTypesResponseConflictingResources(
+    typing_extensions.TypedDict, total=False
+):
+    entityDisplayNames: _list[str]
+    entityTypeDisplayNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportFlowRequest(
@@ -2014,8 +2132,12 @@ class GoogleCloudDialogflowCxV3beta1QueryResult(
     transcript: str
     triggerEvent: str
     triggerIntent: str
+    webhookDisplayNames: _list[str]
+    webhookIds: _list[str]
+    webhookLatencies: _list[str]
     webhookPayloads: _list[dict[str, typing.Any]]
     webhookStatuses: _list[GoogleRpcStatus]
+    webhookTags: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata(

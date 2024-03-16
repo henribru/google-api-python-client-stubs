@@ -418,8 +418,6 @@ class GoogleApiServiceusageV2alphaConsumerPolicy(
 
 @typing.type_check_only
 class GoogleApiServiceusageV2alphaEnableRule(typing_extensions.TypedDict, total=False):
-    categories: _list[str]
-    groups: _list[str]
     services: _list[str]
 
 @typing.type_check_only

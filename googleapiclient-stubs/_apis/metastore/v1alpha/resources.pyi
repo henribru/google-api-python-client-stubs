@@ -254,6 +254,12 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                @typing.type_check_only
+                class MigrationExecutionsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+
                 def alterLocation(
                     self,
                     *,
@@ -366,6 +372,7 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                 def backups(self) -> BackupsResource: ...
                 def databases(self) -> DatabasesResource: ...
                 def metadataImports(self) -> MetadataImportsResource: ...
+                def migrationExecutions(self) -> MigrationExecutionsResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any

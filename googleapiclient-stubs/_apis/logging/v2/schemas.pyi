@@ -565,6 +565,7 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
     name: str
     opsAnalyticsQuery: OpsAnalyticsQuery
     updateTime: str
+    visibility: typing_extensions.Literal["VISIBILITY_UNSPECIFIED", "PRIVATE", "SHARED"]
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):

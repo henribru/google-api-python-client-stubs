@@ -109,6 +109,49 @@ class GoogleCloudApigeeV1ApiCategoryResponse(typing_extensions.TypedDict, total=
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApiDoc(typing_extensions.TypedDict, total=False):
+    anonAllowed: bool
+    apiProductName: str
+    categoryIds: _list[str]
+    description: str
+    edgeAPIProductName: str
+    graphqlEndpointUrl: str
+    graphqlSchema: str
+    graphqlSchemaDisplayName: str
+    id: str
+    imageUrl: str
+    modified: str
+    published: bool
+    requireCallbackUrl: bool
+    siteId: str
+    specId: str
+    title: str
+    visibility: bool
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiDocDocumentation(typing_extensions.TypedDict, total=False):
+    graphqlDocumentation: GoogleCloudApigeeV1GraphqlDocumentation
+    oasDocumentation: GoogleCloudApigeeV1OASDocumentation
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiDocDocumentationResponse(
+    typing_extensions.TypedDict, total=False
+):
+    data: GoogleCloudApigeeV1ApiDocDocumentation
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiDocResponse(typing_extensions.TypedDict, total=False):
+    data: GoogleCloudApigeeV1ApiDoc
+    errorCode: str
+    message: str
+    requestId: str
+    status: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     apiResources: _list[str]
     approvalType: str
@@ -679,6 +722,11 @@ class GoogleCloudApigeeV1DisableSecurityActionRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1DocumentationFile(typing_extensions.TypedDict, total=False):
+    contents: str
+    displayName: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1EnableSecurityActionRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -897,6 +945,11 @@ class GoogleCloudApigeeV1GraphQLOperationGroup(
     operationConfigs: _list[GoogleCloudApigeeV1GraphQLOperationConfig]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1GraphqlDocumentation(typing_extensions.TypedDict, total=False):
+    endpointUri: str
+    schema: GoogleCloudApigeeV1DocumentationFile
+
+@typing.type_check_only
 class GoogleCloudApigeeV1GrpcOperationConfig(typing_extensions.TypedDict, total=False):
     apiSource: str
     attributes: _list[GoogleCloudApigeeV1Attribute]
@@ -1013,6 +1066,15 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse(
     data: _list[GoogleCloudApigeeV1ApiCategory]
     errorCode: str
     message: str
+    requestId: str
+    status: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListApiDocsResponse(typing_extensions.TypedDict, total=False):
+    data: _list[GoogleCloudApigeeV1ApiDoc]
+    errorCode: str
+    message: str
+    nextPageToken: str
     requestId: str
     status: str
 
@@ -1274,6 +1336,11 @@ class GoogleCloudApigeeV1NodeConfig(typing_extensions.TypedDict, total=False):
     currentAggregateNodeCount: str
     maxNodeCount: str
     minNodeCount: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1OASDocumentation(typing_extensions.TypedDict, total=False):
+    format: typing_extensions.Literal["FORMAT_UNSPECIFIED", "YAML", "JSON"]
+    spec: GoogleCloudApigeeV1DocumentationFile
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Operation(typing_extensions.TypedDict, total=False):
@@ -1812,8 +1879,14 @@ class GoogleCloudApigeeV1SecurityActionAllow(
 class GoogleCloudApigeeV1SecurityActionConditionConfig(
     typing_extensions.TypedDict, total=False
 ):
+    accessTokens: _list[str]
+    apiKeys: _list[str]
+    apiProducts: _list[str]
     botReasons: _list[str]
+    developerApps: _list[str]
+    developers: _list[str]
     ipAddressRanges: _list[str]
+    userAgents: _list[str]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityActionDeny(typing_extensions.TypedDict, total=False):

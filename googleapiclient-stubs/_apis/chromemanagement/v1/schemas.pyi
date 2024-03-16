@@ -594,6 +594,16 @@ class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=F
     userCount: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1RuntimeCountersReport(
+    typing_extensions.TypedDict, total=False
+):
+    enterHibernationCount: str
+    enterPoweroffCount: str
+    enterSleepCount: str
+    reportTime: str
+    uptimeRuntimeDuration: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1StorageInfo(typing_extensions.TypedDict, total=False):
     availableDiskBytes: str
     totalDiskBytes: str
@@ -643,6 +653,7 @@ class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total
     orgUnitId: str
     osUpdateStatus: _list[GoogleChromeManagementV1OsUpdateStatus]
     peripheralsReport: _list[GoogleChromeManagementV1PeripheralsReport]
+    runtimeCountersReport: _list[GoogleChromeManagementV1RuntimeCountersReport]
     serialNumber: str
     storageInfo: GoogleChromeManagementV1StorageInfo
     storageStatusReport: _list[GoogleChromeManagementV1StorageStatusReport]

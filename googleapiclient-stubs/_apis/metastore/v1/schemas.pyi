@@ -144,6 +144,15 @@ class KerberosConfig(typing_extensions.TypedDict, total=False):
     principal: str
 
 @typing.type_check_only
+class LatestBackup(typing_extensions.TypedDict, total=False):
+    backupId: str
+    duration: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "IN_PROGRESS", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
@@ -288,6 +297,7 @@ class QueryMetadataResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Restore(typing_extensions.TypedDict, total=False):
     backup: str
+    backupLocation: str
     details: str
     endTime: str
     startTime: str
@@ -299,6 +309,7 @@ class Restore(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RestoreServiceRequest(typing_extensions.TypedDict, total=False):
     backup: str
+    backupLocation: str
     requestId: str
     restoreType: typing_extensions.Literal[
         "RESTORE_TYPE_UNSPECIFIED", "FULL", "METADATA_ONLY"
@@ -315,6 +326,15 @@ class ScalingConfig(typing_extensions.TypedDict, total=False):
         "EXTRA_LARGE",
     ]
     scalingFactor: float
+
+@typing.type_check_only
+class ScheduledBackup(typing_extensions.TypedDict, total=False):
+    backupLocation: str
+    cronSchedule: str
+    enabled: bool
+    latestBackup: LatestBackup
+    nextScheduledTime: str
+    timeZone: str
 
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):
@@ -342,6 +362,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "STABLE"
     ]
     scalingConfig: ScalingConfig
+    scheduledBackup: ScheduledBackup
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

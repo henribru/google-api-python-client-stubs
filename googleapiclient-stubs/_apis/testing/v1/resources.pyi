@@ -16,7 +16,11 @@ class TestingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ApplicationDetailServiceResource(googleapiclient.discovery.Resource):
         def getApkDetails(
-            self, *, body: FileReference = ..., **kwargs: typing.Any
+            self,
+            *,
+            body: FileReference = ...,
+            bundleLocation_gcsPath: str = ...,
+            **kwargs: typing.Any
         ) -> GetApkDetailsResponseHttpRequest: ...
 
     @typing.type_check_only

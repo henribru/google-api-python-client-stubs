@@ -5,12 +5,63 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class APILayerServer(typing_extensions.TypedDict, total=False):
+    name: str
+    osVersion: str
+    resources: _list[CloudResource]
+
+@typing.type_check_only
+class AvailabilityGroup(typing_extensions.TypedDict, total=False):
+    databases: _list[str]
+    name: str
+    primaryServer: str
+    secondaryServers: _list[str]
+
+@typing.type_check_only
+class BackendServer(typing_extensions.TypedDict, total=False):
+    backupFile: str
+    backupSchedule: str
+    name: str
+    osVersion: str
+    resources: _list[CloudResource]
+
+@typing.type_check_only
 class BigQueryDestination(typing_extensions.TypedDict, total=False):
     createNewResultsTable: bool
     destinationDataset: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudResource(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal[
+        "RESOURCE_KIND_UNSPECIFIED",
+        "RESOURCE_KIND_INSTANCE",
+        "RESOURCE_KIND_DISK",
+        "RESOURCE_KIND_ADDRESS",
+        "RESOURCE_KIND_FILESTORE",
+        "RESOURCE_KIND_HEALTH_CHECK",
+        "RESOURCE_KIND_FORWARDING_RULE",
+        "RESOURCE_KIND_BACKEND_SERVICE",
+        "RESOURCE_KIND_SUBNETWORK",
+        "RESOURCE_KIND_NETWORK",
+        "RESOURCE_KIND_PUBLIC_ADDRESS",
+        "RESOURCE_KIND_INSTANCE_GROUP",
+    ]
+    name: str
+
+@typing.type_check_only
+class Cluster(typing_extensions.TypedDict, total=False):
+    nodes: _list[str]
+    witnessServer: str
+
+@typing.type_check_only
+class Database(typing_extensions.TypedDict, total=False):
+    backupFile: str
+    backupSchedule: str
+    hostVm: str
+    name: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -53,6 +104,12 @@ class ExecutionResult(typing_extensions.TypedDict, total=False):
     violationMessage: str
 
 @typing.type_check_only
+class FrontEndServer(typing_extensions.TypedDict, total=False):
+    name: str
+    osVersion: str
+    resources: _list[CloudResource]
+
+@typing.type_check_only
 class GceInstanceFilter(typing_extensions.TypedDict, total=False):
     serviceAccounts: _list[str]
 
@@ -63,6 +120,31 @@ class Insight(typing_extensions.TypedDict, total=False):
     sapValidation: SapValidation
     sentTime: str
     sqlserverValidation: SqlserverValidation
+
+@typing.type_check_only
+class Instance(typing_extensions.TypedDict, total=False):
+    name: str
+    region: str
+    status: typing_extensions.Literal[
+        "INSTANCESTATE_UNSPECIFIED",
+        "PROVISIONING",
+        "STAGING",
+        "RUNNING",
+        "STOPPING",
+        "STOPPED",
+        "TERMINATED",
+        "SUSPENDING",
+        "SUSPENDED",
+        "REPAIRING",
+        "DEPROVISIONING",
+    ]
+
+@typing.type_check_only
+class Layer(typing_extensions.TypedDict, total=False):
+    applicationType: str
+    databaseType: str
+    instances: _list[Instance]
+    sid: str
 
 @typing.type_check_only
 class ListEvaluationsResponse(typing_extensions.TypedDict, total=False):
@@ -100,6 +182,17 @@ class ListRulesResponse(typing_extensions.TypedDict, total=False):
 class ListScannedResourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     scannedResources: _list[ScannedResource]
+
+@typing.type_check_only
+class ListWorkloadProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    workloadOverviews: _list[WorkloadProfileOverview]
+
+@typing.type_check_only
+class LoadBalancerServer(typing_extensions.TypedDict, total=False):
+    ip: str
+    vm: str
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -168,6 +261,15 @@ class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
+class SapComponent(typing_extensions.TypedDict, total=False):
+    haHosts: _list[str]
+    resources: _list[CloudResource]
+    sid: str
+    topologyType: typing_extensions.Literal[
+        "TOPOLOGY_TYPE_UNSPECIFIED", "TOPOLOGY_SCALE_UP", "TOPOLOGY_SCALE_OUT"
+    ]
+
+@typing.type_check_only
 class SapDiscovery(typing_extensions.TypedDict, total=False):
     applicationLayer: SapDiscoveryComponent
     databaseLayer: SapDiscoveryComponent
@@ -175,6 +277,7 @@ class SapDiscovery(typing_extensions.TypedDict, total=False):
     projectNumber: str
     systemId: str
     updateTime: str
+    workloadProperties: SapDiscoveryWorkloadProperties
 
 @typing.type_check_only
 class SapDiscoveryComponent(typing_extensions.TypedDict, total=False):
@@ -249,6 +352,29 @@ class SapDiscoveryResourceInstanceProperties(typing_extensions.TypedDict, total=
     virtualHostname: str
 
 @typing.type_check_only
+class SapDiscoveryWorkloadProperties(typing_extensions.TypedDict, total=False):
+    productVersions: _list[SapDiscoveryWorkloadPropertiesProductVersion]
+    softwareComponentVersions: _list[
+        SapDiscoveryWorkloadPropertiesSoftwareComponentProperties
+    ]
+
+@typing.type_check_only
+class SapDiscoveryWorkloadPropertiesProductVersion(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    version: str
+
+@typing.type_check_only
+class SapDiscoveryWorkloadPropertiesSoftwareComponentProperties(
+    typing_extensions.TypedDict, total=False
+):
+    extVersion: str
+    name: str
+    type: str
+    version: str
+
+@typing.type_check_only
 class SapValidation(typing_extensions.TypedDict, total=False):
     projectId: str
     validationDetails: _list[SapValidationValidationDetail]
@@ -268,6 +394,18 @@ class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
         "HANA_SECURITY",
         "CUSTOM",
     ]
+
+@typing.type_check_only
+class SapWorkload(typing_extensions.TypedDict, total=False):
+    application: SapComponent
+    database: SapComponent
+    metadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class SapWorkloadOverview(typing_extensions.TypedDict, total=False):
+    appSid: str
+    dbSid: str
+    sapSystemId: str
 
 @typing.type_check_only
 class ScannedResource(typing_extensions.TypedDict, total=False):
@@ -305,16 +443,63 @@ class SqlserverValidationValidationDetail(typing_extensions.TypedDict, total=Fal
     ]
 
 @typing.type_check_only
+class SqlserverWorkload(typing_extensions.TypedDict, total=False):
+    ags: _list[AvailabilityGroup]
+    cluster: Cluster
+    databases: _list[Database]
+    loadBalancerServer: LoadBalancerServer
+
+@typing.type_check_only
+class SqlserverWorkloadOverview(typing_extensions.TypedDict, total=False):
+    availabilityGroup: _list[str]
+    sqlserverSystemId: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
 
 @typing.type_check_only
+class ThreeTierWorkload(typing_extensions.TypedDict, total=False):
+    apiLayer: APILayerServer
+    backend: BackendServer
+    endpoint: str
+    frontend: FrontEndServer
+
+@typing.type_check_only
+class ThreeTierWorkloadOverview(typing_extensions.TypedDict, total=False):
+    threeTierSystemId: str
+
+@typing.type_check_only
 class ViolationDetails(typing_extensions.TypedDict, total=False):
     asset: str
     observed: dict[str, typing.Any]
     serviceAccount: str
+
+@typing.type_check_only
+class WorkloadProfile(typing_extensions.TypedDict, total=False):
+    application: Layer
+    ascs: Layer
+    database: Layer
+    labels: dict[str, typing.Any]
+    name: str
+    refreshedTime: str
+    sapWorkload: SapWorkload
+    sqlserverWorkload: SqlserverWorkload
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "DEPLOYING", "DESTROYING", "MAINTENANCE"
+    ]
+    threeTierWorkload: ThreeTierWorkload
+    workloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "S4_HANA", "SQL_SERVER", "THREE_TIER_WEB_APP"
+    ]
+
+@typing.type_check_only
+class WorkloadProfileOverview(typing_extensions.TypedDict, total=False):
+    sapWorkloadOverview: SapWorkloadOverview
+    sqlserverWorkloadOverview: SqlserverWorkloadOverview
+    threeTierWorkloadOverview: ThreeTierWorkloadOverview
 
 @typing.type_check_only
 class WriteInsightRequest(typing_extensions.TypedDict, total=False):

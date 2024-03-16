@@ -28,6 +28,13 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BoostConfig(typing_extensions.TypedDict, total=False):
+    accelerators: _list[Accelerator]
+    id: str
+    machineType: str
+    poolSize: int
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -67,9 +74,11 @@ class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GceInstance(typing_extensions.TypedDict, total=False):
     accelerators: _list[Accelerator]
+    boostConfigs: _list[BoostConfig]
     bootDiskSizeGb: int
     confidentialInstanceConfig: GceConfidentialInstanceConfig
     disablePublicIpAddresses: bool
+    disableSsh: bool
     enableNestedVirtualization: bool
     machineType: str
     poolSize: int
@@ -203,6 +212,7 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StartWorkstationRequest(typing_extensions.TypedDict, total=False):
+    boostConfig: str
     etag: str
     validateOnly: bool
 

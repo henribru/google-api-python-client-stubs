@@ -463,10 +463,6 @@ class Query(typing_extensions.TypedDict, total=False):
     startCursor: str
 
 @typing.type_check_only
-class QueryPlan(typing_extensions.TypedDict, total=False):
-    planInfo: dict[str, typing.Any]
-
-@typing.type_check_only
 class QueryResultBatch(typing_extensions.TypedDict, total=False):
     endCursor: str
     entityResultType: typing_extensions.Literal[
@@ -511,11 +507,6 @@ class ReserveIdsRequest(typing_extensions.TypedDict, total=False):
 class ReserveIdsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ResultSetStats(typing_extensions.TypedDict, total=False):
-    queryPlan: QueryPlan
-    queryStats: dict[str, typing.Any]
-
-@typing.type_check_only
 class RollbackRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
     transaction: str
@@ -528,7 +519,6 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationQuery: AggregationQuery
     databaseId: str
     gqlQuery: GqlQuery
-    mode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     partitionId: PartitionId
     readOptions: ReadOptions
 
@@ -536,14 +526,12 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
     batch: AggregationResultBatch
     query: AggregationQuery
-    stats: ResultSetStats
     transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
     gqlQuery: GqlQuery
-    mode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
     partitionId: PartitionId
     query: Query
     readOptions: ReadOptions
@@ -552,7 +540,6 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     batch: QueryResultBatch
     query: Query
-    stats: ResultSetStats
     transaction: str
 
 @typing.type_check_only

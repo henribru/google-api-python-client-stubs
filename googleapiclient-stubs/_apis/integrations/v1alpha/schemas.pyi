@@ -415,6 +415,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMeta
     ancestorIterationNumbers: _list[str]
     ancestorTaskNumbers: _list[str]
     eventAttemptNum: int
+    integrationName: str
     taskAttemptNum: int
     taskLabel: str
     taskName: str
@@ -1886,6 +1887,7 @@ class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=F
     eventsListenerIngressEndpoint: str
     listenerAuthConfig: GoogleCloudConnectorsV1AuthConfig
     privateConnectivityEnabled: bool
+    proxyDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
     registrationDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
 
 @typing.type_check_only
@@ -1965,33 +1967,6 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     refreshToken: str
     refreshTokenExpireTime: str
     tokenType: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAssertion(typing_extensions.TypedDict, total=False):
-    assertionStrategy: typing_extensions.Literal[
-        "ASSERTION_STRATEGY_UNSPECIFIED",
-        "ASSERT_SUCCESSFUL_EXECUTION",
-        "ASSERT_FAILED_EXECUTION",
-        "ASSERT_NO_EXECUTION",
-        "ASSERT_EQUALS",
-        "ASSERT_NOT_EQUALS",
-        "ASSERT_CONTAINS",
-        "ASSERT_CONDITION",
-    ]
-    condition: str
-    parameter: GoogleCloudIntegrationsV1alphaEventParameter
-    retryCount: int
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAssertionResult(
-    typing_extensions.TypedDict, total=False
-):
-    assertion: GoogleCloudIntegrationsV1alphaAssertion
-    status: typing_extensions.Literal[
-        "ASSERTION_STATUS_UNSPECIFIED", "SUCCEEDED", "FAILED"
-    ]
-    taskName: str
-    taskNumber: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAttemptStats(
@@ -2096,7 +2071,7 @@ class GoogleCloudIntegrationsV1alphaCloudLoggingDetails(
     typing_extensions.TypedDict, total=False
 ):
     cloudLoggingSeverity: typing_extensions.Literal[
-        "CLOUD_LOGGING_SEVERITY_UNSPECIFIED", "DEFAULT", "INFO", "ERROR", "WARNING"
+        "CLOUD_LOGGING_SEVERITY_UNSPECIFIED", "INFO", "ERROR", "WARNING"
     ]
     enableCloudLogging: bool
 
@@ -2230,23 +2205,6 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest(
-    typing_extensions.TypedDict, total=False
-):
-    inputParameters: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assertionResults: _list[GoogleCloudIntegrationsV1alphaAssertionResult]
-    executionId: str
-    outputParameters: dict[str, typing.Any]
-    testExecutionState: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PASSED", "FAILED"
-    ]
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
@@ -2302,6 +2260,7 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata(
     ancestorIterationNumbers: _list[str]
     ancestorTaskNumbers: _list[str]
     executionAttempt: int
+    integrationName: str
     task: str
     taskAttempt: int
     taskLabel: str
@@ -2610,34 +2569,6 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
 ):
     nextPageToken: str
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executions: _list[GoogleCloudIntegrationsV1alphaExecution]
-    nextPageToken: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListTestCasesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    testCases: _list[GoogleCloudIntegrationsV1alphaTestCase]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMockConfig(
-    typing_extensions.TypedDict, total=False
-):
-    failedExecutions: str
-    mockStrategy: typing_extensions.Literal[
-        "MOCK_STRATEGY_UNSPECIFIED",
-        "NO_MOCK_STRATEGY",
-        "SPECIFIC_MOCK_STRATEGY",
-        "FAILURE_MOCK_STRATEGY",
-        "SKIP_MOCK_STRATEGY",
-    ]
-    parameters: _list[GoogleCloudIntegrationsV1alphaEventParameter]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
@@ -2971,35 +2902,6 @@ class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(
         "ROLLEDBACK",
         "SUSPENDED",
     ]
-    taskNumber: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaTestCase(typing_extensions.TypedDict, total=False):
-    createTime: str
-    creatorEmail: str
-    databasePersistencePolicy: typing_extensions.Literal[
-        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
-        "DATABASE_PERSISTENCE_DISABLED",
-        "DATABASE_PERSISTENCE_ASYNC",
-    ]
-    description: str
-    displayName: str
-    lastModifierEmail: str
-    lockHolderEmail: str
-    name: str
-    testInputParameters: _list[GoogleCloudIntegrationsV1alphaIntegrationParameter]
-    testTaskConfigs: _list[GoogleCloudIntegrationsV1alphaTestTaskConfig]
-    triggerId: str
-    updateTime: str
-    workflowId: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaTestTaskConfig(
-    typing_extensions.TypedDict, total=False
-):
-    assertions: _list[GoogleCloudIntegrationsV1alphaAssertion]
-    mockConfig: GoogleCloudIntegrationsV1alphaMockConfig
-    task: str
     taskNumber: str
 
 @typing.type_check_only

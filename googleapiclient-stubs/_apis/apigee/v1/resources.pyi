@@ -2149,7 +2149,54 @@ class ApigeeResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GoogleCloudApigeeV1ApiCategoryResponseHttpRequest: ...
 
+            @typing.type_check_only
+            class ApidocsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudApigeeV1ApiDoc = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiDocResponseHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1DeleteResponseHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiDocResponseHttpRequest: ...
+                def getDocumentation(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiDocDocumentationResponseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ListApiDocsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudApigeeV1ListApiDocsResponseHttpRequest,
+                    previous_response: GoogleCloudApigeeV1ListApiDocsResponse,
+                ) -> GoogleCloudApigeeV1ListApiDocsResponseHttpRequest | None: ...
+                def update(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ApiDoc = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiDocResponseHttpRequest: ...
+                def updateDocumentation(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudApigeeV1ApiDocDocumentation = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleCloudApigeeV1ApiDocDocumentationResponseHttpRequest: ...
+
             def apicategories(self) -> ApicategoriesResource: ...
+            def apidocs(self) -> ApidocsResource: ...
 
         def create(
             self,
@@ -2309,6 +2356,24 @@ class GoogleCloudApigeeV1ApiCategoryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1ApiCategoryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiDocDocumentationResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ApiDocDocumentationResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ApiDocResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ApiDocResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProductHttpRequest(googleapiclient.http.HttpRequest):
@@ -2743,6 +2808,16 @@ class GoogleCloudApigeeV1ListApiCategoriesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1ListApiCategoriesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListApiDocsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ListApiDocsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListApiProductsResponseHttpRequest(
