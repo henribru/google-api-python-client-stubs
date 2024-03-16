@@ -302,6 +302,30 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def userDataMappings(self) -> UserDataMappingsResource: ...
 
                 @typing.type_check_only
+                class DataMapperWorkspacesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class DicomWebResource(googleapiclient.discovery.Resource):
@@ -732,6 +756,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any
                     ) -> FhirStoreHttpRequest: ...
+                    def rollback(
+                        self,
+                        *,
+                        name: str,
+                        body: RollbackFhirResourcesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -982,6 +1013,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def consentStores(self) -> ConsentStoresResource: ...
+                def dataMapperWorkspaces(self) -> DataMapperWorkspacesResource: ...
                 def dicomStores(self) -> DicomStoresResource: ...
                 def fhirStores(self) -> FhirStoresResource: ...
                 def hl7V2Stores(self) -> Hl7V2StoresResource: ...

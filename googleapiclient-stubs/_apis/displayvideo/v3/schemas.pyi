@@ -345,6 +345,12 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -1842,6 +1848,8 @@ class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
     addedContactInfoList: ContactInfoList
     addedMobileDeviceIdList: MobileDeviceIdList
     advertiserId: str
+    removedContactInfoList: ContactInfoList
+    removedMobileDeviceIdList: MobileDeviceIdList
 
 @typing.type_check_only
 class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False):
@@ -1977,6 +1985,12 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
 
 @typing.type_check_only
@@ -2061,6 +2075,12 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2144,6 +2164,12 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2230,6 +2256,12 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
 
 @typing.type_check_only
@@ -2604,6 +2636,12 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2890,6 +2928,12 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_APPLOVIN_GBID",
+        "EXCHANGE_FYBER_GBID",
+        "EXCHANGE_UNITY_GBID",
+        "EXCHANGE_CHARTBOOST_GBID",
+        "EXCHANGE_ADMOST_GBID",
+        "EXCHANGE_TOPON_GBID",
     ]
     guaranteedOrderId: str
     inventorySourceId: str

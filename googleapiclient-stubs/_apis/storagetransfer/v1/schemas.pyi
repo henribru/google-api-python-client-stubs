@@ -101,12 +101,17 @@ class EventStream(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GcsData(typing_extensions.TypedDict, total=False):
     bucketName: str
+    managedFolderTransferEnabled: bool
     path: str
 
 @typing.type_check_only
 class GoogleServiceAccount(typing_extensions.TypedDict, total=False):
     accountEmail: str
     subjectId: str
+
+@typing.type_check_only
+class HdfsData(typing_extensions.TypedDict, total=False):
+    path: str
 
 @typing.type_check_only
 class HttpData(typing_extensions.TypedDict, total=False):
@@ -348,6 +353,7 @@ class TransferSpec(typing_extensions.TypedDict, total=False):
     gcsDataSink: GcsData
     gcsDataSource: GcsData
     gcsIntermediateDataLocation: GcsData
+    hdfsDataSource: HdfsData
     httpDataSource: HttpData
     objectConditions: ObjectConditions
     posixDataSink: PosixFilesystem

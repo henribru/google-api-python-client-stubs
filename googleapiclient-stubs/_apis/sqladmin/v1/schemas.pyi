@@ -12,6 +12,13 @@ class AclEntry(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class AcquireSsrsLeaseContext(typing_extensions.TypedDict, total=False):
+    duration: str
+    reportDatabase: str
+    serviceLogin: str
+    setupLogin: str
+
+@typing.type_check_only
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     threadsPerCore: int
 
@@ -149,6 +156,10 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_34",
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
+        "MYSQL_8_0_37",
+        "MYSQL_8_0_38",
+        "MYSQL_8_0_39",
+        "MYSQL_8_0_40",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -226,6 +237,10 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_34",
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
+        "MYSQL_8_0_37",
+        "MYSQL_8_0_38",
+        "MYSQL_8_0_39",
+        "MYSQL_8_0_40",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -400,6 +415,10 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_0_38",
+            "MYSQL_8_0_39",
+            "MYSQL_8_0_40",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -468,6 +487,10 @@ class InstanceReference(typing_extensions.TypedDict, total=False):
     name: str
     project: str
     region: str
+
+@typing.type_check_only
+class InstancesAcquireSsrsLeaseRequest(typing_extensions.TypedDict, total=False):
+    acquireSsrsLeaseContext: AcquireSsrsLeaseContext
 
 @typing.type_check_only
 class InstancesCloneRequest(typing_extensions.TypedDict, total=False):
@@ -598,6 +621,7 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
+    acquireSsrsLeaseContext: AcquireSsrsLeaseContext
     apiWarning: ApiWarning
     backupContext: BackupContext
     endTime: str
@@ -647,6 +671,8 @@ class Operation(typing_extensions.TypedDict, total=False):
         "AUTO_RESTART",
         "REENCRYPT",
         "SWITCHOVER",
+        "ACQUIRE_SSRS_LEASE",
+        "RELEASE_SSRS_LEASE",
     ]
     selfLink: str
     startTime: str
@@ -769,6 +795,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
+    enableGoogleMlIntegration: bool
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
     kind: str
@@ -840,7 +867,15 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "SOURCE_MAX_SUBSCRIPTIONS",
         "UNABLE_TO_VERIFY_DEFINERS",
         "SUBSCRIPTION_CALCULATION_STATUS",
+        "PG_SUBSCRIPTION_COUNT",
+        "PG_SYNC_PARALLEL_LEVEL",
+        "INSUFFICIENT_DISK_SIZE",
+        "INSUFFICIENT_MACHINE_TIER",
     ]
+
+@typing.type_check_only
+class SqlInstancesAcquireSsrsLeaseResponse(typing_extensions.TypedDict, total=False):
+    operationId: str
 
 @typing.type_check_only
 class SqlInstancesGetDiskShrinkConfigResponse(typing_extensions.TypedDict, total=False):
@@ -854,6 +889,10 @@ class SqlInstancesGetLatestRecoveryTimeResponse(
 ):
     kind: str
     latestRecoveryTime: str
+
+@typing.type_check_only
+class SqlInstancesReleaseSsrsLeaseResponse(typing_extensions.TypedDict, total=False):
+    operationId: str
 
 @typing.type_check_only
 class SqlInstancesRescheduleMaintenanceRequestBody(
@@ -882,6 +921,9 @@ class SqlInstancesVerifyExternalSyncSettingsRequest(
     mysqlSyncConfig: MySqlSyncConfig
     syncMode: typing_extensions.Literal[
         "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+    syncParallelLevel: typing_extensions.Literal[
+        "EXTERNAL_SYNC_PARALLEL_LEVEL_UNSPECIFIED", "MIN", "OPTIMAL", "MAX"
     ]
     verifyConnectionOnly: bool
     verifyReplicationOnly: bool

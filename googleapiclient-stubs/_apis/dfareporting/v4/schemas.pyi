@@ -557,6 +557,7 @@ class ContentCategory(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Conversion(typing_extensions.TypedDict, total=False):
+    adUserDataConsent: typing_extensions.Literal["GRANTED", "DENIED"]
     childDirectedTreatment: bool
     customVariables: _list[CustomFloodlightVariable]
     dclid: str
@@ -2310,6 +2311,7 @@ class Placement(typing_extensions.TypedDict, total=False):
         "IN_STREAM_AUDIO",
     ]
     contentCategoryId: str
+    conversionDomainOverride: PlacementConversionDomainOverride
     createInfo: LastModifiedInfo
     directorySiteId: str
     directorySiteIdDimensionValue: DimensionValue
@@ -2383,6 +2385,10 @@ class PlacementAssignment(typing_extensions.TypedDict, total=False):
     sslRequired: bool
 
 @typing.type_check_only
+class PlacementConversionDomainOverride(typing_extensions.TypedDict, total=False):
+    conversionDomains: _list[PlacementSingleConversionDomain]
+
+@typing.type_check_only
 class PlacementGroup(typing_extensions.TypedDict, total=False):
     accountId: str
     activeStatus: typing_extensions.Literal[
@@ -2424,6 +2430,11 @@ class PlacementGroupsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     placementGroups: _list[PlacementGroup]
+
+@typing.type_check_only
+class PlacementSingleConversionDomain(typing_extensions.TypedDict, total=False):
+    conversionDomainId: str
+    conversionDomainValue: str
 
 @typing.type_check_only
 class PlacementStrategiesListResponse(typing_extensions.TypedDict, total=False):
@@ -2985,7 +2996,9 @@ class TranscodeSetting(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UniversalAdId(typing_extensions.TypedDict, total=False):
-    registry: typing_extensions.Literal["OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM"]
+    registry: typing_extensions.Literal[
+        "OTHER", "AD_ID_OFFICIAL", "CLEARCAST", "DCM", "ARPP"
+    ]
     value: str
 
 @typing.type_check_only

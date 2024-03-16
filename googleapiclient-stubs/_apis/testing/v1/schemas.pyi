@@ -358,6 +358,11 @@ class ManualSharding(typing_extensions.TypedDict, total=False):
     testTargetsForShard: _list[TestTargetsForShard]
 
 @typing.type_check_only
+class MatrixErrorDetail(typing_extensions.TypedDict, total=False):
+    message: str
+    reason: str
+
+@typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
     name: str
     value: str
@@ -396,6 +401,7 @@ class PerAndroidVersionInfo(typing_extensions.TypedDict, total=False):
         "DEVICE_CAPACITY_NONE",
     ]
     directAccessVersionInfo: DirectAccessVersionInfo
+    interactiveDeviceAvailabilityEstimate: str
     versionId: str
 
 @typing.type_check_only
@@ -530,6 +536,7 @@ class TestExecution(typing_extensions.TypedDict, total=False):
 class TestMatrix(typing_extensions.TypedDict, total=False):
     clientInfo: ClientInfo
     environmentMatrix: EnvironmentMatrix
+    extendedInvalidMatrixDetails: _list[MatrixErrorDetail]
     failFast: bool
     flakyTestAttempts: int
     invalidMatrixDetails: typing_extensions.Literal[

@@ -192,6 +192,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "REVERTING",
         "SUSPENDING",
         "RESUMING",
+        "PROMOTING",
     ]
     statusMessage: str
     suspensionReasons: _list[
@@ -314,6 +315,9 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):

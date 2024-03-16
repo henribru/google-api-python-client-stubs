@@ -75,6 +75,8 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
             "REQUEST_BODY",
             "RESPONSE_HEADERS",
             "RESPONSE_BODY",
+            "REQUEST_TRAILERS",
+            "RESPONSE_TRAILERS",
         ]
     ]
     timeout: str

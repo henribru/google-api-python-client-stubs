@@ -17,6 +17,7 @@ class AptArtifact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AptRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository
     publicRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository
 
 @typing.type_check_only
@@ -70,6 +71,7 @@ class DockerImage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DockerRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository
     publicRepository: typing_extensions.Literal[
         "PUBLIC_REPOSITORY_UNSPECIFIED", "DOCKER_HUB"
     ]
@@ -77,6 +79,9 @@ class DockerRepository(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DockerRepositoryConfig(typing_extensions.TypedDict, total=False):
     immutableTags: bool
+
+@typing.type_check_only
+class DownloadFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -112,6 +117,12 @@ class GoogleDevtoolsArtifactregistryV1File(typing_extensions.TypedDict, total=Fa
     updateTime: str
 
 @typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository(
     typing_extensions.TypedDict, total=False
 ):
@@ -119,6 +130,36 @@ class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicR
         "REPOSITORY_BASE_UNSPECIFIED", "DEBIAN", "UBUNTU", "DEBIAN_SNAPSHOT"
     ]
     repositoryPath: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigDockerRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
 
 @typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository(
@@ -281,6 +322,7 @@ class MavenArtifact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MavenRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigMavenRepositoryCustomRepository
     publicRepository: typing_extensions.Literal[
         "PUBLIC_REPOSITORY_UNSPECIFIED", "MAVEN_CENTRAL"
     ]
@@ -303,6 +345,7 @@ class NpmPackage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NpmRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigNpmRepositoryCustomRepository
     publicRepository: typing_extensions.Literal[
         "PUBLIC_REPOSITORY_UNSPECIFIED", "NPMJS"
     ]
@@ -320,6 +363,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Package(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     displayName: str
     name: str
@@ -338,6 +382,7 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
         "REDIRECTION_FROM_GCR_IO_DISABLED",
         "REDIRECTION_FROM_GCR_IO_ENABLED",
         "REDIRECTION_FROM_GCR_IO_FINALIZED",
+        "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING",
     ]
     name: str
 
@@ -352,12 +397,14 @@ class PythonPackage(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PythonRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigPythonRepositoryCustomRepository
     publicRepository: typing_extensions.Literal["PUBLIC_REPOSITORY_UNSPECIFIED", "PYPI"]
 
 @typing.type_check_only
 class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
     aptRepository: AptRepository
     description: str
+    disableUpstreamValidation: bool
     dockerRepository: DockerRepository
     mavenRepository: MavenRepository
     npmRepository: NpmRepository
@@ -532,4 +579,5 @@ class YumArtifact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class YumRepository(typing_extensions.TypedDict, total=False):
+    customRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryCustomRepository
     publicRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicRepository

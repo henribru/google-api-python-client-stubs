@@ -47,6 +47,7 @@ class CloudAiLargeModelsVisionFilteredText(typing_extensions.TypedDict, total=Fa
         "CHILD_TEXT",
         "DANGEROUS_CONTENT",
         "RECITATION_TEXT",
+        "CELEBRITY_IMG",
     ]
     confidence: typing_extensions.Literal[
         "CONFIDENCE_UNSPECIFIED",
@@ -73,6 +74,7 @@ class CloudAiLargeModelsVisionImage(typing_extensions.TypedDict, total=False):
     imageRaiScores: CloudAiLargeModelsVisionImageRAIScores
     raiInfo: CloudAiLargeModelsVisionRaiInfo
     semanticFilterResponse: CloudAiLargeModelsVisionSemanticFilterResponse
+    text: str
     uri: str
 
 @typing.type_check_only
@@ -151,6 +153,9 @@ class CloudAiNlLlmProtoServiceCandidate(typing_extensions.TypedDict, total=False
         "FINISH_REASON_SAFETY",
         "FINISH_REASON_RECITATION",
         "FINISH_REASON_OTHER",
+        "FINISH_REASON_BLOCKLIST",
+        "FINISH_REASON_PROHIBITED_CONTENT",
+        "FINISH_REASON_SPII",
     ]
     groundingMetadata: LearningGenaiRootGroundingMetadata
     index: int
@@ -214,6 +219,7 @@ class CloudAiNlLlmProtoServiceMessageMetadata(typing_extensions.TypedDict, total
 
 @typing.type_check_only
 class CloudAiNlLlmProtoServicePart(typing_extensions.TypedDict, total=False):
+    documentMetadata: CloudAiNlLlmProtoServicePartDocumentMetadata
     fileData: CloudAiNlLlmProtoServicePartFileData
     functionCall: CloudAiNlLlmProtoServiceFunctionCall
     functionResponse: CloudAiNlLlmProtoServiceFunctionResponse
@@ -228,6 +234,13 @@ class CloudAiNlLlmProtoServicePartBlob(typing_extensions.TypedDict, total=False)
     originalFileData: CloudAiNlLlmProtoServicePartFileData
 
 @typing.type_check_only
+class CloudAiNlLlmProtoServicePartDocumentMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    originalDocumentBlob: CloudAiNlLlmProtoServicePartBlob
+    pageNumber: int
+
+@typing.type_check_only
 class CloudAiNlLlmProtoServicePartFileData(typing_extensions.TypedDict, total=False):
     fileUri: str
     mimeType: str
@@ -237,20 +250,16 @@ class CloudAiNlLlmProtoServicePartVideoMetadata(
     typing_extensions.TypedDict, total=False
 ):
     endOffset: str
-    modelLevelMetaData: CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata
     startOffset: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePartVideoMetadataModelLevelMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    fps: float
-    numFrames: int
 
 @typing.type_check_only
 class CloudAiNlLlmProtoServicePromptFeedback(typing_extensions.TypedDict, total=False):
     blockReason: typing_extensions.Literal[
-        "BLOCKED_REASON_UNSPECIFIED", "SAFETY", "OTHER"
+        "BLOCKED_REASON_UNSPECIFIED",
+        "SAFETY",
+        "OTHER",
+        "BLOCKLIST",
+        "PROHIBITED_CONTENT",
     ]
     blockReasonMessage: str
     safetyRatings: _list[CloudAiNlLlmProtoServiceSafetyRating]
@@ -277,6 +286,7 @@ class CloudAiNlLlmProtoServiceRaiSignal(typing_extensions.TypedDict, total=False
         "CONFIDENCE_HIGH",
     ]
     flagged: bool
+    influentialTerms: _list[CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm]
     raiCategory: typing_extensions.Literal[
         "RAI_CATEGORY_UNSPECIFIED",
         "TOXIC",
@@ -318,6 +328,15 @@ class CloudAiNlLlmProtoServiceRaiSignal(typing_extensions.TypedDict, total=False
     score: float
 
 @typing.type_check_only
+class CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm(
+    typing_extensions.TypedDict, total=False
+):
+    beginOffset: int
+    confidence: float
+    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "PROMPT", "RESPONSE"]
+    term: str
+
+@typing.type_check_only
 class CloudAiNlLlmProtoServiceSafetyRating(typing_extensions.TypedDict, total=False):
     blocked: bool
     category: typing_extensions.Literal[
@@ -327,9 +346,28 @@ class CloudAiNlLlmProtoServiceSafetyRating(typing_extensions.TypedDict, total=Fa
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
     ]
+    influentialTerms: _list[CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm]
     probability: typing_extensions.Literal[
         "HARM_PROBABILITY_UNSPECIFIED", "NEGLIGIBLE", "LOW", "MEDIUM", "HIGH"
     ]
+    probabilityScore: float
+    severity: typing_extensions.Literal[
+        "HARM_SEVERITY_UNSPECIFIED",
+        "HARM_SEVERITY_NEGLIGIBLE",
+        "HARM_SEVERITY_LOW",
+        "HARM_SEVERITY_MEDIUM",
+        "HARM_SEVERITY_HIGH",
+    ]
+    severityScore: float
+
+@typing.type_check_only
+class CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm(
+    typing_extensions.TypedDict, total=False
+):
+    beginOffset: int
+    confidence: float
+    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "PROMPT", "RESPONSE"]
+    term: str
 
 @typing.type_check_only
 class CloudAiNlLlmProtoServiceUsageMetadata(typing_extensions.TypedDict, total=False):
@@ -802,7 +840,11 @@ class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=F
         "SAFETY",
         "RECITATION",
         "OTHER",
+        "BLOCKLIST",
+        "PROHIBITED_CONTENT",
+        "SPII",
     ]
+    groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
     safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
 
@@ -1060,7 +1102,6 @@ class GoogleCloudAiplatformV1beta1CreatePipelineJobRequest(
     parent: str
     pipelineJob: GoogleCloudAiplatformV1beta1PipelineJob
     pipelineJobId: str
-    preflightValidations: bool
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CreateRegistryFeatureOperationMetadata(
@@ -1234,7 +1275,9 @@ class GoogleCloudAiplatformV1beta1DatasetVersion(
 ):
     bigQueryDatasetName: str
     createTime: str
+    displayName: str
     etag: str
+    metadata: typing.Any
     name: str
     updateTime: str
 
@@ -1487,6 +1530,7 @@ class GoogleCloudAiplatformV1beta1Endpoint(typing_extensions.TypedDict, total=Fa
     name: str
     network: str
     predictRequestResponseLoggingConfig: GoogleCloudAiplatformV1beta1PredictRequestResponseLoggingConfig
+    privateServiceConnectConfig: GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig
     trafficSplit: dict[str, typing.Any]
     updateTime: str
 
@@ -1795,24 +1839,6 @@ class GoogleCloudAiplatformV1beta1ExportDataResponse(
     exportedFiles: _list[str]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1beta1ExportEndpointOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1ExportEndpointResponse(
-    typing_extensions.TypedDict, total=False
-):
-    outputInfo: GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1ExportEndpointResponseOutputInfo(
-    typing_extensions.TypedDict, total=False
-):
-    bigQueryDestination: GoogleCloudAiplatformV1beta1BigQueryDestination
-
-@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ExportFeatureValuesOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1917,6 +1943,7 @@ class GoogleCloudAiplatformV1beta1Feature(typing_extensions.TypedDict, total=Fal
         GoogleCloudAiplatformV1beta1FeatureMonitoringStatsAnomaly
     ]
     name: str
+    pointOfContact: str
     updateTime: str
     valueType: typing_extensions.Literal[
         "VALUE_TYPE_UNSPECIFIED",
@@ -2082,6 +2109,12 @@ class GoogleCloudAiplatformV1beta1FeatureView(typing_extensions.TypedDict, total
     featureRegistrySource: GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource
     labels: dict[str, typing.Any]
     name: str
+    serviceAccountEmail: str
+    serviceAgentType: typing_extensions.Literal[
+        "SERVICE_AGENT_TYPE_UNSPECIFIED",
+        "SERVICE_AGENT_TYPE_PROJECT",
+        "SERVICE_AGENT_TYPE_FEATURE_VIEW",
+    ]
     syncConfig: GoogleCloudAiplatformV1beta1FeatureViewSyncConfig
     updateTime: str
     vectorSearchConfig: GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig
@@ -2097,7 +2130,14 @@ class GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource(
 class GoogleCloudAiplatformV1beta1FeatureViewDataKey(
     typing_extensions.TypedDict, total=False
 ):
+    compositeKey: GoogleCloudAiplatformV1beta1FeatureViewDataKeyCompositeKey
     key: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewDataKeyCompositeKey(
+    typing_extensions.TypedDict, total=False
+):
+    parts: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource(
@@ -2106,6 +2146,7 @@ class GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource(
     featureGroups: _list[
         GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup
     ]
+    projectNumber: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup(
@@ -2122,12 +2163,20 @@ class GoogleCloudAiplatformV1beta1FeatureViewSync(
     finalStatus: GoogleRpcStatus
     name: str
     runTime: GoogleTypeInterval
+    syncSummary: GoogleCloudAiplatformV1beta1FeatureViewSyncSyncSummary
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewSyncConfig(
     typing_extensions.TypedDict, total=False
 ):
     cron: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewSyncSyncSummary(
+    typing_extensions.TypedDict, total=False
+):
+    rowSynced: str
+    totalSlot: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig(
@@ -2385,7 +2434,11 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback(
     typing_extensions.TypedDict, total=False
 ):
     blockReason: typing_extensions.Literal[
-        "BLOCKED_REASON_UNSPECIFIED", "SAFETY", "OTHER"
+        "BLOCKED_REASON_UNSPECIFIED",
+        "SAFETY",
+        "OTHER",
+        "BLOCKLIST",
+        "PROHIBITED_CONTENT",
     ]
     blockReasonMessage: str
     safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
@@ -2416,6 +2469,38 @@ class GoogleCloudAiplatformV1beta1GenericOperationMetadata(
     createTime: str
     partialFailures: _list[GoogleRpcStatus]
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GenieSource(typing_extensions.TypedDict, total=False):
+    baseModelUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
+    typing_extensions.TypedDict, total=False
+):
+    disableAttribution: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingAttribution(
+    typing_extensions.TypedDict, total=False
+):
+    confidenceScore: float
+    segment: GoogleCloudAiplatformV1beta1Segment
+    web: GoogleCloudAiplatformV1beta1GroundingAttributionWeb
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingAttributionWeb(
+    typing_extensions.TypedDict, total=False
+):
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    groundingAttributions: _list[GoogleCloudAiplatformV1beta1GroundingAttribution]
+    webSearchQueries: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1HyperparameterTuningJob(
@@ -2586,6 +2671,7 @@ class GoogleCloudAiplatformV1beta1IndexDatapointNumericRestriction(
         "EQUAL",
         "GREATER_EQUAL",
         "GREATER",
+        "NOT_EQUAL",
     ]
     valueDouble: float
     valueFloat: float
@@ -3220,6 +3306,7 @@ class GoogleCloudAiplatformV1beta1MigrateResourceResponse(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Model(typing_extensions.TypedDict, total=False):
     artifactUri: str
+    baseModelSource: GoogleCloudAiplatformV1beta1ModelBaseModelSource
     containerSpec: GoogleCloudAiplatformV1beta1ModelContainerSpec
     createTime: str
     deployedModels: _list[GoogleCloudAiplatformV1beta1DeployedModelRef]
@@ -3256,6 +3343,13 @@ class GoogleCloudAiplatformV1beta1Model(typing_extensions.TypedDict, total=False
     versionUpdateTime: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelBaseModelSource(
+    typing_extensions.TypedDict, total=False
+):
+    genieSource: GoogleCloudAiplatformV1beta1GenieSource
+    modelGardenSource: GoogleCloudAiplatformV1beta1ModelGardenSource
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelContainerSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -3281,6 +3375,7 @@ class GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringBigQueryTable(
         "LOG_SOURCE_UNSPECIFIED", "TRAINING", "SERVING"
     ]
     logType: typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "PREDICT", "EXPLAIN"]
+    requestResponseLoggingSchemaVersion: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringJob(
@@ -3444,6 +3539,12 @@ class GoogleCloudAiplatformV1beta1ModelExportFormat(
     id: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelGardenSource(
+    typing_extensions.TypedDict, total=False
+):
+    publicModelName: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3564,6 +3665,7 @@ class GoogleCloudAiplatformV1beta1ModelSourceInfo(
         "MODEL_GARDEN",
         "GENIE",
         "CUSTOM_TEXT_EMBEDDING",
+        "MARKETPLACE",
     ]
 
 @typing.type_check_only
@@ -3777,6 +3879,7 @@ class GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadataRecordEr
         "OP_IN_DATAPOINT",
         "MULTIPLE_VALUES",
         "INVALID_NUMERIC_VALUE",
+        "INVALID_ENCODING",
     ]
     rawRecord: str
     sourceGcsUri: str
@@ -3947,7 +4050,7 @@ class GoogleCloudAiplatformV1beta1PersistentResource(
     resourceRuntimeSpec: GoogleCloudAiplatformV1beta1ResourceRuntimeSpec
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PROVISIONING", "RUNNING", "STOPPING", "ERROR"
+        "STATE_UNSPECIFIED", "PROVISIONING", "RUNNING", "STOPPING", "ERROR", "UPDATING"
     ]
     updateTime: str
 
@@ -3963,6 +4066,7 @@ class GoogleCloudAiplatformV1beta1PipelineJob(typing_extensions.TypedDict, total
     name: str
     network: str
     pipelineSpec: dict[str, typing.Any]
+    preflightValidations: bool
     reservedIpRanges: _list[str]
     runtimeConfig: GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig
     scheduleName: str
@@ -3995,7 +4099,6 @@ class GoogleCloudAiplatformV1beta1PipelineJobDetail(
 class GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig(
     typing_extensions.TypedDict, total=False
 ):
-    defaultRuntime: GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigDefaultRuntime
     failurePolicy: typing_extensions.Literal[
         "PIPELINE_FAILURE_POLICY_UNSPECIFIED",
         "PIPELINE_FAILURE_POLICY_FAIL_SLOW",
@@ -4007,22 +4110,10 @@ class GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig(
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigDefaultRuntime(
-    typing_extensions.TypedDict, total=False
-):
-    persistentResourceRuntimeDetail: GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail
-
-@typing.type_check_only
 class GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigInputArtifact(
     typing_extensions.TypedDict, total=False
 ):
     artifactId: str
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfigPersistentResourceRuntimeDetail(
-    typing_extensions.TypedDict, total=False
-):
-    persistentResourceName: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1PipelineTaskDetail(
@@ -4232,6 +4323,7 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToAction(
 ):
     createApplication: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
     deploy: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy
+    deployGke: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke
     openEvaluationPipeline: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
     openFineTuningPipeline: GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
     openFineTuningPipelines: GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenFineTuningPipelines
@@ -4256,6 +4348,12 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy(
     publicArtifactUri: str
     sharedResources: str
     title: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke(
+    typing_extensions.TypedDict, total=False
+):
+    gkeYamlConfigs: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenFineTuningPipelines(
@@ -4400,9 +4498,16 @@ class GoogleCloudAiplatformV1beta1RawPredictRequest(
     httpBody: GoogleApiHttpBody
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1RayMetricSpec(
+    typing_extensions.TypedDict, total=False
+):
+    disabled: bool
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1RaySpec(typing_extensions.TypedDict, total=False):
     headNodeResourcePoolId: str
     imageUri: str
+    rayMetricSpec: GoogleCloudAiplatformV1beta1RayMetricSpec
     resourcePoolImages: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -4613,6 +4718,11 @@ class GoogleCloudAiplatformV1beta1ResumeScheduleRequest(
     catchUp: bool
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1Retrieval(typing_extensions.TypedDict, total=False):
+    disableAttribution: bool
+    vertexAiSearch: GoogleCloudAiplatformV1beta1VertexAISearch
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SafetyRating(
     typing_extensions.TypedDict, total=False
 ):
@@ -4627,6 +4737,15 @@ class GoogleCloudAiplatformV1beta1SafetyRating(
     probability: typing_extensions.Literal[
         "HARM_PROBABILITY_UNSPECIFIED", "NEGLIGIBLE", "LOW", "MEDIUM", "HIGH"
     ]
+    probabilityScore: float
+    severity: typing_extensions.Literal[
+        "HARM_SEVERITY_UNSPECIFIED",
+        "HARM_SEVERITY_NEGLIGIBLE",
+        "HARM_SEVERITY_LOW",
+        "HARM_SEVERITY_MEDIUM",
+        "HARM_SEVERITY_HIGH",
+    ]
+    severityScore: float
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SafetySetting(
@@ -4725,7 +4844,6 @@ class GoogleCloudAiplatformV1beta1ScheduleRunResponse(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Scheduling(typing_extensions.TypedDict, total=False):
     disableRetries: bool
-    maxWaitDuration: str
     restartJobOnWorkerRestart: bool
     timeout: str
 
@@ -6214,6 +6332,12 @@ class GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse(
     nearestNeighbors: GoogleCloudAiplatformV1beta1NearestNeighbors
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1Segment(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    partIndex: int
+    startIndex: int
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ServiceAccountSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -6678,6 +6802,8 @@ class GoogleCloudAiplatformV1beta1TokensInfo(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False):
     functionDeclarations: _list[GoogleCloudAiplatformV1beta1FunctionDeclaration]
+    googleSearchRetrieval: GoogleCloudAiplatformV1beta1GoogleSearchRetrieval
+    retrieval: GoogleCloudAiplatformV1beta1Retrieval
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1TrainingConfig(
@@ -6927,6 +7053,7 @@ class GoogleCloudAiplatformV1beta1UpsertDatapointsRequest(
     typing_extensions.TypedDict, total=False
 ):
     datapoints: _list[GoogleCloudAiplatformV1beta1IndexDatapoint]
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UpsertDatapointsResponse(
@@ -6946,6 +7073,12 @@ class GoogleCloudAiplatformV1beta1Value(typing_extensions.TypedDict, total=False
     doubleValue: float
     intValue: str
     stringValue: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VertexAISearch(
+    typing_extensions.TypedDict, total=False
+):
+    datastore: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VideoMetadata(
@@ -7274,6 +7407,7 @@ class LanguageLabsAidaTrustRecitationProtoDocAttribution(
         "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
         "GEMINI_V1_PUBMED",
         "GEMINI_V1_WEB_MATH_V2",
+        "GEMINI_V1_CMS_GITHUB_V7",
         "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
         "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
         "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -7322,6 +7456,7 @@ class LanguageLabsAidaTrustRecitationProtoDocAttribution(
         "GENESIS_NEWS_INSIGHTS",
         "CLOUD_SECURITY_PRETRAINING",
         "CLOUD_SECURITY_FINETUNING",
+        "CLOUD_SECURITY_RAG_CISA",
         "LABS_AQA_DSCOUT",
         "LABS_AQA_TAILWIND",
         "LABS_AQA_DELEWARE",
@@ -7351,12 +7486,14 @@ class LanguageLabsAidaTrustRecitationProtoDocAttribution(
         "GEMINI_IT_MECH",
         "GEMINI_IT_TABLE_GEN",
         "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMIT_BRIDGE_SUFFIX_FT",
         "GEMINI_IT_CLOUD_CODE_IF",
         "GEMINI_IT_CLOUD_EUR_LEX_JSON",
         "GEMINI_IT_CLOUD_OASST",
         "GEMINI_IT_CLOUD_SELF_INSTRUCT",
         "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+        "GEMIT_BRIDGE_SUFFIX_FT",
+        "GEMINI_GOOSE_PUBLIC",
+        "GEMINI_GOOSE_SILOED",
         "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
         "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
         "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -7464,6 +7601,18 @@ class LanguageLabsAidaTrustRecitationProtoDocAttribution(
         "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+        "CLOUD_GEMIT_CODE_IF_V1",
+        "CLOUD_GEMIT_CODE_SELF_REPAIR",
+        "CLOUD_GEMIT_IDENTITY",
+        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+        "CLOUD_GEMIT_AMPS",
+        "CLOUD_GEMIT_AQUA",
+        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+        "CLOUD_GEMIT_GSM8K_SCHEMA",
     ]
     filepath: str
     geminiId: str
@@ -7617,6 +7766,7 @@ class LanguageLabsAidaTrustRecitationProtoSegmentResult(
         "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
         "GEMINI_V1_PUBMED",
         "GEMINI_V1_WEB_MATH_V2",
+        "GEMINI_V1_CMS_GITHUB_V7",
         "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
         "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
         "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -7665,6 +7815,7 @@ class LanguageLabsAidaTrustRecitationProtoSegmentResult(
         "GENESIS_NEWS_INSIGHTS",
         "CLOUD_SECURITY_PRETRAINING",
         "CLOUD_SECURITY_FINETUNING",
+        "CLOUD_SECURITY_RAG_CISA",
         "LABS_AQA_DSCOUT",
         "LABS_AQA_TAILWIND",
         "LABS_AQA_DELEWARE",
@@ -7694,12 +7845,14 @@ class LanguageLabsAidaTrustRecitationProtoSegmentResult(
         "GEMINI_IT_MECH",
         "GEMINI_IT_TABLE_GEN",
         "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMIT_BRIDGE_SUFFIX_FT",
         "GEMINI_IT_CLOUD_CODE_IF",
         "GEMINI_IT_CLOUD_EUR_LEX_JSON",
         "GEMINI_IT_CLOUD_OASST",
         "GEMINI_IT_CLOUD_SELF_INSTRUCT",
         "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+        "GEMIT_BRIDGE_SUFFIX_FT",
+        "GEMINI_GOOSE_PUBLIC",
+        "GEMINI_GOOSE_SILOED",
         "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
         "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
         "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -7807,6 +7960,18 @@ class LanguageLabsAidaTrustRecitationProtoSegmentResult(
         "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+        "CLOUD_GEMIT_CODE_IF_V1",
+        "CLOUD_GEMIT_CODE_SELF_REPAIR",
+        "CLOUD_GEMIT_IDENTITY",
+        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+        "CLOUD_GEMIT_AMPS",
+        "CLOUD_GEMIT_AQUA",
+        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+        "CLOUD_GEMIT_GSM8K_SCHEMA",
     ]
     displayAttributionMessage: str
     docAttribution: LanguageLabsAidaTrustRecitationProtoDocAttribution
@@ -7957,6 +8122,7 @@ class LearningGenaiRecitationDocAttribution(typing_extensions.TypedDict, total=F
         "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
         "GEMINI_V1_PUBMED",
         "GEMINI_V1_WEB_MATH_V2",
+        "GEMINI_V1_CMS_GITHUB_V7",
         "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
         "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
         "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -8003,8 +8169,6 @@ class LearningGenaiRecitationDocAttribution(typing_extensions.TypedDict, total=F
         "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
         "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
         "GENESIS_NEWS_INSIGHTS",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
         "LABS_AQA_DSCOUT",
         "LABS_AQA_TAILWIND",
         "LABS_AQA_DELEWARE",
@@ -8034,12 +8198,17 @@ class LearningGenaiRecitationDocAttribution(typing_extensions.TypedDict, total=F
         "GEMINI_IT_MECH",
         "GEMINI_IT_TABLE_GEN",
         "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMIT_BRIDGE_SUFFIX_FT",
         "GEMINI_IT_CLOUD_CODE_IF",
         "GEMINI_IT_CLOUD_EUR_LEX_JSON",
         "GEMINI_IT_CLOUD_OASST",
         "GEMINI_IT_CLOUD_SELF_INSTRUCT",
         "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+        "GEMIT_BRIDGE_SUFFIX_FT",
+        "CLOUD_SECURITY_PRETRAINING",
+        "CLOUD_SECURITY_FINETUNING",
+        "CLOUD_SECURITY_RAG_CISA",
+        "GEMINI_GOOSE_PUBLIC",
+        "GEMINI_GOOSE_SILOED",
         "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
         "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
         "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -8147,6 +8316,18 @@ class LearningGenaiRecitationDocAttribution(typing_extensions.TypedDict, total=F
         "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+        "CLOUD_GEMIT_CODE_IF_V1",
+        "CLOUD_GEMIT_CODE_SELF_REPAIR",
+        "CLOUD_GEMIT_IDENTITY",
+        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+        "CLOUD_GEMIT_AMPS",
+        "CLOUD_GEMIT_AQUA",
+        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+        "CLOUD_GEMIT_GSM8K_SCHEMA",
     ]
     filepath: str
     geminiId: str
@@ -8296,6 +8477,7 @@ class LearningGenaiRecitationSegmentResult(typing_extensions.TypedDict, total=Fa
         "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
         "GEMINI_V1_PUBMED",
         "GEMINI_V1_WEB_MATH_V2",
+        "GEMINI_V1_CMS_GITHUB_V7",
         "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
         "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
         "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
@@ -8342,8 +8524,6 @@ class LearningGenaiRecitationSegmentResult(typing_extensions.TypedDict, total=Fa
         "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
         "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
         "GENESIS_NEWS_INSIGHTS",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
         "LABS_AQA_DSCOUT",
         "LABS_AQA_TAILWIND",
         "LABS_AQA_DELEWARE",
@@ -8373,12 +8553,17 @@ class LearningGenaiRecitationSegmentResult(typing_extensions.TypedDict, total=Fa
         "GEMINI_IT_MECH",
         "GEMINI_IT_TABLE_GEN",
         "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMIT_BRIDGE_SUFFIX_FT",
         "GEMINI_IT_CLOUD_CODE_IF",
         "GEMINI_IT_CLOUD_EUR_LEX_JSON",
         "GEMINI_IT_CLOUD_OASST",
         "GEMINI_IT_CLOUD_SELF_INSTRUCT",
         "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
+        "GEMIT_BRIDGE_SUFFIX_FT",
+        "CLOUD_SECURITY_PRETRAINING",
+        "CLOUD_SECURITY_FINETUNING",
+        "CLOUD_SECURITY_RAG_CISA",
+        "GEMINI_GOOSE_PUBLIC",
+        "GEMINI_GOOSE_SILOED",
         "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
         "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
         "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
@@ -8486,6 +8671,18 @@ class LearningGenaiRecitationSegmentResult(typing_extensions.TypedDict, total=Fa
         "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
         "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
+        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
+        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
+        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
+        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
+        "CLOUD_GEMIT_CODE_IF_V1",
+        "CLOUD_GEMIT_CODE_SELF_REPAIR",
+        "CLOUD_GEMIT_IDENTITY",
+        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
+        "CLOUD_GEMIT_AMPS",
+        "CLOUD_GEMIT_AQUA",
+        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
+        "CLOUD_GEMIT_GSM8K_SCHEMA",
     ]
     displayAttributionMessage: str
     docAttribution: LearningGenaiRecitationDocAttribution
@@ -8522,6 +8719,76 @@ class LearningGenaiRootClassifierOutputSummary(
 class LearningGenaiRootClassifierState(typing_extensions.TypedDict, total=False):
     dataProviderOutput: _list[LearningGenaiRootDataProviderOutput]
     metricOutput: _list[LearningGenaiRootMetricOutput]
+
+@typing.type_check_only
+class LearningGenaiRootCodeyChatMetadata(typing_extensions.TypedDict, total=False):
+    codeLanguage: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "ALL",
+        "TEXT",
+        "CPP",
+        "PYTHON",
+        "KOTLIN",
+        "JAVA",
+        "JAVASCRIPT",
+        "GO",
+        "R",
+        "JUPYTER_NOTEBOOK",
+        "TYPESCRIPT",
+        "HTML",
+        "SQL",
+        "BASH",
+        "C",
+        "DART",
+        "GRADLE",
+        "GROOVY",
+        "JAVADOC",
+        "JSON",
+        "MAKEFILE",
+        "MARKDOWN",
+        "PROTO",
+        "XML",
+        "YAML",
+    ]
+
+@typing.type_check_only
+class LearningGenaiRootCodeyCheckpoint(typing_extensions.TypedDict, total=False):
+    codeyTruncatorMetadata: LearningGenaiRootCodeyTruncatorMetadata
+    currentSample: str
+    postInferenceStep: typing_extensions.Literal[
+        "STEP_POST_PROCESSING_STEP_UNSPECIFIED",
+        "STEP_ORIGINAL_MODEL_OUTPUT",
+        "STEP_MODEL_OUTPUT_DEDUPLICATION",
+        "STEP_STOP_SEQUENCE_TRUNCATION",
+        "STEP_HEURISTIC_TRUNCATION",
+        "STEP_WALD_TRUNCATION",
+        "STEP_WHITESPACE_TRUNCATION",
+        "STEP_FINAL_DEDUPLICATION",
+        "STEP_TOXICITY_CHECK",
+        "STEP_RECITATION_CHECK",
+        "STEP_RETURNED",
+        "STEP_WALKBACK_CORRECTION",
+        "STEP_SCORE_THRESHOLDING",
+        "STEP_MODEL_CONFIG_STOP_SEQUENCE_TRUNCATION",
+        "STEP_CUSTOM_STOP_SEQUENCE_TRUNCATION",
+        "STEP_EXPECTED_SAMPLE_SIZE",
+    ]
+
+@typing.type_check_only
+class LearningGenaiRootCodeyCompletionMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    checkpoints: _list[LearningGenaiRootCodeyCheckpoint]
+
+@typing.type_check_only
+class LearningGenaiRootCodeyOutput(typing_extensions.TypedDict, total=False):
+    codeyChatMetadata: LearningGenaiRootCodeyChatMetadata
+    codeyCompletionMetadata: LearningGenaiRootCodeyCompletionMetadata
+
+@typing.type_check_only
+class LearningGenaiRootCodeyTruncatorMetadata(typing_extensions.TypedDict, total=False):
+    cutoffIndex: int
+    truncatedText: str
 
 @typing.type_check_only
 class LearningGenaiRootDataProviderOutput(typing_extensions.TypedDict, total=False):
@@ -8917,6 +9184,7 @@ class LearningGenaiRootToxicitySignal(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LearningServingLlmMessageMetadata(typing_extensions.TypedDict, total=False):
     classifierSummary: LearningGenaiRootClassifierOutputSummary
+    codeyOutput: LearningGenaiRootCodeyOutput
     currentStreamTextLength: int
     deleted: bool
     filterMeta: _list[LearningGenaiRootFilterMetadata]
@@ -8925,6 +9193,7 @@ class LearningServingLlmMessageMetadata(typing_extensions.TypedDict, total=False
         "UNSPECIFIED", "RETURN", "STOP", "MAX_TOKENS", "FILTER"
     ]
     groundingMetadata: LearningGenaiRootGroundingMetadata
+    isCode: bool
     isFallback: bool
     langidResult: NlpSaftLangIdResult
     language: str

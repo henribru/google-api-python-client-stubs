@@ -10,6 +10,19 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorTypeUri: str
 
 @typing.type_check_only
+class AnalyzeOperationMetadata(typing_extensions.TypedDict, total=False):
+    analyzedWorkloadName: str
+    analyzedWorkloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "BATCH"
+    ]
+    analyzedWorkloadUuid: str
+    createTime: str
+    description: str
+    doneTime: str
+    labels: dict[str, typing.Any]
+    warnings: _list[str]
+
+@typing.type_check_only
 class AutoscalingConfig(typing_extensions.TypedDict, total=False):
     policyUri: str
 
@@ -649,6 +662,7 @@ class NodeGroupOperationMetadata(typing_extensions.TypedDict, total=False):
         "DELETE",
         "RESIZE",
         "REPAIR",
+        "UPDATE_LABELS",
     ]
     status: ClusterOperationStatus
     statusHistory: _list[ClusterOperationStatus]
@@ -764,6 +778,12 @@ class RepairClusterRequest(typing_extensions.TypedDict, total=False):
     gracefulDecommissionTimeout: str
     nodePools: _list[NodePool]
     parentOperationId: str
+    requestId: str
+
+@typing.type_check_only
+class RepairNodeGroupRequest(typing_extensions.TypedDict, total=False):
+    instanceNames: _list[str]
+    repairAction: typing_extensions.Literal["REPAIR_ACTION_UNSPECIFIED", "REPLACE"]
     requestId: str
 
 @typing.type_check_only

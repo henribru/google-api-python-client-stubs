@@ -214,5 +214,9 @@ class TransferRun(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class UnenrollDataSourcesRequest(typing_extensions.TypedDict, total=False):
+    dataSourceIds: _list[str]
+
+@typing.type_check_only
 class UserInfo(typing_extensions.TypedDict, total=False):
     email: str

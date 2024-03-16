@@ -226,6 +226,13 @@ class BigQueryDataTransferResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def unenrollDataSources(
+                self,
+                *,
+                name: str,
+                body: UnenrollDataSourcesRequest = ...,
+                **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def dataSources(self) -> DataSourcesResource: ...
             def transferConfigs(self) -> TransferConfigsResource: ...
 

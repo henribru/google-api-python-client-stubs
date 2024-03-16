@@ -93,6 +93,23 @@ class GoogleCloudPolicysimulatorV1ReplayResultsSummary(
     unchangedCount: int
 
 @typing.type_check_only
+class GoogleCloudPolicysimulatorV1alphaCreateOrgPolicyViolationsPreviewOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    requestTime: str
+    resourcesFound: int
+    resourcesPending: int
+    resourcesScanned: int
+    startTime: str
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
+    ]
+
+@typing.type_check_only
 class GoogleCloudPolicysimulatorV1alphaGenerateOrgPolicyViolationsPreviewOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -224,6 +241,23 @@ class GoogleCloudPolicysimulatorV1betaBindingExplanationAnnotatedMembership(
     ]
     relevance: typing_extensions.Literal[
         "HEURISTIC_RELEVANCE_UNSPECIFIED", "NORMAL", "HIGH"
+    ]
+
+@typing.type_check_only
+class GoogleCloudPolicysimulatorV1betaCreateOrgPolicyViolationsPreviewOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    requestTime: str
+    resourcesFound: int
+    resourcesPending: int
+    resourcesScanned: int
+    startTime: str
+    state: typing_extensions.Literal[
+        "PREVIEW_STATE_UNSPECIFIED",
+        "PREVIEW_PENDING",
+        "PREVIEW_RUNNING",
+        "PREVIEW_SUCCEEDED",
+        "PREVIEW_FAILED",
     ]
 
 @typing.type_check_only

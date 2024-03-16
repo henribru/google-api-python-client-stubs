@@ -70,6 +70,36 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExtensionChain(typing_extensions.TypedDict, total=False):
+    extensions: _list[ExtensionChainExtension]
+    matchCondition: ExtensionChainMatchCondition
+    name: str
+
+@typing.type_check_only
+class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
+    authority: str
+    failOpen: bool
+    forwardHeaders: _list[str]
+    name: str
+    service: str
+    supportedEvents: _list[
+        typing_extensions.Literal[
+            "EVENT_TYPE_UNSPECIFIED",
+            "REQUEST_HEADERS",
+            "REQUEST_BODY",
+            "RESPONSE_HEADERS",
+            "RESPONSE_BODY",
+            "REQUEST_TRAILERS",
+            "RESPONSE_TRAILERS",
+        ]
+    ]
+    timeout: str
+
+@typing.type_check_only
+class ExtensionChainMatchCondition(typing_extensions.TypedDict, total=False):
+    celExpression: str
+
+@typing.type_check_only
 class Gateway(typing_extensions.TypedDict, total=False):
     addresses: _list[str]
     certificateUrls: _list[str]
@@ -316,6 +346,32 @@ class HttpRouteURLRewrite(typing_extensions.TypedDict, total=False):
     pathPrefixRewrite: str
 
 @typing.type_check_only
+class LbRouteExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    forwardingRules: _list[str]
+    labels: dict[str, typing.Any]
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
+    ]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class LbTrafficExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    forwardingRules: _list[str]
+    labels: dict[str, typing.Any]
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
+    ]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
     endpointPolicies: _list[EndpointPolicy]
     nextPageToken: str
@@ -337,6 +393,18 @@ class ListHttpRoutesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLbRouteExtensionsResponse(typing_extensions.TypedDict, total=False):
+    lbRouteExtensions: _list[LbRouteExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListLbTrafficExtensionsResponse(typing_extensions.TypedDict, total=False):
+    lbTrafficExtensions: _list[LbTrafficExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
@@ -355,6 +423,11 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     serviceBindings: _list[ServiceBinding]
+
+@typing.type_check_only
+class ListServiceLbPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    serviceLbPolicies: _list[ServiceLbPolicy]
 
 @typing.type_check_only
 class ListTcpRoutesResponse(typing_extensions.TypedDict, total=False):
@@ -421,6 +494,31 @@ class ServiceBinding(typing_extensions.TypedDict, total=False):
     service: str
     serviceId: str
     updateTime: str
+
+@typing.type_check_only
+class ServiceLbPolicy(typing_extensions.TypedDict, total=False):
+    autoCapacityDrain: ServiceLbPolicyAutoCapacityDrain
+    createTime: str
+    description: str
+    failoverConfig: ServiceLbPolicyFailoverConfig
+    labels: dict[str, typing.Any]
+    loadBalancingAlgorithm: typing_extensions.Literal[
+        "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
+        "SPRAY_TO_WORLD",
+        "SPRAY_TO_REGION",
+        "WATERFALL_BY_REGION",
+        "WATERFALL_BY_ZONE",
+    ]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class ServiceLbPolicyAutoCapacityDrain(typing_extensions.TypedDict, total=False):
+    enable: bool
+
+@typing.type_check_only
+class ServiceLbPolicyFailoverConfig(typing_extensions.TypedDict, total=False):
+    failoverHealthThreshold: int
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

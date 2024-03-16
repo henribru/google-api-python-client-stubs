@@ -1749,6 +1749,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
             orderBy: str = ...,
             pageToken: str = ...,
             returnPartialSuccess: bool = ...,
+            zone: str = ...,
             **kwargs: typing.Any
         ) -> ImageListHttpRequest: ...
         def list_next(
@@ -4454,6 +4455,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             project: str,
             body: InstanceMoveRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def setCloudArmorTier(
+            self,
+            *,
+            project: str,
+            body: ProjectsSetCloudArmorTierRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -7484,6 +7493,162 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class StoragePoolTypesResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any
+        ) -> StoragePoolTypeAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: StoragePoolTypeAggregatedListHttpRequest,
+            previous_response: StoragePoolTypeAggregatedList,
+        ) -> StoragePoolTypeAggregatedListHttpRequest | None: ...
+        def get(
+            self, *, project: str, zone: str, storagePoolType: str, **kwargs: typing.Any
+        ) -> StoragePoolTypeHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> StoragePoolTypeListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: StoragePoolTypeListHttpRequest,
+            previous_response: StoragePoolTypeList,
+        ) -> StoragePoolTypeListHttpRequest | None: ...
+
+    @typing.type_check_only
+    class StoragePoolsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any
+        ) -> StoragePoolAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: StoragePoolAggregatedListHttpRequest,
+            previous_response: StoragePoolAggregatedList,
+        ) -> StoragePoolAggregatedListHttpRequest | None: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            zone: str,
+            storagePool: str,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def get(
+            self, *, project: str, zone: str, storagePool: str, **kwargs: typing.Any
+        ) -> StoragePoolHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            optionsRequestedPolicyVersion: int = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: StoragePool = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> StoragePoolListHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: StoragePoolListHttpRequest,
+            previous_response: StoragePoolList,
+        ) -> StoragePoolListHttpRequest | None: ...
+        def listDisks(
+            self,
+            *,
+            project: str,
+            zone: str,
+            storagePool: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> StoragePoolListDisksHttpRequest: ...
+        def listDisks_next(
+            self,
+            previous_request: StoragePoolListDisksHttpRequest,
+            previous_response: StoragePoolListDisks,
+        ) -> StoragePoolListDisksHttpRequest | None: ...
+        def setIamPolicy(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: ZoneSetPolicyRequest = ...,
+            **kwargs: typing.Any
+        ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            project: str,
+            zone: str,
+            resource: str,
+            body: TestPermissionsRequest = ...,
+            **kwargs: typing.Any
+        ) -> TestPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            storagePool: str,
+            body: StoragePool = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class SubnetworksResource(googleapiclient.discovery.Resource):
         def aggregatedList(
             self,
@@ -8753,6 +8918,8 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def snapshots(self) -> SnapshotsResource: ...
     def sslCertificates(self) -> SslCertificatesResource: ...
     def sslPolicies(self) -> SslPoliciesResource: ...
+    def storagePoolTypes(self) -> StoragePoolTypesResource: ...
+    def storagePools(self) -> StoragePoolsResource: ...
     def subnetworks(self) -> SubnetworksResource: ...
     def targetGrpcProxies(self) -> TargetGrpcProxiesResource: ...
     def targetHttpProxies(self) -> TargetHttpProxiesResource: ...
@@ -10273,6 +10440,62 @@ class SslPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SslPolicy: ...
+
+@typing.type_check_only
+class StoragePoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePool: ...
+
+@typing.type_check_only
+class StoragePoolAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolAggregatedList: ...
+
+@typing.type_check_only
+class StoragePoolListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolList: ...
+
+@typing.type_check_only
+class StoragePoolListDisksHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolListDisks: ...
+
+@typing.type_check_only
+class StoragePoolTypeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolType: ...
+
+@typing.type_check_only
+class StoragePoolTypeAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolTypeAggregatedList: ...
+
+@typing.type_check_only
+class StoragePoolTypeListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> StoragePoolTypeList: ...
 
 @typing.type_check_only
 class SubnetworkHttpRequest(googleapiclient.http.HttpRequest):

@@ -108,7 +108,12 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
 class CertificateConfig(typing_extensions.TypedDict, total=False):
     publicKey: PublicKey
     subjectConfig: SubjectConfig
+    subjectKeyId: CertificateConfigKeyId
     x509Config: X509Parameters
+
+@typing.type_check_only
+class CertificateConfigKeyId(typing_extensions.TypedDict, total=False):
+    keyId: str
 
 @typing.type_check_only
 class CertificateDescription(typing_extensions.TypedDict, total=False):

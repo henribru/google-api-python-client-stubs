@@ -337,9 +337,11 @@ class Dataset(typing_extensions.TypedDict, total=False):
     kind: str
     labels: dict[str, typing.Any]
     lastModifiedTime: str
+    linkedDatasetMetadata: LinkedDatasetMetadata
     linkedDatasetSource: LinkedDatasetSource
     location: str
     maxTimeTravelHours: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
     storageBillingModel: typing_extensions.Literal[
@@ -656,8 +658,8 @@ class IndexUnusedReason(typing_extensions.TypedDict, total=False):
         "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW",
         "NOT_SUPPORTED_IN_STANDARD_EDITION",
         "INDEX_SUPPRESSED_BY_FUNCTION_OPTION",
-        "INTERNAL_ERROR",
         "QUERY_CACHE_HIT",
+        "INTERNAL_ERROR",
         "OTHER_REASON",
     ]
     indexName: str
@@ -750,6 +752,7 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     autodetect: bool
     clustering: Clustering
     connectionProperties: _list[ConnectionProperty]
+    copyFilesOnly: bool
     createDisposition: str
     createSession: bool
     decimalTargetTypes: _list[
@@ -959,6 +962,10 @@ class JsonOptions(typing_extensions.TypedDict, total=False):
 class JsonValue(dict[str, typing.Any]): ...
 
 @typing.type_check_only
+class LinkedDatasetMetadata(typing_extensions.TypedDict, total=False):
+    linkState: typing_extensions.Literal["LINK_STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
+
+@typing.type_check_only
 class LinkedDatasetSource(typing_extensions.TypedDict, total=False):
     sourceDataset: DatasetReference
 
@@ -1140,6 +1147,14 @@ class MultiClassClassificationMetrics(typing_extensions.TypedDict, total=False):
 class ParquetOptions(typing_extensions.TypedDict, total=False):
     enableListInference: bool
     enumAsString: bool
+
+@typing.type_check_only
+class PartitionedColumn(typing_extensions.TypedDict, total=False):
+    field: str
+
+@typing.type_check_only
+class PartitioningDefinition(typing_extensions.TypedDict, total=False):
+    partitionedColumn: _list[PartitionedColumn]
 
 @typing.type_check_only
 class PerformanceInsights(typing_extensions.TypedDict, total=False):
@@ -1543,6 +1558,7 @@ class Table(typing_extensions.TypedDict, total=False):
     numTimeTravelPhysicalBytes: str
     numTotalLogicalBytes: str
     numTotalPhysicalBytes: str
+    partitionDefinition: PartitioningDefinition
     rangePartitioning: RangePartitioning
     replicas: _list[TableReference]
     requirePartitionFilter: bool

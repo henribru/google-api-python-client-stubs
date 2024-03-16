@@ -41,6 +41,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
                 "chrome",
                 "data_studio",
                 "keep",
+                "vault",
             ],
             actorIpAddress: str = ...,
             customerId: str = ...,

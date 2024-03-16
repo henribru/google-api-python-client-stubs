@@ -15,12 +15,6 @@ class SasPortalChannelWithScore(typing_extensions.TypedDict, total=False):
     score: float
 
 @typing.type_check_only
-class SasPortalCheckHasProvisionedDeploymentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    hasProvisionedDeployment: bool
-
-@typing.type_check_only
 class SasPortalCreateSignedDeviceRequest(typing_extensions.TypedDict, total=False):
     encodedDevice: str
     installerId: str
@@ -148,6 +142,11 @@ class SasPortalFrequencyRange(typing_extensions.TypedDict, total=False):
     lowFrequencyMhz: float
 
 @typing.type_check_only
+class SasPortalGcpProjectDeployment(typing_extensions.TypedDict, total=False):
+    deployment: SasPortalDeployment
+    hasEnabledAnalytics: bool
+
+@typing.type_check_only
 class SasPortalGenerateSecretRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -191,6 +190,12 @@ class SasPortalListDeploymentsResponse(typing_extensions.TypedDict, total=False)
 class SasPortalListDevicesResponse(typing_extensions.TypedDict, total=False):
     devices: _list[SasPortalDevice]
     nextPageToken: str
+
+@typing.type_check_only
+class SasPortalListGcpProjectDeploymentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deployments: _list[SasPortalGcpProjectDeployment]
 
 @typing.type_check_only
 class SasPortalListLegacyOrganizationsResponse(

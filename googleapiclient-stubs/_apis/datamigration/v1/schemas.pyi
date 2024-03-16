@@ -745,6 +745,7 @@ class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
         "EXISTING_CONFLICTING_DATABASES",
         "PARALLEL_IMPORT_INSUFFICIENT_PRIVILEGE",
         "EXISTING_DATA",
+        "SOURCE_MAX_SUBSCRIPTIONS",
     ]
     errorDetailMessage: str
     errorMessage: str

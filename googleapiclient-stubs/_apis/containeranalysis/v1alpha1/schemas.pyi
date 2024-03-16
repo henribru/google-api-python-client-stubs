@@ -229,6 +229,7 @@ class Completeness(typing_extensions.TypedDict, total=False):
 class ComplianceNote(typing_extensions.TypedDict, total=False):
     cisBenchmark: CisBenchmark
     description: str
+    impact: str
     rationale: str
     remediation: str
     scanInstructions: str

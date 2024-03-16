@@ -90,6 +90,7 @@ class AutomationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -100,6 +101,7 @@ class AutomationResourceSelector(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutomationRolloutMetadata(typing_extensions.TypedDict, total=False):
     advanceAutomationRuns: _list[str]
+    currentRepairAutomationRun: str
     promoteAutomationRun: str
     repairAutomationRuns: _list[str]
 
@@ -133,6 +135,7 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
         "FAILED",
         "IN_PROGRESS",
         "PENDING",
+        "ABORTED",
     ]
     stateDescription: str
     targetId: str
@@ -155,6 +158,7 @@ class AutomationRunEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -311,6 +315,7 @@ class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -472,6 +477,7 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -730,6 +736,7 @@ class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -753,6 +760,7 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -806,6 +814,7 @@ class RetryAttempt(typing_extensions.TypedDict, total=False):
         "REPAIR_STATE_IN_PROGRESS",
         "REPAIR_STATE_PENDING",
         "REPAIR_STATE_SKIPPED",
+        "REPAIR_STATE_ABORTED",
     ]
     stateDesc: str
     wait: str
@@ -844,6 +853,7 @@ class RollbackAttempt(typing_extensions.TypedDict, total=False):
         "REPAIR_STATE_IN_PROGRESS",
         "REPAIR_STATE_PENDING",
         "REPAIR_STATE_SKIPPED",
+        "REPAIR_STATE_ABORTED",
     ]
     stateDesc: str
 
@@ -935,6 +945,7 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -970,6 +981,7 @@ class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -1097,6 +1109,7 @@ class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 

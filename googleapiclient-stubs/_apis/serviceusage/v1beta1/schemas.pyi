@@ -426,8 +426,6 @@ class GoogleApiServiceusageV2alphaConsumerPolicy(
 
 @typing.type_check_only
 class GoogleApiServiceusageV2alphaEnableRule(typing_extensions.TypedDict, total=False):
-    categories: _list[str]
-    groups: _list[str]
     services: _list[str]
 
 @typing.type_check_only
@@ -764,6 +762,7 @@ class QuotaBucket(typing_extensions.TypedDict, total=False):
     effectiveLimit: str
     producerOverride: QuotaOverride
     producerQuotaPolicy: ProducerQuotaPolicy
+    rolloutInfo: RolloutInfo
 
 @typing.type_check_only
 class QuotaLimit(typing_extensions.TypedDict, total=False):
@@ -794,6 +793,10 @@ class RemoveEnableRulesMetadata(typing_extensions.TypedDict, total=False): ...
 class RemoveEnableRulesResponse(typing_extensions.TypedDict, total=False):
     parent: str
     removedValues: _list[str]
+
+@typing.type_check_only
+class RolloutInfo(typing_extensions.TypedDict, total=False):
+    defaultLimitOngoingRollout: bool
 
 @typing.type_check_only
 class RubySettings(typing_extensions.TypedDict, total=False):

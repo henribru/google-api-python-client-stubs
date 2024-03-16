@@ -614,6 +614,7 @@ class PageElement(typing_extensions.TypedDict, total=False):
     shape: Shape
     sheetsChart: SheetsChart
     size: Size
+    speakerSpotlight: SpeakerSpotlight
     table: Table
     title: str
     transform: AffineTransform
@@ -1069,6 +1070,15 @@ class SlideProperties(typing_extensions.TypedDict, total=False):
 class SolidFill(typing_extensions.TypedDict, total=False):
     alpha: float
     color: OpaqueColor
+
+@typing.type_check_only
+class SpeakerSpotlight(typing_extensions.TypedDict, total=False):
+    speakerSpotlightProperties: SpeakerSpotlightProperties
+
+@typing.type_check_only
+class SpeakerSpotlightProperties(typing_extensions.TypedDict, total=False):
+    outline: Outline
+    shadow: Shadow
 
 @typing.type_check_only
 class StretchedPictureFill(typing_extensions.TypedDict, total=False):

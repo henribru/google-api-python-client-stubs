@@ -16,6 +16,86 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class NotesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OccurrencesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListNoteOccurrencesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListNoteOccurrencesResponseHttpRequest,
+                        previous_response: ListNoteOccurrencesResponse,
+                    ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
+
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> NoteHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListNotesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListNotesResponseHttpRequest,
+                    previous_response: ListNotesResponse,
+                ) -> ListNotesResponseHttpRequest | None: ...
+                def occurrences(self) -> OccurrencesResource: ...
+
+            @typing.type_check_only
+            class OccurrencesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OccurrenceHttpRequest: ...
+                def getNotes(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> NoteHttpRequest: ...
+                def getVulnerabilitySummary(
+                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                ) -> VulnerabilityOccurrencesSummaryHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListOccurrencesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOccurrencesResponseHttpRequest,
+                    previous_response: ListOccurrencesResponse,
+                ) -> ListOccurrencesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class ResourcesResource(googleapiclient.discovery.Resource):
+                def exportSBOM(
+                    self,
+                    *,
+                    name: str,
+                    body: ExportSBOMRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ExportSBOMResponseHttpRequest: ...
+
+            def notes(self) -> NotesResource: ...
+            def occurrences(self) -> OccurrencesResource: ...
+            def resources(self) -> ResourcesResource: ...
+
+        @typing.type_check_only
         class NotesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class OccurrencesResource(googleapiclient.discovery.Resource):
@@ -166,8 +246,16 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> TestIamPermissionsResponseHttpRequest: ...
 
+        @typing.type_check_only
+        class ResourcesResource(googleapiclient.discovery.Resource):
+            def exportSBOM(
+                self, *, name: str, body: ExportSBOMRequest = ..., **kwargs: typing.Any
+            ) -> ExportSBOMResponseHttpRequest: ...
+
+        def locations(self) -> LocationsResource: ...
         def notes(self) -> NotesResource: ...
         def occurrences(self) -> OccurrencesResource: ...
+        def resources(self) -> ResourcesResource: ...
 
     def new_batch_http_request(
         self,
@@ -206,6 +294,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ExportSBOMResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExportSBOMResponse: ...
 
 @typing.type_check_only
 class ListNoteOccurrencesResponseHttpRequest(googleapiclient.http.HttpRequest):

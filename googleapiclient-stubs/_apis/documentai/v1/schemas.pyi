@@ -920,6 +920,7 @@ class GoogleCloudDocumentaiV1DocumentSchemaEntityTypeEnumValues(
 class GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -1179,6 +1180,7 @@ class GoogleCloudDocumentaiV1ProcessOptions(typing_extensions.TypedDict, total=F
     fromStart: int
     individualPageSelector: GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector
     ocrConfig: GoogleCloudDocumentaiV1OcrConfig
+    schemaOverride: GoogleCloudDocumentaiV1DocumentSchema
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ProcessOptionsIndividualPageSelector(

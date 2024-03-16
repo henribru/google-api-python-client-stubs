@@ -123,15 +123,14 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):
     bucket: str
+    createTime: str
     id: str
     kind: str
-    metadata: dict[str, typing.Any]
     metageneration: str
     name: str
     pendingRenameInfo: dict[str, typing.Any]
     selfLink: str
-    timeCreated: str
-    updated: str
+    updateTime: str
 
 @typing.type_check_only
 class Folders(typing_extensions.TypedDict, total=False):

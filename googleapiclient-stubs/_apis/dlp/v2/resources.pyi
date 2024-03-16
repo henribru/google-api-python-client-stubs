@@ -124,6 +124,29 @@ class DLPResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class ColumnDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ColumnDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListColumnDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class DeidentifyTemplatesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -307,6 +330,29 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
             @typing.type_check_only
+            class ProjectDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ProjectDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListProjectDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class StoredInfoTypesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -346,12 +392,38 @@ class DLPResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
+            @typing.type_check_only
+            class TableDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2TableDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListTableDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest | None
+                ): ...
+
+            def columnDataProfiles(self) -> ColumnDataProfilesResource: ...
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
             def discoveryConfigs(self) -> DiscoveryConfigsResource: ...
             def dlpJobs(self) -> DlpJobsResource: ...
             def inspectTemplates(self) -> InspectTemplatesResource: ...
             def jobTriggers(self) -> JobTriggersResource: ...
+            def projectDataProfiles(self) -> ProjectDataProfilesResource: ...
             def storedInfoTypes(self) -> StoredInfoTypesResource: ...
+            def tableDataProfiles(self) -> TableDataProfilesResource: ...
 
         @typing.type_check_only
         class StoredInfoTypesResource(googleapiclient.discovery.Resource):
@@ -603,6 +675,29 @@ class DLPResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ColumnDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ColumnDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListColumnDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest | None
+                ): ...
+
             @typing.type_check_only
             class ContentResource(googleapiclient.discovery.Resource):
                 def deidentify(
@@ -869,6 +964,29 @@ class DLPResource(googleapiclient.discovery.Resource):
                 ) -> GooglePrivacyDlpV2JobTriggerHttpRequest: ...
 
             @typing.type_check_only
+            class ProjectDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ProjectDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListProjectDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class StoredInfoTypesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -908,6 +1026,30 @@ class DLPResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GooglePrivacyDlpV2StoredInfoTypeHttpRequest: ...
 
+            @typing.type_check_only
+            class TableDataProfilesResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2TableDataProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest,
+                    previous_response: GooglePrivacyDlpV2ListTableDataProfilesResponse,
+                ) -> (
+                    GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest | None
+                ): ...
+
+            def columnDataProfiles(self) -> ColumnDataProfilesResource: ...
             def content(self) -> ContentResource: ...
             def deidentifyTemplates(self) -> DeidentifyTemplatesResource: ...
             def discoveryConfigs(self) -> DiscoveryConfigsResource: ...
@@ -915,7 +1057,9 @@ class DLPResource(googleapiclient.discovery.Resource):
             def image(self) -> ImageResource: ...
             def inspectTemplates(self) -> InspectTemplatesResource: ...
             def jobTriggers(self) -> JobTriggersResource: ...
+            def projectDataProfiles(self) -> ProjectDataProfilesResource: ...
             def storedInfoTypes(self) -> StoredInfoTypesResource: ...
+            def tableDataProfiles(self) -> TableDataProfilesResource: ...
 
         @typing.type_check_only
         class StoredInfoTypesResource(googleapiclient.discovery.Resource):
@@ -980,6 +1124,14 @@ class DLPResource(googleapiclient.discovery.Resource):
     def locations(self) -> LocationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ColumnDataProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ColumnDataProfile: ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DeidentifyContentResponseHttpRequest(
@@ -1052,6 +1204,16 @@ class GooglePrivacyDlpV2JobTriggerHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GooglePrivacyDlpV2JobTrigger: ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ListColumnDataProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ListColumnDataProfilesResponse: ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ListDeidentifyTemplatesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1112,6 +1274,16 @@ class GooglePrivacyDlpV2ListJobTriggersResponseHttpRequest(
     ) -> GooglePrivacyDlpV2ListJobTriggersResponse: ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ListProjectDataProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ListProjectDataProfilesResponse: ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1120,6 +1292,24 @@ class GooglePrivacyDlpV2ListStoredInfoTypesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePrivacyDlpV2ListStoredInfoTypesResponse: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ListTableDataProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ListTableDataProfilesResponse: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ProjectDataProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2ProjectDataProfile: ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2RedactImageResponseHttpRequest(
@@ -1148,6 +1338,14 @@ class GooglePrivacyDlpV2StoredInfoTypeHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GooglePrivacyDlpV2StoredInfoType: ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TableDataProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GooglePrivacyDlpV2TableDataProfile: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

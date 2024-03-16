@@ -12,6 +12,7 @@ class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
     postgresqlExcludedObjects: PostgresqlRdbms
+    sqlServerExcludedObjects: SqlServerRdbms
 
 @typing.type_check_only
 class BackfillJob(typing_extensions.TypedDict, total=False):
@@ -64,6 +65,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     oracleProfile: OracleProfile
     postgresqlProfile: PostgresqlProfile
     privateConnectivity: PrivateConnectivity
+    sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
 
@@ -431,6 +433,7 @@ class SourceConfig(typing_extensions.TypedDict, total=False):
     oracleSourceConfig: OracleSourceConfig
     postgresqlSourceConfig: PostgresqlSourceConfig
     sourceConnectionProfile: str
+    sqlServerSourceConfig: SqlServerSourceConfig
 
 @typing.type_check_only
 class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
@@ -441,11 +444,57 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
     postgresqlIdentifier: PostgresqlObjectIdentifier
+    sqlServerIdentifier: SqlServerObjectIdentifier
 
 @typing.type_check_only
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     mysqlLogPosition: MysqlLogPosition
     oracleScnPosition: OracleScnPosition
+
+@typing.type_check_only
+class SqlServerColumn(typing_extensions.TypedDict, total=False):
+    column: str
+    dataType: str
+    length: int
+    nullable: bool
+    ordinalPosition: int
+    precision: int
+    primaryKey: bool
+    scale: int
+
+@typing.type_check_only
+class SqlServerObjectIdentifier(typing_extensions.TypedDict, total=False):
+    schema: str
+    table: str
+
+@typing.type_check_only
+class SqlServerProfile(typing_extensions.TypedDict, total=False):
+    database: str
+    hostname: str
+    password: str
+    port: int
+    username: str
+
+@typing.type_check_only
+class SqlServerRdbms(typing_extensions.TypedDict, total=False):
+    schemas: _list[SqlServerSchema]
+
+@typing.type_check_only
+class SqlServerSchema(typing_extensions.TypedDict, total=False):
+    schema: str
+    tables: _list[SqlServerTable]
+
+@typing.type_check_only
+class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SqlServerRdbms
+    includeObjects: SqlServerRdbms
+    maxConcurrentBackfillTasks: int
+    maxConcurrentCdcTasks: int
+
+@typing.type_check_only
+class SqlServerTable(typing_extensions.TypedDict, total=False):
+    columns: _list[SqlServerColumn]
+    table: str
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...

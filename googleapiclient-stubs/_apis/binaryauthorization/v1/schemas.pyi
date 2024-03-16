@@ -24,6 +24,10 @@ class AdmissionWhitelistPattern(typing_extensions.TypedDict, total=False):
     namePattern: str
 
 @typing.type_check_only
+class AllowlistResult(typing_extensions.TypedDict, total=False):
+    matchedPattern: str
+
+@typing.type_check_only
 class AttestationAuthenticator(typing_extensions.TypedDict, total=False):
     displayName: str
     pkixPublicKeySet: PkixPublicKeySet
@@ -65,10 +69,24 @@ class Check(typing_extensions.TypedDict, total=False):
     displayName: str
     imageAllowlist: ImageAllowlist
     imageFreshnessCheck: ImageFreshnessCheck
+    sigstoreSignatureCheck: SigstoreSignatureCheck
     simpleSigningAttestationCheck: SimpleSigningAttestationCheck
     slsaCheck: SlsaCheck
     trustedDirectoryCheck: TrustedDirectoryCheck
     vulnerabilityCheck: VulnerabilityCheck
+
+@typing.type_check_only
+class CheckResult(typing_extensions.TypedDict, total=False):
+    allowlistResult: AllowlistResult
+    displayName: str
+    evaluationResult: EvaluationResult
+    explanation: str
+    index: str
+    type: str
+
+@typing.type_check_only
+class CheckResults(typing_extensions.TypedDict, total=False):
+    results: _list[CheckResult]
 
 @typing.type_check_only
 class CheckSet(typing_extensions.TypedDict, total=False):
@@ -78,7 +96,33 @@ class CheckSet(typing_extensions.TypedDict, total=False):
     scope: Scope
 
 @typing.type_check_only
+class CheckSetResult(typing_extensions.TypedDict, total=False):
+    allowlistResult: AllowlistResult
+    checkResults: CheckResults
+    displayName: str
+    explanation: str
+    index: str
+    scope: Scope
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EvaluateGkePolicyRequest(typing_extensions.TypedDict, total=False):
+    resource: dict[str, typing.Any]
+
+@typing.type_check_only
+class EvaluateGkePolicyResponse(typing_extensions.TypedDict, total=False):
+    results: _list[PodResult]
+    verdict: typing_extensions.Literal[
+        "VERDICT_UNSPECIFIED", "CONFORMANT", "NON_CONFORMANT", "ERROR"
+    ]
+
+@typing.type_check_only
+class EvaluationResult(typing_extensions.TypedDict, total=False):
+    verdict: typing_extensions.Literal[
+        "CHECK_VERDICT_UNSPECIFIED", "CONFORMANT", "NON_CONFORMANT", "ERROR"
+    ]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -105,6 +149,16 @@ class ImageAllowlist(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ImageFreshnessCheck(typing_extensions.TypedDict, total=False):
     maxUploadAgeDays: int
+
+@typing.type_check_only
+class ImageResult(typing_extensions.TypedDict, total=False):
+    allowlistResult: AllowlistResult
+    checkSetResult: CheckSetResult
+    explanation: str
+    imageUri: str
+    verdict: typing_extensions.Literal[
+        "IMAGE_VERDICT_UNSPECIFIED", "CONFORMANT", "NON_CONFORMANT", "ERROR"
+    ]
 
 @typing.type_check_only
 class Jwt(typing_extensions.TypedDict, total=False):
@@ -158,6 +212,16 @@ class PlatformPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class PodResult(typing_extensions.TypedDict, total=False):
+    imageResults: _list[ImageResult]
+    kubernetesNamespace: str
+    kubernetesServiceAccount: str
+    podName: str
+    verdict: typing_extensions.Literal[
+        "POD_VERDICT_UNSPECIFIED", "CONFORMANT", "NON_CONFORMANT", "ERROR"
+    ]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     admissionWhitelistPatterns: _list[AdmissionWhitelistPattern]
     clusterAdmissionRules: dict[str, typing.Any]
@@ -186,6 +250,23 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class Signature(typing_extensions.TypedDict, total=False):
     publicKeyId: str
     signature: str
+
+@typing.type_check_only
+class SigstoreAuthority(typing_extensions.TypedDict, total=False):
+    displayName: str
+    publicKeySet: SigstorePublicKeySet
+
+@typing.type_check_only
+class SigstorePublicKey(typing_extensions.TypedDict, total=False):
+    publicKeyPem: str
+
+@typing.type_check_only
+class SigstorePublicKeySet(typing_extensions.TypedDict, total=False):
+    publicKeys: _list[SigstorePublicKey]
+
+@typing.type_check_only
+class SigstoreSignatureCheck(typing_extensions.TypedDict, total=False):
+    sigstoreAuthorities: _list[SigstoreAuthority]
 
 @typing.type_check_only
 class SimpleSigningAttestationCheck(typing_extensions.TypedDict, total=False):

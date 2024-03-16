@@ -82,6 +82,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     enumOptions: _list[EnumOption]
+    enumSource: typing_extensions.Literal["ENUM_SOURCE_UNSPECIFIED", "EVENT_TYPES_API"]
     isAdvanced: bool
     key: str
     locationType: typing_extensions.Literal[
@@ -253,6 +254,7 @@ class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomConnector(typing_extensions.TypedDict, total=False):
+    activeConnectorVersions: _list[str]
     createTime: str
     customConnectorType: typing_extensions.Literal[
         "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
@@ -275,6 +277,8 @@ class CustomConnectorVersion(typing_extensions.TypedDict, total=False):
     name: str
     serviceAccount: str
     specLocation: str
+    specServerUrls: _list[str]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DEPRECATED"]
     updateTime: str
 
 @typing.type_check_only
@@ -312,6 +316,7 @@ class DestinationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DestinationConfigTemplate(typing_extensions.TypedDict, total=False):
+    autocompleteSuggestions: _list[str]
     defaultPort: int
     description: str
     displayName: str
@@ -376,6 +381,7 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
     status: EventSubscriptionStatus
     subscriber: str
     subscriberLink: str
+    triggerConfigVariables: _list[ConfigVariable]
     updateTime: str
 
 @typing.type_check_only
@@ -429,6 +435,7 @@ class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
     listenerAuthConfigTemplates: _list[AuthConfigTemplate]
     proxyDestinationConfig: DestinationConfigTemplate
     registrationDestinationConfig: DestinationConfigTemplate
+    triggerConfigVariables: _list[ConfigVariableTemplate]
 
 @typing.type_check_only
 class EventingDetails(typing_extensions.TypedDict, total=False):
@@ -448,6 +455,7 @@ class EventingRuntimeData(typing_extensions.TypedDict, total=False):
     eventsListenerEndpoint: str
     eventsListenerPscSa: str
     status: EventingStatus
+    webhookData: WebhookData
 
 @typing.type_check_only
 class EventingStatus(typing_extensions.TypedDict, total=False):
@@ -1198,6 +1206,27 @@ class UpdatePolicy(typing_extensions.TypedDict, total=False):
 class UserPassword(typing_extensions.TypedDict, total=False):
     password: Secret
     username: str
+
+@typing.type_check_only
+class ValidateCustomConnectorSpecRequest(typing_extensions.TypedDict, total=False):
+    serviceAccount: str
+    specLocation: str
+    specType: typing_extensions.Literal[
+        "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
+    ]
+
+@typing.type_check_only
+class ValidateCustomConnectorSpecResponse(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+
+@typing.type_check_only
+class WebhookData(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[ConfigVariable]
+    createTime: str
+    id: str
+    name: str
+    nextRefreshTime: str
+    updateTime: str
 
 @typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):

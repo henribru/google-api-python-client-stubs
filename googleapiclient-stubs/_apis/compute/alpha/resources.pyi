@@ -4656,6 +4656,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def setCloudArmorTier(
+            self,
+            *,
+            project: str,
+            body: ProjectsSetCloudArmorTierRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def setCommonInstanceMetadata(
             self,
             *,
@@ -7269,6 +7277,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def deleteNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            namedSet: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
         def deleteRoutePolicy(
             self,
             *,
@@ -7282,6 +7300,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, project: str, region: str, router: str, **kwargs: typing.Any
         ) -> RouterHttpRequest: ...
+        def getNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            namedSet: str = ...,
+            **kwargs: typing.Any
+        ) -> RoutersGetNamedSetResponseHttpRequest: ...
         def getNatIpInfo(
             self,
             *,
@@ -7373,6 +7400,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             previous_request: RoutersListBgpRoutesHttpRequest,
             previous_response: RoutersListBgpRoutes,
         ) -> RoutersListBgpRoutesHttpRequest | None: ...
+        def listNamedSets(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any
+        ) -> RoutersListNamedSetsHttpRequest: ...
+        def listNamedSets_next(
+            self,
+            previous_request: RoutersListNamedSetsHttpRequest,
+            previous_response: RoutersListNamedSets,
+        ) -> RoutersListNamedSetsHttpRequest | None: ...
         def listRoutePolicies(
             self,
             *,
@@ -7426,6 +7471,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             router: str,
             body: Router = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def updateNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            body: NamedSet = ...,
             requestId: str = ...,
             **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -10884,6 +10939,14 @@ class RouterStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> RouterStatusResponse: ...
 
 @typing.type_check_only
+class RoutersGetNamedSetResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RoutersGetNamedSetResponse: ...
+
+@typing.type_check_only
 class RoutersGetRoutePolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -10898,6 +10961,14 @@ class RoutersListBgpRoutesHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RoutersListBgpRoutes: ...
+
+@typing.type_check_only
+class RoutersListNamedSetsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RoutersListNamedSets: ...
 
 @typing.type_check_only
 class RoutersListRoutePoliciesHttpRequest(googleapiclient.http.HttpRequest):

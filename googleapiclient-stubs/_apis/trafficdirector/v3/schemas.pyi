@@ -17,6 +17,7 @@ class BuildVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ClientConfig(typing_extensions.TypedDict, total=False):
+    clientScope: str
     genericXdsConfigs: _list[GenericXdsConfig]
     node: Node
     xdsConfig: _list[PerXdsConfig]

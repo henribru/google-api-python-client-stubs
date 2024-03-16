@@ -533,12 +533,44 @@ class GoogleCloudDataplexV1DataQualitySpecPostScanActions(
     typing_extensions.TypedDict, total=False
 ):
     bigqueryExport: GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport
+    notificationReport: GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpecPostScanActionsBigQueryExport(
     typing_extensions.TypedDict, total=False
 ):
     resultsTable: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsNotificationReport(
+    typing_extensions.TypedDict, total=False
+):
+    jobEndTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobEndTrigger
+    jobFailureTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsJobFailureTrigger
+    recipients: GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients
+    scoreThresholdTrigger: GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsRecipients(
+    typing_extensions.TypedDict, total=False
+):
+    emails: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger(
+    typing_extensions.TypedDict, total=False
+):
+    scoreThreshold: float
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):

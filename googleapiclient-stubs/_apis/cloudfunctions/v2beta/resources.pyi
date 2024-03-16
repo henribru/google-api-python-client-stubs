@@ -19,6 +19,20 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class FunctionsResource(googleapiclient.discovery.Resource):
+                def abortFunctionUpgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: AbortFunctionUpgradeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def commitFunctionUpgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: CommitFunctionUpgradeRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -45,7 +59,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any
                 ) -> GenerateUploadUrlResponseHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, revision: str = ..., **kwargs: typing.Any
                 ) -> FunctionHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -77,6 +91,20 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def redirectFunctionUpgradeTraffic(
+                    self,
+                    *,
+                    name: str,
+                    body: RedirectFunctionUpgradeTrafficRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def rollbackFunctionUpgradeTraffic(
+                    self,
+                    *,
+                    name: str,
+                    body: RollbackFunctionUpgradeTrafficRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -84,6 +112,13 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any
                 ) -> PolicyHttpRequest: ...
+                def setupFunctionUpgradeConfig(
+                    self,
+                    *,
+                    name: str,
+                    body: SetupFunctionUpgradeConfigRequest = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,

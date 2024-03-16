@@ -61,6 +61,9 @@ class ContactInfo(typing_extensions.TypedDict, total=False):
 class Criticality(typing_extensions.TypedDict, total=False):
     level: str
     missionCritical: bool
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "MISSION_CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
 
 @typing.type_check_only
 class DetachServiceProjectAttachmentRequest(
@@ -90,6 +93,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Environment(typing_extensions.TypedDict, total=False):
     environment: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "PRODUCTION", "STAGING", "TEST", "DEVELOPMENT"
+    ]
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -163,6 +169,14 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class LookupDiscoveredServiceResponse(typing_extensions.TypedDict, total=False):
+    discoveredService: DiscoveredService
+
+@typing.type_check_only
+class LookupDiscoveredWorkloadResponse(typing_extensions.TypedDict, total=False):
+    discoveredWorkload: DiscoveredWorkload
 
 @typing.type_check_only
 class LookupServiceProjectAttachmentResponse(typing_extensions.TypedDict, total=False):

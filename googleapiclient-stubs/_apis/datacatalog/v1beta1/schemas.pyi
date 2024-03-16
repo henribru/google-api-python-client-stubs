@@ -118,7 +118,14 @@ class GoogleCloudDatacatalogV1ColumnSchema(typing_extensions.TypedDict, total=Fa
     lookerColumnSpec: GoogleCloudDatacatalogV1ColumnSchemaLookerColumnSpec
     mode: str
     ordinalPosition: int
+    rangeElementType: GoogleCloudDatacatalogV1ColumnSchemaFieldElementType
     subcolumns: _list[GoogleCloudDatacatalogV1ColumnSchema]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1ColumnSchemaFieldElementType(
+    typing_extensions.TypedDict, total=False
+):
     type: str
 
 @typing.type_check_only
@@ -243,6 +250,7 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
     datasetSpec: GoogleCloudDatacatalogV1DatasetSpec
     description: str
     displayName: str
+    featureOnlineStoreSpec: GoogleCloudDatacatalogV1FeatureOnlineStoreSpec
     filesetSpec: GoogleCloudDatacatalogV1FilesetSpec
     fullyQualifiedName: str
     gcsFilesetSpec: GoogleCloudDatacatalogV1GcsFilesetSpec
@@ -286,6 +294,9 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
         "DASHBOARD",
         "EXPLORE",
         "LOOK",
+        "FEATURE_ONLINE_STORE",
+        "FEATURE_VIEW",
+        "FEATURE_GROUP",
     ]
     usageSignal: GoogleCloudDatacatalogV1UsageSignal
     userSpecifiedSystem: str
@@ -294,6 +305,14 @@ class GoogleCloudDatacatalogV1Entry(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDatacatalogV1EntryOverview(typing_extensions.TypedDict, total=False):
     overview: str
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1FeatureOnlineStoreSpec(
+    typing_extensions.TypedDict, total=False
+):
+    storageType: typing_extensions.Literal[
+        "STORAGE_TYPE_UNSPECIFIED", "BIGTABLE", "OPTIMIZED"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1FilesetSpec(typing_extensions.TypedDict, total=False):

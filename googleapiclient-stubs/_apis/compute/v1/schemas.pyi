@@ -245,6 +245,7 @@ class AttachedDiskInitializeParams(typing_extensions.TypedDict, total=False):
     sourceImageEncryptionKey: CustomerEncryptionKey
     sourceSnapshot: str
     sourceSnapshotEncryptionKey: CustomerEncryptionKey
+    storagePool: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -400,6 +401,9 @@ class Backend(typing_extensions.TypedDict, total=False):
     maxRatePerEndpoint: float
     maxRatePerInstance: float
     maxUtilization: float
+    preference: typing_extensions.Literal[
+        "DEFAULT", "PREFERENCE_UNSPECIFIED", "PREFERRED"
+    ]
 
 @typing.type_check_only
 class BackendBucket(typing_extensions.TypedDict, total=False):
@@ -520,6 +524,7 @@ class BackendService(typing_extensions.TypedDict, total=False):
     securitySettings: SecuritySettings
     selfLink: str
     serviceBindings: _list[str]
+    serviceLbPolicy: str
     sessionAffinity: typing_extensions.Literal[
         "CLIENT_IP",
         "CLIENT_IP_NO_DESTINATION",
@@ -842,10 +847,12 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "GENERAL_PURPOSE_E2",
         "GENERAL_PURPOSE_N2",
         "GENERAL_PURPOSE_N2D",
+        "GENERAL_PURPOSE_N4",
         "GENERAL_PURPOSE_T2D",
         "GRAPHICS_OPTIMIZED",
         "MEMORY_OPTIMIZED",
         "MEMORY_OPTIMIZED_M3",
+        "STORAGE_OPTIMIZED_Z3",
         "TYPE_UNSPECIFIED",
     ]
 
@@ -988,13 +995,16 @@ class Disk(typing_extensions.TypedDict, total=False):
     sourceImage: str
     sourceImageEncryptionKey: CustomerEncryptionKey
     sourceImageId: str
+    sourceInstantSnapshot: str
+    sourceInstantSnapshotId: str
     sourceSnapshot: str
     sourceSnapshotEncryptionKey: CustomerEncryptionKey
     sourceSnapshotId: str
     sourceStorageObject: str
     status: typing_extensions.Literal[
-        "CREATING", "DELETING", "FAILED", "READY", "RESTORING"
+        "CREATING", "DELETING", "FAILED", "READY", "RESTORING", "UNAVAILABLE"
     ]
+    storagePool: str
     type: str
     users: _list[str]
     zone: str
@@ -1198,6 +1208,7 @@ class ExternalVpnGateway(typing_extensions.TypedDict, total=False):
 class ExternalVpnGatewayInterface(typing_extensions.TypedDict, total=False):
     id: int
     ipAddress: str
+    ipv6Address: str
 
 @typing.type_check_only
 class ExternalVpnGatewayList(typing_extensions.TypedDict, total=False):
@@ -1303,9 +1314,11 @@ class FirewallPolicyRule(typing_extensions.TypedDict, total=False):
     priority: int
     ruleName: str
     ruleTupleCount: int
+    securityProfileGroup: str
     targetResources: _list[str]
     targetSecureTags: _list[FirewallPolicyRuleSecureTag]
     targetServiceAccounts: _list[str]
+    tlsInspect: bool
 
 @typing.type_check_only
 class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
@@ -2000,6 +2013,7 @@ class InstanceGroupList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceGroupManager(typing_extensions.TypedDict, total=False):
+    allInstancesConfig: InstanceGroupManagerAllInstancesConfig
     autoHealingPolicies: _list[InstanceGroupManagerAutoHealingPolicy]
     baseInstanceName: str
     creationTimestamp: str
@@ -2052,6 +2066,10 @@ class InstanceGroupManagerAggregatedList(typing_extensions.TypedDict, total=Fals
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class InstanceGroupManagerAllInstancesConfig(typing_extensions.TypedDict, total=False):
+    properties: InstancePropertiesPatch
+
+@typing.type_check_only
 class InstanceGroupManagerAutoHealingPolicy(typing_extensions.TypedDict, total=False):
     healthCheck: str
     initialDelaySec: int
@@ -2060,6 +2078,7 @@ class InstanceGroupManagerAutoHealingPolicy(typing_extensions.TypedDict, total=F
 class InstanceGroupManagerInstanceLifecyclePolicy(
     typing_extensions.TypedDict, total=False
 ):
+    defaultActionOnFailure: typing_extensions.Literal["DO_NOTHING", "REPAIR"]
     forceUpdateOnRepair: typing_extensions.Literal["NO", "YES"]
 
 @typing.type_check_only
@@ -2073,10 +2092,18 @@ class InstanceGroupManagerList(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceGroupManagerStatus(typing_extensions.TypedDict, total=False):
+    allInstancesConfig: InstanceGroupManagerStatusAllInstancesConfig
     autoscaler: str
     isStable: bool
     stateful: InstanceGroupManagerStatusStateful
     versionTarget: InstanceGroupManagerStatusVersionTarget
+
+@typing.type_check_only
+class InstanceGroupManagerStatusAllInstancesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    currentRevision: str
+    effective: bool
 
 @typing.type_check_only
 class InstanceGroupManagerStatusStateful(typing_extensions.TypedDict, total=False):
@@ -2327,6 +2354,11 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
     tags: Tags
 
 @typing.type_check_only
+class InstancePropertiesPatch(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
+
+@typing.type_check_only
 class InstanceReference(typing_extensions.TypedDict, total=False):
     instance: str
 
@@ -2454,6 +2486,60 @@ class InstancesSetServiceAccountRequest(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class InstancesStartWithEncryptionKeyRequest(typing_extensions.TypedDict, total=False):
     disks: _list[CustomerEncryptionKeyProtectedDisk]
+
+@typing.type_check_only
+class InstantSnapshot(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
+    ]
+    creationTimestamp: str
+    description: str
+    diskSizeGb: str
+    id: str
+    kind: str
+    labelFingerprint: str
+    labels: dict[str, typing.Any]
+    name: str
+    region: str
+    resourceStatus: InstantSnapshotResourceStatus
+    satisfiesPzi: bool
+    satisfiesPzs: bool
+    selfLink: str
+    selfLinkWithId: str
+    sourceDisk: str
+    sourceDiskId: str
+    status: typing_extensions.Literal[
+        "CREATING", "DELETING", "FAILED", "READY", "UNAVAILABLE"
+    ]
+    zone: str
+
+@typing.type_check_only
+class InstantSnapshotAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstantSnapshotList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: _list[InstantSnapshot]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstantSnapshotResourceStatus(typing_extensions.TypedDict, total=False):
+    storageSizeBytes: str
+
+@typing.type_check_only
+class InstantSnapshotsScopedList(typing_extensions.TypedDict, total=False):
+    instantSnapshots: _list[InstantSnapshot]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class Int64RangeMatch(typing_extensions.TypedDict, total=False):
@@ -3862,6 +3948,9 @@ class PreservedStatePreservedNetworkIpIpAddress(
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
+    cloudArmorTier: typing_extensions.Literal[
+        "CA_ENTERPRISE_ANNUAL", "CA_ENTERPRISE_PAYGO", "CA_STANDARD"
+    ]
     commonInstanceMetadata: Metadata
     creationTimestamp: str
     defaultNetworkTier: typing_extensions.Literal[
@@ -3900,6 +3989,12 @@ class ProjectsGetXpnResources(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProjectsListXpnHostsRequest(typing_extensions.TypedDict, total=False):
     organization: str
+
+@typing.type_check_only
+class ProjectsSetCloudArmorTierRequest(typing_extensions.TypedDict, total=False):
+    cloudArmorTier: typing_extensions.Literal[
+        "CA_ENTERPRISE_ANNUAL", "CA_ENTERPRISE_PAYGO", "CA_STANDARD"
+    ]
 
 @typing.type_check_only
 class ProjectsSetDefaultNetworkTierRequest(typing_extensions.TypedDict, total=False):
@@ -4050,6 +4145,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "COMMITTED_NVIDIA_V100_GPUS",
         "COMMITTED_T2A_CPUS",
         "COMMITTED_T2D_CPUS",
+        "COMMITTED_Z3_CPUS",
         "CPUS",
         "CPUS_ALL_REGIONS",
         "DISKS_TOTAL_GB",
@@ -4067,6 +4163,9 @@ class Quota(typing_extensions.TypedDict, total=False):
         "GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES",
         "GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES",
         "GPUS_ALL_REGIONS",
+        "HDB_TOTAL_GB",
+        "HDB_TOTAL_IOPS",
+        "HDB_TOTAL_THROUGHPUT",
         "HEALTH_CHECKS",
         "IMAGES",
         "INSTANCES",
@@ -4140,6 +4239,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "REGIONAL_INSTANCE_GROUP_MANAGERS",
         "REGIONAL_INTERNAL_LB_BACKEND_SERVICES",
         "REGIONAL_INTERNAL_MANAGED_BACKEND_SERVICES",
+        "REGIONAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES",
         "RESERVATIONS",
         "RESOURCE_POLICIES",
         "ROUTERS",
@@ -5466,6 +5566,9 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     sourceDiskEncryptionKey: CustomerEncryptionKey
     sourceDiskForRecoveryCheckpoint: str
     sourceDiskId: str
+    sourceInstantSnapshot: str
+    sourceInstantSnapshotEncryptionKey: CustomerEncryptionKey
+    sourceInstantSnapshotId: str
     sourceSnapshotSchedulePolicy: str
     sourceSnapshotSchedulePolicyId: str
     status: typing_extensions.Literal[
@@ -5665,6 +5768,142 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StoragePool(typing_extensions.TypedDict, total=False):
+    capacityProvisioningType: typing_extensions.Literal[
+        "ADVANCED", "STANDARD", "UNSPECIFIED"
+    ]
+    creationTimestamp: str
+    description: str
+    id: str
+    kind: str
+    labelFingerprint: str
+    labels: dict[str, typing.Any]
+    name: str
+    performanceProvisioningType: typing_extensions.Literal[
+        "ADVANCED", "STANDARD", "UNSPECIFIED"
+    ]
+    poolProvisionedCapacityGb: str
+    poolProvisionedIops: str
+    poolProvisionedThroughput: str
+    resourceStatus: StoragePoolResourceStatus
+    selfLink: str
+    selfLinkWithId: str
+    state: typing_extensions.Literal["CREATING", "DELETING", "FAILED", "READY"]
+    status: StoragePoolResourceStatus
+    storagePoolType: str
+    zone: str
+
+@typing.type_check_only
+class StoragePoolAggregatedList(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolDisk(typing_extensions.TypedDict, total=False):
+    attachedInstances: _list[str]
+    creationTimestamp: str
+    disk: str
+    name: str
+    provisionedIops: str
+    provisionedThroughput: str
+    resourcePolicies: _list[str]
+    sizeGb: str
+    status: typing_extensions.Literal[
+        "CREATING", "DELETING", "FAILED", "READY", "RESTORING", "UNAVAILABLE"
+    ]
+    type: str
+    usedBytes: str
+
+@typing.type_check_only
+class StoragePoolList(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[StoragePool]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolListDisks(typing_extensions.TypedDict, total=False):
+    etag: str
+    id: str
+    items: _list[StoragePoolDisk]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolResourceStatus(typing_extensions.TypedDict, total=False):
+    diskCount: str
+    lastResizeTimestamp: str
+    maxTotalProvisionedDiskCapacityGb: str
+    poolUsedCapacityBytes: str
+    poolUsedIops: str
+    poolUsedThroughput: str
+    poolUserWrittenBytes: str
+    totalProvisionedDiskCapacityGb: str
+    totalProvisionedDiskIops: str
+    totalProvisionedDiskThroughput: str
+
+@typing.type_check_only
+class StoragePoolType(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    deprecated: DeprecationStatus
+    description: str
+    id: str
+    kind: str
+    maxPoolProvisionedCapacityGb: str
+    maxPoolProvisionedIops: str
+    maxPoolProvisionedThroughput: str
+    minPoolProvisionedCapacityGb: str
+    minPoolProvisionedIops: str
+    minPoolProvisionedThroughput: str
+    minSizeGb: str
+    name: str
+    selfLink: str
+    selfLinkWithId: str
+    supportedDiskTypes: _list[str]
+    zone: str
+
+@typing.type_check_only
+class StoragePoolTypeAggregatedList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: dict[str, typing.Any]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolTypeList(typing_extensions.TypedDict, total=False):
+    id: str
+    items: _list[StoragePoolType]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolTypesScopedList(typing_extensions.TypedDict, total=False):
+    storagePoolTypes: _list[StoragePoolType]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class StoragePoolsScopedList(typing_extensions.TypedDict, total=False):
+    storagePools: _list[StoragePool]
+    warning: dict[str, typing.Any]
 
 @typing.type_check_only
 class Subnetwork(typing_extensions.TypedDict, total=False):
@@ -6350,6 +6589,7 @@ class VmEndpointNatMappingsList(typing_extensions.TypedDict, total=False):
 class VpnGateway(typing_extensions.TypedDict, total=False):
     creationTimestamp: str
     description: str
+    gatewayIpVersion: typing_extensions.Literal["IPV4", "IPV6"]
     id: str
     kind: str
     labelFingerprint: str
@@ -6411,6 +6651,7 @@ class VpnGatewayVpnGatewayInterface(typing_extensions.TypedDict, total=False):
     id: int
     interconnectAttachment: str
     ipAddress: str
+    ipv6Address: str
 
 @typing.type_check_only
 class VpnGatewaysGetStatusResponse(typing_extensions.TypedDict, total=False):

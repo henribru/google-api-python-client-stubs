@@ -704,7 +704,6 @@ class StorageResource(googleapiclient.discovery.Resource):
             *,
             bucket: str,
             object: str,
-            body: Object = ...,
             copySourceAcl: bool = ...,
             generation: str,
             ifGenerationMatch: str = ...,

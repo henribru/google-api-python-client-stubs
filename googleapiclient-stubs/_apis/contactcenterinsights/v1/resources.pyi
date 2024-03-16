@@ -103,6 +103,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     filter: str = ...,
+                    orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal[
@@ -189,9 +190,23 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudContactcenterinsightsV1DeployIssueModelRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def export(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1ExportIssueModelRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudContactcenterinsightsV1IssueModelHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1ImportIssueModelRequest = ...,
+                    **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def list(
                     self, *, parent: str, **kwargs: typing.Any
                 ) -> (

@@ -166,6 +166,9 @@ class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
 class CancelCutoverJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CancelImageImportJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -302,6 +305,9 @@ class ComputeScheduling(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CreatingImageStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CutoverForecast(typing_extensions.TypedDict, total=False):
     estimatedCutoverJobDuration: str
 
@@ -350,6 +356,9 @@ class CycleStep(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class DataDiskImageImport(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DatacenterConnector(typing_extensions.TypedDict, total=False):
     applianceInfrastructureVersion: str
     applianceSoftwareVersion: str
@@ -377,6 +386,19 @@ class Disk(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiskImageDefaults(typing_extensions.TypedDict, total=False):
     sourceImage: str
+
+@typing.type_check_only
+class DiskImageTargetDetails(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
+    dataDiskImageImport: DataDiskImageImport
+    description: str
+    encryption: Encryption
+    familyName: str
+    imageName: str
+    labels: dict[str, typing.Any]
+    osAdaptationParameters: ImageImportOsAdaptationParameters
+    singleRegionStorage: bool
+    targetProject: str
 
 @typing.type_check_only
 class DisksMigrationDisksTargetDefaults(typing_extensions.TypedDict, total=False): ...
@@ -437,6 +459,57 @@ class Group(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class ImageImport(typing_extensions.TypedDict, total=False):
+    cloudStorageUri: str
+    createTime: str
+    diskImageTargetDefaults: DiskImageTargetDetails
+    encryption: Encryption
+    name: str
+    recentImageImportJobs: _list[ImageImportJob]
+
+@typing.type_check_only
+class ImageImportJob(typing_extensions.TypedDict, total=False):
+    cloudStorageUri: str
+    createTime: str
+    createdResources: _list[str]
+    diskImageTargetDetails: DiskImageTargetDetails
+    endTime: str
+    errors: _list[Status]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLING",
+        "CANCELLED",
+    ]
+    steps: _list[ImageImportStep]
+    warnings: _list[MigrationWarning]
+
+@typing.type_check_only
+class ImageImportOsAdaptationParameters(typing_extensions.TypedDict, total=False):
+    generalize: bool
+    licenseType: typing_extensions.Literal[
+        "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
+        "COMPUTE_ENGINE_LICENSE_TYPE_PAYG",
+        "COMPUTE_ENGINE_LICENSE_TYPE_BYOL",
+    ]
+
+@typing.type_check_only
+class ImageImportStep(typing_extensions.TypedDict, total=False):
+    adaptingOs: AdaptingOSStep
+    creatingImage: CreatingImageStep
+    endTime: str
+    initializing: InitializingImageImportStep
+    loadingSourceFiles: LoadingImageSourceFilesStep
+    startTime: str
+
+@typing.type_check_only
+class InitializingImageImportStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class InitializingReplicationStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -468,6 +541,18 @@ class ListDatacenterConnectorsResponse(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class ListGroupsResponse(typing_extensions.TypedDict, total=False):
     groups: _list[Group]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListImageImportJobsResponse(typing_extensions.TypedDict, total=False):
+    imageImportJobs: _list[ImageImportJob]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListImageImportsResponse(typing_extensions.TypedDict, total=False):
+    imageImports: _list[ImageImport]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -510,6 +595,9 @@ class ListUtilizationReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     utilizationReports: _list[UtilizationReport]
+
+@typing.type_check_only
+class LoadingImageSourceFilesStep(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class LocalizedMessage(typing_extensions.TypedDict, total=False):
@@ -579,6 +667,7 @@ class MigrationError(typing_extensions.TypedDict, total=False):
         "CUTOVER_ERROR",
         "UTILIZATION_REPORT_ERROR",
         "APPLIANCE_UPGRADE_ERROR",
+        "IMAGE_IMPORT_ERROR",
     ]
     errorMessage: LocalizedMessage
     errorTime: str

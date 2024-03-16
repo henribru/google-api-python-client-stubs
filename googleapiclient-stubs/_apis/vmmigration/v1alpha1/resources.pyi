@@ -74,6 +74,68 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class ImageImportsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ImageImportJobsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelImageImportJobRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ImageImportJobHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any
+                    ) -> ListImageImportJobsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListImageImportJobsResponseHttpRequest,
+                        previous_response: ListImageImportJobsResponse,
+                    ) -> ListImageImportJobsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ImageImport = ...,
+                    imageImportId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ImageImportHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListImageImportsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListImageImportsResponseHttpRequest,
+                    previous_response: ListImageImportsResponse,
+                ) -> ListImageImportsResponseHttpRequest | None: ...
+                def imageImportJobs(self) -> ImageImportJobsResource: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -485,6 +547,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def groups(self) -> GroupsResource: ...
+            def imageImports(self) -> ImageImportsResource: ...
             def operations(self) -> OperationsResource: ...
             def sources(self) -> SourcesResource: ...
             def targetProjects(self) -> TargetProjectsResource: ...
@@ -554,6 +617,22 @@ class GroupHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Group: ...
 
 @typing.type_check_only
+class ImageImportHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageImport: ...
+
+@typing.type_check_only
+class ImageImportJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ImageImportJob: ...
+
+@typing.type_check_only
 class ListCloneJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -584,6 +663,22 @@ class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListGroupsResponse: ...
+
+@typing.type_check_only
+class ListImageImportJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListImageImportJobsResponse: ...
+
+@typing.type_check_only
+class ListImageImportsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListImageImportsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -28,6 +28,9 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
         "VERIFY_APPS_ENFORCED",
         "VERIFY_APPS_USER_CHOICE",
     ]
+    mtePolicy: typing_extensions.Literal[
+        "MTE_POLICY_UNSPECIFIED", "MTE_USER_CHOICE", "MTE_ENFORCED", "MTE_DISABLED"
+    ]
     personalAppsThatCanReadWorkNotifications: _list[str]
     untrustedAppsPolicy: typing_extensions.Literal[
         "UNTRUSTED_APPS_POLICY_UNSPECIFIED",
@@ -150,6 +153,9 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
         "CONNECTED_WORK_AND_PERSONAL_APP_DISALLOWED",
         "CONNECTED_WORK_AND_PERSONAL_APP_ALLOWED",
     ]
+    credentialProviderPolicy: typing_extensions.Literal[
+        "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
+    ]
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
@@ -169,6 +175,8 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     ]
     disabled: bool
     extensionConfig: ExtensionConfig
+    installConstraint: _list[InstallConstraint]
+    installPriority: int
     installType: typing_extensions.Literal[
         "INSTALL_TYPE_UNSPECIFIED",
         "PREINSTALLED",
@@ -626,6 +634,24 @@ class HardwareStatus(typing_extensions.TypedDict, total=False):
     skinTemperatures: _list[float]
 
 @typing.type_check_only
+class InstallConstraint(typing_extensions.TypedDict, total=False):
+    chargingConstraint: typing_extensions.Literal[
+        "CHARGING_CONSTRAINT_UNSPECIFIED",
+        "CHARGING_NOT_REQUIRED",
+        "INSTALL_ONLY_WHEN_CHARGING",
+    ]
+    deviceIdleConstraint: typing_extensions.Literal[
+        "DEVICE_IDLE_CONSTRAINT_UNSPECIFIED",
+        "DEVICE_IDLE_NOT_REQUIRED",
+        "INSTALL_ONLY_WHEN_DEVICE_IDLE",
+    ]
+    networkTypeConstraint: typing_extensions.Literal[
+        "NETWORK_TYPE_CONSTRAINT_UNSPECIFIED",
+        "INSTALL_ON_ANY_NETWORK",
+        "INSTALL_ONLY_ON_UNMETERED_NETWORK",
+    ]
+
+@typing.type_check_only
 class IssueCommandResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -892,6 +918,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "ONC_WIFI_API_LEVEL",
         "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
         "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK",
+        "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY",
     ]
 
 @typing.type_check_only
@@ -1071,6 +1098,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     choosePrivateKeyRules: _list[ChoosePrivateKeyRule]
     complianceRules: _list[ComplianceRule]
     createWindowsDisabled: bool
+    credentialProviderPolicyDefault: typing_extensions.Literal[
+        "CREDENTIAL_PROVIDER_POLICY_DEFAULT_UNSPECIFIED",
+        "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED",
+        "CREDENTIAL_PROVIDER_DEFAULT_DISALLOWED_EXCEPT_SYSTEM",
+    ]
     credentialsConfigDisabled: bool
     crossProfilePolicies: CrossProfilePolicies
     dataRoamingDisabled: bool
@@ -1155,6 +1187,9 @@ class Policy(typing_extensions.TypedDict, total=False):
         "PREFERENTIAL_NETWORK_SERVICE_UNSPECIFIED",
         "PREFERENTIAL_NETWORK_SERVICE_DISABLED",
         "PREFERENTIAL_NETWORK_SERVICE_ENABLED",
+    ]
+    printingPolicy: typing_extensions.Literal[
+        "PRINTING_POLICY_UNSPECIFIED", "PRINTING_DISALLOWED", "PRINTING_ALLOWED"
     ]
     privateKeySelectionEnabled: bool
     recommendedGlobalProxy: ProxyInfo

@@ -498,6 +498,13 @@ class Reasons(typing_extensions.TypedDict, total=False):
         "UNHIDE",
         "PURGE",
     ]
+    serviceActivation: typing_extensions.Literal[
+        "SERVICE_ACTIVATION_STATUS_UNSPECIFIED",
+        "SERVICE_ACTIVATION_ENABLED",
+        "SERVICE_ACTIVATION_DISABLED",
+        "SERVICE_ACTIVATION_DISABLED_FULL",
+        "SERVICE_ACTIVATION_UNKNOWN_REASON",
+    ]
     serviceManagement: typing_extensions.Literal[
         "SERVICE_MANAGEMENT_UNKNOWN_REASON",
         "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC",
@@ -533,6 +540,7 @@ class Resources(typing_extensions.TypedDict, total=False):
 class Runtime(typing_extensions.TypedDict, total=False):
     decommissionedDate: Date
     deprecationDate: Date
+    displayName: str
     endOfSupportDate: Date
     environment: typing_extensions.Literal[
         "ENVIRONMENT_UNSPECIFIED", "STANDARD", "FLEXIBLE"
@@ -548,6 +556,7 @@ class Runtime(typing_extensions.TypedDict, total=False):
         "DECOMMISSIONED",
         "END_OF_SUPPORT",
     ]
+    supportedOperatingSystems: _list[str]
     warnings: _list[str]
 
 @typing.type_check_only

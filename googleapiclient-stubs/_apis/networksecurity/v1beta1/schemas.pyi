@@ -89,6 +89,7 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
     createTime: str
+    disabled: bool
     firewallEndpoint: str
     labels: dict[str, typing.Any]
     name: str
@@ -197,6 +198,7 @@ class ListAddressGroupReferencesResponseAddressGroupReference(
 ):
     firewallPolicy: str
     rulePriority: int
+    securityPolicy: str
 
 @typing.type_check_only
 class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):

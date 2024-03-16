@@ -150,6 +150,7 @@ class PlaydeveloperreportingResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    sampleErrorReportLimit: int = ...,
                     **kwargs: typing.Any
                 ) -> GooglePlayDeveloperReportingV1beta1SearchErrorIssuesResponseHttpRequest: ...
                 def search_next(

@@ -427,6 +427,30 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def userDataMappings(self) -> UserDataMappingsResource: ...
 
                 @typing.type_check_only
+                class DataMapperWorkspacesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class DicomStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class DicomWebResource(googleapiclient.discovery.Resource):
@@ -911,6 +935,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def explainDataAccess(
+                        self, *, name: str, resourceId: str = ..., **kwargs: typing.Any
+                    ) -> ExplainDataAccessResponseHttpRequest: ...
                     def export(
                         self,
                         *,
@@ -1233,6 +1260,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def annotationStores(self) -> AnnotationStoresResource: ...
                 def consentStores(self) -> ConsentStoresResource: ...
+                def dataMapperWorkspaces(self) -> DataMapperWorkspacesResource: ...
                 def dicomStores(self) -> DicomStoresResource: ...
                 def fhirStores(self) -> FhirStoresResource: ...
                 def hl7V2Stores(self) -> Hl7V2StoresResource: ...
@@ -1407,6 +1435,14 @@ class EvaluateUserConsentsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EvaluateUserConsentsResponse: ...
+
+@typing.type_check_only
+class ExplainDataAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExplainDataAccessResponse: ...
 
 @typing.type_check_only
 class FhirStoreHttpRequest(googleapiclient.http.HttpRequest):

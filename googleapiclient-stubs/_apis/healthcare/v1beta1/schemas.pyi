@@ -217,6 +217,12 @@ class Consent(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class ConsentAccessorScope(typing_extensions.TypedDict, total=False):
+    actor: str
+    environment: str
+    purpose: str
+
+@typing.type_check_only
 class ConsentArtifact(typing_extensions.TypedDict, total=False):
     consentContentScreenshots: _list[Image]
     consentContentVersion: str
@@ -441,6 +447,40 @@ class EvaluateUserConsentsRequest(typing_extensions.TypedDict, total=False):
 class EvaluateUserConsentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     results: _list[Result]
+
+@typing.type_check_only
+class ExplainDataAccessConsentInfo(typing_extensions.TypedDict, total=False):
+    cascadeOrigins: _list[str]
+    consentResource: str
+    enforcementTime: str
+    matchingAccessorScopes: _list[ConsentAccessorScope]
+    patientConsentOwner: str
+    type: typing_extensions.Literal[
+        "CONSENT_POLICY_TYPE_UNSPECIFIED",
+        "CONSENT_POLICY_TYPE_PATIENT",
+        "CONSENT_POLICY_TYPE_ADMIN",
+    ]
+    variants: _list[
+        typing_extensions.Literal[
+            "VARIANT_UNSPECIFIED", "VARIANT_STANDARD", "VARIANT_CASCADE"
+        ]
+    ]
+
+@typing.type_check_only
+class ExplainDataAccessConsentScope(typing_extensions.TypedDict, total=False):
+    accessorScope: ConsentAccessorScope
+    decision: typing_extensions.Literal[
+        "CONSENT_DECISION_TYPE_UNSPECIFIED",
+        "CONSENT_DECISION_TYPE_PERMIT",
+        "CONSENT_DECISION_TYPE_DENY",
+    ]
+    enforcingConsents: _list[ExplainDataAccessConsentInfo]
+    exceptions: _list[ExplainDataAccessConsentScope]
+
+@typing.type_check_only
+class ExplainDataAccessResponse(typing_extensions.TypedDict, total=False):
+    consentScopes: _list[ExplainDataAccessConsentScope]
+    warning: str
 
 @typing.type_check_only
 class ExportAnnotationsRequest(typing_extensions.TypedDict, total=False):

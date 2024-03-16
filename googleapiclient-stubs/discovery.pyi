@@ -176,6 +176,8 @@ import googleapiclient._apis.datamigration.v1
 import googleapiclient._apis.datamigration.v1beta1
 import googleapiclient._apis.datapipelines.v1
 import googleapiclient._apis.dataplex.v1
+import googleapiclient._apis.dataportability.v1
+import googleapiclient._apis.dataportability.v1beta
 import googleapiclient._apis.dataproc.v1
 import googleapiclient._apis.dataproc.v1beta2
 import googleapiclient._apis.datastore.v1
@@ -309,6 +311,7 @@ import googleapiclient._apis.managedidentities.v1
 import googleapiclient._apis.managedidentities.v1alpha1
 import googleapiclient._apis.managedidentities.v1beta1
 import googleapiclient._apis.manufacturers.v1
+import googleapiclient._apis.marketingplatformadmin.v1alpha
 import googleapiclient._apis.memcache.v1
 import googleapiclient._apis.memcache.v1beta2
 import googleapiclient._apis.metastore.v1
@@ -408,6 +411,7 @@ import googleapiclient._apis.searchads360.v0
 import googleapiclient._apis.searchconsole.v1
 import googleapiclient._apis.secretmanager.v1
 import googleapiclient._apis.secretmanager.v1beta1
+import googleapiclient._apis.secretmanager.v1beta2
 import googleapiclient._apis.securitycenter.v1
 import googleapiclient._apis.securitycenter.v1beta1
 import googleapiclient._apis.securitycenter.v1beta2
@@ -507,13 +511,21 @@ def key2param(key): ...
 
 class ResourceMethodParameters:
     argmap: Incomplete
+
     required_params: Incomplete
+
     repeated_params: Incomplete
+
     pattern_params: Incomplete
+
     query_params: Incomplete
+
     path_params: Incomplete
+
     param_types: Incomplete
+
     enum_params: Incomplete
+
     def __init__(self, method_desc) -> None: ...
     def set_parameters(self, method_desc) -> None: ...
 
@@ -3911,6 +3923,46 @@ def build(
 ) -> googleapiclient._apis.dataplex.v1.CloudDataplexResource: ...
 @overload
 def build(
+    serviceName: Literal["dataportability"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.dataportability.v1.DataPortabilityResource: ...
+@overload
+def build(
+    serviceName: Literal["dataportability"],
+    version: Literal["v1beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.dataportability.v1beta.DataPortabilityResource: ...
+@overload
+def build(
     serviceName: Literal["dataproc"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -6583,6 +6635,28 @@ def build(
 ) -> googleapiclient._apis.manufacturers.v1.ManufacturerCenterResource: ...
 @overload
 def build(
+    serviceName: Literal["marketingplatformadmin"],
+    version: Literal["v1alpha"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> (
+    googleapiclient._apis.marketingplatformadmin.v1alpha.GoogleMarketingPlatformAdminAPIResource
+): ...
+@overload
+def build(
     serviceName: Literal["memcache"],
     version: Literal["v1"],
     http: httplib2.Http | HttpMock | None = None,
@@ -8583,6 +8657,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.secretmanager.v1beta1.SecretManagerResource: ...
+@overload
+def build(
+    serviceName: Literal["secretmanager"],
+    version: Literal["v1beta2"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.secretmanager.v1beta2.SecretManagerResource: ...
 @overload
 def build(
     serviceName: Literal["securitycenter"],

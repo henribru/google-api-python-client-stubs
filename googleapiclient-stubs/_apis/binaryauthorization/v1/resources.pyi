@@ -79,6 +79,20 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class PlatformsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class GkeResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class PoliciesResource(googleapiclient.discovery.Resource):
+                    def evaluate(
+                        self,
+                        *,
+                        name: str,
+                        body: EvaluateGkePolicyRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> EvaluateGkePolicyResponseHttpRequest: ...
+
+                def policies(self) -> PoliciesResource: ...
+
+            @typing.type_check_only
             class PoliciesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -111,6 +125,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                     self, *, name: str, body: PlatformPolicy = ..., **kwargs: typing.Any
                 ) -> PlatformPolicyHttpRequest: ...
 
+            def gke(self) -> GkeResource: ...
             def policies(self) -> PoliciesResource: ...
 
         @typing.type_check_only
@@ -183,6 +198,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class EvaluateGkePolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EvaluateGkePolicyResponse: ...
 
 @typing.type_check_only
 class IamPolicyHttpRequest(googleapiclient.http.HttpRequest):

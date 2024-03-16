@@ -59,6 +59,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     network: str
     project: str
     pscConnectionId: str
+    selectedSubnetwork: str
     serviceAttachmentUri: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
@@ -365,6 +366,7 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     ]
     gceOperation: str
     pscConnectionId: str
+    selectedSubnetwork: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
     ]

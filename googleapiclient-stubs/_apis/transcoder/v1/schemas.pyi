@@ -155,17 +155,28 @@ class H264CodecSettings(typing_extensions.TypedDict, total=False):
     enableTwoPass: bool
     entropyCoder: str
     frameRate: float
+    frameRateConversionStrategy: typing_extensions.Literal[
+        "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED", "DOWNSAMPLE", "DROP_DUPLICATE"
+    ]
     gopDuration: str
     gopFrameCount: int
     heightPixels: int
+    hlg: H264ColorFormatHLG
     pixelFormat: str
     preset: str
     profile: str
     rateControlMode: str
+    sdr: H264ColorFormatSDR
     tune: str
     vbvFullnessBits: int
     vbvSizeBits: int
     widthPixels: int
+
+@typing.type_check_only
+class H264ColorFormatHLG(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class H264ColorFormatSDR(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class H265CodecSettings(typing_extensions.TypedDict, total=False):
@@ -177,17 +188,32 @@ class H265CodecSettings(typing_extensions.TypedDict, total=False):
     crfLevel: int
     enableTwoPass: bool
     frameRate: float
+    frameRateConversionStrategy: typing_extensions.Literal[
+        "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED", "DOWNSAMPLE", "DROP_DUPLICATE"
+    ]
     gopDuration: str
     gopFrameCount: int
+    hdr10: H265ColorFormatHDR10
     heightPixels: int
+    hlg: H265ColorFormatHLG
     pixelFormat: str
     preset: str
     profile: str
     rateControlMode: str
+    sdr: H265ColorFormatSDR
     tune: str
     vbvFullnessBits: int
     vbvSizeBits: int
     widthPixels: int
+
+@typing.type_check_only
+class H265ColorFormatHDR10(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class H265ColorFormatHLG(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class H265ColorFormatSDR(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -374,13 +400,24 @@ class Vp9CodecSettings(typing_extensions.TypedDict, total=False):
     bitrateBps: int
     crfLevel: int
     frameRate: float
+    frameRateConversionStrategy: typing_extensions.Literal[
+        "FRAME_RATE_CONVERSION_STRATEGY_UNSPECIFIED", "DOWNSAMPLE", "DROP_DUPLICATE"
+    ]
     gopDuration: str
     gopFrameCount: int
     heightPixels: int
+    hlg: Vp9ColorFormatHLG
     pixelFormat: str
     profile: str
     rateControlMode: str
+    sdr: Vp9ColorFormatSDR
     widthPixels: int
+
+@typing.type_check_only
+class Vp9ColorFormatHLG(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Vp9ColorFormatSDR(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Widevine(typing_extensions.TypedDict, total=False): ...

@@ -372,6 +372,18 @@ class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(
     verb: str
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(
     typing_extensions.TypedDict, total=False
 ):

@@ -260,6 +260,13 @@ class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
         "TERMINATING",
         "INSTALLING",
     ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CONFIG_SYNC_NOT_INSTALLED",
+        "CONFIG_SYNC_INSTALLED",
+        "CONFIG_SYNC_ERROR",
+        "CONFIG_SYNC_PENDING",
+    ]
     syncState: ConfigManagementSyncState
     version: ConfigManagementConfigSyncVersion
 
@@ -354,6 +361,9 @@ class ConfigManagementMembershipSpec(typing_extensions.TypedDict, total=False):
     cluster: str
     configSync: ConfigManagementConfigSync
     hierarchyController: ConfigManagementHierarchyControllerConfig
+    management: typing_extensions.Literal[
+        "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
+    ]
     policyController: ConfigManagementPolicyController
     version: str
 
@@ -614,14 +624,17 @@ class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
     name: str
     oidcConfig: IdentityServiceOidcConfig
     proxy: str
+    samlConfig: IdentityServiceSamlConfig
 
 @typing.type_check_only
 class IdentityServiceAzureADConfig(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: str
     encryptedClientSecret: str
+    groupFormat: str
     kubectlRedirectUri: str
     tenant: str
+    userClaim: str
 
 @typing.type_check_only
 class IdentityServiceGoogleConfig(typing_extensions.TypedDict, total=False):
@@ -656,6 +669,17 @@ class IdentityServiceOidcConfig(typing_extensions.TypedDict, total=False):
     userPrefix: str
 
 @typing.type_check_only
+class IdentityServiceSamlConfig(typing_extensions.TypedDict, total=False):
+    attributeMapping: dict[str, typing.Any]
+    groupPrefix: str
+    groupsAttribute: str
+    identityProviderCertificates: _list[str]
+    identityProviderId: str
+    identityProviderSsoUri: str
+    userAttribute: str
+    userPrefix: str
+
+@typing.type_check_only
 class KubernetesMetadata(typing_extensions.TypedDict, total=False):
     kubernetesApiServerVersion: str
     memoryMb: int
@@ -674,6 +698,12 @@ class KubernetesResource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAdminClusterMembershipsResponse(typing_extensions.TypedDict, total=False):
     adminClusterMemberships: _list[Membership]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListBoundMembershipsResponse(typing_extensions.TypedDict, total=False):
+    memberships: _list[Membership]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -712,6 +742,11 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListPermittedScopesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    scopes: _list[Scope]
 
 @typing.type_check_only
 class ListScopeNamespacesResponse(typing_extensions.TypedDict, total=False):

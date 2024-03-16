@@ -57,6 +57,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, force: bool = ..., **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3beta1ExportEntityTypesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -64,6 +71,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         languageCode: str = ...,
                         **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowCxV3beta1EntityTypeHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3beta1ImportEntityTypesRequest = ...,
+                        **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,

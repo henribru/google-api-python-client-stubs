@@ -44,6 +44,42 @@ class BlockDeviceUserResponse(typing_extensions.TypedDict, total=False):
     deviceUser: DeviceUser
 
 @typing.type_check_only
+class BrowserAttributes(typing_extensions.TypedDict, total=False):
+    chromeBrowserInfo: BrowserInfo
+    chromeProfileId: str
+    lastProfileSyncTime: str
+
+@typing.type_check_only
+class BrowserInfo(typing_extensions.TypedDict, total=False):
+    browserManagementState: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNMANAGED",
+        "MANAGED_BY_OTHER_DOMAIN",
+        "PROFILE_MANAGED",
+        "BROWSER_MANAGED",
+    ]
+    browserVersion: str
+    isBuiltInDnsClientEnabled: bool
+    isBulkDataEntryAnalysisEnabled: bool
+    isChromeCleanupEnabled: bool
+    isChromeRemoteDesktopAppBlocked: bool
+    isFileDownloadAnalysisEnabled: bool
+    isFileUploadAnalysisEnabled: bool
+    isRealtimeUrlCheckEnabled: bool
+    isSecurityEventAnalysisEnabled: bool
+    isSiteIsolationEnabled: bool
+    isThirdPartyBlockingEnabled: bool
+    passwordProtectionWarningTrigger: typing_extensions.Literal[
+        "PASSWORD_PROTECTION_TRIGGER_UNSPECIFIED",
+        "PROTECTION_OFF",
+        "PASSWORD_REUSE",
+        "PHISHING_REUSE",
+    ]
+    safeBrowsingProtectionLevel: typing_extensions.Literal[
+        "SAFE_BROWSING_LEVEL_UNSPECIFIED", "DISABLED", "STANDARD", "ENHANCED"
+    ]
+
+@typing.type_check_only
 class CancelUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -265,6 +301,8 @@ class DynamicGroupStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class EndpointVerificationSpecificAttributes(typing_extensions.TypedDict, total=False):
+    additionalSignals: dict[str, typing.Any]
+    browserAttributes: _list[BrowserAttributes]
     certificateAttributes: _list[CertificateAttributes]
 
 @typing.type_check_only

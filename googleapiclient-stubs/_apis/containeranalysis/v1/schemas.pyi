@@ -266,6 +266,9 @@ class CloudRepoSourceContext(typing_extensions.TypedDict, total=False):
     revisionId: str
 
 @typing.type_check_only
+class CloudStorageLocation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Command(typing_extensions.TypedDict, total=False):
     args: _list[str]
     dir: str
@@ -284,6 +287,7 @@ class Completeness(typing_extensions.TypedDict, total=False):
 class ComplianceNote(typing_extensions.TypedDict, total=False):
     cisBenchmark: CisBenchmark
     description: str
+    impact: str
     rationale: str
     remediation: str
     scanInstructions: str
@@ -807,6 +811,14 @@ class Envelope(typing_extensions.TypedDict, total=False):
 class EnvelopeSignature(typing_extensions.TypedDict, total=False):
     keyid: str
     sig: str
+
+@typing.type_check_only
+class ExportSBOMRequest(typing_extensions.TypedDict, total=False):
+    cloudStorageLocation: CloudStorageLocation
+
+@typing.type_check_only
+class ExportSBOMResponse(typing_extensions.TypedDict, total=False):
+    discoveryOccurrence: str
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):

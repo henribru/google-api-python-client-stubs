@@ -195,6 +195,13 @@ class Reasons(typing_extensions.TypedDict, total=False):
         "UNHIDE",
         "PURGE",
     ]
+    serviceActivation: typing_extensions.Literal[
+        "SERVICE_ACTIVATION_STATUS_UNSPECIFIED",
+        "SERVICE_ACTIVATION_ENABLED",
+        "SERVICE_ACTIVATION_DISABLED",
+        "SERVICE_ACTIVATION_DISABLED_FULL",
+        "SERVICE_ACTIVATION_UNKNOWN_REASON",
+    ]
     serviceManagement: typing_extensions.Literal[
         "SERVICE_MANAGEMENT_UNKNOWN_REASON",
         "SERVICE_MANAGEMENT_CONTROL_PLANE_SYNC",

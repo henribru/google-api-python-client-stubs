@@ -244,6 +244,16 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 def runtimeEntitySchemas(self) -> RuntimeEntitySchemasResource: ...
 
             @typing.type_check_only
+            class CustomConnectorsResource(googleapiclient.discovery.Resource):
+                def validateCustomConnectorSpec(
+                    self,
+                    *,
+                    parent: str,
+                    body: ValidateCustomConnectorSpecRequest = ...,
+                    **kwargs: typing.Any
+                ) -> ValidateCustomConnectorSpecResponseHttpRequest: ...
+
+            @typing.type_check_only
             class EndpointAttachmentsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -299,9 +309,6 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             customConnectorVersionId: str = ...,
                             **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> OperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> CustomConnectorVersionHttpRequest: ...
@@ -318,14 +325,6 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             previous_request: ListCustomConnectorVersionsResponseHttpRequest,
                             previous_response: ListCustomConnectorVersionsResponse,
                         ) -> ListCustomConnectorVersionsResponseHttpRequest | None: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: CustomConnectorVersion = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any
-                        ) -> OperationHttpRequest: ...
 
                     def create(
                         self,
@@ -597,6 +596,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any
             ) -> OperationHttpRequest: ...
             def connections(self) -> ConnectionsResource: ...
+            def customConnectors(self) -> CustomConnectorsResource: ...
             def endpointAttachments(self) -> EndpointAttachmentsResource: ...
             def global_(self) -> GlobalResource: ...
             def operations(self) -> OperationsResource: ...
@@ -905,3 +905,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class ValidateCustomConnectorSpecResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ValidateCustomConnectorSpecResponse: ...

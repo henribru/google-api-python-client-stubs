@@ -127,4 +127,6 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ValidatorConfig(typing_extensions.TypedDict, total=False):
+    beaconFeeRecipient: str
+    managedValidatorClient: bool
     mevRelayUrls: _list[str]

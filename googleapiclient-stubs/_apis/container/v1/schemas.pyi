@@ -750,6 +750,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     confidentialNodes: ConfidentialNodes
     diskSizeGb: int
     diskType: str
+    enableConfidentialStorage: bool
     ephemeralStorageLocalSsdConfig: EphemeralStorageLocalSsdConfig
     fastSocket: FastSocket
     gcfsConfig: GcfsConfig
@@ -771,6 +772,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     resourceLabels: dict[str, typing.Any]
     resourceManagerTags: ResourceManagerTags
     sandboxConfig: SandboxConfig
+    secondaryBootDisks: _list[SecondaryBootDisk]
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
     soleTenantConfig: SoleTenantConfig
@@ -1039,6 +1041,11 @@ class SandboxConfig(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["UNSPECIFIED", "GVISOR"]
 
 @typing.type_check_only
+class SecondaryBootDisk(typing_extensions.TypedDict, total=False):
+    diskImage: str
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
+
+@typing.type_check_only
 class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
     affectedSupportedMinors: _list[str]
     briefDescription: str
@@ -1294,6 +1301,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     nodePoolId: str
     nodeVersion: str
     projectId: str
+    queuedProvisioning: QueuedProvisioning
     resourceLabels: ResourceLabels
     resourceManagerTags: ResourceManagerTags
     tags: NetworkTags

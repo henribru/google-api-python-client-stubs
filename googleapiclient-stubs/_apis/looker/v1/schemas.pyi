@@ -114,6 +114,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     ingressPrivateIp: str
     ingressPublicIp: str
     lastDenyMaintenancePeriod: DenyMaintenancePeriod
+    linkedLspProjectNumber: str
     lookerUri: str
     lookerVersion: str
     maintenanceSchedule: MaintenanceSchedule

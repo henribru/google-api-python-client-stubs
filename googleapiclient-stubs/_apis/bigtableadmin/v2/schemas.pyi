@@ -29,6 +29,11 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutomatedBackupPolicy(typing_extensions.TypedDict, total=False):
+    frequency: str
+    retentionPeriod: str
+
+@typing.type_check_only
 class AutoscalingLimits(typing_extensions.TypedDict, total=False):
     maxServeNodes: int
     minServeNodes: int
@@ -71,7 +76,6 @@ class ChangeStreamConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckConsistencyRequest(typing_extensions.TypedDict, total=False):
     consistencyToken: str
-    standardReadRemoteWrites: StandardReadRemoteWrites
 
 @typing.type_check_only
 class CheckConsistencyResponse(typing_extensions.TypedDict, total=False):
@@ -306,6 +310,7 @@ class Modification(typing_extensions.TypedDict, total=False):
     drop: bool
     id: str
     update: ColumnFamily
+    updateMask: str
 
 @typing.type_check_only
 class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
@@ -397,9 +402,6 @@ class StandardIsolation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class StandardReadRemoteWrites(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -407,6 +409,7 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Table(typing_extensions.TypedDict, total=False):
+    automatedBackupPolicy: AutomatedBackupPolicy
     changeStreamConfig: ChangeStreamConfig
     clusterStates: dict[str, typing.Any]
     columnFamilies: dict[str, typing.Any]

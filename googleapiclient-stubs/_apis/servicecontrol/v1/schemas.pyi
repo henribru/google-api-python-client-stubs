@@ -122,6 +122,7 @@ class CheckError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CheckInfo(typing_extensions.TypedDict, total=False):
+    apiKeyUid: str
     consumerInfo: ConsumerInfo
     unusedArguments: _list[str]
 

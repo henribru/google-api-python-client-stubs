@@ -92,6 +92,48 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class FirewallEndpointsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: FirewallEndpoint = ...,
+                    firewallEndpointId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FirewallEndpointHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFirewallEndpointsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFirewallEndpointsResponseHttpRequest,
+                    previous_response: ListFirewallEndpointsResponse,
+                ) -> ListFirewallEndpointsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: FirewallEndpoint = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -121,8 +163,87 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class SecurityProfileGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SecurityProfileGroup = ...,
+                    securityProfileGroupId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SecurityProfileGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSecurityProfileGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecurityProfileGroupsResponseHttpRequest,
+                    previous_response: ListSecurityProfileGroupsResponse,
+                ) -> ListSecurityProfileGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SecurityProfileGroup = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class SecurityProfilesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SecurityProfile = ...,
+                    securityProfileId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SecurityProfileHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListSecurityProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSecurityProfilesResponseHttpRequest,
+                    previous_response: ListSecurityProfilesResponse,
+                ) -> ListSecurityProfilesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SecurityProfile = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
             def addressGroups(self) -> AddressGroupsResource: ...
+            def firewallEndpoints(self) -> FirewallEndpointsResource: ...
             def operations(self) -> OperationsResource: ...
+            def securityProfileGroups(self) -> SecurityProfileGroupsResource: ...
+            def securityProfiles(self) -> SecurityProfilesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -342,6 +463,50 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class FirewallEndpointAssociationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: FirewallEndpointAssociation = ...,
+                    firewallEndpointAssociationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FirewallEndpointAssociationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any
+                ) -> ListFirewallEndpointAssociationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListFirewallEndpointAssociationsResponseHttpRequest,
+                    previous_response: ListFirewallEndpointAssociationsResponse,
+                ) -> ListFirewallEndpointAssociationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: FirewallEndpointAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class GatewaySecurityPoliciesResource(googleapiclient.discovery.Resource):
@@ -605,6 +770,9 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             def addressGroups(self) -> AddressGroupsResource: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
+            def firewallEndpointAssociations(
+                self,
+            ) -> FirewallEndpointAssociationsResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
             def operations(self) -> OperationsResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
@@ -659,6 +827,22 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FirewallEndpointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FirewallEndpoint: ...
+
+@typing.type_check_only
+class FirewallEndpointAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FirewallEndpointAssociation: ...
 
 @typing.type_check_only
 class GatewaySecurityPolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -727,6 +911,24 @@ class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListClientTlsPoliciesResponse: ...
 
 @typing.type_check_only
+class ListFirewallEndpointAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListFirewallEndpointAssociationsResponse: ...
+
+@typing.type_check_only
+class ListFirewallEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListFirewallEndpointsResponse: ...
+
+@typing.type_check_only
 class ListGatewaySecurityPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -759,6 +961,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListSecurityProfileGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSecurityProfileGroupsResponse: ...
+
+@typing.type_check_only
+class ListSecurityProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSecurityProfilesResponse: ...
 
 @typing.type_check_only
 class ListServerTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -799,6 +1017,22 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SecurityProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SecurityProfile: ...
+
+@typing.type_check_only
+class SecurityProfileGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SecurityProfileGroup: ...
 
 @typing.type_check_only
 class ServerTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):

@@ -285,6 +285,7 @@ class Project(typing_extensions.TypedDict, total=False):
     parent: ResourceId
     projectId: str
     projectNumber: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class ProjectCreationStatus(typing_extensions.TypedDict, total=False):

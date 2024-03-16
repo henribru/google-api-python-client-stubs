@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AirflowMetadataRetentionPolicyConfig(typing_extensions.TypedDict, total=False):
+    retentionDays: int
+    retentionMode: typing_extensions.Literal[
+        "RETENTION_MODE_UNSPECIFIED",
+        "RETENTION_MODE_ENABLED",
+        "RETENTION_MODE_DISABLED",
+    ]
+
+@typing.type_check_only
 class AllowedIpRange(typing_extensions.TypedDict, total=False):
     description: str
     value: str
@@ -33,6 +42,36 @@ class CloudDataLineageIntegration(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class ComposerWorkload(typing_extensions.TypedDict, total=False):
+    name: str
+    status: ComposerWorkloadStatus
+    type: typing_extensions.Literal[
+        "COMPOSER_WORKLOAD_TYPE_UNSPECIFIED",
+        "CELERY_WORKER",
+        "KUBERNETES_WORKER",
+        "KUBERNETES_OPERATOR_POD",
+        "SCHEDULER",
+        "DAG_PROCESSOR",
+        "TRIGGERER",
+        "WEB_SERVER",
+        "REDIS",
+    ]
+
+@typing.type_check_only
+class ComposerWorkloadStatus(typing_extensions.TypedDict, total=False):
+    detailedStatusMessage: str
+    state: typing_extensions.Literal[
+        "COMPOSER_WORKLOAD_STATE_UNSPECIFIED",
+        "PENDING",
+        "OK",
+        "WARNING",
+        "ERROR",
+        "SUCCEEDED",
+        "FAILED",
+    ]
+    statusMessage: str
+
+@typing.type_check_only
 class DagProcessorResource(typing_extensions.TypedDict, total=False):
     count: int
     cpu: float
@@ -41,6 +80,8 @@ class DagProcessorResource(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataRetentionConfig(typing_extensions.TypedDict, total=False):
+    airflowDatabaseRetentionDays: int
+    airflowMetadataRetentionConfig: AirflowMetadataRetentionPolicyConfig
     taskLogsRetentionConfig: TaskLogsRetentionConfig
 
 @typing.type_check_only
@@ -170,6 +211,21 @@ class ListImageVersionsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListUserWorkloadsConfigMapsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userWorkloadsConfigMaps: _list[UserWorkloadsConfigMap]
+
+@typing.type_check_only
+class ListUserWorkloadsSecretsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    userWorkloadsSecrets: _list[UserWorkloadsSecret]
+
+@typing.type_check_only
+class ListWorkloadsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    workloads: _list[ComposerWorkload]
 
 @typing.type_check_only
 class LoadSnapshotRequest(typing_extensions.TypedDict, total=False):
@@ -353,6 +409,16 @@ class TriggererResource(typing_extensions.TypedDict, total=False):
     count: int
     cpu: float
     memoryGb: float
+
+@typing.type_check_only
+class UserWorkloadsConfigMap(typing_extensions.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
+class UserWorkloadsSecret(typing_extensions.TypedDict, total=False):
+    data: dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class WebServerConfig(typing_extensions.TypedDict, total=False):

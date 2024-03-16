@@ -43,6 +43,12 @@ class AuxiliaryMessage(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BacklightInfo(typing_extensions.TypedDict, total=False):
+    brightness: int
+    maxBrightness: int
+    path: str
+
+@typing.type_check_only
 class BatchChangeChromeOsDeviceStatusRequest(typing_extensions.TypedDict, total=False):
     changeChromeOsDeviceStatusAction: typing_extensions.Literal[
         "CHANGE_CHROME_OS_DEVICE_STATUS_ACTION_UNSPECIFIED",
@@ -192,6 +198,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     annotatedLocation: str
     annotatedUser: str
     autoUpdateExpiration: str
+    backlightInfo: _list[BacklightInfo]
     bootMode: str
     cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
@@ -326,6 +333,7 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
         "CAPTURE_LOGS",
+        "FETCH_SUPPORT_PACKET",
     ]
 
 @typing.type_check_only
@@ -350,6 +358,7 @@ class DirectoryChromeosdevicesIssueCommandRequest(
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
         "CAPTURE_LOGS",
+        "FETCH_SUPPORT_PACKET",
     ]
     payload: str
 
