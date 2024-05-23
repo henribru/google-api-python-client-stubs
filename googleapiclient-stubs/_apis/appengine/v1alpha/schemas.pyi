@@ -158,7 +158,9 @@ class OperationMetadataV1Beta(typing_extensions.TypedDict, total=False):
 class ProjectEvent(typing_extensions.TypedDict, total=False):
     eventId: str
     phase: typing_extensions.Literal[
-        "UNKNOWN", "BEFORE_RESOURCE_HANDLING", "AFTER_RESOURCE_HANDLING"
+        "CONTAINER_EVENT_PHASE_UNSPECIFIED",
+        "BEFORE_RESOURCE_HANDLING",
+        "AFTER_RESOURCE_HANDLING",
     ]
     projectMetadata: ProjectsMetadata
     state: ContainerState

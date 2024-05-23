@@ -251,6 +251,7 @@ class Device(typing_extensions.TypedDict, total=False):
     releaseVersion: str
     securityPatchTime: str
     serialNumber: str
+    unifiedDeviceId: str
     wifiMacAddresses: _list[str]
 
 @typing.type_check_only
@@ -360,6 +361,46 @@ class GoogleAppsCloudidentityDevicesV1BlockDeviceUserResponse(
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
 
 @typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1BrowserAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    chromeBrowserInfo: GoogleAppsCloudidentityDevicesV1BrowserInfo
+    chromeProfileId: str
+    lastProfileSyncTime: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1BrowserInfo(
+    typing_extensions.TypedDict, total=False
+):
+    browserManagementState: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNMANAGED",
+        "MANAGED_BY_OTHER_DOMAIN",
+        "PROFILE_MANAGED",
+        "BROWSER_MANAGED",
+    ]
+    browserVersion: str
+    isBuiltInDnsClientEnabled: bool
+    isBulkDataEntryAnalysisEnabled: bool
+    isChromeCleanupEnabled: bool
+    isChromeRemoteDesktopAppBlocked: bool
+    isFileDownloadAnalysisEnabled: bool
+    isFileUploadAnalysisEnabled: bool
+    isRealtimeUrlCheckEnabled: bool
+    isSecurityEventAnalysisEnabled: bool
+    isSiteIsolationEnabled: bool
+    isThirdPartyBlockingEnabled: bool
+    passwordProtectionWarningTrigger: typing_extensions.Literal[
+        "PASSWORD_PROTECTION_TRIGGER_UNSPECIFIED",
+        "PROTECTION_OFF",
+        "PASSWORD_REUSE",
+        "PHISHING_REUSE",
+    ]
+    safeBrowsingProtectionLevel: typing_extensions.Literal[
+        "SAFE_BROWSING_LEVEL_UNSPECIFIED", "DISABLED", "STANDARD", "ENHANCED"
+    ]
+
+@typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -380,6 +421,32 @@ class GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserResponse(
     typing_extensions.TypedDict, total=False
 ):
     deviceUser: GoogleAppsCloudidentityDevicesV1DeviceUser
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CertificateAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    certificateTemplate: GoogleAppsCloudidentityDevicesV1CertificateTemplate
+    fingerprint: str
+    issuer: str
+    serialNumber: str
+    subject: str
+    thumbprint: str
+    validationState: typing_extensions.Literal[
+        "CERTIFICATE_VALIDATION_STATE_UNSPECIFIED",
+        "VALIDATION_SUCCESSFUL",
+        "VALIDATION_FAILED",
+    ]
+    validityExpirationTime: str
+    validityStartTime: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1CertificateTemplate(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    majorVersion: int
+    minorVersion: int
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ClientState(
@@ -460,6 +527,9 @@ class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=
         "ENCRYPTED",
         "NOT_ENCRYPTED",
     ]
+    endpointVerificationSpecificAttributes: (
+        GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes
+    )
     hostname: str
     imei: str
     kernelVersion: str
@@ -486,6 +556,7 @@ class GoogleAppsCloudidentityDevicesV1Device(typing_extensions.TypedDict, total=
     releaseVersion: str
     securityPatchTime: str
     serialNumber: str
+    unifiedDeviceId: str
     wifiMacAddresses: _list[str]
 
 @typing.type_check_only
@@ -514,6 +585,14 @@ class GoogleAppsCloudidentityDevicesV1DeviceUser(
     ]
     userAgent: str
     userEmail: str
+
+@typing.type_check_only
+class GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes(
+    typing_extensions.TypedDict, total=False
+):
+    additionalSignals: dict[str, typing.Any]
+    browserAttributes: _list[GoogleAppsCloudidentityDevicesV1BrowserAttributes]
+    certificateAttributes: _list[GoogleAppsCloudidentityDevicesV1CertificateAttributes]
 
 @typing.type_check_only
 class GoogleAppsCloudidentityDevicesV1ListEndpointAppsMetadata(

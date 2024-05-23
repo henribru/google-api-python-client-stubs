@@ -87,6 +87,16 @@ class AdvisorynotificationsResource(googleapiclient.discovery.Resource):
                     | None
                 ): ...
 
+            def getSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
+            def updateSettings(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAdvisorynotificationsV1Settings = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAdvisorynotificationsV1SettingsHttpRequest: ...
             def notifications(self) -> NotificationsResource: ...
 
         def locations(self) -> LocationsResource: ...

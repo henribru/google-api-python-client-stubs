@@ -16,6 +16,24 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class BiddersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AuctionPackagesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAuctionPackagesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAuctionPackagesResponseHttpRequest,
+                previous_response: ListAuctionPackagesResponse,
+            ) -> ListAuctionPackagesResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class FinalizedDealsResource(googleapiclient.discovery.Resource):
             def list(
                 self,
@@ -33,6 +51,7 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 previous_response: ListFinalizedDealsResponse,
             ) -> ListFinalizedDealsResponseHttpRequest | None: ...
 
+        def auctionPackages(self) -> AuctionPackagesResource: ...
         def finalizedDeals(self) -> FinalizedDealsResource: ...
 
     @typing.type_check_only
@@ -46,6 +65,8 @@ class AuthorizedBuyersMarketplaceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,

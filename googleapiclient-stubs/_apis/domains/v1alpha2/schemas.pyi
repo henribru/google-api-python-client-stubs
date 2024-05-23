@@ -285,6 +285,9 @@ class Registration(typing_extensions.TypedDict, total=False):
     managementSettings: ManagementSettings
     name: str
     pendingContactSettings: ContactSettings
+    provider: typing_extensions.Literal[
+        "REGISTRAR_UNSPECIFIED", "GOOGLE_DOMAINS", "SQUARESPACE"
+    ]
     registerFailureReason: typing_extensions.Literal[
         "REGISTER_FAILURE_REASON_UNSPECIFIED",
         "REGISTER_FAILURE_REASON_UNKNOWN",

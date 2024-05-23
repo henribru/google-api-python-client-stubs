@@ -52,6 +52,44 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleChromeManagementV1CountChromeAppRequestsResponseHttpRequest | None
             ): ...
+            def fetchDevicesRequestingExtension(
+                self,
+                *,
+                customer: str,
+                extensionId: str = ...,
+                orgUnitId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1FetchDevicesRequestingExtensionResponseHttpRequest: ...
+            def fetchDevicesRequestingExtension_next(
+                self,
+                previous_request: GoogleChromeManagementV1FetchDevicesRequestingExtensionResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse,
+            ) -> (
+                GoogleChromeManagementV1FetchDevicesRequestingExtensionResponseHttpRequest
+                | None
+            ): ...
+            def fetchUsersRequestingExtension(
+                self,
+                *,
+                customer: str,
+                extensionId: str = ...,
+                orgUnitId: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementV1FetchUsersRequestingExtensionResponseHttpRequest
+            ): ...
+            def fetchUsersRequestingExtension_next(
+                self,
+                previous_request: GoogleChromeManagementV1FetchUsersRequestingExtensionResponseHttpRequest,
+                previous_response: GoogleChromeManagementV1FetchUsersRequestingExtensionResponse,
+            ) -> (
+                GoogleChromeManagementV1FetchUsersRequestingExtensionResponseHttpRequest
+                | None
+            ): ...
             def android(self) -> AndroidResource: ...
             def chrome(self) -> ChromeResource: ...
             def web(self) -> WebResource: ...
@@ -61,6 +99,15 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def countChromeBrowsersNeedingAttention(
                 self, *, customer: str, orgUnitId: str = ..., **kwargs: typing.Any
             ) -> GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponseHttpRequest: ...
+            def countChromeCrashEvents(
+                self,
+                *,
+                customer: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                orgUnitId: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementV1CountChromeCrashEventsResponseHttpRequest: ...
             def countChromeDevicesReachingAutoExpirationDate(
                 self,
                 *,
@@ -358,6 +405,16 @@ class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponseHttpReq
     ) -> GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse: ...
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountChromeCrashEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1CountChromeCrashEventsResponse: ...
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -438,6 +495,26 @@ class GoogleChromeManagementV1EnumeratePrintJobsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1EnumeratePrintJobsResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FetchDevicesRequestingExtensionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementV1FetchUsersRequestingExtensionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementV1FetchUsersRequestingExtensionResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponseHttpRequest(

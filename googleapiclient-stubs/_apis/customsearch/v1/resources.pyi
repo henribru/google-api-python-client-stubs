@@ -88,6 +88,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
                 siteSearchFilter: typing_extensions.Literal[
                     "siteSearchFilterUndefined", "e", "i"
                 ] = ...,
+                snippetLength: int = ...,
                 sort: str = ...,
                 start: int = ...,
                 **kwargs: typing.Any,
@@ -162,6 +163,7 @@ class CustomSearchAPIResource(googleapiclient.discovery.Resource):
             siteSearchFilter: typing_extensions.Literal[
                 "siteSearchFilterUndefined", "e", "i"
             ] = ...,
+            snippetLength: int = ...,
             sort: str = ...,
             start: int = ...,
             **kwargs: typing.Any,

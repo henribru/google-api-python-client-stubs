@@ -98,6 +98,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 name: str,
                                 body: GoogleCloudDiscoveryengineV1betaDocument = ...,
                                 allowMissing: bool = ...,
+                                updateMask: str = ...,
                                 **kwargs: typing.Any,
                             ) -> (
                                 GoogleCloudDiscoveryengineV1betaDocumentHttpRequest
@@ -112,6 +113,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                         @typing.type_check_only
                         class OperationsResource(googleapiclient.discovery.Resource):
+                            def cancel(
+                                self,
+                                *,
+                                name: str,
+                                body: GoogleLongrunningCancelOperationRequest = ...,
+                                **kwargs: typing.Any,
+                            ) -> GoogleProtobufEmptyHttpRequest: ...
                             def get(
                                 self, *, name: str, **kwargs: typing.Any
                             ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -190,6 +198,12 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         ) -> (
                             GoogleCloudDiscoveryengineV1betaConversationHttpRequest
                         ): ...
+
+                    @typing.type_check_only
+                    class CustomModelsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self, *, dataStore: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1betaListCustomModelsResponseHttpRequest: ...
 
                     @typing.type_check_only
                     class ModelsResource(googleapiclient.discovery.Resource):
@@ -307,6 +321,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                     @typing.type_check_only
                     class ServingConfigsResource(googleapiclient.discovery.Resource):
+                        def answer(
+                            self,
+                            *,
+                            servingConfig: str,
+                            body: GoogleCloudDiscoveryengineV1betaAnswerQueryRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaAnswerQueryResponseHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> (
@@ -364,6 +385,55 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleCloudDiscoveryengineV1betaSearchResponseHttpRequest
                             | None
                         ): ...
+
+                    @typing.type_check_only
+                    class SessionsResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class AnswersResource(googleapiclient.discovery.Resource):
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleCloudDiscoveryengineV1betaAnswerHttpRequest: ...
+
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest,
+                            previous_response: GoogleCloudDiscoveryengineV1betaListSessionsResponse,
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def answers(self) -> AnswersResource: ...
 
                     @typing.type_check_only
                     class SiteSearchEngineResource(googleapiclient.discovery.Resource):
@@ -615,12 +685,21 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1betaDataStoreHttpRequest: ...
+                    def trainCustomModel(
+                        self,
+                        *,
+                        dataStore: str,
+                        body: GoogleCloudDiscoveryengineV1betaTrainCustomModelRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def branches(self) -> BranchesResource: ...
                     def conversations(self) -> ConversationsResource: ...
+                    def customModels(self) -> CustomModelsResource: ...
                     def models(self) -> ModelsResource: ...
                     def operations(self) -> OperationsResource: ...
                     def schemas(self) -> SchemasResource: ...
                     def servingConfigs(self) -> ServingConfigsResource: ...
+                    def sessions(self) -> SessionsResource: ...
                     def siteSearchEngine(self) -> SiteSearchEngineResource: ...
                     def suggestionDenyListEntries(
                         self,
@@ -708,6 +787,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                     @typing.type_check_only
                     class ServingConfigsResource(googleapiclient.discovery.Resource):
+                        def answer(
+                            self,
+                            *,
+                            servingConfig: str,
+                            body: GoogleCloudDiscoveryengineV1betaAnswerQueryRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaAnswerQueryResponseHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> (
@@ -766,6 +852,55 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             | None
                         ): ...
 
+                    @typing.type_check_only
+                    class SessionsResource(googleapiclient.discovery.Resource):
+                        @typing.type_check_only
+                        class AnswersResource(googleapiclient.discovery.Resource):
+                            def get(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleCloudDiscoveryengineV1betaAnswerHttpRequest: ...
+
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            filter: str = ...,
+                            orderBy: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest,
+                            previous_response: GoogleCloudDiscoveryengineV1betaListSessionsResponse,
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                        def answers(self) -> AnswersResource: ...
+
                     def create(
                         self,
                         *,
@@ -807,9 +942,31 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1betaEngineHttpRequest: ...
+                    def pause(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1betaPauseEngineRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1betaEngineHttpRequest: ...
+                    def resume(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1betaResumeEngineRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1betaEngineHttpRequest: ...
+                    def tune(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1betaTuneEngineRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def conversations(self) -> ConversationsResource: ...
                     def operations(self) -> OperationsResource: ...
                     def servingConfigs(self) -> ServingConfigsResource: ...
+                    def sessions(self) -> SessionsResource: ...
 
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -885,6 +1042,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             name: str,
                             body: GoogleCloudDiscoveryengineV1betaDocument = ...,
                             allowMissing: bool = ...,
+                            updateMask: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1betaDocumentHttpRequest: ...
                         def purge(
@@ -897,6 +1055,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleLongrunningCancelOperationRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1060,6 +1225,15 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class ServingConfigsResource(googleapiclient.discovery.Resource):
+                    def answer(
+                        self,
+                        *,
+                        servingConfig: str,
+                        body: GoogleCloudDiscoveryengineV1betaAnswerQueryRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1betaAnswerQueryResponseHttpRequest
+                    ): ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDiscoveryengineV1betaServingConfigHttpRequest: ...
@@ -1110,6 +1284,57 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudDiscoveryengineV1betaSearchResponseHttpRequest | None
                     ): ...
+
+                @typing.type_check_only
+                class SessionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class AnswersResource(googleapiclient.discovery.Resource):
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1betaAnswerHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest
+                    ): ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest,
+                        previous_response: GoogleCloudDiscoveryengineV1betaListSessionsResponse,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDiscoveryengineV1betaSession = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1betaSessionHttpRequest: ...
+                    def answers(self) -> AnswersResource: ...
 
                 @typing.type_check_only
                 class SiteSearchEngineResource(googleapiclient.discovery.Resource):
@@ -1290,11 +1515,24 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 def operations(self) -> OperationsResource: ...
                 def schemas(self) -> SchemasResource: ...
                 def servingConfigs(self) -> ServingConfigsResource: ...
+                def sessions(self) -> SessionsResource: ...
                 def siteSearchEngine(self) -> SiteSearchEngineResource: ...
                 def suggestionDenyListEntries(
                     self,
                 ) -> SuggestionDenyListEntriesResource: ...
                 def userEvents(self) -> UserEventsResource: ...
+
+            @typing.type_check_only
+            class GroundingConfigsResource(googleapiclient.discovery.Resource):
+                def check(
+                    self,
+                    *,
+                    groundingConfig: str,
+                    body: GoogleCloudDiscoveryengineV1betaCheckGroundingRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1betaCheckGroundingResponseHttpRequest
+                ): ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -1316,9 +1554,32 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class RankingConfigsResource(googleapiclient.discovery.Resource):
+                def rank(
+                    self,
+                    *,
+                    rankingConfig: str,
+                    body: GoogleCloudDiscoveryengineV1betaRankRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1betaRankResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class UserEventsResource(googleapiclient.discovery.Resource):
+                def write(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDiscoveryengineV1betaUserEvent = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1betaUserEventHttpRequest: ...
+
             def collections(self) -> CollectionsResource: ...
             def dataStores(self) -> DataStoresResource: ...
+            def groundingConfigs(self) -> GroundingConfigsResource: ...
             def operations(self) -> OperationsResource: ...
+            def rankingConfigs(self) -> RankingConfigsResource: ...
+            def userEvents(self) -> UserEventsResource: ...
 
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
@@ -1364,6 +1625,36 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaAnswerHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaAnswer: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaAnswerQueryResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaAnswerQueryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaCheckGroundingResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaCheckGroundingResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaCompleteQueryResponseHttpRequest(
@@ -1446,6 +1737,16 @@ class GoogleCloudDiscoveryengineV1betaListConversationsResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1betaListConversationsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaListCustomModelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaListCustomModelsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaListDataStoresResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1496,6 +1797,16 @@ class GoogleCloudDiscoveryengineV1betaListServingConfigsResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1betaListServingConfigsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaListSessionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaListSessionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaListTargetSitesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1504,6 +1815,16 @@ class GoogleCloudDiscoveryengineV1betaListTargetSitesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1betaListTargetSitesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaRankResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaRankResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaRecommendResponseHttpRequest(
@@ -1544,6 +1865,16 @@ class GoogleCloudDiscoveryengineV1betaServingConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1betaServingConfig: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaSessionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaSession: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaSiteSearchEngineHttpRequest(

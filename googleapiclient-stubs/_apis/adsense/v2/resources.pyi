@@ -168,6 +168,25 @@ class AdsenseResource(googleapiclient.discovery.Resource):
             ) -> ListPaymentsResponseHttpRequest: ...
 
         @typing.type_check_only
+        class PolicyIssuesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PolicyIssueHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListPolicyIssuesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPolicyIssuesResponseHttpRequest,
+                previous_response: ListPolicyIssuesResponse,
+            ) -> ListPolicyIssuesResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class SavedResource(googleapiclient.discovery.Resource):
@@ -721,6 +740,7 @@ class AdsenseResource(googleapiclient.discovery.Resource):
         def adclients(self) -> AdclientsResource: ...
         def alerts(self) -> AlertsResource: ...
         def payments(self) -> PaymentsResource: ...
+        def policyIssues(self) -> PolicyIssuesResource: ...
         def reports(self) -> ReportsResource: ...
         def sites(self) -> SitesResource: ...
 
@@ -883,6 +903,14 @@ class ListPaymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListPaymentsResponse: ...
 
 @typing.type_check_only
+class ListPolicyIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPolicyIssuesResponse: ...
+
+@typing.type_check_only
 class ListSavedReportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -905,6 +933,14 @@ class ListUrlChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListUrlChannelsResponse: ...
+
+@typing.type_check_only
+class PolicyIssueHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PolicyIssue: ...
 
 @typing.type_check_only
 class ReportResultHttpRequest(googleapiclient.http.HttpRequest):

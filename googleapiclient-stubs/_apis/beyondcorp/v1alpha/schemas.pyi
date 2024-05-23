@@ -17,6 +17,8 @@ class AppGateway(typing_extensions.TypedDict, total=False):
     hostType: typing_extensions.Literal["HOST_TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
@@ -180,6 +182,8 @@ class GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnection(
     gateway: GoogleCloudBeyondcorpAppconnectionsV1alphaAppConnectionGateway
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
@@ -611,6 +615,12 @@ class GoogleCloudBeyondcorpSaasplatformInsightsV1alphaRowFieldVal(
     value: str
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveCancellationTime: str
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -624,6 +634,7 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     typing_extensions.TypedDict, total=False
 ):
     autoRenewEnabled: bool
+    billingAccount: str
     createTime: str
     endTime: str
     name: str
@@ -644,20 +655,13 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     unreachable: _list[str]
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig(
-    typing_extensions.TypedDict, total=False
-):
-    egressIpAddresses: _list[str]
-    region: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     displayName: str
+    externalIps: _list[str]
     name: str
-    regionConfigs: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaRegionConfig]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

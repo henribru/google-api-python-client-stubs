@@ -23,7 +23,6 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             product_productLine: typing_extensions.Literal[
                 "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
             ] = ...,
-            product_productSubline: str = ...,
             query: str = ...,
             **kwargs: typing.Any,
         ) -> SearchCaseClassificationsResponseHttpRequest: ...
@@ -119,6 +118,20 @@ class CloudSupportResource(googleapiclient.discovery.Resource):
             previous_request: SearchCasesResponseHttpRequest,
             previous_response: SearchCasesResponse,
         ) -> SearchCasesResponseHttpRequest | None: ...
+        def showFeed(
+            self,
+            *,
+            parent: str,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ShowFeedResponseHttpRequest: ...
+        def showFeed_next(
+            self,
+            previous_request: ShowFeedResponseHttpRequest,
+            previous_response: ShowFeedResponse,
+        ) -> ShowFeedResponseHttpRequest | None: ...
         def attachments(self) -> AttachmentsResource: ...
         def comments(self) -> CommentsResource: ...
 
@@ -223,6 +236,14 @@ class SearchCasesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchCasesResponse: ...
+
+@typing.type_check_only
+class ShowFeedResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowFeedResponse: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

@@ -184,12 +184,14 @@ class AutoRenewingBasePlanType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     autoRenewEnabled: bool
+    installmentDetails: InstallmentPlan
     priceChangeDetails: SubscriptionItemPriceChangeDetails
 
 @typing.type_check_only
 class BasePlan(typing_extensions.TypedDict, total=False):
     autoRenewingBasePlanType: AutoRenewingBasePlanType
     basePlanId: str
+    installmentsBasePlanType: InstallmentsBasePlanType
     offerTags: _list[OfferTag]
     otherRegionsConfig: OtherRegionsBasePlanConfig
     prepaidBasePlanType: PrepaidBasePlanType
@@ -586,6 +588,7 @@ class Grant(typing_extensions.TypedDict, total=False):
             "CAN_MANAGE_APP_CONTENT",
             "CAN_VIEW_NON_FINANCIAL_DATA",
             "CAN_VIEW_APP_QUALITY",
+            "CAN_MANAGE_DEEPLINKS",
         ]
     ]
     name: str
@@ -679,6 +682,35 @@ class InappproductsUpdateRequest(typing_extensions.TypedDict, total=False):
     ]
     packageName: str
     sku: str
+
+@typing.type_check_only
+class InstallmentPlan(typing_extensions.TypedDict, total=False):
+    initialCommittedPaymentsCount: int
+    pendingCancellation: PendingCancellation
+    remainingCommittedPaymentsCount: int
+    subsequentCommittedPaymentsCount: int
+
+@typing.type_check_only
+class InstallmentsBasePlanType(typing_extensions.TypedDict, total=False):
+    accountHoldDuration: str
+    billingPeriodDuration: str
+    committedPaymentsCount: int
+    gracePeriodDuration: str
+    prorationMode: typing_extensions.Literal[
+        "SUBSCRIPTION_PRORATION_MODE_UNSPECIFIED",
+        "SUBSCRIPTION_PRORATION_MODE_CHARGE_ON_NEXT_BILLING_DATE",
+        "SUBSCRIPTION_PRORATION_MODE_CHARGE_FULL_PRICE_IMMEDIATELY",
+    ]
+    renewalType: typing_extensions.Literal[
+        "RENEWAL_TYPE_UNSPECIFIED",
+        "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT",
+        "RENEWAL_TYPE_RENEWS_WITH_COMMITMENT",
+    ]
+    resubscribeState: typing_extensions.Literal[
+        "RESUBSCRIBE_STATE_UNSPECIFIED",
+        "RESUBSCRIBE_STATE_ACTIVE",
+        "RESUBSCRIBE_STATE_INACTIVE",
+    ]
 
 @typing.type_check_only
 class InternalAppSharingArtifact(typing_extensions.TypedDict, total=False):
@@ -812,6 +844,9 @@ class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
     externalTransactionToken: str
 
 @typing.type_check_only
+class OtherRecurringProduct(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class OtherRegionsBasePlanConfig(typing_extensions.TypedDict, total=False):
     eurPrice: Money
     newSubscriberAvailability: bool
@@ -826,8 +861,14 @@ class OtherRegionsSubscriptionOfferPhaseConfig(
     typing_extensions.TypedDict, total=False
 ):
     absoluteDiscounts: OtherRegionsSubscriptionOfferPhasePrices
+    free: OtherRegionsSubscriptionOfferPhaseFreePriceOverride
     otherRegionsPrices: OtherRegionsSubscriptionOfferPhasePrices
     relativeDiscount: float
+
+@typing.type_check_only
+class OtherRegionsSubscriptionOfferPhaseFreePriceOverride(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class OtherRegionsSubscriptionOfferPhasePrices(
@@ -850,6 +891,9 @@ class PartialRefund(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PausedStateContext(typing_extensions.TypedDict, total=False):
     autoResumeTime: str
+
+@typing.type_check_only
+class PendingCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PrepaidBasePlanType(typing_extensions.TypedDict, total=False):
@@ -882,6 +926,7 @@ class ProductPurchase(typing_extensions.TypedDict, total=False):
     purchaseToken: str
     purchaseType: int
     quantity: int
+    refundableQuantity: int
     regionCode: str
 
 @typing.type_check_only
@@ -898,6 +943,7 @@ class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
         "USER_CHOICE_BILLING",
         "ALTERNATIVE_BILLING_ONLY",
     ]
+    otherRecurringProduct: OtherRecurringProduct
 
 @typing.type_check_only
 class RefundExternalTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -929,9 +975,15 @@ class RegionalSubscriptionOfferConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=False):
     absoluteDiscount: Money
+    free: RegionalSubscriptionOfferPhaseFreePriceOverride
     price: Money
     regionCode: str
     relativeDiscount: float
+
+@typing.type_check_only
+class RegionalSubscriptionOfferPhaseFreePriceOverride(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
@@ -978,6 +1030,10 @@ class RemoteInAppUpdateDataPerBundle(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReplacementCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RestrictedPaymentCountries(typing_extensions.TypedDict, total=False):
+    regionCodes: _list[str]
 
 @typing.type_check_only
 class Review(typing_extensions.TypedDict, total=False):
@@ -1084,6 +1140,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     listings: _list[SubscriptionListing]
     packageName: str
     productId: str
+    restrictedPaymentCountries: RestrictedPaymentCountries
     taxAndComplianceSettings: SubscriptionTaxAndComplianceSettings
 
 @typing.type_check_only
@@ -1214,6 +1271,7 @@ class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
         "SUBSCRIPTION_STATE_ON_HOLD",
         "SUBSCRIPTION_STATE_CANCELED",
         "SUBSCRIPTION_STATE_EXPIRED",
+        "SUBSCRIPTION_STATE_PENDING_PURCHASE_CANCELED",
     ]
     testPurchase: TestPurchase
 
@@ -1272,7 +1330,17 @@ class TargetingInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TargetingRuleScope(typing_extensions.TypedDict, total=False):
+    anySubscriptionInApp: TargetingRuleScopeAnySubscriptionInApp
     specificSubscriptionInApp: str
+    thisSubscription: TargetingRuleScopeThisSubscription
+
+@typing.type_check_only
+class TargetingRuleScopeAnySubscriptionInApp(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class TargetingRuleScopeThisSubscription(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TargetingUpdate(typing_extensions.TypedDict, total=False):
@@ -1427,6 +1495,7 @@ class User(typing_extensions.TypedDict, total=False):
             "CAN_MANAGE_APP_CONTENT_GLOBAL",
             "CAN_VIEW_NON_FINANCIAL_DATA_GLOBAL",
             "CAN_VIEW_APP_QUALITY_GLOBAL",
+            "CAN_MANAGE_DEEPLINKS_GLOBAL",
         ]
     ]
     email: str
@@ -1490,6 +1559,7 @@ class VoidedPurchase(typing_extensions.TypedDict, total=False):
     orderId: str
     purchaseTimeMillis: str
     purchaseToken: str
+    voidedQuantity: int
     voidedReason: int
     voidedSource: int
     voidedTimeMillis: str

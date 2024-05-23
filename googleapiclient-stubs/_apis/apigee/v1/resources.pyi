@@ -1979,6 +1979,24 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             ) -> GoogleCloudApigeeV1CustomReportHttpRequest: ...
 
         @typing.type_check_only
+        class SecurityAssessmentResultsResource(googleapiclient.discovery.Resource):
+            def batchCompute(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest: ...
+            def batchCompute_next(
+                self,
+                previous_request: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse,
+            ) -> (
+                GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class SecurityProfilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class EnvironmentsResource(googleapiclient.discovery.Resource):
@@ -2293,6 +2311,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def operations(self) -> OperationsResource: ...
         def optimizedHostStats(self) -> OptimizedHostStatsResource: ...
         def reports(self) -> ReportsResource: ...
+        def securityAssessmentResults(self) -> SecurityAssessmentResultsResource: ...
         def securityProfiles(self) -> SecurityProfilesResource: ...
         def sharedflows(self) -> SharedflowsResource: ...
         def sites(self) -> SitesResource: ...
@@ -2482,6 +2501,16 @@ class GoogleCloudApigeeV1AttributesHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1Attributes: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1BatchUpdateSecurityIncidentsResponseHttpRequest(

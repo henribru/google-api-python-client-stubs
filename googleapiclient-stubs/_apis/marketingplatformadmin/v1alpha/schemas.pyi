@@ -24,6 +24,11 @@ class ListAnalyticsAccountLinksResponse(typing_extensions.TypedDict, total=False
     nextPageToken: str
 
 @typing.type_check_only
+class Organization(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+
+@typing.type_check_only
 class SetPropertyServiceLevelRequest(typing_extensions.TypedDict, total=False):
     analyticsProperty: str
     serviceLevel: typing_extensions.Literal[

@@ -286,6 +286,81 @@ class IamResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class OauthClientsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class CredentialsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: OauthClientCredential = ...,
+                        oauthClientCredentialId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OauthClientCredentialHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OauthClientCredentialHttpRequest: ...
+                    def list(
+                        self, *, parent: str, **kwargs: typing.Any
+                    ) -> ListOauthClientCredentialsResponseHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: OauthClientCredential = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OauthClientCredentialHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: OauthClient = ...,
+                    oauthClientId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OauthClientHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OauthClientHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OauthClientHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> ListOauthClientsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListOauthClientsResponseHttpRequest,
+                    previous_response: ListOauthClientsResponse,
+                ) -> ListOauthClientsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: OauthClient = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OauthClientHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: UndeleteOauthClientRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OauthClientHttpRequest: ...
+                def credentials(self) -> CredentialsResource: ...
+
+            @typing.type_check_only
             class WorkloadIdentityPoolsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class NamespacesResource(googleapiclient.discovery.Resource):
@@ -482,6 +557,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 def operations(self) -> OperationsResource: ...
                 def providers(self) -> ProvidersResource: ...
 
+            def oauthClients(self) -> OauthClientsResource: ...
             def workloadIdentityPools(self) -> WorkloadIdentityPoolsResource: ...
 
         @typing.type_check_only
@@ -579,6 +655,13 @@ class IamResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: PatchServiceAccountKeyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ServiceAccountKeyHttpRequest: ...
                 def upload(
                     self,
                     *,
@@ -740,6 +823,22 @@ class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LintPolicyResponse: ...
 
 @typing.type_check_only
+class ListOauthClientCredentialsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOauthClientCredentialsResponse: ...
+
+@typing.type_check_only
+class ListOauthClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOauthClientsResponse: ...
+
+@typing.type_check_only
 class ListRolesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -816,6 +915,22 @@ class ListWorkloadIdentityPoolsResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListWorkloadIdentityPoolsResponse: ...
+
+@typing.type_check_only
+class OauthClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OauthClient: ...
+
+@typing.type_check_only
+class OauthClientCredentialHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OauthClientCredential: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

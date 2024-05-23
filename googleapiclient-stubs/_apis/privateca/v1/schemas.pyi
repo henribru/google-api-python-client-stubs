@@ -91,6 +91,8 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
     lifetime: str
     name: str
     pemCaCertificates: _list[str]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ENABLED",

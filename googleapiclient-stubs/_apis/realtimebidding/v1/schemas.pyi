@@ -477,6 +477,7 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
             "HOSTED_MATCH_DATA",
             "GOOGLE_COOKIE",
             "DEVICE_ID",
+            "PUBLISHER_PROVIDED_ID",
         ]
     ]
     interstitialTargeting: typing_extensions.Literal[

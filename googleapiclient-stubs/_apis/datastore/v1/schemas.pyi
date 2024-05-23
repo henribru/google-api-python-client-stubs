@@ -100,6 +100,22 @@ class EntityResult(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class ExecutionStats(typing_extensions.TypedDict, total=False):
+    debugStats: dict[str, typing.Any]
+    executionDuration: str
+    readOperations: str
+    resultsReturned: str
+
+@typing.type_check_only
+class ExplainMetrics(typing_extensions.TypedDict, total=False):
+    executionStats: ExecutionStats
+    planSummary: PlanSummary
+
+@typing.type_check_only
+class ExplainOptions(typing_extensions.TypedDict, total=False):
+    analyze: bool
+
+@typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     compositeFilter: CompositeFilter
     propertyFilter: PropertyFilter
@@ -379,6 +395,7 @@ class LatLng(typing_extensions.TypedDict, total=False):
 class LookupRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
     keys: _list[Key]
+    propertyMask: PropertyMask
     readOptions: ReadOptions
 
 @typing.type_check_only
@@ -394,6 +411,7 @@ class Mutation(typing_extensions.TypedDict, total=False):
     baseVersion: str
     delete: Key
     insert: Entity
+    propertyMask: PropertyMask
     update: Entity
     updateTime: str
     upsert: Entity
@@ -419,6 +437,10 @@ class PathElement(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class PlanSummary(typing_extensions.TypedDict, total=False):
+    indexesUsed: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class Projection(typing_extensions.TypedDict, total=False):
     property: PropertyReference
 
@@ -438,6 +460,10 @@ class PropertyFilter(typing_extensions.TypedDict, total=False):
     ]
     property: PropertyReference
     value: Value
+
+@typing.type_check_only
+class PropertyMask(typing_extensions.TypedDict, total=False):
+    paths: _list[str]
 
 @typing.type_check_only
 class PropertyOrder(typing_extensions.TypedDict, total=False):
@@ -518,6 +544,7 @@ class RollbackResponse(typing_extensions.TypedDict, total=False): ...
 class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationQuery: AggregationQuery
     databaseId: str
+    explainOptions: ExplainOptions
     gqlQuery: GqlQuery
     partitionId: PartitionId
     readOptions: ReadOptions
@@ -525,20 +552,24 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
     batch: AggregationResultBatch
+    explainMetrics: ExplainMetrics
     query: AggregationQuery
     transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
     databaseId: str
+    explainOptions: ExplainOptions
     gqlQuery: GqlQuery
     partitionId: PartitionId
+    propertyMask: PropertyMask
     query: Query
     readOptions: ReadOptions
 
 @typing.type_check_only
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     batch: QueryResultBatch
+    explainMetrics: ExplainMetrics
     query: Query
     transaction: str
 

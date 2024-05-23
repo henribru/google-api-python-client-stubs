@@ -940,6 +940,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 *,
                 packageName: str,
                 endTime: str = ...,
+                includeQuantityBasedPartialRefund: bool = ...,
                 maxResults: int = ...,
                 startIndex: int = ...,
                 startTime: str = ...,

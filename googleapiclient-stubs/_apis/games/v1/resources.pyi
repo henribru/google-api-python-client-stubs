@@ -204,6 +204,9 @@ class GamesResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RecallResource(googleapiclient.discovery.Resource):
+        def lastTokenFromAllDeveloperGames(
+            self, *, sessionId: str, **kwargs: typing.Any
+        ) -> RetrieveDeveloperGamesLastPlayerTokenResponseHttpRequest: ...
         def linkPersona(
             self, *, body: LinkPersonaRequest = ..., **kwargs: typing.Any
         ) -> LinkPersonaResponseHttpRequest: ...
@@ -553,6 +556,16 @@ class ResetPersonaResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ResetPersonaResponse: ...
+
+@typing.type_check_only
+class RetrieveDeveloperGamesLastPlayerTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrieveDeveloperGamesLastPlayerTokenResponse: ...
 
 @typing.type_check_only
 class RetrievePlayerTokensResponseHttpRequest(googleapiclient.http.HttpRequest):

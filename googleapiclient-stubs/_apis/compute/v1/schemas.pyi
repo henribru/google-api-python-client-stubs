@@ -262,16 +262,6 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AuthorizationLoggingOptions(typing_extensions.TypedDict, total=False):
-    permissionType: typing_extensions.Literal[
-        "ADMIN_READ",
-        "ADMIN_WRITE",
-        "DATA_READ",
-        "DATA_WRITE",
-        "PERMISSION_TYPE_UNSPECIFIED",
-    ]
-
-@typing.type_check_only
 class Autoscaler(typing_extensions.TypedDict, total=False):
     autoscalingPolicy: AutoscalingPolicy
     creationTimestamp: str
@@ -838,6 +828,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "ACCELERATOR_OPTIMIZED",
         "ACCELERATOR_OPTIMIZED_A3",
+        "ACCELERATOR_OPTIMIZED_A3_MEGA",
         "COMPUTE_OPTIMIZED",
         "COMPUTE_OPTIMIZED_C2D",
         "COMPUTE_OPTIMIZED_C3",
@@ -1366,6 +1357,7 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     description: str
     fingerprint: str
     id: str
+    ipCollection: str
     ipVersion: typing_extensions.Literal["IPV4", "IPV6", "UNSPECIFIED_VERSION"]
     isMirroringCollector: bool
     kind: str
@@ -2091,6 +2083,45 @@ class InstanceGroupManagerList(typing_extensions.TypedDict, total=False):
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class InstanceGroupManagerResizeRequest(typing_extensions.TypedDict, total=False):
+    creationTimestamp: str
+    description: str
+    id: str
+    kind: str
+    name: str
+    requestedRunDuration: Duration
+    resizeBy: int
+    selfLink: str
+    selfLinkWithId: str
+    state: typing_extensions.Literal[
+        "ACCEPTED", "CANCELLED", "CREATING", "FAILED", "STATE_UNSPECIFIED", "SUCCEEDED"
+    ]
+    status: InstanceGroupManagerResizeRequestStatus
+    zone: str
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestStatus(typing_extensions.TypedDict, total=False):
+    error: dict[str, typing.Any]
+    lastAttempt: InstanceGroupManagerResizeRequestStatusLastAttempt
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestStatusLastAttempt(
+    typing_extensions.TypedDict, total=False
+):
+    error: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestsListResponse(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    items: _list[InstanceGroupManagerResizeRequest]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class InstanceGroupManagerStatus(typing_extensions.TypedDict, total=False):
     allInstancesConfig: InstanceGroupManagerStatusAllInstancesConfig
     autoscaler: str
@@ -2361,6 +2392,18 @@ class InstancePropertiesPatch(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceReference(typing_extensions.TypedDict, total=False):
     instance: str
+
+@typing.type_check_only
+class InstanceSettings(typing_extensions.TypedDict, total=False):
+    fingerprint: str
+    kind: str
+    metadata: InstanceSettingsMetadata
+    zone: str
+
+@typing.type_check_only
+class InstanceSettingsMetadata(typing_extensions.TypedDict, total=False):
+    items: dict[str, typing.Any]
+    kind: str
 
 @typing.type_check_only
 class InstanceTemplate(typing_extensions.TypedDict, total=False):
@@ -2999,7 +3042,6 @@ class LogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogConfigCloudAuditOptions(typing_extensions.TypedDict, total=False):
-    authorizationLoggingOptions: AuthorizationLoggingOptions
     logName: typing_extensions.Literal[
         "ADMIN_ACTIVITY", "DATA_ACCESS", "UNSPECIFIED_LOG_NAME"
     ]
@@ -3513,6 +3555,7 @@ class NodeGroup(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     locationHint: str
+    maintenanceInterval: typing_extensions.Literal["AS_NEEDED", "RECURRENT"]
     maintenancePolicy: typing_extensions.Literal[
         "DEFAULT",
         "MAINTENANCE_POLICY_UNSPECIFIED",
@@ -3577,6 +3620,7 @@ class NodeGroupNode(typing_extensions.TypedDict, total=False):
         "CREATING", "DELETING", "INVALID", "READY", "REPAIRING"
     ]
     totalResources: InstanceConsumptionInfo
+    upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
 class NodeGroupsAddNodesRequest(typing_extensions.TypedDict, total=False):
@@ -3594,6 +3638,11 @@ class NodeGroupsListNodes(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class NodeGroupsPerformMaintenanceRequest(typing_extensions.TypedDict, total=False):
+    nodes: _list[str]
+    startTime: str
 
 @typing.type_check_only
 class NodeGroupsScopedList(typing_extensions.TypedDict, total=False):
@@ -4052,6 +4101,7 @@ class PublicAdvertisedPrefixPublicDelegatedPrefix(
 
 @typing.type_check_only
 class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
+    allocatablePrefixLength: int
     byoipApiVersion: typing_extensions.Literal["V1", "V2"]
     creationTimestamp: str
     description: str
@@ -4060,6 +4110,9 @@ class PublicDelegatedPrefix(typing_extensions.TypedDict, total=False):
     ipCidrRange: str
     isLiveMigration: bool
     kind: str
+    mode: typing_extensions.Literal[
+        "DELEGATION", "EXTERNAL_IPV6_FORWARDING_RULE_CREATION"
+    ]
     name: str
     parentPrefix: str
     publicDelegatedSubPrefixs: _list[PublicDelegatedPrefixPublicDelegatedSubPrefix]
@@ -4097,10 +4150,14 @@ class PublicDelegatedPrefixList(typing_extensions.TypedDict, total=False):
 class PublicDelegatedPrefixPublicDelegatedSubPrefix(
     typing_extensions.TypedDict, total=False
 ):
+    allocatablePrefixLength: int
     delegateeProject: str
     description: str
     ipCidrRange: str
     isAddress: bool
+    mode: typing_extensions.Literal[
+        "DELEGATION", "EXTERNAL_IPV6_FORWARDING_RULE_CREATION"
+    ]
     name: str
     region: str
     status: typing_extensions.Literal["ACTIVE", "INACTIVE"]
@@ -4256,6 +4313,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "SNAPSHOTS",
         "SSD_TOTAL_GB",
         "SSL_CERTIFICATES",
+        "SSL_POLICIES",
         "STATIC_ADDRESSES",
         "STATIC_BYOIP_ADDRESSES",
         "STATIC_EXTERNAL_IPV6_ADDRESS_RANGES",
@@ -4273,6 +4331,7 @@ class Quota(typing_extensions.TypedDict, total=False):
         "TPU_LITE_PODSLICE_V5",
         "TPU_PODSLICE_V4",
         "URL_MAPS",
+        "VARIABLE_IPV6_PUBLIC_DELEGATED_PREFIXES",
         "VPN_GATEWAYS",
         "VPN_TUNNELS",
         "XPN_SERVICE_PROJECTS",
@@ -4306,6 +4365,7 @@ class Region(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    quotaStatusWarning: dict[str, typing.Any]
     quotas: _list[Quota]
     selfLink: str
     status: typing_extensions.Literal["DOWN", "UP"]
@@ -4847,6 +4907,7 @@ class RouterBgp(typing_extensions.TypedDict, total=False):
     advertisedGroups: _list[typing_extensions.Literal["ALL_SUBNETS"]]
     advertisedIpRanges: _list[RouterAdvertisedIpRange]
     asn: int
+    identifierRange: str
     keepaliveInterval: int
 
 @typing.type_check_only
@@ -4859,9 +4920,13 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     customLearnedIpRanges: _list[RouterBgpPeerCustomLearnedIpRange]
     customLearnedRoutePriority: int
     enable: typing_extensions.Literal["FALSE", "TRUE"]
+    enableIpv4: bool
     enableIpv6: bool
+    exportPolicies: _list[str]
+    importPolicies: _list[str]
     interfaceName: str
     ipAddress: str
+    ipv4NexthopAddress: str
     ipv6NexthopAddress: str
     managementType: typing_extensions.Literal[
         "MANAGED_BY_ATTACHMENT", "MANAGED_BY_USER"
@@ -4870,6 +4935,7 @@ class RouterBgpPeer(typing_extensions.TypedDict, total=False):
     name: str
     peerAsn: int
     peerIpAddress: str
+    peerIpv4NexthopAddress: str
     peerIpv6NexthopAddress: str
     routerApplianceInstance: str
 
@@ -4889,6 +4955,7 @@ class RouterBgpPeerCustomLearnedIpRange(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class RouterInterface(typing_extensions.TypedDict, total=False):
     ipRange: str
+    ipVersion: typing_extensions.Literal["IPV4", "IPV6"]
     linkedInterconnectAttachment: str
     linkedVpnTunnel: str
     managementType: typing_extensions.Literal[
@@ -4987,20 +5054,26 @@ class RouterStatus(typing_extensions.TypedDict, total=False):
 class RouterStatusBgpPeerStatus(typing_extensions.TypedDict, total=False):
     advertisedRoutes: _list[Route]
     bfdStatus: BfdStatus
+    enableIpv4: bool
     enableIpv6: bool
     ipAddress: str
+    ipv4NexthopAddress: str
     ipv6NexthopAddress: str
     linkedVpnTunnel: str
     md5AuthEnabled: bool
     name: str
     numLearnedRoutes: int
     peerIpAddress: str
+    peerIpv4NexthopAddress: str
     peerIpv6NexthopAddress: str
     routerApplianceInstance: str
     state: str
     status: typing_extensions.Literal["DOWN", "UNKNOWN", "UP"]
     statusReason: typing_extensions.Literal[
-        "MD5_AUTH_INTERNAL_PROBLEM", "STATUS_REASON_UNSPECIFIED"
+        "IPV4_PEER_ON_IPV6_ONLY_CONNECTION",
+        "IPV6_PEER_ON_IPV4_ONLY_CONNECTION",
+        "MD5_AUTH_INTERNAL_PROBLEM",
+        "STATUS_REASON_UNSPECIFIED",
     ]
     uptime: str
     uptimeSeconds: str

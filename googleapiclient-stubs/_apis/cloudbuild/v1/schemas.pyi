@@ -137,6 +137,7 @@ class Build(typing_extensions.TypedDict, total=False):
     createTime: str
     failureInfo: FailureInfo
     finishTime: str
+    gitConfig: GitConfig
     id: str
     images: _list[str]
     logUrl: str
@@ -382,6 +383,12 @@ class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     workerPool: str
 
 @typing.type_check_only
+class DeveloperConnectConfig(typing_extensions.TypedDict, total=False):
+    dir: str
+    gitRepositoryLink: str
+    revision: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -400,6 +407,16 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
+
+@typing.type_check_only
+class GCSLocation(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class GitConfig(typing_extensions.TypedDict, total=False):
+    http: HttpConfig
 
 @typing.type_check_only
 class GitFileSource(typing_extensions.TypedDict, total=False):
@@ -532,6 +549,11 @@ class HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class HttpConfig(typing_extensions.TypedDict, total=False):
+    proxySecretVersionName: str
+    proxySslCaInfo: GCSLocation
 
 @typing.type_check_only
 class InlineSecret(typing_extensions.TypedDict, total=False):
@@ -751,6 +773,7 @@ class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
     connectedRepository: ConnectedRepository
+    developerConnectConfig: DeveloperConnectConfig
     gitSource: GitSource
     repoSource: RepoSource
     storageSource: StorageSource

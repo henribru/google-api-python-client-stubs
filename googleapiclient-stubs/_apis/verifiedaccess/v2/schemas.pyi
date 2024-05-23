@@ -58,6 +58,7 @@ class DeviceSignals(typing_extensions.TypedDict, total=False):
         "PHISHING_REUSE",
     ]
     profileAffiliationIds: _list[str]
+    profileEnrollmentDomain: str
     realtimeUrlCheckMode: typing_extensions.Literal[
         "REALTIME_URL_CHECK_MODE_UNSPECIFIED",
         "REALTIME_URL_CHECK_MODE_DISABLED",

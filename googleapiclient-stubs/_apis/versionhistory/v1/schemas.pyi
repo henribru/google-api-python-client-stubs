@@ -64,6 +64,7 @@ class Platform(typing_extensions.TypedDict, total=False):
         "CHROMEOS",
         "LACROS_ARM64",
         "FUCHSIA",
+        "WIN_ARM64",
     ]
 
 @typing.type_check_only

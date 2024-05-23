@@ -332,6 +332,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -526,6 +527,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -547,6 +555,20 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
 
                 def create(
@@ -743,6 +765,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -842,6 +865,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> LogViewHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -863,6 +893,20 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> LogViewHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             def create(
                 self,
@@ -1101,6 +1145,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1122,6 +1173,20 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
 
                 def create(
@@ -1318,6 +1383,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -1477,6 +1543,13 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> LogViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1498,6 +1571,20 @@ class LoggingResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> LogViewHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
                     def logs(self) -> LogsResource: ...
 
                 def create(
@@ -1722,6 +1809,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 parent: str,
+                filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
                 **kwargs: typing.Any,
@@ -1783,6 +1871,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
             self,
             *,
             parent: str,
+            filter: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any,
@@ -2039,6 +2128,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Operation: ...
 
 @typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Policy: ...
+
+@typing.type_check_only
 class SavedQueryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2061,6 +2158,14 @@ class TailLogEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TailLogEntriesResponse: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TestIamPermissionsResponse: ...
 
 @typing.type_check_only
 class WriteLogEntriesResponseHttpRequest(googleapiclient.http.HttpRequest):

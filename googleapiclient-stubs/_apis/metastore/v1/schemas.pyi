@@ -73,6 +73,12 @@ class Consumer(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
+class CustomRegionMetadata(typing_extensions.TypedDict, total=False):
+    optionalReadOnlyRegions: _list[str]
+    requiredReadWriteRegions: _list[str]
+    witnessRegion: str
+
+@typing.type_check_only
 class DataCatalogConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -196,6 +202,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    customRegionMetadata: _list[CustomRegionMetadata]
     multiRegionMetadata: MultiRegionMetadata
     supportedHiveMetastoreVersions: _list[HiveMetastoreVersion]
 
@@ -347,6 +354,7 @@ class Service(typing_extensions.TypedDict, total=False):
     databaseType: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "MYSQL", "SPANNER"
     ]
+    deletionProtection: bool
     encryptionConfig: EncryptionConfig
     endpointUri: str
     hiveMetastoreConfig: HiveMetastoreConfig

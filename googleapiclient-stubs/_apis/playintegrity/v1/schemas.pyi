@@ -24,6 +24,19 @@ class AccountDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AppAccessRiskVerdict(typing_extensions.TypedDict, total=False):
+    appsDetected: _list[
+        typing_extensions.Literal[
+            "APPS_DETECTED_UNSPECIFIED",
+            "KNOWN_INSTALLED",
+            "KNOWN_CAPTURING",
+            "KNOWN_OVERLAYS",
+            "KNOWN_CONTROLLING",
+            "UNKNOWN_INSTALLED",
+            "UNKNOWN_CAPTURING",
+            "UNKNOWN_OVERLAYS",
+            "UNKNOWN_CONTROLLING",
+        ]
+    ]
     otherApps: typing_extensions.Literal[
         "UNKNOWN",
         "UNEVALUATED",

@@ -56,6 +56,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def exportStatus(
+                        self, *, name: str, operationId: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRunV2ExportStatusResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudRunV2ExecutionHttpRequest: ...
@@ -190,6 +193,9 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                         validateOnly: bool = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def exportStatus(
+                        self, *, name: str, operationId: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRunV2ExportStatusResponseHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudRunV2RevisionHttpRequest: ...
@@ -255,6 +261,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudRunV2Service = ...,
                     allowMissing: bool = ...,
+                    updateMask: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -274,6 +281,19 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
 
+            def exportImage(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudRunV2ExportImageRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudRunV2ExportImageResponseHttpRequest: ...
+            def exportImageMetadata(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudRunV2MetadataHttpRequest: ...
+            def exportMetadata(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudRunV2MetadataHttpRequest: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
@@ -301,6 +321,22 @@ class GoogleCloudRunV2ExecutionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2Execution: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2ExportImageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2ExportImageResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2ExportStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2ExportStatusResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRunV2JobHttpRequest(googleapiclient.http.HttpRequest):
@@ -353,6 +389,14 @@ class GoogleCloudRunV2ListTasksResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2ListTasksResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2MetadataHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2Metadata: ...
 
 @typing.type_check_only
 class GoogleCloudRunV2RevisionHttpRequest(googleapiclient.http.HttpRequest):

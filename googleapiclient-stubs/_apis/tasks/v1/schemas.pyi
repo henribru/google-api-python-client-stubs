@@ -21,6 +21,7 @@ class Task(typing_extensions.TypedDict, total=False):
     status: str
     title: str
     updated: str
+    webViewLink: str
 
 @typing.type_check_only
 class TaskList(typing_extensions.TypedDict, total=False):

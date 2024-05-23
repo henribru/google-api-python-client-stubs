@@ -160,6 +160,41 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     ) -> PolicyHttpRequest: ...
 
                 @typing.type_check_only
+                class DatabasesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class TablesResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any,
+                        ) -> PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> PolicyHttpRequest: ...
+
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def tables(self) -> TablesResource: ...
+
+                @typing.type_check_only
                 class MetadataImportsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -196,12 +231,6 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                         requestId: str = ...,
                         updateMask: str = ...,
                         **kwargs: typing.Any,
-                    ) -> OperationHttpRequest: ...
-
-                @typing.type_check_only
-                class MigrationExecutionsResource(googleapiclient.discovery.Resource):
-                    def delete(
-                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
                 def alterLocation(
@@ -307,8 +336,8 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
+                def databases(self) -> DatabasesResource: ...
                 def metadataImports(self) -> MetadataImportsResource: ...
-                def migrationExecutions(self) -> MigrationExecutionsResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any

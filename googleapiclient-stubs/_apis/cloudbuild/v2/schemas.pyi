@@ -281,7 +281,7 @@ class PipelineRef(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     resolver: typing_extensions.Literal[
-        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT"
+        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
     ]
 
 @typing.type_check_only
@@ -308,6 +308,7 @@ class PipelineRun(typing_extensions.TypedDict, total=False):
         "PIPELINE_RUN_STATUS_UNSPECIFIED", "PIPELINE_RUN_CANCELLED"
     ]
     pipelineSpec: PipelineSpec
+    pipelineSpecYaml: str
     provenance: Provenance
     record: str
     resolvedPipelineSpec: PipelineSpec
@@ -470,11 +471,21 @@ class Step(typing_extensions.TypedDict, total=False):
     env: _list[EnvVar]
     image: str
     name: str
+    params: _list[Param]
+    ref: StepRef
     script: str
     securityContext: SecurityContext
     timeout: str
     volumeMounts: _list[VolumeMount]
     workingDir: str
+
+@typing.type_check_only
+class StepRef(typing_extensions.TypedDict, total=False):
+    name: str
+    params: _list[Param]
+    resolver: typing_extensions.Literal[
+        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
+    ]
 
 @typing.type_check_only
 class StepTemplate(typing_extensions.TypedDict, total=False):
@@ -486,7 +497,7 @@ class TaskRef(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     resolver: typing_extensions.Literal[
-        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT"
+        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
     ]
 
 @typing.type_check_only
@@ -495,6 +506,7 @@ class TaskResult(typing_extensions.TypedDict, total=False):
     name: str
     properties: dict[str, typing.Any]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
+    value: ParamValue
 
 @typing.type_check_only
 class TaskSpec(typing_extensions.TypedDict, total=False):

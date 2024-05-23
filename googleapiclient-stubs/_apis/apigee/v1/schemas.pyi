@@ -38,6 +38,11 @@ class GoogleCloudApigeeV1AccessGet(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1AccessLoggingConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    filter: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1AccessRemove(typing_extensions.TypedDict, total=False):
     name: str
     success: bool
@@ -338,6 +343,49 @@ class GoogleCloudApigeeV1Attribute(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudApigeeV1Attributes(typing_extensions.TypedDict, total=False):
     attribute: _list[GoogleCloudApigeeV1Attribute]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    include: (
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray
+    )
+    includeAllResources: (
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll
+    )
+    pageSize: int
+    pageToken: str
+    profile: str
+    scope: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray(
+    typing_extensions.TypedDict, total=False
+):
+    resources: _list[
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArrayResource(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    type: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "API_PROXY"]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assessmentTime: str
+    nextPageToken: str
+    securityAssessmentResults: _list[GoogleCloudApigeeV1SecurityAssessmentResult]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1BatchUpdateSecurityIncidentsRequest(
@@ -971,6 +1019,7 @@ class GoogleCloudApigeeV1IngressConfig(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Instance(typing_extensions.TypedDict, total=False):
+    accessLoggingConfig: GoogleCloudApigeeV1AccessLoggingConfig
     consumerAcceptList: _list[str]
     createdAt: str
     description: str
@@ -1882,10 +1931,13 @@ class GoogleCloudApigeeV1SecurityActionConditionConfig(
     accessTokens: _list[str]
     apiKeys: _list[str]
     apiProducts: _list[str]
+    asns: _list[str]
     botReasons: _list[str]
     developerApps: _list[str]
     developers: _list[str]
+    httpMethods: _list[str]
     ipAddressRanges: _list[str]
+    regionCodes: _list[str]
     userAgents: _list[str]
 
 @typing.type_check_only
@@ -1910,6 +1962,63 @@ class GoogleCloudApigeeV1SecurityActionsConfig(
     enabled: bool
     name: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResult(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    error: GoogleRpcStatus
+    resource: GoogleCloudApigeeV1SecurityAssessmentResultResource
+    scoringResult: GoogleCloudApigeeV1SecurityAssessmentResultScoringResult
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultResource(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    resourceRevisionId: str
+    type: typing_extensions.Literal["RESOURCE_TYPE_UNSPECIFIED", "API_PROXY"]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultScoringResult(
+    typing_extensions.TypedDict, total=False
+):
+    assessmentRecommendations: dict[str, typing.Any]
+    dataUpdateTime: str
+    failedAssessmentPerWeight: dict[str, typing.Any]
+    score: int
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "MINIMAL"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendation(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    recommendations: _list[
+        GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation
+    ]
+    scoreImpact: int
+    verdict: typing_extensions.Literal["VERDICT_UNSPECIFIED", "PASS", "FAIL"]
+    weight: typing_extensions.Literal[
+        "WEIGHT_UNSPECIFIED", "MINOR", "MODERATE", "MAJOR"
+    ]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendation(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    link: GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendationLink
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityAssessmentResultScoringResultAssessmentRecommendationRecommendationLink(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+    uri: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=False):
@@ -2160,6 +2269,7 @@ class GoogleCloudApigeeV1TlsInfo(typing_extensions.TypedDict, total=False):
     clientAuthEnabled: bool
     commonName: GoogleCloudApigeeV1TlsInfoCommonName
     enabled: bool
+    enforce: bool
     ignoreValidationErrors: bool
     keyAlias: str
     keyStore: str
@@ -2177,6 +2287,7 @@ class GoogleCloudApigeeV1TlsInfoConfig(typing_extensions.TypedDict, total=False)
     clientAuthEnabled: bool
     commonName: GoogleCloudApigeeV1CommonNameConfig
     enabled: bool
+    enforce: bool
     ignoreValidationErrors: bool
     keyAlias: str
     keyAliasReference: GoogleCloudApigeeV1KeyAliasReference

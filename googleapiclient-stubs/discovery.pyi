@@ -15,6 +15,7 @@ import googleapiclient._apis.accessapproval.v1
 import googleapiclient._apis.accesscontextmanager.v1
 import googleapiclient._apis.accesscontextmanager.v1beta
 import googleapiclient._apis.acmedns.v1
+import googleapiclient._apis.addressvalidation.v1
 import googleapiclient._apis.adexchangebuyer.v1_2
 import googleapiclient._apis.adexchangebuyer.v1_3
 import googleapiclient._apis.adexchangebuyer.v1_4
@@ -116,6 +117,8 @@ import googleapiclient._apis.cloudbuild.v1beta1
 import googleapiclient._apis.cloudbuild.v2
 import googleapiclient._apis.cloudchannel.v1
 import googleapiclient._apis.cloudcommerceprocurement.v1
+import googleapiclient._apis.cloudcontrolspartner.v1
+import googleapiclient._apis.cloudcontrolspartner.v1beta
 import googleapiclient._apis.clouddebugger.v2
 import googleapiclient._apis.clouddeploy.v1
 import googleapiclient._apis.clouderrorreporting.v1beta1
@@ -151,6 +154,7 @@ import googleapiclient._apis.composer.v1beta1
 import googleapiclient._apis.compute.alpha
 import googleapiclient._apis.compute.beta
 import googleapiclient._apis.compute.v1
+import googleapiclient._apis.config.v1
 import googleapiclient._apis.connectors.v1
 import googleapiclient._apis.connectors.v2
 import googleapiclient._apis.contactcenteraiplatform.v1alpha1
@@ -198,6 +202,7 @@ import googleapiclient._apis.dialogflow.v3
 import googleapiclient._apis.dialogflow.v3beta1
 import googleapiclient._apis.digitalassetlinks.v1
 import googleapiclient._apis.discovery.v1
+import googleapiclient._apis.discoveryengine.v1
 import googleapiclient._apis.discoveryengine.v1alpha
 import googleapiclient._apis.discoveryengine.v1beta
 import googleapiclient._apis.displayvideo.v1
@@ -244,6 +249,7 @@ import googleapiclient._apis.firebasehosting.v1
 import googleapiclient._apis.firebasehosting.v1beta1
 import googleapiclient._apis.firebaseml.v1
 import googleapiclient._apis.firebaseml.v1beta2
+import googleapiclient._apis.firebaseml.v2beta
 import googleapiclient._apis.firebaserules.v1
 import googleapiclient._apis.firebasestorage.v1beta
 import googleapiclient._apis.firestore.v1
@@ -430,6 +436,7 @@ import googleapiclient._apis.sheets.v4
 import googleapiclient._apis.siteVerification.v1
 import googleapiclient._apis.slides.v1
 import googleapiclient._apis.smartdevicemanagement.v1
+import googleapiclient._apis.solar.v1
 import googleapiclient._apis.sourcerepo.v1
 import googleapiclient._apis.spanner.v1
 import googleapiclient._apis.speech.v1
@@ -687,6 +694,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.acmedns.v1.ACMEDNSResource: ...
+@overload
+def build(
+    serviceName: Literal["addressvalidation"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.addressvalidation.v1.AddressValidationResource: ...
 @overload
 def build(
     serviceName: Literal["adexchangebuyer"],
@@ -2711,6 +2738,48 @@ def build(
 ) -> googleapiclient._apis.cloudcommerceprocurement.v1.CloudCommercePartnerProcurementServiceResource: ...
 @overload
 def build(
+    serviceName: Literal["cloudcontrolspartner"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> (
+    googleapiclient._apis.cloudcontrolspartner.v1.CloudControlsPartnerServiceResource
+): ...
+@overload
+def build(
+    serviceName: Literal["cloudcontrolspartner"],
+    version: Literal["v1beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.cloudcontrolspartner.v1beta.CloudControlsPartnerServiceResource: ...
+@overload
+def build(
     serviceName: Literal["clouddebugger"],
     version: Literal["v2"],
     http: httplib2.Http | HttpMock | None = None,
@@ -3413,6 +3482,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.compute.v1.ComputeResource: ...
+@overload
+def build(
+    serviceName: Literal["config"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.config.v1.ConfigResource: ...
 @overload
 def build(
     serviceName: Literal["connectors"],
@@ -4356,6 +4445,26 @@ def build(
 @overload
 def build(
     serviceName: Literal["discoveryengine"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.discoveryengine.v1.DiscoveryEngineResource: ...
+@overload
+def build(
+    serviceName: Literal["discoveryengine"],
     version: Literal["v1alpha"],
     http: httplib2.Http | HttpMock | None = None,
     discoveryServiceUrl: str | None = None,
@@ -5275,6 +5384,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.firebaseml.v1beta2.FirebaseMLResource: ...
+@overload
+def build(
+    serviceName: Literal["firebaseml"],
+    version: Literal["v2beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.firebaseml.v2beta.FirebaseMLResource: ...
 @overload
 def build(
     serviceName: Literal["firebaserules"],
@@ -9011,6 +9140,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.smartdevicemanagement.v1.SmartDeviceManagementResource: ...
+@overload
+def build(
+    serviceName: Literal["solar"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.solar.v1.SolarResource: ...
 @overload
 def build(
     serviceName: Literal["sourcerepo"],

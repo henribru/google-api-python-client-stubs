@@ -44,6 +44,23 @@ class DataformResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class RepositoriesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class CommentThreadsResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+
+                @typing.type_check_only
                 class CompilationResultsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -60,6 +77,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         filter: str = ...,
+                        orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         **kwargs: typing.Any,
@@ -396,7 +414,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: CommitRepositoryChangesRequest = ...,
                     **kwargs: typing.Any,
-                ) -> EmptyHttpRequest: ...
+                ) -> CommitRepositoryChangesResponseHttpRequest: ...
                 def computeAccessTokenStatus(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ComputeRepositoryAccessTokenStatusResponseHttpRequest: ...
@@ -497,6 +515,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
+                def commentThreads(self) -> CommentThreadsResource: ...
                 def compilationResults(self) -> CompilationResultsResource: ...
                 def releaseConfigs(self) -> ReleaseConfigsResource: ...
                 def workflowConfigs(self) -> WorkflowConfigsResource: ...
@@ -538,6 +557,14 @@ class DataformResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class CommitRepositoryChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CommitRepositoryChangesResponse: ...
 
 @typing.type_check_only
 class CompilationResultHttpRequest(googleapiclient.http.HttpRequest):

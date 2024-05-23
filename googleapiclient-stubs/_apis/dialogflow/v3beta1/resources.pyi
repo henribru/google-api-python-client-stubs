@@ -45,6 +45,32 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ): ...
 
                 @typing.type_check_only
+                class ConversationsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3beta1ConversationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3beta1ListConversationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowCxV3beta1ListConversationsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowCxV3beta1ListConversationsResponse,
+                    ) -> (
+                        GoogleCloudDialogflowCxV3beta1ListConversationsResponseHttpRequest
+                        | None
+                    ): ...
+
+                @typing.type_check_only
                 class EntityTypesResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -1089,6 +1115,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDialogflowCxV3beta1AgentValidationResultHttpRequest: ...
                 def changelogs(self) -> ChangelogsResource: ...
+                def conversations(self) -> ConversationsResource: ...
                 def entityTypes(self) -> EntityTypesResource: ...
                 def environments(self) -> EnvironmentsResource: ...
                 def flows(self) -> FlowsResource: ...
@@ -1282,6 +1309,16 @@ class GoogleCloudDialogflowCxV3beta1CompareVersionsResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3beta1CompareVersionsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ConversationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1Conversation: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1DeploymentHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1416,6 +1453,16 @@ class GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponseHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ListConversationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1ListConversationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ListDeploymentsResponseHttpRequest(

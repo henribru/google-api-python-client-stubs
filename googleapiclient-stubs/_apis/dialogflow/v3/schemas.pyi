@@ -18,7 +18,9 @@ class GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings(
     typing_extensions.TypedDict, total=False
 ):
     enabled: bool
+    endpointingTimeoutDuration: str
     finishDigit: str
+    interdigitTimeoutDuration: str
     maxDigits: int
 
 @typing.type_check_only
@@ -45,6 +47,7 @@ class GoogleCloudDialogflowCxV3Agent(typing_extensions.TypedDict, total=False):
     defaultLanguageCode: str
     description: str
     displayName: str
+    enableMultiLanguageTraining: bool
     enableSpellCorrection: bool
     enableStackdriverLogging: bool
     genAppBuilderSettings: GoogleCloudDialogflowCxV3AgentGenAppBuilderSettings
@@ -264,6 +267,99 @@ class GoogleCloudDialogflowCxV3DataStoreConnection(
     dataStoreType: typing_extensions.Literal[
         "DATA_STORE_TYPE_UNSPECIFIED", "PUBLIC_WEB", "UNSTRUCTURED", "STRUCTURED"
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignals(
+    typing_extensions.TypedDict, total=False
+):
+    answer: str
+    answerGenerationModelCallSignals: GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals
+    answerParts: _list[GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerPart]
+    citedSnippets: _list[
+        GoogleCloudDialogflowCxV3DataStoreConnectionSignalsCitedSnippet
+    ]
+    groundingSignals: (
+        GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals
+    )
+    rewriterModelCallSignals: (
+        GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals
+    )
+    rewrittenQuery: str
+    safetySignals: GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals
+    searchSnippets: _list[
+        GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals(
+    typing_extensions.TypedDict, total=False
+):
+    modelOutput: str
+    renderedPrompt: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerPart(
+    typing_extensions.TypedDict, total=False
+):
+    supportingIndices: _list[int]
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsCitedSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    searchSnippet: GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet
+    snippetIndex: int
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsGroundingSignals(
+    typing_extensions.TypedDict, total=False
+):
+    decision: typing_extensions.Literal[
+        "GROUNDING_DECISION_UNSPECIFIED",
+        "ACCEPTED_BY_GROUNDING",
+        "REJECTED_BY_GROUNDING",
+    ]
+    score: typing_extensions.Literal[
+        "GROUNDING_SCORE_BUCKET_UNSPECIFIED",
+        "VERY_LOW",
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "VERY_HIGH",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals(
+    typing_extensions.TypedDict, total=False
+):
+    modelOutput: str
+    renderedPrompt: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSafetySignals(
+    typing_extensions.TypedDict, total=False
+):
+    bannedPhraseMatch: typing_extensions.Literal[
+        "BANNED_PHRASE_MATCH_UNSPECIFIED",
+        "BANNED_PHRASE_MATCH_NONE",
+        "BANNED_PHRASE_MATCH_QUERY",
+        "BANNED_PHRASE_MATCH_RESPONSE",
+    ]
+    decision: typing_extensions.Literal[
+        "SAFETY_DECISION_UNSPECIFIED",
+        "ACCEPTED_BY_SAFETY_CHECK",
+        "REJECTED_BY_SAFETY_CHECK",
+    ]
+    matchedBannedPhrase: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3DataStoreConnectionSignalsSearchSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    documentTitle: str
+    documentUri: str
+    text: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata(
@@ -597,6 +693,7 @@ class GoogleCloudDialogflowCxV3Flow(typing_extensions.TypedDict, total=False):
     displayName: str
     eventHandlers: _list[GoogleCloudDialogflowCxV3EventHandler]
     knowledgeConnectorSettings: GoogleCloudDialogflowCxV3KnowledgeConnectorSettings
+    multiLanguageSettings: GoogleCloudDialogflowCxV3FlowMultiLanguageSettings
     name: str
     nluSettings: GoogleCloudDialogflowCxV3NluSettings
     transitionRouteGroups: _list[str]
@@ -614,6 +711,13 @@ class GoogleCloudDialogflowCxV3FlowImportStrategy(
         "IMPORT_STRATEGY_MERGE",
         "IMPORT_STRATEGY_THROW_ERROR",
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3FlowMultiLanguageSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enableMultiLanguageDetection: bool
+    supportedResponseLanguageCodes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3FlowValidationResult(
@@ -988,6 +1092,12 @@ class GoogleCloudDialogflowCxV3KnowledgeConnectorSettings(
     triggerFulfillment: GoogleCloudDialogflowCxV3Fulfillment
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3LanguageInfo(typing_extensions.TypedDict, total=False):
+    confidenceScore: float
+    inputLanguageCode: str
+    resolvedLanguageCode: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ListAgentsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1139,6 +1249,7 @@ class GoogleCloudDialogflowCxV3Match(typing_extensions.TypedDict, total=False):
         "NO_MATCH",
         "NO_INPUT",
         "EVENT",
+        "PLAYBOOK",
     ]
     parameters: dict[str, typing.Any]
     resolvedInput: str
@@ -1252,6 +1363,7 @@ class GoogleCloudDialogflowCxV3QueryParameters(
     geoLocation: GoogleTypeLatLng
     parameters: dict[str, typing.Any]
     payload: dict[str, typing.Any]
+    populateDataStoreConnectionSignals: bool
     searchConfig: GoogleCloudDialogflowCxV3SearchConfig
     sessionEntityTypes: _list[GoogleCloudDialogflowCxV3SessionEntityType]
     sessionTtl: str
@@ -1263,6 +1375,7 @@ class GoogleCloudDialogflowCxV3QueryResult(typing_extensions.TypedDict, total=Fa
     advancedSettings: GoogleCloudDialogflowCxV3AdvancedSettings
     allowAnswerFeedback: bool
     currentPage: GoogleCloudDialogflowCxV3Page
+    dataStoreConnectionSignals: GoogleCloudDialogflowCxV3DataStoreConnectionSignals
     diagnosticInfo: dict[str, typing.Any]
     dtmf: GoogleCloudDialogflowCxV3DtmfInput
     intent: GoogleCloudDialogflowCxV3Intent
@@ -1499,6 +1612,7 @@ class GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings(
     ]
     enableAudioRedaction: bool
     gcsBucket: str
+    storeTtsAudio: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings(
@@ -1824,15 +1938,28 @@ class GoogleCloudDialogflowCxV3WebhookGenericWebService(
         "PATCH",
         "OPTIONS",
     ]
+    oauthConfig: GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig
     parameterMapping: dict[str, typing.Any]
     password: str
     requestBody: str
     requestHeaders: dict[str, typing.Any]
+    serviceAgentAuth: typing_extensions.Literal[
+        "SERVICE_AGENT_AUTH_UNSPECIFIED", "NONE", "ID_TOKEN", "ACCESS_TOKEN"
+    ]
     uri: str
     username: str
     webhookType: typing_extensions.Literal[
         "WEBHOOK_TYPE_UNSPECIFIED", "STANDARD", "FLEXIBLE"
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3WebhookGenericWebServiceOAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    clientSecret: str
+    scopes: _list[str]
+    tokenEndpoint: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total=False):
@@ -1841,6 +1968,7 @@ class GoogleCloudDialogflowCxV3WebhookRequest(typing_extensions.TypedDict, total
     fulfillmentInfo: GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3WebhookRequestIntentInfo
     languageCode: str
+    languageInfo: GoogleCloudDialogflowCxV3LanguageInfo
     messages: _list[GoogleCloudDialogflowCxV3ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3PageInfo
     payload: dict[str, typing.Any]
@@ -1923,7 +2051,9 @@ class GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings(
     typing_extensions.TypedDict, total=False
 ):
     enabled: bool
+    endpointingTimeoutDuration: str
     finishDigit: str
+    interdigitTimeoutDuration: str
     maxDigits: int
 
 @typing.type_check_only
@@ -2395,6 +2525,14 @@ class GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings(
     triggerFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1LanguageInfo(
+    typing_extensions.TypedDict, total=False
+):
+    confidenceScore: float
+    inputLanguageCode: str
+    resolvedLanguageCode: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Page(typing_extensions.TypedDict, total=False):
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
     description: str
@@ -2678,15 +2816,28 @@ class GoogleCloudDialogflowCxV3beta1WebhookGenericWebService(
         "PATCH",
         "OPTIONS",
     ]
+    oauthConfig: GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig
     parameterMapping: dict[str, typing.Any]
     password: str
     requestBody: str
     requestHeaders: dict[str, typing.Any]
+    serviceAgentAuth: typing_extensions.Literal[
+        "SERVICE_AGENT_AUTH_UNSPECIFIED", "NONE", "ID_TOKEN", "ACCESS_TOKEN"
+    ]
     uri: str
     username: str
     webhookType: typing_extensions.Literal[
         "WEBHOOK_TYPE_UNSPECIFIED", "STANDARD", "FLEXIBLE"
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1WebhookGenericWebServiceOAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    clientSecret: str
+    scopes: _list[str]
+    tokenEndpoint: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1WebhookRequest(
@@ -2697,6 +2848,7 @@ class GoogleCloudDialogflowCxV3beta1WebhookRequest(
     fulfillmentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestFulfillmentInfo
     intentInfo: GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo
     languageCode: str
+    languageInfo: GoogleCloudDialogflowCxV3beta1LanguageInfo
     messages: _list[GoogleCloudDialogflowCxV3beta1ResponseMessage]
     pageInfo: GoogleCloudDialogflowCxV3beta1PageInfo
     payload: dict[str, typing.Any]

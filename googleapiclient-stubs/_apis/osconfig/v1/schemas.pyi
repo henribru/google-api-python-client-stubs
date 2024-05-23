@@ -659,6 +659,13 @@ class PatchRollout(typing_extensions.TypedDict, total=False):
 class PausePatchDeploymentRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ProjectFeatureSettings(typing_extensions.TypedDict, total=False):
+    name: str
+    patchAndConfigFeatureSet: typing_extensions.Literal[
+        "PATCH_AND_CONFIG_FEATURE_SET_UNSPECIFIED", "OSCONFIG_B", "OSCONFIG_C"
+    ]
+
+@typing.type_check_only
 class RecurringSchedule(typing_extensions.TypedDict, total=False):
     endTime: str
     frequency: typing_extensions.Literal[

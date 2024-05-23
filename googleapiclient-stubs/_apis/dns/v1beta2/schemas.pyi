@@ -326,7 +326,6 @@ class Quota(typing_extensions.TypedDict, total=False):
 class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
     geo: RRSetRoutingPolicyGeoPolicy
     geoPolicy: RRSetRoutingPolicyGeoPolicy
-    healthCheck: str
     kind: str
     primaryBackup: RRSetRoutingPolicyPrimaryBackupPolicy
     wrr: RRSetRoutingPolicyWrrPolicy
@@ -350,7 +349,6 @@ class RRSetRoutingPolicyGeoPolicyGeoPolicyItem(
 
 @typing.type_check_only
 class RRSetRoutingPolicyHealthCheckTargets(typing_extensions.TypedDict, total=False):
-    externalEndpoints: _list[str]
     internalLoadBalancers: _list[RRSetRoutingPolicyLoadBalancerTarget]
 
 @typing.type_check_only

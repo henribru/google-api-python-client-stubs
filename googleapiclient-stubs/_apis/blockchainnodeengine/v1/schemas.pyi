@@ -22,6 +22,7 @@ class BlockchainNode(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "REPAIRING",
         "RECONCILING",
+        "SYNCING",
     ]
     updateTime: str
 

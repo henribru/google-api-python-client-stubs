@@ -1370,6 +1370,9 @@ class GoogleCloudDocumentaiV1TrainProcessorVersionRequest(
     baseProcessorVersion: str
     customDocumentExtractionOptions: GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions
     documentSchema: GoogleCloudDocumentaiV1DocumentSchema
+    foundationModelTuningOptions: (
+        GoogleCloudDocumentaiV1TrainProcessorVersionRequestFoundationModelTuningOptions
+    )
     inputData: GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData
     processorVersion: GoogleCloudDocumentaiV1ProcessorVersion
 
@@ -1380,6 +1383,13 @@ class GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractio
     trainingMethod: typing_extensions.Literal[
         "TRAINING_METHOD_UNSPECIFIED", "MODEL_BASED", "TEMPLATE_BASED"
     ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1TrainProcessorVersionRequestFoundationModelTuningOptions(
+    typing_extensions.TypedDict, total=False
+):
+    learningRateMultiplier: float
+    trainSteps: int
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1TrainProcessorVersionRequestInputData(

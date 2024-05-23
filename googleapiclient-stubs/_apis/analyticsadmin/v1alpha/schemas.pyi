@@ -171,6 +171,7 @@ class GoogleAnalyticsAdminV1alphaAccount(typing_extensions.TypedDict, total=Fals
     createTime: str
     deleted: bool
     displayName: str
+    gmpOrganization: str
     name: str
     regionCode: str
     updateTime: str
@@ -260,6 +261,7 @@ class GoogleAnalyticsAdminV1alphaAttributionSettings(
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaAudience(typing_extensions.TypedDict, total=False):
     adsPersonalizationEnabled: bool
+    createTime: str
     description: str
     displayName: str
     eventTrigger: GoogleAnalyticsAdminV1alphaAudienceEventTrigger
@@ -568,6 +570,7 @@ class GoogleAnalyticsAdminV1alphaChannelGroup(typing_extensions.TypedDict, total
     displayName: str
     groupingRule: _list[GoogleAnalyticsAdminV1alphaGroupingRule]
     name: str
+    primary: bool
     systemDefined: bool
 
 @typing.type_check_only
@@ -698,7 +701,6 @@ class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse(
 class GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest(
     typing_extensions.TypedDict, total=False
 ):
-    parent: str
     subproperty: GoogleAnalyticsAdminV1alphaProperty
     subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
 
@@ -1008,6 +1010,25 @@ class GoogleAnalyticsAdminV1alphaGroupingRule(typing_extensions.TypedDict, total
     expression: GoogleAnalyticsAdminV1alphaChannelGroupFilterExpression
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaKeyEvent(typing_extensions.TypedDict, total=False):
+    countingMethod: typing_extensions.Literal[
+        "COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
+    ]
+    createTime: str
+    custom: bool
+    defaultValue: GoogleAnalyticsAdminV1alphaKeyEventDefaultValue
+    deletable: bool
+    eventName: str
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaKeyEventDefaultValue(
+    typing_extensions.TypedDict, total=False
+):
+    currencyCode: str
+    numericValue: float
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaLinkProposalStatusDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -1167,6 +1188,13 @@ class GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     googleAdsLinks: _list[GoogleAnalyticsAdminV1alphaGoogleAdsLink]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListKeyEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    keyEvents: _list[GoogleAnalyticsAdminV1alphaKeyEvent]
     nextPageToken: str
 
 @typing.type_check_only

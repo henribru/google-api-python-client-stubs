@@ -98,6 +98,18 @@ class CohortsRange(typing_extensions.TypedDict, total=False):
     startOffset: int
 
 @typing.type_check_only
+class Comparison(typing_extensions.TypedDict, total=False):
+    comparison: str
+    dimensionFilter: FilterExpression
+    name: str
+
+@typing.type_check_only
+class ComparisonMetadata(typing_extensions.TypedDict, total=False):
+    apiName: str
+    description: str
+    uiName: str
+
+@typing.type_check_only
 class ConcatenateExpression(typing_extensions.TypedDict, total=False):
     delimiter: str
     dimensionNames: _list[str]
@@ -184,6 +196,7 @@ class ListAudienceExportsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Metadata(typing_extensions.TypedDict, total=False):
+    comparisons: _list[ComparisonMetadata]
     dimensions: _list[DimensionMetadata]
     metrics: _list[MetricMetadata]
     name: str
@@ -370,6 +383,7 @@ class Row(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunPivotReportRequest(typing_extensions.TypedDict, total=False):
     cohortSpec: CohortSpec
+    comparisons: _list[Comparison]
     currencyCode: str
     dateRanges: _list[DateRange]
     dimensionFilter: FilterExpression
@@ -423,6 +437,7 @@ class RunRealtimeReportResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunReportRequest(typing_extensions.TypedDict, total=False):
     cohortSpec: CohortSpec
+    comparisons: _list[Comparison]
     currencyCode: str
     dateRanges: _list[DateRange]
     dimensionFilter: FilterExpression

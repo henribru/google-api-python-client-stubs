@@ -78,6 +78,7 @@ class RestDescription(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestMethod(typing_extensions.TypedDict, total=False):
+    apiVersion: str
     deprecated: bool
     description: str
     etagRequired: bool

@@ -1027,6 +1027,7 @@ class GoogleCloudRetailV2ServingConfig(typing_extensions.TypedDict, total=False)
     facetControlIds: _list[str]
     filterControlIds: _list[str]
     ignoreControlIds: _list[str]
+    ignoreRecsDenylist: bool
     modelId: str
     name: str
     onewaySynonymsControlIds: _list[str]

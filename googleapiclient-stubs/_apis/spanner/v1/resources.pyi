@@ -198,6 +198,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         "CUSTOMER_MANAGED_ENCRYPTION",
                     ] = ...,
                     encryptionConfig_kmsKeyName: str = ...,
+                    encryptionConfig_kmsKeyNames: str | _list[str] = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -521,6 +522,26 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 def sessions(self) -> SessionsResource: ...
 
             @typing.type_check_only
+            class InstancePartitionOperationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    instancePartitionDeadline: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInstancePartitionOperationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancePartitionOperationsResponseHttpRequest,
+                    previous_response: ListInstancePartitionOperationsResponse,
+                ) -> ListInstancePartitionOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class InstancePartitionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class OperationsResource(googleapiclient.discovery.Resource):
@@ -548,6 +569,40 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CreateInstancePartitionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InstancePartitionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    instancePartitionDeadline: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInstancePartitionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInstancePartitionsResponseHttpRequest,
+                    previous_response: ListInstancePartitionsResponse,
+                ) -> ListInstancePartitionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: UpdateInstancePartitionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -611,6 +666,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                 previous_request: ListInstancesResponseHttpRequest,
                 previous_response: ListInstancesResponse,
             ) -> ListInstancesResponseHttpRequest | None: ...
+            def move(
+                self,
+                *,
+                name: str,
+                body: MoveInstanceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -636,6 +698,9 @@ class SpannerResource(googleapiclient.discovery.Resource):
             def backups(self) -> BackupsResource: ...
             def databaseOperations(self) -> DatabaseOperationsResource: ...
             def databases(self) -> DatabasesResource: ...
+            def instancePartitionOperations(
+                self,
+            ) -> InstancePartitionOperationsResource: ...
             def instancePartitions(self) -> InstancePartitionsResource: ...
             def operations(self) -> OperationsResource: ...
 
@@ -759,6 +824,14 @@ class InstanceConfigHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InstanceConfig: ...
 
 @typing.type_check_only
+class InstancePartitionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstancePartition: ...
+
+@typing.type_check_only
 class ListBackupOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -813,6 +886,24 @@ class ListInstanceConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListInstanceConfigsResponse: ...
+
+@typing.type_check_only
+class ListInstancePartitionOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInstancePartitionOperationsResponse: ...
+
+@typing.type_check_only
+class ListInstancePartitionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInstancePartitionsResponse: ...
 
 @typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):

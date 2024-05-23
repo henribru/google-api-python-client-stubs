@@ -61,6 +61,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagementServer(typing_extensions.TypedDict, total=False):
+    baProxyUri: _list[str]
     createTime: str
     description: str
     etag: str

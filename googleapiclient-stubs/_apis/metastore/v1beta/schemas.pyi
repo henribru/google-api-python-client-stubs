@@ -33,6 +33,12 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutoscalingConfig(typing_extensions.TypedDict, total=False):
+    autoscalingEnabled: bool
+    autoscalingFactor: float
+    limitConfig: LimitConfig
+
+@typing.type_check_only
 class AuxiliaryVersionConfig(typing_extensions.TypedDict, total=False):
     configOverrides: dict[str, typing.Any]
     networkConfig: NetworkConfig
@@ -64,13 +70,59 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CancelMigrationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelMigrationResponse(typing_extensions.TypedDict, total=False):
+    migrationExecution: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CdcConfig(typing_extensions.TypedDict, total=False):
+    bucket: str
+    password: str
+    reverseProxySubnet: str
+    rootPath: str
+    subnetIpRange: str
+    username: str
+    vpcNetwork: str
+
+@typing.type_check_only
+class CloudSQLConnectionConfig(typing_extensions.TypedDict, total=False):
+    hiveDatabaseName: str
+    instanceConnectionName: str
+    ipAddress: str
+    natSubnet: str
+    password: str
+    port: int
+    proxySubnet: str
+    username: str
+
+@typing.type_check_only
+class CloudSQLMigrationConfig(typing_extensions.TypedDict, total=False):
+    cdcConfig: CdcConfig
+    cloudSqlConnectionConfig: CloudSQLConnectionConfig
+
+@typing.type_check_only
+class CompleteMigrationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CompleteMigrationResponse(typing_extensions.TypedDict, total=False):
+    migrationExecution: str
 
 @typing.type_check_only
 class Consumer(typing_extensions.TypedDict, total=False):
     endpointLocation: str
     endpointUri: str
     subnetwork: str
+
+@typing.type_check_only
+class CustomRegionMetadata(typing_extensions.TypedDict, total=False):
+    optionalReadOnlyRegions: _list[str]
+    requiredReadWriteRegions: _list[str]
+    witnessRegion: str
 
 @typing.type_check_only
 class DataCatalogConfig(typing_extensions.TypedDict, total=False):
@@ -161,6 +213,11 @@ class LatestBackup(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class LimitConfig(typing_extensions.TypedDict, total=False):
+    maxScalingFactor: float
+    minScalingFactor: float
+
+@typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
@@ -180,6 +237,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListMetadataImportsResponse(typing_extensions.TypedDict, total=False):
     metadataImports: _list[MetadataImport]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMigrationExecutionsResponse(typing_extensions.TypedDict, total=False):
+    migrationExecutions: _list[MigrationExecution]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -204,6 +267,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    customRegionMetadata: _list[CustomRegionMetadata]
     multiRegionMetadata: MultiRegionMetadata
     supportedHiveMetastoreVersions: _list[HiveMetastoreVersion]
 
@@ -252,6 +316,26 @@ class MetadataIntegration(typing_extensions.TypedDict, total=False):
 class MetadataManagementActivity(typing_extensions.TypedDict, total=False):
     metadataExports: _list[MetadataExport]
     restores: _list[Restore]
+
+@typing.type_check_only
+class MigrationExecution(typing_extensions.TypedDict, total=False):
+    cloudSqlMigrationConfig: CloudSQLMigrationConfig
+    createTime: str
+    endTime: str
+    name: str
+    phase: typing_extensions.Literal["PHASE_UNSPECIFIED", "REPLICATION", "CUTOVER"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "STARTING",
+        "RUNNING",
+        "CANCELLING",
+        "AWAITING_USER_ACTION",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELLED",
+        "DELETING",
+    ]
+    stateMessage: str
 
 @typing.type_check_only
 class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
@@ -335,6 +419,7 @@ class RestoreServiceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ScalingConfig(typing_extensions.TypedDict, total=False):
+    autoscalingConfig: AutoscalingConfig
     instanceSize: typing_extensions.Literal[
         "INSTANCE_SIZE_UNSPECIFIED",
         "EXTRA_SMALL",
@@ -365,6 +450,7 @@ class Service(typing_extensions.TypedDict, total=False):
     databaseType: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "MYSQL", "SPANNER"
     ]
+    deletionProtection: bool
     encryptionConfig: EncryptionConfig
     endpointUri: str
     hiveMetastoreConfig: HiveMetastoreConfig
@@ -390,6 +476,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "DELETING",
         "ERROR",
+        "MIGRATING",
     ]
     stateMessage: str
     telemetryConfig: TelemetryConfig
@@ -401,6 +488,11 @@ class Service(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class StartMigrationRequest(typing_extensions.TypedDict, total=False):
+    migrationExecution: MigrationExecution
+    requestId: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

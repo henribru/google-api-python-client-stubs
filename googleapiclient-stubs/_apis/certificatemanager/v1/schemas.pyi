@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AllowlistedCertificate(typing_extensions.TypedDict, total=False):
+    pemCertificate: str
+
+@typing.type_check_only
 class AuthorizationAttemptInfo(typing_extensions.TypedDict, total=False):
     details: str
     domain: str
@@ -219,6 +223,7 @@ class TrustAnchor(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TrustConfig(typing_extensions.TypedDict, total=False):
+    allowlistedCertificates: _list[AllowlistedCertificate]
     createTime: str
     description: str
     etag: str

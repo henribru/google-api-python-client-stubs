@@ -462,6 +462,12 @@ class ResetPersonaResponse(typing_extensions.TypedDict, total=False):
     unlinked: bool
 
 @typing.type_check_only
+class RetrieveDeveloperGamesLastPlayerTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    token: RecallToken
+
+@typing.type_check_only
 class RetrievePlayerTokensResponse(typing_extensions.TypedDict, total=False):
     tokens: _list[RecallToken]
 

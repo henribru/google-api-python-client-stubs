@@ -621,6 +621,7 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
 class IdentityServiceAuthMethod(typing_extensions.TypedDict, total=False):
     azureadConfig: IdentityServiceAzureADConfig
     googleConfig: IdentityServiceGoogleConfig
+    ldapConfig: IdentityServiceLdapConfig
     name: str
     oidcConfig: IdentityServiceOidcConfig
     proxy: str
@@ -641,8 +642,26 @@ class IdentityServiceGoogleConfig(typing_extensions.TypedDict, total=False):
     disable: bool
 
 @typing.type_check_only
+class IdentityServiceGroupConfig(typing_extensions.TypedDict, total=False):
+    baseDn: str
+    filter: str
+    idAttribute: str
+
+@typing.type_check_only
+class IdentityServiceIdentityServiceOptions(typing_extensions.TypedDict, total=False):
+    sessionDuration: str
+
+@typing.type_check_only
+class IdentityServiceLdapConfig(typing_extensions.TypedDict, total=False):
+    group: IdentityServiceGroupConfig
+    server: IdentityServiceServerConfig
+    serviceAccount: IdentityServiceServiceAccountConfig
+    user: IdentityServiceUserConfig
+
+@typing.type_check_only
 class IdentityServiceMembershipSpec(typing_extensions.TypedDict, total=False):
     authMethods: _list[IdentityServiceAuthMethod]
+    identityServiceOptions: IdentityServiceIdentityServiceOptions
 
 @typing.type_check_only
 class IdentityServiceMembershipState(typing_extensions.TypedDict, total=False):
@@ -678,6 +697,29 @@ class IdentityServiceSamlConfig(typing_extensions.TypedDict, total=False):
     identityProviderSsoUri: str
     userAttribute: str
     userPrefix: str
+
+@typing.type_check_only
+class IdentityServiceServerConfig(typing_extensions.TypedDict, total=False):
+    certificateAuthorityData: str
+    connectionType: str
+    host: str
+
+@typing.type_check_only
+class IdentityServiceServiceAccountConfig(typing_extensions.TypedDict, total=False):
+    simpleBindCredentials: IdentityServiceSimpleBindCredentials
+
+@typing.type_check_only
+class IdentityServiceSimpleBindCredentials(typing_extensions.TypedDict, total=False):
+    dn: str
+    encryptedPassword: str
+    password: str
+
+@typing.type_check_only
+class IdentityServiceUserConfig(typing_extensions.TypedDict, total=False):
+    baseDn: str
+    filter: str
+    idAttribute: str
+    loginAttribute: str
 
 @typing.type_check_only
 class KubernetesMetadata(typing_extensions.TypedDict, total=False):
@@ -726,11 +768,13 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
     membershipBindings: _list[MembershipBinding]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListMembershipRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     rbacrolebindings: _list[RBACRoleBinding]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
@@ -1141,7 +1185,9 @@ class ScopeLifecycleState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "BASIC"]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"
+    ]
     vulnerabilityMode: typing_extensions.Literal[
         "VULNERABILITY_MODE_UNSPECIFIED",
         "VULNERABILITY_DISABLED",
@@ -1163,8 +1209,48 @@ class ServiceMeshAnalysisMessageBase(typing_extensions.TypedDict, total=False):
     type: ServiceMeshType
 
 @typing.type_check_only
+class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "MESH_IAM_PERMISSION_DENIED",
+        "CNI_CONFIG_UNSUPPORTED",
+        "GKE_SANDBOX_UNSUPPORTED",
+        "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+        "CNI_INSTALLATION_FAILED",
+        "CNI_POD_UNSCHEDULABLE",
+        "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+        "VPCSC_GA_SUPPORTED",
+        "CONFIG_APPLY_INTERNAL_ERROR",
+        "CONFIG_VALIDATION_ERROR",
+        "CONFIG_VALIDATION_WARNING",
+        "QUOTA_EXCEEDED_BACKEND_SERVICES",
+        "QUOTA_EXCEEDED_HEALTH_CHECKS",
+        "QUOTA_EXCEEDED_HTTP_ROUTES",
+        "QUOTA_EXCEEDED_TCP_ROUTES",
+        "QUOTA_EXCEEDED_TLS_ROUTES",
+        "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+        "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+        "QUOTA_EXCEEDED_GATEWAYS",
+        "QUOTA_EXCEEDED_MESHES",
+        "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+        "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+        "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+        "QUOTA_EXCEEDED_HTTP_FILTERS",
+        "QUOTA_EXCEEDED_TCP_FILTERS",
+        "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+    ]
+    details: str
+    documentationLink: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+
+@typing.type_check_only
 class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False):
     details: _list[ServiceMeshStatusDetails]
+    implementation: typing_extensions.Literal[
+        "IMPLEMENTATION_UNSPECIFIED", "ISTIOD", "TRAFFIC_DIRECTOR", "UPDATING"
+    ]
     state: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED",
         "DISABLED",
@@ -1209,6 +1295,7 @@ class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceMeshMembershipState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
+    conditions: _list[ServiceMeshCondition]
     configApiVersion: str
     controlPlaneManagement: ServiceMeshControlPlaneManagement
     dataPlaneManagement: ServiceMeshDataPlaneManagement

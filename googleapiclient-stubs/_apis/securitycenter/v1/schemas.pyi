@@ -29,6 +29,10 @@ class AccessReview(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class AdaptiveProtection(typing_extensions.TypedDict, total=False):
+    confidence: float
+
+@typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
@@ -51,6 +55,12 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
         "INCLUSION_MODE_UNSPECIFIED", "INCLUDE_ONLY", "EXCLUDE"
     ]
     projectIds: _list[str]
+
+@typing.type_check_only
+class Attack(typing_extensions.TypedDict, total=False):
+    classification: str
+    volumeBps: int
+    volumePps: int
 
 @typing.type_check_only
 class AttackExposure(typing_extensions.TypedDict, total=False):
@@ -111,6 +121,26 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AwsAccount(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
+class AwsMetadata(typing_extensions.TypedDict, total=False):
+    account: AwsAccount
+    organization: AwsOrganization
+    organizationalUnits: _list[AwsOrganizationalUnit]
+
+@typing.type_check_only
+class AwsOrganization(typing_extensions.TypedDict, total=False):
+    id: str
+
+@typing.type_check_only
+class AwsOrganizationalUnit(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
 class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
     appliance: str
     applications: _list[str]
@@ -143,6 +173,15 @@ class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
     muteAnnotation: str
 
 @typing.type_check_only
+class CloudArmor(typing_extensions.TypedDict, total=False):
+    adaptiveProtection: AdaptiveProtection
+    attack: Attack
+    duration: str
+    requests: Requests
+    securityPolicy: SecurityPolicy
+    threatVector: str
+
+@typing.type_check_only
 class CloudDlpDataProfile(typing_extensions.TypedDict, total=False):
     dataProfile: str
     parentType: typing_extensions.Literal[
@@ -172,12 +211,17 @@ class Compliance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ComplianceSnapshot(typing_extensions.TypedDict, total=False):
     category: str
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     complianceStandard: str
     complianceVersion: str
     count: str
     leafContainerResource: str
     name: str
-    projectDisplayName: str
     snapshotTime: str
 
 @typing.type_check_only
@@ -371,6 +415,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     backupDisasterRecovery: BackupDisasterRecovery
     canonicalName: str
     category: str
+    cloudArmor: CloudArmor
     cloudDlpDataProfile: CloudDlpDataProfile
     cloudDlpInspection: CloudDlpInspection
     compliances: _list[Compliance]
@@ -407,6 +452,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     muteUpdateTime: str
     name: str
     nextSteps: str
+    notebook: Notebook
     orgPolicies: _list[OrgPolicy]
     parent: str
     parentDisplayName: str
@@ -425,6 +471,15 @@ class Finding(typing_extensions.TypedDict, total=False):
 class Folder(typing_extensions.TypedDict, total=False):
     resourceFolder: str
     resourceFolderDisplayName: str
+
+@typing.type_check_only
+class GcpMetadata(typing_extensions.TypedDict, total=False):
+    folders: _list[GoogleCloudSecuritycenterV2Folder]
+    organization: str
+    parent: str
+    parentDisplayName: str
+    project: str
+    projectDisplayName: str
 
 @typing.type_check_only
 class Geolocation(typing_extensions.TypedDict, total=False):
@@ -532,13 +587,25 @@ class GoogleCloudSecuritycenterV1Property(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
+    awsMetadata: AwsMetadata
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     displayName: str
     folders: _list[Folder]
+    location: str
     name: str
+    organization: str
     parent: str
     parentDisplayName: str
     project: str
     projectDisplayName: str
+    resourcePath: ResourcePath
+    resourcePathString: str
+    service: str
     type: str
 
 @typing.type_check_only
@@ -551,6 +618,12 @@ class GoogleCloudSecuritycenterV1ResourceSelector(
 class GoogleCloudSecuritycenterV1ResourceValueConfig(
     typing_extensions.TypedDict, total=False
 ):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     createTime: str
     description: str
     name: str
@@ -698,9 +771,21 @@ class GoogleCloudSecuritycenterV2AccessReview(typing_extensions.TypedDict, total
     version: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2AdaptiveProtection(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Attack(typing_extensions.TypedDict, total=False):
+    classification: str
+    volumeBps: int
+    volumePps: int
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AttackExposure(
@@ -715,6 +800,30 @@ class GoogleCloudSecuritycenterV2AttackExposure(
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CALCULATED", "NOT_CALCULATED"
     ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AwsAccount(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AwsMetadata(typing_extensions.TypedDict, total=False):
+    account: GoogleCloudSecuritycenterV2AwsAccount
+    organization: GoogleCloudSecuritycenterV2AwsOrganization
+    organizationalUnits: _list[GoogleCloudSecuritycenterV2AwsOrganizationalUnit]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AwsOrganization(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AwsOrganizationalUnit(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2BackupDisasterRecovery(
@@ -755,6 +864,15 @@ class GoogleCloudSecuritycenterV2Binding(typing_extensions.TypedDict, total=Fals
 class GoogleCloudSecuritycenterV2BulkMuteFindingsResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2CloudArmor(typing_extensions.TypedDict, total=False):
+    adaptiveProtection: GoogleCloudSecuritycenterV2AdaptiveProtection
+    attack: GoogleCloudSecuritycenterV2Attack
+    duration: str
+    requests: GoogleCloudSecuritycenterV2Requests
+    securityPolicy: GoogleCloudSecuritycenterV2SecurityPolicy
+    threatVector: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2CloudDlpDataProfile(
@@ -949,6 +1067,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     backupDisasterRecovery: GoogleCloudSecuritycenterV2BackupDisasterRecovery
     canonicalName: str
     category: str
+    cloudArmor: GoogleCloudSecuritycenterV2CloudArmor
     cloudDlpDataProfile: GoogleCloudSecuritycenterV2CloudDlpDataProfile
     cloudDlpInspection: GoogleCloudSecuritycenterV2CloudDlpInspection
     compliances: _list[GoogleCloudSecuritycenterV2Compliance]
@@ -985,6 +1104,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     muteUpdateTime: str
     name: str
     nextSteps: str
+    notebook: GoogleCloudSecuritycenterV2Notebook
     orgPolicies: _list[GoogleCloudSecuritycenterV2OrgPolicy]
     parent: str
     parentDisplayName: str
@@ -998,6 +1118,11 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     vulnerability: GoogleCloudSecuritycenterV2Vulnerability
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Folder(typing_extensions.TypedDict, total=False):
+    resourceFolder: str
+    resourceFolderDisplayName: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Geolocation(typing_extensions.TypedDict, total=False):
@@ -1092,6 +1217,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
+            "PYTHON",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
             "APPLICATION_LAYER_PROTOCOL",
@@ -1172,6 +1298,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
+            "PYTHON",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
             "APPLICATION_LAYER_PROTOCOL",
@@ -1246,6 +1373,13 @@ class GoogleCloudSecuritycenterV2NodePool(typing_extensions.TypedDict, total=Fal
     nodes: _list[GoogleCloudSecuritycenterV2Node]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Notebook(typing_extensions.TypedDict, total=False):
+    lastAuthor: str
+    name: str
+    notebookUpdateTime: str
+    service: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2NotificationMessage(
     typing_extensions.TypedDict, total=False
 ):
@@ -1316,15 +1450,63 @@ class GoogleCloudSecuritycenterV2Reference(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Requests(typing_extensions.TypedDict, total=False):
+    longTermAllowed: int
+    longTermDenied: int
+    ratio: float
+    shortTermAllowed: int
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=False):
+    awsMetadata: GoogleCloudSecuritycenterV2AwsMetadata
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     displayName: str
+    gcpMetadata: GcpMetadata
+    location: str
     name: str
+    resourcePath: GoogleCloudSecuritycenterV2ResourcePath
+    resourcePathString: str
+    service: str
     type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourcePath(typing_extensions.TypedDict, total=False):
+    nodes: _list[GoogleCloudSecuritycenterV2ResourcePathNode]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2ResourcePathNode(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    id: str
+    nodeType: typing_extensions.Literal[
+        "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
+        "GCP_ORGANIZATION",
+        "GCP_FOLDER",
+        "GCP_PROJECT",
+        "AWS_ORGANIZATION",
+        "AWS_ORGANIZATIONAL_UNIT",
+        "AWS_ACCOUNT",
+        "AZURE_MANAGEMENT_GROUP",
+        "AZURE_SUBSCRIPTION",
+        "AZURE_RESOURCE_GROUP",
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ResourceValueConfig(
     typing_extensions.TypedDict, total=False
 ):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     createTime: str
     description: str
     name: str
@@ -1361,6 +1543,14 @@ class GoogleCloudSecuritycenterV2SecurityMarks(
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2SecurityPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    preview: bool
+    type: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2SecurityPosture(
@@ -1669,6 +1859,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
+            "PYTHON",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
             "APPLICATION_LAYER_PROTOCOL",
@@ -1749,6 +1940,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
+            "PYTHON",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
             "APPLICATION_LAYER_PROTOCOL",
@@ -1811,6 +2003,13 @@ class Node(typing_extensions.TypedDict, total=False):
 class NodePool(typing_extensions.TypedDict, total=False):
     name: str
     nodes: _list[Node]
+
+@typing.type_check_only
+class Notebook(typing_extensions.TypedDict, total=False):
+    lastAuthor: str
+    name: str
+    notebookUpdateTime: str
+    service: str
 
 @typing.type_check_only
 class NotificationConfig(typing_extensions.TypedDict, total=False):
@@ -1911,15 +2110,55 @@ class Reference(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class Requests(typing_extensions.TypedDict, total=False):
+    longTermAllowed: int
+    longTermDenied: int
+    ratio: float
+    shortTermAllowed: int
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
+    awsMetadata: AwsMetadata
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     displayName: str
     folders: _list[Folder]
+    location: str
     name: str
+    organization: str
     parentDisplayName: str
     parentName: str
     projectDisplayName: str
     projectName: str
+    resourcePath: ResourcePath
+    resourcePathString: str
+    service: str
     type: str
+
+@typing.type_check_only
+class ResourcePath(typing_extensions.TypedDict, total=False):
+    nodes: _list[ResourcePathNode]
+
+@typing.type_check_only
+class ResourcePathNode(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+    nodeType: typing_extensions.Literal[
+        "RESOURCE_PATH_NODE_TYPE_UNSPECIFIED",
+        "GCP_ORGANIZATION",
+        "GCP_FOLDER",
+        "GCP_PROJECT",
+        "AWS_ORGANIZATION",
+        "AWS_ORGANIZATIONAL_UNIT",
+        "AWS_ACCOUNT",
+        "AZURE_MANAGEMENT_GROUP",
+        "AZURE_SUBSCRIPTION",
+        "AZURE_RESOURCE_GROUP",
+    ]
 
 @typing.type_check_only
 class ResourceValueConfigMetadata(typing_extensions.TypedDict, total=False):
@@ -1957,6 +2196,12 @@ class SecurityMarks(typing_extensions.TypedDict, total=False):
     canonicalName: str
     marks: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class SecurityPolicy(typing_extensions.TypedDict, total=False):
+    name: str
+    preview: bool
+    type: str
 
 @typing.type_check_only
 class SecurityPosture(typing_extensions.TypedDict, total=False):
@@ -2015,6 +2260,12 @@ class SimulatedResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Simulation(typing_extensions.TypedDict, total=False):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     createTime: str
     name: str
     resourceValueConfigsMetadata: _list[ResourceValueConfigMetadata]
@@ -2095,6 +2346,22 @@ class Vulnerability(typing_extensions.TypedDict, total=False):
     fixedPackage: Package
     offendingPackage: Package
     securityBulletin: SecurityBulletin
+
+@typing.type_check_only
+class VulnerabilityCountBySeverity(typing_extensions.TypedDict, total=False):
+    severityToFindingCount: dict[str, typing.Any]
+
+@typing.type_check_only
+class VulnerabilitySnapshot(typing_extensions.TypedDict, total=False):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
+    findingCount: VulnerabilityCountBySeverity
+    name: str
+    snapshotTime: str
 
 @typing.type_check_only
 class YaraRuleSignature(typing_extensions.TypedDict, total=False):

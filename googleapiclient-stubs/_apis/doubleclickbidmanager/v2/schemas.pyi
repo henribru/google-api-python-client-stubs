@@ -5,12 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class ChannelGrouping(typing_extensions.TypedDict, total=False):
-    fallbackName: str
-    name: str
-    rules: _list[Rule]
-
-@typing.type_check_only
 class DataRange(typing_extensions.TypedDict, total=False):
     customEndDate: Date
     customStartDate: Date
@@ -43,14 +37,6 @@ class Date(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
-class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
-    eventFilters: _list[EventFilter]
-
-@typing.type_check_only
-class EventFilter(typing_extensions.TypedDict, total=False):
-    dimensionFilter: PathQueryOptionsFilter
-
-@typing.type_check_only
 class FilterPair(typing_extensions.TypedDict, total=False):
     type: str
     value: str
@@ -68,7 +54,6 @@ class ListReportsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Options(typing_extensions.TypedDict, total=False):
     includeOnlyTargetedUserLists: bool
-    pathQueryOptions: PathQueryOptions
 
 @typing.type_check_only
 class Parameters(typing_extensions.TypedDict, total=False):
@@ -87,29 +72,7 @@ class Parameters(typing_extensions.TypedDict, total=False):
         "YOUTUBE_PROGRAMMATIC_GUARANTEED",
         "REACH",
         "UNIQUE_REACH_AUDIENCE",
-        "FULL_PATH",
-        "PATH_ATTRIBUTION",
     ]
-
-@typing.type_check_only
-class PathFilter(typing_extensions.TypedDict, total=False):
-    eventFilters: _list[EventFilter]
-    pathMatchPosition: typing_extensions.Literal[
-        "PATH_MATCH_POSITION_UNSPECIFIED", "ANY", "FIRST", "LAST"
-    ]
-
-@typing.type_check_only
-class PathQueryOptions(typing_extensions.TypedDict, total=False):
-    channelGrouping: ChannelGrouping
-    pathFilters: _list[PathFilter]
-
-@typing.type_check_only
-class PathQueryOptionsFilter(typing_extensions.TypedDict, total=False):
-    filter: str
-    match: typing_extensions.Literal[
-        "UNKNOWN", "EXACT", "PARTIAL", "BEGINS_WITH", "WILDCARD_EXPRESSION"
-    ]
-    values: _list[str]
 
 @typing.type_check_only
 class Query(typing_extensions.TypedDict, total=False):
@@ -167,11 +130,6 @@ class ReportStatus(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "QUEUED", "RUNNING", "DONE", "FAILED"
     ]
-
-@typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
-    disjunctiveMatchStatements: _list[DisjunctiveMatchStatement]
-    name: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):

@@ -945,6 +945,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: ExportResourcesRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def exportHistory(
+                        self,
+                        *,
+                        name: str,
+                        body: ExportResourcesHistoryRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> FhirStoreHttpRequest: ...
@@ -963,6 +970,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: ImportResourcesRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def importHistory(
+                        self,
+                        *,
+                        name: str,
+                        body: ImportResourcesHistoryRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
                     def list(

@@ -401,6 +401,35 @@ class GoogleCloudRetailV2alphaBigQuerySource(typing_extensions.TypedDict, total=
     tableId: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaBranch(typing_extensions.TypedDict, total=False):
+    displayName: str
+    isDefault: bool
+    lastProductImportTime: str
+    name: str
+    productCountStats: _list[GoogleCloudRetailV2alphaBranchProductCountStatistic]
+    productCounts: dict[str, typing.Any]
+    qualityMetrics: _list[GoogleCloudRetailV2alphaBranchQualityMetric]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaBranchProductCountStatistic(
+    typing_extensions.TypedDict, total=False
+):
+    counts: dict[str, typing.Any]
+    scope: typing_extensions.Literal[
+        "PRODUCT_COUNT_SCOPE_UNSPECIFIED", "ALL_PRODUCTS", "LAST_24_HOUR_UPDATE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaBranchQualityMetric(
+    typing_extensions.TypedDict, total=False
+):
+    qualifiedProductCount: int
+    requirementKey: str
+    suggestedQualityPercentThreshold: float
+    unqualifiedProductCount: int
+    unqualifiedSampleProducts: _list[GoogleCloudRetailV2alphaProduct]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaCatalog(typing_extensions.TypedDict, total=False):
     displayName: str
     merchantCenterLinkingConfig: GoogleCloudRetailV2alphaMerchantCenterLinkingConfig
@@ -796,6 +825,12 @@ class GoogleCloudRetailV2alphaInterval(typing_extensions.TypedDict, total=False)
     exclusiveMinimum: float
     maximum: float
     minimum: float
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaListBranchesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    branches: _list[GoogleCloudRetailV2alphaBranch]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaListCatalogsResponse(
@@ -1556,6 +1591,7 @@ class GoogleCloudRetailV2alphaServingConfig(typing_extensions.TypedDict, total=F
     facetControlIds: _list[str]
     filterControlIds: _list[str]
     ignoreControlIds: _list[str]
+    ignoreRecsDenylist: bool
     modelId: str
     name: str
     onewaySynonymsControlIds: _list[str]

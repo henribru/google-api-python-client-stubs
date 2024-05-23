@@ -76,6 +76,8 @@ class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
+    databaseDeploymentDetails: DatabaseDeploymentDetails
+    databaseDetails: DatabaseDetails
     hidden: bool
     hideReason: str
     hideTime: str
@@ -84,12 +86,23 @@ class Asset(typing_extensions.TypedDict, total=False):
     name: str
     performanceData: AssetPerformanceData
     sources: _list[str]
+    title: str
     updateTime: str
     virtualMachineDetails: VirtualMachineDetails
 
 @typing.type_check_only
 class AssetFrame(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    collectionType: typing_extensions.Literal[
+        "SOURCE_TYPE_UNKNOWN",
+        "SOURCE_TYPE_UPLOAD",
+        "SOURCE_TYPE_GUEST_OS_SCAN",
+        "SOURCE_TYPE_INVENTORY_SCAN",
+        "SOURCE_TYPE_CUSTOM",
+        "SOURCE_TYPE_DISCOVERY_CLIENT",
+    ]
+    databaseDeploymentDetails: DatabaseDeploymentDetails
+    databaseDetails: DatabaseDetails
     labels: dict[str, typing.Any]
     performanceSamples: _list[PerformanceSample]
     reportTime: str
@@ -138,6 +151,97 @@ class BiosDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudDatabaseMigrationTarget(typing_extensions.TypedDict, total=False):
+    cloudSqlForMysqlShape: CloudSqlForMySqlShape
+    cloudSqlForPostgresqlShape: CloudSqlForPostgreSqlShape
+    cloudSqlShape: CloudSqlForSqlServerShape
+
+@typing.type_check_only
+class CloudSqlForMySqlShape(typing_extensions.TypedDict, total=False):
+    backupStorageGb: int
+    edition: typing_extensions.Literal[
+        "CLOUD_SQL_EDITION_UNSPECIFIED",
+        "CLOUD_SQL_EDITION_ENTERPRISE",
+        "CLOUD_SQL_EDITION_ENTERPRISE_PLUS",
+    ]
+    egressGbPerMonth: str
+    logicalCoreCount: int
+    memoryMb: int
+    storage: ComputeStorageDescriptor
+    version: typing_extensions.Literal[
+        "MY_SQL_VERSION_UNSPECIFIED",
+        "MY_SQL_VERSION_5_6",
+        "MY_SQL_VERSION_5_7",
+        "MY_SQL_VERSION_8_0",
+    ]
+    zoneAvailability: typing_extensions.Literal[
+        "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+        "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+        "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL",
+    ]
+
+@typing.type_check_only
+class CloudSqlForPostgreSqlShape(typing_extensions.TypedDict, total=False):
+    backupStorageGb: int
+    edition: typing_extensions.Literal[
+        "CLOUD_SQL_EDITION_UNSPECIFIED",
+        "CLOUD_SQL_EDITION_ENTERPRISE",
+        "CLOUD_SQL_EDITION_ENTERPRISE_PLUS",
+    ]
+    egressGbPerMonth: str
+    logicalCoreCount: int
+    memoryMb: int
+    storage: ComputeStorageDescriptor
+    version: typing_extensions.Literal[
+        "POSTGRESQL_VERSION_UNSPECIFIED",
+        "POSTGRESQL_VERSION_9_6",
+        "POSTGRESQL_VERSION_10",
+        "POSTGRESQL_VERSION_11",
+        "POSTGRESQL_VERSION_12",
+        "POSTGRESQL_VERSION_13",
+        "POSTGRESQL_VERSION_14",
+        "POSTGRESQL_VERSION_15",
+    ]
+    zoneAvailability: typing_extensions.Literal[
+        "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+        "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+        "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL",
+    ]
+
+@typing.type_check_only
+class CloudSqlForSqlServerShape(typing_extensions.TypedDict, total=False):
+    backupStorageGb: int
+    edition: typing_extensions.Literal[
+        "CLOUD_SQL_EDITION_UNSPECIFIED",
+        "CLOUD_SQL_EDITION_ENTERPRISE",
+        "CLOUD_SQL_EDITION_ENTERPRISE_PLUS",
+    ]
+    egressGbPerMonth: str
+    logicalCoreCount: int
+    memoryMb: int
+    storage: ComputeStorageDescriptor
+    version: typing_extensions.Literal[
+        "SQL_SERVER_VERSION_UNSPECIFIED",
+        "SQL_SERVER_VERSION_2017_EXPRESS",
+        "SQL_SERVER_VERSION_2017_WEB",
+        "SQL_SERVER_VERSION_2017_STANDARD",
+        "SQL_SERVER_VERSION_2017_ENTERPRISE",
+        "SQL_SERVER_VERSION_2019_EXPRESS",
+        "SQL_SERVER_VERSION_2019_WEB",
+        "SQL_SERVER_VERSION_2019_STANDARD",
+        "SQL_SERVER_VERSION_2019_ENTERPRISE",
+        "SQL_SERVER_VERSION_2022_EXPRESS",
+        "SQL_SERVER_VERSION_2022_WEB",
+        "SQL_SERVER_VERSION_2022_STANDARD",
+        "SQL_SERVER_VERSION_2022_ENTERPRISE",
+    ]
+    zoneAvailability: typing_extensions.Literal[
+        "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+        "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+        "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL",
+    ]
 
 @typing.type_check_only
 class ComputeEngineMigrationTarget(typing_extensions.TypedDict, total=False):
@@ -201,6 +305,8 @@ class DailyResourceUsageAggregationCPU(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class DailyResourceUsageAggregationDisk(typing_extensions.TypedDict, total=False):
     iops: DailyResourceUsageAggregationStats
+    readIops: DailyResourceUsageAggregationStats
+    writeIops: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
 class DailyResourceUsageAggregationMemory(typing_extensions.TypedDict, total=False):
@@ -217,6 +323,146 @@ class DailyResourceUsageAggregationStats(typing_extensions.TypedDict, total=Fals
     median: float
     ninteyFifthPercentile: float
     peak: float
+
+@typing.type_check_only
+class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
+    aggregatedStats: DatabaseDeploymentDetailsAggregatedStats
+    edition: str
+    generatedId: str
+    manualUniqueId: str
+    mysql: MysqlDatabaseDeployment
+    postgresql: PostgreSqlDatabaseDeployment
+    sqlServer: SqlServerDatabaseDeployment
+    topology: DatabaseDeploymentTopology
+    version: str
+
+@typing.type_check_only
+class DatabaseDeploymentDetailsAggregatedStats(
+    typing_extensions.TypedDict, total=False
+):
+    databaseCount: int
+
+@typing.type_check_only
+class DatabaseDeploymentTopology(typing_extensions.TypedDict, total=False):
+    coreCount: int
+    coreLimit: int
+    diskAllocatedBytes: str
+    diskUsedBytes: str
+    instances: _list[DatabaseInstance]
+    memoryBytes: str
+    memoryLimitBytes: str
+
+@typing.type_check_only
+class DatabaseDetails(typing_extensions.TypedDict, total=False):
+    allocatedStorageBytes: str
+    databaseName: str
+    parentDatabaseDeployment: DatabaseDetailsParentDatabaseDeployment
+    schemas: _list[DatabaseSchema]
+
+@typing.type_check_only
+class DatabaseDetailsParentDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    generatedId: str
+    manualUniqueId: str
+
+@typing.type_check_only
+class DatabaseInstance(typing_extensions.TypedDict, total=False):
+    instanceName: str
+    role: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "PRIMARY", "SECONDARY", "ARBITER"
+    ]
+
+@typing.type_check_only
+class DatabaseObjects(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED",
+        "TABLE",
+        "INDEX",
+        "CONSTRAINTS",
+        "VIEWS",
+        "SOURCE_CODE",
+        "OTHER",
+    ]
+    count: str
+
+@typing.type_check_only
+class DatabasePreferences(typing_extensions.TypedDict, total=False):
+    mssqlToCloudSqlForSqlServerPreferences: DatabasePreferencesCloudSqlSqlServer
+    mysqlToCloudSqlForMysqlPreferences: DatabasePreferencesCloudSqlMySql
+    postgresqlToCloudSqlForPostgresqlPreferences: DatabasePreferencesCloudSqlPostgreSql
+
+@typing.type_check_only
+class DatabasePreferencesCloudSqlCommon(typing_extensions.TypedDict, total=False):
+    backup: DatabasePreferencesCloudSqlCommonBackup
+    commitmentPlan: typing_extensions.Literal[
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "COMMITMENT_PLAN_NONE",
+        "COMMITMENT_PLAN_ONE_YEAR",
+        "COMMITMENT_PLAN_THREE_YEARS",
+    ]
+    edition: typing_extensions.Literal[
+        "CLOUD_SQL_EDITION_UNSPECIFIED",
+        "CLOUD_SQL_EDITION_ENTERPRISE",
+        "CLOUD_SQL_EDITION_ENTERPRISE_PLUS",
+    ]
+    persistentDiskType: typing_extensions.Literal[
+        "PERSISTENT_DISK_TYPE_UNSPECIFIED",
+        "PERSISTENT_DISK_TYPE_STANDARD",
+        "PERSISTENT_DISK_TYPE_BALANCED",
+        "PERSISTENT_DISK_TYPE_SSD",
+    ]
+    sizingOptimizationStrategy: typing_extensions.Literal[
+        "SIZING_OPTIMIZATION_STRATEGY_UNSPECIFIED",
+        "SIZING_OPTIMIZATION_STRATEGY_SAME_AS_SOURCE",
+        "SIZING_OPTIMIZATION_STRATEGY_MODERATE",
+        "SIZING_OPTIMIZATION_STRATEGY_AGGRESSIVE",
+        "SIZING_OPTIMIZATION_STRATEGY_CUSTOM",
+    ]
+    zoneAvailability: typing_extensions.Literal[
+        "CLOUD_SQL_ZONE_AVAILABILITY_UNSPECIFIED",
+        "CLOUD_SQL_ZONE_AVAILABILITY_ZONAL",
+        "CLOUD_SQL_ZONE_AVAILABILITY_REGIONAL",
+    ]
+
+@typing.type_check_only
+class DatabasePreferencesCloudSqlCommonBackup(typing_extensions.TypedDict, total=False):
+    backupMode: typing_extensions.Literal[
+        "BACKUP_MODE_UNSPECIFIED", "BACKUP_MODE_DISABLED", "BACKUP_MODE_ENABLED"
+    ]
+
+@typing.type_check_only
+class DatabasePreferencesCloudSqlMySql(typing_extensions.TypedDict, total=False):
+    common: DatabasePreferencesCloudSqlCommon
+
+@typing.type_check_only
+class DatabasePreferencesCloudSqlPostgreSql(typing_extensions.TypedDict, total=False):
+    common: DatabasePreferencesCloudSqlCommon
+
+@typing.type_check_only
+class DatabasePreferencesCloudSqlSqlServer(typing_extensions.TypedDict, total=False):
+    common: DatabasePreferencesCloudSqlCommon
+    multithreading: typing_extensions.Literal[
+        "MULTITHREADING_UNSPECIFIED",
+        "MULTITHREADING_DISABLED",
+        "MULTITHREADING_ENABLED",
+        "MULTITHREADING_AUTO_SELECT",
+    ]
+    versionType: typing_extensions.Literal[
+        "VERSION_TYPE_UNSPECIFIED",
+        "VERSION_TYPE_AUTO",
+        "VERSION_TYPE_EXPRESS",
+        "VERSION_TYPE_WEB",
+        "VERSION_TYPE_STANDARD",
+        "VERSION_TYPE_ENTERPRISE",
+    ]
+
+@typing.type_check_only
+class DatabaseSchema(typing_extensions.TypedDict, total=False):
+    mysql: MySqlSchemaDetails
+    objects: _list[DatabaseObjects]
+    postgresql: PostgreSqlSchemaDetails
+    schemaName: str
+    sqlServer: SqlServerSchemaDetails
+    tablesSizeBytes: str
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -240,6 +486,26 @@ class DateTime(typing_extensions.TypedDict, total=False):
 class DetectedSoftware(typing_extensions.TypedDict, total=False):
     softwareFamily: str
     softwareName: str
+
+@typing.type_check_only
+class DiscoveryClient(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    errors: _list[Status]
+    expireTime: str
+    heartbeatTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    serviceAccount: str
+    signalsEndpoint: str
+    source: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "OFFLINE", "DEGRADED", "EXPIRED"
+    ]
+    ttl: str
+    updateTime: str
+    version: str
 
 @typing.type_check_only
 class DiskEntry(typing_extensions.TypedDict, total=False):
@@ -274,6 +540,8 @@ class DiskPartitionList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiskUsageSample(typing_extensions.TypedDict, total=False):
     averageIops: float
+    averageReadIops: float
+    averageWriteIops: float
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -337,6 +605,7 @@ class GCSPayloadInfo(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
         "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
         "IMPORT_JOB_FORMAT_MANUAL_CSV",
+        "IMPORT_JOB_FORMAT_DATABASE_ZIP",
     ]
     path: str
 
@@ -422,6 +691,7 @@ class ImportDataFile(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
         "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
         "IMPORT_JOB_FORMAT_MANUAL_CSV",
+        "IMPORT_JOB_FORMAT_DATABASE_ZIP",
     ]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE"]
@@ -460,10 +730,32 @@ class ImportJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportRowError(typing_extensions.TypedDict, total=False):
+    archiveError: ImportRowErrorArchiveErrorDetails
+    assetTitle: str
+    csvError: ImportRowErrorCsvErrorDetails
     errors: _list[ImportError]
+    jsonError: ImportRowErrorJsonErrorDetails
     rowNumber: int
     vmName: str
     vmUuid: str
+    xlsxError: ImportRowErrorXlsxErrorDetails
+
+@typing.type_check_only
+class ImportRowErrorArchiveErrorDetails(typing_extensions.TypedDict, total=False):
+    csvError: ImportRowErrorCsvErrorDetails
+    filePath: str
+
+@typing.type_check_only
+class ImportRowErrorCsvErrorDetails(typing_extensions.TypedDict, total=False):
+    rowNumber: int
+
+@typing.type_check_only
+class ImportRowErrorJsonErrorDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ImportRowErrorXlsxErrorDetails(typing_extensions.TypedDict, total=False):
+    rowNumber: int
+    sheet: str
 
 @typing.type_check_only
 class InlinePayloadInfo(typing_extensions.TypedDict, total=False):
@@ -475,6 +767,7 @@ class InlinePayloadInfo(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
         "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
         "IMPORT_JOB_FORMAT_MANUAL_CSV",
+        "IMPORT_JOB_FORMAT_DATABASE_ZIP",
     ]
     payload: _list[PayloadFile]
 
@@ -490,8 +783,31 @@ class InsightList(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Issue(typing_extensions.TypedDict, total=False):
+    compatibilityIssue: IssueCompatibilityIssue
+    description: str
+    issueCode: str
+
+@typing.type_check_only
+class IssueCompatibilityIssue(typing_extensions.TypedDict, total=False):
+    associatedObject: str
+    associatedObjectType: typing_extensions.Literal[
+        "OBJECT_TYPE_UNSPECIFIED", "DATABASE_DEPLOYMENT", "DATABASE", "SCHEMA"
+    ]
+    associatedValue: str
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED", "DATABASE_FLAG", "DATABASE_FEATURE"
+    ]
+
+@typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[Asset]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDiscoveryClientsResponse(typing_extensions.TypedDict, total=False):
+    discoveryClients: _list[DiscoveryClient]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -575,10 +891,12 @@ class MemoryUsageSample(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MigrationInsight(typing_extensions.TypedDict, total=False):
+    cloudDatabaseTarget: CloudDatabaseMigrationTarget
     computeEngineSoleTenantTarget: ComputeEngineSoleTenantMigrationTarget
     computeEngineTarget: ComputeEngineMigrationTarget
     fit: FitDescriptor
     gkeTarget: GoogleKubernetesEngineMigrationTarget
+    issues: _list[Issue]
     vmwareEngineTarget: VmwareEngineMigrationTarget
 
 @typing.type_check_only
@@ -586,6 +904,54 @@ class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class MySqlPlugin(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    plugin: str
+    version: str
+
+@typing.type_check_only
+class MySqlProperty(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    numericValue: str
+    property: str
+
+@typing.type_check_only
+class MySqlSchemaDetails(typing_extensions.TypedDict, total=False):
+    storageEngines: _list[MySqlStorageEngineDetails]
+
+@typing.type_check_only
+class MySqlStorageEngineDetails(typing_extensions.TypedDict, total=False):
+    encryptedTableCount: int
+    engine: typing_extensions.Literal[
+        "ENGINE_UNSPECIFIED",
+        "INNODB",
+        "MYISAM",
+        "MEMORY",
+        "CSV",
+        "ARCHIVE",
+        "BLACKHOLE",
+        "NDB",
+        "MERGE",
+        "FEDERATED",
+        "EXAMPLE",
+        "OTHER",
+    ]
+    tableCount: int
+
+@typing.type_check_only
+class MySqlVariable(typing_extensions.TypedDict, total=False):
+    category: str
+    value: str
+    variable: str
+
+@typing.type_check_only
+class MysqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    plugins: _list[MySqlPlugin]
+    properties: _list[MySqlProperty]
+    resourceGroupsCount: int
+    variables: _list[MySqlVariable]
 
 @typing.type_check_only
 class NetworkAdapterDetails(typing_extensions.TypedDict, total=False):
@@ -697,11 +1063,44 @@ class PlatformDetails(typing_extensions.TypedDict, total=False):
     vmwareDetails: VmwarePlatformDetails
 
 @typing.type_check_only
+class PostgreSqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    properties: _list[PostgreSqlProperty]
+    settings: _list[PostgreSqlSetting]
+
+@typing.type_check_only
+class PostgreSqlExtension(typing_extensions.TypedDict, total=False):
+    extension: str
+    version: str
+
+@typing.type_check_only
+class PostgreSqlProperty(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    numericValue: str
+    property: str
+
+@typing.type_check_only
+class PostgreSqlSchemaDetails(typing_extensions.TypedDict, total=False):
+    foreignTablesCount: int
+    postgresqlExtensions: _list[PostgreSqlExtension]
+
+@typing.type_check_only
+class PostgreSqlSetting(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    intValue: str
+    realValue: float
+    setting: str
+    source: str
+    stringValue: str
+    unit: str
+
+@typing.type_check_only
 class PreferenceSet(typing_extensions.TypedDict, total=False):
     createTime: str
+    databasePreferences: DatabasePreferences
     description: str
     displayName: str
     name: str
+    regionPreferences: RegionPreferences
     updateTime: str
     virtualMachinePreferences: VirtualMachinePreferences
 
@@ -750,12 +1149,15 @@ class ReportConfigGroupPreferenceSetAssignment(
 @typing.type_check_only
 class ReportSummary(typing_extensions.TypedDict, total=False):
     allAssetsStats: ReportSummaryAssetAggregateStats
+    databaseStats: ReportSummaryAssetAggregateStats
     groupFindings: _list[ReportSummaryGroupFinding]
+    virtualMachineStats: ReportSummaryAssetAggregateStats
 
 @typing.type_check_only
 class ReportSummaryAssetAggregateStats(typing_extensions.TypedDict, total=False):
     assetAge: ReportSummaryChartData
     coreCountHistogram: ReportSummaryHistogramChartData
+    databaseTypes: ReportSummaryChartData
     memoryBytesHistogram: ReportSummaryHistogramChartData
     memoryUtilization: ReportSummaryChartData
     memoryUtilizationChart: ReportSummaryUtilizationChartData
@@ -778,25 +1180,41 @@ class ReportSummaryChartDataDataPoint(typing_extensions.TypedDict, total=False):
     value: float
 
 @typing.type_check_only
+class ReportSummaryDatabaseFinding(typing_extensions.TypedDict, total=False):
+    allocatedAssetCount: str
+    totalAssets: str
+
+@typing.type_check_only
 class ReportSummaryGroupFinding(typing_extensions.TypedDict, total=False):
     assetAggregateStats: ReportSummaryAssetAggregateStats
+    assetType: typing_extensions.Literal[
+        "ASSET_TYPE_UNSPECIFIED", "VIRTUAL_MACHINE", "DATABASE"
+    ]
+    databaseType: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED", "SQL_SERVER", "MYSQL", "POSTGRES"
+    ]
     description: str
     displayName: str
+    group: str
     overlappingAssetCount: str
     preferenceSetFindings: _list[ReportSummaryGroupPreferenceSetFinding]
 
 @typing.type_check_only
 class ReportSummaryGroupPreferenceSetFinding(typing_extensions.TypedDict, total=False):
+    databaseFinding: ReportSummaryDatabaseFinding
     description: str
     displayName: str
     machineFinding: ReportSummaryMachineFinding
     machinePreferences: VirtualMachinePreferences
     monthlyCostCompute: Money
+    monthlyCostDatabaseBackup: Money
+    monthlyCostDatabaseLicensing: Money
     monthlyCostNetworkEgress: Money
     monthlyCostOsLicense: Money
     monthlyCostOther: Money
     monthlyCostStorage: Money
     monthlyCostTotal: Money
+    preferenceSet: PreferenceSet
     preferredRegion: str
     pricingTrack: str
     soleTenantFinding: ReportSummarySoleTenantFinding
@@ -907,6 +1325,11 @@ class Selinux(typing_extensions.TypedDict, total=False):
     mode: str
 
 @typing.type_check_only
+class SendDiscoveryClientHeartbeatRequest(typing_extensions.TypedDict, total=False):
+    errors: _list[Status]
+    version: str
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     disableCloudLogging: bool
     name: str
@@ -956,8 +1379,34 @@ class Source(typing_extensions.TypedDict, total=False):
         "SOURCE_TYPE_GUEST_OS_SCAN",
         "SOURCE_TYPE_INVENTORY_SCAN",
         "SOURCE_TYPE_CUSTOM",
+        "SOURCE_TYPE_DISCOVERY_CLIENT",
     ]
     updateTime: str
+
+@typing.type_check_only
+class SqlServerDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    features: _list[SqlServerFeature]
+    serverFlags: _list[SqlServerServerFlag]
+    traceFlags: _list[SqlServerTraceFlag]
+
+@typing.type_check_only
+class SqlServerFeature(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    featureName: str
+
+@typing.type_check_only
+class SqlServerSchemaDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SqlServerServerFlag(typing_extensions.TypedDict, total=False):
+    serverFlagName: str
+    value: str
+    valueInUse: str
+
+@typing.type_check_only
+class SqlServerTraceFlag(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "OFF", "GLOBAL", "SESSION"]
+    traceFlagName: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

@@ -82,6 +82,9 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> BackupHttpRequest: ...
+                    def getBackupIndexDownloadUrl(
+                        self, *, backup: str, **kwargs: typing.Any
+                    ) -> GetBackupIndexDownloadUrlResponseHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -454,6 +457,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class GetBackupIndexDownloadUrlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetBackupIndexDownloadUrlResponse: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

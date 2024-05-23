@@ -19,10 +19,12 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     createTime: str
     customerDomainPrefix: str
     displayName: str
+    early: Early
     instanceConfig: InstanceConfig
     kmsKey: str
     labels: dict[str, typing.Any]
     name: str
+    normal: Normal
     privateComponents: _list[str]
     samlParams: SAMLParams
     state: typing_extensions.Literal[
@@ -44,6 +46,9 @@ class ContactCenterQuota(typing_extensions.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
     quotas: _list[Quota]
+
+@typing.type_check_only
+class Early(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -69,6 +74,12 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
         "STANDARD_2XLARGE",
         "STANDARD_3XLARGE",
         "DEV_XSMALL",
+        "MULTIREGION_SMALL",
+        "MULTIREGION_MEDIUM",
+        "MULTIREGION_LARGE",
+        "MULTIREGION_XLARGE",
+        "MULTIREGION_2XLARGE",
+        "MULTIREGION_3XLARGE",
     ]
 
 @typing.type_check_only
@@ -94,6 +105,9 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class Normal(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -127,6 +141,12 @@ class Quota(typing_extensions.TypedDict, total=False):
         "STANDARD_2XLARGE",
         "STANDARD_3XLARGE",
         "DEV_XSMALL",
+        "MULTIREGION_SMALL",
+        "MULTIREGION_MEDIUM",
+        "MULTIREGION_LARGE",
+        "MULTIREGION_XLARGE",
+        "MULTIREGION_2XLARGE",
+        "MULTIREGION_3XLARGE",
     ]
 
 @typing.type_check_only

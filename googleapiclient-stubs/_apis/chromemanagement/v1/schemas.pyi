@@ -181,6 +181,22 @@ class GoogleChromeManagementV1CountChromeBrowsersNeedingAttentionResponse(
     recentlyEnrolledCount: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1CountChromeCrashEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    crashEventCounts: _list[
+        GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1CountChromeCrashEventsResponseCrashEventCount(
+    typing_extensions.TypedDict, total=False
+):
+    browserVersion: str
+    count: str
+    date: GoogleTypeDate
+
+@typing.type_check_only
 class GoogleChromeManagementV1CountChromeDevicesReachingAutoExpirationDateResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -305,6 +321,13 @@ class GoogleChromeManagementV1DeviceHardwareCountReport(
     count: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1DeviceRequestingExtensionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    deviceName: str
+    justification: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1DiskInfo(typing_extensions.TypedDict, total=False):
     bytesReadThisSession: str
     bytesWrittenThisSession: str
@@ -346,6 +369,22 @@ class GoogleChromeManagementV1EnumeratePrintJobsResponse(
     nextPageToken: str
     printJobs: _list[GoogleChromeManagementV1PrintJob]
     totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1FetchDevicesRequestingExtensionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    deviceDetails: _list[GoogleChromeManagementV1DeviceRequestingExtensionDetails]
+    nextPageToken: str
+    totalSize: int
+
+@typing.type_check_only
+class GoogleChromeManagementV1FetchUsersRequestingExtensionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    totalSize: int
+    userDetails: _list[GoogleChromeManagementV1UserRequestingExtensionDetails]
 
 @typing.type_check_only
 class GoogleChromeManagementV1FindInstalledAppDevicesResponse(
@@ -625,6 +664,153 @@ class GoogleChromeManagementV1StorageStatusReport(
     reportTime: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1TelemetryAppInstallEvent(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    appInstallReason: typing_extensions.Literal[
+        "APPLICATION_INSTALL_REASON_UNSPECIFIED",
+        "APPLICATION_INSTALL_REASON_SYSTEM",
+        "APPLICATION_INSTALL_REASON_POLICY",
+        "APPLICATION_INSTALL_REASON_OEM",
+        "APPLICATION_INSTALL_REASON_DEFAULT",
+        "APPLICATION_INSTALL_REASON_SYNC",
+        "APPLICATION_INSTALL_REASON_USER",
+        "APPLICATION_INSTALL_REASON_SUB_APP",
+        "APPLICATION_INSTALL_REASON_KIOSK",
+        "APPLICATION_INSTALL_REASON_COMMAND_LINE",
+    ]
+    appInstallSource: typing_extensions.Literal[
+        "APPLICATION_INSTALL_SOURCE_UNSPECIFIED",
+        "APPLICATION_INSTALL_SOURCE_SYSTEM",
+        "APPLICATION_INSTALL_SOURCE_SYNC",
+        "APPLICATION_INSTALL_SOURCE_PLAY_STORE",
+        "APPLICATION_INSTALL_SOURCE_CHROME_WEB_STORE",
+        "APPLICATION_INSTALL_SOURCE_BROWSER",
+    ]
+    appInstallTime: typing_extensions.Literal[
+        "APPLICATION_INSTALL_TIME_UNSPECIFIED",
+        "APPLICATION_INSTALL_TIME_INIT",
+        "APPLICATION_INSTALL_TIME_RUNNING",
+    ]
+    appType: typing_extensions.Literal[
+        "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+        "APPLICATION_TYPE_ARC",
+        "APPLICATION_TYPE_BUILT_IN",
+        "APPLICATION_TYPE_CROSTINI",
+        "APPLICATION_TYPE_CHROME_APP",
+        "APPLICATION_TYPE_WEB",
+        "APPLICATION_TYPE_MAC_OS",
+        "APPLICATION_TYPE_PLUGIN_VM",
+        "APPLICATION_TYPE_STANDALONE_BROWSER",
+        "APPLICATION_TYPE_REMOTE",
+        "APPLICATION_TYPE_BOREALIS",
+        "APPLICATION_TYPE_SYSTEM_WEB",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+        "APPLICATION_TYPE_EXTENSION",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+        "APPLICATION_TYPE_BRUSCHETTA",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryAppLaunchEvent(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    appLaunchSource: typing_extensions.Literal[
+        "APPLICATION_LAUNCH_SOURCE_UNSPECIFIED",
+        "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID",
+        "APPLICATION_LAUNCH_SOURCE_APP_LIST_GRID_CONTEXT_MENU",
+        "APPLICATION_LAUNCH_SOURCE_APP_LIST_QUERY",
+        "APPLICATION_LAUNCH_SOURCE_APP_LIST_QUERY_CONTEXT_MENU",
+        "APPLICATION_LAUNCH_SOURCE_APP_LIST_RECOMMENDATION",
+        "APPLICATION_LAUNCH_SOURCE_PARENTAL_CONTROLS",
+        "APPLICATION_LAUNCH_SOURCE_SHELF",
+        "APPLICATION_LAUNCH_SOURCE_FILE_MANAGER",
+        "APPLICATION_LAUNCH_SOURCE_LINK",
+        "APPLICATION_LAUNCH_SOURCE_OMNIBOX",
+        "APPLICATION_LAUNCH_SOURCE_CHROME_INTERNAL",
+        "APPLICATION_LAUNCH_SOURCE_KEYBOARD",
+        "APPLICATION_LAUNCH_SOURCE_OTHER_APP",
+        "APPLICATION_LAUNCH_SOURCE_MENU",
+        "APPLICATION_LAUNCH_SOURCE_INSTALLED_NOTIFICATION",
+        "APPLICATION_LAUNCH_SOURCE_TEST",
+        "APPLICATION_LAUNCH_SOURCE_ARC",
+        "APPLICATION_LAUNCH_SOURCE_SHARESHEET",
+        "APPLICATION_LAUNCH_SOURCE_RELEASE_NOTES_NOTIFICATION",
+        "APPLICATION_LAUNCH_SOURCE_FULL_RESTORE",
+        "APPLICATION_LAUNCH_SOURCE_SMART_TEXT_CONTEXT_MENU",
+        "APPLICATION_LAUNCH_SOURCE_DISCOVER_TAB_NOTIFICATION",
+        "APPLICATION_LAUNCH_SOURCE_MANAGEMENT_API",
+        "APPLICATION_LAUNCH_SOURCE_KIOSK",
+        "APPLICATION_LAUNCH_SOURCE_COMMAND_LINE",
+        "APPLICATION_LAUNCH_SOURCE_BACKGROUND_MODE",
+        "APPLICATION_LAUNCH_SOURCE_NEW_TAB_PAGE",
+        "APPLICATION_LAUNCH_SOURCE_INTENT_URL",
+        "APPLICATION_LAUNCH_SOURCE_OS_LOGIN",
+        "APPLICATION_LAUNCH_SOURCE_PROTOCOL_HANDLER",
+        "APPLICATION_LAUNCH_SOURCE_URL_HANDLER",
+        "APPLICATION_LAUNCH_SOURCE_LOCK_SCREEN",
+        "APPLICATION_LAUNCH_SOURCE_APP_HOME_PAGE",
+        "APPLICATION_LAUNCH_SOURCE_REPARENTING",
+        "APPLICATION_LAUNCH_SOURCE_PROFILE_MENU",
+        "APPLICATION_LAUNCH_SOURCE_SYSTEM_TRAY_CALENDAR",
+        "APPLICATION_LAUNCH_SOURCE_INSTALLER",
+        "APPLICATION_LAUNCH_SOURCE_FIRST_RUN",
+        "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
+        "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE",
+    ]
+    appType: typing_extensions.Literal[
+        "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+        "APPLICATION_TYPE_ARC",
+        "APPLICATION_TYPE_BUILT_IN",
+        "APPLICATION_TYPE_CROSTINI",
+        "APPLICATION_TYPE_CHROME_APP",
+        "APPLICATION_TYPE_WEB",
+        "APPLICATION_TYPE_MAC_OS",
+        "APPLICATION_TYPE_PLUGIN_VM",
+        "APPLICATION_TYPE_STANDALONE_BROWSER",
+        "APPLICATION_TYPE_REMOTE",
+        "APPLICATION_TYPE_BOREALIS",
+        "APPLICATION_TYPE_SYSTEM_WEB",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+        "APPLICATION_TYPE_EXTENSION",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+        "APPLICATION_TYPE_BRUSCHETTA",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryAppUninstallEvent(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    appType: typing_extensions.Literal[
+        "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+        "APPLICATION_TYPE_ARC",
+        "APPLICATION_TYPE_BUILT_IN",
+        "APPLICATION_TYPE_CROSTINI",
+        "APPLICATION_TYPE_CHROME_APP",
+        "APPLICATION_TYPE_WEB",
+        "APPLICATION_TYPE_MAC_OS",
+        "APPLICATION_TYPE_PLUGIN_VM",
+        "APPLICATION_TYPE_STANDALONE_BROWSER",
+        "APPLICATION_TYPE_REMOTE",
+        "APPLICATION_TYPE_BOREALIS",
+        "APPLICATION_TYPE_SYSTEM_WEB",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+        "APPLICATION_TYPE_EXTENSION",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+        "APPLICATION_TYPE_BRUSCHETTA",
+    ]
+    appUninstallSource: typing_extensions.Literal[
+        "APPLICATION_UNINSTALL_SOURCE_UNSPECIFIED",
+        "APPLICATION_UNINSTALL_SOURCE_APP_LIST",
+        "APPLICATION_UNINSTALL_SOURCE_APP_MANAGEMENT",
+        "APPLICATION_UNINSTALL_SOURCE_SHELF",
+        "APPLICATION_UNINSTALL_SOURCE_MIGRATION",
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -668,6 +854,9 @@ class GoogleChromeManagementV1TelemetryDeviceInfo(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=False):
+    appInstallEvent: GoogleChromeManagementV1TelemetryAppInstallEvent
+    appLaunchEvent: GoogleChromeManagementV1TelemetryAppLaunchEvent
+    appUninstallEvent: GoogleChromeManagementV1TelemetryAppUninstallEvent
     audioSevereUnderrunEvent: GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent
     device: GoogleChromeManagementV1TelemetryDeviceInfo
     eventType: typing_extensions.Literal[
@@ -680,6 +869,9 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
         "WIFI_SIGNAL_STRENGTH_LOW",
         "WIFI_SIGNAL_STRENGTH_RECOVERED",
         "VPN_CONNECTION_STATE_CHANGE",
+        "APP_INSTALLED",
+        "APP_UNINSTALLED",
+        "APP_LAUNCHED",
     ]
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
@@ -709,6 +901,9 @@ class GoogleChromeManagementV1TelemetryEventNotificationFilter(
             "WIFI_SIGNAL_STRENGTH_LOW",
             "WIFI_SIGNAL_STRENGTH_RECOVERED",
             "VPN_CONNECTION_STATE_CHANGE",
+            "APP_INSTALLED",
+            "APP_UNINSTALLED",
+            "APP_LAUNCHED",
         ]
     ]
 
@@ -860,6 +1055,13 @@ class GoogleChromeManagementV1UserPrintReport(typing_extensions.TypedDict, total
     printerCount: str
     userEmail: str
     userId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1UserRequestingExtensionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    email: str
+    justification: str
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

@@ -36,8 +36,11 @@ class AuctionPackage(typing_extensions.TypedDict, total=False):
     creator: str
     description: str
     displayName: str
+    eligibleSeatIds: _list[str]
     name: str
+    subscribedBuyers: _list[str]
     subscribedClients: _list[str]
+    subscribedMediaPlanners: _list[MediaPlanner]
     updateTime: str
 
 @typing.type_check_only
@@ -296,12 +299,14 @@ class ListPublisherProfilesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MarketplaceTargeting(typing_extensions.TypedDict, total=False):
     daypartTargeting: DayPartTargeting
+    excludedSensitiveCategoryIds: _list[str]
     geoTargeting: CriteriaTargeting
     inventorySizeTargeting: InventorySizeTargeting
     inventoryTypeTargeting: InventoryTypeTargeting
     placementTargeting: PlacementTargeting
     technologyTargeting: TechnologyTargeting
     userListTargeting: CriteriaTargeting
+    verticalTargeting: CriteriaTargeting
     videoTargeting: VideoTargeting
 
 @typing.type_check_only

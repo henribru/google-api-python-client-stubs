@@ -330,6 +330,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     defaultTableExpirationMs: str
     description: str
     etag: str
+    externalCatalogDatasetOptions: ExternalCatalogDatasetOptions
     externalDatasetReference: ExternalDatasetReference
     friendlyName: str
     id: str
@@ -341,6 +342,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     linkedDatasetSource: LinkedDatasetSource
     location: str
     maxTimeTravelHours: str
+    restrictions: RestrictionConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
@@ -376,6 +378,17 @@ class DestinationTableProperties(typing_extensions.TypedDict, total=False):
     expirationTime: str
     friendlyName: str
     labels: dict[str, typing.Any]
+
+@typing.type_check_only
+class DifferentialPrivacyPolicy(typing_extensions.TypedDict, total=False):
+    deltaBudget: float
+    deltaBudgetRemaining: float
+    deltaPerQuery: float
+    epsilonBudget: float
+    epsilonBudgetRemaining: float
+    maxEpsilonPerQuery: float
+    maxGroupsContributed: str
+    privacyUnitColumn: str
 
 @typing.type_check_only
 class DimensionalityReductionMetrics(typing_extensions.TypedDict, total=False):
@@ -486,6 +499,17 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExternalCatalogDatasetOptions(typing_extensions.TypedDict, total=False):
+    defaultStorageLocationUri: str
+    parameters: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExternalCatalogTableOptions(typing_extensions.TypedDict, total=False):
+    connectionId: str
+    parameters: dict[str, typing.Any]
+    storageDescriptor: StorageDescriptor
+
+@typing.type_check_only
 class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     autodetect: bool
     avroOptions: AvroOptions
@@ -538,6 +562,10 @@ class FeatureValue(typing_extensions.TypedDict, total=False):
     categoricalValue: CategoricalValue
     featureColumn: str
     numericalValue: float
+
+@typing.type_check_only
+class ForeignTypeInfo(typing_extensions.TypedDict, total=False):
+    typeSystem: typing_extensions.Literal["TYPE_SYSTEM_UNSPECIFIED", "HIVE"]
 
 @typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -952,6 +980,17 @@ class JobStatus(typing_extensions.TypedDict, total=False):
     state: str
 
 @typing.type_check_only
+class JoinRestrictionPolicy(typing_extensions.TypedDict, total=False):
+    joinAllowedColumns: _list[str]
+    joinCondition: typing_extensions.Literal[
+        "JOIN_CONDITION_UNSPECIFIED",
+        "JOIN_ANY",
+        "JOIN_ALL",
+        "JOIN_NOT_REQUIRED",
+        "JOIN_BLOCKED",
+    ]
+
+@typing.type_check_only
 class JsonObject(dict[str, typing.Any]): ...
 
 @typing.type_check_only
@@ -1069,6 +1108,7 @@ class MlStatistics(typing_extensions.TypedDict, total=False):
         "RANDOM_FOREST_CLASSIFIER",
         "TENSORFLOW_LITE",
         "ONNX",
+        "TRANSFORM_ONLY",
     ]
     trainingType: typing_extensions.Literal[
         "TRAINING_TYPE_UNSPECIFIED", "SINGLE_TRAINING", "HPARAM_TUNING"
@@ -1117,6 +1157,7 @@ class Model(typing_extensions.TypedDict, total=False):
         "RANDOM_FOREST_CLASSIFIER",
         "TENSORFLOW_LITE",
         "ONNX",
+        "TRANSFORM_ONLY",
     ]
     optimalTrialIds: _list[str]
     remoteModelInfo: RemoteModelInfo
@@ -1147,6 +1188,13 @@ class MultiClassClassificationMetrics(typing_extensions.TypedDict, total=False):
 class ParquetOptions(typing_extensions.TypedDict, total=False):
     enableListInference: bool
     enumAsString: bool
+    mapTargetType: typing_extensions.Literal[
+        "MAP_TARGET_TYPE_UNSPECIFIED", "ARRAY_OF_STRUCT"
+    ]
+
+@typing.type_check_only
+class PartitionSkew(typing_extensions.TypedDict, total=False):
+    skewSources: _list[SkewSource]
 
 @typing.type_check_only
 class PartitionedColumn(typing_extensions.TypedDict, total=False):
@@ -1179,6 +1227,8 @@ class PrincipalComponentInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrivacyPolicy(typing_extensions.TypedDict, total=False):
     aggregationThresholdPolicy: AggregationThresholdPolicy
+    differentialPrivacyPolicy: DifferentialPrivacyPolicy
+    joinRestrictionPolicy: JoinRestrictionPolicy
 
 @typing.type_check_only
 class ProjectList(typing_extensions.TypedDict, total=False):
@@ -1318,6 +1368,12 @@ class RemoteModelInfo(typing_extensions.TypedDict, total=False):
     speechRecognizer: str
 
 @typing.type_check_only
+class RestrictionConfig(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "RESTRICTION_TYPE_UNSPECIFIED", "RESTRICTED_DATA_EGRESS"
+    ]
+
+@typing.type_check_only
 class Routine(typing_extensions.TypedDict, total=False):
     arguments: _list[Argument]
     creationTime: str
@@ -1414,6 +1470,12 @@ class SearchStatistics(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SerDeInfo(typing_extensions.TypedDict, total=False):
+    name: str
+    parameters: dict[str, typing.Any]
+    serializationLibrary: str
+
+@typing.type_check_only
 class SessionInfo(typing_extensions.TypedDict, total=False):
     sessionId: str
 
@@ -1421,6 +1483,10 @@ class SessionInfo(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class SkewSource(typing_extensions.TypedDict, total=False):
+    stageId: str
 
 @typing.type_check_only
 class SnapshotDefinition(typing_extensions.TypedDict, total=False):
@@ -1464,6 +1530,7 @@ class StagePerformanceStandaloneInsight(typing_extensions.TypedDict, total=False
     biEngineReasons: _list[BiEngineReason]
     highCardinalityJoins: _list[HighCardinalityJoin]
     insufficientShuffleQuota: bool
+    partitionSkew: PartitionSkew
     slotContention: bool
     stageId: str
 
@@ -1507,6 +1574,13 @@ class StandardSqlTableType(typing_extensions.TypedDict, total=False):
     columns: _list[StandardSqlField]
 
 @typing.type_check_only
+class StorageDescriptor(typing_extensions.TypedDict, total=False):
+    inputFormat: str
+    locationUri: str
+    outputFormat: str
+    serdeInfo: SerDeInfo
+
+@typing.type_check_only
 class Streamingbuffer(typing_extensions.TypedDict, total=False):
     estimatedBytes: str
     estimatedRows: str
@@ -1535,6 +1609,7 @@ class Table(typing_extensions.TypedDict, total=False):
     encryptionConfiguration: EncryptionConfiguration
     etag: str
     expirationTime: str
+    externalCatalogTableOptions: ExternalCatalogTableOptions
     externalDataConfiguration: ExternalDataConfiguration
     friendlyName: str
     id: str
@@ -1563,6 +1638,7 @@ class Table(typing_extensions.TypedDict, total=False):
     replicas: _list[TableReference]
     requirePartitionFilter: bool
     resourceTags: dict[str, typing.Any]
+    restrictions: RestrictionConfig
     schema: TableSchema
     selfLink: str
     snapshotDefinition: SnapshotDefinition
@@ -1612,6 +1688,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
     defaultValueExpression: str
     description: str
     fields: _list[TableFieldSchema]
+    foreignTypeDefinition: str
     maxLength: str
     mode: str
     name: str
@@ -1671,6 +1748,7 @@ class TableRow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableSchema(typing_extensions.TypedDict, total=False):
     fields: _list[TableFieldSchema]
+    foreignTypeInfo: ForeignTypeInfo
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

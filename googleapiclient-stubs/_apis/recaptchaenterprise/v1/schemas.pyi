@@ -133,6 +133,9 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
     expectedAction: str
     express: bool
     firewallPolicyEvaluation: bool
+    fraudPrevention: typing_extensions.Literal[
+        "FRAUD_PREVENTION_UNSPECIFIED", "ENABLED", "DISABLED"
+    ]
     hashedAccountId: str
     headers: _list[str]
     ja3: str

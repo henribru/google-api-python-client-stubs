@@ -397,6 +397,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "PROVISIONING",
         "LOST",
         "PREPARING_FOR_MIGRATION",
+        "DEACTIVATED_BY_DEVICE_FINANCE",
     ]
     commonCriteriaModeInfo: CommonCriteriaModeInfo
     deviceSettings: DeviceSettings
@@ -436,6 +437,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "PROVISIONING",
         "LOST",
         "PREPARING_FOR_MIGRATION",
+        "DEACTIVATED_BY_DEVICE_FINANCE",
     ]
     systemProperties: dict[str, typing.Any]
     user: User
@@ -464,6 +466,7 @@ class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
     wifiDirectSettings: typing_extensions.Literal[
         "WIFI_DIRECT_SETTINGS_UNSPECIFIED", "ALLOW_WIFI_DIRECT", "DISALLOW_WIFI_DIRECT"
     ]
+    wifiSsidPolicy: WifiSsidPolicy
 
 @typing.type_check_only
 class DeviceRadioState(typing_extensions.TypedDict, total=False):
@@ -482,6 +485,7 @@ class DeviceRadioState(typing_extensions.TypedDict, total=False):
         "OPEN_NETWORK_SECURITY",
         "PERSONAL_NETWORK_SECURITY",
         "ENTERPRISE_NETWORK_SECURITY",
+        "ENTERPRISE_BIT192_NETWORK_SECURITY",
     ]
     ultraWidebandState: typing_extensions.Literal[
         "ULTRA_WIDEBAND_STATE_UNSPECIFIED",
@@ -1258,14 +1262,17 @@ class ProvisioningInfo(typing_extensions.TypedDict, total=False):
     apiLevel: int
     brand: str
     enterprise: str
+    imei: str
     managementMode: typing_extensions.Literal[
         "MANAGEMENT_MODE_UNSPECIFIED", "DEVICE_OWNER", "PROFILE_OWNER"
     ]
+    meid: str
     model: str
     name: str
     ownership: typing_extensions.Literal[
         "OWNERSHIP_UNSPECIFIED", "COMPANY_OWNED", "PERSONALLY_OWNED"
     ]
+    serialNumber: str
 
 @typing.type_check_only
 class ProxyInfo(typing_extensions.TypedDict, total=False):
@@ -1538,6 +1545,17 @@ class WebToken(typing_extensions.TypedDict, total=False):
         typing_extensions.Literal["WEB_TOKEN_PERMISSION_UNSPECIFIED", "APPROVE_APPS"]
     ]
     value: str
+
+@typing.type_check_only
+class WifiSsid(typing_extensions.TypedDict, total=False):
+    wifiSsid: str
+
+@typing.type_check_only
+class WifiSsidPolicy(typing_extensions.TypedDict, total=False):
+    wifiSsidPolicyType: typing_extensions.Literal[
+        "WIFI_SSID_POLICY_TYPE_UNSPECIFIED", "WIFI_SSID_DENYLIST", "WIFI_SSID_ALLOWLIST"
+    ]
+    wifiSsids: _list[WifiSsid]
 
 @typing.type_check_only
 class WipeAction(typing_extensions.TypedDict, total=False):

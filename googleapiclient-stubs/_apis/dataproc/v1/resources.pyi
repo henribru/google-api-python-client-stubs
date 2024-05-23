@@ -76,6 +76,13 @@ class DataprocResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class BatchesResource(googleapiclient.discovery.Resource):
+                def analyze(
+                    self,
+                    *,
+                    name: str,
+                    body: AnalyzeBatchRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,

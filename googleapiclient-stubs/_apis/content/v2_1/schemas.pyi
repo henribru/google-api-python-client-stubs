@@ -371,10 +371,26 @@ class AccounttaxListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Action(typing_extensions.TypedDict, total=False):
     builtinSimpleAction: BuiltInSimpleAction
+    builtinUserInputAction: BuiltInUserInputAction
     buttonLabel: str
     externalAction: ExternalAction
     isAvailable: bool
     reasons: _list[ActionReason]
+
+@typing.type_check_only
+class ActionFlow(typing_extensions.TypedDict, total=False):
+    dialogButtonLabel: str
+    dialogCallout: Callout
+    dialogMessage: TextWithTooltip
+    dialogTitle: str
+    id: str
+    inputs: _list[InputField]
+    label: str
+
+@typing.type_check_only
+class ActionInput(typing_extensions.TypedDict, total=False):
+    actionFlowId: str
+    inputValues: _list[InputValue]
 
 @typing.type_check_only
 class ActionReason(typing_extensions.TypedDict, total=False):
@@ -480,6 +496,11 @@ class BuiltInSimpleActionAdditionalContent(typing_extensions.TypedDict, total=Fa
     title: str
 
 @typing.type_check_only
+class BuiltInUserInputAction(typing_extensions.TypedDict, total=False):
+    actionContext: str
+    flows: _list[ActionFlow]
+
+@typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
     businessDays: _list[str]
 
@@ -516,6 +537,13 @@ class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
         "ACTIVE",
         "PAUSED",
         "DEPRECATED",
+    ]
+
+@typing.type_check_only
+class Callout(typing_extensions.TypedDict, total=False):
+    fullMessage: TextWithTooltip
+    styleHint: typing_extensions.Literal[
+        "CALLOUT_STYLE_HINT_UNSPECIFIED", "ERROR", "WARNING", "INFO"
     ]
 
 @typing.type_check_only
@@ -940,6 +968,11 @@ class FreeListingsProgramStatusReviewIneligibilityReasonDetails(
     cooldownTime: str
 
 @typing.type_check_only
+class FreeShippingThreshold(typing_extensions.TypedDict, total=False):
+    country: str
+    priceThreshold: Price
+
+@typing.type_check_only
 class GenerateRecommendationsResponse(typing_extensions.TypedDict, total=False):
     recommendations: _list[Recommendation]
     responseToken: str
@@ -988,12 +1021,64 @@ class HolidaysHoliday(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class InputField(typing_extensions.TypedDict, total=False):
+    checkboxInput: InputFieldCheckboxInput
+    choiceInput: InputFieldChoiceInput
+    id: str
+    label: TextWithTooltip
+    required: bool
+    textInput: InputFieldTextInput
+
+@typing.type_check_only
+class InputFieldCheckboxInput(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class InputFieldChoiceInput(typing_extensions.TypedDict, total=False):
+    options: _list[InputFieldChoiceInputChoiceInputOption]
+
+@typing.type_check_only
+class InputFieldChoiceInputChoiceInputOption(typing_extensions.TypedDict, total=False):
+    additionalInput: InputField
+    id: str
+    label: TextWithTooltip
+
+@typing.type_check_only
+class InputFieldTextInput(typing_extensions.TypedDict, total=False):
+    additionalInfo: TextWithTooltip
+    ariaLabel: str
+    formatInfo: str
+    type: typing_extensions.Literal[
+        "TEXT_INPUT_TYPE_UNSPECIFIED", "GENERIC_SHORT_TEXT", "GENERIC_LONG_TEXT"
+    ]
+
+@typing.type_check_only
+class InputValue(typing_extensions.TypedDict, total=False):
+    checkboxInputValue: InputValueCheckboxInputValue
+    choiceInputValue: InputValueChoiceInputValue
+    inputFieldId: str
+    textInputValue: InputValueTextInputValue
+
+@typing.type_check_only
+class InputValueCheckboxInputValue(typing_extensions.TypedDict, total=False):
+    value: bool
+
+@typing.type_check_only
+class InputValueChoiceInputValue(typing_extensions.TypedDict, total=False):
+    choiceInputOptionId: str
+
+@typing.type_check_only
+class InputValueTextInputValue(typing_extensions.TypedDict, total=False):
+    value: str
+
+@typing.type_check_only
 class InsertCheckoutSettingsRequest(typing_extensions.TypedDict, total=False):
     uriSettings: UrlSettings
 
 @typing.type_check_only
 class Installment(typing_extensions.TypedDict, total=False):
     amount: Price
+    creditType: str
+    downpayment: Price
     months: str
 
 @typing.type_check_only
@@ -1228,10 +1313,12 @@ class LocationIdSet(typing_extensions.TypedDict, total=False):
     locationIds: _list[str]
 
 @typing.type_check_only
-class LoyaltyPoints(typing_extensions.TypedDict, total=False):
-    name: str
-    pointsValue: str
-    ratio: float
+class LoyaltyProgram(typing_extensions.TypedDict, total=False):
+    cashbackForFutureUse: Price
+    loyaltyPoints: str
+    price: Price
+    programLabel: str
+    tierLabel: str
 
 @typing.type_check_only
 class MerchantCenterDestination(typing_extensions.TypedDict, total=False):
@@ -1273,6 +1360,7 @@ class MerchantRejectionReason(typing_extensions.TypedDict, total=False):
 class MethodQuota(typing_extensions.TypedDict, total=False):
     method: str
     quotaLimit: str
+    quotaMinuteLimit: str
     quotaUsage: str
 
 @typing.type_check_only
@@ -2194,6 +2282,9 @@ class PriceCompetitiveness(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PriceInsights(typing_extensions.TypedDict, total=False):
+    effectiveness: typing_extensions.Literal[
+        "EFFECTIVENESS_UNSPECIFIED", "LOW", "MEDIUM", "HIGH"
+    ]
     predictedClicksChangeFraction: float
     predictedConversionsChangeFraction: float
     predictedGrossProfitChangeFraction: float
@@ -2212,6 +2303,7 @@ class Product(typing_extensions.TypedDict, total=False):
     adsRedirect: str
     adult: bool
     ageGroup: str
+    autoPricingMinPrice: Price
     availability: str
     availabilityDate: str
     brand: str
@@ -2241,6 +2333,7 @@ class Product(typing_extensions.TypedDict, total=False):
     expirationDate: str
     externalSellerId: str
     feedLabel: str
+    freeShippingThreshold: _list[FreeShippingThreshold]
     gender: str
     googleProductCategory: str
     gtin: str
@@ -2255,7 +2348,8 @@ class Product(typing_extensions.TypedDict, total=False):
     lifestyleImageLinks: _list[str]
     link: str
     linkTemplate: str
-    loyaltyPoints: LoyaltyPoints
+    loyaltyProgram: LoyaltyProgram
+    loyaltyPrograms: _list[LoyaltyProgram]
     material: str
     maxEnergyEfficiencyClass: str
     maxHandlingTime: str
@@ -2293,6 +2387,8 @@ class Product(typing_extensions.TypedDict, total=False):
     sizeType: str
     sizes: _list[str]
     source: str
+    structuredDescription: ProductStructuredDescription
+    structuredTitle: ProductStructuredTitle
     subscriptionCost: ProductSubscriptionCost
     targetCountry: str
     taxCategory: str
@@ -2314,6 +2410,7 @@ class ProductCertification(typing_extensions.TypedDict, total=False):
     certificationAuthority: str
     certificationCode: str
     certificationName: str
+    certificationValue: str
 
 @typing.type_check_only
 class ProductCluster(typing_extensions.TypedDict, total=False):
@@ -2436,6 +2533,16 @@ class ProductStatusItemLevelIssue(typing_extensions.TypedDict, total=False):
     documentation: str
     resolution: str
     servability: str
+
+@typing.type_check_only
+class ProductStructuredDescription(typing_extensions.TypedDict, total=False):
+    content: str
+    digitalSourceType: str
+
+@typing.type_check_only
+class ProductStructuredTitle(typing_extensions.TypedDict, total=False):
+    content: str
+    digitalSourceType: str
 
 @typing.type_check_only
 class ProductSubscriptionCost(typing_extensions.TypedDict, total=False):
@@ -2810,6 +2917,11 @@ class RenderAccountIssuesRequestPayload(typing_extensions.TypedDict, total=False
     contentOption: typing_extensions.Literal[
         "CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"
     ]
+    userInputActionOption: typing_extensions.Literal[
+        "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED",
+        "REDIRECT_TO_MERCHANT_CENTER",
+        "BUILT_IN_USER_INPUT_ACTIONS",
+    ]
 
 @typing.type_check_only
 class RenderAccountIssuesResponse(typing_extensions.TypedDict, total=False):
@@ -2820,6 +2932,11 @@ class RenderAccountIssuesResponse(typing_extensions.TypedDict, total=False):
 class RenderProductIssuesRequestPayload(typing_extensions.TypedDict, total=False):
     contentOption: typing_extensions.Literal[
         "CONTENT_OPTION_UNSPECIFIED", "PRE_RENDERED_HTML"
+    ]
+    userInputActionOption: typing_extensions.Literal[
+        "USER_INPUT_ACTION_RENDERING_OPTION_UNSPECIFIED",
+        "REDIRECT_TO_MERCHANT_CENTER",
+        "BUILT_IN_USER_INPUT_ACTIONS",
     ]
 
 @typing.type_check_only
@@ -3396,6 +3513,14 @@ class TestOrderPickupDetailsPickupPerson(typing_extensions.TypedDict, total=Fals
     phoneNumber: str
 
 @typing.type_check_only
+class TextWithTooltip(typing_extensions.TypedDict, total=False):
+    simpleTooltipValue: str
+    simpleValue: str
+    tooltipIconStyle: typing_extensions.Literal[
+        "TOOLTIP_ICON_STYLE_UNSPECIFIED", "INFO", "QUESTION"
+    ]
+
+@typing.type_check_only
 class TimePeriod(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
@@ -3433,6 +3558,15 @@ class TransitTableTransitTimeRowTransitTimeValue(
 ):
     maxTransitTimeInDays: int
     minTransitTimeInDays: int
+
+@typing.type_check_only
+class TriggerActionPayload(typing_extensions.TypedDict, total=False):
+    actionContext: str
+    actionInput: ActionInput
+
+@typing.type_check_only
+class TriggerActionResponse(typing_extensions.TypedDict, total=False):
+    message: str
 
 @typing.type_check_only
 class UndeleteConversionSourceRequest(typing_extensions.TypedDict, total=False): ...

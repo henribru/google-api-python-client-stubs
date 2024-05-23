@@ -5,6 +5,15 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CloudControl2SharedOperationsReconciliationOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    deleteResource: bool
+    exclusiveAction: typing_extensions.Literal[
+        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
+    ]
+
+@typing.type_check_only
 class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool

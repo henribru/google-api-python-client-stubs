@@ -443,6 +443,21 @@ class BubbleChartSpec(typing_extensions.TypedDict, total=False):
     series: ChartData
 
 @typing.type_check_only
+class CancelDataSourceRefreshRequest(typing_extensions.TypedDict, total=False):
+    dataSourceId: str
+    isAll: bool
+    references: DataSourceObjectReferences
+
+@typing.type_check_only
+class CancelDataSourceRefreshResponse(typing_extensions.TypedDict, total=False):
+    statuses: _list[CancelDataSourceRefreshStatus]
+
+@typing.type_check_only
+class CancelDataSourceRefreshStatus(typing_extensions.TypedDict, total=False):
+    reference: DataSourceObjectReference
+    refreshCancellationStatus: RefreshCancellationStatus
+
+@typing.type_check_only
 class CandlestickChartSpec(typing_extensions.TypedDict, total=False):
     data: _list[CandlestickData]
     domain: CandlestickDomain
@@ -717,6 +732,7 @@ class DataExecutionStatus(typing_extensions.TypedDict, total=False):
         "OBJECT_NOT_FOUND",
         "OBJECT_IN_ERROR_STATE",
         "OBJECT_SPEC_INVALID",
+        "DATA_EXECUTION_CANCELLED",
     ]
     errorMessage: str
     lastRefreshTime: str
@@ -724,6 +740,7 @@ class DataExecutionStatus(typing_extensions.TypedDict, total=False):
         "DATA_EXECUTION_STATE_UNSPECIFIED",
         "NOT_STARTED",
         "RUNNING",
+        "CANCELLING",
         "SUCCEEDED",
         "FAILED",
     ]
@@ -1477,6 +1494,7 @@ class PivotValue(typing_extensions.TypedDict, total=False):
         "VAR",
         "VARP",
         "CUSTOM",
+        "NONE",
     ]
 
 @typing.type_check_only
@@ -1508,6 +1526,20 @@ class ProtectedRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RandomizeRangeRequest(typing_extensions.TypedDict, total=False):
     range: GridRange
+
+@typing.type_check_only
+class RefreshCancellationStatus(typing_extensions.TypedDict, total=False):
+    errorCode: typing_extensions.Literal[
+        "REFRESH_CANCELLATION_ERROR_CODE_UNSPECIFIED",
+        "EXECUTION_NOT_FOUND",
+        "CANCEL_PERMISSION_DENIED",
+        "QUERY_EXECUTION_COMPLETED",
+        "CONCURRENT_CANCELLATION",
+        "CANCEL_OTHER_ERROR",
+    ]
+    state: typing_extensions.Literal[
+        "REFRESH_CANCELLATION_STATE_UNSPECIFIED", "CANCEL_SUCCEEDED", "CANCEL_FAILED"
+    ]
 
 @typing.type_check_only
 class RefreshDataSourceObjectExecutionStatus(typing_extensions.TypedDict, total=False):
@@ -1547,6 +1579,7 @@ class Request(typing_extensions.TypedDict, total=False):
     appendDimension: AppendDimensionRequest
     autoFill: AutoFillRequest
     autoResizeDimensions: AutoResizeDimensionsRequest
+    cancelDataSourceRefresh: CancelDataSourceRefreshRequest
     clearBasicFilter: ClearBasicFilterRequest
     copyPaste: CopyPasteRequest
     createDeveloperMetadata: CreateDeveloperMetadataRequest
@@ -1610,6 +1643,7 @@ class Response(typing_extensions.TypedDict, total=False):
     addProtectedRange: AddProtectedRangeResponse
     addSheet: AddSheetResponse
     addSlicer: AddSlicerResponse
+    cancelDataSourceRefresh: CancelDataSourceRefreshResponse
     createDeveloperMetadata: CreateDeveloperMetadataResponse
     deleteConditionalFormatRule: DeleteConditionalFormatRuleResponse
     deleteDeveloperMetadata: DeleteDeveloperMetadataResponse
@@ -1758,6 +1792,7 @@ class SpreadsheetProperties(typing_extensions.TypedDict, total=False):
         "RECALCULATION_INTERVAL_UNSPECIFIED", "ON_CHANGE", "MINUTE", "HOUR"
     ]
     defaultFormat: CellFormat
+    importFunctionsExternalUrlAccessAllowed: bool
     iterativeCalculationSettings: IterativeCalculationSettings
     locale: str
     spreadsheetTheme: SpreadsheetTheme

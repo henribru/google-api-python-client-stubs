@@ -18,6 +18,20 @@ class OSConfigResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class GlobalResource(googleapiclient.discovery.Resource):
+                def getProjectFeatureSettings(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ProjectFeatureSettingsHttpRequest: ...
+                def updateProjectFeatureSettings(
+                    self,
+                    *,
+                    name: str,
+                    body: ProjectFeatureSettings = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ProjectFeatureSettingsHttpRequest: ...
+
+            @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class InventoriesResource(googleapiclient.discovery.Resource):
@@ -119,10 +133,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: OSPolicyAssignment = ...,
                     osPolicyAssignmentId: str = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -158,11 +173,14 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: OSPolicyAssignment = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
+            def global_(self) -> GlobalResource: ...
             def instances(self) -> InstancesResource: ...
             def osPolicyAssignments(self) -> OsPolicyAssignmentsResource: ...
 
@@ -411,6 +429,14 @@ class PatchJobHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PatchJob: ...
+
+@typing.type_check_only
+class ProjectFeatureSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProjectFeatureSettings: ...
 
 @typing.type_check_only
 class VulnerabilityReportHttpRequest(googleapiclient.http.HttpRequest):

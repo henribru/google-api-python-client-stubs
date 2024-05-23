@@ -137,10 +137,26 @@ class DocumentsTarget(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExecutionStats(typing_extensions.TypedDict, total=False):
+    debugStats: dict[str, typing.Any]
+    executionDuration: str
+    readOperations: str
+    resultsReturned: str
+
+@typing.type_check_only
 class ExistenceFilter(typing_extensions.TypedDict, total=False):
     count: int
     targetId: int
     unchangedNames: BloomFilter
+
+@typing.type_check_only
+class ExplainMetrics(typing_extensions.TypedDict, total=False):
+    executionStats: ExecutionStats
+    planSummary: PlanSummary
+
+@typing.type_check_only
+class ExplainOptions(typing_extensions.TypedDict, total=False):
+    analyze: bool
 
 @typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
@@ -181,6 +197,15 @@ class Filter(typing_extensions.TypedDict, total=False):
     compositeFilter: CompositeFilter
     fieldFilter: FieldFilter
     unaryFilter: UnaryFilter
+
+@typing.type_check_only
+class FindNearest(typing_extensions.TypedDict, total=False):
+    distanceMeasure: typing_extensions.Literal[
+        "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
+    ]
+    limit: int
+    queryVector: Value
+    vectorField: FieldReference
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1CreateDatabaseMetadata(
@@ -396,6 +421,10 @@ class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
     partitions: _list[Cursor]
 
 @typing.type_check_only
+class PlanSummary(typing_extensions.TypedDict, total=False):
+    indexesUsed: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class Precondition(typing_extensions.TypedDict, total=False):
     exists: bool
     updateTime: str
@@ -423,6 +452,7 @@ class RollbackRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+    explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
     structuredAggregationQuery: StructuredAggregationQuery
@@ -430,12 +460,14 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+    explainMetrics: ExplainMetrics
     readTime: str
     result: AggregationResult
     transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
     structuredQuery: StructuredQuery
@@ -445,6 +477,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     document: Document
     done: bool
+    explainMetrics: ExplainMetrics
     readTime: str
     skippedResults: int
     transaction: str
@@ -464,6 +497,7 @@ AlternativeStructuredQuery = typing_extensions.TypedDict(
     "AlternativeStructuredQuery",
     {
         "endAt": Cursor,
+        "findNearest": FindNearest,
         "from": _list[CollectionSelector],
         "limit": int,
         "offset": int,

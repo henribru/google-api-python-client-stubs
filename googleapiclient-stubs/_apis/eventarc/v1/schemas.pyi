@@ -30,6 +30,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     name: str
     provider: str
     pubsubTopic: str
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PENDING", "ACTIVE", "INACTIVE"
     ]
@@ -252,6 +253,7 @@ class Trigger(typing_extensions.TypedDict, total=False):
     eventFilters: _list[EventFilter]
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzs: bool
     serviceAccount: str
     transport: Transport
     uid: str

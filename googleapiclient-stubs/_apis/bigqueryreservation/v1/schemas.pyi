@@ -72,6 +72,9 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FailoverReservationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ListAssignmentsResponse(typing_extensions.TypedDict, total=False):
     assignments: _list[Assignment]
     nextPageToken: str
@@ -106,6 +109,9 @@ class Reservation(typing_extensions.TypedDict, total=False):
     ignoreIdleSlots: bool
     multiRegionAuxiliary: bool
     name: str
+    originalPrimaryLocation: str
+    primaryLocation: str
+    secondaryLocation: str
     slotCapacity: str
     updateTime: str
 

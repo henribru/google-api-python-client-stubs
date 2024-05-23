@@ -61,6 +61,11 @@ class EntityType(typing_extensions.TypedDict, total=False):
     fields: _list[Field]
     jsonSchema: JsonSchema
     name: str
+    operations: _list[
+        typing_extensions.Literal[
+            "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
+        ]
+    ]
 
 @typing.type_check_only
 class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False): ...

@@ -256,6 +256,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
         GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec
     ]
     promotions: _list[str]
+    purchaseTime: str
     redirectUri: str
     renewalTime: str
     serviceLocation: GoogleCloudPaymentsResellerSubscriptionV1Location

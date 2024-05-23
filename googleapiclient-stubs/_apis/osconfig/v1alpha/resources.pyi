@@ -141,10 +141,11 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: OSPolicyAssignment = ...,
                     osPolicyAssignmentId: str = ...,
+                    requestId: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -180,6 +181,8 @@ class OSConfigResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: OSPolicyAssignment = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...

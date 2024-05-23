@@ -210,6 +210,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             readMask: str = ...,
             **kwargs: typing.Any,
         ) -> RoutineHttpRequest: ...
+        def getIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: GetIamPolicyRequest = ...,
+            **kwargs: typing.Any,
+        ) -> PolicyHttpRequest: ...
         def insert(
             self,
             *,
@@ -234,6 +241,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             previous_request: ListRoutinesResponseHttpRequest,
             previous_response: ListRoutinesResponse,
         ) -> ListRoutinesResponseHttpRequest | None: ...
+        def setIamPolicy(
+            self,
+            *,
+            resource: str,
+            body: SetIamPolicyRequest = ...,
+            **kwargs: typing.Any,
+        ) -> PolicyHttpRequest: ...
         def update(
             self,
             *,

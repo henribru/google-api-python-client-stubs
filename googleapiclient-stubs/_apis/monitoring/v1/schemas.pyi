@@ -97,6 +97,7 @@ class ColumnSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
+    annotations: DashboardAnnotations
     columnLayout: ColumnLayout
     dashboardFilters: _list[DashboardFilter]
     displayName: str
@@ -108,7 +109,13 @@ class Dashboard(typing_extensions.TypedDict, total=False):
     rowLayout: RowLayout
 
 @typing.type_check_only
+class DashboardAnnotations(typing_extensions.TypedDict, total=False):
+    defaultResourceNames: _list[str]
+    eventAnnotations: _list[EventAnnotation]
+
+@typing.type_check_only
 class DashboardFilter(typing_extensions.TypedDict, total=False):
+    applyToNewWidgets: bool
     filterType: typing_extensions.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "RESOURCE_LABEL",
@@ -162,6 +169,35 @@ class ErrorReportingPanel(typing_extensions.TypedDict, total=False):
     projectNames: _list[str]
     services: _list[str]
     versions: _list[str]
+
+@typing.type_check_only
+class EventAnnotation(typing_extensions.TypedDict, total=False):
+    displayName: str
+    enabled: bool
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "GKE_WORKLOAD_DEPLOYMENT",
+        "GKE_POD_CRASH",
+        "GKE_POD_UNSCHEDULABLE",
+        "GKE_CONTAINER_CREATION_FAILED",
+        "GKE_CLUSTER_CREATE_DELETE",
+        "GKE_CLUSTER_UPDATE",
+        "GKE_NODE_POOL_UPDATE",
+        "GKE_CLUSTER_AUTOSCALER",
+        "GKE_POD_AUTOSCALER",
+        "VM_TERMINATION",
+        "VM_GUEST_OS_ERROR",
+        "VM_START_FAILED",
+        "MIG_UPDATE",
+        "MIG_AUTOSCALER",
+        "CLOUD_RUN_DEPLOYMENT",
+        "CLOUD_SQL_FAILOVER",
+        "CLOUD_SQL_START_STOP",
+        "CLOUD_SQL_STORAGE",
+        "UPTIME_CHECK_FAILURE",
+    ]
+    filter: str
+    resourceNames: _list[str]
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):

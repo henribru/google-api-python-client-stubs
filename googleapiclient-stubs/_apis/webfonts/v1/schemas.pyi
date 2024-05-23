@@ -14,6 +14,7 @@ class Axis(typing_extensions.TypedDict, total=False):
 class Webfont(typing_extensions.TypedDict, total=False):
     axes: _list[Axis]
     category: str
+    colorCapabilities: _list[str]
     family: str
     files: dict[str, typing.Any]
     kind: str

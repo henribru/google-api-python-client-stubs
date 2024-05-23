@@ -23,7 +23,6 @@ class GoogleIdentityStsV1AccessBoundaryRule(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
-    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only
@@ -62,7 +61,6 @@ class GoogleIdentityStsV1betaExchangeTokenResponse(
 @typing.type_check_only
 class GoogleIdentityStsV1betaOptions(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1betaAccessBoundary
-    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only

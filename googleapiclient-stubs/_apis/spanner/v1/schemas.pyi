@@ -29,6 +29,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "DATABASE_DIALECT_UNSPECIFIED", "GOOGLE_STANDARD_SQL", "POSTGRESQL"
     ]
     encryptionInfo: EncryptionInfo
+    encryptionInformation: _list[EncryptionInfo]
     expireTime: str
     maxExpireTime: str
     name: str
@@ -56,6 +57,7 @@ class BatchCreateSessionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BatchWriteRequest(typing_extensions.TypedDict, total=False):
+    excludeTxnFromChangeStreams: bool
     mutationGroups: _list[MutationGroup]
     requestOptions: RequestOptions
 
@@ -118,6 +120,7 @@ class CopyBackupEncryptionConfig(typing_extensions.TypedDict, total=False):
         "CUSTOMER_MANAGED_ENCRYPTION",
     ]
     kmsKeyName: str
+    kmsKeyNames: _list[str]
 
 @typing.type_check_only
 class CopyBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -177,6 +180,18 @@ class CreateInstanceMetadata(typing_extensions.TypedDict, total=False):
     ]
     instance: Instance
     startTime: str
+
+@typing.type_check_only
+class CreateInstancePartitionMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    endTime: str
+    instancePartition: InstancePartition
+    startTime: str
+
+@typing.type_check_only
+class CreateInstancePartitionRequest(typing_extensions.TypedDict, total=False):
+    instancePartition: InstancePartition
+    instancePartitionId: str
 
 @typing.type_check_only
 class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -247,6 +262,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
+    kmsKeyNames: _list[str]
 
 @typing.type_check_only
 class EncryptionInfo(typing_extensions.TypedDict, total=False):
@@ -389,6 +405,20 @@ class InstanceOperationProgress(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class InstancePartition(typing_extensions.TypedDict, total=False):
+    config: str
+    createTime: str
+    displayName: str
+    etag: str
+    name: str
+    nodeCount: int
+    processingUnits: int
+    referencingBackups: _list[str]
+    referencingDatabases: _list[str]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
+    updateTime: str
+
+@typing.type_check_only
 class KeyRange(typing_extensions.TypedDict, total=False):
     endClosed: _list[typing.Any]
     endOpen: _list[typing.Any]
@@ -454,6 +484,18 @@ class ListInstanceConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListInstancePartitionOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[Operation]
+    unreachableInstancePartitions: _list[str]
+
+@typing.type_check_only
+class ListInstancePartitionsResponse(typing_extensions.TypedDict, total=False):
+    instancePartitions: _list[InstancePartition]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
@@ -502,6 +544,10 @@ class MetricMatrix(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MetricMatrixRow(typing_extensions.TypedDict, total=False):
     cols: _list[float]
+
+@typing.type_check_only
+class MoveInstanceRequest(typing_extensions.TypedDict, total=False):
+    targetConfig: str
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -673,6 +719,7 @@ class RestoreDatabaseEncryptionConfig(typing_extensions.TypedDict, total=False):
         "CUSTOMER_MANAGED_ENCRYPTION",
     ]
     kmsKeyName: str
+    kmsKeyNames: _list[str]
 
 @typing.type_check_only
 class RestoreDatabaseMetadata(typing_extensions.TypedDict, total=False):
@@ -737,6 +784,7 @@ class Session(typing_extensions.TypedDict, total=False):
     createTime: str
     creatorRole: str
     labels: dict[str, typing.Any]
+    multiplexed: bool
     name: str
 
 @typing.type_check_only
@@ -779,6 +827,7 @@ class Transaction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):
+    excludeTxnFromChangeStreams: bool
     partitionedDml: PartitionedDml
     readOnly: ReadOnly
     readWrite: ReadWrite
@@ -864,6 +913,18 @@ class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
     ]
     instance: Instance
     startTime: str
+
+@typing.type_check_only
+class UpdateInstancePartitionMetadata(typing_extensions.TypedDict, total=False):
+    cancelTime: str
+    endTime: str
+    instancePartition: InstancePartition
+    startTime: str
+
+@typing.type_check_only
+class UpdateInstancePartitionRequest(typing_extensions.TypedDict, total=False):
+    fieldMask: str
+    instancePartition: InstancePartition
 
 @typing.type_check_only
 class UpdateInstanceRequest(typing_extensions.TypedDict, total=False):

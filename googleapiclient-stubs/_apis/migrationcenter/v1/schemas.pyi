@@ -86,6 +86,14 @@ class Asset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssetFrame(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    collectionType: typing_extensions.Literal[
+        "SOURCE_TYPE_UNKNOWN",
+        "SOURCE_TYPE_UPLOAD",
+        "SOURCE_TYPE_GUEST_OS_SCAN",
+        "SOURCE_TYPE_INVENTORY_SCAN",
+        "SOURCE_TYPE_CUSTOM",
+        "SOURCE_TYPE_DISCOVERY_CLIENT",
+    ]
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
     performanceSamples: _list[PerformanceSample]
@@ -215,6 +223,26 @@ class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
     year: int
+
+@typing.type_check_only
+class DiscoveryClient(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    errors: _list[Status]
+    expireTime: str
+    heartbeatTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    serviceAccount: str
+    signalsEndpoint: str
+    source: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "OFFLINE", "DEGRADED", "EXPIRED"
+    ]
+    ttl: str
+    updateTime: str
+    version: str
 
 @typing.type_check_only
 class DiskEntry(typing_extensions.TypedDict, total=False):
@@ -449,6 +477,12 @@ class InsightList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[Asset]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDiscoveryClientsResponse(typing_extensions.TypedDict, total=False):
+    discoveryClients: _list[DiscoveryClient]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -895,6 +929,11 @@ class RuntimeNetworkInfo(typing_extensions.TypedDict, total=False):
     scanTime: str
 
 @typing.type_check_only
+class SendDiscoveryClientHeartbeatRequest(typing_extensions.TypedDict, total=False):
+    errors: _list[Status]
+    version: str
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     disableCloudLogging: bool
     name: str
@@ -940,6 +979,7 @@ class Source(typing_extensions.TypedDict, total=False):
         "SOURCE_TYPE_GUEST_OS_SCAN",
         "SOURCE_TYPE_INVENTORY_SCAN",
         "SOURCE_TYPE_CUSTOM",
+        "SOURCE_TYPE_DISCOVERY_CLIENT",
     ]
     updateTime: str
 

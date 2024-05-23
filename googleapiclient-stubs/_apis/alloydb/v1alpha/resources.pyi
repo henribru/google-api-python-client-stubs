@@ -243,13 +243,6 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def generateClientCertificate(
-                    self,
-                    *,
-                    parent: str,
-                    body: GenerateClientCertificateRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GenerateClientCertificateResponseHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -419,14 +412,6 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
-
-@typing.type_check_only
-class GenerateClientCertificateResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GenerateClientCertificateResponse: ...
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponseHttpRequest(

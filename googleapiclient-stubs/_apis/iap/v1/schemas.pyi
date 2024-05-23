@@ -15,9 +15,15 @@ class AccessSettings(typing_extensions.TypedDict, total=False):
     allowedDomainsSettings: AllowedDomainsSettings
     corsSettings: CorsSettings
     gcipSettings: GcipSettings
+    identitySources: _list[
+        typing_extensions.Literal[
+            "IDENTITY_SOURCE_UNSPECIFIED", "WORKFORCE_IDENTITY_FEDERATION"
+        ]
+    ]
     oauthSettings: OAuthSettings
     policyDelegationSettings: PolicyDelegationSettings
     reauthSettings: ReauthSettings
+    workforceIdentitySettings: WorkforceIdentitySettings
 
 @typing.type_check_only
 class AllowedDomainsSettings(typing_extensions.TypedDict, total=False):
@@ -112,6 +118,12 @@ class ListTunnelDestGroupsResponse(typing_extensions.TypedDict, total=False):
     tunnelDestGroups: _list[TunnelDestGroup]
 
 @typing.type_check_only
+class OAuth2(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+    clientSecretSha256: str
+
+@typing.type_check_only
 class OAuthSettings(typing_extensions.TypedDict, total=False):
     loginHint: str
     programmaticClients: _list[str]
@@ -184,3 +196,8 @@ class TunnelDestGroup(typing_extensions.TypedDict, total=False):
 class ValidateIapAttributeExpressionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class WorkforceIdentitySettings(typing_extensions.TypedDict, total=False):
+    oauth2: OAuth2
+    workforcePools: _list[str]

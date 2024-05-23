@@ -406,6 +406,13 @@ class YouTubeResource(googleapiclient.discovery.Resource):
             previous_request: LiveChatMessageListResponseHttpRequest,
             previous_response: LiveChatMessageListResponse,
         ) -> LiveChatMessageListResponseHttpRequest | None: ...
+        def transition(
+            self,
+            *,
+            id: str = ...,
+            status: typing_extensions.Literal["statusUnspecified", "closed"] = ...,
+            **kwargs: typing.Any,
+        ) -> LiveChatMessageHttpRequest: ...
 
     @typing.type_check_only
     class LiveChatModeratorsResource(googleapiclient.discovery.Resource):

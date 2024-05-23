@@ -223,8 +223,11 @@ class DeviceManagementRule(typing_extensions.TypedDict, total=False):
     deviceModel: str
     deviceType: str
     email: str
+    id: str
     iosVendorId: str
+    ownerId: str
     resourceId: str
+    ruleAction: str
     serialNumber: str
 
 @typing.type_check_only
@@ -356,6 +359,9 @@ class RequestInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceInfo(typing_extensions.TypedDict, total=False):
+    chatAttachmentId: str
+    chatMessageId: str
+    deviceId: str
     documentId: str
     resourceTitle: str
 
@@ -366,7 +372,12 @@ class RuleInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuleViolationInfo(typing_extensions.TypedDict, total=False):
-    dataSource: typing_extensions.Literal["DATA_SOURCE_UNSPECIFIED", "DRIVE"]
+    dataSource: typing_extensions.Literal[
+        "DATA_SOURCE_UNSPECIFIED", "DRIVE", "CHROME", "CHAT"
+    ]
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "ACCESS_BLOCKED", "SHARING_BLOCKED"
+    ]
     matchInfo: _list[MatchInfo]
     recipients: _list[str]
     resourceInfo: ResourceInfo
@@ -376,20 +387,60 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "ACTION_TYPE_UNSPECIFIED",
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
+            "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+            "DRIVE_APPLY_DRIVE_LABELS",
+            "CHROME_BLOCK_FILE_DOWNLOAD",
+            "CHROME_WARN_FILE_DOWNLOAD",
+            "CHROME_BLOCK_FILE_UPLOAD",
+            "CHROME_WARN_FILE_UPLOAD",
+            "CHROME_BLOCK_WEB_CONTENT_UPLOAD",
+            "CHROME_WARN_WEB_CONTENT_UPLOAD",
+            "CHROME_BLOCK_PAGE_PRINT",
+            "CHROME_WARN_PAGE_PRINT",
+            "CHROME_BLOCK_URL_VISITED",
+            "CHROME_WARN_URL_VISITED",
+            "CHROME_STORE_CONTENT",
             "DELETE_WEBPROTECT_EVIDENCE",
+            "CHAT_BLOCK_CONTENT",
+            "CHAT_WARN_USER",
             "ALERT",
             "RULE_ACTIVATE",
             "RULE_DEACTIVATE",
         ]
     ]
-    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "DRIVE_SHARE"]
+    trigger: typing_extensions.Literal[
+        "TRIGGER_UNSPECIFIED",
+        "DRIVE_SHARE",
+        "CHROME_FILE_DOWNLOAD",
+        "CHROME_FILE_UPLOAD",
+        "CHROME_WEB_CONTENT_UPLOAD",
+        "CHAT_MESSAGE_SENT",
+        "CHAT_ATTACHMENT_UPLOADED",
+        "CHROME_PAGE_PRINT",
+        "CHROME_URL_VISITED",
+    ]
     triggeredActionInfo: _list[ActionInfo]
     triggeredActionTypes: _list[
         typing_extensions.Literal[
             "ACTION_TYPE_UNSPECIFIED",
             "DRIVE_BLOCK_EXTERNAL_SHARING",
             "DRIVE_WARN_ON_EXTERNAL_SHARING",
+            "DRIVE_RESTRICT_DOWNLOAD_PRINT_COPY",
+            "DRIVE_APPLY_DRIVE_LABELS",
+            "CHROME_BLOCK_FILE_DOWNLOAD",
+            "CHROME_WARN_FILE_DOWNLOAD",
+            "CHROME_BLOCK_FILE_UPLOAD",
+            "CHROME_WARN_FILE_UPLOAD",
+            "CHROME_BLOCK_WEB_CONTENT_UPLOAD",
+            "CHROME_WARN_WEB_CONTENT_UPLOAD",
+            "CHROME_BLOCK_PAGE_PRINT",
+            "CHROME_WARN_PAGE_PRINT",
+            "CHROME_BLOCK_URL_VISITED",
+            "CHROME_WARN_URL_VISITED",
+            "CHROME_STORE_CONTENT",
             "DELETE_WEBPROTECT_EVIDENCE",
+            "CHAT_BLOCK_CONTENT",
+            "CHAT_WARN_USER",
             "ALERT",
             "RULE_ACTIVATE",
             "RULE_DEACTIVATE",

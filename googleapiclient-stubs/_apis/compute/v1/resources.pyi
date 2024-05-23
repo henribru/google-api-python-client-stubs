@@ -1629,6 +1629,68 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> TestPermissionsResponseHttpRequest: ...
 
     @typing.type_check_only
+    class InstanceGroupManagerResizeRequestsResource(
+        googleapiclient.discovery.Resource
+    ):
+        def cancel(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            **kwargs: typing.Any,
+        ) -> InstanceGroupManagerResizeRequestHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagerResizeRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> InstanceGroupManagerResizeRequestsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: InstanceGroupManagerResizeRequestsListResponseHttpRequest,
+            previous_response: InstanceGroupManagerResizeRequestsListResponse,
+        ) -> InstanceGroupManagerResizeRequestsListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class InstanceGroupManagersResource(googleapiclient.discovery.Resource):
         def abandonInstances(
             self,
@@ -1969,6 +2031,22 @@ class ComputeResource(googleapiclient.discovery.Resource):
             instanceGroup: str,
             body: InstanceGroupsSetNamedPortsRequest = ...,
             requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
+    class InstanceSettingsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, zone: str, **kwargs: typing.Any
+        ) -> InstanceSettingsHttpRequest: ...
+        def patch(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: InstanceSettings = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -3635,6 +3713,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             nodeGroup: str,
             body: NodeGroup = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def performMaintenance(
+            self,
+            *,
+            project: str,
+            zone: str,
+            nodeGroup: str,
+            body: NodeGroupsPerformMaintenanceRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -8015,8 +8103,12 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def httpsHealthChecks(self) -> HttpsHealthChecksResource: ...
     def imageFamilyViews(self) -> ImageFamilyViewsResource: ...
     def images(self) -> ImagesResource: ...
+    def instanceGroupManagerResizeRequests(
+        self,
+    ) -> InstanceGroupManagerResizeRequestsResource: ...
     def instanceGroupManagers(self) -> InstanceGroupManagersResource: ...
     def instanceGroups(self) -> InstanceGroupsResource: ...
+    def instanceSettings(self) -> InstanceSettingsResource: ...
     def instanceTemplates(self) -> InstanceTemplatesResource: ...
     def instances(self) -> InstancesResource: ...
     def instantSnapshots(self) -> InstantSnapshotsResource: ...
@@ -8569,6 +8661,24 @@ class InstanceGroupManagerListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> InstanceGroupManagerList: ...
 
 @typing.type_check_only
+class InstanceGroupManagerResizeRequestHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstanceGroupManagerResizeRequest: ...
+
+@typing.type_check_only
+class InstanceGroupManagerResizeRequestsListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstanceGroupManagerResizeRequestsListResponse: ...
+
+@typing.type_check_only
 class InstanceGroupManagersListErrorsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -8621,6 +8731,14 @@ class InstanceListReferrersHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InstanceListReferrers: ...
+
+@typing.type_check_only
+class InstanceSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstanceSettings: ...
 
 @typing.type_check_only
 class InstanceTemplateHttpRequest(googleapiclient.http.HttpRequest):

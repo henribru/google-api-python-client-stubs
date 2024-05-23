@@ -14,15 +14,6 @@ _list = list
 @typing.type_check_only
 class ArtifactRegistryResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class MediaResource(googleapiclient.discovery.Resource):
-        def download(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> DownloadFileResponseHttpRequest: ...
-        def download_media(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
-
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -73,6 +64,12 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class FilesResource(googleapiclient.discovery.Resource):
+                    def download(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DownloadFileResponseHttpRequest: ...
+                    def download_media(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BytesHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleDevtoolsArtifactregistryV1FileHttpRequest: ...
@@ -91,6 +88,16 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         previous_request: ListFilesResponseHttpRequest,
                         previous_response: ListFilesResponse,
                     ) -> ListFilesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class GenericArtifactsResource(googleapiclient.discovery.Resource):
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadGenericArtifactRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> UploadGenericArtifactMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class GoModulesResource(googleapiclient.discovery.Resource):
@@ -372,6 +379,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def aptArtifacts(self) -> AptArtifactsResource: ...
                 def dockerImages(self) -> DockerImagesResource: ...
                 def files(self) -> FilesResource: ...
+                def genericArtifacts(self) -> GenericArtifactsResource: ...
                 def goModules(self) -> GoModulesResource: ...
                 def googetArtifacts(self) -> GoogetArtifactsResource: ...
                 def kfpArtifacts(self) -> KfpArtifactsResource: ...
@@ -437,7 +445,6 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def media(self) -> MediaResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -647,6 +654,14 @@ class UploadAptArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> UploadAptArtifactMediaResponse: ...
+
+@typing.type_check_only
+class UploadGenericArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadGenericArtifactMediaResponse: ...
 
 @typing.type_check_only
 class UploadGoModuleMediaResponseHttpRequest(googleapiclient.http.HttpRequest):

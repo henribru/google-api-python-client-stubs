@@ -19,6 +19,8 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BigQueryDatasetSource(typing_extensions.TypedDict, total=False):
     dataset: str
+    restrictedExportPolicy: RestrictedExportPolicy
+    selectedResources: _list[SelectedResource]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -193,10 +195,20 @@ class RestrictedExportConfig(typing_extensions.TypedDict, total=False):
     restrictQueryResult: bool
 
 @typing.type_check_only
+class RestrictedExportPolicy(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    restrictDirectTableAccess: bool
+    restrictQueryResult: bool
+
+@typing.type_check_only
 class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SelectedResource(typing_extensions.TypedDict, total=False):
+    table: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

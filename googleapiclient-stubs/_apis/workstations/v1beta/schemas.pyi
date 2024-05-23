@@ -87,6 +87,7 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     serviceAccountScopes: _list[str]
     shieldedInstanceConfig: GceShieldedInstanceConfig
     tags: _list[str]
+    vmTags: dict[str, typing.Any]
 
 @typing.type_check_only
 class GcePersistentDisk(typing_extensions.TypedDict, total=False):
