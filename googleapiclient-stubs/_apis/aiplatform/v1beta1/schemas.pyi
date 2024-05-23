@@ -5,12 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class CloudAiLargeModelsVisionEmbedVideoResponse(
-    typing_extensions.TypedDict, total=False
-):
-    videoEmbeddings: _list[typing.Any]
-
-@typing.type_check_only
 class CloudAiLargeModelsVisionFilteredText(typing_extensions.TypedDict, total=False):
     category: typing_extensions.Literal[
         "RAI_CATEGORY_UNSPECIFIED",
@@ -48,6 +42,7 @@ class CloudAiLargeModelsVisionFilteredText(typing_extensions.TypedDict, total=Fa
         "DANGEROUS_CONTENT",
         "RECITATION_TEXT",
         "CELEBRITY_IMG",
+        "WATERMARK_IMG_REMOVAL",
     ]
     confidence: typing_extensions.Literal[
         "CONFIDENCE_UNSPECIFIED",
@@ -63,6 +58,7 @@ class CloudAiLargeModelsVisionGenerateVideoResponse(
     typing_extensions.TypedDict, total=False
 ):
     generatedSamples: _list[CloudAiLargeModelsVisionMedia]
+    raiErrorMessage: str
     raiMediaFilteredCount: int
     raiMediaFilteredReasons: _list[str]
     raiTextFilteredReason: CloudAiLargeModelsVisionFilteredText
@@ -87,12 +83,6 @@ class CloudAiLargeModelsVisionMedia(typing_extensions.TypedDict, total=False):
     video: CloudAiLargeModelsVisionVideo
 
 @typing.type_check_only
-class CloudAiLargeModelsVisionMediaGenerateContentResponse(
-    typing_extensions.TypedDict, total=False
-):
-    response: CloudAiNlLlmProtoServiceGenerateMultiModalResponse
-
-@typing.type_check_only
 class CloudAiLargeModelsVisionNamedBoundingBox(
     typing_extensions.TypedDict, total=False
 ):
@@ -110,26 +100,6 @@ class CloudAiLargeModelsVisionRaiInfo(typing_extensions.TypedDict, total=False):
     scores: _list[float]
 
 @typing.type_check_only
-class CloudAiLargeModelsVisionReasonVideoResponse(
-    typing_extensions.TypedDict, total=False
-):
-    responses: _list[CloudAiLargeModelsVisionReasonVideoResponseTextResponse]
-
-@typing.type_check_only
-class CloudAiLargeModelsVisionReasonVideoResponseTextResponse(
-    typing_extensions.TypedDict, total=False
-):
-    relativeTemporalPartition: CloudAiLargeModelsVisionRelativeTemporalPartition
-    text: str
-
-@typing.type_check_only
-class CloudAiLargeModelsVisionRelativeTemporalPartition(
-    typing_extensions.TypedDict, total=False
-):
-    endOffset: str
-    startOffset: str
-
-@typing.type_check_only
 class CloudAiLargeModelsVisionSemanticFilterResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -140,240 +110,6 @@ class CloudAiLargeModelsVisionSemanticFilterResponse(
 class CloudAiLargeModelsVisionVideo(typing_extensions.TypedDict, total=False):
     uri: str
     video: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceCandidate(typing_extensions.TypedDict, total=False):
-    citationMetadata: CloudAiNlLlmProtoServiceCitationMetadata
-    content: CloudAiNlLlmProtoServiceContent
-    finishMessage: str
-    finishReason: typing_extensions.Literal[
-        "FINISH_REASON_UNSPECIFIED",
-        "FINISH_REASON_STOP",
-        "FINISH_REASON_MAX_TOKENS",
-        "FINISH_REASON_SAFETY",
-        "FINISH_REASON_RECITATION",
-        "FINISH_REASON_OTHER",
-        "FINISH_REASON_BLOCKLIST",
-        "FINISH_REASON_PROHIBITED_CONTENT",
-        "FINISH_REASON_SPII",
-    ]
-    groundingMetadata: LearningGenaiRootGroundingMetadata
-    index: int
-    safetyRatings: _list[CloudAiNlLlmProtoServiceSafetyRating]
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceCitation(typing_extensions.TypedDict, total=False):
-    endIndex: int
-    license: str
-    publicationDate: GoogleTypeDate
-    startIndex: int
-    title: str
-    uri: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceCitationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    citations: _list[CloudAiNlLlmProtoServiceCitation]
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceContent(typing_extensions.TypedDict, total=False):
-    parts: _list[CloudAiNlLlmProtoServicePart]
-    role: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceFact(typing_extensions.TypedDict, total=False):
-    query: str
-    summary: str
-    title: str
-    url: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceFunctionCall(typing_extensions.TypedDict, total=False):
-    args: dict[str, typing.Any]
-    name: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceFunctionResponse(
-    typing_extensions.TypedDict, total=False
-):
-    name: str
-    response: dict[str, typing.Any]
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceGenerateMultiModalResponse(
-    typing_extensions.TypedDict, total=False
-):
-    candidates: _list[CloudAiNlLlmProtoServiceCandidate]
-    debugMetadata: CloudAiNlLlmProtoServiceMessageMetadata
-    facts: _list[CloudAiNlLlmProtoServiceFact]
-    promptFeedback: CloudAiNlLlmProtoServicePromptFeedback
-    reportingMetrics: IntelligenceCloudAutomlXpsReportingMetrics
-    usageMetadata: CloudAiNlLlmProtoServiceUsageMetadata
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceMessageMetadata(typing_extensions.TypedDict, total=False):
-    inputFilterInfo: LearningServingLlmMessageMetadata
-    modelRoutingDecision: LearningGenaiRootRoutingDecision
-    outputFilterInfo: _list[LearningServingLlmMessageMetadata]
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePart(typing_extensions.TypedDict, total=False):
-    documentMetadata: CloudAiNlLlmProtoServicePartDocumentMetadata
-    fileData: CloudAiNlLlmProtoServicePartFileData
-    functionCall: CloudAiNlLlmProtoServiceFunctionCall
-    functionResponse: CloudAiNlLlmProtoServiceFunctionResponse
-    inlineData: CloudAiNlLlmProtoServicePartBlob
-    text: str
-    videoMetadata: CloudAiNlLlmProtoServicePartVideoMetadata
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePartBlob(typing_extensions.TypedDict, total=False):
-    data: str
-    mimeType: str
-    originalFileData: CloudAiNlLlmProtoServicePartFileData
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePartDocumentMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    originalDocumentBlob: CloudAiNlLlmProtoServicePartBlob
-    pageNumber: int
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePartFileData(typing_extensions.TypedDict, total=False):
-    fileUri: str
-    mimeType: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePartVideoMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    endOffset: str
-    startOffset: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServicePromptFeedback(typing_extensions.TypedDict, total=False):
-    blockReason: typing_extensions.Literal[
-        "BLOCKED_REASON_UNSPECIFIED",
-        "SAFETY",
-        "OTHER",
-        "BLOCKLIST",
-        "PROHIBITED_CONTENT",
-    ]
-    blockReasonMessage: str
-    safetyRatings: _list[CloudAiNlLlmProtoServiceSafetyRating]
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceRaiResult(typing_extensions.TypedDict, total=False):
-    aidaRecitationResult: LanguageLabsAidaTrustRecitationProtoRecitationResult
-    blocked: bool
-    errorCodes: _list[int]
-    filtered: bool
-    languageFilterResult: LearningGenaiRootLanguageFilterResult
-    raiSignals: _list[CloudAiNlLlmProtoServiceRaiSignal]
-    triggeredBlocklist: bool
-    triggeredRecitation: bool
-    triggeredSafetyFilter: bool
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceRaiSignal(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal[
-        "CONFIDENCE_UNSPECIFIED",
-        "CONFIDENCE_NONE",
-        "CONFIDENCE_LOW",
-        "CONFIDENCE_MEDIUM",
-        "CONFIDENCE_HIGH",
-    ]
-    flagged: bool
-    influentialTerms: _list[CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm]
-    raiCategory: typing_extensions.Literal[
-        "RAI_CATEGORY_UNSPECIFIED",
-        "TOXIC",
-        "SEXUALLY_EXPLICIT",
-        "HATE_SPEECH",
-        "VIOLENT",
-        "PROFANITY",
-        "HARASSMENT",
-        "DEATH_HARM_TRAGEDY",
-        "FIREARMS_WEAPONS",
-        "PUBLIC_SAFETY",
-        "HEALTH",
-        "RELIGIOUS_BELIEF",
-        "ILLICIT_DRUGS",
-        "WAR_CONFLICT",
-        "POLITICS",
-        "FINANCE",
-        "LEGAL",
-        "CSAI",
-        "FRINGE",
-        "THREAT",
-        "SEVERE_TOXICITY",
-        "TOXICITY",
-        "SEXUAL",
-        "INSULT",
-        "DEROGATORY",
-        "IDENTITY_ATTACK",
-        "VIOLENCE_ABUSE",
-        "OBSCENE",
-        "DRUGS",
-        "CSAM",
-        "SPII",
-        "DANGEROUS_CONTENT",
-        "DANGEROUS_CONTENT_SEVERITY",
-        "INSULT_SEVERITY",
-        "DEROGATORY_SEVERITY",
-        "SEXUAL_SEVERITY",
-    ]
-    score: float
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceRaiSignalInfluentialTerm(
-    typing_extensions.TypedDict, total=False
-):
-    beginOffset: int
-    confidence: float
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "PROMPT", "RESPONSE"]
-    term: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceSafetyRating(typing_extensions.TypedDict, total=False):
-    blocked: bool
-    category: typing_extensions.Literal[
-        "HARM_CATEGORY_UNSPECIFIED",
-        "HARM_CATEGORY_HATE_SPEECH",
-        "HARM_CATEGORY_DANGEROUS_CONTENT",
-        "HARM_CATEGORY_HARASSMENT",
-        "HARM_CATEGORY_SEXUALLY_EXPLICIT",
-    ]
-    influentialTerms: _list[CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm]
-    probability: typing_extensions.Literal[
-        "HARM_PROBABILITY_UNSPECIFIED", "NEGLIGIBLE", "LOW", "MEDIUM", "HIGH"
-    ]
-    probabilityScore: float
-    severity: typing_extensions.Literal[
-        "HARM_SEVERITY_UNSPECIFIED",
-        "HARM_SEVERITY_NEGLIGIBLE",
-        "HARM_SEVERITY_LOW",
-        "HARM_SEVERITY_MEDIUM",
-        "HARM_SEVERITY_HIGH",
-    ]
-    severityScore: float
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceSafetyRatingInfluentialTerm(
-    typing_extensions.TypedDict, total=False
-):
-    beginOffset: int
-    confidence: float
-    source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "PROMPT", "RESPONSE"]
-    term: str
-
-@typing.type_check_only
-class CloudAiNlLlmProtoServiceUsageMetadata(typing_extensions.TypedDict, total=False):
-    candidatesTokenCount: int
-    promptTokenCount: int
-    totalTokenCount: int
 
 @typing.type_check_only
 class GoogleApiHttpBody(typing_extensions.TypedDict, total=False):
@@ -490,6 +226,66 @@ class GoogleCloudAiplatformV1beta1Attribution(typing_extensions.TypedDict, total
     outputDisplayName: str
     outputIndex: _list[int]
     outputName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfig(typing_extensions.TypedDict, total=False):
+    apiKeyConfig: GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig
+    authType: typing_extensions.Literal[
+        "AUTH_TYPE_UNSPECIFIED",
+        "NO_AUTH",
+        "API_KEY_AUTH",
+        "HTTP_BASIC_AUTH",
+        "GOOGLE_SERVICE_ACCOUNT_AUTH",
+        "OAUTH",
+        "OIDC_AUTH",
+    ]
+    googleServiceAccountConfig: (
+        GoogleCloudAiplatformV1beta1AuthConfigGoogleServiceAccountConfig
+    )
+    httpBasicAuthConfig: GoogleCloudAiplatformV1beta1AuthConfigHttpBasicAuthConfig
+    oauthConfig: GoogleCloudAiplatformV1beta1AuthConfigOauthConfig
+    oidcConfig: GoogleCloudAiplatformV1beta1AuthConfigOidcConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiKeySecret: str
+    httpElementLocation: typing_extensions.Literal[
+        "HTTP_IN_UNSPECIFIED",
+        "HTTP_IN_QUERY",
+        "HTTP_IN_HEADER",
+        "HTTP_IN_PATH",
+        "HTTP_IN_BODY",
+        "HTTP_IN_COOKIE",
+    ]
+    name: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfigGoogleServiceAccountConfig(
+    typing_extensions.TypedDict, total=False
+):
+    serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfigHttpBasicAuthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    credentialSecret: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfigOauthConfig(
+    typing_extensions.TypedDict, total=False
+):
+    accessToken: str
+    serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AuthConfigOidcConfig(
+    typing_extensions.TypedDict, total=False
+):
+    idToken: str
+    serviceAccount: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1AutomaticResources(
@@ -779,6 +575,33 @@ class GoogleCloudAiplatformV1beta1BigQuerySource(
     inputUri: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1BleuInput(typing_extensions.TypedDict, total=False):
+    instances: _list[GoogleCloudAiplatformV1beta1BleuInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1BleuSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1BleuInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1BleuMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1BleuResults(typing_extensions.TypedDict, total=False):
+    bleuMetricValues: _list[GoogleCloudAiplatformV1beta1BleuMetricValue]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1BleuSpec(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Blob(typing_extensions.TypedDict, total=False):
     data: str
     mimeType: str
@@ -792,6 +615,11 @@ class GoogleCloudAiplatformV1beta1BlurBaselineConfig(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1BoolArray(typing_extensions.TypedDict, total=False):
     values: _list[bool]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CacheConfig(typing_extensions.TypedDict, total=False):
+    disableCache: bool
+    name: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CancelBatchPredictionJobRequest(
@@ -825,6 +653,11 @@ class GoogleCloudAiplatformV1beta1CancelPipelineJobRequest(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CancelTrainingPipelineRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CancelTuningJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -881,6 +714,33 @@ class GoogleCloudAiplatformV1beta1CitationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     citations: _list[GoogleCloudAiplatformV1beta1Citation]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CoherenceInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1CoherenceInstance
+    metricSpec: GoogleCloudAiplatformV1beta1CoherenceSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CoherenceInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CoherenceResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CoherenceSpec(
+    typing_extensions.TypedDict, total=False
+):
+    version: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CompleteTrialRequest(
@@ -1085,6 +945,28 @@ class GoogleCloudAiplatformV1beta1CreateMetadataStoreOperationMetadata(
     genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1CreateModelMonitorOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CreateModelMonitoringJobRequest(
+    typing_extensions.TypedDict, total=False
+):
+    modelMonitoringJob: GoogleCloudAiplatformV1beta1ModelMonitoringJob
+    modelMonitoringJobId: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest(
+    typing_extensions.TypedDict, total=False
+):
+    notebookExecutionJob: GoogleCloudAiplatformV1beta1NotebookExecutionJob
+    notebookExecutionJobId: str
+    parent: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1CreateNotebookRuntimeTemplateOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1267,6 +1149,7 @@ class GoogleCloudAiplatformV1beta1Dataset(typing_extensions.TypedDict, total=Fal
     metadata: typing.Any
     metadataArtifact: str
     metadataSchemaUri: str
+    modelReference: str
     name: str
     savedQueries: _list[GoogleCloudAiplatformV1beta1SavedQuery]
     updateTime: str
@@ -1280,6 +1163,7 @@ class GoogleCloudAiplatformV1beta1DatasetVersion(
     displayName: str
     etag: str
     metadata: typing.Any
+    modelReference: str
     name: str
     updateTime: str
 
@@ -1508,6 +1392,11 @@ class GoogleCloudAiplatformV1beta1DirectRawPredictResponse(
     output: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1DirectUploadSource(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1DiskSpec(typing_extensions.TypedDict, total=False):
     bootDiskSizeGb: int
     bootDiskType: str
@@ -1589,6 +1478,90 @@ class GoogleCloudAiplatformV1beta1ErrorAnalysisAnnotationAttributedItem(
     distance: float
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1EvaluateInstancesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    bleuInput: GoogleCloudAiplatformV1beta1BleuInput
+    coherenceInput: GoogleCloudAiplatformV1beta1CoherenceInput
+    exactMatchInput: GoogleCloudAiplatformV1beta1ExactMatchInput
+    fluencyInput: GoogleCloudAiplatformV1beta1FluencyInput
+    fulfillmentInput: GoogleCloudAiplatformV1beta1FulfillmentInput
+    groundednessInput: GoogleCloudAiplatformV1beta1GroundednessInput
+    pairwiseQuestionAnsweringQualityInput: (
+        GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput
+    )
+    pairwiseSummarizationQualityInput: (
+        GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInput
+    )
+    questionAnsweringCorrectnessInput: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessInput
+    )
+    questionAnsweringHelpfulnessInput: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessInput
+    )
+    questionAnsweringQualityInput: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringQualityInput
+    )
+    questionAnsweringRelevanceInput: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceInput
+    )
+    rougeInput: GoogleCloudAiplatformV1beta1RougeInput
+    safetyInput: GoogleCloudAiplatformV1beta1SafetyInput
+    summarizationHelpfulnessInput: (
+        GoogleCloudAiplatformV1beta1SummarizationHelpfulnessInput
+    )
+    summarizationQualityInput: GoogleCloudAiplatformV1beta1SummarizationQualityInput
+    summarizationVerbosityInput: GoogleCloudAiplatformV1beta1SummarizationVerbosityInput
+    toolCallValidInput: GoogleCloudAiplatformV1beta1ToolCallValidInput
+    toolNameMatchInput: GoogleCloudAiplatformV1beta1ToolNameMatchInput
+    toolParameterKeyMatchInput: GoogleCloudAiplatformV1beta1ToolParameterKeyMatchInput
+    toolParameterKvMatchInput: GoogleCloudAiplatformV1beta1ToolParameterKVMatchInput
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1EvaluateInstancesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    bleuResults: GoogleCloudAiplatformV1beta1BleuResults
+    coherenceResult: GoogleCloudAiplatformV1beta1CoherenceResult
+    exactMatchResults: GoogleCloudAiplatformV1beta1ExactMatchResults
+    fluencyResult: GoogleCloudAiplatformV1beta1FluencyResult
+    fulfillmentResult: GoogleCloudAiplatformV1beta1FulfillmentResult
+    groundednessResult: GoogleCloudAiplatformV1beta1GroundednessResult
+    pairwiseQuestionAnsweringQualityResult: (
+        GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityResult
+    )
+    pairwiseSummarizationQualityResult: (
+        GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityResult
+    )
+    questionAnsweringCorrectnessResult: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessResult
+    )
+    questionAnsweringHelpfulnessResult: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessResult
+    )
+    questionAnsweringQualityResult: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringQualityResult
+    )
+    questionAnsweringRelevanceResult: (
+        GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceResult
+    )
+    rougeResults: GoogleCloudAiplatformV1beta1RougeResults
+    safetyResult: GoogleCloudAiplatformV1beta1SafetyResult
+    summarizationHelpfulnessResult: (
+        GoogleCloudAiplatformV1beta1SummarizationHelpfulnessResult
+    )
+    summarizationQualityResult: GoogleCloudAiplatformV1beta1SummarizationQualityResult
+    summarizationVerbosityResult: (
+        GoogleCloudAiplatformV1beta1SummarizationVerbosityResult
+    )
+    toolCallValidResults: GoogleCloudAiplatformV1beta1ToolCallValidResults
+    toolNameMatchResults: GoogleCloudAiplatformV1beta1ToolNameMatchResults
+    toolParameterKeyMatchResults: (
+        GoogleCloudAiplatformV1beta1ToolParameterKeyMatchResults
+    )
+    toolParameterKvMatchResults: GoogleCloudAiplatformV1beta1ToolParameterKVMatchResults
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1EvaluatedAnnotation(
     typing_extensions.TypedDict, total=False
 ):
@@ -1619,6 +1592,37 @@ class GoogleCloudAiplatformV1beta1Event(typing_extensions.TypedDict, total=False
     execution: str
     labels: dict[str, typing.Any]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "INPUT", "OUTPUT"]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExactMatchInput(
+    typing_extensions.TypedDict, total=False
+):
+    instances: _list[GoogleCloudAiplatformV1beta1ExactMatchInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1ExactMatchSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExactMatchInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExactMatchMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExactMatchResults(
+    typing_extensions.TypedDict, total=False
+):
+    exactMatchMetricValues: _list[GoogleCloudAiplatformV1beta1ExactMatchMetricValue]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExactMatchSpec(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Examples(typing_extensions.TypedDict, total=False):
@@ -1654,6 +1658,20 @@ class GoogleCloudAiplatformV1beta1ExamplesRestrictionsNamespace(
     allow: _list[str]
     deny: _list[str]
     namespaceName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExecuteExtensionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    operationId: str
+    operationParams: dict[str, typing.Any]
+    runtimeAuthConfig: GoogleCloudAiplatformV1beta1AuthConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExecuteExtensionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Execution(typing_extensions.TypedDict, total=False):
@@ -1945,6 +1963,51 @@ class GoogleCloudAiplatformV1beta1ExportTensorboardTimeSeriesDataResponse(
     timeSeriesDataPoints: _list[GoogleCloudAiplatformV1beta1TimeSeriesDataPoint]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1Extension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    extensionOperations: _list[GoogleCloudAiplatformV1beta1ExtensionOperation]
+    manifest: GoogleCloudAiplatformV1beta1ExtensionManifest
+    name: str
+    privateServiceConnectConfig: (
+        GoogleCloudAiplatformV1beta1ExtensionPrivateServiceConnectConfig
+    )
+    runtimeConfig: GoogleCloudAiplatformV1beta1RuntimeConfig
+    toolUseExamples: _list[GoogleCloudAiplatformV1beta1ToolUseExample]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExtensionManifest(
+    typing_extensions.TypedDict, total=False
+):
+    apiSpec: GoogleCloudAiplatformV1beta1ExtensionManifestApiSpec
+    authConfig: GoogleCloudAiplatformV1beta1AuthConfig
+    description: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExtensionManifestApiSpec(
+    typing_extensions.TypedDict, total=False
+):
+    openApiGcsUri: str
+    openApiYaml: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExtensionOperation(
+    typing_extensions.TypedDict, total=False
+):
+    functionDeclaration: GoogleCloudAiplatformV1beta1FunctionDeclaration
+    operationId: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ExtensionPrivateServiceConnectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    serviceDirectory: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Feature(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -2125,6 +2188,7 @@ class GoogleCloudAiplatformV1beta1FeatureView(typing_extensions.TypedDict, total
     createTime: str
     etag: str
     featureRegistrySource: GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySource
+    indexConfig: GoogleCloudAiplatformV1beta1FeatureViewIndexConfig
     labels: dict[str, typing.Any]
     name: str
     serviceAccountEmail: str
@@ -2172,6 +2236,34 @@ class GoogleCloudAiplatformV1beta1FeatureViewFeatureRegistrySourceFeatureGroup(
 ):
     featureGroupId: str
     featureIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewIndexConfig(
+    typing_extensions.TypedDict, total=False
+):
+    bruteForceConfig: GoogleCloudAiplatformV1beta1FeatureViewIndexConfigBruteForceConfig
+    crowdingColumn: str
+    distanceMeasureType: typing_extensions.Literal[
+        "DISTANCE_MEASURE_TYPE_UNSPECIFIED",
+        "SQUARED_L2_DISTANCE",
+        "COSINE_DISTANCE",
+        "DOT_PRODUCT_DISTANCE",
+    ]
+    embeddingColumn: str
+    embeddingDimension: int
+    filterColumns: _list[str]
+    treeAhConfig: GoogleCloudAiplatformV1beta1FeatureViewIndexConfigTreeAHConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewIndexConfigBruteForceConfig(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewIndexConfigTreeAHConfig(
+    typing_extensions.TypedDict, total=False
+):
+    leafNodeEmbeddingCount: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewSync(
@@ -2316,6 +2408,7 @@ class GoogleCloudAiplatformV1beta1FetchFeatureValuesRequest(
 class GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse(
     typing_extensions.TypedDict, total=False
 ):
+    dataKey: GoogleCloudAiplatformV1beta1FeatureViewDataKey
     keyValues: (
         GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePairList
     )
@@ -2364,6 +2457,13 @@ class GoogleCloudAiplatformV1beta1FindNeighborsRequestQuery(
     fractionLeafNodesToSearchOverride: float
     neighborCount: int
     perCrowdingAttributeNeighborCount: int
+    rrf: GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FindNeighborsRequestQueryRRF(
+    typing_extensions.TypedDict, total=False
+):
+    alpha: float
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FindNeighborsResponse(
@@ -2386,6 +2486,32 @@ class GoogleCloudAiplatformV1beta1FindNeighborsResponseNeighbor(
 ):
     datapoint: GoogleCloudAiplatformV1beta1IndexDatapoint
     distance: float
+    sparseDistance: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FluencyInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1FluencyInstance
+    metricSpec: GoogleCloudAiplatformV1beta1FluencySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FluencyInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FluencyResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FluencySpec(typing_extensions.TypedDict, total=False):
+    version: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FractionSplit(
@@ -2396,11 +2522,46 @@ class GoogleCloudAiplatformV1beta1FractionSplit(
     validationFraction: float
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1FulfillmentInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1FulfillmentInstance
+    metricSpec: GoogleCloudAiplatformV1beta1FulfillmentSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FulfillmentInstance(
+    typing_extensions.TypedDict, total=False
+):
+    instruction: str
+    prediction: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FulfillmentResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FulfillmentSpec(
+    typing_extensions.TypedDict, total=False
+):
+    version: int
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionCall(
     typing_extensions.TypedDict, total=False
 ):
     args: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowedFunctionNames: _list[str]
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "AUTO", "ANY", "NONE"]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionDeclaration(
@@ -2409,6 +2570,7 @@ class GoogleCloudAiplatformV1beta1FunctionDeclaration(
     description: str
     name: str
     parameters: GoogleCloudAiplatformV1beta1Schema
+    response: GoogleCloudAiplatformV1beta1Schema
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FunctionResponse(
@@ -2449,6 +2611,8 @@ class GoogleCloudAiplatformV1beta1GenerateContentRequest(
     contents: _list[GoogleCloudAiplatformV1beta1Content]
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
+    systemInstruction: GoogleCloudAiplatformV1beta1Content
+    toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
     tools: _list[GoogleCloudAiplatformV1beta1Tool]
 
 @typing.type_check_only
@@ -2486,7 +2650,16 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
     typing_extensions.TypedDict, total=False
 ):
     candidateCount: int
+    frequencyPenalty: float
     maxOutputTokens: int
+    presencePenalty: float
+    responseMimeType: str
+    responseStyle: typing_extensions.Literal[
+        "RESPONSE_STYLE_UNSPECIFIED",
+        "RESPONSE_STYLE_PRECISE",
+        "RESPONSE_STYLE_BALANCED",
+        "RESPONSE_STYLE_CREATIVE",
+    ]
     stopSequences: _list[str]
     temperature: float
     topK: float
@@ -2505,31 +2678,54 @@ class GoogleCloudAiplatformV1beta1GenieSource(typing_extensions.TypedDict, total
     baseModelUri: str
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
+class GoogleCloudAiplatformV1beta1GoogleDriveSource(
     typing_extensions.TypedDict, total=False
 ):
-    disableAttribution: bool
+    resourceIds: _list[GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1beta1GroundingAttribution(
+class GoogleCloudAiplatformV1beta1GoogleDriveSourceResourceId(
     typing_extensions.TypedDict, total=False
 ):
-    confidenceScore: float
-    segment: GoogleCloudAiplatformV1beta1Segment
-    web: GoogleCloudAiplatformV1beta1GroundingAttributionWeb
+    resourceId: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "RESOURCE_TYPE_FILE", "RESOURCE_TYPE_FOLDER"
+    ]
 
 @typing.type_check_only
-class GoogleCloudAiplatformV1beta1GroundingAttributionWeb(
+class GoogleCloudAiplatformV1beta1GroundednessInput(
     typing_extensions.TypedDict, total=False
 ):
-    title: str
-    uri: str
+    instance: GoogleCloudAiplatformV1beta1GroundednessInstance
+    metricSpec: GoogleCloudAiplatformV1beta1GroundednessSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundednessInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    prediction: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundednessResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundednessSpec(
+    typing_extensions.TypedDict, total=False
+):
+    version: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1GroundingMetadata(
     typing_extensions.TypedDict, total=False
 ):
-    groundingAttributions: _list[GoogleCloudAiplatformV1beta1GroundingAttribution]
+    retrievalQueries: _list[str]
+    searchEntryPoint: GoogleCloudAiplatformV1beta1SearchEntryPoint
     webSearchQueries: _list[str]
 
 @typing.type_check_only
@@ -2654,6 +2850,20 @@ class GoogleCloudAiplatformV1beta1ImportModelEvaluationRequest(
     modelEvaluation: GoogleCloudAiplatformV1beta1ModelEvaluation
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ImportRagFilesConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcsSource: GoogleCloudAiplatformV1beta1GcsSource
+    googleDriveSource: GoogleCloudAiplatformV1beta1GoogleDriveSource
+    ragFileChunkingConfig: GoogleCloudAiplatformV1beta1RagFileChunkingConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ImportRagFilesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    importRagFilesConfig: GoogleCloudAiplatformV1beta1ImportRagFilesConfig
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Index(typing_extensions.TypedDict, total=False):
     createTime: str
     deployedIndexes: _list[GoogleCloudAiplatformV1beta1DeployedIndexRef]
@@ -2682,6 +2892,7 @@ class GoogleCloudAiplatformV1beta1IndexDatapoint(
         GoogleCloudAiplatformV1beta1IndexDatapointNumericRestriction
     ]
     restricts: _list[GoogleCloudAiplatformV1beta1IndexDatapointRestriction]
+    sparseEmbedding: GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1IndexDatapointCrowdingTag(
@@ -2716,6 +2927,13 @@ class GoogleCloudAiplatformV1beta1IndexDatapointRestriction(
     namespace: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1IndexDatapointSparseEmbedding(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    values: _list[float]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1IndexEndpoint(
     typing_extensions.TypedDict, total=False
 ):
@@ -2745,6 +2963,7 @@ class GoogleCloudAiplatformV1beta1IndexPrivateEndpoints(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1IndexStats(typing_extensions.TypedDict, total=False):
     shardsCount: int
+    sparseVectorsCount: str
     vectorsCount: str
 
 @typing.type_check_only
@@ -2900,6 +3119,13 @@ class GoogleCloudAiplatformV1beta1ListExecutionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListExtensionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    extensions: _list[GoogleCloudAiplatformV1beta1Extension]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListFeatureGroupsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -3000,6 +3226,20 @@ class GoogleCloudAiplatformV1beta1ListModelEvaluationsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListModelMonitoringJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    modelMonitoringJobs: _list[GoogleCloudAiplatformV1beta1ModelMonitoringJob]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListModelMonitorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    modelMonitors: _list[GoogleCloudAiplatformV1beta1ModelMonitor]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListModelVersionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -3026,6 +3266,13 @@ class GoogleCloudAiplatformV1beta1ListNasTrialDetailsResponse(
 ):
     nasTrialDetails: _list[GoogleCloudAiplatformV1beta1NasTrialDetail]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListNotebookExecutionJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    notebookExecutionJobs: _list[GoogleCloudAiplatformV1beta1NotebookExecutionJob]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListNotebookRuntimeTemplatesResponse(
@@ -3072,6 +3319,27 @@ class GoogleCloudAiplatformV1beta1ListPublisherModelsResponse(
 ):
     nextPageToken: str
     publisherModels: _list[GoogleCloudAiplatformV1beta1PublisherModel]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListRagCorporaResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    ragCorpora: _list[GoogleCloudAiplatformV1beta1RagCorpus]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListRagFilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    ragFiles: _list[GoogleCloudAiplatformV1beta1RagFile]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListReasoningEnginesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    reasoningEngines: _list[GoogleCloudAiplatformV1beta1ReasoningEngine]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ListSavedQueriesResponse(
@@ -3142,6 +3410,13 @@ class GoogleCloudAiplatformV1beta1ListTrialsResponse(
 ):
     nextPageToken: str
     trials: _list[GoogleCloudAiplatformV1beta1Trial]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ListTuningJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    tuningJobs: _list[GoogleCloudAiplatformV1beta1TuningJob]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1LookupStudyRequest(
@@ -3585,6 +3860,54 @@ class GoogleCloudAiplatformV1beta1ModelGardenSource(
     publicModelName: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitor(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    explanationSpec: GoogleCloudAiplatformV1beta1ExplanationSpec
+    modelMonitoringSchema: GoogleCloudAiplatformV1beta1ModelMonitoringSchema
+    modelMonitoringTarget: GoogleCloudAiplatformV1beta1ModelMonitorModelMonitoringTarget
+    name: str
+    notificationSpec: GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpec
+    outputSpec: GoogleCloudAiplatformV1beta1ModelMonitoringOutputSpec
+    tabularObjective: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecTabularObjective
+    )
+    trainingDataset: GoogleCloudAiplatformV1beta1ModelMonitoringInput
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitorModelMonitoringTarget(
+    typing_extensions.TypedDict, total=False
+):
+    vertexModel: (
+        GoogleCloudAiplatformV1beta1ModelMonitorModelMonitoringTargetVertexModelSource
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitorModelMonitoringTargetVertexModelSource(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
+    modelVersionId: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringAlert(
+    typing_extensions.TypedDict, total=False
+):
+    alertTime: str
+    anomaly: GoogleCloudAiplatformV1beta1ModelMonitoringAnomaly
+    objectiveType: str
+    statsName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringAlertCondition(
+    typing_extensions.TypedDict, total=False
+):
+    threshold: float
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3601,6 +3924,24 @@ class GoogleCloudAiplatformV1beta1ModelMonitoringAlertConfigEmailAlertConfig(
     userEmails: _list[str]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringAnomaly(
+    typing_extensions.TypedDict, total=False
+):
+    algorithm: str
+    modelMonitoringJob: str
+    tabularAnomaly: GoogleCloudAiplatformV1beta1ModelMonitoringAnomalyTabularAnomaly
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringAnomalyTabularAnomaly(
+    typing_extensions.TypedDict, total=False
+):
+    anomaly: typing.Any
+    anomalyUri: str
+    condition: GoogleCloudAiplatformV1beta1ModelMonitoringAlertCondition
+    summary: str
+    triggerTime: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelMonitoringConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3608,6 +3949,135 @@ class GoogleCloudAiplatformV1beta1ModelMonitoringConfig(
     analysisInstanceSchemaUri: str
     objectiveConfigs: _list[GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfig]
     statsAnomaliesBaseDirectory: GoogleCloudAiplatformV1beta1GcsDestination
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInput(
+    typing_extensions.TypedDict, total=False
+):
+    batchPredictionOutput: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringInputBatchPredictionOutput
+    )
+    columnizedDataset: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDataset
+    )
+    timeInterval: GoogleTypeInterval
+    timeOffset: GoogleCloudAiplatformV1beta1ModelMonitoringInputTimeOffset
+    vertexEndpointLogs: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringInputVertexEndpointLogs
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputBatchPredictionOutput(
+    typing_extensions.TypedDict, total=False
+):
+    batchPredictionJob: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDataset(
+    typing_extensions.TypedDict, total=False
+):
+    bigquerySource: GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDatasetModelMonitoringBigQuerySource
+    gcsSource: GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDatasetModelMonitoringGcsSource
+    timestampField: str
+    vertexDataset: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDatasetModelMonitoringBigQuerySource(
+    typing_extensions.TypedDict, total=False
+):
+    query: str
+    tableUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputModelMonitoringDatasetModelMonitoringGcsSource(
+    typing_extensions.TypedDict, total=False
+):
+    format: typing_extensions.Literal[
+        "DATA_FORMAT_UNSPECIFIED", "CSV", "TF_RECORD", "JSONL"
+    ]
+    gcsUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputTimeOffset(
+    typing_extensions.TypedDict, total=False
+):
+    offset: str
+    window: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringInputVertexEndpointLogs(
+    typing_extensions.TypedDict, total=False
+):
+    endpoints: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringJob(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    jobExecutionDetail: GoogleCloudAiplatformV1beta1ModelMonitoringJobExecutionDetail
+    modelMonitoringSpec: GoogleCloudAiplatformV1beta1ModelMonitoringSpec
+    name: str
+    schedule: str
+    scheduleTime: str
+    state: typing_extensions.Literal[
+        "JOB_STATE_UNSPECIFIED",
+        "JOB_STATE_QUEUED",
+        "JOB_STATE_PENDING",
+        "JOB_STATE_RUNNING",
+        "JOB_STATE_SUCCEEDED",
+        "JOB_STATE_FAILED",
+        "JOB_STATE_CANCELLING",
+        "JOB_STATE_CANCELLED",
+        "JOB_STATE_PAUSED",
+        "JOB_STATE_EXPIRED",
+        "JOB_STATE_UPDATING",
+        "JOB_STATE_PARTIALLY_SUCCEEDED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringJobExecutionDetail(
+    typing_extensions.TypedDict, total=False
+):
+    baselineDatasets: _list[
+        GoogleCloudAiplatformV1beta1ModelMonitoringJobExecutionDetailProcessedDataset
+    ]
+    error: GoogleRpcStatus
+    objectiveStatus: dict[str, typing.Any]
+    targetDatasets: _list[
+        GoogleCloudAiplatformV1beta1ModelMonitoringJobExecutionDetailProcessedDataset
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringJobExecutionDetailProcessedDataset(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    timeRange: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpec(
+    typing_extensions.TypedDict, total=False
+):
+    emailConfig: GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpecEmailConfig
+    enableCloudLogging: bool
+    notificationChannelConfigs: _list[
+        GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpecNotificationChannelConfig
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpecEmailConfig(
+    typing_extensions.TypedDict, total=False
+):
+    userEmails: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpecNotificationChannelConfig(
+    typing_extensions.TypedDict, total=False
+):
+    notificationChannel: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfig(
@@ -3667,6 +4137,97 @@ class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveConfigTrainingPredicti
     skewThresholds: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpec(
+    typing_extensions.TypedDict, total=False
+):
+    baselineDataset: GoogleCloudAiplatformV1beta1ModelMonitoringInput
+    explanationSpec: GoogleCloudAiplatformV1beta1ExplanationSpec
+    tabularObjective: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecTabularObjective
+    )
+    targetDataset: GoogleCloudAiplatformV1beta1ModelMonitoringInput
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecDataDriftSpec(
+    typing_extensions.TypedDict, total=False
+):
+    categoricalMetricType: str
+    defaultCategoricalAlertCondition: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringAlertCondition
+    )
+    defaultNumericAlertCondition: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringAlertCondition
+    )
+    featureAlertConditions: dict[str, typing.Any]
+    features: _list[str]
+    numericMetricType: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecFeatureAttributionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    batchExplanationDedicatedResources: (
+        GoogleCloudAiplatformV1beta1BatchDedicatedResources
+    )
+    defaultAlertCondition: GoogleCloudAiplatformV1beta1ModelMonitoringAlertCondition
+    featureAlertConditions: dict[str, typing.Any]
+    features: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecTabularObjective(
+    typing_extensions.TypedDict, total=False
+):
+    featureAttributionSpec: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecFeatureAttributionSpec
+    )
+    featureDriftSpec: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecDataDriftSpec
+    )
+    predictionOutputDriftSpec: (
+        GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpecDataDriftSpec
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringOutputSpec(
+    typing_extensions.TypedDict, total=False
+):
+    gcsBaseDirectory: GoogleCloudAiplatformV1beta1GcsDestination
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringSchema(
+    typing_extensions.TypedDict, total=False
+):
+    featureFields: _list[GoogleCloudAiplatformV1beta1ModelMonitoringSchemaFieldSchema]
+    groundTruthFields: _list[
+        GoogleCloudAiplatformV1beta1ModelMonitoringSchemaFieldSchema
+    ]
+    predictionFields: _list[
+        GoogleCloudAiplatformV1beta1ModelMonitoringSchemaFieldSchema
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringSchemaFieldSchema(
+    typing_extensions.TypedDict, total=False
+):
+    dataType: str
+    name: str
+    repeated: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringSpec(
+    typing_extensions.TypedDict, total=False
+):
+    notificationSpec: GoogleCloudAiplatformV1beta1ModelMonitoringNotificationSpec
+    objectiveSpec: GoogleCloudAiplatformV1beta1ModelMonitoringObjectiveSpec
+    outputSpec: GoogleCloudAiplatformV1beta1ModelMonitoringOutputSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringStats(
+    typing_extensions.TypedDict, total=False
+):
+    tabularStats: GoogleCloudAiplatformV1beta1ModelMonitoringTabularStats
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelMonitoringStatsAnomalies(
     typing_extensions.TypedDict, total=False
 ):
@@ -3691,6 +4252,41 @@ class GoogleCloudAiplatformV1beta1ModelMonitoringStatsAnomaliesFeatureHistoricSt
     predictionStats: _list[GoogleCloudAiplatformV1beta1FeatureStatsAnomaly]
     threshold: GoogleCloudAiplatformV1beta1ThresholdConfig
     trainingStats: GoogleCloudAiplatformV1beta1FeatureStatsAnomaly
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPoint(
+    typing_extensions.TypedDict, total=False
+):
+    algorithm: str
+    baselineStats: GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPointTypedValue
+    createTime: str
+    currentStats: GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPointTypedValue
+    hasAnomaly: bool
+    modelMonitoringJob: str
+    schedule: str
+    thresholdValue: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPointTypedValue(
+    typing_extensions.TypedDict, total=False
+):
+    distributionValue: GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPointTypedValueDistributionDataValue
+    doubleValue: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPointTypedValueDistributionDataValue(
+    typing_extensions.TypedDict, total=False
+):
+    distribution: typing.Any
+    distributionDeviation: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ModelMonitoringTabularStats(
+    typing_extensions.TypedDict, total=False
+):
+    dataPoints: _list[GoogleCloudAiplatformV1beta1ModelMonitoringStatsDataPoint]
+    objectiveType: str
+    statsName: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ModelOriginalModelInfo(
@@ -3905,11 +4501,13 @@ class GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadataContentV
     typing_extensions.TypedDict, total=False
 ):
     invalidRecordCount: str
+    invalidSparseRecordCount: str
     partialErrors: _list[
         GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadataRecordError
     ]
     sourceGcsUri: str
     validRecordCount: str
+    validSparseRecordCount: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadataRecordError(
@@ -3932,6 +4530,9 @@ class GoogleCloudAiplatformV1beta1NearestNeighborSearchOperationMetadataRecordEr
         "MULTIPLE_VALUES",
         "INVALID_NUMERIC_VALUE",
         "INVALID_ENCODING",
+        "INVALID_SPARSE_DIMENSIONS",
+        "INVALID_TOKEN_VALUE",
+        "INVALID_SPARSE_EMBEDDING",
     ]
     rawRecord: str
     sourceGcsUri: str
@@ -3973,6 +4574,75 @@ class GoogleCloudAiplatformV1beta1NotebookEucConfig(
 ):
     bypassActasCheck: bool
     eucDisabled: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1NotebookExecutionJob(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    customEnvironmentSpec: (
+        GoogleCloudAiplatformV1beta1NotebookExecutionJobCustomEnvironmentSpec
+    )
+    dataformRepositorySource: (
+        GoogleCloudAiplatformV1beta1NotebookExecutionJobDataformRepositorySource
+    )
+    directNotebookSource: (
+        GoogleCloudAiplatformV1beta1NotebookExecutionJobDirectNotebookSource
+    )
+    displayName: str
+    executionTimeout: str
+    executionUser: str
+    gcsNotebookSource: GoogleCloudAiplatformV1beta1NotebookExecutionJobGcsNotebookSource
+    gcsOutputUri: str
+    jobState: typing_extensions.Literal[
+        "JOB_STATE_UNSPECIFIED",
+        "JOB_STATE_QUEUED",
+        "JOB_STATE_PENDING",
+        "JOB_STATE_RUNNING",
+        "JOB_STATE_SUCCEEDED",
+        "JOB_STATE_FAILED",
+        "JOB_STATE_CANCELLING",
+        "JOB_STATE_CANCELLED",
+        "JOB_STATE_PAUSED",
+        "JOB_STATE_EXPIRED",
+        "JOB_STATE_UPDATING",
+        "JOB_STATE_PARTIALLY_SUCCEEDED",
+    ]
+    labels: dict[str, typing.Any]
+    name: str
+    notebookRuntimeTemplateResourceName: str
+    scheduleResourceName: str
+    serviceAccount: str
+    status: GoogleRpcStatus
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1NotebookExecutionJobCustomEnvironmentSpec(
+    typing_extensions.TypedDict, total=False
+):
+    machineSpec: GoogleCloudAiplatformV1beta1MachineSpec
+    networkSpec: GoogleCloudAiplatformV1beta1NetworkSpec
+    persistentDiskSpec: GoogleCloudAiplatformV1beta1PersistentDiskSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1NotebookExecutionJobDataformRepositorySource(
+    typing_extensions.TypedDict, total=False
+):
+    commitSha: str
+    dataformRepositoryResourceName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1NotebookExecutionJobDirectNotebookSource(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1NotebookExecutionJobGcsNotebookSource(
+    typing_extensions.TypedDict, total=False
+):
+    generation: str
+    uri: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1NotebookIdleShutdownConfig(
@@ -4022,8 +4692,12 @@ class GoogleCloudAiplatformV1beta1NotebookRuntime(
         "BEING_STOPPED",
         "STOPPED",
         "BEING_UPGRADED",
+        "ERROR",
+        "INVALID",
     ]
     runtimeUser: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     serviceAccount: str
     updateTime: str
     version: str
@@ -4058,6 +4732,74 @@ class GoogleCloudAiplatformV1beta1NotebookRuntimeTemplateRef(
     typing_extensions.TypedDict, total=False
 ):
     notebookRuntimeTemplate: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInstance
+    metricSpec: GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualitySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInstance(
+    typing_extensions.TypedDict, total=False
+):
+    baselinePrediction: str
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    pairwiseChoice: typing_extensions.Literal[
+        "PAIRWISE_CHOICE_UNSPECIFIED", "BASELINE", "CANDIDATE", "TIE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualitySpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInstance
+    metricSpec: GoogleCloudAiplatformV1beta1PairwiseSummarizationQualitySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInstance(
+    typing_extensions.TypedDict, total=False
+):
+    baselinePrediction: str
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    pairwiseChoice: typing_extensions.Literal[
+        "PAIRWISE_CHOICE_UNSPECIFIED", "BASELINE", "CANDIDATE", "TIE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseSummarizationQualitySpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False):
@@ -4102,7 +4844,13 @@ class GoogleCloudAiplatformV1beta1PersistentResource(
     resourceRuntimeSpec: GoogleCloudAiplatformV1beta1ResourceRuntimeSpec
     startTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "PROVISIONING", "RUNNING", "STOPPING", "ERROR", "UPDATING"
+        "STATE_UNSPECIFIED",
+        "PROVISIONING",
+        "RUNNING",
+        "STOPPING",
+        "ERROR",
+        "REBOOTING",
+        "UPDATING",
     ]
     updateTime: str
 
@@ -4382,6 +5130,9 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToAction(
     )
     deploy: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy
     deployGke: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke
+    fineTune: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
+    )
     openEvaluationPipeline: (
         GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
     )
@@ -4417,6 +5168,7 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy(
     automaticResources: GoogleCloudAiplatformV1beta1AutomaticResources
     containerSpec: GoogleCloudAiplatformV1beta1ModelContainerSpec
     dedicatedResources: GoogleCloudAiplatformV1beta1DedicatedResources
+    deployTaskName: str
     largeModelReference: GoogleCloudAiplatformV1beta1LargeModelReference
     modelDisplayName: str
     publicArtifactUri: str
@@ -4566,6 +5318,202 @@ class GoogleCloudAiplatformV1beta1QueryDeployedModelsResponse(
     totalEndpointCount: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1QueryExtensionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contents: _list[GoogleCloudAiplatformV1beta1Content]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QueryExtensionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    failureMessage: str
+    steps: _list[GoogleCloudAiplatformV1beta1Content]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QueryReasoningEngineRequest(
+    typing_extensions.TypedDict, total=False
+):
+    input: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QueryReasoningEngineResponse(
+    typing_extensions.TypedDict, total=False
+):
+    output: typing.Any
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessInstance
+    metricSpec: GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessSpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessInstance
+    metricSpec: GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringHelpfulnessSpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringQualityInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1QuestionAnsweringQualityInstance
+    metricSpec: GoogleCloudAiplatformV1beta1QuestionAnsweringQualitySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringQualityInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringQualityResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringQualitySpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceInstance
+    metricSpec: GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1QuestionAnsweringRelevanceSpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagContexts(typing_extensions.TypedDict, total=False):
+    contexts: _list[GoogleCloudAiplatformV1beta1RagContextsContext]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagContextsContext(
+    typing_extensions.TypedDict, total=False
+):
+    distance: float
+    sourceUri: str
+    text: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagCorpus(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagFile(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    directUploadSource: GoogleCloudAiplatformV1beta1DirectUploadSource
+    displayName: str
+    gcsSource: GoogleCloudAiplatformV1beta1GcsSource
+    googleDriveSource: GoogleCloudAiplatformV1beta1GoogleDriveSource
+    name: str
+    ragFileType: typing_extensions.Literal[
+        "RAG_FILE_TYPE_UNSPECIFIED", "RAG_FILE_TYPE_TXT", "RAG_FILE_TYPE_PDF"
+    ]
+    sizeBytes: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagFileChunkingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    chunkOverlap: int
+    chunkSize: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagQuery(typing_extensions.TypedDict, total=False):
+    similarityTopK: int
+    text: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1RawPredictRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -4678,6 +5626,46 @@ class GoogleCloudAiplatformV1beta1ReadTensorboardUsageResponsePerUserUsageData(
 ):
     username: str
     viewCount: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ReasoningEngine(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    name: str
+    spec: GoogleCloudAiplatformV1beta1ReasoningEngineSpec
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ReasoningEngineSpec(
+    typing_extensions.TypedDict, total=False
+):
+    classMethods: _list[dict[str, typing.Any]]
+    packageSpec: GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec(
+    typing_extensions.TypedDict, total=False
+):
+    dependencyFilesGcsUri: str
+    pickleObjectGcsUri: str
+    pythonVersion: str
+    requirementsGcsUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RebootPersistentResourceOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
+    progressMessage: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RebootPersistentResourceRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RemoveContextChildrenRequest(
@@ -4795,6 +5783,104 @@ class GoogleCloudAiplatformV1beta1ResumeScheduleRequest(
 class GoogleCloudAiplatformV1beta1Retrieval(typing_extensions.TypedDict, total=False):
     disableAttribution: bool
     vertexAiSearch: GoogleCloudAiplatformV1beta1VertexAISearch
+    vertexRagStore: GoogleCloudAiplatformV1beta1VertexRagStore
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RetrieveContextsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    query: GoogleCloudAiplatformV1beta1RagQuery
+    vertexRagStore: GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpora: _list[str]
+    ragResources: _list[
+        GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource
+    ]
+    vectorDistanceThreshold: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpus: str
+    ragFileIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RetrieveContextsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contexts: GoogleCloudAiplatformV1beta1RagContexts
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RougeInput(typing_extensions.TypedDict, total=False):
+    instances: _list[GoogleCloudAiplatformV1beta1RougeInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1RougeSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RougeInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RougeMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RougeResults(
+    typing_extensions.TypedDict, total=False
+):
+    rougeMetricValues: _list[GoogleCloudAiplatformV1beta1RougeMetricValue]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RougeSpec(typing_extensions.TypedDict, total=False):
+    rougeType: str
+    splitSummaries: bool
+    useStemmer: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RuntimeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    codeInterpreterRuntimeConfig: (
+        GoogleCloudAiplatformV1beta1RuntimeConfigCodeInterpreterRuntimeConfig
+    )
+    defaultParams: dict[str, typing.Any]
+    vertexAiSearchRuntimeConfig: (
+        GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RuntimeConfigCodeInterpreterRuntimeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    fileInputGcsBucket: str
+    fileOutputGcsBucket: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig(
+    typing_extensions.TypedDict, total=False
+):
+    appId: str
+    servingConfigName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SafetyInput(typing_extensions.TypedDict, total=False):
+    instance: GoogleCloudAiplatformV1beta1SafetyInstance
+    metricSpec: GoogleCloudAiplatformV1beta1SafetySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SafetyInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SafetyRating(
@@ -4822,6 +5908,14 @@ class GoogleCloudAiplatformV1beta1SafetyRating(
     severityScore: float
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SafetyResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SafetySetting(
     typing_extensions.TypedDict, total=False
 ):
@@ -4832,6 +5926,9 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
     ]
+    method: typing_extensions.Literal[
+        "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
+    ]
     threshold: typing_extensions.Literal[
         "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
         "BLOCK_LOW_AND_ABOVE",
@@ -4839,6 +5936,10 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "BLOCK_ONLY_HIGH",
         "BLOCK_NONE",
     ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SafetySpec(typing_extensions.TypedDict, total=False):
+    version: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SampleConfig(
@@ -4889,6 +5990,12 @@ class GoogleCloudAiplatformV1beta1Scalar(typing_extensions.TypedDict, total=Fals
 class GoogleCloudAiplatformV1beta1Schedule(typing_extensions.TypedDict, total=False):
     allowQueueing: bool
     catchUp: bool
+    createModelMonitoringJobRequest: (
+        GoogleCloudAiplatformV1beta1CreateModelMonitoringJobRequest
+    )
+    createNotebookExecutionJobRequest: (
+        GoogleCloudAiplatformV1beta1CreateNotebookExecutionJobRequest
+    )
     createPipelineJobRequest: GoogleCloudAiplatformV1beta1CreatePipelineJobRequest
     createTime: str
     cron: str
@@ -4923,14 +6030,25 @@ class GoogleCloudAiplatformV1beta1Scheduling(typing_extensions.TypedDict, total=
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=False):
+    default: typing.Any
     description: str
     enum: _list[str]
     example: typing.Any
     format: str
     items: GoogleCloudAiplatformV1beta1Schema
+    maxItems: str
+    maxLength: str
+    maxProperties: str
+    maximum: float
+    minItems: str
+    minLength: str
+    minProperties: str
+    minimum: float
     nullable: bool
+    pattern: str
     properties: dict[str, typing.Any]
     required: _list[str]
+    title: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "STRING", "NUMBER", "INTEGER", "BOOLEAN", "ARRAY", "OBJECT"
     ]
@@ -5145,6 +6263,24 @@ class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsImageSegmentationE
     iouScore: float
     precision: float
     recall: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsPairwiseTextGenerationEvaluationMetrics(
+    typing_extensions.TypedDict, total=False
+):
+    accuracy: float
+    baselineModelWinRate: float
+    cohensKappa: float
+    f1Score: float
+    falseNegativeCount: str
+    falsePositiveCount: str
+    humanPreferenceBaselineModelWinRate: float
+    humanPreferenceModelWinRate: float
+    modelWinRate: float
+    precision: float
+    recall: float
+    trueNegativeCount: str
+    truePositiveCount: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1SchemaModelevaluationMetricsQuestionAnsweringEvaluationMetrics(
@@ -6375,6 +7511,13 @@ class GoogleCloudAiplatformV1beta1SearchDataItemsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchEntryPoint(
+    typing_extensions.TypedDict, total=False
+):
+    renderedContent: str
+    sdkBlob: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SearchFeaturesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -6431,6 +7574,59 @@ class GoogleCloudAiplatformV1beta1SearchModelDeploymentMonitoringStatsAnomaliesR
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringAlertsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    alertTimeInterval: GoogleTypeInterval
+    modelMonitoringJob: str
+    objectiveType: str
+    pageSize: int
+    pageToken: str
+    statsName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringAlertsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    modelMonitoringAlerts: _list[GoogleCloudAiplatformV1beta1ModelMonitoringAlert]
+    nextPageToken: str
+    totalNumberAlerts: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilter(
+    typing_extensions.TypedDict, total=False
+):
+    tabularStatsFilter: (
+        GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterTabularStatsFilter
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilterTabularStatsFilter(
+    typing_extensions.TypedDict, total=False
+):
+    algorithm: str
+    modelMonitoringJob: str
+    modelMonitoringSchedule: str
+    objectiveType: str
+    statsName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    pageSize: int
+    pageToken: str
+    statsFilter: GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsFilter
+    timeInterval: GoogleTypeInterval
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SearchModelMonitoringStatsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    monitoringStats: _list[GoogleCloudAiplatformV1beta1ModelMonitoringStats]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SearchNearestEntitiesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -6442,12 +7638,6 @@ class GoogleCloudAiplatformV1beta1SearchNearestEntitiesResponse(
     typing_extensions.TypedDict, total=False
 ):
     nearestNeighbors: GoogleCloudAiplatformV1beta1NearestNeighbors
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1Segment(typing_extensions.TypedDict, total=False):
-    endIndex: int
-    partIndex: int
-    startIndex: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1ServiceAccountSpec(
@@ -6506,6 +7696,23 @@ class GoogleCloudAiplatformV1beta1StratifiedSplit(
     testFraction: float
     trainingFraction: float
     validationFraction: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1StreamingFetchFeatureValuesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataFormat: typing_extensions.Literal[
+        "FEATURE_VIEW_DATA_FORMAT_UNSPECIFIED", "KEY_VALUE", "PROTO_STRUCT"
+    ]
+    dataKeys: _list[GoogleCloudAiplatformV1beta1FeatureViewDataKey]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1StreamingFetchFeatureValuesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    data: _list[GoogleCloudAiplatformV1beta1FetchFeatureValuesResponse]
+    dataKeysWithError: _list[GoogleCloudAiplatformV1beta1FeatureViewDataKey]
+    status: GoogleRpcStatus
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1StreamingPredictRequest(
@@ -6750,6 +7957,163 @@ class GoogleCloudAiplatformV1beta1SuggestTrialsResponse(
     trials: _list[GoogleCloudAiplatformV1beta1Trial]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationHelpfulnessInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1SummarizationHelpfulnessInstance
+    metricSpec: GoogleCloudAiplatformV1beta1SummarizationHelpfulnessSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationHelpfulnessInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationHelpfulnessResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationHelpfulnessSpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationQualityInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1SummarizationQualityInstance
+    metricSpec: GoogleCloudAiplatformV1beta1SummarizationQualitySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationQualityInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationQualityResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationQualitySpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationVerbosityInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1SummarizationVerbosityInstance
+    metricSpec: GoogleCloudAiplatformV1beta1SummarizationVerbositySpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationVerbosityInstance(
+    typing_extensions.TypedDict, total=False
+):
+    context: str
+    instruction: str
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationVerbosityResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SummarizationVerbositySpec(
+    typing_extensions.TypedDict, total=False
+):
+    useReference: bool
+    version: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SupervisedHyperParameters(
+    typing_extensions.TypedDict, total=False
+):
+    adapterSize: typing_extensions.Literal[
+        "ADAPTER_SIZE_UNSPECIFIED",
+        "ADAPTER_SIZE_ONE",
+        "ADAPTER_SIZE_FOUR",
+        "ADAPTER_SIZE_EIGHT",
+        "ADAPTER_SIZE_SIXTEEN",
+    ]
+    epochCount: str
+    learningRateMultiplier: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SupervisedTuningDataStats(
+    typing_extensions.TypedDict, total=False
+):
+    totalBillableCharacterCount: str
+    totalTuningCharacterCount: str
+    tuningDatasetExampleCount: str
+    tuningStepCount: str
+    userDatasetExamples: _list[GoogleCloudAiplatformV1beta1Content]
+    userInputTokenDistribution: (
+        GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution
+    )
+    userMessagePerExampleDistribution: (
+        GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution
+    )
+    userOutputTokenDistribution: (
+        GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution(
+    typing_extensions.TypedDict, total=False
+):
+    buckets: _list[
+        GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistributionDatasetBucket
+    ]
+    max: float
+    mean: float
+    median: float
+    min: float
+    p5: float
+    p95: float
+    sum: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistributionDatasetBucket(
+    typing_extensions.TypedDict, total=False
+):
+    count: float
+    left: float
+    right: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SupervisedTuningSpec(
+    typing_extensions.TypedDict, total=False
+):
+    hyperParameters: GoogleCloudAiplatformV1beta1SupervisedHyperParameters
+    trainingDatasetUri: str
+    validationDatasetUri: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1SyncFeatureViewRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -6924,8 +8288,163 @@ class GoogleCloudAiplatformV1beta1TokensInfo(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False):
     functionDeclarations: _list[GoogleCloudAiplatformV1beta1FunctionDeclaration]
-    googleSearchRetrieval: GoogleCloudAiplatformV1beta1GoogleSearchRetrieval
     retrieval: GoogleCloudAiplatformV1beta1Retrieval
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolCallValidInput(
+    typing_extensions.TypedDict, total=False
+):
+    instances: _list[GoogleCloudAiplatformV1beta1ToolCallValidInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1ToolCallValidSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolCallValidInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolCallValidMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolCallValidResults(
+    typing_extensions.TypedDict, total=False
+):
+    toolCallValidMetricValues: _list[
+        GoogleCloudAiplatformV1beta1ToolCallValidMetricValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolCallValidSpec(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolConfig(typing_extensions.TypedDict, total=False):
+    functionCallingConfig: GoogleCloudAiplatformV1beta1FunctionCallingConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolNameMatchInput(
+    typing_extensions.TypedDict, total=False
+):
+    instances: _list[GoogleCloudAiplatformV1beta1ToolNameMatchInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1ToolNameMatchSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolNameMatchInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolNameMatchMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolNameMatchResults(
+    typing_extensions.TypedDict, total=False
+):
+    toolNameMatchMetricValues: _list[
+        GoogleCloudAiplatformV1beta1ToolNameMatchMetricValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolNameMatchSpec(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKVMatchInput(
+    typing_extensions.TypedDict, total=False
+):
+    instances: _list[GoogleCloudAiplatformV1beta1ToolParameterKVMatchInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1ToolParameterKVMatchSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKVMatchInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKVMatchMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKVMatchResults(
+    typing_extensions.TypedDict, total=False
+):
+    toolParameterKvMatchMetricValues: _list[
+        GoogleCloudAiplatformV1beta1ToolParameterKVMatchMetricValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKVMatchSpec(
+    typing_extensions.TypedDict, total=False
+):
+    useStrictStringMatch: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKeyMatchInput(
+    typing_extensions.TypedDict, total=False
+):
+    instances: _list[GoogleCloudAiplatformV1beta1ToolParameterKeyMatchInstance]
+    metricSpec: GoogleCloudAiplatformV1beta1ToolParameterKeyMatchSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKeyMatchInstance(
+    typing_extensions.TypedDict, total=False
+):
+    prediction: str
+    reference: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKeyMatchMetricValue(
+    typing_extensions.TypedDict, total=False
+):
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKeyMatchResults(
+    typing_extensions.TypedDict, total=False
+):
+    toolParameterKeyMatchMetricValues: _list[
+        GoogleCloudAiplatformV1beta1ToolParameterKeyMatchMetricValue
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolParameterKeyMatchSpec(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolUseExample(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    extensionOperation: GoogleCloudAiplatformV1beta1ToolUseExampleExtensionOperation
+    functionName: str
+    query: str
+    requestParams: dict[str, typing.Any]
+    responseParams: dict[str, typing.Any]
+    responseSummary: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ToolUseExampleExtensionOperation(
+    typing_extensions.TypedDict, total=False
+):
+    extension: str
+    operationId: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1TrainingConfig(
@@ -7000,6 +8519,49 @@ class GoogleCloudAiplatformV1beta1TrialParameter(
 ):
     parameterId: str
     value: typing.Any
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TunedModel(typing_extensions.TypedDict, total=False):
+    endpoint: str
+    model: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TuningDataStats(
+    typing_extensions.TypedDict, total=False
+):
+    supervisedTuningDataStats: GoogleCloudAiplatformV1beta1SupervisedTuningDataStats
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TuningJob(typing_extensions.TypedDict, total=False):
+    baseModel: str
+    createTime: str
+    description: str
+    encryptionSpec: GoogleCloudAiplatformV1beta1EncryptionSpec
+    endTime: str
+    error: GoogleRpcStatus
+    experiment: str
+    labels: dict[str, typing.Any]
+    name: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "JOB_STATE_UNSPECIFIED",
+        "JOB_STATE_QUEUED",
+        "JOB_STATE_PENDING",
+        "JOB_STATE_RUNNING",
+        "JOB_STATE_SUCCEEDED",
+        "JOB_STATE_FAILED",
+        "JOB_STATE_CANCELLING",
+        "JOB_STATE_CANCELLED",
+        "JOB_STATE_PAUSED",
+        "JOB_STATE_EXPIRED",
+        "JOB_STATE_UPDATING",
+        "JOB_STATE_PARTIALLY_SUCCEEDED",
+    ]
+    supervisedTuningSpec: GoogleCloudAiplatformV1beta1SupervisedTuningSpec
+    tunedModel: GoogleCloudAiplatformV1beta1TunedModel
+    tunedModelDisplayName: str
+    tuningDataStats: GoogleCloudAiplatformV1beta1TuningDataStats
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1UndeployIndexOperationMetadata(
@@ -7119,6 +8681,12 @@ class GoogleCloudAiplatformV1beta1UpdateModelDeploymentMonitoringJobOperationMet
     genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1UpdateModelMonitorOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    genericMetadata: GoogleCloudAiplatformV1beta1GenericOperationMetadata
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1UpdatePersistentResourceOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -7173,6 +8741,26 @@ class GoogleCloudAiplatformV1beta1UploadModelResponse(
     modelVersionId: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1UploadRagFileConfig(
+    typing_extensions.TypedDict, total=False
+):
+    ragFileChunkingConfig: GoogleCloudAiplatformV1beta1RagFileChunkingConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1UploadRagFileRequest(
+    typing_extensions.TypedDict, total=False
+):
+    ragFile: GoogleCloudAiplatformV1beta1RagFile
+    uploadRagFileConfig: GoogleCloudAiplatformV1beta1UploadRagFileConfig
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1UploadRagFileResponse(
+    typing_extensions.TypedDict, total=False
+):
+    error: GoogleRpcStatus
+    ragFile: GoogleCloudAiplatformV1beta1RagFile
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1UpsertDatapointsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -7203,6 +8791,22 @@ class GoogleCloudAiplatformV1beta1VertexAISearch(
     typing_extensions.TypedDict, total=False
 ):
     datastore: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VertexRagStore(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpora: _list[str]
+    ragResources: _list[GoogleCloudAiplatformV1beta1VertexRagStoreRagResource]
+    similarityTopK: int
+    vectorDistanceThreshold: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VertexRagStoreRagResource(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpus: str
+    ragFileIds: _list[str]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1VideoMetadata(
@@ -7372,2010 +8976,3 @@ class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
-
-@typing.type_check_only
-class IntelligenceCloudAutomlXpsMetricEntry(typing_extensions.TypedDict, total=False):
-    argentumMetricId: str
-    doubleValue: float
-    int64Value: str
-    metricName: str
-    systemLabels: _list[IntelligenceCloudAutomlXpsMetricEntryLabel]
-
-@typing.type_check_only
-class IntelligenceCloudAutomlXpsMetricEntryLabel(
-    typing_extensions.TypedDict, total=False
-):
-    labelName: str
-    labelValue: str
-
-@typing.type_check_only
-class IntelligenceCloudAutomlXpsReportingMetrics(
-    typing_extensions.TypedDict, total=False
-):
-    effectiveTrainingDuration: str
-    metricEntries: _list[IntelligenceCloudAutomlXpsMetricEntry]
-
-@typing.type_check_only
-class LanguageLabsAidaTrustRecitationProtoDocAttribution(
-    typing_extensions.TypedDict, total=False
-):
-    amarnaId: str
-    arxivId: str
-    author: str
-    bibkey: str
-    biorxivId: str
-    bookTitle: str
-    bookVolumeId: str
-    category: typing_extensions.Literal[
-        "CATEGORY_UNSPECIFIED",
-        "CATEGORY_NEWS",
-        "CATEGORY_NON_NEWS_WEBDOC",
-        "CATEGORY_UNKNOWN_MISSING_SIGNAL",
-    ]
-    conversationId: str
-    dataset: typing_extensions.Literal[
-        "DATASET_UNSPECIFIED",
-        "WIKIPEDIA",
-        "WEBDOCS",
-        "WEBDOCS_FINETUNE",
-        "GITHUB_MIRROR",
-        "BOOKS_FULL_VIEW",
-        "BOOKS_PRIVATE",
-        "GNEWS",
-        "ULM_DOCJOINS",
-        "ULM_DOCJOINS_DEDUPED",
-        "MEENA_FC",
-        "PODCAST",
-        "AQUA",
-        "WEB_ASR",
-        "BARD_GOLDEN",
-        "COMMON_SENSE_REASONING",
-        "MATH",
-        "MATH_REASONING",
-        "CLEAN_ARXIV",
-        "LAMDA_FACTUALITY_E2E_QUERY_GENERATION",
-        "LAMDA_FACTUALITY_E2E_RESPONSE_GENERATION",
-        "MASSIVE_FORUM_THREAD_SCORED_BARD",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_200",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_500",
-        "DOCUMENT_CHUNKS",
-        "MEENA_RESEARCH_PHASE_GOLDEN_MARKDOWN",
-        "MEENA_RESEARCH_PHASE_GOOGLERS",
-        "MEENA_RESPONSE_SAFETY_HUMAN_GEN",
-        "MEENA_RESPONSE_SAFETY_SCHEMA_NO_BROADCAST",
-        "MEENA_RESPONSE_SAFETY_V3_HUMAN_GEN2",
-        "MEENA_RESPONSE_SAFETY_V3_SCHEMA_NO_BROADCAST",
-        "LAMDA_FACTUALITY_TRIGGER",
-        "LAMDA_SAFETY_V2_SCHEMA_NO_BROADCAST",
-        "LAMDA_SSI_DISCRIMINATIVE",
-        "ASSISTANT_PERSONALITY_SAFETY",
-        "PODCAST_FINETUNE_DIALOG",
-        "WORLD_QUERY_GENERATOR",
-        "C4_JOINED_DOCJOINS",
-        "HOL4_THEORIES",
-        "HOL_LIGHT_THEORIES",
-        "HOLSTEPS",
-        "ISABELLE_STEP",
-        "ISABELLE_THEORIES",
-        "LEAN_MATHLIB_THEORIES",
-        "LEAN_STEP",
-        "MIZAR_THEORIES",
-        "COQ_STEP",
-        "COQ_THEORIES",
-        "AMPS_KHAN",
-        "AMPS_MATHEMATICA",
-        "CODEY_CODE",
-        "CODE_QA_SE",
-        "CODE_QA_SO",
-        "CODE_QA_FT_FORMAT",
-        "CODE_QA_FT_KNOWLEDGE",
-        "CODE_QA_GITHUB_FILTERED_CODE",
-        "BARD_PERSONALITY_GOLDEN",
-        "ULM_DOCJOINS_WITH_URLS_EN",
-        "ULM_DOCJOINS_WITH_URLS_I18N",
-        "GOODALL_MTV5_GITHUB",
-        "GOODALL_MTV5_BOOKS",
-        "GOODALL_MTV5_C4",
-        "GOODALL_MTV5_WIKIPEDIA",
-        "GOODALL_MW_TOP_100B",
-        "GOODALL_MW_STACK_EXCHANGE",
-        "GOODALL_MW_TOP_0_10B",
-        "GOODALL_MW_TOP_10B_20B",
-        "CODEY_NOTEBOOK_LM_PRETRAINING",
-        "VERTEX_SAFE_FLAN",
-        "GITHUB_MIRROR_V1_0_1",
-        "GITHUB_MIRROR_V2_1_0",
-        "CMS_WIKIPEDIA_LANG_FILTERED",
-        "CMS_STACKOVERFLOW_MULTILINGUAL",
-        "CMS_STACKEXCHANGE",
-        "PUBMED",
-        "GEMINI_DOCJOINS_EN_TOP10B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP20B_TOP100B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP20B_TOP100B_GCC",
-        "SIMPLIFIED_HTML_V1_GCC",
-        "GEMINI_DOCJOINS_TOXICITY_TAGGED_GCC",
-        "CMS_GITHUB_V4",
-        "GITHUB_HTML_V4",
-        "GITHUB_OTHER_V4",
-        "GITHUB_LONG_TAIL_V4",
-        "CMS_GITHUB_MULTIFILE_V4",
-        "GITHUB_DIFFS_WITH_COMMIT_MESSAGE",
-        "ULM_ARXIV",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_ENONLY",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_NONENONLY",
-        "QUORA",
-        "PODCASTS_ROBOTSTXT",
-        "COMBINED_REDDIT",
-        "CANARIES_SHUFFLED",
-        "CLM_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "TECHDOCS_DATA_SOURCE",
-        "SCIENCE_PDF_70M_DOCS_FILTERED",
-        "GEMINI_V1_CMS_WIKIPEDIA_LANG_FILTERED",
-        "GEMINI_V1_WIKIPEDIA_DIFFS",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_TOP20B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP20B_TOP100B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_TOP20B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP20B_TOP100B_GCC_050523",
-        "GEMINI_V1_SIMPLIFIED_HTML_V2_GCC",
-        "GEMINI_V1_CMS_STACKOVERFLOW_MULTILINGUAL_V2",
-        "GEMINI_V1_CMS_STACKEXCHANGE_DECONT",
-        "GEMINI_V1_QUORA",
-        "GEMINI_V1_COMBINED_REDDIT",
-        "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
-        "GEMINI_V1_PUBMED",
-        "GEMINI_V1_WEB_MATH_V2",
-        "GEMINI_V1_CMS_GITHUB_V7",
-        "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
-        "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
-        "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
-        "GEMINI_V1_GITHUB_OTHER_V4",
-        "GEMINI_V1_GITHUB_LONG_TAIL_V4",
-        "GEMINI_V1_GITHUB_JUPTYER_NOTEBOOKS_SSTABLE",
-        "GEMINI_V1_ULM_ARXIV_SSTABLE",
-        "GEMINI_V1_PODCASTS_ROBOTSTXT",
-        "GEMINI_V1_SCIENCE_PDF_68M_HQ_DOCS_GCC",
-        "GEMINI_V1_GITHUB_TECHDOCS_V2",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_EN",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_NONEN",
-        "GEMINI_V1_STEM_BOOKS_650K_TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_M3W_V2_FILTERED",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_WEBLI_EN_V4_350M_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_SCREENAI_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CULTURE_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_EN_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_I18N_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_NON_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_VTP_4F_VIDEO2TEXT_PREFIX",
-        "GEMINI_V1_FORMAL_MATH_WITHOUT_HOLSTEPS_AND_MIZAR",
-        "GEMINI_V1_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "GEMINI_V1_CANARIES_SHUFFLED_DOCJOIN_EN_NONEN_CODE_ARXIV_TRANSLATE",
-        "DUET_CLOUD_SECURITY_DOCS",
-        "DUET_GITHUB_CODE_SNIPPETS",
-        "DUET_GITHUB_FILES",
-        "DUET_GOBYEXAMPLE",
-        "DUET_GOLANG_DOCS",
-        "DUET_CLOUD_DOCS_TROUBLESHOOTING_TABLES",
-        "DUET_DEVSITE_DOCS",
-        "DUET_CLOUD_BLOG_POSTS",
-        "DUET_CLOUD_PODCAST_EPISODES",
-        "DUET_YOUTUBE_VIDEOS",
-        "DUET_CLOUD_SKILLS_BOOST",
-        "DUET_CLOUD_DOCS",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_GENERATED",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_HANDWRITTEN",
-        "DUET_GOOGLESQL_GENERATION",
-        "DUET_CLOUD_IX_PROMPTS",
-        "DUET_RAD",
-        "BARD_ARCADE_GITHUB",
-        "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
-        "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
-        "GENESIS_NEWS_INSIGHTS",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
-        "CLOUD_SECURITY_RAG_CISA",
-        "LABS_AQA_DSCOUT",
-        "LABS_AQA_TAILWIND",
-        "LABS_AQA_DELEWARE",
-        "GEMINI_MULTIMODAL_FT_URL",
-        "GEMINI_MULTIMODAL_FT_YT",
-        "GEMINI_MULTIMODAL_FT_SHUTTERSTOCK",
-        "GEMINI_MULTIMODAL_FT_NONE",
-        "GEMINI_MULTIMODAL_FT_OTHER",
-        "GEMINI_MULTIMODAL_FT_INK",
-        "GEMINI_MULTIMODAL_IT",
-        "GEMINI_IT_SHUTTERSTOCK",
-        "GEMINI_IT_M3W",
-        "GEMINI_IT_HEDGING",
-        "GEMINI_IT_DSCOUT_FACTUALITY",
-        "GEMINI_IT_AQUAMUSE",
-        "GEMINI_IT_SHOTGUN",
-        "GEMINI_IT_ACI_BENCH",
-        "GEMINI_IT_SPIDER_FILTERED",
-        "GEMINI_IT_TAB_SUM_BQ",
-        "GEMINI_IT_QA_WITH_URL",
-        "GEMINI_IT_CODE_INSTRUCT",
-        "GEMINI_IT_MED_PALM",
-        "GEMINI_IT_TASK_ORIENTED_DIALOG",
-        "GEMINI_IT_NIMBUS_GROUNDING_TO_PROMPT",
-        "GEMINI_IT_EITL_GEN",
-        "GEMINI_IT_HITL_GEN",
-        "GEMINI_IT_MECH",
-        "GEMINI_IT_TABLE_GEN",
-        "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMINI_IT_CLOUD_CODE_IF",
-        "GEMINI_IT_CLOUD_EUR_LEX_JSON",
-        "GEMINI_IT_CLOUD_OASST",
-        "GEMINI_IT_CLOUD_SELF_INSTRUCT",
-        "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
-        "GEMIT_BRIDGE_SUFFIX_FT",
-        "GEMINI_GOOSE_PUBLIC",
-        "GEMINI_GOOSE_SILOED",
-        "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
-        "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_QUORA_COMPLIANT",
-        "GEMINI_V2_FORUMS_V2_COMPLIANT",
-        "GEMINI_V2_CMS_STACKOVERFLOW_MULTILINGUAL_V2_COMPLIANT",
-        "GEMINI_V2_SIMPLIFIED_HTML_V2_CORRECT_FORMAT_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_TOXICITY_TAGGED_FIXED_TAGS_COMPLIANT",
-        "GEMINI_V2_CODEWEB_V1_COMPLIANT",
-        "GEMINI_V2_LEETCODE_GCC_PII",
-        "GEMINI_V2_CODE_CONTESTS_COMPLIANT",
-        "GEMINI_V2_CMS_GITHUB_MULTI_FILE_FOR_FIM_GEMBAGZ_FIXED_BYTES_LENGTHS",
-        "GEMINI_V2_GITHUB_EVALED_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_NON_EVAL_HIGH_PRI_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_LOW_PRI_LANGUAGES_AND_CONFIGS_COMPLIANT",
-        "GEMINI_V2_GITHUB_LONG_TAIL_AND_STRUCTURED_DATA_COMPLIANT",
-        "GEMINI_V2_GITHUB_PYTHON_NOTEBOOKS_COMPLIANT",
-        "GEMINI_V2_GITHUB_DIFFS_COMPLIANT",
-        "GEMINI_V2_GITHUB_TECHDOCS_COMPLIANT",
-        "GEMINI_V2_HIGH_QUALITY_CODE_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_SCIENCE_PDF_68M_HQ_DOCS_DEDUP_COMPLIANT_CLEAN_TEX",
-        "GEMINI_V2_ARXIV_2023_COMPLIANT",
-        "GEMINI_V2_FORMAL_COMPLIANT",
-        "GEMINI_V2_CMS_STACKEXCHANGE_COMPLIANT",
-        "GEMINI_V2_PUBMED_COMPLIANT",
-        "GEMINI_V2_WEB_MATH_V3_COMPLIANT",
-        "GEMINI_V2_SCIENCEWEB_V0_GCC_PII",
-        "GEMINI_V2_WEB_POLYMATH_V1_COMPLIANT",
-        "GEMINI_V2_MATH_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_BIOLOGY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_PHYSICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHEMISTRY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MACHINE_LEARNING_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_QA_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_ECONOMICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MEDICAL_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHESS_COMPLIANT",
-        "GEMINI_V2_YOUTUBE_SCIENCE_V4_FILTERED_COMPLIANT",
-        "GEMINI_V2_GOALDMINE_XL_GENERATED_PLUS_GT_NO_DM_MATH_COMPLIANT",
-        "GEMINI_V2_FIRSTTIMES_SCIENCE_PDF_DEDUP_HQ_LENGTH_FILTERED_COMPLIANT",
-        "GEMINI_V2_PODCASTS_COMPLIANT",
-        "GEMINI_V2_EN_NONSCIENCE_PDF_DEDUP_46M_DOCS_COMPLIANT",
-        "GEMINI_V2_NONPUB_COPYRIGHT_BOOKS_V3_70_CONF_082323_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_COPYRIGHT_BOOKS_V3_111823_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_BOOKS_318K_TEXT_COMPLIANT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_T2I_TEXT_TO_IMAGE_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_I18N_680M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_FULL_HTML_75M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_V1_1_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_DOC_240M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_VIDEO_VIDEO_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M4W_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CULTURE_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_DETECTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_ALT_TEXT_NONEN_500M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SPATIAL_AWARE_PALI_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_3D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_NON_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_3D_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CC3M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_INFOGRAPHICS_LARGE_WEB_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_BIORXIV_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_IM2SOL_PROBLEM_AND_SOLUTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PLOT2TABLE_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TIKZ_DERENDERING_MERGED_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_2D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WIKIPEDIA_EQUATIONS_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_EQ2LATEX_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_ARXIV_EQUATIONS_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_HEAD_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_CLM_TRANSLATE_DATAV3_WEB_UNWMT_INCR_MIX",
-        "GEMINI_V2_NTL_NTLV4A_MONOLINGUAL_DEDUP_N5",
-        "GEMINI_V2_NTL_STT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
-        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
-        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
-        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
-        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
-        "CLOUD_GEMIT_CODE_IF_V1",
-        "CLOUD_GEMIT_CODE_SELF_REPAIR",
-        "CLOUD_GEMIT_IDENTITY",
-        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
-        "CLOUD_GEMIT_AMPS",
-        "CLOUD_GEMIT_AQUA",
-        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
-        "CLOUD_GEMIT_GSM8K_SCHEMA",
-    ]
-    filepath: str
-    geminiId: str
-    gnewsArticleTitle: str
-    goodallExampleId: str
-    isOptOut: bool
-    isPrompt: bool
-    lamdaExampleId: str
-    license: str
-    meenaConversationId: str
-    naturalLanguageCode: str
-    noAttribution: bool
-    podcastUtteranceId: str
-    publicationDate: GoogleTypeDate
-    qualityScoreExperimentOnly: float
-    repo: str
-    url: str
-    volumeId: str
-    wikipediaArticleTitle: str
-    youtubeVideoId: str
-
-@typing.type_check_only
-class LanguageLabsAidaTrustRecitationProtoRecitationResult(
-    typing_extensions.TypedDict, total=False
-):
-    dynamicSegmentResults: _list[LanguageLabsAidaTrustRecitationProtoSegmentResult]
-    recitationAction: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CITE", "BLOCK", "NO_ACTION", "EXEMPT_FOUND_IN_PROMPT"
-    ]
-    trainingSegmentResults: _list[LanguageLabsAidaTrustRecitationProtoSegmentResult]
-
-@typing.type_check_only
-class LanguageLabsAidaTrustRecitationProtoSegmentResult(
-    typing_extensions.TypedDict, total=False
-):
-    attributionDataset: typing_extensions.Literal[
-        "DATASET_UNSPECIFIED",
-        "WIKIPEDIA",
-        "WEBDOCS",
-        "WEBDOCS_FINETUNE",
-        "GITHUB_MIRROR",
-        "BOOKS_FULL_VIEW",
-        "BOOKS_PRIVATE",
-        "GNEWS",
-        "ULM_DOCJOINS",
-        "ULM_DOCJOINS_DEDUPED",
-        "MEENA_FC",
-        "PODCAST",
-        "AQUA",
-        "WEB_ASR",
-        "BARD_GOLDEN",
-        "COMMON_SENSE_REASONING",
-        "MATH",
-        "MATH_REASONING",
-        "CLEAN_ARXIV",
-        "LAMDA_FACTUALITY_E2E_QUERY_GENERATION",
-        "LAMDA_FACTUALITY_E2E_RESPONSE_GENERATION",
-        "MASSIVE_FORUM_THREAD_SCORED_BARD",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_200",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_500",
-        "DOCUMENT_CHUNKS",
-        "MEENA_RESEARCH_PHASE_GOLDEN_MARKDOWN",
-        "MEENA_RESEARCH_PHASE_GOOGLERS",
-        "MEENA_RESPONSE_SAFETY_HUMAN_GEN",
-        "MEENA_RESPONSE_SAFETY_SCHEMA_NO_BROADCAST",
-        "MEENA_RESPONSE_SAFETY_V3_HUMAN_GEN2",
-        "MEENA_RESPONSE_SAFETY_V3_SCHEMA_NO_BROADCAST",
-        "LAMDA_FACTUALITY_TRIGGER",
-        "LAMDA_SAFETY_V2_SCHEMA_NO_BROADCAST",
-        "LAMDA_SSI_DISCRIMINATIVE",
-        "ASSISTANT_PERSONALITY_SAFETY",
-        "PODCAST_FINETUNE_DIALOG",
-        "WORLD_QUERY_GENERATOR",
-        "C4_JOINED_DOCJOINS",
-        "HOL4_THEORIES",
-        "HOL_LIGHT_THEORIES",
-        "HOLSTEPS",
-        "ISABELLE_STEP",
-        "ISABELLE_THEORIES",
-        "LEAN_MATHLIB_THEORIES",
-        "LEAN_STEP",
-        "MIZAR_THEORIES",
-        "COQ_STEP",
-        "COQ_THEORIES",
-        "AMPS_KHAN",
-        "AMPS_MATHEMATICA",
-        "CODEY_CODE",
-        "CODE_QA_SE",
-        "CODE_QA_SO",
-        "CODE_QA_FT_FORMAT",
-        "CODE_QA_FT_KNOWLEDGE",
-        "CODE_QA_GITHUB_FILTERED_CODE",
-        "BARD_PERSONALITY_GOLDEN",
-        "ULM_DOCJOINS_WITH_URLS_EN",
-        "ULM_DOCJOINS_WITH_URLS_I18N",
-        "GOODALL_MTV5_GITHUB",
-        "GOODALL_MTV5_BOOKS",
-        "GOODALL_MTV5_C4",
-        "GOODALL_MTV5_WIKIPEDIA",
-        "GOODALL_MW_TOP_100B",
-        "GOODALL_MW_STACK_EXCHANGE",
-        "GOODALL_MW_TOP_0_10B",
-        "GOODALL_MW_TOP_10B_20B",
-        "CODEY_NOTEBOOK_LM_PRETRAINING",
-        "VERTEX_SAFE_FLAN",
-        "GITHUB_MIRROR_V1_0_1",
-        "GITHUB_MIRROR_V2_1_0",
-        "CMS_WIKIPEDIA_LANG_FILTERED",
-        "CMS_STACKOVERFLOW_MULTILINGUAL",
-        "CMS_STACKEXCHANGE",
-        "PUBMED",
-        "GEMINI_DOCJOINS_EN_TOP10B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP20B_TOP100B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP20B_TOP100B_GCC",
-        "SIMPLIFIED_HTML_V1_GCC",
-        "GEMINI_DOCJOINS_TOXICITY_TAGGED_GCC",
-        "CMS_GITHUB_V4",
-        "GITHUB_HTML_V4",
-        "GITHUB_OTHER_V4",
-        "GITHUB_LONG_TAIL_V4",
-        "CMS_GITHUB_MULTIFILE_V4",
-        "GITHUB_DIFFS_WITH_COMMIT_MESSAGE",
-        "ULM_ARXIV",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_ENONLY",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_NONENONLY",
-        "QUORA",
-        "PODCASTS_ROBOTSTXT",
-        "COMBINED_REDDIT",
-        "CANARIES_SHUFFLED",
-        "CLM_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "TECHDOCS_DATA_SOURCE",
-        "SCIENCE_PDF_70M_DOCS_FILTERED",
-        "GEMINI_V1_CMS_WIKIPEDIA_LANG_FILTERED",
-        "GEMINI_V1_WIKIPEDIA_DIFFS",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_TOP20B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP20B_TOP100B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_TOP20B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP20B_TOP100B_GCC_050523",
-        "GEMINI_V1_SIMPLIFIED_HTML_V2_GCC",
-        "GEMINI_V1_CMS_STACKOVERFLOW_MULTILINGUAL_V2",
-        "GEMINI_V1_CMS_STACKEXCHANGE_DECONT",
-        "GEMINI_V1_QUORA",
-        "GEMINI_V1_COMBINED_REDDIT",
-        "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
-        "GEMINI_V1_PUBMED",
-        "GEMINI_V1_WEB_MATH_V2",
-        "GEMINI_V1_CMS_GITHUB_V7",
-        "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
-        "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
-        "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
-        "GEMINI_V1_GITHUB_OTHER_V4",
-        "GEMINI_V1_GITHUB_LONG_TAIL_V4",
-        "GEMINI_V1_GITHUB_JUPTYER_NOTEBOOKS_SSTABLE",
-        "GEMINI_V1_ULM_ARXIV_SSTABLE",
-        "GEMINI_V1_PODCASTS_ROBOTSTXT",
-        "GEMINI_V1_SCIENCE_PDF_68M_HQ_DOCS_GCC",
-        "GEMINI_V1_GITHUB_TECHDOCS_V2",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_EN",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_NONEN",
-        "GEMINI_V1_STEM_BOOKS_650K_TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_M3W_V2_FILTERED",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_WEBLI_EN_V4_350M_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_SCREENAI_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CULTURE_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_EN_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_I18N_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_NON_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_VTP_4F_VIDEO2TEXT_PREFIX",
-        "GEMINI_V1_FORMAL_MATH_WITHOUT_HOLSTEPS_AND_MIZAR",
-        "GEMINI_V1_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "GEMINI_V1_CANARIES_SHUFFLED_DOCJOIN_EN_NONEN_CODE_ARXIV_TRANSLATE",
-        "DUET_CLOUD_SECURITY_DOCS",
-        "DUET_GITHUB_CODE_SNIPPETS",
-        "DUET_GITHUB_FILES",
-        "DUET_GOBYEXAMPLE",
-        "DUET_GOLANG_DOCS",
-        "DUET_CLOUD_DOCS_TROUBLESHOOTING_TABLES",
-        "DUET_DEVSITE_DOCS",
-        "DUET_CLOUD_BLOG_POSTS",
-        "DUET_CLOUD_PODCAST_EPISODES",
-        "DUET_YOUTUBE_VIDEOS",
-        "DUET_CLOUD_SKILLS_BOOST",
-        "DUET_CLOUD_DOCS",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_GENERATED",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_HANDWRITTEN",
-        "DUET_GOOGLESQL_GENERATION",
-        "DUET_CLOUD_IX_PROMPTS",
-        "DUET_RAD",
-        "BARD_ARCADE_GITHUB",
-        "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
-        "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
-        "GENESIS_NEWS_INSIGHTS",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
-        "CLOUD_SECURITY_RAG_CISA",
-        "LABS_AQA_DSCOUT",
-        "LABS_AQA_TAILWIND",
-        "LABS_AQA_DELEWARE",
-        "GEMINI_MULTIMODAL_FT_URL",
-        "GEMINI_MULTIMODAL_FT_YT",
-        "GEMINI_MULTIMODAL_FT_SHUTTERSTOCK",
-        "GEMINI_MULTIMODAL_FT_NONE",
-        "GEMINI_MULTIMODAL_FT_OTHER",
-        "GEMINI_MULTIMODAL_FT_INK",
-        "GEMINI_MULTIMODAL_IT",
-        "GEMINI_IT_SHUTTERSTOCK",
-        "GEMINI_IT_M3W",
-        "GEMINI_IT_HEDGING",
-        "GEMINI_IT_DSCOUT_FACTUALITY",
-        "GEMINI_IT_AQUAMUSE",
-        "GEMINI_IT_SHOTGUN",
-        "GEMINI_IT_ACI_BENCH",
-        "GEMINI_IT_SPIDER_FILTERED",
-        "GEMINI_IT_TAB_SUM_BQ",
-        "GEMINI_IT_QA_WITH_URL",
-        "GEMINI_IT_CODE_INSTRUCT",
-        "GEMINI_IT_MED_PALM",
-        "GEMINI_IT_TASK_ORIENTED_DIALOG",
-        "GEMINI_IT_NIMBUS_GROUNDING_TO_PROMPT",
-        "GEMINI_IT_EITL_GEN",
-        "GEMINI_IT_HITL_GEN",
-        "GEMINI_IT_MECH",
-        "GEMINI_IT_TABLE_GEN",
-        "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMINI_IT_CLOUD_CODE_IF",
-        "GEMINI_IT_CLOUD_EUR_LEX_JSON",
-        "GEMINI_IT_CLOUD_OASST",
-        "GEMINI_IT_CLOUD_SELF_INSTRUCT",
-        "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
-        "GEMIT_BRIDGE_SUFFIX_FT",
-        "GEMINI_GOOSE_PUBLIC",
-        "GEMINI_GOOSE_SILOED",
-        "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
-        "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_QUORA_COMPLIANT",
-        "GEMINI_V2_FORUMS_V2_COMPLIANT",
-        "GEMINI_V2_CMS_STACKOVERFLOW_MULTILINGUAL_V2_COMPLIANT",
-        "GEMINI_V2_SIMPLIFIED_HTML_V2_CORRECT_FORMAT_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_TOXICITY_TAGGED_FIXED_TAGS_COMPLIANT",
-        "GEMINI_V2_CODEWEB_V1_COMPLIANT",
-        "GEMINI_V2_LEETCODE_GCC_PII",
-        "GEMINI_V2_CODE_CONTESTS_COMPLIANT",
-        "GEMINI_V2_CMS_GITHUB_MULTI_FILE_FOR_FIM_GEMBAGZ_FIXED_BYTES_LENGTHS",
-        "GEMINI_V2_GITHUB_EVALED_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_NON_EVAL_HIGH_PRI_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_LOW_PRI_LANGUAGES_AND_CONFIGS_COMPLIANT",
-        "GEMINI_V2_GITHUB_LONG_TAIL_AND_STRUCTURED_DATA_COMPLIANT",
-        "GEMINI_V2_GITHUB_PYTHON_NOTEBOOKS_COMPLIANT",
-        "GEMINI_V2_GITHUB_DIFFS_COMPLIANT",
-        "GEMINI_V2_GITHUB_TECHDOCS_COMPLIANT",
-        "GEMINI_V2_HIGH_QUALITY_CODE_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_SCIENCE_PDF_68M_HQ_DOCS_DEDUP_COMPLIANT_CLEAN_TEX",
-        "GEMINI_V2_ARXIV_2023_COMPLIANT",
-        "GEMINI_V2_FORMAL_COMPLIANT",
-        "GEMINI_V2_CMS_STACKEXCHANGE_COMPLIANT",
-        "GEMINI_V2_PUBMED_COMPLIANT",
-        "GEMINI_V2_WEB_MATH_V3_COMPLIANT",
-        "GEMINI_V2_SCIENCEWEB_V0_GCC_PII",
-        "GEMINI_V2_WEB_POLYMATH_V1_COMPLIANT",
-        "GEMINI_V2_MATH_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_BIOLOGY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_PHYSICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHEMISTRY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MACHINE_LEARNING_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_QA_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_ECONOMICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MEDICAL_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHESS_COMPLIANT",
-        "GEMINI_V2_YOUTUBE_SCIENCE_V4_FILTERED_COMPLIANT",
-        "GEMINI_V2_GOALDMINE_XL_GENERATED_PLUS_GT_NO_DM_MATH_COMPLIANT",
-        "GEMINI_V2_FIRSTTIMES_SCIENCE_PDF_DEDUP_HQ_LENGTH_FILTERED_COMPLIANT",
-        "GEMINI_V2_PODCASTS_COMPLIANT",
-        "GEMINI_V2_EN_NONSCIENCE_PDF_DEDUP_46M_DOCS_COMPLIANT",
-        "GEMINI_V2_NONPUB_COPYRIGHT_BOOKS_V3_70_CONF_082323_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_COPYRIGHT_BOOKS_V3_111823_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_BOOKS_318K_TEXT_COMPLIANT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_T2I_TEXT_TO_IMAGE_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_I18N_680M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_FULL_HTML_75M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_V1_1_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_DOC_240M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_VIDEO_VIDEO_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M4W_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CULTURE_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_DETECTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_ALT_TEXT_NONEN_500M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SPATIAL_AWARE_PALI_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_3D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_NON_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_3D_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CC3M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_INFOGRAPHICS_LARGE_WEB_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_BIORXIV_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_IM2SOL_PROBLEM_AND_SOLUTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PLOT2TABLE_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TIKZ_DERENDERING_MERGED_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_2D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WIKIPEDIA_EQUATIONS_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_EQ2LATEX_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_ARXIV_EQUATIONS_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_HEAD_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_CLM_TRANSLATE_DATAV3_WEB_UNWMT_INCR_MIX",
-        "GEMINI_V2_NTL_NTLV4A_MONOLINGUAL_DEDUP_N5",
-        "GEMINI_V2_NTL_STT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
-        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
-        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
-        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
-        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
-        "CLOUD_GEMIT_CODE_IF_V1",
-        "CLOUD_GEMIT_CODE_SELF_REPAIR",
-        "CLOUD_GEMIT_IDENTITY",
-        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
-        "CLOUD_GEMIT_AMPS",
-        "CLOUD_GEMIT_AQUA",
-        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
-        "CLOUD_GEMIT_GSM8K_SCHEMA",
-    ]
-    displayAttributionMessage: str
-    docAttribution: LanguageLabsAidaTrustRecitationProtoDocAttribution
-    docOccurrences: int
-    endIndex: int
-    rawText: str
-    segmentRecitationAction: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CITE", "BLOCK", "NO_ACTION", "EXEMPT_FOUND_IN_PROMPT"
-    ]
-    startIndex: int
-
-@typing.type_check_only
-class LanguageLabsAidaTrustRecitationProtoStreamRecitationResult(
-    typing_extensions.TypedDict, total=False
-):
-    dynamicSegmentResults: _list[LanguageLabsAidaTrustRecitationProtoSegmentResult]
-    fullyCheckedTextIndex: int
-    recitationAction: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CITE", "BLOCK", "NO_ACTION", "EXEMPT_FOUND_IN_PROMPT"
-    ]
-    trainingSegmentResults: _list[LanguageLabsAidaTrustRecitationProtoSegmentResult]
-
-@typing.type_check_only
-class LearningGenaiRecitationDocAttribution(typing_extensions.TypedDict, total=False):
-    amarnaId: str
-    arxivId: str
-    author: str
-    bibkey: str
-    biorxivId: str
-    bookTitle: str
-    bookVolumeId: str
-    conversationId: str
-    dataset: typing_extensions.Literal[
-        "DATASET_UNSPECIFIED",
-        "WIKIPEDIA",
-        "WEBDOCS",
-        "WEBDOCS_FINETUNE",
-        "GITHUB_MIRROR",
-        "BOOKS_FULL_VIEW",
-        "BOOKS_PRIVATE",
-        "GNEWS",
-        "ULM_DOCJOINS",
-        "ULM_DOCJOINS_DEDUPED",
-        "MEENA_FC",
-        "PODCAST",
-        "AQUA",
-        "WEB_ASR",
-        "BARD_GOLDEN",
-        "COMMON_SENSE_REASONING",
-        "MATH",
-        "MATH_REASONING",
-        "CLEAN_ARXIV",
-        "LAMDA_FACTUALITY_E2E_QUERY_GENERATION",
-        "LAMDA_FACTUALITY_E2E_RESPONSE_GENERATION",
-        "MASSIVE_FORUM_THREAD_SCORED_BARD",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_200",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_500",
-        "DOCUMENT_CHUNKS",
-        "MEENA_RESEARCH_PHASE_GOLDEN_MARKDOWN",
-        "MEENA_RESEARCH_PHASE_GOOGLERS",
-        "MEENA_RESPONSE_SAFETY_HUMAN_GEN",
-        "MEENA_RESPONSE_SAFETY_SCHEMA_NO_BROADCAST",
-        "MEENA_RESPONSE_SAFETY_V3_HUMAN_GEN2",
-        "MEENA_RESPONSE_SAFETY_V3_SCHEMA_NO_BROADCAST",
-        "LAMDA_FACTUALITY_TRIGGER",
-        "LAMDA_SAFETY_V2_SCHEMA_NO_BROADCAST",
-        "LAMDA_SSI_DISCRIMINATIVE",
-        "ASSISTANT_PERSONALITY_SAFETY",
-        "PODCAST_FINETUNE_DIALOG",
-        "WORLD_QUERY_GENERATOR",
-        "C4_JOINED_DOCJOINS",
-        "HOL4_THEORIES",
-        "HOL_LIGHT_THEORIES",
-        "HOLSTEPS",
-        "ISABELLE_STEP",
-        "ISABELLE_THEORIES",
-        "LEAN_MATHLIB_THEORIES",
-        "LEAN_STEP",
-        "MIZAR_THEORIES",
-        "COQ_STEP",
-        "COQ_THEORIES",
-        "AMPS_KHAN",
-        "AMPS_MATHEMATICA",
-        "CODEY_CODE",
-        "CODE_QA_SE",
-        "CODE_QA_SO",
-        "CODE_QA_FT_FORMAT",
-        "CODE_QA_FT_KNOWLEDGE",
-        "CODE_QA_GITHUB_FILTERED_CODE",
-        "BARD_PERSONALITY_GOLDEN",
-        "ULM_DOCJOINS_WITH_URLS_EN",
-        "ULM_DOCJOINS_WITH_URLS_I18N",
-        "GOODALL_MTV5_GITHUB",
-        "GOODALL_MTV5_BOOKS",
-        "GOODALL_MTV5_C4",
-        "GOODALL_MTV5_WIKIPEDIA",
-        "GOODALL_MW_TOP_100B",
-        "GOODALL_MW_STACK_EXCHANGE",
-        "GOODALL_MW_TOP_0_10B",
-        "GOODALL_MW_TOP_10B_20B",
-        "CODEY_NOTEBOOK_LM_PRETRAINING",
-        "VERTEX_SAFE_FLAN",
-        "GITHUB_MIRROR_V1_0_1",
-        "GITHUB_MIRROR_V2_1_0",
-        "CMS_WIKIPEDIA_LANG_FILTERED",
-        "CMS_STACKOVERFLOW_MULTILINGUAL",
-        "CMS_STACKEXCHANGE",
-        "PUBMED",
-        "GEMINI_DOCJOINS_EN_TOP10B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP20B_TOP100B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP20B_TOP100B_GCC",
-        "SIMPLIFIED_HTML_V1_GCC",
-        "GEMINI_DOCJOINS_TOXICITY_TAGGED_GCC",
-        "CMS_GITHUB_V4",
-        "GITHUB_HTML_V4",
-        "GITHUB_OTHER_V4",
-        "GITHUB_LONG_TAIL_V4",
-        "CMS_GITHUB_MULTIFILE_V4",
-        "GITHUB_DIFFS_WITH_COMMIT_MESSAGE",
-        "ULM_ARXIV",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_ENONLY",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_NONENONLY",
-        "QUORA",
-        "PODCASTS_ROBOTSTXT",
-        "COMBINED_REDDIT",
-        "CANARIES_SHUFFLED",
-        "CLM_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "TECHDOCS_DATA_SOURCE",
-        "SCIENCE_PDF_70M_DOCS_FILTERED",
-        "GEMINI_V1_CMS_WIKIPEDIA_LANG_FILTERED",
-        "GEMINI_V1_WIKIPEDIA_DIFFS",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_TOP20B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP20B_TOP100B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_TOP20B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP20B_TOP100B_GCC_050523",
-        "GEMINI_V1_SIMPLIFIED_HTML_V2_GCC",
-        "GEMINI_V1_CMS_STACKOVERFLOW_MULTILINGUAL_V2",
-        "GEMINI_V1_CMS_STACKEXCHANGE_DECONT",
-        "GEMINI_V1_QUORA",
-        "GEMINI_V1_COMBINED_REDDIT",
-        "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
-        "GEMINI_V1_PUBMED",
-        "GEMINI_V1_WEB_MATH_V2",
-        "GEMINI_V1_CMS_GITHUB_V7",
-        "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
-        "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
-        "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
-        "GEMINI_V1_GITHUB_OTHER_V4",
-        "GEMINI_V1_GITHUB_LONG_TAIL_V4",
-        "GEMINI_V1_GITHUB_JUPTYER_NOTEBOOKS_SSTABLE",
-        "GEMINI_V1_ULM_ARXIV_SSTABLE",
-        "GEMINI_V1_PODCASTS_ROBOTSTXT",
-        "GEMINI_V1_SCIENCE_PDF_68M_HQ_DOCS_GCC",
-        "GEMINI_V1_GITHUB_TECHDOCS_V2",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_EN",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_NONEN",
-        "GEMINI_V1_STEM_BOOKS_650K_TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_M3W_V2_FILTERED",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_WEBLI_EN_V4_350M_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_SCREENAI_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CULTURE_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_EN_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_I18N_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_NON_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_VTP_4F_VIDEO2TEXT_PREFIX",
-        "GEMINI_V1_FORMAL_MATH_WITHOUT_HOLSTEPS_AND_MIZAR",
-        "GEMINI_V1_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "GEMINI_V1_CANARIES_SHUFFLED_DOCJOIN_EN_NONEN_CODE_ARXIV_TRANSLATE",
-        "DUET_CLOUD_SECURITY_DOCS",
-        "DUET_GITHUB_CODE_SNIPPETS",
-        "DUET_GITHUB_FILES",
-        "DUET_GOBYEXAMPLE",
-        "DUET_GOLANG_DOCS",
-        "DUET_CLOUD_DOCS_TROUBLESHOOTING_TABLES",
-        "DUET_DEVSITE_DOCS",
-        "DUET_CLOUD_BLOG_POSTS",
-        "DUET_CLOUD_PODCAST_EPISODES",
-        "DUET_YOUTUBE_VIDEOS",
-        "DUET_CLOUD_SKILLS_BOOST",
-        "DUET_CLOUD_DOCS",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_GENERATED",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_HANDWRITTEN",
-        "DUET_GOOGLESQL_GENERATION",
-        "DUET_CLOUD_IX_PROMPTS",
-        "DUET_RAD",
-        "BARD_ARCADE_GITHUB",
-        "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
-        "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
-        "GENESIS_NEWS_INSIGHTS",
-        "LABS_AQA_DSCOUT",
-        "LABS_AQA_TAILWIND",
-        "LABS_AQA_DELEWARE",
-        "GEMINI_MULTIMODAL_FT_URL",
-        "GEMINI_MULTIMODAL_FT_YT",
-        "GEMINI_MULTIMODAL_FT_SHUTTERSTOCK",
-        "GEMINI_MULTIMODAL_FT_NONE",
-        "GEMINI_MULTIMODAL_FT_OTHER",
-        "GEMINI_MULTIMODAL_FT_INK",
-        "GEMINI_MULTIMODAL_IT",
-        "GEMINI_IT_SHUTTERSTOCK",
-        "GEMINI_IT_M3W",
-        "GEMINI_IT_HEDGING",
-        "GEMINI_IT_DSCOUT_FACTUALITY",
-        "GEMINI_IT_AQUAMUSE",
-        "GEMINI_IT_SHOTGUN",
-        "GEMINI_IT_ACI_BENCH",
-        "GEMINI_IT_SPIDER_FILTERED",
-        "GEMINI_IT_TAB_SUM_BQ",
-        "GEMINI_IT_QA_WITH_URL",
-        "GEMINI_IT_CODE_INSTRUCT",
-        "GEMINI_IT_MED_PALM",
-        "GEMINI_IT_TASK_ORIENTED_DIALOG",
-        "GEMINI_IT_NIMBUS_GROUNDING_TO_PROMPT",
-        "GEMINI_IT_EITL_GEN",
-        "GEMINI_IT_HITL_GEN",
-        "GEMINI_IT_MECH",
-        "GEMINI_IT_TABLE_GEN",
-        "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMINI_IT_CLOUD_CODE_IF",
-        "GEMINI_IT_CLOUD_EUR_LEX_JSON",
-        "GEMINI_IT_CLOUD_OASST",
-        "GEMINI_IT_CLOUD_SELF_INSTRUCT",
-        "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
-        "GEMIT_BRIDGE_SUFFIX_FT",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
-        "CLOUD_SECURITY_RAG_CISA",
-        "GEMINI_GOOSE_PUBLIC",
-        "GEMINI_GOOSE_SILOED",
-        "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
-        "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_QUORA_COMPLIANT",
-        "GEMINI_V2_FORUMS_V2_COMPLIANT",
-        "GEMINI_V2_CMS_STACKOVERFLOW_MULTILINGUAL_V2_COMPLIANT",
-        "GEMINI_V2_SIMPLIFIED_HTML_V2_CORRECT_FORMAT_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_TOXICITY_TAGGED_FIXED_TAGS_COMPLIANT",
-        "GEMINI_V2_CODEWEB_V1_COMPLIANT",
-        "GEMINI_V2_LEETCODE_GCC_PII",
-        "GEMINI_V2_CODE_CONTESTS_COMPLIANT",
-        "GEMINI_V2_CMS_GITHUB_MULTI_FILE_FOR_FIM_GEMBAGZ_FIXED_BYTES_LENGTHS",
-        "GEMINI_V2_GITHUB_EVALED_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_NON_EVAL_HIGH_PRI_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_LOW_PRI_LANGUAGES_AND_CONFIGS_COMPLIANT",
-        "GEMINI_V2_GITHUB_LONG_TAIL_AND_STRUCTURED_DATA_COMPLIANT",
-        "GEMINI_V2_GITHUB_PYTHON_NOTEBOOKS_COMPLIANT",
-        "GEMINI_V2_GITHUB_DIFFS_COMPLIANT",
-        "GEMINI_V2_GITHUB_TECHDOCS_COMPLIANT",
-        "GEMINI_V2_HIGH_QUALITY_CODE_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_SCIENCE_PDF_68M_HQ_DOCS_DEDUP_COMPLIANT_CLEAN_TEX",
-        "GEMINI_V2_ARXIV_2023_COMPLIANT",
-        "GEMINI_V2_FORMAL_COMPLIANT",
-        "GEMINI_V2_CMS_STACKEXCHANGE_COMPLIANT",
-        "GEMINI_V2_PUBMED_COMPLIANT",
-        "GEMINI_V2_WEB_MATH_V3_COMPLIANT",
-        "GEMINI_V2_SCIENCEWEB_V0_GCC_PII",
-        "GEMINI_V2_WEB_POLYMATH_V1_COMPLIANT",
-        "GEMINI_V2_MATH_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_BIOLOGY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_PHYSICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHEMISTRY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MACHINE_LEARNING_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_QA_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_ECONOMICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MEDICAL_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHESS_COMPLIANT",
-        "GEMINI_V2_YOUTUBE_SCIENCE_V4_FILTERED_COMPLIANT",
-        "GEMINI_V2_GOALDMINE_XL_GENERATED_PLUS_GT_NO_DM_MATH_COMPLIANT",
-        "GEMINI_V2_FIRSTTIMES_SCIENCE_PDF_DEDUP_HQ_LENGTH_FILTERED_COMPLIANT",
-        "GEMINI_V2_PODCASTS_COMPLIANT",
-        "GEMINI_V2_EN_NONSCIENCE_PDF_DEDUP_46M_DOCS_COMPLIANT",
-        "GEMINI_V2_NONPUB_COPYRIGHT_BOOKS_V3_70_CONF_082323_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_COPYRIGHT_BOOKS_V3_111823_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_BOOKS_318K_TEXT_COMPLIANT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_T2I_TEXT_TO_IMAGE_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_I18N_680M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_FULL_HTML_75M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_V1_1_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_DOC_240M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_VIDEO_VIDEO_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M4W_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CULTURE_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_DETECTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_ALT_TEXT_NONEN_500M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SPATIAL_AWARE_PALI_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_3D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_NON_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_3D_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CC3M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_INFOGRAPHICS_LARGE_WEB_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_BIORXIV_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_IM2SOL_PROBLEM_AND_SOLUTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PLOT2TABLE_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TIKZ_DERENDERING_MERGED_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_2D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WIKIPEDIA_EQUATIONS_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_EQ2LATEX_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_ARXIV_EQUATIONS_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_HEAD_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_CLM_TRANSLATE_DATAV3_WEB_UNWMT_INCR_MIX",
-        "GEMINI_V2_NTL_NTLV4A_MONOLINGUAL_DEDUP_N5",
-        "GEMINI_V2_NTL_STT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
-        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
-        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
-        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
-        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
-        "CLOUD_GEMIT_CODE_IF_V1",
-        "CLOUD_GEMIT_CODE_SELF_REPAIR",
-        "CLOUD_GEMIT_IDENTITY",
-        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
-        "CLOUD_GEMIT_AMPS",
-        "CLOUD_GEMIT_AQUA",
-        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
-        "CLOUD_GEMIT_GSM8K_SCHEMA",
-    ]
-    filepath: str
-    geminiId: str
-    gnewsArticleTitle: str
-    goodallExampleId: str
-    isOptOut: bool
-    isPrompt: bool
-    lamdaExampleId: str
-    license: str
-    meenaConversationId: str
-    naturalLanguageCode: str
-    noAttribution: bool
-    podcastUtteranceId: str
-    publicationDate: GoogleTypeDate
-    qualityScoreExperimentOnly: float
-    repo: str
-    url: str
-    volumeId: str
-    wikipediaArticleTitle: str
-    youtubeVideoId: str
-
-@typing.type_check_only
-class LearningGenaiRecitationRecitationResult(typing_extensions.TypedDict, total=False):
-    dynamicSegmentResults: _list[LearningGenaiRecitationSegmentResult]
-    recitationAction: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CITE", "BLOCK", "NO_ACTION", "EXEMPT_FOUND_IN_PROMPT"
-    ]
-    trainingSegmentResults: _list[LearningGenaiRecitationSegmentResult]
-
-@typing.type_check_only
-class LearningGenaiRecitationSegmentResult(typing_extensions.TypedDict, total=False):
-    attributionDataset: typing_extensions.Literal[
-        "DATASET_UNSPECIFIED",
-        "WIKIPEDIA",
-        "WEBDOCS",
-        "WEBDOCS_FINETUNE",
-        "GITHUB_MIRROR",
-        "BOOKS_FULL_VIEW",
-        "BOOKS_PRIVATE",
-        "GNEWS",
-        "ULM_DOCJOINS",
-        "ULM_DOCJOINS_DEDUPED",
-        "MEENA_FC",
-        "PODCAST",
-        "AQUA",
-        "WEB_ASR",
-        "BARD_GOLDEN",
-        "COMMON_SENSE_REASONING",
-        "MATH",
-        "MATH_REASONING",
-        "CLEAN_ARXIV",
-        "LAMDA_FACTUALITY_E2E_QUERY_GENERATION",
-        "LAMDA_FACTUALITY_E2E_RESPONSE_GENERATION",
-        "MASSIVE_FORUM_THREAD_SCORED_BARD",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_200",
-        "MASSIVE_FORUM_THREAD_SCORED_LONG_500",
-        "DOCUMENT_CHUNKS",
-        "MEENA_RESEARCH_PHASE_GOLDEN_MARKDOWN",
-        "MEENA_RESEARCH_PHASE_GOOGLERS",
-        "MEENA_RESPONSE_SAFETY_HUMAN_GEN",
-        "MEENA_RESPONSE_SAFETY_SCHEMA_NO_BROADCAST",
-        "MEENA_RESPONSE_SAFETY_V3_HUMAN_GEN2",
-        "MEENA_RESPONSE_SAFETY_V3_SCHEMA_NO_BROADCAST",
-        "LAMDA_FACTUALITY_TRIGGER",
-        "LAMDA_SAFETY_V2_SCHEMA_NO_BROADCAST",
-        "LAMDA_SSI_DISCRIMINATIVE",
-        "ASSISTANT_PERSONALITY_SAFETY",
-        "PODCAST_FINETUNE_DIALOG",
-        "WORLD_QUERY_GENERATOR",
-        "C4_JOINED_DOCJOINS",
-        "HOL4_THEORIES",
-        "HOL_LIGHT_THEORIES",
-        "HOLSTEPS",
-        "ISABELLE_STEP",
-        "ISABELLE_THEORIES",
-        "LEAN_MATHLIB_THEORIES",
-        "LEAN_STEP",
-        "MIZAR_THEORIES",
-        "COQ_STEP",
-        "COQ_THEORIES",
-        "AMPS_KHAN",
-        "AMPS_MATHEMATICA",
-        "CODEY_CODE",
-        "CODE_QA_SE",
-        "CODE_QA_SO",
-        "CODE_QA_FT_FORMAT",
-        "CODE_QA_FT_KNOWLEDGE",
-        "CODE_QA_GITHUB_FILTERED_CODE",
-        "BARD_PERSONALITY_GOLDEN",
-        "ULM_DOCJOINS_WITH_URLS_EN",
-        "ULM_DOCJOINS_WITH_URLS_I18N",
-        "GOODALL_MTV5_GITHUB",
-        "GOODALL_MTV5_BOOKS",
-        "GOODALL_MTV5_C4",
-        "GOODALL_MTV5_WIKIPEDIA",
-        "GOODALL_MW_TOP_100B",
-        "GOODALL_MW_STACK_EXCHANGE",
-        "GOODALL_MW_TOP_0_10B",
-        "GOODALL_MW_TOP_10B_20B",
-        "CODEY_NOTEBOOK_LM_PRETRAINING",
-        "VERTEX_SAFE_FLAN",
-        "GITHUB_MIRROR_V1_0_1",
-        "GITHUB_MIRROR_V2_1_0",
-        "CMS_WIKIPEDIA_LANG_FILTERED",
-        "CMS_STACKOVERFLOW_MULTILINGUAL",
-        "CMS_STACKEXCHANGE",
-        "PUBMED",
-        "GEMINI_DOCJOINS_EN_TOP10B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP20B_TOP100B_GCC",
-        "GEMINI_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP10B_TOP20B_GCC",
-        "GEMINI_DOCJOINS_I18N_TOP20B_TOP100B_GCC",
-        "SIMPLIFIED_HTML_V1_GCC",
-        "GEMINI_DOCJOINS_TOXICITY_TAGGED_GCC",
-        "CMS_GITHUB_V4",
-        "GITHUB_HTML_V4",
-        "GITHUB_OTHER_V4",
-        "GITHUB_LONG_TAIL_V4",
-        "CMS_GITHUB_MULTIFILE_V4",
-        "GITHUB_DIFFS_WITH_COMMIT_MESSAGE",
-        "ULM_ARXIV",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_ENONLY",
-        "NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_040623_LONG_DEDUP_NONENONLY",
-        "QUORA",
-        "PODCASTS_ROBOTSTXT",
-        "COMBINED_REDDIT",
-        "CANARIES_SHUFFLED",
-        "CLM_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "TECHDOCS_DATA_SOURCE",
-        "SCIENCE_PDF_70M_DOCS_FILTERED",
-        "GEMINI_V1_CMS_WIKIPEDIA_LANG_FILTERED",
-        "GEMINI_V1_WIKIPEDIA_DIFFS",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP10B_TOP20B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP20B_TOP100B_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_EN_TOP100B_ALL_INDEXED_GCC_NODEDUP_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP10B_TOP20B_GCC_050523",
-        "GEMINI_V1_DOCJOINS_I18N_TOP20B_TOP100B_GCC_050523",
-        "GEMINI_V1_SIMPLIFIED_HTML_V2_GCC",
-        "GEMINI_V1_CMS_STACKOVERFLOW_MULTILINGUAL_V2",
-        "GEMINI_V1_CMS_STACKEXCHANGE_DECONT",
-        "GEMINI_V1_QUORA",
-        "GEMINI_V1_COMBINED_REDDIT",
-        "GEMINI_V1_DOCJOIN_100B_EN_TOXICITY_TAGGED_GCC_FIXED_TAGS",
-        "GEMINI_V1_PUBMED",
-        "GEMINI_V1_WEB_MATH_V2",
-        "GEMINI_V1_CMS_GITHUB_V7",
-        "GEMINI_V1_CMS_GITHUB_DECONTAMINATED_V_7",
-        "GEMINI_V1_GITHUB_DIFF_WITH_COMMIT_MESSAGE_V2",
-        "GEMINI_V1_GITHUB_HTML_CSS_XML_V4",
-        "GEMINI_V1_GITHUB_OTHER_V4",
-        "GEMINI_V1_GITHUB_LONG_TAIL_V4",
-        "GEMINI_V1_GITHUB_JUPTYER_NOTEBOOKS_SSTABLE",
-        "GEMINI_V1_ULM_ARXIV_SSTABLE",
-        "GEMINI_V1_PODCASTS_ROBOTSTXT",
-        "GEMINI_V1_SCIENCE_PDF_68M_HQ_DOCS_GCC",
-        "GEMINI_V1_GITHUB_TECHDOCS_V2",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_EN",
-        "GEMINI_V1_NONPUB_COPYRIGHT_BOOKS_V2_70_CONF_LONG_DEDUP_NONEN",
-        "GEMINI_V1_STEM_BOOKS_650K_TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_M3W_V2_FILTERED",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_WEBLI_EN_V4_350M_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_SCREENAI_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CULTURE_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_EN_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_CC3M_I18N_PREFIXED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_OCR_NON_EN_PREFIXED_FILTERED_IMAGE2TEXT",
-        "GEMINI_V1_VQCOCA_1B_MULTIRES_VTP_4F_VIDEO2TEXT_PREFIX",
-        "GEMINI_V1_FORMAL_MATH_WITHOUT_HOLSTEPS_AND_MIZAR",
-        "GEMINI_V1_TRANSLATE_DATAV2_ALLTIERS_GCC_MIX",
-        "GEMINI_V1_CANARIES_SHUFFLED_DOCJOIN_EN_NONEN_CODE_ARXIV_TRANSLATE",
-        "DUET_CLOUD_SECURITY_DOCS",
-        "DUET_GITHUB_CODE_SNIPPETS",
-        "DUET_GITHUB_FILES",
-        "DUET_GOBYEXAMPLE",
-        "DUET_GOLANG_DOCS",
-        "DUET_CLOUD_DOCS_TROUBLESHOOTING_TABLES",
-        "DUET_DEVSITE_DOCS",
-        "DUET_CLOUD_BLOG_POSTS",
-        "DUET_CLOUD_PODCAST_EPISODES",
-        "DUET_YOUTUBE_VIDEOS",
-        "DUET_CLOUD_SKILLS_BOOST",
-        "DUET_CLOUD_DOCS",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_GENERATED",
-        "DUET_CLOUD_GITHUB_CODE_SNIPPETS_HANDWRITTEN",
-        "DUET_GOOGLESQL_GENERATION",
-        "DUET_CLOUD_IX_PROMPTS",
-        "DUET_RAD",
-        "BARD_ARCADE_GITHUB",
-        "MOBILE_ASSISTANT_MAGI_FILTERED_0825_373K",
-        "MOBILE_ASSISTANT_PALM24B_FILTERED_400K",
-        "GENESIS_NEWS_INSIGHTS",
-        "LABS_AQA_DSCOUT",
-        "LABS_AQA_TAILWIND",
-        "LABS_AQA_DELEWARE",
-        "GEMINI_MULTIMODAL_FT_URL",
-        "GEMINI_MULTIMODAL_FT_YT",
-        "GEMINI_MULTIMODAL_FT_SHUTTERSTOCK",
-        "GEMINI_MULTIMODAL_FT_NONE",
-        "GEMINI_MULTIMODAL_FT_OTHER",
-        "GEMINI_MULTIMODAL_FT_INK",
-        "GEMINI_MULTIMODAL_IT",
-        "GEMINI_IT_SHUTTERSTOCK",
-        "GEMINI_IT_M3W",
-        "GEMINI_IT_HEDGING",
-        "GEMINI_IT_DSCOUT_FACTUALITY",
-        "GEMINI_IT_AQUAMUSE",
-        "GEMINI_IT_SHOTGUN",
-        "GEMINI_IT_ACI_BENCH",
-        "GEMINI_IT_SPIDER_FILTERED",
-        "GEMINI_IT_TAB_SUM_BQ",
-        "GEMINI_IT_QA_WITH_URL",
-        "GEMINI_IT_CODE_INSTRUCT",
-        "GEMINI_IT_MED_PALM",
-        "GEMINI_IT_TASK_ORIENTED_DIALOG",
-        "GEMINI_IT_NIMBUS_GROUNDING_TO_PROMPT",
-        "GEMINI_IT_EITL_GEN",
-        "GEMINI_IT_HITL_GEN",
-        "GEMINI_IT_MECH",
-        "GEMINI_IT_TABLE_GEN",
-        "GEMINI_IT_NIMBUS_DECIBEL",
-        "GEMINI_IT_CLOUD_CODE_IF",
-        "GEMINI_IT_CLOUD_EUR_LEX_JSON",
-        "GEMINI_IT_CLOUD_OASST",
-        "GEMINI_IT_CLOUD_SELF_INSTRUCT",
-        "GEMINI_IT_CLOUD_UCS_AQUAMUSE",
-        "GEMIT_BRIDGE_SUFFIX_FT",
-        "CLOUD_SECURITY_PRETRAINING",
-        "CLOUD_SECURITY_FINETUNING",
-        "CLOUD_SECURITY_RAG_CISA",
-        "GEMINI_GOOSE_PUBLIC",
-        "GEMINI_GOOSE_SILOED",
-        "GEMINI_V2_CMS_WIKIPEDIA_LANG_FILTERED_GCC_PII",
-        "GEMINI_V2_WIKIPEDIA_DIFFS_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP10B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP10B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP20B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP20B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP100B_211123_PII_FILTERED",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_NONARTICLES_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_NONEN_TOP100B_111323_WITHOUT_CJKT_STOP_ARTICLES_COMPLIANT",
-        "GEMINI_V2_ENGLISH_ARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_ENGLISH_NONARTICLES_TOP500B_211123_PII_FILTERED",
-        "GEMINI_V2_QUORA_COMPLIANT",
-        "GEMINI_V2_FORUMS_V2_COMPLIANT",
-        "GEMINI_V2_CMS_STACKOVERFLOW_MULTILINGUAL_V2_COMPLIANT",
-        "GEMINI_V2_SIMPLIFIED_HTML_V2_CORRECT_FORMAT_COMPLIANT",
-        "GEMINI_V2_GEMINI_DOCJOINS_TOXICITY_TAGGED_FIXED_TAGS_COMPLIANT",
-        "GEMINI_V2_CODEWEB_V1_COMPLIANT",
-        "GEMINI_V2_LEETCODE_GCC_PII",
-        "GEMINI_V2_CODE_CONTESTS_COMPLIANT",
-        "GEMINI_V2_CMS_GITHUB_MULTI_FILE_FOR_FIM_GEMBAGZ_FIXED_BYTES_LENGTHS",
-        "GEMINI_V2_GITHUB_EVALED_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_NON_EVAL_HIGH_PRI_LANGUAGES_COMPLIANT",
-        "GEMINI_V2_GITHUB_LOW_PRI_LANGUAGES_AND_CONFIGS_COMPLIANT",
-        "GEMINI_V2_GITHUB_LONG_TAIL_AND_STRUCTURED_DATA_COMPLIANT",
-        "GEMINI_V2_GITHUB_PYTHON_NOTEBOOKS_COMPLIANT",
-        "GEMINI_V2_GITHUB_DIFFS_COMPLIANT",
-        "GEMINI_V2_GITHUB_TECHDOCS_COMPLIANT",
-        "GEMINI_V2_HIGH_QUALITY_CODE_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_SCIENCE_PDF_68M_HQ_DOCS_DEDUP_COMPLIANT_CLEAN_TEX",
-        "GEMINI_V2_ARXIV_2023_COMPLIANT",
-        "GEMINI_V2_FORMAL_COMPLIANT",
-        "GEMINI_V2_CMS_STACKEXCHANGE_COMPLIANT",
-        "GEMINI_V2_PUBMED_COMPLIANT",
-        "GEMINI_V2_WEB_MATH_V3_COMPLIANT",
-        "GEMINI_V2_SCIENCEWEB_V0_GCC_PII",
-        "GEMINI_V2_WEB_POLYMATH_V1_COMPLIANT",
-        "GEMINI_V2_MATH_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_BIOLOGY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_PHYSICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHEMISTRY_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MACHINE_LEARNING_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_QA_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_ECONOMICS_V2_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_MEDICAL_TARGETED_DATA_COMPLIANT2",
-        "GEMINI_V2_CHESS_COMPLIANT",
-        "GEMINI_V2_YOUTUBE_SCIENCE_V4_FILTERED_COMPLIANT",
-        "GEMINI_V2_GOALDMINE_XL_GENERATED_PLUS_GT_NO_DM_MATH_COMPLIANT",
-        "GEMINI_V2_FIRSTTIMES_SCIENCE_PDF_DEDUP_HQ_LENGTH_FILTERED_COMPLIANT",
-        "GEMINI_V2_PODCASTS_COMPLIANT",
-        "GEMINI_V2_EN_NONSCIENCE_PDF_DEDUP_46M_DOCS_COMPLIANT",
-        "GEMINI_V2_NONPUB_COPYRIGHT_BOOKS_V3_70_CONF_082323_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_COPYRIGHT_BOOKS_V3_111823_LONG_DEDUP_ENONLY_COMPLIANT",
-        "GEMINI_V2_STEM_BOOKS_318K_TEXT_COMPLIANT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M3W_WITH_IMAGE_TOKENS_INSERTED_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_T2I_TEXT_TO_IMAGE_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_EN_V4_350M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_I18N_680M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_FULL_HTML_75M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SCREENAI_V1_1_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_OCR_DOC_240M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SHUTTERSTOCK_VIDEO_VIDEO_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_M4W_INTERLEAVED_COMPLIANT_PII_FILTERED_SOFT",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CULTURE_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_DETECTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WEBLI_ALT_TEXT_NONEN_500M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_SPATIAL_AWARE_PALI_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_3D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TABLE2MD_V2_NON_EN_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_3D_DOC_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CC3M_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_INFOGRAPHICS_LARGE_WEB_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_BIORXIV_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_IM2SOL_PROBLEM_AND_SOLUTION_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PLOT2TABLE_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_TIKZ_DERENDERING_MERGED_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_CLOUDAI_TABLE2HTML_2D_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_WIKIPEDIA_EQUATIONS_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_PHOTOMATH_EQ2LATEX_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_CACHED_VQCOCA_MMFT_17T_ARXIV_EQUATIONS_V2_IMAGE_TO_TEXT_COMPLIANT_PII_FILTERED",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_ASR_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_SUP_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_TTS_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_PODIOSET_INTERLEAVE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_ENUS_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_SCIENCE_I18N_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_1P5M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_USM2B_MLPV5_YT_INTERLEAVE_HEAD_4M_GEMBAGZ_V2_COMPLIANT",
-        "GEMINI_V2_CLM_TRANSLATE_DATAV3_WEB_UNWMT_INCR_MIX",
-        "GEMINI_V2_NTL_NTLV4A_MONOLINGUAL_DEDUP_N5",
-        "GEMINI_V2_NTL_STT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_TRANSLIT_BILEX_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_BT_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_NTL_SYN_FT_FIXED_TRANSLATE_DEDUP_N5",
-        "GEMINI_V2_CANARIES_SHUFFLED_COMPLIANT",
-        "CLOUD_GEMIT_CLOUD_FACTUALITY_GROUNDING_MAGI",
-        "CLOUD_GEMIT_MT_DIALGUE_LMSYS",
-        "CLOUD_GEMIT_MTS_DIALOGUE_V3",
-        "CLOUD_GEMIT_COMMIT_MSG_GEN_V3",
-        "CLOUD_GEMIT_CODE_IF_V1",
-        "CLOUD_GEMIT_CODE_SELF_REPAIR",
-        "CLOUD_GEMIT_IDENTITY",
-        "CLOUD_GEMIT_SEARCH_AUGMENTED_RESPONSE_GENERATION",
-        "CLOUD_GEMIT_AMPS",
-        "CLOUD_GEMIT_AQUA",
-        "CLOUD_GEMIT_COMMON_SENSE_REASONING_SCHEMA",
-        "CLOUD_GEMIT_GSM8K_SCHEMA",
-    ]
-    displayAttributionMessage: str
-    docAttribution: LearningGenaiRecitationDocAttribution
-    docOccurrences: int
-    endIndex: int
-    rawText: str
-    segmentRecitationAction: typing_extensions.Literal[
-        "ACTION_UNSPECIFIED", "CITE", "BLOCK", "NO_ACTION", "EXEMPT_FOUND_IN_PROMPT"
-    ]
-    startIndex: int
-
-@typing.type_check_only
-class LearningGenaiRootCalculationType(typing_extensions.TypedDict, total=False):
-    scoreType: typing_extensions.Literal[
-        "TYPE_UNKNOWN", "TYPE_SAFE", "TYPE_POLICY", "TYPE_GENERATION"
-    ]
-    weights: float
-
-@typing.type_check_only
-class LearningGenaiRootClassifierOutput(typing_extensions.TypedDict, total=False):
-    ruleOutput: LearningGenaiRootRuleOutput
-    ruleOutputs: _list[LearningGenaiRootRuleOutput]
-    state: LearningGenaiRootClassifierState
-
-@typing.type_check_only
-class LearningGenaiRootClassifierOutputSummary(
-    typing_extensions.TypedDict, total=False
-):
-    metrics: _list[LearningGenaiRootMetricOutput]
-    ruleOutput: LearningGenaiRootRuleOutput
-    ruleOutputs: _list[LearningGenaiRootRuleOutput]
-
-@typing.type_check_only
-class LearningGenaiRootClassifierState(typing_extensions.TypedDict, total=False):
-    dataProviderOutput: _list[LearningGenaiRootDataProviderOutput]
-    metricOutput: _list[LearningGenaiRootMetricOutput]
-
-@typing.type_check_only
-class LearningGenaiRootCodeyChatMetadata(typing_extensions.TypedDict, total=False):
-    codeLanguage: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "ALL",
-        "TEXT",
-        "CPP",
-        "PYTHON",
-        "KOTLIN",
-        "JAVA",
-        "JAVASCRIPT",
-        "GO",
-        "R",
-        "JUPYTER_NOTEBOOK",
-        "TYPESCRIPT",
-        "HTML",
-        "SQL",
-        "BASH",
-        "C",
-        "DART",
-        "GRADLE",
-        "GROOVY",
-        "JAVADOC",
-        "JSON",
-        "MAKEFILE",
-        "MARKDOWN",
-        "PROTO",
-        "XML",
-        "YAML",
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootCodeyCheckpoint(typing_extensions.TypedDict, total=False):
-    codeyTruncatorMetadata: LearningGenaiRootCodeyTruncatorMetadata
-    currentSample: str
-    postInferenceStep: typing_extensions.Literal[
-        "STEP_POST_PROCESSING_STEP_UNSPECIFIED",
-        "STEP_ORIGINAL_MODEL_OUTPUT",
-        "STEP_MODEL_OUTPUT_DEDUPLICATION",
-        "STEP_STOP_SEQUENCE_TRUNCATION",
-        "STEP_HEURISTIC_TRUNCATION",
-        "STEP_WALD_TRUNCATION",
-        "STEP_WHITESPACE_TRUNCATION",
-        "STEP_FINAL_DEDUPLICATION",
-        "STEP_TOXICITY_CHECK",
-        "STEP_RECITATION_CHECK",
-        "STEP_RETURNED",
-        "STEP_WALKBACK_CORRECTION",
-        "STEP_SCORE_THRESHOLDING",
-        "STEP_MODEL_CONFIG_STOP_SEQUENCE_TRUNCATION",
-        "STEP_CUSTOM_STOP_SEQUENCE_TRUNCATION",
-        "STEP_EXPECTED_SAMPLE_SIZE",
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootCodeyCompletionMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    checkpoints: _list[LearningGenaiRootCodeyCheckpoint]
-
-@typing.type_check_only
-class LearningGenaiRootCodeyOutput(typing_extensions.TypedDict, total=False):
-    codeyChatMetadata: LearningGenaiRootCodeyChatMetadata
-    codeyCompletionMetadata: LearningGenaiRootCodeyCompletionMetadata
-
-@typing.type_check_only
-class LearningGenaiRootCodeyTruncatorMetadata(typing_extensions.TypedDict, total=False):
-    cutoffIndex: int
-    truncatedText: str
-
-@typing.type_check_only
-class LearningGenaiRootDataProviderOutput(typing_extensions.TypedDict, total=False):
-    name: str
-    status: UtilStatusProto
-
-@typing.type_check_only
-class LearningGenaiRootFilterMetadata(typing_extensions.TypedDict, total=False):
-    confidence: typing_extensions.Literal[
-        "FILTER_CONFIDENCE_UNKNOWN",
-        "FILTER_CONFIDENCE_VERY_LOW",
-        "FILTER_CONFIDENCE_LOW",
-        "FILTER_CONFIDENCE_MEDIUM",
-        "FILTER_CONFIDENCE_HIGH",
-        "FILTER_CONFIDENCE_VERY_HIGH",
-    ]
-    debugInfo: LearningGenaiRootFilterMetadataFilterDebugInfo
-    fallback: str
-    info: str
-    name: str
-    reason: typing_extensions.Literal[
-        "FILTER_REASON_UNKNOWN",
-        "FILTER_REASON_NOT_FILTERED",
-        "FILTER_REASON_SENSITIVE",
-        "FILTER_REASON_RECITATION",
-        "FILTER_REASON_LANGUAGE",
-        "FILTER_REASON_TAKEDOWN",
-        "FILTER_REASON_CLASSIFIER",
-        "FILTER_REASON_EMPTY_RESPONSE",
-        "FILTER_REASON_SIMILARITY_TAKEDOWN",
-        "FILTER_REASON_UNSAFE",
-        "FILTER_REASON_PAIRWISE_CLASSIFIER",
-        "FILTER_REASON_CODEY",
-        "FILTER_REASON_URL",
-        "FILTER_REASON_EMAIL",
-        "FILTER_REASON_SAFETY_CAT",
-        "FILTER_REASON_REQUEST_RESPONSE_TAKEDOWN",
-        "FILTER_REASON_RAI_PQC",
-        "FILTER_REASON_ATLAS",
-        "FILTER_REASON_RAI_CSAM",
-        "FILTER_REASON_RAI_FRINGE",
-        "FILTER_REASON_RAI_SPII",
-        "FILTER_REASON_RAI_IMAGE_VIOLENCE",
-        "FILTER_REASON_RAI_IMAGE_PORN",
-        "FILTER_REASON_RAI_IMAGE_CSAM",
-        "FILTER_REASON_RAI_IMAGE_PEDO",
-        "FILTER_REASON_RAI_VIDEO_FRAME_VIOLENCE",
-        "FILTER_REASON_RAI_VIDEO_FRAME_PORN",
-        "FILTER_REASON_RAI_VIDEO_FRAME_CSAM",
-        "FILTER_REASON_RAI_VIDEO_FRAME_PEDO",
-        "FILTER_REASON_RAI_CONTEXTUAL_DANGEROUS",
-        "FILTER_REASON_RAI_GRAIL_TEXT",
-        "FILTER_REASON_RAI_GRAIL_IMAGE",
-        "FILTER_REASON_RAI_SAFETYCAT",
-        "FILTER_REASON_TOXICITY",
-        "FILTER_REASON_ATLAS_PRICING",
-        "FILTER_REASON_ATLAS_BILLING",
-        "FILTER_REASON_ATLAS_NON_ENGLISH_QUESTION",
-        "FILTER_REASON_ATLAS_NOT_RELATED_TO_GCP",
-        "FILTER_REASON_ATLAS_AWS_AZURE_RELATED",
-    ]
-    text: str
-
-@typing.type_check_only
-class LearningGenaiRootFilterMetadataFilterDebugInfo(
-    typing_extensions.TypedDict, total=False
-):
-    classifierOutput: LearningGenaiRootClassifierOutput
-    defaultMetadata: str
-    languageFilterResult: LearningGenaiRootLanguageFilterResult
-    raiOutput: LearningGenaiRootRAIOutput
-    raiResult: CloudAiNlLlmProtoServiceRaiResult
-    raiSignal: CloudAiNlLlmProtoServiceRaiSignal
-    streamRecitationResult: LanguageLabsAidaTrustRecitationProtoStreamRecitationResult
-    takedownResult: LearningGenaiRootTakedownResult
-    toxicityResult: LearningGenaiRootToxicityResult
-
-@typing.type_check_only
-class LearningGenaiRootGroundingMetadata(typing_extensions.TypedDict, total=False):
-    citations: _list[LearningGenaiRootGroundingMetadataCitation]
-    groundingCancelled: bool
-    searchQueries: _list[str]
-
-@typing.type_check_only
-class LearningGenaiRootGroundingMetadataCitation(
-    typing_extensions.TypedDict, total=False
-):
-    endIndex: int
-    factIndex: int
-    score: float
-    startIndex: int
-
-@typing.type_check_only
-class LearningGenaiRootHarm(typing_extensions.TypedDict, total=False):
-    contextualDangerous: bool
-    csam: bool
-    fringe: bool
-    grailImageHarmType: LearningGenaiRootHarmGrailImageHarmType
-    grailTextHarmType: LearningGenaiRootHarmGrailTextHarmType
-    imageCsam: bool
-    imagePedo: bool
-    imagePorn: bool
-    imageViolence: bool
-    pqc: bool
-    safetycat: LearningGenaiRootHarmSafetyCatCategories
-    spii: LearningGenaiRootHarmSpiiFilter
-    threshold: float
-    videoFrameCsam: bool
-    videoFramePedo: bool
-    videoFramePorn: bool
-    videoFrameViolence: bool
-
-@typing.type_check_only
-class LearningGenaiRootHarmGrailImageHarmType(typing_extensions.TypedDict, total=False):
-    imageHarmType: _list[
-        typing_extensions.Literal[
-            "IMAGE_HARM_TYPE_UNSPECIFIED",
-            "IMAGE_HARM_TYPE_PORN",
-            "IMAGE_HARM_TYPE_VIOLENCE",
-            "IMAGE_HARM_TYPE_CSAI",
-            "IMAGE_HARM_TYPE_PEDO",
-            "IMAGE_HARM_TYPE_MINORS",
-            "IMAGE_HARM_TYPE_DANGEROUS",
-            "IMAGE_HARM_TYPE_MEDICAL",
-            "IMAGE_HARM_TYPE_RACY",
-            "IMAGE_HARM_TYPE_OBSCENE",
-            "IMAGE_HARM_TYPE_MINOR_PRESENCE",
-            "IMAGE_HARM_TYPE_GENERATIVE_MINOR_PRESENCE",
-            "IMAGE_HARM_TYPE_GENERATIVE_REALISTIC_VISIBLE_FACE",
-        ]
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootHarmGrailTextHarmType(typing_extensions.TypedDict, total=False):
-    harmType: _list[
-        typing_extensions.Literal[
-            "HARM_TYPE_UNSPECIFIED",
-            "HARM_TYPE_HATE",
-            "HARM_TYPE_TOXICITY",
-            "HARM_TYPE_VIOLENCE",
-            "HARM_TYPE_CSAI",
-            "HARM_TYPE_SEXUAL",
-            "HARM_TYPE_FRINGE",
-            "HARM_TYPE_POLITICAL",
-            "HARM_TYPE_MEMORIZATION",
-            "HARM_TYPE_SPII",
-            "HARM_TYPE_NEW_DANGEROUS",
-            "HARM_TYPE_MEDICAL",
-            "HARM_TYPE_HARASSMENT",
-        ]
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootHarmSafetyCatCategories(
-    typing_extensions.TypedDict, total=False
-):
-    categories: _list[
-        typing_extensions.Literal[
-            "SAFETYCAT_CATEGORY_UNSPECIFIED",
-            "TOXICITY",
-            "OBSCENE",
-            "SEXUAL",
-            "INSULT",
-            "IDENTITY_HATE",
-            "DEATH_HARM_TRAGEDY",
-            "VIOLENCE_ABUSE",
-            "FIREARMS_WEAPONS",
-            "PUBLIC_SAFETY",
-            "HEALTH",
-            "RELIGION_BELIEF",
-            "DRUGS",
-            "WAR_CONFLICT",
-            "POLITICS",
-            "FINANCE",
-            "LEGAL",
-            "DANGEROUS",
-            "DANGEROUS_SEVERITY",
-            "HARASSMENT_SEVERITY",
-            "HATE_SEVERITY",
-            "SEXUAL_SEVERITY",
-        ]
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootHarmSpiiFilter(typing_extensions.TypedDict, total=False):
-    usBankRoutingMicr: bool
-    usEmployerIdentificationNumber: bool
-    usSocialSecurityNumber: bool
-
-@typing.type_check_only
-class LearningGenaiRootInternalMetadata(typing_extensions.TypedDict, total=False):
-    scoredTokens: _list[LearningGenaiRootScoredToken]
-
-@typing.type_check_only
-class LearningGenaiRootLanguageFilterResult(typing_extensions.TypedDict, total=False):
-    allowed: bool
-    detectedLanguage: str
-    detectedLanguageProbability: float
-
-@typing.type_check_only
-class LearningGenaiRootMetricOutput(typing_extensions.TypedDict, total=False):
-    debug: str
-    name: str
-    numericValue: float
-    status: UtilStatusProto
-    stringValue: str
-
-@typing.type_check_only
-class LearningGenaiRootRAIOutput(typing_extensions.TypedDict, total=False):
-    allowed: bool
-    harm: LearningGenaiRootHarm
-    name: str
-    score: float
-
-@typing.type_check_only
-class LearningGenaiRootRegexTakedownResult(typing_extensions.TypedDict, total=False):
-    allowed: bool
-    takedownRegex: str
-
-@typing.type_check_only
-class LearningGenaiRootRequestResponseTakedownResult(
-    typing_extensions.TypedDict, total=False
-):
-    allowed: bool
-    requestTakedownRegex: str
-    responseTakedownRegex: str
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecision(typing_extensions.TypedDict, total=False):
-    metadata: LearningGenaiRootRoutingDecisionMetadata
-    modelConfigId: str
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecisionMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    scoreBasedRoutingMetadata: LearningGenaiRootRoutingDecisionMetadataScoreBased
-    tokenLengthBasedRoutingMetadata: (
-        LearningGenaiRootRoutingDecisionMetadataTokenLengthBased
-    )
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecisionMetadataScoreBased(
-    typing_extensions.TypedDict, total=False
-):
-    matchedRule: LearningGenaiRootScoreBasedRoutingConfigRule
-    score: LearningGenaiRootScore
-    usedDefaultFallback: bool
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecisionMetadataTokenLengthBased(
-    typing_extensions.TypedDict, total=False
-):
-    modelInputTokenMetadata: _list[
-        LearningGenaiRootRoutingDecisionMetadataTokenLengthBasedModelInputTokenMetadata
-    ]
-    modelMaxTokenMetadata: _list[
-        LearningGenaiRootRoutingDecisionMetadataTokenLengthBasedModelMaxTokenMetadata
-    ]
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecisionMetadataTokenLengthBasedModelInputTokenMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    computedInputTokenLength: int
-    modelId: str
-
-@typing.type_check_only
-class LearningGenaiRootRoutingDecisionMetadataTokenLengthBasedModelMaxTokenMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    maxNumInputTokens: int
-    maxNumOutputTokens: int
-    modelId: str
-
-@typing.type_check_only
-class LearningGenaiRootRuleOutput(typing_extensions.TypedDict, total=False):
-    decision: typing_extensions.Literal["NO_MATCH", "MATCH"]
-    name: str
-
-@typing.type_check_only
-class LearningGenaiRootScore(typing_extensions.TypedDict, total=False):
-    calculationType: LearningGenaiRootCalculationType
-    internalMetadata: LearningGenaiRootInternalMetadata
-    thresholdType: LearningGenaiRootThresholdType
-    tokensAndLogprobPerDecodingStep: LearningGenaiRootTokensAndLogProbPerDecodingStep
-    value: float
-
-@typing.type_check_only
-class LearningGenaiRootScoreBasedRoutingConfigRule(
-    typing_extensions.TypedDict, total=False
-):
-    equalOrGreaterThan: LearningGenaiRootScore
-    lessThan: LearningGenaiRootScore
-    modelConfigId: str
-
-@typing.type_check_only
-class LearningGenaiRootScoredSimilarityTakedownPhrase(
-    typing_extensions.TypedDict, total=False
-):
-    phrase: LearningGenaiRootSimilarityTakedownPhrase
-    similarityScore: float
-
-@typing.type_check_only
-class LearningGenaiRootScoredToken(typing_extensions.TypedDict, total=False):
-    endTokenScore: float
-    score: float
-    token: str
-
-@typing.type_check_only
-class LearningGenaiRootSimilarityTakedownPhrase(
-    typing_extensions.TypedDict, total=False
-):
-    blockedPhrase: str
-
-@typing.type_check_only
-class LearningGenaiRootSimilarityTakedownResult(
-    typing_extensions.TypedDict, total=False
-):
-    allowed: bool
-    scoredPhrases: _list[LearningGenaiRootScoredSimilarityTakedownPhrase]
-
-@typing.type_check_only
-class LearningGenaiRootTakedownResult(typing_extensions.TypedDict, total=False):
-    allowed: bool
-    regexTakedownResult: LearningGenaiRootRegexTakedownResult
-    requestResponseTakedownResult: LearningGenaiRootRequestResponseTakedownResult
-    similarityTakedownResult: LearningGenaiRootSimilarityTakedownResult
-
-@typing.type_check_only
-class LearningGenaiRootThresholdType(typing_extensions.TypedDict, total=False):
-    scoreType: typing_extensions.Literal[
-        "TYPE_UNKNOWN", "TYPE_SAFE", "TYPE_POLICY", "TYPE_GENERATION"
-    ]
-    threshold: float
-
-@typing.type_check_only
-class LearningGenaiRootTokensAndLogProbPerDecodingStep(
-    typing_extensions.TypedDict, total=False
-):
-    chosenCandidates: _list[LearningGenaiRootTokensAndLogProbPerDecodingStepCandidate]
-    topCandidates: _list[LearningGenaiRootTokensAndLogProbPerDecodingStepTopCandidates]
-
-@typing.type_check_only
-class LearningGenaiRootTokensAndLogProbPerDecodingStepCandidate(
-    typing_extensions.TypedDict, total=False
-):
-    logProbability: float
-    token: str
-
-@typing.type_check_only
-class LearningGenaiRootTokensAndLogProbPerDecodingStepTopCandidates(
-    typing_extensions.TypedDict, total=False
-):
-    candidates: _list[LearningGenaiRootTokensAndLogProbPerDecodingStepCandidate]
-
-@typing.type_check_only
-class LearningGenaiRootToxicityResult(typing_extensions.TypedDict, total=False):
-    signals: _list[LearningGenaiRootToxicitySignal]
-
-@typing.type_check_only
-class LearningGenaiRootToxicitySignal(typing_extensions.TypedDict, total=False):
-    allowed: bool
-    label: typing_extensions.Literal[
-        "LABEL_UNSPECIFIED",
-        "NOT_SENSITIVE",
-        "SENSITIVE",
-        "ACCIDENTS_DISASTERS",
-        "ADULT",
-        "COMPUTER_SECURITY",
-        "CONTROVERSIAL_SOCIAL_ISSUES",
-        "DEATH_TRAGEDY",
-        "DRUGS",
-        "IDENTITY_ETHNICITY",
-        "FINANCIAL_HARDSHIP",
-        "FIREARMS_WEAPONS",
-        "HEALTH",
-        "INSULT",
-        "LEGAL",
-        "MENTAL_HEALTH",
-        "POLITICS",
-        "RELIGION_BELIEFS",
-        "SAFETY",
-        "SELF_HARM",
-        "SPECIAL_NEEDS",
-        "TERRORISM",
-        "TOXIC",
-        "TROUBLED_RELATIONSHIP",
-        "VIOLENCE_ABUSE",
-        "VULGAR",
-        "WAR_CONFLICT",
-    ]
-    score: float
-
-@typing.type_check_only
-class LearningServingLlmMessageMetadata(typing_extensions.TypedDict, total=False):
-    classifierSummary: LearningGenaiRootClassifierOutputSummary
-    codeyOutput: LearningGenaiRootCodeyOutput
-    currentStreamTextLength: int
-    deleted: bool
-    filterMeta: _list[LearningGenaiRootFilterMetadata]
-    finalMessageScore: LearningGenaiRootScore
-    finishReason: typing_extensions.Literal[
-        "UNSPECIFIED", "RETURN", "STOP", "MAX_TOKENS", "FILTER"
-    ]
-    groundingMetadata: LearningGenaiRootGroundingMetadata
-    isCode: bool
-    isFallback: bool
-    langidResult: NlpSaftLangIdResult
-    language: str
-    lmPrefix: str
-    originalText: str
-    perStreamDecodedTokenCount: int
-    raiOutputs: _list[LearningGenaiRootRAIOutput]
-    recitationResult: LearningGenaiRecitationRecitationResult
-    returnTokenCount: int
-    scores: _list[LearningGenaiRootScore]
-    streamTerminated: bool
-    totalDecodedTokenCount: int
-    translatedUserPrompts: _list[str]
-    vertexRaiResult: CloudAiNlLlmProtoServiceRaiResult
-
-@typing.type_check_only
-class NlpSaftLangIdLocalesResult(typing_extensions.TypedDict, total=False):
-    predictions: _list[NlpSaftLangIdLocalesResultLocale]
-
-@typing.type_check_only
-class NlpSaftLangIdLocalesResultLocale(typing_extensions.TypedDict, total=False):
-    languageCode: str
-
-@typing.type_check_only
-class NlpSaftLangIdResult(typing_extensions.TypedDict, total=False):
-    modelVersion: typing_extensions.Literal[
-        "VERSION_UNSPECIFIED",
-        "INDEXING_20181017",
-        "INDEXING_20191206",
-        "INDEXING_20200313",
-        "INDEXING_20210618",
-        "STANDARD_20220516",
-    ]
-    predictions: _list[NlpSaftLanguageSpan]
-    spanPredictions: _list[NlpSaftLanguageSpanSequence]
-
-@typing.type_check_only
-class NlpSaftLanguageSpan(typing_extensions.TypedDict, total=False):
-    end: int
-    languageCode: str
-    locales: NlpSaftLangIdLocalesResult
-    probability: float
-    start: int
-
-@typing.type_check_only
-class NlpSaftLanguageSpanSequence(typing_extensions.TypedDict, total=False):
-    languageSpans: _list[NlpSaftLanguageSpan]
-    probability: float
-
-@typing.type_check_only
-class Proto2BridgeMessageSet(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class UtilStatusProto(typing_extensions.TypedDict, total=False):
-    canonicalCode: int
-    code: int
-    message: str
-    messageSet: Proto2BridgeMessageSet
-    space: str

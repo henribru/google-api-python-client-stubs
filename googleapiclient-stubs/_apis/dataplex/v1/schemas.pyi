@@ -86,6 +86,85 @@ class GoogleCloudDataplexV1ActionUnauthorizedResource(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1Aspect(typing_extensions.TypedDict, total=False):
+    aspectSource: GoogleCloudDataplexV1AspectSource
+    aspectType: str
+    createTime: str
+    data: dict[str, typing.Any]
+    path: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectSource(typing_extensions.TypedDict, total=False):
+    createTime: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectType(typing_extensions.TypedDict, total=False):
+    authorization: GoogleCloudDataplexV1AspectTypeAuthorization
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    metadataTemplate: GoogleCloudDataplexV1AspectTypeMetadataTemplate
+    name: str
+    transferStatus: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNSPECIFIED",
+        "TRANSFER_STATUS_MIGRATED",
+        "TRANSFER_STATUS_TRANSFERRED",
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectTypeAuthorization(
+    typing_extensions.TypedDict, total=False
+):
+    alternateUsePermission: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectTypeMetadataTemplate(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations
+    arrayItems: GoogleCloudDataplexV1AspectTypeMetadataTemplate
+    constraints: GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints
+    enumValues: _list[GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue]
+    index: int
+    mapItems: GoogleCloudDataplexV1AspectTypeMetadataTemplate
+    name: str
+    recordFields: _list[GoogleCloudDataplexV1AspectTypeMetadataTemplate]
+    type: str
+    typeId: str
+    typeRef: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations(
+    typing_extensions.TypedDict, total=False
+):
+    deprecated: str
+    description: str
+    displayName: str
+    displayOrder: int
+    stringType: str
+    stringValues: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints(
+    typing_extensions.TypedDict, total=False
+):
+    required: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue(
+    typing_extensions.TypedDict, total=False
+):
+    deprecated: str
+    index: int
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1Asset(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -432,6 +511,7 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     regexExpectation: GoogleCloudDataplexV1DataQualityRuleRegexExpectation
     rowConditionExpectation: GoogleCloudDataplexV1DataQualityRuleRowConditionExpectation
     setExpectation: GoogleCloudDataplexV1DataQualityRuleSetExpectation
+    sqlAssertion: GoogleCloudDataplexV1DataQualityRuleSqlAssertion
     statisticRangeExpectation: (
         GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation
     )
@@ -465,6 +545,7 @@ class GoogleCloudDataplexV1DataQualityRuleRegexExpectation(
 class GoogleCloudDataplexV1DataQualityRuleResult(
     typing_extensions.TypedDict, total=False
 ):
+    assertionRowCount: str
     evaluatedCount: str
     failingRowsQuery: str
     nullCount: str
@@ -484,6 +565,12 @@ class GoogleCloudDataplexV1DataQualityRuleSetExpectation(
     typing_extensions.TypedDict, total=False
 ):
     values: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataQualityRuleSqlAssertion(
+    typing_extensions.TypedDict, total=False
+):
+    sqlStatement: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation(
@@ -510,6 +597,7 @@ class GoogleCloudDataplexV1DataQualityRuleUniquenessExpectation(
 class GoogleCloudDataplexV1DataQualityScanRuleResult(
     typing_extensions.TypedDict, total=False
 ):
+    assertionRowCount: str
     column: str
     dataSource: str
     evaluatedRowCount: str
@@ -532,6 +620,7 @@ class GoogleCloudDataplexV1DataQualityScanRuleResult(
         "STATISTIC_RANGE_EXPECTATION",
         "TABLE_CONDITION_EXPECTATION",
         "UNIQUENESS_EXPECTATION",
+        "SQL_ASSERTION",
     ]
     thresholdPercent: float
 
@@ -831,6 +920,80 @@ class GoogleCloudDataplexV1EntityCompatibilityStatusCompatibility(
     reason: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1Entry(typing_extensions.TypedDict, total=False):
+    aspects: dict[str, typing.Any]
+    createTime: str
+    entrySource: GoogleCloudDataplexV1EntrySource
+    entryType: str
+    fullyQualifiedName: str
+    name: str
+    parentEntry: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryGroup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    transferStatus: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNSPECIFIED",
+        "TRANSFER_STATUS_MIGRATED",
+        "TRANSFER_STATUS_TRANSFERRED",
+    ]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntrySource(typing_extensions.TypedDict, total=False):
+    ancestors: _list[GoogleCloudDataplexV1EntrySourceAncestor]
+    createTime: str
+    description: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    platform: str
+    resource: str
+    system: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntrySourceAncestor(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryType(typing_extensions.TypedDict, total=False):
+    authorization: GoogleCloudDataplexV1EntryTypeAuthorization
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    platform: str
+    requiredAspects: _list[GoogleCloudDataplexV1EntryTypeAspectInfo]
+    system: str
+    typeAliases: _list[str]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryTypeAspectInfo(
+    typing_extensions.TypedDict, total=False
+):
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryTypeAuthorization(
+    typing_extensions.TypedDict, total=False
+):
+    alternateUsePermission: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1Environment(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -890,6 +1053,17 @@ class GoogleCloudDataplexV1EnvironmentSessionStatus(
     typing_extensions.TypedDict, total=False
 ):
     active: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GenerateDataQualityRulesRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GenerateDataQualityRulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    rule: _list[GoogleCloudDataplexV1DataQualityRule]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1GovernanceEvent(typing_extensions.TypedDict, total=False):
@@ -1004,6 +1178,14 @@ class GoogleCloudDataplexV1ListActionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListAspectTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    aspectTypes: _list[GoogleCloudDataplexV1AspectType]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[GoogleCloudDataplexV1Asset]
     nextPageToken: str
@@ -1060,6 +1242,29 @@ class GoogleCloudDataplexV1ListEntitiesResponse(
 ):
     entities: _list[GoogleCloudDataplexV1Entity]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListEntriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entries: _list[GoogleCloudDataplexV1Entry]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListEntryGroupsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entryGroups: _list[GoogleCloudDataplexV1EntryGroup]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListEntryTypesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    entryTypes: _list[GoogleCloudDataplexV1EntryType]
+    nextPageToken: str
+    unreachableLocations: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListEnvironmentsResponse(
@@ -1218,6 +1423,29 @@ class GoogleCloudDataplexV1SchemaSchemaField(typing_extensions.TypedDict, total=
         "RECORD",
         "NULL",
     ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1SearchEntriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    results: _list[GoogleCloudDataplexV1SearchEntriesResult]
+    totalSize: int
+    unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1SearchEntriesResult(
+    typing_extensions.TypedDict, total=False
+):
+    dataplexEntry: GoogleCloudDataplexV1Entry
+    linkedResource: str
+    snippets: GoogleCloudDataplexV1SearchEntriesResultSnippets
+
+@typing.type_check_only
+class GoogleCloudDataplexV1SearchEntriesResultSnippets(
+    typing_extensions.TypedDict, total=False
+):
+    dataplexEntry: GoogleCloudDataplexV1Entry
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Session(typing_extensions.TypedDict, total=False):

@@ -324,6 +324,7 @@ class EventSeat(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventTicketClass(typing_extensions.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
     confirmationCodeLabel: typing_extensions.Literal[
@@ -524,6 +525,7 @@ class FlightCarrier(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FlightClass(typing_extensions.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     boardingAndSeatingPolicy: BoardingAndSeatingPolicy
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
@@ -674,6 +676,7 @@ class FrequentFlyerInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenericClass(typing_extensions.TypedDict, total=False):
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
     enableSmartTap: bool
@@ -771,6 +774,7 @@ class GenericObjectListResponse(typing_extensions.TypedDict, total=False):
 class GiftCardClass(typing_extensions.TypedDict, total=False):
     allowBarcodeRedemption: bool
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     cardNumberLabel: str
     classTemplateInfo: ClassTemplateInfo
@@ -991,6 +995,7 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     accountIdLabel: str
     accountNameLabel: str
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
     countryCode: str
@@ -1202,6 +1207,7 @@ class Message(typing_extensions.TypedDict, total=False):
         "text",
         "EXPIRATION_NOTIFICATION",
         "expirationNotification",
+        "TEXT_AND_NOTIFY",
     ]
 
 @typing.type_check_only
@@ -1233,6 +1239,7 @@ class ObjectId(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OfferClass(typing_extensions.TypedDict, total=False):
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
     countryCode: str
@@ -1578,6 +1585,7 @@ class TimeInterval(typing_extensions.TypedDict, total=False):
 class TransitClass(typing_extensions.TypedDict, total=False):
     activationOptions: ActivationOptions
     allowMultipleUsersPerObject: bool
+    appLinkData: AppLinkData
     callbackOptions: CallbackOptions
     classTemplateInfo: ClassTemplateInfo
     countryCode: str

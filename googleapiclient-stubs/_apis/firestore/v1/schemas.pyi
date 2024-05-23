@@ -137,10 +137,26 @@ class DocumentsTarget(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ExecutionStats(typing_extensions.TypedDict, total=False):
+    debugStats: dict[str, typing.Any]
+    executionDuration: str
+    readOperations: str
+    resultsReturned: str
+
+@typing.type_check_only
 class ExistenceFilter(typing_extensions.TypedDict, total=False):
     count: int
     targetId: int
     unchangedNames: BloomFilter
+
+@typing.type_check_only
+class ExplainMetrics(typing_extensions.TypedDict, total=False):
+    executionStats: ExecutionStats
+    planSummary: PlanSummary
+
+@typing.type_check_only
+class ExplainOptions(typing_extensions.TypedDict, total=False):
+    analyze: bool
 
 @typing.type_check_only
 class FieldFilter(typing_extensions.TypedDict, total=False):
@@ -183,6 +199,15 @@ class Filter(typing_extensions.TypedDict, total=False):
     unaryFilter: UnaryFilter
 
 @typing.type_check_only
+class FindNearest(typing_extensions.TypedDict, total=False):
+    distanceMeasure: typing_extensions.Literal[
+        "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
+    ]
+    limit: int
+    queryVector: Value
+    vectorField: FieldReference
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1Backup(typing_extensions.TypedDict, total=False):
     database: str
     databaseUid: str
@@ -204,20 +229,25 @@ class GoogleFirestoreAdminV1BackupSchedule(typing_extensions.TypedDict, total=Fa
     weeklyRecurrence: GoogleFirestoreAdminV1WeeklyRecurrence
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1CmekConfig(typing_extensions.TypedDict, total=False):
+    activeKeyVersion: _list[str]
+    kmsKeyName: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CreateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1DailyRecurrence(
-    typing_extensions.TypedDict, total=False
-): ...
+class GoogleFirestoreAdminV1DailyRecurrence(typing_extensions.TypedDict, total=False):
+    time: TimeOfDay
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     appEngineIntegrationMode: typing_extensions.Literal[
         "APP_ENGINE_INTEGRATION_MODE_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
+    cmekConfig: GoogleFirestoreAdminV1CmekConfig
     concurrencyMode: typing_extensions.Literal[
         "CONCURRENCY_MODE_UNSPECIFIED",
         "OPTIMISTIC",
@@ -230,6 +260,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "DELETE_PROTECTION_DISABLED",
         "DELETE_PROTECTION_ENABLED",
     ]
+    deleteTime: str
     earliestVersionTime: str
     etag: str
     keyPrefix: str
@@ -240,6 +271,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "POINT_IN_TIME_RECOVERY_ENABLED",
         "POINT_IN_TIME_RECOVERY_DISABLED",
     ]
+    previousId: str
     type: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
     ]
@@ -520,6 +552,7 @@ class GoogleFirestoreAdminV1WeeklyRecurrence(typing_extensions.TypedDict, total=
         "SATURDAY",
         "SUNDAY",
     ]
+    time: TimeOfDay
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -612,6 +645,10 @@ class PartitionQueryResponse(typing_extensions.TypedDict, total=False):
     partitions: _list[Cursor]
 
 @typing.type_check_only
+class PlanSummary(typing_extensions.TypedDict, total=False):
+    indexesUsed: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
 class Precondition(typing_extensions.TypedDict, total=False):
     exists: bool
     updateTime: str
@@ -639,6 +676,7 @@ class RollbackRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
+    explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
     structuredAggregationQuery: StructuredAggregationQuery
@@ -646,12 +684,14 @@ class RunAggregationQueryRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunAggregationQueryResponse(typing_extensions.TypedDict, total=False):
+    explainMetrics: ExplainMetrics
     readTime: str
     result: AggregationResult
     transaction: str
 
 @typing.type_check_only
 class RunQueryRequest(typing_extensions.TypedDict, total=False):
+    explainOptions: ExplainOptions
     newTransaction: TransactionOptions
     readTime: str
     structuredQuery: StructuredQuery
@@ -661,6 +701,7 @@ class RunQueryRequest(typing_extensions.TypedDict, total=False):
 class RunQueryResponse(typing_extensions.TypedDict, total=False):
     document: Document
     done: bool
+    explainMetrics: ExplainMetrics
     readTime: str
     skippedResults: int
     transaction: str
@@ -680,6 +721,7 @@ AlternativeStructuredQuery = typing_extensions.TypedDict(
     "AlternativeStructuredQuery",
     {
         "endAt": Cursor,
+        "findNearest": FindNearest,
         "from": _list[CollectionSelector],
         "limit": int,
         "offset": int,
@@ -717,6 +759,13 @@ class TargetChange(typing_extensions.TypedDict, total=False):
         "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
     ]
     targetIds: _list[int]
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
 
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):

@@ -58,6 +58,14 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 previous_request: ListMembershipsResponseHttpRequest,
                 previous_response: ListMembershipsResponse,
             ) -> ListMembershipsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Membership = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> MembershipHttpRequest: ...
 
         @typing.type_check_only
         class MessagesResource(googleapiclient.discovery.Resource):
@@ -146,6 +154,26 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             def attachments(self) -> AttachmentsResource: ...
             def reactions(self) -> ReactionsResource: ...
 
+        @typing.type_check_only
+        class SpaceEventsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SpaceEventHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListSpaceEventsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListSpaceEventsResponseHttpRequest,
+                previous_response: ListSpaceEventsResponse,
+            ) -> ListSpaceEventsResponseHttpRequest | None: ...
+
         def completeImport(
             self,
             *,
@@ -187,6 +215,32 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         ) -> SpaceHttpRequest: ...
         def members(self) -> MembersResource: ...
         def messages(self) -> MessagesResource: ...
+        def spaceEvents(self) -> SpaceEventsResource: ...
+
+    @typing.type_check_only
+    class UsersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class SpacesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ThreadsResource(googleapiclient.discovery.Resource):
+                def getThreadReadState(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ThreadReadStateHttpRequest: ...
+
+            def getSpaceReadState(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> SpaceReadStateHttpRequest: ...
+            def updateSpaceReadState(
+                self,
+                *,
+                name: str,
+                body: SpaceReadState = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> SpaceReadStateHttpRequest: ...
+            def threads(self) -> ThreadsResource: ...
+
+        def spaces(self) -> SpacesResource: ...
 
     def new_batch_http_request(
         self,
@@ -202,6 +256,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def media(self) -> MediaResource: ...
     def spaces(self) -> SpacesResource: ...
+    def users(self) -> UsersResource: ...
 
 @typing.type_check_only
 class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
@@ -252,6 +307,14 @@ class ListReactionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListReactionsResponse: ...
 
 @typing.type_check_only
+class ListSpaceEventsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSpaceEventsResponse: ...
+
+@typing.type_check_only
 class ListSpacesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -298,6 +361,30 @@ class SpaceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Space: ...
+
+@typing.type_check_only
+class SpaceEventHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SpaceEvent: ...
+
+@typing.type_check_only
+class SpaceReadStateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SpaceReadState: ...
+
+@typing.type_check_only
+class ThreadReadStateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ThreadReadState: ...
 
 @typing.type_check_only
 class UploadAttachmentResponseHttpRequest(googleapiclient.http.HttpRequest):

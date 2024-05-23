@@ -16,9 +16,13 @@ class GoogleFirebaseFcmDataV1beta1AndroidDeliveryData(
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1Data(typing_extensions.TypedDict, total=False):
     countMessagesAccepted: str
+    countNotificationsAccepted: str
     deliveryPerformancePercents: GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents
     messageInsightPercents: GoogleFirebaseFcmDataV1beta1MessageInsightPercents
     messageOutcomePercents: GoogleFirebaseFcmDataV1beta1MessageOutcomePercents
+    proxyNotificationInsightPercents: (
+        GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents
+    )
 
 @typing.type_check_only
 class GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents(
@@ -52,6 +56,17 @@ class GoogleFirebaseFcmDataV1beta1MessageOutcomePercents(
     droppedDeviceInactive: float
     droppedTooManyPendingMessages: float
     pending: float
+
+@typing.type_check_only
+class GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents(
+    typing_extensions.TypedDict, total=False
+):
+    failed: float
+    proxied: float
+    skippedNotThrottled: float
+    skippedOptedOut: float
+    skippedUnconfigured: float
+    skippedUnsupported: float
 
 @typing.type_check_only
 class GoogleTypeDate(typing_extensions.TypedDict, total=False):

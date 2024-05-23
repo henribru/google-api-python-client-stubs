@@ -10,6 +10,10 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorTypeUri: str
 
 @typing.type_check_only
+class AnalyzeBatchRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class AnalyzeOperationMetadata(typing_extensions.TypedDict, total=False):
     analyzedWorkloadName: str
     analyzedWorkloadType: typing_extensions.Literal[

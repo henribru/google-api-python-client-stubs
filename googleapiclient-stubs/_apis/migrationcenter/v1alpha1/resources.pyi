@@ -96,6 +96,55 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 ) -> ReportAssetFramesResponseHttpRequest: ...
 
             @typing.type_check_only
+            class DiscoveryClientsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DiscoveryClient = ...,
+                    discoveryClientId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DiscoveryClientHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDiscoveryClientsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDiscoveryClientsResponseHttpRequest,
+                    previous_response: ListDiscoveryClientsResponse,
+                ) -> ListDiscoveryClientsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DiscoveryClient = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def sendHeartbeat(
+                    self,
+                    *,
+                    name: str,
+                    body: SendDiscoveryClientHeartbeatRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class GroupsResource(googleapiclient.discovery.Resource):
                 def addAssets(
                     self,
@@ -522,6 +571,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def assets(self) -> AssetsResource: ...
+            def discoveryClients(self) -> DiscoveryClientsResource: ...
             def groups(self) -> GroupsResource: ...
             def importJobs(self) -> ImportJobsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -570,6 +620,14 @@ class BatchUpdateAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BatchUpdateAssetsResponse: ...
 
 @typing.type_check_only
+class DiscoveryClientHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DiscoveryClient: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -616,6 +674,14 @@ class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAssetsResponse: ...
+
+@typing.type_check_only
+class ListDiscoveryClientsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDiscoveryClientsResponse: ...
 
 @typing.type_check_only
 class ListErrorFramesResponseHttpRequest(googleapiclient.http.HttpRequest):

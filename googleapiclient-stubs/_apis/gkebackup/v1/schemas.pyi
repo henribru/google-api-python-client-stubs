@@ -75,6 +75,8 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     name: str
     protectedPodCount: int
     retentionPolicy: RetentionPolicy
+    rpoRiskLevel: int
+    rpoRiskReason: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CLUSTER_PENDING",
@@ -110,6 +112,27 @@ class ClusterResourceRestoreScope(typing_extensions.TypedDict, total=False):
     selectedGroupKinds: _list[GroupKind]
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class DayOfWeekList(typing_extensions.TypedDict, total=False):
+    daysOfWeek: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -117,11 +140,23 @@ class EncryptionKey(typing_extensions.TypedDict, total=False):
     gcpKmsEncryptionKey: str
 
 @typing.type_check_only
+class ExclusionWindow(typing_extensions.TypedDict, total=False):
+    daily: bool
+    daysOfWeek: DayOfWeekList
+    duration: str
+    singleOccurrenceDate: Date
+    startTime: TimeOfDay
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GetBackupIndexDownloadUrlResponse(typing_extensions.TypedDict, total=False):
+    signedUrl: str
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -312,9 +347,16 @@ class RetentionPolicy(typing_extensions.TypedDict, total=False):
     locked: bool
 
 @typing.type_check_only
+class RpoConfig(typing_extensions.TypedDict, total=False):
+    exclusionWindows: _list[ExclusionWindow]
+    targetRpoMinutes: int
+
+@typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
     cronSchedule: str
+    nextScheduledBackupTime: str
     paused: bool
+    rpoConfig: RpoConfig
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -336,6 +378,13 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
 
 @typing.type_check_only
 class TransformationRule(typing_extensions.TypedDict, total=False):

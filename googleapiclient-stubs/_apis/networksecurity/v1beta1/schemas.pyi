@@ -17,6 +17,9 @@ class AddressGroup(typing_extensions.TypedDict, total=False):
     items: _list[str]
     labels: dict[str, typing.Any]
     name: str
+    purpose: _list[
+        typing_extensions.Literal["PURPOSE_UNSPECIFIED", "DEFAULT", "CLOUD_ARMOR"]
+    ]
     selfLink: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IPV4", "IPV6"]
     updateTime: str

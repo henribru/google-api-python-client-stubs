@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class AppProfile(typing_extensions.TypedDict, total=False):
+    dataBoostIsolationReadOnly: DataBoostIsolationReadOnly
     description: str
     etag: str
     multiClusterRoutingUseAny: MultiClusterRoutingUseAny
@@ -27,6 +28,13 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class AuthorizedView(typing_extensions.TypedDict, total=False):
+    deletionProtection: bool
+    etag: str
+    name: str
+    subsetView: GoogleBigtableAdminV2AuthorizedViewSubsetView
 
 @typing.type_check_only
 class AutomatedBackupPolicy(typing_extensions.TypedDict, total=False):
@@ -76,6 +84,8 @@ class ChangeStreamConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckConsistencyRequest(typing_extensions.TypedDict, total=False):
     consistencyToken: str
+    dataBoostReadLocalWrites: DataBoostReadLocalWrites
+    standardReadRemoteWrites: StandardReadRemoteWrites
 
 @typing.type_check_only
 class CheckConsistencyResponse(typing_extensions.TypedDict, total=False):
@@ -120,6 +130,7 @@ class ClusterState(typing_extensions.TypedDict, total=False):
 class ColumnFamily(typing_extensions.TypedDict, total=False):
     gcRule: GcRule
     stats: ColumnFamilyStats
+    valueType: Type
 
 @typing.type_check_only
 class ColumnFamilyStats(typing_extensions.TypedDict, total=False):
@@ -138,6 +149,18 @@ class CopyBackupRequest(typing_extensions.TypedDict, total=False):
     backupId: str
     expireTime: str
     sourceBackup: str
+
+@typing.type_check_only
+class CreateAuthorizedViewMetadata(typing_extensions.TypedDict, total=False):
+    finishTime: str
+    originalRequest: CreateAuthorizedViewRequest
+    requestTime: str
+
+@typing.type_check_only
+class CreateAuthorizedViewRequest(typing_extensions.TypedDict, total=False):
+    authorizedView: AuthorizedView
+    authorizedViewId: str
+    parent: str
 
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -177,6 +200,15 @@ class CreateTableRequest(typing_extensions.TypedDict, total=False):
     initialSplits: _list[Split]
     table: Table
     tableId: str
+
+@typing.type_check_only
+class DataBoostIsolationReadOnly(typing_extensions.TypedDict, total=False):
+    computeBillingOwner: typing_extensions.Literal[
+        "COMPUTE_BILLING_OWNER_UNSPECIFIED", "HOST_PAYS"
+    ]
+
+@typing.type_check_only
+class DataBoostReadLocalWrites(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DropRowRangeRequest(typing_extensions.TypedDict, total=False):
@@ -230,6 +262,58 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class GoogleBigtableAdminV2AuthorizedViewFamilySubsets(
+    typing_extensions.TypedDict, total=False
+):
+    qualifierPrefixes: _list[str]
+    qualifiers: _list[str]
+
+@typing.type_check_only
+class GoogleBigtableAdminV2AuthorizedViewSubsetView(
+    typing_extensions.TypedDict, total=False
+):
+    familySubsets: dict[str, typing.Any]
+    rowPrefixes: _list[str]
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeAggregate(typing_extensions.TypedDict, total=False):
+    inputType: Type
+    stateType: Type
+    sum: GoogleBigtableAdminV2TypeAggregateSum
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeAggregateSum(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeBytes(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeBytesEncoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeBytesEncoding(typing_extensions.TypedDict, total=False):
+    raw: GoogleBigtableAdminV2TypeBytesEncodingRaw
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeBytesEncodingRaw(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt64(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeInt64Encoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt64Encoding(typing_extensions.TypedDict, total=False):
+    bigEndianBytes: GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes(
+    typing_extensions.TypedDict, total=False
+):
+    bytesType: GoogleBigtableAdminV2TypeBytes
+
+@typing.type_check_only
 class HotTablet(typing_extensions.TypedDict, total=False):
     endKey: str
     endTime: str
@@ -245,6 +329,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal["STATE_NOT_KNOWN", "READY", "CREATING"]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
@@ -257,6 +342,11 @@ class Intersection(typing_extensions.TypedDict, total=False):
 class ListAppProfilesResponse(typing_extensions.TypedDict, total=False):
     appProfiles: _list[AppProfile]
     failedLocations: _list[str]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAuthorizedViewsResponse(typing_extensions.TypedDict, total=False):
+    authorizedViews: _list[AuthorizedView]
     nextPageToken: str
 
 @typing.type_check_only
@@ -402,6 +492,9 @@ class StandardIsolation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class StandardReadRemoteWrites(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -445,6 +538,12 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class Type(typing_extensions.TypedDict, total=False):
+    aggregateType: GoogleBigtableAdminV2TypeAggregate
+    bytesType: GoogleBigtableAdminV2TypeBytes
+    int64Type: GoogleBigtableAdminV2TypeInt64
+
+@typing.type_check_only
 class UndeleteTableMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
     name: str
@@ -459,6 +558,18 @@ class Union(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateAppProfileMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UpdateAuthorizedViewMetadata(typing_extensions.TypedDict, total=False):
+    finishTime: str
+    originalRequest: UpdateAuthorizedViewRequest
+    requestTime: str
+
+@typing.type_check_only
+class UpdateAuthorizedViewRequest(typing_extensions.TypedDict, total=False):
+    authorizedView: AuthorizedView
+    ignoreWarnings: bool
+    updateMask: str
 
 @typing.type_check_only
 class UpdateClusterMetadata(typing_extensions.TypedDict, total=False):

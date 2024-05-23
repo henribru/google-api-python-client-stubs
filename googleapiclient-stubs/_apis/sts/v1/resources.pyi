@@ -15,18 +15,6 @@ _list = list
 class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
-        def introspect(
-            self,
-            *,
-            body: GoogleIdentityStsV1IntrospectTokenRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleIdentityStsV1IntrospectTokenResponseHttpRequest: ...
-        def oauthtoken(
-            self,
-            *,
-            body: GoogleIdentityStsV1ExchangeOauthTokenRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleIdentityStsV1ExchangeOauthTokenResponseHttpRequest: ...
         def token(
             self,
             *,
@@ -49,16 +37,6 @@ class CloudSecurityTokenResource(googleapiclient.discovery.Resource):
     def v1(self) -> V1Resource: ...
 
 @typing.type_check_only
-class GoogleIdentityStsV1ExchangeOauthTokenResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleIdentityStsV1ExchangeOauthTokenResponse: ...
-
-@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -67,13 +45,3 @@ class GoogleIdentityStsV1ExchangeTokenResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleIdentityStsV1ExchangeTokenResponse: ...
-
-@typing.type_check_only
-class GoogleIdentityStsV1IntrospectTokenResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleIdentityStsV1IntrospectTokenResponse: ...

@@ -94,6 +94,13 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GenericArtifact(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    updateTime: str
+    version: str
+
+@typing.type_check_only
 class GoModule(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -431,6 +438,7 @@ class Repository(typing_extensions.TypedDict, total=False):
         "PYTHON",
         "KFP",
         "GO",
+        "GENERIC",
     ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
@@ -440,9 +448,12 @@ class Repository(typing_extensions.TypedDict, total=False):
         "STANDARD_REPOSITORY",
         "VIRTUAL_REPOSITORY",
         "REMOTE_REPOSITORY",
+        "AOSS_REPOSITORY",
+        "ASSURED_OSS_REPOSITORY",
     ]
     name: str
     remoteRepositoryConfig: RemoteRepositoryConfig
+    satisfiesPzi: bool
     satisfiesPzs: bool
     sizeBytes: str
     updateTime: str
@@ -484,6 +495,19 @@ class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
     aptArtifacts: _list[AptArtifact]
+
+@typing.type_check_only
+class UploadGenericArtifactMediaResponse(typing_extensions.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
+class UploadGenericArtifactMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UploadGenericArtifactRequest(typing_extensions.TypedDict, total=False):
+    filename: str
+    packageId: str
+    versionId: str
 
 @typing.type_check_only
 class UploadGoModuleMediaResponse(typing_extensions.TypedDict, total=False):

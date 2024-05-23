@@ -76,6 +76,21 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage(
     versionId: str
 
 @typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    results: _list[
+        GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult
+    ]
+
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseResult(
+    typing_extensions.TypedDict, total=False
+):
+    claim: GoogleFactcheckingFactchecktoolsV1alpha1Claim
+
+@typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse(
     typing_extensions.TypedDict, total=False
 ):

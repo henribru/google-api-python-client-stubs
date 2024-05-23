@@ -381,6 +381,7 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
             "POSTDEPLOY",
         ]
     ]
+    verbose: bool
     workerPool: str
 
 @typing.type_check_only
@@ -1006,6 +1007,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class SkaffoldGCBRepoSource(typing_extensions.TypedDict, total=False):
+    path: str
+    ref: str
+    repository: str
+
+@typing.type_check_only
 class SkaffoldGCSSource(typing_extensions.TypedDict, total=False):
     path: str
     source: str
@@ -1020,6 +1027,7 @@ class SkaffoldGitSource(typing_extensions.TypedDict, total=False):
 class SkaffoldModules(typing_extensions.TypedDict, total=False):
     configs: _list[str]
     git: SkaffoldGitSource
+    googleCloudBuildRepo: SkaffoldGCBRepoSource
     googleCloudStorage: SkaffoldGCSSource
 
 @typing.type_check_only

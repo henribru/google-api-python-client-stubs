@@ -362,6 +362,7 @@ class HttpCheck(typing_extensions.TypedDict, total=False):
     pingConfig: PingConfig
     port: int
     requestMethod: typing_extensions.Literal["METHOD_UNSPECIFIED", "GET", "POST"]
+    serviceAgentAuthentication: ServiceAgentAuthentication
     useSsl: bool
     validateSsl: bool
 
@@ -785,6 +786,12 @@ class Service(typing_extensions.TypedDict, total=False):
     name: str
     telemetry: Telemetry
     userLabels: dict[str, typing.Any]
+
+@typing.type_check_only
+class ServiceAgentAuthentication(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"
+    ]
 
 @typing.type_check_only
 class ServiceLevelIndicator(typing_extensions.TypedDict, total=False):

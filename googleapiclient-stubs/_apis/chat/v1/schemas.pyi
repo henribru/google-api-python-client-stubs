@@ -5,6 +5,10 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessoryWidget(typing_extensions.TypedDict, total=False):
+    buttonList: GoogleAppsCardV1ButtonList
+
+@typing.type_check_only
 class ActionParameter(typing_extensions.TypedDict, total=False):
     key: str
     value: str
@@ -50,10 +54,11 @@ class ActionStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Annotation(typing_extensions.TypedDict, total=False):
     length: int
+    richLinkMetadata: RichLinkMetadata
     slashCommand: SlashCommandMetadata
     startIndex: int
     type: typing_extensions.Literal[
-        "ANNOTATION_TYPE_UNSPECIFIED", "USER_MENTION", "SLASH_COMMAND"
+        "ANNOTATION_TYPE_UNSPECIFIED", "USER_MENTION", "SLASH_COMMAND", "RICH_LINK"
     ]
     userMention: UserMentionMetadata
 
@@ -218,6 +223,11 @@ class DriveDataRef(typing_extensions.TypedDict, total=False):
     driveFileId: str
 
 @typing.type_check_only
+class DriveLinkData(typing_extensions.TypedDict, total=False):
+    driveDataRef: DriveDataRef
+    mimeType: str
+
+@typing.type_check_only
 class Emoji(typing_extensions.TypedDict, total=False):
     customEmoji: CustomEmoji
     unicode: str
@@ -368,6 +378,7 @@ class GoogleAppsCardV1Icon(typing_extensions.TypedDict, total=False):
     iconUrl: str
     imageType: typing_extensions.Literal["SQUARE", "CIRCLE"]
     knownIcon: str
+    materialIcon: GoogleAppsCardV1MaterialIcon
 
 @typing.type_check_only
 class GoogleAppsCardV1Image(typing_extensions.TypedDict, total=False):
@@ -392,6 +403,13 @@ class GoogleAppsCardV1ImageCropStyle(typing_extensions.TypedDict, total=False):
         "RECTANGLE_CUSTOM",
         "RECTANGLE_4_3",
     ]
+
+@typing.type_check_only
+class GoogleAppsCardV1MaterialIcon(typing_extensions.TypedDict, total=False):
+    fill: bool
+    grade: int
+    name: str
+    weight: int
 
 @typing.type_check_only
 class GoogleAppsCardV1OnClick(typing_extensions.TypedDict, total=False):
@@ -617,6 +635,11 @@ class ListReactionsResponse(typing_extensions.TypedDict, total=False):
     reactions: _list[Reaction]
 
 @typing.type_check_only
+class ListSpaceEventsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    spaceEvents: _list[SpaceEvent]
+
+@typing.type_check_only
 class ListSpacesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     spaces: _list[Space]
@@ -644,7 +667,32 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class MembershipBatchCreatedEventData(typing_extensions.TypedDict, total=False):
+    memberships: _list[MembershipCreatedEventData]
+
+@typing.type_check_only
+class MembershipBatchDeletedEventData(typing_extensions.TypedDict, total=False):
+    memberships: _list[MembershipDeletedEventData]
+
+@typing.type_check_only
+class MembershipBatchUpdatedEventData(typing_extensions.TypedDict, total=False):
+    memberships: _list[MembershipUpdatedEventData]
+
+@typing.type_check_only
+class MembershipCreatedEventData(typing_extensions.TypedDict, total=False):
+    membership: Membership
+
+@typing.type_check_only
+class MembershipDeletedEventData(typing_extensions.TypedDict, total=False):
+    membership: Membership
+
+@typing.type_check_only
+class MembershipUpdatedEventData(typing_extensions.TypedDict, total=False):
+    membership: Membership
+
+@typing.type_check_only
 class Message(typing_extensions.TypedDict, total=False):
+    accessoryWidgets: _list[AccessoryWidget]
     actionResponse: ActionResponse
     annotations: _list[Annotation]
     argumentText: str
@@ -672,6 +720,30 @@ class Message(typing_extensions.TypedDict, total=False):
     threadReply: bool
 
 @typing.type_check_only
+class MessageBatchCreatedEventData(typing_extensions.TypedDict, total=False):
+    messages: _list[MessageCreatedEventData]
+
+@typing.type_check_only
+class MessageBatchDeletedEventData(typing_extensions.TypedDict, total=False):
+    messages: _list[MessageDeletedEventData]
+
+@typing.type_check_only
+class MessageBatchUpdatedEventData(typing_extensions.TypedDict, total=False):
+    messages: _list[MessageUpdatedEventData]
+
+@typing.type_check_only
+class MessageCreatedEventData(typing_extensions.TypedDict, total=False):
+    message: Message
+
+@typing.type_check_only
+class MessageDeletedEventData(typing_extensions.TypedDict, total=False):
+    message: Message
+
+@typing.type_check_only
+class MessageUpdatedEventData(typing_extensions.TypedDict, total=False):
+    message: Message
+
+@typing.type_check_only
 class OnClick(typing_extensions.TypedDict, total=False):
     action: FormAction
     openLink: OpenLink
@@ -690,6 +762,28 @@ class Reaction(typing_extensions.TypedDict, total=False):
     emoji: Emoji
     name: str
     user: User
+
+@typing.type_check_only
+class ReactionBatchCreatedEventData(typing_extensions.TypedDict, total=False):
+    reactions: _list[ReactionCreatedEventData]
+
+@typing.type_check_only
+class ReactionBatchDeletedEventData(typing_extensions.TypedDict, total=False):
+    reactions: _list[ReactionDeletedEventData]
+
+@typing.type_check_only
+class ReactionCreatedEventData(typing_extensions.TypedDict, total=False):
+    reaction: Reaction
+
+@typing.type_check_only
+class ReactionDeletedEventData(typing_extensions.TypedDict, total=False):
+    reaction: Reaction
+
+@typing.type_check_only
+class RichLinkMetadata(typing_extensions.TypedDict, total=False):
+    driveLinkData: DriveLinkData
+    richLinkType: typing_extensions.Literal["RICH_LINK_TYPE_UNSPECIFIED", "DRIVE_FILE"]
+    uri: str
 
 @typing.type_check_only
 class Section(typing_extensions.TypedDict, total=False):
@@ -744,6 +838,10 @@ class Space(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
 
 @typing.type_check_only
+class SpaceBatchUpdatedEventData(typing_extensions.TypedDict, total=False):
+    spaces: _list[SpaceUpdatedEventData]
+
+@typing.type_check_only
 class SpaceDataSource(typing_extensions.TypedDict, total=False):
     defaultToCurrentSpace: bool
 
@@ -751,6 +849,39 @@ class SpaceDataSource(typing_extensions.TypedDict, total=False):
 class SpaceDetails(typing_extensions.TypedDict, total=False):
     description: str
     guidelines: str
+
+@typing.type_check_only
+class SpaceEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+    eventType: str
+    membershipBatchCreatedEventData: MembershipBatchCreatedEventData
+    membershipBatchDeletedEventData: MembershipBatchDeletedEventData
+    membershipBatchUpdatedEventData: MembershipBatchUpdatedEventData
+    membershipCreatedEventData: MembershipCreatedEventData
+    membershipDeletedEventData: MembershipDeletedEventData
+    membershipUpdatedEventData: MembershipUpdatedEventData
+    messageBatchCreatedEventData: MessageBatchCreatedEventData
+    messageBatchDeletedEventData: MessageBatchDeletedEventData
+    messageBatchUpdatedEventData: MessageBatchUpdatedEventData
+    messageCreatedEventData: MessageCreatedEventData
+    messageDeletedEventData: MessageDeletedEventData
+    messageUpdatedEventData: MessageUpdatedEventData
+    name: str
+    reactionBatchCreatedEventData: ReactionBatchCreatedEventData
+    reactionBatchDeletedEventData: ReactionBatchDeletedEventData
+    reactionCreatedEventData: ReactionCreatedEventData
+    reactionDeletedEventData: ReactionDeletedEventData
+    spaceBatchUpdatedEventData: SpaceBatchUpdatedEventData
+    spaceUpdatedEventData: SpaceUpdatedEventData
+
+@typing.type_check_only
+class SpaceReadState(typing_extensions.TypedDict, total=False):
+    lastReadTime: str
+    name: str
+
+@typing.type_check_only
+class SpaceUpdatedEventData(typing_extensions.TypedDict, total=False):
+    space: Space
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -775,6 +906,11 @@ class TextParagraph(typing_extensions.TypedDict, total=False):
 class Thread(typing_extensions.TypedDict, total=False):
     name: str
     threadKey: str
+
+@typing.type_check_only
+class ThreadReadState(typing_extensions.TypedDict, total=False):
+    lastReadTime: str
+    name: str
 
 @typing.type_check_only
 class TimeInput(typing_extensions.TypedDict, total=False):

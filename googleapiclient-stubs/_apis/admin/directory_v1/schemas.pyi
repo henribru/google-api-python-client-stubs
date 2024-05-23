@@ -198,8 +198,12 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     annotatedLocation: str
     annotatedUser: str
     autoUpdateExpiration: str
+    autoUpdateThrough: str
     backlightInfo: _list[BacklightInfo]
     bootMode: str
+    chromeOsType: typing_extensions.Literal[
+        "chromeOsTypeUnspecified", "chromeOsFlex", "chromeOs"
+    ]
     cpuInfo: _list[dict[str, typing.Any]]
     cpuStatusReports: _list[dict[str, typing.Any]]
     deprovisionReason: typing_extensions.Literal[
@@ -230,6 +234,10 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
     etag: str
     ethernetMacAddress: str
     ethernetMacAddress0: str
+    extendedSupportEligible: bool
+    extendedSupportEnabled: bool
+    extendedSupportStart: str
+    fanInfo: _list[FanInfo]
     firmwareVersion: str
     firstEnrollmentTime: str
     kind: str
@@ -426,6 +434,10 @@ class FailureInfo(typing_extensions.TypedDict, total=False):
     errorMessage: str
     printer: Printer
     printerId: str
+
+@typing.type_check_only
+class FanInfo(typing_extensions.TypedDict, total=False):
+    speedRpm: int
 
 @typing.type_check_only
 class Feature(typing_extensions.TypedDict, total=False):

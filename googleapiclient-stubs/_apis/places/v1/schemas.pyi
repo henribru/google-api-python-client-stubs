@@ -111,6 +111,58 @@ class GoogleMapsPlacesV1Circle(typing_extensions.TypedDict, total=False):
     radius: float
 
 @typing.type_check_only
+class GoogleMapsPlacesV1ContentBlock(typing_extensions.TypedDict, total=False):
+    content: GoogleTypeLocalizedText
+    references: GoogleMapsPlacesV1References
+    topic: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContent(typing_extensions.TypedDict, total=False):
+    justifications: _list[GoogleMapsPlacesV1ContextualContentJustification]
+    photos: _list[GoogleMapsPlacesV1Photo]
+    reviews: _list[GoogleMapsPlacesV1Review]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContentJustification(
+    typing_extensions.TypedDict, total=False
+):
+    businessAvailabilityAttributesJustification: GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification
+    reviewJustification: (
+        GoogleMapsPlacesV1ContextualContentJustificationReviewJustification
+    )
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContentJustificationBusinessAvailabilityAttributesJustification(
+    typing_extensions.TypedDict, total=False
+):
+    delivery: bool
+    dineIn: bool
+    takeout: bool
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContentJustificationReviewJustification(
+    typing_extensions.TypedDict, total=False
+):
+    highlightedText: GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText
+    review: GoogleMapsPlacesV1Review
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedText(
+    typing_extensions.TypedDict, total=False
+):
+    highlightedTextRanges: _list[
+        GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange
+    ]
+    text: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1ContextualContentJustificationReviewJustificationHighlightedTextHighlightedTextRange(
+    typing_extensions.TypedDict, total=False
+):
+    endIndex: int
+    startIndex: int
+
+@typing.type_check_only
 class GoogleMapsPlacesV1EVChargeOptions(typing_extensions.TypedDict, total=False):
     connectorAggregation: _list[GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation]
     connectorCount: int
@@ -185,6 +237,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     addressComponents: _list[GoogleMapsPlacesV1PlaceAddressComponent]
     adrFormatAddress: str
     allowsDogs: bool
+    areaSummary: GoogleMapsPlacesV1PlaceAreaSummary
     attributions: _list[GoogleMapsPlacesV1PlaceAttribution]
     businessStatus: typing_extensions.Literal[
         "BUSINESS_STATUS_UNSPECIFIED",
@@ -202,6 +255,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     evChargeOptions: GoogleMapsPlacesV1EVChargeOptions
     formattedAddress: str
     fuelOptions: GoogleMapsPlacesV1FuelOptions
+    generativeSummary: GoogleMapsPlacesV1PlaceGenerativeSummary
     goodForChildren: bool
     goodForGroups: bool
     goodForWatchingSports: bool
@@ -272,9 +326,21 @@ class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total
     types: _list[str]
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceAreaSummary(typing_extensions.TypedDict, total=False):
+    contentBlocks: _list[GoogleMapsPlacesV1ContentBlock]
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=False):
     provider: str
     providerUri: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceGenerativeSummary(
+    typing_extensions.TypedDict, total=False
+):
+    description: GoogleTypeLocalizedText
+    overview: GoogleTypeLocalizedText
+    references: GoogleMapsPlacesV1References
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceOpeningHours(typing_extensions.TypedDict, total=False):
@@ -350,6 +416,11 @@ class GoogleMapsPlacesV1PlaceSubDestination(typing_extensions.TypedDict, total=F
     name: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1References(typing_extensions.TypedDict, total=False):
+    places: _list[str]
+    reviews: _list[GoogleMapsPlacesV1Review]
+
+@typing.type_check_only
 class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     authorAttribution: GoogleMapsPlacesV1AuthorAttribution
     name: str
@@ -393,6 +464,8 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
     maxResultCount: int
     minRating: float
     openNow: bool
+    pageSize: int
+    pageToken: str
     priceLevels: _list[
         typing_extensions.Literal[
             "PRICE_LEVEL_UNSPECIFIED",
@@ -445,6 +518,8 @@ class GoogleMapsPlacesV1SearchTextRequestLocationRestriction(
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=False):
+    contextualContents: _list[GoogleMapsPlacesV1ContextualContent]
+    nextPageToken: str
     places: _list[GoogleMapsPlacesV1Place]
 
 @typing.type_check_only

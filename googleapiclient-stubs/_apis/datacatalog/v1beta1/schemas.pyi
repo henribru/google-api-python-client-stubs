@@ -557,7 +557,14 @@ class GoogleCloudDatacatalogV1VertexModelSourceInfo(
 ):
     copy: bool
     sourceType: typing_extensions.Literal[
-        "MODEL_SOURCE_TYPE_UNSPECIFIED", "AUTOML", "CUSTOM", "BQML", "MODEL_GARDEN"
+        "MODEL_SOURCE_TYPE_UNSPECIFIED",
+        "AUTOML",
+        "CUSTOM",
+        "BQML",
+        "MODEL_GARDEN",
+        "GENIE",
+        "CUSTOM_TEXT_EMBEDDING",
+        "MARKETPLACE",
     ]
 
 @typing.type_check_only
@@ -850,6 +857,9 @@ class GoogleCloudDatacatalogV1beta1TagFieldEnumValue(
 class GoogleCloudDatacatalogV1beta1TagTemplate(
     typing_extensions.TypedDict, total=False
 ):
+    dataplexTransferStatus: typing_extensions.Literal[
+        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED"
+    ]
     displayName: str
     fields: dict[str, typing.Any]
     name: str

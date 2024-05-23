@@ -610,6 +610,7 @@ class V1Beta1GenerateServiceIdentityResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class V1Beta1ImportProducerOverridesRequest(typing_extensions.TypedDict, total=False):
     force: bool
+    forceJustification: str
     forceOnly: _list[
         typing_extensions.Literal[
             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
@@ -661,6 +662,7 @@ class V1Beta1QuotaBucket(typing_extensions.TypedDict, total=False):
     effectiveLimit: str
     producerOverride: V1Beta1QuotaOverride
     producerQuotaPolicy: V1Beta1ProducerQuotaPolicy
+    rolloutInfo: V1Beta1RolloutInfo
 
 @typing.type_check_only
 class V1Beta1QuotaOverride(typing_extensions.TypedDict, total=False):
@@ -673,6 +675,10 @@ class V1Beta1QuotaOverride(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class V1Beta1RefreshConsumerResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class V1Beta1RolloutInfo(typing_extensions.TypedDict, total=False):
+    defaultLimitOngoingRollout: bool
 
 @typing.type_check_only
 class V1Beta1ServiceIdentity(typing_extensions.TypedDict, total=False):

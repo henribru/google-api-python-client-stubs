@@ -48,6 +48,15 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                             previous_request: ListGroupsResponseHttpRequest,
                             previous_response: ListGroupsResponse,
                         ) -> ListGroupsResponseHttpRequest | None: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: Group = ...,
+                            requestId: str = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def setIamPolicy(
                             self,
                             *,
@@ -330,6 +339,39 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class RegionalEndpointsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RegionalEndpoint = ...,
+                    regionalEndpointId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RegionalEndpointHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRegionalEndpointsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRegionalEndpointsResponseHttpRequest,
+                    previous_response: ListRegionalEndpointsResponse,
+                ) -> ListRegionalEndpointsResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class ServiceClassesResource(googleapiclient.discovery.Resource):
@@ -647,6 +689,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
             def global_(self) -> GlobalResource: ...
             def internalRanges(self) -> InternalRangesResource: ...
             def operations(self) -> OperationsResource: ...
+            def regionalEndpoints(self) -> RegionalEndpointsResource: ...
             def serviceClasses(self) -> ServiceClassesResource: ...
             def serviceConnectionMaps(self) -> ServiceConnectionMapsResource: ...
             def serviceConnectionPolicies(
@@ -770,6 +813,14 @@ class ListPolicyBasedRoutesResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> ListPolicyBasedRoutesResponse: ...
 
 @typing.type_check_only
+class ListRegionalEndpointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRegionalEndpointsResponse: ...
+
+@typing.type_check_only
 class ListRouteTablesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -850,6 +901,14 @@ class PolicyBasedRouteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PolicyBasedRoute: ...
+
+@typing.type_check_only
+class RegionalEndpointHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RegionalEndpoint: ...
 
 @typing.type_check_only
 class RouteHttpRequest(googleapiclient.http.HttpRequest):

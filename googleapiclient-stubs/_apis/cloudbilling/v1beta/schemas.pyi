@@ -197,55 +197,6 @@ class EstimationTimePoint(typing_extensions.TypedDict, total=False):
     estimationTimeFrameOffset: str
 
 @typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaAnomaly(
-    typing_extensions.TypedDict, total=False
-):
-    detectionTime: str
-    deviation: GoogleCloudBillingAnomaliesV1betaAnomalyDeviation
-    name: str
-    resourceDisplayName: str
-    rootCauses: _list[GoogleCloudBillingAnomaliesV1betaCause]
-    scope: typing_extensions.Literal[
-        "SCOPE_UNSPECIFIED", "SCOPE_BILLING_ACCOUNT", "SCOPE_PROJECT"
-    ]
-    severity: typing_extensions.Literal[
-        "ANOMALY_SEVERITY_UNSPECIFIED",
-        "ANOMALY_SEVERITY_LOW",
-        "ANOMALY_SEVERITY_MEDIUM",
-        "ANOMALY_SEVERITY_HIGH",
-    ]
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaAnomalyDeviation(
-    typing_extensions.TypedDict, total=False
-):
-    actualSpend: Money
-    deviationAmount: Money
-    deviationPercentage: float
-    expectedSpend: Money
-
-@typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaCause(typing_extensions.TypedDict, total=False):
-    causeType: typing_extensions.Literal[
-        "CAUSE_TYPE_UNSPECIFIED",
-        "CAUSE_TYPE_PROJECT",
-        "CAUSE_TYPE_SERVICE",
-        "CAUSE_TYPE_SKU",
-    ]
-    deviation: GoogleCloudBillingAnomaliesV1betaAnomalyDeviation
-    displayName: str
-    resource: str
-    subCauses: _list[GoogleCloudBillingAnomaliesV1betaCause]
-
-@typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    anomalies: _list[GoogleCloudBillingAnomaliesV1betaAnomaly]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaAggregationInfo(
     typing_extensions.TypedDict, total=False
 ):

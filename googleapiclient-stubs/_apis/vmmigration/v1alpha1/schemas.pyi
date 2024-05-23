@@ -836,7 +836,7 @@ class TargetVMDetails(typing_extensions.TypedDict, total=False):
     bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     computeScheduling: ComputeScheduling
     diskType: typing_extensions.Literal[
-        "DISK_TYPE_UNSPECIFIED", "STANDARD", "BALANCED", "SSD"
+        "DISK_TYPE_UNSPECIFIED", "STANDARD", "BALANCED", "SSD", "HYPERDISK_BALANCED"
     ]
     externalIp: str
     internalIp: str

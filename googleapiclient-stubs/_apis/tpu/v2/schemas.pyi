@@ -7,7 +7,7 @@ _list = list
 @typing.type_check_only
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     topology: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "V2", "V3", "V4"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5P"]
 
 @typing.type_check_only
 class AcceleratorType(typing_extensions.TypedDict, total=False):

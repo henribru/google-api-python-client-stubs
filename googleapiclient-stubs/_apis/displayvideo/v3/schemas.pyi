@@ -345,6 +345,7 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -431,6 +432,8 @@ class AppAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False
         "APP_PLATFORM_SAMSUNG_TV",
         "APP_PLATFORM_ANDROID_TV",
         "APP_PLATFORM_GENERIC_CTV",
+        "APP_PLATFORM_LG_TV",
+        "APP_PLATFORM_VIZIO_TV",
     ]
     displayName: str
     negative: bool
@@ -1991,6 +1994,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -2081,6 +2085,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -2170,6 +2175,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -2262,6 +2268,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -2642,6 +2649,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -2934,6 +2942,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CONNATIX",
         "EXCHANGE_RESET_DIGITAL",
         "EXCHANGE_HIVESTACK",
+        "EXCHANGE_DRAX",
         "EXCHANGE_APPLOVIN_GBID",
         "EXCHANGE_FYBER_GBID",
         "EXCHANGE_UNITY_GBID",
@@ -3073,6 +3082,7 @@ class KeywordAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class Kpi(typing_extensions.TypedDict, total=False):
+    kpiAlgorithmId: str
     kpiAmountMicros: str
     kpiPercentageMicros: str
     kpiString: str
@@ -3085,12 +3095,18 @@ class Kpi(typing_extensions.TypedDict, total=False):
         "KPI_TYPE_VIEWABILITY",
         "KPI_TYPE_CPIAVC",
         "KPI_TYPE_CPE",
+        "KPI_TYPE_CPV",
         "KPI_TYPE_CLICK_CVR",
         "KPI_TYPE_IMPRESSION_CVR",
         "KPI_TYPE_VCPM",
         "KPI_TYPE_VTR",
         "KPI_TYPE_AUDIO_COMPLETION_RATE",
         "KPI_TYPE_VIDEO_COMPLETION_RATE",
+        "KPI_TYPE_CPCL",
+        "KPI_TYPE_CPCV",
+        "KPI_TYPE_TOS10",
+        "KPI_TYPE_MAXIMIZE_PACING",
+        "KPI_TYPE_CUSTOM_IMPRESSION_VALUE_OVER_COST",
         "KPI_TYPE_OTHER",
     ]
 
@@ -4442,6 +4458,7 @@ class YoutubeAndPartnersBiddingStrategy(typing_extensions.TypedDict, total=False
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM",
+        "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_CPM",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_LIFT",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MAXIMIZE_CONVERSIONS",
         "YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPV",

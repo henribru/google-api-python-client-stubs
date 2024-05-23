@@ -802,6 +802,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def addPacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def addRule(
             self,
             *,
@@ -834,6 +842,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getPacketMirroringRule(
+            self, *, firewallPolicy: str, priority: int = ..., **kwargs: typing.Any
+        ) -> FirewallPolicyRuleHttpRequest: ...
         def getRule(
             self, *, firewallPolicy: str, priority: int = ..., **kwargs: typing.Any
         ) -> FirewallPolicyRuleHttpRequest: ...
@@ -880,6 +891,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def patchPacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def patchRule(
             self,
             *,
@@ -894,6 +914,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             firewallPolicy: str,
             name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def removePacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            priority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3801,6 +3829,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def addPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            maxPriority: int = ...,
+            minPriority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def addRule(
             self,
             *,
@@ -3848,6 +3887,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            priority: int = ...,
+            **kwargs: typing.Any,
+        ) -> FirewallPolicyRuleHttpRequest: ...
         def getRule(
             self,
             *,
@@ -3898,6 +3945,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def patchPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def patchRule(
             self,
             *,
@@ -3914,6 +3971,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             firewallPolicy: str,
             name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def removePacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            priority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3942,6 +4008,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
+
+    @typing.type_check_only
+    class NetworkPlacementsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, networkPlacement: str, **kwargs: typing.Any
+        ) -> NetworkPlacementHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> NetworkPlacementsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: NetworkPlacementsListResponseHttpRequest,
+            previous_response: NetworkPlacementsListResponse,
+        ) -> NetworkPlacementsListResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class NetworksResource(googleapiclient.discovery.Resource):
@@ -7446,6 +7534,26 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def patchNamedSet(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            body: NamedSet = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def patchRoutePolicy(
+            self,
+            *,
+            project: str,
+            region: str,
+            router: str,
+            body: RoutePolicy = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def preview(
             self,
             *,
@@ -9481,6 +9589,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def networkEdgeSecurityServices(self) -> NetworkEdgeSecurityServicesResource: ...
     def networkEndpointGroups(self) -> NetworkEndpointGroupsResource: ...
     def networkFirewallPolicies(self) -> NetworkFirewallPoliciesResource: ...
+    def networkPlacements(self) -> NetworkPlacementsResource: ...
     def networks(self) -> NetworksResource: ...
     def nodeGroups(self) -> NodeGroupsResource: ...
     def nodeTemplates(self) -> NodeTemplatesResource: ...
@@ -10477,6 +10586,22 @@ class NetworkListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> NetworkList: ...
+
+@typing.type_check_only
+class NetworkPlacementHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkPlacement: ...
+
+@typing.type_check_only
+class NetworkPlacementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkPlacementsListResponse: ...
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponseHttpRequest(

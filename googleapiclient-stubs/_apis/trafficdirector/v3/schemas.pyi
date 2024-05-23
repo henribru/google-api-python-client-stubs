@@ -272,6 +272,7 @@ class StaticRouteConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class StringMatcher(typing_extensions.TypedDict, total=False):
     contains: str
+    custom: TypedExtensionConfig
     exact: str
     ignoreCase: bool
     prefix: str
@@ -282,6 +283,11 @@ class StringMatcher(typing_extensions.TypedDict, total=False):
 class StructMatcher(typing_extensions.TypedDict, total=False):
     path: _list[PathSegment]
     value: ValueMatcher
+
+@typing.type_check_only
+class TypedExtensionConfig(typing_extensions.TypedDict, total=False):
+    name: str
+    typedConfig: dict[str, typing.Any]
 
 @typing.type_check_only
 class UpdateFailureState(typing_extensions.TypedDict, total=False):

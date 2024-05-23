@@ -26,11 +26,25 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     body: DetachLunRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def disableHyperthreading(
+                    self,
+                    *,
+                    name: str,
+                    body: DisableHyperthreadingRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def disableInteractiveSerialConsole(
                     self,
                     *,
                     name: str,
                     body: DisableInteractiveSerialConsoleRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def enableHyperthreading(
+                    self,
+                    *,
+                    name: str,
+                    body: EnableHyperthreadingRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def enableInteractiveSerialConsole(
@@ -66,6 +80,13 @@ class BaremetalsolutionResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: Instance = ...,
                     updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def reimage(
+                    self,
+                    *,
+                    name: str,
+                    body: ReimageInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def rename(

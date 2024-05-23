@@ -222,6 +222,20 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: RepairEventingRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def search(
+                    self,
+                    *,
+                    name: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    query: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SearchConnectionsResponseHttpRequest: ...
+                def search_next(
+                    self,
+                    previous_request: SearchConnectionsResponseHttpRequest,
+                    previous_response: SearchConnectionsResponse,
+                ) -> SearchConnectionsResponseHttpRequest | None: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -245,6 +259,21 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class CustomConnectorsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class CustomConnectorVersionsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def deprecate(
+                        self,
+                        *,
+                        name: str,
+                        body: DeprecateCustomConnectorVersionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
                 def validateCustomConnectorSpec(
                     self,
                     *,
@@ -252,6 +281,9 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     body: ValidateCustomConnectorSpecRequest = ...,
                     **kwargs: typing.Any,
                 ) -> ValidateCustomConnectorSpecResponseHttpRequest: ...
+                def customConnectorVersions(
+                    self,
+                ) -> CustomConnectorVersionsResource: ...
 
             @typing.type_check_only
             class EndpointAttachmentsResource(googleapiclient.discovery.Resource):
@@ -889,6 +921,14 @@ class RuntimeConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RuntimeConfig: ...
+
+@typing.type_check_only
+class SearchConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchConnectionsResponse: ...
 
 @typing.type_check_only
 class SettingsHttpRequest(googleapiclient.http.HttpRequest):

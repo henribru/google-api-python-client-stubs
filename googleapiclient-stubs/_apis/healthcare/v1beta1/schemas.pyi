@@ -462,7 +462,9 @@ class ExplainDataAccessConsentInfo(typing_extensions.TypedDict, total=False):
     ]
     variants: _list[
         typing_extensions.Literal[
-            "VARIANT_UNSPECIFIED", "VARIANT_STANDARD", "VARIANT_CASCADE"
+            "CONSENT_VARIANT_UNSPECIFIED",
+            "CONSENT_VARIANT_STANDARD",
+            "CONSENT_VARIANT_CASCADE",
         ]
     ]
 
@@ -509,6 +511,14 @@ class ExportMessagesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ExportResourcesHistoryRequest(typing_extensions.TypedDict, total=False):
+    _since: str
+    _type: str
+    bigqueryDestination: GoogleCloudHealthcareV1beta1FhirBigQueryDestination
+    gcsDestination: GoogleCloudHealthcareV1beta1FhirGcsDestination
+    maxResourceVersions: str
 
 @typing.type_check_only
 class ExportResourcesRequest(typing_extensions.TypedDict, total=False):
@@ -851,6 +861,18 @@ class ImportMessagesRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportMessagesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ImportResourcesHistoryRequest(typing_extensions.TypedDict, total=False):
+    contentStructure: typing_extensions.Literal[
+        "CONTENT_STRUCTURE_UNSPECIFIED",
+        "BUNDLE",
+        "RESOURCE",
+        "BUNDLE_PRETTY",
+        "RESOURCE_PRETTY",
+    ]
+    gcsSource: GoogleCloudHealthcareV1beta1FhirGcsSource
+    maxErrorCount: str
 
 @typing.type_check_only
 class ImportResourcesRequest(typing_extensions.TypedDict, total=False):

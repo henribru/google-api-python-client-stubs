@@ -48,6 +48,9 @@ class GoogleMarketingPlatformAdminAPIResource(googleapiclient.discovery.Resource
                 **kwargs: typing.Any,
             ) -> SetPropertyServiceLevelResponseHttpRequest: ...
 
+        def get(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OrganizationHttpRequest: ...
         def analyticsAccountLinks(self) -> AnalyticsAccountLinksResource: ...
 
     def new_batch_http_request(
@@ -87,6 +90,14 @@ class ListAnalyticsAccountLinksResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAnalyticsAccountLinksResponse: ...
+
+@typing.type_check_only
+class OrganizationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Organization: ...
 
 @typing.type_check_only
 class SetPropertyServiceLevelResponseHttpRequest(googleapiclient.http.HttpRequest):

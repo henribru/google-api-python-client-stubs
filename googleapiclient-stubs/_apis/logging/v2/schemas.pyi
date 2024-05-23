@@ -5,6 +5,18 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: _list[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
 class BigQueryDataset(typing_extensions.TypedDict, total=False):
     datasetId: str
 
@@ -12,6 +24,12 @@ class BigQueryDataset(typing_extensions.TypedDict, total=False):
 class BigQueryOptions(typing_extensions.TypedDict, total=False):
     usePartitionedTables: bool
     usesTimestampColumnPartitioning: bool
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
 
 @typing.type_check_only
 class BucketMetadata(typing_extensions.TypedDict, total=False):
@@ -114,6 +132,21 @@ class Exponential(typing_extensions.TypedDict, total=False):
     growthFactor: float
     numFiniteBuckets: int
     scale: float
+
+@typing.type_check_only
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    options: GetPolicyOptions
+
+@typing.type_check_only
+class GetPolicyOptions(typing_extensions.TypedDict, total=False):
+    requestedPolicyVersion: int
 
 @typing.type_check_only
 class HttpRequest(typing_extensions.TypedDict, total=False):
@@ -382,6 +415,7 @@ class LogMetric(typing_extensions.TypedDict, total=False):
     labelExtractors: dict[str, typing.Any]
     metricDescriptor: MetricDescriptor
     name: str
+    resourceName: str
     updateTime: str
     valueExtractor: str
     version: typing_extensions.Literal["V2", "V1"]
@@ -396,10 +430,12 @@ class LogSink(typing_extensions.TypedDict, total=False):
     exclusions: _list[LogExclusion]
     filter: str
     includeChildren: bool
+    interceptChildren: bool
     name: str
     outputVersionFormat: typing_extensions.Literal[
         "VERSION_FORMAT_UNSPECIFIED", "V2", "V1"
     ]
+    resourceName: str
     updateTime: str
     writerIdentity: str
 
@@ -513,6 +549,13 @@ class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
     sqlQueryText: str
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
 class RecentQuery(typing_extensions.TypedDict, total=False):
     lastRunTime: str
     loggingQuery: LoggingQuery
@@ -568,6 +611,11 @@ class SavedQuery(typing_extensions.TypedDict, total=False):
     visibility: typing_extensions.Literal["VISIBILITY_UNSPECIFIED", "PRIVATE", "SHARED"]
 
 @typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     defaultSinkConfig: DefaultSinkConfig
     disableDefaultSink: bool
@@ -615,6 +663,14 @@ class TailLogEntriesRequest(typing_extensions.TypedDict, total=False):
 class TailLogEntriesResponse(typing_extensions.TypedDict, total=False):
     entries: _list[LogEntry]
     suppressionInfo: _list[SuppressionInfo]
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
 
 @typing.type_check_only
 class UndeleteBucketRequest(typing_extensions.TypedDict, total=False): ...

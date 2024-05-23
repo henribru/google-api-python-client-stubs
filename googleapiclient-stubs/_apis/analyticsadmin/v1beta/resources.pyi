@@ -362,6 +362,43 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest: ...
 
+        @typing.type_check_only
+        class KeyEventsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1betaKeyEvent = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1betaKeyEventHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1betaKeyEventHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1betaListKeyEventsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1betaListKeyEventsResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1betaListKeyEventsResponse,
+            ) -> GoogleAnalyticsAdminV1betaListKeyEventsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1betaKeyEvent = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1betaKeyEventHttpRequest: ...
+
         def acknowledgeUserDataCollection(
             self,
             *,
@@ -429,6 +466,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def dataStreams(self) -> DataStreamsResource: ...
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
+        def keyEvents(self) -> KeyEventsResource: ...
 
     def new_batch_http_request(
         self,
@@ -543,6 +581,14 @@ class GoogleAnalyticsAdminV1betaGoogleAdsLinkHttpRequest(
     ) -> GoogleAnalyticsAdminV1betaGoogleAdsLink: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1betaKeyEventHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1betaKeyEvent: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1betaListAccountSummariesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -621,6 +667,16 @@ class GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaListKeyEventsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1betaListKeyEventsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaListMeasurementProtocolSecretsResponseHttpRequest(

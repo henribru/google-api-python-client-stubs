@@ -161,6 +161,7 @@ class GoogleAnalyticsAdminV1betaAccount(typing_extensions.TypedDict, total=False
     createTime: str
     deleted: bool
     displayName: str
+    gmpOrganization: str
     name: str
     regionCode: str
     updateTime: str
@@ -379,6 +380,25 @@ class GoogleAnalyticsAdminV1betaGoogleAdsLink(typing_extensions.TypedDict, total
     updateTime: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1betaKeyEvent(typing_extensions.TypedDict, total=False):
+    countingMethod: typing_extensions.Literal[
+        "COUNTING_METHOD_UNSPECIFIED", "ONCE_PER_EVENT", "ONCE_PER_SESSION"
+    ]
+    createTime: str
+    custom: bool
+    defaultValue: GoogleAnalyticsAdminV1betaKeyEventDefaultValue
+    deletable: bool
+    eventName: str
+    name: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaKeyEventDefaultValue(
+    typing_extensions.TypedDict, total=False
+):
+    currencyCode: str
+    numericValue: float
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1betaListAccountSummariesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -432,6 +452,13 @@ class GoogleAnalyticsAdminV1betaListGoogleAdsLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
     googleAdsLinks: _list[GoogleAnalyticsAdminV1betaGoogleAdsLink]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1betaListKeyEventsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    keyEvents: _list[GoogleAnalyticsAdminV1betaKeyEvent]
     nextPageToken: str
 
 @typing.type_check_only

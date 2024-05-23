@@ -65,11 +65,14 @@ class Status(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Workflow(typing_extensions.TypedDict, total=False):
+    allKmsKeys: _list[str]
+    allKmsKeysVersions: _list[str]
     callLogLevel: typing_extensions.Literal[
         "CALL_LOG_LEVEL_UNSPECIFIED", "LOG_ALL_CALLS", "LOG_ERRORS_ONLY", "LOG_NONE"
     ]
     createTime: str
     cryptoKeyName: str
+    cryptoKeyVersion: str
     description: str
     labels: dict[str, typing.Any]
     name: str

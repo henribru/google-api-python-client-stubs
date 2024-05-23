@@ -451,6 +451,33 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     previous_request: ListScopesResponseHttpRequest,
                     previous_response: ListScopesResponse,
                 ) -> ListScopesResponseHttpRequest | None: ...
+                def listMemberships(
+                    self,
+                    *,
+                    scopeName: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBoundMembershipsResponseHttpRequest: ...
+                def listMemberships_next(
+                    self,
+                    previous_request: ListBoundMembershipsResponseHttpRequest,
+                    previous_response: ListBoundMembershipsResponse,
+                ) -> ListBoundMembershipsResponseHttpRequest | None: ...
+                def listPermitted(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListPermittedScopesResponseHttpRequest: ...
+                def listPermitted_next(
+                    self,
+                    previous_request: ListPermittedScopesResponseHttpRequest,
+                    previous_response: ListPermittedScopesResponse,
+                ) -> ListPermittedScopesResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -559,6 +586,14 @@ class GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest(
     ) -> GenerateMembershipRBACRoleBindingYAMLResponse: ...
 
 @typing.type_check_only
+class ListBoundMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBoundMembershipsResponse: ...
+
+@typing.type_check_only
 class ListFeaturesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -615,6 +650,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListPermittedScopesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPermittedScopesResponse: ...
 
 @typing.type_check_only
 class ListScopeNamespacesResponseHttpRequest(googleapiclient.http.HttpRequest):

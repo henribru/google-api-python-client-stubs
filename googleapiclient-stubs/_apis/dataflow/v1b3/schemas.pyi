@@ -799,6 +799,7 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "BOOLEAN",
         "ENUM",
         "NUMBER",
+        "KAFKA_TOPIC",
     ]
     parentName: str
     parentTriggerValues: _list[str]
@@ -1241,10 +1242,22 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     commitStreamChunkSizeBytes: str
     getDataStreamChunkSizeBytes: str
     maxWorkItemCommitBytes: str
+    operationalLimits: StreamingOperationalLimits
     streamingComputationConfigs: _list[StreamingComputationConfig]
     userStepToStateFamilyNameMap: dict[str, typing.Any]
     windmillServiceEndpoint: str
     windmillServicePort: str
+
+@typing.type_check_only
+class StreamingOperationalLimits(typing_extensions.TypedDict, total=False):
+    maxBagElementBytes: str
+    maxGlobalDataBytes: str
+    maxKeyBytes: str
+    maxProductionOutputBytes: str
+    maxSortedListElementBytes: str
+    maxSourceStateBytes: str
+    maxTagBytes: str
+    maxValueBytes: str
 
 @typing.type_check_only
 class StreamingScalingReport(typing_extensions.TypedDict, total=False):
@@ -1321,6 +1334,7 @@ class TaskRunnerSettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TemplateMetadata(typing_extensions.TypedDict, total=False):
+    defaultStreamingMode: str
     description: str
     name: str
     parameters: _list[ParameterMetadata]

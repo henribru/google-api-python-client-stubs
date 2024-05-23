@@ -620,6 +620,14 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
             timeZone: str = ...,
             **kwargs: typing.Any,
         ) -> RenderProductIssuesResponseHttpRequest: ...
+        def triggeraction(
+            self,
+            *,
+            merchantId: str,
+            body: TriggerActionPayload = ...,
+            languageCode: str = ...,
+            **kwargs: typing.Any,
+        ) -> TriggerActionResponseHttpRequest: ...
 
     @typing.type_check_only
     class OrderinvoicesResource(googleapiclient.discovery.Resource):
@@ -2494,6 +2502,14 @@ class ShoppingAdsProgramStatusHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ShoppingAdsProgramStatus: ...
+
+@typing.type_check_only
+class TriggerActionResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TriggerActionResponse: ...
 
 @typing.type_check_only
 class VerifyPhoneNumberResponseHttpRequest(googleapiclient.http.HttpRequest):

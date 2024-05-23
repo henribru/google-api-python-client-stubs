@@ -188,6 +188,13 @@ class Completeness(typing_extensions.TypedDict, total=False):
 class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
     nonComplianceReason: str
     nonCompliantFiles: _list[NonCompliantFile]
+    version: ComplianceVersion
+
+@typing.type_check_only
+class ComplianceVersion(typing_extensions.TypedDict, total=False):
+    benchmarkDocument: str
+    cpeUri: str
+    version: str
 
 @typing.type_check_only
 class DSSEAttestationOccurrence(typing_extensions.TypedDict, total=False):

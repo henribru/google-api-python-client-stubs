@@ -982,6 +982,52 @@ class GoogleAdsSearchads360V0Errors__SearchAds360Failure(
     requestId: str
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue(
+    typing_extensions.TypedDict, total=False
+):
+    targetRoas: float
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions(
+    typing_extensions.TypedDict, total=False
+):
+    targetCpa: str
+    targetCpaMicros: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetCpa(
+    typing_extensions.TypedDict, total=False
+):
+    targetCpaMicros: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare(
+    typing_extensions.TypedDict, total=False
+):
+    cpcBidCeilingMicros: str
+    location: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "ANYWHERE_ON_PAGE",
+        "TOP_OF_PAGE",
+        "ABSOLUTE_TOP_OF_PAGE",
+    ]
+    locationFractionMicros: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas(
+    typing_extensions.TypedDict, total=False
+):
+    targetRoas: float
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend(
+    typing_extensions.TypedDict, total=False
+):
+    cpcBidCeilingMicros: str
+    targetSpendMicros: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources_AdGroupCriterion_PositionEstimates(
     typing_extensions.TypedDict, total=False
 ):
@@ -1156,6 +1202,47 @@ class GoogleAdsSearchads360V0Resources_ListingGroupFilterDimension_ProductType(
         "UNSPECIFIED", "UNKNOWN", "LEVEL1", "LEVEL2", "LEVEL3", "LEVEL4", "LEVEL5"
     ]
     value: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    maximizeConversionValue: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversionValue
+    maximizeConversions: (
+        GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_MaximizeConversions
+    )
+    name: str
+    ownerCustomerId: str
+    ownerDescriptiveName: str
+    resourceName: str
+    targetCpa: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetCpa
+    targetImpressionShare: (
+        GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetImpressionShare
+    )
+    targetRoas: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetRoas
+    targetSpend: GoogleAdsSearchads360V0Resources_AccessibleBiddingStrategy_TargetSpend
+    type: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "COMMISSION",
+        "ENHANCED_CPC",
+        "INVALID",
+        "MANUAL_CPA",
+        "MANUAL_CPC",
+        "MANUAL_CPM",
+        "MANUAL_CPV",
+        "MAXIMIZE_CONVERSIONS",
+        "MAXIMIZE_CONVERSION_VALUE",
+        "PAGE_ONE_PROMOTED",
+        "PERCENT_CPC",
+        "TARGET_CPA",
+        "TARGET_CPM",
+        "TARGET_IMPRESSION_SHARE",
+        "TARGET_OUTRANK_SHARE",
+        "TARGET_ROAS",
+        "TARGET_SPEND",
+    ]
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=False):
@@ -1438,6 +1525,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
         "LOCAL_SERVICE_ID",
         "BRAND",
         "BRAND_LIST",
+        "LIFE_EVENT",
     ]
     userList: GoogleAdsSearchads360V0Common__UserListInfo
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
@@ -1594,6 +1682,7 @@ class GoogleAdsSearchads360V0Resources__AssetGroupAsset(
         "AD_IMAGE",
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
+        "DISCOVERY_CAROUSEL_CARD",
     ]
     resourceName: str
     status: typing_extensions.Literal[
@@ -1709,6 +1798,7 @@ class GoogleAdsSearchads360V0Resources__BiddingStrategy(
 class GoogleAdsSearchads360V0Resources__Campaign(
     typing_extensions.TypedDict, total=False
 ):
+    accessibleBiddingStrategy: str
     adServingOptimizationStatus: typing_extensions.Literal[
         "UNSPECIFIED",
         "UNKNOWN",
@@ -1847,6 +1937,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
             "AD_IMAGE",
             "BUSINESS_LOGO",
             "HOTEL_PROPERTY",
+            "DISCOVERY_CAROUSEL_CARD",
         ]
     ]
     finalUrlSuffix: str
@@ -1988,6 +2079,7 @@ class GoogleAdsSearchads360V0Resources__CampaignCriterion(
         "LOCAL_SERVICE_ID",
         "BRAND",
         "BRAND_LIST",
+        "LIFE_EVENT",
     ]
     userList: GoogleAdsSearchads360V0Common__UserListInfo
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
@@ -2042,6 +2134,7 @@ class GoogleAdsSearchads360V0Resources__Conversion(
         "AD_IMAGE",
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
+        "DISCOVERY_CAROUSEL_CARD",
     ]
     assetId: str
     attributionType: typing_extensions.Literal[
@@ -2522,6 +2615,7 @@ class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total
         "AD_IMAGE",
         "BUSINESS_LOGO",
         "HOTEL_PROPERTY",
+        "DISCOVERY_CAROUSEL_CARD",
     ]
     assetId: str
     clickId: str
@@ -2596,6 +2690,9 @@ class GoogleAdsSearchads360V0Services__RawEventConversionMetricHeader(
 class GoogleAdsSearchads360V0Services__SearchAds360Row(
     typing_extensions.TypedDict, total=False
 ):
+    accessibleBiddingStrategy: (
+        GoogleAdsSearchads360V0Resources__AccessibleBiddingStrategy
+    )
     adGroup: GoogleAdsSearchads360V0Resources__AdGroup
     adGroupAd: GoogleAdsSearchads360V0Resources__AdGroupAd
     adGroupAdLabel: GoogleAdsSearchads360V0Resources__AdGroupAdLabel

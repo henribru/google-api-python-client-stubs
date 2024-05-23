@@ -298,6 +298,7 @@ class ComplianceNote(typing_extensions.TypedDict, total=False):
 class ComplianceOccurrence(typing_extensions.TypedDict, total=False):
     nonComplianceReason: str
     nonCompliantFiles: _list[NonCompliantFile]
+    version: ComplianceVersion
 
 @typing.type_check_only
 class ComplianceVersion(typing_extensions.TypedDict, total=False):
@@ -378,6 +379,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
     createTime: str
     failureInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo
     finishTime: str
+    gitConfig: ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig
     id: str
     images: _list[str]
     logUrl: str
@@ -543,10 +545,39 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    dir: str
+    gitRepositoryLink: str
+    revision: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
     typing_extensions.TypedDict, total=False
 ):
     fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation(
+    typing_extensions.TypedDict, total=False
+):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig(
+    typing_extensions.TypedDict, total=False
+):
+    http: ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig(
+    typing_extensions.TypedDict, total=False
+):
+    proxySecretVersionName: str
+    proxySslCaInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
@@ -627,6 +658,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Source(
     typing_extensions.TypedDict, total=False
 ):
     connectedRepository: ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository
+    developerConnectConfig: (
+        ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig
+    )
     gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource
     repoSource: ContaineranalysisGoogleDevtoolsCloudbuildV1RepoSource
     storageSource: ContaineranalysisGoogleDevtoolsCloudbuildV1StorageSource

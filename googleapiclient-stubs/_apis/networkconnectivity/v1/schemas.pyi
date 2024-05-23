@@ -26,6 +26,10 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutoAccept(typing_extensions.TypedDict, total=False):
+    autoAcceptProjects: _list[str]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -35,6 +39,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
     disableGlobalAccess: bool
     network: str
+    producerInstanceId: str
     project: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -57,6 +62,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     gceOperation: str
     ip: str
     network: str
+    producerInstanceId: str
     project: str
     pscConnectionId: str
     selectedSubnetwork: str
@@ -114,10 +120,12 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Group(typing_extensions.TypedDict, total=False):
+    autoAccept: AutoAccept
     createTime: str
     description: str
     labels: dict[str, typing.Any]
     name: str
+    routeTable: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -136,8 +144,13 @@ class Group(typing_extensions.TypedDict, total=False):
 class Hub(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    exportPsc: bool
     labels: dict[str, typing.Any]
     name: str
+    policyMode: typing_extensions.Literal["POLICY_MODE_UNSPECIFIED", "PRESET"]
+    presetTopology: typing_extensions.Literal[
+        "PRESET_TOPOLOGY_UNSPECIFIED", "MESH", "STAR"
+    ]
     routeTables: _list[str]
     routingVpcs: _list[RoutingVPC]
     spokeSummary: SpokeSummary
@@ -239,6 +252,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListPolicyBasedRoutesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     policyBasedRoutes: _list[PolicyBasedRoute]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRegionalEndpointsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    regionalEndpoints: _list[RegionalEndpoint]
     unreachable: _list[str]
 
 @typing.type_check_only
@@ -365,11 +384,29 @@ class PscConnection(typing_extensions.TypedDict, total=False):
         "ERROR_PRODUCER_SIDE",
     ]
     gceOperation: str
+    producerInstanceId: str
     pscConnectionId: str
     selectedSubnetwork: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
     ]
+
+@typing.type_check_only
+class RegionalEndpoint(typing_extensions.TypedDict, total=False):
+    accessType: typing_extensions.Literal[
+        "ACCESS_TYPE_UNSPECIFIED", "GLOBAL", "REGIONAL"
+    ]
+    address: str
+    createTime: str
+    description: str
+    ipAddress: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    pscForwardingRule: str
+    subnetwork: str
+    targetGoogleApi: str
+    updateTime: str
 
 @typing.type_check_only
 class RejectHubSpokeRequest(typing_extensions.TypedDict, total=False):

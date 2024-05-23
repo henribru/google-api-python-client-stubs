@@ -265,6 +265,7 @@ class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
     createTime: str
     failureInfo: GoogleDevtoolsCloudbuildV1FailureInfo
     finishTime: str
+    gitConfig: GoogleDevtoolsCloudbuildV1GitConfig
     id: str
     images: _list[str]
     logUrl: str
@@ -398,6 +399,14 @@ class GoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    dir: str
+    gitRepositoryLink: str
+    revision: str
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1FailureInfo(typing_extensions.TypedDict, total=False):
     detail: str
     type: typing_extensions.Literal[
@@ -415,6 +424,16 @@ class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=Fa
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GCSLocation(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
+    http: GoogleDevtoolsCloudbuildV1HttpConfig
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=False):
     dir: str
     revision: str
@@ -424,6 +443,11 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=Fal
 class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
     value: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1HttpConfig(typing_extensions.TypedDict, total=False):
+    proxySecretVersionName: str
+    proxySslCaInfo: GoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=False):
@@ -495,6 +519,7 @@ class GoogleDevtoolsCloudbuildV1Secrets(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Source(typing_extensions.TypedDict, total=False):
     connectedRepository: GoogleDevtoolsCloudbuildV1ConnectedRepository
+    developerConnectConfig: GoogleDevtoolsCloudbuildV1DeveloperConnectConfig
     gitSource: GoogleDevtoolsCloudbuildV1GitSource
     repoSource: GoogleDevtoolsCloudbuildV1RepoSource
     storageSource: GoogleDevtoolsCloudbuildV1StorageSource
@@ -615,6 +640,8 @@ class Job(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class JobSpec(typing_extensions.TypedDict, total=False):
+    runExecutionToken: str
+    startExecutionToken: str
     template: ExecutionTemplateSpec
 
 @typing.type_check_only
@@ -812,6 +839,8 @@ class RevisionSpec(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     enableServiceLinks: bool
     imagePullSecrets: _list[LocalObjectReference]
+    nodeSelector: dict[str, typing.Any]
+    runtimeClassName: str
     serviceAccountName: str
     timeoutSeconds: int
     volumes: _list[Volume]

@@ -54,6 +54,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     avroConfig: AvroConfig
     bucket: str
+    filenameDatetimeFormat: str
     filenamePrefix: str
     filenameSuffix: str
     maxBytes: str
@@ -65,6 +66,7 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED",
         "NOT_FOUND",
         "IN_TRANSIT_LOCATION_RESTRICTION",
+        "SCHEMA_MISMATCH",
     ]
     textConfig: TextConfig
 

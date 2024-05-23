@@ -56,6 +56,7 @@ class AdvancedDatapathObservabilityConfig(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
+    enableNestedVirtualization: bool
     threadsPerCore: str
 
 @typing.type_check_only
@@ -167,6 +168,11 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class CertificateAuthorityDomainConfig(typing_extensions.TypedDict, total=False):
+    fqdns: _list[str]
+    gcpSecretManagerCertificateConfig: GCPSecretManagerCertificateConfig
+
+@typing.type_check_only
 class CheckAutopilotCompatibilityResponse(typing_extensions.TypedDict, total=False):
     issues: _list[AutopilotCompatibilityIssue]
     summary: str
@@ -198,6 +204,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     binaryAuthorization: BinaryAuthorization
     clusterIpv4Cidr: str
     clusterTelemetry: ClusterTelemetry
+    compliancePostureConfig: CompliancePostureConfig
     conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
     costManagementConfig: CostManagementConfig
@@ -254,6 +261,8 @@ class Cluster(typing_extensions.TypedDict, total=False):
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     secretManagerConfig: SecretManagerConfig
     securityPostureConfig: SecurityPostureConfig
     selfLink: str
@@ -305,6 +314,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
+    desiredContainerdConfig: ContainerdConfig
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
     desiredDatapathProvider: typing_extensions.Literal[
@@ -314,6 +324,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredDnsConfig: DNSConfig
     desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
+    desiredEnableMultiNetworking: bool
     desiredEnablePrivateEndpoint: bool
     desiredFleet: Fleet
     desiredGatewayApiConfig: GatewayAPIConfig
@@ -339,6 +350,8 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNetworkPerformanceConfig: ClusterNetworkPerformanceConfig
+    desiredNodeKubeletConfig: NodeKubeletConfig
+    desiredNodePoolAutoConfigKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoConfigResourceManagerTags: ResourceManagerTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
@@ -372,6 +385,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredWorkloadIdentityConfig: WorkloadIdentityConfig
     enableK8sBetaApis: K8sBetaAPIConfig
     etag: str
+    privateClusterConfig: PrivateClusterConfig
     removedAdditionalPodRangesConfig: AdditionalPodRangesConfig
 
 @typing.type_check_only
@@ -385,6 +399,15 @@ class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
 class CompleteNodePoolUpgradeRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CompliancePostureConfig(typing_extensions.TypedDict, total=False):
+    complianceStandards: _list[ComplianceStandard]
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+
+@typing.type_check_only
+class ComplianceStandard(typing_extensions.TypedDict, total=False):
+    standard: str
+
+@typing.type_check_only
 class ConfidentialNodes(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -395,6 +418,10 @@ class ConfigConnectorConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class ContainerdConfig(typing_extensions.TypedDict, total=False):
+    privateRegistryAccessConfig: PrivateRegistryAccessConfig
 
 @typing.type_check_only
 class CostManagementConfig(typing_extensions.TypedDict, total=False):
@@ -417,6 +444,7 @@ class CreateNodePoolRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DNSConfig(typing_extensions.TypedDict, total=False):
+    additiveVpcScopeDnsDomain: str
     clusterDns: typing_extensions.Literal[
         "PROVIDER_UNSPECIFIED", "PLATFORM_DEFAULT", "CLOUD_DNS", "KUBE_DNS"
     ]
@@ -432,7 +460,18 @@ class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatabaseEncryption(typing_extensions.TypedDict, total=False):
+    currentState: typing_extensions.Literal[
+        "CURRENT_STATE_UNSPECIFIED",
+        "CURRENT_STATE_ENCRYPTED",
+        "CURRENT_STATE_DECRYPTED",
+        "CURRENT_STATE_ENCRYPTION_PENDING",
+        "CURRENT_STATE_ENCRYPTION_ERROR",
+        "CURRENT_STATE_DECRYPTION_PENDING",
+        "CURRENT_STATE_DECRYPTION_ERROR",
+    ]
+    decryptionKeys: _list[str]
     keyName: str
+    lastOperationErrors: _list[OperationError]
     state: typing_extensions.Literal["UNKNOWN", "ENCRYPTED", "DECRYPTED"]
 
 @typing.type_check_only
@@ -488,6 +527,10 @@ class Fleet(typing_extensions.TypedDict, total=False):
     project: str
 
 @typing.type_check_only
+class GCPSecretManagerCertificateConfig(typing_extensions.TypedDict, total=False):
+    secretUri: str
+
+@typing.type_check_only
 class GPUDriverInstallationConfig(typing_extensions.TypedDict, total=False):
     gpuDriverVersion: typing_extensions.Literal[
         "GPU_DRIVER_VERSION_UNSPECIFIED", "INSTALLATION_DISABLED", "DEFAULT", "LATEST"
@@ -496,7 +539,7 @@ class GPUDriverInstallationConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GPUSharingConfig(typing_extensions.TypedDict, total=False):
     gpuSharingStrategy: typing_extensions.Literal[
-        "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING"
+        "GPU_SHARING_STRATEGY_UNSPECIFIED", "TIME_SHARING", "MPS"
     ]
     maxSharedClientsPerGpu: str
 
@@ -565,6 +608,11 @@ class HttpCacheControlResponseHeader(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpLoadBalancing(typing_extensions.TypedDict, total=False):
     disabled: bool
+
+@typing.type_check_only
+class HugepagesConfig(typing_extensions.TypedDict, total=False):
+    hugepageSize1g: int
+    hugepageSize2m: int
 
 @typing.type_check_only
 class ILBSubsettingConfig(typing_extensions.TypedDict, total=False):
@@ -642,6 +690,7 @@ class LinuxNodeConfig(typing_extensions.TypedDict, total=False):
     cgroupMode: typing_extensions.Literal[
         "CGROUP_MODE_UNSPECIFIED", "CGROUP_MODE_V1", "CGROUP_MODE_V2"
     ]
+    hugepages: HugepagesConfig
     sysctls: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -841,6 +890,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     advancedMachineFeatures: AdvancedMachineFeatures
     bootDiskKmsKey: str
     confidentialNodes: ConfidentialNodes
+    containerdConfig: ContainerdConfig
     diskSizeGb: int
     diskType: str
     enableConfidentialStorage: bool
@@ -867,6 +917,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     resourceLabels: dict[str, typing.Any]
     resourceManagerTags: ResourceManagerTags
     sandboxConfig: SandboxConfig
+    secondaryBootDiskUpdateStrategy: SecondaryBootDiskUpdateStrategy
     secondaryBootDisks: _list[SecondaryBootDisk]
     serviceAccount: str
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -879,9 +930,11 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodeConfigDefaults(typing_extensions.TypedDict, total=False):
+    containerdConfig: ContainerdConfig
     gcfsConfig: GcfsConfig
     hostMaintenancePolicy: HostMaintenancePolicy
     loggingConfig: NodePoolLoggingConfig
+    nodeKubeletConfig: NodeKubeletConfig
 
 @typing.type_check_only
 class NodeKubeletConfig(typing_extensions.TypedDict, total=False):
@@ -948,6 +1001,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
     networkTags: NetworkTags
+    nodeKubeletConfig: NodeKubeletConfig
     resourceManagerTags: ResourceManagerTags
 
 @typing.type_check_only
@@ -1027,6 +1081,12 @@ class Operation(typing_extensions.TypedDict, total=False):
     zone: str
 
 @typing.type_check_only
+class OperationError(typing_extensions.TypedDict, total=False):
+    errorMessage: str
+    keyName: str
+    timestamp: str
+
+@typing.type_check_only
 class OperationProgress(typing_extensions.TypedDict, total=False):
     metrics: _list[Metric]
     name: str
@@ -1077,6 +1137,11 @@ class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PrivateClusterMasterGlobalAccessConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class PrivateRegistryAccessConfig(typing_extensions.TypedDict, total=False):
+    certificateAuthorityDomainConfig: _list[CertificateAuthorityDomainConfig]
     enabled: bool
 
 @typing.type_check_only
@@ -1165,6 +1230,9 @@ class SecondaryBootDisk(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "CONTAINER_IMAGE_CACHE"]
 
 @typing.type_check_only
+class SecondaryBootDiskUpdateStrategy(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SecretManagerConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -1183,7 +1251,9 @@ class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SecurityPostureConfig(typing_extensions.TypedDict, total=False):
-    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "BASIC"]
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "DISABLED", "BASIC", "ENTERPRISE"
+    ]
     vulnerabilityMode: typing_extensions.Literal[
         "VULNERABILITY_MODE_UNSPECIFIED",
         "VULNERABILITY_DISABLED",
@@ -1411,8 +1481,10 @@ class UpdateMasterRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
+    accelerators: _list[AcceleratorConfig]
     clusterId: str
     confidentialNodes: ConfidentialNodes
+    containerdConfig: ContainerdConfig
     diskSizeGb: str
     diskType: str
     etag: str

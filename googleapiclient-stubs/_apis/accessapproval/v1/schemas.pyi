@@ -21,6 +21,7 @@ class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     notificationPubsubTopic: str
     preferNoBroadApprovalRequests: bool
     preferredRequestExpirationDays: int
+    requireCustomerVisibleJustification: bool
 
 @typing.type_check_only
 class AccessLocations(typing_extensions.TypedDict, total=False):
@@ -128,6 +129,7 @@ class SignatureInfo(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
         "HMAC_SHA256",
         "HMAC_SHA1",
         "HMAC_SHA384",

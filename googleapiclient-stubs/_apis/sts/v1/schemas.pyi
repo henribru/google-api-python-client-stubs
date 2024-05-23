@@ -21,29 +21,6 @@ class GoogleIdentityStsV1AccessBoundaryRule(typing_extensions.TypedDict, total=F
     availableResource: str
 
 @typing.type_check_only
-class GoogleIdentityStsV1ExchangeOauthTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
-    clientId: str
-    code: str
-    codeVerifier: str
-    grantType: str
-    redirectUri: str
-    refreshToken: str
-    scope: str
-
-@typing.type_check_only
-class GoogleIdentityStsV1ExchangeOauthTokenResponse(
-    typing_extensions.TypedDict, total=False
-):
-    access_token: str
-    expires_in: int
-    id_token: str
-    refresh_token: str
-    scope: str
-    token_type: str
-
-@typing.type_check_only
 class GoogleIdentityStsV1ExchangeTokenRequest(typing_extensions.TypedDict, total=False):
     audience: str
     grantType: str
@@ -63,29 +40,8 @@ class GoogleIdentityStsV1ExchangeTokenResponse(
     token_type: str
 
 @typing.type_check_only
-class GoogleIdentityStsV1IntrospectTokenRequest(
-    typing_extensions.TypedDict, total=False
-):
-    token: str
-    tokenTypeHint: str
-
-@typing.type_check_only
-class GoogleIdentityStsV1IntrospectTokenResponse(
-    typing_extensions.TypedDict, total=False
-):
-    active: bool
-    client_id: str
-    exp: str
-    iat: str
-    iss: str
-    scope: str
-    sub: str
-    username: str
-
-@typing.type_check_only
 class GoogleIdentityStsV1Options(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1AccessBoundary
-    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only
@@ -103,7 +59,6 @@ class GoogleIdentityStsV1betaAccessBoundaryRule(
 @typing.type_check_only
 class GoogleIdentityStsV1betaOptions(typing_extensions.TypedDict, total=False):
     accessBoundary: GoogleIdentityStsV1betaAccessBoundary
-    audiences: _list[str]
     userProject: str
 
 @typing.type_check_only

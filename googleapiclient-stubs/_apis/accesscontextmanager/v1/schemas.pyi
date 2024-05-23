@@ -31,6 +31,11 @@ class ApiOperation(typing_extensions.TypedDict, total=False):
     serviceName: str
 
 @typing.type_check_only
+class Application(typing_extensions.TypedDict, total=False):
+    clientId: str
+    name: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -159,6 +164,7 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     dryRunAccessLevels: _list[str]
     groupKey: str
     name: str
+    restrictedClientApplications: _list[Application]
 
 @typing.type_check_only
 class GcpUserAccessBindingOperationMetadata(

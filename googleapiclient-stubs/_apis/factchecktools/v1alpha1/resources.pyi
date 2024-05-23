@@ -15,6 +15,24 @@ _list = list
 class FactCheckToolsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ClaimsResource(googleapiclient.discovery.Resource):
+        def imageSearch(
+            self,
+            *,
+            imageUri: str = ...,
+            languageCode: str = ...,
+            offset: int = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseHttpRequest: ...
+        def imageSearch_next(
+            self,
+            previous_request: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseHttpRequest,
+            previous_response: GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse,
+        ) -> (
+            GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseHttpRequest
+            | None
+        ): ...
         def search(
             self,
             *,
@@ -106,6 +124,18 @@ class GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage: ...
+
+@typing.type_check_only
+class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse
+    ): ...
 
 @typing.type_check_only
 class GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponseHttpRequest(

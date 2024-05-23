@@ -209,6 +209,75 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class TablesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AuthorizedViewsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: AuthorizedView = ...,
+                        authorizedViewId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "RESPONSE_VIEW_UNSPECIFIED", "NAME_ONLY", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> AuthorizedViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "RESPONSE_VIEW_UNSPECIFIED", "NAME_ONLY", "BASIC", "FULL"
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAuthorizedViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAuthorizedViewsResponseHttpRequest,
+                        previous_response: ListAuthorizedViewsResponse,
+                    ) -> ListAuthorizedViewsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: AuthorizedView = ...,
+                        ignoreWarnings: bool = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def checkConsistency(
                     self,
                     *,
@@ -327,6 +396,7 @@ class BigtableAdminResource(googleapiclient.discovery.Resource):
                     body: UndeleteTableRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def authorizedViews(self) -> AuthorizedViewsResource: ...
 
             def create(
                 self,
@@ -429,6 +499,14 @@ class AppProfileHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AppProfile: ...
 
 @typing.type_check_only
+class AuthorizedViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AuthorizedView: ...
+
+@typing.type_check_only
 class BackupHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -483,6 +561,14 @@ class ListAppProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAppProfilesResponse: ...
+
+@typing.type_check_only
+class ListAuthorizedViewsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAuthorizedViewsResponse: ...
 
 @typing.type_check_only
 class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -99,6 +99,7 @@ class GoogleFirebaseAppcheckV1betaDebugToken(typing_extensions.TypedDict, total=
     displayName: str
     name: str
     token: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1betaDeviceCheckConfig(

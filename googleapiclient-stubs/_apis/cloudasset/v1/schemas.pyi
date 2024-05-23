@@ -981,6 +981,7 @@ class TableSchema(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tag(typing_extensions.TypedDict, total=False):
     tagKey: str
+    tagKeyId: str
     tagValue: str
     tagValueId: str
 

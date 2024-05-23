@@ -15,6 +15,7 @@ class Assertion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BigQueryAction(typing_extensions.TypedDict, total=False):
+    jobId: str
     sqlScript: str
 
 @typing.type_check_only
@@ -32,6 +33,7 @@ class CodeCompilationConfig(typing_extensions.TypedDict, total=False):
     databaseSuffix: str
     defaultDatabase: str
     defaultLocation: str
+    defaultNotebookRuntimeOptions: NotebookRuntimeOptions
     defaultSchema: str
     schemaSuffix: str
     tablePrefix: str
@@ -67,6 +69,10 @@ class CommitRepositoryChangesRequest(typing_extensions.TypedDict, total=False):
     requiredHeadCommitSha: str
 
 @typing.type_check_only
+class CommitRepositoryChangesResponse(typing_extensions.TypedDict, total=False):
+    commitSha: str
+
+@typing.type_check_only
 class CommitWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     commitMessage: str
@@ -83,6 +89,7 @@ class CompilationError(typing_extensions.TypedDict, total=False):
 class CompilationResult(typing_extensions.TypedDict, total=False):
     codeCompilationConfig: CodeCompilationConfig
     compilationErrors: _list[CompilationError]
+    dataEncryptionState: DataEncryptionState
     dataformCoreVersion: str
     gitCommitish: str
     name: str
@@ -96,6 +103,7 @@ class CompilationResultAction(typing_extensions.TypedDict, total=False):
     canonicalTarget: Target
     declaration: Declaration
     filePath: str
+    notebook: Notebook
     operations: Operations
     relation: Relation
     target: Target
@@ -107,6 +115,10 @@ class ComputeRepositoryAccessTokenStatusResponse(
     tokenStatus: typing_extensions.Literal[
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
     ]
+
+@typing.type_check_only
+class DataEncryptionState(typing_extensions.TypedDict, total=False):
+    kmsKeyVersionName: str
 
 @typing.type_check_only
 class Declaration(typing_extensions.TypedDict, total=False):
@@ -277,6 +289,22 @@ class MoveFileRequest(typing_extensions.TypedDict, total=False):
 class MoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Notebook(typing_extensions.TypedDict, total=False):
+    contents: str
+    dependencyTargets: _list[Target]
+    disabled: bool
+    tags: _list[str]
+
+@typing.type_check_only
+class NotebookAction(typing_extensions.TypedDict, total=False):
+    contents: str
+    jobId: str
+
+@typing.type_check_only
+class NotebookRuntimeOptions(typing_extensions.TypedDict, total=False):
+    gcsOutputBucket: str
+
+@typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
     cancelRequested: bool
@@ -391,8 +419,10 @@ class RemoveFileRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
     createTime: str
+    dataEncryptionState: DataEncryptionState
     displayName: str
     gitRemoteSettings: GitRemoteSettings
+    kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
     npmrcEnvironmentVariablesSecretVersion: str
@@ -475,6 +505,7 @@ class WorkflowConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     compilationResult: str
+    dataEncryptionState: DataEncryptionState
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
@@ -490,6 +521,7 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
     canonicalTarget: Target
     failureReason: str
     invocationTiming: Interval
+    notebookAction: NotebookAction
     state: typing_extensions.Literal[
         "PENDING", "RUNNING", "SKIPPED", "DISABLED", "SUCCEEDED", "CANCELLED", "FAILED"
     ]
@@ -497,6 +529,7 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Workspace(typing_extensions.TypedDict, total=False):
+    dataEncryptionState: DataEncryptionState
     name: str
 
 @typing.type_check_only

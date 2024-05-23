@@ -141,6 +141,7 @@ class GoogleChecksReportV1alphaCheck(typing_extensions.TypedDict, total=False):
         "DATA_MONITORING_ENDPOINTS_DENYLIST_VIOLATION",
         "DATA_MONITORING_OUTDATED_SDK_VERSION",
         "DATA_MONITORING_CRITICAL_SDK_ISSUE",
+        "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
     ]
 
 @typing.type_check_only
@@ -166,6 +167,13 @@ class GoogleChecksReportV1alphaCheckCitation(typing_extensions.TypedDict, total=
         "QUEBEC_ACT",
         "QUEBEC_BILL_64",
         "CHINA_PIPL",
+        "SOUTH_KOREA_PIPA",
+        "SOUTH_AFRICA_POPIA",
+        "JAPAN_APPI",
+        "INDIA_DPDPA",
+        "OCPA",
+        "TDPSA",
+        "MCDPA",
     ]
 
 @typing.type_check_only

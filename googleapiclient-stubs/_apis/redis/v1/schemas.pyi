@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AOFConfig(typing_extensions.TypedDict, total=False):
+    appendFsync: typing_extensions.Literal[
+        "APPEND_FSYNC_UNSPECIFIED", "NO", "EVERYSEC", "ALWAYS"
+    ]
+
+@typing.type_check_only
 class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
     availabilityType: typing_extensions.Literal[
         "AVAILABILITY_TYPE_UNSPECIFIED",
@@ -13,6 +19,7 @@ class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
         "MULTI_REGIONAL",
         "AVAILABILITY_TYPE_OTHER",
     ]
+    crossRegionReplicaConfigured: bool
     externalReplicaConfigured: bool
     promotableReplicaConfigured: bool
 
@@ -44,10 +51,21 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
     ]
     createTime: str
+    deletionProtectionEnabled: bool
     discoveryEndpoints: _list[DiscoveryEndpoint]
     name: str
+    nodeType: typing_extensions.Literal[
+        "NODE_TYPE_UNSPECIFIED",
+        "REDIS_SHARED_CORE_NANO",
+        "REDIS_HIGHMEM_MEDIUM",
+        "REDIS_HIGHMEM_XLARGE",
+        "REDIS_STANDARD_SMALL",
+    ]
+    persistenceConfig: ClusterPersistenceConfig
+    preciseSizeGb: float
     pscConfigs: _list[PscConfig]
     pscConnections: _list[PscConnection]
+    redisConfigs: dict[str, typing.Any]
     replicaCount: int
     shardCount: int
     sizeGb: int
@@ -61,6 +79,14 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION",
     ]
     uid: str
+
+@typing.type_check_only
+class ClusterPersistenceConfig(typing_extensions.TypedDict, total=False):
+    aofConfig: AOFConfig
+    mode: typing_extensions.Literal[
+        "PERSISTENCE_MODE_UNSPECIFIED", "DISABLED", "RDB", "AOF"
+    ]
+    rdbConfig: RDBConfig
 
 @typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
@@ -184,6 +210,12 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
         "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
         "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+        "SIGNAL_TYPE_QUOTA_LIMIT",
+        "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+        "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -245,6 +277,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     resourceContainer: str
     resourceName: str
     updationTime: str
+    userLabelSet: UserLabels
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -322,6 +355,12 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
         "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
         "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+        "SIGNAL_TYPE_QUOTA_LIMIT",
+        "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+        "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
     ]
 
 @typing.type_check_only
@@ -338,7 +377,7 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     entitlementState: typing_extensions.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
     ]
-    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "DUET_AI", "GEMINI"]
+    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
 
 @typing.type_check_only
 class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -581,6 +620,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "PRODUCT_TYPE_ON_PREM",
         "ON_PREM",
         "PRODUCT_TYPE_MEMORYSTORE",
+        "PRODUCT_TYPE_BIGTABLE",
         "PRODUCT_TYPE_OTHER",
     ]
     version: str
@@ -596,6 +636,17 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     network: str
     projectId: str
     pscConnectionId: str
+
+@typing.type_check_only
+class RDBConfig(typing_extensions.TypedDict, total=False):
+    rdbSnapshotPeriod: typing_extensions.Literal[
+        "SNAPSHOT_PERIOD_UNSPECIFIED",
+        "ONE_HOUR",
+        "SIX_HOURS",
+        "TWELVE_HOURS",
+        "TWENTY_FOUR_HOURS",
+    ]
+    rdbSnapshotStartTime: str
 
 @typing.type_check_only
 class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -655,6 +706,10 @@ class UpdateInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False):
     redisVersion: str
+
+@typing.type_check_only
+class UserLabels(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):

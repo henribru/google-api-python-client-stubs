@@ -45,6 +45,13 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
     replicationLogArchivingEnabled: bool
     startTime: str
     transactionLogRetentionDays: int
+    transactionalLogStorageState: typing_extensions.Literal[
+        "TRANSACTIONAL_LOG_STORAGE_STATE_UNSPECIFIED",
+        "DISK",
+        "SWITCHING_TO_CLOUD_STORAGE",
+        "SWITCHED_TO_CLOUD_STORAGE",
+        "CLOUD_STORAGE",
+    ]
 
 @typing.type_check_only
 class BackupContext(typing_extensions.TypedDict, total=False):
@@ -160,6 +167,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
+        "MYSQL_8_4",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -241,6 +249,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
+        "MYSQL_8_4",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -256,6 +265,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     etag: str
     failoverReplica: dict[str, typing.Any]
     gceZone: str
+    geminiConfig: GeminiInstanceConfig
     instanceType: typing_extensions.Literal[
         "SQL_INSTANCE_TYPE_UNSPECIFIED",
         "CLOUD_SQL_INSTANCE",
@@ -277,6 +287,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     region: str
     replicaConfiguration: ReplicaConfiguration
     replicaNames: _list[str]
+    replicationCluster: ReplicationCluster
     rootPassword: str
     satisfiesPzs: bool
     scheduledMaintenance: SqlScheduledMaintenance
@@ -419,6 +430,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
+            "MYSQL_8_4",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -452,6 +464,15 @@ class FlagsListResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class GeminiInstanceConfig(typing_extensions.TypedDict, total=False):
+    activeQueryEnabled: bool
+    entitled: bool
+    flagRecommenderEnabled: bool
+    googleVacuumMgmtEnabled: bool
+    indexAdvisorEnabled: bool
+    oomSessionCancelEnabled: bool
+
+@typing.type_check_only
 class GenerateEphemeralCertRequest(typing_extensions.TypedDict, total=False):
     access_token: str
     public_key: str
@@ -472,6 +493,7 @@ class ImportContext(typing_extensions.TypedDict, total=False):
     ]
     importUser: str
     kind: str
+    sqlImportOptions: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
@@ -673,6 +695,10 @@ class Operation(typing_extensions.TypedDict, total=False):
         "SWITCHOVER",
         "ACQUIRE_SSRS_LEASE",
         "RELEASE_SSRS_LEASE",
+        "RECONFIGURE_OLD_PRIMARY",
+        "CLUSTER_MAINTENANCE",
+        "SELF_SERVICE_MAINTENANCE",
+        "SWITCHOVER_TO_REPLICA",
     ]
     selfLink: str
     startTime: str
@@ -743,6 +769,12 @@ class ReplicaConfiguration(typing_extensions.TypedDict, total=False):
     failoverTarget: bool
     kind: str
     mysqlReplicaConfiguration: MySqlReplicaConfiguration
+
+@typing.type_check_only
+class ReplicationCluster(typing_extensions.TypedDict, total=False):
+    drReplica: bool
+    failoverDrReplicaName: str
+    psaWriteEndpoint: str
 
 @typing.type_check_only
 class Reschedule(typing_extensions.TypedDict, total=False):
@@ -905,6 +937,9 @@ class SqlInstancesResetReplicaSizeRequest(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=False):
+    migrationType: typing_extensions.Literal[
+        "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
+    ]
     mysqlSyncConfig: MySqlSyncConfig
     skipVerification: bool
     syncMode: typing_extensions.Literal[
@@ -918,6 +953,9 @@ class SqlInstancesStartExternalSyncRequest(typing_extensions.TypedDict, total=Fa
 class SqlInstancesVerifyExternalSyncSettingsRequest(
     typing_extensions.TypedDict, total=False
 ):
+    migrationType: typing_extensions.Literal[
+        "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
+    ]
     mysqlSyncConfig: MySqlSyncConfig
     syncMode: typing_extensions.Literal[
         "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"

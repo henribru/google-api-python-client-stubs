@@ -49,6 +49,11 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutokeyConfig(typing_extensions.TypedDict, total=False):
+    keyProject: str
+    name: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -125,6 +130,7 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
         "HMAC_SHA256",
         "HMAC_SHA1",
         "HMAC_SHA384",
@@ -194,6 +200,7 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
         "HMAC_SHA256",
         "HMAC_SHA1",
         "HMAC_SHA384",
@@ -320,6 +327,7 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
         "HMAC_SHA256",
         "HMAC_SHA1",
         "HMAC_SHA384",
@@ -358,6 +366,12 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class KeyHandle(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    name: str
+    resourceTypeSelector: str
+
+@typing.type_check_only
 class KeyOperationAttestation(typing_extensions.TypedDict, total=False):
     certChains: CertificateChains
     content: str
@@ -393,6 +407,10 @@ class ListImportJobsResponse(typing_extensions.TypedDict, total=False):
     importJobs: _list[ImportJob]
     nextPageToken: str
     totalSize: int
+
+@typing.type_check_only
+class ListKeyHandlesResponse(typing_extensions.TypedDict, total=False):
+    keyHandles: _list[KeyHandle]
 
 @typing.type_check_only
 class ListKeyRingsResponse(typing_extensions.TypedDict, total=False):
@@ -452,6 +470,14 @@ class MacVerifyResponse(typing_extensions.TypedDict, total=False):
     verifiedSuccessIntegrity: bool
 
 @typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -490,6 +516,7 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "EC_SIGN_P256_SHA256",
         "EC_SIGN_P384_SHA384",
         "EC_SIGN_SECP256K1_SHA256",
+        "EC_SIGN_ED25519",
         "HMAC_SHA256",
         "HMAC_SHA1",
         "HMAC_SHA384",
@@ -563,6 +590,16 @@ class ServiceResolver(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class ShowEffectiveAutokeyConfigResponse(typing_extensions.TypedDict, total=False):
+    keyProject: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

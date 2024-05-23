@@ -16,28 +16,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class BillingAccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
-        class AnomaliesResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudBillingAnomaliesV1betaAnomalyHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any,
-            ) -> GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest,
-                previous_response: GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse,
-            ) -> (
-                GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest | None
-            ): ...
-
-        @typing.type_check_only
         class ServicesResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -164,36 +142,9 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             body: EstimateCostScenarioForBillingAccountRequest = ...,
             **kwargs: typing.Any,
         ) -> EstimateCostScenarioForBillingAccountResponseHttpRequest: ...
-        def anomalies(self) -> AnomaliesResource: ...
         def services(self) -> ServicesResource: ...
         def skuGroups(self) -> SkuGroupsResource: ...
         def skus(self) -> SkusResource: ...
-
-    @typing.type_check_only
-    class ProjectsResource(googleapiclient.discovery.Resource):
-        @typing.type_check_only
-        class AnomaliesResource(googleapiclient.discovery.Resource):
-            def get(
-                self, *, name: str, **kwargs: typing.Any
-            ) -> GoogleCloudBillingAnomaliesV1betaAnomalyHttpRequest: ...
-            def list(
-                self,
-                *,
-                parent: str,
-                filter: str = ...,
-                pageSize: int = ...,
-                pageToken: str = ...,
-                **kwargs: typing.Any,
-            ) -> GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest: ...
-            def list_next(
-                self,
-                previous_request: GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest,
-                previous_response: GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse,
-            ) -> (
-                GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest | None
-            ): ...
-
-        def anomalies(self) -> AnomaliesResource: ...
 
     @typing.type_check_only
     class SkuGroupsResource(googleapiclient.discovery.Resource):
@@ -286,7 +237,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def billingAccounts(self) -> BillingAccountsResource: ...
-    def projects(self) -> ProjectsResource: ...
     def skuGroups(self) -> SkuGroupsResource: ...
     def skus(self) -> SkusResource: ...
     def v1beta(self) -> V1betaResource: ...
@@ -310,26 +260,6 @@ class EstimateCostScenarioWithListPriceResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EstimateCostScenarioWithListPriceResponse: ...
-
-@typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaAnomalyHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudBillingAnomaliesV1betaAnomaly: ...
-
-@typing.type_check_only
-class GoogleCloudBillingAnomaliesV1betaListAnomaliesResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudBillingAnomaliesV1betaListAnomaliesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest(

@@ -54,6 +54,11 @@ class MapsPlacesResource(googleapiclient.discovery.Resource):
             body: GoogleMapsPlacesV1SearchTextRequest = ...,
             **kwargs: typing.Any,
         ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest: ...
+        def searchText_next(
+            self,
+            previous_request: GoogleMapsPlacesV1SearchTextResponseHttpRequest,
+            previous_response: GoogleMapsPlacesV1SearchTextResponse,
+        ) -> GoogleMapsPlacesV1SearchTextResponseHttpRequest | None: ...
         def photos(self) -> PhotosResource: ...
 
     def new_batch_http_request(

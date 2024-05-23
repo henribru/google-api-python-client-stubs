@@ -258,7 +258,9 @@ class LoggingServer(typing_extensions.TypedDict, total=False):
     hostname: str
     name: str
     port: int
-    protocol: typing_extensions.Literal["PROTOCOL_UNSPECIFIED", "UDP", "TCP"]
+    protocol: typing_extensions.Literal[
+        "PROTOCOL_UNSPECIFIED", "UDP", "TCP", "TLS", "SSL", "RELP"
+    ]
     sourceType: typing_extensions.Literal["SOURCE_TYPE_UNSPECIFIED", "ESXI", "VCSA"]
     uid: str
     updateTime: str

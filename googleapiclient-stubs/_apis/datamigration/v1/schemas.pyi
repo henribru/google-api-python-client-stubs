@@ -123,6 +123,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_33",
         "MYSQL_8_0_34",
         "MYSQL_8_0_35",
+        "MYSQL_8_0_36",
         "POSTGRES_9_6",
         "POSTGRES_11",
         "POSTGRES_10",
@@ -191,6 +192,7 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     provider: typing_extensions.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
     ]
+    sqlserver: SqlServerConnectionProfile
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "DRAFT",
@@ -252,7 +254,7 @@ class DataCacheConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatabaseEngineInfo(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
-        "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "ORACLE"
+        "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "SQLSERVER", "ORACLE"
     ]
     version: str
 
@@ -303,7 +305,7 @@ class DatabaseInstanceEntity(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DatabaseType(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
-        "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "ORACLE"
+        "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "SQLSERVER", "ORACLE"
     ]
     provider: typing_extensions.Literal[
         "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
@@ -543,6 +545,7 @@ class IndexEntity(typing_extensions.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
     name: str
     tableColumns: _list[str]
+    tableColumnsDescending: _list[bool]
     type: str
     unique: bool
 
@@ -672,6 +675,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     displayName: str
     dumpFlags: DumpFlags
     dumpPath: str
+    dumpType: typing_extensions.Literal["DUMP_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"]
     duration: str
     endTime: str
     error: Status
@@ -686,10 +690,12 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
         "PROMOTE_IN_PROGRESS",
         "WAITING_FOR_SOURCE_WRITES_TO_STOP",
         "PREPARING_THE_DUMP",
+        "READY_FOR_PROMOTE",
     ]
     reverseSshConnectivity: ReverseSshConnectivity
     source: str
     sourceDatabase: DatabaseType
+    sqlserverHomogeneousMigrationJobConfig: SqlServerHomogeneousMigrationJobConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "MAINTENANCE",
@@ -891,7 +897,8 @@ class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
     skipValidation: bool
 
 @typing.type_check_only
-class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+class ResumeMigrationJobRequest(typing_extensions.TypedDict, total=False):
+    skipValidation: bool
 
 @typing.type_check_only
 class ReverseSshConnectivity(typing_extensions.TypedDict, total=False):
@@ -1013,6 +1020,42 @@ class SqlIpConfig(typing_extensions.TypedDict, total=False):
     enableIpv4: bool
     privateNetwork: str
     requireSsl: bool
+
+@typing.type_check_only
+class SqlServerBackups(typing_extensions.TypedDict, total=False):
+    gcsBucket: str
+    gcsPrefix: str
+
+@typing.type_check_only
+class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
+    backups: SqlServerBackups
+    cloudSqlId: str
+    forwardSshConnectivity: ForwardSshTunnelConnectivity
+    host: str
+    password: str
+    passwordSet: bool
+    port: int
+    privateConnectivity: PrivateConnectivity
+    privateServiceConnectConnectivity: PrivateServiceConnectConnectivity
+    ssl: SslConfig
+    staticIpConnectivity: StaticIpConnectivity
+    username: str
+
+@typing.type_check_only
+class SqlServerDatabaseBackup(typing_extensions.TypedDict, total=False):
+    database: str
+    encryptionOptions: SqlServerEncryptionOptions
+
+@typing.type_check_only
+class SqlServerEncryptionOptions(typing_extensions.TypedDict, total=False):
+    certPath: str
+    pvkPassword: str
+    pvkPath: str
+
+@typing.type_check_only
+class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=False):
+    backupFilePattern: str
+    databaseBackups: _list[SqlServerDatabaseBackup]
 
 @typing.type_check_only
 class SshScript(typing_extensions.TypedDict, total=False):

@@ -257,7 +257,12 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class SignupUrlsResource(googleapiclient.discovery.Resource):
         def create(
-            self, *, callbackUrl: str = ..., projectId: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            adminEmail: str = ...,
+            callbackUrl: str = ...,
+            projectId: str = ...,
+            **kwargs: typing.Any,
         ) -> SignupUrlHttpRequest: ...
 
     def new_batch_http_request(

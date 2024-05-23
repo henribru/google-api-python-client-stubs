@@ -365,6 +365,7 @@ class NonSdkApi(typing_extensions.TypedDict, total=False):
         "GREY_MAX_P",
         "GREY_MAX_Q",
         "GREY_MAX_R",
+        "GREY_MAX_S",
     ]
 
 @typing.type_check_only

@@ -137,6 +137,16 @@ class DownloadParameters(typing_extensions.TypedDict, total=False):
     ignoreRange: bool
 
 @typing.type_check_only
+class EmailMessage(typing_extensions.TypedDict, total=False):
+    actor: Actor
+    bodyContent: TextContent
+    ccEmailAddresses: _list[str]
+    createTime: str
+    name: str
+    recipientEmailAddresses: _list[str]
+    subject: str
+
+@typing.type_check_only
 class EscalateCaseRequest(typing_extensions.TypedDict, total=False):
     escalation: Escalation
 
@@ -149,6 +159,14 @@ class Escalation(typing_extensions.TypedDict, total=False):
         "TECHNICAL_EXPERTISE",
         "BUSINESS_IMPACT",
     ]
+
+@typing.type_check_only
+class FeedItem(typing_extensions.TypedDict, total=False):
+    attachment: Attachment
+    comment: Comment
+    deletedAttachment: Attachment
+    emailMessage: EmailMessage
+    eventTime: str
 
 @typing.type_check_only
 class ListAttachmentsResponse(typing_extensions.TypedDict, total=False):
@@ -223,7 +241,6 @@ class Product(typing_extensions.TypedDict, total=False):
     productLine: typing_extensions.Literal[
         "PRODUCT_LINE_UNSPECIFIED", "GOOGLE_CLOUD", "GOOGLE_MAPS"
     ]
-    productSubline: str
 
 @typing.type_check_only
 class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False):
@@ -234,6 +251,15 @@ class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False
 class SearchCasesResponse(typing_extensions.TypedDict, total=False):
     cases: _list[Case]
     nextPageToken: str
+
+@typing.type_check_only
+class ShowFeedResponse(typing_extensions.TypedDict, total=False):
+    feedItems: _list[FeedItem]
+    nextPageToken: str
+
+@typing.type_check_only
+class TextContent(typing_extensions.TypedDict, total=False):
+    plainText: str
 
 @typing.type_check_only
 class WorkflowOperationMetadata(typing_extensions.TypedDict, total=False):

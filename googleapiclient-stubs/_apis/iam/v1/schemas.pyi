@@ -70,7 +70,14 @@ class CreateServiceAccountRequest(typing_extensions.TypedDict, total=False):
     serviceAccount: ServiceAccount
 
 @typing.type_check_only
-class DisableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False): ...
+class DisableServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
+    extendedStatusMessage: str
+    serviceAccountKeyDisableReason: typing_extensions.Literal[
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED",
+    ]
 
 @typing.type_check_only
 class DisableServiceAccountRequest(typing_extensions.TypedDict, total=False): ...
@@ -92,12 +99,41 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class ExtendedStatus(typing_extensions.TypedDict, total=False):
+    key: typing_extensions.Literal[
+        "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_UNSPECIFIED",
+        "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_EXPOSED",
+        "SERVICE_ACCOUNT_KEY_EXTENDED_STATUS_KEY_COMPROMISE_DETECTED",
+    ]
+    value: str
+
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client(
+    typing_extensions.TypedDict, total=False
+):
+    attributesType: typing_extensions.Literal[
+        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL"
+    ]
+    clientId: str
+    clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret
+    issuerUri: str
+    queryParameters: (
+        GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientQueryParameters
+    )
+
+@typing.type_check_only
+class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2ClientQueryParameters(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
 
 @typing.type_check_only
 class GoogleIamAdminV1WorkforcePoolProviderOidc(
@@ -173,6 +209,15 @@ class LintResult(typing_extensions.TypedDict, total=False):
     validationUnitName: str
 
 @typing.type_check_only
+class ListOauthClientCredentialsResponse(typing_extensions.TypedDict, total=False):
+    oauthClientCredentials: _list[OauthClientCredential]
+
+@typing.type_check_only
+class ListOauthClientsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    oauthClients: _list[OauthClient]
+
+@typing.type_check_only
 class ListRolesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     roles: _list[Role]
@@ -221,6 +266,33 @@ class ListWorkloadIdentityPoolsResponse(typing_extensions.TypedDict, total=False
     workloadIdentityPools: _list[WorkloadIdentityPool]
 
 @typing.type_check_only
+class OauthClient(typing_extensions.TypedDict, total=False):
+    allowedGrantTypes: _list[
+        typing_extensions.Literal[
+            "GRANT_TYPE_UNSPECIFIED", "AUTHORIZATION_CODE_GRANT", "REFRESH_TOKEN_GRANT"
+        ]
+    ]
+    allowedRedirectUris: _list[str]
+    allowedScopes: _list[str]
+    clientId: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED", "PUBLIC_CLIENT", "CONFIDENTIAL_CLIENT"
+    ]
+    description: str
+    disabled: bool
+    displayName: str
+    expireTime: str
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class OauthClientCredential(typing_extensions.TypedDict, total=False):
+    clientSecret: str
+    disabled: bool
+    displayName: str
+    name: str
+
+@typing.type_check_only
 class Oidc(typing_extensions.TypedDict, total=False):
     allowedAudiences: _list[str]
     issuerUri: str
@@ -243,6 +315,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PatchServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
+    serviceAccountKey: ServiceAccountKey
+    updateMask: str
 
 @typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -310,6 +387,13 @@ class QueryTestablePermissionsResponse(typing_extensions.TypedDict, total=False)
     permissions: _list[Permission]
 
 @typing.type_check_only
+class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
+    deleteResource: bool
+    exclusiveAction: typing_extensions.Literal[
+        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
+    ]
+
+@typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     deleted: bool
     description: str
@@ -339,7 +423,17 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAccountKey(typing_extensions.TypedDict, total=False):
+    contact: str
+    creator: str
+    description: str
+    disableReason: typing_extensions.Literal[
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_EXPOSED",
+        "SERVICE_ACCOUNT_KEY_DISABLE_REASON_COMPROMISE_DETECTED",
+    ]
     disabled: bool
+    extendedStatus: _list[ExtendedStatus]
     keyAlgorithm: typing_extensions.Literal[
         "KEY_ALG_UNSPECIFIED", "KEY_ALG_RSA_1024", "KEY_ALG_RSA_2048"
     ]
@@ -398,6 +492,9 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class UndeleteOauthClientRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UndeleteRoleRequest(typing_extensions.TypedDict, total=False):
@@ -463,6 +560,9 @@ class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
     disabled: bool
     displayName: str
     expireTime: str
+    extraAttributesOauth2Client: (
+        GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client
+    )
     name: str
     oidc: GoogleIamAdminV1WorkforcePoolProviderOidc
     saml: GoogleIamAdminV1WorkforcePoolProviderSaml

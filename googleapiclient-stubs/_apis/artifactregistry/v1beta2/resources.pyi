@@ -14,15 +14,6 @@ _list = list
 @typing.type_check_only
 class ArtifactRegistryResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
-    class MediaResource(googleapiclient.discovery.Resource):
-        def download(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> DownloadFileResponseHttpRequest: ...
-        def download_media(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> BytesHttpRequest: ...
-
-    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -53,6 +44,12 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class FilesResource(googleapiclient.discovery.Resource):
+                    def download(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DownloadFileResponseHttpRequest: ...
+                    def download_media(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BytesHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleDevtoolsArtifactregistryV1beta2FileHttpRequest: ...
@@ -297,7 +294,6 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
-    def media(self) -> MediaResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

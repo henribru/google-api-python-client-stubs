@@ -92,8 +92,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     encryptionInfo: EncryptionInfo
     etag: str
+    geminiConfig: GeminiClusterConfig
     initialUser: UserPassword
     labels: dict[str, typing.Any]
+    maintenanceSchedule: MaintenanceSchedule
+    maintenanceUpdatePolicy: MaintenanceUpdatePolicy
     migrationSource: MigrationSource
     name: str
     network: str
@@ -178,18 +181,12 @@ class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
-class GenerateClientCertificateRequest(typing_extensions.TypedDict, total=False):
-    certDuration: str
-    pemCsr: str
-    publicKey: str
-    requestId: str
-    useMetadataExchange: bool
+class GeminiClusterConfig(typing_extensions.TypedDict, total=False):
+    entitled: bool
 
 @typing.type_check_only
-class GenerateClientCertificateResponse(typing_extensions.TypedDict, total=False):
-    caCert: str
-    pemCertificate: str
-    pemCertificateChain: _list[str]
+class GeminiInstanceConfig(typing_extensions.TypedDict, total=False):
+    entitled: bool
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(
@@ -232,6 +229,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     displayName: str
     etag: str
     gceZone: str
+    geminiConfig: GeminiInstanceConfig
     instanceType: typing_extensions.Literal[
         "INSTANCE_TYPE_UNSPECIFIED", "PRIMARY", "READ_POOL", "SECONDARY"
     ]
@@ -241,6 +239,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     name: str
     networkConfig: InstanceNetworkConfig
     nodes: _list[Node]
+    observabilityConfig: ObservabilityInstanceConfig
     pscInstanceConfig: PscInstanceConfig
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
@@ -313,6 +312,28 @@ class MachineConfig(typing_extensions.TypedDict, total=False):
     cpuCount: int
 
 @typing.type_check_only
+class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
+    startTime: str
+
+@typing.type_check_only
+class MaintenanceUpdatePolicy(typing_extensions.TypedDict, total=False):
+    maintenanceWindows: _list[MaintenanceWindow]
+
+@typing.type_check_only
+class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    startTime: GoogleTypeTimeOfDay
+
+@typing.type_check_only
 class MigrationSource(typing_extensions.TypedDict, total=False):
     hostPort: str
     referenceId: str
@@ -329,6 +350,17 @@ class Node(typing_extensions.TypedDict, total=False):
     ip: str
     state: str
     zoneId: str
+
+@typing.type_check_only
+class ObservabilityInstanceConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    maxQueryStringLength: int
+    preserveComments: bool
+    queryPlansPerMinute: int
+    recordApplicationTags: bool
+    trackActiveQueries: bool
+    trackWaitEventTypes: bool
+    trackWaitEvents: bool
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -364,18 +396,9 @@ class PscConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PscInstanceConfig(typing_extensions.TypedDict, total=False):
-    allowedConsumerNetworks: _list[str]
     allowedConsumerProjects: _list[str]
-    outgoingServiceAttachmentLinks: _list[str]
     pscDnsName: str
-    pscEnabled: bool
-    pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
-
-@typing.type_check_only
-class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
-    consumerEndpointIps: _list[str]
-    networkAttachment: str
 
 @typing.type_check_only
 class QuantityBasedExpiry(typing_extensions.TypedDict, total=False):
@@ -444,6 +467,7 @@ class StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration(
         "MULTI_REGIONAL",
         "AVAILABILITY_TYPE_OTHER",
     ]
+    crossRegionReplicaConfigured: bool
     externalReplicaConfigured: bool
     promotableReplicaConfigured: bool
 
@@ -600,6 +624,12 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
         "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
         "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+        "SIGNAL_TYPE_QUOTA_LIMIT",
+        "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+        "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -667,6 +697,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     resourceContainer: str
     resourceName: str
     updationTime: str
+    userLabelSet: StorageDatabasecenterPartnerapiV1mainUserLabels
     userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -744,6 +775,12 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
         "SIGNAL_TYPE_RESTRICT_AUTHORIZED_NETWORKS",
         "SIGNAL_TYPE_VIOLATE_POLICY_RESTRICT_PUBLIC_IP",
+        "SIGNAL_TYPE_QUOTA_LIMIT",
+        "SIGNAL_TYPE_NO_PASSWORD_POLICY",
+        "SIGNAL_TYPE_CONNECTIONS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
+        "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
     ]
 
 @typing.type_check_only
@@ -753,7 +790,7 @@ class StorageDatabasecenterPartnerapiV1mainEntitlement(
     entitlementState: typing_extensions.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
     ]
-    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "DUET_AI"]
+    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainOperationError(
@@ -780,6 +817,12 @@ class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
         "RETENTION_UNIT_UNSPECIFIED", "COUNT", "TIME", "RETENTION_UNIT_OTHER"
     ]
     timeBasedRetention: str
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainUserLabels(
+    typing_extensions.TypedDict, total=False
+):
+    labels: dict[str, typing.Any]
 
 @typing.type_check_only
 class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total=False):
@@ -809,6 +852,7 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "PRODUCT_TYPE_ON_PREM",
         "ON_PREM",
         "PRODUCT_TYPE_MEMORYSTORE",
+        "PRODUCT_TYPE_BIGTABLE",
         "PRODUCT_TYPE_OTHER",
     ]
     version: str

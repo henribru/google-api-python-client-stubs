@@ -32,6 +32,7 @@ class AwsS3Data(typing_extensions.TypedDict, total=False):
     bucketName: str
     cloudfrontDomain: str
     credentialsSecret: str
+    managedPrivateNetwork: bool
     path: str
     roleArn: str
 
@@ -218,6 +219,13 @@ class PosixFilesystem(typing_extensions.TypedDict, total=False):
     rootDirectory: str
 
 @typing.type_check_only
+class ReplicationSpec(typing_extensions.TypedDict, total=False):
+    gcsDataSink: GcsData
+    gcsDataSource: GcsData
+    objectConditions: ObjectConditions
+    transferOptions: TransferOptions
+
+@typing.type_check_only
 class ResumeTransferOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -302,6 +310,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     name: str
     notificationConfig: NotificationConfig
     projectId: str
+    replicationSpec: ReplicationSpec
     schedule: Schedule
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"

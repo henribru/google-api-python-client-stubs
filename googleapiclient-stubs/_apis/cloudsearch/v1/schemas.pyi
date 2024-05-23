@@ -1443,6 +1443,30 @@ class RetrievalImportance(typing_extensions.TypedDict, total=False):
     importance: typing_extensions.Literal["DEFAULT", "HIGHEST", "HIGH", "LOW", "NONE"]
 
 @typing.type_check_only
+class RewrittenQueries(typing_extensions.TypedDict, total=False):
+    rewrittenQueries: _list[RewrittenQuery]
+    selectedQueryIndex: int
+
+@typing.type_check_only
+class RewrittenQuery(typing_extensions.TypedDict, total=False):
+    rewrittenQuery: str
+    score: float
+    sortBy: typing_extensions.Literal[
+        "SORTBY_UNSUPPORTED",
+        "SORTBY_RELEVANCY",
+        "SORTBY_LATEST",
+        "SORTBY_OLDEST",
+        "SORTBY_LARGEST",
+        "SORTBY_SMALLEST",
+        "SORTBY_MODIFY_LATEST",
+        "SORTBY_MODIFY_OLDEST",
+        "SORTBY_VIEW_LATEST",
+        "SORTBY_VIEW_OLDEST",
+        "SORTBY_CREATE_LATEST",
+        "SORTBY_CREATE_OLDEST",
+    ]
+
+@typing.type_check_only
 class SafeHtmlProto(typing_extensions.TypedDict, total=False):
     privateDoNotAccessOrElseSafeHtmlWrappedValue: str
 

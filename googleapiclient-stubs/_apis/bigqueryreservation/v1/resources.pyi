@@ -125,6 +125,13 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def failoverReservation(
+                    self,
+                    *,
+                    name: str,
+                    body: FailoverReservationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> ReservationHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...

@@ -259,6 +259,24 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MigrationExecutionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMigrationExecutionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMigrationExecutionsResponseHttpRequest,
+                        previous_response: ListMigrationExecutionsResponse,
+                    ) -> ListMigrationExecutionsResponseHttpRequest | None: ...
 
                 def alterLocation(
                     self,
@@ -272,6 +290,20 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     *,
                     service: str,
                     body: AlterTablePropertiesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def cancelMigration(
+                    self,
+                    *,
+                    service: str,
+                    body: CancelMigrationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def completeMigration(
+                    self,
+                    *,
+                    service: str,
+                    body: CompleteMigrationRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def create(
@@ -362,6 +394,13 @@ class DataprocMetastoreResource(googleapiclient.discovery.Resource):
                     body: SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> PolicyHttpRequest: ...
+                def startMigration(
+                    self,
+                    *,
+                    service: str,
+                    body: StartMigrationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -468,6 +507,14 @@ class ListMetadataImportsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMetadataImportsResponse: ...
 
 @typing.type_check_only
+class ListMigrationExecutionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMigrationExecutionsResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -498,6 +545,14 @@ class MetadataImportHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> MetadataImport: ...
+
+@typing.type_check_only
+class MigrationExecutionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MigrationExecution: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

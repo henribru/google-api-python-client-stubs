@@ -55,6 +55,7 @@ class Auth(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
+    credentialId: str
     presenter: str
     principal: str
 
@@ -72,6 +73,13 @@ class AuthenticationInfo(typing_extensions.TypedDict, total=False):
 class AuthorizationInfo(typing_extensions.TypedDict, total=False):
     granted: bool
     permission: str
+    permissionType: typing_extensions.Literal[
+        "PERMISSION_TYPE_UNSPECIFIED",
+        "ADMIN_READ",
+        "ADMIN_WRITE",
+        "DATA_READ",
+        "DATA_WRITE",
+    ]
     resource: str
     resourceAttributes: Resource
 
@@ -525,6 +533,17 @@ class V1LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
     file: str
     function: str
     line: str
+
+@typing.type_check_only
+class V1ResourceEvent(typing_extensions.TypedDict, total=False):
+    destinations: str
+    parent: Resource
+    path: typing_extensions.Literal["API_PATH_UNSPECIFIED", "REQUEST", "RESPONSE"]
+    payload: dict[str, typing.Any]
+    resource: Resource
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "UNDELETE"
+    ]
 
 @typing.type_check_only
 class ViolationInfo(typing_extensions.TypedDict, total=False):

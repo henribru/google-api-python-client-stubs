@@ -17,6 +17,8 @@ class AppGateway(typing_extensions.TypedDict, total=False):
     hostType: typing_extensions.Literal["HOST_TYPE_UNSPECIFIED", "GCP_REGIONAL_MIG"]
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]
@@ -84,6 +86,8 @@ class GoogleCloudBeyondcorpAppconnectionsV1AppConnection(
     gateway: GoogleCloudBeyondcorpAppconnectionsV1AppConnectionGateway
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "CREATED", "UPDATING", "DELETING", "DOWN"
     ]

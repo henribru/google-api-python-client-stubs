@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class GoogleCloudRunV2BinaryAuthorization(typing_extensions.TypedDict, total=False):
     breakglassJustification: str
+    policy: str
     useDefault: bool
 
 @typing.type_check_only
@@ -170,6 +171,22 @@ class GoogleCloudRunV2ExecutionTemplate(typing_extensions.TypedDict, total=False
     template: GoogleCloudRunV2TaskTemplate
 
 @typing.type_check_only
+class GoogleCloudRunV2ExportImageRequest(typing_extensions.TypedDict, total=False):
+    destinationRepo: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ExportImageResponse(typing_extensions.TypedDict, total=False):
+    operationId: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ExportStatusResponse(typing_extensions.TypedDict, total=False):
+    imageExportStatuses: _list[GoogleCloudRunV2ImageExportStatus]
+    operationId: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED", "IN_PROGRESS", "FINISHED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudRunV2GCSVolumeSource(typing_extensions.TypedDict, total=False):
     bucket: str
     readOnly: bool
@@ -189,6 +206,15 @@ class GoogleCloudRunV2HTTPGetAction(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2HTTPHeader(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ImageExportStatus(typing_extensions.TypedDict, total=False):
+    exportJobState: typing_extensions.Literal[
+        "EXPORT_JOB_STATE_UNSPECIFIED", "IN_PROGRESS", "FINISHED"
+    ]
+    exportedImageDigest: str
+    status: UtilStatusProto
+    tag: str
 
 @typing.type_check_only
 class GoogleCloudRunV2Job(typing_extensions.TypedDict, total=False):
@@ -221,6 +247,7 @@ class GoogleCloudRunV2Job(typing_extensions.TypedDict, total=False):
     observedGeneration: str
     reconciling: bool
     satisfiesPzs: bool
+    startExecutionToken: str
     template: GoogleCloudRunV2ExecutionTemplate
     terminalCondition: GoogleCloudRunV2Condition
     uid: str
@@ -252,6 +279,10 @@ class GoogleCloudRunV2ListTasksResponse(typing_extensions.TypedDict, total=False
     tasks: _list[GoogleCloudRunV2Task]
 
 @typing.type_check_only
+class GoogleCloudRunV2Metadata(typing_extensions.TypedDict, total=False):
+    metadata: str
+
+@typing.type_check_only
 class GoogleCloudRunV2NFSVolumeSource(typing_extensions.TypedDict, total=False):
     path: str
     readOnly: bool
@@ -262,6 +293,10 @@ class GoogleCloudRunV2NetworkInterface(typing_extensions.TypedDict, total=False)
     network: str
     subnetwork: str
     tags: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRunV2NodeSelector(typing_extensions.TypedDict, total=False):
+    accelerator: str
 
 @typing.type_check_only
 class GoogleCloudRunV2Overrides(typing_extensions.TypedDict, total=False):
@@ -319,6 +354,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     logUri: str
     maxInstanceRequestConcurrency: int
     name: str
+    nodeSelector: GoogleCloudRunV2NodeSelector
     observedGeneration: str
     reconciling: bool
     satisfiesPzs: bool
@@ -355,6 +391,7 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
     healthCheckDisabled: bool
     labels: dict[str, typing.Any]
     maxInstanceRequestConcurrency: int
+    nodeSelector: GoogleCloudRunV2NodeSelector
     revision: str
     scaling: GoogleCloudRunV2RevisionScaling
     serviceAccount: str
@@ -401,6 +438,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
         "INGRESS_TRAFFIC_ALL",
         "INGRESS_TRAFFIC_INTERNAL_ONLY",
         "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
+        "INGRESS_TRAFFIC_NONE",
     ]
     labels: dict[str, typing.Any]
     lastModifier: str
@@ -587,6 +625,7 @@ class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
     createTime: str
     failureInfo: GoogleDevtoolsCloudbuildV1FailureInfo
     finishTime: str
+    gitConfig: GoogleDevtoolsCloudbuildV1GitConfig
     id: str
     images: _list[str]
     logUrl: str
@@ -720,6 +759,14 @@ class GoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
+    typing_extensions.TypedDict, total=False
+):
+    dir: str
+    gitRepositoryLink: str
+    revision: str
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1FailureInfo(typing_extensions.TypedDict, total=False):
     detail: str
     type: typing_extensions.Literal[
@@ -737,6 +784,16 @@ class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=Fa
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GCSLocation(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
+    http: GoogleDevtoolsCloudbuildV1HttpConfig
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=False):
     dir: str
     revision: str
@@ -746,6 +803,11 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=Fal
 class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
     value: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1HttpConfig(typing_extensions.TypedDict, total=False):
+    proxySecretVersionName: str
+    proxySslCaInfo: GoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=False):
@@ -817,6 +879,7 @@ class GoogleDevtoolsCloudbuildV1Secrets(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Source(typing_extensions.TypedDict, total=False):
     connectedRepository: GoogleDevtoolsCloudbuildV1ConnectedRepository
+    developerConnectConfig: GoogleDevtoolsCloudbuildV1DeveloperConnectConfig
     gitSource: GoogleDevtoolsCloudbuildV1GitSource
     repoSource: GoogleDevtoolsCloudbuildV1RepoSource
     storageSource: GoogleDevtoolsCloudbuildV1StorageSource
@@ -961,3 +1024,14 @@ class GoogleTypeExpr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class Proto2BridgeMessageSet(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UtilStatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: Proto2BridgeMessageSet
+    space: str

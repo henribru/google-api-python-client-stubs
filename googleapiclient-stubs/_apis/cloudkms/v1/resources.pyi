@@ -14,6 +14,20 @@ _list = list
 @typing.type_check_only
 class CloudKMSResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        def getAutokeyConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> AutokeyConfigHttpRequest: ...
+        def updateAutokeyConfig(
+            self,
+            *,
+            name: str,
+            body: AutokeyConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> AutokeyConfigHttpRequest: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -101,6 +115,23 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 def verifyConnectivity(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> VerifyConnectivityResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class KeyHandlesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: KeyHandle = ...,
+                    keyHandleId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> KeyHandleHttpRequest: ...
+                def list(
+                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                ) -> ListKeyHandlesResponseHttpRequest: ...
 
             @typing.type_check_only
             class KeyRingsResource(googleapiclient.discovery.Resource):
@@ -393,6 +424,12 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 def cryptoKeys(self) -> CryptoKeysResource: ...
                 def importJobs(self) -> ImportJobsResource: ...
 
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+
             def generateRandomBytes(
                 self,
                 *,
@@ -430,8 +467,13 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             ) -> EkmConfigHttpRequest: ...
             def ekmConfig(self) -> EkmConfigResource: ...
             def ekmConnections(self) -> EkmConnectionsResource: ...
+            def keyHandles(self) -> KeyHandlesResource: ...
             def keyRings(self) -> KeyRingsResource: ...
+            def operations(self) -> OperationsResource: ...
 
+        def showEffectiveAutokeyConfig(
+            self, *, parent: str, **kwargs: typing.Any
+        ) -> ShowEffectiveAutokeyConfigResponseHttpRequest: ...
         def locations(self) -> LocationsResource: ...
 
     def new_batch_http_request(
@@ -446,6 +488,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -463,6 +506,14 @@ class AsymmetricSignResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AsymmetricSignResponse: ...
+
+@typing.type_check_only
+class AutokeyConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutokeyConfig: ...
 
 @typing.type_check_only
 class CryptoKeyHttpRequest(googleapiclient.http.HttpRequest):
@@ -529,6 +580,14 @@ class ImportJobHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ImportJob: ...
 
 @typing.type_check_only
+class KeyHandleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> KeyHandle: ...
+
+@typing.type_check_only
 class KeyRingHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -567,6 +626,14 @@ class ListImportJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListImportJobsResponse: ...
+
+@typing.type_check_only
+class ListKeyHandlesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListKeyHandlesResponse: ...
 
 @typing.type_check_only
 class ListKeyRingsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -609,6 +676,14 @@ class MacVerifyResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MacVerifyResponse: ...
 
 @typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Operation: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -639,6 +714,14 @@ class RawEncryptResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RawEncryptResponse: ...
+
+@typing.type_check_only
+class ShowEffectiveAutokeyConfigResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowEffectiveAutokeyConfigResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

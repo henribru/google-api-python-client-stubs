@@ -87,9 +87,16 @@ class Connection(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectorConfiguration(typing_extensions.TypedDict, total=False):
+    asset: ConnectorConfigurationAsset
     authentication: ConnectorConfigurationAuthentication
     connectorId: str
     endpoint: ConnectorConfigurationEndpoint
+    network: ConnectorConfigurationNetwork
+
+@typing.type_check_only
+class ConnectorConfigurationAsset(typing_extensions.TypedDict, total=False):
+    database: str
+    googleCloudResource: str
 
 @typing.type_check_only
 class ConnectorConfigurationAuthentication(typing_extensions.TypedDict, total=False):
@@ -98,6 +105,16 @@ class ConnectorConfigurationAuthentication(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class ConnectorConfigurationEndpoint(typing_extensions.TypedDict, total=False):
     hostPort: str
+
+@typing.type_check_only
+class ConnectorConfigurationNetwork(typing_extensions.TypedDict, total=False):
+    privateServiceConnect: ConnectorConfigurationPrivateServiceConnect
+
+@typing.type_check_only
+class ConnectorConfigurationPrivateServiceConnect(
+    typing_extensions.TypedDict, total=False
+):
+    networkAttachment: str
 
 @typing.type_check_only
 class ConnectorConfigurationSecret(typing_extensions.TypedDict, total=False):

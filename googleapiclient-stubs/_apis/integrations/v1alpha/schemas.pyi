@@ -1673,6 +1673,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
     producer: str
     protoDefName: str
     protoDefPath: str
+    required: bool
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
@@ -1788,6 +1789,14 @@ class GoogleCloudConnectorsV1AuthConfigUserPassword(
     username: str
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1BillingConfig(typing_extensions.TypedDict, total=False):
+    billingCategory: typing_extensions.Literal[
+        "BILLING_CATEGORY_UNSPECIFIED",
+        "GCP_AND_TECHNICAL_CONNECTOR",
+        "NON_GCP_CONNECTOR",
+    ]
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=False):
     boolValue: bool
     encryptionKeyValue: GoogleCloudConnectorsV1EncryptionKey
@@ -1799,6 +1808,7 @@ class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False):
     authConfig: GoogleCloudConnectorsV1AuthConfig
+    billingConfig: GoogleCloudConnectorsV1BillingConfig
     configVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     connectionRevision: str
     connectorVersion: str
@@ -1910,6 +1920,18 @@ class GoogleCloudConnectorsV1EventingRuntimeData(
     eventsListenerEndpoint: str
     eventsListenerPscSa: str
     status: GoogleCloudConnectorsV1EventingStatus
+    webhookData: GoogleCloudConnectorsV1EventingRuntimeDataWebhookData
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
+    typing_extensions.TypedDict, total=False
+):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    createTime: str
+    id: str
+    name: str
+    nextRefreshTime: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingStatus(typing_extensions.TypedDict, total=False):
@@ -2310,7 +2332,9 @@ class GoogleCloudIntegrationsV1alphaIntegration(
     typing_extensions.TypedDict, total=False
 ):
     active: bool
+    creatorEmail: str
     description: str
+    lastModifierEmail: str
     name: str
     updateTime: str
 
@@ -2420,6 +2444,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
 ):
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
+    createdFromTemplate: str
     databasePersistencePolicy: typing_extensions.Literal[
         "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
         "DATABASE_PERSISTENCE_DISABLED",
@@ -2991,6 +3016,7 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
     priority: typing_extensions.Literal[
         "UNSPCIFIED", "SHEDDABLE", "SHEDDABLE_PLUS", "CRITICAL", "CRITICAL_PLUS"
     ]
+    quotaRetryCount: int
     requestId: str
     resourceName: str
     scheduledTime: str

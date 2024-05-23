@@ -72,49 +72,6 @@ class CrmlogErrorCode(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class EnterpriseCrmCardsCellValue(typing_extensions.TypedDict, total=False):
-    booleanValue: bool
-    doubleValue: float
-    empty: GoogleProtobufEmpty
-    longValue: str
-    stringValue: str
-
-@typing.type_check_only
-class EnterpriseCrmCardsRow(typing_extensions.TypedDict, total=False):
-    cells: _list[EnterpriseCrmCardsCellValue]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTabularData(typing_extensions.TypedDict, total=False):
-    headers: _list[str]
-    rows: _list[EnterpriseCrmCardsRow]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesData(
-    typing_extensions.TypedDict, total=False
-):
-    rows: _list[EnterpriseCrmCardsTemplatesAplosSeriesDataRow]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesDataRow(
-    typing_extensions.TypedDict, total=False
-):
-    x: EnterpriseCrmCardsCellValue
-    y: EnterpriseCrmCardsCellValue
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesListData(
-    typing_extensions.TypedDict, total=False
-):
-    series: _list[EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries]
-
-@typing.type_check_only
-class EnterpriseCrmCardsTemplatesAplosSeriesListDataSeries(
-    typing_extensions.TypedDict, total=False
-):
-    data: EnterpriseCrmCardsTemplatesAplosSeriesData
-    name: str
-
-@typing.type_check_only
 class EnterpriseCrmEventbusAuthconfigAuthConfigTaskParam(
     typing_extensions.TypedDict, total=False
 ):
@@ -154,6 +111,8 @@ class EnterpriseCrmEventbusProtoAttributes(typing_extensions.TypedDict, total=Fa
     isRequired: bool
     isSearchable: bool
     logSettings: EnterpriseCrmEventbusProtoLogSettings
+    masked: bool
+    readOnly: bool
     searchable: typing_extensions.Literal["UNSPECIFIED", "YES", "NO"]
     taskVisibility: _list[str]
 
@@ -245,6 +204,26 @@ class EnterpriseCrmEventbusProtoBuganizerNotification(
     title: str
 
 @typing.type_check_only
+class EnterpriseCrmEventbusProtoCloudKmsConfig(
+    typing_extensions.TypedDict, total=False
+):
+    gcpProjectId: str
+    keyName: str
+    keyRingName: str
+    keyVersionName: str
+    locationName: str
+    serviceAccount: str
+
+@typing.type_check_only
+class EnterpriseCrmEventbusProtoCloudLoggingDetails(
+    typing_extensions.TypedDict, total=False
+):
+    cloudLoggingSeverity: typing_extensions.Literal[
+        "CLOUD_LOGGING_SEVERITY_UNSPECIFIED", "INFO", "ERROR", "WARNING"
+    ]
+    enableCloudLogging: bool
+
+@typing.type_check_only
 class EnterpriseCrmEventbusProtoCloudSchedulerConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -304,6 +283,7 @@ class EnterpriseCrmEventbusProtoConnectorsGenericConnectorTaskConfig(
         "CREATE_ENTITY",
         "UPDATE_ENTITY",
         "DELETE_ENTITY",
+        "EXECUTE_QUERY",
     ]
 
 @typing.type_check_only
@@ -399,6 +379,7 @@ class EnterpriseCrmEventbusProtoEventExecutionDetails(
         EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats
     ]
     eventExecutionSnapshot: _list[EnterpriseCrmEventbusProtoEventExecutionSnapshot]
+    eventExecutionSnapshotsSize: str
     eventExecutionState: typing_extensions.Literal[
         "UNSPECIFIED",
         "ON_HOLD",
@@ -444,8 +425,12 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
 class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    ancestorIterationNumbers: _list[str]
+    ancestorTaskNumbers: _list[str]
     eventAttemptNum: int
+    integrationName: str
     taskAttemptNum: int
+    taskLabel: str
     taskName: str
     taskNumber: str
 
@@ -469,12 +454,14 @@ class EnterpriseCrmEventbusProtoExternalTraffic(
     gcpProjectId: str
     gcpProjectNumber: str
     location: str
+    retryRequestForQuota: bool
     source: typing_extensions.Literal["SOURCE_UNSPECIFIED", "APIGEE", "SECURITY"]
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoFailurePolicy(typing_extensions.TypedDict, total=False):
     intervalInSeconds: str
     maxNumRetries: int
+    retryCondition: str
     retryStrategy: typing_extensions.Literal[
         "UNSPECIFIED",
         "IGNORE",
@@ -751,6 +738,7 @@ class EnterpriseCrmEventbusProtoParameterEntry(
     typing_extensions.TypedDict, total=False
 ):
     key: str
+    masked: bool
     value: EnterpriseCrmEventbusProtoParameterValueType
 
 @typing.type_check_only
@@ -940,6 +928,7 @@ class EnterpriseCrmEventbusProtoStringFunction(
         "REPLACE_ALL",
         "SUBSTRING",
         "RESOLVE_TEMPLATE",
+        "DECODE_BASE64_STRING",
     ]
 
 @typing.type_check_only
@@ -990,24 +979,31 @@ class EnterpriseCrmEventbusProtoSuspensionResolutionInfo(
     typing_extensions.TypedDict, total=False
 ):
     audit: EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit
+    clientId: str
+    cloudKmsConfig: EnterpriseCrmEventbusProtoCloudKmsConfig
     createdTimestamp: str
+    encryptedSuspensionResolutionInfo: str
     eventExecutionInfoId: str
     externalTraffic: EnterpriseCrmEventbusProtoExternalTraffic
     lastModifiedTimestamp: str
     product: typing_extensions.Literal[
         "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
     ]
-    status: typing_extensions.Literal["PENDING_UNSPECIFIED", "REJECTED", "LIFTED"]
+    status: typing_extensions.Literal[
+        "PENDING_UNSPECIFIED", "REJECTED", "LIFTED", "CANCELED"
+    ]
     suspensionConfig: EnterpriseCrmEventbusProtoSuspensionConfig
     suspensionId: str
     taskNumber: str
     workflowName: str
+    wrappedDek: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoSuspensionResolutionInfoAudit(
     typing_extensions.TypedDict, total=False
 ):
     resolvedBy: str
+    resolvedByCpi: str
     timestamp: str
 
 @typing.type_check_only
@@ -1082,6 +1078,7 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
         "HIDDEN",
         "CLOUD_SYSTEMS",
         "CUSTOM_TASK_TEMPLATE",
+        "TASK_RECOMMENDATIONS",
     ]
     codeSearchLink: str
     defaultJsonValidationOption: typing_extensions.Literal[
@@ -1096,7 +1093,21 @@ class EnterpriseCrmEventbusProtoTaskMetadata(typing_extensions.TypedDict, total=
     descriptiveName: str
     docMarkdown: str
     externalCategory: typing_extensions.Literal[
-        "UNSPECIFIED_EXTERNAL_CATEGORY", "CORE", "CONNECTORS"
+        "UNSPECIFIED_EXTERNAL_CATEGORY",
+        "CORE",
+        "CONNECTORS",
+        "EXTERNAL_HTTP",
+        "EXTERNAL_INTEGRATION_SERVICES",
+        "EXTERNAL_CUSTOMER_ACTIONS",
+        "EXTERNAL_FLOW_CONTROL",
+        "EXTERNAL_WORKSPACE",
+        "EXTERNAL_SECURITY",
+        "EXTERNAL_DATABASES",
+        "EXTERNAL_ANALYTICS",
+        "EXTERNAL_BYOC",
+        "EXTERNAL_BYOT",
+        "EXTERNAL_ARTIFICIAL_INTELIGENCE",
+        "EXTERNAL_DATA_MANIPULATION",
     ]
     externalCategorySequence: int
     externalDocHtml: str
@@ -1286,6 +1297,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails(
     eventExecutionSnapshot: _list[
         EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot
     ]
+    eventExecutionSnapshotsSize: str
     eventExecutionState: typing_extensions.Literal[
         "UNSPECIFIED",
         "ON_HOLD",
@@ -1307,6 +1319,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
     typing_extensions.TypedDict, total=False
 ):
     clientId: str
+    cloudLoggingDetails: EnterpriseCrmEventbusProtoCloudLoggingDetails
     createTime: str
     errorCode: CrmlogErrorCode
     errors: _list[EnterpriseCrmEventbusProtoErrorDetail]
@@ -1325,6 +1338,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
     product: typing_extensions.Literal[
         "UNSPECIFIED_PRODUCT", "IP", "APIGEE", "SECURITY"
     ]
+    replayInfo: EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo
     requestId: str
     requestParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
     responseParams: EnterpriseCrmFrontendsEventbusProtoEventParameters
@@ -1334,6 +1348,14 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
     workflowId: str
     workflowName: str
     workflowRetryBackoffIntervalSeconds: str
+
+@typing.type_check_only
+class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo(
+    typing_extensions.TypedDict, total=False
+):
+    originalExecutionInfoId: str
+    replayReason: str
+    replayedExecutionInfoIds: _list[str]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoEventExecutionSnapshot(
@@ -1431,6 +1453,7 @@ class EnterpriseCrmFrontendsEventbusProtoParameterEntry(
         "JSON_VALUE",
     ]
     key: str
+    masked: bool
     value: EnterpriseCrmFrontendsEventbusProtoParameterValueType
 
 @typing.type_check_only
@@ -1545,6 +1568,10 @@ class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
     creatorEmail: str
     description: str
     disableStrictTypeValidation: bool
+    errorCatcherId: str
+    externalTaskType: typing_extensions.Literal[
+        "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
+    ]
     failurePolicy: EnterpriseCrmEventbusProtoFailurePolicy
     incomingEdgeCount: int
     jsonValidationOption: typing_extensions.Literal[
@@ -1596,6 +1623,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     cloudSchedulerConfig: EnterpriseCrmEventbusProtoCloudSchedulerConfig
     description: str
     enabledClients: _list[str]
+    errorCatcherId: str
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
@@ -1606,6 +1634,7 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     startTasks: _list[EnterpriseCrmEventbusProtoNextTask]
     triggerCriteria: EnterpriseCrmEventbusProtoTriggerCriteria
     triggerId: str
+    triggerName: str
     triggerNumber: str
     triggerType: typing_extensions.Literal[
         "UNKNOWN",
@@ -1621,6 +1650,8 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
         "SFDC_CDC_CHANNEL",
         "SFDC_PLATFORM_EVENTS_CHANNEL",
         "CLOUD_SCHEDULER",
+        "INTEGRATION_CONNECTOR_TRIGGER",
+        "PRIVATE_TRIGGER",
     ]
 
 @typing.type_check_only
@@ -1629,6 +1660,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
 ):
     attributes: EnterpriseCrmEventbusProtoAttributes
     children: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
+    containsLargeData: bool
     dataType: typing_extensions.Literal[
         "DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
@@ -1650,6 +1682,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
         "JSON_VALUE",
     ]
     defaultValue: EnterpriseCrmFrontendsEventbusProtoParameterValueType
+    description: str
     inOutType: typing_extensions.Literal[
         "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
     ]
@@ -1661,6 +1694,7 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
     producer: str
     protoDefName: str
     protoDefPath: str
+    required: bool
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
@@ -1708,6 +1742,7 @@ class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    authKey: str
     authType: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED",
         "USER_PASSWORD",
@@ -1715,11 +1750,26 @@ class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False
         "OAUTH2_CLIENT_CREDENTIALS",
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
+        "GOOGLE_AUTHENTICATION",
     ]
+    oauth2AuthCodeFlow: GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow
     oauth2ClientCredentials: GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials
     oauth2JwtBearer: GoogleCloudConnectorsV1AuthConfigOauth2JwtBearer
     sshPublicKey: GoogleCloudConnectorsV1AuthConfigSshPublicKey
     userPassword: GoogleCloudConnectorsV1AuthConfigUserPassword
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
+    typing_extensions.TypedDict, total=False
+):
+    authCode: str
+    authUri: str
+    clientId: str
+    clientSecret: GoogleCloudConnectorsV1Secret
+    enablePkce: bool
+    pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials(
@@ -1760,8 +1810,17 @@ class GoogleCloudConnectorsV1AuthConfigUserPassword(
     username: str
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1BillingConfig(typing_extensions.TypedDict, total=False):
+    billingCategory: typing_extensions.Literal[
+        "BILLING_CATEGORY_UNSPECIFIED",
+        "GCP_AND_TECHNICAL_CONNECTOR",
+        "NON_GCP_CONNECTOR",
+    ]
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=False):
     boolValue: bool
+    encryptionKeyValue: GoogleCloudConnectorsV1EncryptionKey
     intValue: str
     key: str
     secretValue: GoogleCloudConnectorsV1Secret
@@ -1770,20 +1829,39 @@ class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False):
     authConfig: GoogleCloudConnectorsV1AuthConfig
+    billingConfig: GoogleCloudConnectorsV1BillingConfig
     configVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    connectionRevision: str
     connectorVersion: str
+    connectorVersionInfraConfig: GoogleCloudConnectorsV1ConnectorVersionInfraConfig
+    connectorVersionLaunchStage: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+    ]
     createTime: str
     description: str
     destinationConfigs: _list[GoogleCloudConnectorsV1DestinationConfig]
     envoyImageLocation: str
+    eventingConfig: GoogleCloudConnectorsV1EventingConfig
+    eventingEnablementType: typing_extensions.Literal[
+        "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
+        "EVENTING_AND_CONNECTION",
+        "ONLY_EVENTING",
+    ]
+    eventingRuntimeData: GoogleCloudConnectorsV1EventingRuntimeData
     imageLocation: str
+    isTrustedTester: bool
     labels: dict[str, typing.Any]
     lockConfig: GoogleCloudConnectorsV1LockConfig
+    logConfig: GoogleCloudConnectorsV1LogConfig
     name: str
     nodeConfig: GoogleCloudConnectorsV1NodeConfig
     serviceAccount: str
     serviceDirectory: str
+    sslConfig: GoogleCloudConnectorsV1SslConfig
     status: GoogleCloudConnectorsV1ConnectionStatus
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
+    ]
     suspended: bool
     updateTime: str
 
@@ -1798,8 +1876,24 @@ class GoogleCloudConnectorsV1ConnectionStatus(typing_extensions.TypedDict, total
         "DELETING",
         "UPDATING",
         "ERROR",
+        "AUTHORIZATION_REQUIRED",
     ]
     status: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(
+    typing_extensions.TypedDict, total=False
+):
+    connectionRatelimitWindowSeconds: str
+    deploymentModel: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
+    ]
+    hpaConfig: GoogleCloudConnectorsV1HPAConfig
+    internalclientRatelimitThreshold: str
+    ratelimitThreshold: str
+    resourceLimits: GoogleCloudConnectorsV1ResourceLimits
+    resourceRequests: GoogleCloudConnectorsV1ResourceRequests
+    sharedDeployment: str
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1Destination(typing_extensions.TypedDict, total=False):
@@ -1815,9 +1909,72 @@ class GoogleCloudConnectorsV1DestinationConfig(
     key: str
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1EncryptionKey(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_MANAGED", "CUSTOMER_MANAGED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    authConfig: GoogleCloudConnectorsV1AuthConfig
+    deadLetterConfig: GoogleCloudConnectorsV1EventingConfigDeadLetterConfig
+    enrichmentEnabled: bool
+    eventsListenerIngressEndpoint: str
+    listenerAuthConfig: GoogleCloudConnectorsV1AuthConfig
+    privateConnectivityEnabled: bool
+    proxyDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
+    registrationDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingConfigDeadLetterConfig(
+    typing_extensions.TypedDict, total=False
+):
+    projectId: str
+    topic: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingRuntimeData(
+    typing_extensions.TypedDict, total=False
+):
+    eventsListenerEndpoint: str
+    eventsListenerPscSa: str
+    status: GoogleCloudConnectorsV1EventingStatus
+    webhookData: GoogleCloudConnectorsV1EventingRuntimeDataWebhookData
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
+    typing_extensions.TypedDict, total=False
+):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    createTime: str
+    id: str
+    name: str
+    nextRefreshTime: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingStatus(typing_extensions.TypedDict, total=False):
+    description: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "INGRESS_ENDPOINT_REQUIRED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1HPAConfig(typing_extensions.TypedDict, total=False):
+    cpuUtilizationThreshold: str
+    memoryUtilizationThreshold: str
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1LockConfig(typing_extensions.TypedDict, total=False):
     locked: bool
     reason: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1LogConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    level: typing_extensions.Literal["LOG_LEVEL_UNSPECIFIED", "ERROR", "INFO", "DEBUG"]
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False):
@@ -1825,8 +1982,31 @@ class GoogleCloudConnectorsV1NodeConfig(typing_extensions.TypedDict, total=False
     minNodeCount: int
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1ResourceLimits(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1ResourceRequests(typing_extensions.TypedDict, total=False):
+    cpu: str
+    memory: str
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1Secret(typing_extensions.TypedDict, total=False):
     secretVersion: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1SslConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
+    clientCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    clientCertificate: GoogleCloudConnectorsV1Secret
+    clientPrivateKey: GoogleCloudConnectorsV1Secret
+    clientPrivateKeyPass: GoogleCloudConnectorsV1Secret
+    privateServerCertificate: GoogleCloudConnectorsV1Secret
+    serverCertType: typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]
+    trustModel: typing_extensions.Literal["PUBLIC", "PRIVATE", "INSECURE"]
+    type: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+    useSsl: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAccessToken(
@@ -1837,26 +2017,6 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     refreshToken: str
     refreshTokenExpireTime: str
     tokenType: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveBundleRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveBundleResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaArchiveIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAttemptStats(
@@ -1970,13 +2130,15 @@ class GoogleCloudIntegrationsV1alphaClientConfig(
         "CLIENT_STATE_UNSPECIFIED", "CLIENT_STATE_ACTIVE", "CLIENT_STATE_DISABLED"
     ]
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
-    cloudLoggingConfig: GoogleCloudIntegrationsV1alphaCloudLoggingConfig
     createTime: str
     description: str
+    enableVariableMasking: bool
     id: str
+    isGmek: bool
     p4ServiceAccount: str
     projectId: str
     region: str
+    runAsServiceAccount: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCloudKmsConfig(
@@ -1985,13 +2147,16 @@ class GoogleCloudIntegrationsV1alphaCloudKmsConfig(
     key: str
     keyVersion: str
     kmsLocation: str
+    kmsProjectId: str
     kmsRing: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCloudLoggingConfig(
+class GoogleCloudIntegrationsV1alphaCloudLoggingDetails(
     typing_extensions.TypedDict, total=False
 ):
-    bucket: str
+    cloudLoggingSeverity: typing_extensions.Literal[
+        "CLOUD_LOGGING_SEVERITY_UNSPECIFIED", "INFO", "ERROR", "WARNING"
+    ]
     enableCloudLogging: bool
 
 @typing.type_check_only
@@ -2011,6 +2176,13 @@ class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata(
     entities: _list[str]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCoordinate(
+    typing_extensions.TypedDict, total=False
+):
+    x: int
+    y: int
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2022,21 +2194,6 @@ class GoogleCloudIntegrationsV1alphaCreateAppsScriptProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
     projectId: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCreateBundleRequest(
-    typing_extensions.TypedDict, total=False
-):
-    bundleId: str
-    integrations: _list[str]
-    secondaryCustomerOrgId: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCreateBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
-    triggerId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCreateCloudFunctionRequest(
@@ -2082,16 +2239,6 @@ class GoogleCloudIntegrationsV1alphaCredential(
     usernameAndPassword: GoogleCloudIntegrationsV1alphaUsernameAndPassword
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaDeactivateIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaDeprovisionClientRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -2113,6 +2260,13 @@ class GoogleCloudIntegrationsV1alphaDownloadIntegrationVersionResponse(
     typing_extensions.TypedDict, total=False
 ):
     content: str
+    files: _list[GoogleCloudIntegrationsV1alphaSerializedFile]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse(
+    typing_extensions.TypedDict, total=False
+):
+    files: _list[GoogleCloudIntegrationsV1alphaFile]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
@@ -2121,11 +2275,29 @@ class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
     regions: _list[str]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaErrorCatcherConfig(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    errorCatcherId: str
+    errorCatcherNumber: str
+    label: str
+    position: GoogleCloudIntegrationsV1alphaCoordinate
+    startErrorTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEventParameter(
     typing_extensions.TypedDict, total=False
 ):
     key: str
+    masked: bool
     value: GoogleCloudIntegrationsV1alphaValueType
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteEventResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteIntegrationsRequest(
@@ -2151,6 +2323,7 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
+    cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
     directSubExecutions: _list[GoogleCloudIntegrationsV1alphaExecution]
     eventExecutionDetails: EnterpriseCrmEventbusProtoEventExecutionDetails
@@ -2158,11 +2331,16 @@ class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total
     executionMethod: typing_extensions.Literal[
         "EXECUTION_METHOD_UNSPECIFIED", "POST", "POST_TO_QUEUE", "SCHEDULE"
     ]
+    integrationVersionState: typing_extensions.Literal[
+        "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
+    ]
     name: str
+    replayInfo: GoogleCloudIntegrationsV1alphaExecutionReplayInfo
     requestParameters: dict[str, typing.Any]
     requestParams: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
     responseParameters: dict[str, typing.Any]
     responseParams: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
+    snapshotNumber: str
     triggerId: str
     updateTime: str
 
@@ -2171,6 +2349,7 @@ class GoogleCloudIntegrationsV1alphaExecutionDetails(
     typing_extensions.TypedDict, total=False
 ):
     attemptStats: _list[GoogleCloudIntegrationsV1alphaAttemptStats]
+    eventExecutionSnapshotsSize: str
     executionSnapshots: _list[GoogleCloudIntegrationsV1alphaExecutionSnapshot]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -2182,6 +2361,14 @@ class GoogleCloudIntegrationsV1alphaExecutionDetails(
         "RETRY_ON_HOLD",
         "SUSPENDED",
     ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecutionReplayInfo(
+    typing_extensions.TypedDict, total=False
+):
+    originalExecutionInfoId: str
+    replayReason: str
+    replayedExecutionInfoIds: _list[str]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecutionSnapshot(
@@ -2198,15 +2385,20 @@ class GoogleCloudIntegrationsV1alphaExecutionSnapshot(
 class GoogleCloudIntegrationsV1alphaExecutionSnapshotExecutionSnapshotMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    ancestorIterationNumbers: _list[str]
+    ancestorTaskNumbers: _list[str]
     executionAttempt: int
+    integrationName: str
     task: str
     taskAttempt: int
+    taskLabel: str
     taskNumber: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaFailurePolicy(
     typing_extensions.TypedDict, total=False
 ):
+    condition: str
     intervalTime: str
     maxRetries: int
     retryStrategy: typing_extensions.Literal[
@@ -2221,16 +2413,18 @@ class GoogleCloudIntegrationsV1alphaFailurePolicy(
     ]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaFile(typing_extensions.TypedDict, total=False):
+    integrationConfig: dict[str, typing.Any]
+    integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
+    type: typing_extensions.Literal[
+        "INTEGRATION_FILE_UNSPECIFIED", "INTEGRATION", "INTEGRATION_CONFIG_VARIABLES"
+    ]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGenerateTokenResponse(
     typing_extensions.TypedDict, total=False
 ):
     message: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGetBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGetClientMetadataResponse(
@@ -2255,7 +2449,10 @@ class GoogleCloudIntegrationsV1alphaIntegration(
     typing_extensions.TypedDict, total=False
 ):
     active: bool
+    createTime: str
+    creatorEmail: str
     description: str
+    lastModifierEmail: str
     name: str
     updateTime: str
 
@@ -2295,16 +2492,17 @@ class GoogleCloudIntegrationsV1alphaIntegrationAlertConfigThresholdValue(
     percentage: int
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaIntegrationBundleConfig(
+class GoogleCloudIntegrationsV1alphaIntegrationConfigParameter(
     typing_extensions.TypedDict, total=False
 ):
-    integrations: _list[str]
-    serviceAccount: str
+    parameter: GoogleCloudIntegrationsV1alphaIntegrationParameter
+    value: GoogleCloudIntegrationsV1alphaValueType
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationParameter(
     typing_extensions.TypedDict, total=False
 ):
+    containsLargeData: bool
     dataType: typing_extensions.Literal[
         "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
         "STRING_VALUE",
@@ -2327,6 +2525,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
     isTransient: bool
     jsonSchema: str
     key: str
+    masked: bool
     producer: str
     searchable: bool
 
@@ -2334,20 +2533,35 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
 class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     typing_extensions.TypedDict, total=False
 ):
+    cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
+    createdFromTemplate: str
     databasePersistencePolicy: typing_extensions.Literal[
-        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED", "DATABASE_PERSISTENCE_DISABLED"
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+        "DATABASE_PERSISTENCE_DISABLED",
+        "DATABASE_PERSISTENCE_ASYNC",
     ]
     description: str
+    enableVariableMasking: bool
+    errorCatcherConfigs: _list[GoogleCloudIntegrationsV1alphaErrorCatcherConfig]
+    integrationConfigParameters: _list[
+        GoogleCloudIntegrationsV1alphaIntegrationConfigParameter
+    ]
     integrationParameters: _list[GoogleCloudIntegrationsV1alphaIntegrationParameter]
     integrationParametersInternal: EnterpriseCrmFrontendsEventbusProtoWorkflowParameters
     lastModifierEmail: str
     lockHolder: str
     name: str
     origin: typing_extensions.Literal[
-        "UNSPECIFIED", "UI", "PIPER_V2", "PIPER_V3", "APPLICATION_IP_PROVISIONING"
+        "UNSPECIFIED",
+        "UI",
+        "PIPER_V2",
+        "PIPER_V3",
+        "APPLICATION_IP_PROVISIONING",
+        "TEST_CASE",
     ]
     parentTemplateId: str
+    runAsServiceAccount: str
     snapshotNumber: str
     state: typing_extensions.Literal[
         "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
@@ -2416,13 +2630,6 @@ class GoogleCloudIntegrationsV1alphaListConnectionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListExecutionSnapshotsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionSnapshots: _list[EnterpriseCrmEventbusProtoEventExecutionSnapshot]
-    nextPageToken: str
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListExecutionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2479,91 +2686,6 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
 ):
     nextPageToken: str
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListTaskEntitiesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    taskEntities: _list[EnterpriseCrmFrontendsEventbusProtoTaskEntity]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    duration: str
-    endTime: str
-    mashQuery: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery
-    metricFieldTable: bool
-    outputPeriod: str
-    responseTemplate: typing_extensions.Literal[
-        "DATA_FORMAT_UNSPECIFIED", "TABLE_CONFIG", "APLOSE_SERIES_LIST_CONFIG"
-    ]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy(
-    typing_extensions.TypedDict, total=False
-):
-    fields: _list[str]
-    reducer: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQuery(
-    typing_extensions.TypedDict, total=False
-):
-    firstQuery: (
-        GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent
-    )
-    operationMode: (
-        GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode
-    )
-    secondQuery: (
-        GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent
-    )
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryComponent(
-    typing_extensions.TypedDict, total=False
-):
-    borgTaskMetric: typing_extensions.Literal[
-        "BORG_TASK_METRIC_UNSPECIFIED",
-        "TASK_INDIVIDUAL_COUNT",
-        "EVENT_COUNT",
-        "EVENT_DURATION",
-        "TASK_INDIVIDUAL_DURATION",
-    ]
-    dataFilters: _list[str]
-    fetchFilters: _list[str]
-    groupBy: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestGroupBy
-    pointOperation: str
-    timeDelta: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationMode(
-    typing_extensions.TypedDict, total=False
-):
-    joinConfig: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig
-    operationType: typing_extensions.Literal[
-        "OPERATION_TYPE_UNSPECIFIED", "UNION", "JOIN"
-    ]
-    unionConfig: GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeJoinConfig(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsRequestMashQueryOperationModeUnionConfig(
-    typing_extensions.TypedDict, total=False
-):
-    reducer: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaMonitorExecutionStatsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    aplosSeriesListData: EnterpriseCrmCardsTemplatesAplosSeriesListData
-    tableData: EnterpriseCrmCardsTabularData
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
@@ -2680,6 +2802,14 @@ class GoogleCloudIntegrationsV1alphaParameterMapField(
 class GoogleCloudIntegrationsV1alphaProjectProperties(
     typing_extensions.TypedDict, total=False
 ):
+    billingType: typing_extensions.Literal[
+        "BILLING_TYPE_UNSPECIFIED",
+        "APIGEE_TRIALS",
+        "APIGEE_SUBSCRIPTION",
+        "PAYG",
+        "SUBSCRIPTION",
+        "NO_BILLING",
+    ]
     ipEnablementState: typing_extensions.Literal[
         "IP_ENABLEMENT_STATE_UNSPECIFIED",
         "IP_ENABLEMENT_STATE_STANDALONE",
@@ -2694,16 +2824,26 @@ class GoogleCloudIntegrationsV1alphaProvisionClientRequest(
 ):
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
     createSampleWorkflows: bool
+    provisionGmek: bool
+    runAsServiceAccount: str
+    skipCpProvision: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionRequest(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    configParameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest(
+    typing_extensions.TypedDict, total=False
+):
+    runAsServiceAccount: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionRequest(
@@ -2742,12 +2882,22 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest(
     requestId: str
     scheduleTime: str
     triggerId: str
+    userGeneratedExecutionId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     executionInfoIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSerializedFile(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+    file: typing_extensions.Literal[
+        "INTEGRATION_FILE_UNSPECIFIED", "INTEGRATION", "INTEGRATION_CONFIG_VARIABLES"
+    ]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaServiceAccountCredentials(
@@ -2839,6 +2989,18 @@ class GoogleCloudIntegrationsV1alphaSuspensionAudit(
     resolver: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSwitchEncryptionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSwitchVariableMaskingRequest(
+    typing_extensions.TypedDict, total=False
+):
+    enableVariableMasking: bool
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTakeoverEditLockRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -2855,6 +3017,10 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
 ):
     description: str
     displayName: str
+    errorCatcherId: str
+    externalTaskType: typing_extensions.Literal[
+        "EXTERNAL_TASK_TYPE_UNSPECIFIED", "NORMAL_TASK", "ERROR_TASK"
+    ]
     failurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
     jsonValidationOption: typing_extensions.Literal[
         "JSON_VALIDATION_OPTION_UNSPECIFIED",
@@ -2868,6 +3034,7 @@ class GoogleCloudIntegrationsV1alphaTaskConfig(
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
     parameters: dict[str, typing.Any]
+    position: GoogleCloudIntegrationsV1alphaCoordinate
     successPolicy: GoogleCloudIntegrationsV1alphaSuccessPolicy
     synchronousCallFailurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
     task: str
@@ -2907,6 +3074,7 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest(
     typing_extensions.TypedDict, total=False
 ):
     clientId: str
+    configParameters: dict[str, typing.Any]
     deadlineSecondsTime: str
     inputParameters: dict[str, typing.Any]
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
@@ -2931,12 +3099,15 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     alertConfig: _list[GoogleCloudIntegrationsV1alphaIntegrationAlertConfig]
     cloudSchedulerConfig: GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
     description: str
+    errorCatcherId: str
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
+    position: GoogleCloudIntegrationsV1alphaCoordinate
     properties: dict[str, typing.Any]
     startTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
+    trigger: str
     triggerId: str
     triggerNumber: str
     triggerType: typing_extensions.Literal[
@@ -2947,24 +3118,14 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
         "CLOUD_PUBSUB_EXTERNAL",
         "SFDC_CDC_CHANNEL",
         "CLOUD_SCHEDULER",
+        "INTEGRATION_CONNECTOR_TRIGGER",
+        "PRIVATE_TRIGGER",
     ]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest(
     typing_extensions.TypedDict, total=False
 ): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaUpdateBundleRequest(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaUpdateBundleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    config: GoogleCloudIntegrationsV1alphaIntegrationBundleConfig
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest(
@@ -2985,16 +3146,6 @@ class GoogleCloudIntegrationsV1alphaUsernameAndPassword(
 ):
     password: str
     username: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaValidateIntegrationVersionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaValidateIntegrationVersionResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaValueType(typing_extensions.TypedDict, total=False):
@@ -3018,10 +3169,13 @@ class GoogleInternalCloudCrmEventbusV3PostToQueueWithTriggerIdRequest(
     priority: typing_extensions.Literal[
         "UNSPCIFIED", "SHEDDABLE", "SHEDDABLE_PLUS", "CRITICAL", "CRITICAL_PLUS"
     ]
+    quotaRetryCount: int
     requestId: str
+    resourceName: str
     scheduledTime: str
     testMode: bool
     triggerId: str
+    userGeneratedExecutionId: str
     workflowName: str
 
 @typing.type_check_only

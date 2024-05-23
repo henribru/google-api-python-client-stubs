@@ -17,6 +17,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "DESTINATION_ENDPOINT_NOT_FOUND",
         "MISMATCHED_DESTINATION_NETWORK",
         "UNKNOWN_IP",
+        "GOOGLE_MANAGED_SERVICE_UNKNOWN_IP",
         "SOURCE_IP_ADDRESS_NOT_IN_SOURCE_NETWORK",
         "PERMISSION_DENIED",
         "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
@@ -37,6 +38,8 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
         "SOURCE_FORWARDING_RULE_UNSUPPORTED",
         "NON_ROUTABLE_IP_ADDRESS",
+        "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
+        "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -93,7 +96,6 @@ class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
 class CloudRunRevisionInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     location: str
-    serviceName: str
     serviceUri: str
     uri: str
 
@@ -108,6 +110,7 @@ class CloudSQLInstanceInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectivityTest(typing_extensions.TypedDict, total=False):
+    bypassFirewallChecks: bool
     createTime: str
     description: str
     destination: Endpoint
@@ -192,11 +195,14 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_FUNCTION_NOT_ACTIVE",
         "VPC_CONNECTOR_NOT_SET",
         "VPC_CONNECTOR_NOT_RUNNING",
+        "VPC_CONNECTOR_SERVERLESS_TRAFFIC_BLOCKED",
+        "VPC_CONNECTOR_HEALTH_CHECK_TRAFFIC_BLOCKED",
         "FORWARDING_RULE_REGION_MISMATCH",
         "PSC_CONNECTION_NOT_ACCEPTED",
         "PSC_ENDPOINT_ACCESSED_FROM_PEERED_NETWORK",
         "PSC_NEG_PRODUCER_ENDPOINT_NO_GLOBAL_ACCESS",
         "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
+        "CLOUD_SQL_PSC_NEG_UNSUPPORTED",
         "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
         "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
         "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
@@ -204,6 +210,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "DROPPED_INSIDE_PSC_SERVICE_PRODUCER",
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
         "CLOUD_NAT_NO_ADDRESSES",
+        "ROUTING_LOOP",
     ]
     destinationIp: str
     region: str

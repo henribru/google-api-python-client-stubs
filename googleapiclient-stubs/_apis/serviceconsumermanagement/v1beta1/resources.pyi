@@ -31,6 +31,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         parent: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
+                        forceJustification: str = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -50,6 +51,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         force: bool = ...,
+                        forceJustification: str = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",
@@ -83,6 +85,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: V1Beta1QuotaOverride = ...,
                         force: bool = ...,
+                        forceJustification: str = ...,
                         forceOnly: typing_extensions.Literal[
                             "QUOTA_SAFETY_CHECK_UNSPECIFIED",
                             "LIMIT_DECREASE_BELOW_USAGE",

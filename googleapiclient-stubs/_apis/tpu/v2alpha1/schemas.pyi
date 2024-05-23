@@ -293,6 +293,15 @@ class QueueingPolicy(typing_extensions.TypedDict, total=False):
 class Reservation(typing_extensions.TypedDict, total=False):
     name: str
     standard: Standard
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "APPROVED",
+        "PROVISIONING",
+        "ACTIVE",
+        "DEPROVISIONING",
+        "EXPIRED",
+        "FAILED",
+    ]
 
 @typing.type_check_only
 class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...

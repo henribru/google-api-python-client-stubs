@@ -334,7 +334,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def list(
-                self, *, parent: str, **kwargs: typing.Any
+                self, *, parent: str, showDeleted: bool = ..., **kwargs: typing.Any
             ) -> GoogleFirestoreAdminV1ListDatabasesResponseHttpRequest: ...
             def patch(
                 self,

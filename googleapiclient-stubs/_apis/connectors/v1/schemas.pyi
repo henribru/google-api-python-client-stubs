@@ -59,6 +59,14 @@ class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class BillingConfig(typing_extensions.TypedDict, total=False):
+    billingCategory: typing_extensions.Literal[
+        "BILLING_CATEGORY_UNSPECIFIED",
+        "GCP_AND_TECHNICAL_CONNECTOR",
+        "NON_GCP_CONNECTOR",
+    ]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -107,6 +115,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     authConfig: AuthConfig
+    billingConfig: BillingConfig
     configVariables: _list[ConfigVariable]
     connectionRevision: str
     connectorVersion: str
@@ -208,6 +217,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConnectorVersion(typing_extensions.TypedDict, total=False):
     authConfigTemplates: _list[AuthConfigTemplate]
+    authOverrideEnabled: bool
     configVariableTemplates: _list[ConfigVariableTemplate]
     connectorInfraConfig: ConnectorInfraConfig
     createTime: str
@@ -223,6 +233,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     releaseVersion: str
     roleGrant: RoleGrant
     roleGrants: _list[RoleGrant]
+    schemaRefreshConfig: SchemaRefreshConfig
     sslConfigTemplate: SslConfigTemplate
     supportedRuntimeFeatures: SupportedRuntimeFeatures
     unsupportedConnectionTypes: _list[
@@ -251,10 +262,12 @@ class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+    level: typing_extensions.Literal["LOG_LEVEL_UNSPECIFIED", "ERROR", "INFO", "DEBUG"]
 
 @typing.type_check_only
 class CustomConnector(typing_extensions.TypedDict, total=False):
     activeConnectorVersions: _list[str]
+    allConnectorVersions: _list[str]
     createTime: str
     customConnectorType: typing_extensions.Literal[
         "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
@@ -302,6 +315,11 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
     endDate: Date
     startDate: Date
     time: TimeOfDay
+
+@typing.type_check_only
+class DeprecateCustomConnectorVersionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
@@ -360,6 +378,7 @@ class EndPoint(typing_extensions.TypedDict, total=False):
 class EndpointAttachment(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    endpointGlobalAccess: bool
     endpointIp: str
     labels: dict[str, typing.Any]
     name: str
@@ -1091,6 +1110,11 @@ class RuntimeEntitySchema(typing_extensions.TypedDict, total=False):
     entity: str
     fields: _list[Field]
     jsonSchema: JsonSchema
+    operations: _list[
+        typing_extensions.Literal[
+            "OPERATION_UNSPECIFIED", "LIST", "GET", "CREATE", "UPDATE", "DELETE"
+        ]
+    ]
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):
@@ -1106,6 +1130,23 @@ class Schedule(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
+
+@typing.type_check_only
+class SchemaRefreshConfig(typing_extensions.TypedDict, total=False):
+    useActionDisplayNames: bool
+    useSynchronousSchemaRefresh: bool
+
+@typing.type_check_only
+class SearchConnectionInstance(typing_extensions.TypedDict, total=False):
+    actionSchema: RuntimeActionSchema
+    connection: Connection
+    entitySchema: RuntimeEntitySchema
+
+@typing.type_check_only
+class SearchConnectionsResponse(typing_extensions.TypedDict, total=False):
+    connections: _list[SearchConnectionInstance]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Secret(typing_extensions.TypedDict, total=False):

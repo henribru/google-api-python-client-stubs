@@ -148,6 +148,11 @@ class ListPaymentsResponse(typing_extensions.TypedDict, total=False):
     payments: _list[Payment]
 
 @typing.type_check_only
+class ListPolicyIssuesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    policyIssues: _list[PolicyIssue]
+
+@typing.type_check_only
 class ListSavedReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     savedReports: _list[SavedReport]
@@ -167,6 +172,35 @@ class Payment(typing_extensions.TypedDict, total=False):
     amount: str
     date: Date
     name: str
+
+@typing.type_check_only
+class PolicyIssue(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "ENFORCEMENT_ACTION_UNSPECIFIED",
+        "WARNED",
+        "AD_SERVING_RESTRICTED",
+        "AD_SERVING_DISABLED",
+        "AD_SERVED_WITH_CLICK_CONFIRMATION",
+        "AD_PERSONALIZATION_RESTRICTED",
+    ]
+    adClients: _list[str]
+    adRequestCount: str
+    entityType: typing_extensions.Literal[
+        "ENTITY_TYPE_UNSPECIFIED", "SITE", "SITE_SECTION", "PAGE"
+    ]
+    firstDetectedDate: Date
+    lastDetectedDate: Date
+    name: str
+    policyTopics: _list[PolicyTopic]
+    site: str
+    siteSection: str
+    uri: str
+    warningEscalationDate: Date
+
+@typing.type_check_only
+class PolicyTopic(typing_extensions.TypedDict, total=False):
+    mustFix: bool
+    topic: str
 
 @typing.type_check_only
 class ReportResult(typing_extensions.TypedDict, total=False):

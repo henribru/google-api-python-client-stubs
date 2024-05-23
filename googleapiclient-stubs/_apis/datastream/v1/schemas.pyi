@@ -5,6 +5,9 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AppendOnly(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AvroFileFormat(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -36,7 +39,9 @@ class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
+    appendOnly: AppendOnly
     dataFreshness: str
+    merge: Merge
     singleTargetDataset: SingleTargetDataset
     sourceHierarchyDatasets: SourceHierarchyDatasets
 
@@ -196,6 +201,9 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
+
+@typing.type_check_only
+class Merge(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class MostRecentStartPosition(typing_extensions.TypedDict, total=False): ...

@@ -164,6 +164,28 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
 
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "BRANCH_VIEW_UNSPECIFIED",
+                            "BRANCH_VIEW_BASIC",
+                            "BRANCH_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudRetailV2alphaBranchHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        view: typing_extensions.Literal[
+                            "BRANCH_VIEW_UNSPECIFIED",
+                            "BRANCH_VIEW_BASIC",
+                            "BRANCH_VIEW_FULL",
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudRetailV2alphaListBranchesResponseHttpRequest: ...
                     def operations(self) -> OperationsResource: ...
                     def places(self) -> PlacesResource: ...
                     def products(self) -> ProductsResource: ...
@@ -689,6 +711,14 @@ class GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponseHttpRequest(
     ) -> GoogleCloudRetailV2alphaBatchRemoveCatalogAttributesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaBranchHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2alphaBranch: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaCatalogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -733,6 +763,16 @@ class GoogleCloudRetailV2alphaGetDefaultBranchResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRetailV2alphaGetDefaultBranchResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaListBranchesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2alphaListBranchesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaListCatalogsResponseHttpRequest(

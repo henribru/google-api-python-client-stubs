@@ -23,6 +23,9 @@ class DetachLunRequest(typing_extensions.TypedDict, total=False):
     skipReboot: bool
 
 @typing.type_check_only
+class DisableHyperthreadingRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DisableInteractiveSerialConsoleRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -34,6 +37,9 @@ class DisableInteractiveSerialConsoleResponse(
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EnableHyperthreadingRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EnableInteractiveSerialConsoleRequest(
@@ -395,6 +401,12 @@ class ProvisioningQuota(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QosPolicy(typing_extensions.TypedDict, total=False):
     bandwidthGbps: float
+
+@typing.type_check_only
+class ReimageInstanceRequest(typing_extensions.TypedDict, total=False):
+    kmsKeyVersion: str
+    osImage: str
+    sshKeys: _list[str]
 
 @typing.type_check_only
 class RenameInstanceRequest(typing_extensions.TypedDict, total=False):

@@ -34,6 +34,11 @@ class GooglePrivacyDlpV2AllOtherBigQueryTables(
 ): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2AllOtherDatabaseResources(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2AllText(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -205,6 +210,30 @@ class GooglePrivacyDlpV2CharsToIgnore(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2CloudSqlDiscoveryTarget(
+    typing_extensions.TypedDict, total=False
+):
+    conditions: GooglePrivacyDlpV2DiscoveryCloudSqlConditions
+    disabled: GooglePrivacyDlpV2Disabled
+    filter: GooglePrivacyDlpV2DiscoveryCloudSqlFilter
+    generationCadence: GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence
+
+@typing.type_check_only
+class GooglePrivacyDlpV2CloudSqlIamCredential(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2CloudSqlProperties(typing_extensions.TypedDict, total=False):
+    cloudSqlIam: GooglePrivacyDlpV2CloudSqlIamCredential
+    connectionName: str
+    databaseEngine: typing_extensions.Literal[
+        "DATABASE_ENGINE_UNKNOWN", "DATABASE_ENGINE_MYSQL", "DATABASE_ENGINE_POSTGRES"
+    ]
+    maxConnections: int
+    usernamePassword: GooglePrivacyDlpV2SecretManagerCredential
+
+@typing.type_check_only
 class GooglePrivacyDlpV2CloudStorageFileSet(typing_extensions.TypedDict, total=False):
     url: str
 
@@ -271,6 +300,10 @@ class GooglePrivacyDlpV2ColumnDataProfile(typing_extensions.TypedDict, total=Fal
         "TYPE_RECORD",
         "TYPE_BIGNUMERIC",
         "TYPE_JSON",
+        "TYPE_INTERVAL",
+        "TYPE_RANGE_DATE",
+        "TYPE_RANGE_DATETIME",
+        "TYPE_RANGE_TIMESTAMP",
     ]
     dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
     datasetId: str
@@ -323,6 +356,15 @@ class GooglePrivacyDlpV2Conditions(typing_extensions.TypedDict, total=False):
     conditions: _list[GooglePrivacyDlpV2Condition]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2Connection(typing_extensions.TypedDict, total=False):
+    cloudSql: GooglePrivacyDlpV2CloudSqlProperties
+    errors: _list[GooglePrivacyDlpV2Error]
+    name: str
+    state: typing_extensions.Literal[
+        "CONNECTION_STATE_UNSPECIFIED", "MISSING_CREDENTIALS", "AVAILABLE", "ERROR"
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2Container(typing_extensions.TypedDict, total=False):
     fullPath: str
     projectId: str
@@ -347,6 +389,12 @@ class GooglePrivacyDlpV2ContentLocation(typing_extensions.TypedDict, total=False
     imageLocation: GooglePrivacyDlpV2ImageLocation
     metadataLocation: GooglePrivacyDlpV2MetadataLocation
     recordLocation: GooglePrivacyDlpV2RecordLocation
+
+@typing.type_check_only
+class GooglePrivacyDlpV2CreateConnectionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    connection: GooglePrivacyDlpV2Connection
 
 @typing.type_check_only
 class GooglePrivacyDlpV2CreateDeidentifyTemplateRequest(
@@ -512,6 +560,34 @@ class GooglePrivacyDlpV2DataRiskLevel(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2DataSourceType(typing_extensions.TypedDict, total=False):
     dataSource: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DatabaseResourceCollection(
+    typing_extensions.TypedDict, total=False
+):
+    includeRegexes: GooglePrivacyDlpV2DatabaseResourceRegexes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DatabaseResourceReference(
+    typing_extensions.TypedDict, total=False
+):
+    database: str
+    databaseResource: str
+    instance: str
+    projectId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DatabaseResourceRegex(typing_extensions.TypedDict, total=False):
+    databaseRegex: str
+    databaseResourceNameRegex: str
+    instanceRegex: str
+    projectIdRegex: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DatabaseResourceRegexes(
+    typing_extensions.TypedDict, total=False
+):
+    patterns: _list[GooglePrivacyDlpV2DatabaseResourceRegex]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DatastoreKey(typing_extensions.TypedDict, total=False):
@@ -680,7 +756,48 @@ class GooglePrivacyDlpV2DiscoveryBigQueryFilter(
     typing_extensions.TypedDict, total=False
 ):
     otherTables: GooglePrivacyDlpV2AllOtherBigQueryTables
+    tableReference: GooglePrivacyDlpV2TableReference
     tables: GooglePrivacyDlpV2BigQueryTableCollection
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryCloudSqlConditions(
+    typing_extensions.TypedDict, total=False
+):
+    databaseEngines: _list[
+        typing_extensions.Literal[
+            "DATABASE_ENGINE_UNSPECIFIED",
+            "ALL_SUPPORTED_DATABASE_ENGINES",
+            "MYSQL",
+            "POSTGRES",
+        ]
+    ]
+    types: _list[
+        typing_extensions.Literal[
+            "DATABASE_RESOURCE_TYPE_UNSPECIFIED",
+            "DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES",
+            "DATABASE_RESOURCE_TYPE_TABLE",
+        ]
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryCloudSqlFilter(
+    typing_extensions.TypedDict, total=False
+):
+    collection: GooglePrivacyDlpV2DatabaseResourceCollection
+    databaseResourceReference: GooglePrivacyDlpV2DatabaseResourceReference
+    others: GooglePrivacyDlpV2AllOtherDatabaseResources
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence(
+    typing_extensions.TypedDict, total=False
+):
+    refreshFrequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
+    schemaModifiedCadence: GooglePrivacyDlpV2SchemaModifiedCadence
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DiscoveryConfig(typing_extensions.TypedDict, total=False):
@@ -747,6 +864,8 @@ class GooglePrivacyDlpV2DiscoveryTableModifiedCadence(
 @typing.type_check_only
 class GooglePrivacyDlpV2DiscoveryTarget(typing_extensions.TypedDict, total=False):
     bigQueryTarget: GooglePrivacyDlpV2BigQueryDiscoveryTarget
+    cloudSqlTarget: GooglePrivacyDlpV2CloudSqlDiscoveryTarget
+    secretsTarget: GooglePrivacyDlpV2SecretsDiscoveryTarget
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
@@ -981,6 +1100,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "ISRAEL",
         "ITALY",
         "JAPAN",
+        "KAZAKHSTAN",
         "KOREA",
         "MEXICO",
         "THE_NETHERLANDS",
@@ -990,6 +1110,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "PERU",
         "POLAND",
         "PORTUGAL",
+        "RUSSIA",
         "SINGAPORE",
         "SOUTH_AFRICA",
         "SPAIN",
@@ -998,9 +1119,11 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "TAIWAN",
         "THAILAND",
         "TURKEY",
+        "UKRAINE",
         "UNITED_KINGDOM",
         "UNITED_STATES",
         "URUGUAY",
+        "UZBEKISTAN",
         "VENEZUELA",
         "INTERNAL",
     ]
@@ -1294,6 +1417,13 @@ class GooglePrivacyDlpV2ListColumnDataProfilesResponse(
     typing_extensions.TypedDict, total=False
 ):
     columnDataProfiles: _list[GooglePrivacyDlpV2ColumnDataProfile]
+    nextPageToken: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2ListConnectionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    connections: _list[GooglePrivacyDlpV2Connection]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1648,6 +1778,7 @@ class GooglePrivacyDlpV2RequestedRiskAnalysisOptions(
 class GooglePrivacyDlpV2Result(typing_extensions.TypedDict, total=False):
     hybridStats: GooglePrivacyDlpV2HybridInspectStatistics
     infoTypeStats: _list[GooglePrivacyDlpV2InfoTypeStats]
+    numRowsProcessed: str
     processedBytes: str
     totalEstimatedBytes: str
 
@@ -1668,6 +1799,39 @@ class GooglePrivacyDlpV2SaveFindings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Schedule(typing_extensions.TypedDict, total=False):
     recurrencePeriodDuration: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SchemaModifiedCadence(typing_extensions.TypedDict, total=False):
+    frequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
+    types: _list[
+        typing_extensions.Literal[
+            "SQL_SCHEMA_MODIFICATION_UNSPECIFIED", "NEW_COLUMNS", "REMOVED_COLUMNS"
+        ]
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SearchConnectionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    connections: _list[GooglePrivacyDlpV2Connection]
+    nextPageToken: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SecretManagerCredential(
+    typing_extensions.TypedDict, total=False
+):
+    passwordSecretVersionName: str
+    username: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SecretsDiscoveryTarget(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2SelectedInfoTypes(typing_extensions.TypedDict, total=False):
@@ -1777,6 +1941,7 @@ class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=Fals
     resourceVisibility: typing_extensions.Literal[
         "RESOURCE_VISIBILITY_UNSPECIFIED",
         "RESOURCE_VISIBILITY_PUBLIC",
+        "RESOURCE_VISIBILITY_INCONCLUSIVE",
         "RESOURCE_VISIBILITY_RESTRICTED",
     ]
     rowCount: str
@@ -1793,6 +1958,11 @@ class GooglePrivacyDlpV2TableLocation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2TableOptions(typing_extensions.TypedDict, total=False):
     identifyingFields: _list[GooglePrivacyDlpV2FieldId]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TableReference(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    tableId: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TaggedField(typing_extensions.TypedDict, total=False):
@@ -1935,6 +2105,13 @@ class GooglePrivacyDlpV2Trigger(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2UnwrappedCryptoKey(typing_extensions.TypedDict, total=False):
     key: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2UpdateConnectionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    connection: GooglePrivacyDlpV2Connection
+    updateMask: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest(
