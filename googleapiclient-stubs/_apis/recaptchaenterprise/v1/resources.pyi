@@ -85,6 +85,13 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class KeysResource(googleapiclient.discovery.Resource):
+            def addIpOverride(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponseHttpRequest: ...
             def create(
                 self,
                 *,
@@ -213,6 +220,16 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponseHttpRequest(

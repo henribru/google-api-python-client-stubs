@@ -5,6 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessSettings(typing_extensions.TypedDict, total=False):
+    accessState: typing_extensions.Literal[
+        "ACCESS_STATE_UNSPECIFIED", "PRIVATE", "DISCOVERABLE"
+    ]
+    audience: str
+
+@typing.type_check_only
 class AccessoryWidget(typing_extensions.TypedDict, total=False):
     buttonList: GoogleAppsCardV1ButtonList
 
@@ -814,6 +821,7 @@ class SlashCommandMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Space(typing_extensions.TypedDict, total=False):
+    accessSettings: AccessSettings
     adminInstalled: bool
     createTime: str
     displayName: str
@@ -834,6 +842,7 @@ class Space(typing_extensions.TypedDict, total=False):
     spaceType: typing_extensions.Literal[
         "SPACE_TYPE_UNSPECIFIED", "SPACE", "GROUP_CHAT", "DIRECT_MESSAGE"
     ]
+    spaceUri: str
     threaded: bool
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ROOM", "DM"]
 

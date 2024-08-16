@@ -100,6 +100,7 @@ class ConnectorConfigurationAsset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectorConfigurationAuthentication(typing_extensions.TypedDict, total=False):
+    serviceAccount: str
     usernamePassword: ConnectorConfigurationUsernamePassword
 
 @typing.type_check_only

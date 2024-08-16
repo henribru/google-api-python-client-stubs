@@ -10,6 +10,9 @@ class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     downloadBytes: str
+    fileSystemProtocol: typing_extensions.Literal[
+        "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
+    ]
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
@@ -32,6 +35,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "FINALIZING", "READY", "DELETING", "INVALID"
     ]
     storageBytes: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -184,6 +188,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     protocol: typing_extensions.Literal[
         "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
     ]
+    replication: Replication
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
@@ -204,6 +209,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     suspensionReasons: _list[
         typing_extensions.Literal["SUSPENSION_REASON_UNSPECIFIED", "KMS_KEY_ISSUE"]
     ]
+    tags: dict[str, typing.Any]
     tier: typing_extensions.Literal[
         "TIER_UNSPECIFIED",
         "STANDARD",
@@ -326,6 +332,24 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class ReplicaConfig(typing_extensions.TypedDict, total=False):
+    lastActiveSyncTime: str
+    peerInstance: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "READY", "REMOVING", "FAILED"
+    ]
+    stateReasons: _list[
+        typing_extensions.Literal[
+            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE"
+        ]
+    ]
+
+@typing.type_check_only
+class Replication(typing_extensions.TypedDict, total=False):
+    replicas: _list[ReplicaConfig]
+    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "ACTIVE", "STANDBY"]
+
+@typing.type_check_only
 class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
     fileShare: str
     sourceBackup: str
@@ -374,6 +398,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING"
     ]
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

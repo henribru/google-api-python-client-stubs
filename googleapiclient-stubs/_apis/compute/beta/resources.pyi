@@ -786,6 +786,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def addPacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def addRule(
             self,
             *,
@@ -818,6 +826,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getPacketMirroringRule(
+            self, *, firewallPolicy: str, priority: int = ..., **kwargs: typing.Any
+        ) -> FirewallPolicyRuleHttpRequest: ...
         def getRule(
             self, *, firewallPolicy: str, priority: int = ..., **kwargs: typing.Any
         ) -> FirewallPolicyRuleHttpRequest: ...
@@ -864,6 +875,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def patchPacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def patchRule(
             self,
             *,
@@ -878,6 +898,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             *,
             firewallPolicy: str,
             name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def removePacketMirroringRule(
+            self,
+            *,
+            firewallPolicy: str,
+            priority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3691,6 +3719,17 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def addPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            maxPriority: int = ...,
+            minPriority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def addRule(
             self,
             *,
@@ -3738,6 +3777,14 @@ class ComputeResource(googleapiclient.discovery.Resource):
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            priority: int = ...,
+            **kwargs: typing.Any,
+        ) -> FirewallPolicyRuleHttpRequest: ...
         def getRule(
             self,
             *,
@@ -3779,6 +3826,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def patchPacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            body: FirewallPolicyRule = ...,
+            priority: int = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def patchRule(
             self,
             *,
@@ -3795,6 +3852,15 @@ class ComputeResource(googleapiclient.discovery.Resource):
             project: str,
             firewallPolicy: str,
             name: str = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def removePacketMirroringRule(
+            self,
+            *,
+            project: str,
+            firewallPolicy: str,
+            priority: int = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...

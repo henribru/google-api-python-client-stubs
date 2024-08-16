@@ -26,7 +26,11 @@ class Backup(typing_extensions.TypedDict, total=False):
     clusterUid: str
     createTime: str
     databaseVersion: typing_extensions.Literal[
-        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_13", "POSTGRES_14", "POSTGRES_15"
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
     ]
     deleteTime: str
     description: str
@@ -81,7 +85,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     continuousBackupInfo: ContinuousBackupInfo
     createTime: str
     databaseVersion: typing_extensions.Literal[
-        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_13", "POSTGRES_14", "POSTGRES_15"
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
     ]
     deleteTime: str
     displayName: str
@@ -115,6 +123,10 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "MAINTENANCE",
         "PROMOTING",
     ]
+    subscriptionType: typing_extensions.Literal[
+        "SUBSCRIPTION_TYPE_UNSPECIFIED", "STANDARD", "TRIAL"
+    ]
+    trialMetadata: TrialMetadata
     uid: str
     updateTime: str
 
@@ -235,6 +247,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     networkConfig: InstanceNetworkConfig
     nodes: _list[Node]
     observabilityConfig: ObservabilityInstanceConfig
+    outboundPublicIpAddresses: _list[str]
     pscInstanceConfig: PscInstanceConfig
     publicIpAddress: str
     queryInsightsConfig: QueryInsightsInstanceConfig
@@ -260,6 +273,7 @@ class Instance(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
     authorizedExternalNetworks: _list[AuthorizedNetwork]
+    enableOutboundPublicIp: bool
     enablePublicIp: bool
 
 @typing.type_check_only
@@ -517,6 +531,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
     ]
+    observabilityMetricData: (
+        StorageDatabasecenterPartnerapiV1mainObservabilityMetricData
+    )
     recommendationSignalData: (
         StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData
     )
@@ -572,9 +589,17 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
         "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+        "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
         "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
         "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+        "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+        "SIGNAL_TYPE_VIOLATES_HIPAA",
+        "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
         "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
         "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
         "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -624,6 +649,10 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+        "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+        "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -686,13 +715,13 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     location: str
+    machineConfiguration: StorageDatabasecenterPartnerapiV1mainMachineConfiguration
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     product: StorageDatabasecenterProtoCommonProduct
     resourceContainer: str
     resourceName: str
     updationTime: str
     userLabelSet: StorageDatabasecenterPartnerapiV1mainUserLabels
-    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData(
@@ -723,9 +752,17 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
         "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+        "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
         "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
         "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+        "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+        "SIGNAL_TYPE_VIOLATES_HIPAA",
+        "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
         "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
         "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
         "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -775,6 +812,10 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+        "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+        "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
     ]
 
 @typing.type_check_only
@@ -785,6 +826,32 @@ class StorageDatabasecenterPartnerapiV1mainEntitlement(
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
     ]
     type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainMachineConfiguration(
+    typing_extensions.TypedDict, total=False
+):
+    cpuCount: int
+    memorySizeInBytes: str
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainObservabilityMetricData(
+    typing_extensions.TypedDict, total=False
+):
+    aggregationType: typing_extensions.Literal[
+        "AGGREGATION_TYPE_UNSPECIFIED", "PEAK", "P99", "P95", "CURRENT"
+    ]
+    metricType: typing_extensions.Literal[
+        "METRIC_TYPE_UNSPECIFIED",
+        "CPU_UTILIZATION",
+        "MEMORY_UTILIZATION",
+        "NETWORK_CONNECTIONS",
+        "STORAGE_UTILIZATION",
+        "STORAGE_USED_BYTES",
+    ]
+    observationTime: str
+    resourceName: str
+    value: StorageDatabasecenterProtoCommonTypedValue
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainOperationError(
@@ -852,6 +919,15 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
     version: str
 
 @typing.type_check_only
+class StorageDatabasecenterProtoCommonTypedValue(
+    typing_extensions.TypedDict, total=False
+):
+    boolValue: bool
+    doubleValue: float
+    int64Value: str
+    stringValue: str
+
+@typing.type_check_only
 class StringRestrictions(typing_extensions.TypedDict, total=False):
     allowedValues: _list[str]
 
@@ -865,7 +941,11 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
     stringRestrictions: StringRestrictions
     supportedDbVersions: _list[
         typing_extensions.Literal[
-            "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_13", "POSTGRES_14", "POSTGRES_15"
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
         ]
     ]
     valueType: typing_extensions.Literal[
@@ -873,8 +953,19 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SwitchoverClusterRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    validateOnly: bool
+
+@typing.type_check_only
 class TimeBasedRetention(typing_extensions.TypedDict, total=False):
     retentionPeriod: str
+
+@typing.type_check_only
+class TrialMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    upgradeTime: str
 
 @typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):

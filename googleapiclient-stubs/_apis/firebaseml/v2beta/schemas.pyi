@@ -5,14 +5,21 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class Blob(typing_extensions.TypedDict, total=False):
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1Blob(typing_extensions.TypedDict, total=False):
     data: str
     mimeType: str
 
 @typing.type_check_only
-class Candidate(typing_extensions.TypedDict, total=False):
-    citationMetadata: CitationMetadata
-    content: Content
+class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=False):
+    avgLogprobs: float
+    citationMetadata: GoogleCloudAiplatformV1beta1CitationMetadata
+    content: GoogleCloudAiplatformV1beta1Content
     finishMessage: str
     finishReason: typing_extensions.Literal[
         "FINISH_REASON_UNSPECIFIED",
@@ -24,13 +31,14 @@ class Candidate(typing_extensions.TypedDict, total=False):
         "BLOCKLIST",
         "PROHIBITED_CONTENT",
         "SPII",
+        "MALFORMED_FUNCTION_CALL",
     ]
-    groundingMetadata: GroundingMetadata
+    groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
-    safetyRatings: _list[SafetyRating]
+    safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
 
 @typing.type_check_only
-class Citation(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1Citation(typing_extensions.TypedDict, total=False):
     endIndex: int
     license: str
     publicationDate: Date
@@ -39,114 +47,92 @@ class Citation(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class CitationMetadata(typing_extensions.TypedDict, total=False):
-    citations: _list[Citation]
+class GoogleCloudAiplatformV1beta1CitationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    citations: _list[GoogleCloudAiplatformV1beta1Citation]
 
 @typing.type_check_only
-class Content(typing_extensions.TypedDict, total=False):
-    parts: _list[Part]
+class GoogleCloudAiplatformV1beta1Content(typing_extensions.TypedDict, total=False):
+    parts: _list[GoogleCloudAiplatformV1beta1Part]
     role: str
 
 @typing.type_check_only
-class CountTokensRequest(typing_extensions.TypedDict, total=False):
-    contents: _list[Content]
+class GoogleCloudAiplatformV1beta1CountTokensRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contents: _list[GoogleCloudAiplatformV1beta1Content]
     instances: _list[typing.Any]
     model: str
+    systemInstruction: GoogleCloudAiplatformV1beta1Content
+    tools: _list[GoogleCloudAiplatformV1beta1Tool]
 
 @typing.type_check_only
-class CountTokensResponse(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1CountTokensResponse(
+    typing_extensions.TypedDict, total=False
+):
     totalBillableCharacters: int
     totalTokens: int
 
 @typing.type_check_only
-class Date(typing_extensions.TypedDict, total=False):
-    day: int
-    month: int
-    year: int
-
-@typing.type_check_only
-class FileData(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1FileData(typing_extensions.TypedDict, total=False):
     fileUri: str
     mimeType: str
 
 @typing.type_check_only
-class FunctionCall(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1FunctionCall(
+    typing_extensions.TypedDict, total=False
+):
     args: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
-class FunctionCallingConfig(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1FunctionCallingConfig(
+    typing_extensions.TypedDict, total=False
+):
     allowedFunctionNames: _list[str]
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "AUTO", "ANY", "NONE"]
 
 @typing.type_check_only
-class FunctionDeclaration(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1FunctionDeclaration(
+    typing_extensions.TypedDict, total=False
+):
     description: str
     name: str
-    parameters: Schema
-    response: Schema
+    parameters: GoogleCloudAiplatformV1beta1Schema
+    response: GoogleCloudAiplatformV1beta1Schema
 
 @typing.type_check_only
-class FunctionResponse(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1FunctionResponse(
+    typing_extensions.TypedDict, total=False
+):
     name: str
     response: dict[str, typing.Any]
 
 @typing.type_check_only
-class GenerateContentRequest(typing_extensions.TypedDict, total=False):
-    contents: _list[Content]
-    generationConfig: GenerationConfig
-    safetySettings: _list[SafetySetting]
-    systemInstruction: Content
-    toolConfig: ToolConfig
-    tools: _list[Tool]
+class GoogleCloudAiplatformV1beta1GenerateContentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    cachedContent: str
+    contents: _list[GoogleCloudAiplatformV1beta1Content]
+    generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
+    safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
+    systemInstruction: GoogleCloudAiplatformV1beta1Content
+    toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
+    tools: _list[GoogleCloudAiplatformV1beta1Tool]
 
 @typing.type_check_only
-class GenerateContentResponse(typing_extensions.TypedDict, total=False):
-    candidates: _list[Candidate]
-    promptFeedback: PromptFeedback
-    usageMetadata: UsageMetadata
+class GoogleCloudAiplatformV1beta1GenerateContentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    candidates: _list[GoogleCloudAiplatformV1beta1Candidate]
+    promptFeedback: GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback
+    usageMetadata: GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata
 
 @typing.type_check_only
-class GenerationConfig(typing_extensions.TypedDict, total=False):
-    candidateCount: int
-    frequencyPenalty: float
-    maxOutputTokens: int
-    presencePenalty: float
-    responseMimeType: str
-    stopSequences: _list[str]
-    temperature: float
-    topK: float
-    topP: float
-
-@typing.type_check_only
-class GoogleSearchRetrieval(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class GroundingMetadata(typing_extensions.TypedDict, total=False):
-    retrievalQueries: _list[str]
-    searchEntryPoint: SearchEntryPoint
-    webSearchQueries: _list[str]
-
-@typing.type_check_only
-class ModelOperationMetadata(typing_extensions.TypedDict, total=False):
-    basicOperationStatus: typing_extensions.Literal[
-        "BASIC_OPERATION_STATUS_UNSPECIFIED",
-        "BASIC_OPERATION_STATUS_UPLOADING",
-        "BASIC_OPERATION_STATUS_VERIFYING",
-    ]
-    name: str
-
-@typing.type_check_only
-class Part(typing_extensions.TypedDict, total=False):
-    fileData: FileData
-    functionCall: FunctionCall
-    functionResponse: FunctionResponse
-    inlineData: Blob
-    text: str
-    videoMetadata: VideoMetadata
-
-@typing.type_check_only
-class PromptFeedback(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback(
+    typing_extensions.TypedDict, total=False
+):
     blockReason: typing_extensions.Literal[
         "BLOCKED_REASON_UNSPECIFIED",
         "SAFETY",
@@ -155,21 +141,119 @@ class PromptFeedback(typing_extensions.TypedDict, total=False):
         "PROHIBITED_CONTENT",
     ]
     blockReasonMessage: str
-    safetyRatings: _list[SafetyRating]
+    safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
 
 @typing.type_check_only
-class RagResource(typing_extensions.TypedDict, total=False):
-    ragCorpus: str
-    ragFileIds: _list[str]
+class GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    candidatesTokenCount: int
+    promptTokenCount: int
+    totalTokenCount: int
 
 @typing.type_check_only
-class Retrieval(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1GenerationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    candidateCount: int
+    frequencyPenalty: float
+    maxOutputTokens: int
+    presencePenalty: float
+    responseMimeType: str
+    responseSchema: GoogleCloudAiplatformV1beta1Schema
+    routingConfig: GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig
+    seed: int
+    stopSequences: _list[str]
+    temperature: float
+    topK: float
+    topP: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    autoMode: GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode
+    manualMode: (
+        GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode
+    )
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode(
+    typing_extensions.TypedDict, total=False
+):
+    modelRoutingPreference: typing_extensions.Literal[
+        "UNKNOWN", "PRIORITIZE_QUALITY", "BALANCED", "PRIORITIZE_COST"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode(
+    typing_extensions.TypedDict, total=False
+):
+    modelName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GoogleSearchRetrieval(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunk(
+    typing_extensions.TypedDict, total=False
+):
+    retrievedContext: GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext
+    web: GoogleCloudAiplatformV1beta1GroundingChunkWeb
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext(
+    typing_extensions.TypedDict, total=False
+):
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingChunkWeb(
+    typing_extensions.TypedDict, total=False
+):
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    groundingChunks: _list[GoogleCloudAiplatformV1beta1GroundingChunk]
+    groundingSupports: _list[GoogleCloudAiplatformV1beta1GroundingSupport]
+    retrievalQueries: _list[str]
+    searchEntryPoint: GoogleCloudAiplatformV1beta1SearchEntryPoint
+    webSearchQueries: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1GroundingSupport(
+    typing_extensions.TypedDict, total=False
+):
+    confidenceScores: _list[float]
+    groundingChunkIndices: _list[int]
+    segment: GoogleCloudAiplatformV1beta1Segment
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False):
+    fileData: GoogleCloudAiplatformV1beta1FileData
+    functionCall: GoogleCloudAiplatformV1beta1FunctionCall
+    functionResponse: GoogleCloudAiplatformV1beta1FunctionResponse
+    inlineData: GoogleCloudAiplatformV1beta1Blob
+    text: str
+    videoMetadata: GoogleCloudAiplatformV1beta1VideoMetadata
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1Retrieval(typing_extensions.TypedDict, total=False):
     disableAttribution: bool
-    vertexAiSearch: VertexAISearch
-    vertexRagStore: VertexRagStore
+    vertexAiSearch: GoogleCloudAiplatformV1beta1VertexAISearch
+    vertexRagStore: GoogleCloudAiplatformV1beta1VertexRagStore
 
 @typing.type_check_only
-class SafetyRating(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1SafetyRating(
+    typing_extensions.TypedDict, total=False
+):
     blocked: bool
     category: typing_extensions.Literal[
         "HARM_CATEGORY_UNSPECIFIED",
@@ -192,7 +276,9 @@ class SafetyRating(typing_extensions.TypedDict, total=False):
     severityScore: float
 
 @typing.type_check_only
-class SafetySetting(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1SafetySetting(
+    typing_extensions.TypedDict, total=False
+):
     category: typing_extensions.Literal[
         "HARM_CATEGORY_UNSPECIFIED",
         "HARM_CATEGORY_HATE_SPEECH",
@@ -212,13 +298,13 @@ class SafetySetting(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class Schema(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=False):
     default: typing.Any
     description: str
     enum: _list[str]
     example: typing.Any
     format: str
-    items: Schema
+    items: GoogleCloudAiplatformV1beta1Schema
     maxItems: str
     maxLength: str
     maxProperties: str
@@ -237,38 +323,63 @@ class Schema(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class SearchEntryPoint(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1SearchEntryPoint(
+    typing_extensions.TypedDict, total=False
+):
     renderedContent: str
     sdkBlob: str
 
 @typing.type_check_only
-class Tool(typing_extensions.TypedDict, total=False):
-    functionDeclarations: _list[FunctionDeclaration]
-    googleSearchRetrieval: GoogleSearchRetrieval
-    retrieval: Retrieval
+class GoogleCloudAiplatformV1beta1Segment(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    partIndex: int
+    startIndex: int
+    text: str
 
 @typing.type_check_only
-class ToolConfig(typing_extensions.TypedDict, total=False):
-    functionCallingConfig: FunctionCallingConfig
+class GoogleCloudAiplatformV1beta1Tool(typing_extensions.TypedDict, total=False):
+    functionDeclarations: _list[GoogleCloudAiplatformV1beta1FunctionDeclaration]
+    googleSearchRetrieval: GoogleCloudAiplatformV1beta1GoogleSearchRetrieval
+    retrieval: GoogleCloudAiplatformV1beta1Retrieval
 
 @typing.type_check_only
-class UsageMetadata(typing_extensions.TypedDict, total=False):
-    candidatesTokenCount: int
-    promptTokenCount: int
-    totalTokenCount: int
+class GoogleCloudAiplatformV1beta1ToolConfig(typing_extensions.TypedDict, total=False):
+    functionCallingConfig: GoogleCloudAiplatformV1beta1FunctionCallingConfig
 
 @typing.type_check_only
-class VertexAISearch(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1VertexAISearch(
+    typing_extensions.TypedDict, total=False
+):
     datastore: str
 
 @typing.type_check_only
-class VertexRagStore(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1VertexRagStore(
+    typing_extensions.TypedDict, total=False
+):
     ragCorpora: _list[str]
-    ragResources: _list[RagResource]
+    ragResources: _list[GoogleCloudAiplatformV1beta1VertexRagStoreRagResource]
     similarityTopK: int
     vectorDistanceThreshold: float
 
 @typing.type_check_only
-class VideoMetadata(typing_extensions.TypedDict, total=False):
+class GoogleCloudAiplatformV1beta1VertexRagStoreRagResource(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpus: str
+    ragFileIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1VideoMetadata(
+    typing_extensions.TypedDict, total=False
+):
     endOffset: str
     startOffset: str
+
+@typing.type_check_only
+class ModelOperationMetadata(typing_extensions.TypedDict, total=False):
+    basicOperationStatus: typing_extensions.Literal[
+        "BASIC_OPERATION_STATUS_UNSPECIFIED",
+        "BASIC_OPERATION_STATUS_UPLOADING",
+        "BASIC_OPERATION_STATUS_VERIFYING",
+    ]
+    name: str

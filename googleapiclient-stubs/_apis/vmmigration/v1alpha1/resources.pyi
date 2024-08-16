@@ -208,6 +208,23 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
+                class DiskMigrationJobsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelDiskMigrationJobRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def run(
+                        self,
+                        *,
+                        name: str,
+                        body: RunDiskMigrationJobRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class MigratingVmsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class CloneJobsResource(googleapiclient.discovery.Resource):
@@ -484,6 +501,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def datacenterConnectors(self) -> DatacenterConnectorsResource: ...
+                def diskMigrationJobs(self) -> DiskMigrationJobsResource: ...
                 def migratingVms(self) -> MigratingVmsResource: ...
                 def utilizationReports(self) -> UtilizationReportsResource: ...
 

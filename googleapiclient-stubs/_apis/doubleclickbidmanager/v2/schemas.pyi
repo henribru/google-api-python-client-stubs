@@ -72,6 +72,8 @@ class Parameters(typing_extensions.TypedDict, total=False):
         "YOUTUBE_PROGRAMMATIC_GUARANTEED",
         "REACH",
         "UNIQUE_REACH_AUDIENCE",
+        "FULL_PATH",
+        "PATH_ATTRIBUTION",
     ]
 
 @typing.type_check_only

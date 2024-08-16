@@ -17,6 +17,24 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AuthzExtension(typing_extensions.TypedDict, total=False):
+    authority: str
+    createTime: str
+    description: str
+    failOpen: bool
+    forwardHeaders: _list[str]
+    labels: dict[str, typing.Any]
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
+    ]
+    metadata: dict[str, typing.Any]
+    name: str
+    service: str
+    timeout: str
+    updateTime: str
+    wireFormat: typing_extensions.Literal["WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC"]
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -341,6 +359,7 @@ class LbRouteExtension(typing_extensions.TypedDict, total=False):
     loadBalancingScheme: typing_extensions.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
+    metadata: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -354,8 +373,15 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     loadBalancingScheme: typing_extensions.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
+    metadata: dict[str, typing.Any]
     name: str
     updateTime: str
+
+@typing.type_check_only
+class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):
+    authzExtensions: _list[AuthzExtension]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):

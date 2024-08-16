@@ -5,6 +5,42 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddOnAttachment(typing_extensions.TypedDict, total=False):
+    copyHistory: _list[CopyHistory]
+    courseId: str
+    dueDate: Date
+    dueTime: TimeOfDay
+    id: str
+    itemId: str
+    maxPoints: float
+    postId: str
+    studentViewUri: EmbedUri
+    studentWorkReviewUri: EmbedUri
+    teacherViewUri: EmbedUri
+    title: str
+
+@typing.type_check_only
+class AddOnAttachmentStudentSubmission(typing_extensions.TypedDict, total=False):
+    pointsEarned: float
+    postSubmissionState: typing_extensions.Literal[
+        "SUBMISSION_STATE_UNSPECIFIED",
+        "NEW",
+        "CREATED",
+        "TURNED_IN",
+        "RETURNED",
+        "RECLAIMED_BY_STUDENT",
+    ]
+
+@typing.type_check_only
+class AddOnContext(typing_extensions.TypedDict, total=False):
+    courseId: str
+    itemId: str
+    postId: str
+    studentContext: StudentContext
+    supportsStudentWork: bool
+    teacherContext: TeacherContext
+
+@typing.type_check_only
 class Announcement(typing_extensions.TypedDict, total=False):
     alternateLink: str
     assigneeMode: typing_extensions.Literal[
@@ -41,6 +77,13 @@ class Attachment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudPubsubTopic(typing_extensions.TypedDict, total=False):
     topicName: str
+
+@typing.type_check_only
+class CopyHistory(typing_extensions.TypedDict, total=False):
+    attachmentId: str
+    courseId: str
+    itemId: str
+    postId: str
 
 @typing.type_check_only
 class Course(typing_extensions.TypedDict, total=False):
@@ -175,6 +218,10 @@ class DriveFolder(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class EmbedUri(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -267,6 +314,11 @@ class Link(typing_extensions.TypedDict, total=False):
     thumbnailUrl: str
     title: str
     url: str
+
+@typing.type_check_only
+class ListAddOnAttachmentsResponse(typing_extensions.TypedDict, total=False):
+    addOnAttachments: _list[AddOnAttachment]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListAnnouncementsResponse(typing_extensions.TypedDict, total=False):
@@ -417,6 +469,10 @@ class Student(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class StudentContext(typing_extensions.TypedDict, total=False):
+    submissionId: str
+
+@typing.type_check_only
 class StudentSubmission(typing_extensions.TypedDict, total=False):
     alternateLink: str
     assignedGrade: float
@@ -458,6 +514,9 @@ class Teacher(typing_extensions.TypedDict, total=False):
     courseId: str
     profile: UserProfile
     userId: str
+
+@typing.type_check_only
+class TeacherContext(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

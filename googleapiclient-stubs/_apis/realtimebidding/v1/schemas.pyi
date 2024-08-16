@@ -210,6 +210,10 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
             "RENDERING_PLAYABLE",
         ]
     ]
+    detectedCategories: _list[str]
+    detectedCategoriesTaxonomy: typing_extensions.Literal[
+        "AD_CATEGORY_TAXONOMY_UNSPECIFIED", "IAB_CONTENT_1_0"
+    ]
     detectedClickThroughUrls: _list[str]
     detectedDomains: _list[str]
     detectedLanguages: _list[str]
@@ -478,6 +482,7 @@ class PretargetingConfig(typing_extensions.TypedDict, total=False):
             "GOOGLE_COOKIE",
             "DEVICE_ID",
             "PUBLISHER_PROVIDED_ID",
+            "PUBLISHER_FIRST_PARTY_ID",
         ]
     ]
     interstitialTargeting: typing_extensions.Literal[

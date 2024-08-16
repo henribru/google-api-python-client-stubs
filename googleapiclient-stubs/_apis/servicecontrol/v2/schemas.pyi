@@ -267,6 +267,7 @@ class V2LogEntrySourceLocation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class V2ResourceEvent(typing_extensions.TypedDict, total=False):
+    contextId: str
     destinations: str
     parent: Resource
     path: typing_extensions.Literal["API_PATH_UNSPECIFIED", "REQUEST", "RESPONSE"]

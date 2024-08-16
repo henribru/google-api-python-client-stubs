@@ -102,6 +102,52 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
+                @typing.type_check_only
+                class ProducerQuotaPoliciesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: V1Beta1ProducerQuotaPolicy = ...,
+                        force: bool = ...,
+                        forceJustification: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        force: bool = ...,
+                        forceJustification: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> V1Beta1ListProducerQuotaPoliciesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: V1Beta1ListProducerQuotaPoliciesResponseHttpRequest,
+                        previous_response: V1Beta1ListProducerQuotaPoliciesResponse,
+                    ) -> V1Beta1ListProducerQuotaPoliciesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: V1Beta1ProducerQuotaPolicy = ...,
+                        force: bool = ...,
+                        forceJustification: str = ...,
+                        updateMask: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
                 def get(
                     self,
                     *,
@@ -112,6 +158,7 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> V1Beta1ConsumerQuotaLimitHttpRequest: ...
                 def producerOverrides(self) -> ProducerOverridesResource: ...
+                def producerQuotaPolicies(self) -> ProducerQuotaPoliciesResource: ...
 
             def get(
                 self,
@@ -127,6 +174,13 @@ class ServiceConsumerManagementResource(googleapiclient.discovery.Resource):
                 *,
                 parent: str,
                 body: V1Beta1ImportProducerOverridesRequest = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+            def importProducerQuotaPolicies(
+                self,
+                *,
+                parent: str,
+                body: V1Beta1ImportProducerQuotaPoliciesRequest = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def list(
@@ -205,3 +259,13 @@ class V1Beta1ListProducerOverridesResponseHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> V1Beta1ListProducerOverridesResponse: ...
+
+@typing.type_check_only
+class V1Beta1ListProducerQuotaPoliciesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> V1Beta1ListProducerQuotaPoliciesResponse: ...

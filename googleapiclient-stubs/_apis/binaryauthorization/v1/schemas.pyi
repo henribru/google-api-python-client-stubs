@@ -207,6 +207,7 @@ class PkixPublicKeySet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PlatformPolicy(typing_extensions.TypedDict, total=False):
     description: str
+    etag: str
     gkePolicy: GkePolicy
     name: str
     updateTime: str

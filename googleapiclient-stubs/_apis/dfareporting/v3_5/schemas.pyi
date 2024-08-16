@@ -196,7 +196,18 @@ class MediaResponseInfo(typing_extensions.TypedDict, total=False):
     scottyAgentUserId: str
     scottyCustomerLog: str
     trafficClassField: typing_extensions.Literal[
-        "BE1", "AF1", "AF2", "AF3", "AF4", "NC1", "NC0", "BE0", "LLQ", "LLQ1", "LLQ2"
+        "BE1",
+        "AF1",
+        "AF2",
+        "AF3",
+        "AF4",
+        "NC1",
+        "NC0",
+        "BE0",
+        "LLQ",
+        "LLQ1",
+        "LLQ2",
+        "LLQ3",
     ]
     verifyHashFromHeader: bool
 

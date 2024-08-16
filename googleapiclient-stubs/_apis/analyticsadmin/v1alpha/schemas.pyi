@@ -458,6 +458,7 @@ class GoogleAnalyticsAdminV1alphaBatchUpdateAccessBindingsResponse(
 class GoogleAnalyticsAdminV1alphaBigQueryLink(typing_extensions.TypedDict, total=False):
     createTime: str
     dailyExportEnabled: bool
+    datasetLocation: str
     excludedEvents: _list[str]
     exportStreams: _list[str]
     freshDailyExportEnabled: bool
@@ -698,20 +699,6 @@ class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse(
     ]
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest(
-    typing_extensions.TypedDict, total=False
-):
-    subproperty: GoogleAnalyticsAdminV1alphaProperty
-    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse(
-    typing_extensions.TypedDict, total=False
-):
-    subproperty: GoogleAnalyticsAdminV1alphaProperty
-    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCustomDimension(
     typing_extensions.TypedDict, total=False
 ):
@@ -885,6 +872,16 @@ class GoogleAnalyticsAdminV1alphaEventCreateRule(
     name: str
     parameterMutations: _list[GoogleAnalyticsAdminV1alphaParameterMutation]
     sourceCopyParameters: bool
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEventEditRule(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    eventConditions: _list[GoogleAnalyticsAdminV1alphaMatchingCondition]
+    name: str
+    parameterMutations: _list[GoogleAnalyticsAdminV1alphaParameterMutation]
+    processingOrder: str
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaEventMapping(typing_extensions.TypedDict, total=False):
@@ -1170,6 +1167,13 @@ class GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListEventEditRulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    eventEditRules: _list[GoogleAnalyticsAdminV1alphaEventEditRule]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1376,6 +1380,26 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse(
     accountTicketId: str
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    subproperty: GoogleAnalyticsAdminV1alphaProperty
+    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    subproperty: GoogleAnalyticsAdminV1alphaProperty
+    subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    eventEditRules: _list[str]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRollupPropertySourceLink(
     typing_extensions.TypedDict, total=False
 ):
@@ -1466,6 +1490,7 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
             "ATTRIBUTION_SETTINGS",
             "EXPANDED_DATA_SET",
             "CHANNEL_GROUP",
+            "BIGQUERY_LINK",
             "ENHANCED_MEASUREMENT_SETTINGS",
             "DATA_REDACTION_SETTINGS",
             "SKADNETWORK_CONVERSION_VALUE_SCHEMA",

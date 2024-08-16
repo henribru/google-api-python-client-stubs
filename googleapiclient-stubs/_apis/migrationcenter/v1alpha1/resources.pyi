@@ -96,6 +96,44 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 ) -> ReportAssetFramesResponseHttpRequest: ...
 
             @typing.type_check_only
+            class AssetsExportJobsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AssetsExportJob = ...,
+                    assetsExportJobId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AssetsExportJobHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAssetsExportJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAssetsExportJobsResponseHttpRequest,
+                    previous_response: ListAssetsExportJobsResponse,
+                ) -> ListAssetsExportJobsResponseHttpRequest | None: ...
+                def run(
+                    self,
+                    *,
+                    name: str,
+                    body: RunAssetsExportJobRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class DiscoveryClientsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -571,6 +609,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...
             def assets(self) -> AssetsResource: ...
+            def assetsExportJobs(self) -> AssetsExportJobsResource: ...
             def discoveryClients(self) -> DiscoveryClientsResource: ...
             def groups(self) -> GroupsResource: ...
             def importJobs(self) -> ImportJobsResource: ...
@@ -610,6 +649,14 @@ class AssetHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Asset: ...
+
+@typing.type_check_only
+class AssetsExportJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AssetsExportJob: ...
 
 @typing.type_check_only
 class BatchUpdateAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -666,6 +713,14 @@ class ImportJobHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ImportJob: ...
+
+@typing.type_check_only
+class ListAssetsExportJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAssetsExportJobsResponse: ...
 
 @typing.type_check_only
 class ListAssetsResponseHttpRequest(googleapiclient.http.HttpRequest):

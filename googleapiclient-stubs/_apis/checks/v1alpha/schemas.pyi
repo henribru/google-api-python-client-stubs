@@ -142,6 +142,7 @@ class GoogleChecksReportV1alphaCheck(typing_extensions.TypedDict, total=False):
         "DATA_MONITORING_OUTDATED_SDK_VERSION",
         "DATA_MONITORING_CRITICAL_SDK_ISSUE",
         "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
+        "DATA_MONITORING_PII_LOGCAT_LEAK",
     ]
 
 @typing.type_check_only

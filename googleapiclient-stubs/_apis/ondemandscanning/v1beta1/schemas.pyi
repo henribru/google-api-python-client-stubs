@@ -506,6 +506,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
         "RUBYGEMS",
         "RUST",
         "COMPOSER",
+        "SWIFT",
     ]
     patchedCve: _list[str]
     sourceVersion: PackageVersion

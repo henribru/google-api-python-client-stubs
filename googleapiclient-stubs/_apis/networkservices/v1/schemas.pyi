@@ -355,6 +355,7 @@ class LbRouteExtension(typing_extensions.TypedDict, total=False):
     loadBalancingScheme: typing_extensions.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
+    metadata: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -368,6 +369,7 @@ class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     loadBalancingScheme: typing_extensions.Literal[
         "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
     ]
+    metadata: dict[str, typing.Any]
     name: str
     updateTime: str
 

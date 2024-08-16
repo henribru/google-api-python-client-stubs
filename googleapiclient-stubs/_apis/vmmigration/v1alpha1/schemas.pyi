@@ -53,6 +53,7 @@ class AwsSourceDetails(typing_extensions.TypedDict, total=False):
     inventorySecurityGroupNames: _list[str]
     inventoryTagList: _list[Tag]
     migrationResourcesUserTags: dict[str, typing.Any]
+    networkInsights: NetworkInsights
     publicIp: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
 
@@ -155,6 +156,7 @@ class BootDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
     encryption: Encryption
     image: DiskImageDefaults
@@ -164,6 +166,9 @@ class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelCutoverJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CancelDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CancelImageImportJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -237,6 +242,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
     encryption: Encryption
     hostname: str
@@ -272,6 +278,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
     encryption: Encryption
     hostname: str
@@ -464,6 +471,7 @@ class ImageImport(typing_extensions.TypedDict, total=False):
     createTime: str
     diskImageTargetDefaults: DiskImageTargetDetails
     encryption: Encryption
+    machineImageTargetDefaults: MachineImageTargetDetails
     name: str
     recentImageImportJobs: _list[ImageImportJob]
 
@@ -475,6 +483,7 @@ class ImageImportJob(typing_extensions.TypedDict, total=False):
     diskImageTargetDetails: DiskImageTargetDetails
     endTime: str
     errors: _list[Status]
+    machineImageTargetDetails: MachineImageTargetDetails
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -613,6 +622,27 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MachineImageParametersOverrides(typing_extensions.TypedDict, total=False):
+    machineType: str
+
+@typing.type_check_only
+class MachineImageTargetDetails(typing_extensions.TypedDict, total=False):
+    additionalLicenses: _list[str]
+    description: str
+    encryption: Encryption
+    labels: dict[str, typing.Any]
+    machineImageName: str
+    machineImageParametersOverrides: MachineImageParametersOverrides
+    networkInterfaces: _list[NetworkInterface]
+    osAdaptationParameters: ImageImportOsAdaptationParameters
+    serviceAccount: ServiceAccount
+    shieldedInstanceConfig: ShieldedInstanceConfig
+    singleRegionStorage: bool
+    skipOsAdaptation: SkipOsAdaptation
+    tags: _list[str]
+    targetProject: str
+
+@typing.type_check_only
 class MigratingVm(typing_extensions.TypedDict, total=False):
     awsSourceVmDetails: AwsSourceVmDetails
     azureSourceVmDetails: AzureSourceVmDetails
@@ -682,10 +712,20 @@ class MigrationWarning(typing_extensions.TypedDict, total=False):
     warningTime: str
 
 @typing.type_check_only
+class NetworkInsights(typing_extensions.TypedDict, total=False):
+    sourceNetworkConfig: str
+    sourceNetworkTerraform: str
+
+@typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
     externalIp: str
     internalIp: str
     network: str
+    networkTier: typing_extensions.Literal[
+        "COMPUTE_ENGINE_NETWORK_TIER_UNSPECIFIED",
+        "NETWORK_TIER_STANDARD",
+        "NETWORK_TIER_PREMIUM",
+    ]
     subnetwork: str
 
 @typing.type_check_only
@@ -736,6 +776,7 @@ class PersistentDiskDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
         "COMPUTE_ENGINE_DISK_TYPE_SSD",
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+        "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
     encryption: Encryption
     sourceDiskNumber: int
@@ -782,6 +823,9 @@ class ReplicationSync(typing_extensions.TypedDict, total=False):
 class ResumeMigrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class RunDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SchedulePolicy(typing_extensions.TypedDict, total=False):
     idleDuration: str
     skipOsAdaptation: bool
@@ -793,7 +837,21 @@ class SchedulingNodeAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class ServiceAccount(typing_extensions.TypedDict, total=False):
+    email: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
+    enableIntegrityMonitoring: bool
+    enableVtpm: bool
+    secureBoot: typing_extensions.Literal["SECURE_BOOT_UNSPECIFIED", "TRUE", "FALSE"]
+
+@typing.type_check_only
 class ShuttingDownSourceVMStep(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SkipOsAdaptation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):

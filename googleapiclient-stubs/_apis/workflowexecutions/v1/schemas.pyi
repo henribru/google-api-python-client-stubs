@@ -35,6 +35,11 @@ class Execution(typing_extensions.TypedDict, total=False):
     duration: str
     endTime: str
     error: Error
+    executionHistoryLevel: typing_extensions.Literal[
+        "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+        "EXECUTION_HISTORY_BASIC",
+        "EXECUTION_HISTORY_DETAILED",
+    ]
     labels: dict[str, typing.Any]
     name: str
     result: str
@@ -156,6 +161,7 @@ class StepEntry(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class StepEntryMetadata(typing_extensions.TypedDict, total=False):
+    expectedIteration: str
     progressNumber: str
     progressType: typing_extensions.Literal[
         "PROGRESS_TYPE_UNSPECIFIED",

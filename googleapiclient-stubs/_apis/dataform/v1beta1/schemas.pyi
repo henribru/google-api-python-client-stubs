@@ -89,6 +89,7 @@ class CompilationError(typing_extensions.TypedDict, total=False):
 class CompilationResult(typing_extensions.TypedDict, total=False):
     codeCompilationConfig: CodeCompilationConfig
     compilationErrors: _list[CompilationError]
+    createTime: str
     dataEncryptionState: DataEncryptionState
     dataformCoreVersion: str
     gitCommitish: str
@@ -495,12 +496,14 @@ class UncommittedFileChange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkflowConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
     cronSchedule: str
     invocationConfig: InvocationConfig
     name: str
     recentScheduledExecutionRecords: _list[ScheduledExecutionRecord]
     releaseConfig: str
     timeZone: str
+    updateTime: str
 
 @typing.type_check_only
 class WorkflowInvocation(typing_extensions.TypedDict, total=False):

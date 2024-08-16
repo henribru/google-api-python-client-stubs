@@ -153,6 +153,12 @@ class DebugOptions(typing_extensions.TypedDict, total=False):
     enableDebugging: bool
 
 @typing.type_check_only
+class DebugResponse(typing_extensions.TypedDict, total=False):
+    gsrRequest: str
+    gsrResponse: str
+    searchResponse: SearchResponse
+
+@typing.type_check_only
 class DeleteQueueItemsRequest(typing_extensions.TypedDict, total=False):
     connectorName: str
     debugOptions: DebugOptions

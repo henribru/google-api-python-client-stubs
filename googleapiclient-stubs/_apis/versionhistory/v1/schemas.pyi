@@ -72,6 +72,7 @@ class Release(typing_extensions.TypedDict, total=False):
     fraction: float
     fractionGroup: str
     name: str
+    pinnable: bool
     serving: Interval
     version: str
 

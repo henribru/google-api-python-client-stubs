@@ -27,6 +27,7 @@ class GoogleCloudDialogflowCxV3AdvancedSettingsDtmfSettings(
 class GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings(
     typing_extensions.TypedDict, total=False
 ):
+    enableConsentBasedRedaction: bool
     enableInteractionLogging: bool
     enableStackdriverLogging: bool
 
@@ -187,6 +188,7 @@ class GoogleCloudDialogflowCxV3EventHandler(typing_extensions.TypedDict, total=F
     name: str
     targetFlow: str
     targetPage: str
+    targetPlaybook: str
     triggerFulfillment: GoogleCloudDialogflowCxV3Fulfillment
 
 @typing.type_check_only
@@ -873,6 +875,7 @@ class GoogleCloudDialogflowCxV3beta1AdvancedSettingsDtmfSettings(
 class GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings(
     typing_extensions.TypedDict, total=False
 ):
+    enableConsentBasedRedaction: bool
     enableInteractionLogging: bool
     enableStackdriverLogging: bool
 
@@ -1041,6 +1044,7 @@ class GoogleCloudDialogflowCxV3beta1EventHandler(
     name: str
     targetFlow: str
     targetPage: str
+    targetPlaybook: str
     triggerFulfillment: GoogleCloudDialogflowCxV3beta1Fulfillment
 
 @typing.type_check_only
@@ -1392,6 +1396,7 @@ class GoogleCloudDialogflowCxV3beta1QueryInput(
     intent: GoogleCloudDialogflowCxV3beta1IntentInput
     languageCode: str
     text: GoogleCloudDialogflowCxV3beta1TextInput
+    toolCallResult: GoogleCloudDialogflowCxV3beta1ToolCallResult
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata(
@@ -1418,6 +1423,7 @@ class GoogleCloudDialogflowCxV3beta1ResponseMessage(
         GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall
     )
     text: GoogleCloudDialogflowCxV3beta1ResponseMessageText
+    toolCall: GoogleCloudDialogflowCxV3beta1ToolCall
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess(
@@ -1567,6 +1573,27 @@ class GoogleCloudDialogflowCxV3beta1TestRunDifference(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TextInput(typing_extensions.TypedDict, total=False):
     text: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ToolCall(typing_extensions.TypedDict, total=False):
+    action: str
+    inputParameters: dict[str, typing.Any]
+    tool: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ToolCallResult(
+    typing_extensions.TypedDict, total=False
+):
+    action: str
+    error: GoogleCloudDialogflowCxV3beta1ToolCallResultError
+    outputParameters: dict[str, typing.Any]
+    tool: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ToolCallResultError(
+    typing_extensions.TypedDict, total=False
+):
+    message: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TransitionRoute(
@@ -1786,6 +1813,7 @@ class GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata(
         "FAQ",
         "SMART_REPLY",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -1893,6 +1921,11 @@ class GoogleCloudDialogflowV2DeployConversationModelOperationMetadata(
     createTime: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2EncryptionSpec(typing_extensions.TypedDict, total=False):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -1970,6 +2003,18 @@ class GoogleCloudDialogflowV2ImportDocumentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     warnings: _list[GoogleRpcStatus]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    request: GoogleCloudDialogflowV2InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudDialogflowV2EncryptionSpec
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2InputDataset(typing_extensions.TypedDict, total=False):
@@ -2298,6 +2343,52 @@ class GoogleCloudDialogflowV2IntentTrainingPhrasePart(
     userDefined: bool
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    suggestedQuery: GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery
+    suggestedQueryAnswer: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    answerText: str
+    faqSource: GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource
+    generativeSource: (
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerFaqSource(
+    typing_extensions.TypedDict, total=False
+):
+    question: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource(
+    typing_extensions.TypedDict, total=False
+):
+    snippets: _list[
+        GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery(
+    typing_extensions.TypedDict, total=False
+):
+    queryText: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2KnowledgeOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -2391,6 +2482,7 @@ class GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata(
         "FAQ",
         "SMART_REPLY",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -2426,6 +2518,14 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponse(
     latestMessage: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contextSize: int
+    knowledgeAssistAnswer: GoogleCloudDialogflowV2KnowledgeAssistAnswer
+    latestMessage: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2SuggestSmartRepliesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2438,6 +2538,9 @@ class GoogleCloudDialogflowV2SuggestionResult(typing_extensions.TypedDict, total
     error: GoogleRpcStatus
     suggestArticlesResponse: GoogleCloudDialogflowV2SuggestArticlesResponse
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2SuggestFaqAnswersResponse
+    suggestKnowledgeAssistResponse: (
+        GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse
+    )
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2SuggestSmartRepliesResponse
 
 @typing.type_check_only
@@ -2501,12 +2604,22 @@ class GoogleCloudDialogflowV2beta1AgentAssistantFeedback(
     documentEfficiency: typing_extensions.Literal[
         "DOCUMENT_EFFICIENCY_UNSPECIFIED", "INEFFICIENT", "EFFICIENT"
     ]
+    knowledgeAssistFeedback: (
+        GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback
+    )
     knowledgeSearchFeedback: (
         GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback
     )
     summarizationFeedback: (
         GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback
     )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeAssistFeedback(
+    typing_extensions.TypedDict, total=False
+):
+    answerCopied: bool
+    clickedUris: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1AgentAssistantFeedbackKnowledgeSearchFeedback(
@@ -2629,6 +2742,7 @@ class GoogleCloudDialogflowV2beta1AutomatedAgentReply(
     automatedAgentReplyType: typing_extensions.Literal[
         "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED", "PARTIAL", "FINAL"
     ]
+    callCompanionAuthCode: str
     cxCurrentPage: str
     cxSessionParameters: dict[str, typing.Any]
     detectIntentResponse: GoogleCloudDialogflowV2beta1DetectIntentResponse
@@ -2739,6 +2853,7 @@ class GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata(
         "DIALOGFLOW_ASSIST",
         "CONVERSATION_SUMMARIZATION",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -2756,6 +2871,7 @@ class GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest(
         "DIALOGFLOW_ASSIST",
         "CONVERSATION_SUMMARIZATION",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -2799,6 +2915,12 @@ class GoogleCloudDialogflowV2beta1Conversation(
     name: str
     phoneNumber: GoogleCloudDialogflowV2beta1ConversationPhoneNumber
     startTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ConversationContext(
+    typing_extensions.TypedDict, total=False
+):
+    messageEntries: _list[GoogleCloudDialogflowV2beta1MessageEntry]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1ConversationEvent(
@@ -2917,6 +3039,13 @@ class GoogleCloudDialogflowV2beta1DtmfParameters(
     acceptsDtmfInput: bool
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1EncryptionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1EntityType(typing_extensions.TypedDict, total=False):
     autoExpansionMode: typing_extensions.Literal[
         "AUTO_EXPANSION_MODE_UNSPECIFIED", "AUTO_EXPANSION_MODE_DEFAULT"
@@ -3005,6 +3134,15 @@ class GoogleCloudDialogflowV2beta1FaqAnswer(typing_extensions.TypedDict, total=F
     source: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1FewShotExample(
+    typing_extensions.TypedDict, total=False
+):
+    conversationContext: GoogleCloudDialogflowV2beta1ConversationContext
+    extraInfo: dict[str, typing.Any]
+    output: GoogleCloudDialogflowV2beta1GeneratorSuggestion
+    summarizationSectionList: GoogleCloudDialogflowV2beta1SummarizationSectionList
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1Fulfillment(typing_extensions.TypedDict, total=False):
     displayName: str
     enabled: bool
@@ -3043,6 +3181,25 @@ class GoogleCloudDialogflowV2beta1GcsSources(typing_extensions.TypedDict, total=
     uris: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    conversationContext: GoogleCloudDialogflowV2beta1ConversationContext
+    generator: GoogleCloudDialogflowV2beta1Generator
+    generatorName: str
+    triggerEvents: _list[
+        typing_extensions.Literal[
+            "TRIGGER_EVENT_UNSPECIFIED", "END_OF_UTTERANCE", "MANUAL_CALL"
+        ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GenerateStatelessSuggestionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    generatorSuggestion: GoogleCloudDialogflowV2beta1GeneratorSuggestion
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -3074,6 +3231,24 @@ class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponseSummary(
     baselineModelVersion: str
     text: str
     textSections: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1Generator(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    inferenceParameter: GoogleCloudDialogflowV2beta1InferenceParameter
+    name: str
+    summarizationContext: GoogleCloudDialogflowV2beta1SummarizationContext
+    triggerEvent: typing_extensions.Literal[
+        "TRIGGER_EVENT_UNSPECIFIED", "END_OF_UTTERANCE", "MANUAL_CALL"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1GeneratorSuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    summarySuggestion: GoogleCloudDialogflowV2beta1SummarySuggestion
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig(
@@ -3114,9 +3289,11 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig
 class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig(
     typing_extensions.TypedDict, total=False
 ):
+    disableHighLatencyFeaturesSyncDelivery: bool
     featureConfigs: _list[
         GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig
     ]
+    generators: _list[str]
     groupSuggestionResponses: bool
 
 @typing.type_check_only
@@ -3132,6 +3309,8 @@ class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConf
     disableAgentQueryLogging: bool
     enableConversationAugmentedQuery: bool
     enableEventBasedSuggestion: bool
+    enableQuerySuggestionOnly: bool
+    enableQuerySuggestionWhenNoAnswer: bool
     queryConfig: (
         GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig
     )
@@ -3281,6 +3460,27 @@ class GoogleCloudDialogflowV2beta1ImportDocumentsResponse(
     warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1InferenceParameter(
+    typing_extensions.TypedDict, total=False
+):
+    maxOutputTokens: int
+    temperature: float
+    topK: int
+    topP: float
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    request: GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudDialogflowV2beta1EncryptionSpec
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1InputAudioConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3295,6 +3495,7 @@ class GoogleCloudDialogflowV2beta1InputAudioConfig(
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
     ]
     bargeInConfig: GoogleCloudDialogflowV2beta1BargeInConfig
+    defaultNoSpeechTimeout: str
     disableNoSpeechRecognizedEvent: bool
     enableAutomaticPunctuation: bool
     enableWordInfo: bool
@@ -3790,6 +3991,54 @@ class GoogleCloudDialogflowV2beta1KnowledgeAnswersAnswer(
     source: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    answerRecord: str
+    suggestedQuery: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery
+    suggestedQueryAnswer: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    answerText: str
+    faqSource: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource
+    generativeSource: (
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource
+    )
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerFaqSource(
+    typing_extensions.TypedDict, total=False
+):
+    question: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSource(
+    typing_extensions.TypedDict, total=False
+):
+    snippets: _list[
+        GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+    title: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery(
+    typing_extensions.TypedDict, total=False
+):
+    queryText: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1KnowledgeBase(
     typing_extensions.TypedDict, total=False
 ):
@@ -3852,6 +4101,13 @@ class GoogleCloudDialogflowV2beta1ListEnvironmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
     environments: _list[GoogleCloudDialogflowV2beta1Environment]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListGeneratorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    generators: _list[GoogleCloudDialogflowV2beta1Generator]
     nextPageToken: str
 
 @typing.type_check_only
@@ -3920,6 +4176,7 @@ class GoogleCloudDialogflowV2beta1Message(typing_extensions.TypedDict, total=Fal
     participantRole: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
     ]
+    responseMessages: _list[GoogleCloudDialogflowV2beta1ResponseMessage]
     sendTime: str
     sentimentAnalysis: GoogleCloudDialogflowV2beta1SentimentAnalysisResult
 
@@ -3929,6 +4186,17 @@ class GoogleCloudDialogflowV2beta1MessageAnnotation(
 ):
     containEntities: bool
     parts: _list[GoogleCloudDialogflowV2beta1AnnotatedMessagePart]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1MessageEntry(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    languageCode: str
+    role: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "HUMAN_AGENT", "AUTOMATED_AGENT", "END_USER"
+    ]
+    text: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1NotificationConfig(
@@ -4176,6 +4444,7 @@ class GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata(
         "DIALOGFLOW_ASSIST",
         "CONVERSATION_SUMMARIZATION",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -4208,7 +4477,20 @@ class GoogleCloudDialogflowV2beta1SpeechContext(
 class GoogleCloudDialogflowV2beta1SpeechToTextConfig(
     typing_extensions.TypedDict, total=False
 ):
+    audioEncoding: typing_extensions.Literal[
+        "AUDIO_ENCODING_UNSPECIFIED",
+        "AUDIO_ENCODING_LINEAR_16",
+        "AUDIO_ENCODING_FLAC",
+        "AUDIO_ENCODING_MULAW",
+        "AUDIO_ENCODING_AMR",
+        "AUDIO_ENCODING_AMR_WB",
+        "AUDIO_ENCODING_OGG_OPUS",
+        "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+    ]
+    enableWordInfo: bool
+    languageCode: str
     model: str
+    sampleRateHertz: int
     speechModelVariant: typing_extensions.Literal[
         "SPEECH_MODEL_VARIANT_UNSPECIFIED",
         "USE_BEST_AVAILABLE",
@@ -4288,6 +4570,22 @@ class GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse(
     latestMessage: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contextSize: int
+    latestMessage: str
+    previousSuggestedQuery: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse(
+    typing_extensions.TypedDict, total=False
+):
+    contextSize: int
+    knowledgeAssistAnswer: GoogleCloudDialogflowV2beta1KnowledgeAssistAnswer
+    latestMessage: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -4344,6 +4642,7 @@ class GoogleCloudDialogflowV2beta1SuggestionFeature(
         "DIALOGFLOW_ASSIST",
         "CONVERSATION_SUMMARIZATION",
         "KNOWLEDGE_SEARCH",
+        "KNOWLEDGE_ASSIST",
     ]
 
 @typing.type_check_only
@@ -4368,7 +4667,55 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
         GoogleCloudDialogflowV2beta1SuggestDialogflowAssistsResponse
     )
     suggestFaqAnswersResponse: GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse
+    suggestKnowledgeAssistResponse: (
+        GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse
+    )
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SummarizationContext(
+    typing_extensions.TypedDict, total=False
+):
+    fewShotExamples: _list[GoogleCloudDialogflowV2beta1FewShotExample]
+    outputLanguageCode: str
+    summarizationSections: _list[GoogleCloudDialogflowV2beta1SummarizationSection]
+    version: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SummarizationSection(
+    typing_extensions.TypedDict, total=False
+):
+    definition: str
+    key: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "SITUATION",
+        "ACTION",
+        "RESOLUTION",
+        "REASON_FOR_CANCELLATION",
+        "CUSTOMER_SATISFACTION",
+        "ENTITIES",
+        "CUSTOMER_DEFINED",
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SummarizationSectionList(
+    typing_extensions.TypedDict, total=False
+):
+    summarizationSections: _list[GoogleCloudDialogflowV2beta1SummarizationSection]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SummarySuggestion(
+    typing_extensions.TypedDict, total=False
+):
+    summarySections: _list[GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SummarySuggestionSummarySection(
+    typing_extensions.TypedDict, total=False
+):
+    section: str
+    summary: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig(

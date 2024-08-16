@@ -22,6 +22,10 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AccessConfig(typing_extensions.TypedDict, total=False):
+    externalIp: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -126,6 +130,7 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     gpuDriverConfig: GPUDriverConfig
     machineType: str
     metadata: dict[str, typing.Any]
+    minCpuPlatform: str
     networkInterfaces: _list[NetworkInterface]
     serviceAccounts: _list[ServiceAccount]
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -156,6 +161,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     proxyUri: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "STARTING",
@@ -199,6 +206,7 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
+    accessConfigs: _list[AccessConfig]
     network: str
     nicType: typing_extensions.Literal["NIC_TYPE_UNSPECIFIED", "VIRTIO_NET", "GVNIC"]
     subnet: str

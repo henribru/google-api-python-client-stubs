@@ -310,6 +310,16 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class BigQueryLinksResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaBigQueryLink = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest: ...
@@ -328,6 +338,14 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> (
                 GoogleAnalyticsAdminV1alphaListBigQueryLinksResponseHttpRequest | None
             ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaBigQueryLink = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaBigQueryLinkHttpRequest: ...
 
         @typing.type_check_only
         class CalculatedMetricsResource(googleapiclient.discovery.Resource):
@@ -583,6 +601,55 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 ) -> GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest: ...
 
             @typing.type_check_only
+            class EventEditRulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleAnalyticsAdminV1alphaEventEditRule = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleAnalyticsAdminV1alphaEventEditRuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleAnalyticsAdminV1alphaEventEditRuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListEventEditRulesResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleAnalyticsAdminV1alphaListEventEditRulesResponseHttpRequest,
+                    previous_response: GoogleAnalyticsAdminV1alphaListEventEditRulesResponse,
+                ) -> (
+                    GoogleAnalyticsAdminV1alphaListEventEditRulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleAnalyticsAdminV1alphaEventEditRule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleAnalyticsAdminV1alphaEventEditRuleHttpRequest: ...
+                def reorder(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+
+            @typing.type_check_only
             class MeasurementProtocolSecretsResource(
                 googleapiclient.discovery.Resource
             ):
@@ -734,6 +801,7 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettingsHttpRequest: ...
             def eventCreateRules(self) -> EventCreateRulesResource: ...
+            def eventEditRules(self) -> EventEditRulesResource: ...
             def measurementProtocolSecrets(
                 self,
             ) -> MeasurementProtocolSecretsResource: ...
@@ -1119,12 +1187,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest: ...
-        def createSubproperty(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleAnalyticsAdminV1alphaCreateSubpropertyResponseHttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
@@ -1185,6 +1247,12 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
+        def provisionSubproperty(
+            self,
+            *,
+            body: GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponseHttpRequest: ...
         def runAccessReport(
             self,
             *,
@@ -1421,16 +1489,6 @@ class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponse: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateSubpropertyResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCustomDimensionHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1529,6 +1587,16 @@ class GoogleAnalyticsAdminV1alphaEventCreateRuleHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaEventCreateRule: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaEventEditRuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaEventEditRule: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaExpandedDataSetHttpRequest(
@@ -1771,6 +1839,16 @@ class GoogleAnalyticsAdminV1alphaListEventCreateRulesResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListEventCreateRulesResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListEventEditRulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaListEventEditRulesResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1897,6 +1975,16 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest(

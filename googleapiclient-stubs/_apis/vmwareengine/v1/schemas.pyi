@@ -17,6 +17,22 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
+    consumedMemoryThresholds: Thresholds
+    cpuThresholds: Thresholds
+    grantedMemoryThresholds: Thresholds
+    nodeTypeId: str
+    scaleOutSize: int
+    storageThresholds: Thresholds
+
+@typing.type_check_only
+class AutoscalingSettings(typing_extensions.TypedDict, total=False):
+    autoscalingPolicies: dict[str, typing.Any]
+    coolDownPeriod: str
+    maxClusterNodeCount: int
+    minClusterNodeCount: int
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -24,6 +40,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    autoscalingSettings: AutoscalingSettings
     createTime: str
     management: bool
     name: str
@@ -114,7 +131,9 @@ class GrantDnsBindPermissionRequest(typing_extensions.TypedDict, total=False):
 class Hcx(typing_extensions.TypedDict, total=False):
     fqdn: str
     internalIp: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "CREATING"]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "ACTIVATING"
+    ]
     version: str
 
 @typing.type_check_only
@@ -312,6 +331,7 @@ class NetworkPeering(typing_extensions.TypedDict, total=False):
         "NETAPP_CLOUD_VOLUMES",
         "THIRD_PARTY_SERVICE",
         "DELL_POWERSCALE",
+        "GOOGLE_CLOUD_NETAPP_VOLUMES",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "CREATING", "DELETING"
@@ -544,6 +564,11 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class Thresholds(typing_extensions.TypedDict, total=False):
+    scaleIn: int
+    scaleOut: int
 
 @typing.type_check_only
 class UndeletePrivateCloudRequest(typing_extensions.TypedDict, total=False):

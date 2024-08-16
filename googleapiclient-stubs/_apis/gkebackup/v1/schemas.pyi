@@ -33,6 +33,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     manual: bool
     name: str
+    permissiveMode: bool
     podCount: int
     resourceCount: int
     retainDays: int
@@ -59,6 +60,7 @@ class BackupConfig(typing_extensions.TypedDict, total=False):
     encryptionKey: EncryptionKey
     includeSecrets: bool
     includeVolumeData: bool
+    permissiveMode: bool
     selectedApplications: NamespacedNames
     selectedNamespaces: Namespaces
 
@@ -155,6 +157,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class Filter(typing_extensions.TypedDict, total=False):
+    exclusionFilters: _list[ResourceSelector]
+    inclusionFilters: _list[ResourceSelector]
+
+@typing.type_check_only
 class GetBackupIndexDownloadUrlResponse(typing_extensions.TypedDict, total=False):
     signedUrl: str
 
@@ -186,6 +193,11 @@ class GoogleRpcStatus(typing_extensions.TypedDict, total=False):
 class GroupKind(typing_extensions.TypedDict, total=False):
     resourceGroup: str
     resourceKind: str
+
+@typing.type_check_only
+class GroupKindDependency(typing_extensions.TypedDict, total=False):
+    requiring: GroupKind
+    satisfying: GroupKind
 
 @typing.type_check_only
 class ListBackupPlansResponse(typing_extensions.TypedDict, total=False):
@@ -270,6 +282,13 @@ class ResourceFilter(typing_extensions.TypedDict, total=False):
     namespaces: _list[str]
 
 @typing.type_check_only
+class ResourceSelector(typing_extensions.TypedDict, total=False):
+    groupKind: GroupKind
+    labels: dict[str, typing.Any]
+    name: str
+    namespace: str
+
+@typing.type_check_only
 class Restore(typing_extensions.TypedDict, total=False):
     backup: str
     cluster: str
@@ -277,6 +296,7 @@ class Restore(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     etag: str
+    filter: Filter
     labels: dict[str, typing.Any]
     name: str
     resourcesExcludedCount: int
@@ -294,6 +314,7 @@ class Restore(typing_extensions.TypedDict, total=False):
     stateReason: str
     uid: str
     updateTime: str
+    volumeDataRestorePolicyOverrides: _list[VolumeDataRestorePolicyOverride]
     volumesRestoredCount: int
 
 @typing.type_check_only
@@ -310,8 +331,12 @@ class RestoreConfig(typing_extensions.TypedDict, total=False):
         "NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED",
         "DELETE_AND_RESTORE",
         "FAIL_ON_CONFLICT",
+        "MERGE_SKIP_ON_CONFLICT",
+        "MERGE_REPLACE_VOLUME_ON_CONFLICT",
+        "MERGE_REPLACE_ON_CONFLICT",
     ]
     noNamespaces: bool
+    restoreOrder: RestoreOrder
     selectedApplications: NamespacedNames
     selectedNamespaces: Namespaces
     substitutionRules: _list[SubstitutionRule]
@@ -322,6 +347,11 @@ class RestoreConfig(typing_extensions.TypedDict, total=False):
         "REUSE_VOLUME_HANDLE_FROM_BACKUP",
         "NO_VOLUME_DATA_RESTORATION",
     ]
+    volumeDataRestorePolicyBindings: _list[VolumeDataRestorePolicyBinding]
+
+@typing.type_check_only
+class RestoreOrder(typing_extensions.TypedDict, total=False):
+    groupKindDependencies: _list[GroupKindDependency]
 
 @typing.type_check_only
 class RestorePlan(typing_extensions.TypedDict, total=False):
@@ -426,6 +456,28 @@ class VolumeBackup(typing_extensions.TypedDict, total=False):
     uid: str
     updateTime: str
     volumeBackupHandle: str
+
+@typing.type_check_only
+class VolumeDataRestorePolicyBinding(typing_extensions.TypedDict, total=False):
+    policy: typing_extensions.Literal[
+        "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+        "RESTORE_VOLUME_DATA_FROM_BACKUP",
+        "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+        "NO_VOLUME_DATA_RESTORATION",
+    ]
+    volumeType: typing_extensions.Literal[
+        "VOLUME_TYPE_UNSPECIFIED", "GCE_PERSISTENT_DISK"
+    ]
+
+@typing.type_check_only
+class VolumeDataRestorePolicyOverride(typing_extensions.TypedDict, total=False):
+    policy: typing_extensions.Literal[
+        "VOLUME_DATA_RESTORE_POLICY_UNSPECIFIED",
+        "RESTORE_VOLUME_DATA_FROM_BACKUP",
+        "REUSE_VOLUME_HANDLE_FROM_BACKUP",
+        "NO_VOLUME_DATA_RESTORATION",
+    ]
+    selectedPvcs: NamespacedNames
 
 @typing.type_check_only
 class VolumeRestore(typing_extensions.TypedDict, total=False):

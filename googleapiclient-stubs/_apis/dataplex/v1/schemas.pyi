@@ -109,11 +109,6 @@ class GoogleCloudDataplexV1AspectType(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     metadataTemplate: GoogleCloudDataplexV1AspectTypeMetadataTemplate
     name: str
-    transferStatus: typing_extensions.Literal[
-        "TRANSFER_STATUS_UNSPECIFIED",
-        "TRANSFER_STATUS_MIGRATED",
-        "TRANSFER_STATUS_TRANSFERRED",
-    ]
     uid: str
     updateTime: str
 
@@ -264,6 +259,11 @@ class GoogleCloudDataplexV1AssetStatus(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudDataplexV1CancelJobRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1CancelMetadataJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -515,6 +515,7 @@ class GoogleCloudDataplexV1DataQualityRule(typing_extensions.TypedDict, total=Fa
     statisticRangeExpectation: (
         GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation
     )
+    suspended: bool
     tableConditionExpectation: (
         GoogleCloudDataplexV1DataQualityRuleTableConditionExpectation
     )
@@ -787,11 +788,13 @@ class GoogleCloudDataplexV1DataScanExecutionSpec(
 class GoogleCloudDataplexV1DataScanExecutionStatus(
     typing_extensions.TypedDict, total=False
 ):
+    latestJobCreateTime: str
     latestJobEndTime: str
     latestJobStartTime: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False):
+    createTime: str
     dataProfileResult: GoogleCloudDataplexV1DataProfileResult
     dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
     dataQualityResult: GoogleCloudDataplexV1DataQualityResult
@@ -938,11 +941,6 @@ class GoogleCloudDataplexV1EntryGroup(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     name: str
-    transferStatus: typing_extensions.Literal[
-        "TRANSFER_STATUS_UNSPECIFIED",
-        "TRANSFER_STATUS_MIGRATED",
-        "TRANSFER_STATUS_TRANSFERRED",
-    ]
     uid: str
     updateTime: str
 
@@ -953,6 +951,7 @@ class GoogleCloudDataplexV1EntrySource(typing_extensions.TypedDict, total=False)
     description: str
     displayName: str
     labels: dict[str, typing.Any]
+    location: str
     platform: str
     resource: str
     system: str
@@ -1095,6 +1094,12 @@ class GoogleCloudDataplexV1GovernanceEventEntity(
 ):
     entity: str
     entityType: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "TABLE", "FILESET"]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ImportItem(typing_extensions.TypedDict, total=False):
+    aspectKeys: _list[str]
+    entry: GoogleCloudDataplexV1Entry
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Job(typing_extensions.TypedDict, total=False):
@@ -1285,6 +1290,14 @@ class GoogleCloudDataplexV1ListLakesResponse(typing_extensions.TypedDict, total=
     unreachableLocations: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListMetadataJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    metadataJobs: _list[GoogleCloudDataplexV1MetadataJob]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListPartitionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1308,6 +1321,68 @@ class GoogleCloudDataplexV1ListTasksResponse(typing_extensions.TypedDict, total=
 class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     zones: _list[GoogleCloudDataplexV1Zone]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJob(typing_extensions.TypedDict, total=False):
+    createTime: str
+    importResult: GoogleCloudDataplexV1MetadataJobImportJobResult
+    importSpec: GoogleCloudDataplexV1MetadataJobImportJobSpec
+    labels: dict[str, typing.Any]
+    name: str
+    status: GoogleCloudDataplexV1MetadataJobStatus
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IMPORT"]
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobImportJobResult(
+    typing_extensions.TypedDict, total=False
+):
+    createdEntries: str
+    deletedEntries: str
+    recreatedEntries: str
+    unchangedEntries: str
+    updateTime: str
+    updatedEntries: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobImportJobSpec(
+    typing_extensions.TypedDict, total=False
+):
+    aspectSyncMode: typing_extensions.Literal[
+        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL"
+    ]
+    entrySyncMode: typing_extensions.Literal[
+        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL"
+    ]
+    logLevel: typing_extensions.Literal["LOG_LEVEL_UNSPECIFIED", "DEBUG", "INFO"]
+    scope: GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope
+    sourceCreateTime: str
+    sourceStorageUri: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope(
+    typing_extensions.TypedDict, total=False
+):
+    aspectTypes: _list[str]
+    entryGroups: _list[str]
+    entryTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobStatus(typing_extensions.TypedDict, total=False):
+    completionPercent: int
+    message: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "QUEUED",
+        "RUNNING",
+        "CANCELING",
+        "CANCELED",
+        "SUCCEEDED",
+        "FAILED",
+        "SUCCEEDED_WITH_ERRORS",
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1OperationMetadata(typing_extensions.TypedDict, total=False):

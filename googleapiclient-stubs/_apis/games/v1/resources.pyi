@@ -14,6 +14,20 @@ _list = list
 @typing.type_check_only
 class GamesResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AccesstokensResource(googleapiclient.discovery.Resource):
+        def generatePlayGroupingApiToken(
+            self, *, packageName: str = ..., persona: str = ..., **kwargs: typing.Any
+        ) -> GeneratePlayGroupingApiTokenResponseHttpRequest: ...
+        def generateRecallPlayGroupingApiToken(
+            self,
+            *,
+            packageName: str = ...,
+            persona: str = ...,
+            recallSessionId: str = ...,
+            **kwargs: typing.Any,
+        ) -> GenerateRecallPlayGroupingApiTokenResponseHttpRequest: ...
+
+    @typing.type_check_only
     class AchievementDefinitionsResource(googleapiclient.discovery.Resource):
         def list(
             self,
@@ -204,6 +218,13 @@ class GamesResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RecallResource(googleapiclient.discovery.Resource):
+        def gamesPlayerTokens(
+            self,
+            *,
+            sessionId: str,
+            applicationIds: str | _list[str] = ...,
+            **kwargs: typing.Any,
+        ) -> RetrieveGamesPlayerTokensResponseHttpRequest: ...
         def lastTokenFromAllDeveloperGames(
             self, *, sessionId: str, **kwargs: typing.Any
         ) -> RetrieveDeveloperGamesLastPlayerTokenResponseHttpRequest: ...
@@ -334,6 +355,7 @@ class GamesResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def accesstokens(self) -> AccesstokensResource: ...
     def achievementDefinitions(self) -> AchievementDefinitionsResource: ...
     def achievements(self) -> AchievementsResource: ...
     def applications(self) -> ApplicationsResource: ...
@@ -442,6 +464,24 @@ class EventUpdateResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EventUpdateResponse: ...
+
+@typing.type_check_only
+class GeneratePlayGroupingApiTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GeneratePlayGroupingApiTokenResponse: ...
+
+@typing.type_check_only
+class GenerateRecallPlayGroupingApiTokenResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateRecallPlayGroupingApiTokenResponse: ...
 
 @typing.type_check_only
 class GetMultipleApplicationPlayerIdsResponseHttpRequest(
@@ -566,6 +606,14 @@ class RetrieveDeveloperGamesLastPlayerTokenResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RetrieveDeveloperGamesLastPlayerTokenResponse: ...
+
+@typing.type_check_only
+class RetrieveGamesPlayerTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrieveGamesPlayerTokensResponse: ...
 
 @typing.type_check_only
 class RetrievePlayerTokensResponseHttpRequest(googleapiclient.http.HttpRequest):

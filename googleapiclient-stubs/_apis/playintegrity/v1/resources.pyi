@@ -14,6 +14,16 @@ _list = list
 @typing.type_check_only
 class PlayIntegrityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class DeviceRecallResource(googleapiclient.discovery.Resource):
+        def write(
+            self,
+            *,
+            packageName: str,
+            body: WriteDeviceRecallRequest = ...,
+            **kwargs: typing.Any,
+        ) -> WriteDeviceRecallResponseHttpRequest: ...
+
+    @typing.type_check_only
     class V1Resource(googleapiclient.discovery.Resource):
         def decodeIntegrityToken(
             self,
@@ -35,6 +45,7 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def deviceRecall(self) -> DeviceRecallResource: ...
     def v1(self) -> V1Resource: ...
 
 @typing.type_check_only
@@ -44,3 +55,11 @@ class DecodeIntegrityTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DecodeIntegrityTokenResponse: ...
+
+@typing.type_check_only
+class WriteDeviceRecallResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WriteDeviceRecallResponse: ...

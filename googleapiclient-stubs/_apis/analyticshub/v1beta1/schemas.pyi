@@ -75,6 +75,8 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LinkedResource(typing_extensions.TypedDict, total=False):
     linkedDataset: str
+    linkedPubsubSubscription: str
+    listing: str
 
 @typing.type_check_only
 class ListDataExchangesResponse(typing_extensions.TypedDict, total=False):
@@ -184,10 +186,14 @@ class Subscription(typing_extensions.TypedDict, total=False):
     dataExchange: str
     lastModifyTime: str
     linkedDatasetMap: dict[str, typing.Any]
+    linkedResources: _list[LinkedResource]
     listing: str
     name: str
     organizationDisplayName: str
     organizationId: str
+    resourceType: typing_extensions.Literal[
+        "SHARED_RESOURCE_TYPE_UNSPECIFIED", "BIGQUERY_DATASET", "PUBSUB_TOPIC"
+    ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "STATE_ACTIVE", "STATE_STALE", "STATE_INACTIVE"
     ]

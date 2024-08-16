@@ -118,6 +118,12 @@ class ListTunnelDestGroupsResponse(typing_extensions.TypedDict, total=False):
     tunnelDestGroups: _list[TunnelDestGroup]
 
 @typing.type_check_only
+class NextStateOfTags(typing_extensions.TypedDict, total=False):
+    tagsFullState: TagsFullState
+    tagsFullStateForChildResource: TagsFullStateForChildResource
+    tagsPartialState: TagsPartialState
+
+@typing.type_check_only
 class OAuth2(typing_extensions.TypedDict, total=False):
     clientId: str
     clientSecret: str
@@ -171,12 +177,26 @@ class Resource(typing_extensions.TypedDict, total=False):
     expectedNextState: dict[str, typing.Any]
     labels: dict[str, typing.Any]
     name: str
+    nextStateOfTags: NextStateOfTags
     service: str
     type: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class TagsFullState(typing_extensions.TypedDict, total=False):
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
+class TagsFullStateForChildResource(typing_extensions.TypedDict, total=False):
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
+class TagsPartialState(typing_extensions.TypedDict, total=False):
+    tagKeysToRemove: _list[str]
+    tagsToUpsert: dict[str, typing.Any]
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):

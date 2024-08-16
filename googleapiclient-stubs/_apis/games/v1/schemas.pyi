@@ -200,6 +200,11 @@ class EventUpdateResponse(typing_extensions.TypedDict, total=False):
     playerEvents: _list[PlayerEvent]
 
 @typing.type_check_only
+class GamePlayerToken(typing_extensions.TypedDict, total=False):
+    applicationId: str
+    recallToken: RecallToken
+
+@typing.type_check_only
 class GamesAchievementIncrement(typing_extensions.TypedDict, total=False):
     kind: str
     requestId: str
@@ -209,6 +214,16 @@ class GamesAchievementIncrement(typing_extensions.TypedDict, total=False):
 class GamesAchievementSetStepsAtLeast(typing_extensions.TypedDict, total=False):
     kind: str
     steps: int
+
+@typing.type_check_only
+class GeneratePlayGroupingApiTokenResponse(typing_extensions.TypedDict, total=False):
+    token: PlayGroupingApiToken
+
+@typing.type_check_only
+class GenerateRecallPlayGroupingApiTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    token: PlayGroupingApiToken
 
 @typing.type_check_only
 class GetMultipleApplicationPlayerIdsResponse(typing_extensions.TypedDict, total=False):
@@ -322,6 +337,10 @@ class MetagameConfig(typing_extensions.TypedDict, total=False):
     currentVersion: int
     kind: str
     playerLevels: _list[PlayerLevel]
+
+@typing.type_check_only
+class PlayGroupingApiToken(typing_extensions.TypedDict, total=False):
+    tokenValue: str
 
 @typing.type_check_only
 class Player(typing_extensions.TypedDict, total=False):
@@ -465,7 +484,11 @@ class ResetPersonaResponse(typing_extensions.TypedDict, total=False):
 class RetrieveDeveloperGamesLastPlayerTokenResponse(
     typing_extensions.TypedDict, total=False
 ):
-    token: RecallToken
+    gamePlayerToken: GamePlayerToken
+
+@typing.type_check_only
+class RetrieveGamesPlayerTokensResponse(typing_extensions.TypedDict, total=False):
+    gamePlayerTokens: _list[GamePlayerToken]
 
 @typing.type_check_only
 class RetrievePlayerTokensResponse(typing_extensions.TypedDict, total=False):

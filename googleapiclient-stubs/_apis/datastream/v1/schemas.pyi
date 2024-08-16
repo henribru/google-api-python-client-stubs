@@ -95,12 +95,14 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
+    sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
 class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False):
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
+    sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
 class DropLargeObjects(typing_extensions.TypedDict, total=False): ...
@@ -460,6 +462,9 @@ class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     oracleScnPosition: OracleScnPosition
 
 @typing.type_check_only
+class SqlServerChangeTables(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SqlServerColumn(typing_extensions.TypedDict, total=False):
     column: str
     dataType: str
@@ -494,15 +499,20 @@ class SqlServerSchema(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
+    changeTables: SqlServerChangeTables
     excludeObjects: SqlServerRdbms
     includeObjects: SqlServerRdbms
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
+    transactionLogs: SqlServerTransactionLogs
 
 @typing.type_check_only
 class SqlServerTable(typing_extensions.TypedDict, total=False):
     columns: _list[SqlServerColumn]
     table: str
+
+@typing.type_check_only
+class SqlServerTransactionLogs(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...

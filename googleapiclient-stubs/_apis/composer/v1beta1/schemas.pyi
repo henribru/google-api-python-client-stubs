@@ -114,6 +114,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"

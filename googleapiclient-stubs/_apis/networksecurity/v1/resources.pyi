@@ -406,6 +406,30 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class AuthzPoliciesResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class ClientTlsPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -769,6 +793,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def addressGroups(self) -> AddressGroupsResource: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
+            def authzPolicies(self) -> AuthzPoliciesResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def firewallEndpointAssociations(
                 self,

@@ -208,6 +208,28 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     vectorField: FieldReference
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    collectionIds: _list[str]
+    endTime: str
+    namespaceIds: _list[str]
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    snapshotTime: str
+    startTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CreateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...

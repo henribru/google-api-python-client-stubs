@@ -14,6 +14,38 @@ _list = list
 @typing.type_check_only
 class CloudDataplexResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class EncryptionConfigsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            def encryptionConfigs(self) -> EncryptionConfigsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -565,6 +597,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class GlossariesResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -1270,6 +1326,44 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 def zones(self) -> ZonesResource: ...
 
             @typing.type_check_only
+            class MetadataJobsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDataplexV1CancelMetadataJobRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDataplexV1MetadataJob = ...,
+                    metadataJobId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDataplexV1MetadataJobHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDataplexV1ListMetadataJobsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDataplexV1ListMetadataJobsResponseHttpRequest,
+                    previous_response: GoogleCloudDataplexV1ListMetadataJobsResponse,
+                ) -> (
+                    GoogleCloudDataplexV1ListMetadataJobsResponseHttpRequest | None
+                ): ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -1350,8 +1444,10 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             def dataTaxonomies(self) -> DataTaxonomiesResource: ...
             def entryGroups(self) -> EntryGroupsResource: ...
             def entryTypes(self) -> EntryTypesResource: ...
+            def glossaries(self) -> GlossariesResource: ...
             def governanceRules(self) -> GovernanceRulesResource: ...
             def lakes(self) -> LakesResource: ...
+            def metadataJobs(self) -> MetadataJobsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -1368,6 +1464,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -1671,6 +1768,16 @@ class GoogleCloudDataplexV1ListLakesResponseHttpRequest(
     ) -> GoogleCloudDataplexV1ListLakesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListMetadataJobsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDataplexV1ListMetadataJobsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListPartitionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1709,6 +1816,14 @@ class GoogleCloudDataplexV1ListZonesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDataplexV1ListZonesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDataplexV1MetadataJob: ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1PartitionHttpRequest(googleapiclient.http.HttpRequest):

@@ -40,6 +40,14 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     workerConfig: InstanceGroupAutoscalingPolicyConfig
 
 @typing.type_check_only
+class AutotuningConfig(typing_extensions.TypedDict, total=False):
+    scenarios: _list[
+        typing_extensions.Literal[
+            "SCENARIO_UNSPECIFIED", "SCALING", "BROADCAST_HASH_JOIN", "MEMORY"
+        ]
+    ]
+
+@typing.type_check_only
 class AuxiliaryNodeGroup(typing_extensions.TypedDict, total=False):
     nodeGroup: NodeGroup
     nodeGroupId: str
@@ -225,6 +233,8 @@ class DiagnoseClusterResults(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DiskConfig(typing_extensions.TypedDict, total=False):
+    bootDiskProvisionedIops: str
+    bootDiskProvisionedThroughput: str
     bootDiskSizeGb: int
     bootDiskType: str
     localSsdInterface: str
@@ -667,6 +677,8 @@ class NodeGroupOperationMetadata(typing_extensions.TypedDict, total=False):
         "RESIZE",
         "REPAIR",
         "UPDATE_LABELS",
+        "START",
+        "STOP",
     ]
     status: ClusterOperationStatus
     statusHistory: _list[ClusterOperationStatus]
@@ -811,6 +823,8 @@ class ResizeNodeGroupRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
+    autotuningConfig: AutotuningConfig
+    cohort: str
     containerImage: str
     properties: dict[str, typing.Any]
     repositoryConfig: RepositoryConfig

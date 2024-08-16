@@ -34,9 +34,12 @@ class AdaptiveMtSentence(typing_extensions.TypedDict, total=False):
 class AdaptiveMtTranslateRequest(typing_extensions.TypedDict, total=False):
     content: _list[str]
     dataset: str
+    glossaryConfig: TranslateTextGlossaryConfig
+    referenceSentenceConfig: ReferenceSentenceConfig
 
 @typing.type_check_only
 class AdaptiveMtTranslateResponse(typing_extensions.TypedDict, total=False):
+    glossaryTranslations: _list[AdaptiveMtTranslation]
     languageCode: str
     translations: _list[AdaptiveMtTranslation]
 
@@ -318,6 +321,21 @@ class Operation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OutputConfig(typing_extensions.TypedDict, total=False):
     gcsDestination: GcsDestination
+
+@typing.type_check_only
+class ReferenceSentenceConfig(typing_extensions.TypedDict, total=False):
+    referenceSentencePairLists: _list[ReferenceSentencePairList]
+    sourceLanguageCode: str
+    targetLanguageCode: str
+
+@typing.type_check_only
+class ReferenceSentencePair(typing_extensions.TypedDict, total=False):
+    sourceSentence: str
+    targetSentence: str
+
+@typing.type_check_only
+class ReferenceSentencePairList(typing_extensions.TypedDict, total=False):
+    referenceSentencePairs: _list[ReferenceSentencePair]
 
 @typing.type_check_only
 class Romanization(typing_extensions.TypedDict, total=False):

@@ -5,7 +5,26 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AssignmentInfo(typing_extensions.TypedDict, total=False):
+    driveResourceInfo: DriveResourceInfo
+    linkToTask: str
+    spaceInfo: SpaceInfo
+    surfaceType: typing_extensions.Literal[
+        "CONTEXT_TYPE_UNSPECIFIED", "GMAIL", "DOCUMENT", "SPACE"
+    ]
+
+@typing.type_check_only
+class DriveResourceInfo(typing_extensions.TypedDict, total=False):
+    driveFileId: str
+    resourceKey: str
+
+@typing.type_check_only
+class SpaceInfo(typing_extensions.TypedDict, total=False):
+    space: str
+
+@typing.type_check_only
 class Task(typing_extensions.TypedDict, total=False):
+    assignmentInfo: AssignmentInfo
     completed: str
     deleted: bool
     due: str

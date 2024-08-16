@@ -37,10 +37,12 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
+    consumerInstanceProject: str
     disableGlobalAccess: bool
     network: str
     producerInstanceId: str
     project: str
+    serviceAttachmentIpAddressMap: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "VALID",
@@ -198,12 +200,14 @@ class InternalRange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
+    includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
 
 @typing.type_check_only
 class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
+    includeImportRanges: _list[str]
     instances: _list[RouterApplianceInstance]
     siteToSiteDataTransfer: bool
     vpcNetwork: str
@@ -211,10 +215,12 @@ class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
     excludeExportRanges: _list[str]
+    includeExportRanges: _list[str]
     uri: str
 
 @typing.type_check_only
 class LinkedVpnTunnels(typing_extensions.TypedDict, total=False):
+    includeImportRanges: _list[str]
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
@@ -321,6 +327,24 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class NextHopInterconnectAttachment(typing_extensions.TypedDict, total=False):
+    siteToSiteDataTransfer: bool
+    uri: str
+    vpcNetwork: str
+
+@typing.type_check_only
+class NextHopRouterApplianceInstance(typing_extensions.TypedDict, total=False):
+    siteToSiteDataTransfer: bool
+    uri: str
+    vpcNetwork: str
+
+@typing.type_check_only
+class NextHopVPNTunnel(typing_extensions.TypedDict, total=False):
+    siteToSiteDataTransfer: bool
+    uri: str
+    vpcNetwork: str
+
+@typing.type_check_only
 class NextHopVpcNetwork(typing_extensions.TypedDict, total=False):
     uri: str
 
@@ -367,7 +391,11 @@ class ProducerPscConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
+    allowedGoogleProducersResourceHierarchyLevel: _list[str]
     limit: str
+    producerInstanceLocation: typing_extensions.Literal[
+        "PRODUCER_INSTANCE_LOCATION_UNSPECIFIED", "CUSTOM_RESOURCE_HIERARCHY_LEVELS"
+    ]
     subnetworks: _list[str]
 
 @typing.type_check_only
@@ -426,7 +454,11 @@ class Route(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     location: str
     name: str
+    nextHopInterconnectAttachment: NextHopInterconnectAttachment
+    nextHopRouterApplianceInstance: NextHopRouterApplianceInstance
     nextHopVpcNetwork: NextHopVpcNetwork
+    nextHopVpnTunnel: NextHopVPNTunnel
+    priority: str
     spoke: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -440,7 +472,10 @@ class Route(typing_extensions.TypedDict, total=False):
         "OBSOLETE",
     ]
     type: typing_extensions.Literal[
-        "ROUTE_TYPE_UNSPECIFIED", "VPC_PRIMARY_SUBNET", "VPC_SECONDARY_SUBNET"
+        "ROUTE_TYPE_UNSPECIFIED",
+        "VPC_PRIMARY_SUBNET",
+        "VPC_SECONDARY_SUBNET",
+        "DYNAMIC_ROUTE",
     ]
     uid: str
     updateTime: str

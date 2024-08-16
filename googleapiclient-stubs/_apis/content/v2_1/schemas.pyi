@@ -1316,6 +1316,7 @@ class LocationIdSet(typing_extensions.TypedDict, total=False):
 class LoyaltyProgram(typing_extensions.TypedDict, total=False):
     cashbackForFutureUse: Price
     loyaltyPoints: str
+    memberPriceEffectiveDate: str
     price: Price
     programLabel: str
     tierLabel: str

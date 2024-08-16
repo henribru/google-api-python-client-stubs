@@ -45,6 +45,23 @@ class DataformResource(googleapiclient.discovery.Resource):
             class RepositoriesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class CommentThreadsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class CommentsResource(googleapiclient.discovery.Resource):
+                        def getIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            options_requestedPolicyVersion: int = ...,
+                            **kwargs: typing.Any,
+                        ) -> PolicyHttpRequest: ...
+                        def setIamPolicy(
+                            self,
+                            *,
+                            resource: str,
+                            body: SetIamPolicyRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> PolicyHttpRequest: ...
+
                     def getIamPolicy(
                         self,
                         *,
@@ -59,6 +76,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         body: SetIamPolicyRequest = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
+                    def comments(self) -> CommentsResource: ...
 
                 @typing.type_check_only
                 class CompilationResultsResource(googleapiclient.discovery.Resource):

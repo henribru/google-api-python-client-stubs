@@ -146,6 +146,7 @@ class CryptoHashConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Dataset(typing_extensions.TypedDict, total=False):
+    encryptionSpec: EncryptionSpec
     name: str
     timeZone: str
 
@@ -226,6 +227,10 @@ class DicomStoreMetrics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class EncryptionSpec(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
 
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
@@ -764,6 +769,26 @@ class RollbackFhirResourcesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RollbackFhirResourcesResponse(typing_extensions.TypedDict, total=False):
     fhirStore: str
+
+@typing.type_check_only
+class RollbackHL7MessagesFilteringFields(typing_extensions.TypedDict, total=False):
+    operationIds: _list[str]
+
+@typing.type_check_only
+class RollbackHl7V2MessagesRequest(typing_extensions.TypedDict, total=False):
+    changeType: typing_extensions.Literal[
+        "CHANGE_TYPE_UNSPECIFIED", "ALL", "CREATE", "UPDATE", "DELETE"
+    ]
+    excludeRollbacks: bool
+    filteringFields: RollbackHL7MessagesFilteringFields
+    force: bool
+    inputGcsObject: str
+    resultGcsBucket: str
+    rollbackTime: str
+
+@typing.type_check_only
+class RollbackHl7V2MessagesResponse(typing_extensions.TypedDict, total=False):
+    hl7v2Store: str
 
 @typing.type_check_only
 class SchemaConfig(typing_extensions.TypedDict, total=False):

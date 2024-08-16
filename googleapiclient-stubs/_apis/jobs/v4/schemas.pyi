@@ -512,34 +512,10 @@ class MatchingJob(typing_extensions.TypedDict, total=False):
     searchTextSnippet: str
 
 @typing.type_check_only
-class MendelDebugInput(typing_extensions.TypedDict, total=False):
-    namespacedDebugInput: dict[str, typing.Any]
-
-@typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
-
-@typing.type_check_only
-class NamespacedDebugInput(typing_extensions.TypedDict, total=False):
-    absolutelyForcedExpNames: _list[str]
-    absolutelyForcedExpTags: _list[str]
-    absolutelyForcedExps: _list[int]
-    conditionallyForcedExpNames: _list[str]
-    conditionallyForcedExpTags: _list[str]
-    conditionallyForcedExps: _list[int]
-    disableAutomaticEnrollmentSelection: bool
-    disableExpNames: _list[str]
-    disableExpTags: _list[str]
-    disableExps: _list[int]
-    disableManualEnrollmentSelection: bool
-    disableOrganicSelection: bool
-    forcedFlags: dict[str, typing.Any]
-    forcedRollouts: dict[str, typing.Any]
-    testingMode: typing_extensions.Literal[
-        "TESTING_MODE_UNSPECIFIED", "TESTING_MODE_ALL_OFF", "TESTING_MODE_ALL_ON"
-    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

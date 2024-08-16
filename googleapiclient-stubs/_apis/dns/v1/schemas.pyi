@@ -17,7 +17,6 @@ class Change(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChangesListResponse(typing_extensions.TypedDict, total=False):
     changes: _list[Change]
-    header: ResponseHeader
     kind: str
     nextPageToken: str
 
@@ -54,7 +53,6 @@ class DnsKeySpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DnsKeysListResponse(typing_extensions.TypedDict, total=False):
     dnsKeys: _list[DnsKey]
-    header: ResponseHeader
     kind: str
     nextPageToken: str
 
@@ -159,7 +157,6 @@ class ManagedZoneForwardingConfigNameServerTarget(
 
 @typing.type_check_only
 class ManagedZoneOperationsListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     kind: str
     nextPageToken: str
     operations: _list[Operation]
@@ -214,7 +211,6 @@ class ManagedZoneServiceDirectoryConfigNamespace(
 
 @typing.type_check_only
 class ManagedZonesListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     kind: str
     managedZones: _list[ManagedZone]
     nextPageToken: str
@@ -242,19 +238,16 @@ class OperationManagedZoneContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PoliciesListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     kind: str
     nextPageToken: str
     policies: _list[Policy]
 
 @typing.type_check_only
 class PoliciesPatchResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     policy: Policy
 
 @typing.type_check_only
 class PoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     policy: Policy
 
 @typing.type_check_only
@@ -300,6 +293,7 @@ class Quota(typing_extensions.TypedDict, total=False):
     gkeClustersPerManagedZone: int
     gkeClustersPerPolicy: int
     gkeClustersPerResponsePolicy: int
+    internetHealthChecksPerManagedZone: int
     itemsPerRoutingPolicy: int
     kind: str
     managedZones: int
@@ -325,6 +319,7 @@ class Quota(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
     geo: RRSetRoutingPolicyGeoPolicy
+    healthCheck: str
     kind: str
     primaryBackup: RRSetRoutingPolicyPrimaryBackupPolicy
     wrr: RRSetRoutingPolicyWrrPolicy
@@ -347,6 +342,7 @@ class RRSetRoutingPolicyGeoPolicyGeoPolicyItem(
 
 @typing.type_check_only
 class RRSetRoutingPolicyHealthCheckTargets(typing_extensions.TypedDict, total=False):
+    externalEndpoints: _list[str]
     internalLoadBalancers: _list[RRSetRoutingPolicyLoadBalancerTarget]
 
 @typing.type_check_only
@@ -399,29 +395,21 @@ class ResourceRecordSetsDeleteResponse(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class ResourceRecordSetsListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     kind: str
     nextPageToken: str
     rrsets: _list[ResourceRecordSet]
 
 @typing.type_check_only
-class ResponseHeader(typing_extensions.TypedDict, total=False):
-    operationId: str
-
-@typing.type_check_only
 class ResponsePoliciesListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     nextPageToken: str
     responsePolicies: _list[ResponsePolicy]
 
 @typing.type_check_only
 class ResponsePoliciesPatchResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     responsePolicy: ResponsePolicy
 
 @typing.type_check_only
 class ResponsePoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     responsePolicy: ResponsePolicy
 
 @typing.type_check_only
@@ -458,16 +446,13 @@ class ResponsePolicyRuleLocalData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResponsePolicyRulesListResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     nextPageToken: str
     responsePolicyRules: _list[ResponsePolicyRule]
 
 @typing.type_check_only
 class ResponsePolicyRulesPatchResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     responsePolicyRule: ResponsePolicyRule
 
 @typing.type_check_only
 class ResponsePolicyRulesUpdateResponse(typing_extensions.TypedDict, total=False):
-    header: ResponseHeader
     responsePolicyRule: ResponsePolicyRule

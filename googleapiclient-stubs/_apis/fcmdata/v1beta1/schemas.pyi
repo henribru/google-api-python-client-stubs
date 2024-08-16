@@ -51,10 +51,12 @@ class GoogleFirebaseFcmDataV1beta1MessageInsightPercents(
 class GoogleFirebaseFcmDataV1beta1MessageOutcomePercents(
     typing_extensions.TypedDict, total=False
 ):
+    collapsed: float
     delivered: float
     droppedAppForceStopped: float
     droppedDeviceInactive: float
     droppedTooManyPendingMessages: float
+    droppedTtlExpired: float
     pending: float
 
 @typing.type_check_only

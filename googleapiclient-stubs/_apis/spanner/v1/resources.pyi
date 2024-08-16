@@ -272,6 +272,65 @@ class SpannerResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DatabasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class BackupSchedulesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: BackupSchedule = ...,
+                        backupScheduleId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> BackupScheduleHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BackupScheduleHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBackupSchedulesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupSchedulesResponseHttpRequest,
+                        previous_response: ListBackupSchedulesResponse,
+                    ) -> ListBackupSchedulesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: BackupSchedule = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> BackupScheduleHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class DatabaseRolesResource(googleapiclient.discovery.Resource):
                     def list(
                         self,
@@ -434,6 +493,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> PartialResultSetHttpRequest: ...
 
+                def changequorum(
+                    self,
+                    *,
+                    name: str,
+                    body: ChangeQuorumRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -517,6 +583,7 @@ class SpannerResource(googleapiclient.discovery.Resource):
                     body: UpdateDatabaseDdlRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def backupSchedules(self) -> BackupSchedulesResource: ...
                 def databaseRoles(self) -> DatabaseRolesResource: ...
                 def operations(self) -> OperationsResource: ...
                 def sessions(self) -> SessionsResource: ...
@@ -752,6 +819,14 @@ class BackupHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Backup: ...
 
 @typing.type_check_only
+class BackupScheduleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackupSchedule: ...
+
+@typing.type_check_only
 class BatchCreateSessionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -838,6 +913,14 @@ class ListBackupOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupOperationsResponse: ...
+
+@typing.type_check_only
+class ListBackupSchedulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupSchedulesResponse: ...
 
 @typing.type_check_only
 class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):

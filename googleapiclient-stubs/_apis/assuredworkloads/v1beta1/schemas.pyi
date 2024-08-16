@@ -46,34 +46,32 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "CJIS",
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
-        "REGIONAL_CONTROLS_PREMIUM_US",
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
-        "REGIONAL_CONTROLS_PREMIUM_EU",
         "EU_REGIONS_AND_SUPPORT",
-        "REGIONAL_CONTROLS_PREMIUM_CA",
         "CA_REGIONS_AND_SUPPORT",
         "ITAR",
-        "REGIONAL_CONTROLS_PREMIUM_AU",
         "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
-        "REGIONAL_CONTROLS_PREMIUM_ISR",
         "ISR_REGIONS",
         "ISR_REGIONS_AND_SUPPORT",
         "CA_PROTECTED_B",
         "IL5",
         "IL2",
-        "REGIONAL_CONTROLS_PREMIUM_JP",
         "JP_REGIONS_AND_SUPPORT",
         "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
         "REGIONAL_CONTROLS",
-        "FREE_REGIONS",
     ]
     createTime: str
     displayName: str
     parent: str
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponse(
@@ -183,6 +181,7 @@ class GoogleCloudAssuredworkloadsV1beta1ViolationRemediation(
         "REMEDIATION_LIST_DENIED_VALUES_ORG_POLICY_VIOLATION",
         "REMEDIATION_RESTRICT_CMEK_CRYPTO_KEY_PROJECTS_ORG_POLICY_VIOLATION",
         "REMEDIATION_RESOURCE_VIOLATION",
+        "REMEDIATION_RESOURCE_VIOLATION_NON_CMEK_SERVICES",
     ]
 
 @typing.type_check_only
@@ -224,31 +223,25 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "CJIS",
         "FEDRAMP_HIGH",
         "FEDRAMP_MODERATE",
-        "REGIONAL_CONTROLS_PREMIUM_US",
         "US_REGIONAL_ACCESS",
         "HIPAA",
         "HITRUST",
-        "REGIONAL_CONTROLS_PREMIUM_EU",
         "EU_REGIONS_AND_SUPPORT",
-        "REGIONAL_CONTROLS_PREMIUM_CA",
         "CA_REGIONS_AND_SUPPORT",
         "ITAR",
-        "REGIONAL_CONTROLS_PREMIUM_AU",
         "AU_REGIONS_AND_US_SUPPORT",
         "ASSURED_WORKLOADS_FOR_PARTNERS",
-        "REGIONAL_CONTROLS_PREMIUM_ISR",
         "ISR_REGIONS",
         "ISR_REGIONS_AND_SUPPORT",
         "CA_PROTECTED_B",
         "IL5",
         "IL2",
-        "REGIONAL_CONTROLS_PREMIUM_JP",
         "JP_REGIONS_AND_SUPPORT",
         "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
         "REGIONAL_CONTROLS",
-        "FREE_REGIONS",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
+    complianceUpdatesEnabled: bool
     compliantButDisallowedServices: _list[str]
     createTime: str
     displayName: str
@@ -356,6 +349,7 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings(
 class GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions(
     typing_extensions.TypedDict, total=False
 ):
+    accessTransparencyLogsSupportCaseViewer: bool
     assuredWorkloadsMonitoring: bool
     dataLogsViewer: bool
     serviceAccessApprover: bool

@@ -87,6 +87,13 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     body: ImportDomainRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def initiatePushTransfer(
+                    self,
+                    *,
+                    registration: str,
+                    body: InitiatePushTransferRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -116,6 +123,13 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                     body: RegisterDomainRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def renewDomain(
+                    self,
+                    *,
+                    registration: str,
+                    body: RenewDomainRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def resetAuthorizationCode(
                     self,
                     *,
@@ -126,6 +140,22 @@ class CloudDomainsResource(googleapiclient.discovery.Resource):
                 def retrieveAuthorizationCode(
                     self, *, registration: str, **kwargs: typing.Any
                 ) -> AuthorizationCodeHttpRequest: ...
+                def retrieveGoogleDomainsDnsRecords(
+                    self,
+                    *,
+                    registration: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> RetrieveGoogleDomainsDnsRecordsResponseHttpRequest: ...
+                def retrieveGoogleDomainsDnsRecords_next(
+                    self,
+                    previous_request: RetrieveGoogleDomainsDnsRecordsResponseHttpRequest,
+                    previous_response: RetrieveGoogleDomainsDnsRecordsResponse,
+                ) -> RetrieveGoogleDomainsDnsRecordsResponseHttpRequest | None: ...
+                def retrieveGoogleDomainsForwardingConfig(
+                    self, *, registration: str, **kwargs: typing.Any
+                ) -> RetrieveGoogleDomainsForwardingConfigResponseHttpRequest: ...
                 def retrieveImportableDomains(
                     self,
                     *,
@@ -269,6 +299,26 @@ class RegistrationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Registration: ...
+
+@typing.type_check_only
+class RetrieveGoogleDomainsDnsRecordsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrieveGoogleDomainsDnsRecordsResponse: ...
+
+@typing.type_check_only
+class RetrieveGoogleDomainsForwardingConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RetrieveGoogleDomainsForwardingConfigResponse: ...
 
 @typing.type_check_only
 class RetrieveImportableDomainsResponseHttpRequest(googleapiclient.http.HttpRequest):

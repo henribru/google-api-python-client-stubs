@@ -268,20 +268,26 @@ class ParamSpec(typing_extensions.TypedDict, total=False):
     default: ParamValue
     description: str
     name: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
 class ParamValue(typing_extensions.TypedDict, total=False):
     arrayVal: _list[str]
+    objectVal: dict[str, typing.Any]
     stringVal: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "STRING", "ARRAY", "OBJECT"]
 
 @typing.type_check_only
 class PipelineRef(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     resolver: typing_extensions.Literal[
-        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
+        "RESOLVER_NAME_UNSPECIFIED",
+        "BUNDLES",
+        "GCB_REPO",
+        "GIT",
+        "DEVELOPER_CONNECT",
+        "DEFAULT",
     ]
 
 @typing.type_check_only
@@ -471,6 +477,9 @@ class Step(typing_extensions.TypedDict, total=False):
     env: _list[EnvVar]
     image: str
     name: str
+    onError: typing_extensions.Literal[
+        "ON_ERROR_TYPE_UNSPECIFIED", "STOP_AND_FAIL", "CONTINUE"
+    ]
     params: _list[Param]
     ref: StepRef
     script: str
@@ -484,7 +493,12 @@ class StepRef(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     resolver: typing_extensions.Literal[
-        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
+        "RESOLVER_NAME_UNSPECIFIED",
+        "BUNDLES",
+        "GCB_REPO",
+        "GIT",
+        "DEVELOPER_CONNECT",
+        "DEFAULT",
     ]
 
 @typing.type_check_only
@@ -497,7 +511,12 @@ class TaskRef(typing_extensions.TypedDict, total=False):
     name: str
     params: _list[Param]
     resolver: typing_extensions.Literal[
-        "RESOLVER_NAME_UNSPECIFIED", "BUNDLES", "GCB_REPO", "GIT", "DEVELOPER_CONNECT"
+        "RESOLVER_NAME_UNSPECIFIED",
+        "BUNDLES",
+        "GCB_REPO",
+        "GIT",
+        "DEVELOPER_CONNECT",
+        "DEFAULT",
     ]
 
 @typing.type_check_only

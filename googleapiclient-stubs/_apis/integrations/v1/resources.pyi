@@ -350,6 +350,15 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         GoogleCloudIntegrationsV1alphaListExecutionsResponseHttpRequest
                         | None
                     ): ...
+                    def replay(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudIntegrationsV1alphaReplayExecutionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudIntegrationsV1alphaReplayExecutionResponseHttpRequest
+                    ): ...
                     def suspensions(self) -> SuspensionsResource: ...
 
                 @typing.type_check_only
@@ -1034,6 +1043,120 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudIntegrationsV1alphaSfdcInstanceHttpRequest: ...
                 def sfdcChannels(self) -> SfdcChannelsResource: ...
 
+            @typing.type_check_only
+            class TemplatesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudIntegrationsV1alphaTemplate = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudIntegrationsV1alphaTemplateHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def download(
+                    self,
+                    *,
+                    name: str,
+                    fileFormat: typing_extensions.Literal[
+                        "FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"
+                    ] = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaDownloadTemplateResponseHttpRequest
+                ): ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudIntegrationsV1alphaTemplateHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudIntegrationsV1alphaImportTemplateRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaImportTemplateResponseHttpRequest
+                ): ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudIntegrationsV1alphaListTemplatesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudIntegrationsV1alphaListTemplatesResponseHttpRequest,
+                    previous_response: GoogleCloudIntegrationsV1alphaListTemplatesResponse,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaListTemplatesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudIntegrationsV1alphaTemplate = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudIntegrationsV1alphaTemplateHttpRequest: ...
+                def search(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    readMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaSearchTemplatesResponseHttpRequest
+                ): ...
+                def search_next(
+                    self,
+                    previous_request: GoogleCloudIntegrationsV1alphaSearchTemplatesResponseHttpRequest,
+                    previous_response: GoogleCloudIntegrationsV1alphaSearchTemplatesResponse,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaSearchTemplatesResponseHttpRequest
+                    | None
+                ): ...
+                def share(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudIntegrationsV1alphaShareTemplateRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def unshare(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudIntegrationsV1alphaUnshareTemplateRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def upload(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudIntegrationsV1alphaUploadTemplateRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudIntegrationsV1alphaUploadTemplateResponseHttpRequest
+                ): ...
+                def use(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudIntegrationsV1alphaUseTemplateRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudIntegrationsV1alphaUseTemplateResponseHttpRequest: ...
+
             def getClients(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudIntegrationsV1alphaGetClientResponseHttpRequest: ...
@@ -1046,6 +1169,7 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
             def integrations(self) -> IntegrationsResource: ...
             def products(self) -> ProductsResource: ...
             def sfdcInstances(self) -> SfdcInstancesResource: ...
+            def templates(self) -> TemplatesResource: ...
 
         def getClientmetadata(
             self, *, parent: str, **kwargs: typing.Any
@@ -1159,6 +1283,16 @@ class GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponseHttpRequest(
     ) -> GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse: ...
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaDownloadTemplateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaDownloadTemplateResponse: ...
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1227,6 +1361,16 @@ class GoogleCloudIntegrationsV1alphaGetClientResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaGetClientResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaImportTemplateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaImportTemplateResponse: ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntegrationVersionHttpRequest(
@@ -1369,6 +1513,16 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponseHttpRequest(
     ) -> GoogleCloudIntegrationsV1alphaListSuspensionsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTemplatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaListTemplatesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1377,6 +1531,16 @@ class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponseHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplayExecutionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaReplayExecutionResponse: ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionResponseHttpRequest(
@@ -1397,6 +1561,16 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSearchTemplatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaSearchTemplatesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaSfdcChannelHttpRequest(
@@ -1429,6 +1603,16 @@ class GoogleCloudIntegrationsV1alphaTakeoverEditLockResponseHttpRequest(
     ) -> GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse: ...
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTemplateHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaTemplate: ...
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTestIntegrationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1447,6 +1631,26 @@ class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUploadTemplateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaUploadTemplateResponse: ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUseTemplateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudIntegrationsV1alphaUseTemplateResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

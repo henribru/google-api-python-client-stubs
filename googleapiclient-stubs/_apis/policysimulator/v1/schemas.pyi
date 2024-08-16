@@ -161,87 +161,11 @@ class GoogleCloudPolicysimulatorV1ExplainedPolicy(
     ]
 
 @typing.type_check_only
-class GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    orgPolicyViolationsPreviews: _list[
-        GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview
-    ]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    orgPolicyViolations: _list[GoogleCloudPolicysimulatorV1OrgPolicyViolation]
-
-@typing.type_check_only
 class GoogleCloudPolicysimulatorV1ListReplayResultsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
     replayResults: _list[GoogleCloudPolicysimulatorV1ReplayResult]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyOverlay(
-    typing_extensions.TypedDict, total=False
-):
-    customConstraints: _list[
-        GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay
-    ]
-    policies: _list[GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay]
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyOverlayCustomConstraintOverlay(
-    typing_extensions.TypedDict, total=False
-):
-    customConstraint: GoogleCloudOrgpolicyV2CustomConstraint
-    customConstraintParent: str
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyOverlayPolicyOverlay(
-    typing_extensions.TypedDict, total=False
-):
-    policy: GoogleCloudOrgpolicyV2Policy
-    policyParent: str
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyViolation(
-    typing_extensions.TypedDict, total=False
-):
-    customConstraint: GoogleCloudOrgpolicyV2CustomConstraint
-    error: GoogleRpcStatus
-    name: str
-    resource: GoogleCloudPolicysimulatorV1ResourceContext
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    customConstraints: _list[str]
-    name: str
-    overlay: GoogleCloudPolicysimulatorV1OrgPolicyOverlay
-    resourceCounts: GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts
-    state: typing_extensions.Literal[
-        "PREVIEW_STATE_UNSPECIFIED",
-        "PREVIEW_PENDING",
-        "PREVIEW_RUNNING",
-        "PREVIEW_SUCCEEDED",
-        "PREVIEW_FAILED",
-    ]
-    violationsCount: int
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewResourceCounts(
-    typing_extensions.TypedDict, total=False
-):
-    compliant: int
-    errors: int
-    noncompliant: int
-    scanned: int
-    unenforced: int
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1Replay(typing_extensions.TypedDict, total=False):
@@ -290,14 +214,6 @@ class GoogleCloudPolicysimulatorV1ReplayResultsSummary(
     newestDate: GoogleTypeDate
     oldestDate: GoogleTypeDate
     unchangedCount: int
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1ResourceContext(
-    typing_extensions.TypedDict, total=False
-):
-    ancestors: _list[str]
-    assetType: str
-    resource: str
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1alphaCreateOrgPolicyViolationsPreviewOperationMetadata(

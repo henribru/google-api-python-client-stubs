@@ -1127,7 +1127,11 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                 previous_response: ListContainersResponse,
             ) -> ListContainersResponseHttpRequest | None: ...
             def lookup(
-                self, *, destinationId: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                destinationId: str = ...,
+                tagId: str = ...,
+                **kwargs: typing.Any,
             ) -> ContainerHttpRequest: ...
             def move_tag_id(
                 self,

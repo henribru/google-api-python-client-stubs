@@ -79,7 +79,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
         def generateSignupUrl(
-            self, *, callbackUrl: str = ..., **kwargs: typing.Any
+            self, *, adminEmail: str = ..., callbackUrl: str = ..., **kwargs: typing.Any
         ) -> SignupInfoHttpRequest: ...
         def get(
             self, *, enterpriseId: str, **kwargs: typing.Any

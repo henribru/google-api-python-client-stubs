@@ -30,6 +30,8 @@ class Binding(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BoostConfig(typing_extensions.TypedDict, total=False):
     accelerators: _list[Accelerator]
+    bootDiskSizeGb: int
+    enableNestedVirtualization: bool
     id: str
     machineType: str
     poolSize: int
@@ -115,6 +117,7 @@ class GceShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GenerateAccessTokenRequest(typing_extensions.TypedDict, total=False):
     expireTime: str
+    port: int
     ttl: str
 
 @typing.type_check_only
@@ -128,6 +131,10 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Host(typing_extensions.TypedDict, total=False):
     gceInstance: GceInstance
+
+@typing.type_check_only
+class HttpOptions(typing_extensions.TypedDict, total=False):
+    allowedUnauthenticatedCorsPreflightRequests: bool
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -195,6 +202,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PortRange(typing_extensions.TypedDict, total=False):
+    first: int
+    last: int
+
+@typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     allowedProjects: _list[str]
     clusterHostname: str
@@ -239,6 +251,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Workstation(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    boostConfigs: _list[WorkstationBoostConfig]
     createTime: str
     deleteTime: str
     displayName: str
@@ -249,6 +262,9 @@ class Workstation(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    satisfiesPzi: bool
+    satisfiesPzs: bool
+    sourceWorkstation: str
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -259,6 +275,10 @@ class Workstation(typing_extensions.TypedDict, total=False):
     ]
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class WorkstationBoostConfig(typing_extensions.TypedDict, total=False):
+    id: str
 
 @typing.type_check_only
 class WorkstationCluster(typing_extensions.TypedDict, total=False):
@@ -276,12 +296,15 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     network: str
     privateClusterConfig: PrivateClusterConfig
     reconciling: bool
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     subnetwork: str
     uid: str
     updateTime: str
 
 @typing.type_check_only
 class WorkstationConfig(typing_extensions.TypedDict, total=False):
+    allowedPorts: _list[PortRange]
     annotations: dict[str, typing.Any]
     conditions: _list[Status]
     container: Container
@@ -295,13 +318,17 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     ephemeralDirectories: _list[EphemeralDirectory]
     etag: str
     host: Host
+    httpOptions: HttpOptions
     idleTimeout: str
     labels: dict[str, typing.Any]
+    maxUsableWorkstations: int
     name: str
     persistentDirectories: _list[PersistentDirectory]
     readinessChecks: _list[ReadinessCheck]
     reconciling: bool
     replicaZones: _list[str]
     runningTimeout: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     uid: str
     updateTime: str

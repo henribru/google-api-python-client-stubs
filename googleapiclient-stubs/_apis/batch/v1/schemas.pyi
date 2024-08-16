@@ -52,6 +52,7 @@ class AgentMetadata(typing_extensions.TypedDict, total=False):
     instance: str
     instanceId: str
     instancePreemptionNoticeReceived: bool
+    machineType: str
     osRelease: dict[str, typing.Any]
     version: str
     zone: str
@@ -190,6 +191,7 @@ class InstancePolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstancePolicyOrTemplate(typing_extensions.TypedDict, total=False):
     installGpuDrivers: bool
+    installOpsAgent: bool
     instanceTemplate: str
     policy: InstancePolicy
 

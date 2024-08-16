@@ -36,9 +36,11 @@ class Bucket(typing_extensions.TypedDict, total=False):
     defaultObjectAcl: _list[ObjectAccessControl]
     encryption: dict[str, typing.Any]
     etag: str
+    generation: str
     hierarchicalNamespace: dict[str, typing.Any]
     iamConfiguration: dict[str, typing.Any]
     id: str
+    ipFilter: dict[str, typing.Any]
     kind: str
     labels: dict[str, typing.Any]
     lifecycle: dict[str, typing.Any]
@@ -52,6 +54,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     projectNumber: str
     retentionPolicy: dict[str, typing.Any]
     rpo: str
+    satisfiesPZI: bool
     satisfiesPZS: bool
     selfLink: str
     softDeletePolicy: dict[str, typing.Any]
@@ -79,6 +82,15 @@ class BucketAccessControl(typing_extensions.TypedDict, total=False):
 class BucketAccessControls(typing_extensions.TypedDict, total=False):
     items: _list[BucketAccessControl]
     kind: str
+
+@typing.type_check_only
+class BucketStorageLayout(typing_extensions.TypedDict, total=False):
+    bucket: str
+    customPlacementConfig: dict[str, typing.Any]
+    hierarchicalNamespace: dict[str, typing.Any]
+    kind: str
+    location: str
+    locationType: str
 
 @typing.type_check_only
 class Buckets(typing_extensions.TypedDict, total=False):
@@ -140,6 +152,7 @@ class Folders(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
+    kind: str
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
 
@@ -147,9 +160,11 @@ class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus
+    kind: str
     metadata: dict[str, typing.Any]
     name: str
     response: dict[str, typing.Any]
+    selfLink: str
 
 @typing.type_check_only
 class GoogleRpcStatus(typing_extensions.TypedDict, total=False):

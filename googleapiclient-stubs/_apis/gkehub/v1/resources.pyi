@@ -61,7 +61,11 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
                 ) -> FeatureHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -78,6 +82,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListFeaturesResponseHttpRequest: ...
                 def list_next(
@@ -183,6 +188,52 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
+                @typing.type_check_only
+                class RbacrolebindingsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: RBACRoleBinding = ...,
+                        rbacrolebindingId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def generateMembershipRBACRoleBindingYAML(
+                        self,
+                        *,
+                        parent: str,
+                        body: RBACRoleBinding = ...,
+                        rbacrolebindingId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> RBACRoleBindingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMembershipRBACRoleBindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMembershipRBACRoleBindingsResponseHttpRequest,
+                        previous_response: ListMembershipRBACRoleBindingsResponse,
+                    ) -> ListMembershipRBACRoleBindingsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: RBACRoleBinding = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -261,6 +312,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def bindings(self) -> BindingsResource: ...
+                def rbacrolebindings(self) -> RbacrolebindingsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -529,6 +581,16 @@ class GenerateConnectManifestResponseHttpRequest(googleapiclient.http.HttpReques
     ) -> GenerateConnectManifestResponse: ...
 
 @typing.type_check_only
+class GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateMembershipRBACRoleBindingYAMLResponse: ...
+
+@typing.type_check_only
 class ListBoundMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -567,6 +629,16 @@ class ListMembershipBindingsResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListMembershipBindingsResponse: ...
+
+@typing.type_check_only
+class ListMembershipRBACRoleBindingsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMembershipRBACRoleBindingsResponse: ...
 
 @typing.type_check_only
 class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -673,6 +673,7 @@ class GoogleCloudChannelV1QueryEligibleBillingAccountsResponse(
 class GoogleCloudChannelV1RegisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
+    integrator: str
     serviceAccount: str
 
 @typing.type_check_only
@@ -867,6 +868,7 @@ class GoogleCloudChannelV1TrialSettings(typing_extensions.TypedDict, total=False
 class GoogleCloudChannelV1UnregisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
+    integrator: str
     serviceAccount: str
 
 @typing.type_check_only

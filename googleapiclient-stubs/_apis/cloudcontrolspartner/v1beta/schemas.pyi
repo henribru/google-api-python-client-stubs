@@ -150,6 +150,7 @@ class PartnerPermissions(typing_extensions.TypedDict, total=False):
             "ASSURED_WORKLOADS_MONITORING",
             "ACCESS_APPROVAL_REQUESTS",
             "ASSURED_WORKLOADS_EKM_CONNECTION_STATUS",
+            "ACCESS_TRANSPARENCY_LOGS_SUPPORT_CASE_VIEWER",
         ]
     ]
 

@@ -872,6 +872,7 @@ class DataSourceSheetProperties(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DataSourceSpec(typing_extensions.TypedDict, total=False):
     bigQuery: BigQueryDataSourceSpec
+    looker: LookerDataSourceSpec
     parameters: _list[DataSourceParameter]
 
 @typing.type_check_only
@@ -1295,6 +1296,12 @@ class LineStyle(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
     uri: str
+
+@typing.type_check_only
+class LookerDataSourceSpec(typing_extensions.TypedDict, total=False):
+    explore: str
+    instanceUri: str
+    model: str
 
 @typing.type_check_only
 class ManualRule(typing_extensions.TypedDict, total=False):

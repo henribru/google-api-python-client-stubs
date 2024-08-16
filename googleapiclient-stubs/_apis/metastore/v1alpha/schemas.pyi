@@ -119,6 +119,11 @@ class Consumer(typing_extensions.TypedDict, total=False):
     subnetwork: str
 
 @typing.type_check_only
+class CustomRegionConfig(typing_extensions.TypedDict, total=False):
+    readOnlyRegions: _list[str]
+    readWriteRegions: _list[str]
+
+@typing.type_check_only
 class CustomRegionMetadata(typing_extensions.TypedDict, total=False):
     optionalReadOnlyRegions: _list[str]
     requiredReadWriteRegions: _list[str]
@@ -347,6 +352,11 @@ class MoveTableToDatabaseRequest(typing_extensions.TypedDict, total=False):
 class MoveTableToDatabaseResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class MultiRegionConfig(typing_extensions.TypedDict, total=False):
+    certificates: _list[RootCACertificate]
+    customRegionConfig: CustomRegionConfig
+
+@typing.type_check_only
 class MultiRegionMetadata(typing_extensions.TypedDict, total=False):
     constituentRegions: _list[str]
 
@@ -418,6 +428,11 @@ class RestoreServiceRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RootCACertificate(typing_extensions.TypedDict, total=False):
+    certificate: str
+    expirationTime: str
+
+@typing.type_check_only
 class ScalingConfig(typing_extensions.TypedDict, total=False):
     autoscalingConfig: AutoscalingConfig
     instanceSize: typing_extensions.Literal[
@@ -458,6 +473,7 @@ class Service(typing_extensions.TypedDict, total=False):
     maintenanceWindow: MaintenanceWindow
     metadataIntegration: MetadataIntegration
     metadataManagementActivity: MetadataManagementActivity
+    multiRegionConfig: MultiRegionConfig
     name: str
     network: str
     networkConfig: NetworkConfig
@@ -476,6 +492,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "DELETING",
         "ERROR",
+        "AUTOSCALING",
         "MIGRATING",
     ]
     stateMessage: str

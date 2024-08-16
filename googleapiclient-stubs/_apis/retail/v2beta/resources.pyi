@@ -85,6 +85,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         def delete(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def export(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudRetailV2betaExportProductsRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleCloudRetailV2betaProductHttpRequest: ...
@@ -397,6 +404,13 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         userEvent: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudRetailV2betaExportUserEventsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def import_(
                         self,
                         *,
@@ -554,6 +568,17 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+        def getAlertConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudRetailV2betaAlertConfigHttpRequest: ...
+        def updateAlertConfig(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudRetailV2betaAlertConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudRetailV2betaAlertConfigHttpRequest: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
 
@@ -578,6 +603,14 @@ class GoogleApiHttpBodyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleApiHttpBody: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaAlertConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaAlertConfig: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaAttributesConfigHttpRequest(

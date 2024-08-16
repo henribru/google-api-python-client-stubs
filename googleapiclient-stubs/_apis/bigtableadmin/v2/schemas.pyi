@@ -277,14 +277,39 @@ class GoogleBigtableAdminV2AuthorizedViewSubsetView(
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeAggregate(typing_extensions.TypedDict, total=False):
+    hllppUniqueCount: GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount
     inputType: Type
+    max: GoogleBigtableAdminV2TypeAggregateMax
+    min: GoogleBigtableAdminV2TypeAggregateMin
     stateType: Type
     sum: GoogleBigtableAdminV2TypeAggregateSum
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeAggregateMax(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeAggregateMin(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeAggregateSum(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeArray(typing_extensions.TypedDict, total=False):
+    elementType: Type
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeBool(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeBytes(typing_extensions.TypedDict, total=False):
@@ -300,6 +325,15 @@ class GoogleBigtableAdminV2TypeBytesEncodingRaw(
 ): ...
 
 @typing.type_check_only
+class GoogleBigtableAdminV2TypeDate(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeFloat32(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeFloat64(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GoogleBigtableAdminV2TypeInt64(typing_extensions.TypedDict, total=False):
     encoding: GoogleBigtableAdminV2TypeInt64Encoding
 
@@ -312,6 +346,42 @@ class GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes(
     typing_extensions.TypedDict, total=False
 ):
     bytesType: GoogleBigtableAdminV2TypeBytes
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeMap(typing_extensions.TypedDict, total=False):
+    keyType: Type
+    valueType: Type
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeString(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeStringEncoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStringEncoding(typing_extensions.TypedDict, total=False):
+    utf8Bytes: GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes
+    utf8Raw: GoogleBigtableAdminV2TypeStringEncodingUtf8Raw
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStringEncodingUtf8Raw(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStruct(typing_extensions.TypedDict, total=False):
+    fields: _list[GoogleBigtableAdminV2TypeStructField]
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStructField(typing_extensions.TypedDict, total=False):
+    fieldName: str
+    type: Type
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeTimestamp(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class HotTablet(typing_extensions.TypedDict, total=False):
@@ -540,8 +610,17 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
     aggregateType: GoogleBigtableAdminV2TypeAggregate
+    arrayType: GoogleBigtableAdminV2TypeArray
+    boolType: GoogleBigtableAdminV2TypeBool
     bytesType: GoogleBigtableAdminV2TypeBytes
+    dateType: GoogleBigtableAdminV2TypeDate
+    float32Type: GoogleBigtableAdminV2TypeFloat32
+    float64Type: GoogleBigtableAdminV2TypeFloat64
     int64Type: GoogleBigtableAdminV2TypeInt64
+    mapType: GoogleBigtableAdminV2TypeMap
+    stringType: GoogleBigtableAdminV2TypeString
+    structType: GoogleBigtableAdminV2TypeStruct
+    timestampType: GoogleBigtableAdminV2TypeTimestamp
 
 @typing.type_check_only
 class UndeleteTableMetadata(typing_extensions.TypedDict, total=False):

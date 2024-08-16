@@ -129,6 +129,7 @@ class Image(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Issue(typing_extensions.TypedDict, total=False):
+    applicableCountries: _list[str]
     attribute: str
     description: str
     destination: str

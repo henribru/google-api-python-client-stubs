@@ -107,13 +107,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class AttachmentsResource(googleapiclient.discovery.Resource):
                 def get(
-                    self,
-                    *,
-                    userId: str,
-                    messageId: str,
-                    id: str,
-                    temporaryEeccBypass: bool = ...,
-                    **kwargs: typing.Any,
+                    self, *, userId: str, messageId: str, id: str, **kwargs: typing.Any
                 ) -> MessagePartBodyHttpRequest: ...
 
             def batchDelete(
@@ -142,7 +136,6 @@ class GmailResource(googleapiclient.discovery.Resource):
                     "minimal", "full", "raw", "metadata"
                 ] = ...,
                 metadataHeaders: str | _list[str] = ...,
-                temporaryEeccBypass: bool = ...,
                 **kwargs: typing.Any,
             ) -> MessageHttpRequest: ...
             def import_(
@@ -178,7 +171,6 @@ class GmailResource(googleapiclient.discovery.Resource):
                 maxResults: int = ...,
                 pageToken: str = ...,
                 q: str = ...,
-                temporaryEeccBypass: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListMessagesResponseHttpRequest: ...
             def list_next(
@@ -469,7 +461,6 @@ class GmailResource(googleapiclient.discovery.Resource):
                 id: str,
                 format: typing_extensions.Literal["full", "metadata", "minimal"] = ...,
                 metadataHeaders: str | _list[str] = ...,
-                temporaryEeccBypass: bool = ...,
                 **kwargs: typing.Any,
             ) -> ThreadHttpRequest: ...
             def list(
@@ -481,7 +472,6 @@ class GmailResource(googleapiclient.discovery.Resource):
                 maxResults: int = ...,
                 pageToken: str = ...,
                 q: str = ...,
-                temporaryEeccBypass: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListThreadsResponseHttpRequest: ...
             def list_next(
@@ -505,7 +495,7 @@ class GmailResource(googleapiclient.discovery.Resource):
             ) -> ThreadHttpRequest: ...
 
         def getProfile(
-            self, *, userId: str, temporaryEeccBypass: bool = ..., **kwargs: typing.Any
+            self, *, userId: str, **kwargs: typing.Any
         ) -> ProfileHttpRequest: ...
         def stop(
             self, *, userId: str, **kwargs: typing.Any

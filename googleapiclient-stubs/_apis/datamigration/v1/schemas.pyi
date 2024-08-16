@@ -124,6 +124,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_34",
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
+        "MYSQL_8_0_37",
         "POSTGRES_9_6",
         "POSTGRES_11",
         "POSTGRES_10",
@@ -131,6 +132,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_13",
         "POSTGRES_14",
         "POSTGRES_15",
+        "POSTGRES_16",
     ]
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
@@ -1056,6 +1058,8 @@ class SqlServerEncryptionOptions(typing_extensions.TypedDict, total=False):
 class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=False):
     backupFilePattern: str
     databaseBackups: _list[SqlServerDatabaseBackup]
+    promoteWhenReady: bool
+    useDiffBackup: bool
 
 @typing.type_check_only
 class SshScript(typing_extensions.TypedDict, total=False):

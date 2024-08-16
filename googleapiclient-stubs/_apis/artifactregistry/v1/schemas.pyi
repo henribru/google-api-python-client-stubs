@@ -390,8 +390,13 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
         "REDIRECTION_FROM_GCR_IO_ENABLED",
         "REDIRECTION_FROM_GCR_IO_FINALIZED",
         "REDIRECTION_FROM_GCR_IO_ENABLED_AND_COPYING",
+        "REDIRECTION_FROM_GCR_IO_PARTIAL_AND_COPYING",
     ]
     name: str
+    pullPercent: int
+
+@typing.type_check_only
+class PromoteArtifactMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PythonPackage(typing_extensions.TypedDict, total=False):

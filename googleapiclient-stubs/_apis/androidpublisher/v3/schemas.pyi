@@ -477,6 +477,7 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
     packageName: str
     recurringTransaction: RecurringExternalTransaction
     testPurchase: ExternalTransactionTestPurchase
+    transactionProgramCode: int
     transactionState: typing_extensions.Literal[
         "TRANSACTION_STATE_UNSPECIFIED", "TRANSACTION_REPORTED", "TRANSACTION_CANCELED"
     ]

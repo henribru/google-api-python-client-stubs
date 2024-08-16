@@ -100,6 +100,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def enableComplianceUpdates(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponseHttpRequest: ...
                 def enableResourceMonitoring(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponseHttpRequest: ...
@@ -180,6 +183,16 @@ class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1beta1EnableComplianceUpdatesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1EnableResourceMonitoringResponseHttpRequest(

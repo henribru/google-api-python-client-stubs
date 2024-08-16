@@ -83,6 +83,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
     cryptoKeyBackend: str
     destroyScheduledDuration: str
     importOnly: bool
+    keyAccessJustificationsPolicy: KeyAccessJustificationsPolicy
     labels: dict[str, typing.Any]
     name: str
     nextRotationTime: str
@@ -363,6 +364,25 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     publicKey: WrappingPublicKey
     state: typing_extensions.Literal[
         "IMPORT_JOB_STATE_UNSPECIFIED", "PENDING_GENERATION", "ACTIVE", "EXPIRED"
+    ]
+
+@typing.type_check_only
+class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
+    allowedAccessReasons: _list[
+        typing_extensions.Literal[
+            "REASON_UNSPECIFIED",
+            "CUSTOMER_INITIATED_SUPPORT",
+            "GOOGLE_INITIATED_SERVICE",
+            "THIRD_PARTY_DATA_REQUEST",
+            "GOOGLE_INITIATED_REVIEW",
+            "CUSTOMER_INITIATED_ACCESS",
+            "GOOGLE_INITIATED_SYSTEM_OPERATION",
+            "REASON_NOT_EXPECTED",
+            "MODIFIED_CUSTOMER_INITIATED_ACCESS",
+            "MODIFIED_GOOGLE_INITIATED_SYSTEM_OPERATION",
+            "GOOGLE_RESPONSE_TO_PRODUCTION_ALERT",
+            "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING",
+        ]
     ]
 
 @typing.type_check_only

@@ -224,6 +224,7 @@ class DistributionCut(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
     content: str
+    links: _list[Link]
     mimeType: str
     subject: str
 
@@ -409,6 +410,11 @@ class Linear(typing_extensions.TypedDict, total=False):
     numFiniteBuckets: int
     offset: float
     width: float
+
+@typing.type_check_only
+class Link(typing_extensions.TypedDict, total=False):
+    displayName: str
+    url: str
 
 @typing.type_check_only
 class ListAlertPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -859,6 +865,7 @@ class TimeInterval(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TimeSeries(typing_extensions.TypedDict, total=False):
+    description: str
     metadata: MonitoredResourceMetadata
     metric: Metric
     metricKind: typing_extensions.Literal[

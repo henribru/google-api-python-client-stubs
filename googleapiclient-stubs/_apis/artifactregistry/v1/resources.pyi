@@ -64,6 +64,9 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class FilesResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
                     def download(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> DownloadFileResponseHttpRequest: ...

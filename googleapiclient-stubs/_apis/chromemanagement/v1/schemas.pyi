@@ -39,6 +39,35 @@ class GoogleChromeManagementV1AppDetails(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
+class GoogleChromeManagementV1AppReport(typing_extensions.TypedDict, total=False):
+    reportTime: str
+    usageData: _list[GoogleChromeManagementV1AppUsageData]
+
+@typing.type_check_only
+class GoogleChromeManagementV1AppUsageData(typing_extensions.TypedDict, total=False):
+    appId: str
+    appInstanceId: str
+    appType: typing_extensions.Literal[
+        "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
+        "APPLICATION_TYPE_ARC",
+        "APPLICATION_TYPE_BUILT_IN",
+        "APPLICATION_TYPE_CROSTINI",
+        "APPLICATION_TYPE_CHROME_APP",
+        "APPLICATION_TYPE_WEB",
+        "APPLICATION_TYPE_MAC_OS",
+        "APPLICATION_TYPE_PLUGIN_VM",
+        "APPLICATION_TYPE_STANDALONE_BROWSER",
+        "APPLICATION_TYPE_REMOTE",
+        "APPLICATION_TYPE_BOREALIS",
+        "APPLICATION_TYPE_SYSTEM_WEB",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_CHROME_APP",
+        "APPLICATION_TYPE_EXTENSION",
+        "APPLICATION_TYPE_STANDALONE_BROWSER_EXTENSION",
+        "APPLICATION_TYPE_BRUSCHETTA",
+    ]
+    runningDuration: str
+
+@typing.type_check_only
 class GoogleChromeManagementV1AudioStatusReport(
     typing_extensions.TypedDict, total=False
 ):
@@ -759,6 +788,7 @@ class GoogleChromeManagementV1TelemetryAppLaunchEvent(
         "APPLICATION_LAUNCH_SOURCE_FIRST_RUN",
         "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
         "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE",
+        "APPLICATION_LAUNCH_SOURCE_SPARKY",
     ]
     appType: typing_extensions.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
@@ -817,6 +847,7 @@ class GoogleChromeManagementV1TelemetryAudioSevereUnderrunEvent(
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryDevice(typing_extensions.TypedDict, total=False):
+    appReport: _list[GoogleChromeManagementV1AppReport]
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     batteryInfo: _list[GoogleChromeManagementV1BatteryInfo]
     batteryStatusReport: _list[GoogleChromeManagementV1BatteryStatusReport]
@@ -872,6 +903,7 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
         "APP_INSTALLED",
         "APP_UNINSTALLED",
         "APP_LAUNCHED",
+        "OS_CRASH",
     ]
     httpsLatencyChangeEvent: GoogleChromeManagementV1TelemetryHttpsLatencyChangeEvent
     name: str
@@ -904,6 +936,7 @@ class GoogleChromeManagementV1TelemetryEventNotificationFilter(
             "APP_INSTALLED",
             "APP_UNINSTALLED",
             "APP_LAUNCHED",
+            "OS_CRASH",
         ]
     ]
 
@@ -977,6 +1010,7 @@ class GoogleChromeManagementV1TelemetryUser(typing_extensions.TypedDict, total=F
 class GoogleChromeManagementV1TelemetryUserDevice(
     typing_extensions.TypedDict, total=False
 ):
+    appReport: _list[GoogleChromeManagementV1AppReport]
     audioStatusReport: _list[GoogleChromeManagementV1AudioStatusReport]
     deviceActivityReport: _list[GoogleChromeManagementV1DeviceActivityReport]
     deviceId: str

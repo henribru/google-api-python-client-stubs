@@ -5,7 +5,13 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AgentCommand(typing_extensions.TypedDict, total=False):
+    command: str
+    parameters: dict[str, typing.Any]
+
+@typing.type_check_only
 class AssetLocation(typing_extensions.TypedDict, total=False):
+    ccfeRmsPath: str
     expected: IsolationExpectations
     extraParameters: _list[ExtraParameter]
     locationData: _list[LocationData]
@@ -31,6 +37,11 @@ class CloudAsset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CloudAssetComposition(typing_extensions.TypedDict, total=False):
     childAsset: _list[CloudAsset]
+
+@typing.type_check_only
+class Command(typing_extensions.TypedDict, total=False):
+    agentCommand: AgentCommand
+    shellCommand: ShellCommand
 
 @typing.type_check_only
 class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
@@ -70,6 +81,7 @@ class Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionResult(typing_extensions.TypedDict, total=False):
+    commands: _list[Command]
     documentationUrl: str
     resource: Resource
     rule: str
@@ -79,6 +91,7 @@ class ExecutionResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalDataSources(typing_extensions.TypedDict, total=False):
+    assetType: str
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "BIG_QUERY_TABLE"]
     uri: str
@@ -101,6 +114,7 @@ class Insight(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IsolationExpectations(typing_extensions.TypedDict, total=False):
+    requirementOverride: RequirementOverride
     ziOrgPolicy: typing_extensions.Literal[
         "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
     ]
@@ -199,6 +213,7 @@ class LocationData(typing_extensions.TypedDict, total=False):
     childAssetLocation: CloudAssetComposition
     directLocation: DirectLocationAssignment
     gcpProjectProxy: TenantProjectProxy
+    placerLocation: PlacerLocation
     spannerLocation: SpannerLocation
 
 @typing.type_check_only
@@ -220,9 +235,22 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PlacerLocation(typing_extensions.TypedDict, total=False):
+    placerConfig: str
+
+@typing.type_check_only
 class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
     targetShape: int
     zones: _list[ZoneConfiguration]
+
+@typing.type_check_only
+class RequirementOverride(typing_extensions.TypedDict, total=False):
+    ziOverride: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    zsOverride: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
@@ -280,6 +308,7 @@ class SapDiscoveryComponent(typing_extensions.TypedDict, total=False):
     databaseProperties: SapDiscoveryComponentDatabaseProperties
     haHosts: _list[str]
     hostProject: str
+    replicationSites: _list[SapDiscoveryComponent]
     resources: _list[SapDiscoveryResource]
     sid: str
     topologyType: typing_extensions.Literal[
@@ -293,7 +322,7 @@ class SapDiscoveryComponentApplicationProperties(
     abap: bool
     appInstanceNumber: str
     applicationType: typing_extensions.Literal[
-        "APPLICATION_TYPE_UNSPECIFIED", "NETWEAVER"
+        "APPLICATION_TYPE_UNSPECIFIED", "NETWEAVER", "NETWEAVER_ABAP", "NETWEAVER_JAVA"
     ]
     ascsInstanceNumber: str
     ascsUri: str
@@ -357,6 +386,17 @@ class SapDiscoveryResourceInstanceProperties(typing_extensions.TypedDict, total=
         "INSTANCE_ROLE_ERS",
         "INSTANCE_ROLE_APP_SERVER",
         "INSTANCE_ROLE_DATABASE",
+        "INSTANCE_ROLE_ASCS_ERS",
+        "INSTANCE_ROLE_ASCS_APP_SERVER",
+        "INSTANCE_ROLE_ASCS_DATABASE",
+        "INSTANCE_ROLE_ERS_APP_SERVER",
+        "INSTANCE_ROLE_ERS_DATABASE",
+        "INSTANCE_ROLE_APP_SERVER_DATABASE",
+        "INSTANCE_ROLE_ASCS_ERS_APP_SERVER",
+        "INSTANCE_ROLE_ASCS_ERS_DATABASE",
+        "INSTANCE_ROLE_ASCS_APP_SERVER_DATABASE",
+        "INSTANCE_ROLE_ERS_APP_SERVER_DATABASE",
+        "INSTANCE_ROLE_ASCS_ERS_APP_SERVER_DATABASE",
     ]
     virtualHostname: str
 
@@ -417,7 +457,14 @@ class ScannedResource(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class ShellCommand(typing_extensions.TypedDict, total=False):
+    args: str
+    command: str
+    timeoutSeconds: int
+
+@typing.type_check_only
 class SpannerLocation(typing_extensions.TypedDict, total=False):
+    backupName: _list[str]
     dbName: _list[str]
 
 @typing.type_check_only

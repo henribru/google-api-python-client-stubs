@@ -21,6 +21,12 @@ class Action(typing_extensions.TypedDict, total=False):
     resultMetadata: _list[ResultMetadata]
 
 @typing.type_check_only
+class AuthCodeData(typing_extensions.TypedDict, total=False):
+    authCode: str
+    pkceVerifier: str
+    redirectUri: str
+
+@typing.type_check_only
 class CheckReadinessResponse(typing_extensions.TypedDict, total=False):
     status: str
 
@@ -68,7 +74,8 @@ class EntityType(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False): ...
+class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False):
+    authCodeData: AuthCodeData
 
 @typing.type_check_only
 class ExchangeAuthCodeResponse(typing_extensions.TypedDict, total=False):
@@ -420,7 +427,8 @@ class Reference(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class RefreshAccessTokenRequest(typing_extensions.TypedDict, total=False): ...
+class RefreshAccessTokenRequest(typing_extensions.TypedDict, total=False):
+    refreshToken: str
 
 @typing.type_check_only
 class RefreshAccessTokenResponse(typing_extensions.TypedDict, total=False):
@@ -475,9 +483,11 @@ class ResultMetadata(typing_extensions.TypedDict, total=False):
         "TIME_WITH_TIMEZONE",
         "TIMESTAMP_WITH_TIMEZONE",
     ]
+    defaultValue: typing.Any
     description: str
     jsonSchema: JsonSchema
     name: str
+    nullable: bool
 
 @typing.type_check_only
 class Schedule(typing_extensions.TypedDict, total=False):

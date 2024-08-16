@@ -39,6 +39,63 @@ class ClassroomResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class AnnouncementsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddOnAttachmentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    body: AddOnAttachment = ...,
+                    addOnToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAddOnAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddOnAttachmentsResponseHttpRequest,
+                    previous_response: ListAddOnAttachmentsResponse,
+                ) -> ListAddOnAttachmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    body: AddOnAttachment = ...,
+                    postId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+
             def create(
                 self, *, courseId: str, body: Announcement = ..., **kwargs: typing.Any
             ) -> AnnouncementHttpRequest: ...
@@ -48,6 +105,16 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
             ) -> AnnouncementHttpRequest: ...
+            def getAddOnContext(
+                self,
+                *,
+                courseId: str,
+                itemId: str,
+                addOnToken: str = ...,
+                attachmentId: str = ...,
+                postId: str = ...,
+                **kwargs: typing.Any,
+            ) -> AddOnContextHttpRequest: ...
             def list(
                 self,
                 *,
@@ -90,9 +157,93 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> AnnouncementHttpRequest: ...
+            def addOnAttachments(self) -> AddOnAttachmentsResource: ...
 
         @typing.type_check_only
         class CourseWorkResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddOnAttachmentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class StudentSubmissionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        courseId: str,
+                        itemId: str,
+                        attachmentId: str,
+                        submissionId: str,
+                        postId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        courseId: str,
+                        itemId: str,
+                        attachmentId: str,
+                        submissionId: str,
+                        body: AddOnAttachmentStudentSubmission = ...,
+                        postId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    body: AddOnAttachment = ...,
+                    addOnToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAddOnAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddOnAttachmentsResponseHttpRequest,
+                    previous_response: ListAddOnAttachmentsResponse,
+                ) -> ListAddOnAttachmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    body: AddOnAttachment = ...,
+                    postId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def studentSubmissions(self) -> StudentSubmissionsResource: ...
+
             @typing.type_check_only
             class StudentSubmissionsResource(googleapiclient.discovery.Resource):
                 def get(
@@ -195,6 +346,16 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
             ) -> CourseWorkHttpRequest: ...
+            def getAddOnContext(
+                self,
+                *,
+                courseId: str,
+                itemId: str,
+                addOnToken: str = ...,
+                attachmentId: str = ...,
+                postId: str = ...,
+                **kwargs: typing.Any,
+            ) -> AddOnContextHttpRequest: ...
             def list(
                 self,
                 *,
@@ -234,10 +395,68 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkHttpRequest: ...
+            def addOnAttachments(self) -> AddOnAttachmentsResource: ...
             def studentSubmissions(self) -> StudentSubmissionsResource: ...
 
         @typing.type_check_only
         class CourseWorkMaterialsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddOnAttachmentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    body: AddOnAttachment = ...,
+                    addOnToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    postId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAddOnAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddOnAttachmentsResponseHttpRequest,
+                    previous_response: ListAddOnAttachmentsResponse,
+                ) -> ListAddOnAttachmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    courseId: str,
+                    itemId: str,
+                    attachmentId: str,
+                    body: AddOnAttachment = ...,
+                    postId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+
             def create(
                 self,
                 *,
@@ -251,6 +470,16 @@ class ClassroomResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, courseId: str, id: str, **kwargs: typing.Any
             ) -> CourseWorkMaterialHttpRequest: ...
+            def getAddOnContext(
+                self,
+                *,
+                courseId: str,
+                itemId: str,
+                addOnToken: str = ...,
+                attachmentId: str = ...,
+                postId: str = ...,
+                **kwargs: typing.Any,
+            ) -> AddOnContextHttpRequest: ...
             def list(
                 self,
                 *,
@@ -290,6 +519,104 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkMaterialHttpRequest: ...
+            def addOnAttachments(self) -> AddOnAttachmentsResource: ...
+
+        @typing.type_check_only
+        class PostsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AddOnAttachmentsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class StudentSubmissionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self,
+                        *,
+                        courseId: str,
+                        postId: str,
+                        attachmentId: str,
+                        submissionId: str,
+                        itemId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        courseId: str,
+                        postId: str,
+                        attachmentId: str,
+                        submissionId: str,
+                        body: AddOnAttachmentStudentSubmission = ...,
+                        itemId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> AddOnAttachmentStudentSubmissionHttpRequest: ...
+
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    postId: str,
+                    body: AddOnAttachment = ...,
+                    addOnToken: str = ...,
+                    itemId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    postId: str,
+                    attachmentId: str,
+                    itemId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    courseId: str,
+                    postId: str,
+                    attachmentId: str,
+                    itemId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    postId: str,
+                    itemId: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAddOnAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAddOnAttachmentsResponseHttpRequest,
+                    previous_response: ListAddOnAttachmentsResponse,
+                ) -> ListAddOnAttachmentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    courseId: str,
+                    postId: str,
+                    attachmentId: str,
+                    body: AddOnAttachment = ...,
+                    itemId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> AddOnAttachmentHttpRequest: ...
+                def studentSubmissions(self) -> StudentSubmissionsResource: ...
+
+            def getAddOnContext(
+                self,
+                *,
+                courseId: str,
+                postId: str,
+                addOnToken: str = ...,
+                attachmentId: str = ...,
+                itemId: str = ...,
+                **kwargs: typing.Any,
+            ) -> AddOnContextHttpRequest: ...
+            def addOnAttachments(self) -> AddOnAttachmentsResource: ...
 
         @typing.type_check_only
         class StudentsResource(googleapiclient.discovery.Resource):
@@ -432,6 +759,7 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def announcements(self) -> AnnouncementsResource: ...
         def courseWork(self) -> CourseWorkResource: ...
         def courseWorkMaterials(self) -> CourseWorkMaterialsResource: ...
+        def posts(self) -> PostsResource: ...
         def students(self) -> StudentsResource: ...
         def teachers(self) -> TeachersResource: ...
         def topics(self) -> TopicsResource: ...
@@ -561,6 +889,30 @@ class ClassroomResource(googleapiclient.discovery.Resource):
     def userProfiles(self) -> UserProfilesResource: ...
 
 @typing.type_check_only
+class AddOnAttachmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AddOnAttachment: ...
+
+@typing.type_check_only
+class AddOnAttachmentStudentSubmissionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AddOnAttachmentStudentSubmission: ...
+
+@typing.type_check_only
+class AddOnContextHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AddOnContext: ...
+
+@typing.type_check_only
 class AnnouncementHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -631,6 +983,14 @@ class InvitationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Invitation: ...
+
+@typing.type_check_only
+class ListAddOnAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAddOnAttachmentsResponse: ...
 
 @typing.type_check_only
 class ListAnnouncementsResponseHttpRequest(googleapiclient.http.HttpRequest):

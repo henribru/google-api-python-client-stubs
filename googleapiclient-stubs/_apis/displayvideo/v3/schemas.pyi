@@ -1289,6 +1289,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only
@@ -2715,9 +2716,11 @@ class HouseholdIncomeTargetingOptionDetails(typing_extensions.TypedDict, total=F
 class IdFilter(typing_extensions.TypedDict, total=False):
     adGroupAdIds: _list[str]
     adGroupIds: _list[str]
+    adGroupQaIds: _list[str]
     campaignIds: _list[str]
     insertionOrderIds: _list[str]
     lineItemIds: _list[str]
+    lineItemQaIds: _list[str]
     mediaProductIds: _list[str]
 
 @typing.type_check_only
@@ -2754,6 +2757,14 @@ class InsertionOrder(typing_extensions.TypedDict, total=False):
     integrationDetails: IntegrationDetails
     kpi: Kpi
     name: str
+    optimizationObjective: typing_extensions.Literal[
+        "OPTIMIZATION_OBJECTIVE_UNSPECIFIED",
+        "CONVERSION",
+        "CLICK",
+        "BRAND_AWARENESS",
+        "CUSTOM",
+        "NO_OBJECTIVE",
+    ]
     pacing: Pacing
     partnerCosts: _list[PartnerCost]
     reservationType: typing_extensions.Literal[
@@ -3635,6 +3646,8 @@ class ParentEntityFilter(typing_extensions.TypedDict, total=False):
             "FILE_TYPE_LINE_ITEM",
             "FILE_TYPE_AD_GROUP",
             "FILE_TYPE_AD",
+            "FILE_TYPE_LINE_ITEM_QA",
+            "FILE_TYPE_AD_GROUP_QA",
         ]
     ]
     filterIds: _list[str]
@@ -3974,6 +3987,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only
@@ -3998,6 +4012,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only

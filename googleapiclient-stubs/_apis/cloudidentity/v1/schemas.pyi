@@ -5,7 +5,8 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AddIdpCredentialOperationMetadata(typing_extensions.TypedDict, total=False): ...
+class AddIdpCredentialOperationMetadata(typing_extensions.TypedDict, total=False):
+    state: str
 
 @typing.type_check_only
 class AddIdpCredentialRequest(typing_extensions.TypedDict, total=False):
@@ -24,7 +25,8 @@ class CreateGroupMetadata(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class CreateInboundSamlSsoProfileOperationMetadata(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    state: str
 
 @typing.type_check_only
 class CreateInboundSsoAssignmentOperationMetadata(
@@ -735,7 +737,8 @@ class UpdateGroupMetadata(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class UpdateInboundSamlSsoProfileOperationMetadata(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    state: str
 
 @typing.type_check_only
 class UpdateInboundSsoAssignmentOperationMetadata(

@@ -409,12 +409,6 @@ class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
 
 @typing.type_check_only
-class GCSLocation(typing_extensions.TypedDict, total=False):
-    bucket: str
-    generation: str
-    object: str
-
-@typing.type_check_only
 class GitConfig(typing_extensions.TypedDict, total=False):
     http: HttpConfig
 
@@ -553,7 +547,6 @@ class HttpBody(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpConfig(typing_extensions.TypedDict, total=False):
     proxySecretVersionName: str
-    proxySslCaInfo: GCSLocation
 
 @typing.type_check_only
 class InlineSecret(typing_extensions.TypedDict, total=False):

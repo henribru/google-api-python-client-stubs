@@ -34,6 +34,7 @@ class GoogleIdentityStsV1ExchangeTokenRequest(typing_extensions.TypedDict, total
 class GoogleIdentityStsV1ExchangeTokenResponse(
     typing_extensions.TypedDict, total=False
 ):
+    access_boundary_session_key: str
     access_token: str
     expires_in: int
     issued_token_type: str

@@ -851,6 +851,15 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest
                     ): ...
+                    def suggestKnowledgeAssist(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDialogflowV2SuggestKnowledgeAssistResponseHttpRequest
+                    ): ...
                     def suggestSmartReplies(
                         self,
                         *,
@@ -957,6 +966,30 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def messages(self) -> MessagesResource: ...
             def participants(self) -> ParticipantsResource: ...
             def suggestions(self) -> SuggestionsResource: ...
+
+        @typing.type_check_only
+        class GeneratorsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudDialogflowV2Generator = ...,
+                generatorId: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDialogflowV2GeneratorHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2ListGeneratorsResponse,
+            ) -> GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest | None: ...
 
         @typing.type_check_only
         class KnowledgeBasesResource(googleapiclient.discovery.Resource):
@@ -1851,6 +1884,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         ) -> (
                             GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest
                         ): ...
+                        def suggestKnowledgeAssist(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowV2SuggestKnowledgeAssistRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowV2SuggestKnowledgeAssistResponseHttpRequest: ...
                         def suggestSmartReplies(
                             self,
                             *,
@@ -1956,6 +1996,56 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def messages(self) -> MessagesResource: ...
                 def participants(self) -> ParticipantsResource: ...
                 def suggestions(self) -> SuggestionsResource: ...
+
+            @typing.type_check_only
+            class EncryptionSpecResource(googleapiclient.discovery.Resource):
+                def initialize(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2InitializeEncryptionSpecRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
+            class GeneratorsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2Generator = ...,
+                    generatorId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2GeneratorHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2GeneratorHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2ListGeneratorsResponse,
+                ) -> (
+                    GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2Generator = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2GeneratorHttpRequest: ...
 
             @typing.type_check_only
             class KnowledgeBasesResource(googleapiclient.discovery.Resource):
@@ -2083,6 +2173,16 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class StatelessSuggestionResource(googleapiclient.discovery.Resource):
+                def generate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2GenerateStatelessSuggestionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2GenerateStatelessSuggestionResponseHttpRequest: ...
+
+            @typing.type_check_only
             class SuggestionsResource(googleapiclient.discovery.Resource):
                 def generateStatelessSummary(
                     self,
@@ -2110,6 +2210,9 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def getAgent(
                 self, *, parent: str, **kwargs: typing.Any
             ) -> GoogleCloudDialogflowV2AgentHttpRequest: ...
+            def getEncryptionSpec(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2EncryptionSpecHttpRequest: ...
             def list(
                 self,
                 *,
@@ -2138,8 +2241,11 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def conversationModels(self) -> ConversationModelsResource: ...
             def conversationProfiles(self) -> ConversationProfilesResource: ...
             def conversations(self) -> ConversationsResource: ...
+            def encryptionSpec(self) -> EncryptionSpecResource: ...
+            def generators(self) -> GeneratorsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
+            def statelessSuggestion(self) -> StatelessSuggestionResource: ...
             def suggestions(self) -> SuggestionsResource: ...
 
         @typing.type_check_only
@@ -2202,6 +2308,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
         def conversationModels(self) -> ConversationModelsResource: ...
         def conversationProfiles(self) -> ConversationProfilesResource: ...
         def conversations(self) -> ConversationsResource: ...
+        def generators(self) -> GeneratorsResource: ...
         def knowledgeBases(self) -> KnowledgeBasesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
@@ -2322,6 +2429,16 @@ class GoogleCloudDialogflowV2DocumentHttpRequest(googleapiclient.http.HttpReques
     ) -> GoogleCloudDialogflowV2Document: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2EncryptionSpecHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2EncryptionSpec: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2EntityTypeHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -2356,6 +2473,16 @@ class GoogleCloudDialogflowV2FulfillmentHttpRequest(googleapiclient.http.HttpReq
     ) -> GoogleCloudDialogflowV2Fulfillment: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2GenerateStatelessSuggestionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2GenerateStatelessSuggestionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2GenerateStatelessSummaryResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2364,6 +2491,14 @@ class GoogleCloudDialogflowV2GenerateStatelessSummaryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2GenerateStatelessSummaryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2GeneratorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2Generator: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2IntentHttpRequest(googleapiclient.http.HttpRequest):
@@ -2480,6 +2615,16 @@ class GoogleCloudDialogflowV2ListEnvironmentsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2ListEnvironmentsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ListGeneratorsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2ListGeneratorsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ListIntentsResponseHttpRequest(
@@ -2608,6 +2753,16 @@ class GoogleCloudDialogflowV2SuggestFaqAnswersResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2SuggestFaqAnswersResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SuggestKnowledgeAssistResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2SuggestKnowledgeAssistResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestSmartRepliesResponseHttpRequest(
