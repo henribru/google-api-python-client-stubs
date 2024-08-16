@@ -263,6 +263,13 @@ class EnterpriseCrmEventbusProtoConditionResult(
     result: bool
 
 @typing.type_check_only
+class EnterpriseCrmEventbusProtoConditionalFailurePolicies(
+    typing_extensions.TypedDict, total=False
+):
+    defaultFailurePolicy: EnterpriseCrmEventbusProtoFailurePolicy
+    failurePolicies: _list[EnterpriseCrmEventbusProtoFailurePolicy]
+
+@typing.type_check_only
 class EnterpriseCrmEventbusProtoConnectorsConnection(
     typing_extensions.TypedDict, total=False
 ):
@@ -408,6 +415,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
     typing_extensions.TypedDict, total=False
 ):
     checkpointTaskNumber: str
+    clientId: str
     conditionResults: _list[EnterpriseCrmEventbusProtoConditionResult]
     diffParams: EnterpriseCrmEventbusProtoEventParameters
     eventExecutionInfoId: str
@@ -420,6 +428,7 @@ class EnterpriseCrmEventbusProtoEventExecutionSnapshot(
     snapshotTime: str
     taskExecutionDetails: _list[EnterpriseCrmEventbusProtoTaskExecutionDetails]
     taskName: str
+    workflowName: str
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoEventExecutionSnapshotEventExecutionSnapshotMetadata(
@@ -451,6 +460,7 @@ class EnterpriseCrmEventbusProtoExecutionTraceInfo(
 class EnterpriseCrmEventbusProtoExternalTraffic(
     typing_extensions.TypedDict, total=False
 ):
+    enableInternalIp: bool
     gcpProjectId: str
     gcpProjectNumber: str
     location: str
@@ -1564,6 +1574,7 @@ class EnterpriseCrmFrontendsEventbusProtoTaskConfig(
     typing_extensions.TypedDict, total=False
 ):
     alertConfigs: _list[EnterpriseCrmEventbusProtoTaskAlertConfig]
+    conditionalFailurePolicies: EnterpriseCrmEventbusProtoConditionalFailurePolicies
     createTime: str
     creatorEmail: str
     description: str
@@ -2132,6 +2143,7 @@ class GoogleCloudIntegrationsV1alphaClientConfig(
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
     createTime: str
     description: str
+    enableInternalIp: bool
     enableVariableMasking: bool
     id: str
     isGmek: bool
@@ -2167,6 +2179,13 @@ class GoogleCloudIntegrationsV1alphaCloudSchedulerConfig(
     errorMessage: str
     location: str
     serviceAccountEmail: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaConditionalFailurePolicies(
+    typing_extensions.TypedDict, total=False
+):
+    defaultFailurePolicy: GoogleCloudIntegrationsV1alphaFailurePolicy
+    failurePolicies: _list[GoogleCloudIntegrationsV1alphaFailurePolicy]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaConnectionSchemaMetadata(
@@ -2267,6 +2286,12 @@ class GoogleCloudIntegrationsV1alphaDownloadJsonPackageResponse(
     typing_extensions.TypedDict, total=False
 ):
     files: _list[GoogleCloudIntegrationsV1alphaFile]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaDownloadTemplateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
@@ -2439,6 +2464,21 @@ class GoogleCloudIntegrationsV1alphaGetClientResponse(
     client: GoogleCloudIntegrationsV1alphaClientConfig
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaImportTemplateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    integration: str
+    integrationRegion: str
+    subIntegrations: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaImportTemplateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
+    subIntegrationVersions: _list[GoogleCloudIntegrationsV1alphaIntegrationVersion]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaIntParameterArray(
     typing_extensions.TypedDict, total=False
 ):
@@ -2578,6 +2618,13 @@ class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     userLabel: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate(
+    typing_extensions.TypedDict, total=False
+):
+    integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
+    key: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaJwt(typing_extensions.TypedDict, total=False):
     jwt: str
     jwtHeader: str
@@ -2686,6 +2733,13 @@ class GoogleCloudIntegrationsV1alphaListSuspensionsResponse(
 ):
     nextPageToken: str
     suspensions: _list[GoogleCloudIntegrationsV1alphaSuspension]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTemplatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    templates: _list[GoogleCloudIntegrationsV1alphaTemplate]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
@@ -2846,6 +2900,20 @@ class GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest(
     runAsServiceAccount: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplayExecutionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    replayReason: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplayExecutionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionId: str
+    outputParameters: dict[str, typing.Any]
+    replayedExecutionId: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2891,6 +2959,13 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse(
     executionInfoIds: _list[str]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSearchTemplatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    templates: _list[GoogleCloudIntegrationsV1alphaTemplate]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaSerializedFile(
     typing_extensions.TypedDict, total=False
 ):
@@ -2933,6 +3008,12 @@ class GoogleCloudIntegrationsV1alphaSfdcInstance(
     serviceAuthority: str
     sfdcOrgId: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaShareTemplateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    resourceNames: _list[str]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaStringParameterArray(
@@ -3015,6 +3096,7 @@ class GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse(
 class GoogleCloudIntegrationsV1alphaTaskConfig(
     typing_extensions.TypedDict, total=False
 ):
+    conditionalFailurePolicies: GoogleCloudIntegrationsV1alphaConditionalFailurePolicies
     description: str
     displayName: str
     errorCatcherId: str
@@ -3068,6 +3150,64 @@ class GoogleCloudIntegrationsV1alphaTaskExecutionDetails(
         "SUSPENDED",
     ]
     taskNumber: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTemplate(typing_extensions.TypedDict, total=False):
+    author: str
+    categories: _list[
+        typing_extensions.Literal[
+            "CATEGORY_UNSPECIFIED",
+            "AI_MACHINE_LEARNING",
+            "BUSINESS_INTELLIGENCE",
+            "COLLABORATION",
+            "CUSTOMER_SERVICE",
+            "DATABASES",
+            "DEVOPS_IT",
+            "CONTENT_AND_FILES",
+            "FINANCE_AND_ACCOUNTING",
+            "HUMAN_RESOURCES",
+            "OPERATIONS",
+            "PRODUCT_PROJECT_MANAGEMENT",
+            "PRODUCTIVITY",
+            "SALES_AND_MARKETING",
+            "UNIVERSAL_CONNECTORS",
+            "UTILITY",
+            "OTHERS",
+        ]
+    ]
+    clientId: str
+    components: _list[GoogleCloudIntegrationsV1alphaTemplateComponent]
+    createTime: str
+    description: str
+    displayName: str
+    docLink: str
+    lastUsedTime: str
+    name: str
+    sharedWith: _list[str]
+    tags: _list[str]
+    templateBundle: GoogleCloudIntegrationsV1alphaTemplateBundle
+    updateTime: str
+    usageCount: str
+    usageInfo: str
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSPECIFIED", "PRIVATE", "SHARED", "PUBLIC"
+    ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTemplateBundle(
+    typing_extensions.TypedDict, total=False
+):
+    integrationVersionTemplate: GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate
+    subIntegrationVersionTemplates: _list[
+        GoogleCloudIntegrationsV1alphaIntegrationVersionTemplate
+    ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTemplateComponent(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIGGER", "TASK", "CONNECTOR"]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest(
@@ -3128,6 +3268,12 @@ class GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUnshareTemplateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    resourceNames: _list[str]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -3139,6 +3285,43 @@ class GoogleCloudIntegrationsV1alphaUploadIntegrationVersionResponse(
     typing_extensions.TypedDict, total=False
 ):
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUploadTemplateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUploadTemplateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    template: GoogleCloudIntegrationsV1alphaTemplate
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUseTemplateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    integrationDetails: (
+        GoogleCloudIntegrationsV1alphaUseTemplateRequestIntegrationDetails
+    )
+    integrationRegion: str
+    subIntegrations: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUseTemplateRequestIntegrationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    integration: str
+    integrationDescription: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUseTemplateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
+    subIntegrationVersions: _list[GoogleCloudIntegrationsV1alphaIntegrationVersion]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUsernameAndPassword(

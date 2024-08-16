@@ -329,6 +329,9 @@ class SupportedService(typing_extensions.TypedDict, total=False):
     availableOnRestrictedVip: bool
     knownLimitations: bool
     name: str
+    serviceSupportStage: typing_extensions.Literal[
+        "SERVICE_SUPPORT_STAGE_UNSPECIFIED", "GA", "PREVIEW", "DEPRECATED"
+    ]
     supportStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED",
         "UNIMPLEMENTED",

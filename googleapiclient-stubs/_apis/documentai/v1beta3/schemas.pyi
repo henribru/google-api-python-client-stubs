@@ -640,7 +640,9 @@ class GoogleCloudDocumentaiV1beta1BoundingPoly(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=False):
+    chunkedDocument: GoogleCloudDocumentaiV1beta1DocumentChunkedDocument
     content: str
+    documentLayout: GoogleCloudDocumentaiV1beta1DocumentDocumentLayout
     entities: _list[GoogleCloudDocumentaiV1beta1DocumentEntity]
     entityRelations: _list[GoogleCloudDocumentaiV1beta1DocumentEntityRelation]
     error: GoogleRpcStatus
@@ -652,6 +654,122 @@ class GoogleCloudDocumentaiV1beta1Document(typing_extensions.TypedDict, total=Fa
     textChanges: _list[GoogleCloudDocumentaiV1beta1DocumentTextChange]
     textStyles: _list[GoogleCloudDocumentaiV1beta1DocumentStyle]
     uri: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentChunkedDocument(
+    typing_extensions.TypedDict, total=False
+):
+    chunks: _list[GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunk(
+    typing_extensions.TypedDict, total=False
+):
+    chunkId: str
+    content: str
+    pageFooters: _list[
+        GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter
+    ]
+    pageHeaders: _list[
+        GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader
+    ]
+    pageSpan: GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan
+    sourceBlockIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageFooter(
+    typing_extensions.TypedDict, total=False
+):
+    pageSpan: GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageHeader(
+    typing_extensions.TypedDict, total=False
+):
+    pageSpan: GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentChunkedDocumentChunkChunkPageSpan(
+    typing_extensions.TypedDict, total=False
+):
+    pageEnd: int
+    pageStart: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayout(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock(
+    typing_extensions.TypedDict, total=False
+):
+    blockId: str
+    listBlock: GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock
+    pageSpan: GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan
+    tableBlock: GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock
+    textBlock: GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock(
+    typing_extensions.TypedDict, total=False
+):
+    listEntries: _list[
+        GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry
+    ]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan(
+    typing_extensions.TypedDict, total=False
+):
+    pageEnd: int
+    pageStart: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock(
+    typing_extensions.TypedDict, total=False
+):
+    bodyRows: _list[
+        GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
+    ]
+    caption: str
+    headerRows: _list[
+        GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock]
+    colSpan: int
+    rowSpan: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow(
+    typing_extensions.TypedDict, total=False
+):
+    cells: _list[
+        GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta1DocumentDocumentLayoutDocumentLayoutBlock]
+    text: str
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta1DocumentEntity(
@@ -1095,7 +1213,9 @@ class GoogleCloudDocumentaiV1beta2BoundingPoly(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=False):
+    chunkedDocument: GoogleCloudDocumentaiV1beta2DocumentChunkedDocument
     content: str
+    documentLayout: GoogleCloudDocumentaiV1beta2DocumentDocumentLayout
     entities: _list[GoogleCloudDocumentaiV1beta2DocumentEntity]
     entityRelations: _list[GoogleCloudDocumentaiV1beta2DocumentEntityRelation]
     error: GoogleRpcStatus
@@ -1108,6 +1228,122 @@ class GoogleCloudDocumentaiV1beta2Document(typing_extensions.TypedDict, total=Fa
     textChanges: _list[GoogleCloudDocumentaiV1beta2DocumentTextChange]
     textStyles: _list[GoogleCloudDocumentaiV1beta2DocumentStyle]
     uri: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentChunkedDocument(
+    typing_extensions.TypedDict, total=False
+):
+    chunks: _list[GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunk(
+    typing_extensions.TypedDict, total=False
+):
+    chunkId: str
+    content: str
+    pageFooters: _list[
+        GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter
+    ]
+    pageHeaders: _list[
+        GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader
+    ]
+    pageSpan: GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan
+    sourceBlockIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageFooter(
+    typing_extensions.TypedDict, total=False
+):
+    pageSpan: GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageHeader(
+    typing_extensions.TypedDict, total=False
+):
+    pageSpan: GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan
+    text: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentChunkedDocumentChunkChunkPageSpan(
+    typing_extensions.TypedDict, total=False
+):
+    pageEnd: int
+    pageStart: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayout(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock(
+    typing_extensions.TypedDict, total=False
+):
+    blockId: str
+    listBlock: GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock
+    pageSpan: GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan
+    tableBlock: GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock
+    textBlock: GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock(
+    typing_extensions.TypedDict, total=False
+):
+    listEntries: _list[
+        GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry
+    ]
+    type: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutListEntry(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan(
+    typing_extensions.TypedDict, total=False
+):
+    pageEnd: int
+    pageStart: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock(
+    typing_extensions.TypedDict, total=False
+):
+    bodyRows: _list[
+        GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
+    ]
+    caption: str
+    headerRows: _list[
+        GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock]
+    colSpan: int
+    rowSpan: int
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow(
+    typing_extensions.TypedDict, total=False
+):
+    cells: _list[
+        GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTableCell
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock(
+    typing_extensions.TypedDict, total=False
+):
+    blocks: _list[GoogleCloudDocumentaiV1beta2DocumentDocumentLayoutDocumentLayoutBlock]
+    text: str
+    type: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta2DocumentEntity(
@@ -1680,6 +1916,8 @@ class GoogleCloudDocumentaiV1beta3Dataset(typing_extensions.TypedDict, total=Fal
     documentWarehouseConfig: GoogleCloudDocumentaiV1beta3DatasetDocumentWarehouseConfig
     gcsManagedConfig: GoogleCloudDocumentaiV1beta3DatasetGCSManagedConfig
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     spannerIndexingConfig: GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "UNINITIALIZED", "INITIALIZING", "INITIALIZED"
@@ -2747,6 +2985,8 @@ class GoogleCloudDocumentaiV1beta3Processor(typing_extensions.TypedDict, total=F
     name: str
     processEndpoint: str
     processorVersionAliases: _list[GoogleCloudDocumentaiV1beta3ProcessorVersionAlias]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ENABLED",
@@ -2794,6 +3034,7 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersion(
     deprecationInfo: GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo
     displayName: str
     documentSchema: GoogleCloudDocumentaiV1beta3DocumentSchema
+    genAiModelInfo: GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo
     googleManaged: bool
     kmsKeyName: str
     kmsKeyVersionName: str
@@ -2802,6 +3043,8 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersion(
         "MODEL_TYPE_UNSPECIFIED", "MODEL_TYPE_GENERATIVE", "MODEL_TYPE_CUSTOM"
     ]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "DEPLOYED",
@@ -2827,6 +3070,31 @@ class GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo(
 ):
     deprecationTime: str
     replacementProcessorVersion: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo(
+    typing_extensions.TypedDict, total=False
+):
+    customGenAiModelInfo: (
+        GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo
+    )
+    foundationGenAiModelInfo: GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo(
+    typing_extensions.TypedDict, total=False
+):
+    baseProcessorVersionId: str
+    customModelType: typing_extensions.Literal[
+        "CUSTOM_MODEL_TYPE_UNSPECIFIED", "VERSIONED_FOUNDATION", "FINE_TUNED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo(
+    typing_extensions.TypedDict, total=False
+):
+    finetuningAllowed: bool
+    minTrainLabeledDocuments: int
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3PropertyMetadata(

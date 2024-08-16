@@ -1037,6 +1037,90 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class FutureReservationsResource(googleapiclient.discovery.Resource):
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> FutureReservationsAggregatedListResponseHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: FutureReservationsAggregatedListResponseHttpRequest,
+            previous_response: FutureReservationsAggregatedListResponse,
+        ) -> FutureReservationsAggregatedListResponseHttpRequest | None: ...
+        def cancel(
+            self,
+            *,
+            project: str,
+            zone: str,
+            futureReservation: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            zone: str,
+            futureReservation: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            zone: str,
+            futureReservation: str,
+            **kwargs: typing.Any,
+        ) -> FutureReservationHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            zone: str,
+            body: FutureReservation = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            zone: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> FutureReservationsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: FutureReservationsListResponseHttpRequest,
+            previous_response: FutureReservationsListResponse,
+        ) -> FutureReservationsListResponseHttpRequest | None: ...
+        def update(
+            self,
+            *,
+            project: str,
+            zone: str,
+            futureReservation: str,
+            body: FutureReservation = ...,
+            requestId: str = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class GlobalAddressesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -8090,6 +8174,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def firewallPolicies(self) -> FirewallPoliciesResource: ...
     def firewalls(self) -> FirewallsResource: ...
     def forwardingRules(self) -> ForwardingRulesResource: ...
+    def futureReservations(self) -> FutureReservationsResource: ...
     def globalAddresses(self) -> GlobalAddressesResource: ...
     def globalForwardingRules(self) -> GlobalForwardingRulesResource: ...
     def globalNetworkEndpointGroups(self) -> GlobalNetworkEndpointGroupsResource: ...
@@ -8491,6 +8576,32 @@ class ForwardingRuleListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ForwardingRuleList: ...
+
+@typing.type_check_only
+class FutureReservationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FutureReservation: ...
+
+@typing.type_check_only
+class FutureReservationsAggregatedListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FutureReservationsAggregatedListResponse: ...
+
+@typing.type_check_only
+class FutureReservationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FutureReservationsListResponse: ...
 
 @typing.type_check_only
 class GuestAttributesHttpRequest(googleapiclient.http.HttpRequest):

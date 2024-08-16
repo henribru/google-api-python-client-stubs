@@ -61,9 +61,6 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: AddTargetingRequest = ...,
             **kwargs: typing.Any,
         ) -> AddTargetingResponseHttpRequest: ...
-        def appRecoveries(
-            self, *, packageName: str, versionCode: str = ..., **kwargs: typing.Any
-        ) -> ListAppRecoveriesResponseHttpRequest: ...
         def cancel(
             self,
             *,
@@ -87,6 +84,9 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             body: DeployAppRecoveryRequest = ...,
             **kwargs: typing.Any,
         ) -> DeployAppRecoveryResponseHttpRequest: ...
+        def list(
+            self, *, packageName: str, versionCode: str = ..., **kwargs: typing.Any
+        ) -> ListAppRecoveriesResponseHttpRequest: ...
 
     @typing.type_check_only
     class EditsResource(googleapiclient.discovery.Resource):

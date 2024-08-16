@@ -77,6 +77,7 @@ class DnsSettings(typing_extensions.TypedDict, total=False):
     customDns: CustomDns
     glueRecords: _list[GlueRecord]
     googleDomainsDns: GoogleDomainsDns
+    googleDomainsRedirectsDataAvailable: bool
 
 @typing.type_check_only
 class Domain(typing_extensions.TypedDict, total=False):
@@ -90,6 +91,17 @@ class Domain(typing_extensions.TypedDict, total=False):
         "DELETED",
     ]
     yearlyPrice: Money
+
+@typing.type_check_only
+class DomainForwarding(typing_extensions.TypedDict, total=False):
+    pathForwarding: bool
+    pemCertificate: str
+    redirectType: typing_extensions.Literal[
+        "REDIRECT_TYPE_UNSPECIFIED", "TEMPORARY", "PERMANENT"
+    ]
+    sslEnabled: bool
+    subdomain: str
+    targetUri: str
 
 @typing.type_check_only
 class DsRecord(typing_extensions.TypedDict, total=False):
@@ -120,6 +132,11 @@ class DsRecord(typing_extensions.TypedDict, total=False):
     keyTag: int
 
 @typing.type_check_only
+class EmailForwarding(typing_extensions.TypedDict, total=False):
+    alias: str
+    targetEmailAddress: str
+
+@typing.type_check_only
 class ExportRegistrationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -128,6 +145,18 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class GeoPolicy(typing_extensions.TypedDict, total=False):
+    enableFencing: bool
+    item: _list[GeoPolicyItem]
+
+@typing.type_check_only
+class GeoPolicyItem(typing_extensions.TypedDict, total=False):
+    healthCheckedTargets: HealthCheckTargets
+    location: str
+    rrdata: _list[str]
+    signatureRrdata: _list[str]
 
 @typing.type_check_only
 class GlueRecord(typing_extensions.TypedDict, total=False):
@@ -144,9 +173,18 @@ class GoogleDomainsDns(typing_extensions.TypedDict, total=False):
     nameServers: _list[str]
 
 @typing.type_check_only
+class HealthCheckTargets(typing_extensions.TypedDict, total=False):
+    externalEndpoints: _list[str]
+    internalLoadBalancer: _list[LoadBalancerTarget]
+
+@typing.type_check_only
 class ImportDomainRequest(typing_extensions.TypedDict, total=False):
     domainName: str
     labels: dict[str, typing.Any]
+
+@typing.type_check_only
+class InitiatePushTransferRequest(typing_extensions.TypedDict, total=False):
+    tag: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -164,6 +202,18 @@ class ListRegistrationsResponse(typing_extensions.TypedDict, total=False):
     registrations: _list[Registration]
 
 @typing.type_check_only
+class LoadBalancerTarget(typing_extensions.TypedDict, total=False):
+    ipAddress: str
+    ipProtocol: typing_extensions.Literal["UNDEFINED", "TCP", "UDP"]
+    loadBalancerType: typing_extensions.Literal[
+        "NONE", "GLOBAL_L7ILB", "REGIONAL_L4ILB", "REGIONAL_L7ILB"
+    ]
+    networkUrl: str
+    port: str
+    project: str
+    region: str
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -173,6 +223,9 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ManagementSettings(typing_extensions.TypedDict, total=False):
+    effectiveTransferLockState: typing_extensions.Literal[
+        "TRANSFER_LOCK_STATE_UNSPECIFIED", "UNLOCKED", "LOCKED"
+    ]
     preferredRenewalMethod: typing_extensions.Literal[
         "RENEWAL_METHOD_UNSPECIFIED",
         "AUTOMATIC_RENEWAL",
@@ -234,6 +287,21 @@ class PostalAddress(typing_extensions.TypedDict, total=False):
     sublocality: str
 
 @typing.type_check_only
+class PrimaryBackupPolicy(typing_extensions.TypedDict, total=False):
+    backupGeoTargets: GeoPolicy
+    primaryTargets: HealthCheckTargets
+    trickleTraffic: float
+
+@typing.type_check_only
+class RRSetRoutingPolicy(typing_extensions.TypedDict, total=False):
+    geo: GeoPolicy
+    geoPolicy: GeoPolicy
+    healthCheck: str
+    primaryBackup: PrimaryBackupPolicy
+    wrr: WrrPolicy
+    wrrPolicy: WrrPolicy
+
+@typing.type_check_only
 class RegisterDomainRequest(typing_extensions.TypedDict, total=False):
     contactNotices: _list[
         typing_extensions.Literal[
@@ -272,6 +340,13 @@ class Registration(typing_extensions.TypedDict, total=False):
     createTime: str
     dnsSettings: DnsSettings
     domainName: str
+    domainProperties: _list[
+        typing_extensions.Literal[
+            "DOMAIN_PROPERTY_UNSPECIFIED",
+            "TRANSFER_LOCK_UNSUPPORTED_BY_REGISTRY",
+            "REQUIRE_PUSH_TRANSFER",
+        ]
+    ]
     expireTime: str
     issues: _list[
         typing_extensions.Literal[
@@ -279,6 +354,7 @@ class Registration(typing_extensions.TypedDict, total=False):
             "CONTACT_SUPPORT",
             "UNVERIFIED_EMAIL",
             "PROBLEM_WITH_BILLING",
+            "DNS_NOT_ACTIVATED",
         ]
     ]
     labels: dict[str, typing.Any]
@@ -326,7 +402,33 @@ class Registration(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RenewDomainRequest(typing_extensions.TypedDict, total=False):
+    validateOnly: bool
+    yearlyPrice: Money
+
+@typing.type_check_only
 class ResetAuthorizationCodeRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ResourceRecordSet(typing_extensions.TypedDict, total=False):
+    name: str
+    routingPolicy: RRSetRoutingPolicy
+    rrdata: _list[str]
+    signatureRrdata: _list[str]
+    ttl: int
+    type: str
+
+@typing.type_check_only
+class RetrieveGoogleDomainsDnsRecordsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rrset: _list[ResourceRecordSet]
+
+@typing.type_check_only
+class RetrieveGoogleDomainsForwardingConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    domainForwardings: _list[DomainForwarding]
+    emailForwardings: _list[EmailForwarding]
 
 @typing.type_check_only
 class RetrieveImportableDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -394,3 +496,14 @@ class TransferParameters(typing_extensions.TypedDict, total=False):
         "TRANSFER_LOCK_STATE_UNSPECIFIED", "UNLOCKED", "LOCKED"
     ]
     yearlyPrice: Money
+
+@typing.type_check_only
+class WrrPolicy(typing_extensions.TypedDict, total=False):
+    item: _list[WrrPolicyItem]
+
+@typing.type_check_only
+class WrrPolicyItem(typing_extensions.TypedDict, total=False):
+    healthCheckedTargets: HealthCheckTargets
+    rrdata: _list[str]
+    signatureRrdata: _list[str]
+    weight: float

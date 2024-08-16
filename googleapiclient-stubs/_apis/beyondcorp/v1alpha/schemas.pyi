@@ -481,10 +481,17 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig(
     displayName: str
     encryptionInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaEncryptionInfo
     name: str
+    proxyProtocolConfig: GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig
     proxyUri: str
     routingInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaRoutingInfo
     transportInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaTransportInfo
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig(
+    typing_extensions.TypedDict, total=False
+):
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaRoutingInfo(
@@ -630,6 +637,11 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResp
     ]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     typing_extensions.TypedDict, total=False
 ):
@@ -643,6 +655,9 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "COMPLETED"
+    ]
+    subscriberType: typing_extensions.Literal[
+        "SUBSCRIBER_TYPE_UNSPECIFIED", "ONLINE", "OFFLINE"
     ]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
@@ -832,6 +847,10 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
+
+@typing.type_check_only
+class ShouldThrottleResponse(typing_extensions.TypedDict, total=False):
+    shouldThrottle: bool
 
 @typing.type_check_only
 class Tunnelv1ProtoTunnelerError(typing_extensions.TypedDict, total=False):

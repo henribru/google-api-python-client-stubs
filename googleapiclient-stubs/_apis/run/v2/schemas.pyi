@@ -158,8 +158,17 @@ class GoogleCloudRunV2Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2ExecutionReference(typing_extensions.TypedDict, total=False):
+    completionStatus: typing_extensions.Literal[
+        "COMPLETION_STATUS_UNSPECIFIED",
+        "EXECUTION_SUCCEEDED",
+        "EXECUTION_FAILED",
+        "EXECUTION_RUNNING",
+        "EXECUTION_PENDING",
+        "EXECUTION_CANCELLED",
+    ]
     completionTime: str
     createTime: str
+    deleteTime: str
     name: str
 
 @typing.type_check_only
@@ -246,6 +255,7 @@ class GoogleCloudRunV2Job(typing_extensions.TypedDict, total=False):
     name: str
     observedGeneration: str
     reconciling: bool
+    runExecutionToken: str
     satisfiesPzs: bool
     startExecutionToken: str
     template: GoogleCloudRunV2ExecutionTemplate
@@ -362,6 +372,7 @@ class GoogleCloudRunV2Revision(typing_extensions.TypedDict, total=False):
     scalingStatus: GoogleCloudRunV2RevisionScalingStatus
     service: str
     serviceAccount: str
+    serviceMesh: GoogleCloudRunV2ServiceMesh
     sessionAffinity: bool
     timeout: str
     uid: str
@@ -395,6 +406,7 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
     revision: str
     scaling: GoogleCloudRunV2RevisionScaling
     serviceAccount: str
+    serviceMesh: GoogleCloudRunV2ServiceMesh
     sessionAffinity: bool
     timeout: str
     volumes: _list[GoogleCloudRunV2Volume]
@@ -466,6 +478,10 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     uid: str
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudRunV2ServiceMesh(typing_extensions.TypedDict, total=False):
+    mesh: str
 
 @typing.type_check_only
 class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
@@ -784,12 +800,6 @@ class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=Fa
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GCSLocation(typing_extensions.TypedDict, total=False):
-    bucket: str
-    generation: str
-    object: str
-
-@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
     http: GoogleDevtoolsCloudbuildV1HttpConfig
 
@@ -807,7 +817,6 @@ class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1HttpConfig(typing_extensions.TypedDict, total=False):
     proxySecretVersionName: str
-    proxySslCaInfo: GoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=False):

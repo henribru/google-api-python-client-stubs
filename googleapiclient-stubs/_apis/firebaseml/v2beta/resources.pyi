@@ -25,23 +25,27 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         endpoint: str,
-                        body: CountTokensRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1CountTokensRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> CountTokensResponseHttpRequest: ...
+                    ) -> GoogleCloudAiplatformV1beta1CountTokensResponseHttpRequest: ...
                     def generateContent(
                         self,
                         *,
                         model: str,
-                        body: GenerateContentRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> GenerateContentResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest
+                    ): ...
                     def streamGenerateContent(
                         self,
                         *,
                         model: str,
-                        body: GenerateContentRequest = ...,
+                        body: GoogleCloudAiplatformV1beta1GenerateContentRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> GenerateContentResponseHttpRequest: ...
+                    ) -> (
+                        GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest
+                    ): ...
 
                 def models(self) -> ModelsResource: ...
 
@@ -64,17 +68,21 @@ class FirebaseMLResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
-class CountTokensResponseHttpRequest(googleapiclient.http.HttpRequest):
+class GoogleCloudAiplatformV1beta1CountTokensResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
-    ) -> CountTokensResponse: ...
+    ) -> GoogleCloudAiplatformV1beta1CountTokensResponse: ...
 
 @typing.type_check_only
-class GenerateContentResponseHttpRequest(googleapiclient.http.HttpRequest):
+class GoogleCloudAiplatformV1beta1GenerateContentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
-    ) -> GenerateContentResponse: ...
+    ) -> GoogleCloudAiplatformV1beta1GenerateContentResponse: ...

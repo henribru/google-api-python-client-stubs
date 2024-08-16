@@ -39,6 +39,17 @@ class GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo(
     username: str
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest(
+    typing_extensions.TypedDict, total=False
+):
+    ipOverrideData: GoogleCloudRecaptchaenterpriseV1IpOverrideData
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1AndroidKeySettings(
     typing_extensions.TypedDict, total=False
 ):
@@ -99,16 +110,25 @@ class GoogleCloudRecaptchaenterpriseV1Assessment(
 ):
     accountDefenderAssessment: GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment
     accountVerification: GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo
+    assessmentEnvironment: GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment
     event: GoogleCloudRecaptchaenterpriseV1Event
     firewallPolicyAssessment: GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment
     fraudPreventionAssessment: GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment
     fraudSignals: GoogleCloudRecaptchaenterpriseV1FraudSignals
     name: str
+    phoneFraudAssessment: GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment
     privatePasswordLeakVerification: (
         GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification
     )
     riskAnalysis: GoogleCloudRecaptchaenterpriseV1RiskAnalysis
     tokenProperties: GoogleCloudRecaptchaenterpriseV1TokenProperties
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment(
+    typing_extensions.TypedDict, total=False
+):
+    client: str
+    version: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
@@ -277,6 +297,13 @@ class GoogleCloudRecaptchaenterpriseV1IOSKeySettings(
     appleDeveloperId: GoogleCloudRecaptchaenterpriseV1AppleDeveloperId
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1IpOverrideData(
+    typing_extensions.TypedDict, total=False
+):
+    ip: str
+    overrideType: typing_extensions.Literal["OVERRIDE_TYPE_UNSPECIFIED", "ALLOW"]
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=False):
     androidSettings: GoogleCloudRecaptchaenterpriseV1AndroidKeySettings
     createTime: str
@@ -330,6 +357,12 @@ class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
     typing_extensions.TypedDict, total=False
 ):
     skipBillingCheck: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment(
+    typing_extensions.TypedDict, total=False
+):
+    smsTollFraudVerdict: GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PrivatePasswordLeakVerification(
@@ -420,6 +453,17 @@ class GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRespon
     relatedAccountGroupMemberships: _list[
         GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership
     ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1SmsTollFraudVerdict(
+    typing_extensions.TypedDict, total=False
+):
+    reasons: _list[
+        typing_extensions.Literal[
+            "SMS_TOLL_FRAUD_REASON_UNSPECIFIED", "INVALID_PHONE_NUMBER"
+        ]
+    ]
+    risk: float
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1TestingOptions(

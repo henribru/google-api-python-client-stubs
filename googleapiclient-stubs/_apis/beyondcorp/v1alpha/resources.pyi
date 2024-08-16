@@ -258,10 +258,20 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    aggregation: typing_extensions.Literal[
+                        "AGGREGATION_UNSPECIFIED",
+                        "HOURLY",
+                        "DAILY",
+                        "WEEKLY",
+                        "MONTHLY",
+                        "CUSTOM_DATE_RANGE",
+                    ] = ...,
+                    endTime: str = ...,
                     filter: str = ...,
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    startTime: str = ...,
                     view: typing_extensions.Literal[
                         "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -346,6 +356,9 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpRequest: ...
+                def restart(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponseHttpRequest: ...
 
             def global_(self) -> GlobalResource: ...
             def insights(self) -> InsightsResource: ...
@@ -588,6 +601,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def shouldThrottle(
+                    self,
+                    *,
+                    name: str,
+                    port: int = ...,
+                    requestedAmount: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ShouldThrottleResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -904,10 +925,20 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    aggregation: typing_extensions.Literal[
+                        "AGGREGATION_UNSPECIFIED",
+                        "HOURLY",
+                        "DAILY",
+                        "WEEKLY",
+                        "MONTHLY",
+                        "CUSTOM_DATE_RANGE",
+                    ] = ...,
+                    endTime: str = ...,
                     filter: str = ...,
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    startTime: str = ...,
                     view: typing_extensions.Literal[
                         "INSIGHT_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -998,6 +1029,13 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -1025,6 +1063,20 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -1281,6 +1333,18 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResp
     ): ...
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponse
+    ): ...
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1403,3 +1467,11 @@ class ResolveInstanceConfigResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ResolveInstanceConfigResponse: ...
+
+@typing.type_check_only
+class ShouldThrottleResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShouldThrottleResponse: ...

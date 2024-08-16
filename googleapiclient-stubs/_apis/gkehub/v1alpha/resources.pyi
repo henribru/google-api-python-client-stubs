@@ -61,7 +61,11 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
                 ) -> FeatureHttpRequest: ...
                 def getIamPolicy(
                     self,
@@ -78,6 +82,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListFeaturesResponseHttpRequest: ...
                 def list_next(

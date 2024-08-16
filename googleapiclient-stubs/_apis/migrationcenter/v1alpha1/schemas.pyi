@@ -118,6 +118,38 @@ class AssetPerformanceData(typing_extensions.TypedDict, total=False):
     dailyResourceUsageAggregations: _list[DailyResourceUsageAggregation]
 
 @typing.type_check_only
+class AssetsExportJob(typing_extensions.TypedDict, total=False):
+    condition: AssetsExportJobExportCondition
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    networkDependencies: AssetsExportJobNetworkDependencies
+    recentExecutions: _list[AssetsExportJobExecution]
+    signedUriDestination: SignedUriDestination
+    updateTime: str
+
+@typing.type_check_only
+class AssetsExportJobExecution(typing_extensions.TypedDict, total=False):
+    endTime: str
+    executionId: str
+    expireTime: str
+    result: AssetsExportJobExecutionResult
+    startTime: str
+
+@typing.type_check_only
+class AssetsExportJobExecutionResult(typing_extensions.TypedDict, total=False):
+    error: Status
+    signedUris: SignedUris
+
+@typing.type_check_only
+class AssetsExportJobExportCondition(typing_extensions.TypedDict, total=False):
+    filter: str
+
+@typing.type_check_only
+class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False):
+    maxDays: int
+
+@typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     location: str
     machineTypeLabel: str
@@ -221,6 +253,7 @@ class CloudSqlForSqlServerShape(typing_extensions.TypedDict, total=False):
     egressGbPerMonth: str
     logicalCoreCount: int
     memoryMb: int
+    smtEnabled: bool
     storage: ComputeStorageDescriptor
     version: typing_extensions.Literal[
         "SQL_SERVER_VERSION_UNSPECIFIED",
@@ -255,6 +288,13 @@ class ComputeEnginePreferences(typing_extensions.TypedDict, total=False):
         "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE",
     ]
     machinePreferences: MachinePreferences
+    multithreading: typing_extensions.Literal[
+        "MULTITHREADING_UNSPECIFIED",
+        "MULTITHREADING_DISABLED",
+        "MULTITHREADING_ENABLED",
+        "MULTITHREADING_DISABLED_WITH_COMPENSATION",
+    ]
+    osPricingPreferences: OperatingSystemPricingPreferences
     persistentDiskType: typing_extensions.Literal[
         "PERSISTENT_DISK_TYPE_UNSPECIFIED",
         "PERSISTENT_DISK_TYPE_STANDARD",
@@ -269,6 +309,7 @@ class ComputeEngineShapeDescriptor(typing_extensions.TypedDict, total=False):
     memoryMb: int
     physicalCoreCount: int
     series: str
+    smtEnabled: bool
     storage: _list[ComputeStorageDescriptor]
 
 @typing.type_check_only
@@ -398,6 +439,8 @@ class DatabasePreferencesCloudSqlCommon(typing_extensions.TypedDict, total=False
         "COMMITMENT_PLAN_NONE",
         "COMMITMENT_PLAN_ONE_YEAR",
         "COMMITMENT_PLAN_THREE_YEARS",
+        "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR",
+        "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS",
     ]
     edition: typing_extensions.Literal[
         "CLOUD_SQL_EDITION_UNSPECIFIED",
@@ -444,7 +487,7 @@ class DatabasePreferencesCloudSqlSqlServer(typing_extensions.TypedDict, total=Fa
         "MULTITHREADING_UNSPECIFIED",
         "MULTITHREADING_DISABLED",
         "MULTITHREADING_ENABLED",
-        "MULTITHREADING_AUTO_SELECT",
+        "MULTITHREADING_DISABLED_WITH_COMPENSATION",
     ]
     versionType: typing_extensions.Literal[
         "VERSION_TYPE_UNSPECIFIED",
@@ -800,6 +843,11 @@ class IssueCompatibilityIssue(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ListAssetsExportJobsResponse(typing_extensions.TypedDict, total=False):
+    assetsExportJobs: _list[AssetsExportJob]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListAssetsResponse(typing_extensions.TypedDict, total=False):
     assets: _list[Asset]
     nextPageToken: str
@@ -1018,6 +1066,29 @@ class OpenFileDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OpenFileList(typing_extensions.TypedDict, total=False):
     entries: _list[OpenFileDetails]
+
+@typing.type_check_only
+class OperatingSystemPricingPreferences(typing_extensions.TypedDict, total=False):
+    rhel: OperatingSystemPricingPreferencesOperatingSystemPricing
+    sles: OperatingSystemPricingPreferencesOperatingSystemPricing
+    slesForSap: OperatingSystemPricingPreferencesOperatingSystemPricing
+    windows: OperatingSystemPricingPreferencesOperatingSystemPricing
+
+@typing.type_check_only
+class OperatingSystemPricingPreferencesOperatingSystemPricing(
+    typing_extensions.TypedDict, total=False
+):
+    commitmentPlan: typing_extensions.Literal[
+        "COMMITMENT_PLAN_UNSPECIFIED",
+        "COMMITMENT_PLAN_ON_DEMAND",
+        "COMMITMENT_PLAN_1_YEAR",
+        "COMMITMENT_PLAN_3_YEAR",
+    ]
+    licenseType: typing_extensions.Literal[
+        "LICENSE_TYPE_UNSPECIFIED",
+        "LICENSE_TYPE_DEFAULT",
+        "LICENSE_TYPE_BRING_YOUR_OWN_LICENSE",
+    ]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -1284,6 +1355,14 @@ class ReportSummaryVMWareNodeAllocation(typing_extensions.TypedDict, total=False
     vmwareNode: ReportSummaryVMWareNode
 
 @typing.type_check_only
+class RunAssetsExportJobRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
+class RunAssetsExportJobResponse(typing_extensions.TypedDict, total=False):
+    assetsExportJobExecution: AssetsExportJobExecution
+
+@typing.type_check_only
 class RunImportJobRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
@@ -1336,6 +1415,18 @@ class Settings(typing_extensions.TypedDict, total=False):
     preferenceSet: str
 
 @typing.type_check_only
+class SignedUri(typing_extensions.TypedDict, total=False):
+    file: str
+    uri: str
+
+@typing.type_check_only
+class SignedUriDestination(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SignedUris(typing_extensions.TypedDict, total=False):
+    signedUris: _list[SignedUri]
+
+@typing.type_check_only
 class SoftwareInsight(typing_extensions.TypedDict, total=False):
     detectedSoftware: DetectedSoftware
 
@@ -1346,6 +1437,8 @@ class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
         "ON_DEMAND",
         "COMMITMENT_1_YEAR",
         "COMMITMENT_3_YEAR",
+        "COMMITMENT_FLEXIBLE_1_YEAR",
+        "COMMITMENT_FLEXIBLE_3_YEAR",
     ]
     cpuOvercommitRatio: float
     hostMaintenancePolicy: typing_extensions.Literal[
@@ -1355,6 +1448,7 @@ class SoleTenancyPreferences(typing_extensions.TypedDict, total=False):
         "HOST_MAINTENANCE_POLICY_MIGRATE_WITHIN_NODE_GROUP",
     ]
     nodeTypes: _list[SoleTenantNodeType]
+    osPricingPreferences: OperatingSystemPricingPreferences
 
 @typing.type_check_only
 class SoleTenantNodeType(typing_extensions.TypedDict, total=False):
@@ -1500,6 +1594,8 @@ class VirtualMachinePreferences(typing_extensions.TypedDict, total=False):
         "COMMITMENT_PLAN_NONE",
         "COMMITMENT_PLAN_ONE_YEAR",
         "COMMITMENT_PLAN_THREE_YEARS",
+        "COMMITMENT_PLAN_FLEXIBLE_ONE_YEAR",
+        "COMMITMENT_PLAN_FLEXIBLE_THREE_YEARS",
     ]
     computeEnginePreferences: ComputeEnginePreferences
     networkCostParameters: VirtualMachinePreferencesNetworkCostParameters
@@ -1573,6 +1669,8 @@ class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
         "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS",
         "COMMITMENT_1_YEAR_UPFRONT_PAYMENT",
         "COMMITMENT_3_YEAR_UPFRONT_PAYMENT",
+        "COMMITMENT_FLEXIBLE_3_YEAR_MONTHLY_PAYMENTS",
+        "COMMITMENT_FLEXIBLE_3_YEAR_UPFRONT_PAYMENT",
     ]
     cpuOvercommitRatio: float
     memoryOvercommitRatio: float

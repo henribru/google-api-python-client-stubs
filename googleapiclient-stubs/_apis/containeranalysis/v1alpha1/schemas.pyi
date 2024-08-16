@@ -501,14 +501,6 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
     fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation(
-    typing_extensions.TypedDict, total=False
-):
-    bucket: str
-    generation: str
-    object: str
-
-@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -519,7 +511,6 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig(
     typing_extensions.TypedDict, total=False
 ):
     proxySecretVersionName: str
-    proxySslCaInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
@@ -762,6 +753,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
     lastScanTime: str
     operation: Operation
     sbomStatus: SBOMStatus
+    vulnerabilityAttestation: VulnerabilityAttestation
 
 @typing.type_check_only
 class Discovery(typing_extensions.TypedDict, total=False):
@@ -1689,6 +1681,14 @@ class VulnerabilityAssessmentNote(typing_extensions.TypedDict, total=False):
     publisher: Publisher
     shortDescription: str
     title: str
+
+@typing.type_check_only
+class VulnerabilityAttestation(typing_extensions.TypedDict, total=False):
+    error: str
+    lastAttemptTime: str
+    state: typing_extensions.Literal[
+        "VULNERABILITY_ATTESTATION_STATE_UNSPECIFIED", "SUCCESS", "FAILURE"
+    ]
 
 @typing.type_check_only
 class VulnerabilityDetails(typing_extensions.TypedDict, total=False):

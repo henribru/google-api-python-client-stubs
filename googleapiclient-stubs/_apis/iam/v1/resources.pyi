@@ -655,13 +655,6 @@ class IamResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListServiceAccountKeysResponseHttpRequest: ...
-                def patch(
-                    self,
-                    *,
-                    name: str,
-                    body: PatchServiceAccountKeyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> ServiceAccountKeyHttpRequest: ...
                 def upload(
                     self,
                     *,

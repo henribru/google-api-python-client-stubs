@@ -90,6 +90,7 @@ class CloudStorageSink(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CorpusQuery(typing_extensions.TypedDict, total=False):
+    calendarQuery: HeldCalendarQuery
     driveQuery: HeldDriveQuery
     groupsQuery: HeldGroupsQuery
     hangoutsChatQuery: HeldHangoutsChatQuery
@@ -206,6 +207,9 @@ class HeldAccount(typing_extensions.TypedDict, total=False):
     lastName: str
 
 @typing.type_check_only
+class HeldCalendarQuery(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class HeldDriveQuery(typing_extensions.TypedDict, total=False):
     includeSharedDriveFiles: bool
     includeTeamDriveFiles: bool
@@ -318,6 +322,9 @@ class Matter(typing_extensions.TypedDict, total=False):
     description: str
     matterId: str
     matterPermissions: _list[MatterPermission]
+    matterRegion: typing_extensions.Literal[
+        "MATTER_REGION_UNSPECIFIED", "ANY", "US", "EUROPE"
+    ]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED", "DELETED"]
 

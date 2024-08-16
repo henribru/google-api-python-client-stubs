@@ -23,6 +23,7 @@ class AutoscalingTargets(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    backupSchedules: _list[str]
     createTime: str
     database: str
     databaseDialect: typing_extensions.Literal[
@@ -45,6 +46,19 @@ class BackupInfo(typing_extensions.TypedDict, total=False):
     createTime: str
     sourceDatabase: str
     versionTime: str
+
+@typing.type_check_only
+class BackupSchedule(typing_extensions.TypedDict, total=False):
+    encryptionConfig: CreateBackupEncryptionConfig
+    fullBackupSpec: FullBackupSpec
+    name: str
+    retentionDuration: str
+    spec: BackupScheduleSpec
+    updateTime: str
+
+@typing.type_check_only
+class BackupScheduleSpec(typing_extensions.TypedDict, total=False):
+    cronSpec: CrontabSpec
 
 @typing.type_check_only
 class BatchCreateSessionsRequest(typing_extensions.TypedDict, total=False):
@@ -77,6 +91,18 @@ class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
     role: str
+
+@typing.type_check_only
+class ChangeQuorumMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    request: ChangeQuorumRequest
+    startTime: str
+
+@typing.type_check_only
+class ChangeQuorumRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    quorumType: QuorumType
 
 @typing.type_check_only
 class ChildLink(typing_extensions.TypedDict, total=False):
@@ -135,6 +161,17 @@ class CopyBackupRequest(typing_extensions.TypedDict, total=False):
     encryptionConfig: CopyBackupEncryptionConfig
     expireTime: str
     sourceBackup: str
+
+@typing.type_check_only
+class CreateBackupEncryptionConfig(typing_extensions.TypedDict, total=False):
+    encryptionType: typing_extensions.Literal[
+        "ENCRYPTION_TYPE_UNSPECIFIED",
+        "USE_DATABASE_ENCRYPTION",
+        "GOOGLE_DEFAULT_ENCRYPTION",
+        "CUSTOMER_MANAGED_ENCRYPTION",
+    ]
+    kmsKeyName: str
+    kmsKeyNames: _list[str]
 
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
@@ -203,6 +240,12 @@ class CreateSessionRequest(typing_extensions.TypedDict, total=False):
     session: Session
 
 @typing.type_check_only
+class CrontabSpec(typing_extensions.TypedDict, total=False):
+    creationWindow: str
+    text: str
+    timeZone: str
+
+@typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     createTime: str
     databaseDialect: typing_extensions.Literal[
@@ -214,6 +257,7 @@ class Database(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     encryptionInfo: _list[EncryptionInfo]
     name: str
+    quorumInfo: QuorumInfo
     reconciling: bool
     restoreInfo: RestoreInfo
     state: typing_extensions.Literal[
@@ -255,6 +299,9 @@ class DiagnosticMessage(typing_extensions.TypedDict, total=False):
 class DirectedReadOptions(typing_extensions.TypedDict, total=False):
     excludeReplicas: ExcludeReplicas
     includeReplicas: IncludeReplicas
+
+@typing.type_check_only
+class DualRegionQuorum(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -326,6 +373,9 @@ class FreeInstanceMetadata(typing_extensions.TypedDict, total=False):
     upgradeTime: str
 
 @typing.type_check_only
+class FullBackupSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GetDatabaseDdlResponse(typing_extensions.TypedDict, total=False):
     protoDescriptors: str
     statements: _list[str]
@@ -393,6 +443,9 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     leaderOptions: _list[str]
     name: str
     optionalReplicas: _list[ReplicaInfo]
+    quorumType: typing_extensions.Literal[
+        "QUORUM_TYPE_UNSPECIFIED", "REGION", "DUAL_REGION", "MULTI_REGION"
+    ]
     reconciling: bool
     replicas: _list[ReplicaInfo]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
@@ -452,6 +505,11 @@ class KeySet(typing_extensions.TypedDict, total=False):
 class ListBackupOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListBackupSchedulesResponse(typing_extensions.TypedDict, total=False):
+    backupSchedules: _list[BackupSchedule]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
@@ -661,6 +719,18 @@ class QueryPlan(typing_extensions.TypedDict, total=False):
     queryAdvice: QueryAdvisorResult
 
 @typing.type_check_only
+class QuorumInfo(typing_extensions.TypedDict, total=False):
+    etag: str
+    initiator: typing_extensions.Literal["INITIATOR_UNSPECIFIED", "GOOGLE", "USER"]
+    quorumType: QuorumType
+    startTime: str
+
+@typing.type_check_only
+class QuorumType(typing_extensions.TypedDict, total=False):
+    dualRegion: DualRegionQuorum
+    singleRegion: SingleRegionQuorum
+
+@typing.type_check_only
 class ReadOnly(typing_extensions.TypedDict, total=False):
     exactStaleness: str
     maxStaleness: str
@@ -677,6 +747,12 @@ class ReadRequest(typing_extensions.TypedDict, total=False):
     index: str
     keySet: KeySet
     limit: str
+    lockHint: typing_extensions.Literal[
+        "LOCK_HINT_UNSPECIFIED", "LOCK_HINT_SHARED", "LOCK_HINT_EXCLUSIVE"
+    ]
+    orderBy: typing_extensions.Literal[
+        "ORDER_BY_UNSPECIFIED", "ORDER_BY_PRIMARY_KEY", "ORDER_BY_NO_ORDER"
+    ]
     partitionToken: str
     requestOptions: RequestOptions
     resumeToken: str
@@ -795,6 +871,10 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class ShortRepresentation(typing_extensions.TypedDict, total=False):
     description: str
     subqueries: dict[str, typing.Any]
+
+@typing.type_check_only
+class SingleRegionQuorum(typing_extensions.TypedDict, total=False):
+    servingLocation: str
 
 @typing.type_check_only
 class Statement(typing_extensions.TypedDict, total=False):

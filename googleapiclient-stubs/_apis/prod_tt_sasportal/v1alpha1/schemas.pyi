@@ -65,6 +65,7 @@ class SasPortalDeviceAirInterface(typing_extensions.TypedDict, total=False):
         "CW",
         "REDLINE",
         "TARANA_WIRELESS",
+        "FAROS",
     ]
     supportedSpec: str
 
@@ -162,7 +163,7 @@ class SasPortalInstallationParams(typing_extensions.TypedDict, total=False):
     antennaAzimuth: int
     antennaBeamwidth: int
     antennaDowntilt: int
-    antennaGain: int
+    antennaGain: float
     antennaModel: str
     cpeCbsdIndication: bool
     eirpCapability: int

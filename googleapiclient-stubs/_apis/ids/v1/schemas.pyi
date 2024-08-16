@@ -37,6 +37,8 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     network: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]

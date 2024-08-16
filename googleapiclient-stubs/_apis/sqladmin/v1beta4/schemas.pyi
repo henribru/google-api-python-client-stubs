@@ -35,6 +35,12 @@ class ApiWarning(typing_extensions.TypedDict, total=False):
     region: str
 
 @typing.type_check_only
+class AvailableDatabaseVersion(typing_extensions.TypedDict, total=False):
+    displayName: str
+    majorVersion: str
+    name: str
+
+@typing.type_check_only
 class BackupConfiguration(typing_extensions.TypedDict, total=False):
     backupRetentionSettings: BackupRetentionSettings
     binaryLogEnabled: bool
@@ -85,6 +91,7 @@ class BackupRun(typing_extensions.TypedDict, total=False):
     instance: str
     kind: str
     location: str
+    maxChargeableBytes: str
     selfLink: str
     startTime: str
     status: typing_extensions.Literal[
@@ -150,6 +157,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_13",
         "POSTGRES_14",
         "POSTGRES_15",
+        "POSTGRES_16",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -168,6 +176,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_4",
+        "MYSQL_8_4_0",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -183,6 +192,9 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     pscEnabled: bool
     region: str
     serverCaCert: SslCert
+    serverCaMode: typing_extensions.Literal[
+        "CA_MODE_UNSPECIFIED", "GOOGLE_MANAGED_INTERNAL_CA", "GOOGLE_MANAGED_CAS_CA"
+    ]
 
 @typing.type_check_only
 class DataCacheConfig(typing_extensions.TypedDict, total=False):
@@ -232,6 +244,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_13",
         "POSTGRES_14",
         "POSTGRES_15",
+        "POSTGRES_16",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -250,6 +263,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_4",
+        "MYSQL_8_4_0",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -289,6 +303,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     replicaNames: _list[str]
     replicationCluster: ReplicationCluster
     rootPassword: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     scheduledMaintenance: SqlScheduledMaintenance
     secondaryGceZone: str
@@ -320,6 +335,8 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
             "KMS_KEY_ISSUE",
         ]
     ]
+    switchTransactionLogsToCloudStorageEnabled: bool
+    upgradableDatabaseVersions: _list[AvailableDatabaseVersion]
     writeEndpoint: str
 
 @typing.type_check_only
@@ -413,6 +430,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "POSTGRES_13",
             "POSTGRES_14",
             "POSTGRES_15",
+            "POSTGRES_16",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -431,6 +449,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_4",
+            "MYSQL_8_4_0",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -576,6 +595,9 @@ class IpConfiguration(typing_extensions.TypedDict, total=False):
     privateNetwork: str
     pscConfig: PscConfig
     requireSsl: bool
+    serverCaMode: typing_extensions.Literal[
+        "CA_MODE_UNSPECIFIED", "GOOGLE_MANAGED_INTERNAL_CA", "GOOGLE_MANAGED_CAS_CA"
+    ]
     sslMode: typing_extensions.Literal[
         "SSL_MODE_UNSPECIFIED",
         "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
@@ -699,6 +721,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "CLUSTER_MAINTENANCE",
         "SELF_SERVICE_MAINTENANCE",
         "SWITCHOVER_TO_REPLICA",
+        "MAJOR_VERSION_UPGRADE",
     ]
     selfLink: str
     startTime: str
@@ -827,6 +850,7 @@ class Settings(typing_extensions.TypedDict, total=False):
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
+    enableDataplexIntegration: bool
     enableGoogleMlIntegration: bool
     insightsConfig: InsightsConfig
     ipConfiguration: IpConfiguration
@@ -903,6 +927,11 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "PG_SYNC_PARALLEL_LEVEL",
         "INSUFFICIENT_DISK_SIZE",
         "INSUFFICIENT_MACHINE_TIER",
+        "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED",
+        "EXTENSIONS_NOT_MIGRATED",
+        "PG_CRON_FLAG_ENABLED_IN_REPLICA",
+        "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
+        "UNSUPPORTED_COLUMNS",
     ]
 
 @typing.type_check_only

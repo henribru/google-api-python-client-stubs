@@ -192,6 +192,11 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     minimumVersionCode: int
     packageName: str
     permissionGrants: _list[PermissionGrant]
+    userControlSettings: typing_extensions.Literal[
+        "USER_CONTROL_SETTINGS_UNSPECIFIED",
+        "USER_CONTROL_ALLOWED",
+        "USER_CONTROL_DISALLOWED",
+    ]
     workProfileWidgets: typing_extensions.Literal[
         "WORK_PROFILE_WIDGETS_UNSPECIFIED",
         "WORK_PROFILE_WIDGETS_ALLOWED",
@@ -530,6 +535,11 @@ class Display(typing_extensions.TypedDict, total=False):
     width: int
 
 @typing.type_check_only
+class DisplaySettings(typing_extensions.TypedDict, total=False):
+    screenBrightnessSettings: ScreenBrightnessSettings
+    screenTimeoutSettings: ScreenTimeoutSettings
+
+@typing.type_check_only
 class DnsEvent(typing_extensions.TypedDict, total=False):
     hostname: str
     ipAddresses: _list[str]
@@ -554,6 +564,7 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
         "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
         "PERSONAL_USAGE_ALLOWED",
         "PERSONAL_USAGE_DISALLOWED",
+        "PERSONAL_USAGE_DISALLOWED_USERLESS",
     ]
     duration: str
     expirationTimestamp: str
@@ -579,6 +590,7 @@ class Enterprise(typing_extensions.TypedDict, total=False):
         ]
     ]
     enterpriseDisplayName: str
+    googleAuthenticationSettings: GoogleAuthenticationSettings
     logo: ExternalData
     name: str
     primaryColor: int
@@ -608,6 +620,12 @@ class FilePushedEvent(typing_extensions.TypedDict, total=False):
 class FreezePeriod(typing_extensions.TypedDict, total=False):
     endDate: Date
     startDate: Date
+
+@typing.type_check_only
+class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
+    googleAuthenticationRequired: typing_extensions.Literal[
+        "GOOGLE_AUTHENTICATION_REQUIRED_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
+    ]
 
 @typing.type_check_only
 class HardwareInfo(typing_extensions.TypedDict, total=False):
@@ -1117,6 +1135,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     deviceConnectivityManagement: DeviceConnectivityManagement
     deviceOwnerLockScreenInfo: UserFacingMessage
     deviceRadioState: DeviceRadioState
+    displaySettings: DisplaySettings
     encryptionPolicy: typing_extensions.Literal[
         "ENCRYPTION_POLICY_UNSPECIFIED",
         "ENABLED_WITHOUT_PASSWORD",
@@ -1260,6 +1279,7 @@ class PowerManagementEvent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProvisioningInfo(typing_extensions.TypedDict, total=False):
     apiLevel: int
+    authenticatedUserEmail: str
     brand: str
     enterprise: str
     imei: str
@@ -1288,6 +1308,25 @@ class RemoteLockEvent(typing_extensions.TypedDict, total=False):
     targetUserId: int
 
 @typing.type_check_only
+class ScreenBrightnessSettings(typing_extensions.TypedDict, total=False):
+    screenBrightness: int
+    screenBrightnessMode: typing_extensions.Literal[
+        "SCREEN_BRIGHTNESS_MODE_UNSPECIFIED",
+        "BRIGHTNESS_USER_CHOICE",
+        "BRIGHTNESS_AUTOMATIC",
+        "BRIGHTNESS_FIXED",
+    ]
+
+@typing.type_check_only
+class ScreenTimeoutSettings(typing_extensions.TypedDict, total=False):
+    screenTimeout: str
+    screenTimeoutMode: typing_extensions.Literal[
+        "SCREEN_TIMEOUT_MODE_UNSPECIFIED",
+        "SCREEN_TIMEOUT_USER_CHOICE",
+        "SCREEN_TIMEOUT_ENFORCED",
+    ]
+
+@typing.type_check_only
 class SecurityPosture(typing_extensions.TypedDict, total=False):
     devicePosture: typing_extensions.Literal[
         "POSTURE_UNSPECIFIED", "SECURE", "AT_RISK", "POTENTIALLY_COMPROMISED"
@@ -1306,6 +1345,12 @@ class SigninDetail(typing_extensions.TypedDict, total=False):
         "ALLOW_PERSONAL_USAGE_UNSPECIFIED",
         "PERSONAL_USAGE_ALLOWED",
         "PERSONAL_USAGE_DISALLOWED",
+        "PERSONAL_USAGE_DISALLOWED_USERLESS",
+    ]
+    defaultStatus: typing_extensions.Literal[
+        "SIGNIN_DETAIL_DEFAULT_STATUS_UNSPECIFIED",
+        "SIGNIN_DETAIL_IS_DEFAULT",
+        "SIGNIN_DETAIL_IS_NOT_DEFAULT",
     ]
     qrCode: str
     signinEnrollmentToken: str

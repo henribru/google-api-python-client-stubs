@@ -9,7 +9,13 @@ class AcknowledgeRequest(typing_extensions.TypedDict, total=False):
     ackIds: _list[str]
 
 @typing.type_check_only
+class AnalyticsHubSubscriptionInfo(typing_extensions.TypedDict, total=False):
+    listing: str
+    subscription: str
+
+@typing.type_check_only
 class AvroConfig(typing_extensions.TypedDict, total=False):
+    useTopicSchema: bool
     writeMetadata: bool
 
 @typing.type_check_only
@@ -59,6 +65,7 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     filenameSuffix: str
     maxBytes: str
     maxDuration: str
+    maxMessages: str
     serviceAccountEmail: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -257,6 +264,7 @@ class Snapshot(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
+    analyticsHubSubscriptionInfo: AnalyticsHubSubscriptionInfo
     bigqueryConfig: BigQueryConfig
     cloudStorageConfig: CloudStorageConfig
     deadLetterPolicy: DeadLetterPolicy

@@ -229,6 +229,35 @@ class GoogleFirestoreAdminV1BackupSchedule(typing_extensions.TypedDict, total=Fa
     weeklyRecurrence: GoogleFirestoreAdminV1WeeklyRecurrence
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    collectionIds: _list[str]
+    endTime: str
+    namespaceIds: _list[str]
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    progressBytes: GoogleFirestoreAdminV1Progress
+    progressDocuments: GoogleFirestoreAdminV1Progress
+    snapshotTime: str
+    startTime: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1BulkDeleteDocumentsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    collectionIds: _list[str]
+    namespaceIds: _list[str]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CmekConfig(typing_extensions.TypedDict, total=False):
     activeKeyVersion: _list[str]
     kmsKeyName: str
@@ -239,8 +268,15 @@ class GoogleFirestoreAdminV1CreateDatabaseMetadata(
 ): ...
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1DailyRecurrence(typing_extensions.TypedDict, total=False):
-    time: TimeOfDay
+class GoogleFirestoreAdminV1CustomerManagedEncryptionOptions(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKeyName: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DailyRecurrence(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
@@ -280,14 +316,15 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     versionRetentionPeriod: str
 
 @typing.type_check_only
-class GoogleFirestoreAdminV1DatabaseSnapshot(typing_extensions.TypedDict, total=False):
-    database: str
-    snapshotTime: str
-
-@typing.type_check_only
 class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1EncryptionConfig(typing_extensions.TypedDict, total=False):
+    customerManagedEncryption: GoogleFirestoreAdminV1CustomerManagedEncryptionOptions
+    googleDefaultEncryption: GoogleFirestoreAdminV1GoogleDefaultEncryptionOptions
+    useSourceEncryption: GoogleFirestoreAdminV1SourceEncryptionOptions
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ExportDocumentsMetadata(
@@ -357,6 +394,11 @@ class GoogleFirestoreAdminV1FieldOperationMetadata(
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1FlatIndex(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1GoogleDefaultEncryptionOptions(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1ImportDocumentsMetadata(
@@ -512,7 +554,12 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
 ):
     backup: str
     databaseId: str
-    databaseSnapshot: GoogleFirestoreAdminV1DatabaseSnapshot
+    encryptionConfig: GoogleFirestoreAdminV1EncryptionConfig
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SourceEncryptionOptions(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Stats(typing_extensions.TypedDict, total=False):
@@ -552,7 +599,6 @@ class GoogleFirestoreAdminV1WeeklyRecurrence(typing_extensions.TypedDict, total=
         "SATURDAY",
         "SUNDAY",
     ]
-    time: TimeOfDay
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -759,13 +805,6 @@ class TargetChange(typing_extensions.TypedDict, total=False):
         "NO_CHANGE", "ADD", "REMOVE", "CURRENT", "RESET"
     ]
     targetIds: _list[int]
-
-@typing.type_check_only
-class TimeOfDay(typing_extensions.TypedDict, total=False):
-    hours: int
-    minutes: int
-    nanos: int
-    seconds: int
 
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):

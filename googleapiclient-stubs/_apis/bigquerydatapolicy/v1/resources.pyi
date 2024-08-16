@@ -23,7 +23,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     self, *, parent: str, body: DataPolicy = ..., **kwargs: typing.Any
                 ) -> DataPolicyHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
@@ -54,6 +54,7 @@ class BigQueryDataPolicyServiceResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: DataPolicy = ...,
+                    allowMissing: bool = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> DataPolicyHttpRequest: ...

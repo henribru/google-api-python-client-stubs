@@ -360,6 +360,14 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def shouldThrottle(
+                    self,
+                    *,
+                    name: str,
+                    port: int = ...,
+                    requestedAmount: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ShouldThrottleResponseHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -624,3 +632,11 @@ class ListAppGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAppGatewaysResponse: ...
+
+@typing.type_check_only
+class ShouldThrottleResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShouldThrottleResponse: ...

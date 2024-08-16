@@ -79,6 +79,7 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     serviceAccountScopes: _list[str]
     shieldedInstanceConfig: GceShieldedInstanceConfig
     tags: _list[str]
+    vmTags: dict[str, typing.Any]
 
 @typing.type_check_only
 class GcePersistentDisk(typing_extensions.TypedDict, total=False):
@@ -106,6 +107,7 @@ class GceShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GenerateAccessTokenRequest(typing_extensions.TypedDict, total=False):
     expireTime: str
+    port: int
     ttl: str
 
 @typing.type_check_only
@@ -199,6 +201,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PortRange(typing_extensions.TypedDict, total=False):
+    first: int
+    last: int
+
+@typing.type_check_only
 class PrivateClusterConfig(typing_extensions.TypedDict, total=False):
     allowedProjects: _list[str]
     clusterHostname: str
@@ -285,6 +292,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WorkstationConfig(typing_extensions.TypedDict, total=False):
+    allowedPorts: _list[PortRange]
     annotations: dict[str, typing.Any]
     conditions: _list[Status]
     container: Container

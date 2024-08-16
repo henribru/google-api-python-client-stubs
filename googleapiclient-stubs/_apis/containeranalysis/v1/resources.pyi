@@ -36,6 +36,24 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                         previous_response: ListNoteOccurrencesResponse,
                     ) -> ListNoteOccurrencesResponseHttpRequest | None: ...
 
+                def batchCreate(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchCreateNotesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> BatchCreateNotesResponseHttpRequest: ...
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Note = ...,
+                    noteId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> NoteHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NoteHttpRequest: ...
@@ -53,10 +71,31 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListNotesResponseHttpRequest,
                     previous_response: ListNotesResponse,
                 ) -> ListNotesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Note = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> NoteHttpRequest: ...
                 def occurrences(self) -> OccurrencesResource: ...
 
             @typing.type_check_only
             class OccurrencesResource(googleapiclient.discovery.Resource):
+                def batchCreate(
+                    self,
+                    *,
+                    parent: str,
+                    body: BatchCreateOccurrencesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> BatchCreateOccurrencesResponseHttpRequest: ...
+                def create(
+                    self, *, parent: str, body: Occurrence = ..., **kwargs: typing.Any
+                ) -> OccurrenceHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OccurrenceHttpRequest: ...
@@ -80,6 +119,14 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     previous_request: ListOccurrencesResponseHttpRequest,
                     previous_response: ListOccurrencesResponse,
                 ) -> ListOccurrencesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Occurrence = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OccurrenceHttpRequest: ...
 
             @typing.type_check_only
             class ResourcesResource(googleapiclient.discovery.Resource):

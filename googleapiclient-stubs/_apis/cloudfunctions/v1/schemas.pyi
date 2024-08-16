@@ -135,6 +135,7 @@ class GoogleCloudFunctionsV2LocationMetadata(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
     apiVersion: str
+    buildName: str
     cancelRequested: bool
     createTime: str
     endTime: str
@@ -196,6 +197,7 @@ class GoogleCloudFunctionsV2alphaOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     apiVersion: str
+    buildName: str
     cancelRequested: bool
     createTime: str
     endTime: str
@@ -257,6 +259,7 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     apiVersion: str
+    buildName: str
     cancelRequested: bool
     createTime: str
     endTime: str

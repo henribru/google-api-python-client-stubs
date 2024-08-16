@@ -73,6 +73,7 @@ class DecodeIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceIntegrity(typing_extensions.TypedDict, total=False):
+    deviceRecall: DeviceRecall
     deviceRecognitionVerdict: _list[
         typing_extensions.Literal[
             "UNKNOWN",
@@ -83,6 +84,11 @@ class DeviceIntegrity(typing_extensions.TypedDict, total=False):
         ]
     ]
     recentDeviceActivity: RecentDeviceActivity
+
+@typing.type_check_only
+class DeviceRecall(typing_extensions.TypedDict, total=False):
+    values: Values
+    writeDates: WriteDates
 
 @typing.type_check_only
 class EnvironmentDetails(typing_extensions.TypedDict, total=False):
@@ -127,3 +133,23 @@ class TokenPayloadExternal(typing_extensions.TypedDict, total=False):
     environmentDetails: EnvironmentDetails
     requestDetails: RequestDetails
     testingDetails: TestingDetails
+
+@typing.type_check_only
+class Values(typing_extensions.TypedDict, total=False):
+    bitFirst: bool
+    bitSecond: bool
+    bitThird: bool
+
+@typing.type_check_only
+class WriteDates(typing_extensions.TypedDict, total=False):
+    yyyymmFirst: int
+    yyyymmSecond: int
+    yyyymmThird: int
+
+@typing.type_check_only
+class WriteDeviceRecallRequest(typing_extensions.TypedDict, total=False):
+    integrityToken: str
+    newValues: Values
+
+@typing.type_check_only
+class WriteDeviceRecallResponse(typing_extensions.TypedDict, total=False): ...

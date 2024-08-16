@@ -407,7 +407,6 @@ class GoogleCloudRetailV2alphaBranch(typing_extensions.TypedDict, total=False):
     lastProductImportTime: str
     name: str
     productCountStats: _list[GoogleCloudRetailV2alphaBranchProductCountStatistic]
-    productCounts: dict[str, typing.Any]
     qualityMetrics: _list[GoogleCloudRetailV2alphaBranchQualityMetric]
 
 @typing.type_check_only
@@ -496,9 +495,6 @@ class GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacet(
     typing_extensions.TypedDict, total=False
 ):
     mergedFacetKey: str
-    mergedFacetValues: _list[
-        GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue
-    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue(
@@ -711,12 +707,26 @@ class GoogleCloudRetailV2alphaExportMetadata(typing_extensions.TypedDict, total=
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaExportProductsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    outputConfig: GoogleCloudRetailV2alphaOutputConfig
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaExportProductsResponse(
     typing_extensions.TypedDict, total=False
 ):
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2alphaExportErrorsConfig
     outputResult: GoogleCloudRetailV2alphaOutputResult
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaExportUserEventsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    outputConfig: GoogleCloudRetailV2alphaOutputConfig
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaExportUserEventsResponse(
@@ -1738,13 +1748,6 @@ class GoogleCloudRetailV2betaBigQueryOutputResult(
     tableId: str
 
 @typing.type_check_only
-class GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    updateTime: str
-
-@typing.type_check_only
 class GoogleCloudRetailV2betaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1824,30 +1827,6 @@ class GoogleCloudRetailV2betaImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2betaImportErrorsConfig
     importSummary: GoogleCloudRetailV2betaUserEventImportSummary
-
-@typing.type_check_only
-class GoogleCloudRetailV2betaMerchantCenterAccountLink(
-    typing_extensions.TypedDict, total=False
-):
-    branchId: str
-    feedFilters: _list[
-        GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter
-    ]
-    feedLabel: str
-    id: str
-    languageCode: str
-    merchantCenterAccountId: str
-    name: str
-    projectId: str
-    source: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
-
-@typing.type_check_only
-class GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter(
-    typing_extensions.TypedDict, total=False
-):
-    primaryFeedId: str
-    primaryFeedName: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaModel(typing_extensions.TypedDict, total=False):

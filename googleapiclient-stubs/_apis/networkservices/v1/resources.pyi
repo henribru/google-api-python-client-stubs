@@ -105,13 +105,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EndpointPolicyHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -133,20 +126,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class GatewaysResource(googleapiclient.discovery.Resource):
@@ -164,13 +143,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GatewayHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -192,20 +164,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class GrpcRoutesResource(googleapiclient.discovery.Resource):
@@ -383,13 +341,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> MeshHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -411,20 +362,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -472,13 +409,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceBindingHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -492,20 +422,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     previous_request: ListServiceBindingsResponseHttpRequest,
                     previous_response: ListServiceBindingsResponse,
                 ) -> ListServiceBindingsResponseHttpRequest | None: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class ServiceLbPoliciesResource(googleapiclient.discovery.Resource):

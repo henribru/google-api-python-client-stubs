@@ -5,59 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingInstruction(
-    typing_extensions.TypedDict, total=False
-):
-    agentAction: str
-    condition: str
-    description: str
-    displayName: str
-    metadata: dict[str, typing.Any]
-    systemAction: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentActionSuggestions: _list[
-        GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion
-    ]
-    applicableInstructions: _list[
-        GoogleCloudContactcenterinsightsV1AgentCoachingInstruction
-    ]
-    sampleResponses: _list[
-        GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse
-    ]
-    suggestionEval: GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval
-    suggestionReasoning: GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentActionSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentAction: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionEval(
-    typing_extensions.TypedDict, total=False
-):
-    actionActionSuggestionEval: str
-    sampleResponseEval: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionAgentCoachingSuggestionReasoning(
-    typing_extensions.TypedDict, total=False
-):
-    agentActionTaken: str
-    issueSummary: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1AgentCoachingSuggestionSampleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    responseText: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Analysis(
     typing_extensions.TypedDict, total=False
 ):
@@ -466,6 +413,13 @@ class GoogleCloudContactcenterinsightsV1DialogflowSource(
     dialogflowConversation: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1EncryptionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Entity(
     typing_extensions.TypedDict, total=False
 ):
@@ -579,91 +533,11 @@ class GoogleCloudContactcenterinsightsV1FaqAnswerData(
     source: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1FreeFormSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    labels: _list[str]
-    response: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1GcsSource(
     typing_extensions.TypedDict, total=False
 ):
     audioUri: str
     transcriptUri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GeneratorSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentCoachingSuggestion: GoogleCloudContactcenterinsightsV1AgentCoachingSuggestion
-    freeFormSuggestion: GoogleCloudContactcenterinsightsV1FreeFormSuggestion
-    summarySuggestion: GoogleCloudContactcenterinsightsV1SummarySuggestion
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse(
-    typing_extensions.TypedDict, total=False
-):
-    generatorSuggestion: GoogleCloudContactcenterinsightsV1GeneratorSuggestion
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse(
-    typing_extensions.TypedDict, total=False
-):
-    suggestedQuery: (
-        GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery
-    )
-    suggestedQueryAnswer: (
-        GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer
-    )
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswer(
-    typing_extensions.TypedDict, total=False
-):
-    answerText: str
-    faqSource: GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource
-    generativeSource: GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource
-    intentMatchingSource: GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource
-    matchConfidence: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    question: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource(
-    typing_extensions.TypedDict, total=False
-):
-    snippets: _list[
-        GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet
-    ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    text: str
-    title: str
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource(
-    typing_extensions.TypedDict, total=False
-):
-    title: str
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponseSuggestedQuery(
-    typing_extensions.TypedDict, total=False
-):
-    queryText: str
-    score: float
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1HoldData(
@@ -761,6 +635,26 @@ class GoogleCloudContactcenterinsightsV1IngestConversationsResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudContactcenterinsightsV1EncryptionSpec
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Intent(
     typing_extensions.TypedDict, total=False
 ):
@@ -781,6 +675,7 @@ class GoogleCloudContactcenterinsightsV1InterruptionData(
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1Issue(typing_extensions.TypedDict, total=False):
     createTime: str
+    displayDescription: str
     displayName: str
     name: str
     sampleUtterances: _list[str]
@@ -964,37 +859,20 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotation(
     dialogflowInteraction: GoogleCloudContactcenterinsightsV1DialogflowInteractionData
     endBoundary: GoogleCloudContactcenterinsightsV1AnnotationBoundary
     faqAnswer: GoogleCloudContactcenterinsightsV1FaqAnswerData
-    generatorSuggestionResult: (
-        GoogleCloudContactcenterinsightsV1GetGeneratorSuggestionResponse
-    )
-    knowledgeAssistResult: GoogleCloudContactcenterinsightsV1GetKnowledgeAssistResponse
-    knowledgeSearchResult: GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer
     smartComposeSuggestion: GoogleCloudContactcenterinsightsV1SmartComposeSuggestionData
     smartReply: GoogleCloudContactcenterinsightsV1SmartReplyData
     startBoundary: GoogleCloudContactcenterinsightsV1AnnotationBoundary
+    userInput: GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswer(
+class GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput(
     typing_extensions.TypedDict, total=False
 ):
-    answer: str
-    answerRecord: str
-    answerSources: _list[
-        GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource
+    generatorName: str
+    query: str
+    querySource: typing_extensions.Literal[
+        "QUERY_SOURCE_UNSPECIFIED", "AGENT_QUERY", "SUGGESTED_QUERY"
     ]
-    answerType: typing_extensions.Literal[
-        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE", "INTENT"
-    ]
-    confidenceScore: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1SearchKnowledgeAnswerAnswerSource(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    snippet: str
-    title: str
-    uri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1SentimentData(
@@ -1055,21 +933,6 @@ class GoogleCloudContactcenterinsightsV1SpeechConfig(
     speechRecognizer: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1SummarySuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    summarySections: _list[
-        GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection
-    ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1SummarySuggestionSummarySection(
-    typing_extensions.TypedDict, total=False
-):
-    section: str
-    summary: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1115,59 +978,6 @@ class GoogleCloudContactcenterinsightsV1View(typing_extensions.TypedDict, total=
     name: str
     updateTime: str
     value: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction(
-    typing_extensions.TypedDict, total=False
-):
-    agentAction: str
-    condition: str
-    description: str
-    displayName: str
-    metadata: dict[str, typing.Any]
-    systemAction: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentActionSuggestions: _list[
-        GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion
-    ]
-    applicableInstructions: _list[
-        GoogleCloudContactcenterinsightsV1alpha1AgentCoachingInstruction
-    ]
-    sampleResponses: _list[
-        GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse
-    ]
-    suggestionEval: GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval
-    suggestionReasoning: GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentActionSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentAction: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionEval(
-    typing_extensions.TypedDict, total=False
-):
-    actionActionSuggestionEval: str
-    sampleResponseEval: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionAgentCoachingSuggestionReasoning(
-    typing_extensions.TypedDict, total=False
-):
-    agentActionTaken: str
-    issueSummary: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestionSampleResponse(
-    typing_extensions.TypedDict, total=False
-):
-    responseText: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1Analysis(
@@ -1543,6 +1353,13 @@ class GoogleCloudContactcenterinsightsV1alpha1DialogflowSource(
     dialogflowConversation: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec(
+    typing_extensions.TypedDict, total=False
+):
+    kmsKey: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1Entity(
     typing_extensions.TypedDict, total=False
 ):
@@ -1648,91 +1465,11 @@ class GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData(
     source: str
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    labels: _list[str]
-    response: str
-
-@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1GcsSource(
     typing_extensions.TypedDict, total=False
 ):
     audioUri: str
     transcriptUri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    agentCoachingSuggestion: (
-        GoogleCloudContactcenterinsightsV1alpha1AgentCoachingSuggestion
-    )
-    freeFormSuggestion: GoogleCloudContactcenterinsightsV1alpha1FreeFormSuggestion
-    summarySuggestion: GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse(
-    typing_extensions.TypedDict, total=False
-):
-    generatorSuggestion: GoogleCloudContactcenterinsightsV1alpha1GeneratorSuggestion
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse(
-    typing_extensions.TypedDict, total=False
-):
-    suggestedQuery: (
-        GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery
-    )
-    suggestedQueryAnswer: GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswer(
-    typing_extensions.TypedDict, total=False
-):
-    answerText: str
-    faqSource: GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource
-    generativeSource: GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource
-    intentMatchingSource: GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource
-    matchConfidence: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerFaqSource(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    question: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSource(
-    typing_extensions.TypedDict, total=False
-):
-    snippets: _list[
-        GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet
-    ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerGenerativeSourceSnippet(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    text: str
-    title: str
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseKnowledgeAnswerIntentMatchingSource(
-    typing_extensions.TypedDict, total=False
-):
-    title: str
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponseSuggestedQuery(
-    typing_extensions.TypedDict, total=False
-):
-    queryText: str
-    score: float
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1HoldData(
@@ -1826,6 +1563,26 @@ class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscri
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionSpec: GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecResponse(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -1944,41 +1701,22 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotation(
     )
     endBoundary: GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary
     faqAnswer: GoogleCloudContactcenterinsightsV1alpha1FaqAnswerData
-    generatorSuggestionResult: (
-        GoogleCloudContactcenterinsightsV1alpha1GetGeneratorSuggestionResponse
-    )
-    knowledgeAssistResult: (
-        GoogleCloudContactcenterinsightsV1alpha1GetKnowledgeAssistResponse
-    )
-    knowledgeSearchResult: GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer
     smartComposeSuggestion: (
         GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionData
     )
     smartReply: GoogleCloudContactcenterinsightsV1alpha1SmartReplyData
     startBoundary: GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundary
+    userInput: GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput
 
 @typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswer(
+class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput(
     typing_extensions.TypedDict, total=False
 ):
-    answer: str
-    answerRecord: str
-    answerSources: _list[
-        GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource
+    generatorName: str
+    query: str
+    querySource: typing_extensions.Literal[
+        "QUERY_SOURCE_UNSPECIFIED", "AGENT_QUERY", "SUGGESTED_QUERY"
     ]
-    answerType: typing_extensions.Literal[
-        "ANSWER_TYPE_UNSPECIFIED", "FAQ", "GENERATIVE", "INTENT"
-    ]
-    confidenceScore: float
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1SearchKnowledgeAnswerAnswerSource(
-    typing_extensions.TypedDict, total=False
-):
-    document: str
-    snippet: str
-    title: str
-    uri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1SentimentData(
@@ -2015,21 +1753,6 @@ class GoogleCloudContactcenterinsightsV1alpha1SpeechConfig(
     typing_extensions.TypedDict, total=False
 ):
     speechRecognizer: str
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1SummarySuggestion(
-    typing_extensions.TypedDict, total=False
-):
-    summarySections: _list[
-        GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection
-    ]
-
-@typing.type_check_only
-class GoogleCloudContactcenterinsightsV1alpha1SummarySuggestionSummarySection(
-    typing_extensions.TypedDict, total=False
-):
-    section: str
-    summary: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadata(

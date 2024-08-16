@@ -29,6 +29,7 @@ class DocsResource(googleapiclient.discovery.Resource):
             self,
             *,
             documentId: str,
+            includeTabsContent: bool = ...,
             suggestionsViewMode: typing_extensions.Literal[
                 "DEFAULT_FOR_CURRENT_ACCESS",
                 "SUGGESTIONS_INLINE",

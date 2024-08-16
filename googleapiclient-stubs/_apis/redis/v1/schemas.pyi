@@ -79,6 +79,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION",
     ]
     uid: str
+    zoneDistributionConfig: ZoneDistributionConfig
 
 @typing.type_check_only
 class ClusterPersistenceConfig(typing_extensions.TypedDict, total=False):
@@ -115,6 +116,7 @@ class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
     ]
+    observabilityMetricData: ObservabilityMetricData
     recommendationSignalData: DatabaseResourceRecommendationSignalData
     resourceHealthSignalData: DatabaseResourceHealthSignalData
     resourceId: DatabaseResourceId
@@ -164,9 +166,17 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
         "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+        "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
         "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
         "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+        "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+        "SIGNAL_TYPE_VIOLATES_HIPAA",
+        "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
         "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
         "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
         "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -216,6 +226,10 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+        "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+        "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -272,13 +286,13 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     location: str
+    machineConfiguration: MachineConfiguration
     primaryResourceId: DatabaseResourceId
     product: Product
     resourceContainer: str
     resourceName: str
     updationTime: str
     userLabelSet: UserLabels
-    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class DatabaseResourceRecommendationSignalData(
@@ -309,9 +323,17 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_2",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_1",
         "SIGNAL_TYPE_VIOLATES_CIS_GCP_FOUNDATION_1_0",
+        "SIGNAL_TYPE_VIOLATES_CIS_CONTROLS_V8_0",
         "SIGNAL_TYPE_VIOLATES_NIST_800_53",
+        "SIGNAL_TYPE_VIOLATES_NIST_800_53_R5",
+        "SIGNAL_TYPE_VIOLATES_NIST_CYBERSECURITY_FRAMEWORK_V1_0",
         "SIGNAL_TYPE_VIOLATES_ISO_27001",
+        "SIGNAL_TYPE_VIOLATES_ISO_27001_V2022",
         "SIGNAL_TYPE_VIOLATES_PCI_DSS_V3_2_1",
+        "SIGNAL_TYPE_VIOLATES_PCI_DSS_V4_0",
+        "SIGNAL_TYPE_VIOLATES_CLOUD_CONTROLS_MATRIX_V4",
+        "SIGNAL_TYPE_VIOLATES_HIPAA",
+        "SIGNAL_TYPE_VIOLATES_SOC2_V2017",
         "SIGNAL_TYPE_LOGS_NOT_OPTIMIZED_FOR_TROUBLESHOOTING",
         "SIGNAL_TYPE_QUERY_DURATIONS_NOT_LOGGED",
         "SIGNAL_TYPE_VERBOSE_ERROR_LOGGING",
@@ -361,6 +383,10 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_TMP_TABLES_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_TRANS_LOGS_PERFORMANCE_IMPACT",
         "SIGNAL_TYPE_HIGH_JOINS_WITHOUT_INDEXES",
+        "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
+        "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
     ]
 
 @typing.type_check_only
@@ -519,6 +545,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MachineConfiguration(typing_extensions.TypedDict, total=False):
+    cpuCount: int
+    memorySizeInBytes: str
+
+@typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -540,6 +571,23 @@ class ManagedCertificateAuthority(typing_extensions.TypedDict, total=False):
 class NodeInfo(typing_extensions.TypedDict, total=False):
     id: str
     zone: str
+
+@typing.type_check_only
+class ObservabilityMetricData(typing_extensions.TypedDict, total=False):
+    aggregationType: typing_extensions.Literal[
+        "AGGREGATION_TYPE_UNSPECIFIED", "PEAK", "P99", "P95", "CURRENT"
+    ]
+    metricType: typing_extensions.Literal[
+        "METRIC_TYPE_UNSPECIFIED",
+        "CPU_UTILIZATION",
+        "MEMORY_UTILIZATION",
+        "NETWORK_CONNECTIONS",
+        "STORAGE_UTILIZATION",
+        "STORAGE_USED_BYTES",
+    ]
+    observationTime: str
+    resourceName: str
+    value: TypedValue
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -699,6 +747,13 @@ class TlsCertificate(typing_extensions.TypedDict, total=False):
     sha1Fingerprint: str
 
 @typing.type_check_only
+class TypedValue(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    doubleValue: float
+    int64Value: str
+    stringValue: str
+
+@typing.type_check_only
 class UpdateInfo(typing_extensions.TypedDict, total=False):
     targetReplicaCount: int
     targetShardCount: int
@@ -725,3 +780,10 @@ class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
+
+@typing.type_check_only
+class ZoneDistributionConfig(typing_extensions.TypedDict, total=False):
+    mode: typing_extensions.Literal[
+        "ZONE_DISTRIBUTION_MODE_UNSPECIFIED", "MULTI_ZONE", "SINGLE_ZONE"
+    ]
+    zone: str

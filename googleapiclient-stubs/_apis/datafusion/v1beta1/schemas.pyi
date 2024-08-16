@@ -18,6 +18,13 @@ class Accelerator(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AssetLocation(typing_extensions.TypedDict, total=False):
+    expected: IsolationExpectations
+    extraParameters: _list[ExtraParameter]
+    locationData: _list[LocationData]
+    parentAsset: _list[CloudAsset]
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -36,18 +43,28 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BlobstoreLocation(typing_extensions.TypedDict, total=False):
+    policyId: _list[str]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudAsset(typing_extensions.TypedDict, total=False):
+    assetName: str
+    assetType: str
+
+@typing.type_check_only
+class CloudAssetComposition(typing_extensions.TypedDict, total=False):
+    childAsset: _list[CloudAsset]
 
 @typing.type_check_only
 class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
     keyReference: str
 
 @typing.type_check_only
-class DataResidencyAugmentedView(typing_extensions.TypedDict, total=False):
-    crGopoGuris: _list[str]
-    crGopoPrefixes: _list[str]
-    serviceData: ServiceData
-    tpIds: _list[str]
+class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
+    location: _list[LocationAssignment]
 
 @typing.type_check_only
 class DnsPeering(typing_extensions.TypedDict, total=False):
@@ -71,6 +88,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
+
+@typing.type_check_only
+class ExtraParameter(typing_extensions.TypedDict, total=False):
+    regionalMigDistributionPolicy: RegionalMigDistributionPolicy
 
 @typing.type_check_only
 class IAMPolicy(typing_extensions.TypedDict, total=False):
@@ -98,6 +119,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]
+    maintenancePolicy: MaintenancePolicy
     name: str
     networkConfig: NetworkConfig
     options: dict[str, typing.Any]
@@ -129,6 +151,40 @@ class Instance(typing_extensions.TypedDict, total=False):
     version: str
     workforceIdentityServiceEndpoint: str
     zone: str
+
+@typing.type_check_only
+class IsolationExpectations(typing_extensions.TypedDict, total=False):
+    ziOrgPolicy: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    ziRegionPolicy: typing_extensions.Literal[
+        "ZI_REGION_POLICY_UNSPECIFIED",
+        "ZI_REGION_POLICY_UNKNOWN",
+        "ZI_REGION_POLICY_NOT_SET",
+        "ZI_REGION_POLICY_FAIL_OPEN",
+        "ZI_REGION_POLICY_FAIL_CLOSED",
+    ]
+    ziRegionState: typing_extensions.Literal[
+        "ZI_REGION_UNSPECIFIED",
+        "ZI_REGION_UNKNOWN",
+        "ZI_REGION_NOT_ENABLED",
+        "ZI_REGION_ENABLED",
+    ]
+    zoneIsolation: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    zoneSeparation: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
+    zsOrgPolicy: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
+    zsRegionState: typing_extensions.Literal[
+        "ZS_REGION_UNSPECIFIED",
+        "ZS_REGION_UNKNOWN",
+        "ZS_REGION_NOT_ENABLED",
+        "ZS_REGION_ENABLED",
+    ]
 
 @typing.type_check_only
 class ListAvailableVersionsResponse(typing_extensions.TypedDict, total=False):
@@ -170,6 +226,39 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationAssignment(typing_extensions.TypedDict, total=False):
+    location: str
+    locationType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "CLUSTER",
+        "POP",
+        "CLOUD_ZONE",
+        "CLOUD_REGION",
+        "MULTI_REGION_GEO",
+        "MULTI_REGION_JURISDICTION",
+        "GLOBAL",
+        "OTHER",
+    ]
+
+@typing.type_check_only
+class LocationData(typing_extensions.TypedDict, total=False):
+    blobstoreLocation: BlobstoreLocation
+    childAssetLocation: CloudAssetComposition
+    directLocation: DirectLocationAssignment
+    gcpProjectProxy: TenantProjectProxy
+    placerLocation: PlacerLocation
+    spannerLocation: SpannerLocation
+
+@typing.type_check_only
+class MaintenancePolicy(typing_extensions.TypedDict, total=False):
+    maintenanceExclusionWindow: TimeWindow
+    maintenanceWindow: MaintenanceWindow
+
+@typing.type_check_only
+class MaintenanceWindow(typing_extensions.TypedDict, total=False):
+    recurringTimeWindow: RecurringTimeWindow
+
+@typing.type_check_only
 class Namespace(typing_extensions.TypedDict, total=False):
     iamPolicy: IAMPolicy
     name: str
@@ -205,9 +294,8 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PersistentDiskData(typing_extensions.TypedDict, total=False):
-    cfsRoots: _list[str]
-    gcsBucketNames: _list[str]
+class PlacerLocation(typing_extensions.TypedDict, total=False):
+    placerConfig: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -223,6 +311,16 @@ class PrivateServiceConnectConfig(typing_extensions.TypedDict, total=False):
     unreachableCidrBlock: str
 
 @typing.type_check_only
+class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
+    recurrence: str
+    window: TimeWindow
+
+@typing.type_check_only
+class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
+    targetShape: int
+    zones: _list[ZoneConfiguration]
+
+@typing.type_check_only
 class RemoveIamPolicyRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -232,13 +330,14 @@ class RemoveIamPolicyResponse(typing_extensions.TypedDict, total=False): ...
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ServiceData(typing_extensions.TypedDict, total=False):
-    pd: PersistentDiskData
-
-@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class SpannerLocation(typing_extensions.TypedDict, total=False):
+    backupName: _list[str]
+    dbName: _list[str]
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -247,12 +346,21 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TenantProjectProxy(typing_extensions.TypedDict, total=False):
+    projectNumbers: _list[str]
+
+@typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TimeWindow(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class UpgradeInstanceRequest(typing_extensions.TypedDict, total=False): ...
@@ -265,3 +373,7 @@ class Version(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "TYPE_PREVIEW", "TYPE_GENERAL_AVAILABILITY"
     ]
     versionNumber: str
+
+@typing.type_check_only
+class ZoneConfiguration(typing_extensions.TypedDict, total=False):
+    zone: str

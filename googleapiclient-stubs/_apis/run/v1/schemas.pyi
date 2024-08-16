@@ -175,8 +175,17 @@ class Execution(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionReference(typing_extensions.TypedDict, total=False):
+    completionStatus: typing_extensions.Literal[
+        "COMPLETION_STATUS_UNSPECIFIED",
+        "EXECUTION_SUCCEEDED",
+        "EXECUTION_FAILED",
+        "EXECUTION_RUNNING",
+        "EXECUTION_PENDING",
+        "EXECUTION_CANCELLED",
+    ]
     completionTimestamp: str
     creationTimestamp: str
+    deletionTimestamp: str
     name: str
 
 @typing.type_check_only
@@ -424,12 +433,6 @@ class GoogleDevtoolsCloudbuildV1FileHashes(typing_extensions.TypedDict, total=Fa
     fileHash: _list[GoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
-class GoogleDevtoolsCloudbuildV1GCSLocation(typing_extensions.TypedDict, total=False):
-    bucket: str
-    generation: str
-    object: str
-
-@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1GitConfig(typing_extensions.TypedDict, total=False):
     http: GoogleDevtoolsCloudbuildV1HttpConfig
 
@@ -447,7 +450,6 @@ class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1HttpConfig(typing_extensions.TypedDict, total=False):
     proxySecretVersionName: str
-    proxySslCaInfo: GoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1InlineSecret(typing_extensions.TypedDict, total=False):

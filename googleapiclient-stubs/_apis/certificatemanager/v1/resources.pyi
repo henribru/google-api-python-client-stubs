@@ -50,6 +50,14 @@ class CertificateManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListCertificateIssuanceConfigsResponseHttpRequest,
                     previous_response: ListCertificateIssuanceConfigsResponse,
                 ) -> ListCertificateIssuanceConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: CertificateIssuanceConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class CertificateMapsResource(googleapiclient.discovery.Resource):

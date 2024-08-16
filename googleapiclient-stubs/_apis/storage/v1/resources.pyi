@@ -115,9 +115,11 @@ class StorageResource(googleapiclient.discovery.Resource):
             self,
             *,
             bucket: str,
+            generation: str = ...,
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
@@ -129,6 +131,9 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def getStorageLayout(
+            self, *, bucket: str, prefix: str = ..., **kwargs: typing.Any
+        ) -> BucketStorageLayoutHttpRequest: ...
         def insert(
             self,
             *,
@@ -162,6 +167,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> BucketsHttpRequest: ...
@@ -202,6 +208,14 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
+        def restore(
+            self,
+            *,
+            bucket: str,
+            generation: str,
+            userProject: str = ...,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -959,6 +973,14 @@ class BucketAccessControlsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BucketAccessControls: ...
+
+@typing.type_check_only
+class BucketStorageLayoutHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BucketStorageLayout: ...
 
 @typing.type_check_only
 class BucketsHttpRequest(googleapiclient.http.HttpRequest):

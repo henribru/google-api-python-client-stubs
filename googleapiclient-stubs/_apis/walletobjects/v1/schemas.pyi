@@ -430,6 +430,7 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
     kind: str
+    linkedObjectIds: _list[str]
     linkedOfferIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
@@ -437,6 +438,7 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     passConstraints: PassConstraints
     reservationInfo: EventReservationInfo
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     seatInfo: EventSeat
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
@@ -635,6 +637,7 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
     kind: str
+    linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
     messages: _list[Message]
@@ -642,6 +645,7 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     passengerName: str
     reservationInfo: ReservationInfo
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     securityProgramLogo: Image
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
@@ -739,11 +743,14 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     hexBackgroundColor: str
     id: str
     imageModulesData: _list[ImageModuleData]
+    linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     logo: Image
+    messages: _list[Message]
     notifications: Notifications
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -861,12 +868,14 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
     kind: str
+    linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
     messages: _list[Message]
     passConstraints: PassConstraints
     pin: str
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -1085,6 +1094,7 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
     kind: str
+    linkedObjectIds: _list[str]
     linkedOfferIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
@@ -1092,6 +1102,7 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     messages: _list[Message]
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     secondaryLoyaltyPoints: LoyaltyPoints
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
@@ -1336,11 +1347,13 @@ class OfferObject(typing_extensions.TypedDict, total=False):
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
     kind: str
+    linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
     messages: _list[Message]
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -1416,6 +1429,8 @@ class Resources(typing_extensions.TypedDict, total=False):
     eventTicketObjects: _list[EventTicketObject]
     flightClasses: _list[FlightClass]
     flightObjects: _list[FlightObject]
+    genericClasses: _list[GenericClass]
+    genericObjects: _list[GenericObject]
     giftCardClasses: _list[GiftCardClass]
     giftCardObjects: _list[GiftCardObject]
     loyaltyClasses: _list[LoyaltyClass]
@@ -1486,6 +1501,10 @@ class RotatingBarcodeValues(typing_extensions.TypedDict, total=False):
     periodMillis: str
     startDateTime: str
     values: _list[str]
+
+@typing.type_check_only
+class SaveRestrictions(typing_extensions.TypedDict, total=False):
+    restrictToEmailSha256: str
 
 @typing.type_check_only
 class SecurityAnimation(typing_extensions.TypedDict, total=False):
@@ -1708,6 +1727,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     id: str
     imageModulesData: _list[ImageModuleData]
     infoModuleData: InfoModuleData
+    linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
     messages: _list[Message]
@@ -1722,6 +1742,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     ]
     purchaseDetails: PurchaseDetails
     rotatingBarcode: RotatingBarcode
+    saveRestrictions: SaveRestrictions
     smartTapRedemptionValue: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

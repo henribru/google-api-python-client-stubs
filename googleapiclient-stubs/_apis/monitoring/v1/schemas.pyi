@@ -115,7 +115,6 @@ class DashboardAnnotations(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DashboardFilter(typing_extensions.TypedDict, total=False):
-    applyToNewWidgets: bool
     filterType: typing_extensions.Literal[
         "FILTER_TYPE_UNSPECIFIED",
         "RESOURCE_LABEL",
@@ -123,10 +122,17 @@ class DashboardFilter(typing_extensions.TypedDict, total=False):
         "USER_METADATA_LABEL",
         "SYSTEM_METADATA_LABEL",
         "GROUP",
+        "VALUE_ONLY",
     ]
     labelKey: str
+    stringArray: StringArray
+    stringArrayValue: StringArray
     stringValue: str
     templateVariable: str
+    timeSeriesQuery: TimeSeriesQuery
+    valueType: typing_extensions.Literal[
+        "VALUE_TYPE_UNSPECIFIED", "STRING", "STRING_ARRAY"
+    ]
 
 @typing.type_check_only
 class DataSet(typing_extensions.TypedDict, total=False):
@@ -195,6 +201,8 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_START_STOP",
         "CLOUD_SQL_STORAGE",
         "UPTIME_CHECK_FAILURE",
+        "CLOUD_ALERTING_ALERT",
+        "SERVICE_HEALTH_INCIDENT",
     ]
     filter: str
     resourceNames: _list[str]
@@ -412,7 +420,9 @@ class RowLayout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Scorecard(typing_extensions.TypedDict, total=False):
     blankView: Empty
+    dimensions: _list[Dimension]
     gaugeView: GaugeView
+    measures: _list[Measure]
     sparkChartView: SparkChartView
     thresholds: _list[Threshold]
     timeSeriesQuery: TimeSeriesQuery
@@ -452,6 +462,10 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StringArray(typing_extensions.TypedDict, total=False):
+    values: _list[str]
 
 @typing.type_check_only
 class TableDataSet(typing_extensions.TypedDict, total=False):

@@ -461,19 +461,6 @@ class ChangeLogsListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ChannelGrouping(typing_extensions.TypedDict, total=False):
-    fallbackName: str
-    kind: str
-    name: str
-    rules: _list[ChannelGroupingRule]
-
-@typing.type_check_only
-class ChannelGroupingRule(typing_extensions.TypedDict, total=False):
-    disjunctiveMatchStatements: _list[DisjunctiveMatchStatement]
-    kind: str
-    name: str
-
-@typing.type_check_only
 class CitiesListResponse(typing_extensions.TypedDict, total=False):
     cities: _list[City]
     kind: str
@@ -525,8 +512,6 @@ class CompatibleFields(typing_extensions.TypedDict, total=False):
     crossDimensionReachReportCompatibleFields: CrossDimensionReachReportCompatibleFields
     floodlightReportCompatibleFields: FloodlightReportCompatibleFields
     kind: str
-    pathAttributionReportCompatibleFields: PathReportCompatibleFields
-    pathReportCompatibleFields: PathReportCompatibleFields
     pathToConversionReportCompatibleFields: PathToConversionReportCompatibleFields
     reachReportCompatibleFields: ReachReportCompatibleFields
     reportCompatibleFields: ReportCompatibleFields
@@ -1527,11 +1512,6 @@ class DirectorySitesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class DisjunctiveMatchStatement(typing_extensions.TypedDict, total=False):
-    eventFilters: _list[EventFilter]
-    kind: str
-
-@typing.type_check_only
 class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
@@ -1561,12 +1541,6 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
         "ENCRYPTION_SCOPE_UNKNOWN", "AD_SERVING", "DATA_TRANSFER"
     ]
     kind: str
-
-@typing.type_check_only
-class EventFilter(typing_extensions.TypedDict, total=False):
-    dimensionFilter: PathReportDimensionValue
-    kind: str
-    uvarFilter: UvarFilter
 
 @typing.type_check_only
 class EventTag(typing_extensions.TypedDict, total=False):
@@ -2025,6 +1999,7 @@ class MeasurementPartnerAdvertiserLink(typing_extensions.TypedDict, total=False)
         "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+        "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
     measurementPartner: typing_extensions.Literal[
         "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
@@ -2042,6 +2017,7 @@ class MeasurementPartnerCampaignLink(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+        "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
     measurementPartner: typing_extensions.Literal[
         "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
@@ -2059,6 +2035,7 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
         "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
         "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING",
+        "MEASUREMENT_PARTNER_UNLINK_PENDING",
     ]
     measurementPartner: typing_extensions.Literal[
         "NONE", "INTEGRAL_AD_SCIENCE", "DOUBLE_VERIFY"
@@ -2250,32 +2227,6 @@ class OrdersListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     orders: _list[Order]
-
-@typing.type_check_only
-class PathFilter(typing_extensions.TypedDict, total=False):
-    eventFilters: _list[EventFilter]
-    kind: str
-    pathMatchPosition: typing_extensions.Literal[
-        "PATH_MATCH_POSITION_UNSPECIFIED", "ANY", "FIRST", "LAST"
-    ]
-
-@typing.type_check_only
-class PathReportCompatibleFields(typing_extensions.TypedDict, total=False):
-    channelGroupings: _list[Dimension]
-    dimensions: _list[Dimension]
-    kind: str
-    metrics: _list[Metric]
-    pathFilters: _list[Dimension]
-
-@typing.type_check_only
-class PathReportDimensionValue(typing_extensions.TypedDict, total=False):
-    dimensionName: str
-    ids: _list[str]
-    kind: str
-    matchType: typing_extensions.Literal[
-        "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
-    ]
-    values: _list[str]
 
 @typing.type_check_only
 class PathToConversionReportCompatibleFields(typing_extensions.TypedDict, total=False):
@@ -2680,20 +2631,12 @@ class Report(typing_extensions.TypedDict, total=False):
     lastModifiedTime: str
     name: str
     ownerProfileId: str
-    pathAttributionCriteria: dict[str, typing.Any]
-    pathCriteria: dict[str, typing.Any]
     pathToConversionCriteria: dict[str, typing.Any]
     reachCriteria: dict[str, typing.Any]
     schedule: dict[str, typing.Any]
     subAccountId: str
     type: typing_extensions.Literal[
-        "STANDARD",
-        "REACH",
-        "PATH_TO_CONVERSION",
-        "CROSS_DIMENSION_REACH",
-        "FLOODLIGHT",
-        "PATH",
-        "PATH_ATTRIBUTION",
+        "STANDARD", "REACH", "PATH_TO_CONVERSION", "CROSS_DIMENSION_REACH", "FLOODLIGHT"
     ]
 
 @typing.type_check_only
@@ -3178,14 +3121,6 @@ class UserRolesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     userRoles: _list[UserRole]
-
-@typing.type_check_only
-class UvarFilter(typing_extensions.TypedDict, total=False):
-    complement: bool
-    index: str
-    kind: str
-    match: typing_extensions.Literal["UNSPECIFIED", "EXACT", "CONTAINS"]
-    values: _list[str]
 
 @typing.type_check_only
 class VideoFormat(typing_extensions.TypedDict, total=False):

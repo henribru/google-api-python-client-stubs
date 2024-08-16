@@ -232,6 +232,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -255,10 +256,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -268,6 +273,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListSavedQueriesResponseHttpRequest,
                     previous_response: ListSavedQueriesResponse,
                 ) -> ListSavedQueriesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SavedQuery = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SavedQueryHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -665,6 +678,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -688,10 +702,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -701,6 +719,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListSavedQueriesResponseHttpRequest,
                     previous_response: ListSavedQueriesResponse,
                 ) -> ListSavedQueriesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SavedQuery = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SavedQueryHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -1283,6 +1309,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -1306,10 +1333,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -1319,6 +1350,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListSavedQueriesResponseHttpRequest,
                     previous_response: ListSavedQueriesResponse,
                 ) -> ListSavedQueriesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SavedQuery = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SavedQueryHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -1681,6 +1720,7 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -1704,10 +1744,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SavedQueryHttpRequest: ...
                 def list(
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -1717,6 +1761,14 @@ class LoggingResource(googleapiclient.discovery.Resource):
                     previous_request: ListSavedQueriesResponseHttpRequest,
                     previous_response: ListSavedQueriesResponse,
                 ) -> ListSavedQueriesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SavedQuery = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SavedQueryHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any

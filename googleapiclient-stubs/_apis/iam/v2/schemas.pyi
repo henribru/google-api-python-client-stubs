@@ -90,6 +90,46 @@ class GoogleIamV2PolicyRule(typing_extensions.TypedDict, total=False):
     description: str
 
 @typing.type_check_only
+class GoogleIamV3OperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleIamV3alphaOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleIamV3betaOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
+class GoogleIamV3mainOperationMetadata(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
     done: bool
     error: GoogleRpcStatus

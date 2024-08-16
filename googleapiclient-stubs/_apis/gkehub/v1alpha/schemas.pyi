@@ -228,7 +228,13 @@ class ConfigManagementConfigSyncDeploymentState(
     monitor: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
+    otelCollector: typing_extensions.Literal[
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
+    ]
     reconcilerManager: typing_extensions.Literal[
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
+    ]
+    resourceGroupControllerManager: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     rootReconciler: typing_extensions.Literal[
@@ -276,7 +282,9 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     gitSync: str
     importer: str
     monitor: str
+    otelCollector: str
     reconcilerManager: str
+    resourceGroupControllerManager: str
     rootReconciler: str
     syncer: str
 
@@ -499,6 +507,7 @@ class Feature(typing_extensions.TypedDict, total=False):
     scopeStates: dict[str, typing.Any]
     spec: CommonFeatureSpec
     state: CommonFeatureState
+    unreachable: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -1282,6 +1291,9 @@ class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
+    configApi: typing_extensions.Literal[
+        "CONFIG_API_UNSPECIFIED", "CONFIG_API_ISTIO", "CONFIG_API_GATEWAY"
+    ]
     controlPlane: typing_extensions.Literal[
         "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]

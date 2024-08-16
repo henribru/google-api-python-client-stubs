@@ -19,6 +19,10 @@ class AllowedIpRange(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class CheckUpgradeRequest(typing_extensions.TypedDict, total=False):
+    imageVersion: str
+
+@typing.type_check_only
 class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     buildLogUri: str
     containsPypiModulesConflict: typing_extensions.Literal[
@@ -109,6 +113,7 @@ class Environment(typing_extensions.TypedDict, total=False):
     createTime: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "RUNNING", "UPDATING", "DELETING", "ERROR"

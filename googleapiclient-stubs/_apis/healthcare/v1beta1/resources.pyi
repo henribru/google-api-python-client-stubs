@@ -1166,6 +1166,13 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> Hl7V2StoreHttpRequest: ...
+                    def rollback(
+                        self,
+                        *,
+                        name: str,
+                        body: RollbackHl7V2MessagesRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,

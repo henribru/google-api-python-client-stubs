@@ -44,6 +44,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     kalmConfig: KalmConfig
     kubernetesDashboard: KubernetesDashboard
     networkPolicyConfig: NetworkPolicyConfig
+    rayOperatorConfig: RayOperatorConfig
     statefulHaConfig: StatefulHAConfig
 
 @typing.type_check_only
@@ -820,6 +821,9 @@ class MonitoringComponentConfig(typing_extensions.TypedDict, total=False):
             "DAEMONSET",
             "DEPLOYMENT",
             "STATEFULSET",
+            "CADVISOR",
+            "KUBELET",
+            "DCGM",
         ]
     ]
 
@@ -1167,18 +1171,36 @@ class RangeInfo(typing_extensions.TypedDict, total=False):
     utilization: float
 
 @typing.type_check_only
+class RayClusterLoggingConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class RayClusterMonitoringConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class RayOperatorConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    rayClusterLoggingConfig: RayClusterLoggingConfig
+    rayClusterMonitoringConfig: RayClusterMonitoringConfig
+
+@typing.type_check_only
 class RecurringTimeWindow(typing_extensions.TypedDict, total=False):
     recurrence: str
     window: TimeWindow
 
 @typing.type_check_only
 class ReleaseChannel(typing_extensions.TypedDict, total=False):
-    channel: typing_extensions.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE"]
+    channel: typing_extensions.Literal[
+        "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
+    ]
 
 @typing.type_check_only
 class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
     availableVersions: _list[AvailableVersion]
-    channel: typing_extensions.Literal["UNSPECIFIED", "RAPID", "REGULAR", "STABLE"]
+    channel: typing_extensions.Literal[
+        "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
+    ]
     defaultVersion: str
     validVersions: _list[str]
 

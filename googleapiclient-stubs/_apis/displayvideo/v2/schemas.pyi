@@ -1058,6 +1058,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only
@@ -3683,6 +3684,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only
@@ -3707,6 +3709,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_5_5",
         "SDF_VERSION_6",
         "SDF_VERSION_7",
+        "SDF_VERSION_7_1",
     ]
 
 @typing.type_check_only

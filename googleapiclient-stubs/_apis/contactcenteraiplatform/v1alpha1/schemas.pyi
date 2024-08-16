@@ -13,10 +13,16 @@ class AdminUser(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Component(typing_extensions.TypedDict, total=False):
+    name: str
+    serviceAttachmentNames: _list[str]
+
+@typing.type_check_only
 class ContactCenter(typing_extensions.TypedDict, total=False):
     adminUser: AdminUser
     ccaipManagedUsers: bool
     createTime: str
+    critical: Critical
     customerDomainPrefix: str
     displayName: str
     early: Early
@@ -25,6 +31,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     normal: Normal
+    privateAccess: PrivateAccess
     privateComponents: _list[str]
     samlParams: SAMLParams
     state: typing_extensions.Literal[
@@ -36,6 +43,9 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
         "STATE_TERMINATING_FAILED",
         "STATE_TERMINATED",
         "STATE_IN_GRACE_PERIOD",
+        "STATE_FAILING_OVER",
+        "STATE_DEGRADED",
+        "STATE_REPAIRING",
     ]
     updateTime: str
     uris: URIs
@@ -46,6 +56,10 @@ class ContactCenterQuota(typing_extensions.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
     quotas: _list[Quota]
+
+@typing.type_check_only
+class Critical(typing_extensions.TypedDict, total=False):
+    peakHours: _list[WeeklySchedule]
 
 @typing.type_check_only
 class Early(typing_extensions.TypedDict, total=False): ...
@@ -129,6 +143,16 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PrivateAccess(typing_extensions.TypedDict, total=False):
+    egressSettings: _list[Component]
+    ingressSettings: _list[Component]
+    pscSetting: PscSetting
+
+@typing.type_check_only
+class PscSetting(typing_extensions.TypedDict, total=False):
+    allowedConsumerProjectIds: _list[str]
+
+@typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
     contactCenterCountLimit: int
     contactCenterCountSum: int
@@ -151,6 +175,35 @@ class Quota(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SAMLParams(typing_extensions.TypedDict, total=False):
+    authenticationContexts: _list[
+        typing_extensions.Literal[
+            "AUTHENTICATION_CONTEXT_UNSPECIFIED",
+            "INTERNET_PROTOCOL",
+            "INTERNET_PROTOCOL_PASSWORD",
+            "KERBEROS",
+            "MOBILE_ONE_FACTOR_UNREGISTERED",
+            "MOBILE_TWO_FACTOR_UNREGISTERED",
+            "MOBILE_ONE_FACTOR_CONTRACT",
+            "MOBILE_TWO_FACTOR_CONTRACT",
+            "PASSWORD",
+            "PASSWORD_PROTECTED_TRANSPORT",
+            "PREVIOUS_SESSION",
+            "PUBLIC_KEY_X509",
+            "PUBLIC_KEY_PGP",
+            "PUBLIC_KEY_SPKI",
+            "PUBLIC_KEY_XML_DIGITAL_SIGNATURE",
+            "SMARTCARD",
+            "SMARTCARD_PKI",
+            "SOFTWARE_PKI",
+            "TELEPHONY",
+            "TELEPHONY_NOMADIC",
+            "TELEPHONY_PERSONALIZED",
+            "TELEPHONY_AUTHENTICATED",
+            "SECURE_REMOTE_PASSWORD",
+            "SSL_TLS_CERTIFICATE_BASED",
+            "TIME_SYNC_TOKEN",
+        ]
+    ]
     certificate: str
     emailMapping: str
     entityId: str
@@ -164,8 +217,33 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
 class URIs(typing_extensions.TypedDict, total=False):
     chatBotUri: str
     mediaUri: str
     rootUri: str
     virtualAgentStreamingServiceUri: str
+
+@typing.type_check_only
+class WeeklySchedule(typing_extensions.TypedDict, total=False):
+    days: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
+    duration: str
+    endTime: TimeOfDay
+    startTime: TimeOfDay

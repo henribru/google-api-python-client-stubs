@@ -76,6 +76,26 @@ class AwsOrganizationalUnit(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class AzureManagementGroup(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class AzureMetadata(typing_extensions.TypedDict, total=False):
+    managementGroups: _list[AzureManagementGroup]
+    resourceGroup: AzureResourceGroup
+    subscription: AzureSubscription
+
+@typing.type_check_only
+class AzureResourceGroup(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class AzureSubscription(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
 class BackupDisasterRecovery(typing_extensions.TypedDict, total=False):
     appliance: str
     applications: _list[str]
@@ -186,6 +206,7 @@ class ContainerThreatDetectionSettings(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class Cve(typing_extensions.TypedDict, total=False):
     cvssv3: Cvssv3
+    exploitReleaseDate: str
     exploitationActivity: typing_extensions.Literal[
         "EXPLOITATION_ACTIVITY_UNSPECIFIED",
         "WIDE",
@@ -270,6 +291,11 @@ class DiskPath(typing_extensions.TypedDict, total=False):
     relativePath: str
 
 @typing.type_check_only
+class DynamicMuteRecord(typing_extensions.TypedDict, total=False):
+    matchTime: str
+    muteConfig: str
+
+@typing.type_check_only
 class EnvironmentVariable(typing_extensions.TypedDict, total=False):
     name: str
     val: str
@@ -342,7 +368,9 @@ class Finding(typing_extensions.TypedDict, total=False):
         "OBSERVATION",
         "SCC_ERROR",
         "POSTURE_VIOLATION",
+        "TOXIC_COMBINATION",
     ]
+    groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
     indicator: Indicator
     kernelRootkit: KernelRootkit
@@ -352,6 +380,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     mitreAttack: MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    muteInfo: MuteInfo
     muteInitiator: str
     muteUpdateTime: str
     name: str
@@ -369,6 +398,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     ]
     sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    toxicCombination: ToxicCombination
     vulnerability: Vulnerability
 
 @typing.type_check_only
@@ -463,9 +493,11 @@ class GoogleCloudSecuritycenterV1MuteConfig(typing_extensions.TypedDict, total=F
     createTime: str
     description: str
     displayName: str
+    expiryTime: str
     filter: str
     mostRecentEditor: str
     name: str
+    type: typing_extensions.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
     updateTime: str
 
 @typing.type_check_only
@@ -484,6 +516,7 @@ class GoogleCloudSecuritycenterV1Property(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudSecuritycenterV1Resource(typing_extensions.TypedDict, total=False):
     awsMetadata: AwsMetadata
+    azureMetadata: AzureMetadata
     cloudProvider: typing_extensions.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
@@ -722,6 +755,34 @@ class GoogleCloudSecuritycenterV2AwsOrganizationalUnit(
     name: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2AzureManagementGroup(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AzureMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    managementGroups: _list[GoogleCloudSecuritycenterV2AzureManagementGroup]
+    resourceGroup: GoogleCloudSecuritycenterV2AzureResourceGroup
+    subscription: GoogleCloudSecuritycenterV2AzureSubscription
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AzureResourceGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AzureSubscription(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    id: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2BackupDisasterRecovery(
     typing_extensions.TypedDict, total=False
 ):
@@ -834,6 +895,7 @@ class GoogleCloudSecuritycenterV2Container(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
     cvssv3: GoogleCloudSecuritycenterV2Cvssv3
+    exploitReleaseDate: str
     exploitationActivity: typing_extensions.Literal[
         "EXPLOITATION_ACTIVITY_UNSPECIFIED",
         "WIDE",
@@ -908,6 +970,13 @@ class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=Fa
 class GoogleCloudSecuritycenterV2DiskPath(typing_extensions.TypedDict, total=False):
     partitionUuid: str
     relativePath: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2DynamicMuteRecord(
+    typing_extensions.TypedDict, total=False
+):
+    matchTime: str
+    muteConfig: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2EnvironmentVariable(
@@ -986,7 +1055,9 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
         "OBSERVATION",
         "SCC_ERROR",
         "POSTURE_VIOLATION",
+        "TOXIC_COMBINATION",
     ]
+    groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]
     indicator: GoogleCloudSecuritycenterV2Indicator
     kernelRootkit: GoogleCloudSecuritycenterV2KernelRootkit
@@ -996,6 +1067,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     mitreAttack: GoogleCloudSecuritycenterV2MitreAttack
     moduleName: str
     mute: typing_extensions.Literal["MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"]
+    muteInfo: GoogleCloudSecuritycenterV2MuteInfo
     muteInitiator: str
     muteUpdateTime: str
     name: str
@@ -1013,6 +1085,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     ]
     sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    toxicCombination: GoogleCloudSecuritycenterV2ToxicCombination
     vulnerability: GoogleCloudSecuritycenterV2Vulnerability
 
 @typing.type_check_only
@@ -1023,6 +1096,15 @@ class GoogleCloudSecuritycenterV2Folder(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Geolocation(typing_extensions.TypedDict, total=False):
     regionCode: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2GroupMembership(
+    typing_extensions.TypedDict, total=False
+):
+    groupId: str
+    groupType: typing_extensions.Literal[
+        "GROUP_TYPE_UNSPECIFIED", "GROUP_TYPE_TOXIC_COMBINATION"
+    ]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2IamBinding(typing_extensions.TypedDict, total=False):
@@ -1114,8 +1196,10 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
             "PYTHON",
+            "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL_FILE_DELETION",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1163,7 +1247,10 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "OBTAIN_CAPABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "CONTAINER_ADMINISTRATION_COMMAND",
+            "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
         ]
     ]
     primaryTactic: typing_extensions.Literal[
@@ -1195,8 +1282,10 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
             "PYTHON",
+            "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL_FILE_DELETION",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1244,7 +1333,10 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "OBTAIN_CAPABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "CONTAINER_ADMINISTRATION_COMMAND",
+            "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
         ]
     ]
     version: str
@@ -1253,11 +1345,17 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
 class GoogleCloudSecuritycenterV2MuteConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    expiryTime: str
     filter: str
     mostRecentEditor: str
     name: str
-    type: typing_extensions.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC"]
+    type: typing_extensions.Literal["MUTE_CONFIG_TYPE_UNSPECIFIED", "STATIC", "DYNAMIC"]
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2MuteInfo(typing_extensions.TypedDict, total=False):
+    dynamicMuteRecords: _list[GoogleCloudSecuritycenterV2DynamicMuteRecord]
+    staticMute: GoogleCloudSecuritycenterV2StaticMute
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Node(typing_extensions.TypedDict, total=False):
@@ -1355,6 +1453,7 @@ class GoogleCloudSecuritycenterV2Requests(typing_extensions.TypedDict, total=Fal
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Resource(typing_extensions.TypedDict, total=False):
     awsMetadata: GoogleCloudSecuritycenterV2AwsMetadata
+    azureMetadata: GoogleCloudSecuritycenterV2AzureMetadata
     cloudProvider: typing_extensions.Literal[
         "CLOUD_PROVIDER_UNSPECIFIED",
         "GOOGLE_CLOUD_PLATFORM",
@@ -1480,6 +1579,13 @@ class GoogleCloudSecuritycenterV2ServiceAccountDelegationInfo(
     principalSubject: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2StaticMute(typing_extensions.TypedDict, total=False):
+    applyTime: str
+    state: typing_extensions.Literal[
+        "MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Subject(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"
@@ -1497,6 +1603,13 @@ class GoogleCloudSecuritycenterV2TicketInfo(typing_extensions.TypedDict, total=F
     uri: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2ToxicCombination(
+    typing_extensions.TypedDict, total=False
+):
+    attackExposureScore: float
+    relatedFindings: _list[str]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Vulnerability(
     typing_extensions.TypedDict, total=False
 ):
@@ -1510,6 +1623,13 @@ class GoogleCloudSecuritycenterV2YaraRuleSignature(
     typing_extensions.TypedDict, total=False
 ):
     yaraRule: str
+
+@typing.type_check_only
+class GroupMembership(typing_extensions.TypedDict, total=False):
+    groupId: str
+    groupType: typing_extensions.Literal[
+        "GROUP_TYPE_UNSPECIFIED", "GROUP_TYPE_TOXIC_COMBINATION"
+    ]
 
 @typing.type_check_only
 class IamBinding(typing_extensions.TypedDict, total=False):
@@ -1597,8 +1717,10 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
             "PYTHON",
+            "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL_FILE_DELETION",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1646,7 +1768,10 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "OBTAIN_CAPABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "CONTAINER_ADMINISTRATION_COMMAND",
+            "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
         ]
     ]
     primaryTactic: typing_extensions.Literal[
@@ -1678,8 +1803,10 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
             "PYTHON",
+            "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL_FILE_DELETION",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1727,10 +1854,18 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "OBTAIN_CAPABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "CONTAINER_ADMINISTRATION_COMMAND",
+            "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
         ]
     ]
     version: str
+
+@typing.type_check_only
+class MuteInfo(typing_extensions.TypedDict, total=False):
+    dynamicMuteRecords: _list[DynamicMuteRecord]
+    staticMute: StaticMute
 
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
@@ -1901,6 +2036,13 @@ class ServiceAccountDelegationInfo(typing_extensions.TypedDict, total=False):
     principalSubject: str
 
 @typing.type_check_only
+class StaticMute(typing_extensions.TypedDict, total=False):
+    applyTime: str
+    state: typing_extensions.Literal[
+        "MUTE_UNSPECIFIED", "MUTED", "UNMUTED", "UNDEFINED"
+    ]
+
+@typing.type_check_only
 class Subject(typing_extensions.TypedDict, total=False):
     kind: typing_extensions.Literal[
         "AUTH_TYPE_UNSPECIFIED", "USER", "SERVICEACCOUNT", "GROUP"
@@ -1924,6 +2066,11 @@ class TicketInfo(typing_extensions.TypedDict, total=False):
     status: str
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class ToxicCombination(typing_extensions.TypedDict, total=False):
+    attackExposureScore: float
+    relatedFindings: _list[str]
 
 @typing.type_check_only
 class VirtualMachineThreatDetectionSettings(typing_extensions.TypedDict, total=False):

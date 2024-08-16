@@ -195,6 +195,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     nodeCount: int
     parameters: MemcacheParameters
     reservedIpRangeId: _list[str]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",

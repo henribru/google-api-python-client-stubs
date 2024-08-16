@@ -305,6 +305,13 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+            def bulkDeleteDocuments(
+                self,
+                *,
+                name: str,
+                body: GoogleFirestoreAdminV1BulkDeleteDocumentsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def create(
                 self,
                 *,

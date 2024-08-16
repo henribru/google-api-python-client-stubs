@@ -14,6 +14,74 @@ _list = list
 @typing.type_check_only
 class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ActivityTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ActivitiesResource(googleapiclient.discovery.Resource):
+                    def query(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest
+                    ): ...
+                    def query_next(
+                        self,
+                        previous_request: GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest,
+                        previous_response: GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse,
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest
+                        | None
+                    ): ...
+
+                def activities(self) -> ActivitiesResource: ...
+
+            def activityTypes(self) -> ActivityTypesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ActivityTypesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ActivitiesResource(googleapiclient.discovery.Resource):
+                    def query(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest
+                    ): ...
+                    def query_next(
+                        self,
+                        previous_request: GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest,
+                        previous_response: GoogleCloudPolicyanalyzerV1beta1QueryActivityResponse,
+                    ) -> (
+                        GoogleCloudPolicyanalyzerV1beta1QueryActivityResponseHttpRequest
+                        | None
+                    ): ...
+
+                def activities(self) -> ActivitiesResource: ...
+
+            def activityTypes(self) -> ActivityTypesResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -59,6 +127,8 @@ class PolicyAnalyzerResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only

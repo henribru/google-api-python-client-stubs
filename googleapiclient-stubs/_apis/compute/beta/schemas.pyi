@@ -129,7 +129,14 @@ class AddressesScopedList(typing_extensions.TypedDict, total=False):
 class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
     enableNestedVirtualization: bool
     enableUefiNetworking: bool
+    performanceMonitoringUnit: typing_extensions.Literal[
+        "ARCHITECTURAL",
+        "ENHANCED",
+        "PERFORMANCE_MONITORING_UNIT_UNSPECIFIED",
+        "STANDARD",
+    ]
     threadsPerCore: int
+    turboMode: str
     visibleCoreCount: int
 
 @typing.type_check_only
@@ -142,8 +149,10 @@ class AllocationAggregateReservation(typing_extensions.TypedDict, total=False):
     inUseResources: _list[AllocationAggregateReservationReservedResourceInfo]
     reservedResources: _list[AllocationAggregateReservationReservedResourceInfo]
     vmFamily: typing_extensions.Literal[
+        "VM_FAMILY_CLOUD_TPU_DEVICE_CT3",
         "VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L",
         "VM_FAMILY_CLOUD_TPU_LITE_POD_SLICE_CT5LP",
+        "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT3P",
         "VM_FAMILY_CLOUD_TPU_POD_SLICE_CT4P",
     ]
     workloadType: typing_extensions.Literal["BATCH", "SERVING", "UNSPECIFIED"]
@@ -162,6 +171,12 @@ class AllocationAggregateReservationReservedResourceInfoAccelerator(
     acceleratorType: str
 
 @typing.type_check_only
+class AllocationReservationSharingPolicy(typing_extensions.TypedDict, total=False):
+    serviceShareType: typing_extensions.Literal[
+        "ALLOW_ALL", "DISALLOW_ALL", "SERVICE_SHARE_TYPE_UNSPECIFIED"
+    ]
+
+@typing.type_check_only
 class AllocationResourceStatus(typing_extensions.TypedDict, total=False):
     specificSkuAllocation: AllocationResourceStatusSpecificSKUAllocation
 
@@ -170,6 +185,7 @@ class AllocationResourceStatusSpecificSKUAllocation(
     typing_extensions.TypedDict, total=False
 ):
     sourceInstanceTemplateId: str
+    utilizations: dict[str, typing.Any]
 
 @typing.type_check_only
 class AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk(
@@ -545,7 +561,9 @@ class BackendService(typing_extensions.TypedDict, total=False):
         "HEADER_FIELD",
         "HTTP_COOKIE",
         "NONE",
+        "STRONG_COOKIE_AFFINITY",
     ]
+    strongSessionAffinityCookie: BackendServiceHttpCookie
     subsetting: Subsetting
     timeoutSec: int
     usedBy: _list[BackendServiceUsedBy]
@@ -617,6 +635,12 @@ class BackendServiceGroupHealth(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     healthStatus: _list[HealthStatus]
     kind: str
+
+@typing.type_check_only
+class BackendServiceHttpCookie(typing_extensions.TypedDict, total=False):
+    name: str
+    path: str
+    ttl: Duration
 
 @typing.type_check_only
 class BackendServiceIAP(typing_extensions.TypedDict, total=False):
@@ -884,6 +908,7 @@ class Commitment(typing_extensions.TypedDict, total=False):
         "COMPUTE_OPTIMIZED_C3D",
         "COMPUTE_OPTIMIZED_H3",
         "GENERAL_PURPOSE",
+        "GENERAL_PURPOSE_C4",
         "GENERAL_PURPOSE_E2",
         "GENERAL_PURPOSE_N2",
         "GENERAL_PURPOSE_N2D",
@@ -1012,6 +1037,9 @@ class DeprecationStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Disk(typing_extensions.TypedDict, total=False):
+    accessMode: typing_extensions.Literal[
+        "READ_ONLY_MANY", "READ_WRITE_MANY", "READ_WRITE_SINGLE"
+    ]
     architecture: typing_extensions.Literal[
         "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
     ]
@@ -1342,6 +1370,7 @@ class FirewallPolicy(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    packetMirroringRules: _list[FirewallPolicyRule]
     parent: str
     region: str
     ruleTupleCount: int
@@ -1525,6 +1554,7 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     shareSettings: ShareSettings
+    specificReservationRequired: bool
     specificSkuProperties: FutureReservationSpecificSKUProperties
     status: FutureReservationStatus
     timeWindow: FutureReservationTimeWindow
@@ -1545,6 +1575,7 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
         "AMENDMENT_STATUS_UNSPECIFIED",
     ]
     autoCreatedReservations: _list[str]
+    existingMatchingUsageInfo: FutureReservationStatusExistingMatchingUsageInfo
     fulfilledCount: str
     lastKnownGoodState: FutureReservationStatusLastKnownGoodState
     lockTime: str
@@ -1566,10 +1597,18 @@ class FutureReservationStatus(typing_extensions.TypedDict, total=False):
     specificSkuProperties: FutureReservationStatusSpecificSKUProperties
 
 @typing.type_check_only
+class FutureReservationStatusExistingMatchingUsageInfo(
+    typing_extensions.TypedDict, total=False
+):
+    count: str
+    timestamp: str
+
+@typing.type_check_only
 class FutureReservationStatusLastKnownGoodState(
     typing_extensions.TypedDict, total=False
 ):
     description: str
+    existingMatchingUsageInfo: FutureReservationStatusExistingMatchingUsageInfo
     futureReservationSpecs: (
         FutureReservationStatusLastKnownGoodStateFutureReservationSpecs
     )
@@ -2258,6 +2297,8 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
     namedPorts: _list[NamedPort]
     params: InstanceGroupManagerParams
     region: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     selfLink: str
     serviceAccount: str
     standbyPolicy: InstanceGroupManagerStandbyPolicy
@@ -2310,8 +2351,10 @@ class InstanceGroupManagerAutoHealingPolicy(typing_extensions.TypedDict, total=F
 class InstanceGroupManagerInstanceFlexibilityPolicy(
     typing_extensions.TypedDict, total=False
 ):
-    instanceSelectionLists: dict[str, typing.Any]
     instanceSelections: dict[str, typing.Any]
+    provisioningModelMix: (
+        InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix
+    )
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
@@ -2319,6 +2362,13 @@ class InstanceGroupManagerInstanceFlexibilityPolicyInstanceSelection(
 ):
     machineTypes: _list[str]
     rank: int
+
+@typing.type_check_only
+class InstanceGroupManagerInstanceFlexibilityPolicyProvisioningModelMix(
+    typing_extensions.TypedDict, total=False
+):
+    standardCapacityBase: int
+    standardCapacityPercentAboveBase: int
 
 @typing.type_check_only
 class InstanceGroupManagerInstanceLifecyclePolicy(
@@ -2799,10 +2849,16 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
 ):
     displayName: str
     name: str
+    priority: int
     rules: _list[FirewallPolicyRule]
     shortName: str
     type: typing_extensions.Literal[
-        "HIERARCHY", "NETWORK", "NETWORK_REGIONAL", "UNSPECIFIED"
+        "HIERARCHY",
+        "NETWORK",
+        "NETWORK_REGIONAL",
+        "SYSTEM_GLOBAL",
+        "SYSTEM_REGIONAL",
+        "UNSPECIFIED",
     ]
 
 @typing.type_check_only
@@ -3487,7 +3543,6 @@ class ManagedInstance(typing_extensions.TypedDict, total=False):
     ]
     id: str
     instance: str
-    instanceFlexibilityOverride: ManagedInstanceInstanceFlexibilityOverride
     instanceHealth: _list[ManagedInstanceInstanceHealth]
     instanceStatus: typing_extensions.Literal[
         "DEPROVISIONING",
@@ -3516,12 +3571,6 @@ class ManagedInstanceAllInstancesConfig(typing_extensions.TypedDict, total=False
     revision: str
 
 @typing.type_check_only
-class ManagedInstanceInstanceFlexibilityOverride(
-    typing_extensions.TypedDict, total=False
-):
-    machineType: str
-
-@typing.type_check_only
 class ManagedInstanceInstanceHealth(typing_extensions.TypedDict, total=False):
     detailedHealthState: typing_extensions.Literal[
         "DRAINING", "HEALTHY", "TIMEOUT", "UNHEALTHY", "UNKNOWN"
@@ -3537,6 +3586,7 @@ class ManagedInstancePropertiesFromFlexibilityPolicy(
     typing_extensions.TypedDict, total=False
 ):
     machineType: str
+    provisioningModel: typing_extensions.Literal["SPOT", "STANDARD"]
 
 @typing.type_check_only
 class ManagedInstanceVersion(typing_extensions.TypedDict, total=False):
@@ -3697,7 +3747,6 @@ class NetworkEdgeSecurityServicesScopedList(typing_extensions.TypedDict, total=F
 class NetworkEndpoint(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clientDestinationPort: int
-    clientPort: int
     fqdn: str
     instance: str
     ipAddress: str
@@ -3708,9 +3757,6 @@ class NetworkEndpoint(typing_extensions.TypedDict, total=False):
 class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     appEngine: NetworkEndpointGroupAppEngine
-    clientPortMappingMode: typing_extensions.Literal[
-        "CLIENT_PORT_PER_ENDPOINT", "PORT_MAPPING_DISABLED"
-    ]
     cloudFunction: NetworkEndpointGroupCloudFunction
     cloudRun: NetworkEndpointGroupCloudRun
     creationTimestamp: str
@@ -3868,7 +3914,9 @@ class NetworkInterface(typing_extensions.TypedDict, total=False):
     network: str
     networkAttachment: str
     networkIP: str
-    nicType: typing_extensions.Literal["GVNIC", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"]
+    nicType: typing_extensions.Literal[
+        "GVNIC", "IDPF", "UNSPECIFIED_NIC_TYPE", "VIRTIO_NET"
+    ]
     queueCount: int
     stackType: typing_extensions.Literal["IPV4_IPV6", "IPV4_ONLY"]
     subnetwork: str
@@ -3903,6 +3951,9 @@ class NetworkPerformanceConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkRoutingConfig(typing_extensions.TypedDict, total=False):
+    bgpAlwaysCompareMed: bool
+    bgpBestPathSelectionMode: typing_extensions.Literal["LEGACY", "STANDARD"]
+    bgpInterRegionCost: typing_extensions.Literal["ADD_COST_TO_MED", "DEFAULT"]
     routingMode: typing_extensions.Literal["GLOBAL", "REGIONAL"]
 
 @typing.type_check_only
@@ -3926,9 +3977,10 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
 ):
     displayName: str
     name: str
+    priority: int
     rules: _list[FirewallPolicyRule]
     shortName: str
-    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
+    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "SYSTEM", "UNSPECIFIED"]
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy(
@@ -5047,9 +5099,15 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
 ):
     displayName: str
     name: str
+    priority: int
     rules: _list[FirewallPolicyRule]
     type: typing_extensions.Literal[
-        "HIERARCHY", "NETWORK", "NETWORK_REGIONAL", "UNSPECIFIED"
+        "HIERARCHY",
+        "NETWORK",
+        "NETWORK_REGIONAL",
+        "SYSTEM_GLOBAL",
+        "SYSTEM_REGIONAL",
+        "UNSPECIFIED",
     ]
 
 @typing.type_check_only
@@ -5088,6 +5146,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
     id: str
     kind: str
     name: str
+    reservationSharingPolicy: AllocationReservationSharingPolicy
     resourcePolicies: dict[str, typing.Any]
     resourceStatus: AllocationResourceStatus
     satisfiesPzs: bool
@@ -5309,6 +5368,7 @@ class ResourceStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResourceStatusScheduling(typing_extensions.TypedDict, total=False):
+    availabilityDomain: int
     terminationTimestamp: str
 
 @typing.type_check_only
@@ -5330,9 +5390,12 @@ class Route(typing_extensions.TypedDict, total=False):
     nextHopHub: str
     nextHopIlb: str
     nextHopInstance: str
+    nextHopInterRegionCost: int
     nextHopInterconnectAttachment: str
     nextHopIp: str
+    nextHopMed: int
     nextHopNetwork: str
+    nextHopOrigin: typing_extensions.Literal["EGP", "IGP", "INCOMPLETE"]
     nextHopPeering: str
     nextHopVpnTunnel: str
     priority: int
@@ -5703,6 +5766,7 @@ class ScalingScheduleStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Scheduling(typing_extensions.TypedDict, total=False):
     automaticRestart: bool
+    availabilityDomain: int
     hostErrorTimeoutSeconds: int
     instanceTerminationAction: typing_extensions.Literal[
         "DELETE", "INSTANCE_TERMINATION_ACTION_UNSPECIFIED", "STOP"
@@ -6933,6 +6997,7 @@ class TargetPool(typing_extensions.TypedDict, total=False):
         "HEADER_FIELD",
         "HTTP_COOKIE",
         "NONE",
+        "STRONG_COOKIE_AFFINITY",
     ]
 
 @typing.type_check_only

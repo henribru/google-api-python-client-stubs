@@ -103,7 +103,7 @@ class BinaryAuthorizationResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> PlatformPolicyHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any

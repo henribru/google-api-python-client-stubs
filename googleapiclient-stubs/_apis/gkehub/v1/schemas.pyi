@@ -173,7 +173,13 @@ class ConfigManagementConfigSyncDeploymentState(
     monitor: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
+    otelCollector: typing_extensions.Literal[
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
+    ]
     reconcilerManager: typing_extensions.Literal[
+        "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
+    ]
+    resourceGroupControllerManager: typing_extensions.Literal[
         "DEPLOYMENT_STATE_UNSPECIFIED", "NOT_INSTALLED", "INSTALLED", "ERROR", "PENDING"
     ]
     rootReconciler: typing_extensions.Literal[
@@ -221,7 +227,9 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     gitSync: str
     importer: str
     monitor: str
+    otelCollector: str
     reconcilerManager: str
+    resourceGroupControllerManager: str
     rootReconciler: str
     syncer: str
 
@@ -442,6 +450,7 @@ class Feature(typing_extensions.TypedDict, total=False):
     scopeStates: dict[str, typing.Any]
     spec: CommonFeatureSpec
     state: CommonFeatureState
+    unreachable: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -531,6 +540,12 @@ class FleetObservabilityRoutingConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GenerateConnectManifestResponse(typing_extensions.TypedDict, total=False):
     manifest: _list[ConnectAgentResource]
+
+@typing.type_check_only
+class GenerateMembershipRBACRoleBindingYAMLResponse(
+    typing_extensions.TypedDict, total=False
+):
+    roleBindingsYaml: str
 
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
@@ -688,6 +703,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListMembershipBindingsResponse(typing_extensions.TypedDict, total=False):
     membershipBindings: _list[MembershipBinding]
     nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMembershipRBACRoleBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rbacrolebindings: _list[RBACRoleBinding]
     unreachable: _list[str]
 
 @typing.type_check_only

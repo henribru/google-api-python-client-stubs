@@ -342,6 +342,7 @@ class Dataset(typing_extensions.TypedDict, total=False):
     linkedDatasetSource: LinkedDatasetSource
     location: str
     maxTimeTravelHours: str
+    resourceTags: dict[str, typing.Any]
     restrictions: RestrictionConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -568,6 +569,11 @@ class ForeignTypeInfo(typing_extensions.TypedDict, total=False):
     typeSystem: typing_extensions.Literal["TYPE_SYSTEM_UNSPECIFIED", "HIVE"]
 
 @typing.type_check_only
+class ForeignViewDefinition(typing_extensions.TypedDict, total=False):
+    dialect: str
+    query: str
+
+@typing.type_check_only
 class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     options: GetPolicyOptions
 
@@ -664,6 +670,14 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
     ]
     trainingLoss: float
     trialId: str
+
+@typing.type_check_only
+class IdentityColumnInfo(typing_extensions.TypedDict, total=False):
+    generatedMode: typing_extensions.Literal[
+        "GENERATED_MODE_UNSPECIFIED", "GENERATED_ALWAYS", "GENERATED_BY_DEFAULT"
+    ]
+    increment: str
+    start: str
 
 @typing.type_check_only
 class IndexUnusedReason(typing_extensions.TypedDict, total=False):
@@ -779,6 +793,9 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     allowQuotedNewlines: bool
     autodetect: bool
     clustering: Clustering
+    columnNameCharacterMap: typing_extensions.Literal[
+        "COLUMN_NAME_CHARACTER_MAP_UNSPECIFIED", "STRICT", "V1", "V2"
+    ]
     connectionProperties: _list[ConnectionProperty]
     copyFilesOnly: bool
     createDisposition: str
@@ -888,6 +905,9 @@ class JobStatistics(typing_extensions.TypedDict, total=False):
     copy: JobStatistics5
     creationTime: str
     dataMaskingStatistics: DataMaskingStatistics
+    edition: typing_extensions.Literal[
+        "RESERVATION_EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     endTime: str
     extract: JobStatistics4
     finalExecutionDurationMs: str
@@ -1624,6 +1644,7 @@ class Table(typing_extensions.TypedDict, total=False):
     numActiveLogicalBytes: str
     numActivePhysicalBytes: str
     numBytes: str
+    numCurrentPhysicalBytes: str
     numLongTermBytes: str
     numLongTermLogicalBytes: str
     numLongTermPhysicalBytes: str
@@ -1689,6 +1710,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
     description: str
     fields: _list[TableFieldSchema]
     foreignTypeDefinition: str
+    identityColumnInfo: IdentityColumnInfo
     maxLength: str
     mode: str
     name: str
@@ -1712,6 +1734,7 @@ class TableList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableMetadataCacheUsage(typing_extensions.TypedDict, total=False):
     explanation: str
+    staleness: str
     tableReference: TableReference
     tableType: str
     unusedReason: typing_extensions.Literal[
@@ -2100,6 +2123,7 @@ class VectorSearchStatistics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ViewDefinition(typing_extensions.TypedDict, total=False):
+    foreignDefinitions: _list[ForeignViewDefinition]
     privacyPolicy: PrivacyPolicy
     query: str
     useExplicitColumnNames: bool

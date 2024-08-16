@@ -35,6 +35,107 @@ class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class AuthzPolicy(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "AUTHZ_ACTION_UNSPECIFIED", "ALLOW", "DENY", "CUSTOM"
+    ]
+    createTime: str
+    customProvider: AuthzPolicyCustomProvider
+    description: str
+    httpRules: _list[AuthzPolicyAuthzRule]
+    labels: dict[str, typing.Any]
+    name: str
+    target: AuthzPolicyTarget
+    updateTime: str
+
+AlternativeAuthzPolicyAuthzRule = typing_extensions.TypedDict(
+    "AlternativeAuthzPolicyAuthzRule",
+    {
+        "from": AuthzPolicyAuthzRuleFrom,
+        "to": AuthzPolicyAuthzRuleTo,
+        "when": str,
+    },
+    total=False,
+)
+
+@typing.type_check_only
+class AuthzPolicyAuthzRule(AlternativeAuthzPolicyAuthzRule): ...
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleFrom(typing_extensions.TypedDict, total=False):
+    notSources: _list[AuthzPolicyAuthzRuleFromRequestSource]
+    sources: _list[AuthzPolicyAuthzRuleFromRequestSource]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleFromRequestSource(typing_extensions.TypedDict, total=False):
+    principals: _list[AuthzPolicyAuthzRuleStringMatch]
+    resources: _list[AuthzPolicyAuthzRuleRequestResource]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleHeaderMatch(typing_extensions.TypedDict, total=False):
+    name: str
+    value: AuthzPolicyAuthzRuleStringMatch
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleRequestResource(typing_extensions.TypedDict, total=False):
+    iamServiceAccount: AuthzPolicyAuthzRuleStringMatch
+    tagValueIdSet: AuthzPolicyAuthzRuleRequestResourceTagValueIdSet
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleRequestResourceTagValueIdSet(
+    typing_extensions.TypedDict, total=False
+):
+    ids: _list[str]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleStringMatch(typing_extensions.TypedDict, total=False):
+    contains: str
+    exact: str
+    ignoreCase: bool
+    prefix: str
+    suffix: str
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleTo(typing_extensions.TypedDict, total=False):
+    notOperations: _list[AuthzPolicyAuthzRuleToRequestOperation]
+    operations: _list[AuthzPolicyAuthzRuleToRequestOperation]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleToRequestOperation(typing_extensions.TypedDict, total=False):
+    headerSet: AuthzPolicyAuthzRuleToRequestOperationHeaderSet
+    hosts: _list[AuthzPolicyAuthzRuleStringMatch]
+    methods: _list[str]
+    paths: _list[AuthzPolicyAuthzRuleStringMatch]
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleToRequestOperationHeaderSet(
+    typing_extensions.TypedDict, total=False
+):
+    headers: _list[AuthzPolicyAuthzRuleHeaderMatch]
+
+@typing.type_check_only
+class AuthzPolicyCustomProvider(typing_extensions.TypedDict, total=False):
+    authzExtension: AuthzPolicyCustomProviderAuthzExtension
+    cloudIap: AuthzPolicyCustomProviderCloudIap
+
+@typing.type_check_only
+class AuthzPolicyCustomProviderAuthzExtension(typing_extensions.TypedDict, total=False):
+    resources: _list[str]
+
+@typing.type_check_only
+class AuthzPolicyCustomProviderCloudIap(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AuthzPolicyTarget(typing_extensions.TypedDict, total=False):
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+        "INTERNAL_MANAGED",
+        "EXTERNAL_MANAGED",
+        "INTERNAL_SELF_MANAGED",
+    ]
+    resources: _list[str]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -212,6 +313,12 @@ class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):
 class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
     authorizationPolicies: _list[AuthorizationPolicy]
     nextPageToken: str
+
+@typing.type_check_only
+class ListAuthzPoliciesResponse(typing_extensions.TypedDict, total=False):
+    authzPolicies: _list[AuthzPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):

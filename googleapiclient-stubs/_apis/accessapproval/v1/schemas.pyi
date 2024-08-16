@@ -21,6 +21,12 @@ class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     notificationPubsubTopic: str
     preferNoBroadApprovalRequests: bool
     preferredRequestExpirationDays: int
+    requestScopeMaxWidthPreference: typing_extensions.Literal[
+        "REQUEST_SCOPE_MAX_WIDTH_PREFERENCE_UNSPECIFIED",
+        "ORGANIZATION",
+        "FOLDER",
+        "PROJECT",
+    ]
     requireCustomerVisibleJustification: bool
 
 @typing.type_check_only

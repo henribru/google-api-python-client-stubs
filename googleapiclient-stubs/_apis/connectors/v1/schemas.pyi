@@ -55,6 +55,7 @@ class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
 class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
     clientId: str
     enablePkce: bool
+    omitQueryParams: bool
     scopes: _list[str]
     uri: str
 
@@ -96,6 +97,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
     locationType: typing_extensions.Literal[
         "LOCATION_TYPE_UNSPECIFIED", "HEADER", "PAYLOAD", "QUERY_PARAM", "PATH_PARAM"
     ]
+    multipleSelectConfig: MultipleSelectConfig
     required: bool
     requiredCondition: LogicalExpression
     roleGrant: RoleGrant
@@ -110,10 +112,12 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
         "ENUM",
         "AUTHORIZATION_CODE",
         "ENCRYPTION_KEY",
+        "MULTIPLE_SELECT",
     ]
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
+    asyncOperationsEnabled: bool
     authConfig: AuthConfig
     billingConfig: BillingConfig
     configVariables: _list[ConfigVariable]
@@ -187,6 +191,13 @@ class ConnectionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Connector(typing_extensions.TypedDict, total=False):
+    category: str
+    connectorType: typing_extensions.Literal[
+        "CONNECTOR_TYPE_UNSPECIFIED",
+        "CONNECTOR_TYPE_GOOGLE",
+        "CONNECTOR_TYPE_TECHNICAL",
+        "CONNECTOR_TYPE_THIRD_PARTY",
+    ]
     createTime: str
     description: str
     displayName: str
@@ -198,6 +209,7 @@ class Connector(typing_extensions.TypedDict, total=False):
         "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
     ]
     name: str
+    tags: _list[str]
     updateTime: str
     webAssetsLocation: str
 
@@ -209,6 +221,8 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     ]
     hpaConfig: HPAConfig
     internalclientRatelimitThreshold: str
+    maxInstanceRequestConcurrency: int
+    migrateDeploymentModel: bool
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -225,6 +239,8 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     displayName: str
     egressControlConfig: EgressControlConfig
     eventingConfigTemplate: EventingConfigTemplate
+    isCustomActionsSupported: bool
+    isCustomEntitiesSupported: bool
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
         "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
@@ -236,6 +252,8 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     schemaRefreshConfig: SchemaRefreshConfig
     sslConfigTemplate: SslConfigTemplate
     supportedRuntimeFeatures: SupportedRuntimeFeatures
+    supportedStandardActions: _list[StandardAction]
+    supportedStandardEntities: _list[StandardEntity]
     unsupportedConnectionTypes: _list[
         typing_extensions.Literal[
             "CONNECTION_TYPE_UNSPECIFIED",
@@ -252,8 +270,16 @@ class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
     deploymentModel: typing_extensions.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
+    deploymentModelMigrationState: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "ROLLEDBACK",
+        "ROLLBACK_IN_PROGRESS",
+    ]
     hpaConfig: HPAConfig
     internalclientRatelimitThreshold: str
+    maxInstanceRequestConcurrency: int
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -884,6 +910,19 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MultipleSelectConfig(typing_extensions.TypedDict, total=False):
+    allowCustomValues: bool
+    multipleSelectOptions: _list[MultipleSelectOption]
+    valueSeparator: str
+
+@typing.type_check_only
+class MultipleSelectOption(typing_extensions.TypedDict, total=False):
+    description: str
+    displayName: str
+    key: str
+    preselected: bool
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     egressIps: _list[str]
     egressMode: typing_extensions.Literal[
@@ -1060,9 +1099,11 @@ class ResultMetadata(typing_extensions.TypedDict, total=False):
         "DATA_TYPE_TIME_WITH_TIMEZONE",
         "DATA_TYPE_TIMESTAMP_WITH_TIMEZONE",
     ]
+    defaultValue: typing.Any
     description: str
     field: str
     jsonSchema: JsonSchema
+    nullable: bool
 
 @typing.type_check_only
 class RetryEventSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
@@ -1207,6 +1248,14 @@ class SslConfigTemplate(typing_extensions.TypedDict, total=False):
     isTlsMandatory: bool
     serverCertType: _list[typing_extensions.Literal["CERT_TYPE_UNSPECIFIED", "PEM"]]
     sslType: typing_extensions.Literal["SSL_TYPE_UNSPECIFIED", "TLS", "MTLS"]
+
+@typing.type_check_only
+class StandardAction(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class StandardEntity(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

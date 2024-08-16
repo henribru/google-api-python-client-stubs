@@ -559,14 +559,6 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes(
     fileHash: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Hash]
 
 @typing.type_check_only
-class ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation(
-    typing_extensions.TypedDict, total=False
-):
-    bucket: str
-    generation: str
-    object: str
-
-@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -577,7 +569,6 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig(
     typing_extensions.TypedDict, total=False
 ):
     proxySecretVersionName: str
-    proxySslCaInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(

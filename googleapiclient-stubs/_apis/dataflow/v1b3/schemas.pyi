@@ -523,6 +523,7 @@ class Job(typing_extensions.TypedDict, total=False):
     runtimeUpdatableParams: RuntimeUpdatableParams
     satisfiesPzi: bool
     satisfiesPzs: bool
+    serviceResources: ServiceResources
     stageStates: _list[ExecutionStageState]
     startTime: str
     steps: _list[Step]
@@ -800,6 +801,8 @@ class ParameterMetadata(typing_extensions.TypedDict, total=False):
         "ENUM",
         "NUMBER",
         "KAFKA_TOPIC",
+        "KAFKA_READ_TOPIC",
+        "KAFKA_WRITE_TOPIC",
     ]
     parentName: str
     parentTriggerValues: _list[str]
@@ -1013,6 +1016,10 @@ class SeqMapTask(typing_extensions.TypedDict, total=False):
 class SeqMapTaskOutputInfo(typing_extensions.TypedDict, total=False):
     sink: Sink
     tag: str
+
+@typing.type_check_only
+class ServiceResources(typing_extensions.TypedDict, total=False):
+    zones: _list[str]
 
 @typing.type_check_only
 class ShellTask(typing_extensions.TypedDict, total=False):

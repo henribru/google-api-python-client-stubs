@@ -96,6 +96,7 @@ class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
 class CloudRunRevisionInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     location: str
+    serviceName: str
     serviceUri: str
     uri: str
 
@@ -127,7 +128,9 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeliverInfo(typing_extensions.TypedDict, total=False):
     ipAddress: str
+    pscGoogleApiTarget: str
     resourceUri: str
+    storageBucket: str
     target: typing_extensions.Literal[
         "TARGET_UNSPECIFIED",
         "INSTANCE",
@@ -144,6 +147,7 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_FUNCTION",
         "APP_ENGINE_VERSION",
         "CLOUD_RUN_REVISION",
+        "GOOGLE_MANAGED_SERVICE",
     ]
 
 @typing.type_check_only
@@ -192,6 +196,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "CLOUD_SQL_INSTANCE_NOT_CONFIGURED_FOR_EXTERNAL_TRAFFIC",
         "PUBLIC_CLOUD_SQL_INSTANCE_TO_PRIVATE_DESTINATION",
         "CLOUD_SQL_INSTANCE_NO_ROUTE",
+        "CLOUD_SQL_CONNECTOR_REQUIRED",
         "CLOUD_FUNCTION_NOT_ACTIVE",
         "VPC_CONNECTOR_NOT_SET",
         "VPC_CONNECTOR_NOT_RUNNING",
@@ -204,6 +209,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "PSC_NEG_PRODUCER_FORWARDING_RULE_MULTIPLE_PORTS",
         "CLOUD_SQL_PSC_NEG_UNSUPPORTED",
         "NO_NAT_SUBNETS_FOR_PSC_SERVICE_ATTACHMENT",
+        "PSC_TRANSITIVITY_NOT_PROPAGATED",
         "HYBRID_NEG_NON_DYNAMIC_ROUTE_MATCHED",
         "HYBRID_NEG_NON_LOCAL_DYNAMIC_ROUTE_MATCHED",
         "CLOUD_RUN_REVISION_NOT_READY",
@@ -211,6 +217,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
         "CLOUD_NAT_NO_ADDRESSES",
         "ROUTING_LOOP",
+        "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE",
+        "LOAD_BALANCER_BACKEND_INVALID_NETWORK",
     ]
     destinationIp: str
     region: str
@@ -298,6 +306,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     ]
     networkUri: str
     policy: str
+    policyUri: str
     priority: int
     targetServiceAccounts: _list[str]
     targetTags: _list[str]
@@ -323,9 +332,13 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
     displayName: str
+    loadBalancerName: str
     matchedPortRange: str
     matchedProtocol: str
     networkUri: str
+    pscGoogleApiTarget: str
+    pscServiceAttachmentUri: str
+    region: str
     target: str
     uri: str
     vip: str
@@ -358,6 +371,7 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     internalIp: str
     networkTags: _list[str]
     networkUri: str
+    pscNetworkAttachmentUri: str
     serviceAccount: str
     uri: str
 
@@ -584,6 +598,10 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class ServerlessNegInfo(typing_extensions.TypedDict, total=False):
+    negUri: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -619,6 +637,7 @@ class Step(typing_extensions.TypedDict, total=False):
     projectId: str
     proxyConnection: ProxyConnectionInfo
     route: RouteInfo
+    serverlessNeg: ServerlessNegInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "START_FROM_INSTANCE",
@@ -632,6 +651,7 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_CLOUD_RUN_REVISION",
         "START_FROM_STORAGE_BUCKET",
         "START_FROM_PSC_PUBLISHED_SERVICE",
+        "START_FROM_SERVERLESS_NEG",
         "APPLY_INGRESS_FIREWALL_RULE",
         "APPLY_EGRESS_FIREWALL_RULE",
         "APPLY_ROUTE",

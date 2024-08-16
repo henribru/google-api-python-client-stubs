@@ -317,11 +317,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PatchServiceAccountKeyRequest(typing_extensions.TypedDict, total=False):
-    serviceAccountKey: ServiceAccountKey
-    updateMask: str
-
-@typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
     serviceAccount: ServiceAccount
     updateMask: str
@@ -423,9 +418,6 @@ class ServiceAccount(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceAccountKey(typing_extensions.TypedDict, total=False):
-    contact: str
-    creator: str
-    description: str
     disableReason: typing_extensions.Literal[
         "SERVICE_ACCOUNT_KEY_DISABLE_REASON_UNSPECIFIED",
         "SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED",

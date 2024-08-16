@@ -27,7 +27,7 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
         def voterInfoQuery(
             self,
             *,
-            address: str,
+            address: str = ...,
             electionId: str = ...,
             officialOnly: bool = ...,
             productionDataOnly: bool = ...,

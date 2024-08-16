@@ -110,6 +110,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                         previous_response: ListWorkloadsResponse,
                     ) -> ListWorkloadsResponseHttpRequest | None: ...
 
+                def checkUpgrade(
+                    self,
+                    *,
+                    environment: str,
+                    body: CheckUpgradeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self, *, parent: str, body: Environment = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...

@@ -36,6 +36,11 @@ class Body(typing_extensions.TypedDict, total=False):
     content: _list[StructuralElement]
 
 @typing.type_check_only
+class BookmarkLink(typing_extensions.TypedDict, total=False):
+    id: str
+    tabId: str
+
+@typing.type_check_only
 class Bullet(typing_extensions.TypedDict, total=False):
     listId: str
     nestingLevel: int
@@ -139,15 +144,18 @@ class DeleteContentRangeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeleteFooterRequest(typing_extensions.TypedDict, total=False):
     footerId: str
+    tabId: str
 
 @typing.type_check_only
 class DeleteHeaderRequest(typing_extensions.TypedDict, total=False):
     headerId: str
+    tabId: str
 
 @typing.type_check_only
 class DeleteNamedRangeRequest(typing_extensions.TypedDict, total=False):
     name: str
     namedRangeId: str
+    tabsCriteria: TabsCriteria
 
 @typing.type_check_only
 class DeleteParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
@@ -156,6 +164,7 @@ class DeleteParagraphBulletsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeletePositionedObjectRequest(typing_extensions.TypedDict, total=False):
     objectId: str
+    tabId: str
 
 @typing.type_check_only
 class DeleteTableColumnRequest(typing_extensions.TypedDict, total=False):
@@ -192,6 +201,7 @@ class Document(typing_extensions.TypedDict, total=False):
         "PREVIEW_SUGGESTIONS_ACCEPTED",
         "PREVIEW_WITHOUT_SUGGESTIONS",
     ]
+    tabs: _list[Tab]
     title: str
 
 @typing.type_check_only
@@ -237,6 +247,21 @@ class DocumentStyleSuggestionState(typing_extensions.TypedDict, total=False):
     useCustomHeaderFooterMarginsSuggested: bool
     useEvenPageHeaderFooterSuggested: bool
     useFirstPageHeaderFooterSuggested: bool
+
+@typing.type_check_only
+class DocumentTab(typing_extensions.TypedDict, total=False):
+    body: Body
+    documentStyle: DocumentStyle
+    footers: dict[str, typing.Any]
+    footnotes: dict[str, typing.Any]
+    headers: dict[str, typing.Any]
+    inlineObjects: dict[str, typing.Any]
+    lists: dict[str, typing.Any]
+    namedRanges: dict[str, typing.Any]
+    namedStyles: NamedStyles
+    positionedObjects: dict[str, typing.Any]
+    suggestedDocumentStyleChanges: dict[str, typing.Any]
+    suggestedNamedStylesChanges: dict[str, typing.Any]
 
 @typing.type_check_only
 class EmbeddedDrawingProperties(typing_extensions.TypedDict, total=False): ...
@@ -293,6 +318,7 @@ class EmbeddedObjectSuggestionState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EndOfSegmentLocation(typing_extensions.TypedDict, total=False):
     segmentId: str
+    tabId: str
 
 @typing.type_check_only
 class Equation(typing_extensions.TypedDict, total=False):
@@ -322,6 +348,11 @@ class FootnoteReference(typing_extensions.TypedDict, total=False):
 class Header(typing_extensions.TypedDict, total=False):
     content: _list[StructuralElement]
     headerId: str
+
+@typing.type_check_only
+class HeadingLink(typing_extensions.TypedDict, total=False):
+    id: str
+    tabId: str
 
 @typing.type_check_only
 class HorizontalRule(typing_extensions.TypedDict, total=False):
@@ -427,8 +458,11 @@ class InsertTextRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
+    bookmark: BookmarkLink
     bookmarkId: str
+    heading: HeadingLink
     headingId: str
+    tabId: str
     url: str
 
 @typing.type_check_only
@@ -458,6 +492,7 @@ class ListPropertiesSuggestionState(typing_extensions.TypedDict, total=False):
 class Location(typing_extensions.TypedDict, total=False):
     index: int
     segmentId: str
+    tabId: str
 
 @typing.type_check_only
 class MergeTableCellsRequest(typing_extensions.TypedDict, total=False):
@@ -730,11 +765,13 @@ class Range(typing_extensions.TypedDict, total=False):
     endIndex: int
     segmentId: str
     startIndex: int
+    tabId: str
 
 @typing.type_check_only
 class ReplaceAllTextRequest(typing_extensions.TypedDict, total=False):
     containsText: SubstringMatchCriteria
     replaceText: str
+    tabsCriteria: TabsCriteria
 
 @typing.type_check_only
 class ReplaceAllTextResponse(typing_extensions.TypedDict, total=False):
@@ -746,12 +783,14 @@ class ReplaceImageRequest(typing_extensions.TypedDict, total=False):
     imageReplaceMethod: typing_extensions.Literal[
         "IMAGE_REPLACE_METHOD_UNSPECIFIED", "CENTER_CROP"
     ]
+    tabId: str
     uri: str
 
 @typing.type_check_only
 class ReplaceNamedRangeContentRequest(typing_extensions.TypedDict, total=False):
     namedRangeId: str
     namedRangeName: str
+    tabsCriteria: TabsCriteria
     text: str
 
 @typing.type_check_only
@@ -953,6 +992,20 @@ class SuggestedTextStyle(typing_extensions.TypedDict, total=False):
     textStyleSuggestionState: TextStyleSuggestionState
 
 @typing.type_check_only
+class Tab(typing_extensions.TypedDict, total=False):
+    childTabs: _list[Tab]
+    documentTab: DocumentTab
+    tabProperties: TabProperties
+
+@typing.type_check_only
+class TabProperties(typing_extensions.TypedDict, total=False):
+    index: int
+    nestingLevel: int
+    parentTabId: str
+    tabId: str
+    title: str
+
+@typing.type_check_only
 class TabStop(typing_extensions.TypedDict, total=False):
     alignment: typing_extensions.Literal[
         "TAB_STOP_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
@@ -1072,6 +1125,10 @@ class TableStyle(typing_extensions.TypedDict, total=False):
     tableColumnProperties: _list[TableColumnProperties]
 
 @typing.type_check_only
+class TabsCriteria(typing_extensions.TypedDict, total=False):
+    tabIds: _list[str]
+
+@typing.type_check_only
 class TextRun(typing_extensions.TypedDict, total=False):
     content: str
     suggestedDeletionIds: _list[str]
@@ -1117,6 +1174,7 @@ class UnmergeTableCellsRequest(typing_extensions.TypedDict, total=False):
 class UpdateDocumentStyleRequest(typing_extensions.TypedDict, total=False):
     documentStyle: DocumentStyle
     fields: str
+    tabId: str
 
 @typing.type_check_only
 class UpdateParagraphStyleRequest(typing_extensions.TypedDict, total=False):

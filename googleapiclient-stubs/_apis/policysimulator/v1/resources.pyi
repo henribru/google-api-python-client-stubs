@@ -126,56 +126,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
 
-                @typing.type_check_only
-                class OrgPolicyViolationsResource(googleapiclient.discovery.Resource):
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponseHttpRequest,
-                        previous_response: GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse,
-                    ) -> (
-                        GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponseHttpRequest
-                        | None
-                    ): ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview = ...,
-                    orgPolicyViolationsPreviewId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> (
-                    GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewHttpRequest
-                ): ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponseHttpRequest,
-                    previous_response: GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse,
-                ) -> (
-                    GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponseHttpRequest
-                    | None
-                ): ...
                 def operations(self) -> OperationsResource: ...
-                def orgPolicyViolations(self) -> OrgPolicyViolationsResource: ...
 
             @typing.type_check_only
             class ReplaysResource(googleapiclient.discovery.Resource):
@@ -337,26 +288,6 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
-class GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsPreviewsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudPolicysimulatorV1ListOrgPolicyViolationsResponse: ...
-
-@typing.type_check_only
 class GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -365,16 +296,6 @@ class GoogleCloudPolicysimulatorV1ListReplayResultsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudPolicysimulatorV1ListReplayResultsResponse: ...
-
-@typing.type_check_only
-class GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreviewHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudPolicysimulatorV1OrgPolicyViolationsPreview: ...
 
 @typing.type_check_only
 class GoogleCloudPolicysimulatorV1ReplayHttpRequest(googleapiclient.http.HttpRequest):

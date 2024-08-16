@@ -186,9 +186,6 @@ class GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacet(
     typing_extensions.TypedDict, total=False
 ):
     mergedFacetKey: str
-    mergedFacetValues: _list[
-        GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue
-    ]
 
 @typing.type_check_only
 class GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue(
@@ -213,11 +210,18 @@ class GoogleCloudRetailV2ColorInfo(typing_extensions.TypedDict, total=False):
 class GoogleCloudRetailV2CompleteQueryResponse(
     typing_extensions.TypedDict, total=False
 ):
+    attributeResults: dict[str, typing.Any]
     attributionToken: str
     completionResults: _list[GoogleCloudRetailV2CompleteQueryResponseCompletionResult]
     recentSearchResults: _list[
         GoogleCloudRetailV2CompleteQueryResponseRecentSearchResult
     ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2CompleteQueryResponseAttributeResult(
+    typing_extensions.TypedDict, total=False
+):
+    suggestions: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2CompleteQueryResponseCompletionResult(
@@ -1498,13 +1502,6 @@ class GoogleCloudRetailV2betaBigQueryOutputResult(
     tableId: str
 
 @typing.type_check_only
-class GoogleCloudRetailV2betaCreateMerchantCenterAccountLinkMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    updateTime: str
-
-@typing.type_check_only
 class GoogleCloudRetailV2betaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1584,30 +1581,6 @@ class GoogleCloudRetailV2betaImportUserEventsResponse(
     errorSamples: _list[GoogleRpcStatus]
     errorsConfig: GoogleCloudRetailV2betaImportErrorsConfig
     importSummary: GoogleCloudRetailV2betaUserEventImportSummary
-
-@typing.type_check_only
-class GoogleCloudRetailV2betaMerchantCenterAccountLink(
-    typing_extensions.TypedDict, total=False
-):
-    branchId: str
-    feedFilters: _list[
-        GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter
-    ]
-    feedLabel: str
-    id: str
-    languageCode: str
-    merchantCenterAccountId: str
-    name: str
-    projectId: str
-    source: str
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE", "FAILED"]
-
-@typing.type_check_only
-class GoogleCloudRetailV2betaMerchantCenterAccountLinkMerchantCenterFeedFilter(
-    typing_extensions.TypedDict, total=False
-):
-    primaryFeedId: str
-    primaryFeedName: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaModel(typing_extensions.TypedDict, total=False):

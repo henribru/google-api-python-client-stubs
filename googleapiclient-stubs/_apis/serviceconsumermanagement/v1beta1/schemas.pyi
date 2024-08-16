@@ -625,6 +625,15 @@ class V1Beta1ImportProducerOverridesResponse(typing_extensions.TypedDict, total=
     overrides: _list[V1Beta1QuotaOverride]
 
 @typing.type_check_only
+class V1Beta1ImportProducerQuotaPoliciesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    force: bool
+    forceJustification: str
+    inlineSource: V1Beta1PolicyInlineSource
+    validateOnly: bool
+
+@typing.type_check_only
 class V1Beta1ImportProducerQuotaPoliciesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -641,8 +650,19 @@ class V1Beta1ListProducerOverridesResponse(typing_extensions.TypedDict, total=Fa
     overrides: _list[V1Beta1QuotaOverride]
 
 @typing.type_check_only
+class V1Beta1ListProducerQuotaPoliciesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    producerQuotaPolicies: _list[V1Beta1ProducerQuotaPolicy]
+
+@typing.type_check_only
 class V1Beta1OverrideInlineSource(typing_extensions.TypedDict, total=False):
     overrides: _list[V1Beta1QuotaOverride]
+
+@typing.type_check_only
+class V1Beta1PolicyInlineSource(typing_extensions.TypedDict, total=False):
+    policies: _list[V1Beta1ProducerQuotaPolicy]
 
 @typing.type_check_only
 class V1Beta1ProducerQuotaPolicy(typing_extensions.TypedDict, total=False):

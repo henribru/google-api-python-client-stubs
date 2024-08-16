@@ -137,6 +137,16 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 def analyses(self) -> AnalysesResource: ...
 
             @typing.type_check_only
+            class EncryptionSpecResource(googleapiclient.discovery.Resource):
+                def initialize(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
             class InsightsdataResource(googleapiclient.discovery.Resource):
                 def export(
                     self,
@@ -333,6 +343,9 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContactcenterinsightsV1ViewHttpRequest: ...
 
+            def getEncryptionSpec(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest: ...
             def getSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
@@ -345,6 +358,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
             def conversations(self) -> ConversationsResource: ...
+            def encryptionSpec(self) -> EncryptionSpecResource: ...
             def insightsdata(self) -> InsightsdataResource: ...
             def issueModels(self) -> IssueModelsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -406,6 +420,16 @@ class GoogleCloudContactcenterinsightsV1ConversationHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Conversation: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1EncryptionSpec: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IssueHttpRequest(
