@@ -46,6 +46,7 @@ class CloudAiLargeModelsVisionNamedBoundingBox(
 
 @typing.type_check_only
 class CloudAiLargeModelsVisionRaiInfo(typing_extensions.TypedDict, total=False):
+    blockedEntities: _list[str]
     detectedLabels: _list[CloudAiLargeModelsVisionRaiInfoDetectedLabels]
     modelName: str
     raiCategories: _list[str]
@@ -199,6 +200,10 @@ class GoogleCloudAiplatformV1beta1AnnotationSpec(
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1ApiAuth(typing_extensions.TypedDict, total=False):
+    apiKeyConfig: GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -218,6 +223,15 @@ class GoogleCloudAiplatformV1beta1Artifact(typing_extensions.TypedDict, total=Fa
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "LIVE"]
     updateTime: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1ArtifactTypeSchema(
+    typing_extensions.TypedDict, total=False
+):
+    instanceSchema: str
+    schemaTitle: str
+    schemaUri: str
+    schemaVersion: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1AssignNotebookRuntimeOperationMetadata(
@@ -243,6 +257,28 @@ class GoogleCloudAiplatformV1beta1Attribution(typing_extensions.TypedDict, total
     outputDisplayName: str
     outputIndex: _list[int]
     outputName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AugmentPromptRequest(
+    typing_extensions.TypedDict, total=False
+):
+    contents: _list[GoogleCloudAiplatformV1beta1Content]
+    model: GoogleCloudAiplatformV1beta1AugmentPromptRequestModel
+    vertexRagStore: GoogleCloudAiplatformV1beta1VertexRagStore
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AugmentPromptRequestModel(
+    typing_extensions.TypedDict, total=False
+):
+    model: str
+    modelVersion: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1AugmentPromptResponse(
+    typing_extensions.TypedDict, total=False
+):
+    augmentedPrompt: _list[GoogleCloudAiplatformV1beta1Content]
+    facts: _list[GoogleCloudAiplatformV1beta1Fact]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1AuthConfig(typing_extensions.TypedDict, total=False):
@@ -654,6 +690,17 @@ class GoogleCloudAiplatformV1beta1CachedContent(
     tools: _list[GoogleCloudAiplatformV1beta1Tool]
     ttl: str
     updateTime: str
+    usageMetadata: GoogleCloudAiplatformV1beta1CachedContentUsageMetadata
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CachedContentUsageMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    audioDurationSeconds: int
+    imageCount: int
+    textCount: int
+    totalTokenCount: int
+    videoDurationSeconds: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CancelBatchPredictionJobRequest(
@@ -697,6 +744,7 @@ class GoogleCloudAiplatformV1beta1CancelTuningJobRequest(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=False):
+    avgLogprobs: float
     citationMetadata: GoogleCloudAiplatformV1beta1CitationMetadata
     content: GoogleCloudAiplatformV1beta1Content
     finishMessage: str
@@ -714,6 +762,7 @@ class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=F
     ]
     groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
+    logprobsResult: GoogleCloudAiplatformV1beta1LogprobsResult
     safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
 
 @typing.type_check_only
@@ -749,6 +798,13 @@ class GoogleCloudAiplatformV1beta1CitationMetadata(
     typing_extensions.TypedDict, total=False
 ):
     citations: _list[GoogleCloudAiplatformV1beta1Citation]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1Claim(typing_extensions.TypedDict, total=False):
+    endIndex: int
+    factIndexes: _list[int]
+    score: float
+    startIndex: int
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1CoherenceInput(
@@ -865,10 +921,39 @@ class GoogleCloudAiplatformV1beta1CopyModelResponse(
     modelVersionId: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1CorpusStatus(
+    typing_extensions.TypedDict, total=False
+):
+    errorStatus: str
+    state: typing_extensions.Literal["UNKNOWN", "INITIALIZED", "ACTIVE", "ERROR"]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CorroborateContentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    content: GoogleCloudAiplatformV1beta1Content
+    facts: _list[GoogleCloudAiplatformV1beta1Fact]
+    parameters: GoogleCloudAiplatformV1beta1CorroborateContentRequestParameters
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CorroborateContentRequestParameters(
+    typing_extensions.TypedDict, total=False
+):
+    citationThreshold: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1CorroborateContentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    claims: _list[GoogleCloudAiplatformV1beta1Claim]
+    corroborationScore: float
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1CountTokensRequest(
     typing_extensions.TypedDict, total=False
 ):
     contents: _list[GoogleCloudAiplatformV1beta1Content]
+    generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     instances: _list[typing.Any]
     model: str
     systemInstruction: GoogleCloudAiplatformV1beta1Content
@@ -1389,6 +1474,7 @@ class GoogleCloudAiplatformV1beta1DeployedIndex(
     index: str
     indexSyncTime: str
     privateEndpoints: GoogleCloudAiplatformV1beta1IndexPrivateEndpoints
+    pscAutomationConfigs: _list[GoogleCloudAiplatformV1beta1PSCAutomationConfig]
     reservedIpRanges: _list[str]
 
 @typing.type_check_only
@@ -1578,6 +1664,8 @@ class GoogleCloudAiplatformV1beta1EntityType(typing_extensions.TypedDict, total=
     monitoringConfig: GoogleCloudAiplatformV1beta1FeaturestoreMonitoringConfig
     name: str
     offlineStorageTtlDays: int
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -1618,12 +1706,14 @@ class GoogleCloudAiplatformV1beta1EvaluateInstancesRequest(
     fluencyInput: GoogleCloudAiplatformV1beta1FluencyInput
     fulfillmentInput: GoogleCloudAiplatformV1beta1FulfillmentInput
     groundednessInput: GoogleCloudAiplatformV1beta1GroundednessInput
+    pairwiseMetricInput: GoogleCloudAiplatformV1beta1PairwiseMetricInput
     pairwiseQuestionAnsweringQualityInput: (
         GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput
     )
     pairwiseSummarizationQualityInput: (
         GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInput
     )
+    pointwiseMetricInput: GoogleCloudAiplatformV1beta1PointwiseMetricInput
     questionAnsweringCorrectnessInput: (
         GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessInput
     )
@@ -1658,12 +1748,14 @@ class GoogleCloudAiplatformV1beta1EvaluateInstancesResponse(
     fluencyResult: GoogleCloudAiplatformV1beta1FluencyResult
     fulfillmentResult: GoogleCloudAiplatformV1beta1FulfillmentResult
     groundednessResult: GoogleCloudAiplatformV1beta1GroundednessResult
+    pairwiseMetricResult: GoogleCloudAiplatformV1beta1PairwiseMetricResult
     pairwiseQuestionAnsweringQualityResult: (
         GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityResult
     )
     pairwiseSummarizationQualityResult: (
         GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityResult
     )
+    pointwiseMetricResult: GoogleCloudAiplatformV1beta1PointwiseMetricResult
     questionAnsweringCorrectnessResult: (
         GoogleCloudAiplatformV1beta1QuestionAnsweringCorrectnessResult
     )
@@ -2139,6 +2231,14 @@ class GoogleCloudAiplatformV1beta1ExtensionPrivateServiceConnectConfig(
     serviceDirectory: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1Fact(typing_extensions.TypedDict, total=False):
+    query: str
+    summary: str
+    title: str
+    uri: str
+    vectorDistance: float
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Feature(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -2185,7 +2285,16 @@ class GoogleCloudAiplatformV1beta1FeatureGroupBigQuery(
     typing_extensions.TypedDict, total=False
 ):
     bigQuerySource: GoogleCloudAiplatformV1beta1BigQuerySource
+    dense: bool
     entityIdColumns: _list[str]
+    staticDataSource: bool
+    timeSeries: GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries(
+    typing_extensions.TypedDict, total=False
+):
+    timestampColumn: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureMonitoringStatsAnomaly(
@@ -2226,6 +2335,8 @@ class GoogleCloudAiplatformV1beta1FeatureOnlineStore(
     labels: dict[str, typing.Any]
     name: str
     optimized: GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "STABLE", "UPDATING"]
     updateTime: str
 
@@ -2325,6 +2436,9 @@ class GoogleCloudAiplatformV1beta1FeatureView(typing_extensions.TypedDict, total
     indexConfig: GoogleCloudAiplatformV1beta1FeatureViewIndexConfig
     labels: dict[str, typing.Any]
     name: str
+    optimizedConfig: GoogleCloudAiplatformV1beta1FeatureViewOptimizedConfig
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     serviceAccountEmail: str
     serviceAgentType: typing_extensions.Literal[
         "SERVICE_AGENT_TYPE_UNSPECIFIED",
@@ -2334,6 +2448,7 @@ class GoogleCloudAiplatformV1beta1FeatureView(typing_extensions.TypedDict, total
     syncConfig: GoogleCloudAiplatformV1beta1FeatureViewSyncConfig
     updateTime: str
     vectorSearchConfig: GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfig
+    vertexRagSource: GoogleCloudAiplatformV1beta1FeatureViewVertexRagSource
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewBigQuerySource(
@@ -2400,6 +2515,12 @@ class GoogleCloudAiplatformV1beta1FeatureViewIndexConfigTreeAHConfig(
     leafNodeEmbeddingCount: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewOptimizedConfig(
+    typing_extensions.TypedDict, total=False
+):
+    automaticResources: GoogleCloudAiplatformV1beta1AutomaticResources
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1FeatureViewSync(
     typing_extensions.TypedDict, total=False
 ):
@@ -2407,6 +2528,8 @@ class GoogleCloudAiplatformV1beta1FeatureViewSync(
     finalStatus: GoogleRpcStatus
     name: str
     runTime: GoogleTypeInterval
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     syncSummary: GoogleCloudAiplatformV1beta1FeatureViewSyncSyncSummary
 
 @typing.type_check_only
@@ -2420,6 +2543,7 @@ class GoogleCloudAiplatformV1beta1FeatureViewSyncSyncSummary(
     typing_extensions.TypedDict, total=False
 ):
     rowSynced: str
+    systemWatermarkTime: str
     totalSlot: str
 
 @typing.type_check_only
@@ -2453,6 +2577,13 @@ class GoogleCloudAiplatformV1beta1FeatureViewVectorSearchConfigTreeAHConfig(
     leafNodeEmbeddingCount: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1FeatureViewVertexRagSource(
+    typing_extensions.TypedDict, total=False
+):
+    ragCorpusId: str
+    uri: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Featurestore(
     typing_extensions.TypedDict, total=False
 ):
@@ -2463,6 +2594,8 @@ class GoogleCloudAiplatformV1beta1Featurestore(
     name: str
     onlineServingConfig: GoogleCloudAiplatformV1beta1FeaturestoreOnlineServingConfig
     onlineStorageTtlDays: int
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "STABLE", "UPDATING"]
     updateTime: str
 
@@ -2567,6 +2700,11 @@ class GoogleCloudAiplatformV1beta1FetchFeatureValuesResponseFeatureNameValuePair
 class GoogleCloudAiplatformV1beta1FileData(typing_extensions.TypedDict, total=False):
     fileUri: str
     mimeType: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1FileStatus(typing_extensions.TypedDict, total=False):
+    errorStatus: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "ERROR"]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1FilterSplit(typing_extensions.TypedDict, total=False):
@@ -2745,6 +2883,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentRequest(
     cachedContent: str
     contents: _list[GoogleCloudAiplatformV1beta1Content]
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
+    labels: dict[str, typing.Any]
     safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
     systemInstruction: GoogleCloudAiplatformV1beta1Content
     toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
@@ -2755,6 +2894,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponse(
     typing_extensions.TypedDict, total=False
 ):
     candidates: _list[GoogleCloudAiplatformV1beta1Candidate]
+    modelVersion: str
     promptFeedback: GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback
     usageMetadata: GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata
 
@@ -2776,6 +2916,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback(
 class GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    cachedContentTokenCount: int
     candidatesTokenCount: int
     promptTokenCount: int
     totalTokenCount: int
@@ -2794,11 +2935,14 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
 ):
     candidateCount: int
     frequencyPenalty: float
+    logprobs: int
     maxOutputTokens: int
     presencePenalty: float
+    responseLogprobs: bool
     responseMimeType: str
     responseSchema: GoogleCloudAiplatformV1beta1Schema
     routingConfig: GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig
+    seed: int
     stopSequences: _list[str]
     temperature: float
     topK: float
@@ -3057,7 +3201,11 @@ class GoogleCloudAiplatformV1beta1ImportRagFilesConfig(
     googleDriveSource: GoogleCloudAiplatformV1beta1GoogleDriveSource
     jiraSource: GoogleCloudAiplatformV1beta1JiraSource
     maxEmbeddingRequestsPerMin: int
+    partialFailureBigquerySink: GoogleCloudAiplatformV1beta1BigQueryDestination
+    partialFailureGcsSink: GoogleCloudAiplatformV1beta1GcsDestination
     ragFileChunkingConfig: GoogleCloudAiplatformV1beta1RagFileChunkingConfig
+    ragFileParsingConfig: GoogleCloudAiplatformV1beta1RagFileParsingConfig
+    sharePointSources: GoogleCloudAiplatformV1beta1SharePointSources
     slackSource: GoogleCloudAiplatformV1beta1SlackSource
 
 @typing.type_check_only
@@ -3082,6 +3230,8 @@ class GoogleCloudAiplatformV1beta1Index(typing_extensions.TypedDict, total=False
     metadata: typing.Any
     metadataSchemaUri: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -3153,6 +3303,8 @@ class GoogleCloudAiplatformV1beta1IndexEndpoint(
     privateServiceConnectConfig: GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig
     publicEndpointDomainName: str
     publicEndpointEnabled: bool
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     updateTime: str
 
 @typing.type_check_only
@@ -3214,6 +3366,7 @@ class GoogleCloudAiplatformV1beta1InternalOsServiceStateInstance(
         "IDLE_SHUTDOWN_AGENT_STATE",
         "PROXY_AGENT_STATE",
         "GCR_DNS_STATE",
+        "GUEST_ATTRIBUTE_STATE",
     ]
     serviceState: typing_extensions.Literal["UNKNOWN", "HEALTHY", "UNHEALTHY"]
 
@@ -3644,6 +3797,27 @@ class GoogleCloudAiplatformV1beta1ListTuningJobsResponse(
     tuningJobs: _list[GoogleCloudAiplatformV1beta1TuningJob]
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResult(
+    typing_extensions.TypedDict, total=False
+):
+    chosenCandidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultCandidate]
+    topCandidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResultCandidate(
+    typing_extensions.TypedDict, total=False
+):
+    logProbability: float
+    token: str
+    tokenId: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates(
+    typing_extensions.TypedDict, total=False
+):
+    candidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultCandidate]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1LookupStudyRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -3954,6 +4128,8 @@ class GoogleCloudAiplatformV1beta1ModelDeploymentMonitoringJob(
     nextScheduleTime: str
     predictInstanceSchemaUri: str
     samplePredictInstance: typing.Any
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     scheduleState: typing_extensions.Literal[
         "MONITORING_SCHEDULE_STATE_UNSPECIFIED", "PENDING", "OFFLINE", "RUNNING"
     ]
@@ -4971,6 +5147,41 @@ class GoogleCloudAiplatformV1beta1NotebookRuntimeTemplateRef(
     notebookRuntimeTemplate: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1PSCAutomationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    network: str
+    projectId: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseMetricInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1PairwiseMetricInstance
+    metricSpec: GoogleCloudAiplatformV1beta1PairwiseMetricSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseMetricInstance(
+    typing_extensions.TypedDict, total=False
+):
+    jsonInstance: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseMetricResult(
+    typing_extensions.TypedDict, total=False
+):
+    explanation: str
+    pairwiseChoice: typing_extensions.Literal[
+        "PAIRWISE_CHOICE_UNSPECIFIED", "BASELINE", "CANDIDATE", "TIE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PairwiseMetricSpec(
+    typing_extensions.TypedDict, total=False
+):
+    metricPromptTemplate: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput(
     typing_extensions.TypedDict, total=False
 ):
@@ -5080,6 +5291,8 @@ class GoogleCloudAiplatformV1beta1PersistentResource(
     resourcePools: _list[GoogleCloudAiplatformV1beta1ResourcePool]
     resourceRuntime: GoogleCloudAiplatformV1beta1ResourceRuntime
     resourceRuntimeSpec: GoogleCloudAiplatformV1beta1ResourceRuntimeSpec
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -5103,7 +5316,9 @@ class GoogleCloudAiplatformV1beta1PipelineJob(typing_extensions.TypedDict, total
     labels: dict[str, typing.Any]
     name: str
     network: str
+    originalPipelineJobId: str
     pipelineSpec: dict[str, typing.Any]
+    pipelineTaskRerunConfigs: _list[GoogleCloudAiplatformV1beta1PipelineTaskRerunConfig]
     preflightValidations: bool
     reservedIpRanges: _list[str]
     runtimeConfig: GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig
@@ -5239,10 +5454,59 @@ class GoogleCloudAiplatformV1beta1PipelineTaskExecutorDetailCustomJobDetail(
     job: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1PipelineTaskRerunConfig(
+    typing_extensions.TypedDict, total=False
+):
+    inputs: GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigInputs
+    skipDownstreamTasks: bool
+    skipTask: bool
+    taskId: str
+    taskName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigArtifactList(
+    typing_extensions.TypedDict, total=False
+):
+    artifacts: _list[GoogleCloudAiplatformV1beta1RuntimeArtifact]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PipelineTaskRerunConfigInputs(
+    typing_extensions.TypedDict, total=False
+):
+    artifacts: dict[str, typing.Any]
+    parameterValues: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1PipelineTemplateMetadata(
     typing_extensions.TypedDict, total=False
 ):
     version: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PointwiseMetricInput(
+    typing_extensions.TypedDict, total=False
+):
+    instance: GoogleCloudAiplatformV1beta1PointwiseMetricInstance
+    metricSpec: GoogleCloudAiplatformV1beta1PointwiseMetricSpec
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PointwiseMetricInstance(
+    typing_extensions.TypedDict, total=False
+):
+    jsonInstance: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PointwiseMetricResult(
+    typing_extensions.TypedDict, total=False
+):
+    explanation: str
+    score: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PointwiseMetricSpec(
+    typing_extensions.TypedDict, total=False
+):
+    metricPromptTemplate: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Port(typing_extensions.TypedDict, total=False):
@@ -5320,6 +5584,7 @@ class GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig(
     typing_extensions.TypedDict, total=False
 ):
     enablePrivateServiceConnect: bool
+    enableSecurePrivateServiceConnect: bool
     projectAllowlist: _list[str]
     serviceAttachment: str
 
@@ -5388,6 +5653,9 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToAction(
     )
     deploy: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy
     deployGke: GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke
+    multiDeployVertex: (
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex
+    )
     openEvaluationPipeline: (
         GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences
     )
@@ -5445,6 +5713,14 @@ class GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke(
     typing_extensions.TypedDict, total=False
 ):
     gkeYamlConfigs: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex(
+    typing_extensions.TypedDict, total=False
+):
+    multiDeployVertex: _list[
+        GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy
+    ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1PublisherModelCallToActionOpenFineTuningPipelines(
@@ -5746,11 +6022,13 @@ class GoogleCloudAiplatformV1beta1RagContextsContext(
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RagCorpus(typing_extensions.TypedDict, total=False):
+    corpusStatus: GoogleCloudAiplatformV1beta1CorpusStatus
     createTime: str
     description: str
     displayName: str
     name: str
     ragEmbeddingModelConfig: GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig
+    ragVectorDbConfig: GoogleCloudAiplatformV1beta1RagVectorDbConfig
     updateTime: str
 
 @typing.type_check_only
@@ -5803,6 +6081,7 @@ class GoogleCloudAiplatformV1beta1RagFile(typing_extensions.TypedDict, total=Fal
     description: str
     directUploadSource: GoogleCloudAiplatformV1beta1DirectUploadSource
     displayName: str
+    fileStatus: GoogleCloudAiplatformV1beta1FileStatus
     gcsSource: GoogleCloudAiplatformV1beta1GcsSource
     googleDriveSource: GoogleCloudAiplatformV1beta1GoogleDriveSource
     jiraSource: GoogleCloudAiplatformV1beta1JiraSource
@@ -5810,6 +6089,7 @@ class GoogleCloudAiplatformV1beta1RagFile(typing_extensions.TypedDict, total=Fal
     ragFileType: typing_extensions.Literal[
         "RAG_FILE_TYPE_UNSPECIFIED", "RAG_FILE_TYPE_TXT", "RAG_FILE_TYPE_PDF"
     ]
+    sharePointSources: GoogleCloudAiplatformV1beta1SharePointSources
     sizeBytes: str
     slackSource: GoogleCloudAiplatformV1beta1SlackSource
     updateTime: str
@@ -5822,9 +6102,64 @@ class GoogleCloudAiplatformV1beta1RagFileChunkingConfig(
     chunkSize: int
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagFileParsingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    useAdvancedPdfParsing: bool
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1RagQuery(typing_extensions.TypedDict, total=False):
+    ranking: GoogleCloudAiplatformV1beta1RagQueryRanking
     similarityTopK: int
     text: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagQueryRanking(
+    typing_extensions.TypedDict, total=False
+):
+    alpha: float
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfig(
+    typing_extensions.TypedDict, total=False
+):
+    apiAuth: GoogleCloudAiplatformV1beta1ApiAuth
+    pinecone: GoogleCloudAiplatformV1beta1RagVectorDbConfigPinecone
+    ragManagedDb: GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDb
+    vertexFeatureStore: GoogleCloudAiplatformV1beta1RagVectorDbConfigVertexFeatureStore
+    vertexVectorSearch: GoogleCloudAiplatformV1beta1RagVectorDbConfigVertexVectorSearch
+    weaviate: GoogleCloudAiplatformV1beta1RagVectorDbConfigWeaviate
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfigPinecone(
+    typing_extensions.TypedDict, total=False
+):
+    indexName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfigRagManagedDb(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfigVertexFeatureStore(
+    typing_extensions.TypedDict, total=False
+):
+    featureViewResourceName: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfigVertexVectorSearch(
+    typing_extensions.TypedDict, total=False
+):
+    index: str
+    indexEndpoint: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RagVectorDbConfigWeaviate(
+    typing_extensions.TypedDict, total=False
+):
+    collectionName: str
+    httpEndpoint: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RawPredictRequest(
@@ -5972,6 +6307,15 @@ class GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec(
     pickleObjectGcsUri: str
     pythonVersion: str
     requirementsGcsUri: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RebaseTunedModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    artifactDestination: GoogleCloudAiplatformV1beta1GcsDestination
+    deployToSameEndpoint: bool
+    tunedModelRef: GoogleCloudAiplatformV1beta1TunedModelRef
+    tuningJob: GoogleCloudAiplatformV1beta1TuningJob
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RebootPersistentResourceOperationMetadata(
@@ -6128,7 +6472,6 @@ class GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStore(
     ragResources: _list[
         GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource
     ]
-    ranking: GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking
     vectorDistanceThreshold: float
 
 @typing.type_check_only
@@ -6137,12 +6480,6 @@ class GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResour
 ):
     ragCorpus: str
     ragFileIds: _list[str]
-
-@typing.type_check_only
-class GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking(
-    typing_extensions.TypedDict, total=False
-):
-    alpha: float
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RetrieveContextsResponse(
@@ -6179,6 +6516,17 @@ class GoogleCloudAiplatformV1beta1RougeSpec(typing_extensions.TypedDict, total=F
     rougeType: str
     splitSummaries: bool
     useStemmer: bool
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1RuntimeArtifact(
+    typing_extensions.TypedDict, total=False
+):
+    customProperties: dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
+    name: str
+    properties: dict[str, typing.Any]
+    type: GoogleCloudAiplatformV1beta1ArtifactTypeSchema
+    uri: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1RuntimeConfig(
@@ -6228,6 +6576,7 @@ class GoogleCloudAiplatformV1beta1SafetyRating(
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
     ]
     probability: typing_extensions.Literal[
         "HARM_PROBABILITY_UNSPECIFIED", "NEGLIGIBLE", "LOW", "MEDIUM", "HIGH"
@@ -6260,6 +6609,7 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
     ]
     method: typing_extensions.Literal[
         "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
@@ -6270,6 +6620,7 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "BLOCK_MEDIUM_AND_ABOVE",
         "BLOCK_ONLY_HIGH",
         "BLOCK_NONE",
+        "OFF",
     ]
 
 @typing.type_check_only
@@ -6360,14 +6711,21 @@ class GoogleCloudAiplatformV1beta1ScheduleRunResponse(
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Scheduling(typing_extensions.TypedDict, total=False):
     disableRetries: bool
+    maxWaitDuration: str
     restartJobOnWorkerRestart: bool
     strategy: typing_extensions.Literal[
-        "STRATEGY_UNSPECIFIED", "ON_DEMAND", "LOW_COST", "STANDARD", "SPOT"
+        "STRATEGY_UNSPECIFIED",
+        "ON_DEMAND",
+        "LOW_COST",
+        "STANDARD",
+        "SPOT",
+        "FLEX_START",
     ]
     timeout: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=False):
+    anyOf: _list[GoogleCloudAiplatformV1beta1Schema]
     default: typing.Any
     description: str
     enum: _list[str]
@@ -6385,6 +6743,7 @@ class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=Fals
     nullable: bool
     pattern: str
     properties: dict[str, typing.Any]
+    propertyOrdering: _list[str]
     required: _list[str]
     title: str
     type: typing_extensions.Literal[
@@ -7992,6 +8351,28 @@ class GoogleCloudAiplatformV1beta1ServiceAccountSpec(
     serviceAccount: str
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1SharePointSources(
+    typing_extensions.TypedDict, total=False
+):
+    sharePointSources: _list[
+        GoogleCloudAiplatformV1beta1SharePointSourcesSharePointSource
+    ]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1SharePointSourcesSharePointSource(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    clientSecret: GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig
+    driveId: str
+    driveName: str
+    fileId: str
+    sharepointFolderId: str
+    sharepointFolderPath: str
+    sharepointSiteName: str
+    tenantId: str
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1ShieldedVmConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -8451,7 +8832,9 @@ class GoogleCloudAiplatformV1beta1SupervisedTuningDataStats(
 ):
     totalBillableCharacterCount: str
     totalBillableTokenCount: str
+    totalTruncatedExampleCount: str
     totalTuningCharacterCount: str
+    truncatedExampleIndices: _list[str]
     tuningDatasetExampleCount: str
     tuningStepCount: str
     userDatasetExamples: _list[GoogleCloudAiplatformV1beta1Content]
@@ -8912,6 +9295,14 @@ class GoogleCloudAiplatformV1beta1TrialParameter(
 class GoogleCloudAiplatformV1beta1TunedModel(typing_extensions.TypedDict, total=False):
     endpoint: str
     model: str
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1TunedModelRef(
+    typing_extensions.TypedDict, total=False
+):
+    pipelineJob: str
+    tunedModel: str
+    tuningJob: str
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1TuningDataStats(

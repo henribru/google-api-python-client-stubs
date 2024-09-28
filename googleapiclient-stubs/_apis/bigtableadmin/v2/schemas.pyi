@@ -53,9 +53,11 @@ class AutoscalingTargets(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    backupType: typing_extensions.Literal["BACKUP_TYPE_UNSPECIFIED", "STANDARD", "HOT"]
     encryptionInfo: EncryptionInfo
     endTime: str
     expireTime: str
+    hotToStandardTime: str
     name: str
     sizeBytes: str
     sourceBackup: str
@@ -480,6 +482,7 @@ class ModifyColumnFamiliesRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MultiClusterRoutingUseAny(typing_extensions.TypedDict, total=False):
     clusterIds: _list[str]
+    rowAffinity: RowAffinity
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -540,6 +543,9 @@ class RestoreTableMetadata(typing_extensions.TypedDict, total=False):
 class RestoreTableRequest(typing_extensions.TypedDict, total=False):
     backup: str
     tableId: str
+
+@typing.type_check_only
+class RowAffinity(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

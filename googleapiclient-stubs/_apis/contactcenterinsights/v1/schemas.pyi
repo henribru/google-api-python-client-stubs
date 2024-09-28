@@ -215,6 +215,7 @@ class GoogleCloudContactcenterinsightsV1Conversation(
         GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData
     )
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
+    metadataJson: str
     name: str
     obfuscatedUserId: str
     qualityMetadata: GoogleCloudContactcenterinsightsV1ConversationQualityMetadata
@@ -1155,6 +1156,7 @@ class GoogleCloudContactcenterinsightsV1alpha1Conversation(
         GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionData
     )
     medium: typing_extensions.Literal["MEDIUM_UNSPECIFIED", "PHONE_CALL", "CHAT"]
+    metadataJson: str
     name: str
     obfuscatedUserId: str
     qualityMetadata: GoogleCloudContactcenterinsightsV1alpha1ConversationQualityMetadata

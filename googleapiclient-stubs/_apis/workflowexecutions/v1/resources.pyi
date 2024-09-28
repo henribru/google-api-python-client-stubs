@@ -40,7 +40,15 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class StepEntriesResource(googleapiclient.discovery.Resource):
                         def get(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            view: typing_extensions.Literal[
+                                "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
+                                "EXECUTION_ENTRY_VIEW_BASIC",
+                                "EXECUTION_ENTRY_VIEW_DETAILED",
+                            ] = ...,
+                            **kwargs: typing.Any,
                         ) -> StepEntryHttpRequest: ...
                         def list(
                             self,
@@ -51,6 +59,11 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             skip: int = ...,
+                            view: typing_extensions.Literal[
+                                "EXECUTION_ENTRY_VIEW_UNSPECIFIED",
+                                "EXECUTION_ENTRY_VIEW_BASIC",
+                                "EXECUTION_ENTRY_VIEW_DETAILED",
+                            ] = ...,
                             **kwargs: typing.Any,
                         ) -> ListStepEntriesResponseHttpRequest: ...
                         def list_next(
@@ -73,6 +86,13 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
                         body: Execution = ...,
                         **kwargs: typing.Any,
                     ) -> ExecutionHttpRequest: ...
+                    def deleteExecutionHistory(
+                        self,
+                        *,
+                        name: str,
+                        body: DeleteExecutionHistoryRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
                     def exportData(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> ExportDataResponseHttpRequest: ...
@@ -132,6 +152,14 @@ class WorkflowExecutionsResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class ExecutionHttpRequest(googleapiclient.http.HttpRequest):

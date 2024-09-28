@@ -643,6 +643,20 @@ class GoogleCloudRetailV2Product(typing_extensions.TypedDict, total=False):
     variants: _list[GoogleCloudRetailV2Product]
 
 @typing.type_check_only
+class GoogleCloudRetailV2ProductAttributeInterval(
+    typing_extensions.TypedDict, total=False
+):
+    interval: GoogleCloudRetailV2Interval
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2ProductAttributeValue(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    value: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2ProductDetail(typing_extensions.TypedDict, total=False):
     product: GoogleCloudRetailV2Product
     quantity: int
@@ -882,6 +896,7 @@ class GoogleCloudRetailV2SearchRequest(typing_extensions.TypedDict, total=False)
     boostSpec: GoogleCloudRetailV2SearchRequestBoostSpec
     branch: str
     canonicalFilter: str
+    conversationalSearchSpec: GoogleCloudRetailV2SearchRequestConversationalSearchSpec
     dynamicFacetSpec: GoogleCloudRetailV2SearchRequestDynamicFacetSpec
     entity: str
     facetSpecs: _list[GoogleCloudRetailV2SearchRequestFacetSpec]
@@ -899,6 +914,7 @@ class GoogleCloudRetailV2SearchRequest(typing_extensions.TypedDict, total=False)
         "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
     ]
     spellCorrectionSpec: GoogleCloudRetailV2SearchRequestSpellCorrectionSpec
+    tileNavigationSpec: GoogleCloudRetailV2SearchRequestTileNavigationSpec
     userInfo: GoogleCloudRetailV2UserInfo
     variantRollupKeys: _list[str]
     visitorId: str
@@ -918,6 +934,30 @@ class GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec(
 ):
     boost: float
     condition: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchRequestConversationalSearchSpec(
+    typing_extensions.TypedDict, total=False
+):
+    conversationId: str
+    followupConversationRequested: bool
+    userAnswer: GoogleCloudRetailV2SearchRequestConversationalSearchSpecUserAnswer
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchRequestConversationalSearchSpecUserAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    selectedAnswer: (
+        GoogleCloudRetailV2SearchRequestConversationalSearchSpecUserAnswerSelectedAnswer
+    )
+    textAnswer: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchRequestConversationalSearchSpecUserAnswerSelectedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2ProductAttributeValue
+    productAttributeValues: _list[GoogleCloudRetailV2ProductAttributeValue]
 
 @typing.type_check_only
 class GoogleCloudRetailV2SearchRequestDynamicFacetSpec(
@@ -968,9 +1008,19 @@ class GoogleCloudRetailV2SearchRequestSpellCorrectionSpec(
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "SUGGESTION_ONLY", "AUTO"]
 
 @typing.type_check_only
+class GoogleCloudRetailV2SearchRequestTileNavigationSpec(
+    typing_extensions.TypedDict, total=False
+):
+    appliedTiles: _list[GoogleCloudRetailV2Tile]
+    tileNavigationRequested: bool
+
+@typing.type_check_only
 class GoogleCloudRetailV2SearchResponse(typing_extensions.TypedDict, total=False):
     appliedControls: _list[str]
     attributionToken: str
+    conversationalSearchResult: (
+        GoogleCloudRetailV2SearchResponseConversationalSearchResult
+    )
     correctedQuery: str
     experimentInfo: _list[GoogleCloudRetailV2ExperimentInfo]
     facets: _list[GoogleCloudRetailV2SearchResponseFacet]
@@ -981,7 +1031,37 @@ class GoogleCloudRetailV2SearchResponse(typing_extensions.TypedDict, total=False
     queryExpansionInfo: GoogleCloudRetailV2SearchResponseQueryExpansionInfo
     redirectUri: str
     results: _list[GoogleCloudRetailV2SearchResponseSearchResult]
+    tileNavigationResult: GoogleCloudRetailV2SearchResponseTileNavigationResult
     totalSize: int
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchResponseConversationalSearchResult(
+    typing_extensions.TypedDict, total=False
+):
+    additionalFilter: (
+        GoogleCloudRetailV2SearchResponseConversationalSearchResultAdditionalFilter
+    )
+    additionalFilters: _list[
+        GoogleCloudRetailV2SearchResponseConversationalSearchResultAdditionalFilter
+    ]
+    conversationId: str
+    followupQuestion: str
+    refinedQuery: str
+    suggestedAnswers: _list[
+        GoogleCloudRetailV2SearchResponseConversationalSearchResultSuggestedAnswer
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchResponseConversationalSearchResultAdditionalFilter(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2ProductAttributeValue
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchResponseConversationalSearchResultSuggestedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2ProductAttributeValue
 
 @typing.type_check_only
 class GoogleCloudRetailV2SearchResponseFacet(typing_extensions.TypedDict, total=False):
@@ -1016,6 +1096,12 @@ class GoogleCloudRetailV2SearchResponseSearchResult(
     personalLabels: _list[str]
     product: GoogleCloudRetailV2Product
     variantRollupValues: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRetailV2SearchResponseTileNavigationResult(
+    typing_extensions.TypedDict, total=False
+):
+    tiles: _list[GoogleCloudRetailV2Tile]
 
 @typing.type_check_only
 class GoogleCloudRetailV2ServingConfig(typing_extensions.TypedDict, total=False):
@@ -1072,6 +1158,12 @@ class GoogleCloudRetailV2SetInventoryRequest(typing_extensions.TypedDict, total=
 class GoogleCloudRetailV2SetInventoryResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2Tile(typing_extensions.TypedDict, total=False):
+    productAttributeInterval: GoogleCloudRetailV2ProductAttributeInterval
+    productAttributeValue: GoogleCloudRetailV2ProductAttributeValue
+    representativeProductId: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2TuneModelMetadata(typing_extensions.TypedDict, total=False):

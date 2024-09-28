@@ -41,7 +41,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     freeShippingThreshold: _list[FreeShippingThreshold]
     gender: str
     googleProductCategory: str
-    gtin: str
+    gtin: _list[str]
     identifierExists: bool
     imageLink: str
     includedDestinations: _list[str]
@@ -144,6 +144,8 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only
@@ -190,6 +192,8 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
     resolution: str
     severity: typing_extensions.Literal[
@@ -255,6 +259,8 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only

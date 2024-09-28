@@ -75,6 +75,7 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     description: str
     ipCidrRange: str
     labels: dict[str, typing.Any]
+    migration: Migration
     name: str
     network: str
     overlaps: _list[
@@ -90,7 +91,9 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     prefixLength: int
     targetCidrRange: _list[str]
     updateTime: str
-    usage: typing_extensions.Literal["USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC"]
+    usage: typing_extensions.Literal[
+        "USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC", "FOR_MIGRATION"
+    ]
     users: _list[str]
 
 @typing.type_check_only
@@ -123,6 +126,11 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class Migration(typing_extensions.TypedDict, total=False):
+    source: str
+    target: str
 
 @typing.type_check_only
 class OperationMetadata(typing_extensions.TypedDict, total=False):

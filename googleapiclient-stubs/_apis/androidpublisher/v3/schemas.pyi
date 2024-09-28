@@ -460,6 +460,10 @@ class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
     obfuscatedExternalProfileId: str
 
 @typing.type_check_only
+class ExternalOfferInitialAcquisitionDetails(typing_extensions.TypedDict, total=False):
+    externalTransactionId: str
+
+@typing.type_check_only
 class ExternalSubscription(typing_extensions.TypedDict, total=False):
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "RECURRING", "PREPAID"
@@ -470,6 +474,7 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
     createTime: str
     currentPreTaxAmount: Price
     currentTaxAmount: Price
+    externalOfferInitialAcquisitionDetails: ExternalOfferInitialAcquisitionDetails
     externalTransactionId: str
     oneTimeTransaction: OneTimeExternalTransaction
     originalPreTaxAmount: Price
@@ -1063,7 +1068,11 @@ class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RevocationContext(typing_extensions.TypedDict, total=False):
+    fullRefund: RevocationContextFullRefund
     proratedRefund: RevocationContextProratedRefund
+
+@typing.type_check_only
+class RevocationContextFullRefund(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RevocationContextProratedRefund(typing_extensions.TypedDict, total=False): ...

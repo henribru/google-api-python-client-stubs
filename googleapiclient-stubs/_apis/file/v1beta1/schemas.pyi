@@ -72,6 +72,10 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
     sourceBackup: str
 
 @typing.type_check_only
+class FixedIOPS(typing_extensions.TypedDict, total=False):
+    maxReadIops: str
+
+@typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     typing_extensions.TypedDict, total=False
 ):
@@ -170,10 +174,17 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     tier: str
 
 @typing.type_check_only
+class IOPSPerTB(typing_extensions.TypedDict, total=False):
+    maxReadIopsPerTb: str
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     capacityGb: str
     capacityStepSizeGb: str
+    configurablePerformanceEnabled: bool
     createTime: str
+    deletionProtectionEnabled: bool
+    deletionProtectionReason: str
     description: str
     directoryServices: DirectoryServicesConfig
     etag: str
@@ -185,6 +196,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     multiShareEnabled: bool
     name: str
     networks: _list[NetworkConfig]
+    performanceConfig: PerformanceConfig
+    performanceLimits: PerformanceLimits
     protocol: typing_extensions.Literal[
         "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
     ]
@@ -327,6 +340,18 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PerformanceConfig(typing_extensions.TypedDict, total=False):
+    fixedIops: FixedIOPS
+    iopsPerTb: IOPSPerTB
+
+@typing.type_check_only
+class PerformanceLimits(typing_extensions.TypedDict, total=False):
+    maxReadIops: str
+    maxReadThroughputBps: str
+    maxWriteIops: str
+    maxWriteThroughputBps: str
 
 @typing.type_check_only
 class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...

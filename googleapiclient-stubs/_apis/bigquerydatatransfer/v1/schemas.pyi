@@ -85,6 +85,10 @@ class EnrollDataSourcesRequest(typing_extensions.TypedDict, total=False):
     dataSourceIds: _list[str]
 
 @typing.type_check_only
+class EventDrivenSchedule(typing_extensions.TypedDict, total=False):
+    pubsubSubscription: str
+
+@typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
     dataSources: _list[DataSource]
     nextPageToken: str
@@ -118,10 +122,19 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ManualSchedule(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ScheduleOptions(typing_extensions.TypedDict, total=False):
     disableAutoScheduling: bool
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ScheduleOptionsV2(typing_extensions.TypedDict, total=False):
+    eventDrivenSchedule: EventDrivenSchedule
+    manualSchedule: ManualSchedule
+    timeBasedSchedule: TimeBasedSchedule
 
 @typing.type_check_only
 class ScheduleTransferRunsRequest(typing_extensions.TypedDict, total=False):
@@ -148,6 +161,12 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class TimeBasedSchedule(typing_extensions.TypedDict, total=False):
+    endTime: str
+    schedule: str
+    startTime: str
+
+@typing.type_check_only
 class TimeRange(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
@@ -162,6 +181,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     displayName: str
     emailPreferences: EmailPreferences
     encryptionConfiguration: EncryptionConfiguration
+    error: Status
     name: str
     nextRunTime: str
     notificationPubsubTopic: str
@@ -169,6 +189,7 @@ class TransferConfig(typing_extensions.TypedDict, total=False):
     params: dict[str, typing.Any]
     schedule: str
     scheduleOptions: ScheduleOptions
+    scheduleOptionsV2: ScheduleOptionsV2
     state: typing_extensions.Literal[
         "TRANSFER_STATE_UNSPECIFIED",
         "PENDING",

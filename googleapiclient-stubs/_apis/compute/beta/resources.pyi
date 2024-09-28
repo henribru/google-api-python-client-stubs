@@ -5364,6 +5364,68 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
+    class RegionInstanceGroupManagerResizeRequestsResource(
+        googleapiclient.discovery.Resource
+    ):
+        def cancel(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def delete(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def get(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            resizeRequest: str,
+            **kwargs: typing.Any,
+        ) -> InstanceGroupManagerResizeRequestHttpRequest: ...
+        def insert(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagerResizeRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> RegionInstanceGroupManagerResizeRequestsListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: RegionInstanceGroupManagerResizeRequestsListResponseHttpRequest,
+            previous_response: RegionInstanceGroupManagerResizeRequestsListResponse,
+        ) -> RegionInstanceGroupManagerResizeRequestsListResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class RegionInstanceGroupManagersResource(googleapiclient.discovery.Resource):
         def abandonInstances(
             self,
@@ -9073,6 +9135,9 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def regionDisks(self) -> RegionDisksResource: ...
     def regionHealthCheckServices(self) -> RegionHealthCheckServicesResource: ...
     def regionHealthChecks(self) -> RegionHealthChecksResource: ...
+    def regionInstanceGroupManagerResizeRequests(
+        self,
+    ) -> RegionInstanceGroupManagerResizeRequestsResource: ...
     def regionInstanceGroupManagers(self) -> RegionInstanceGroupManagersResource: ...
     def regionInstanceGroups(self) -> RegionInstanceGroupsResource: ...
     def regionInstanceTemplates(self) -> RegionInstanceTemplatesResource: ...
@@ -10285,6 +10350,16 @@ class RegionInstanceGroupManagerListHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RegionInstanceGroupManagerList: ...
+
+@typing.type_check_only
+class RegionInstanceGroupManagerResizeRequestsListResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RegionInstanceGroupManagerResizeRequestsListResponse: ...
 
 @typing.type_check_only
 class RegionInstanceGroupManagersListErrorsResponseHttpRequest(

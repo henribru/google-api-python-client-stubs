@@ -74,6 +74,8 @@ class PlantInfo(typing_extensions.TypedDict, total=False):
         "GRAMINALES",
         "RAGWEED",
         "MUGWORT",
+        "JAPANESE_CEDAR",
+        "JAPANESE_CYPRESS",
     ]
     displayName: str
     inSeason: bool

@@ -78,10 +78,17 @@ class CloudControl2SharedOperationsReconciliationOperationMetadata(
     ]
 
 @typing.type_check_only
+class CloudSQLBackupRunSource(typing_extensions.TypedDict, total=False):
+    backupRunId: str
+    instanceId: str
+    project: str
+
+@typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     automatedBackupPolicy: AutomatedBackupPolicy
     backupSource: BackupSource
+    cloudsqlBackupRunSource: CloudSQLBackupRunSource
     clusterType: typing_extensions.Literal[
         "CLUSTER_TYPE_UNSPECIFIED", "PRIMARY", "SECONDARY"
     ]
@@ -134,6 +141,32 @@ class Cluster(typing_extensions.TypedDict, total=False):
     trialMetadata: TrialMetadata
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class ClusterUpgradeDetails(typing_extensions.TypedDict, total=False):
+    clusterType: typing_extensions.Literal[
+        "CLUSTER_TYPE_UNSPECIFIED", "PRIMARY", "SECONDARY"
+    ]
+    databaseVersion: typing_extensions.Literal[
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+    ]
+    instanceUpgradeDetails: _list[InstanceUpgradeDetails]
+    name: str
+    stageInfo: _list[StageInfo]
+    upgradeStatus: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
 
 @typing.type_check_only
 class ConnectionInfo(typing_extensions.TypedDict, total=False):
@@ -283,6 +316,23 @@ class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
     enablePublicIp: bool
 
 @typing.type_check_only
+class InstanceUpgradeDetails(typing_extensions.TypedDict, total=False):
+    instanceType: typing_extensions.Literal[
+        "INSTANCE_TYPE_UNSPECIFIED", "PRIMARY", "READ_POOL", "SECONDARY"
+    ]
+    name: str
+    upgradeStatus: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
 class IntegerRestrictions(typing_extensions.TypedDict, total=False):
     maxValue: str
     minValue: str
@@ -373,6 +423,7 @@ class ObservabilityInstanceConfig(typing_extensions.TypedDict, total=False):
     queryPlansPerMinute: int
     recordApplicationTags: bool
     trackActiveQueries: bool
+    trackClientAddress: bool
     trackWaitEventTypes: bool
     trackWaitEvents: bool
 
@@ -436,6 +487,7 @@ class ReadPoolConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False):
+    nodeIds: _list[str]
     requestId: str
     validateOnly: bool
 
@@ -465,6 +517,30 @@ class SslConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class StageInfo(typing_extensions.TypedDict, total=False):
+    logsUrl: str
+    stage: typing_extensions.Literal[
+        "STAGE_UNSPECIFIED",
+        "ALLOYDB_PRECHECK",
+        "PG_UPGRADE_CHECK",
+        "PREPARE_FOR_UPGRADE",
+        "PRIMARY_INSTANCE_UPGRADE",
+        "READ_POOL_INSTANCES_UPGRADE",
+        "ROLLBACK",
+        "CLEANUP",
+    ]
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -474,6 +550,7 @@ class Status(typing_extensions.TypedDict, total=False):
 class StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration(
     typing_extensions.TypedDict, total=False
 ):
+    automaticFailoverRoutingConfigured: bool
     availabilityType: typing_extensions.Literal[
         "AVAILABILITY_TYPE_UNSPECIFIED",
         "ZONAL",
@@ -513,17 +590,9 @@ class StorageDatabasecenterPartnerapiV1mainCompliance(
 class StorageDatabasecenterPartnerapiV1mainCustomMetadataData(
     typing_extensions.TypedDict, total=False
 ):
-    databaseMetadata: _list[StorageDatabasecenterPartnerapiV1mainDatabaseMetadata]
-
-@typing.type_check_only
-class StorageDatabasecenterPartnerapiV1mainDatabaseMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
-    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
-    product: StorageDatabasecenterProtoCommonProduct
-    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
-    resourceName: str
+    internalResourceMetadata: _list[
+        StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata
+    ]
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed(
@@ -579,6 +648,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "ERROR",
     ]
     signalId: str
+    signalSeverity: typing_extensions.Literal[
+        "SIGNAL_SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
     signalType: typing_extensions.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
@@ -726,6 +798,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     product: StorageDatabasecenterProtoCommonProduct
     resourceContainer: str
     resourceName: str
+    tagsSet: StorageDatabasecenterPartnerapiV1mainTags
     updationTime: str
     userLabelSet: StorageDatabasecenterPartnerapiV1mainUserLabels
 
@@ -834,11 +907,22 @@ class StorageDatabasecenterPartnerapiV1mainEntitlement(
     type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
+    backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    product: StorageDatabasecenterProtoCommonProduct
+    resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+    resourceName: str
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainMachineConfiguration(
     typing_extensions.TypedDict, total=False
 ):
     cpuCount: int
     memorySizeInBytes: str
+    shardCount: int
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainObservabilityMetricData(
@@ -886,6 +970,12 @@ class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
     timeBasedRetention: str
 
 @typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainTags(
+    typing_extensions.TypedDict, total=False
+):
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainUserLabels(
     typing_extensions.TypedDict, total=False
 ):
@@ -908,6 +998,8 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ENGINE_MEMORYSTORE_FOR_REDIS",
         "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
         "ENGINE_OTHER",
+        "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
+        "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
     ]
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
@@ -921,6 +1013,7 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "PRODUCT_TYPE_MEMORYSTORE",
         "PRODUCT_TYPE_BIGTABLE",
         "PRODUCT_TYPE_OTHER",
+        "PRODUCT_TYPE_FIRESTORE",
     ]
     version: str
 
@@ -970,6 +1063,7 @@ class TimeBasedRetention(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TrialMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    graceEndTime: str
     startTime: str
     upgradeTime: str
 
@@ -978,8 +1072,37 @@ class UpdatePolicy(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DEFAULT", "FORCE_APPLY"]
 
 @typing.type_check_only
+class UpgradeClusterRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    requestId: str
+    validateOnly: bool
+    version: typing_extensions.Literal[
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+    ]
+
+@typing.type_check_only
+class UpgradeClusterResponse(typing_extensions.TypedDict, total=False):
+    clusterUpgradeDetails: _list[ClusterUpgradeDetails]
+    message: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     databaseRoles: _list[str]
+    keepExtraRoles: bool
     name: str
     password: str
     userType: typing_extensions.Literal[

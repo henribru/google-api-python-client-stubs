@@ -92,7 +92,12 @@ class ColumnLayout(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ColumnSettings(typing_extensions.TypedDict, total=False):
+    alignment: typing_extensions.Literal[
+        "CELL_ALIGNMENT_UNSPECIFIED", "LEFT", "CENTER", "RIGHT"
+    ]
     column: str
+    displayName: str
+    thresholds: _list[Threshold]
     visible: bool
 
 @typing.type_check_only

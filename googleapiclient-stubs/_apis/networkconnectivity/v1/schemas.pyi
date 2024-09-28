@@ -41,6 +41,7 @@ class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
     disableGlobalAccess: bool
     network: str
     producerInstanceId: str
+    producerInstanceMetadata: dict[str, typing.Any]
     project: str
     serviceAttachmentIpAddressMap: dict[str, typing.Any]
     state: typing_extensions.Literal[
@@ -48,6 +49,7 @@ class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
         "VALID",
         "CONNECTION_POLICY_MISSING",
         "POLICY_LIMIT_REACHED",
+        "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED",
     ]
 
 @typing.type_check_only
@@ -65,6 +67,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     ip: str
     network: str
     producerInstanceId: str
+    producerInstanceMetadata: dict[str, typing.Any]
     project: str
     pscConnectionId: str
     selectedSubnetwork: str
@@ -180,6 +183,7 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     description: str
     ipCidrRange: str
     labels: dict[str, typing.Any]
+    migration: Migration
     name: str
     network: str
     overlaps: _list[
@@ -195,7 +199,9 @@ class InternalRange(typing_extensions.TypedDict, total=False):
     prefixLength: int
     targetCidrRange: _list[str]
     updateTime: str
-    usage: typing_extensions.Literal["USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC"]
+    usage: typing_extensions.Literal[
+        "USAGE_UNSPECIFIED", "FOR_VPC", "EXTERNAL_TO_VPC", "FOR_MIGRATION"
+    ]
     users: _list[str]
 
 @typing.type_check_only
@@ -216,6 +222,7 @@ class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
 class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
     excludeExportRanges: _list[str]
     includeExportRanges: _list[str]
+    producerVpcSpokes: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -327,6 +334,11 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Migration(typing_extensions.TypedDict, total=False):
+    source: str
+    target: str
+
+@typing.type_check_only
 class NextHopInterconnectAttachment(typing_extensions.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
@@ -413,8 +425,10 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     ]
     gceOperation: str
     producerInstanceId: str
+    producerInstanceMetadata: dict[str, typing.Any]
     pscConnectionId: str
     selectedSubnetwork: str
+    serviceClass: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
     ]

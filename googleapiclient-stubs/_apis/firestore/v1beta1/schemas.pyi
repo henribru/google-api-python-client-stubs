@@ -203,6 +203,8 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     distanceMeasure: typing_extensions.Literal[
         "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
     ]
+    distanceResultField: str
+    distanceThreshold: float
     limit: int
     queryVector: Value
     vectorField: FieldReference

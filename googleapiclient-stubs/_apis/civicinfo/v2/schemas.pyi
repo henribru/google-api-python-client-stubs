@@ -100,6 +100,11 @@ class Contest(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class DivisionByAddressResponse(typing_extensions.TypedDict, total=False):
+    divisions: dict[str, typing.Any]
+    normalizedInput: SimpleAddressType
+
+@typing.type_check_only
 class DivisionSearchResponse(typing_extensions.TypedDict, total=False):
     kind: str
     results: _list[DivisionSearchResult]

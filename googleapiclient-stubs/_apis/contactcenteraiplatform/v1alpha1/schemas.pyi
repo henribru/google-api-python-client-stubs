@@ -151,6 +151,7 @@ class PrivateAccess(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscSetting(typing_extensions.TypedDict, total=False):
     allowedConsumerProjectIds: _list[str]
+    producerProjectIds: _list[str]
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):

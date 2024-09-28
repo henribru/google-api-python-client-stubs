@@ -109,6 +109,17 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class InstancesResource(googleapiclient.discovery.Resource):
+        def ListServerCertificates(
+            self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> InstancesListServerCertificatesResponseHttpRequest: ...
+        def RotateServerCertificate(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesRotateServerCertificateRequest = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def acquireSsrsLease(
             self,
             *,
@@ -118,6 +129,9 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> SqlInstancesAcquireSsrsLeaseResponseHttpRequest: ...
         def addServerCa(
+            self, *, project: str, instance: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def addServerCertificate(
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
         def clone(
@@ -541,6 +555,16 @@ class InstancesListServerCasResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InstancesListServerCasResponse: ...
+
+@typing.type_check_only
+class InstancesListServerCertificatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstancesListServerCertificatesResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

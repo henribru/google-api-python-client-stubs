@@ -29,6 +29,12 @@ class GoogleAdsSearchads360V0Common__AdScheduleInfo(
     ]
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Common__AdTextAsset(
+    typing_extensions.TypedDict, total=False
+):
+    text: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Common__AgeRangeInfo(
     typing_extensions.TypedDict, total=False
 ):
@@ -290,6 +296,7 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     averageCost: float
     averageCpc: float
     averageCpm: float
+    averageQualityScore: float
     clicks: str
     clientAccountConversions: float
     clientAccountConversionsValue: float
@@ -421,6 +428,8 @@ class GoogleAdsSearchads360V0Common__SearchAds360ResponsiveSearchAdInfo(
     typing_extensions.TypedDict, total=False
 ):
     adTrackingId: str
+    descriptions: _list[GoogleAdsSearchads360V0Common__AdTextAsset]
+    headlines: _list[GoogleAdsSearchads360V0Common__AdTextAsset]
     path1: str
     path2: str
 
@@ -492,6 +501,11 @@ class GoogleAdsSearchads360V0Common__Segments(typing_extensions.TypedDict, total
     device: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "MOBILE", "TABLET", "DESKTOP", "CONNECTED_TV", "OTHER"
     ]
+    geoTargetCity: str
+    geoTargetCountry: str
+    geoTargetMetro: str
+    geoTargetRegion: str
+    hour: int
     keyword: GoogleAdsSearchads360V0Common__Keyword
     month: str
     productBiddingCategoryLevel1: str
@@ -1295,6 +1309,7 @@ class GoogleAdsSearchads360V0Resources__Ad(typing_extensions.TypedDict, total=Fa
         "DISCOVERY_CAROUSEL_AD",
         "TRAVEL_AD",
         "DISCOVERY_VIDEO_RESPONSIVE_AD",
+        "MULTIMEDIA_AD",
     ]
 
 @typing.type_check_only
@@ -1396,6 +1411,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupAdLabel(
 ):
     adGroupAd: str
     label: str
+    ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
@@ -1536,6 +1552,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel(
 ):
     adGroupCriterion: str
     label: str
+    ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
@@ -1544,6 +1561,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupLabel(
 ):
     adGroup: str
     label: str
+    ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
@@ -1830,6 +1848,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "APP_CAMPAIGN_FOR_PRE_REGISTRATION",
         "VIDEO_REACH_TARGET_FREQUENCY",
         "TRAVEL_ACTIVITIES",
+        "SOCIAL_FACEBOOK_TRACKING_ONLY",
     ]
     advertisingChannelType: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1846,6 +1865,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
         "LOCAL_SERVICES",
         "DISCOVERY",
         "TRAVEL",
+        "SOCIAL",
     ]
     biddingStrategy: str
     biddingStrategySystemStatus: typing_extensions.Literal[
@@ -2090,6 +2110,7 @@ class GoogleAdsSearchads360V0Resources__CampaignLabel(
 ):
     campaign: str
     label: str
+    ownerCustomerId: str
     resourceName: str
 
 @typing.type_check_only
@@ -2313,9 +2334,19 @@ class GoogleAdsSearchads360V0Resources__CustomColumn(
     referencedSystemColumns: _list[str]
     referencesAttributes: bool
     referencesMetrics: bool
+    renderType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "NUMBER",
+        "PERCENT",
+        "MONEY",
+        "STRING",
+        "BOOLEAN",
+        "DATE",
+    ]
     resourceName: str
     valueType: typing_extensions.Literal[
-        "UNSPECIFIED", "UNKNOWN", "STRING", "INT64", "DOUBLE", "BOOLEAN"
+        "UNSPECIFIED", "UNKNOWN", "STRING", "INT64", "DOUBLE", "BOOLEAN", "DATE"
     ]
 
 @typing.type_check_only
@@ -2404,6 +2435,7 @@ class GoogleAdsSearchads360V0Resources__CustomerManagerLink(
     managerCustomer: str
     managerLinkId: str
     resourceName: str
+    startTime: str
     status: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "ACTIVE", "INACTIVE", "PENDING", "REFUSED", "CANCELED"
     ]

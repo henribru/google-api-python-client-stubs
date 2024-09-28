@@ -136,6 +136,7 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
         "UNABLE_TO_CRAWL",
         "DEVICE_OUT_OF_MEMORY",
         "FAILED_AI_STEP",
+        "TIMED_OUT",
     ]
     inconclusiveReason: typing_extensions.Literal[
         "INCONCLUSIVE_REASON_UNSPECIFIED",

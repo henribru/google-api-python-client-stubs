@@ -121,6 +121,22 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest,
                 previous_response: GoogleCloudRecaptchaenterpriseV1ListKeysResponse,
             ) -> GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest | None: ...
+            def listIpOverrides(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponseHttpRequest: ...
+            def listIpOverrides_next(
+                self,
+                previous_request: GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponseHttpRequest,
+                previous_response: GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse,
+            ) -> (
+                GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponseHttpRequest
+                | None
+            ): ...
             def migrate(
                 self,
                 *,
@@ -136,6 +152,15 @@ class RecaptchaEnterpriseResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudRecaptchaenterpriseV1KeyHttpRequest: ...
+            def removeIpOverride(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponseHttpRequest
+            ): ...
             def retrieveLegacySecretKey(
                 self, *, key: str, **kwargs: typing.Any
             ) -> GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponseHttpRequest: ...
@@ -280,6 +305,16 @@ class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponseHttpRequest(
     ) -> GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ListKeysResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -318,6 +353,16 @@ class GoogleCloudRecaptchaenterpriseV1MetricsHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRecaptchaenterpriseV1Metrics: ...
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesResponseHttpRequest(

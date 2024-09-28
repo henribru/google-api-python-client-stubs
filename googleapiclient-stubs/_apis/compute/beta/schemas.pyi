@@ -440,6 +440,7 @@ class BackendBucket(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     selfLink: str
+    usedBy: _list[BackendBucketUsedBy]
 
 @typing.type_check_only
 class BackendBucketCdnPolicy(typing_extensions.TypedDict, total=False):
@@ -489,6 +490,10 @@ class BackendBucketList(typing_extensions.TypedDict, total=False):
     warning: dict[str, typing.Any]
 
 @typing.type_check_only
+class BackendBucketUsedBy(typing_extensions.TypedDict, total=False):
+    reference: str
+
+@typing.type_check_only
 class BackendService(typing_extensions.TypedDict, total=False):
     affinityCookieTtlSec: int
     backends: _list[Backend]
@@ -504,6 +509,10 @@ class BackendService(typing_extensions.TypedDict, total=False):
     description: str
     edgeSecurityPolicy: str
     enableCDN: bool
+    externalManagedMigrationState: typing_extensions.Literal[
+        "PREPARE", "TEST_ALL_TRAFFIC", "TEST_BY_PERCENTAGE"
+    ]
+    externalManagedMigrationTestingPercentage: float
     failoverPolicy: BackendServiceFailoverPolicy
     fingerprint: str
     healthChecks: _list[str]
@@ -1418,12 +1427,19 @@ class FirewallPolicyRuleMatcher(typing_extensions.TypedDict, total=False):
     destAddressGroups: _list[str]
     destFqdns: _list[str]
     destIpRanges: _list[str]
+    destNetworkScope: typing_extensions.Literal[
+        "INTERNET", "INTRA_VPC", "NON_INTERNET", "UNSPECIFIED", "VPC_NETWORKS"
+    ]
     destRegionCodes: _list[str]
     destThreatIntelligences: _list[str]
     layer4Configs: _list[FirewallPolicyRuleMatcherLayer4Config]
     srcAddressGroups: _list[str]
     srcFqdns: _list[str]
     srcIpRanges: _list[str]
+    srcNetworkScope: typing_extensions.Literal[
+        "INTERNET", "INTRA_VPC", "NON_INTERNET", "UNSPECIFIED", "VPC_NETWORKS"
+    ]
+    srcNetworks: _list[str]
     srcRegionCodes: _list[str]
     srcSecureTags: _list[FirewallPolicyRuleSecureTag]
     srcThreatIntelligences: _list[str]
@@ -1458,6 +1474,10 @@ class ForwardingRule(typing_extensions.TypedDict, total=False):
     baseForwardingRule: str
     creationTimestamp: str
     description: str
+    externalManagedBackendBucketMigrationState: typing_extensions.Literal[
+        "PREPARE", "TEST_ALL_TRAFFIC", "TEST_BY_PERCENTAGE"
+    ]
+    externalManagedBackendBucketMigrationTestingPercentage: float
     fingerprint: str
     id: str
     ipCollection: str
@@ -1554,7 +1574,6 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     shareSettings: ShareSettings
-    specificReservationRequired: bool
     specificSkuProperties: FutureReservationSpecificSKUProperties
     status: FutureReservationStatus
     timeWindow: FutureReservationTimeWindow
@@ -2293,10 +2312,12 @@ class InstanceGroupManager(typing_extensions.TypedDict, total=False):
     instanceTemplate: str
     kind: str
     listManagedInstancesResults: typing_extensions.Literal["PAGELESS", "PAGINATED"]
+    multiMig: str
     name: str
     namedPorts: _list[NamedPort]
     params: InstanceGroupManagerParams
     region: str
+    resourcePolicies: InstanceGroupManagerResourcePolicies
     satisfiesPzi: bool
     satisfiesPzs: bool
     selfLink: str
@@ -2435,6 +2456,10 @@ class InstanceGroupManagerResizeRequestsListResponse(
     nextPageToken: str
     selfLink: str
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class InstanceGroupManagerResourcePolicies(typing_extensions.TypedDict, total=False):
+    workloadPolicy: str
 
 @typing.type_check_only
 class InstanceGroupManagerStandbyPolicy(typing_extensions.TypedDict, total=False):
@@ -3484,6 +3509,9 @@ class MachineImageList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MachineType(typing_extensions.TypedDict, total=False):
     accelerators: _list[dict[str, typing.Any]]
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
+    ]
     bundledLocalSsds: BundledLocalSsds
     creationTimestamp: str
     deprecated: DeprecationStatus
@@ -3834,6 +3862,7 @@ class NetworkEndpointGroupList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkEndpointGroupPscData(typing_extensions.TypedDict, total=False):
     consumerPscAddress: str
+    producerPort: int
     pscConnectionId: str
     pscConnectionStatus: typing_extensions.Literal[
         "ACCEPTED",
@@ -4925,6 +4954,19 @@ class RegionInstanceGroupManagerPatchInstanceConfigReq(
     perInstanceConfigs: _list[PerInstanceConfig]
 
 @typing.type_check_only
+class RegionInstanceGroupManagerResizeRequestsListResponse(
+    typing_extensions.TypedDict, total=False
+):
+    etag: str
+    id: str
+    items: _list[InstanceGroupManagerResizeRequest]
+    kind: str
+    nextPageToken: str
+    selfLink: str
+    unreachables: _list[str]
+    warning: dict[str, typing.Any]
+
+@typing.type_check_only
 class RegionInstanceGroupManagerUpdateInstanceConfigReq(
     typing_extensions.TypedDict, total=False
 ):
@@ -5134,6 +5176,7 @@ class RegionUrlMapsValidateRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RequestMirrorPolicy(typing_extensions.TypedDict, total=False):
     backendService: str
+    mirrorPercent: float
 
 @typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):
@@ -5234,6 +5277,7 @@ class ResourcePolicy(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal[
         "CREATING", "DELETING", "EXPIRED", "INVALID", "READY"
     ]
+    workloadPolicy: ResourcePolicyWorkloadPolicy
 
 @typing.type_check_only
 class ResourcePolicyAggregatedList(typing_extensions.TypedDict, total=False):
@@ -5359,6 +5403,10 @@ class ResourcePolicyWeeklyCycleDayOfWeek(typing_extensions.TypedDict, total=Fals
     ]
     duration: str
     startTime: str
+
+@typing.type_check_only
+class ResourcePolicyWorkloadPolicy(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal["HIGH_AVAILABILITY", "HIGH_THROUGHPUT"]
 
 @typing.type_check_only
 class ResourceStatus(typing_extensions.TypedDict, total=False):

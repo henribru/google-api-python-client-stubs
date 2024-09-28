@@ -416,6 +416,10 @@ class GoogleMapsPlacesV1PlaceSubDestination(typing_extensions.TypedDict, total=F
     name: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1Polyline(typing_extensions.TypedDict, total=False):
+    encodedPolyline: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1References(typing_extensions.TypedDict, total=False):
     places: _list[str]
     reviews: _list[GoogleMapsPlacesV1Review]
@@ -431,6 +435,36 @@ class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     text: GoogleTypeLocalizedText
 
 @typing.type_check_only
+class GoogleMapsPlacesV1RouteModifiers(typing_extensions.TypedDict, total=False):
+    avoidFerries: bool
+    avoidHighways: bool
+    avoidIndoor: bool
+    avoidTolls: bool
+
+@typing.type_check_only
+class GoogleMapsPlacesV1RoutingParameters(typing_extensions.TypedDict, total=False):
+    origin: GoogleTypeLatLng
+    routeModifiers: GoogleMapsPlacesV1RouteModifiers
+    routingPreference: typing_extensions.Literal[
+        "ROUTING_PREFERENCE_UNSPECIFIED",
+        "TRAFFIC_UNAWARE",
+        "TRAFFIC_AWARE",
+        "TRAFFIC_AWARE_OPTIMAL",
+    ]
+    travelMode: typing_extensions.Literal[
+        "TRAVEL_MODE_UNSPECIFIED", "DRIVE", "BICYCLE", "WALK", "TWO_WHEELER"
+    ]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1RoutingSummary(typing_extensions.TypedDict, total=False):
+    legs: _list[GoogleMapsPlacesV1RoutingSummaryLeg]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1RoutingSummaryLeg(typing_extensions.TypedDict, total=False):
+    distanceMeters: int
+    duration: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=False):
     excludedPrimaryTypes: _list[str]
     excludedTypes: _list[str]
@@ -443,6 +477,7 @@ class GoogleMapsPlacesV1SearchNearbyRequest(typing_extensions.TypedDict, total=F
         "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "POPULARITY"
     ]
     regionCode: str
+    routingParameters: GoogleMapsPlacesV1RoutingParameters
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction(
@@ -453,6 +488,7 @@ class GoogleMapsPlacesV1SearchNearbyRequestLocationRestriction(
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=False):
     places: _list[GoogleMapsPlacesV1Place]
+    routingSummaries: _list[GoogleMapsPlacesV1RoutingSummary]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
@@ -480,6 +516,10 @@ class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=Fal
         "RANK_PREFERENCE_UNSPECIFIED", "DISTANCE", "RELEVANCE"
     ]
     regionCode: str
+    routingParameters: GoogleMapsPlacesV1RoutingParameters
+    searchAlongRouteParameters: (
+        GoogleMapsPlacesV1SearchTextRequestSearchAlongRouteParameters
+    )
     strictTypeFiltering: bool
     textQuery: str
 
@@ -517,10 +557,17 @@ class GoogleMapsPlacesV1SearchTextRequestLocationRestriction(
     rectangle: GoogleGeoTypeViewport
 
 @typing.type_check_only
+class GoogleMapsPlacesV1SearchTextRequestSearchAlongRouteParameters(
+    typing_extensions.TypedDict, total=False
+):
+    polyline: GoogleMapsPlacesV1Polyline
+
+@typing.type_check_only
 class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=False):
     contextualContents: _list[GoogleMapsPlacesV1ContextualContent]
     nextPageToken: str
     places: _list[GoogleMapsPlacesV1Place]
+    routingSummaries: _list[GoogleMapsPlacesV1RoutingSummary]
 
 @typing.type_check_only
 class GoogleTypeDate(typing_extensions.TypedDict, total=False):

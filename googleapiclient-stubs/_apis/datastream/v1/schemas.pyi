@@ -432,6 +432,7 @@ class Route(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RunStreamRequest(typing_extensions.TypedDict, total=False):
     cdcStrategy: CdcStrategy
+    force: bool
 
 @typing.type_check_only
 class SingleTargetDataset(typing_extensions.TypedDict, total=False):

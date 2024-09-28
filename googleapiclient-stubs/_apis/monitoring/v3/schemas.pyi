@@ -561,6 +561,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     samplePeriod: str
+    timeSeriesResourceHierarchyLevel: _list[
+        typing_extensions.Literal[
+            "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+            "PROJECT",
+            "ORGANIZATION",
+            "FOLDER",
+        ]
+    ]
 
 @typing.type_check_only
 class MetricRange(typing_extensions.TypedDict, total=False):

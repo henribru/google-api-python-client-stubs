@@ -275,6 +275,7 @@ class EnterpriseCrmEventbusProtoConnectorsConnection(
 ):
     connectionName: str
     connectorVersion: str
+    host: str
     serviceName: str
 
 @typing.type_check_only
@@ -382,6 +383,7 @@ class EnterpriseCrmEventbusProtoEventBusProperties(
 class EnterpriseCrmEventbusProtoEventExecutionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    cancelReason: str
     eventAttemptStats: _list[
         EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats
     ]
@@ -624,14 +626,12 @@ class EnterpriseCrmEventbusProtoJsonFunction(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoLogSettings(typing_extensions.TypedDict, total=False):
     logFieldName: str
-    sanitizeOptions: EnterpriseCrmLoggingGwsSanitizeOptions
     seedPeriod: typing_extensions.Literal[
         "SEED_PERIOD_UNSPECIFIED", "DAY", "WEEK", "MONTH"
     ]
     seedScope: typing_extensions.Literal[
         "SEED_SCOPE_UNSPECIFIED", "EVENT_NAME", "TIME_PERIOD", "PARAM_NAME"
     ]
-    shorteningLimits: EnterpriseCrmLoggingGwsFieldLimits
 
 @typing.type_check_only
 class EnterpriseCrmEventbusProtoLoopMetadata(typing_extensions.TypedDict, total=False):
@@ -1301,6 +1301,7 @@ class EnterpriseCrmFrontendsEventbusProtoDoubleParameterArray(
 class EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    cancelReason: str
     eventAttemptStats: _list[
         EnterpriseCrmEventbusProtoEventExecutionDetailsEventAttemptStats
     ]
@@ -1336,6 +1337,7 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfo(
     eventExecutionDetails: EnterpriseCrmFrontendsEventbusProtoEventExecutionDetails
     eventExecutionInfoId: str
     executionTraceInfo: EnterpriseCrmEventbusProtoExecutionTraceInfo
+    integrationVersionUserLabel: str
     lastModifiedTime: str
     postMethod: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1714,43 +1716,6 @@ class EnterpriseCrmFrontendsEventbusProtoWorkflowParameters(
     parameters: _list[EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry]
 
 @typing.type_check_only
-class EnterpriseCrmLoggingGwsFieldLimits(typing_extensions.TypedDict, total=False):
-    logAction: typing_extensions.Literal["LOG_ACTION_UNSPECIFIED", "DONT_LOG", "LOG"]
-    logType: _list[
-        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
-    ]
-    maxArraySize: int
-    maxStringLength: int
-    shortenerType: typing_extensions.Literal[
-        "SHORTENER_TYPE_UNSPECIFIED",
-        "SHORTEN",
-        "HASH",
-        "SHORTEN_WITH_HASH",
-        "SHORTEN_EMAIL",
-        "SHORTEN_EMAIL_WITH_HASH",
-        "SHORTEN_DOMAIN",
-    ]
-
-@typing.type_check_only
-class EnterpriseCrmLoggingGwsSanitizeOptions(typing_extensions.TypedDict, total=False):
-    isAlreadySanitized: bool
-    logType: _list[
-        typing_extensions.Literal["LOG_TYPE_UNSPECIFIED", "GWS", "GTS", "ALL"]
-    ]
-    privacy: typing_extensions.Literal[
-        "PRIVACY_TYPE_UNSPECIFIED", "NOT_PII", "PII", "SPII", "UNSURE"
-    ]
-    sanitizeType: typing_extensions.Literal[
-        "SANITIZE_TYPE_UNSPECIFIED",
-        "SCRUB",
-        "ANONYMIZE",
-        "ANONYMIZE_LIMITED_REPEATABLE",
-        "OBFUSCATE",
-        "ENCRYPT",
-        "DO_NOT_SANITIZE",
-    ]
-
-@typing.type_check_only
 class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     authKey: str
@@ -1762,8 +1727,12 @@ class GoogleCloudConnectorsV1AuthConfig(typing_extensions.TypedDict, total=False
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
         "GOOGLE_AUTHENTICATION",
+        "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED",
     ]
     oauth2AuthCodeFlow: GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow
+    oauth2AuthCodeFlowGoogleManaged: (
+        GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlowGoogleManaged
+    )
     oauth2ClientCredentials: GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials
     oauth2JwtBearer: GoogleCloudConnectorsV1AuthConfigOauth2JwtBearer
     sshPublicKey: GoogleCloudConnectorsV1AuthConfigSshPublicKey
@@ -1779,6 +1748,14 @@ class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlow(
     clientSecret: GoogleCloudConnectorsV1Secret
     enablePkce: bool
     pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlowGoogleManaged(
+    typing_extensions.TypedDict, total=False
+):
+    authCode: str
     redirectUri: str
     scopes: _list[str]
 
@@ -1839,7 +1816,9 @@ class GoogleCloudConnectorsV1ConfigVariable(typing_extensions.TypedDict, total=F
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False):
+    asyncOperationsEnabled: bool
     authConfig: GoogleCloudConnectorsV1AuthConfig
+    authOverrideEnabled: bool
     billingConfig: GoogleCloudConnectorsV1BillingConfig
     configVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     connectionRevision: str
@@ -1859,6 +1838,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
         "ONLY_EVENTING",
     ]
     eventingRuntimeData: GoogleCloudConnectorsV1EventingRuntimeData
+    host: str
     imageLocation: str
     isTrustedTester: bool
     labels: dict[str, typing.Any]
@@ -1874,6 +1854,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
     ]
     suspended: bool
+    tlsServiceDirectory: str
     updateTime: str
 
 @typing.type_check_only
@@ -1899,12 +1880,25 @@ class GoogleCloudConnectorsV1ConnectorVersionInfraConfig(
     deploymentModel: typing_extensions.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
+    deploymentModelMigrationState: typing_extensions.Literal[
+        "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+        "IN_PROGRESS",
+        "COMPLETED",
+        "ROLLEDBACK",
+        "ROLLBACK_IN_PROGRESS",
+    ]
     hpaConfig: GoogleCloudConnectorsV1HPAConfig
     internalclientRatelimitThreshold: str
+    maxInstanceRequestConcurrency: int
     ratelimitThreshold: str
     resourceLimits: GoogleCloudConnectorsV1ResourceLimits
     resourceRequests: GoogleCloudConnectorsV1ResourceRequests
     sharedDeployment: str
+    tlsMigrationState: typing_extensions.Literal[
+        "TLS_MIGRATION_STATE_UNSPECIFIED",
+        "TLS_MIGRATION_NOT_STARTED",
+        "TLS_MIGRATION_COMPLETED",
+    ]
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1Destination(typing_extensions.TypedDict, total=False):
@@ -2091,17 +2085,6 @@ class GoogleCloudIntegrationsV1alphaBooleanParameterArray(
     typing_extensions.TypedDict, total=False
 ):
     booleanValues: _list[bool]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCancelExecutionRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCancelExecutionResponse(
-    typing_extensions.TypedDict, total=False
-):
-    isCanceled: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCertificate(
@@ -2556,8 +2539,15 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
         "JSON_VALUE",
         "PROTO_VALUE",
         "PROTO_ARRAY",
+        "NON_SERIALIZABLE_OBJECT",
+        "PROTO_ENUM",
+        "SERIALIZED_OBJECT_VALUE",
+        "PROTO_ENUM_ARRAY",
+        "BYTES",
+        "BYTES_ARRAY",
     ]
     defaultValue: GoogleCloudIntegrationsV1alphaValueType
+    description: str
     displayName: str
     inputOutputType: typing_extensions.Literal[
         "IN_OUT_TYPE_UNSPECIFIED", "IN", "OUT", "IN_OUT"
@@ -2822,6 +2812,12 @@ class GoogleCloudIntegrationsV1alphaParameterMap(
         "JSON_VALUE",
         "PROTO_VALUE",
         "PROTO_ARRAY",
+        "NON_SERIALIZABLE_OBJECT",
+        "PROTO_ENUM",
+        "SERIALIZED_OBJECT_VALUE",
+        "PROTO_ENUM_ARRAY",
+        "BYTES",
+        "BYTES_ARRAY",
     ]
     valueType: typing_extensions.Literal[
         "INTEGRATION_PARAMETER_DATA_TYPE_UNSPECIFIED",
@@ -2836,6 +2832,12 @@ class GoogleCloudIntegrationsV1alphaParameterMap(
         "JSON_VALUE",
         "PROTO_VALUE",
         "PROTO_ARRAY",
+        "NON_SERIALIZABLE_OBJECT",
+        "PROTO_ENUM",
+        "SERIALIZED_OBJECT_VALUE",
+        "PROTO_ENUM_ARRAY",
+        "BYTES",
+        "BYTES_ARRAY",
     ]
 
 @typing.type_check_only
@@ -2898,20 +2900,6 @@ class GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest(
     typing_extensions.TypedDict, total=False
 ):
     runAsServiceAccount: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaReplayExecutionRequest(
-    typing_extensions.TypedDict, total=False
-):
-    replayReason: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaReplayExecutionResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionId: str
-    outputParameters: dict[str, typing.Any]
-    replayedExecutionId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionRequest(
@@ -3175,7 +3163,6 @@ class GoogleCloudIntegrationsV1alphaTemplate(typing_extensions.TypedDict, total=
             "OTHERS",
         ]
     ]
-    clientId: str
     components: _list[GoogleCloudIntegrationsV1alphaTemplateComponent]
     createTime: str
     description: str

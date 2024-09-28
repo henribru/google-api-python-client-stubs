@@ -271,4 +271,7 @@ class WebAppConfig(typing_extensions.TypedDict, total=False):
     measurementId: str
     messagingSenderId: str
     projectId: str
+    projectNumber: str
+    realtimeDatabaseUrl: str
     storageBucket: str
+    version: str

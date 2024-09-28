@@ -96,8 +96,6 @@ class CreativeAssetMetadata(typing_extensions.TypedDict, total=False):
     id: str
     idDimensionValue: DimensionValue
     kind: str
-    mediaRequestInfo: MediaRequestInfo
-    mediaResponseInfo: MediaResponseInfo
     richMedia: bool
     timerCustomEvents: _list[CreativeCustomEvent]
     warnedValidationRules: _list[
@@ -169,47 +167,6 @@ class DimensionValue(typing_extensions.TypedDict, total=False):
         "EXACT", "BEGINS_WITH", "CONTAINS", "WILDCARD_EXPRESSION"
     ]
     value: str
-
-@typing.type_check_only
-class MediaRequestInfo(typing_extensions.TypedDict, total=False):
-    currentBytes: str
-    customData: str
-    diffObjectVersion: str
-    finalStatus: int
-    notificationType: typing_extensions.Literal[
-        "START", "PROGRESS", "END", "RESPONSE_SENT", "ERROR"
-    ]
-    requestId: str
-    requestReceivedParamsServingInfo: str
-    totalBytes: str
-    totalBytesIsEstimated: bool
-
-@typing.type_check_only
-class MediaResponseInfo(typing_extensions.TypedDict, total=False):
-    customData: str
-    dataStorageTransform: str
-    dynamicDropTarget: str
-    dynamicDropzone: str
-    requestClass: typing_extensions.Literal[
-        "UNKNOWN_REQUEST_CLASS", "LATENCY_SENSITIVE", "PRODUCTION_BATCH", "BEST_EFFORT"
-    ]
-    scottyAgentUserId: str
-    scottyCustomerLog: str
-    trafficClassField: typing_extensions.Literal[
-        "BE1",
-        "AF1",
-        "AF2",
-        "AF3",
-        "AF4",
-        "NC1",
-        "NC0",
-        "BE0",
-        "LLQ",
-        "LLQ1",
-        "LLQ2",
-        "LLQ3",
-    ]
-    verifyHashFromHeader: bool
 
 @typing.type_check_only
 class OffsetPosition(typing_extensions.TypedDict, total=False):

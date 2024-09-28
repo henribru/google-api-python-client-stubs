@@ -62,6 +62,9 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "JP_REGIONS_AND_SUPPORT",
         "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
         "REGIONAL_CONTROLS",
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
+        "IRS_1075",
     ]
     createTime: str
     displayName: str
@@ -239,6 +242,9 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "JP_REGIONS_AND_SUPPORT",
         "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
         "REGIONAL_CONTROLS",
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
+        "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
+        "IRS_1075",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
     complianceUpdatesEnabled: bool
@@ -269,8 +275,11 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
         "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
         "SOVEREIGN_CONTROLS_BY_PSN",
+        "SOVEREIGN_CONTROLS_BY_CNTXT",
+        "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM",
     ]
     partnerPermissions: GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions
+    partnerServicesBillingAccount: str
     provisionedResourcesParent: str
     resourceMonitoringEnabled: bool
     resourceSettings: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings]

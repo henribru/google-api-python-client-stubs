@@ -35,6 +35,7 @@ class GoogleCloudAiplatformV1beta1Candidate(typing_extensions.TypedDict, total=F
     ]
     groundingMetadata: GoogleCloudAiplatformV1beta1GroundingMetadata
     index: int
+    logprobsResult: GoogleCloudAiplatformV1beta1LogprobsResult
     safetyRatings: _list[GoogleCloudAiplatformV1beta1SafetyRating]
 
 @typing.type_check_only
@@ -62,6 +63,7 @@ class GoogleCloudAiplatformV1beta1CountTokensRequest(
     typing_extensions.TypedDict, total=False
 ):
     contents: _list[GoogleCloudAiplatformV1beta1Content]
+    generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
     instances: _list[typing.Any]
     model: str
     systemInstruction: GoogleCloudAiplatformV1beta1Content
@@ -116,6 +118,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentRequest(
     cachedContent: str
     contents: _list[GoogleCloudAiplatformV1beta1Content]
     generationConfig: GoogleCloudAiplatformV1beta1GenerationConfig
+    labels: dict[str, typing.Any]
     safetySettings: _list[GoogleCloudAiplatformV1beta1SafetySetting]
     systemInstruction: GoogleCloudAiplatformV1beta1Content
     toolConfig: GoogleCloudAiplatformV1beta1ToolConfig
@@ -126,6 +129,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponse(
     typing_extensions.TypedDict, total=False
 ):
     candidates: _list[GoogleCloudAiplatformV1beta1Candidate]
+    modelVersion: str
     promptFeedback: GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback
     usageMetadata: GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata
 
@@ -147,6 +151,7 @@ class GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback(
 class GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    cachedContentTokenCount: int
     candidatesTokenCount: int
     promptTokenCount: int
     totalTokenCount: int
@@ -157,8 +162,10 @@ class GoogleCloudAiplatformV1beta1GenerationConfig(
 ):
     candidateCount: int
     frequencyPenalty: float
+    logprobs: int
     maxOutputTokens: int
     presencePenalty: float
+    responseLogprobs: bool
     responseMimeType: str
     responseSchema: GoogleCloudAiplatformV1beta1Schema
     routingConfig: GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig
@@ -236,6 +243,27 @@ class GoogleCloudAiplatformV1beta1GroundingSupport(
     segment: GoogleCloudAiplatformV1beta1Segment
 
 @typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResult(
+    typing_extensions.TypedDict, total=False
+):
+    chosenCandidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultCandidate]
+    topCandidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates]
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResultCandidate(
+    typing_extensions.TypedDict, total=False
+):
+    logProbability: float
+    token: str
+    tokenId: int
+
+@typing.type_check_only
+class GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates(
+    typing_extensions.TypedDict, total=False
+):
+    candidates: _list[GoogleCloudAiplatformV1beta1LogprobsResultCandidate]
+
+@typing.type_check_only
 class GoogleCloudAiplatformV1beta1Part(typing_extensions.TypedDict, total=False):
     fileData: GoogleCloudAiplatformV1beta1FileData
     functionCall: GoogleCloudAiplatformV1beta1FunctionCall
@@ -261,6 +289,7 @@ class GoogleCloudAiplatformV1beta1SafetyRating(
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
     ]
     probability: typing_extensions.Literal[
         "HARM_PROBABILITY_UNSPECIFIED", "NEGLIGIBLE", "LOW", "MEDIUM", "HIGH"
@@ -285,6 +314,7 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "HARM_CATEGORY_DANGEROUS_CONTENT",
         "HARM_CATEGORY_HARASSMENT",
         "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
     ]
     method: typing_extensions.Literal[
         "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
@@ -295,10 +325,12 @@ class GoogleCloudAiplatformV1beta1SafetySetting(
         "BLOCK_MEDIUM_AND_ABOVE",
         "BLOCK_ONLY_HIGH",
         "BLOCK_NONE",
+        "OFF",
     ]
 
 @typing.type_check_only
 class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=False):
+    anyOf: _list[GoogleCloudAiplatformV1beta1Schema]
     default: typing.Any
     description: str
     enum: _list[str]
@@ -316,6 +348,7 @@ class GoogleCloudAiplatformV1beta1Schema(typing_extensions.TypedDict, total=Fals
     nullable: bool
     pattern: str
     properties: dict[str, typing.Any]
+    propertyOrdering: _list[str]
     required: _list[str]
     title: str
     type: typing_extensions.Literal[

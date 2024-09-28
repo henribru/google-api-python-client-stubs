@@ -57,6 +57,7 @@ class AndroidModel(typing_extensions.TypedDict, total=False):
         "DEVICE_FORM_FACTOR_UNSPECIFIED", "PHONE", "TABLET", "WEARABLE"
     ]
     id: str
+    labInfo: LabInfo
     lowFpsVideoRecording: bool
     manufacturer: str
     name: str
@@ -337,6 +338,10 @@ class IosXcTest(typing_extensions.TypedDict, total=False):
     testsZip: FileReference
     xcodeVersion: str
     xctestrun: FileReference
+
+@typing.type_check_only
+class LabInfo(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class LauncherActivityIntent(typing_extensions.TypedDict, total=False): ...

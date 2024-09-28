@@ -879,6 +879,42 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
+            class GlobalResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class SecurityGatewaysResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ApplicationsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication = ...,
+                            applicationId: str = ...,
+                            requestId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication = ...,
+                            requestId: str = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def testIamPermissions(
+                            self,
+                            *,
+                            resource: str,
+                            body: GoogleIamV1TestIamPermissionsRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                    def applications(self) -> ApplicationsResource: ...
+
+                def securityGateways(self) -> SecurityGatewaysResource: ...
+
+            @typing.type_check_only
             class InsightsResource(googleapiclient.discovery.Resource):
                 def configuredInsight(
                     self,
@@ -1009,6 +1045,52 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class SecurityGatewaysResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ApplicationsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        requestId: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponseHttpRequest,
+                        previous_response: GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse,
+                    ) -> (
+                        GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponseHttpRequest
+                        | None
+                    ): ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -1070,6 +1152,13 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setPeering(
+                    self,
+                    *,
+                    securityGateway: str,
+                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -1077,6 +1166,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def applications(self) -> ApplicationsResource: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -1104,6 +1194,7 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
             def clientGateways(self) -> ClientGatewaysResource: ...
             def connections(self) -> ConnectionsResource: ...
             def connectors(self) -> ConnectorsResource: ...
+            def global_(self) -> GlobalResource: ...
             def insights(self) -> InsightsResource: ...
             def netConnections(self) -> NetConnectionsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -1353,6 +1444,26 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscriptionHttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription: ...
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication: ...
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponseHttpRequest(

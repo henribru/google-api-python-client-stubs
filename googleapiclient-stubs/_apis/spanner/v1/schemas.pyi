@@ -31,9 +31,13 @@ class Backup(typing_extensions.TypedDict, total=False):
     ]
     encryptionInfo: EncryptionInfo
     encryptionInformation: _list[EncryptionInfo]
+    exclusiveSizeBytes: str
     expireTime: str
+    freeableSizeBytes: str
+    incrementalBackupChainId: str
     maxExpireTime: str
     name: str
+    oldestVersionTime: str
     referencingBackups: _list[str]
     referencingDatabases: _list[str]
     sizeBytes: str
@@ -51,6 +55,7 @@ class BackupInfo(typing_extensions.TypedDict, total=False):
 class BackupSchedule(typing_extensions.TypedDict, total=False):
     encryptionConfig: CreateBackupEncryptionConfig
     fullBackupSpec: FullBackupSpec
+    incrementalBackupSpec: IncrementalBackupSpec
     name: str
     retentionDuration: str
     spec: BackupScheduleSpec
@@ -394,6 +399,9 @@ class IncludeReplicas(typing_extensions.TypedDict, total=False):
     replicaSelections: _list[ReplicaSelection]
 
 @typing.type_check_only
+class IncrementalBackupSpec(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class IndexAdvice(typing_extensions.TypedDict, total=False):
     ddl: _list[str]
     improvementFactor: float
@@ -412,6 +420,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     config: str
     createTime: str
     displayName: str
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
     endpointUris: _list[str]
     freeInstanceMetadata: FreeInstanceMetadata
     instanceType: typing_extensions.Literal[
@@ -606,6 +617,11 @@ class MetricMatrixRow(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MoveInstanceRequest(typing_extensions.TypedDict, total=False):
     targetConfig: str
+
+@typing.type_check_only
+class MultiplexedSessionPrecommitToken(typing_extensions.TypedDict, total=False):
+    precommitToken: str
+    seqNum: int
 
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
@@ -903,6 +919,7 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Transaction(typing_extensions.TypedDict, total=False):
     id: str
+    precommitToken: MultiplexedSessionPrecommitToken
     readTimestamp: str
 
 @typing.type_check_only

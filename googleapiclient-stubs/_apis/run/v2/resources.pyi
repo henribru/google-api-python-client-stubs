@@ -18,6 +18,16 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class BuildsResource(googleapiclient.discovery.Resource):
+                def submit(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudRunV2SubmitBuildRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRunV2SubmitBuildResponseHttpRequest: ...
+
+            @typing.type_check_only
             class JobsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExecutionsResource(googleapiclient.discovery.Resource):
@@ -297,6 +307,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def exportProjectMetadata(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudRunV2MetadataHttpRequest: ...
+            def builds(self) -> BuildsResource: ...
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
@@ -416,6 +427,14 @@ class GoogleCloudRunV2ServiceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2Service: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2SubmitBuildResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2SubmitBuildResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRunV2TaskHttpRequest(googleapiclient.http.HttpRequest):

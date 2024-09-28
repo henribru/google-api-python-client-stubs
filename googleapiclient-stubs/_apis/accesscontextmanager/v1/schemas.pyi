@@ -26,6 +26,15 @@ class AccessPolicy(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class AccessScope(typing_extensions.TypedDict, total=False):
+    clientScope: ClientScope
+
+@typing.type_check_only
+class AccessSettings(typing_extensions.TypedDict, total=False):
+    accessLevels: _list[str]
+    reauthSettings: ReauthSettings
+
+@typing.type_check_only
 class ApiOperation(typing_extensions.TypedDict, total=False):
     methodSelectors: _list[MethodSelector]
     serviceName: str
@@ -76,6 +85,10 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ClientScope(typing_extensions.TypedDict, total=False):
+    restrictedClientApplication: Application
 
 @typing.type_check_only
 class CommitServicePerimetersRequest(typing_extensions.TypedDict, total=False):
@@ -164,7 +177,9 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     dryRunAccessLevels: _list[str]
     groupKey: str
     name: str
+    reauthSettings: ReauthSettings
     restrictedClientApplications: _list[Application]
+    scopedAccessSettings: _list[ScopedAccessSettings]
 
 @typing.type_check_only
 class GcpUserAccessBindingOperationMetadata(
@@ -275,6 +290,16 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class ReauthSettings(typing_extensions.TypedDict, total=False):
+    maxInactivity: str
+    reauthMethod: typing_extensions.Literal[
+        "REAUTH_METHOD_UNSPECIFIED", "LOGIN", "SECURITY_KEY", "PASSWORD"
+    ]
+    sessionLength: str
+    sessionLengthEnabled: bool
+    useOidcMaxAge: bool
+
+@typing.type_check_only
 class ReplaceAccessLevelsRequest(typing_extensions.TypedDict, total=False):
     accessLevels: _list[AccessLevel]
     etag: str
@@ -291,6 +316,12 @@ class ReplaceServicePerimetersRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReplaceServicePerimetersResponse(typing_extensions.TypedDict, total=False):
     servicePerimeters: _list[ServicePerimeter]
+
+@typing.type_check_only
+class ScopedAccessSettings(typing_extensions.TypedDict, total=False):
+    activeSettings: AccessSettings
+    dryRunSettings: AccessSettings
+    scope: AccessScope
 
 @typing.type_check_only
 class ServicePerimeter(typing_extensions.TypedDict, total=False):

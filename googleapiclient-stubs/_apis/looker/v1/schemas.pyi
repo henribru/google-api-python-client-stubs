@@ -111,6 +111,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     denyMaintenancePeriod: DenyMaintenancePeriod
     egressPublicIp: str
     encryptionConfig: EncryptionConfig
+    fipsEnabled: bool
+    geminiEnabled: bool
     ingressPrivateIp: str
     ingressPublicIp: str
     lastDenyMaintenancePeriod: DenyMaintenancePeriod
@@ -130,6 +132,8 @@ class Instance(typing_extensions.TypedDict, total=False):
         "LOOKER_CORE_EMBED_ANNUAL",
     ]
     privateIpEnabled: bool
+    pscConfig: PscConfig
+    pscEnabled: bool
     publicIpEnabled: bool
     reservedRange: str
     state: typing_extensions.Literal[
@@ -220,7 +224,21 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PscConfig(typing_extensions.TypedDict, total=False):
+    allowedVpcs: _list[str]
+    lookerServiceAttachmentUri: str
+    serviceAttachments: _list[ServiceAttachment]
+
+@typing.type_check_only
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ServiceAttachment(typing_extensions.TypedDict, total=False):
+    connectionStatus: typing_extensions.Literal[
+        "UNKNOWN", "ACCEPTED", "PENDING", "REJECTED", "NEEDS_ATTENTION", "CLOSED"
+    ]
+    localFqdn: str
+    targetServiceAttachmentUri: str
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

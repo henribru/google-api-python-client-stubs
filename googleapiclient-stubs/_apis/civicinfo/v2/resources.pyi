@@ -15,6 +15,9 @@ _list = list
 class CivicInfoResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class DivisionsResource(googleapiclient.discovery.Resource):
+        def queryDivisionByAddress(
+            self, *, address: str = ..., **kwargs: typing.Any
+        ) -> DivisionByAddressResponseHttpRequest: ...
         def search(
             self, *, query: str = ..., **kwargs: typing.Any
         ) -> DivisionSearchResponseHttpRequest: ...
@@ -175,6 +178,14 @@ class CivicInfoResource(googleapiclient.discovery.Resource):
     def divisions(self) -> DivisionsResource: ...
     def elections(self) -> ElectionsResource: ...
     def representatives(self) -> RepresentativesResource: ...
+
+@typing.type_check_only
+class DivisionByAddressResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DivisionByAddressResponse: ...
 
 @typing.type_check_only
 class DivisionSearchResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -88,6 +88,8 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only

@@ -59,6 +59,10 @@ class CleanupPolicyMostRecentVersions(typing_extensions.TypedDict, total=False):
     packageNamePrefixes: _list[str]
 
 @typing.type_check_only
+class CommonRemoteRepository(typing_extensions.TypedDict, total=False):
+    uri: str
+
+@typing.type_check_only
 class DockerImage(typing_extensions.TypedDict, total=False):
     buildTime: str
     imageSizeBytes: str
@@ -415,6 +419,7 @@ class PythonRepository(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RemoteRepositoryConfig(typing_extensions.TypedDict, total=False):
     aptRepository: AptRepository
+    commonRepository: CommonRemoteRepository
     description: str
     disableUpstreamValidation: bool
     dockerRepository: DockerRepository

@@ -16,6 +16,20 @@ class MerchantResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
+        class AutofeedSettingsResource(googleapiclient.discovery.Resource):
+            def getAutofeedSettings(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AutofeedSettingsHttpRequest: ...
+            def updateAutofeedSettings(
+                self,
+                *,
+                name: str,
+                body: AutofeedSettings = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> AutofeedSettingsHttpRequest: ...
+
+        @typing.type_check_only
         class BusinessIdentityResource(googleapiclient.discovery.Resource):
             def getBusinessIdentity(
                 self, *, name: str, **kwargs: typing.Any
@@ -44,7 +58,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> BusinessInfoHttpRequest: ...
 
         @typing.type_check_only
-        class EmailpreferencesResource(googleapiclient.discovery.Resource):
+        class EmailPreferencesResource(googleapiclient.discovery.Resource):
             def getEmailPreferences(
                 self, *, name: str, **kwargs: typing.Any
             ) -> EmailPreferencesHttpRequest: ...
@@ -283,9 +297,10 @@ class MerchantResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
+        def autofeedSettings(self) -> AutofeedSettingsResource: ...
         def businessIdentity(self) -> BusinessIdentityResource: ...
         def businessInfo(self) -> BusinessInfoResource: ...
-        def emailpreferences(self) -> EmailpreferencesResource: ...
+        def emailPreferences(self) -> EmailPreferencesResource: ...
         def homepage(self) -> HomepageResource: ...
         def issues(self) -> IssuesResource: ...
         def onlineReturnPolicies(self) -> OnlineReturnPoliciesResource: ...
@@ -342,6 +357,14 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Account: ...
+
+@typing.type_check_only
+class AutofeedSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutofeedSettings: ...
 
 @typing.type_check_only
 class BusinessIdentityHttpRequest(googleapiclient.http.HttpRequest):

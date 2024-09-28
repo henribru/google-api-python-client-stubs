@@ -627,6 +627,7 @@ class LaunchTemplateResponse(typing_extensions.TypedDict, total=False):
 class LeaseWorkItemRequest(typing_extensions.TypedDict, total=False):
     currentWorkerTime: str
     location: str
+    projectNumber: str
     requestedLeaseDuration: str
     unifiedWorkerRequest: dict[str, typing.Any]
     workItemTypes: _list[str]
@@ -889,6 +890,7 @@ class ReadInstruction(typing_extensions.TypedDict, total=False):
 class ReportWorkItemStatusRequest(typing_extensions.TypedDict, total=False):
     currentWorkerTime: str
     location: str
+    projectNumber: str
     unifiedWorkerRequest: dict[str, typing.Any]
     workItemStatuses: _list[WorkItemStatus]
     workerId: str
@@ -1252,6 +1254,8 @@ class StreamingConfigTask(typing_extensions.TypedDict, total=False):
     operationalLimits: StreamingOperationalLimits
     streamingComputationConfigs: _list[StreamingComputationConfig]
     userStepToStateFamilyNameMap: dict[str, typing.Any]
+    userWorkerRunnerV1Settings: str
+    userWorkerRunnerV2Settings: str
     windmillServiceEndpoint: str
     windmillServicePort: str
 

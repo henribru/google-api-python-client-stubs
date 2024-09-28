@@ -94,6 +94,7 @@ class GoogleCloudDatacatalogLineageV1Origin(typing_extensions.TypedDict, total=F
         "COMPOSER",
         "LOOKER_STUDIO",
         "DATAPROC",
+        "VERTEX_AI",
     ]
 
 @typing.type_check_only

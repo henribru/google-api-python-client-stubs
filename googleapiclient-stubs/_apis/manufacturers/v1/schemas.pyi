@@ -24,6 +24,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     gtin: _list[str]
     imageLink: Image
     includedDestination: _list[str]
+    intendedCountry: _list[str]
     itemGroupId: str
     material: str
     mpn: str
@@ -70,7 +71,10 @@ class Count(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DestinationStatus(typing_extensions.TypedDict, total=False):
+    approvedCountries: _list[str]
     destination: str
+    disapprovedCountries: _list[str]
+    pendingCountries: _list[str]
     status: typing_extensions.Literal["UNKNOWN", "ACTIVE", "PENDING", "DISAPPROVED"]
 
 @typing.type_check_only
@@ -209,6 +213,7 @@ class Product(typing_extensions.TypedDict, total=False):
     attributes: Attributes
     contentLanguage: str
     destinationStatuses: _list[DestinationStatus]
+    feedLabel: str
     issues: _list[Issue]
     name: str
     parent: str

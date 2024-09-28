@@ -52,6 +52,9 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 class AutokeyConfig(typing_extensions.TypedDict, total=False):
     keyProject: str
     name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "KEY_PROJECT_DELETED", "UNINITIALIZED"
+    ]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -431,6 +434,7 @@ class ListImportJobsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListKeyHandlesResponse(typing_extensions.TypedDict, total=False):
     keyHandles: _list[KeyHandle]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListKeyRingsResponse(typing_extensions.TypedDict, total=False):

@@ -99,6 +99,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: ResizeDiskRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def restore(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreInstanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def rollback(
                     self,
                     *,

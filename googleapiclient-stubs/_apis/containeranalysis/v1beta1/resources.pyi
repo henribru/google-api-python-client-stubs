@@ -57,6 +57,13 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NoteHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -79,6 +86,20 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> NoteHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def occurrences(self) -> OccurrencesResource: ...
 
             @typing.type_check_only
@@ -99,6 +120,13 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OccurrenceHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def getNotes(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NoteHttpRequest: ...
@@ -127,6 +155,20 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OccurrenceHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class ResourcesResource(googleapiclient.discovery.Resource):

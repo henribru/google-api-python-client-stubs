@@ -350,15 +350,6 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                         GoogleCloudIntegrationsV1alphaListExecutionsResponseHttpRequest
                         | None
                     ): ...
-                    def replay(
-                        self,
-                        *,
-                        name: str,
-                        body: GoogleCloudIntegrationsV1alphaReplayExecutionRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> (
-                        GoogleCloudIntegrationsV1alphaReplayExecutionResponseHttpRequest
-                    ): ...
                     def suspensions(self) -> SuspensionsResource: ...
 
                 @typing.type_check_only
@@ -674,13 +665,6 @@ class IntegrationsResource(googleapiclient.discovery.Resource):
                                 **kwargs: typing.Any,
                             ) -> GoogleCloudIntegrationsV1alphaResolveSuspensionResponseHttpRequest: ...
 
-                        def cancel(
-                            self,
-                            *,
-                            name: str,
-                            body: GoogleCloudIntegrationsV1alphaCancelExecutionRequest = ...,
-                            **kwargs: typing.Any,
-                        ) -> GoogleCloudIntegrationsV1alphaCancelExecutionResponseHttpRequest: ...
                         def download(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleCloudIntegrationsV1alphaDownloadExecutionResponseHttpRequest: ...
@@ -1203,16 +1187,6 @@ class GoogleCloudIntegrationsV1alphaAuthConfigHttpRequest(
     ) -> GoogleCloudIntegrationsV1alphaAuthConfig: ...
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaCancelExecutionResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudIntegrationsV1alphaCancelExecutionResponse: ...
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCertificateHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1531,16 +1505,6 @@ class GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponseHttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudIntegrationsV1alphaPublishIntegrationVersionResponse: ...
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaReplayExecutionResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleCloudIntegrationsV1alphaReplayExecutionResponse: ...
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionResponseHttpRequest(

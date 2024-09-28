@@ -28,8 +28,10 @@ class AuthConfig(typing_extensions.TypedDict, total=False):
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
         "GOOGLE_AUTHENTICATION",
+        "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED",
     ]
     oauth2AuthCodeFlow: Oauth2AuthCodeFlow
+    oauth2AuthCodeFlowGoogleManaged: Oauth2AuthCodeFlowGoogleManaged
     oauth2ClientCredentials: Oauth2ClientCredentials
     oauth2JwtBearer: Oauth2JwtBearer
     sshPublicKey: SshPublicKey
@@ -46,14 +48,56 @@ class AuthConfigTemplate(typing_extensions.TypedDict, total=False):
         "SSH_PUBLIC_KEY",
         "OAUTH2_AUTH_CODE_FLOW",
         "GOOGLE_AUTHENTICATION",
+        "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED",
     ]
     configVariableTemplates: _list[ConfigVariableTemplate]
     description: str
     displayName: str
+    isDefault: bool
+
+@typing.type_check_only
+class AuthField(typing_extensions.TypedDict, total=False):
+    dataType: str
+    description: str
+    key: str
+
+@typing.type_check_only
+class AuthObject(typing_extensions.TypedDict, total=False):
+    additionalProperties: bool
+    authKey: str
+    authType: str
+    description: str
+    isDefault: bool
+    properties: dict[str, typing.Any]
+    type: str
+
+@typing.type_check_only
+class AuthProperty(typing_extensions.TypedDict, total=False):
+    description: str
+    type: str
+
+@typing.type_check_only
+class AuthSchema(typing_extensions.TypedDict, total=False):
+    authFields: _list[AuthField]
+    authKey: str
+    authType: typing_extensions.Literal[
+        "AUTH_TYPE_UNSPECIFIED",
+        "USER_PASSWORD",
+        "OAUTH2_JWT_BEARER",
+        "OAUTH2_CLIENT_CREDENTIALS",
+        "SSH_PUBLIC_KEY",
+        "OAUTH2_AUTH_CODE_FLOW",
+        "GOOGLE_AUTHENTICATION",
+        "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED",
+    ]
+    description: str
+    displayName: str
+    isDefault: bool
 
 @typing.type_check_only
 class AuthorizationCodeLink(typing_extensions.TypedDict, total=False):
     clientId: str
+    clientSecret: Secret
     enablePkce: bool
     omitQueryParams: bool
     scopes: _list[str]
@@ -119,6 +163,7 @@ class ConfigVariableTemplate(typing_extensions.TypedDict, total=False):
 class Connection(typing_extensions.TypedDict, total=False):
     asyncOperationsEnabled: bool
     authConfig: AuthConfig
+    authOverrideEnabled: bool
     billingConfig: BillingConfig
     configVariables: _list[ConfigVariable]
     connectionRevision: str
@@ -138,6 +183,7 @@ class Connection(typing_extensions.TypedDict, total=False):
         "ONLY_EVENTING",
     ]
     eventingRuntimeData: EventingRuntimeData
+    host: str
     imageLocation: str
     isTrustedTester: bool
     labels: dict[str, typing.Any]
@@ -153,6 +199,7 @@ class Connection(typing_extensions.TypedDict, total=False):
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "PAY_G", "PAID"
     ]
     suspended: bool
+    tlsServiceDirectory: str
     updateTime: str
 
 @typing.type_check_only
@@ -223,6 +270,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     internalclientRatelimitThreshold: str
     maxInstanceRequestConcurrency: int
     migrateDeploymentModel: bool
+    migrateTls: bool
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -239,6 +287,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     displayName: str
     egressControlConfig: EgressControlConfig
     eventingConfigTemplate: EventingConfigTemplate
+    isAsyncOperationsSupported: bool
     isCustomActionsSupported: bool
     isCustomEntitiesSupported: bool
     labels: dict[str, typing.Any]
@@ -284,6 +333,11 @@ class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
     sharedDeployment: str
+    tlsMigrationState: typing_extensions.Literal[
+        "TLS_MIGRATION_STATE_UNSPECIFIED",
+        "TLS_MIGRATION_NOT_STARTED",
+        "TLS_MIGRATION_COMPLETED",
+    ]
 
 @typing.type_check_only
 class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
@@ -409,6 +463,16 @@ class EndpointAttachment(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     serviceAttachment: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "ACCEPTED",
+        "REJECTED",
+        "CLOSED",
+        "FROZEN",
+        "NEEDS_ATTENTION",
+        "ACCEPTED_NOT_PROGRAMMED",
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -524,6 +588,11 @@ class ExtractionRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExtractionRules(typing_extensions.TypedDict, total=False):
     extractionRule: _list[ExtractionRule]
+
+@typing.type_check_only
+class FetchAuthSchemaResponse(typing_extensions.TypedDict, total=False):
+    authSchemas: _list[AuthSchema]
+    jsonSchema: JsonAuthSchema
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -690,6 +759,18 @@ class Instance(typing_extensions.TypedDict, total=False):
 class JMS(typing_extensions.TypedDict, total=False):
     name: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "QUEUE", "TOPIC"]
+
+AlternativeJsonAuthSchema = typing_extensions.TypedDict(
+    "AlternativeJsonAuthSchema",
+    {
+        "$schema": str,
+        "oneOf": _list[AuthObject],
+    },
+    total=False,
+)
+
+@typing.type_check_only
+class JsonAuthSchema(AlternativeJsonAuthSchema): ...
 
 @typing.type_check_only
 class JsonSchema(typing_extensions.TypedDict, total=False):
@@ -952,6 +1033,12 @@ class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
     clientSecret: Secret
     enablePkce: bool
     pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class Oauth2AuthCodeFlowGoogleManaged(typing_extensions.TypedDict, total=False):
+    authCode: str
     redirectUri: str
     scopes: _list[str]
 

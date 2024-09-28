@@ -15,6 +15,12 @@ class Callback(typing_extensions.TypedDict, total=False):
 class CancelExecutionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class DeleteExecutionHistoryRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Error(typing_extensions.TypedDict, total=False):
     context: str
     payload: str
@@ -131,7 +137,11 @@ class StepEntry(typing_extensions.TypedDict, total=False):
     navigationInfo: NavigationInfo
     routine: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "STATE_IN_PROGRESS", "STATE_SUCCEEDED", "STATE_FAILED"
+        "STATE_UNSPECIFIED",
+        "STATE_IN_PROGRESS",
+        "STATE_SUCCEEDED",
+        "STATE_FAILED",
+        "STATE_CANCELLED",
     ]
     step: str
     stepEntryMetadata: StepEntryMetadata
@@ -158,6 +168,7 @@ class StepEntry(typing_extensions.TypedDict, total=False):
         "STEP_GOTO",
     ]
     updateTime: str
+    variableData: VariableData
 
 @typing.type_check_only
 class StepEntryMetadata(typing_extensions.TypedDict, total=False):
@@ -179,3 +190,7 @@ class TriggerPubsubExecutionRequest(typing_extensions.TypedDict, total=False):
     deliveryAttempt: int
     message: PubsubMessage
     subscription: str
+
+@typing.type_check_only
+class VariableData(typing_extensions.TypedDict, total=False):
+    variables: dict[str, typing.Any]

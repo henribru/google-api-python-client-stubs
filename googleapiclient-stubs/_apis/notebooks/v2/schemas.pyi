@@ -250,6 +250,10 @@ class ResizeDiskRequest(typing_extensions.TypedDict, total=False):
     dataDisk: DataDisk
 
 @typing.type_check_only
+class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
+    snapshot: Snapshot
+
+@typing.type_check_only
 class RollbackInstanceRequest(typing_extensions.TypedDict, total=False):
     revisionId: str
     targetSnapshot: str
@@ -268,6 +272,11 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
     enableIntegrityMonitoring: bool
     enableSecureBoot: bool
     enableVtpm: bool
+
+@typing.type_check_only
+class Snapshot(typing_extensions.TypedDict, total=False):
+    projectId: str
+    snapshotId: str
 
 @typing.type_check_only
 class StartInstanceRequest(typing_extensions.TypedDict, total=False): ...

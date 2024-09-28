@@ -159,6 +159,15 @@ class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=Fals
     policycontroller: PolicyControllerMembershipSpec
 
 @typing.type_check_only
+class CompliancePostureConfig(typing_extensions.TypedDict, total=False):
+    complianceStandards: _list[ComplianceStandard]
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "DISABLED", "ENABLED"]
+
+@typing.type_check_only
+class ComplianceStandard(typing_extensions.TypedDict, total=False):
+    standard: str
+
+@typing.type_check_only
 class ConfigManagementBinauthzConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -448,6 +457,7 @@ class DataplaneV2FeatureSpec(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DefaultClusterConfig(typing_extensions.TypedDict, total=False):
     binaryAuthorizationConfig: BinaryAuthorizationConfig
+    compliancePostureConfig: CompliancePostureConfig
     securityPostureConfig: SecurityPostureConfig
 
 @typing.type_check_only
@@ -607,6 +617,11 @@ class IdentityServiceAzureADConfig(typing_extensions.TypedDict, total=False):
     userClaim: str
 
 @typing.type_check_only
+class IdentityServiceDiagnosticInterface(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    expirationTime: str
+
+@typing.type_check_only
 class IdentityServiceGoogleConfig(typing_extensions.TypedDict, total=False):
     disable: bool
 
@@ -618,6 +633,7 @@ class IdentityServiceGroupConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class IdentityServiceIdentityServiceOptions(typing_extensions.TypedDict, total=False):
+    diagnosticInterface: IdentityServiceDiagnosticInterface
     sessionDuration: str
 
 @typing.type_check_only
@@ -1142,11 +1158,13 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED",
         "MESH_IAM_PERMISSION_DENIED",
+        "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
         "CNI_CONFIG_UNSUPPORTED",
         "GKE_SANDBOX_UNSUPPORTED",
         "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
         "CNI_INSTALLATION_FAILED",
         "CNI_POD_UNSCHEDULABLE",
+        "CLUSTER_HAS_ZERO_NODES",
         "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
         "VPCSC_GA_SUPPORTED",
         "CONFIG_APPLY_INTERNAL_ERROR",

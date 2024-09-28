@@ -740,6 +740,26 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 class FhirStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class FhirResource(googleapiclient.discovery.Resource):
+                        def Binary_create(
+                            self,
+                            *,
+                            parent: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
+                        def Binary_read(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def Binary_update(
+                            self,
+                            *,
+                            name: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
+                        def Binary_vread(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
                         def ConceptMap_search_translate(
                             self,
                             *,
@@ -763,6 +783,16 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         ) -> HttpBodyHttpRequest: ...
                         def Consent_enforcement_status(
                             self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def Encounter_everything(
+                            self,
+                            *,
+                            name: str,
+                            x_count: int = ...,
+                            x_page_token: str = ...,
+                            x_since: str = ...,
+                            x_type: str = ...,
+                            **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
                         def Observation_lastn(
                             self, *, parent: str, **kwargs: typing.Any

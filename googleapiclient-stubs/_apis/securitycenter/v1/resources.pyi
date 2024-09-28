@@ -1213,6 +1213,24 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> TestIamPermissionsResponseHttpRequest: ...
             def findings(self) -> FindingsResource: ...
 
+        @typing.type_check_only
+        class ValuedResourcesResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListValuedResourcesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListValuedResourcesResponseHttpRequest,
+                previous_response: ListValuedResourcesResponse,
+            ) -> ListValuedResourcesResponseHttpRequest | None: ...
+
         def getOrganizationSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> OrganizationSettingsHttpRequest: ...
@@ -1240,6 +1258,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         ) -> SecurityHealthAnalyticsSettingsResource: ...
         def simulations(self) -> SimulationsResource: ...
         def sources(self) -> SourcesResource: ...
+        def valuedResources(self) -> ValuedResourcesResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):

@@ -120,6 +120,46 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 def connectivityTests(self) -> ConnectivityTestsResource: ...
                 def operations(self) -> OperationsResource: ...
 
+            @typing.type_check_only
+            class VpcFlowLogsConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: VpcFlowLogsConfig = ...,
+                    vpcFlowLogsConfigId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> VpcFlowLogsConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVpcFlowLogsConfigsResponseHttpRequest,
+                    previous_response: ListVpcFlowLogsConfigsResponse,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: VpcFlowLogsConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -138,6 +178,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
+            def vpcFlowLogsConfigs(self) -> VpcFlowLogsConfigsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -196,6 +237,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListVpcFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListVpcFlowLogsConfigsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -226,3 +275,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class VpcFlowLogsConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> VpcFlowLogsConfig: ...

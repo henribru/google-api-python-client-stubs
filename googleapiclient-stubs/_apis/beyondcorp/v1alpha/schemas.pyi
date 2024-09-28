@@ -662,6 +662,37 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    endpointMatchers: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher(
+    typing_extensions.TypedDict, total=False
+):
+    hostname: str
+    ports: _list[int]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub(
+    typing_extensions.TypedDict, total=False
+):
+    natGatewayConfig: GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    applications: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -670,12 +701,26 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     unreachable: _list[str]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig(
+    typing_extensions.TypedDict, total=False
+):
+    natIps: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering(
+    typing_extensions.TypedDict, total=False
+):
+    dnsZones: _list[str]
+    targetVpcNetwork: str
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
     displayName: str
     externalIps: _list[str]
+    hubs: dict[str, typing.Any]
     name: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -699,6 +744,14 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetada
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requestId: str
+    validateOnly: bool
+    vpcPeerings: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering]
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

@@ -169,6 +169,11 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
     wafTokenAssessment: bool
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ExpressKeySettings(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FirewallAction(
     typing_extensions.TypedDict, total=False
 ):
@@ -308,6 +313,7 @@ class GoogleCloudRecaptchaenterpriseV1Key(typing_extensions.TypedDict, total=Fal
     androidSettings: GoogleCloudRecaptchaenterpriseV1AndroidKeySettings
     createTime: str
     displayName: str
+    expressSettings: GoogleCloudRecaptchaenterpriseV1ExpressKeySettings
     iosSettings: GoogleCloudRecaptchaenterpriseV1IOSKeySettings
     labels: dict[str, typing.Any]
     name: str
@@ -320,6 +326,13 @@ class GoogleCloudRecaptchaenterpriseV1ListFirewallPoliciesResponse(
     typing_extensions.TypedDict, total=False
 ):
     firewallPolicies: _list[GoogleCloudRecaptchaenterpriseV1FirewallPolicy]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    ipOverrides: _list[GoogleCloudRecaptchaenterpriseV1IpOverrideData]
     nextPageToken: str
 
 @typing.type_check_only
@@ -386,6 +399,17 @@ class GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership(
     accountId: str
     hashedAccountId: str
     name: str
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest(
+    typing_extensions.TypedDict, total=False
+):
+    ipOverrideData: GoogleCloudRecaptchaenterpriseV1IpOverrideData
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest(
@@ -607,7 +631,7 @@ class GoogleCloudRecaptchaenterpriseV1WafSettings(
         "EXPRESS",
     ]
     wafService: typing_extensions.Literal[
-        "WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY", "CLOUDFLARE"
+        "WAF_SERVICE_UNSPECIFIED", "CA", "FASTLY", "CLOUDFLARE", "AKAMAI"
     ]
 
 @typing.type_check_only

@@ -18,10 +18,16 @@ class SolarResource(googleapiclient.discovery.Resource):
         def findClosest(
             self,
             *,
+            experiments: typing_extensions.Literal[
+                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
+            ]
+            | _list[
+                typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
+            ] = ...,
             location_latitude: float = ...,
             location_longitude: float = ...,
             requiredQuality: typing_extensions.Literal[
-                "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW"
+                "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
             ] = ...,
             **kwargs: typing.Any,
         ) -> BuildingInsightsHttpRequest: ...
@@ -32,12 +38,18 @@ class SolarResource(googleapiclient.discovery.Resource):
             self,
             *,
             exactQualityRequired: bool = ...,
+            experiments: typing_extensions.Literal[
+                "EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"
+            ]
+            | _list[
+                typing_extensions.Literal["EXPERIMENT_UNSPECIFIED", "EXPANDED_COVERAGE"]
+            ] = ...,
             location_latitude: float = ...,
             location_longitude: float = ...,
             pixelSizeMeters: float = ...,
             radiusMeters: float = ...,
             requiredQuality: typing_extensions.Literal[
-                "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW"
+                "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
             ] = ...,
             view: typing_extensions.Literal[
                 "DATA_LAYER_VIEW_UNSPECIFIED",

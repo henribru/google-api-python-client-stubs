@@ -100,6 +100,7 @@ class GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest(
     typing_extensions.TypedDict, total=False
 ):
     domain: str
+    primaryAdminEmail: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse(
@@ -111,8 +112,12 @@ class GoogleCloudChannelV1CheckCloudIdentityAccountsExistResponse(
 class GoogleCloudChannelV1CloudIdentityCustomerAccount(
     typing_extensions.TypedDict, total=False
 ):
+    channelPartnerCloudIdentityId: str
     customerCloudIdentityId: str
     customerName: str
+    customerType: typing_extensions.Literal[
+        "CUSTOMER_TYPE_UNSPECIFIED", "DOMAIN", "TEAM"
+    ]
     existing: bool
     owned: bool
 
@@ -374,6 +379,7 @@ class GoogleCloudChannelV1ImportCustomerRequest(
     customer: str
     domain: str
     overwriteIfExists: bool
+    primaryAdminEmail: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1ListChannelPartnerLinksResponse(
@@ -673,7 +679,6 @@ class GoogleCloudChannelV1QueryEligibleBillingAccountsResponse(
 class GoogleCloudChannelV1RegisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
-    integrator: str
     serviceAccount: str
 
 @typing.type_check_only
@@ -868,7 +873,6 @@ class GoogleCloudChannelV1TrialSettings(typing_extensions.TypedDict, total=False
 class GoogleCloudChannelV1UnregisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
-    integrator: str
     serviceAccount: str
 
 @typing.type_check_only

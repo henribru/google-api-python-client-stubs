@@ -317,6 +317,7 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     encryptionKey: CustomerEncryptionKey
     ephemeralDirectories: _list[EphemeralDirectory]
     etag: str
+    grantWorkstationAdminRoleOnCreate: bool
     host: Host
     httpOptions: HttpOptions
     idleTimeout: str

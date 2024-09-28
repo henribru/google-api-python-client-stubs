@@ -122,8 +122,10 @@ class DeviceIdentifier(typing_extensions.TypedDict, total=False):
         "DEVICE_TYPE_UNSPECIFIED", "DEVICE_TYPE_ANDROID", "DEVICE_TYPE_CHROME_OS"
     ]
     imei: str
+    imei2: str
     manufacturer: str
     meid: str
+    meid2: str
     model: str
     serialNumber: str
 

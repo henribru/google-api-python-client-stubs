@@ -20,6 +20,8 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
+        "NVIDIA_H100_80GB",
+        "NVIDIA_H100_MEGA_80GB",
         "TPU_V2",
         "TPU_V3",
     ]
@@ -589,6 +591,8 @@ class SetInstanceAcceleratorRequest(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
+        "NVIDIA_H100_80GB",
+        "NVIDIA_H100_MEGA_80GB",
         "TPU_V2",
         "TPU_V3",
     ]

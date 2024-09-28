@@ -438,6 +438,19 @@ class CampaignsListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class CartData(typing_extensions.TypedDict, total=False):
+    items: _list[CartDataItem]
+    merchantFeedLabel: str
+    merchantFeedLanguage: str
+    merchantId: str
+
+@typing.type_check_only
+class CartDataItem(typing_extensions.TypedDict, total=False):
+    itemId: str
+    quantity: int
+    unitPrice: float
+
+@typing.type_check_only
 class ChangeLog(typing_extensions.TypedDict, total=False):
     accountId: str
     action: str
@@ -543,6 +556,7 @@ class ContentCategory(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Conversion(typing_extensions.TypedDict, total=False):
     adUserDataConsent: typing_extensions.Literal["GRANTED", "DENIED"]
+    cartData: CartData
     childDirectedTreatment: bool
     customVariables: _list[CustomFloodlightVariable]
     dclid: str
@@ -1495,6 +1509,7 @@ class DirectorySite(typing_extensions.TypedDict, total=False):
     ]
     kind: str
     name: str
+    publisherSpecificationId: str
     settings: DirectorySiteSettings
     url: str
 
@@ -2247,6 +2262,7 @@ class Placement(typing_extensions.TypedDict, total=False):
         "PLACEMENT_STATUS_PERMANENTLY_ARCHIVED",
     ]
     adBlockingOptOut: bool
+    adServingPlatformId: str
     additionalSizes: _list[Size]
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
@@ -2287,6 +2303,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     publisherUpdateInfo: LastModifiedInfo
     siteId: str
     siteIdDimensionValue: DimensionValue
+    siteServed: bool
     size: Size
     sslRequired: bool
     status: typing_extensions.Literal[
@@ -2675,6 +2692,7 @@ class Rule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Site(typing_extensions.TypedDict, total=False):
     accountId: str
+    adServingPlatformId: str
     approved: bool
     directorySiteId: str
     directorySiteIdDimensionValue: DimensionValue

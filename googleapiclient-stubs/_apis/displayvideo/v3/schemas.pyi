@@ -352,6 +352,7 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -1653,6 +1654,7 @@ class DeviceTypeAssignedTargetingOptionDetails(
         "DEVICE_TYPE_CONNECTED_TV",
         "DEVICE_TYPE_SMART_PHONE",
         "DEVICE_TYPE_TABLET",
+        "DEVICE_TYPE_CONNECTED_DEVICE",
     ]
     youtubeAndPartnersBidMultiplier: float
 
@@ -1664,6 +1666,7 @@ class DeviceTypeTargetingOptionDetails(typing_extensions.TypedDict, total=False)
         "DEVICE_TYPE_CONNECTED_TV",
         "DEVICE_TYPE_SMART_PHONE",
         "DEVICE_TYPE_TABLET",
+        "DEVICE_TYPE_CONNECTED_DEVICE",
     ]
 
 @typing.type_check_only
@@ -2002,6 +2005,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
 
 @typing.type_check_only
@@ -2093,6 +2097,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2183,6 +2188,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2276,6 +2282,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
 
 @typing.type_check_only
@@ -2657,6 +2664,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2960,6 +2968,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_CHARTBOOST_GBID",
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
+        "EXCHANGE_NETFLIX",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -3790,6 +3799,7 @@ class PerformanceGoal(typing_extensions.TypedDict, total=False):
         "PERFORMANCE_GOAL_TYPE_VIEWABILITY",
         "PERFORMANCE_GOAL_TYPE_CPIAVC",
         "PERFORMANCE_GOAL_TYPE_CPE",
+        "PERFORMANCE_GOAL_TYPE_CPV",
         "PERFORMANCE_GOAL_TYPE_CLICK_CVR",
         "PERFORMANCE_GOAL_TYPE_IMPRESSION_CVR",
         "PERFORMANCE_GOAL_TYPE_VCPM",

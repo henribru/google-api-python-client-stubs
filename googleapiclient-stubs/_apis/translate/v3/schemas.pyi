@@ -34,7 +34,7 @@ class AdaptiveMtSentence(typing_extensions.TypedDict, total=False):
 class AdaptiveMtTranslateRequest(typing_extensions.TypedDict, total=False):
     content: _list[str]
     dataset: str
-    glossaryConfig: TranslateTextGlossaryConfig
+    glossaryConfig: GlossaryConfig
     referenceSentenceConfig: ReferenceSentenceConfig
 
 @typing.type_check_only
@@ -181,6 +181,11 @@ class Glossary(typing_extensions.TypedDict, total=False):
     languagePair: LanguageCodePair
     name: str
     submitTime: str
+
+@typing.type_check_only
+class GlossaryConfig(typing_extensions.TypedDict, total=False):
+    glossary: str
+    ignoreCase: bool
 
 @typing.type_check_only
 class GlossaryEntry(typing_extensions.TypedDict, total=False):

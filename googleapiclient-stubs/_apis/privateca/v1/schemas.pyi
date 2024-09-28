@@ -126,6 +126,7 @@ class CertificateDescription(typing_extensions.TypedDict, total=False):
     publicKey: PublicKey
     subjectDescription: SubjectDescription
     subjectKeyId: KeyId
+    tbsCertificateDigest: str
     x509Description: X509Parameters
 
 @typing.type_check_only

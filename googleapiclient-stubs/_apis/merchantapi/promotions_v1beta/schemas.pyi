@@ -91,6 +91,8 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
     status: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -136,6 +138,8 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
     resolution: str
     severity: typing_extensions.Literal[
@@ -173,6 +177,8 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only

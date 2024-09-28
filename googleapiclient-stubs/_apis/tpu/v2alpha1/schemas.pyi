@@ -191,6 +191,7 @@ class Node(typing_extensions.TypedDict, total=False):
     multisliceNode: bool
     name: str
     networkConfig: NetworkConfig
+    networkConfigs: _list[NetworkConfig]
     networkEndpoints: _list[NetworkEndpoint]
     queuedResource: str
     runtimeVersion: str

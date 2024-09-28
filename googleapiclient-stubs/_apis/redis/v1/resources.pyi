@@ -59,6 +59,13 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def rescheduleClusterMaintenance(
+                    self,
+                    *,
+                    name: str,
+                    body: RescheduleClusterMaintenanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):

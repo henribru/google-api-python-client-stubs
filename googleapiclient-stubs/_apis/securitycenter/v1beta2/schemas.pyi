@@ -85,6 +85,7 @@ class AzureMetadata(typing_extensions.TypedDict, total=False):
     managementGroups: _list[AzureManagementGroup]
     resourceGroup: AzureResourceGroup
     subscription: AzureSubscription
+    tenant: AzureTenant
 
 @typing.type_check_only
 class AzureResourceGroup(typing_extensions.TypedDict, total=False):
@@ -92,6 +93,11 @@ class AzureResourceGroup(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AzureSubscription(typing_extensions.TypedDict, total=False):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class AzureTenant(typing_extensions.TypedDict, total=False):
     displayName: str
     id: str
 
@@ -215,6 +221,7 @@ class Cve(typing_extensions.TypedDict, total=False):
         "ANTICIPATED",
         "NO_KNOWN",
     ]
+    firstExploitationDate: str
     id: str
     impact: typing_extensions.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
@@ -262,6 +269,25 @@ class Cvssv3(typing_extensions.TypedDict, total=False):
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
     ]
+
+@typing.type_check_only
+class DataAccessEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalEmail: str
+
+@typing.type_check_only
+class DataFlowEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalEmail: str
+    violatedLocation: str
 
 @typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
@@ -353,6 +379,8 @@ class Finding(typing_extensions.TypedDict, total=False):
     contacts: dict[str, typing.Any]
     containers: _list[Container]
     createTime: str
+    dataAccessEvents: _list[DataAccessEvent]
+    dataFlowEvents: _list[DataFlowEvent]
     database: Database
     description: str
     eventTime: str
@@ -369,6 +397,7 @@ class Finding(typing_extensions.TypedDict, total=False):
         "SCC_ERROR",
         "POSTURE_VIOLATION",
         "TOXIC_COMBINATION",
+        "SENSITIVE_DATA_RISK",
     ]
     groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
@@ -768,6 +797,7 @@ class GoogleCloudSecuritycenterV2AzureMetadata(
     managementGroups: _list[GoogleCloudSecuritycenterV2AzureManagementGroup]
     resourceGroup: GoogleCloudSecuritycenterV2AzureResourceGroup
     subscription: GoogleCloudSecuritycenterV2AzureSubscription
+    tenant: GoogleCloudSecuritycenterV2AzureTenant
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AzureResourceGroup(
@@ -779,6 +809,11 @@ class GoogleCloudSecuritycenterV2AzureResourceGroup(
 class GoogleCloudSecuritycenterV2AzureSubscription(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AzureTenant(typing_extensions.TypedDict, total=False):
     displayName: str
     id: str
 
@@ -904,6 +939,7 @@ class GoogleCloudSecuritycenterV2Cve(typing_extensions.TypedDict, total=False):
         "ANTICIPATED",
         "NO_KNOWN",
     ]
+    firstExploitationDate: str
     id: str
     impact: typing_extensions.Literal[
         "RISK_RATING_UNSPECIFIED", "LOW", "MEDIUM", "HIGH", "CRITICAL"
@@ -951,6 +987,29 @@ class GoogleCloudSecuritycenterV2Cvssv3(typing_extensions.TypedDict, total=False
         "USER_INTERACTION_NONE",
         "USER_INTERACTION_REQUIRED",
     ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2DataAccessEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalEmail: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2DataFlowEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventId: str
+    eventTime: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "READ", "MOVE", "COPY"
+    ]
+    principalEmail: str
+    violatedLocation: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=False):
@@ -1040,6 +1099,8 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     contacts: dict[str, typing.Any]
     containers: _list[GoogleCloudSecuritycenterV2Container]
     createTime: str
+    dataAccessEvents: _list[GoogleCloudSecuritycenterV2DataAccessEvent]
+    dataFlowEvents: _list[GoogleCloudSecuritycenterV2DataFlowEvent]
     database: GoogleCloudSecuritycenterV2Database
     description: str
     eventTime: str
@@ -1056,6 +1117,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
         "SCC_ERROR",
         "POSTURE_VIOLATION",
         "TOXIC_COMBINATION",
+        "SENSITIVE_DATA_RISK",
     ]
     groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]

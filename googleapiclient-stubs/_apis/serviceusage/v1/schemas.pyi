@@ -22,6 +22,29 @@ class AdminQuotaPolicy(typing_extensions.TypedDict, total=False):
     unit: str
 
 @typing.type_check_only
+class Analysis(typing_extensions.TypedDict, total=False):
+    analysis: AnalysisResult
+    analysisType: typing_extensions.Literal[
+        "ANALYSIS_TYPE_UNSPECIFIED",
+        "ANALYSIS_TYPE_DEPENDENCY",
+        "ANALYSIS_TYPE_RESOURCE_USAGE",
+    ]
+    displayName: str
+    service: str
+
+@typing.type_check_only
+class AnalysisResult(typing_extensions.TypedDict, total=False):
+    blockers: _list[Impact]
+    warnings: _list[Impact]
+
+@typing.type_check_only
+class AnalyzeConsumerPolicyMetadata(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AnalyzeConsumerPolicyResponse(typing_extensions.TypedDict, total=False):
+    analysis: _list[Analysis]
+
+@typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
     methods: _list[Method]
     mixins: _list[Mixin]
@@ -279,6 +302,10 @@ class EnumValue(typing_extensions.TypedDict, total=False):
     options: _list[Option]
 
 @typing.type_check_only
+class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    restAsyncIoEnabled: bool
+
+@typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
     cardinality: typing_extensions.Literal[
         "CARDINALITY_UNKNOWN",
@@ -444,6 +471,13 @@ class HttpRule(typing_extensions.TypedDict, total=False):
     selector: str
 
 @typing.type_check_only
+class Impact(typing_extensions.TypedDict, total=False):
+    detail: str
+    impactType: typing_extensions.Literal[
+        "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
+    ]
+
+@typing.type_check_only
 class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -587,6 +621,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     samplePeriod: str
+    timeSeriesResourceHierarchyLevel: _list[
+        typing_extensions.Literal[
+            "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+            "PROJECT",
+            "ORGANIZATION",
+            "FOLDER",
+        ]
+    ]
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
@@ -687,6 +729,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PythonSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    experimentalFeatures: ExperimentalFeatures
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):

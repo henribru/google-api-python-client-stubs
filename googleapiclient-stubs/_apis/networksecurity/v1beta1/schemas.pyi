@@ -200,7 +200,7 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
     network: str
     reconciling: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "ORPHAN"
     ]
     tlsInspectionPolicy: str
     updateTime: str
@@ -357,6 +357,29 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMirroringDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+    mirroringDeploymentGroups: _list[MirroringDeploymentGroup]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMirroringDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    mirroringDeployments: _list[MirroringDeployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMirroringEndpointGroupAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    mirroringEndpointGroupAssociations: _list[MirroringEndpointGroupAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMirroringEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+    mirroringEndpointGroups: _list[MirroringEndpointGroup]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -405,6 +428,88 @@ class MTLSPolicy(typing_extensions.TypedDict, total=False):
         "REJECT_INVALID",
     ]
     clientValidationTrustConfig: str
+
+@typing.type_check_only
+class MirroringDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    forwardingRule: str
+    labels: dict[str, typing.Any]
+    mirroringDeploymentGroup: str
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
+    connectedEndpointGroups: _list[MirroringDeploymentGroupConnectedEndpointGroup]
+    createTime: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringDeploymentGroupConnectedEndpointGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    mirroringDeploymentGroup: str
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CLOSED",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    locationsDetails: _list[MirroringEndpointGroupAssociationLocationDetails]
+    mirroringEndpointGroup: str
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociationLocationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

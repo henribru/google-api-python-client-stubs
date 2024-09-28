@@ -87,6 +87,7 @@ class DynamicLinkInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicLinkStats(typing_extensions.TypedDict, total=False):
     linkEventStats: _list[DynamicLinkEventStat]
+    warnings: _list[DynamicLinkWarning]
 
 @typing.type_check_only
 class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
@@ -120,6 +121,7 @@ class DynamicLinkWarning(typing_extensions.TypedDict, total=False):
         "LINK_LENGTH_TOO_LONG",
         "LINK_WITH_FRAGMENTS",
         "NOT_MATCHING_IOS_BUNDLE_ID_AND_STORE_ID",
+        "API_DEPRECATED",
     ]
     warningDocumentLink: str
     warningMessage: str
@@ -180,6 +182,7 @@ class GetIosReopenAttributionResponse(typing_extensions.TypedDict, total=False):
     utmMedium: str
     utmSource: str
     utmTerm: str
+    warning: _list[DynamicLinkWarning]
 
 @typing.type_check_only
 class GooglePlayAnalytics(typing_extensions.TypedDict, total=False):

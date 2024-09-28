@@ -109,6 +109,11 @@ class GoogleCloudDataplexV1AspectType(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     metadataTemplate: GoogleCloudDataplexV1AspectTypeMetadataTemplate
     name: str
+    transferStatus: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNSPECIFIED",
+        "TRANSFER_STATUS_MIGRATED",
+        "TRANSFER_STATUS_TRANSFERRED",
+    ]
     uid: str
     updateTime: str
 
@@ -841,10 +846,12 @@ class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=Fal
     assetId: str
     config: GoogleCloudDataplexV1DiscoveryEventConfigDetails
     dataLocation: str
+    datascanId: str
     entity: GoogleCloudDataplexV1DiscoveryEventEntityDetails
     lakeId: str
     message: str
     partition: GoogleCloudDataplexV1DiscoveryEventPartitionDetails
+    table: GoogleCloudDataplexV1DiscoveryEventTableDetails
     type: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED",
         "CONFIG",
@@ -884,6 +891,15 @@ class GoogleCloudDataplexV1DiscoveryEventPartitionDetails(
     partition: str
     sampledDataLocations: _list[str]
     type: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "TABLE", "FILESET"]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DiscoveryEventTableDetails(
+    typing_extensions.TypedDict, total=False
+):
+    table: str
+    type: typing_extensions.Literal[
+        "TABLE_TYPE_UNSPECIFIED", "EXTERNAL_TABLE", "BIGLAKE_TABLE", "OBJECT_TABLE"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1Entity(typing_extensions.TypedDict, total=False):
@@ -941,6 +957,11 @@ class GoogleCloudDataplexV1EntryGroup(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     name: str
+    transferStatus: typing_extensions.Literal[
+        "TRANSFER_STATUS_UNSPECIFIED",
+        "TRANSFER_STATUS_MIGRATED",
+        "TRANSFER_STATUS_TRANSFERRED",
+    ]
     uid: str
     updateTime: str
 

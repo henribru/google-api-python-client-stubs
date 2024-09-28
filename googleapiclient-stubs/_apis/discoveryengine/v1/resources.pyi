@@ -135,6 +135,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 | None
                             ): ...
 
+                        def batchGetDocumentsMetadata(
+                            self,
+                            *,
+                            parent: str,
+                            matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseHttpRequest: ...
                         def documents(self) -> DocumentsResource: ...
                         def operations(self) -> OperationsResource: ...
 
@@ -249,6 +257,12 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             updateMask: str = ...,
                             **kwargs: typing.Any,
                         ) -> GoogleCloudDiscoveryengineV1ConversationHttpRequest: ...
+
+                    @typing.type_check_only
+                    class CustomModelsResource(googleapiclient.discovery.Resource):
+                        def list(
+                            self, *, dataStore: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDiscoveryengineV1ListCustomModelsResponseHttpRequest: ...
 
                     @typing.type_check_only
                     class ModelsResource(googleapiclient.discovery.Resource):
@@ -709,12 +723,20 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDiscoveryengineV1DataStoreHttpRequest: ...
+                    def trainCustomModel(
+                        self,
+                        *,
+                        dataStore: str,
+                        body: GoogleCloudDiscoveryengineV1TrainCustomModelRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def branches(self) -> BranchesResource: ...
                     def completionSuggestions(
                         self,
                     ) -> CompletionSuggestionsResource: ...
                     def controls(self) -> ControlsResource: ...
                     def conversations(self) -> ConversationsResource: ...
+                    def customModels(self) -> CustomModelsResource: ...
                     def models(self) -> ModelsResource: ...
                     def operations(self) -> OperationsResource: ...
                     def schemas(self) -> SchemasResource: ...
@@ -1090,6 +1112,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
 
+                    def batchGetDocumentsMetadata(
+                        self,
+                        *,
+                        parent: str,
+                        matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                        matcher_urisMatcher_uris: str | _list[str] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseHttpRequest: ...
                     def documents(self) -> DocumentsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -1736,6 +1766,16 @@ class GoogleCloudDiscoveryengineV1AnswerQueryResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1AnswerQueryResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1CheckGroundingResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1838,6 +1878,16 @@ class GoogleCloudDiscoveryengineV1ListConversationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1ListConversationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ListCustomModelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1ListCustomModelsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1ListDataStoresResponseHttpRequest(
