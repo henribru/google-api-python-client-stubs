@@ -1,29 +1,29 @@
-[tool.poetry]
+[project]
 name = "google-api-python-client-stubs"
 version = "1.27.0"
 description = "Type stubs for google-api-python-client"
-authors = ["Henrik Bruådal <henrik.bruasdal@gmail.com>"]
+authors = [ 
+    { name = "Henrik Bruådal", email = "henrik.bruasdal@gmail.com" },
+]
 readme = "README.md"
 license = "Apache-2.0"
 repository = "https://github.com/henribru/google-api-python-client-stubs"
-packages = [
-    { include = "googleapiclient-stubs" },
-    { include = "apiclient-stubs" },
-]
 classifiers = [
    "Typing :: Stubs Only",
 ]
+dependencies = [
+    "google-api-python-client>=2.141.0",
+    "types-httplib2>=0.22.0.2",
+    "typing-extensions>=3.10.0",
+]
+requires-python = ">=3.7"
 
-[tool.poetry.dependencies]
-python = "^3.7"
-google-api-python-client = ">=2.141.0"
-typing-extensions = ">=3.10.0"
-types-httplib2 = ">=0.22.0.2"
-
-[tool.poetry.group.dev.dependencies]
-mypy = {version = "^1.9.0", python = "^3.8"}
-stubdefaulter = "^0.1.0"
-ruff = "^0.3.3"
+[tool.uv]
+dev-dependencies = [
+    "mypy>=1.11.2 ; python_full_version >= '3.8'",
+    "ruff>=0.6.8",
+    "stubdefaulter>=0.1.0",
+]
 
 [tool.ruff.lint]
 select = ["UP", "I"]
@@ -38,6 +38,9 @@ known-first-party = [
 [tool.mypy]
 warn_unused_ignores = true
 
+[tool.hatch.build.targets.wheel]
+packages = ["googleapiclient-stubs", "apiclient-stubs"]
+
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
