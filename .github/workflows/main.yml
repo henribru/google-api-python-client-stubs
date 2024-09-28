@@ -15,22 +15,13 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Poetry
-        run: pip install poetry
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-dependencies
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
-            ${{ runner.os }}-
+          enable-cache: true
 
       - name: Install dependencies
-        run: poetry install
+        run: uv sync
 
       - name: Register problem matcher
         run: echo "::add-matcher::.github/workflows/matchers/ruff.json"
@@ -39,7 +30,7 @@ jobs:
         run: rm .gitignore              
 
       - name: Run ruff format
-        run: poetry run ruff format --check googleapiclient-stubs apiclient-stubs
+        run: uv run ruff format --check googleapiclient-stubs apiclient-stubs
 
   ruff-check:
     runs-on: ubuntu-latest
@@ -49,28 +40,19 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Poetry
-        run: pip install poetry
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-dependencies
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
-            ${{ runner.os }}-
+          enable-cache: true
 
       - name: Install dependencies
-        run: poetry install
+        run: uv sync
 
       - name: Delete .gitignore (https://github.com/astral-sh/ruff/issues/8753)
         run: rm .gitignore        
 
       - name: Run ruff check
-        run:  poetry run ruff check --output-format github googleapiclient-stubs apiclient-stubs
+        run:  uv run ruff check --output-format github googleapiclient-stubs apiclient-stubs
 
   mypy:
     runs-on: ubuntu-latest
@@ -80,26 +62,17 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
 
-      - name: Install Poetry
-        run: pip install poetry
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        env:
-          cache-name: cache-dependencies
+      - name: Install uv
+        uses: astral-sh/setup-uv@v2
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('pyproject.toml') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
-            ${{ runner.os }}-
+          enable-cache: true
 
       - name: Install dependencies
-        run: poetry install
+        run: uv sync
 
       - name: Register problem matchers
         run: echo "::add-matcher::.github/workflows/matchers/mypy.json"
 
       - name: Run Mypy
         run: |
-          poetry run mypy googleapiclient-stubs apiclient-stubs
+          uv run mypy googleapiclient-stubs apiclient-stubs

@@ -7,5 +7,6 @@
 !/apiclient-stubs/
 !/apiclient-stubs/**
 !/pyproject.toml
+!/uv.lock
 !/README.md
 !/LICENSE
