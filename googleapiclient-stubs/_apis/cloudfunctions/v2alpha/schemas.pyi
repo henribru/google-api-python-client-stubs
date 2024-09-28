@@ -120,64 +120,6 @@ class GenerateUploadUrlResponse(typing_extensions.TypedDict, total=False):
     uploadUrl: str
 
 @typing.type_check_only
-class GoogleCloudFunctionsV2LocationMetadata(typing_extensions.TypedDict, total=False):
-    environments: _list[
-        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
-    ]
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total=False):
-    apiVersion: str
-    buildName: str
-    cancelRequested: bool
-    createTime: str
-    endTime: str
-    operationType: typing_extensions.Literal[
-        "OPERATIONTYPE_UNSPECIFIED",
-        "CREATE_FUNCTION",
-        "UPDATE_FUNCTION",
-        "DELETE_FUNCTION",
-        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
-        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
-        "SETUP_FUNCTION_UPGRADE_CONFIG",
-        "ABORT_FUNCTION_UPGRADE",
-        "COMMIT_FUNCTION_UPGRADE",
-    ]
-    requestResource: dict[str, typing.Any]
-    sourceToken: str
-    stages: _list[GoogleCloudFunctionsV2Stage]
-    statusDetail: str
-    target: str
-    verb: str
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2Stage(typing_extensions.TypedDict, total=False):
-    message: str
-    name: typing_extensions.Literal[
-        "NAME_UNSPECIFIED",
-        "ARTIFACT_REGISTRY",
-        "BUILD",
-        "SERVICE",
-        "TRIGGER",
-        "SERVICE_ROLLBACK",
-        "TRIGGER_ROLLBACK",
-    ]
-    resource: str
-    resourceUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
-    ]
-    stateMessages: _list[GoogleCloudFunctionsV2StateMessage]
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2StateMessage(typing_extensions.TypedDict, total=False):
-    message: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
-    type: str
-
-@typing.type_check_only
 class GoogleCloudFunctionsV2alphaLocationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -233,68 +175,6 @@ class GoogleCloudFunctionsV2alphaStage(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class GoogleCloudFunctionsV2alphaStateMessage(typing_extensions.TypedDict, total=False):
-    message: str
-    severity: typing_extensions.Literal[
-        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
-    type: str
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2betaLocationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    environments: _list[
-        typing_extensions.Literal["ENVIRONMENT_UNSPECIFIED", "GEN_1", "GEN_2"]
-    ]
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2betaOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    apiVersion: str
-    buildName: str
-    cancelRequested: bool
-    createTime: str
-    endTime: str
-    operationType: typing_extensions.Literal[
-        "OPERATIONTYPE_UNSPECIFIED",
-        "CREATE_FUNCTION",
-        "UPDATE_FUNCTION",
-        "DELETE_FUNCTION",
-        "REDIRECT_FUNCTION_UPGRADE_TRAFFIC",
-        "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
-        "SETUP_FUNCTION_UPGRADE_CONFIG",
-        "ABORT_FUNCTION_UPGRADE",
-        "COMMIT_FUNCTION_UPGRADE",
-    ]
-    requestResource: dict[str, typing.Any]
-    sourceToken: str
-    stages: _list[GoogleCloudFunctionsV2betaStage]
-    statusDetail: str
-    target: str
-    verb: str
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2betaStage(typing_extensions.TypedDict, total=False):
-    message: str
-    name: typing_extensions.Literal[
-        "NAME_UNSPECIFIED",
-        "ARTIFACT_REGISTRY",
-        "BUILD",
-        "SERVICE",
-        "TRIGGER",
-        "SERVICE_ROLLBACK",
-        "TRIGGER_ROLLBACK",
-    ]
-    resource: str
-    resourceUri: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "NOT_STARTED", "IN_PROGRESS", "COMPLETE"
-    ]
-    stateMessages: _list[GoogleCloudFunctionsV2betaStateMessage]
-
-@typing.type_check_only
-class GoogleCloudFunctionsV2betaStateMessage(typing_extensions.TypedDict, total=False):
     message: str
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"

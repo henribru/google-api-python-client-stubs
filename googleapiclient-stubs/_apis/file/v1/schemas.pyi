@@ -10,6 +10,9 @@ class Backup(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     downloadBytes: str
+    fileSystemProtocol: typing_extensions.Literal[
+        "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
+    ]
     kmsKey: str
     labels: dict[str, typing.Any]
     name: str
@@ -63,6 +66,10 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
     name: str
     nfsExportOptions: _list[NfsExportOptions]
     sourceBackup: str
+
+@typing.type_check_only
+class FixedIOPS(typing_extensions.TypedDict, total=False):
+    maxReadIops: str
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
@@ -163,8 +170,15 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
     tier: str
 
 @typing.type_check_only
+class IOPSPerTB(typing_extensions.TypedDict, total=False):
+    maxReadIopsPerTb: str
+
+@typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    configurablePerformanceEnabled: bool
     createTime: str
+    deletionProtectionEnabled: bool
+    deletionProtectionReason: str
     description: str
     etag: str
     fileShares: _list[FileShareConfig]
@@ -172,6 +186,11 @@ class Instance(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     networks: _list[NetworkConfig]
+    performanceConfig: PerformanceConfig
+    performanceLimits: PerformanceLimits
+    protocol: typing_extensions.Literal[
+        "FILE_PROTOCOL_UNSPECIFIED", "NFS_V3", "NFS_V4_1"
+    ]
     replication: Replication
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -295,6 +314,18 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PerformanceConfig(typing_extensions.TypedDict, total=False):
+    fixedIops: FixedIOPS
+    iopsPerTb: IOPSPerTB
+
+@typing.type_check_only
+class PerformanceLimits(typing_extensions.TypedDict, total=False):
+    maxReadIops: str
+    maxReadThroughputBps: str
+    maxWriteIops: str
+    maxWriteThroughputBps: str
 
 @typing.type_check_only
 class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...

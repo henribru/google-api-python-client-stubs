@@ -600,7 +600,13 @@ class Membership(typing_extensions.TypedDict, total=False):
     preferredMemberKey: EntityKey
     roles: _list[MembershipRole]
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "USER", "SERVICE_ACCOUNT", "GROUP", "SHARED_DRIVE", "OTHER"
+        "TYPE_UNSPECIFIED",
+        "USER",
+        "SERVICE_ACCOUNT",
+        "GROUP",
+        "SHARED_DRIVE",
+        "CBCM_BROWSER",
+        "OTHER",
     ]
     updateTime: str
 

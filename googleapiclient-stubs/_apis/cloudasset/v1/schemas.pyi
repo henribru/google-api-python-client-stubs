@@ -84,6 +84,10 @@ class Asset(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class AssetEnrichment(typing_extensions.TypedDict, total=False):
+    resourceOwners: ResourceOwners
+
+@typing.type_check_only
 class AttachedResource(typing_extensions.TypedDict, total=False):
     assetType: str
     versionedResources: _list[VersionedResource]
@@ -288,7 +292,12 @@ class GoogleCloudAssetV1CustomConstraint(typing_extensions.TypedDict, total=Fals
     displayName: str
     methodTypes: _list[
         typing_extensions.Literal[
-            "METHOD_TYPE_UNSPECIFIED", "CREATE", "UPDATE", "DELETE"
+            "METHOD_TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "REMOVE_GRANT",
+            "GOVERN_TAGS",
         ]
     ]
     name: str
@@ -895,6 +904,10 @@ class Resource(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class ResourceOwners(typing_extensions.TypedDict, total=False):
+    resourceOwners: _list[str]
+
+@typing.type_check_only
 class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     additionalAttributes: dict[str, typing.Any]
     assetType: str
@@ -903,6 +916,7 @@ class ResourceSearchResult(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     effectiveTags: _list[EffectiveTagDetails]
+    enrichments: _list[AssetEnrichment]
     folders: _list[str]
     kmsKey: str
     kmsKeys: _list[str]

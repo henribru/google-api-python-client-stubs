@@ -18,6 +18,12 @@ class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
         "COMMON_CRITERIA_MODE_DISABLED",
         "COMMON_CRITERIA_MODE_ENABLED",
     ]
+    contentProtectionPolicy: typing_extensions.Literal[
+        "CONTENT_PROTECTION_POLICY_UNSPECIFIED",
+        "CONTENT_PROTECTION_DISABLED",
+        "CONTENT_PROTECTION_ENFORCED",
+        "CONTENT_PROTECTION_USER_CHOICE",
+    ]
     developerSettings: typing_extensions.Literal[
         "DEVELOPER_SETTINGS_UNSPECIFIED",
         "DEVELOPER_SETTINGS_DISABLED",
@@ -1099,6 +1105,11 @@ class Policy(typing_extensions.TypedDict, total=False):
         "ALWAYS",
     ]
     applications: _list[ApplicationPolicy]
+    assistContentPolicy: typing_extensions.Literal[
+        "ASSIST_CONTENT_POLICY_UNSPECIFIED",
+        "ASSIST_CONTENT_DISALLOWED",
+        "ASSIST_CONTENT_ALLOWED",
+    ]
     autoDateAndTimeZone: typing_extensions.Literal[
         "AUTO_DATE_AND_TIME_ZONE_UNSPECIFIED",
         "AUTO_DATE_AND_TIME_ZONE_USER_CHOICE",
@@ -1457,6 +1468,7 @@ class SystemUpdateInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TelephonyInfo(typing_extensions.TypedDict, total=False):
     carrierName: str
+    iccId: str
     phoneNumber: str
 
 @typing.type_check_only

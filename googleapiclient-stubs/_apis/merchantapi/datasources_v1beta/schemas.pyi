@@ -20,6 +20,16 @@ class DataSource(typing_extensions.TypedDict, total=False):
     supplementalProductDataSource: SupplementalProductDataSource
 
 @typing.type_check_only
+class DataSourceReference(typing_extensions.TypedDict, total=False):
+    primaryDataSourceName: str
+    self: bool
+    supplementalDataSourceName: str
+
+@typing.type_check_only
+class DefaultRule(typing_extensions.TypedDict, total=False):
+    takeFromDataSources: _list[DataSourceReference]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -60,6 +70,28 @@ class FileInput(typing_extensions.TypedDict, total=False):
     fileName: str
 
 @typing.type_check_only
+class FileUpload(typing_extensions.TypedDict, total=False):
+    dataSourceId: str
+    issues: _list[Issue]
+    itemsCreated: str
+    itemsTotal: str
+    itemsUpdated: str
+    name: str
+    processingState: typing_extensions.Literal[
+        "PROCESSING_STATE_UNSPECIFIED", "FAILED", "IN_PROGRESS", "SUCCEEDED"
+    ]
+    uploadTime: str
+
+@typing.type_check_only
+class Issue(typing_extensions.TypedDict, total=False):
+    code: str
+    count: str
+    description: str
+    documentationUri: str
+    severity: typing_extensions.Literal["SEVERITY_UNSPECIFIED", "WARNING", "ERROR"]
+    title: str
+
+@typing.type_check_only
 class ListDataSourcesResponse(typing_extensions.TypedDict, total=False):
     dataSources: _list[DataSource]
     nextPageToken: str
@@ -76,6 +108,7 @@ class PrimaryProductDataSource(typing_extensions.TypedDict, total=False):
     ]
     contentLanguage: str
     countries: _list[str]
+    defaultRule: DefaultRule
     feedLabel: str
 
 @typing.type_check_only
@@ -99,6 +132,8 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only
@@ -125,6 +160,7 @@ class RegionalInventoryDataSource(typing_extensions.TypedDict, total=False):
 class SupplementalProductDataSource(typing_extensions.TypedDict, total=False):
     contentLanguage: str
     feedLabel: str
+    referencingPrimaryDataSources: _list[DataSourceReference]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

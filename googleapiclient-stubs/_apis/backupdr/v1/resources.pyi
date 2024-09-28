@@ -103,7 +103,15 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any,
                         ) -> OperationHttpRequest: ...
                         def get(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            view: typing_extensions.Literal[
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL",
+                            ] = ...,
+                            **kwargs: typing.Any,
                         ) -> BackupHttpRequest: ...
                         def list(
                             self,
@@ -113,6 +121,11 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                             orderBy: str = ...,
                             pageSize: int = ...,
                             pageToken: str = ...,
+                            view: typing_extensions.Literal[
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL",
+                            ] = ...,
                             **kwargs: typing.Any,
                         ) -> ListBackupsResponseHttpRequest: ...
                         def list_next(
@@ -246,7 +259,15 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     previous_response: FetchUsableBackupVaultsResponse,
                 ) -> FetchUsableBackupVaultsResponseHttpRequest | None: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "BACKUP_VAULT_VIEW_UNSPECIFIED",
+                        "BACKUP_VAULT_VIEW_BASIC",
+                        "BACKUP_VAULT_VIEW_FULL",
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> BackupVaultHttpRequest: ...
                 def list(
                     self,
@@ -256,6 +277,11 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "BACKUP_VAULT_VIEW_UNSPECIFIED",
+                        "BACKUP_VAULT_VIEW_BASIC",
+                        "BACKUP_VAULT_VIEW_FULL",
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListBackupVaultsResponseHttpRequest: ...
                 def list_next(

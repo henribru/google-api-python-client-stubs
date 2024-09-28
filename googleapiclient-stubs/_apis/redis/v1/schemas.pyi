@@ -11,7 +11,16 @@ class AOFConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AssetLocation(typing_extensions.TypedDict, total=False):
+    ccfeRmsPath: str
+    expected: IsolationExpectations
+    extraParameters: _list[ExtraParameter]
+    locationData: _list[LocationData]
+    parentAsset: _list[CloudAsset]
+
+@typing.type_check_only
 class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
+    automaticFailoverRoutingConfigured: bool
     availabilityType: typing_extensions.Literal[
         "AVAILABILITY_TYPE_UNSPECIFIED",
         "ZONAL",
@@ -37,6 +46,10 @@ class BackupRun(typing_extensions.TypedDict, total=False):
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "SUCCESSFUL", "FAILED"]
 
 @typing.type_check_only
+class BlobstoreLocation(typing_extensions.TypedDict, total=False):
+    policyId: _list[str]
+
+@typing.type_check_only
 class CertChain(typing_extensions.TypedDict, total=False):
     certificates: _list[str]
 
@@ -46,13 +59,25 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class CloudAsset(typing_extensions.TypedDict, total=False):
+    assetName: str
+    assetType: str
+
+@typing.type_check_only
+class CloudAssetComposition(typing_extensions.TypedDict, total=False):
+    childAsset: _list[CloudAsset]
+
+@typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
     authorizationMode: typing_extensions.Literal[
         "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
     ]
     createTime: str
+    crossClusterReplicationConfig: CrossClusterReplicationConfig
     deletionProtectionEnabled: bool
     discoveryEndpoints: _list[DiscoveryEndpoint]
+    maintenancePolicy: ClusterMaintenancePolicy
+    maintenanceSchedule: ClusterMaintenanceSchedule
     name: str
     nodeType: typing_extensions.Literal[
         "NODE_TYPE_UNSPECIFIED",
@@ -82,6 +107,17 @@ class Cluster(typing_extensions.TypedDict, total=False):
     zoneDistributionConfig: ZoneDistributionConfig
 
 @typing.type_check_only
+class ClusterMaintenancePolicy(typing_extensions.TypedDict, total=False):
+    createTime: str
+    updateTime: str
+    weeklyMaintenanceWindow: _list[ClusterWeeklyMaintenanceWindow]
+
+@typing.type_check_only
+class ClusterMaintenanceSchedule(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class ClusterPersistenceConfig(typing_extensions.TypedDict, total=False):
     aofConfig: AOFConfig
     mode: typing_extensions.Literal[
@@ -90,21 +126,37 @@ class ClusterPersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbConfig: RDBConfig
 
 @typing.type_check_only
+class ClusterWeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    startTime: TimeOfDay
+
+@typing.type_check_only
 class Compliance(typing_extensions.TypedDict, total=False):
     standard: str
     version: str
 
 @typing.type_check_only
-class CustomMetadataData(typing_extensions.TypedDict, total=False):
-    databaseMetadata: _list[DatabaseMetadata]
+class CrossClusterReplicationConfig(typing_extensions.TypedDict, total=False):
+    clusterRole: typing_extensions.Literal[
+        "CLUSTER_ROLE_UNSPECIFIED", "NONE", "PRIMARY", "SECONDARY"
+    ]
+    membership: Membership
+    primaryCluster: RemoteCluster
+    secondaryClusters: _list[RemoteCluster]
+    updateTime: str
 
 @typing.type_check_only
-class DatabaseMetadata(typing_extensions.TypedDict, total=False):
-    backupConfiguration: BackupConfiguration
-    backupRun: BackupRun
-    product: Product
-    resourceId: DatabaseResourceId
-    resourceName: str
+class CustomMetadataData(typing_extensions.TypedDict, total=False):
+    internalResourceMetadata: _list[InternalResourceMetadata]
 
 @typing.type_check_only
 class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
@@ -150,6 +202,9 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "ERROR",
     ]
     signalId: str
+    signalSeverity: typing_extensions.Literal[
+        "SIGNAL_SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
     signalType: typing_extensions.Literal[
         "SIGNAL_TYPE_UNSPECIFIED",
         "SIGNAL_TYPE_NOT_PROTECTED_BY_AUTOMATIC_FAILOVER",
@@ -291,6 +346,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     product: Product
     resourceContainer: str
     resourceName: str
+    tagsSet: Tags
     updationTime: str
     userLabelSet: UserLabels
 
@@ -390,6 +446,10 @@ class DatabaseResourceRecommendationSignalData(
     ]
 
 @typing.type_check_only
+class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
+    location: _list[LocationAssignment]
+
+@typing.type_check_only
 class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
     address: str
     port: int
@@ -408,6 +468,10 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
     outputConfig: OutputConfig
+
+@typing.type_check_only
+class ExtraParameter(typing_extensions.TypedDict, total=False):
+    regionalMigDistributionPolicy: RegionalMigDistributionPolicy
 
 @typing.type_check_only
 class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -515,6 +579,49 @@ class InstanceAuthString(typing_extensions.TypedDict, total=False):
     authString: str
 
 @typing.type_check_only
+class InternalResourceMetadata(typing_extensions.TypedDict, total=False):
+    backupConfiguration: BackupConfiguration
+    backupRun: BackupRun
+    product: Product
+    resourceId: DatabaseResourceId
+    resourceName: str
+
+@typing.type_check_only
+class IsolationExpectations(typing_extensions.TypedDict, total=False):
+    requirementOverride: RequirementOverride
+    ziOrgPolicy: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    ziRegionPolicy: typing_extensions.Literal[
+        "ZI_REGION_POLICY_UNSPECIFIED",
+        "ZI_REGION_POLICY_UNKNOWN",
+        "ZI_REGION_POLICY_NOT_SET",
+        "ZI_REGION_POLICY_FAIL_OPEN",
+        "ZI_REGION_POLICY_FAIL_CLOSED",
+    ]
+    ziRegionState: typing_extensions.Literal[
+        "ZI_REGION_UNSPECIFIED",
+        "ZI_REGION_UNKNOWN",
+        "ZI_REGION_NOT_ENABLED",
+        "ZI_REGION_ENABLED",
+    ]
+    zoneIsolation: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    zoneSeparation: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
+    zsOrgPolicy: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
+    zsRegionState: typing_extensions.Literal[
+        "ZS_REGION_UNSPECIFIED",
+        "ZS_REGION_UNKNOWN",
+        "ZS_REGION_NOT_ENABLED",
+        "ZS_REGION_ENABLED",
+    ]
+
+@typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
     clusters: _list[Cluster]
     nextPageToken: str
@@ -545,9 +652,34 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LocationAssignment(typing_extensions.TypedDict, total=False):
+    location: str
+    locationType: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "CLUSTER",
+        "POP",
+        "CLOUD_ZONE",
+        "CLOUD_REGION",
+        "MULTI_REGION_GEO",
+        "MULTI_REGION_JURISDICTION",
+        "GLOBAL",
+        "OTHER",
+    ]
+
+@typing.type_check_only
+class LocationData(typing_extensions.TypedDict, total=False):
+    blobstoreLocation: BlobstoreLocation
+    childAssetLocation: CloudAssetComposition
+    directLocation: DirectLocationAssignment
+    gcpProjectProxy: TenantProjectProxy
+    placerLocation: PlacerLocation
+    spannerLocation: SpannerLocation
+
+@typing.type_check_only
 class MachineConfiguration(typing_extensions.TypedDict, total=False):
     cpuCount: int
     memorySizeInBytes: str
+    shardCount: int
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -566,6 +698,11 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ManagedCertificateAuthority(typing_extensions.TypedDict, total=False):
     caCerts: _list[CertChain]
+
+@typing.type_check_only
+class Membership(typing_extensions.TypedDict, total=False):
+    primaryCluster: RemoteCluster
+    secondaryClusters: _list[RemoteCluster]
 
 @typing.type_check_only
 class NodeInfo(typing_extensions.TypedDict, total=False):
@@ -641,6 +778,10 @@ class PersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbSnapshotStartTime: str
 
 @typing.type_check_only
+class PlacerLocation(typing_extensions.TypedDict, total=False):
+    placerConfig: str
+
+@typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
         "ENGINE_UNSPECIFIED",
@@ -657,6 +798,8 @@ class Product(typing_extensions.TypedDict, total=False):
         "ENGINE_MEMORYSTORE_FOR_REDIS",
         "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
         "ENGINE_OTHER",
+        "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
+        "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
     ]
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
@@ -670,6 +813,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "PRODUCT_TYPE_MEMORYSTORE",
         "PRODUCT_TYPE_BIGTABLE",
         "PRODUCT_TYPE_OTHER",
+        "PRODUCT_TYPE_FIRESTORE",
     ]
     version: str
 
@@ -684,6 +828,7 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     network: str
     projectId: str
     pscConnectionId: str
+    serviceAttachment: str
 
 @typing.type_check_only
 class RDBConfig(typing_extensions.TypedDict, total=False):
@@ -704,6 +849,32 @@ class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
+    targetShape: int
+    zones: _list[ZoneConfiguration]
+
+@typing.type_check_only
+class RemoteCluster(typing_extensions.TypedDict, total=False):
+    cluster: str
+    uid: str
+
+@typing.type_check_only
+class RequirementOverride(typing_extensions.TypedDict, total=False):
+    ziOverride: typing_extensions.Literal[
+        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
+    ]
+    zsOverride: typing_extensions.Literal[
+        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
+    ]
+
+@typing.type_check_only
+class RescheduleClusterMaintenanceRequest(typing_extensions.TypedDict, total=False):
+    rescheduleType: typing_extensions.Literal[
+        "RESCHEDULE_TYPE_UNSPECIFIED", "IMMEDIATE", "SPECIFIC_TIME"
+    ]
+    scheduleTime: str
+
+@typing.type_check_only
 class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
     rescheduleType: typing_extensions.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",
@@ -722,6 +893,11 @@ class RetentionSettings(typing_extensions.TypedDict, total=False):
     timeBasedRetention: str
 
 @typing.type_check_only
+class SpannerLocation(typing_extensions.TypedDict, total=False):
+    backupName: _list[str]
+    dbName: _list[str]
+
+@typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):
     updateInfo: UpdateInfo
 
@@ -730,6 +906,14 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class Tags(typing_extensions.TypedDict, total=False):
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
+class TenantProjectProxy(typing_extensions.TypedDict, total=False):
+    projectNumbers: _list[str]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
@@ -780,6 +964,10 @@ class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
+
+@typing.type_check_only
+class ZoneConfiguration(typing_extensions.TypedDict, total=False):
+    zone: str
 
 @typing.type_check_only
 class ZoneDistributionConfig(typing_extensions.TypedDict, total=False):

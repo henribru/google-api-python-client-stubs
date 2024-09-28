@@ -298,6 +298,7 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     userNote: str
     vlanAttachments: _list[IntakeVlanAttachment]
     vlanSameProject: bool
+    vrf: str
 
 @typing.type_check_only
 class NetworkMountPoint(typing_extensions.TypedDict, total=False):

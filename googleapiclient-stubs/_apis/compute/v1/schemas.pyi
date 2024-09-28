@@ -136,6 +136,7 @@ class AdvancedMachineFeatures(typing_extensions.TypedDict, total=False):
         "STANDARD",
     ]
     threadsPerCore: int
+    turboMode: str
     visibleCoreCount: int
 
 @typing.type_check_only
@@ -417,6 +418,7 @@ class BackendBucket(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     selfLink: str
+    usedBy: _list[BackendBucketUsedBy]
 
 @typing.type_check_only
 class BackendBucketCdnPolicy(typing_extensions.TypedDict, total=False):
@@ -464,6 +466,10 @@ class BackendBucketList(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     selfLink: str
     warning: dict[str, typing.Any]
+
+@typing.type_check_only
+class BackendBucketUsedBy(typing_extensions.TypedDict, total=False):
+    reference: str
 
 @typing.type_check_only
 class BackendService(typing_extensions.TypedDict, total=False):
@@ -902,7 +908,7 @@ class Condition(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     confidentialInstanceType: typing_extensions.Literal[
-        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP"
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV", "SEV_SNP", "TDX"
     ]
     enableConfidentialCompute: bool
 
@@ -1479,7 +1485,6 @@ class FutureReservation(typing_extensions.TypedDict, total=False):
     selfLink: str
     selfLinkWithId: str
     shareSettings: ShareSettings
-    specificReservationRequired: bool
     specificSkuProperties: FutureReservationSpecificSKUProperties
     status: FutureReservationStatus
     timeWindow: FutureReservationTimeWindow
@@ -1678,6 +1683,7 @@ class GuestOsFeature(typing_extensions.TypedDict, total=False):
         "SEV_LIVE_MIGRATABLE",
         "SEV_LIVE_MIGRATABLE_V2",
         "SEV_SNP_CAPABLE",
+        "TDX_CAPABLE",
         "UEFI_COMPATIBLE",
         "VIRTIO_SCSI_MULTIQUEUE",
         "WINDOWS",
@@ -3276,6 +3282,9 @@ class MachineImageList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MachineType(typing_extensions.TypedDict, total=False):
     accelerators: _list[dict[str, typing.Any]]
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "ARM64", "X86_64"
+    ]
     creationTimestamp: str
     deprecated: DeprecationStatus
     description: str
@@ -3523,6 +3532,7 @@ class NetworkEdgeSecurityServicesScopedList(typing_extensions.TypedDict, total=F
 @typing.type_check_only
 class NetworkEndpoint(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    clientDestinationPort: int
     fqdn: str
     instance: str
     ipAddress: str
@@ -3544,6 +3554,7 @@ class NetworkEndpointGroup(typing_extensions.TypedDict, total=False):
     networkEndpointType: typing_extensions.Literal[
         "GCE_VM_IP",
         "GCE_VM_IP_PORT",
+        "GCE_VM_IP_PORTMAP",
         "INTERNET_FQDN_PORT",
         "INTERNET_IP_PORT",
         "NON_GCP_PRIVATE_IP_PORT",
@@ -3597,6 +3608,7 @@ class NetworkEndpointGroupList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkEndpointGroupPscData(typing_extensions.TypedDict, total=False):
     consumerPscAddress: str
+    producerPort: int
     pscConnectionId: str
     pscConnectionStatus: typing_extensions.Literal[
         "ACCEPTED",
@@ -3716,9 +3728,10 @@ class NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy(
 ):
     displayName: str
     name: str
+    priority: int
     rules: _list[FirewallPolicyRule]
     shortName: str
-    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "UNSPECIFIED"]
+    type: typing_extensions.Literal["HIERARCHY", "NETWORK", "SYSTEM", "UNSPECIFIED"]
 
 @typing.type_check_only
 class NetworksRemovePeeringRequest(typing_extensions.TypedDict, total=False):

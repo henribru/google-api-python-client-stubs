@@ -459,10 +459,21 @@ class ImportJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportRowError(typing_extensions.TypedDict, total=False):
+    csvError: ImportRowErrorCsvErrorDetails
     errors: _list[ImportError]
     rowNumber: int
     vmName: str
     vmUuid: str
+    xlsxError: ImportRowErrorXlsxErrorDetails
+
+@typing.type_check_only
+class ImportRowErrorCsvErrorDetails(typing_extensions.TypedDict, total=False):
+    rowNumber: int
+
+@typing.type_check_only
+class ImportRowErrorXlsxErrorDetails(typing_extensions.TypedDict, total=False):
+    rowNumber: int
+    sheet: str
 
 @typing.type_check_only
 class Insight(typing_extensions.TypedDict, total=False):

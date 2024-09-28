@@ -50,6 +50,12 @@ class Address(typing_extensions.TypedDict, total=False):
     streetAddress: str
 
 @typing.type_check_only
+class AutofeedSettings(typing_extensions.TypedDict, total=False):
+    eligible: bool
+    enableProducts: bool
+    name: str
+
+@typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
     businessDays: _list[
         typing_extensions.Literal[
@@ -82,6 +88,7 @@ class BusinessIdentity(typing_extensions.TypedDict, total=False):
 class BusinessInfo(typing_extensions.TypedDict, total=False):
     address: PostalAddress
     customerService: CustomerService
+    koreanBusinessRegistrationNumber: str
     name: str
     phone: PhoneNumber
     phoneVerificationState: typing_extensions.Literal[
@@ -224,6 +231,8 @@ class ImpactedDestination(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only
@@ -371,6 +380,8 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
+        "PRODUCT_REVIEWS",
+        "MERCHANT_REVIEWS",
     ]
 
 @typing.type_check_only

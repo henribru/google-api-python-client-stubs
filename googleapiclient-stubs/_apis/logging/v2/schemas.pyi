@@ -258,6 +258,11 @@ class ListLogMetricsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLogScopesResponse(typing_extensions.TypedDict, total=False):
+    logScopes: _list[LogScope]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLogsResponse(typing_extensions.TypedDict, total=False):
     logNames: _list[str]
     nextPageToken: str
@@ -421,6 +426,14 @@ class LogMetric(typing_extensions.TypedDict, total=False):
     version: typing_extensions.Literal["V2", "V1"]
 
 @typing.type_check_only
+class LogScope(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    name: str
+    resourceNames: _list[str]
+    updateTime: str
+
+@typing.type_check_only
 class LogSink(typing_extensions.TypedDict, total=False):
     bigqueryOptions: BigQueryOptions
     createTime: str
@@ -507,6 +520,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     samplePeriod: str
+    timeSeriesResourceHierarchyLevel: _list[
+        typing_extensions.Literal[
+            "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+            "PROJECT",
+            "ORGANIZATION",
+            "FOLDER",
+        ]
+    ]
 
 @typing.type_check_only
 class MonitoredResource(typing_extensions.TypedDict, total=False):

@@ -374,7 +374,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1BackupHttpRequest: ...
                 def list(
-                    self, *, parent: str, **kwargs: typing.Any
+                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
                 ) -> GoogleFirestoreAdminV1ListBackupsResponseHttpRequest: ...
 
             def get(

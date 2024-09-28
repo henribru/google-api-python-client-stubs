@@ -131,6 +131,12 @@ class ChatClientDataSourceMarkup(typing_extensions.TypedDict, total=False):
     spaceDataSource: SpaceDataSource
 
 @typing.type_check_only
+class ChatSpaceLinkData(typing_extensions.TypedDict, total=False):
+    message: str
+    space: str
+    thread: str
+
+@typing.type_check_only
 class Color(typing_extensions.TypedDict, total=False):
     alpha: float
     blue: float
@@ -686,6 +692,11 @@ class MembershipBatchUpdatedEventData(typing_extensions.TypedDict, total=False):
     memberships: _list[MembershipUpdatedEventData]
 
 @typing.type_check_only
+class MembershipCount(typing_extensions.TypedDict, total=False):
+    joinedDirectHumanUserCount: int
+    joinedGroupCount: int
+
+@typing.type_check_only
 class MembershipCreatedEventData(typing_extensions.TypedDict, total=False):
     membership: Membership
 
@@ -788,9 +799,18 @@ class ReactionDeletedEventData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RichLinkMetadata(typing_extensions.TypedDict, total=False):
+    chatSpaceLinkData: ChatSpaceLinkData
     driveLinkData: DriveLinkData
-    richLinkType: typing_extensions.Literal["RICH_LINK_TYPE_UNSPECIFIED", "DRIVE_FILE"]
+    richLinkType: typing_extensions.Literal[
+        "RICH_LINK_TYPE_UNSPECIFIED", "DRIVE_FILE", "CHAT_SPACE"
+    ]
     uri: str
+
+@typing.type_check_only
+class SearchSpacesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    spaces: _list[Space]
+    totalSize: int
 
 @typing.type_check_only
 class Section(typing_extensions.TypedDict, total=False):
@@ -827,6 +847,8 @@ class Space(typing_extensions.TypedDict, total=False):
     displayName: str
     externalUserAllowed: bool
     importMode: bool
+    lastActiveTime: str
+    membershipCount: MembershipCount
     name: str
     singleUserBotDm: bool
     spaceDetails: SpaceDetails

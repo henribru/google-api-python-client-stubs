@@ -197,8 +197,6 @@ class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BackupRule(typing_extensions.TypedDict, total=False):
     backupRetentionDays: int
-    backupVault: str
-    backupVaultServiceAccount: str
     ruleId: str
     standardSchedule: StandardSchedule
 
@@ -211,7 +209,6 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     deletable: bool
     description: str
     effectiveTime: str
-    enforcedRetentionDuration: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
@@ -259,6 +256,7 @@ class ComputeInstanceBackupProperties(typing_extensions.TypedDict, total=False):
     keyRevocationActionType: typing_extensions.Literal[
         "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED", "NONE", "STOP"
     ]
+    labels: dict[str, typing.Any]
     machineType: str
     metadata: Metadata
     minCpuPlatform: str
@@ -715,7 +713,6 @@ class RestoreBackupRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RuleConfigInfo(typing_extensions.TypedDict, total=False):
-    dataSource: str
     lastBackupError: Status
     lastBackupState: typing_extensions.Literal[
         "LAST_BACKUP_STATE_UNSPECIFIED",

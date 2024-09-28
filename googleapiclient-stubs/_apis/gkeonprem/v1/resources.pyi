@@ -44,6 +44,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BareMetalAdminCluster = ...,
+                    allowPreflightFailure: bool = ...,
                     bareMetalAdminClusterId: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
@@ -59,6 +60,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    allowMissing: bool = ...,
                     view: typing_extensions.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -75,6 +77,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    allowMissing: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal[
@@ -271,6 +274,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: BareMetalCluster = ...,
+                    allowPreflightFailure: bool = ...,
                     bareMetalClusterId: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
@@ -297,6 +301,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    allowMissing: bool = ...,
                     view: typing_extensions.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -313,6 +318,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    allowMissing: bool = ...,
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
@@ -435,6 +441,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    allowMissing: bool = ...,
                     view: typing_extensions.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -451,6 +458,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    allowMissing: bool = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     view: typing_extensions.Literal[
@@ -638,6 +646,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: VmwareCluster = ...,
+                    allowPreflightFailure: bool = ...,
                     validateOnly: bool = ...,
                     vmwareClusterId: str = ...,
                     **kwargs: typing.Any,
@@ -664,6 +673,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     name: str,
+                    allowMissing: bool = ...,
                     view: typing_extensions.Literal[
                         "CLUSTER_VIEW_UNSPECIFIED", "BASIC", "FULL"
                     ] = ...,
@@ -680,6 +690,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    allowMissing: bool = ...,
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,

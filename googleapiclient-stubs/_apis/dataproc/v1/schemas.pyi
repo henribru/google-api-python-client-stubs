@@ -854,6 +854,7 @@ class Session(typing_extensions.TypedDict, total=False):
     runtimeConfig: RuntimeConfig
     runtimeInfo: RuntimeInfo
     sessionTemplate: str
+    sparkConnectSession: SparkConnectConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "TERMINATING", "TERMINATED", "FAILED"
     ]
@@ -894,6 +895,7 @@ class SessionTemplate(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     runtimeConfig: RuntimeConfig
+    sparkConnectSession: SparkConnectConfig
     updateTime: str
     uuid: str
 
@@ -939,6 +941,9 @@ class SparkBatch(typing_extensions.TypedDict, total=False):
     jarFileUris: _list[str]
     mainClass: str
     mainJarFileUri: str
+
+@typing.type_check_only
+class SparkConnectConfig(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SparkHistoryServerConfig(typing_extensions.TypedDict, total=False):

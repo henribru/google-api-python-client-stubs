@@ -11,6 +11,15 @@ class GoogleCloudRunV2BinaryAuthorization(typing_extensions.TypedDict, total=Fal
     useDefault: bool
 
 @typing.type_check_only
+class GoogleCloudRunV2BuildpacksBuild(typing_extensions.TypedDict, total=False):
+    baseImage: str
+    cacheImageUri: str
+    enableAutomaticUpdates: bool
+    environmentVariables: dict[str, typing.Any]
+    functionTarget: str
+    runtime: str
+
+@typing.type_check_only
 class GoogleCloudRunV2CancelExecutionRequest(typing_extensions.TypedDict, total=False):
     etag: str
     validateOnly: bool
@@ -101,6 +110,9 @@ class GoogleCloudRunV2ContainerOverride(typing_extensions.TypedDict, total=False
 class GoogleCloudRunV2ContainerPort(typing_extensions.TypedDict, total=False):
     containerPort: int
     name: str
+
+@typing.type_check_only
+class GoogleCloudRunV2DockerBuild(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class GoogleCloudRunV2EmptyDirVolumeSource(typing_extensions.TypedDict, total=False):
@@ -478,6 +490,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
     uid: str
     updateTime: str
     uri: str
+    urls: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRunV2ServiceMesh(typing_extensions.TypedDict, total=False):
@@ -486,6 +499,31 @@ class GoogleCloudRunV2ServiceMesh(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
     minInstanceCount: int
+    scalingMode: typing_extensions.Literal[
+        "SCALING_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
+    ]
+
+@typing.type_check_only
+class GoogleCloudRunV2StorageSource(typing_extensions.TypedDict, total=False):
+    bucket: str
+    generation: str
+    object: str
+
+@typing.type_check_only
+class GoogleCloudRunV2SubmitBuildRequest(typing_extensions.TypedDict, total=False):
+    buildpackBuild: GoogleCloudRunV2BuildpacksBuild
+    dockerBuild: GoogleCloudRunV2DockerBuild
+    imageUri: str
+    serviceAccount: str
+    storageSource: GoogleCloudRunV2StorageSource
+    tags: _list[str]
+    workerPool: str
+
+@typing.type_check_only
+class GoogleCloudRunV2SubmitBuildResponse(typing_extensions.TypedDict, total=False):
+    baseImageUri: str
+    baseImageWarning: str
+    buildOperation: GoogleLongrunningOperation
 
 @typing.type_check_only
 class GoogleCloudRunV2TCPSocketAction(typing_extensions.TypedDict, total=False):

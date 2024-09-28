@@ -210,6 +210,7 @@ class BareMetalClusterOperationsConfig(typing_extensions.TypedDict, total=False)
 
 @typing.type_check_only
 class BareMetalClusterUpgradePolicy(typing_extensions.TypedDict, total=False):
+    pause: bool
     policy: typing_extensions.Literal[
         "NODE_POOL_POLICY_UNSPECIFIED", "SERIAL", "CONCURRENT"
     ]
@@ -633,6 +634,8 @@ class ResourceCondition(typing_extensions.TypedDict, total=False):
 class ResourceStatus(typing_extensions.TypedDict, total=False):
     conditions: _list[ResourceCondition]
     errorMessage: str
+    version: str
+    versions: Versions
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -684,6 +687,15 @@ class ValidationCheckResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ValidationCheckStatus(typing_extensions.TypedDict, total=False):
     result: _list[ValidationCheckResult]
+
+@typing.type_check_only
+class Version(typing_extensions.TypedDict, total=False):
+    count: str
+    version: str
+
+@typing.type_check_only
+class Versions(typing_extensions.TypedDict, total=False):
+    versions: _list[Version]
 
 @typing.type_check_only
 class VmwareAAGConfig(typing_extensions.TypedDict, total=False):
@@ -739,6 +751,7 @@ class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     status: ResourceStatus
     uid: str
     updateTime: str
+    validationCheck: ValidationCheck
     vcenter: VmwareAdminVCenterConfig
 
 @typing.type_check_only

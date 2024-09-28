@@ -213,6 +213,14 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             **kwargs: typing.Any,
         ) -> googleapiclient.http.HttpRequest: ...
+        def download(
+            self,
+            *,
+            fileId: str,
+            mimeType: str = ...,
+            revisionId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def emptyTrash(
             self,
             *,
@@ -322,6 +330,33 @@ class DriveResource(googleapiclient.discovery.Resource):
             supportsTeamDrives: bool = ...,
             **kwargs: typing.Any,
         ) -> ChannelHttpRequest: ...
+
+    @typing.type_check_only
+    class OperationResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> googleapiclient.http.HttpRequest: ...
+
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            name: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListOperationsResponseHttpRequest,
+            previous_response: ListOperationsResponse,
+        ) -> ListOperationsResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class PermissionsResource(googleapiclient.discovery.Resource):
@@ -536,6 +571,8 @@ class DriveResource(googleapiclient.discovery.Resource):
     def comments(self) -> CommentsResource: ...
     def drives(self) -> DrivesResource: ...
     def files(self) -> FilesResource: ...
+    def operation(self) -> OperationResource: ...
+    def operations(self) -> OperationsResource: ...
     def permissions(self) -> PermissionsResource: ...
     def replies(self) -> RepliesResource: ...
     def revisions(self) -> RevisionsResource: ...
@@ -646,12 +683,28 @@ class LabelListHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LabelList: ...
 
 @typing.type_check_only
+class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
 class ModifyLabelsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ModifyLabelsResponse: ...
+
+@typing.type_check_only
+class OperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Operation: ...
 
 @typing.type_check_only
 class PermissionHttpRequest(googleapiclient.http.HttpRequest):

@@ -234,10 +234,16 @@ class CalendarResource(googleapiclient.discovery.Resource):
             calendarId: str,
             alwaysIncludeEmail: bool = ...,
             eventTypes: typing_extensions.Literal[
-                "default", "focusTime", "fromGmail", "outOfOffice", "workingLocation"
+                "birthday",
+                "default",
+                "focusTime",
+                "fromGmail",
+                "outOfOffice",
+                "workingLocation",
             ]
             | _list[
                 typing_extensions.Literal[
+                    "birthday",
                     "default",
                     "focusTime",
                     "fromGmail",
@@ -320,10 +326,16 @@ class CalendarResource(googleapiclient.discovery.Resource):
             body: Channel = ...,
             alwaysIncludeEmail: bool = ...,
             eventTypes: typing_extensions.Literal[
-                "default", "focusTime", "fromGmail", "outOfOffice", "workingLocation"
+                "birthday",
+                "default",
+                "focusTime",
+                "fromGmail",
+                "outOfOffice",
+                "workingLocation",
             ]
             | _list[
                 typing_extensions.Literal[
+                    "birthday",
                     "default",
                     "focusTime",
                     "fromGmail",

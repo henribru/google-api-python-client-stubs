@@ -17,6 +17,12 @@ class MerchantResource(googleapiclient.discovery.Resource):
     class AccountsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class DataSourcesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class FileUploadsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> FileUploadHttpRequest: ...
+
             def create(
                 self, *, parent: str, body: DataSource = ..., **kwargs: typing.Any
             ) -> DataSourceHttpRequest: ...
@@ -54,6 +60,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> DataSourceHttpRequest: ...
+            def fileUploads(self) -> FileUploadsResource: ...
 
         def dataSources(self) -> DataSourcesResource: ...
 
@@ -86,6 +93,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FileUploadHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FileUpload: ...
 
 @typing.type_check_only
 class ListDataSourcesResponseHttpRequest(googleapiclient.http.HttpRequest):

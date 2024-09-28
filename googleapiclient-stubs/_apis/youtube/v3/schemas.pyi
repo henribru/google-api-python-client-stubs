@@ -1850,6 +1850,7 @@ class PlaylistSnippet(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PlaylistStatus(typing_extensions.TypedDict, total=False):
+    podcastStatus: typing_extensions.Literal["enabled", "disabled"]
     privacyStatus: typing_extensions.Literal["public", "unlisted", "private"]
 
 @typing.type_check_only
@@ -2052,6 +2053,7 @@ class Video(typing_extensions.TypedDict, total=False):
     liveStreamingDetails: VideoLiveStreamingDetails
     localizations: dict[str, typing.Any]
     monetizationDetails: VideoMonetizationDetails
+    paidProductPlacementDetails: VideoPaidProductPlacementDetails
     player: VideoPlayer
     processingDetails: VideoProcessingDetails
     projectDetails: VideoProjectDetails
@@ -2217,6 +2219,10 @@ class VideoLocalization(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VideoMonetizationDetails(typing_extensions.TypedDict, total=False):
     access: AccessPolicy
+
+@typing.type_check_only
+class VideoPaidProductPlacementDetails(typing_extensions.TypedDict, total=False):
+    hasPaidProductPlacement: bool
 
 @typing.type_check_only
 class VideoPlayer(typing_extensions.TypedDict, total=False):

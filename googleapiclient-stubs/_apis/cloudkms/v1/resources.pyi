@@ -130,8 +130,19 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> KeyHandleHttpRequest: ...
                 def list(
-                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
                 ) -> ListKeyHandlesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListKeyHandlesResponseHttpRequest,
+                    previous_response: ListKeyHandlesResponse,
+                ) -> ListKeyHandlesResponseHttpRequest | None: ...
 
             @typing.type_check_only
             class KeyRingsResource(googleapiclient.discovery.Resource):

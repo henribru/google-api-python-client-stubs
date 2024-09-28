@@ -267,6 +267,11 @@ class LabelModification(typing_extensions.TypedDict, total=False):
     removeLabel: bool
 
 @typing.type_check_only
+class ListOperationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    operations: _list[Operation]
+
+@typing.type_check_only
 class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
     kind: str
     labelModifications: _list[LabelModification]
@@ -275,6 +280,14 @@ class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
 class ModifyLabelsResponse(typing_extensions.TypedDict, total=False):
     kind: str
     modifiedLabels: _list[Label]
+
+@typing.type_check_only
+class Operation(typing_extensions.TypedDict, total=False):
+    done: bool
+    error: Status
+    metadata: dict[str, typing.Any]
+    name: str
+    response: dict[str, typing.Any]
 
 @typing.type_check_only
 class Permission(typing_extensions.TypedDict, total=False):
@@ -345,6 +358,12 @@ class RevisionList(typing_extensions.TypedDict, total=False):
 class StartPageToken(typing_extensions.TypedDict, total=False):
     kind: str
     startPageToken: str
+
+@typing.type_check_only
+class Status(typing_extensions.TypedDict, total=False):
+    code: int
+    details: _list[dict[str, typing.Any]]
+    message: str
 
 @typing.type_check_only
 class TeamDrive(typing_extensions.TypedDict, total=False):

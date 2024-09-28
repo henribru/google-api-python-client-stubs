@@ -21,6 +21,7 @@ class AdditionalNodeNetworkConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AdditionalPodNetworkConfig(typing_extensions.TypedDict, total=False):
     maxPodsPerNode: MaxPodsConstraint
+    networkAttachment: str
     secondaryPodRange: str
     subnetwork: str
 
@@ -259,6 +260,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     privateCluster: bool
     privateClusterConfig: PrivateClusterConfig
     protectConfig: ProtectConfig
+    rbacBindingConfig: RBACBindingConfig
     releaseChannel: ReleaseChannel
     resourceLabels: dict[str, typing.Any]
     resourceUsageExportConfig: ResourceUsageExportConfig
@@ -315,6 +317,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredBinaryAuthorization: BinaryAuthorization
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredClusterTelemetry: ClusterTelemetry
+    desiredCompliancePostureConfig: CompliancePostureConfig
     desiredContainerdConfig: ContainerdConfig
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
@@ -370,6 +373,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
         "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL",
     ]
     desiredProtectConfig: ProtectConfig
+    desiredRbacBindingConfig: RBACBindingConfig
     desiredReleaseChannel: ReleaseChannel
     desiredResourceUsageExportConfig: ResourceUsageExportConfig
     desiredSecretManagerConfig: SecretManagerConfig
@@ -927,6 +931,7 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     shieldedInstanceConfig: ShieldedInstanceConfig
     soleTenantConfig: SoleTenantConfig
     spot: bool
+    storagePools: _list[str]
     tags: _list[str]
     taints: _list[NodeTaint]
     windowsNodeConfig: WindowsNodeConfig
@@ -1164,6 +1169,11 @@ class PubSub(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QueuedProvisioning(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class RBACBindingConfig(typing_extensions.TypedDict, total=False):
+    enableInsecureBindingSystemAuthenticated: bool
+    enableInsecureBindingSystemUnauthenticated: bool
 
 @typing.type_check_only
 class RangeInfo(typing_extensions.TypedDict, total=False):
@@ -1528,6 +1538,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     queuedProvisioning: QueuedProvisioning
     resourceLabels: ResourceLabels
     resourceManagerTags: ResourceManagerTags
+    storagePools: _list[str]
     tags: NetworkTags
     taints: NodeTaints
     upgradeSettings: UpgradeSettings

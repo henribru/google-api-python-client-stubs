@@ -53,6 +53,7 @@ class ApprovalRequest(typing_extensions.TypedDict, total=False):
     dismiss: DismissDecision
     name: str
     requestTime: str
+    requestedAugmentedInfo: AugmentedInfo
     requestedDuration: str
     requestedExpiration: str
     requestedLocations: AccessLocations
@@ -71,6 +72,10 @@ class ApproveDecision(typing_extensions.TypedDict, total=False):
     expireTime: str
     invalidateTime: str
     signatureInfo: SignatureInfo
+
+@typing.type_check_only
+class AugmentedInfo(typing_extensions.TypedDict, total=False):
+    command: str
 
 @typing.type_check_only
 class DismissApprovalRequestMessage(typing_extensions.TypedDict, total=False): ...

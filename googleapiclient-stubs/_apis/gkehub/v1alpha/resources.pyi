@@ -263,6 +263,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     version: str = ...,
                     **kwargs: typing.Any,
                 ) -> GenerateConnectManifestResponseHttpRequest: ...
+                def generateExclusivityManifest(
+                    self,
+                    *,
+                    name: str,
+                    crManifest: str = ...,
+                    crdManifest: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateExclusivityManifestResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> MembershipHttpRequest: ...
@@ -333,6 +341,14 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                     body: ValidateCreateMembershipRequest = ...,
                     **kwargs: typing.Any,
                 ) -> ValidateCreateMembershipResponseHttpRequest: ...
+                def validateExclusivity(
+                    self,
+                    *,
+                    parent: str,
+                    crManifest: str = ...,
+                    intendedMembership: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ValidateExclusivityResponseHttpRequest: ...
                 def bindings(self) -> BindingsResource: ...
                 def rbacrolebindings(self) -> RbacrolebindingsResource: ...
 
@@ -603,6 +619,14 @@ class GenerateConnectManifestResponseHttpRequest(googleapiclient.http.HttpReques
     ) -> GenerateConnectManifestResponse: ...
 
 @typing.type_check_only
+class GenerateExclusivityManifestResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateExclusivityManifestResponse: ...
+
+@typing.type_check_only
 class GenerateMembershipRBACRoleBindingYAMLResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -797,3 +821,11 @@ class ValidateCreateMembershipResponseHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ValidateCreateMembershipResponse: ...
+
+@typing.type_check_only
+class ValidateExclusivityResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ValidateExclusivityResponse: ...

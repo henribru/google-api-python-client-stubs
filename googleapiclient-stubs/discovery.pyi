@@ -278,7 +278,9 @@ import googleapiclient._apis.gkehub.v1alpha
 import googleapiclient._apis.gkehub.v1alpha2
 import googleapiclient._apis.gkehub.v1beta
 import googleapiclient._apis.gkehub.v1beta1
+import googleapiclient._apis.gkehub.v2
 import googleapiclient._apis.gkehub.v2alpha
+import googleapiclient._apis.gkehub.v2beta
 import googleapiclient._apis.gkeonprem.v1
 import googleapiclient._apis.gmail.v1
 import googleapiclient._apis.gmailpostmastertools.v1
@@ -367,6 +369,7 @@ import googleapiclient._apis.notebooks.v2
 import googleapiclient._apis.oauth2.v2
 import googleapiclient._apis.ondemandscanning.v1
 import googleapiclient._apis.ondemandscanning.v1beta1
+import googleapiclient._apis.oracledatabase.v1
 import googleapiclient._apis.orgpolicy.v2
 import googleapiclient._apis.osconfig.v1
 import googleapiclient._apis.osconfig.v1alpha
@@ -5988,6 +5991,26 @@ def build(
 @overload
 def build(
     serviceName: Literal["gkehub"],
+    version: Literal["v2"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.gkehub.v2.GKEHubResource: ...
+@overload
+def build(
+    serviceName: Literal["gkehub"],
     version: Literal["v2alpha"],
     http: httplib2.Http | HttpMock | None = None,
     discoveryServiceUrl: str | None = None,
@@ -6005,6 +6028,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.gkehub.v2alpha.GKEHubResource: ...
+@overload
+def build(
+    serviceName: Literal["gkehub"],
+    version: Literal["v2beta"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.gkehub.v2beta.GKEHubResource: ...
 @overload
 def build(
     serviceName: Literal["gkeonprem"],
@@ -7769,6 +7812,26 @@ def build(
     num_retries: int = 1,
     static_discovery: bool | None = None,
 ) -> googleapiclient._apis.ondemandscanning.v1beta1.OnDemandScanningResource: ...
+@overload
+def build(
+    serviceName: Literal["oracledatabase"],
+    version: Literal["v1"],
+    http: httplib2.Http | HttpMock | None = None,
+    discoveryServiceUrl: str | None = None,
+    developerKey: str | None = None,
+    model: Model | None = None,
+    requestBuilder: _RequestBuilder = HttpRequest,
+    credentials: oauth2client.Credentials
+    | google.auth.credentials.Credentials
+    | None = None,
+    cache_discovery: bool = True,
+    cache: Cache | None = None,
+    client_options: dict[str, Any] | ClientOptions | None = None,
+    adc_cert_path: str | None = None,
+    adc_key_path: str | None = None,
+    num_retries: int = 1,
+    static_discovery: bool | None = None,
+) -> googleapiclient._apis.oracledatabase.v1.OracleDatabaseResource: ...
 @overload
 def build(
     serviceName: Literal["orgpolicy"],

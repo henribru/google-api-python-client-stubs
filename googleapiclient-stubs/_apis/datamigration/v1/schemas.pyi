@@ -12,7 +12,7 @@ class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AlloyDbSettings(typing_extensions.TypedDict, total=False):
     databaseVersion: typing_extensions.Literal[
-        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_14", "POSTGRES_15"
+        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_14", "POSTGRES_15", "POSTGRES_16"
     ]
     encryptionConfig: EncryptionConfig
     initialUser: UserPassword
@@ -51,6 +51,10 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
     logType: typing_extensions.Literal[
         "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
     ]
+
+@typing.type_check_only
+class AuthorizedNetwork(typing_extensions.TypedDict, total=False):
+    cidrRange: str
 
 @typing.type_check_only
 class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
@@ -125,6 +129,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
         "MYSQL_8_0_37",
+        "MYSQL_8_4",
         "POSTGRES_9_6",
         "POSTGRES_11",
         "POSTGRES_10",
@@ -134,6 +139,7 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_15",
         "POSTGRES_16",
     ]
+    databaseVersionName: str
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
@@ -552,6 +558,12 @@ class IndexEntity(typing_extensions.TypedDict, total=False):
     unique: bool
 
 @typing.type_check_only
+class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
+    authorizedExternalNetworks: _list[AuthorizedNetwork]
+    enableOutboundPublicIp: bool
+    enablePublicIp: bool
+
+@typing.type_check_only
 class IntComparisonFilter(typing_extensions.TypedDict, total=False):
     value: str
     valueComparison: typing_extensions.Literal[
@@ -800,10 +812,21 @@ class Operation(typing_extensions.TypedDict, total=False):
     response: dict[str, typing.Any]
 
 @typing.type_check_only
+class OracleAsmConfig(typing_extensions.TypedDict, total=False):
+    asmService: str
+    hostname: str
+    password: str
+    passwordSet: bool
+    port: int
+    ssl: SslConfig
+    username: str
+
+@typing.type_check_only
 class OracleConnectionProfile(typing_extensions.TypedDict, total=False):
     databaseService: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
+    oracleAsmConfig: OracleAsmConfig
     password: str
     passwordSet: bool
     port: int
@@ -860,8 +883,10 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
 class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
     databaseFlags: dict[str, typing.Any]
     id: str
+    instanceNetworkConfig: InstanceNetworkConfig
     labels: dict[str, typing.Any]
     machineConfig: MachineConfig
+    outboundPublicIpAddresses: _list[str]
     privateIp: str
 
 @typing.type_check_only

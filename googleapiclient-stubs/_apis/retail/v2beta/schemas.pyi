@@ -1333,6 +1333,20 @@ class GoogleCloudRetailV2betaProduct(typing_extensions.TypedDict, total=False):
     variants: _list[GoogleCloudRetailV2betaProduct]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaProductAttributeInterval(
+    typing_extensions.TypedDict, total=False
+):
+    interval: GoogleCloudRetailV2betaInterval
+    name: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaProductAttributeValue(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    value: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaProductDetail(typing_extensions.TypedDict, total=False):
     product: GoogleCloudRetailV2betaProduct
     quantity: int
@@ -1588,6 +1602,9 @@ class GoogleCloudRetailV2betaSearchRequest(typing_extensions.TypedDict, total=Fa
     boostSpec: GoogleCloudRetailV2betaSearchRequestBoostSpec
     branch: str
     canonicalFilter: str
+    conversationalSearchSpec: (
+        GoogleCloudRetailV2betaSearchRequestConversationalSearchSpec
+    )
     dynamicFacetSpec: GoogleCloudRetailV2betaSearchRequestDynamicFacetSpec
     entity: str
     facetSpecs: _list[GoogleCloudRetailV2betaSearchRequestFacetSpec]
@@ -1605,6 +1622,7 @@ class GoogleCloudRetailV2betaSearchRequest(typing_extensions.TypedDict, total=Fa
         "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
     ]
     spellCorrectionSpec: GoogleCloudRetailV2betaSearchRequestSpellCorrectionSpec
+    tileNavigationSpec: GoogleCloudRetailV2betaSearchRequestTileNavigationSpec
     userInfo: GoogleCloudRetailV2betaUserInfo
     variantRollupKeys: _list[str]
     visitorId: str
@@ -1624,6 +1642,28 @@ class GoogleCloudRetailV2betaSearchRequestBoostSpecConditionBoostSpec(
 ):
     boost: float
     condition: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchRequestConversationalSearchSpec(
+    typing_extensions.TypedDict, total=False
+):
+    conversationId: str
+    followupConversationRequested: bool
+    userAnswer: GoogleCloudRetailV2betaSearchRequestConversationalSearchSpecUserAnswer
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchRequestConversationalSearchSpecUserAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    selectedAnswer: GoogleCloudRetailV2betaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer
+    textAnswer: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+    productAttributeValues: _list[GoogleCloudRetailV2betaProductAttributeValue]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaSearchRequestDynamicFacetSpec(
@@ -1674,9 +1714,19 @@ class GoogleCloudRetailV2betaSearchRequestSpellCorrectionSpec(
     mode: typing_extensions.Literal["MODE_UNSPECIFIED", "SUGGESTION_ONLY", "AUTO"]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaSearchRequestTileNavigationSpec(
+    typing_extensions.TypedDict, total=False
+):
+    appliedTiles: _list[GoogleCloudRetailV2betaTile]
+    tileNavigationRequested: bool
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaSearchResponse(typing_extensions.TypedDict, total=False):
     appliedControls: _list[str]
     attributionToken: str
+    conversationalSearchResult: (
+        GoogleCloudRetailV2betaSearchResponseConversationalSearchResult
+    )
     correctedQuery: str
     experimentInfo: _list[GoogleCloudRetailV2betaExperimentInfo]
     facets: _list[GoogleCloudRetailV2betaSearchResponseFacet]
@@ -1687,7 +1737,37 @@ class GoogleCloudRetailV2betaSearchResponse(typing_extensions.TypedDict, total=F
     queryExpansionInfo: GoogleCloudRetailV2betaSearchResponseQueryExpansionInfo
     redirectUri: str
     results: _list[GoogleCloudRetailV2betaSearchResponseSearchResult]
+    tileNavigationResult: GoogleCloudRetailV2betaSearchResponseTileNavigationResult
     totalSize: int
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchResponseConversationalSearchResult(
+    typing_extensions.TypedDict, total=False
+):
+    additionalFilter: (
+        GoogleCloudRetailV2betaSearchResponseConversationalSearchResultAdditionalFilter
+    )
+    additionalFilters: _list[
+        GoogleCloudRetailV2betaSearchResponseConversationalSearchResultAdditionalFilter
+    ]
+    conversationId: str
+    followupQuestion: str
+    refinedQuery: str
+    suggestedAnswers: _list[
+        GoogleCloudRetailV2betaSearchResponseConversationalSearchResultSuggestedAnswer
+    ]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchResponseConversationalSearchResultAdditionalFilter(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchResponseConversationalSearchResultSuggestedAnswer(
+    typing_extensions.TypedDict, total=False
+):
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaSearchResponseFacet(
@@ -1724,6 +1804,12 @@ class GoogleCloudRetailV2betaSearchResponseSearchResult(
     personalLabels: _list[str]
     product: GoogleCloudRetailV2betaProduct
     variantRollupValues: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaSearchResponseTileNavigationResult(
+    typing_extensions.TypedDict, total=False
+):
+    tiles: _list[GoogleCloudRetailV2betaTile]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaServingConfig(typing_extensions.TypedDict, total=False):
@@ -1782,6 +1868,12 @@ class GoogleCloudRetailV2betaSetInventoryRequest(
 class GoogleCloudRetailV2betaSetInventoryResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaTile(typing_extensions.TypedDict, total=False):
+    productAttributeInterval: GoogleCloudRetailV2betaProductAttributeInterval
+    productAttributeValue: GoogleCloudRetailV2betaProductAttributeValue
+    representativeProductId: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaTuneModelMetadata(

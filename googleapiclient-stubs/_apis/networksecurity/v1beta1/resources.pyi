@@ -649,6 +649,178 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 def rules(self) -> RulesResource: ...
 
             @typing.type_check_only
+            class MirroringDeploymentGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringDeploymentGroup = ...,
+                    mirroringDeploymentGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringDeploymentGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringDeploymentGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringDeploymentGroupsResponseHttpRequest,
+                    previous_response: ListMirroringDeploymentGroupsResponse,
+                ) -> ListMirroringDeploymentGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringDeploymentGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringDeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringDeployment = ...,
+                    mirroringDeploymentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringDeploymentsResponseHttpRequest,
+                    previous_response: ListMirroringDeploymentsResponse,
+                ) -> ListMirroringDeploymentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringDeployment = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringEndpointGroupAssociationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringEndpointGroupAssociation = ...,
+                    mirroringEndpointGroupAssociationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringEndpointGroupAssociationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringEndpointGroupAssociationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringEndpointGroupAssociationsResponseHttpRequest,
+                    previous_response: ListMirroringEndpointGroupAssociationsResponse,
+                ) -> (
+                    ListMirroringEndpointGroupAssociationsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringEndpointGroupAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringEndpointGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringEndpointGroup = ...,
+                    mirroringEndpointGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringEndpointGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringEndpointGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringEndpointGroupsResponseHttpRequest,
+                    previous_response: ListMirroringEndpointGroupsResponse,
+                ) -> ListMirroringEndpointGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringEndpointGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -838,6 +1010,14 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 self,
             ) -> FirewallEndpointAssociationsResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
+            def mirroringDeploymentGroups(
+                self,
+            ) -> MirroringDeploymentGroupsResource: ...
+            def mirroringDeployments(self) -> MirroringDeploymentsResource: ...
+            def mirroringEndpointGroupAssociations(
+                self,
+            ) -> MirroringEndpointGroupAssociationsResource: ...
+            def mirroringEndpointGroups(self) -> MirroringEndpointGroupsResource: ...
             def operations(self) -> OperationsResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
             def tlsInspectionPolicies(self) -> TlsInspectionPoliciesResource: ...
@@ -1035,6 +1215,42 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListMirroringDeploymentGroupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringDeploymentGroupsResponse: ...
+
+@typing.type_check_only
+class ListMirroringDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringDeploymentsResponse: ...
+
+@typing.type_check_only
+class ListMirroringEndpointGroupAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringEndpointGroupAssociationsResponse: ...
+
+@typing.type_check_only
+class ListMirroringEndpointGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringEndpointGroupsResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1089,6 +1305,38 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class MirroringDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringDeployment: ...
+
+@typing.type_check_only
+class MirroringDeploymentGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringDeploymentGroup: ...
+
+@typing.type_check_only
+class MirroringEndpointGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringEndpointGroup: ...
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringEndpointGroupAssociation: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

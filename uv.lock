@@ -171,7 +171,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "google-api-python-client", specifier = ">=2.141.0" },
+    { name = "google-api-python-client", specifier = ">=2.147.0" },
     { name = "types-httplib2", specifier = ">=0.22.0.2" },
     { name = "typing-extensions", specifier = ">=3.10.0" },
 ]

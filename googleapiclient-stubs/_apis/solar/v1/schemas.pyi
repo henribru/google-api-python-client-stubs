@@ -12,7 +12,7 @@ class BuildingInsights(typing_extensions.TypedDict, total=False):
     imageryDate: Date
     imageryProcessedDate: Date
     imageryQuality: typing_extensions.Literal[
-        "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW"
+        "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
     ]
     name: str
     postalCode: str
@@ -36,7 +36,7 @@ class DataLayers(typing_extensions.TypedDict, total=False):
     imageryDate: Date
     imageryProcessedDate: Date
     imageryQuality: typing_extensions.Literal[
-        "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW"
+        "IMAGERY_QUALITY_UNSPECIFIED", "HIGH", "MEDIUM", "LOW", "BASE"
     ]
     maskUrl: str
     monthlyFluxUrl: str

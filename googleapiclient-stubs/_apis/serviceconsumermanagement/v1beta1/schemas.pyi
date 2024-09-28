@@ -192,6 +192,10 @@ class EnumValue(typing_extensions.TypedDict, total=False):
     options: _list[Option]
 
 @typing.type_check_only
+class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    restAsyncIoEnabled: bool
+
+@typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
     cardinality: typing_extensions.Literal[
         "CARDINALITY_UNKNOWN",
@@ -370,6 +374,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     samplePeriod: str
+    timeSeriesResourceHierarchyLevel: _list[
+        typing_extensions.Literal[
+            "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+            "PROJECT",
+            "ORGANIZATION",
+            "FOLDER",
+        ]
+    ]
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
@@ -466,6 +478,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PythonSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    experimentalFeatures: ExperimentalFeatures
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):

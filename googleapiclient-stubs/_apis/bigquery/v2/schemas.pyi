@@ -311,6 +311,10 @@ class DataMaskingStatistics(typing_extensions.TypedDict, total=False):
     dataMaskingApplied: bool
 
 @typing.type_check_only
+class DataPolicyOption(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class DataSplitResult(typing_extensions.TypedDict, total=False):
     evaluationTable: TableReference
     testTable: TableReference
@@ -672,14 +676,6 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
     trialId: str
 
 @typing.type_check_only
-class IdentityColumnInfo(typing_extensions.TypedDict, total=False):
-    generatedMode: typing_extensions.Literal[
-        "GENERATED_MODE_UNSPECIFIED", "GENERATED_ALWAYS", "GENERATED_BY_DEFAULT"
-    ]
-    increment: str
-    start: str
-
-@typing.type_check_only
 class IndexUnusedReason(typing_extensions.TypedDict, total=False):
     baseTable: TableReference
     code: typing_extensions.Literal[
@@ -701,6 +697,7 @@ class IndexUnusedReason(typing_extensions.TypedDict, total=False):
         "NOT_SUPPORTED_IN_STANDARD_EDITION",
         "INDEX_SUPPRESSED_BY_FUNCTION_OPTION",
         "QUERY_CACHE_HIT",
+        "STALE_INDEX",
         "INTERNAL_ERROR",
         "OTHER_REASON",
     ]
@@ -1706,11 +1703,11 @@ class TableDataList(typing_extensions.TypedDict, total=False):
 class TableFieldSchema(typing_extensions.TypedDict, total=False):
     categories: dict[str, typing.Any]
     collation: str
+    dataPolicies: _list[DataPolicyOption]
     defaultValueExpression: str
     description: str
     fields: _list[TableFieldSchema]
     foreignTypeDefinition: str
-    identityColumnInfo: IdentityColumnInfo
     maxLength: str
     mode: str
     name: str

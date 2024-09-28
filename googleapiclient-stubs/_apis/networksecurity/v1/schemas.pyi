@@ -99,7 +99,7 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
     network: str
     reconciling: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "ORPHAN"
     ]
     tlsInspectionPolicy: str
     updateTime: str

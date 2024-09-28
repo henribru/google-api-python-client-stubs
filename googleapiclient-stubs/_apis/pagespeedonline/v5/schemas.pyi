@@ -74,6 +74,7 @@ class LighthouseAuditResultV5(typing_extensions.TypedDict, total=False):
     errorMessage: str
     explanation: str
     id: str
+    metricSavings: MetricSavings
     numericUnit: str
     numericValue: float
     score: typing.Any
@@ -111,6 +112,14 @@ class LighthouseResultV5(typing_extensions.TypedDict, total=False):
     stackPacks: _list[StackPack]
     timing: Timing
     userAgent: str
+
+@typing.type_check_only
+class MetricSavings(typing_extensions.TypedDict, total=False):
+    CLS: float
+    FCP: float
+    INP: float
+    LCP: float
+    TBT: float
 
 @typing.type_check_only
 class PagespeedApiLoadingExperienceV5(typing_extensions.TypedDict, total=False):

@@ -141,6 +141,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 | None
                             ): ...
 
+                        def batchGetDocumentsMetadata(
+                            self,
+                            *,
+                            parent: str,
+                            matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponseHttpRequest: ...
                         def documents(self) -> DocumentsResource: ...
                         def operations(self) -> OperationsResource: ...
 
@@ -1199,6 +1207,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
 
+                    def batchGetDocumentsMetadata(
+                        self,
+                        *,
+                        parent: str,
+                        matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                        matcher_urisMatcher_uris: str | _list[str] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponseHttpRequest: ...
                     def documents(self) -> DocumentsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -2004,6 +2020,16 @@ class GoogleCloudDiscoveryengineV1betaAnswerQueryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1betaAnswerQueryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1betaBatchGetDocumentsMetadataResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1betaCheckGroundingResponseHttpRequest(

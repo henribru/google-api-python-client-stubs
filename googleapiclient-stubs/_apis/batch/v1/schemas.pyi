@@ -83,6 +83,10 @@ class AgentTaskInfo(typing_extensions.TypedDict, total=False):
     taskStatus: TaskStatus
 
 @typing.type_check_only
+class AgentTaskLoggingOption(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
 class AgentTaskRunnable(typing_extensions.TypedDict, total=False):
     alwaysRun: bool
     background: bool
@@ -95,6 +99,7 @@ class AgentTaskRunnable(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AgentTaskSpec(typing_extensions.TypedDict, total=False):
     environment: AgentEnvironment
+    loggingOption: AgentTaskLoggingOption
     maxRunDuration: str
     runnables: _list[AgentTaskRunnable]
     userAccount: AgentTaskUserAccount
@@ -190,6 +195,7 @@ class InstancePolicy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancePolicyOrTemplate(typing_extensions.TypedDict, total=False):
+    blockProjectSshKeys: bool
     installGpuDrivers: bool
     installOpsAgent: bool
     instanceTemplate: str

@@ -305,9 +305,11 @@ class WorkstationConfig(typing_extensions.TypedDict, total=False):
     encryptionKey: CustomerEncryptionKey
     ephemeralDirectories: _list[EphemeralDirectory]
     etag: str
+    grantWorkstationAdminRoleOnCreate: bool
     host: Host
     idleTimeout: str
     labels: dict[str, typing.Any]
+    maxUsableWorkstations: int
     name: str
     persistentDirectories: _list[PersistentDirectory]
     readinessChecks: _list[ReadinessCheck]

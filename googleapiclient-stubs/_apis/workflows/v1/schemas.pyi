@@ -74,6 +74,11 @@ class Workflow(typing_extensions.TypedDict, total=False):
     cryptoKeyName: str
     cryptoKeyVersion: str
     description: str
+    executionHistoryLevel: typing_extensions.Literal[
+        "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+        "EXECUTION_HISTORY_BASIC",
+        "EXECUTION_HISTORY_DETAILED",
+    ]
     labels: dict[str, typing.Any]
     name: str
     revisionCreateTime: str

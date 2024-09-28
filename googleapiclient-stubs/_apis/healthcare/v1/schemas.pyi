@@ -68,6 +68,20 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BlobStorageInfo(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
+    storageClass: typing_extensions.Literal[
+        "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    ]
+    storageClassUpdateTime: str
+
+@typing.type_check_only
+class BlobStorageSettings(typing_extensions.TypedDict, total=False):
+    blobStorageClass: typing_extensions.Literal[
+        "BLOB_STORAGE_CLASS_UNSPECIFIED", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE"
+    ]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -520,6 +534,7 @@ class ImageConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
+    blobStorageSettings: BlobStorageSettings
     gcsSource: GoogleCloudHealthcareV1DicomGcsSource
 
 @typing.type_check_only
@@ -847,6 +862,14 @@ class SeriesMetrics(typing_extensions.TypedDict, total=False):
     structuredStorageSizeBytes: str
 
 @typing.type_check_only
+class SetBlobStorageSettingsRequest(typing_extensions.TypedDict, total=False):
+    blobStorageSettings: BlobStorageSettings
+    filterConfig: DicomFilterConfig
+
+@typing.type_check_only
+class SetBlobStorageSettingsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -865,10 +888,20 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StorageInfo(typing_extensions.TypedDict, total=False):
+    blobStorageInfo: BlobStorageInfo
+    referencedResource: str
+    structuredStorageInfo: StructuredStorageInfo
+
+@typing.type_check_only
 class StreamConfig(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1FhirBigQueryDestination
     deidentifiedStoreDestination: DeidentifiedStoreDestination
     resourceTypes: _list[str]
+
+@typing.type_check_only
+class StructuredStorageInfo(typing_extensions.TypedDict, total=False):
+    sizeBytes: str
 
 @typing.type_check_only
 class StudyMetrics(typing_extensions.TypedDict, total=False):

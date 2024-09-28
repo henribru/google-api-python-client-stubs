@@ -45,6 +45,36 @@ class GooglePrivacyDlpV2AllOtherResources(typing_extensions.TypedDict, total=Fal
 class GooglePrivacyDlpV2AllText(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2AmazonS3Bucket(typing_extensions.TypedDict, total=False):
+    awsAccount: GooglePrivacyDlpV2AwsAccount
+    bucketName: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AmazonS3BucketConditions(
+    typing_extensions.TypedDict, total=False
+):
+    bucketTypes: _list[
+        typing_extensions.Literal[
+            "TYPE_UNSPECIFIED", "TYPE_ALL_SUPPORTED", "TYPE_GENERAL_PURPOSE"
+        ]
+    ]
+    objectStorageClasses: _list[
+        typing_extensions.Literal[
+            "UNSPECIFIED",
+            "ALL_SUPPORTED_CLASSES",
+            "STANDARD",
+            "STANDARD_INFREQUENT_ACCESS",
+            "GLACIER_INSTANT_RETRIEVAL",
+            "INTELLIGENT_TIERING",
+        ]
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AmazonS3BucketRegex(typing_extensions.TypedDict, total=False):
+    awsAccountRegex: GooglePrivacyDlpV2AwsAccountRegex
+    bucketNameRegex: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails(
     typing_extensions.TypedDict, total=False
 ):
@@ -63,6 +93,21 @@ class GooglePrivacyDlpV2AuxiliaryTable(typing_extensions.TypedDict, total=False)
     quasiIds: _list[GooglePrivacyDlpV2QuasiIdField]
     relativeFrequency: GooglePrivacyDlpV2FieldId
     table: GooglePrivacyDlpV2BigQueryTable
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AwsAccount(typing_extensions.TypedDict, total=False):
+    accountId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AwsAccountRegex(typing_extensions.TypedDict, total=False):
+    accountIdRegex: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2AwsDiscoveryStartingLocation(
+    typing_extensions.TypedDict, total=False
+):
+    accountId: str
+    allAssetInventoryAssets: bool
 
 @typing.type_check_only
 class GooglePrivacyDlpV2BigQueryDiscoveryTarget(
@@ -529,6 +574,9 @@ class GooglePrivacyDlpV2CustomInfoType(typing_extensions.TypedDict, total=False)
 class GooglePrivacyDlpV2DataProfileAction(typing_extensions.TypedDict, total=False):
     exportData: GooglePrivacyDlpV2Export
     pubSubNotification: GooglePrivacyDlpV2PubSubNotification
+    publishToChronicle: GooglePrivacyDlpV2PublishToChronicle
+    publishToScc: GooglePrivacyDlpV2PublishToSecurityCommandCenter
+    tagResources: GooglePrivacyDlpV2TagResources
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DataProfileBigQueryRowSchema(
@@ -553,6 +601,7 @@ class GooglePrivacyDlpV2DataProfileJobConfig(typing_extensions.TypedDict, total=
     dataProfileActions: _list[GooglePrivacyDlpV2DataProfileAction]
     inspectTemplates: _list[str]
     location: GooglePrivacyDlpV2DataProfileLocation
+    otherCloudStartingLocation: GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation
     projectId: str
 
 @typing.type_check_only
@@ -824,6 +873,9 @@ class GooglePrivacyDlpV2DiscoveryCloudSqlFilter(
 class GooglePrivacyDlpV2DiscoveryCloudSqlGenerationCadence(
     typing_extensions.TypedDict, total=False
 ):
+    inspectTemplateModifiedCadence: (
+        GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence
+    )
     refreshFrequency: typing_extensions.Literal[
         "UPDATE_FREQUENCY_UNSPECIFIED",
         "UPDATE_FREQUENCY_NEVER",
@@ -890,6 +942,7 @@ class GooglePrivacyDlpV2DiscoveryConfig(typing_extensions.TypedDict, total=False
     lastRunTime: str
     name: str
     orgConfig: GooglePrivacyDlpV2OrgConfig
+    otherCloudStartingLocation: GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "PAUSED"]
     targets: _list[GooglePrivacyDlpV2DiscoveryTarget]
     updateTime: str
@@ -923,6 +976,35 @@ class GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence(
     typing_extensions.TypedDict, total=False
 ):
     frequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryOtherCloudConditions(
+    typing_extensions.TypedDict, total=False
+):
+    amazonS3BucketConditions: GooglePrivacyDlpV2AmazonS3BucketConditions
+    minAge: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryOtherCloudFilter(
+    typing_extensions.TypedDict, total=False
+):
+    collection: GooglePrivacyDlpV2OtherCloudResourceCollection
+    others: GooglePrivacyDlpV2AllOtherResources
+    singleResource: GooglePrivacyDlpV2OtherCloudSingleResourceReference
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence(
+    typing_extensions.TypedDict, total=False
+):
+    inspectTemplateModifiedCadence: (
+        GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence
+    )
+    refreshFrequency: typing_extensions.Literal[
         "UPDATE_FREQUENCY_UNSPECIFIED",
         "UPDATE_FREQUENCY_NEVER",
         "UPDATE_FREQUENCY_DAILY",
@@ -975,6 +1057,7 @@ class GooglePrivacyDlpV2DiscoveryTarget(typing_extensions.TypedDict, total=False
     bigQueryTarget: GooglePrivacyDlpV2BigQueryDiscoveryTarget
     cloudSqlTarget: GooglePrivacyDlpV2CloudSqlDiscoveryTarget
     cloudStorageTarget: GooglePrivacyDlpV2CloudStorageDiscoveryTarget
+    otherCloudTarget: GooglePrivacyDlpV2OtherCloudDiscoveryTarget
     secretsTarget: GooglePrivacyDlpV2SecretsDiscoveryTarget
 
 @typing.type_check_only
@@ -1724,6 +1807,46 @@ class GooglePrivacyDlpV2OrgConfig(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation(
+    typing_extensions.TypedDict, total=False
+):
+    awsLocation: GooglePrivacyDlpV2AwsDiscoveryStartingLocation
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudDiscoveryTarget(
+    typing_extensions.TypedDict, total=False
+):
+    conditions: GooglePrivacyDlpV2DiscoveryOtherCloudConditions
+    dataSourceType: GooglePrivacyDlpV2DataSourceType
+    disabled: GooglePrivacyDlpV2Disabled
+    filter: GooglePrivacyDlpV2DiscoveryOtherCloudFilter
+    generationCadence: GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudResourceCollection(
+    typing_extensions.TypedDict, total=False
+):
+    includeRegexes: GooglePrivacyDlpV2OtherCloudResourceRegexes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudResourceRegex(
+    typing_extensions.TypedDict, total=False
+):
+    amazonS3BucketRegex: GooglePrivacyDlpV2AmazonS3BucketRegex
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudResourceRegexes(
+    typing_extensions.TypedDict, total=False
+):
+    patterns: _list[GooglePrivacyDlpV2OtherCloudResourceRegex]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2OtherCloudSingleResourceReference(
+    typing_extensions.TypedDict, total=False
+):
+    amazonS3Bucket: GooglePrivacyDlpV2AmazonS3Bucket
+
+@typing.type_check_only
 class GooglePrivacyDlpV2OtherInfoTypeSummary(typing_extensions.TypedDict, total=False):
     estimatedPrevalence: int
     excludedFromAnalysis: bool
@@ -1844,8 +1967,18 @@ class GooglePrivacyDlpV2PublishSummaryToCscc(
 ): ...
 
 @typing.type_check_only
+class GooglePrivacyDlpV2PublishToChronicle(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2PublishToPubSub(typing_extensions.TypedDict, total=False):
     topic: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PublishToSecurityCommandCenter(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PublishToStackdriver(
@@ -2173,6 +2306,27 @@ class GooglePrivacyDlpV2TableOptions(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2TableReference(typing_extensions.TypedDict, total=False):
     datasetId: str
     tableId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TagCondition(typing_extensions.TypedDict, total=False):
+    sensitivityScore: GooglePrivacyDlpV2SensitivityScore
+    tag: GooglePrivacyDlpV2TagValue
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TagResources(typing_extensions.TypedDict, total=False):
+    lowerDataRiskToLow: bool
+    profileGenerationsToTag: _list[
+        typing_extensions.Literal[
+            "PROFILE_GENERATION_UNSPECIFIED",
+            "PROFILE_GENERATION_NEW",
+            "PROFILE_GENERATION_UPDATE",
+        ]
+    ]
+    tagConditions: _list[GooglePrivacyDlpV2TagCondition]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TagValue(typing_extensions.TypedDict, total=False):
+    namespacedValue: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TaggedField(typing_extensions.TypedDict, total=False):

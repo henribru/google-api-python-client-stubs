@@ -34,13 +34,18 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class MembersResource(googleapiclient.discovery.Resource):
             def create(
-                self, *, parent: str, body: Membership = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                body: Membership = ...,
+                useAdminAccess: bool = ...,
+                **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
             def delete(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
             ) -> MembershipHttpRequest: ...
             def get(
-                self, *, name: str, **kwargs: typing.Any
+                self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
             ) -> MembershipHttpRequest: ...
             def list(
                 self,
@@ -51,6 +56,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 pageToken: str = ...,
                 showGroups: bool = ...,
                 showInvited: bool = ...,
+                useAdminAccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListMembershipsResponseHttpRequest: ...
             def list_next(
@@ -64,6 +70,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 name: str,
                 body: Membership = ...,
                 updateMask: str = ...,
+                useAdminAccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> MembershipHttpRequest: ...
 
@@ -184,11 +191,15 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         def create(
             self, *, body: Space = ..., requestId: str = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def delete(
+            self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def findDirectMessage(
             self, *, name: str = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
-        def get(self, *, name: str, **kwargs: typing.Any) -> SpaceHttpRequest: ...
+        def get(
+            self, *, name: str, useAdminAccess: bool = ..., **kwargs: typing.Any
+        ) -> SpaceHttpRequest: ...
         def list(
             self,
             *,
@@ -208,8 +219,24 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
             name: str,
             body: Space = ...,
             updateMask: str = ...,
+            useAdminAccess: bool = ...,
             **kwargs: typing.Any,
         ) -> SpaceHttpRequest: ...
+        def search(
+            self,
+            *,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            query: str = ...,
+            useAdminAccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> SearchSpacesResponseHttpRequest: ...
+        def search_next(
+            self,
+            previous_request: SearchSpacesResponseHttpRequest,
+            previous_response: SearchSpacesResponse,
+        ) -> SearchSpacesResponseHttpRequest | None: ...
         def setup(
             self, *, body: SetUpSpaceRequest = ..., **kwargs: typing.Any
         ) -> SpaceHttpRequest: ...
@@ -353,6 +380,14 @@ class ReactionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Reaction: ...
+
+@typing.type_check_only
+class SearchSpacesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SearchSpacesResponse: ...
 
 @typing.type_check_only
 class SpaceHttpRequest(googleapiclient.http.HttpRequest):

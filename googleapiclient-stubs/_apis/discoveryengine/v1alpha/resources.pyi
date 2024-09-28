@@ -181,6 +181,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                                 | None
                             ): ...
 
+                        def batchGetDocumentsMetadata(
+                            self,
+                            *,
+                            parent: str,
+                            matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseHttpRequest: ...
                         def documents(self) -> DocumentsResource: ...
                         def operations(self) -> OperationsResource: ...
 
@@ -1292,6 +1300,14 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             GoogleLongrunningListOperationsResponseHttpRequest | None
                         ): ...
 
+                    def batchGetDocumentsMetadata(
+                        self,
+                        *,
+                        parent: str,
+                        matcher_fhirMatcher_fhirResources: str | _list[str] = ...,
+                        matcher_urisMatcher_uris: str | _list[str] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseHttpRequest: ...
                     def documents(self) -> DocumentsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -2069,6 +2085,30 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1alphaUserEventHttpRequest: ...
 
+            @typing.type_check_only
+            class UserStoresResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                        previous_response: GoogleLongrunningListOperationsResponse,
+                    ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
+
             def estimateDataSize(
                 self,
                 *,
@@ -2096,6 +2136,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
             def requirements(self) -> RequirementsResource: ...
             def sampleQuerySets(self) -> SampleQuerySetsResource: ...
             def userEvents(self) -> UserEventsResource: ...
+            def userStores(self) -> UserStoresResource: ...
 
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
@@ -2188,6 +2229,16 @@ class GoogleCloudDiscoveryengineV1alphaAnswerQueryResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1alphaAnswerQueryResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1alphaCheckGroundingResponseHttpRequest(

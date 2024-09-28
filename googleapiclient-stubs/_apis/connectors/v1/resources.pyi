@@ -299,7 +299,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def get(
-                    self, *, name: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
+                        "ENDPOINT_ATTACHMENT_VIEW_BASIC",
+                        "ENDPOINT_ATTACHMENT_VIEW_FULL",
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> EndpointAttachmentHttpRequest: ...
                 def list(
                     self,
@@ -309,6 +317,11 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    view: typing_extensions.Literal[
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
+                        "ENDPOINT_ATTACHMENT_VIEW_BASIC",
+                        "ENDPOINT_ATTACHMENT_VIEW_FULL",
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListEndpointAttachmentsResponseHttpRequest: ...
                 def list_next(
@@ -507,6 +520,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                                 previous_response: ListEventTypesResponse,
                             ) -> ListEventTypesResponseHttpRequest | None: ...
 
+                        def fetchAuthSchema(
+                            self,
+                            *,
+                            name: str,
+                            view: typing_extensions.Literal[
+                                "AUTH_SCHEMA_VIEW_UNSPECIFIED", "BASIC", "JSON_SCHEMA"
+                            ] = ...,
+                            **kwargs: typing.Any,
+                        ) -> FetchAuthSchemaResponseHttpRequest: ...
                         def get(
                             self,
                             *,
@@ -729,6 +751,14 @@ class EventTypeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EventType: ...
+
+@typing.type_check_only
+class FetchAuthSchemaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchAuthSchemaResponse: ...
 
 @typing.type_check_only
 class ListActionsResponseHttpRequest(googleapiclient.http.HttpRequest):

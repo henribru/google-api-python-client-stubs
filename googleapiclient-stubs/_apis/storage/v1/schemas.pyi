@@ -37,6 +37,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     encryption: dict[str, typing.Any]
     etag: str
     generation: str
+    hardDeleteTime: str
     hierarchicalNamespace: dict[str, typing.Any]
     iamConfiguration: dict[str, typing.Any]
     id: str
@@ -58,6 +59,7 @@ class Bucket(typing_extensions.TypedDict, total=False):
     satisfiesPZS: bool
     selfLink: str
     softDeletePolicy: dict[str, typing.Any]
+    softDeleteTime: str
     storageClass: str
     timeCreated: str
     updated: str
@@ -257,6 +259,7 @@ class Object(typing_extensions.TypedDict, total=False):
     metageneration: str
     name: str
     owner: dict[str, typing.Any]
+    restoreToken: str
     retention: dict[str, typing.Any]
     retentionExpirationTime: str
     selfLink: str

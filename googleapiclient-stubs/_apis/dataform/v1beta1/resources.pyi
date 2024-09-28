@@ -543,6 +543,9 @@ class DataformResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ConfigHttpRequest: ...
             def list(
                 self,
                 *,
@@ -557,6 +560,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def updateConfig(
+                self,
+                *,
+                name: str,
+                body: Config = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> ConfigHttpRequest: ...
             def collections(self) -> CollectionsResource: ...
             def repositories(self) -> RepositoriesResource: ...
 
@@ -601,6 +612,14 @@ class ComputeRepositoryAccessTokenStatusResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ComputeRepositoryAccessTokenStatusResponse: ...
+
+@typing.type_check_only
+class ConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Config: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

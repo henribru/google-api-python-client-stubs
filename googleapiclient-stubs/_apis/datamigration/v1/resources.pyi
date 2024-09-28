@@ -276,6 +276,30 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class MigrationJobsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ObjectsResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -404,6 +428,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     body: VerifyMigrationJobRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def objects(self) -> ObjectsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):

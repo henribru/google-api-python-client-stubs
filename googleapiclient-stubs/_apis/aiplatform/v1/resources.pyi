@@ -14,6 +14,123 @@ _list = list
 @typing.type_check_only
 class AiplatformResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class DatasetsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class DatasetVersionsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudAiplatformV1DatasetVersion = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def get(
+                self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+            ) -> GoogleCloudAiplatformV1DatasetVersionHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                readMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1ListDatasetVersionsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudAiplatformV1ListDatasetVersionsResponseHttpRequest,
+                previous_response: GoogleCloudAiplatformV1ListDatasetVersionsResponse,
+            ) -> (
+                GoogleCloudAiplatformV1ListDatasetVersionsResponseHttpRequest | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudAiplatformV1DatasetVersion = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1DatasetVersionHttpRequest: ...
+            def restore(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+
+        def create(
+            self,
+            *,
+            body: GoogleCloudAiplatformV1Dataset = ...,
+            parent: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleLongrunningOperationHttpRequest: ...
+        def get(
+            self, *, name: str, readMask: str = ..., **kwargs: typing.Any
+        ) -> GoogleCloudAiplatformV1DatasetHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            orderBy: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            parent: str = ...,
+            readMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1ListDatasetsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleCloudAiplatformV1ListDatasetsResponseHttpRequest,
+            previous_response: GoogleCloudAiplatformV1ListDatasetsResponse,
+        ) -> GoogleCloudAiplatformV1ListDatasetsResponseHttpRequest | None: ...
+        def patch(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudAiplatformV1Dataset = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1DatasetHttpRequest: ...
+        def datasetVersions(self) -> DatasetVersionsResource: ...
+
+    @typing.type_check_only
+    class EndpointsResource(googleapiclient.discovery.Resource):
+        def computeTokens(
+            self,
+            *,
+            endpoint: str,
+            body: GoogleCloudAiplatformV1ComputeTokensRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1ComputeTokensResponseHttpRequest: ...
+        def countTokens(
+            self,
+            *,
+            endpoint: str,
+            body: GoogleCloudAiplatformV1CountTokensRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1CountTokensResponseHttpRequest: ...
+        def generateContent(
+            self,
+            *,
+            model: str,
+            body: GoogleCloudAiplatformV1GenerateContentRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1GenerateContentResponseHttpRequest: ...
+        def streamGenerateContent(
+            self,
+            *,
+            model: str,
+            body: GoogleCloudAiplatformV1GenerateContentRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudAiplatformV1GenerateContentResponseHttpRequest: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -1051,6 +1168,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudAiplatformV1FeatureViewHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1086,6 +1210,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     ) -> (
                         GoogleCloudAiplatformV1SearchNearestEntitiesResponseHttpRequest
                     ): ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
                     def sync(
                         self,
                         *,
@@ -1093,6 +1224,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudAiplatformV1SyncFeatureViewRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudAiplatformV1SyncFeatureViewResponseHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        permissions: str | _list[str] = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                     def featureViewSyncs(self) -> FeatureViewSyncsResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -1136,6 +1274,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAiplatformV1FeatureOnlineStoreHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -1164,6 +1309,20 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    permissions: str | _list[str] = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def featureViews(self) -> FeatureViewsResource: ...
                 def operations(self) -> OperationsResource: ...
 
@@ -3951,6 +4110,9 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                     def cancel(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -4002,6 +4164,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 ) -> (
                     GoogleCloudAiplatformV1ListTuningJobsResponseHttpRequest | None
                 ): ...
+                def rebaseTunedModel(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudAiplatformV1RebaseTunedModelRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
             def evaluateInstances(
@@ -4067,10 +4236,32 @@ class AiplatformResource(googleapiclient.discovery.Resource):
     class PublishersResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class ModelsResource(googleapiclient.discovery.Resource):
+            def computeTokens(
+                self,
+                *,
+                endpoint: str,
+                body: GoogleCloudAiplatformV1ComputeTokensRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1ComputeTokensResponseHttpRequest: ...
+            def countTokens(
+                self,
+                *,
+                endpoint: str,
+                body: GoogleCloudAiplatformV1CountTokensRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1CountTokensResponseHttpRequest: ...
+            def generateContent(
+                self,
+                *,
+                model: str,
+                body: GoogleCloudAiplatformV1GenerateContentRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1GenerateContentResponseHttpRequest: ...
             def get(
                 self,
                 *,
                 name: str,
+                huggingFaceToken: str = ...,
                 isHuggingFaceModel: bool = ...,
                 languageCode: str = ...,
                 view: typing_extensions.Literal[
@@ -4081,6 +4272,13 @@ class AiplatformResource(googleapiclient.discovery.Resource):
                 ] = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudAiplatformV1PublisherModelHttpRequest: ...
+            def streamGenerateContent(
+                self,
+                *,
+                model: str,
+                body: GoogleCloudAiplatformV1GenerateContentRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudAiplatformV1GenerateContentResponseHttpRequest: ...
 
         def models(self) -> ModelsResource: ...
 
@@ -4096,6 +4294,8 @@ class AiplatformResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def datasets(self) -> DatasetsResource: ...
+    def endpoints(self) -> EndpointsResource: ...
     def projects(self) -> ProjectsResource: ...
     def publishers(self) -> PublishersResource: ...
 

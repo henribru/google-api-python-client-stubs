@@ -59,10 +59,12 @@ class Attributes(typing_extensions.TypedDict, total=False):
     googleProductCategory: str
     gtin: str
     headlineOfferCondition: str
+    headlineOfferInstallment: HeadlineOfferInstallment
     headlineOfferLink: str
     headlineOfferMobileLink: str
     headlineOfferPrice: Price
     headlineOfferShippingPrice: Price
+    headlineOfferSubscriptionCost: HeadlineOfferSubscriptionCost
     highPrice: Price
     imageLink: str
     includedDestinations: _list[str]
@@ -137,6 +139,20 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class HeadlineOfferInstallment(typing_extensions.TypedDict, total=False):
+    amount: Price
+    downpayment: Price
+    months: str
+
+@typing.type_check_only
+class HeadlineOfferSubscriptionCost(typing_extensions.TypedDict, total=False):
+    amount: Price
+    period: typing_extensions.Literal[
+        "SUBSCRIPTION_PERIOD_UNSPECIFIED", "MONTH", "YEAR"
+    ]
+    periodLength: str
 
 @typing.type_check_only
 class ItemLevelIssue(typing_extensions.TypedDict, total=False):

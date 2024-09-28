@@ -121,10 +121,13 @@ class AssetPerformanceData(typing_extensions.TypedDict, total=False):
 class AssetsExportJob(typing_extensions.TypedDict, total=False):
     condition: AssetsExportJobExportCondition
     createTime: str
+    inventory: AssetsExportJobInventory
     labels: dict[str, typing.Any]
     name: str
     networkDependencies: AssetsExportJobNetworkDependencies
+    performanceData: AssetsExportJobPerformanceData
     recentExecutions: _list[AssetsExportJobExecution]
+    showHidden: bool
     signedUriDestination: SignedUriDestination
     updateTime: str
 
@@ -133,12 +136,14 @@ class AssetsExportJobExecution(typing_extensions.TypedDict, total=False):
     endTime: str
     executionId: str
     expireTime: str
+    requestedAssetCount: int
     result: AssetsExportJobExecutionResult
     startTime: str
 
 @typing.type_check_only
 class AssetsExportJobExecutionResult(typing_extensions.TypedDict, total=False):
     error: Status
+    outputFiles: OutputFileList
     signedUris: SignedUris
 
 @typing.type_check_only
@@ -146,7 +151,14 @@ class AssetsExportJobExportCondition(typing_extensions.TypedDict, total=False):
     filter: str
 
 @typing.type_check_only
+class AssetsExportJobInventory(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AssetsExportJobNetworkDependencies(typing_extensions.TypedDict, total=False):
+    maxDays: int
+
+@typing.type_check_only
+class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
     maxDays: int
 
 @typing.type_check_only
@@ -163,6 +175,7 @@ class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchDeleteAssetsRequest(typing_extensions.TypedDict, total=False):
     allowMissing: bool
+    cascadingRules: _list[CascadingRule]
     names: _list[str]
 
 @typing.type_check_only
@@ -183,6 +196,13 @@ class BiosDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CascadeLogicalDBsRule(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CascadingRule(typing_extensions.TypedDict, total=False):
+    cascadeLogicalDbs: CascadeLogicalDBsRule
 
 @typing.type_check_only
 class CloudDatabaseMigrationTarget(typing_extensions.TypedDict, total=False):
@@ -332,6 +352,12 @@ class CpuUsageSample(typing_extensions.TypedDict, total=False):
     utilizedPercentage: float
 
 @typing.type_check_only
+class CsvOutputFile(typing_extensions.TypedDict, total=False):
+    columnsCount: int
+    rowCount: int
+    signedUri: SignedUri
+
+@typing.type_check_only
 class DailyResourceUsageAggregation(typing_extensions.TypedDict, total=False):
     cpu: DailyResourceUsageAggregationCPU
     date: Date
@@ -392,6 +418,8 @@ class DatabaseDeploymentTopology(typing_extensions.TypedDict, total=False):
     instances: _list[DatabaseInstance]
     memoryBytes: str
     memoryLimitBytes: str
+    physicalCoreCount: int
+    physicalCoreLimit: int
 
 @typing.type_check_only
 class DatabaseDetails(typing_extensions.TypedDict, total=False):
@@ -408,9 +436,16 @@ class DatabaseDetailsParentDatabaseDeployment(typing_extensions.TypedDict, total
 @typing.type_check_only
 class DatabaseInstance(typing_extensions.TypedDict, total=False):
     instanceName: str
+    network: DatabaseInstanceNetwork
     role: typing_extensions.Literal[
         "ROLE_UNSPECIFIED", "PRIMARY", "SECONDARY", "ARBITER"
     ]
+
+@typing.type_check_only
+class DatabaseInstanceNetwork(typing_extensions.TypedDict, total=False):
+    hostNames: _list[str]
+    ipAddresses: _list[str]
+    primaryMacAddress: str
 
 @typing.type_check_only
 class DatabaseObjects(typing_extensions.TypedDict, total=False):
@@ -777,7 +812,6 @@ class ImportRowError(typing_extensions.TypedDict, total=False):
     assetTitle: str
     csvError: ImportRowErrorCsvErrorDetails
     errors: _list[ImportError]
-    jsonError: ImportRowErrorJsonErrorDetails
     rowNumber: int
     vmName: str
     vmUuid: str
@@ -791,9 +825,6 @@ class ImportRowErrorArchiveErrorDetails(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class ImportRowErrorCsvErrorDetails(typing_extensions.TypedDict, total=False):
     rowNumber: int
-
-@typing.type_check_only
-class ImportRowErrorJsonErrorDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportRowErrorXlsxErrorDetails(typing_extensions.TypedDict, total=False):
@@ -898,6 +929,11 @@ class ListPreferenceSetsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     preferenceSets: _list[PreferenceSet]
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListRelationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    relations: _list[Relation]
 
 @typing.type_check_only
 class ListReportConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -1109,6 +1145,15 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OutputFile(typing_extensions.TypedDict, total=False):
+    csvOutputFile: CsvOutputFile
+    fileSizeBytes: int
+
+@typing.type_check_only
+class OutputFileList(typing_extensions.TypedDict, total=False):
+    entries: _list[OutputFile]
+
+@typing.type_check_only
 class PayloadFile(typing_extensions.TypedDict, total=False):
     data: str
     name: str
@@ -1178,6 +1223,16 @@ class PreferenceSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionPreferences(typing_extensions.TypedDict, total=False):
     preferredRegions: _list[str]
+
+@typing.type_check_only
+class Relation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dstAsset: str
+    name: str
+    srcAsset: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "LOGICAL_DATABASE", "DATABASE_DEPLOYMENT_HOSTING_SERVER"
+    ]
 
 @typing.type_check_only
 class RemoveAssetsFromGroupRequest(typing_extensions.TypedDict, total=False):
@@ -1280,9 +1335,11 @@ class ReportSummaryGroupPreferenceSetFinding(typing_extensions.TypedDict, total=
     monthlyCostCompute: Money
     monthlyCostDatabaseBackup: Money
     monthlyCostDatabaseLicensing: Money
+    monthlyCostGcveProtected: Money
     monthlyCostNetworkEgress: Money
     monthlyCostOsLicense: Money
     monthlyCostOther: Money
+    monthlyCostPortableVmwareLicense: Money
     monthlyCostStorage: Money
     monthlyCostTotal: Money
     preferenceSet: PreferenceSet
@@ -1489,7 +1546,8 @@ class SqlServerFeature(typing_extensions.TypedDict, total=False):
     featureName: str
 
 @typing.type_check_only
-class SqlServerSchemaDetails(typing_extensions.TypedDict, total=False): ...
+class SqlServerSchemaDetails(typing_extensions.TypedDict, total=False):
+    clrObjectCount: int
 
 @typing.type_check_only
 class SqlServerServerFlag(typing_extensions.TypedDict, total=False):
@@ -1524,6 +1582,20 @@ class UploadFileInfo(typing_extensions.TypedDict, total=False):
     headers: dict[str, typing.Any]
     signedUri: str
     uriExpirationTime: str
+
+@typing.type_check_only
+class VMwareEngineMachinePreferences(typing_extensions.TypedDict, total=False):
+    allowedMachineSeries: _list[MachineSeries]
+    protectedNodes: typing_extensions.Literal[
+        "PROTECTED_NODES_UNSPECIFIED",
+        "PROTECTED_NODES_ENABLED",
+        "PROTECTED_NODES_DISABLED",
+    ]
+    storageOnlyNodes: typing_extensions.Literal[
+        "STORAGE_ONLY_NODES_UNSPECIFIED",
+        "STORAGE_ONLY_NODES_ENABLED",
+        "STORAGE_ONLY_NODES_DISABLED",
+    ]
 
 @typing.type_check_only
 class ValidateImportJobRequest(typing_extensions.TypedDict, total=False):
@@ -1673,7 +1745,14 @@ class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
         "COMMITMENT_FLEXIBLE_3_YEAR_UPFRONT_PAYMENT",
     ]
     cpuOvercommitRatio: float
+    licenseDiscountPercentage: float
+    machinePreferences: VMwareEngineMachinePreferences
     memoryOvercommitRatio: float
+    serviceType: typing_extensions.Literal[
+        "SERVICE_TYPE_UNSPECIFIED",
+        "SERVICE_TYPE_FULLY_LICENSED",
+        "SERVICE_TYPE_PORTABLE_LICENSE",
+    ]
     storageDeduplicationCompressionRatio: float
 
 @typing.type_check_only

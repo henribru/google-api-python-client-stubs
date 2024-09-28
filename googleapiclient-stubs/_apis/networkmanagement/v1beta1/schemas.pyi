@@ -36,6 +36,8 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "ROUTE_CONFIG_NOT_FOUND",
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
+        "SOURCE_REDIS_CLUSTER_UNSUPPORTED",
+        "SOURCE_REDIS_INSTANCE_UNSUPPORTED",
         "SOURCE_FORWARDING_RULE_UNSUPPORTED",
         "NON_ROUTABLE_IP_ADDRESS",
         "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
@@ -148,6 +150,8 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
         "APP_ENGINE_VERSION",
         "CLOUD_RUN_REVISION",
         "GOOGLE_MANAGED_SERVICE",
+        "REDIS_INSTANCE",
+        "REDIS_CLUSTER",
     ]
 
 @typing.type_check_only
@@ -181,6 +185,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "INSTANCE_NOT_RUNNING",
         "GKE_CLUSTER_NOT_RUNNING",
         "CLOUD_SQL_INSTANCE_NOT_RUNNING",
+        "REDIS_INSTANCE_NOT_RUNNING",
+        "REDIS_CLUSTER_NOT_RUNNING",
         "TRAFFIC_TYPE_BLOCKED",
         "GKE_MASTER_UNAUTHORIZED_ACCESS",
         "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
@@ -219,6 +225,20 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "ROUTING_LOOP",
         "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE",
         "LOAD_BALANCER_BACKEND_INVALID_NETWORK",
+        "BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED",
+        "DESTINATION_IS_PRIVATE_NAT_IP_RANGE",
+        "DROPPED_INSIDE_REDIS_INSTANCE_SERVICE",
+        "REDIS_INSTANCE_UNSUPPORTED_PORT",
+        "REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS",
+        "REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK",
+        "REDIS_INSTANCE_NO_EXTERNAL_IP",
+        "REDIS_INSTANCE_UNSUPPORTED_PROTOCOL",
+        "DROPPED_INSIDE_REDIS_CLUSTER_SERVICE",
+        "REDIS_CLUSTER_UNSUPPORTED_PORT",
+        "REDIS_CLUSTER_NO_EXTERNAL_IP",
+        "REDIS_CLUSTER_UNSUPPORTED_PROTOCOL",
+        "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION",
+        "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
     ]
     destinationIp: str
     region: str
@@ -269,6 +289,8 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     ]
     port: int
     projectId: str
+    redisCluster: str
+    redisInstance: str
 
 @typing.type_check_only
 class EndpointInfo(typing_extensions.TypedDict, total=False):
@@ -401,6 +423,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
+
+@typing.type_check_only
 class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
     displayName: str
     healthCheckAllowingFirewallRules: _list[str]
@@ -480,6 +508,8 @@ class NatInfo(typing_extensions.TypedDict, total=False):
 class NetworkInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     matchedIpRange: str
+    matchedSubnetUri: str
+    region: str
     uri: str
 
 @typing.type_check_only
@@ -551,10 +581,30 @@ class ReachabilityDetails(typing_extensions.TypedDict, total=False):
     verifyTime: str
 
 @typing.type_check_only
+class RedisClusterInfo(typing_extensions.TypedDict, total=False):
+    discoveryEndpointIpAddress: str
+    displayName: str
+    location: str
+    networkUri: str
+    secondaryEndpointIpAddress: str
+    uri: str
+
+@typing.type_check_only
+class RedisInstanceInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    networkUri: str
+    primaryEndpointIp: str
+    readEndpointIp: str
+    region: str
+    uri: str
+
+@typing.type_check_only
 class RerunConnectivityTestRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class RouteInfo(typing_extensions.TypedDict, total=False):
+    advertisedRouteNextHopUri: str
+    advertisedRouteSourceRouterUri: str
     destIpRange: str
     destPortRanges: _list[str]
     displayName: str
@@ -580,6 +630,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     ]
     priority: int
     protocols: _list[str]
+    region: str
     routeScope: typing_extensions.Literal[
         "ROUTE_SCOPE_UNSPECIFIED", "NETWORK", "NCC_HUB"
     ]
@@ -636,6 +687,8 @@ class Step(typing_extensions.TypedDict, total=False):
     network: NetworkInfo
     projectId: str
     proxyConnection: ProxyConnectionInfo
+    redisCluster: RedisClusterInfo
+    redisInstance: RedisInstanceInfo
     route: RouteInfo
     serverlessNeg: ServerlessNegInfo
     state: typing_extensions.Literal[
@@ -646,6 +699,8 @@ class Step(typing_extensions.TypedDict, total=False):
         "START_FROM_PRIVATE_NETWORK",
         "START_FROM_GKE_MASTER",
         "START_FROM_CLOUD_SQL_INSTANCE",
+        "START_FROM_REDIS_INSTANCE",
+        "START_FROM_REDIS_CLUSTER",
         "START_FROM_CLOUD_FUNCTION",
         "START_FROM_APP_ENGINE_VERSION",
         "START_FROM_CLOUD_RUN_REVISION",
@@ -700,6 +755,35 @@ class VpcConnectorInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     location: str
     uri: str
+
+@typing.type_check_only
+class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
+    aggregationInterval: typing_extensions.Literal[
+        "AGGREGATION_INTERVAL_UNSPECIFIED",
+        "INTERVAL_5_SEC",
+        "INTERVAL_30_SEC",
+        "INTERVAL_1_MIN",
+        "INTERVAL_5_MIN",
+        "INTERVAL_10_MIN",
+        "INTERVAL_15_MIN",
+    ]
+    createTime: str
+    description: str
+    filterExpr: str
+    flowSampling: float
+    interconnectAttachment: str
+    labels: dict[str, typing.Any]
+    metadata: typing_extensions.Literal[
+        "METADATA_UNSPECIFIED",
+        "INCLUDE_ALL_METADATA",
+        "EXCLUDE_ALL_METADATA",
+        "CUSTOM_METADATA",
+    ]
+    metadataFields: _list[str]
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    updateTime: str
+    vpnTunnel: str
 
 @typing.type_check_only
 class VpnGatewayInfo(typing_extensions.TypedDict, total=False):

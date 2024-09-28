@@ -1908,6 +1908,7 @@ class GoogleCloudApigeeV1ScoreComponentRecommendationActionActionContext(
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityAction(typing_extensions.TypedDict, total=False):
     allow: GoogleCloudApigeeV1SecurityActionAllow
+    apiProxies: _list[str]
     conditionConfig: GoogleCloudApigeeV1SecurityActionConditionConfig
     createTime: str
     deny: GoogleCloudApigeeV1SecurityActionDeny

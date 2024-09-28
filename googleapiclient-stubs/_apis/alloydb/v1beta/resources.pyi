@@ -301,6 +301,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     body: SwitchoverClusterRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def upgrade(
+                    self,
+                    *,
+                    name: str,
+                    body: UpgradeClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def instances(self) -> InstancesResource: ...
                 def users(self) -> UsersResource: ...
 

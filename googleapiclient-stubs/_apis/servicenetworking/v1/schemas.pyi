@@ -57,6 +57,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
     requestedRanges: _list[str]
     role: str
     secondaryIpRangeSpecs: _list[SecondaryIpRangeSpec]
+    skipRequestedAddressValidation: bool
     subnetwork: str
     subnetworkUsers: _list[str]
     useCustomComputeIdempotencyWindow: bool
@@ -167,6 +168,7 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
         ]
     ]
     referenceDocsUri: str
+    selectiveGapicGeneration: SelectiveGapicGeneration
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
@@ -321,6 +323,10 @@ class EnumValue(typing_extensions.TypedDict, total=False):
     name: str
     number: int
     options: _list[Option]
+
+@typing.type_check_only
+class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    restAsyncIoEnabled: bool
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -553,6 +559,14 @@ class MetricDescriptorMetadata(typing_extensions.TypedDict, total=False):
         "DEPRECATED",
     ]
     samplePeriod: str
+    timeSeriesResourceHierarchyLevel: _list[
+        typing_extensions.Literal[
+            "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+            "PROJECT",
+            "ORGANIZATION",
+            "FOLDER",
+        ]
+    ]
 
 @typing.type_check_only
 class MetricRule(typing_extensions.TypedDict, total=False):
@@ -665,6 +679,7 @@ class Publishing(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PythonSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    experimentalFeatures: ExperimentalFeatures
 
 @typing.type_check_only
 class Quota(typing_extensions.TypedDict, total=False):
@@ -746,6 +761,10 @@ class SecondaryIpRangeSpec(typing_extensions.TypedDict, total=False):
     outsideAllocationPublicIpRange: str
     rangeName: str
     requestedAddress: str
+
+@typing.type_check_only
+class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+    methods: _list[str]
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):

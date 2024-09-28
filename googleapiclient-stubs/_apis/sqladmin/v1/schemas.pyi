@@ -133,6 +133,7 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     kind: str
     pitrTimestampMs: str
     pointInTime: str
+    preferredSecondaryZone: str
     preferredZone: str
 
 @typing.type_check_only
@@ -158,6 +159,7 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -176,7 +178,6 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_4",
-        "MYSQL_8_4_0",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -245,6 +246,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -263,7 +265,6 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_4",
-        "MYSQL_8_4_0",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -431,6 +432,7 @@ class Flag(typing_extensions.TypedDict, total=False):
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
+            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -449,7 +451,6 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_4",
-            "MYSQL_8_4_0",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -571,6 +572,13 @@ class InstancesListServerCasResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class InstancesListServerCertificatesResponse(typing_extensions.TypedDict, total=False):
+    activeVersion: str
+    caCerts: _list[SslCert]
+    kind: str
+    serverCerts: _list[SslCert]
+
+@typing.type_check_only
 class InstancesReencryptRequest(typing_extensions.TypedDict, total=False):
     backupReencryptionConfig: BackupReencryptionConfig
 
@@ -581,6 +589,10 @@ class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstancesRotateServerCaRequest(typing_extensions.TypedDict, total=False):
     rotateServerCaContext: RotateServerCaContext
+
+@typing.type_check_only
+class InstancesRotateServerCertificateRequest(typing_extensions.TypedDict, total=False):
+    rotateServerCertificateContext: RotateServerCertificateContext
 
 @typing.type_check_only
 class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
@@ -822,6 +834,11 @@ class RotateServerCaContext(typing_extensions.TypedDict, total=False):
     nextVersion: str
 
 @typing.type_check_only
+class RotateServerCertificateContext(typing_extensions.TypedDict, total=False):
+    kind: str
+    nextVersion: str
+
+@typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
     activationPolicy: typing_extensions.Literal[
         "SQL_ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER", "ON_DEMAND"
@@ -932,6 +949,9 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "PG_CRON_FLAG_ENABLED_IN_REPLICA",
         "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
         "UNSUPPORTED_COLUMNS",
+        "USERS_NOT_CREATED_IN_REPLICA",
+        "UNSUPPORTED_SYSTEM_OBJECTS",
+        "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
     ]
 
 @typing.type_check_only

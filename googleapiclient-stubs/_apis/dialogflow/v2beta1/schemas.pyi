@@ -108,12 +108,6 @@ class GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput(
     triggeredIntent: GoogleCloudDialogflowCxV3Intent
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDialogflowCxV3CreateVersionOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -127,12 +121,6 @@ class GoogleCloudDialogflowCxV3DataStoreConnection(
     dataStoreType: typing_extensions.Literal[
         "DATA_STORE_TYPE_UNSPECIFIED", "PUBLIC_WEB", "UNSTRUCTURED", "STRUCTURED"
     ]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3DeployFlowMetadata(
@@ -311,24 +299,6 @@ class GoogleCloudDialogflowCxV3FulfillmentSetParameterAction(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3GcsDestination(typing_extensions.TypedDict, total=False):
     uri: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3ImportDocumentsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ImportEntityTypesMetadata(
@@ -526,12 +496,6 @@ class GoogleCloudDialogflowCxV3QueryInput(typing_extensions.TypedDict, total=Fal
     text: GoogleCloudDialogflowCxV3TextInput
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDialogflowCxV3ResponseMessage(
     typing_extensions.TypedDict, total=False
 ):
@@ -722,12 +686,6 @@ class GoogleCloudDialogflowCxV3TurnSignals(typing_extensions.TypedDict, total=Fa
     sentimentScore: float
     userEscalated: bool
     webhookStatuses: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3Webhook(typing_extensions.TypedDict, total=False):
@@ -960,12 +918,6 @@ class GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput(
     triggeredIntent: GoogleCloudDialogflowCxV3beta1Intent
 
 @typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -979,12 +931,6 @@ class GoogleCloudDialogflowCxV3beta1DataStoreConnection(
     dataStoreType: typing_extensions.Literal[
         "DATA_STORE_TYPE_UNSPECIFIED", "PUBLIC_WEB", "UNSTRUCTURED", "STRUCTURED"
     ]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1DeployFlowMetadata(
@@ -1177,24 +1123,6 @@ class GoogleCloudDialogflowCxV3beta1GcsDestination(
     typing_extensions.TypedDict, total=False
 ):
     uri: str
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    warnings: _list[GoogleRpcStatus]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportEntityTypesMetadata(
@@ -1397,12 +1325,6 @@ class GoogleCloudDialogflowCxV3beta1QueryInput(
     languageCode: str
     text: GoogleCloudDialogflowCxV3beta1TextInput
     toolCallResult: GoogleCloudDialogflowCxV3beta1ToolCallResult
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ResponseMessage(
@@ -1625,12 +1547,6 @@ class GoogleCloudDialogflowCxV3beta1TurnSignals(
     sentimentScore: float
     userEscalated: bool
     webhookStatuses: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1Webhook(typing_extensions.TypedDict, total=False):
@@ -4848,42 +4764,6 @@ class GoogleCloudDialogflowV3alpha1ConversationSignals(
     turnSignals: GoogleCloudDialogflowV3alpha1TurnSignals
 
 @typing.type_check_only
-class GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1DeleteDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "RUNNING", "DONE"]
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ImportDocumentsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    warnings: _list[GoogleRpcStatus]
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
-
-@typing.type_check_only
 class GoogleCloudDialogflowV3alpha1TurnSignals(
     typing_extensions.TypedDict, total=False
 ):
@@ -4902,12 +4782,6 @@ class GoogleCloudDialogflowV3alpha1TurnSignals(
     triggeredAbandonmentEvent: bool
     userEscalated: bool
     webhookStatuses: _list[str]
-
-@typing.type_check_only
-class GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    genericMetadata: GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

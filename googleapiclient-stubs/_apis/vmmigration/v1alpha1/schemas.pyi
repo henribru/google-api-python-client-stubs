@@ -53,7 +53,6 @@ class AwsSourceDetails(typing_extensions.TypedDict, total=False):
     inventorySecurityGroupNames: _list[str]
     inventoryTagList: _list[Tag]
     migrationResourcesUserTags: dict[str, typing.Any]
-    networkInsights: NetworkInsights
     publicIp: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "FAILED", "ACTIVE"]
 
@@ -168,9 +167,6 @@ class CancelCloneJobRequest(typing_extensions.TypedDict, total=False): ...
 class CancelCutoverJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class CancelImageImportJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -231,6 +227,9 @@ class ComputeEngineDisksTargetDetails(typing_extensions.TypedDict, total=False):
 class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
+    bootConversion: typing_extensions.Literal[
+        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
+    ]
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
         "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -244,6 +243,8 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
+    enableIntegrityMonitoring: bool
+    enableVtpm: bool
     encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
@@ -267,6 +268,9 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
 class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
     additionalLicenses: _list[str]
     appliedLicense: AppliedLicense
+    bootConversion: typing_extensions.Literal[
+        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
+    ]
     bootOption: typing_extensions.Literal[
         "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
         "COMPUTE_ENGINE_BOOT_OPTION_EFI",
@@ -280,6 +284,8 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
         "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED",
     ]
+    enableIntegrityMonitoring: bool
+    enableVtpm: bool
     encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
@@ -418,6 +424,8 @@ class DisksMigrationVmTargetDefaults(typing_extensions.TypedDict, total=False):
     additionalLicenses: _list[str]
     bootDiskDefaults: BootDiskDefaults
     computeScheduling: ComputeScheduling
+    enableIntegrityMonitoring: bool
+    enableVtpm: bool
     encryption: Encryption
     hostname: str
     labels: dict[str, typing.Any]
@@ -712,11 +720,6 @@ class MigrationWarning(typing_extensions.TypedDict, total=False):
     warningTime: str
 
 @typing.type_check_only
-class NetworkInsights(typing_extensions.TypedDict, total=False):
-    sourceNetworkConfig: str
-    sourceNetworkTerraform: str
-
-@typing.type_check_only
 class NetworkInterface(typing_extensions.TypedDict, total=False):
     externalIp: str
     internalIp: str
@@ -821,9 +824,6 @@ class ReplicationSync(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ResumeMigrationRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class RunDiskMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SchedulePolicy(typing_extensions.TypedDict, total=False):

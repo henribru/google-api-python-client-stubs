@@ -203,6 +203,8 @@ class FindNearest(typing_extensions.TypedDict, total=False):
     distanceMeasure: typing_extensions.Literal[
         "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
     ]
+    distanceResultField: str
+    distanceThreshold: float
     limit: int
     queryVector: Value
     vectorField: FieldReference
@@ -227,6 +229,10 @@ class GoogleFirestoreAdminV1BackupSchedule(typing_extensions.TypedDict, total=Fa
     retention: str
     updateTime: str
     weeklyRecurrence: GoogleFirestoreAdminV1WeeklyRecurrence
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1BackupSource(typing_extensions.TypedDict, total=False):
+    backup: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
@@ -308,6 +314,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "POINT_IN_TIME_RECOVERY_DISABLED",
     ]
     previousId: str
+    sourceInfo: GoogleFirestoreAdminV1SourceInfo
     type: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
     ]
@@ -560,6 +567,11 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
 class GoogleFirestoreAdminV1SourceEncryptionOptions(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1SourceInfo(typing_extensions.TypedDict, total=False):
+    backup: GoogleFirestoreAdminV1BackupSource
+    operation: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Stats(typing_extensions.TypedDict, total=False):

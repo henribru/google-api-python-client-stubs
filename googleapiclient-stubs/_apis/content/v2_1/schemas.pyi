@@ -399,9 +399,6 @@ class ActionReason(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class ActivateBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
     administrativeArea: str
     city: str
@@ -413,11 +410,6 @@ class Address(typing_extensions.TypedDict, total=False):
 class AlternateDisputeResolution(typing_extensions.TypedDict, total=False):
     label: str
     uri: str
-
-@typing.type_check_only
-class Amount(typing_extensions.TypedDict, total=False):
-    priceAmount: Price
-    taxAmount: Price
 
 @typing.type_check_only
 class AttributionSettings(typing_extensions.TypedDict, total=False):
@@ -505,54 +497,10 @@ class BusinessDayConfig(typing_extensions.TypedDict, total=False):
     businessDays: _list[str]
 
 @typing.type_check_only
-class BuyOnGoogleProgramStatus(typing_extensions.TypedDict, total=False):
-    businessModel: _list[
-        typing_extensions.Literal[
-            "BUSINESS_MODEL_UNSPECIFIED",
-            "MANUFACTURER",
-            "IMPORTER",
-            "RESELLER",
-            "OTHER",
-        ]
-    ]
-    customerServicePendingEmail: str
-    customerServicePendingPhoneNumber: str
-    customerServicePendingPhoneRegionCode: str
-    customerServiceVerifiedEmail: str
-    customerServiceVerifiedPhoneNumber: str
-    customerServiceVerifiedPhoneRegionCode: str
-    onlineSalesChannel: typing_extensions.Literal[
-        "ONLINE_SALES_CHANNEL_UNSPECIFIED",
-        "GOOGLE_EXCLUSIVE",
-        "GOOGLE_AND_OTHER_WEBSITES",
-    ]
-    participationStage: typing_extensions.Literal[
-        "PROGRAM_PARTICIPATION_STAGE_UNSPECIFIED",
-        "NOT_ELIGIBLE",
-        "ELIGIBLE",
-        "ONBOARDING",
-        "ELIGIBLE_FOR_REVIEW",
-        "PENDING_REVIEW",
-        "REVIEW_DISAPPROVED",
-        "ACTIVE",
-        "PAUSED",
-        "DEPRECATED",
-    ]
-
-@typing.type_check_only
 class Callout(typing_extensions.TypedDict, total=False):
     fullMessage: TextWithTooltip
     styleHint: typing_extensions.Literal[
         "CALLOUT_STYLE_HINT_UNSPECIFIED", "ERROR", "WARNING", "INFO"
-    ]
-
-@typing.type_check_only
-class CaptureOrderRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class CaptureOrderResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: typing_extensions.Literal[
-        "EXECUTION_STATUS_UNSPECIFIED", "EXECUTED", "DUPLICATE"
     ]
 
 @typing.type_check_only
@@ -702,11 +650,6 @@ class CustomAttribute(typing_extensions.TypedDict, total=False):
     groupValues: _list[CustomAttribute]
     name: str
     value: str
-
-@typing.type_check_only
-class CustomerReturnReason(typing_extensions.TypedDict, total=False):
-    description: str
-    reasonCode: str
 
 @typing.type_check_only
 class CutoffTime(typing_extensions.TypedDict, total=False):
@@ -1082,16 +1025,6 @@ class Installment(typing_extensions.TypedDict, total=False):
     months: str
 
 @typing.type_check_only
-class InvoiceSummary(typing_extensions.TypedDict, total=False):
-    additionalChargeSummaries: _list[InvoiceSummaryAdditionalChargeSummary]
-    productTotal: Amount
-
-@typing.type_check_only
-class InvoiceSummaryAdditionalChargeSummary(typing_extensions.TypedDict, total=False):
-    totalAmount: Amount
-    type: str
-
-@typing.type_check_only
 class LabelIds(typing_extensions.TypedDict, total=False):
     labelIds: _list[str]
 
@@ -1329,35 +1262,6 @@ class MerchantCenterDestination(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
-class MerchantOrderReturn(typing_extensions.TypedDict, total=False):
-    creationDate: str
-    merchantOrderId: str
-    orderId: str
-    orderReturnId: str
-    returnItems: _list[MerchantOrderReturnItem]
-    returnPricingInfo: ReturnPricingInfo
-    returnShipments: _list[ReturnShipment]
-
-@typing.type_check_only
-class MerchantOrderReturnItem(typing_extensions.TypedDict, total=False):
-    customerReturnReason: CustomerReturnReason
-    itemId: str
-    merchantRejectionReason: MerchantRejectionReason
-    merchantReturnReason: RefundReason
-    product: OrderLineItemProduct
-    refundableAmount: MonetaryAmount
-    returnItemId: str
-    returnShipmentIds: _list[str]
-    shipmentGroupId: str
-    shipmentUnitId: str
-    state: str
-
-@typing.type_check_only
-class MerchantRejectionReason(typing_extensions.TypedDict, total=False):
-    description: str
-    reasonCode: str
-
-@typing.type_check_only
 class MethodQuota(typing_extensions.TypedDict, total=False):
     method: str
     quotaLimit: str
@@ -1400,261 +1304,6 @@ class MinimumOrderValueTableStoreCodeSetWithMov(
 ):
     storeCodes: _list[str]
     value: Price
-
-@typing.type_check_only
-class MonetaryAmount(typing_extensions.TypedDict, total=False):
-    priceAmount: Price
-    taxAmount: Price
-
-@typing.type_check_only
-class OnboardBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False):
-    customerServiceEmail: str
-
-@typing.type_check_only
-class Order(typing_extensions.TypedDict, total=False):
-    acknowledged: bool
-    annotations: _list[OrderOrderAnnotation]
-    billingAddress: OrderAddress
-    customer: OrderCustomer
-    deliveryDetails: OrderDeliveryDetails
-    id: str
-    kind: str
-    lineItems: _list[OrderLineItem]
-    merchantId: str
-    merchantOrderId: str
-    netPriceAmount: Price
-    netTaxAmount: Price
-    paymentStatus: str
-    pickupDetails: OrderPickupDetails
-    placedDate: str
-    promotions: _list[OrderPromotion]
-    refunds: _list[OrderRefund]
-    shipments: _list[OrderShipment]
-    shippingCost: Price
-    shippingCostTax: Price
-    status: str
-    taxCollector: str
-
-@typing.type_check_only
-class OrderAddress(typing_extensions.TypedDict, total=False):
-    country: str
-    fullAddress: _list[str]
-    isPostOfficeBox: bool
-    locality: str
-    postalCode: str
-    recipientName: str
-    region: str
-    streetAddress: _list[str]
-
-@typing.type_check_only
-class OrderCancellation(typing_extensions.TypedDict, total=False):
-    actor: str
-    creationDate: str
-    quantity: int
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrderCustomer(typing_extensions.TypedDict, total=False):
-    fullName: str
-    invoiceReceivingEmail: str
-    loyaltyInfo: OrderCustomerLoyaltyInfo
-    marketingRightsInfo: OrderCustomerMarketingRightsInfo
-
-@typing.type_check_only
-class OrderCustomerLoyaltyInfo(typing_extensions.TypedDict, total=False):
-    loyaltyNumber: str
-    name: str
-
-@typing.type_check_only
-class OrderCustomerMarketingRightsInfo(typing_extensions.TypedDict, total=False):
-    explicitMarketingPreference: str
-    lastUpdatedTimestamp: str
-    marketingEmailAddress: str
-
-@typing.type_check_only
-class OrderDeliveryDetails(typing_extensions.TypedDict, total=False):
-    address: OrderAddress
-    phoneNumber: str
-
-@typing.type_check_only
-class OrderLineItem(typing_extensions.TypedDict, total=False):
-    adjustments: _list[OrderLineItemAdjustment]
-    annotations: _list[OrderMerchantProvidedAnnotation]
-    cancellations: _list[OrderCancellation]
-    id: str
-    price: Price
-    product: OrderLineItemProduct
-    quantityCanceled: int
-    quantityDelivered: int
-    quantityOrdered: int
-    quantityPending: int
-    quantityReadyForPickup: int
-    quantityReturned: int
-    quantityShipped: int
-    quantityUndeliverable: int
-    returnInfo: OrderLineItemReturnInfo
-    returns: _list[OrderReturn]
-    shippingDetails: OrderLineItemShippingDetails
-    tax: Price
-
-@typing.type_check_only
-class OrderLineItemAdjustment(typing_extensions.TypedDict, total=False):
-    priceAdjustment: Price
-    taxAdjustment: Price
-    type: str
-
-@typing.type_check_only
-class OrderLineItemProduct(typing_extensions.TypedDict, total=False):
-    brand: str
-    condition: str
-    contentLanguage: str
-    fees: _list[OrderLineItemProductFee]
-    gtin: str
-    id: str
-    imageLink: str
-    itemGroupId: str
-    mpn: str
-    offerId: str
-    price: Price
-    shownImage: str
-    targetCountry: str
-    title: str
-    variantAttributes: _list[OrderLineItemProductVariantAttribute]
-
-@typing.type_check_only
-class OrderLineItemProductFee(typing_extensions.TypedDict, total=False):
-    amount: Price
-    name: str
-
-@typing.type_check_only
-class OrderLineItemProductVariantAttribute(typing_extensions.TypedDict, total=False):
-    dimension: str
-    value: str
-
-@typing.type_check_only
-class OrderLineItemReturnInfo(typing_extensions.TypedDict, total=False):
-    daysToReturn: int
-    isReturnable: bool
-    policyUrl: str
-
-@typing.type_check_only
-class OrderLineItemShippingDetails(typing_extensions.TypedDict, total=False):
-    deliverByDate: str
-    method: OrderLineItemShippingDetailsMethod
-    pickupPromiseInMinutes: int
-    shipByDate: str
-    type: str
-
-@typing.type_check_only
-class OrderLineItemShippingDetailsMethod(typing_extensions.TypedDict, total=False):
-    carrier: str
-    maxDaysInTransit: int
-    methodName: str
-    minDaysInTransit: int
-
-@typing.type_check_only
-class OrderMerchantProvidedAnnotation(typing_extensions.TypedDict, total=False):
-    key: str
-    value: str
-
-@typing.type_check_only
-class OrderOrderAnnotation(typing_extensions.TypedDict, total=False):
-    key: str
-    value: str
-
-@typing.type_check_only
-class OrderPickupDetails(typing_extensions.TypedDict, total=False):
-    address: OrderAddress
-    collectors: _list[OrderPickupDetailsCollector]
-    locationId: str
-    pickupType: str
-
-@typing.type_check_only
-class OrderPickupDetailsCollector(typing_extensions.TypedDict, total=False):
-    name: str
-    phoneNumber: str
-
-@typing.type_check_only
-class OrderPromotion(typing_extensions.TypedDict, total=False):
-    applicableItems: _list[OrderPromotionItem]
-    appliedItems: _list[OrderPromotionItem]
-    endTime: str
-    funder: str
-    merchantPromotionId: str
-    priceValue: Price
-    shortTitle: str
-    startTime: str
-    subtype: str
-    taxValue: Price
-    title: str
-    type: str
-
-@typing.type_check_only
-class OrderPromotionItem(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    offerId: str
-    productId: str
-    quantity: int
-
-@typing.type_check_only
-class OrderRefund(typing_extensions.TypedDict, total=False):
-    actor: str
-    amount: Price
-    creationDate: str
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrderReportDisbursement(typing_extensions.TypedDict, total=False):
-    disbursementAmount: Price
-    disbursementCreationDate: str
-    disbursementDate: str
-    disbursementId: str
-    merchantId: str
-
-@typing.type_check_only
-class OrderReportTransaction(typing_extensions.TypedDict, total=False):
-    disbursementAmount: Price
-    disbursementCreationDate: str
-    disbursementDate: str
-    disbursementId: str
-    merchantId: str
-    merchantOrderId: str
-    orderId: str
-    productAmount: ProductAmount
-    transactionDate: str
-
-@typing.type_check_only
-class OrderReturn(typing_extensions.TypedDict, total=False):
-    actor: str
-    creationDate: str
-    quantity: int
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrderShipment(typing_extensions.TypedDict, total=False):
-    carrier: str
-    creationDate: str
-    deliveryDate: str
-    id: str
-    lineItems: _list[OrderShipmentLineItemShipment]
-    scheduledDeliveryDetails: OrderShipmentScheduledDeliveryDetails
-    shipmentGroupId: str
-    status: str
-    trackingId: str
-
-@typing.type_check_only
-class OrderShipmentLineItemShipment(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    productId: str
-    quantity: int
-
-@typing.type_check_only
-class OrderShipmentScheduledDeliveryDetails(typing_extensions.TypedDict, total=False):
-    carrierPhoneNumber: str
-    scheduledDate: str
 
 @typing.type_check_only
 class OrderTrackingSignal(typing_extensions.TypedDict, total=False):
@@ -1705,401 +1354,6 @@ class OrderTrackingSignalShippingInfo(typing_extensions.TypedDict, total=False):
         "SHIPPING_STATE_UNSPECIFIED", "SHIPPED", "DELIVERED"
     ]
     trackingId: str
-
-@typing.type_check_only
-class OrderinvoicesCreateChargeInvoiceRequest(typing_extensions.TypedDict, total=False):
-    invoiceId: str
-    invoiceSummary: InvoiceSummary
-    lineItemInvoices: _list[ShipmentInvoiceLineItemInvoice]
-    operationId: str
-    shipmentGroupId: str
-
-@typing.type_check_only
-class OrderinvoicesCreateChargeInvoiceResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrderinvoicesCreateRefundInvoiceRequest(typing_extensions.TypedDict, total=False):
-    invoiceId: str
-    operationId: str
-    refundOnlyOption: (
-        OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption
-    )
-    returnOption: OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption
-    shipmentInvoices: _list[ShipmentInvoice]
-
-@typing.type_check_only
-class OrderinvoicesCreateRefundInvoiceResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceRefundOption(
-    typing_extensions.TypedDict, total=False
-):
-    description: str
-    reason: str
-
-@typing.type_check_only
-class OrderinvoicesCustomBatchRequestEntryCreateRefundInvoiceReturnOption(
-    typing_extensions.TypedDict, total=False
-):
-    description: str
-    reason: str
-
-@typing.type_check_only
-class OrderreportsListDisbursementsResponse(typing_extensions.TypedDict, total=False):
-    disbursements: _list[OrderReportDisbursement]
-    kind: str
-    nextPageToken: str
-
-@typing.type_check_only
-class OrderreportsListTransactionsResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    transactions: _list[OrderReportTransaction]
-
-@typing.type_check_only
-class OrderreturnsAcknowledgeRequest(typing_extensions.TypedDict, total=False):
-    operationId: str
-
-@typing.type_check_only
-class OrderreturnsAcknowledgeResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrderreturnsCreateOrderReturnRequest(typing_extensions.TypedDict, total=False):
-    lineItems: _list[OrderreturnsLineItem]
-    operationId: str
-    orderId: str
-    returnMethodType: str
-
-@typing.type_check_only
-class OrderreturnsCreateOrderReturnResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-    orderReturn: MerchantOrderReturn
-
-@typing.type_check_only
-class OrderreturnsLineItem(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    productId: str
-    quantity: int
-
-@typing.type_check_only
-class OrderreturnsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    resources: _list[MerchantOrderReturn]
-
-@typing.type_check_only
-class OrderreturnsPartialRefund(typing_extensions.TypedDict, total=False):
-    priceAmount: Price
-    taxAmount: Price
-
-@typing.type_check_only
-class OrderreturnsProcessRequest(typing_extensions.TypedDict, total=False):
-    fullChargeReturnShippingCost: bool
-    operationId: str
-    refundShippingFee: OrderreturnsRefundOperation
-    returnItems: _list[OrderreturnsReturnItem]
-
-@typing.type_check_only
-class OrderreturnsProcessResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrderreturnsRefundOperation(typing_extensions.TypedDict, total=False):
-    fullRefund: bool
-    partialRefund: OrderreturnsPartialRefund
-    paymentType: str
-    reasonText: str
-    returnRefundReason: str
-
-@typing.type_check_only
-class OrderreturnsRejectOperation(typing_extensions.TypedDict, total=False):
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrderreturnsReturnItem(typing_extensions.TypedDict, total=False):
-    refund: OrderreturnsRefundOperation
-    reject: OrderreturnsRejectOperation
-    returnItemId: str
-
-@typing.type_check_only
-class OrdersAcknowledgeRequest(typing_extensions.TypedDict, total=False):
-    operationId: str
-
-@typing.type_check_only
-class OrdersAcknowledgeResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersAdvanceTestOrderResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-
-@typing.type_check_only
-class OrdersCancelLineItemRequest(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    operationId: str
-    productId: str
-    quantity: int
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrdersCancelLineItemResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersCancelRequest(typing_extensions.TypedDict, total=False):
-    operationId: str
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrdersCancelResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersCancelTestOrderByCustomerRequest(typing_extensions.TypedDict, total=False):
-    reason: str
-
-@typing.type_check_only
-class OrdersCancelTestOrderByCustomerResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-
-@typing.type_check_only
-class OrdersCreateTestOrderRequest(typing_extensions.TypedDict, total=False):
-    country: str
-    templateName: str
-    testOrder: TestOrder
-
-@typing.type_check_only
-class OrdersCreateTestOrderResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    orderId: str
-
-@typing.type_check_only
-class OrdersCreateTestReturnRequest(typing_extensions.TypedDict, total=False):
-    items: _list[OrdersCustomBatchRequestEntryCreateTestReturnReturnItem]
-
-@typing.type_check_only
-class OrdersCreateTestReturnResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    returnId: str
-
-@typing.type_check_only
-class OrdersCustomBatchRequestEntryCreateTestReturnReturnItem(
-    typing_extensions.TypedDict, total=False
-):
-    lineItemId: str
-    quantity: int
-
-@typing.type_check_only
-class OrdersCustomBatchRequestEntryRefundItemItem(
-    typing_extensions.TypedDict, total=False
-):
-    amount: MonetaryAmount
-    fullRefund: bool
-    lineItemId: str
-    productId: str
-    quantity: int
-
-@typing.type_check_only
-class OrdersCustomBatchRequestEntryRefundItemShipping(
-    typing_extensions.TypedDict, total=False
-):
-    amount: Price
-    fullRefund: bool
-
-@typing.type_check_only
-class OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo(
-    typing_extensions.TypedDict, total=False
-):
-    carrier: str
-    shipmentId: str
-    trackingId: str
-
-@typing.type_check_only
-class OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails(
-    typing_extensions.TypedDict, total=False
-):
-    carrierPhoneNumber: str
-    scheduledDate: str
-
-@typing.type_check_only
-class OrdersGetByMerchantOrderIdResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    order: Order
-
-@typing.type_check_only
-class OrdersGetTestOrderTemplateResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    template: TestOrder
-
-@typing.type_check_only
-class OrdersInStoreRefundLineItemRequest(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    operationId: str
-    priceAmount: Price
-    productId: str
-    quantity: int
-    reason: str
-    reasonText: str
-    taxAmount: Price
-
-@typing.type_check_only
-class OrdersInStoreRefundLineItemResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    resources: _list[Order]
-
-@typing.type_check_only
-class OrdersRefundItemRequest(typing_extensions.TypedDict, total=False):
-    items: _list[OrdersCustomBatchRequestEntryRefundItemItem]
-    operationId: str
-    reason: str
-    reasonText: str
-    shipping: OrdersCustomBatchRequestEntryRefundItemShipping
-
-@typing.type_check_only
-class OrdersRefundItemResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersRefundOrderRequest(typing_extensions.TypedDict, total=False):
-    amount: MonetaryAmount
-    fullRefund: bool
-    operationId: str
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrdersRefundOrderResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersRejectReturnLineItemRequest(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    operationId: str
-    productId: str
-    quantity: int
-    reason: str
-    reasonText: str
-
-@typing.type_check_only
-class OrdersRejectReturnLineItemResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersReturnRefundLineItemRequest(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    operationId: str
-    priceAmount: Price
-    productId: str
-    quantity: int
-    reason: str
-    reasonText: str
-    taxAmount: Price
-
-@typing.type_check_only
-class OrdersReturnRefundLineItemResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersSetLineItemMetadataRequest(typing_extensions.TypedDict, total=False):
-    annotations: _list[OrderMerchantProvidedAnnotation]
-    lineItemId: str
-    operationId: str
-    productId: str
-
-@typing.type_check_only
-class OrdersSetLineItemMetadataResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersShipLineItemsRequest(typing_extensions.TypedDict, total=False):
-    lineItems: _list[OrderShipmentLineItemShipment]
-    operationId: str
-    shipmentGroupId: str
-    shipmentInfos: _list[OrdersCustomBatchRequestEntryShipLineItemsShipmentInfo]
-
-@typing.type_check_only
-class OrdersShipLineItemsResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersUpdateLineItemShippingDetailsRequest(
-    typing_extensions.TypedDict, total=False
-):
-    deliverByDate: str
-    lineItemId: str
-    operationId: str
-    productId: str
-    shipByDate: str
-
-@typing.type_check_only
-class OrdersUpdateLineItemShippingDetailsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersUpdateMerchantOrderIdRequest(typing_extensions.TypedDict, total=False):
-    merchantOrderId: str
-    operationId: str
-
-@typing.type_check_only
-class OrdersUpdateMerchantOrderIdResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class OrdersUpdateShipmentRequest(typing_extensions.TypedDict, total=False):
-    carrier: str
-    deliveryDate: str
-    lastPickupDate: str
-    operationId: str
-    readyPickupDate: str
-    scheduledDeliveryDetails: (
-        OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails
-    )
-    shipmentId: str
-    status: str
-    trackingId: str
-    undeliveredDate: str
-
-@typing.type_check_only
-class OrdersUpdateShipmentResponse(typing_extensions.TypedDict, total=False):
-    executionStatus: str
-    kind: str
-
-@typing.type_check_only
-class PauseBuyOnGoogleProgramRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PaymentServiceProviderLinkInfo(typing_extensions.TypedDict, total=False):
@@ -2399,12 +1653,6 @@ class Product(typing_extensions.TypedDict, total=False):
     unitPricingBaseMeasure: ProductUnitPricingBaseMeasure
     unitPricingMeasure: ProductUnitPricingMeasure
     virtualModelLink: str
-
-@typing.type_check_only
-class ProductAmount(typing_extensions.TypedDict, total=False):
-    priceAmount: Price
-    remittedTaxAmount: Price
-    taxAmount: Price
 
 @typing.type_check_only
 class ProductCertification(typing_extensions.TypedDict, total=False):
@@ -2847,11 +2095,6 @@ class RecommendationDescription(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["DESCRIPTION_TYPE_UNSPECIFIED", "SHORT", "LONG"]
 
 @typing.type_check_only
-class RefundReason(typing_extensions.TypedDict, total=False):
-    description: str
-    reasonCode: str
-
-@typing.type_check_only
 class Region(typing_extensions.TypedDict, total=False):
     displayName: str
     geotargetArea: RegionGeoTargetArea
@@ -2981,11 +2224,6 @@ class RequestPhoneVerificationResponse(typing_extensions.TypedDict, total=False)
     verificationId: str
 
 @typing.type_check_only
-class RequestReviewBuyOnGoogleProgramRequest(
-    typing_extensions.TypedDict, total=False
-): ...
-
-@typing.type_check_only
 class RequestReviewFreeListingsRequest(typing_extensions.TypedDict, total=False):
     regionCode: str
 
@@ -3091,30 +2329,6 @@ class ReturnPolicySeasonalOverride(typing_extensions.TypedDict, total=False):
     name: str
     policy: ReturnPolicyPolicy
     startDate: str
-
-@typing.type_check_only
-class ReturnPricingInfo(typing_extensions.TypedDict, total=False):
-    chargeReturnShippingFee: bool
-    maxReturnShippingFee: MonetaryAmount
-    refundableItemsTotalAmount: MonetaryAmount
-    refundableShippingAmount: MonetaryAmount
-    totalRefundedAmount: MonetaryAmount
-
-@typing.type_check_only
-class ReturnShipment(typing_extensions.TypedDict, total=False):
-    creationDate: str
-    deliveryDate: str
-    returnMethodType: str
-    shipmentId: str
-    shipmentTrackingInfos: _list[ShipmentTrackingInfo]
-    shippingDate: str
-    state: str
-
-@typing.type_check_only
-class ReturnShippingLabel(typing_extensions.TypedDict, total=False):
-    carrier: str
-    labelUri: str
-    trackingId: str
 
 @typing.type_check_only
 class ReturnaddressCustomBatchRequest(typing_extensions.TypedDict, total=False):
@@ -3314,24 +2528,6 @@ class SettlementtransactionsListResponse(typing_extensions.TypedDict, total=Fals
     resources: _list[SettlementTransaction]
 
 @typing.type_check_only
-class ShipmentInvoice(typing_extensions.TypedDict, total=False):
-    invoiceSummary: InvoiceSummary
-    lineItemInvoices: _list[ShipmentInvoiceLineItemInvoice]
-    shipmentGroupId: str
-
-@typing.type_check_only
-class ShipmentInvoiceLineItemInvoice(typing_extensions.TypedDict, total=False):
-    lineItemId: str
-    productId: str
-    shipmentUnitIds: _list[str]
-    unitInvoice: UnitInvoice
-
-@typing.type_check_only
-class ShipmentTrackingInfo(typing_extensions.TypedDict, total=False):
-    carrier: str
-    trackingNumber: str
-
-@typing.type_check_only
 class ShippingSettings(typing_extensions.TypedDict, total=False):
     accountId: str
     postalCodeGroups: _list[PostalCodeGroup]
@@ -3446,74 +2642,6 @@ class Table(typing_extensions.TypedDict, total=False):
     rows: _list[Row]
 
 @typing.type_check_only
-class TestOrder(typing_extensions.TypedDict, total=False):
-    deliveryDetails: TestOrderDeliveryDetails
-    enableOrderinvoices: bool
-    kind: str
-    lineItems: _list[TestOrderLineItem]
-    notificationMode: str
-    pickupDetails: TestOrderPickupDetails
-    predefinedBillingAddress: str
-    predefinedDeliveryAddress: str
-    predefinedEmail: str
-    predefinedPickupDetails: str
-    promotions: _list[OrderPromotion]
-    shippingCost: Price
-    shippingOption: str
-
-@typing.type_check_only
-class TestOrderAddress(typing_extensions.TypedDict, total=False):
-    country: str
-    fullAddress: _list[str]
-    isPostOfficeBox: bool
-    locality: str
-    postalCode: str
-    recipientName: str
-    region: str
-    streetAddress: _list[str]
-
-@typing.type_check_only
-class TestOrderDeliveryDetails(typing_extensions.TypedDict, total=False):
-    address: TestOrderAddress
-    isScheduledDelivery: bool
-    phoneNumber: str
-
-@typing.type_check_only
-class TestOrderLineItem(typing_extensions.TypedDict, total=False):
-    product: TestOrderLineItemProduct
-    quantityOrdered: int
-    returnInfo: OrderLineItemReturnInfo
-    shippingDetails: OrderLineItemShippingDetails
-
-@typing.type_check_only
-class TestOrderLineItemProduct(typing_extensions.TypedDict, total=False):
-    brand: str
-    condition: str
-    contentLanguage: str
-    fees: _list[OrderLineItemProductFee]
-    gtin: str
-    imageLink: str
-    itemGroupId: str
-    mpn: str
-    offerId: str
-    price: Price
-    targetCountry: str
-    title: str
-    variantAttributes: _list[OrderLineItemProductVariantAttribute]
-
-@typing.type_check_only
-class TestOrderPickupDetails(typing_extensions.TypedDict, total=False):
-    locationCode: str
-    pickupLocationAddress: TestOrderAddress
-    pickupLocationType: str
-    pickupPersons: _list[TestOrderPickupDetailsPickupPerson]
-
-@typing.type_check_only
-class TestOrderPickupDetailsPickupPerson(typing_extensions.TypedDict, total=False):
-    name: str
-    phoneNumber: str
-
-@typing.type_check_only
 class TextWithTooltip(typing_extensions.TypedDict, total=False):
     simpleTooltipValue: str
     simpleValue: str
@@ -3571,23 +2699,6 @@ class TriggerActionResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UndeleteConversionSourceRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class UnitInvoice(typing_extensions.TypedDict, total=False):
-    additionalCharges: _list[UnitInvoiceAdditionalCharge]
-    unitPrice: Price
-    unitPriceTaxes: _list[UnitInvoiceTaxLine]
-
-@typing.type_check_only
-class UnitInvoiceAdditionalCharge(typing_extensions.TypedDict, total=False):
-    additionalChargeAmount: Amount
-    type: str
-
-@typing.type_check_only
-class UnitInvoiceTaxLine(typing_extensions.TypedDict, total=False):
-    taxAmount: Price
-    taxName: str
-    taxType: str
 
 @typing.type_check_only
 class UrlSettings(typing_extensions.TypedDict, total=False):

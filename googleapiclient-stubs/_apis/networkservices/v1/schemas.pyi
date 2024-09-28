@@ -114,6 +114,9 @@ class Gateway(typing_extensions.TypedDict, total=False):
     name: str
     network: str
     ports: _list[int]
+    routingMode: typing_extensions.Literal[
+        "EXPLICIT_ROUTING_MODE", "NEXT_HOP_ROUTING_MODE"
+    ]
     scope: str
     selfLink: str
     serverTlsPolicy: str
@@ -450,6 +453,21 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    logSeverity: typing_extensions.Literal[
+        "LOG_SEVERITY_UNSPECIFIED",
+        "NONE",
+        "DEBUG",
+        "INFO",
+        "NOTICE",
+        "WARNING",
+        "ERROR",
+        "CRITICAL",
+        "ALERT",
+        "EMERGENCY",
+    ]
+
+@typing.type_check_only
 class Mesh(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -486,6 +504,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class RetryFilterPerRouteConfig(typing_extensions.TypedDict, total=False):
+    cryptoKeyName: str
 
 @typing.type_check_only
 class ServiceBinding(typing_extensions.TypedDict, total=False):

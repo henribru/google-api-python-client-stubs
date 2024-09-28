@@ -234,6 +234,11 @@ class FlexibleRuntimeSettings(typing_extensions.TypedDict, total=False):
     runtimeVersion: str
 
 @typing.type_check_only
+class GceTag(typing_extensions.TypedDict, total=False):
+    parent: _list[str]
+    tag: str
+
+@typing.type_check_only
 class GoogleAppengineV1betaLocationMetadata(typing_extensions.TypedDict, total=False):
     flexibleEnvironmentAvailable: bool
     searchApiAvailable: bool
@@ -465,6 +470,7 @@ class ProjectsMetadata(typing_extensions.TypedDict, total=False):
     consumerProjectState: typing_extensions.Literal[
         "UNKNOWN_STATE", "ON", "OFF", "DELETED"
     ]
+    gceTag: _list[GceTag]
     p4ServiceAccount: str
     producerProjectId: str
     producerProjectNumber: str

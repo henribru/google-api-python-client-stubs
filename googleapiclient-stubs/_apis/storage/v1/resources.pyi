@@ -616,6 +616,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            restoreToken: str = ...,
             softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
@@ -631,6 +632,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            restoreToken: str = ...,
             softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
@@ -726,6 +728,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifMetagenerationMatch: str = ...,
             ifMetagenerationNotMatch: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            restoreToken: str = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...

@@ -6,7 +6,7 @@ _list = list
 
 @typing.type_check_only
 class Bin(typing_extensions.TypedDict, total=False):
-    density: float
+    density: typing.Any
     end: typing.Any
     start: typing.Any
 

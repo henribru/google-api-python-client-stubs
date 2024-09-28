@@ -41,7 +41,38 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
 
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleLongrunningCancelOperationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def listOperations(
+                    self,
+                    *,
+                    name: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+                def listOperations_next(
+                    self,
+                    previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+                    previous_response: GoogleLongrunningListOperationsResponse,
+                ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
             def encryptionConfigs(self) -> EncryptionConfigsResource: ...
+            def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -550,6 +581,30 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                 def entries(self) -> EntriesResource: ...
 
             @typing.type_check_only
+            class EntryLinkTypesResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
             class EntryTypesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -614,6 +669,54 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class GlossariesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class CategoriesResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+                @typing.type_check_only
+                class TermsResource(googleapiclient.discovery.Resource):
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: GoogleIamV1TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
                 def getIamPolicy(
                     self,
                     *,
@@ -635,6 +738,8 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def categories(self) -> CategoriesResource: ...
+                def terms(self) -> TermsResource: ...
 
             @typing.type_check_only
             class GovernanceRulesResource(googleapiclient.discovery.Resource):
@@ -1443,6 +1548,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
             def dataScans(self) -> DataScansResource: ...
             def dataTaxonomies(self) -> DataTaxonomiesResource: ...
             def entryGroups(self) -> EntryGroupsResource: ...
+            def entryLinkTypes(self) -> EntryLinkTypesResource: ...
             def entryTypes(self) -> EntryTypesResource: ...
             def glossaries(self) -> GlossariesResource: ...
             def governanceRules(self) -> GovernanceRulesResource: ...
