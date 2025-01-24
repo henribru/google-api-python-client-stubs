@@ -1252,6 +1252,7 @@ class LoyaltyProgram(typing_extensions.TypedDict, total=False):
     memberPriceEffectiveDate: str
     price: Price
     programLabel: str
+    shippingLabel: str
     tierLabel: str
 
 @typing.type_check_only
@@ -1645,6 +1646,7 @@ class Product(typing_extensions.TypedDict, total=False):
     structuredDescription: ProductStructuredDescription
     structuredTitle: ProductStructuredTitle
     subscriptionCost: ProductSubscriptionCost
+    sustainabilityIncentives: _list[ProductSustainabilityIncentive]
     targetCountry: str
     taxCategory: str
     taxes: _list[ProductTax]
@@ -1798,6 +1800,14 @@ class ProductSubscriptionCost(typing_extensions.TypedDict, total=False):
     amount: Price
     period: str
     periodLength: str
+
+@typing.type_check_only
+class ProductSustainabilityIncentive(typing_extensions.TypedDict, total=False):
+    amount: Price
+    percentage: float
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "EV_TAX_CREDIT", "EV_PRICE_DISCOUNT"
+    ]
 
 @typing.type_check_only
 class ProductTax(typing_extensions.TypedDict, total=False):
@@ -2470,62 +2480,6 @@ class ServiceStoreConfigCutoffConfigLocalCutoffTime(
 ):
     hour: str
     minute: str
-
-@typing.type_check_only
-class SettlementReport(typing_extensions.TypedDict, total=False):
-    endDate: str
-    kind: str
-    previousBalance: Price
-    settlementId: str
-    startDate: str
-    transferAmount: Price
-    transferDate: str
-    transferIds: _list[str]
-
-@typing.type_check_only
-class SettlementTransaction(typing_extensions.TypedDict, total=False):
-    amount: SettlementTransactionAmount
-    identifiers: SettlementTransactionIdentifiers
-    kind: str
-    transaction: SettlementTransactionTransaction
-
-@typing.type_check_only
-class SettlementTransactionAmount(typing_extensions.TypedDict, total=False):
-    commission: SettlementTransactionAmountCommission
-    description: str
-    transactionAmount: Price
-    type: str
-
-@typing.type_check_only
-class SettlementTransactionAmountCommission(typing_extensions.TypedDict, total=False):
-    category: str
-    rate: str
-
-@typing.type_check_only
-class SettlementTransactionIdentifiers(typing_extensions.TypedDict, total=False):
-    adjustmentId: str
-    merchantOrderId: str
-    orderItemId: str
-    settlementEntryId: str
-    shipmentIds: _list[str]
-    transactionId: str
-
-@typing.type_check_only
-class SettlementTransactionTransaction(typing_extensions.TypedDict, total=False):
-    postDate: str
-    type: str
-
-@typing.type_check_only
-class SettlementreportsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    resources: _list[SettlementReport]
-
-@typing.type_check_only
-class SettlementtransactionsListResponse(typing_extensions.TypedDict, total=False):
-    kind: str
-    nextPageToken: str
-    resources: _list[SettlementTransaction]
 
 @typing.type_check_only
 class ShippingSettings(typing_extensions.TypedDict, total=False):

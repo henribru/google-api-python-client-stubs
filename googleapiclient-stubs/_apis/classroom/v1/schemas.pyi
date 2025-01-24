@@ -199,6 +199,13 @@ class CourseWorkMaterial(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class Criterion(typing_extensions.TypedDict, total=False):
+    description: str
+    id: str
+    levels: _list[Level]
+    title: str
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
@@ -310,6 +317,13 @@ class Invitation(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class Level(typing_extensions.TypedDict, total=False):
+    description: str
+    id: str
+    points: float
+    title: str
+
+@typing.type_check_only
 class Link(typing_extensions.TypedDict, total=False):
     thumbnailUrl: str
     title: str
@@ -359,6 +373,11 @@ class ListGuardiansResponse(typing_extensions.TypedDict, total=False):
 class ListInvitationsResponse(typing_extensions.TypedDict, total=False):
     invitations: _list[Invitation]
     nextPageToken: str
+
+@typing.type_check_only
+class ListRubricsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rubrics: _list[Rubric]
 
 @typing.type_check_only
 class ListStudentSubmissionsResponse(typing_extensions.TypedDict, total=False):
@@ -438,6 +457,22 @@ class Registration(typing_extensions.TypedDict, total=False):
 class ReturnStudentSubmissionRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Rubric(typing_extensions.TypedDict, total=False):
+    courseId: str
+    courseWorkId: str
+    creationTime: str
+    criteria: _list[Criterion]
+    id: str
+    sourceSpreadsheetId: str
+    updateTime: str
+
+@typing.type_check_only
+class RubricGrade(typing_extensions.TypedDict, total=False):
+    criterionId: str
+    levelId: str
+    points: float
+
+@typing.type_check_only
 class SharedDriveFile(typing_extensions.TypedDict, total=False):
     driveFile: DriveFile
     shareMode: typing_extensions.Literal[
@@ -476,6 +511,7 @@ class StudentContext(typing_extensions.TypedDict, total=False):
 class StudentSubmission(typing_extensions.TypedDict, total=False):
     alternateLink: str
     assignedGrade: float
+    assignedRubricGrades: dict[str, typing.Any]
     assignmentSubmission: AssignmentSubmission
     associatedWithDeveloper: bool
     courseId: str
@@ -488,6 +524,7 @@ class StudentSubmission(typing_extensions.TypedDict, total=False):
     ]
     creationTime: str
     draftGrade: float
+    draftRubricGrades: dict[str, typing.Any]
     id: str
     late: bool
     multipleChoiceSubmission: MultipleChoiceSubmission

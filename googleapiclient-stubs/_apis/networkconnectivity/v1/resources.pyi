@@ -187,6 +187,22 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def queryStatus(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        groupBy: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> QueryHubStatusResponseHttpRequest: ...
+                    def queryStatus_next(
+                        self,
+                        previous_request: QueryHubStatusResponseHttpRequest,
+                        previous_response: QueryHubStatusResponse,
+                    ) -> QueryHubStatusResponseHttpRequest | None: ...
                     def rejectSpoke(
                         self,
                         *,
@@ -901,6 +917,14 @@ class PolicyBasedRouteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PolicyBasedRoute: ...
+
+@typing.type_check_only
+class QueryHubStatusResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryHubStatusResponse: ...
 
 @typing.type_check_only
 class RegionalEndpointHttpRequest(googleapiclient.http.HttpRequest):

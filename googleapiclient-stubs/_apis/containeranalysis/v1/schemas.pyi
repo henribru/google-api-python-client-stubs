@@ -445,7 +445,9 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
 ):
     automapSubstitutions: bool
     defaultLogsBucketBehavior: typing_extensions.Literal[
-        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+        "REGIONAL_USER_OWNED_BUCKET",
+        "LEGACY_BUCKET",
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool

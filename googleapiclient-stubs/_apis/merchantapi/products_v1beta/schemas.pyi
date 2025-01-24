@@ -91,6 +91,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     structuredDescription: ProductStructuredDescription
     structuredTitle: ProductStructuredTitle
     subscriptionCost: SubscriptionCost
+    sustainabilityIncentives: _list[ProductSustainabilityIncentive]
     taxCategory: str
     taxes: _list[Tax]
     title: str
@@ -146,6 +147,7 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -194,6 +196,7 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
     resolution: str
     severity: typing_extensions.Literal[
@@ -218,6 +221,7 @@ class LoyaltyProgram(typing_extensions.TypedDict, total=False):
     memberPriceEffectiveDate: Interval
     price: Price
     programLabel: str
+    shippingLabel: str
     tierLabel: str
 
 @typing.type_check_only
@@ -261,6 +265,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -299,6 +304,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
@@ -313,6 +319,14 @@ class ProductStructuredDescription(typing_extensions.TypedDict, total=False):
 class ProductStructuredTitle(typing_extensions.TypedDict, total=False):
     content: str
     digitalSourceType: str
+
+@typing.type_check_only
+class ProductSustainabilityIncentive(typing_extensions.TypedDict, total=False):
+    amount: Price
+    percentage: float
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "EV_TAX_CREDIT", "EV_PRICE_DISCOUNT"
+    ]
 
 @typing.type_check_only
 class ProductWeight(typing_extensions.TypedDict, total=False):

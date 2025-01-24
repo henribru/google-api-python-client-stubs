@@ -97,6 +97,7 @@ class GoogleCloudDataplexV1Aspect(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudDataplexV1AspectSource(typing_extensions.TypedDict, total=False):
     createTime: str
+    dataVersion: str
     updateTime: str
 
 @typing.type_check_only
@@ -334,6 +335,60 @@ class GoogleCloudDataplexV1DataAttributeBindingPath(
 ):
     attributes: _list[str]
     name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoveryResult(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryPublishing: GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing(
+    typing_extensions.TypedDict, total=False
+):
+    dataset: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoverySpec(typing_extensions.TypedDict, total=False):
+    bigqueryPublishingConfig: (
+        GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig
+    )
+    storageConfig: GoogleCloudDataplexV1DataDiscoverySpecStorageConfig
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    connection: str
+    tableType: typing_extensions.Literal[
+        "TABLE_TYPE_UNSPECIFIED", "EXTERNAL", "BIGLAKE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoverySpecStorageConfig(
+    typing_extensions.TypedDict, total=False
+):
+    csvOptions: GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions
+    excludePatterns: _list[str]
+    includePatterns: _list[str]
+    jsonOptions: GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions(
+    typing_extensions.TypedDict, total=False
+):
+    delimiter: str
+    encoding: str
+    headerRows: int
+    quote: str
+    typeInferenceDisabled: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions(
+    typing_extensions.TypedDict, total=False
+):
+    encoding: str
+    typeInferenceDisabled: bool
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
@@ -691,6 +746,8 @@ class GoogleCloudDataplexV1DataQualitySpecPostScanActionsScoreThresholdTrigger(
 class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
     createTime: str
     data: GoogleCloudDataplexV1DataSource
+    dataDiscoveryResult: GoogleCloudDataplexV1DataDiscoveryResult
+    dataDiscoverySpec: GoogleCloudDataplexV1DataDiscoverySpec
     dataProfileResult: GoogleCloudDataplexV1DataProfileResult
     dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
     dataQualityResult: GoogleCloudDataplexV1DataQualityResult
@@ -705,7 +762,7 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
     ]
     type: typing_extensions.Literal[
-        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE"
+        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE", "DATA_DISCOVERY"
     ]
     uid: str
     updateTime: str
@@ -730,7 +787,7 @@ class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=Fals
     ]
     trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "ON_DEMAND", "SCHEDULE"]
     type: typing_extensions.Literal[
-        "SCAN_TYPE_UNSPECIFIED", "DATA_PROFILE", "DATA_QUALITY"
+        "SCAN_TYPE_UNSPECIFIED", "DATA_PROFILE", "DATA_QUALITY", "DATA_DISCOVERY"
     ]
 
 @typing.type_check_only
@@ -800,6 +857,8 @@ class GoogleCloudDataplexV1DataScanExecutionStatus(
 @typing.type_check_only
 class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False):
     createTime: str
+    dataDiscoveryResult: GoogleCloudDataplexV1DataDiscoveryResult
+    dataDiscoverySpec: GoogleCloudDataplexV1DataDiscoverySpec
     dataProfileResult: GoogleCloudDataplexV1DataProfileResult
     dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
     dataQualityResult: GoogleCloudDataplexV1DataQualityResult
@@ -818,7 +877,7 @@ class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False)
         "PENDING",
     ]
     type: typing_extensions.Literal[
-        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE"
+        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE", "DATA_DISCOVERY"
     ]
     uid: str
 
@@ -861,6 +920,10 @@ class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=Fal
         "PARTITION_CREATED",
         "PARTITION_UPDATED",
         "PARTITION_DELETED",
+        "TABLE_PUBLISHED",
+        "TABLE_UPDATED",
+        "TABLE_IGNORED",
+        "TABLE_DELETED",
     ]
     zoneId: str
 
@@ -868,6 +931,7 @@ class GoogleCloudDataplexV1DiscoveryEvent(typing_extensions.TypedDict, total=Fal
 class GoogleCloudDataplexV1DiscoveryEventActionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    issue: str
     type: str
 
 @typing.type_check_only

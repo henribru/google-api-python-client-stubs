@@ -818,6 +818,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                             GoogleCloudDialogflowCxV3beta1ListPlaybookVersionsResponseHttpRequest
                             | None
                         ): ...
+                        def restore(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponseHttpRequest: ...
 
                     def create(
                         self,
@@ -829,9 +836,23 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3beta1ExportPlaybookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleCloudDialogflowCxV3beta1PlaybookHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3beta1ImportPlaybookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -1881,6 +1902,16 @@ class GoogleCloudDialogflowCxV3beta1PlaybookVersionHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3beta1PlaybookVersion: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1SecuritySettingsHttpRequest(

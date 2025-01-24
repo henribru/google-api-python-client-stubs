@@ -169,6 +169,7 @@ class GooglePrivacyDlpV2BigQueryTableTypes(typing_extensions.TypedDict, total=Fa
             "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
             "BIG_QUERY_TABLE_TYPE_TABLE",
             "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+            "BIG_QUERY_TABLE_TYPE_SNAPSHOT",
         ]
     ]
 
@@ -210,6 +211,7 @@ class GooglePrivacyDlpV2ByteContentItem(typing_extensions.TypedDict, total=False
         "AUDIO",
         "VIDEO",
         "EXECUTABLE",
+        "AI_MODEL",
     ]
 
 @typing.type_check_only
@@ -1169,6 +1171,7 @@ class GooglePrivacyDlpV2FileClusterType(typing_extensions.TypedDict, total=False
         "CLUSTER_ARCHIVE",
         "CLUSTER_MULTIMEDIA",
         "CLUSTER_EXECUTABLE",
+        "CLUSTER_AI_MODEL",
     ]
 
 @typing.type_check_only
@@ -1423,6 +1426,7 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     categories: _list[GooglePrivacyDlpV2InfoTypeCategory]
     description: str
     displayName: str
+    example: str
     name: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     supportedBy: _list[

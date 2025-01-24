@@ -27,6 +27,7 @@ class Channel(typing_extensions.TypedDict, total=False):
     activationToken: str
     createTime: str
     cryptoKeyName: str
+    labels: dict[str, typing.Any]
     name: str
     provider: str
     pubsubTopic: str
@@ -42,6 +43,7 @@ class ChannelConnection(typing_extensions.TypedDict, total=False):
     activationToken: str
     channel: str
     createTime: str
+    labels: dict[str, typing.Any]
     name: str
     uid: str
     updateTime: str
@@ -63,6 +65,20 @@ class Destination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Enrollment(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    celMatch: str
+    createTime: str
+    destination: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    messageBus: str
+    name: str
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
@@ -100,10 +116,113 @@ class GKE(typing_extensions.TypedDict, total=False):
     service: str
 
 @typing.type_check_only
+class GoogleApiSource(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    cryptoKeyName: str
+    destination: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    loggingConfig: LoggingConfig
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleChannelConfig(typing_extensions.TypedDict, total=False):
     cryptoKeyName: str
     name: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestination(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationConfig: GoogleCloudEventarcV1PipelineDestinationAuthenticationConfig
+    httpEndpoint: GoogleCloudEventarcV1PipelineDestinationHttpEndpoint
+    messageBus: str
+    networkConfig: GoogleCloudEventarcV1PipelineDestinationNetworkConfig
+    outputPayloadFormat: GoogleCloudEventarcV1PipelineMessagePayloadFormat
+    topic: str
+    workflow: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestinationAuthenticationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    googleOidc: GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOidcToken
+    oauthToken: GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOAuthToken
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOAuthToken(
+    typing_extensions.TypedDict, total=False
+):
+    scope: str
+    serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOidcToken(
+    typing_extensions.TypedDict, total=False
+):
+    audience: str
+    serviceAccount: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestinationHttpEndpoint(
+    typing_extensions.TypedDict, total=False
+):
+    messageBindingTemplate: str
+    uri: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineDestinationNetworkConfig(
+    typing_extensions.TypedDict, total=False
+):
+    networkAttachment: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMediation(typing_extensions.TypedDict, total=False):
+    transformation: GoogleCloudEventarcV1PipelineMediationTransformation
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMediationTransformation(
+    typing_extensions.TypedDict, total=False
+):
+    transformationTemplate: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMessagePayloadFormat(
+    typing_extensions.TypedDict, total=False
+):
+    avro: GoogleCloudEventarcV1PipelineMessagePayloadFormatAvroFormat
+    json: GoogleCloudEventarcV1PipelineMessagePayloadFormatJsonFormat
+    protobuf: GoogleCloudEventarcV1PipelineMessagePayloadFormatProtobufFormat
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMessagePayloadFormatAvroFormat(
+    typing_extensions.TypedDict, total=False
+):
+    schemaDefinition: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMessagePayloadFormatJsonFormat(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineMessagePayloadFormatProtobufFormat(
+    typing_extensions.TypedDict, total=False
+):
+    schemaDefinition: str
+
+@typing.type_check_only
+class GoogleCloudEventarcV1PipelineRetryPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    maxAttempts: int
+    maxRetryDelay: str
+    minRetryDelay: str
 
 @typing.type_check_only
 class GoogleLongrunningCancelOperationRequest(
@@ -146,9 +265,39 @@ class ListChannelsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListEnrollmentsResponse(typing_extensions.TypedDict, total=False):
+    enrollments: _list[Enrollment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListGoogleApiSourcesResponse(typing_extensions.TypedDict, total=False):
+    googleApiSources: _list[GoogleApiSource]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
+
+@typing.type_check_only
+class ListMessageBusEnrollmentsResponse(typing_extensions.TypedDict, total=False):
+    enrollments: _list[str]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMessageBusesResponse(typing_extensions.TypedDict, total=False):
+    messageBuses: _list[MessageBus]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListPipelinesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    pipelines: _list[Pipeline]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListProvidersResponse(typing_extensions.TypedDict, total=False):
@@ -171,6 +320,34 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    logSeverity: typing_extensions.Literal[
+        "LOG_SEVERITY_UNSPECIFIED",
+        "NONE",
+        "DEBUG",
+        "INFO",
+        "NOTICE",
+        "WARNING",
+        "ERROR",
+        "CRITICAL",
+        "ALERT",
+        "EMERGENCY",
+    ]
+
+@typing.type_check_only
+class MessageBus(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    cryptoKeyName: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    loggingConfig: LoggingConfig
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     networkAttachment: str
 
@@ -183,6 +360,23 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class Pipeline(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    cryptoKeyName: str
+    destinations: _list[GoogleCloudEventarcV1PipelineDestination]
+    displayName: str
+    etag: str
+    inputPayloadFormat: GoogleCloudEventarcV1PipelineMessagePayloadFormat
+    labels: dict[str, typing.Any]
+    loggingConfig: LoggingConfig
+    mediations: _list[GoogleCloudEventarcV1PipelineMediation]
+    name: str
+    retryPolicy: GoogleCloudEventarcV1PipelineRetryPolicy
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):

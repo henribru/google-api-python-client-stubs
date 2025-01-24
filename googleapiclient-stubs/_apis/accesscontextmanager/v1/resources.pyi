@@ -274,6 +274,7 @@ class AccessContextManagerResource(googleapiclient.discovery.Resource):
                 *,
                 name: str,
                 body: GcpUserAccessBinding = ...,
+                append: bool = ...,
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> OperationHttpRequest: ...

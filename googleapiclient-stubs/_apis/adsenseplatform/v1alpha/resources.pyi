@@ -14,6 +14,75 @@ _list = list
 @typing.type_check_only
 class AdSensePlatformResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AccountsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class PlatformsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class ChildAccountsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class SitesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListPlatformChildSitesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListPlatformChildSitesResponseHttpRequest,
+                        previous_response: ListPlatformChildSitesResponse,
+                    ) -> ListPlatformChildSitesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: PlatformChildSite = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> PlatformChildSiteHttpRequest: ...
+
+                def sites(self) -> SitesResource: ...
+
+            @typing.type_check_only
+            class GroupsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListPlatformGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListPlatformGroupsResponseHttpRequest,
+                    previous_response: ListPlatformGroupsResponse,
+                ) -> ListPlatformGroupsResponseHttpRequest | None: ...
+
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> PlatformHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListPlatformsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListPlatformsResponseHttpRequest,
+                previous_response: ListPlatformsResponse,
+            ) -> ListPlatformsResponseHttpRequest | None: ...
+            def childAccounts(self) -> ChildAccountsResource: ...
+            def groups(self) -> GroupsResource: ...
+
+        def platforms(self) -> PlatformsResource: ...
+
+    @typing.type_check_only
     class PlatformsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class AccountsResource(googleapiclient.discovery.Resource):
@@ -95,6 +164,7 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def accounts(self) -> AccountsResource: ...
     def platforms(self) -> PlatformsResource: ...
 
 @typing.type_check_only
@@ -138,6 +208,30 @@ class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListAccountsResponse: ...
 
 @typing.type_check_only
+class ListPlatformChildSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPlatformChildSitesResponse: ...
+
+@typing.type_check_only
+class ListPlatformGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPlatformGroupsResponse: ...
+
+@typing.type_check_only
+class ListPlatformsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPlatformsResponse: ...
+
+@typing.type_check_only
 class ListSitesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -152,6 +246,22 @@ class LookupAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LookupAccountResponse: ...
+
+@typing.type_check_only
+class PlatformHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Platform: ...
+
+@typing.type_check_only
+class PlatformChildSiteHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PlatformChildSite: ...
 
 @typing.type_check_only
 class RequestSiteReviewResponseHttpRequest(googleapiclient.http.HttpRequest):

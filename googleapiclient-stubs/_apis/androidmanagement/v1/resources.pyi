@@ -260,6 +260,7 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             self,
             *,
             adminEmail: str = ...,
+            allowedDomains: str | _list[str] = ...,
             callbackUrl: str = ...,
             projectId: str = ...,
             **kwargs: typing.Any,

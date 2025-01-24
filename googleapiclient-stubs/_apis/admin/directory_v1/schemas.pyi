@@ -145,6 +145,11 @@ class Buildings(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ByteUsage(typing_extensions.TypedDict, total=False):
+    capacityBytes: str
+    usedBytes: str
+
+@typing.type_check_only
 class CalendarResource(typing_extensions.TypedDict, total=False):
     buildingId: str
     capacity: int
@@ -229,6 +234,7 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
         "education",
         "kioskUpgrade",
     ]
+    diskSpaceUsage: ByteUsage
     diskVolumeReports: _list[dict[str, typing.Any]]
     dockMacAddress: str
     etag: str
@@ -696,6 +702,7 @@ class Role(typing_extensions.TypedDict, total=False):
 class RoleAssignment(typing_extensions.TypedDict, total=False):
     assignedTo: str
     assigneeType: typing_extensions.Literal["user", "group"]
+    condition: str
     etag: str
     kind: str
     orgUnitId: str

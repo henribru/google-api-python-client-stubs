@@ -141,25 +141,13 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
+    customSubjectAlternativeNames: _list[str]
     databaseVersion: typing_extensions.Literal[
         "SQL_DATABASE_VERSION_UNSPECIFIED",
         "MYSQL_5_1",
         "MYSQL_5_5",
         "MYSQL_5_6",
         "MYSQL_5_7",
-        "SQLSERVER_2017_STANDARD",
-        "SQLSERVER_2017_ENTERPRISE",
-        "SQLSERVER_2017_EXPRESS",
-        "SQLSERVER_2017_WEB",
-        "POSTGRES_9_6",
-        "POSTGRES_10",
-        "POSTGRES_11",
-        "POSTGRES_12",
-        "POSTGRES_13",
-        "POSTGRES_14",
-        "POSTGRES_15",
-        "POSTGRES_16",
-        "POSTGRES_17",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -177,7 +165,22 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
+        "MYSQL_8_0_41",
+        "MYSQL_8_0_42",
         "MYSQL_8_4",
+        "SQLSERVER_2017_STANDARD",
+        "SQLSERVER_2017_ENTERPRISE",
+        "SQLSERVER_2017_EXPRESS",
+        "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
+        "POSTGRES_10",
+        "POSTGRES_11",
+        "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -234,19 +237,6 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_5_5",
         "MYSQL_5_6",
         "MYSQL_5_7",
-        "SQLSERVER_2017_STANDARD",
-        "SQLSERVER_2017_ENTERPRISE",
-        "SQLSERVER_2017_EXPRESS",
-        "SQLSERVER_2017_WEB",
-        "POSTGRES_9_6",
-        "POSTGRES_10",
-        "POSTGRES_11",
-        "POSTGRES_12",
-        "POSTGRES_13",
-        "POSTGRES_14",
-        "POSTGRES_15",
-        "POSTGRES_16",
-        "POSTGRES_17",
         "MYSQL_8_0",
         "MYSQL_8_0_18",
         "MYSQL_8_0_26",
@@ -264,7 +254,22 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
+        "MYSQL_8_0_41",
+        "MYSQL_8_0_42",
         "MYSQL_8_4",
+        "SQLSERVER_2017_STANDARD",
+        "SQLSERVER_2017_ENTERPRISE",
+        "SQLSERVER_2017_EXPRESS",
+        "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
+        "POSTGRES_10",
+        "POSTGRES_11",
+        "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
         "SQLSERVER_2019_STANDARD",
         "SQLSERVER_2019_ENTERPRISE",
         "SQLSERVER_2019_EXPRESS",
@@ -337,6 +342,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         ]
     ]
     switchTransactionLogsToCloudStorageEnabled: bool
+    tags: dict[str, typing.Any]
     upgradableDatabaseVersions: _list[AvailableDatabaseVersion]
     writeEndpoint: str
 
@@ -405,6 +411,10 @@ class ExportContext(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class ExternalSyncSelectedObject(typing_extensions.TypedDict, total=False):
+    database: str
+
+@typing.type_check_only
 class FailoverContext(typing_extensions.TypedDict, total=False):
     kind: str
     settingsVersion: str
@@ -420,19 +430,6 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_5_5",
             "MYSQL_5_6",
             "MYSQL_5_7",
-            "SQLSERVER_2017_STANDARD",
-            "SQLSERVER_2017_ENTERPRISE",
-            "SQLSERVER_2017_EXPRESS",
-            "SQLSERVER_2017_WEB",
-            "POSTGRES_9_6",
-            "POSTGRES_10",
-            "POSTGRES_11",
-            "POSTGRES_12",
-            "POSTGRES_13",
-            "POSTGRES_14",
-            "POSTGRES_15",
-            "POSTGRES_16",
-            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -450,7 +447,22 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
+            "MYSQL_8_0_41",
+            "MYSQL_8_0_42",
             "MYSQL_8_4",
+            "SQLSERVER_2017_STANDARD",
+            "SQLSERVER_2017_ENTERPRISE",
+            "SQLSERVER_2017_EXPRESS",
+            "SQLSERVER_2017_WEB",
+            "POSTGRES_9_6",
+            "POSTGRES_10",
+            "POSTGRES_11",
+            "POSTGRES_12",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16",
+            "POSTGRES_17",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -602,14 +614,19 @@ class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
 class IpConfiguration(typing_extensions.TypedDict, total=False):
     allocatedIpRange: str
     authorizedNetworks: _list[AclEntry]
+    customSubjectAlternativeNames: _list[str]
     enablePrivatePathForGoogleCloudServices: bool
     ipv4Enabled: bool
     privateNetwork: str
     pscConfig: PscConfig
     requireSsl: bool
     serverCaMode: typing_extensions.Literal[
-        "CA_MODE_UNSPECIFIED", "GOOGLE_MANAGED_INTERNAL_CA", "GOOGLE_MANAGED_CAS_CA"
+        "CA_MODE_UNSPECIFIED",
+        "GOOGLE_MANAGED_INTERNAL_CA",
+        "GOOGLE_MANAGED_CAS_CA",
+        "CUSTOMER_MANAGED_CAS_CA",
     ]
+    serverCaPool: str
     sslMode: typing_extensions.Literal[
         "SSL_MODE_UNSPECIFIED",
         "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
@@ -672,7 +689,11 @@ class OnPremisesConfiguration(typing_extensions.TypedDict, total=False):
     hostPort: str
     kind: str
     password: str
+    selectedObjects: _list[SelectedObjects]
     sourceInstance: InstanceReference
+    sslOption: typing_extensions.Literal[
+        "SSL_OPTION_UNSPECIFIED", "DISABLE", "REQUIRE", "VERIFY_CA"
+    ]
     username: str
 
 @typing.type_check_only
@@ -734,12 +755,14 @@ class Operation(typing_extensions.TypedDict, total=False):
         "SELF_SERVICE_MAINTENANCE",
         "SWITCHOVER_TO_REPLICA",
         "MAJOR_VERSION_UPGRADE",
+        "ADVANCED_BACKUP",
     ]
     selfLink: str
     startTime: str
     status: typing_extensions.Literal[
         "SQL_OPERATION_STATUS_UNSPECIFIED", "PENDING", "RUNNING", "DONE"
     ]
+    subOperationType: SqlSubOperationType
     targetId: str
     targetLink: str
     targetProject: str
@@ -794,8 +817,17 @@ class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
     targetSizeGb: str
 
 @typing.type_check_only
+class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    consumerNetworkStatus: str
+    consumerProject: str
+    ipAddress: str
+    status: str
+
+@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    pscAutoConnections: _list[PscAutoConnectionConfig]
     pscEnabled: bool
 
 @typing.type_check_only
@@ -837,6 +869,10 @@ class RotateServerCaContext(typing_extensions.TypedDict, total=False):
 class RotateServerCertificateContext(typing_extensions.TypedDict, total=False):
     kind: str
     nextVersion: str
+
+@typing.type_check_only
+class SelectedObjects(typing_extensions.TypedDict, total=False):
+    database: str
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
@@ -952,6 +988,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "USERS_NOT_CREATED_IN_REPLICA",
         "UNSUPPORTED_SYSTEM_OBJECTS",
         "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
+        "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE",
     ]
 
 @typing.type_check_only
@@ -1006,6 +1043,7 @@ class SqlInstancesVerifyExternalSyncSettingsRequest(
         "MIGRATION_TYPE_UNSPECIFIED", "LOGICAL", "PHYSICAL"
     ]
     mysqlSyncConfig: MySqlSyncConfig
+    selectedObjects: _list[ExternalSyncSelectedObject]
     syncMode: typing_extensions.Literal[
         "EXTERNAL_SYNC_MODE_UNSPECIFIED", "ONLINE", "OFFLINE"
     ]
@@ -1053,6 +1091,16 @@ class SqlServerDatabaseDetails(typing_extensions.TypedDict, total=False):
 class SqlServerUserDetails(typing_extensions.TypedDict, total=False):
     disabled: bool
     serverRoles: _list[str]
+
+@typing.type_check_only
+class SqlSubOperationType(typing_extensions.TypedDict, total=False):
+    maintenanceType: typing_extensions.Literal[
+        "SQL_MAINTENANCE_TYPE_UNSPECIFIED",
+        "INSTANCE_MAINTENANCE",
+        "REPLICA_INCLUDED_MAINTENANCE",
+        "INSTANCE_SELF_SERVICE_MAINTENANCE",
+        "REPLICA_INCLUDED_SELF_SERVICE_MAINTENANCE",
+    ]
 
 @typing.type_check_only
 class SslCert(typing_extensions.TypedDict, total=False):

@@ -37,11 +37,25 @@ class GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse(
     subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent(
+    typing_extensions.TypedDict, total=False
+):
+    parent: str
+    subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
+    subscriptionId: str
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1Duration(
     typing_extensions.TypedDict, total=False
 ):
     count: int
     unit: typing_extensions.Literal["UNIT_UNSPECIFIED", "MONTH", "DAY", "HOUR"]
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest(
@@ -108,6 +122,18 @@ class GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails(
     billingCycleCountLimit: str
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    intentPayload: GoogleCloudPaymentsResellerSubscriptionV1IntentPayload
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    userSession: GoogleCloudPaymentsResellerSubscriptionV1UserSession
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload(
     typing_extensions.TypedDict, total=False
 ):
@@ -127,6 +153,13 @@ class GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload(
         "CHANNEL_ONLINE_IOS_APP",
     ]
     storeId: str
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1IntentPayload(
+    typing_extensions.TypedDict, total=False
+):
+    createIntent: GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent
+    entitleIntent: GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse(
@@ -244,6 +277,9 @@ class GoogleCloudPaymentsResellerSubscriptionV1Subscription(
     endUserEntitled: bool
     freeTrialEndTime: str
     lineItems: _list[GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem]
+    migrationDetails: (
+        GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails
+    )
     name: str
     partnerUserToken: str
     processingState: typing_extensions.Literal[
@@ -340,6 +376,12 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurr
     servicePeriod: GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    migratedSubscriptionId: str
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -375,6 +417,13 @@ class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse(
     typing_extensions.TypedDict, total=False
 ):
     subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1UserSession(
+    typing_extensions.TypedDict, total=False
+):
+    expireTime: str
+    token: str
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload(

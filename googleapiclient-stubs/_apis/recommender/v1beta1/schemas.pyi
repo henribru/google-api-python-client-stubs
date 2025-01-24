@@ -42,8 +42,10 @@ class GoogleCloudRecommenderV1beta1Impact(typing_extensions.TypedDict, total=Fal
         "RELIABILITY",
     ]
     costProjection: GoogleCloudRecommenderV1beta1CostProjection
+    impactComponents: _list[GoogleCloudRecommenderV1beta1Impact]
     reliabilityProjection: GoogleCloudRecommenderV1beta1ReliabilityProjection
     securityProjection: GoogleCloudRecommenderV1beta1SecurityProjection
+    service: str
     sustainabilityProjection: GoogleCloudRecommenderV1beta1SustainabilityProjection
 
 @typing.type_check_only

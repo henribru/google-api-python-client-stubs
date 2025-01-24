@@ -1366,6 +1366,11 @@ class EnterpriseCrmFrontendsEventbusProtoEventExecutionInfoReplayInfo(
     typing_extensions.TypedDict, total=False
 ):
     originalExecutionInfoId: str
+    replayMode: typing_extensions.Literal[
+        "REPLAY_MODE_UNSPECIFIED",
+        "REPLAY_MODE_FROM_BEGINNING",
+        "REPLAY_MODE_POINT_OF_FAILURE",
+    ]
     replayReason: str
     replayedExecutionInfoIds: _list[str]
 
@@ -1637,10 +1642,12 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
     description: str
     enabledClients: _list[str]
     errorCatcherId: str
+    inputVariables: EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
+    outputVariables: EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables
     pauseWorkflowExecutions: bool
     position: EnterpriseCrmEventbusProtoCoordinate
     properties: dict[str, typing.Any]
@@ -1665,7 +1672,14 @@ class EnterpriseCrmFrontendsEventbusProtoTriggerConfig(
         "CLOUD_SCHEDULER",
         "INTEGRATION_CONNECTOR_TRIGGER",
         "PRIVATE_TRIGGER",
+        "EVENTARC_TRIGGER",
     ]
+
+@typing.type_check_only
+class EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables(
+    typing_extensions.TypedDict, total=False
+):
+    names: _list[str]
 
 @typing.type_check_only
 class EnterpriseCrmFrontendsEventbusProtoWorkflowParameterEntry(
@@ -1825,7 +1839,12 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     connectorVersion: str
     connectorVersionInfraConfig: GoogleCloudConnectorsV1ConnectorVersionInfraConfig
     connectorVersionLaunchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
     createTime: str
     description: str
@@ -1947,6 +1966,7 @@ class GoogleCloudConnectorsV1EventingRuntimeData(
     eventsListenerPscSa: str
     status: GoogleCloudConnectorsV1EventingStatus
     webhookData: GoogleCloudConnectorsV1EventingRuntimeDataWebhookData
+    webhookSubscriptions: GoogleCloudConnectorsV1EventingRuntimeDataWebhookSubscriptions
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
@@ -1958,6 +1978,12 @@ class GoogleCloudConnectorsV1EventingRuntimeDataWebhookData(
     name: str
     nextRefreshTime: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudConnectorsV1EventingRuntimeDataWebhookSubscriptions(
+    typing_extensions.TypedDict, total=False
+):
+    webhookData: _list[GoogleCloudConnectorsV1EventingRuntimeDataWebhookData]
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingStatus(typing_extensions.TypedDict, total=False):
@@ -2024,6 +2050,41 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     tokenType: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaApiTriggerResource(
+    typing_extensions.TypedDict, total=False
+):
+    integrationResource: str
+    triggerId: _list[str]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaAssertion(typing_extensions.TypedDict, total=False):
+    assertionStrategy: typing_extensions.Literal[
+        "ASSERTION_STRATEGY_UNSPECIFIED",
+        "ASSERT_SUCCESSFUL_EXECUTION",
+        "ASSERT_FAILED_EXECUTION",
+        "ASSERT_NO_EXECUTION",
+        "ASSERT_EQUALS",
+        "ASSERT_NOT_EQUALS",
+        "ASSERT_CONTAINS",
+        "ASSERT_CONDITION",
+    ]
+    condition: str
+    parameter: GoogleCloudIntegrationsV1alphaEventParameter
+    retryCount: int
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaAssertionResult(
+    typing_extensions.TypedDict, total=False
+):
+    assertion: GoogleCloudIntegrationsV1alphaAssertion
+    failureMessage: str
+    status: typing_extensions.Literal[
+        "ASSERTION_STATUS_UNSPECIFIED", "SUCCEEDED", "FAILED"
+    ]
+    taskName: str
+    taskNumber: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAttemptStats(
     typing_extensions.TypedDict, total=False
 ):
@@ -2085,6 +2146,18 @@ class GoogleCloudIntegrationsV1alphaBooleanParameterArray(
     typing_extensions.TypedDict, total=False
 ):
     booleanValues: _list[bool]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCancelExecutionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    cancelReason: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCancelExecutionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    isCanceled: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaCertificate(
@@ -2277,6 +2350,12 @@ class GoogleCloudIntegrationsV1alphaDownloadTemplateResponse(
     content: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaDownloadTestCaseResponse(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaEnumerateConnectorPlatformRegionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -2330,6 +2409,36 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    inputParameters: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assertionResults: _list[GoogleCloudIntegrationsV1alphaAssertionResult]
+    executionId: str
+    outputParameters: dict[str, typing.Any]
+    testExecutionState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PASSED", "FAILED"
+    ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCasesRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaExecuteTestCasesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executeTestCaseResponses: _list[
+        GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse
+    ]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
@@ -2375,6 +2484,11 @@ class GoogleCloudIntegrationsV1alphaExecutionReplayInfo(
     typing_extensions.TypedDict, total=False
 ):
     originalExecutionInfoId: str
+    replayMode: typing_extensions.Literal[
+        "REPLAY_MODE_UNSPECIFIED",
+        "REPLAY_MODE_FROM_BEGINNING",
+        "REPLAY_MODE_POINT_OF_FAILURE",
+    ]
     replayReason: str
     replayedExecutionInfoIds: _list[str]
 
@@ -2427,6 +2541,19 @@ class GoogleCloudIntegrationsV1alphaFile(typing_extensions.TypedDict, total=Fals
     type: typing_extensions.Literal[
         "INTEGRATION_FILE_UNSPECIFIED", "INTEGRATION", "INTEGRATION_CONFIG_VARIABLES"
     ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest(
+    typing_extensions.TypedDict, total=False
+):
+    apiTriggerResources: _list[GoogleCloudIntegrationsV1alphaApiTriggerResource]
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecResponse(
+    typing_extensions.TypedDict, total=False
+):
+    openApiSpec: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGenerateTokenResponse(
@@ -2732,6 +2859,34 @@ class GoogleCloudIntegrationsV1alphaListTemplatesResponse(
     templates: _list[GoogleCloudIntegrationsV1alphaTemplate]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executions: _list[GoogleCloudIntegrationsV1alphaExecution]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListTestCasesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    testCases: _list[GoogleCloudIntegrationsV1alphaTestCase]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaMockConfig(
+    typing_extensions.TypedDict, total=False
+):
+    failedExecutions: str
+    mockStrategy: typing_extensions.Literal[
+        "MOCK_STRATEGY_UNSPECIFIED",
+        "NO_MOCK_STRATEGY",
+        "SPECIFIC_MOCK_STRATEGY",
+        "FAILURE_MOCK_STRATEGY",
+        "SKIP_MOCK_STRATEGY",
+    ]
+    parameters: _list[GoogleCloudIntegrationsV1alphaEventParameter]
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaNextTask(typing_extensions.TypedDict, total=False):
     condition: str
     description: str
@@ -2900,6 +3055,20 @@ class GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest(
     typing_extensions.TypedDict, total=False
 ):
     runAsServiceAccount: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplayExecutionRequest(
+    typing_extensions.TypedDict, total=False
+):
+    replayReason: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaReplayExecutionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionId: str
+    outputParameters: dict[str, typing.Any]
+    replayedExecutionId: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaResolveSuspensionRequest(
@@ -3081,6 +3250,11 @@ class GoogleCloudIntegrationsV1alphaTakeoverEditLockResponse(
     integrationVersion: GoogleCloudIntegrationsV1alphaIntegrationVersion
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTakeoverTestCaseEditLockRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTaskConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3197,6 +3371,26 @@ class GoogleCloudIntegrationsV1alphaTemplateComponent(
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIGGER", "TASK", "CONNECTOR"]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTestCase(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creatorEmail: str
+    databasePersistencePolicy: typing_extensions.Literal[
+        "DATABASE_PERSISTENCE_POLICY_UNSPECIFIED",
+        "DATABASE_PERSISTENCE_DISABLED",
+        "DATABASE_PERSISTENCE_ASYNC",
+    ]
+    description: str
+    displayName: str
+    lastModifierEmail: str
+    lockHolderEmail: str
+    name: str
+    testInputParameters: _list[GoogleCloudIntegrationsV1alphaIntegrationParameter]
+    testTaskConfigs: _list[GoogleCloudIntegrationsV1alphaTestTaskConfig]
+    triggerConfig: GoogleCloudIntegrationsV1alphaTriggerConfig
+    triggerId: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTestIntegrationsRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -3220,6 +3414,16 @@ class GoogleCloudIntegrationsV1alphaTestIntegrationsResponse(
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTestTaskConfig(
+    typing_extensions.TypedDict, total=False
+):
+    assertions: _list[GoogleCloudIntegrationsV1alphaAssertion]
+    mockConfig: GoogleCloudIntegrationsV1alphaMockConfig
+    task: str
+    taskConfig: GoogleCloudIntegrationsV1alphaTaskConfig
+    taskNumber: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTriggerConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -3227,10 +3431,12 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
     cloudSchedulerConfig: GoogleCloudIntegrationsV1alphaCloudSchedulerConfig
     description: str
     errorCatcherId: str
+    inputVariables: GoogleCloudIntegrationsV1alphaTriggerConfigVariables
     label: str
     nextTasksExecutionPolicy: typing_extensions.Literal[
         "NEXT_TASKS_EXECUTION_POLICY_UNSPECIFIED", "RUN_ALL_MATCH", "RUN_FIRST_MATCH"
     ]
+    outputVariables: GoogleCloudIntegrationsV1alphaTriggerConfigVariables
     position: GoogleCloudIntegrationsV1alphaCoordinate
     properties: dict[str, typing.Any]
     startTasks: _list[GoogleCloudIntegrationsV1alphaNextTask]
@@ -3247,7 +3453,15 @@ class GoogleCloudIntegrationsV1alphaTriggerConfig(
         "CLOUD_SCHEDULER",
         "INTEGRATION_CONNECTOR_TRIGGER",
         "PRIVATE_TRIGGER",
+        "CLOUD_PUBSUB",
+        "EVENTARC_TRIGGER",
     ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaTriggerConfigVariables(
+    typing_extensions.TypedDict, total=False
+):
+    names: _list[str]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUnpublishIntegrationVersionRequest(
@@ -3285,6 +3499,19 @@ class GoogleCloudIntegrationsV1alphaUploadTemplateResponse(
     typing_extensions.TypedDict, total=False
 ):
     template: GoogleCloudIntegrationsV1alphaTemplate
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUploadTestCaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "JSON", "YAML"]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaUploadTestCaseResponse(
+    typing_extensions.TypedDict, total=False
+):
+    testCase: GoogleCloudIntegrationsV1alphaTestCase
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaUseTemplateRequest(

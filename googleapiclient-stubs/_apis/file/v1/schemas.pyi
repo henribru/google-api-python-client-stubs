@@ -69,7 +69,7 @@ class FileShareConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FixedIOPS(typing_extensions.TypedDict, total=False):
-    maxReadIops: str
+    maxIops: str
 
 @typing.type_check_only
 class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
@@ -171,12 +171,12 @@ class GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata(
 
 @typing.type_check_only
 class IOPSPerTB(typing_extensions.TypedDict, total=False):
-    maxReadIopsPerTb: str
+    maxIopsPerTb: str
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
-    configurablePerformanceEnabled: bool
     createTime: str
+    customPerformanceSupported: bool
     deletionProtectionEnabled: bool
     deletionProtectionReason: str
     description: str
@@ -251,6 +251,7 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListSnapshotsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     snapshots: _list[Snapshot]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -322,6 +323,7 @@ class PerformanceConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PerformanceLimits(typing_extensions.TypedDict, total=False):
+    maxIops: str
     maxReadIops: str
     maxReadThroughputBps: str
     maxWriteIops: str

@@ -37,6 +37,11 @@ class ConfigFile(typing_extensions.TypedDict, total=False):
     content: str
 
 @typing.type_check_only
+class DebugInfo(typing_extensions.TypedDict, total=False):
+    detail: str
+    stackEntries: _list[str]
+
+@typing.type_check_only
 class Deployment(typing_extensions.TypedDict, total=False):
     description: str
     fingerprint: str
@@ -81,6 +86,12 @@ class DeploymentsStopRequest(typing_extensions.TypedDict, total=False):
     fingerprint: str
 
 @typing.type_check_only
+class ErrorInfo(typing_extensions.TypedDict, total=False):
+    domain: str
+    metadatas: dict[str, typing.Any]
+    reason: str
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -92,6 +103,16 @@ class GlobalSetPolicyRequest(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     policy: Policy
+    updateMask: str
+
+@typing.type_check_only
+class Help(typing_extensions.TypedDict, total=False):
+    links: _list[HelpLink]
+
+@typing.type_check_only
+class HelpLink(typing_extensions.TypedDict, total=False):
+    description: str
+    url: str
 
 @typing.type_check_only
 class ImportFile(typing_extensions.TypedDict, total=False):
@@ -101,6 +122,11 @@ class ImportFile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstancesBulkInsertOperationMetadata(typing_extensions.TypedDict, total=False):
     perLocationStatus: dict[str, typing.Any]
+
+@typing.type_check_only
+class LocalizedMessage(typing_extensions.TypedDict, total=False):
+    locale: str
+    message: str
 
 @typing.type_check_only
 class Manifest(typing_extensions.TypedDict, total=False):
@@ -139,6 +165,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     progress: int
     region: str
     selfLink: str
+    selfLinkWithId: str
     setCommonInstanceMetadataOperationMetadata: (
         SetCommonInstanceMetadataOperationMetadata
     )
@@ -162,6 +189,17 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class QuotaExceededInfo(typing_extensions.TypedDict, total=False):
+    dimensions: dict[str, typing.Any]
+    futureLimit: float
+    limit: float
+    limitName: str
+    metricName: str
+    rolloutStatus: typing_extensions.Literal[
+        "ROLLOUT_STATUS_UNSPECIFIED", "IN_PROGRESS"
+    ]
 
 @typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):

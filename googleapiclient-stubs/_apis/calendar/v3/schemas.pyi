@@ -157,6 +157,7 @@ class Event(typing_extensions.TypedDict, total=False):
     attachments: _list[EventAttachment]
     attendees: _list[EventAttendee]
     attendeesOmitted: bool
+    birthdayProperties: EventBirthdayProperties
     colorId: str
     conferenceData: ConferenceData
     created: str
@@ -216,6 +217,12 @@ class EventAttendee(typing_extensions.TypedDict, total=False):
     resource: bool
     responseStatus: str
     self: bool
+
+@typing.type_check_only
+class EventBirthdayProperties(typing_extensions.TypedDict, total=False):
+    contact: str
+    customTypeName: str
+    type: str
 
 @typing.type_check_only
 class EventDateTime(typing_extensions.TypedDict, total=False):

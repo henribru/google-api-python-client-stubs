@@ -94,6 +94,10 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
         "MULTIREGION_XLARGE",
         "MULTIREGION_2XLARGE",
         "MULTIREGION_3XLARGE",
+        "DEV_SMALL",
+        "SANDBOX_SMALL",
+        "TRIAL_SMALL",
+        "TIME_LIMITED_TRIAL_SMALL",
     ]
 
 @typing.type_check_only
@@ -172,6 +176,10 @@ class Quota(typing_extensions.TypedDict, total=False):
         "MULTIREGION_XLARGE",
         "MULTIREGION_2XLARGE",
         "MULTIREGION_3XLARGE",
+        "DEV_SMALL",
+        "SANDBOX_SMALL",
+        "TRIAL_SMALL",
+        "TIME_LIMITED_TRIAL_SMALL",
     ]
 
 @typing.type_check_only

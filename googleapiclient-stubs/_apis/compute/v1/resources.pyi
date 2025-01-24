@@ -1037,90 +1037,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
-    class FutureReservationsResource(googleapiclient.discovery.Resource):
-        def aggregatedList(
-            self,
-            *,
-            project: str,
-            filter: str = ...,
-            includeAllScopes: bool = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            serviceProjectNumber: str = ...,
-            **kwargs: typing.Any,
-        ) -> FutureReservationsAggregatedListResponseHttpRequest: ...
-        def aggregatedList_next(
-            self,
-            previous_request: FutureReservationsAggregatedListResponseHttpRequest,
-            previous_response: FutureReservationsAggregatedListResponse,
-        ) -> FutureReservationsAggregatedListResponseHttpRequest | None: ...
-        def cancel(
-            self,
-            *,
-            project: str,
-            zone: str,
-            futureReservation: str,
-            requestId: str = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-        def delete(
-            self,
-            *,
-            project: str,
-            zone: str,
-            futureReservation: str,
-            requestId: str = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-        def get(
-            self,
-            *,
-            project: str,
-            zone: str,
-            futureReservation: str,
-            **kwargs: typing.Any,
-        ) -> FutureReservationHttpRequest: ...
-        def insert(
-            self,
-            *,
-            project: str,
-            zone: str,
-            body: FutureReservation = ...,
-            requestId: str = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-        def list(
-            self,
-            *,
-            project: str,
-            zone: str,
-            filter: str = ...,
-            maxResults: int = ...,
-            orderBy: str = ...,
-            pageToken: str = ...,
-            returnPartialSuccess: bool = ...,
-            **kwargs: typing.Any,
-        ) -> FutureReservationsListResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: FutureReservationsListResponseHttpRequest,
-            previous_response: FutureReservationsListResponse,
-        ) -> FutureReservationsListResponseHttpRequest | None: ...
-        def update(
-            self,
-            *,
-            project: str,
-            zone: str,
-            futureReservation: str,
-            body: FutureReservation = ...,
-            requestId: str = ...,
-            updateMask: str = ...,
-            **kwargs: typing.Any,
-        ) -> OperationHttpRequest: ...
-
-    @typing.type_check_only
     class GlobalAddressesResource(googleapiclient.discovery.Resource):
         def delete(
             self,
@@ -1979,6 +1895,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def resumeInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersResumeInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def setInstanceTemplate(
             self,
             *,
@@ -1996,6 +1922,36 @@ class ComputeResource(googleapiclient.discovery.Resource):
             zone: str,
             instanceGroupManager: str,
             body: InstanceGroupManagersSetTargetPoolsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def startInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersStartInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def stopInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersStopInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def suspendInstances(
+            self,
+            *,
+            project: str,
+            zone: str,
+            instanceGroupManager: str,
+            body: InstanceGroupManagersSuspendInstancesRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -3457,6 +3413,24 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def aggregatedList(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            includeAllScopes: bool = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            serviceProjectNumber: str = ...,
+            **kwargs: typing.Any,
+        ) -> NetworkFirewallPolicyAggregatedListHttpRequest: ...
+        def aggregatedList_next(
+            self,
+            previous_request: NetworkFirewallPolicyAggregatedListHttpRequest,
+            previous_response: NetworkFirewallPolicyAggregatedList,
+        ) -> NetworkFirewallPolicyAggregatedListHttpRequest | None: ...
         def cloneRules(
             self,
             *,
@@ -3578,6 +3552,28 @@ class ComputeResource(googleapiclient.discovery.Resource):
             body: TestPermissionsRequest = ...,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
+
+    @typing.type_check_only
+    class NetworkProfilesResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, project: str, networkProfile: str, **kwargs: typing.Any
+        ) -> NetworkProfileHttpRequest: ...
+        def list(
+            self,
+            *,
+            project: str,
+            filter: str = ...,
+            maxResults: int = ...,
+            orderBy: str = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> NetworkProfilesListResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: NetworkProfilesListResponseHttpRequest,
+            previous_response: NetworkProfilesListResponse,
+        ) -> NetworkProfilesListResponseHttpRequest | None: ...
 
     @typing.type_check_only
     class NetworksResource(googleapiclient.discovery.Resource):
@@ -5069,6 +5065,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def resumeInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersResumeInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def setInstanceTemplate(
             self,
             *,
@@ -5086,6 +5092,36 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             instanceGroupManager: str,
             body: RegionInstanceGroupManagersSetTargetPoolsRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def startInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersStartInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def stopInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersStopInstancesRequest = ...,
+            requestId: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def suspendInstances(
+            self,
+            *,
+            project: str,
+            region: str,
+            instanceGroupManager: str,
+            body: RegionInstanceGroupManagersSuspendInstancesRequest = ...,
             requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -5715,6 +5751,16 @@ class ComputeResource(googleapiclient.discovery.Resource):
             region: str,
             securityPolicy: str,
             priority: int = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def setLabels(
+            self,
+            *,
+            project: str,
+            region: str,
+            resource: str,
+            body: RegionSetLabelsRequest = ...,
+            requestId: str = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -8174,7 +8220,6 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def firewallPolicies(self) -> FirewallPoliciesResource: ...
     def firewalls(self) -> FirewallsResource: ...
     def forwardingRules(self) -> ForwardingRulesResource: ...
-    def futureReservations(self) -> FutureReservationsResource: ...
     def globalAddresses(self) -> GlobalAddressesResource: ...
     def globalForwardingRules(self) -> GlobalForwardingRulesResource: ...
     def globalNetworkEndpointGroups(self) -> GlobalNetworkEndpointGroupsResource: ...
@@ -8209,6 +8254,7 @@ class ComputeResource(googleapiclient.discovery.Resource):
     def networkEdgeSecurityServices(self) -> NetworkEdgeSecurityServicesResource: ...
     def networkEndpointGroups(self) -> NetworkEndpointGroupsResource: ...
     def networkFirewallPolicies(self) -> NetworkFirewallPoliciesResource: ...
+    def networkProfiles(self) -> NetworkProfilesResource: ...
     def networks(self) -> NetworksResource: ...
     def nodeGroups(self) -> NodeGroupsResource: ...
     def nodeTemplates(self) -> NodeTemplatesResource: ...
@@ -8576,32 +8622,6 @@ class ForwardingRuleListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ForwardingRuleList: ...
-
-@typing.type_check_only
-class FutureReservationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> FutureReservation: ...
-
-@typing.type_check_only
-class FutureReservationsAggregatedListResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> FutureReservationsAggregatedListResponse: ...
-
-@typing.type_check_only
-class FutureReservationsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> FutureReservationsListResponse: ...
 
 @typing.type_check_only
 class GuestAttributesHttpRequest(googleapiclient.http.HttpRequest):
@@ -9154,12 +9174,36 @@ class NetworkEndpointGroupsListNetworkEndpointsHttpRequest(
     ) -> NetworkEndpointGroupsListNetworkEndpoints: ...
 
 @typing.type_check_only
+class NetworkFirewallPolicyAggregatedListHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkFirewallPolicyAggregatedList: ...
+
+@typing.type_check_only
 class NetworkListHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> NetworkList: ...
+
+@typing.type_check_only
+class NetworkProfileHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkProfile: ...
+
+@typing.type_check_only
+class NetworkProfilesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NetworkProfilesListResponse: ...
 
 @typing.type_check_only
 class NetworksGetEffectiveFirewallsResponseHttpRequest(

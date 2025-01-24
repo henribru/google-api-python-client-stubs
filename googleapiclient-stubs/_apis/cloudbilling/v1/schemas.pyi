@@ -28,6 +28,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BillingAccount(typing_extensions.TypedDict, total=False):
+    currencyCode: str
     displayName: str
     masterBillingAccount: str
     name: str

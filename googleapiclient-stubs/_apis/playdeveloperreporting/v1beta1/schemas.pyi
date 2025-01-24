@@ -82,6 +82,7 @@ class GooglePlayDeveloperReportingV1beta1ErrorCountMetricSet(
 class GooglePlayDeveloperReportingV1beta1ErrorIssue(
     typing_extensions.TypedDict, total=False
 ):
+    annotations: _list[GooglePlayDeveloperReportingV1beta1IssueAnnotation]
     cause: str
     distinctUsers: str
     distinctUsersPercent: GoogleTypeDecimal
@@ -96,7 +97,7 @@ class GooglePlayDeveloperReportingV1beta1ErrorIssue(
     name: str
     sampleErrorReports: _list[str]
     type: typing_extensions.Literal[
-        "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH"
+        "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH", "NON_FATAL"
     ]
 
 @typing.type_check_only
@@ -111,7 +112,7 @@ class GooglePlayDeveloperReportingV1beta1ErrorReport(
     osVersion: GooglePlayDeveloperReportingV1beta1OsVersion
     reportText: str
     type: typing_extensions.Literal[
-        "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH"
+        "ERROR_TYPE_UNSPECIFIED", "APPLICATION_NOT_RESPONDING", "CRASH", "NON_FATAL"
     ]
     vcsInformation: str
 
@@ -136,6 +137,14 @@ class GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshness(
         "AGGREGATION_PERIOD_UNSPECIFIED", "HOURLY", "DAILY", "FULL_RANGE"
     ]
     latestEndTime: GoogleTypeDateTime
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1IssueAnnotation(
+    typing_extensions.TypedDict, total=False
+):
+    body: str
+    category: str
+    title: str
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse(

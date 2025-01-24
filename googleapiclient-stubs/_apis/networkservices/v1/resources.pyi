@@ -18,6 +18,48 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AuthzExtensionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AuthzExtension = ...,
+                    authzExtensionId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AuthzExtensionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAuthzExtensionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAuthzExtensionsResponseHttpRequest,
+                    previous_response: ListAuthzExtensionsResponse,
+                ) -> ListAuthzExtensionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AuthzExtension = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class EdgeCacheKeysetsResource(googleapiclient.discovery.Resource):
                 def getIamPolicy(
                     self,
@@ -129,6 +171,25 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class GatewaysResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RouteViewsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GatewayRouteViewHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListGatewayRouteViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListGatewayRouteViewsResponseHttpRequest,
+                        previous_response: ListGatewayRouteViewsResponse,
+                    ) -> ListGatewayRouteViewsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -164,6 +225,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def routeViews(self) -> RouteViewsResource: ...
 
             @typing.type_check_only
             class GrpcRoutesResource(googleapiclient.discovery.Resource):
@@ -327,6 +389,25 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class MeshesResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RouteViewsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MeshRouteViewHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMeshRouteViewsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMeshRouteViewsResponseHttpRequest,
+                        previous_response: ListMeshRouteViewsResponse,
+                    ) -> ListMeshRouteViewsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -362,6 +443,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def routeViews(self) -> RouteViewsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -439,13 +521,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ServiceLbPolicyHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -467,20 +542,6 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class TcpRoutesResource(googleapiclient.discovery.Resource):
@@ -558,6 +619,83 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
+            @typing.type_check_only
+            class WasmPluginsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class VersionsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WasmPluginVersion = ...,
+                        wasmPluginVersionId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WasmPluginVersionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListWasmPluginVersionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWasmPluginVersionsResponseHttpRequest,
+                        previous_response: ListWasmPluginVersionsResponse,
+                    ) -> ListWasmPluginVersionsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: WasmPlugin = ...,
+                    wasmPluginId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    name: str,
+                    view: typing_extensions.Literal[
+                        "WASM_PLUGIN_VIEW_UNSPECIFIED",
+                        "WASM_PLUGIN_VIEW_BASIC",
+                        "WASM_PLUGIN_VIEW_FULL",
+                    ] = ...,
+                    **kwargs: typing.Any,
+                ) -> WasmPluginHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListWasmPluginsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListWasmPluginsResponseHttpRequest,
+                    previous_response: ListWasmPluginsResponse,
+                ) -> ListWasmPluginsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: WasmPlugin = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def versions(self) -> VersionsResource: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -575,6 +713,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def authzExtensions(self) -> AuthzExtensionsResource: ...
             def edgeCacheKeysets(self) -> EdgeCacheKeysetsResource: ...
             def edgeCacheOrigins(self) -> EdgeCacheOriginsResource: ...
             def edgeCacheServices(self) -> EdgeCacheServicesResource: ...
@@ -590,6 +729,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def serviceLbPolicies(self) -> ServiceLbPoliciesResource: ...
             def tcpRoutes(self) -> TcpRoutesResource: ...
             def tlsRoutes(self) -> TlsRoutesResource: ...
+            def wasmPlugins(self) -> WasmPluginsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -606,6 +746,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AuthzExtensionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AuthzExtension: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -630,6 +778,14 @@ class GatewayHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Gateway: ...
+
+@typing.type_check_only
+class GatewayRouteViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GatewayRouteView: ...
 
 @typing.type_check_only
 class GrpcRouteHttpRequest(googleapiclient.http.HttpRequest):
@@ -664,12 +820,28 @@ class LbTrafficExtensionHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LbTrafficExtension: ...
 
 @typing.type_check_only
+class ListAuthzExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAuthzExtensionsResponse: ...
+
+@typing.type_check_only
 class ListEndpointPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListEndpointPoliciesResponse: ...
+
+@typing.type_check_only
+class ListGatewayRouteViewsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGatewayRouteViewsResponse: ...
 
 @typing.type_check_only
 class ListGatewaysResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -720,6 +892,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListMeshRouteViewsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMeshRouteViewsResponse: ...
+
+@typing.type_check_only
 class ListMeshesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -768,6 +948,22 @@ class ListTlsRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListTlsRoutesResponse: ...
 
 @typing.type_check_only
+class ListWasmPluginVersionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWasmPluginVersionsResponse: ...
+
+@typing.type_check_only
+class ListWasmPluginsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWasmPluginsResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -782,6 +978,14 @@ class MeshHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Mesh: ...
+
+@typing.type_check_only
+class MeshRouteViewHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MeshRouteView: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
@@ -838,3 +1042,19 @@ class TlsRouteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TlsRoute: ...
+
+@typing.type_check_only
+class WasmPluginHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WasmPlugin: ...
+
+@typing.type_check_only
+class WasmPluginVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WasmPluginVersion: ...

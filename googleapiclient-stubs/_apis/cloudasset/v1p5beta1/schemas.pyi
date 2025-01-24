@@ -215,12 +215,14 @@ class GoogleIdentityAccesscontextmanagerV1EgressPolicy(
 ):
     egressFrom: GoogleIdentityAccesscontextmanagerV1EgressFrom
     egressTo: GoogleIdentityAccesscontextmanagerV1EgressTo
+    title: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressSource(
     typing_extensions.TypedDict, total=False
 ):
     accessLevel: str
+    resource: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1EgressTo(
@@ -249,6 +251,7 @@ class GoogleIdentityAccesscontextmanagerV1IngressPolicy(
 ):
     ingressFrom: GoogleIdentityAccesscontextmanagerV1IngressFrom
     ingressTo: GoogleIdentityAccesscontextmanagerV1IngressTo
+    title: str
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressSource(
@@ -292,6 +295,7 @@ class GoogleIdentityAccesscontextmanagerV1ServicePerimeter(
     typing_extensions.TypedDict, total=False
 ):
     description: str
+    etag: str
     name: str
     perimeterType: typing_extensions.Literal[
         "PERIMETER_TYPE_REGULAR", "PERIMETER_TYPE_BRIDGE"

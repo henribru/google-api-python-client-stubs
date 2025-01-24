@@ -945,45 +945,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
         ) -> ReturnPolicyOnlineHttpRequest: ...
 
     @typing.type_check_only
-    class SettlementreportsResource(googleapiclient.discovery.Resource):
-        def get(
-            self, *, merchantId: str, settlementId: str, **kwargs: typing.Any
-        ) -> SettlementReportHttpRequest: ...
-        def list(
-            self,
-            *,
-            merchantId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            transferEndDate: str = ...,
-            transferStartDate: str = ...,
-            **kwargs: typing.Any,
-        ) -> SettlementreportsListResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: SettlementreportsListResponseHttpRequest,
-            previous_response: SettlementreportsListResponse,
-        ) -> SettlementreportsListResponseHttpRequest | None: ...
-
-    @typing.type_check_only
-    class SettlementtransactionsResource(googleapiclient.discovery.Resource):
-        def list(
-            self,
-            *,
-            merchantId: str,
-            settlementId: str,
-            maxResults: int = ...,
-            pageToken: str = ...,
-            transactionIds: str | _list[str] = ...,
-            **kwargs: typing.Any,
-        ) -> SettlementtransactionsListResponseHttpRequest: ...
-        def list_next(
-            self,
-            previous_request: SettlementtransactionsListResponseHttpRequest,
-            previous_response: SettlementtransactionsListResponse,
-        ) -> SettlementtransactionsListResponseHttpRequest | None: ...
-
-    @typing.type_check_only
     class ShippingsettingsResource(googleapiclient.discovery.Resource):
         def custombatch(
             self,
@@ -1078,8 +1039,6 @@ class ShoppingContentResource(googleapiclient.discovery.Resource):
     def returnaddress(self) -> ReturnaddressResource: ...
     def returnpolicy(self) -> ReturnpolicyResource: ...
     def returnpolicyonline(self) -> ReturnpolicyonlineResource: ...
-    def settlementreports(self) -> SettlementreportsResource: ...
-    def settlementtransactions(self) -> SettlementtransactionsResource: ...
     def shippingsettings(self) -> ShippingsettingsResource: ...
     def shoppingadsprogram(self) -> ShoppingadsprogramResource: ...
 
@@ -1748,30 +1707,6 @@ class SearchResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchResponse: ...
-
-@typing.type_check_only
-class SettlementReportHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SettlementReport: ...
-
-@typing.type_check_only
-class SettlementreportsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SettlementreportsListResponse: ...
-
-@typing.type_check_only
-class SettlementtransactionsListResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> SettlementtransactionsListResponse: ...
 
 @typing.type_check_only
 class ShippingSettingsHttpRequest(googleapiclient.http.HttpRequest):

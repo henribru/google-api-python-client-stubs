@@ -20,13 +20,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -42,7 +50,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -50,13 +62,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
         def getContainerThreatDetectionSettings(
@@ -152,13 +172,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -174,7 +202,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -182,13 +214,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
         def getContainerThreatDetectionSettings(
@@ -287,13 +327,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class EventThreatDetectionSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> EventThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -305,7 +353,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
                     googleapiclient.discovery.Resource
                 ):
                     def calculate(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        showEligibleModulesOnly: bool = ...,
+                        **kwargs: typing.Any,
                     ) -> ContainerThreatDetectionSettingsHttpRequest: ...
 
                 def getContainerThreatDetectionSettings(
@@ -338,7 +390,11 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> SecurityHealthAnalyticsSettingsHttpRequest: ...
 
         @typing.type_check_only
@@ -346,13 +402,21 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             googleapiclient.discovery.Resource
         ):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> VirtualMachineThreatDetectionSettingsHttpRequest: ...
 
         @typing.type_check_only
         class WebSecurityScannerSettingsResource(googleapiclient.discovery.Resource):
             def calculate(
-                self, *, name: str, **kwargs: typing.Any
+                self,
+                *,
+                name: str,
+                showEligibleModulesOnly: bool = ...,
+                **kwargs: typing.Any,
             ) -> WebSecurityScannerSettingsHttpRequest: ...
 
         def getContainerThreatDetectionSettings(

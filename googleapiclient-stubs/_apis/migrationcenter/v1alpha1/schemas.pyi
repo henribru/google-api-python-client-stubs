@@ -163,11 +163,21 @@ class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
     machineTypeLabel: str
 
 @typing.type_check_only
 class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
     machineTypeLabel: str
     provisioningState: str
@@ -695,6 +705,11 @@ class GenericInsight(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenericPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
 
 @typing.type_check_only
@@ -1148,6 +1163,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class OutputFile(typing_extensions.TypedDict, total=False):
     csvOutputFile: CsvOutputFile
     fileSizeBytes: int
+    xlsxOutputFile: XlsxOutputFile
 
 @typing.type_check_only
 class OutputFileList(typing_extensions.TypedDict, total=False):
@@ -1168,6 +1184,11 @@ class PerformanceSample(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PhysicalPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
 
 @typing.type_check_only
@@ -1467,6 +1488,7 @@ class SendDiscoveryClientHeartbeatRequest(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class Settings(typing_extensions.TypedDict, total=False):
+    customerConsentForGoogleSalesToAccessMigrationCenter: bool
     disableCloudLogging: bool
     name: str
     preferenceSet: str
@@ -1477,7 +1499,8 @@ class SignedUri(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
-class SignedUriDestination(typing_extensions.TypedDict, total=False): ...
+class SignedUriDestination(typing_extensions.TypedDict, total=False):
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "CSV", "XLSX"]
 
 @typing.type_check_only
 class SignedUris(typing_extensions.TypedDict, total=False):
@@ -1757,6 +1780,15 @@ class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
+    esxHyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     esxVersion: str
     osid: str
     vcenterVersion: str
+
+@typing.type_check_only
+class XlsxOutputFile(typing_extensions.TypedDict, total=False):
+    signedUri: SignedUri

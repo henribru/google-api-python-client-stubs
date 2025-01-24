@@ -144,6 +144,7 @@ class RecognitionConfig(typing_extensions.TypedDict, total=False):
         "SPEEX_WITH_HEADER_BYTE",
         "MP3",
         "WEBM_OPUS",
+        "ALAW",
     ]
     languageCode: str
     maxAlternatives: int

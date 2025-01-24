@@ -21,6 +21,21 @@ class About(typing_extensions.TypedDict, total=False):
     user: User
 
 @typing.type_check_only
+class AccessProposal(typing_extensions.TypedDict, total=False):
+    createTime: str
+    fileId: str
+    proposalId: str
+    recipientEmailAddress: str
+    requestMessage: str
+    requesterEmailAddress: str
+    rolesAndViews: _list[AccessProposalRoleAndView]
+
+@typing.type_check_only
+class AccessProposalRoleAndView(typing_extensions.TypedDict, total=False):
+    role: str
+    view: str
+
+@typing.type_check_only
 class App(typing_extensions.TypedDict, total=False):
     authorized: bool
     createInFolderTemplate: str
@@ -267,6 +282,11 @@ class LabelModification(typing_extensions.TypedDict, total=False):
     removeLabel: bool
 
 @typing.type_check_only
+class ListAccessProposalsResponse(typing_extensions.TypedDict, total=False):
+    accessProposals: _list[AccessProposal]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -330,6 +350,13 @@ class ReplyList(typing_extensions.TypedDict, total=False):
     kind: str
     nextPageToken: str
     replies: _list[Reply]
+
+@typing.type_check_only
+class ResolveAccessProposalRequest(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ACCEPT", "DENY"]
+    role: _list[str]
+    sendNotification: bool
+    view: str
 
 @typing.type_check_only
 class Revision(typing_extensions.TypedDict, total=False):

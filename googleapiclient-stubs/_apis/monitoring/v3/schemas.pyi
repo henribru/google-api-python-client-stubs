@@ -70,6 +70,9 @@ class AlertPolicy(typing_extensions.TypedDict, total=False):
 class AlertStrategy(typing_extensions.TypedDict, total=False):
     autoClose: str
     notificationChannelStrategy: _list[NotificationChannelStrategy]
+    notificationPrompts: _list[
+        typing_extensions.Literal["NOTIFICATION_PROMPT_UNSPECIFIED", "OPENED", "CLOSED"]
+    ]
     notificationRateLimit: NotificationRateLimit
 
 @typing.type_check_only
@@ -96,6 +99,10 @@ class BasicSli(typing_extensions.TypedDict, total=False):
     location: _list[str]
     method: _list[str]
     version: _list[str]
+
+@typing.type_check_only
+class BooleanTest(typing_extensions.TypedDict, total=False):
+    column: str
 
 @typing.type_check_only
 class BucketOptions(typing_extensions.TypedDict, total=False):
@@ -160,6 +167,7 @@ class Condition(typing_extensions.TypedDict, total=False):
     conditionMatchedLog: LogMatch
     conditionMonitoringQueryLanguage: MonitoringQueryLanguageCondition
     conditionPrometheusQueryLanguage: PrometheusQueryLanguageCondition
+    conditionSql: SqlCondition
     conditionThreshold: MetricThreshold
     displayName: str
     name: str
@@ -205,6 +213,11 @@ class Criteria(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Custom(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Daily(typing_extensions.TypedDict, total=False):
+    executionTime: TimeOfDay
+    periodicity: int
 
 @typing.type_check_only
 class Distribution(typing_extensions.TypedDict, total=False):
@@ -347,6 +360,11 @@ class Group(typing_extensions.TypedDict, total=False):
     isCluster: bool
     name: str
     parentName: str
+
+@typing.type_check_only
+class Hourly(typing_extensions.TypedDict, total=False):
+    minuteOffset: int
+    periodicity: int
 
 @typing.type_check_only
 class HttpCheck(typing_extensions.TypedDict, total=False):
@@ -602,6 +620,10 @@ class MetricThreshold(typing_extensions.TypedDict, total=False):
     trigger: Trigger
 
 @typing.type_check_only
+class Minutes(typing_extensions.TypedDict, total=False):
+    periodicity: int
+
+@typing.type_check_only
 class MonitoredResource(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     type: str
@@ -729,6 +751,7 @@ class PointData(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrometheusQueryLanguageCondition(typing_extensions.TypedDict, total=False):
     alertRule: str
+    disableMetricValidation: bool
     duration: str
     evaluationInterval: str
     labels: dict[str, typing.Any]
@@ -777,6 +800,19 @@ class ResponseStatusCode(typing_extensions.TypedDict, total=False):
         "STATUS_CLASS_ANY",
     ]
     statusValue: int
+
+@typing.type_check_only
+class RowCountTest(typing_extensions.TypedDict, total=False):
+    comparison: typing_extensions.Literal[
+        "COMPARISON_UNSPECIFIED",
+        "COMPARISON_GT",
+        "COMPARISON_GE",
+        "COMPARISON_LT",
+        "COMPARISON_LE",
+        "COMPARISON_EQ",
+        "COMPARISON_NE",
+    ]
+    threshold: str
 
 @typing.type_check_only
 class SendNotificationChannelVerificationCodeRequest(
@@ -848,6 +884,15 @@ class SpanContext(typing_extensions.TypedDict, total=False):
     spanName: str
 
 @typing.type_check_only
+class SqlCondition(typing_extensions.TypedDict, total=False):
+    booleanTest: BooleanTest
+    daily: Daily
+    hourly: Hourly
+    minutes: Minutes
+    query: str
+    rowCountTest: RowCountTest
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -870,6 +915,13 @@ class Telemetry(typing_extensions.TypedDict, total=False):
 class TimeInterval(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
 
 @typing.type_check_only
 class TimeSeries(typing_extensions.TypedDict, total=False):

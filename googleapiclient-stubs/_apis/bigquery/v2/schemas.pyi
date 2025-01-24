@@ -1126,6 +1126,7 @@ class MlStatistics(typing_extensions.TypedDict, total=False):
         "TENSORFLOW_LITE",
         "ONNX",
         "TRANSFORM_ONLY",
+        "CONTRIBUTION_ANALYSIS",
     ]
     trainingType: typing_extensions.Literal[
         "TRAINING_TYPE_UNSPECIFIED", "SINGLE_TRAINING", "HPARAM_TUNING"
@@ -1175,6 +1176,7 @@ class Model(typing_extensions.TypedDict, total=False):
         "TENSORFLOW_LITE",
         "ONNX",
         "TRANSFORM_ONLY",
+        "CONTRIBUTION_ANALYSIS",
     ]
     optimalTrialIds: _list[str]
     remoteModelInfo: RemoteModelInfo
@@ -1634,6 +1636,9 @@ class Table(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     lastModifiedTime: str
     location: str
+    managedTableType: typing_extensions.Literal[
+        "MANAGED_TABLE_TYPE_UNSPECIFIED", "NATIVE", "ICEBERG"
+    ]
     materializedView: MaterializedViewDefinition
     materializedViewStatus: MaterializedViewStatus
     maxStaleness: str
@@ -1811,6 +1816,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     colsampleBylevel: float
     colsampleBynode: float
     colsampleBytree: float
+    contributionMetric: str
     dartNormalizeType: typing_extensions.Literal[
         "DART_NORMALIZE_TYPE_UNSPECIFIED", "TREE", "FOREST"
     ]
@@ -1836,6 +1842,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "AUTO_SPLIT",
     ]
     decomposeTimeSeries: bool
+    dimensionIdColumns: _list[str]
     distanceType: typing_extensions.Literal[
         "DISTANCE_TYPE_UNSPECIFIED", "EUCLIDEAN", "COSINE"
     ]
@@ -2018,6 +2025,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     inputLabelColumns: _list[str]
     instanceWeightColumn: str
     integratedGradientsNumSteps: str
+    isTestColumn: str
     itemColumn: str
     kmeansInitializationColumn: str
     kmeansInitializationMethod: typing_extensions.Literal[
@@ -2041,6 +2049,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     maxParallelTrials: str
     maxTimeSeriesLength: str
     maxTreeDepth: str
+    minAprioriSupport: float
     minRelativeProgress: float
     minSplitLoss: float
     minTimeSeriesLength: str

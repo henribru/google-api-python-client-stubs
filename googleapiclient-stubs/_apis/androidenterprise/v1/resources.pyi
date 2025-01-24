@@ -48,6 +48,16 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         ) -> DeviceHttpRequest: ...
 
     @typing.type_check_only
+    class EnrollmentTokensResource(googleapiclient.discovery.Resource):
+        def create(
+            self,
+            *,
+            enterpriseId: str,
+            body: EnrollmentToken = ...,
+            **kwargs: typing.Any,
+        ) -> EnrollmentTokenHttpRequest: ...
+
+    @typing.type_check_only
     class EnterprisesResource(googleapiclient.discovery.Resource):
         def acknowledgeNotificationSet(
             self, *, notificationSetId: str = ..., **kwargs: typing.Any
@@ -59,15 +69,6 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             enterpriseToken: str = ...,
             **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...
-        def createEnrollmentToken(
-            self,
-            *,
-            enterpriseId: str,
-            deviceType: typing_extensions.Literal[
-                "unknown", "dedicatedDevice", "knowledgeWorker"
-            ] = ...,
-            **kwargs: typing.Any,
-        ) -> CreateEnrollmentTokenResponseHttpRequest: ...
         def createWebToken(
             self,
             *,
@@ -79,7 +80,12 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
             self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
         def generateSignupUrl(
-            self, *, adminEmail: str = ..., callbackUrl: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            adminEmail: str = ...,
+            allowedDomains: str | _list[str] = ...,
+            callbackUrl: str = ...,
+            **kwargs: typing.Any,
         ) -> SignupInfoHttpRequest: ...
         def get(
             self, *, enterpriseId: str, **kwargs: typing.Any
@@ -486,6 +492,7 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def devices(self) -> DevicesResource: ...
+    def enrollmentTokens(self) -> EnrollmentTokensResource: ...
     def enterprises(self) -> EnterprisesResource: ...
     def entitlements(self) -> EntitlementsResource: ...
     def grouplicenses(self) -> GrouplicensesResource: ...
@@ -531,14 +538,6 @@ class AuthenticationTokenHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AuthenticationToken: ...
 
 @typing.type_check_only
-class CreateEnrollmentTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> CreateEnrollmentTokenResponse: ...
-
-@typing.type_check_only
 class DeviceHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -561,6 +560,14 @@ class DevicesListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DevicesListResponse: ...
+
+@typing.type_check_only
+class EnrollmentTokenHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EnrollmentToken: ...
 
 @typing.type_check_only
 class EnterpriseHttpRequest(googleapiclient.http.HttpRequest):

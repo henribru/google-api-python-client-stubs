@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class Assignment(typing_extensions.TypedDict, total=False):
     assignee: str
+    enableGeminiInBigquery: bool
     jobType: typing_extensions.Literal[
         "JOB_TYPE_UNSPECIFIED",
         "PIPELINE",
@@ -107,6 +108,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
         "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
     ]
     ignoreIdleSlots: bool
+    labels: dict[str, typing.Any]
     multiRegionAuxiliary: bool
     name: str
     originalPrimaryLocation: str

@@ -260,11 +260,13 @@ class FormAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleAppsCardV1Action(typing_extensions.TypedDict, total=False):
+    allWidgetsAreRequired: bool
     function: str
     interaction: typing_extensions.Literal["INTERACTION_UNSPECIFIED", "OPEN_DIALOG"]
     loadIndicator: typing_extensions.Literal["SPINNER", "NONE"]
     parameters: _list[GoogleAppsCardV1ActionParameter]
     persistValues: bool
+    requiredWidgets: _list[str]
 
 @typing.type_check_only
 class GoogleAppsCardV1ActionParameter(typing_extensions.TypedDict, total=False):
@@ -285,6 +287,9 @@ class GoogleAppsCardV1Button(typing_extensions.TypedDict, total=False):
     icon: GoogleAppsCardV1Icon
     onClick: GoogleAppsCardV1OnClick
     text: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "OUTLINED", "FILLED", "FILLED_TONAL", "BORDERLESS"
+    ]
 
 @typing.type_check_only
 class GoogleAppsCardV1ButtonList(typing_extensions.TypedDict, total=False):
@@ -322,6 +327,39 @@ class GoogleAppsCardV1CardHeader(typing_extensions.TypedDict, total=False):
     imageUrl: str
     subtitle: str
     title: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Carousel(typing_extensions.TypedDict, total=False):
+    carouselCards: _list[GoogleAppsCardV1CarouselCard]
+
+@typing.type_check_only
+class GoogleAppsCardV1CarouselCard(typing_extensions.TypedDict, total=False):
+    footerWidgets: _list[GoogleAppsCardV1NestedWidget]
+    widgets: _list[GoogleAppsCardV1NestedWidget]
+
+@typing.type_check_only
+class GoogleAppsCardV1Chip(typing_extensions.TypedDict, total=False):
+    altText: str
+    disabled: bool
+    enabled: bool
+    icon: GoogleAppsCardV1Icon
+    label: str
+    onClick: GoogleAppsCardV1OnClick
+
+@typing.type_check_only
+class GoogleAppsCardV1ChipList(typing_extensions.TypedDict, total=False):
+    chips: _list[GoogleAppsCardV1Chip]
+    layout: typing_extensions.Literal[
+        "LAYOUT_UNSPECIFIED", "WRAPPED", "HORIZONTAL_SCROLLABLE"
+    ]
+
+@typing.type_check_only
+class GoogleAppsCardV1CollapseControl(typing_extensions.TypedDict, total=False):
+    collapseButton: GoogleAppsCardV1Button
+    expandButton: GoogleAppsCardV1Button
+    horizontalAlignment: typing_extensions.Literal[
+        "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
+    ]
 
 @typing.type_check_only
 class GoogleAppsCardV1Column(typing_extensions.TypedDict, total=False):
@@ -425,11 +463,18 @@ class GoogleAppsCardV1MaterialIcon(typing_extensions.TypedDict, total=False):
     weight: int
 
 @typing.type_check_only
+class GoogleAppsCardV1NestedWidget(typing_extensions.TypedDict, total=False):
+    buttonList: GoogleAppsCardV1ButtonList
+    image: GoogleAppsCardV1Image
+    textParagraph: GoogleAppsCardV1TextParagraph
+
+@typing.type_check_only
 class GoogleAppsCardV1OnClick(typing_extensions.TypedDict, total=False):
     action: GoogleAppsCardV1Action
     card: GoogleAppsCardV1Card
     openDynamicLinkAction: GoogleAppsCardV1Action
     openLink: GoogleAppsCardV1OpenLink
+    overflowMenu: GoogleAppsCardV1OverflowMenu
 
 @typing.type_check_only
 class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
@@ -438,12 +483,24 @@ class GoogleAppsCardV1OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class GoogleAppsCardV1OverflowMenu(typing_extensions.TypedDict, total=False):
+    items: _list[GoogleAppsCardV1OverflowMenuItem]
+
+@typing.type_check_only
+class GoogleAppsCardV1OverflowMenuItem(typing_extensions.TypedDict, total=False):
+    disabled: bool
+    onClick: GoogleAppsCardV1OnClick
+    startIcon: GoogleAppsCardV1Icon
+    text: str
+
+@typing.type_check_only
 class GoogleAppsCardV1PlatformDataSource(typing_extensions.TypedDict, total=False):
     commonDataSource: typing_extensions.Literal["UNKNOWN", "USER"]
     hostAppDataSource: HostAppDataSourceMarkup
 
 @typing.type_check_only
 class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
+    collapseControl: GoogleAppsCardV1CollapseControl
     collapsible: bool
     header: str
     uncollapsibleWidgetsCount: int
@@ -497,15 +554,26 @@ class GoogleAppsCardV1TextInput(typing_extensions.TypedDict, total=False):
     onChangeAction: GoogleAppsCardV1Action
     placeholderText: str
     type: typing_extensions.Literal["SINGLE_LINE", "MULTIPLE_LINE"]
+    validation: GoogleAppsCardV1Validation
     value: str
 
 @typing.type_check_only
 class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
+    maxLines: int
     text: str
+
+@typing.type_check_only
+class GoogleAppsCardV1Validation(typing_extensions.TypedDict, total=False):
+    characterLimit: int
+    inputType: typing_extensions.Literal[
+        "INPUT_TYPE_UNSPECIFIED", "TEXT", "INTEGER", "FLOAT", "EMAIL", "EMOJI_PICKER"
+    ]
 
 @typing.type_check_only
 class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
     buttonList: GoogleAppsCardV1ButtonList
+    carousel: GoogleAppsCardV1Carousel
+    chipList: GoogleAppsCardV1ChipList
     columns: GoogleAppsCardV1Columns
     dateTimePicker: GoogleAppsCardV1DateTimePicker
     decoratedText: GoogleAppsCardV1DecoratedText
@@ -522,6 +590,7 @@ class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAppsCardV1Widgets(typing_extensions.TypedDict, total=False):
     buttonList: GoogleAppsCardV1ButtonList
+    chipList: GoogleAppsCardV1ChipList
     dateTimePicker: GoogleAppsCardV1DateTimePicker
     decoratedText: GoogleAppsCardV1DecoratedText
     image: GoogleAppsCardV1Image
@@ -771,6 +840,22 @@ class OpenLink(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class PermissionSetting(typing_extensions.TypedDict, total=False):
+    managersAllowed: bool
+    membersAllowed: bool
+
+@typing.type_check_only
+class PermissionSettings(typing_extensions.TypedDict, total=False):
+    manageApps: PermissionSetting
+    manageMembersAndGroups: PermissionSetting
+    manageWebhooks: PermissionSetting
+    modifySpaceDetails: PermissionSetting
+    postMessages: PermissionSetting
+    replyMessages: PermissionSetting
+    toggleHistory: PermissionSetting
+    useAtMentionAll: PermissionSetting
+
+@typing.type_check_only
 class QuotedMessageMetadata(typing_extensions.TypedDict, total=False):
     lastUpdateTime: str
     name: str
@@ -847,9 +932,16 @@ class Space(typing_extensions.TypedDict, total=False):
     displayName: str
     externalUserAllowed: bool
     importMode: bool
+    importModeExpireTime: str
     lastActiveTime: str
     membershipCount: MembershipCount
     name: str
+    permissionSettings: PermissionSettings
+    predefinedPermissionSettings: typing_extensions.Literal[
+        "PREDEFINED_PERMISSION_SETTINGS_UNSPECIFIED",
+        "COLLABORATION_SPACE",
+        "ANNOUNCEMENT_SPACE",
+    ]
     singleUserBotDm: bool
     spaceDetails: SpaceDetails
     spaceHistoryState: typing_extensions.Literal[

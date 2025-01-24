@@ -39,6 +39,7 @@ class Binding(typing_extensions.TypedDict, total=False):
 class ConsumerPscConfig(typing_extensions.TypedDict, total=False):
     consumerInstanceProject: str
     disableGlobalAccess: bool
+    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     network: str
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
@@ -65,6 +66,7 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     forwardingRule: str
     gceOperation: str
     ip: str
+    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     network: str
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
@@ -73,7 +75,13 @@ class ConsumerPscConnection(typing_extensions.TypedDict, total=False):
     selectedSubnetwork: str
     serviceAttachmentUri: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "FAILED",
+        "CREATING",
+        "DELETING",
+        "CREATE_REPAIRING",
+        "DELETE_REPAIRING",
     ]
 
 @typing.type_check_only
@@ -174,6 +182,12 @@ class Hub(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class HubStatusEntry(typing_extensions.TypedDict, total=False):
+    count: int
+    groupBy: str
+    pscPropagationStatus: PscPropagationStatus
+
+@typing.type_check_only
 class InterconnectAttachment(typing_extensions.TypedDict, total=False):
     region: str
 
@@ -210,6 +224,15 @@ class LinkedInterconnectAttachments(typing_extensions.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uris: _list[str]
     vpcNetwork: str
+
+@typing.type_check_only
+class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
+    excludeExportRanges: _list[str]
+    includeExportRanges: _list[str]
+    network: str
+    peering: str
+    producerNetwork: str
+    serviceConsumerVpcSpoke: str
 
 @typing.type_check_only
 class LinkedRouterApplianceInstances(typing_extensions.TypedDict, total=False):
@@ -424,14 +447,44 @@ class PscConnection(typing_extensions.TypedDict, total=False):
         "ERROR_PRODUCER_SIDE",
     ]
     gceOperation: str
+    ipVersion: typing_extensions.Literal["IP_VERSION_UNSPECIFIED", "IPV4", "IPV6"]
     producerInstanceId: str
     producerInstanceMetadata: dict[str, typing.Any]
     pscConnectionId: str
     selectedSubnetwork: str
     serviceClass: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "CREATING", "DELETING"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "FAILED",
+        "CREATING",
+        "DELETING",
+        "CREATE_REPAIRING",
+        "DELETE_REPAIRING",
     ]
+
+@typing.type_check_only
+class PscPropagationStatus(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "READY",
+        "PROPAGATING",
+        "ERROR_PRODUCER_PROPAGATED_CONNECTION_LIMIT_EXCEEDED",
+        "ERROR_PRODUCER_NAT_IP_SPACE_EXHAUSTED",
+        "ERROR_PRODUCER_QUOTA_EXCEEDED",
+        "ERROR_CONSUMER_QUOTA_EXCEEDED",
+    ]
+    message: str
+    sourceForwardingRule: str
+    sourceGroup: str
+    sourceSpoke: str
+    targetGroup: str
+    targetSpoke: str
+
+@typing.type_check_only
+class QueryHubStatusResponse(typing_extensions.TypedDict, total=False):
+    hubStatusEntries: _list[HubStatusEntry]
+    nextPageToken: str
 
 @typing.type_check_only
 class RegionalEndpoint(typing_extensions.TypedDict, total=False):
@@ -589,6 +642,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
     hub: str
     labels: dict[str, typing.Any]
     linkedInterconnectAttachments: LinkedInterconnectAttachments
+    linkedProducerVpcNetwork: LinkedProducerVpcNetwork
     linkedRouterApplianceInstances: LinkedRouterApplianceInstances
     linkedVpcNetwork: LinkedVpcNetwork
     linkedVpnTunnels: LinkedVpnTunnels
@@ -600,6 +654,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENT",
         "ROUTER_APPLIANCE",
         "VPC_NETWORK",
+        "PRODUCER_VPC_NETWORK",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -634,7 +689,14 @@ class SpokeStateCount(typing_extensions.TypedDict, total=False):
 class SpokeStateReasonCount(typing_extensions.TypedDict, total=False):
     count: str
     stateReasonCode: typing_extensions.Literal[
-        "CODE_UNSPECIFIED", "PENDING_REVIEW", "REJECTED", "PAUSED", "FAILED"
+        "CODE_UNSPECIFIED",
+        "PENDING_REVIEW",
+        "REJECTED",
+        "PAUSED",
+        "FAILED",
+        "UPDATE_PENDING_REVIEW",
+        "UPDATE_REJECTED",
+        "UPDATE_FAILED",
     ]
 
 @typing.type_check_only
@@ -652,12 +714,20 @@ class SpokeTypeCount(typing_extensions.TypedDict, total=False):
         "INTERCONNECT_ATTACHMENT",
         "ROUTER_APPLIANCE",
         "VPC_NETWORK",
+        "PRODUCER_VPC_NETWORK",
     ]
 
 @typing.type_check_only
 class StateReason(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
-        "CODE_UNSPECIFIED", "PENDING_REVIEW", "REJECTED", "PAUSED", "FAILED"
+        "CODE_UNSPECIFIED",
+        "PENDING_REVIEW",
+        "REJECTED",
+        "PAUSED",
+        "FAILED",
+        "UPDATE_PENDING_REVIEW",
+        "UPDATE_REJECTED",
+        "UPDATE_FAILED",
     ]
     message: str
     userDetails: str

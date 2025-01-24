@@ -375,6 +375,9 @@ class ChannelStatus(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ChannelToStoreLinkDetails(typing_extensions.TypedDict, total=False):
     billingDetails: ChannelToStoreLinkDetailsBillingDetails
+    merchantAffiliateProgramDetails: (
+        ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails
+    )
     merchantId: str
     storeName: str
     storeUrl: str
@@ -386,6 +389,17 @@ class ChannelToStoreLinkDetailsBillingDetails(typing_extensions.TypedDict, total
         "billingStatusPending",
         "billingStatusActive",
         "billingStatusInactive",
+    ]
+
+@typing.type_check_only
+class ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails(
+    typing_extensions.TypedDict, total=False
+):
+    status: typing_extensions.Literal[
+        "merchantAffiliateProgramStatusUnspecified",
+        "merchantAffiliateProgramStatusEligible",
+        "merchantAffiliateProgramStatusActive",
+        "merchantAffiliateProgramStatusPaused",
     ]
 
 @typing.type_check_only
@@ -1933,7 +1947,6 @@ class SubscriptionListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubscriptionSnippet(typing_extensions.TypedDict, total=False):
     channelId: str
-    channelTitle: str
     description: str
     publishedAt: str
     resourceId: ResourceId
@@ -1986,6 +1999,7 @@ class SuperStickerMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestItem(typing_extensions.TypedDict, total=False):
+    etag: str
     featuredPart: bool
     gaia: str
     id: str
@@ -2294,6 +2308,7 @@ class VideoStatistics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VideoStatus(typing_extensions.TypedDict, total=False):
+    containsSyntheticMedia: bool
     embeddable: bool
     failureReason: typing_extensions.Literal[
         "conversion", "invalidFile", "emptyFile", "tooSmall", "codec", "uploadAborted"

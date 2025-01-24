@@ -29,6 +29,26 @@ class GoogleCloudAssuredworkloadsV1beta1AnalyzeWorkloadMoveResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["WORKLOAD_UPDATE_ACTION_UNSPECIFIED", "APPLY"]
+    createTime: str
+    updateName: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["WORKLOAD_UPDATE_ACTION_UNSPECIFIED", "APPLY"]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    appliedUpdate: GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis(
     typing_extensions.TypedDict, total=False
 ):
@@ -65,6 +85,7 @@ class GoogleCloudAssuredworkloadsV1beta1CreateWorkloadOperationMetadata(
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
+        "CANADA_CONTROLLED_GOODS",
     ]
     createTime: str
     displayName: str
@@ -87,6 +108,13 @@ class GoogleCloudAssuredworkloadsV1beta1ListViolationsResponse(
 ):
     nextPageToken: str
     violations: _list[GoogleCloudAssuredworkloadsV1beta1Violation]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadUpdates: _list[GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse(
@@ -117,6 +145,39 @@ class GoogleCloudAssuredworkloadsV1beta1MoveImpact(
     detail: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1OrgPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    constraint: str
+    inherit: bool
+    reset: bool
+    resource: str
+    rule: GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRule
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRule(
+    typing_extensions.TypedDict, total=False
+):
+    allowAll: bool
+    denyAll: bool
+    enforce: bool
+    values: GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRuleStringValues
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRuleStringValues(
+    typing_extensions.TypedDict, total=False
+):
+    allowedValues: _list[str]
+    deniedValues: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1OrgPolicyUpdate(
+    typing_extensions.TypedDict, total=False
+):
+    appliedPolicy: GoogleCloudAssuredworkloadsV1beta1OrgPolicy
+    suggestedPolicy: GoogleCloudAssuredworkloadsV1beta1OrgPolicy
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -131,6 +192,12 @@ class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest(
 class GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1UpdateDetails(
+    typing_extensions.TypedDict, total=False
+):
+    orgPolicyUpdate: GoogleCloudAssuredworkloadsV1beta1OrgPolicyUpdate
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1Violation(
@@ -218,6 +285,7 @@ class GoogleCloudAssuredworkloadsV1beta1ViolationRemediationInstructionsGcloud(
 class GoogleCloudAssuredworkloadsV1beta1Workload(
     typing_extensions.TypedDict, total=False
 ):
+    availableUpdates: int
     billingAccount: str
     cjisSettings: GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings
     complianceRegime: typing_extensions.Literal[
@@ -245,6 +313,7 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
+        "CANADA_CONTROLLED_GOODS",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1beta1WorkloadComplianceStatus
     complianceUpdatesEnabled: bool
@@ -288,6 +357,7 @@ class GoogleCloudAssuredworkloadsV1beta1Workload(
         GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse
     )
     violationNotificationsEnabled: bool
+    workloadOptions: GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings(
@@ -405,6 +475,26 @@ class GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse(
     ]
     setupStatus: typing_extensions.Literal[
         "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    details: GoogleCloudAssuredworkloadsV1beta1UpdateDetails
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AVAILABLE", "APPLIED", "WITHDRAWN"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions(
+    typing_extensions.TypedDict, total=False
+):
+    kajEnrollmentType: typing_extensions.Literal[
+        "KAJ_ENROLLMENT_TYPE_UNSPECIFIED", "KEY_ACCESS_TRANSPARENCY_OFF"
     ]
 
 @typing.type_check_only

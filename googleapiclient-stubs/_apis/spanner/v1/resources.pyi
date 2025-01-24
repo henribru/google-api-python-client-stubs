@@ -493,6 +493,13 @@ class SpannerResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> PartialResultSetHttpRequest: ...
 
+                def addSplitPoints(
+                    self,
+                    *,
+                    database: str,
+                    body: AddSplitPointsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> AddSplitPointsResponseHttpRequest: ...
                 def changequorum(
                     self,
                     *,
@@ -809,6 +816,14 @@ class SpannerResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def scans(self) -> ScansResource: ...
+
+@typing.type_check_only
+class AddSplitPointsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AddSplitPointsResponse: ...
 
 @typing.type_check_only
 class BackupHttpRequest(googleapiclient.http.HttpRequest):

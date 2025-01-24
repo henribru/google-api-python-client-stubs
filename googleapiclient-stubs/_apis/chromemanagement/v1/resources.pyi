@@ -95,6 +95,33 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def web(self) -> WebResource: ...
 
         @typing.type_check_only
+        class ProfilesResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest,
+                previous_response: GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse,
+            ) -> (
+                GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest
+                | None
+            ): ...
+
+        @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
             def countChromeBrowsersNeedingAttention(
                 self, *, customer: str, orgUnitId: str = ..., **kwargs: typing.Any
@@ -359,6 +386,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def users(self) -> UsersResource: ...
 
         def apps(self) -> AppsResource: ...
+        def profiles(self) -> ProfilesResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
 
@@ -595,6 +623,26 @@ class GoogleChromeManagementV1TelemetryUserHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementV1TelemetryUser: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfile: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

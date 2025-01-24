@@ -2106,6 +2106,46 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             def environments(self) -> EnvironmentsResource: ...
 
         @typing.type_check_only
+        class SecurityProfilesV2Resource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudApigeeV1SecurityProfileV2 = ...,
+                securityProfileV2Id: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1ListSecurityProfilesV2ResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudApigeeV1ListSecurityProfilesV2ResponseHttpRequest,
+                previous_response: GoogleCloudApigeeV1ListSecurityProfilesV2Response,
+            ) -> (
+                GoogleCloudApigeeV1ListSecurityProfilesV2ResponseHttpRequest | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudApigeeV1SecurityProfileV2 = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudApigeeV1SecurityProfileV2HttpRequest: ...
+
+        @typing.type_check_only
         class SharedflowsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DeploymentsResource(googleapiclient.discovery.Resource):
@@ -2259,6 +2299,9 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleCloudApigeeV1OrganizationHttpRequest: ...
+        def getControlPlaneAccess(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleCloudApigeeV1ControlPlaneAccessHttpRequest: ...
         def getDeployedIngressConfig(
             self,
             *,
@@ -2308,6 +2351,14 @@ class ApigeeResource(googleapiclient.discovery.Resource):
             body: GoogleCloudApigeeV1Organization = ...,
             **kwargs: typing.Any,
         ) -> GoogleCloudApigeeV1OrganizationHttpRequest: ...
+        def updateControlPlaneAccess(
+            self,
+            *,
+            name: str,
+            body: GoogleCloudApigeeV1ControlPlaneAccess = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
         def updateSecuritySettings(
             self,
             *,
@@ -2337,6 +2388,7 @@ class ApigeeResource(googleapiclient.discovery.Resource):
         def reports(self) -> ReportsResource: ...
         def securityAssessmentResults(self) -> SecurityAssessmentResultsResource: ...
         def securityProfiles(self) -> SecurityProfilesResource: ...
+        def securityProfilesV2(self) -> SecurityProfilesV2Resource: ...
         def sharedflows(self) -> SharedflowsResource: ...
         def sites(self) -> SitesResource: ...
 
@@ -2563,6 +2615,16 @@ class GoogleCloudApigeeV1ComputeEnvironmentScoresResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1ComputeEnvironmentScoresResponse: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ControlPlaneAccessHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ControlPlaneAccess: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1CustomReportHttpRequest(googleapiclient.http.HttpRequest):
@@ -3181,6 +3243,16 @@ class GoogleCloudApigeeV1ListSecurityProfilesResponseHttpRequest(
     ) -> GoogleCloudApigeeV1ListSecurityProfilesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityProfilesV2ResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1ListSecurityProfilesV2Response: ...
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityReportsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -3357,6 +3429,14 @@ class GoogleCloudApigeeV1SecurityProfileEnvironmentAssociationHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudApigeeV1SecurityProfileEnvironmentAssociation: ...
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileV2HttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudApigeeV1SecurityProfileV2: ...
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityReportHttpRequest(googleapiclient.http.HttpRequest):

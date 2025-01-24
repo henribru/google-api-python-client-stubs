@@ -90,6 +90,9 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
             class ReleasesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class TestsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -107,6 +110,11 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                         parent: str,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "RELEASE_TEST_VIEW_UNSPECIFIED",
+                            "RELEASE_TEST_VIEW_BASIC",
+                            "RELEASE_TEST_VIEW_FULL",
+                        ] = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleFirebaseAppdistroV1alphaListReleaseTestsResponseHttpRequest: ...
                     def list_next(
@@ -120,6 +128,46 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
 
                 def tests(self) -> TestsResource: ...
 
+            @typing.type_check_only
+            class TestCasesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirebaseAppdistroV1alphaTestCase = ...,
+                    testCaseId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirebaseAppdistroV1alphaListTestCasesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleFirebaseAppdistroV1alphaListTestCasesResponseHttpRequest,
+                    previous_response: GoogleFirebaseAppdistroV1alphaListTestCasesResponse,
+                ) -> (
+                    GoogleFirebaseAppdistroV1alphaListTestCasesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirebaseAppdistroV1alphaTestCase = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest: ...
+
             def getTestConfig(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest: ...
@@ -132,6 +180,7 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest: ...
             def releases(self) -> ReleasesResource: ...
+            def testCases(self) -> TestCasesResource: ...
 
         @typing.type_check_only
         class TestersResource(googleapiclient.discovery.Resource):
@@ -164,6 +213,16 @@ class GoogleFirebaseAppdistroV1alphaAppHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1alphaApp: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse: ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponseHttpRequest(
@@ -234,6 +293,16 @@ class GoogleFirebaseAppdistroV1alphaListReleaseTestsResponseHttpRequest(
     ) -> GoogleFirebaseAppdistroV1alphaListReleaseTestsResponse: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaListTestCasesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaListTestCasesResponse: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaProvisionAppResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -254,6 +323,16 @@ class GoogleFirebaseAppdistroV1alphaReleaseTestHttpRequest(
     ) -> GoogleFirebaseAppdistroV1alphaReleaseTest: ...
 
 @typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaTestCaseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaTestCase: ...
+
+@typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -262,3 +341,11 @@ class GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1alphaTestConfig: ...
+
+@typing.type_check_only
+class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleProtobufEmpty: ...

@@ -185,6 +185,7 @@ class TranslateDocumentResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TranslateTextGlossaryConfig(typing_extensions.TypedDict, total=False):
+    contextualTranslationEnabled: bool
     glossary: str
     ignoreCase: bool
 

@@ -593,6 +593,9 @@ class SearchJobsRequest(typing_extensions.TypedDict, total=False):
     offset: int
     orderBy: str
     pageToken: str
+    relevanceThreshold: typing_extensions.Literal[
+        "RELEVANCE_THRESHOLD_UNSPECIFIED", "LOWEST", "LOW", "MEDIUM", "HIGH"
+    ]
     requestMetadata: RequestMetadata
     searchMode: typing_extensions.Literal[
         "SEARCH_MODE_UNSPECIFIED", "JOB_SEARCH", "FEATURED_JOB_SEARCH"

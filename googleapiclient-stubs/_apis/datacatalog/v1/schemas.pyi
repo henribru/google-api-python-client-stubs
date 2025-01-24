@@ -314,6 +314,7 @@ class GoogleCloudDatacatalogV1EntryGroup(typing_extensions.TypedDict, total=Fals
     description: str
     displayName: str
     name: str
+    transferredToDataplex: bool
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1EntryOverview(typing_extensions.TypedDict, total=False):
@@ -463,6 +464,19 @@ class GoogleCloudDatacatalogV1LookerSystemSpec(
     parentViewId: str
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1MigrationConfig(typing_extensions.TypedDict, total=False):
+    catalogUiExperience: typing_extensions.Literal[
+        "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
+        "CATALOG_UI_EXPERIENCE_ENABLED",
+        "CATALOG_UI_EXPERIENCE_DISABLED",
+    ]
+    tagTemplateMigration: typing_extensions.Literal[
+        "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
+        "TAG_TEMPLATE_MIGRATION_ENABLED",
+        "TAG_TEMPLATE_MIGRATION_DISABLED",
+    ]
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1ModelSpec(typing_extensions.TypedDict, total=False):
     vertexModelSpec: GoogleCloudDatacatalogV1VertexModelSpec
 
@@ -477,6 +491,12 @@ class GoogleCloudDatacatalogV1ModifyEntryOverviewRequest(
     typing_extensions.TypedDict, total=False
 ):
     entryOverview: GoogleCloudDatacatalogV1EntryOverview
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1OrganizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    config: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1PersonalDetails(typing_extensions.TypedDict, total=False):
@@ -688,6 +708,21 @@ class GoogleCloudDatacatalogV1ServiceSpec(typing_extensions.TypedDict, total=Fal
     cloudBigtableInstanceSpec: GoogleCloudDatacatalogV1CloudBigtableInstanceSpec
 
 @typing.type_check_only
+class GoogleCloudDatacatalogV1SetConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    catalogUiExperience: typing_extensions.Literal[
+        "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
+        "CATALOG_UI_EXPERIENCE_ENABLED",
+        "CATALOG_UI_EXPERIENCE_DISABLED",
+    ]
+    tagTemplateMigration: typing_extensions.Literal[
+        "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
+        "TAG_TEMPLATE_MIGRATION_ENABLED",
+        "TAG_TEMPLATE_MIGRATION_DISABLED",
+    ]
+
+@typing.type_check_only
 class GoogleCloudDatacatalogV1SqlDatabaseSystemSpec(
     typing_extensions.TypedDict, total=False
 ):
@@ -727,6 +762,9 @@ class GoogleCloudDatacatalogV1TableSpec(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Tag(typing_extensions.TypedDict, total=False):
     column: str
+    dataplexTransferStatus: typing_extensions.Literal[
+        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED", "TRANSFERRED"
+    ]
     fields: dict[str, typing.Any]
     name: str
     template: str
@@ -752,7 +790,7 @@ class GoogleCloudDatacatalogV1TagFieldEnumValue(
 @typing.type_check_only
 class GoogleCloudDatacatalogV1TagTemplate(typing_extensions.TypedDict, total=False):
     dataplexTransferStatus: typing_extensions.Literal[
-        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED"
+        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED", "TRANSFERRED"
     ]
     displayName: str
     fields: dict[str, typing.Any]

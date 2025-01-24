@@ -93,6 +93,17 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     ) -> AccessApprovalRequestsResource: ...
                     def violations(self) -> ViolationsResource: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: Customer = ...,
+                    customerId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> CustomerHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> CustomerHttpRequest: ...
@@ -111,6 +122,14 @@ class CloudControlsPartnerServiceResource(googleapiclient.discovery.Resource):
                     previous_request: ListCustomersResponseHttpRequest,
                     previous_response: ListCustomersResponse,
                 ) -> ListCustomersResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Customer = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> CustomerHttpRequest: ...
                 def workloads(self) -> WorkloadsResource: ...
 
             def getPartner(
@@ -149,6 +168,14 @@ class EkmConnectionsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EkmConnections: ...
+
+@typing.type_check_only
+class EmptyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Empty: ...
 
 @typing.type_check_only
 class ListAccessApprovalRequestsResponseHttpRequest(googleapiclient.http.HttpRequest):

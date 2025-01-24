@@ -243,6 +243,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def export(
+                    self,
+                    *,
+                    name: str,
+                    body: ExportClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,

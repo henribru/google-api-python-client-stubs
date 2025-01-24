@@ -269,6 +269,7 @@ class DnsZonePair(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
+    additionalIamInfo: str
     documentationRootUrl: str
     overview: str
     pages: _list[Page]
@@ -326,6 +327,7 @@ class EnumValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
 
 @typing.type_check_only
@@ -380,6 +382,7 @@ class GetDnsZoneResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudServicenetworkingV1ConsumerConfigReservedRange(

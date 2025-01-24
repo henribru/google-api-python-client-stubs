@@ -327,6 +327,13 @@ class CommonCriteriaModeInfo(typing_extensions.TypedDict, total=False):
         "COMMON_CRITERIA_MODE_DISABLED",
         "COMMON_CRITERIA_MODE_ENABLED",
     ]
+    policySignatureVerificationStatus: typing_extensions.Literal[
+        "POLICY_SIGNATURE_VERIFICATION_STATUS_UNSPECIFIED",
+        "POLICY_SIGNATURE_VERIFICATION_DISABLED",
+        "POLICY_SIGNATURE_VERIFICATION_SUCCEEDED",
+        "POLICY_SIGNATURE_VERIFICATION_NOT_SUPPORTED",
+        "POLICY_SIGNATURE_VERIFICATION_FAILED",
+    ]
 
 @typing.type_check_only
 class ComplianceRule(typing_extensions.TypedDict, total=False):
@@ -477,6 +484,7 @@ class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
     wifiDirectSettings: typing_extensions.Literal[
         "WIFI_DIRECT_SETTINGS_UNSPECIFIED", "ALLOW_WIFI_DIRECT", "DISALLOW_WIFI_DIRECT"
     ]
+    wifiRoamingPolicy: WifiRoamingPolicy
     wifiSsidPolicy: WifiSsidPolicy
 
 @typing.type_check_only
@@ -1085,6 +1093,11 @@ class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
     personalPlayStoreMode: typing_extensions.Literal[
         "PLAY_STORE_MODE_UNSPECIFIED", "BLACKLIST", "BLOCKLIST", "ALLOWLIST"
     ]
+    privateSpacePolicy: typing_extensions.Literal[
+        "PRIVATE_SPACE_POLICY_UNSPECIFIED",
+        "PRIVATE_SPACE_ALLOWED",
+        "PRIVATE_SPACE_DISALLOWED",
+    ]
     screenCaptureDisabled: bool
 
 @typing.type_check_only
@@ -1602,6 +1615,20 @@ class WebToken(typing_extensions.TypedDict, total=False):
         typing_extensions.Literal["WEB_TOKEN_PERMISSION_UNSPECIFIED", "APPROVE_APPS"]
     ]
     value: str
+
+@typing.type_check_only
+class WifiRoamingPolicy(typing_extensions.TypedDict, total=False):
+    wifiRoamingSettings: _list[WifiRoamingSetting]
+
+@typing.type_check_only
+class WifiRoamingSetting(typing_extensions.TypedDict, total=False):
+    wifiRoamingMode: typing_extensions.Literal[
+        "WIFI_ROAMING_MODE_UNSPECIFIED",
+        "WIFI_ROAMING_DISABLED",
+        "WIFI_ROAMING_DEFAULT",
+        "WIFI_ROAMING_AGGRESSIVE",
+    ]
+    wifiSsid: str
 
 @typing.type_check_only
 class WifiSsid(typing_extensions.TypedDict, total=False):

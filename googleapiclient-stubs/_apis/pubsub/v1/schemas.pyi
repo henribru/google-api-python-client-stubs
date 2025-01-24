@@ -19,6 +19,9 @@ class AvroConfig(typing_extensions.TypedDict, total=False):
     writeMetadata: bool
 
 @typing.type_check_only
+class AvroFormat(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsKinesis(typing_extensions.TypedDict, total=False):
     awsRoleArn: str
     consumerArn: str
@@ -32,6 +35,41 @@ class AwsKinesis(typing_extensions.TypedDict, total=False):
         "CONSUMER_NOT_FOUND",
     ]
     streamArn: str
+
+@typing.type_check_only
+class AwsMsk(typing_extensions.TypedDict, total=False):
+    awsRoleArn: str
+    clusterArn: str
+    gcpServiceAccount: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "MSK_PERMISSION_DENIED",
+        "PUBLISH_PERMISSION_DENIED",
+        "CLUSTER_NOT_FOUND",
+        "TOPIC_NOT_FOUND",
+    ]
+    topic: str
+
+@typing.type_check_only
+class AzureEventHubs(typing_extensions.TypedDict, total=False):
+    clientId: str
+    eventHub: str
+    gcpServiceAccount: str
+    namespace: str
+    resourceGroup: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "EVENT_HUBS_PERMISSION_DENIED",
+        "PUBLISH_PERMISSION_DENIED",
+        "NAMESPACE_NOT_FOUND",
+        "EVENT_HUB_NOT_FOUND",
+        "SUBSCRIPTION_NOT_FOUND",
+        "RESOURCE_GROUP_NOT_FOUND",
+    ]
+    subscriptionId: str
+    tenantId: str
 
 @typing.type_check_only
 class BigQueryConfig(typing_extensions.TypedDict, total=False):
@@ -57,6 +95,23 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CloudStorage(typing_extensions.TypedDict, total=False):
+    avroFormat: AvroFormat
+    bucket: str
+    matchGlob: str
+    minimumObjectCreateTime: str
+    pubsubAvroFormat: PubSubAvroFormat
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CLOUD_STORAGE_PERMISSION_DENIED",
+        "PUBLISH_PERMISSION_DENIED",
+        "BUCKET_NOT_FOUND",
+        "TOO_MANY_OBJECTS",
+    ]
+    textFormat: TextFormat
+
+@typing.type_check_only
 class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     avroConfig: AvroConfig
     bucket: str
@@ -80,6 +135,23 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CommitSchemaRequest(typing_extensions.TypedDict, total=False):
     schema: Schema
+
+@typing.type_check_only
+class ConfluentCloud(typing_extensions.TypedDict, total=False):
+    bootstrapServer: str
+    clusterId: str
+    gcpServiceAccount: str
+    identityPoolId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CONFLUENT_CLOUD_PERMISSION_DENIED",
+        "PUBLISH_PERMISSION_DENIED",
+        "UNREACHABLE_BOOTSTRAP_SERVER",
+        "CLUSTER_NOT_FOUND",
+        "TOPIC_NOT_FOUND",
+    ]
+    topic: str
 
 @typing.type_check_only
 class CreateSnapshotRequest(typing_extensions.TypedDict, total=False):
@@ -111,6 +183,11 @@ class Expr(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class IngestionDataSourceSettings(typing_extensions.TypedDict, total=False):
     awsKinesis: AwsKinesis
+    awsMsk: AwsMsk
+    azureEventHubs: AzureEventHubs
+    cloudStorage: CloudStorage
+    confluentCloud: ConfluentCloud
+    platformLogsSettings: PlatformLogsSettings
 
 @typing.type_check_only
 class ListSchemaRevisionsResponse(typing_extensions.TypedDict, total=False):
@@ -171,10 +248,19 @@ class OidcToken(typing_extensions.TypedDict, total=False):
     serviceAccountEmail: str
 
 @typing.type_check_only
+class PlatformLogsSettings(typing_extensions.TypedDict, total=False):
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "DISABLED", "DEBUG", "INFO", "WARNING", "ERROR"
+    ]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PubSubAvroFormat(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class PublishRequest(typing_extensions.TypedDict, total=False):
@@ -293,6 +379,10 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TextConfig(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TextFormat(typing_extensions.TypedDict, total=False):
+    delimiter: str
 
 @typing.type_check_only
 class Topic(typing_extensions.TypedDict, total=False):

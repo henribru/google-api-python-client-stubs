@@ -108,8 +108,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 languageCode: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
-                timeZone_id: str = ...,
-                timeZone_version: str = ...,
+                timeZone: str = ...,
                 **kwargs: typing.Any,
             ) -> ListAccountIssuesResponseHttpRequest: ...
             def list_next(
@@ -261,7 +260,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
         def createAndConfigure(
             self, *, body: CreateAndConfigureAccountRequest = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
-        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def delete(
+            self, *, name: str, force: bool = ..., **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
         def list(
             self,

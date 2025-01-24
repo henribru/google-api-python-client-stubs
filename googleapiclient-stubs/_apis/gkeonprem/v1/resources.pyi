@@ -430,6 +430,16 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                         previous_response: ListOperationsResponse,
                     ) -> ListOperationsResponseHttpRequest | None: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: VmwareAdminCluster = ...,
+                    allowPreflightFailure: bool = ...,
+                    validateOnly: bool = ...,
+                    vmwareAdminClusterId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def enroll(
                     self,
                     *,

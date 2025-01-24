@@ -101,6 +101,7 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
         ]
     ]
     referenceDocsUri: str
+    selectiveGapicGeneration: SelectiveGapicGeneration
 
 @typing.type_check_only
 class Context(typing_extensions.TypedDict, total=False):
@@ -140,6 +141,7 @@ class CustomHttpPattern(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
+    additionalIamInfo: str
     documentationRootUrl: str
     overview: str
     pages: _list[Page]
@@ -193,6 +195,7 @@ class EnumValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
 
 @typing.type_check_only
@@ -242,6 +245,7 @@ class FieldPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
@@ -503,6 +507,10 @@ class RubySettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
 
 @typing.type_check_only
+class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+    methods: _list[str]
+
+@typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     apis: _list[Api]
     authentication: Authentication
@@ -643,6 +651,7 @@ class V1Beta1ImportProducerQuotaPoliciesRequest(
 ):
     force: bool
     forceJustification: str
+    forceSkipQuotaUsageCheck: bool
     inlineSource: V1Beta1PolicyInlineSource
     validateOnly: bool
 

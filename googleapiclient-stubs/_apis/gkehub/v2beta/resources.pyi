@@ -18,6 +18,53 @@ class GKEHubResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class MembershipsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class FeaturesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: MembershipFeature = ...,
+                        featureId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MembershipFeatureHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMembershipFeaturesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMembershipFeaturesResponseHttpRequest,
+                        previous_response: ListMembershipFeaturesResponse,
+                    ) -> ListMembershipFeaturesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: MembershipFeature = ...,
+                        allowMissing: bool = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                def features(self) -> FeaturesResource: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -61,6 +108,7 @@ class GKEHubResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def memberships(self) -> MembershipsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -96,6 +144,14 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
+class ListMembershipFeaturesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMembershipFeaturesResponse: ...
+
+@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -110,6 +166,14 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class MembershipFeatureHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MembershipFeature: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

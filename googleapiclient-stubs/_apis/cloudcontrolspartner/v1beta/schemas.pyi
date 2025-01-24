@@ -41,6 +41,7 @@ class Customer(typing_extensions.TypedDict, total=False):
     displayName: str
     isOnboarded: bool
     name: str
+    organizationDomain: str
 
 @typing.type_check_only
 class CustomerOnboardingState(typing_extensions.TypedDict, total=False):
@@ -84,6 +85,9 @@ class EkmMetadata(typing_extensions.TypedDict, total=False):
     ekmSolution: typing_extensions.Literal[
         "EKM_SOLUTION_UNSPECIFIED", "FORTANIX", "FUTUREX", "THALES", "VIRTRU"
     ]
+
+@typing.type_check_only
+class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Gcloud(typing_extensions.TypedDict, total=False):

@@ -5,10 +5,20 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccessDeterminationLogConfig(typing_extensions.TypedDict, total=False):
+    logLevel: typing_extensions.Literal[
+        "LOG_LEVEL_UNSPECIFIED", "DISABLED", "MINIMUM", "VERBOSE"
+    ]
+
+@typing.type_check_only
 class ActivateConsentRequest(typing_extensions.TypedDict, total=False):
     consentArtifact: str
     expireTime: str
     ttl: str
+
+@typing.type_check_only
+class AdminConsents(typing_extensions.TypedDict, total=False):
+    names: _list[str]
 
 @typing.type_check_only
 class AnalyzeEntitiesRequest(typing_extensions.TypedDict, total=False):
@@ -28,6 +38,35 @@ class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
     entityMentions: _list[EntityMention]
     fhirBundle: str
     relationships: _list[EntityMentionRelationship]
+
+@typing.type_check_only
+class ApplyAdminConsentsErrorDetail(typing_extensions.TypedDict, total=False):
+    consentErrors: _list[ConsentErrors]
+    existingOperationId: str
+
+@typing.type_check_only
+class ApplyAdminConsentsRequest(typing_extensions.TypedDict, total=False):
+    newConsentsList: AdminConsents
+    validateOnly: bool
+
+@typing.type_check_only
+class ApplyAdminConsentsResponse(typing_extensions.TypedDict, total=False):
+    affectedResources: str
+    consentApplySuccess: str
+    failedResources: str
+
+@typing.type_check_only
+class ApplyConsentsRequest(typing_extensions.TypedDict, total=False):
+    patientScope: PatientScope
+    timeRange: TimeRange
+    validateOnly: bool
+
+@typing.type_check_only
+class ApplyConsentsResponse(typing_extensions.TypedDict, total=False):
+    affectedResources: str
+    consentApplyFailure: str
+    consentApplySuccess: str
+    failedResources: str
 
 @typing.type_check_only
 class ArchiveUserDataMappingRequest(typing_extensions.TypedDict, total=False): ...
@@ -118,6 +157,12 @@ class Consent(typing_extensions.TypedDict, total=False):
     userId: str
 
 @typing.type_check_only
+class ConsentAccessorScope(typing_extensions.TypedDict, total=False):
+    actor: str
+    environment: str
+    purpose: str
+
+@typing.type_check_only
 class ConsentArtifact(typing_extensions.TypedDict, total=False):
     consentContentScreenshots: _list[Image]
     consentContentVersion: str
@@ -129,6 +174,19 @@ class ConsentArtifact(typing_extensions.TypedDict, total=False):
     witnessSignature: Signature
 
 @typing.type_check_only
+class ConsentConfig(typing_extensions.TypedDict, total=False):
+    accessDeterminationLogConfig: AccessDeterminationLogConfig
+    accessEnforced: bool
+    consentHeaderHandling: ConsentHeaderHandling
+    enforcedAdminConsents: _list[str]
+    version: typing_extensions.Literal["CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED", "V1"]
+
+@typing.type_check_only
+class ConsentErrors(typing_extensions.TypedDict, total=False):
+    error: Status
+    name: str
+
+@typing.type_check_only
 class ConsentEvaluation(typing_extensions.TypedDict, total=False):
     evaluationResult: typing_extensions.Literal[
         "EVALUATION_RESULT_UNSPECIFIED",
@@ -136,6 +194,12 @@ class ConsentEvaluation(typing_extensions.TypedDict, total=False):
         "NO_MATCHING_POLICY",
         "NO_SATISFIED_POLICY",
         "HAS_SATISFIED_POLICY",
+    ]
+
+@typing.type_check_only
+class ConsentHeaderHandling(typing_extensions.TypedDict, total=False):
+    profile: typing_extensions.Literal[
+        "SCOPE_PROFILE_UNSPECIFIED", "PERMIT_EMPTY_SCOPE", "REQUIRED_ON_READ"
     ]
 
 @typing.type_check_only
@@ -287,6 +351,42 @@ class EvaluateUserConsentsResponse(typing_extensions.TypedDict, total=False):
     results: _list[Result]
 
 @typing.type_check_only
+class ExplainDataAccessConsentInfo(typing_extensions.TypedDict, total=False):
+    cascadeOrigins: _list[str]
+    consentResource: str
+    enforcementTime: str
+    matchingAccessorScopes: _list[ConsentAccessorScope]
+    patientConsentOwner: str
+    type: typing_extensions.Literal[
+        "CONSENT_POLICY_TYPE_UNSPECIFIED",
+        "CONSENT_POLICY_TYPE_PATIENT",
+        "CONSENT_POLICY_TYPE_ADMIN",
+    ]
+    variants: _list[
+        typing_extensions.Literal[
+            "CONSENT_VARIANT_UNSPECIFIED",
+            "CONSENT_VARIANT_STANDARD",
+            "CONSENT_VARIANT_CASCADE",
+        ]
+    ]
+
+@typing.type_check_only
+class ExplainDataAccessConsentScope(typing_extensions.TypedDict, total=False):
+    accessorScope: ConsentAccessorScope
+    decision: typing_extensions.Literal[
+        "CONSENT_DECISION_TYPE_UNSPECIFIED",
+        "CONSENT_DECISION_TYPE_PERMIT",
+        "CONSENT_DECISION_TYPE_DENY",
+    ]
+    enforcingConsents: _list[ExplainDataAccessConsentInfo]
+    exceptions: _list[ExplainDataAccessConsentScope]
+
+@typing.type_check_only
+class ExplainDataAccessResponse(typing_extensions.TypedDict, total=False):
+    consentScopes: _list[ExplainDataAccessConsentScope]
+    warning: str
+
+@typing.type_check_only
 class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
     bigqueryDestination: GoogleCloudHealthcareV1DicomBigQueryDestination
     gcsDestination: GoogleCloudHealthcareV1DicomGcsDestination
@@ -347,6 +447,7 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     complexDataTypeReferenceParsing: typing_extensions.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
+    consentConfig: ConsentConfig
     defaultSearchHandlingStrict: bool
     disableReferentialIntegrity: bool
     disableResourceVersioning: bool
@@ -713,6 +814,10 @@ class PatientId(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class PatientScope(typing_extensions.TypedDict, total=False):
+    patientIds: _list[str]
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -940,6 +1045,11 @@ class TimePartitioning(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "PARTITION_TYPE_UNSPECIFIED", "HOUR", "DAY", "MONTH", "YEAR"
     ]
+
+@typing.type_check_only
+class TimeRange(typing_extensions.TypedDict, total=False):
+    end: str
+    start: str
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):

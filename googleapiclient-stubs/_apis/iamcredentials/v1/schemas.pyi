@@ -26,6 +26,11 @@ class GenerateIdTokenResponse(typing_extensions.TypedDict, total=False):
     token: str
 
 @typing.type_check_only
+class ServiceAccountAllowedLocations(typing_extensions.TypedDict, total=False):
+    encodedLocations: str
+    locations: _list[str]
+
+@typing.type_check_only
 class SignBlobRequest(typing_extensions.TypedDict, total=False):
     delegates: _list[str]
     payload: str

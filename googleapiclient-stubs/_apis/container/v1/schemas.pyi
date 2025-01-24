@@ -42,6 +42,7 @@ class AddonsConfig(typing_extensions.TypedDict, total=False):
     httpLoadBalancing: HttpLoadBalancing
     kubernetesDashboard: KubernetesDashboard
     networkPolicyConfig: NetworkPolicyConfig
+    parallelstoreCsiDriverConfig: ParallelstoreCsiDriverConfig
     rayOperatorConfig: RayOperatorConfig
     statefulHaConfig: StatefulHAConfig
 
@@ -185,6 +186,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     compliancePostureConfig: CompliancePostureConfig
     conditions: _list[StatusCondition]
     confidentialNodes: ConfidentialNodes
+    controlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     costManagementConfig: CostManagementConfig
     createTime: str
     currentMasterVersion: str
@@ -254,6 +256,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     statusMessage: str
     subnetwork: str
     tpuIpv4CidrBlock: str
+    userManagedKeysConfig: UserManagedKeysConfig
     verticalPodAutoscaling: VerticalPodAutoscaling
     workloadIdentityConfig: WorkloadIdentityConfig
     zone: str
@@ -282,17 +285,21 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredClusterAutoscaling: ClusterAutoscaling
     desiredCompliancePostureConfig: CompliancePostureConfig
     desiredContainerdConfig: ContainerdConfig
+    desiredControlPlaneEndpointsConfig: ControlPlaneEndpointsConfig
     desiredCostManagementConfig: CostManagementConfig
     desiredDatabaseEncryption: DatabaseEncryption
     desiredDatapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
+    desiredDefaultEnablePrivateNodes: bool
     desiredDefaultSnatStatus: DefaultSnatStatus
+    desiredDisableL4LbFirewallReconciliation: bool
     desiredDnsConfig: DNSConfig
     desiredEnableCiliumClusterwideNetworkPolicy: bool
     desiredEnableFqdnNetworkPolicy: bool
     desiredEnableMultiNetworking: bool
     desiredEnablePrivateEndpoint: bool
+    desiredEnterpriseConfig: DesiredEnterpriseConfig
     desiredFleet: Fleet
     desiredGatewayApiConfig: GatewayAPIConfig
     desiredGcfsConfig: GcfsConfig
@@ -317,6 +324,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredNetworkPerformanceConfig: ClusterNetworkPerformanceConfig
     desiredNodeKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigKubeletConfig: NodeKubeletConfig
+    desiredNodePoolAutoConfigLinuxNodeConfig: LinuxNodeConfig
     desiredNodePoolAutoConfigNetworkTags: NetworkTags
     desiredNodePoolAutoConfigResourceManagerTags: ResourceManagerTags
     desiredNodePoolAutoscaling: NodePoolAutoscaling
@@ -347,6 +355,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     enableK8sBetaApis: K8sBetaAPIConfig
     etag: str
     removedAdditionalPodRangesConfig: AdditionalPodRangesConfig
+    userManagedKeysConfig: UserManagedKeysConfig
 
 @typing.type_check_only
 class CompleteIPRotationRequest(typing_extensions.TypedDict, total=False):
@@ -384,6 +393,11 @@ class ContainerdConfig(typing_extensions.TypedDict, total=False):
     privateRegistryAccessConfig: PrivateRegistryAccessConfig
 
 @typing.type_check_only
+class ControlPlaneEndpointsConfig(typing_extensions.TypedDict, total=False):
+    dnsEndpointConfig: DNSEndpointConfig
+    ipEndpointsConfig: IPEndpointsConfig
+
+@typing.type_check_only
 class CostManagementConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -414,6 +428,11 @@ class DNSConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DNSEndpointConfig(typing_extensions.TypedDict, total=False):
+    allowExternalTraffic: bool
+    endpoint: str
+
+@typing.type_check_only
 class DailyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     duration: str
     startTime: str
@@ -439,6 +458,12 @@ class DefaultSnatStatus(typing_extensions.TypedDict, total=False):
     disabled: bool
 
 @typing.type_check_only
+class DesiredEnterpriseConfig(typing_extensions.TypedDict, total=False):
+    desiredTier: typing_extensions.Literal[
+        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
+    ]
+
+@typing.type_check_only
 class DnsCacheConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -448,6 +473,9 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EnterpriseConfig(typing_extensions.TypedDict, total=False):
     clusterTier: typing_extensions.Literal[
+        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
+    ]
+    desiredTier: typing_extensions.Literal[
         "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
     ]
 
@@ -587,6 +615,16 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     useRoutes: bool
 
 @typing.type_check_only
+class IPEndpointsConfig(typing_extensions.TypedDict, total=False):
+    authorizedNetworksConfig: MasterAuthorizedNetworksConfig
+    enablePublicEndpoint: bool
+    enabled: bool
+    globalAccess: bool
+    privateEndpoint: str
+    privateEndpointSubnetwork: str
+    publicEndpoint: str
+
+@typing.type_check_only
 class IdentityServiceConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
@@ -659,6 +697,8 @@ class LoggingComponentConfig(typing_extensions.TypedDict, total=False):
             "APISERVER",
             "SCHEDULER",
             "CONTROLLER_MANAGER",
+            "KCP_SSHD",
+            "KCP_CONNECTION",
         ]
     ]
 
@@ -707,6 +747,7 @@ class MasterAuthorizedNetworksConfig(typing_extensions.TypedDict, total=False):
     cidrBlocks: _list[CidrBlock]
     enabled: bool
     gcpPublicCidrsAccessEnabled: bool
+    privateEndpointEnforcementEnabled: bool
 
 @typing.type_check_only
 class MaxPodsConstraint(typing_extensions.TypedDict, total=False):
@@ -755,7 +796,9 @@ class NetworkConfig(typing_extensions.TypedDict, total=False):
     datapathProvider: typing_extensions.Literal[
         "DATAPATH_PROVIDER_UNSPECIFIED", "LEGACY_DATAPATH", "ADVANCED_DATAPATH"
     ]
+    defaultEnablePrivateNodes: bool
     defaultSnatStatus: DefaultSnatStatus
+    disableL4LbFirewallReconciliation: bool
     dnsConfig: DNSConfig
     enableCiliumClusterwideNetworkPolicy: bool
     enableFqdnNetworkPolicy: bool
@@ -811,6 +854,11 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     containerdConfig: ContainerdConfig
     diskSizeGb: int
     diskType: str
+    effectiveCgroupMode: typing_extensions.Literal[
+        "EFFECTIVE_CGROUP_MODE_UNSPECIFIED",
+        "EFFECTIVE_CGROUP_MODE_V1",
+        "EFFECTIVE_CGROUP_MODE_V2",
+    ]
     enableConfidentialStorage: bool
     ephemeralStorageLocalSsdConfig: EphemeralStorageLocalSsdConfig
     fastSocket: FastSocket
@@ -822,8 +870,14 @@ class NodeConfig(typing_extensions.TypedDict, total=False):
     linuxNodeConfig: LinuxNodeConfig
     localNvmeSsdBlockConfig: LocalNvmeSsdBlockConfig
     localSsdCount: int
+    localSsdEncryptionMode: typing_extensions.Literal[
+        "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED",
+        "STANDARD_ENCRYPTION",
+        "EPHEMERAL_KEY_ENCRYPTION",
+    ]
     loggingConfig: NodePoolLoggingConfig
     machineType: str
+    maxRunDuration: str
     metadata: dict[str, typing.Any]
     minCpuPlatform: str
     nodeGroup: str
@@ -916,6 +970,7 @@ class NodePool(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NodePoolAutoConfig(typing_extensions.TypedDict, total=False):
+    linuxNodeConfig: LinuxNodeConfig
     networkTags: NetworkTags
     nodeKubeletConfig: NodeKubeletConfig
     resourceManagerTags: ResourceManagerTags
@@ -1012,6 +1067,10 @@ class OperationProgress(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ParallelstoreCsiDriverConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class ParentProductConfig(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     productName: str
@@ -1097,6 +1156,7 @@ class ReleaseChannelConfig(typing_extensions.TypedDict, total=False):
         "UNSPECIFIED", "RAPID", "REGULAR", "STABLE", "EXTENDED"
     ]
     defaultVersion: str
+    upgradeTargetVersion: str
     validVersions: _list[str]
 
 @typing.type_check_only
@@ -1407,6 +1467,7 @@ class UpdateNodePoolRequest(typing_extensions.TypedDict, total=False):
     locations: _list[str]
     loggingConfig: NodePoolLoggingConfig
     machineType: str
+    maxRunDuration: str
     name: str
     nodeNetworkConfig: NodeNetworkConfig
     nodePoolId: str
@@ -1444,6 +1505,25 @@ class UpgradeEvent(typing_extensions.TypedDict, total=False):
     targetVersion: str
 
 @typing.type_check_only
+class UpgradeInfoEvent(typing_extensions.TypedDict, total=False):
+    currentVersion: str
+    description: str
+    endTime: str
+    eventType: typing_extensions.Literal["EVENT_TYPE_UNSPECIFIED", "END_OF_SUPPORT"]
+    extendedSupportEndTime: str
+    operation: str
+    resource: str
+    resourceType: typing_extensions.Literal[
+        "UPGRADE_RESOURCE_TYPE_UNSPECIFIED", "MASTER", "NODE_POOL"
+    ]
+    standardSupportEndTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELED"
+    ]
+    targetVersion: str
+
+@typing.type_check_only
 class UpgradeSettings(typing_extensions.TypedDict, total=False):
     blueGreenSettings: BlueGreenSettings
     maxSurge: int
@@ -1471,6 +1551,17 @@ class UsableSubnetworkSecondaryRange(typing_extensions.TypedDict, total=False):
         "IN_USE_SHAREABLE_POD",
         "IN_USE_MANAGED_POD",
     ]
+
+@typing.type_check_only
+class UserManagedKeysConfig(typing_extensions.TypedDict, total=False):
+    aggregationCa: str
+    clusterCa: str
+    controlPlaneDiskEncryptionKey: str
+    etcdApiCa: str
+    etcdPeerCa: str
+    gkeopsEtcdBackupEncryptionKey: str
+    serviceAccountSigningKeys: _list[str]
+    serviceAccountVerificationKeys: _list[str]
 
 @typing.type_check_only
 class VerticalPodAutoscaling(typing_extensions.TypedDict, total=False):

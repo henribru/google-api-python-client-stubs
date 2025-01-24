@@ -114,6 +114,18 @@ class GoogleCloudRetailV2Audience(typing_extensions.TypedDict, total=False):
     genders: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2BatchUpdateGenerativeQuestionConfigsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[GoogleCloudRetailV2UpdateGenerativeQuestionConfigRequest]
+
+@typing.type_check_only
+class GoogleCloudRetailV2BatchUpdateGenerativeQuestionConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    generativeQuestionConfigs: _list[GoogleCloudRetailV2GenerativeQuestionConfig]
+
+@typing.type_check_only
 class GoogleCloudRetailV2BigQueryOutputResult(typing_extensions.TypedDict, total=False):
     datasetId: str
     tableId: str
@@ -200,6 +212,16 @@ class GoogleCloudRetailV2CatalogAttributeFacetConfigRerankConfig(
 ):
     facetValues: _list[str]
     rerankFacet: bool
+
+@typing.type_check_only
+class GoogleCloudRetailV2CollectUserEventRequest(
+    typing_extensions.TypedDict, total=False
+):
+    ets: str
+    prebuiltRule: str
+    rawJson: str
+    uri: str
+    userEvent: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2ColorInfo(typing_extensions.TypedDict, total=False):
@@ -361,6 +383,26 @@ class GoogleCloudRetailV2GcsSource(typing_extensions.TypedDict, total=False):
     inputUris: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2GenerativeQuestionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowedInConversation: bool
+    catalog: str
+    exampleValues: _list[str]
+    facet: str
+    finalQuestion: str
+    frequency: float
+    generatedQuestion: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2GenerativeQuestionsFeatureConfig(
+    typing_extensions.TypedDict, total=False
+):
+    catalog: str
+    featureEnabled: bool
+    minimumProducts: int
+
+@typing.type_check_only
 class GoogleCloudRetailV2GetDefaultBranchResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -453,6 +495,12 @@ class GoogleCloudRetailV2ListControlsResponse(typing_extensions.TypedDict, total
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudRetailV2ListGenerativeQuestionConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    generativeQuestionConfigs: _list[GoogleCloudRetailV2GenerativeQuestionConfig]
+
+@typing.type_check_only
 class GoogleCloudRetailV2ListModelsResponse(typing_extensions.TypedDict, total=False):
     models: _list[GoogleCloudRetailV2Model]
     nextPageToken: str
@@ -472,6 +520,9 @@ class GoogleCloudRetailV2ListServingConfigsResponse(
 @typing.type_check_only
 class GoogleCloudRetailV2LocalInventory(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
+    ]
     fulfillmentTypes: _list[str]
     placeId: str
     priceInfo: GoogleCloudRetailV2PriceInfo
@@ -561,6 +612,17 @@ class GoogleCloudRetailV2OutputResult(typing_extensions.TypedDict, total=False):
 class GoogleCloudRetailV2PauseModelRequest(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2PinControlMetadata(typing_extensions.TypedDict, total=False):
+    allMatchedPins: dict[str, typing.Any]
+    droppedPins: dict[str, typing.Any]
+
+@typing.type_check_only
+class GoogleCloudRetailV2PinControlMetadataProductPins(
+    typing_extensions.TypedDict, total=False
+):
+    productId: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2PredictRequest(typing_extensions.TypedDict, total=False):
@@ -818,6 +880,7 @@ class GoogleCloudRetailV2Rule(typing_extensions.TypedDict, total=False):
     forceReturnFacetAction: GoogleCloudRetailV2RuleForceReturnFacetAction
     ignoreAction: GoogleCloudRetailV2RuleIgnoreAction
     onewaySynonymsAction: GoogleCloudRetailV2RuleOnewaySynonymsAction
+    pinAction: GoogleCloudRetailV2RulePinAction
     redirectAction: GoogleCloudRetailV2RuleRedirectAction
     removeFacetAction: GoogleCloudRetailV2RuleRemoveFacetAction
     replacementAction: GoogleCloudRetailV2RuleReplacementAction
@@ -866,6 +929,10 @@ class GoogleCloudRetailV2RuleOnewaySynonymsAction(
     onewayTerms: _list[str]
     queryTerms: _list[str]
     synonyms: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2RulePinAction(typing_extensions.TypedDict, total=False):
+    pinMap: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudRetailV2RuleRedirectAction(typing_extensions.TypedDict, total=False):
@@ -1028,6 +1095,7 @@ class GoogleCloudRetailV2SearchResponse(typing_extensions.TypedDict, total=False
         GoogleCloudRetailV2SearchRequestBoostSpecConditionBoostSpec
     ]
     nextPageToken: str
+    pinControlMetadata: GoogleCloudRetailV2PinControlMetadata
     queryExpansionInfo: GoogleCloudRetailV2SearchResponseQueryExpansionInfo
     redirectUri: str
     results: _list[GoogleCloudRetailV2SearchResponseSearchResult]
@@ -1176,6 +1244,13 @@ class GoogleCloudRetailV2TuneModelRequest(typing_extensions.TypedDict, total=Fal
 class GoogleCloudRetailV2TuneModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2UpdateGenerativeQuestionConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    generativeQuestionConfig: GoogleCloudRetailV2GenerativeQuestionConfig
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudRetailV2UserEvent(typing_extensions.TypedDict, total=False):

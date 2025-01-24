@@ -254,6 +254,7 @@ class PoliciesUpdateResponse(typing_extensions.TypedDict, total=False):
 class Policy(typing_extensions.TypedDict, total=False):
     alternativeNameServerConfig: PolicyAlternativeNameServerConfig
     description: str
+    dns64Config: PolicyDns64Config
     enableInboundForwarding: bool
     enableLogging: bool
     id: str
@@ -273,6 +274,16 @@ class PolicyAlternativeNameServerConfigTargetNameServer(
     forwardingPath: typing_extensions.Literal["default", "private"]
     ipv4Address: str
     ipv6Address: str
+    kind: str
+
+@typing.type_check_only
+class PolicyDns64Config(typing_extensions.TypedDict, total=False):
+    kind: str
+    scope: PolicyDns64ConfigScope
+
+@typing.type_check_only
+class PolicyDns64ConfigScope(typing_extensions.TypedDict, total=False):
+    allQueries: bool
     kind: str
 
 @typing.type_check_only

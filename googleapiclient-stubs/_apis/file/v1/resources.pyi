@@ -83,6 +83,7 @@ class CloudFilestoreResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListSnapshotsResponseHttpRequest: ...
                     def list_next(

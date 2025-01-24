@@ -787,7 +787,8 @@ class VmwareAdminManualLbConfig(typing_extensions.TypedDict, total=False):
     konnectivityServerNodePort: int
 
 @typing.type_check_only
-class VmwareAdminMetalLbConfig(typing_extensions.TypedDict, total=False): ...
+class VmwareAdminMetalLbConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class VmwareAdminNetworkConfig(typing_extensions.TypedDict, total=False):

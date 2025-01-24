@@ -42,6 +42,8 @@ class Authority(typing_extensions.TypedDict, total=False):
     identityProvider: str
     issuer: str
     oidcJwks: str
+    scopeTenancyIdentityProvider: str
+    scopeTenancyWorkloadIdentityPool: str
     workloadIdentityPool: str
 
 @typing.type_check_only
@@ -184,13 +186,13 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
-    allowVerticalScale: bool
     enabled: bool
     git: ConfigManagementGitConfig
     metricsGcpServiceAccountEmail: str
     oci: ConfigManagementOciConfig
     preventDrift: bool
     sourceFormat: str
+    stopSyncing: bool
 
 @typing.type_check_only
 class ConfigManagementConfigSyncDeploymentState(
@@ -230,6 +232,10 @@ class ConfigManagementConfigSyncError(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSyncState(typing_extensions.TypedDict, total=False):
+    clusterLevelStopSyncingState: typing_extensions.Literal[
+        "STOP_SYNCING_STATE_UNSPECIFIED", "NOT_STOPPED", "PENDING", "STOPPED"
+    ]
+    crCount: int
     deploymentState: ConfigManagementConfigSyncDeploymentState
     errors: _list[ConfigManagementConfigSyncError]
     reposyncCrd: typing_extensions.Literal[
@@ -797,6 +803,9 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
     authority: Authority
+    clusterTier: typing_extensions.Literal[
+        "CLUSTER_TIER_UNSPECIFIED", "STANDARD", "ENTERPRISE"
+    ]
     createTime: str
     deleteTime: str
     description: str
@@ -1167,6 +1176,8 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "CLUSTER_HAS_ZERO_NODES",
         "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
         "VPCSC_GA_SUPPORTED",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
         "CONFIG_APPLY_INTERNAL_ERROR",
         "CONFIG_VALIDATION_ERROR",
         "CONFIG_VALIDATION_WARNING",
@@ -1185,6 +1196,10 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "MODERNIZATION_SCHEDULED",
+        "MODERNIZATION_IN_PROGRESS",
+        "MODERNIZATION_COMPLETED",
+        "MODERNIZATION_ABORTED",
     ]
     details: str
     documentationLink: str
@@ -1225,6 +1240,9 @@ class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
+    configApi: typing_extensions.Literal[
+        "CONFIG_API_UNSPECIFIED", "CONFIG_API_ISTIO", "CONFIG_API_GATEWAY"
+    ]
     controlPlane: typing_extensions.Literal[
         "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]

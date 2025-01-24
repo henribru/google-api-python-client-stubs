@@ -28,6 +28,14 @@ class CssResource(googleapiclient.discovery.Resource):
                 feedId: str = ...,
                 **kwargs: typing.Any,
             ) -> CssProductInputHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: CssProductInput = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> CssProductInputHttpRequest: ...
 
         @typing.type_check_only
         class CssProductsResource(googleapiclient.discovery.Resource):

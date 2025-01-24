@@ -55,6 +55,7 @@ class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
     condition: GoogleTypeExpr
     denyAll: bool
     enforce: bool
+    parameters: dict[str, typing.Any]
     values: GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues
 
 @typing.type_check_only

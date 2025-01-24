@@ -65,6 +65,7 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
+        "CANADA_CONTROLLED_GOODS",
     ]
     createTime: str
     displayName: str
@@ -238,6 +239,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
+        "CANADA_CONTROLLED_GOODS",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
@@ -273,6 +275,7 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
     resources: _list[GoogleCloudAssuredworkloadsV1WorkloadResourceInfo]
     saaEnrollmentResponse: GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse
     violationNotificationsEnabled: bool
+    workloadOptions: GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus(
@@ -366,6 +369,14 @@ class GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse(
     ]
     setupStatus: typing_extensions.Literal[
         "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions(
+    typing_extensions.TypedDict, total=False
+):
+    kajEnrollmentType: typing_extensions.Literal[
+        "KAJ_ENROLLMENT_TYPE_UNSPECIFIED", "KEY_ACCESS_TRANSPARENCY_OFF"
     ]
 
 @typing.type_check_only

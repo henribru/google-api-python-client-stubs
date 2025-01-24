@@ -49,6 +49,14 @@ class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
 class BigQueryProfile(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class BinaryLogParser(typing_extensions.TypedDict, total=False):
+    logFileDirectories: LogFileDirectories
+    oracleAsmLogFileAccess: OracleAsmLogFileAccess
+
+@typing.type_check_only
+class BinaryLogPosition(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -145,6 +153,9 @@ class GcsProfile(typing_extensions.TypedDict, total=False):
     rootPath: str
 
 @typing.type_check_only
+class Gtid(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class JsonFileFormat(typing_extensions.TypedDict, total=False):
     compression: typing_extensions.Literal[
         "JSON_COMPRESSION_UNSPECIFIED", "NO_COMPRESSION", "GZIP"
@@ -201,6 +212,14 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class LogFileDirectories(typing_extensions.TypedDict, total=False):
+    archivedLogDirectory: str
+    onlineLogDirectory: str
+
+@typing.type_check_only
+class LogMiner(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
     sourceObjectIdentifier: SourceObjectIdentifier
 
@@ -251,7 +270,9 @@ class MysqlRdbms(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MysqlSourceConfig(typing_extensions.TypedDict, total=False):
+    binaryLogPosition: BinaryLogPosition
     excludeObjects: MysqlRdbms
+    gtid: Gtid
     includeObjects: MysqlRdbms
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
@@ -293,6 +314,19 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class OracleAsmConfig(typing_extensions.TypedDict, total=False):
+    asmService: str
+    connectionAttributes: dict[str, typing.Any]
+    hostname: str
+    oracleSslConfig: OracleSslConfig
+    password: str
+    port: int
+    username: str
+
+@typing.type_check_only
+class OracleAsmLogFileAccess(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class OracleColumn(typing_extensions.TypedDict, total=False):
     column: str
     dataType: str
@@ -314,9 +348,11 @@ class OracleProfile(typing_extensions.TypedDict, total=False):
     connectionAttributes: dict[str, typing.Any]
     databaseService: str
     hostname: str
+    oracleAsmConfig: OracleAsmConfig
     oracleSslConfig: OracleSslConfig
     password: str
     port: int
+    secretManagerStoredPassword: str
     username: str
 
 @typing.type_check_only
@@ -334,9 +370,11 @@ class OracleScnPosition(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+    binaryLogParser: BinaryLogParser
     dropLargeObjects: DropLargeObjects
     excludeObjects: OracleRdbms
     includeObjects: OracleRdbms
+    logMiner: LogMiner
     maxConcurrentBackfillTasks: int
     maxConcurrentCdcTasks: int
     streamLargeObjects: StreamLargeObjects
@@ -373,6 +411,7 @@ class PostgresqlProfile(typing_extensions.TypedDict, total=False):
     hostname: str
     password: str
     port: int
+    sslConfig: PostgresqlSslConfig
     username: str
 
 @typing.type_check_only
@@ -391,6 +430,11 @@ class PostgresqlSourceConfig(typing_extensions.TypedDict, total=False):
     maxConcurrentBackfillTasks: int
     publication: str
     replicationSlot: str
+
+@typing.type_check_only
+class PostgresqlSslConfig(typing_extensions.TypedDict, total=False):
+    serverAndClientVerification: ServerAndClientVerification
+    serverVerification: ServerVerification
 
 @typing.type_check_only
 class PostgresqlTable(typing_extensions.TypedDict, total=False):
@@ -435,6 +479,16 @@ class RunStreamRequest(typing_extensions.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
+class ServerAndClientVerification(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+    clientCertificate: str
+    clientKey: str
+
+@typing.type_check_only
+class ServerVerification(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+
+@typing.type_check_only
 class SingleTargetDataset(typing_extensions.TypedDict, total=False):
     datasetId: str
 
@@ -461,6 +515,7 @@ class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
     mysqlLogPosition: MysqlLogPosition
     oracleScnPosition: OracleScnPosition
+    sqlServerLsnPosition: SqlServerLsnPosition
 
 @typing.type_check_only
 class SqlServerChangeTables(typing_extensions.TypedDict, total=False): ...
@@ -475,6 +530,10 @@ class SqlServerColumn(typing_extensions.TypedDict, total=False):
     precision: int
     primaryKey: bool
     scale: int
+
+@typing.type_check_only
+class SqlServerLsnPosition(typing_extensions.TypedDict, total=False):
+    lsn: str
 
 @typing.type_check_only
 class SqlServerObjectIdentifier(typing_extensions.TypedDict, total=False):

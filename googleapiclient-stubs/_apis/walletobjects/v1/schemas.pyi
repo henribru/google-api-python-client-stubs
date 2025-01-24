@@ -30,6 +30,7 @@ class AirportInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AppLinkData(typing_extensions.TypedDict, total=False):
     androidAppLinkInfo: AppLinkDataAppLinkInfo
+    displayText: LocalizedString
     iosAppLinkInfo: AppLinkDataAppLinkInfo
     webAppLinkInfo: AppLinkDataAppLinkInfo
 
@@ -364,6 +365,7 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     localizedIssuerName: LocalizedString
     locations: _list[LatLongPoint]
     logo: Image
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -373,6 +375,9 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     redemptionIssuers: _list[str]
     review: Review
@@ -394,6 +399,7 @@ class EventTicketClass(typing_extensions.TypedDict, total=False):
     ]
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     venue: EventVenue
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
@@ -434,7 +440,11 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     linkedOfferIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     reservationInfo: EventReservationInfo
     rotatingBarcode: RotatingBarcode
@@ -457,6 +467,7 @@ class EventTicketObject(typing_extensions.TypedDict, total=False):
     ticketNumber: str
     ticketType: LocalizedString
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -568,6 +579,7 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     localScheduledDepartureDateTime: str
     localizedIssuerName: LocalizedString
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -577,6 +589,9 @@ class FlightClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     origin: AirportInfo
     redemptionIssuers: _list[str]
@@ -594,6 +609,7 @@ class FlightClass(typing_extensions.TypedDict, total=False):
     ]
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
@@ -640,7 +656,11 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     passengerName: str
     reservationInfo: ReservationInfo
@@ -661,6 +681,7 @@ class FlightObject(typing_extensions.TypedDict, total=False):
     ]
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -687,6 +708,7 @@ class GenericClass(typing_extensions.TypedDict, total=False):
     id: str
     imageModulesData: _list[ImageModuleData]
     linksModuleData: LinksModuleData
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -700,6 +722,7 @@ class GenericClass(typing_extensions.TypedDict, total=False):
     redemptionIssuers: _list[str]
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
         "UNLOCK_NOT_REQUIRED",
@@ -734,6 +757,7 @@ class GenericObject(typing_extensions.TypedDict, total=False):
         "GENERIC_HOME_INSURANCE",
         "GENERIC_ENTRY_TICKET",
         "GENERIC_RECEIPT",
+        "GENERIC_LOYALTY_CARD",
         "GENERIC_OTHER",
     ]
     groupingInfo: GroupingInfo
@@ -746,6 +770,7 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     logo: Image
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     notifications: Notifications
     passConstraints: PassConstraints
@@ -766,6 +791,7 @@ class GenericObject(typing_extensions.TypedDict, total=False):
     subheader: LocalizedString
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     wideLogo: Image
 
 @typing.type_check_only
@@ -803,6 +829,7 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
     localizedMerchantName: LocalizedString
     localizedPinLabel: LocalizedString
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     merchantName: str
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
@@ -813,6 +840,9 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     pinLabel: str
     programLogo: Image
@@ -831,6 +861,7 @@ class GiftCardClass(typing_extensions.TypedDict, total=False):
     ]
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
@@ -871,7 +902,11 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     pin: str
     rotatingBarcode: RotatingBarcode
@@ -890,6 +925,7 @@ class GiftCardObject(typing_extensions.TypedDict, total=False):
     ]
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -1028,6 +1064,7 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     localizedSecondaryRewardsTier: LocalizedString
     localizedSecondaryRewardsTierLabel: LocalizedString
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -1037,6 +1074,9 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     programLogo: Image
     programName: str
@@ -1059,6 +1099,7 @@ class LoyaltyClass(typing_extensions.TypedDict, total=False):
     secondaryRewardsTierLabel: str
     securityAnimation: SecurityAnimation
     textModulesData: _list[TextModuleData]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
@@ -1099,7 +1140,11 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
     loyaltyPoints: LoyaltyPoints
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
@@ -1118,6 +1163,7 @@ class LoyaltyObject(typing_extensions.TypedDict, total=False):
     ]
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -1204,6 +1250,11 @@ class MediaRequestInfo(typing_extensions.TypedDict, total=False):
     totalBytesIsEstimated: bool
 
 @typing.type_check_only
+class MerchantLocation(typing_extensions.TypedDict, total=False):
+    latitude: float
+    longitude: float
+
+@typing.type_check_only
 class Message(typing_extensions.TypedDict, total=False):
     body: str
     displayInterval: TimeInterval
@@ -1229,6 +1280,10 @@ class ModifyLinkedOfferObjects(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ModifyLinkedOfferObjectsRequest(typing_extensions.TypedDict, total=False):
     linkedOfferObjectIds: ModifyLinkedOfferObjects
+
+@typing.type_check_only
+class ModuleViewConstraints(typing_extensions.TypedDict, total=False):
+    displayInterval: TimeInterval
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -1274,6 +1329,7 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     localizedShortTitle: LocalizedString
     localizedTitle: LocalizedString
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -1283,6 +1339,9 @@ class OfferClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     provider: str
     redemptionChannel: typing_extensions.Literal[
@@ -1314,6 +1373,7 @@ class OfferClass(typing_extensions.TypedDict, total=False):
     textModulesData: _list[TextModuleData]
     title: str
     titleImage: Image
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
@@ -1350,7 +1410,11 @@ class OfferObject(typing_extensions.TypedDict, total=False):
     linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     rotatingBarcode: RotatingBarcode
     saveRestrictions: SaveRestrictions
@@ -1368,6 +1432,7 @@ class OfferObject(typing_extensions.TypedDict, total=False):
     ]
     textModulesData: _list[TextModuleData]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -1641,6 +1706,7 @@ class TransitClass(typing_extensions.TypedDict, total=False):
     localizedIssuerName: LocalizedString
     locations: _list[LatLongPoint]
     logo: Image
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
     multipleDevicesAndHoldersAllowedStatus: typing_extensions.Literal[
         "STATUS_UNSPECIFIED",
@@ -1650,6 +1716,9 @@ class TransitClass(typing_extensions.TypedDict, total=False):
         "multipleHolders",
         "oneUserAllDevices",
         "oneUserOneDevice",
+    ]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
     ]
     redemptionIssuers: _list[str]
     review: Review
@@ -1680,6 +1749,7 @@ class TransitClass(typing_extensions.TypedDict, total=False):
         "OTHER",
         "other",
     ]
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
     viewUnlockRequirement: typing_extensions.Literal[
         "VIEW_UNLOCK_REQUIREMENT_UNSPECIFIED",
@@ -1730,7 +1800,11 @@ class TransitObject(typing_extensions.TypedDict, total=False):
     linkedObjectIds: _list[str]
     linksModuleData: LinksModuleData
     locations: _list[LatLongPoint]
+    merchantLocations: _list[MerchantLocation]
     messages: _list[Message]
+    notifyPreference: typing_extensions.Literal[
+        "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED", "NOTIFY_ON_UPDATE"
+    ]
     passConstraints: PassConstraints
     passengerNames: str
     passengerType: typing_extensions.Literal[
@@ -1774,6 +1848,7 @@ class TransitObject(typing_extensions.TypedDict, total=False):
         "TRIP_TYPE_UNSPECIFIED", "ROUND_TRIP", "roundTrip", "ONE_WAY", "oneWay"
     ]
     validTimeInterval: TimeInterval
+    valueAddedModuleData: _list[ValueAddedModuleData]
     version: str
 
 @typing.type_check_only
@@ -1814,3 +1889,12 @@ class Uri(typing_extensions.TypedDict, total=False):
     kind: str
     localizedDescription: LocalizedString
     uri: str
+
+@typing.type_check_only
+class ValueAddedModuleData(typing_extensions.TypedDict, total=False):
+    body: LocalizedString
+    header: LocalizedString
+    image: Image
+    sortIndex: int
+    uri: str
+    viewConstraints: ModuleViewConstraints

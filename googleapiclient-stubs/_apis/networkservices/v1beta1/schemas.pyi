@@ -5,18 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: _list[AuditLogConfig]
-    service: str
-
-@typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-@typing.type_check_only
 class AuthzExtension(typing_extensions.TypedDict, total=False):
     authority: str
     createTime: str
@@ -33,12 +21,6 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     timeout: str
     updateTime: str
     wireFormat: typing_extensions.Literal["WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC"]
-
-@typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    members: _list[str]
-    role: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -67,13 +49,6 @@ class EndpointPolicy(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    expression: str
-    location: str
-    title: str
-
-@typing.type_check_only
 class ExtensionChain(typing_extensions.TypedDict, total=False):
     extensions: _list[ExtensionChainExtension]
     matchCondition: ExtensionChainMatchCondition
@@ -84,6 +59,7 @@ class ExtensionChainExtension(typing_extensions.TypedDict, total=False):
     authority: str
     failOpen: bool
     forwardHeaders: _list[str]
+    metadata: dict[str, typing.Any]
     name: str
     service: str
     supportedEvents: _list[
@@ -129,6 +105,14 @@ class Gateway(typing_extensions.TypedDict, total=False):
         "TYPE_UNSPECIFIED", "OPEN_MESH", "SECURE_WEB_GATEWAY"
     ]
     updateTime: str
+
+@typing.type_check_only
+class GatewayRouteView(typing_extensions.TypedDict, total=False):
+    name: str
+    routeId: str
+    routeLocation: str
+    routeProjectNumber: str
+    routeType: str
 
 @typing.type_check_only
 class GrpcRoute(typing_extensions.TypedDict, total=False):
@@ -392,6 +376,11 @@ class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListGatewayRouteViewsResponse(typing_extensions.TypedDict, total=False):
+    gatewayRouteViews: _list[GatewayRouteView]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListGatewaysResponse(typing_extensions.TypedDict, total=False):
     gateways: _list[Gateway]
     nextPageToken: str
@@ -425,6 +414,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMeshRouteViewsResponse(typing_extensions.TypedDict, total=False):
+    meshRouteViews: _list[MeshRouteView]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMeshesResponse(typing_extensions.TypedDict, total=False):
     meshes: _list[Mesh]
     nextPageToken: str
@@ -453,6 +447,16 @@ class ListTcpRoutesResponse(typing_extensions.TypedDict, total=False):
 class ListTlsRoutesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tlsRoutes: _list[TlsRoute]
+
+@typing.type_check_only
+class ListWasmPluginVersionsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    wasmPluginVersions: _list[WasmPluginVersion]
+
+@typing.type_check_only
+class ListWasmPluginsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    wasmPlugins: _list[WasmPlugin]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -491,6 +495,14 @@ class Mesh(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MeshRouteView(typing_extensions.TypedDict, total=False):
+    name: str
+    routeId: str
+    routeLocation: str
+    routeProjectNumber: str
+    routeType: str
+
+@typing.type_check_only
 class MetadataLabelMatcher(typing_extensions.TypedDict, total=False):
     metadataLabelMatchCriteria: typing_extensions.Literal[
         "METADATA_LABEL_MATCH_CRITERIA_UNSPECIFIED", "MATCH_ANY", "MATCH_ALL"
@@ -519,13 +531,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusMessage: str
     target: str
     verb: str
-
-@typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: _list[AuditConfig]
-    bindings: _list[Binding]
-    etag: str
-    version: int
 
 @typing.type_check_only
 class RetryFilterPerRouteConfig(typing_extensions.TypedDict, total=False):
@@ -567,11 +572,6 @@ class ServiceLbPolicyFailoverConfig(typing_extensions.TypedDict, total=False):
     failoverHealthThreshold: int
 
 @typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
-
-@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -611,14 +611,6 @@ class TcpRouteRouteRule(typing_extensions.TypedDict, total=False):
     matches: _list[TcpRouteRouteMatch]
 
 @typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
-
-@typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
-
-@typing.type_check_only
 class TlsRoute(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -653,3 +645,52 @@ class TlsRouteRouteRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TrafficPortSelector(typing_extensions.TypedDict, total=False):
     ports: _list[str]
+
+@typing.type_check_only
+class WasmPlugin(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    logConfig: WasmPluginLogConfig
+    mainVersionId: str
+    name: str
+    updateTime: str
+    usedBy: _list[WasmPluginUsedBy]
+    versions: dict[str, typing.Any]
+
+@typing.type_check_only
+class WasmPluginLogConfig(typing_extensions.TypedDict, total=False):
+    enable: bool
+    minLogLevel: typing_extensions.Literal[
+        "LOG_LEVEL_UNSPECIFIED", "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "CRITICAL"
+    ]
+    sampleRate: float
+
+@typing.type_check_only
+class WasmPluginUsedBy(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class WasmPluginVersion(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    imageDigest: str
+    imageUri: str
+    labels: dict[str, typing.Any]
+    name: str
+    pluginConfigData: str
+    pluginConfigDigest: str
+    pluginConfigUri: str
+    updateTime: str
+
+@typing.type_check_only
+class WasmPluginVersionDetails(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    imageDigest: str
+    imageUri: str
+    labels: dict[str, typing.Any]
+    pluginConfigData: str
+    pluginConfigDigest: str
+    pluginConfigUri: str
+    updateTime: str

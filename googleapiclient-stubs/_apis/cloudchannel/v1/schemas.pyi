@@ -52,6 +52,7 @@ class GoogleCloudChannelV1ChangeOfferRequest(typing_extensions.TypedDict, total=
     billingAccount: str
     offer: str
     parameters: _list[GoogleCloudChannelV1Parameter]
+    priceReferenceId: str
     purchaseOrderId: str
     requestId: str
 
@@ -261,6 +262,7 @@ class GoogleCloudChannelV1Entitlement(typing_extensions.TypedDict, total=False):
     name: str
     offer: str
     parameters: _list[GoogleCloudChannelV1Parameter]
+    priceReferenceId: str
     provisionedService: GoogleCloudChannelV1ProvisionedService
     provisioningState: typing_extensions.Literal[
         "PROVISIONING_STATE_UNSPECIFIED", "ACTIVE", "SUSPENDED"
@@ -664,6 +666,7 @@ class GoogleCloudChannelV1ProvisionedService(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudChannelV1PurchasableOffer(typing_extensions.TypedDict, total=False):
     offer: GoogleCloudChannelV1Offer
+    priceReferenceId: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1PurchasableSku(typing_extensions.TypedDict, total=False):
@@ -679,6 +682,8 @@ class GoogleCloudChannelV1QueryEligibleBillingAccountsResponse(
 class GoogleCloudChannelV1RegisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
+    account: str
+    integrator: str
     serviceAccount: str
 
 @typing.type_check_only
@@ -857,6 +862,7 @@ class GoogleCloudChannelV1TransferEntitlementsToGoogleRequest(
 @typing.type_check_only
 class GoogleCloudChannelV1TransferableOffer(typing_extensions.TypedDict, total=False):
     offer: GoogleCloudChannelV1Offer
+    priceReferenceId: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1TransferableSku(typing_extensions.TypedDict, total=False):
@@ -873,6 +879,8 @@ class GoogleCloudChannelV1TrialSettings(typing_extensions.TypedDict, total=False
 class GoogleCloudChannelV1UnregisterSubscriberRequest(
     typing_extensions.TypedDict, total=False
 ):
+    account: str
+    integrator: str
     serviceAccount: str
 
 @typing.type_check_only
@@ -960,6 +968,7 @@ class GoogleCloudChannelV1alpha1Entitlement(typing_extensions.TypedDict, total=F
     numUnits: int
     offer: str
     parameters: _list[GoogleCloudChannelV1alpha1Parameter]
+    priceReferenceId: str
     provisionedService: GoogleCloudChannelV1alpha1ProvisionedService
     provisioningState: typing_extensions.Literal[
         "PROVISIONING_STATE_UNSPECIFIED",
@@ -1025,6 +1034,13 @@ class GoogleCloudChannelV1alpha1OperationMetadata(
         "CHANGE_PARAMETERS",
         "PROVISION_CLOUD_IDENTITY",
     ]
+
+@typing.type_check_only
+class GoogleCloudChannelV1alpha1OpportunityEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventType: typing_extensions.Literal["TYPE_UNSPECIFIED", "CREATED", "UPDATED"]
+    opportunity: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1Parameter(typing_extensions.TypedDict, total=False):
@@ -1106,6 +1122,7 @@ class GoogleCloudChannelV1alpha1SubscriberEvent(
     channelPartnerEvent: GoogleCloudChannelV1alpha1ChannelPartnerEvent
     customerEvent: GoogleCloudChannelV1alpha1CustomerEvent
     entitlementEvent: GoogleCloudChannelV1alpha1EntitlementEvent
+    opportunityEvent: GoogleCloudChannelV1alpha1OpportunityEvent
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1TransferEntitlementsResponse(

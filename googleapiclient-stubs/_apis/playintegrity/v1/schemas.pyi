@@ -72,9 +72,23 @@ class DecodeIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
     tokenPayloadExternal: TokenPayloadExternal
 
 @typing.type_check_only
+class DeviceAttributes(typing_extensions.TypedDict, total=False):
+    sdkVersion: int
+
+@typing.type_check_only
 class DeviceIntegrity(typing_extensions.TypedDict, total=False):
+    deviceAttributes: DeviceAttributes
     deviceRecall: DeviceRecall
     deviceRecognitionVerdict: _list[
+        typing_extensions.Literal[
+            "UNKNOWN",
+            "MEETS_BASIC_INTEGRITY",
+            "MEETS_DEVICE_INTEGRITY",
+            "MEETS_STRONG_INTEGRITY",
+            "MEETS_VIRTUAL_INTEGRITY",
+        ]
+    ]
+    legacyDeviceRecognitionVerdict: _list[
         typing_extensions.Literal[
             "UNKNOWN",
             "MEETS_BASIC_INTEGRITY",

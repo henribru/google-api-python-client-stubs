@@ -142,6 +142,7 @@ class GoogleCloudFunctionsV2OperationMetadata(typing_extensions.TypedDict, total
         "SETUP_FUNCTION_UPGRADE_CONFIG",
         "ABORT_FUNCTION_UPGRADE",
         "COMMIT_FUNCTION_UPGRADE",
+        "DETACH_FUNCTION",
     ]
     requestResource: dict[str, typing.Any]
     sourceToken: str
@@ -383,4 +384,5 @@ class UpgradeInfo(typing_extensions.TypedDict, total=False):
         "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "COMMIT_FUNCTION_UPGRADE_ERROR",
+        "DETACH_IN_PROGRESS",
     ]

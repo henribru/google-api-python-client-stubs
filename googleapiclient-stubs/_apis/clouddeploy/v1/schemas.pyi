@@ -27,6 +27,7 @@ class AdvanceRolloutOperation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AdvanceRolloutRequest(typing_extensions.TypedDict, total=False):
+    overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
@@ -46,9 +47,15 @@ class AnthosCluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApproveRolloutRequest(typing_extensions.TypedDict, total=False):
     approved: bool
+    overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
 class ApproveRolloutResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AssociatedEntities(typing_extensions.TypedDict, total=False):
+    anthosClusters: _list[AnthosCluster]
+    gkeClusters: _list[GkeCluster]
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -90,6 +97,7 @@ class AutomationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -108,10 +116,12 @@ class AutomationRule(typing_extensions.TypedDict, total=False):
     advanceRolloutRule: AdvanceRolloutRule
     promoteReleaseRule: PromoteReleaseRule
     repairRolloutRule: RepairRolloutRule
+    timedPromoteReleaseRule: TimedPromoteReleaseRule
 
 @typing.type_check_only
 class AutomationRuleCondition(typing_extensions.TypedDict, total=False):
     targetsPresentCondition: TargetsPresentCondition
+    timedPromoteReleaseCondition: TimedPromoteReleaseCondition
 
 @typing.type_check_only
 class AutomationRun(typing_extensions.TypedDict, total=False):
@@ -122,6 +132,7 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
     etag: str
     expireTime: str
     name: str
+    policyViolation: PolicyViolation
     promoteReleaseOperation: PromoteReleaseOperation
     repairRolloutOperation: RepairRolloutOperation
     ruleId: str
@@ -137,6 +148,7 @@ class AutomationRun(typing_extensions.TypedDict, total=False):
     ]
     stateDescription: str
     targetId: str
+    timedPromoteReleaseOperation: TimedPromoteReleaseOperation
     updateTime: str
     waitUntilTime: str
 
@@ -156,6 +168,7 @@ class AutomationRunEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -193,7 +206,8 @@ class CancelAutomationRunResponse(typing_extensions.TypedDict, total=False): ...
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class CancelRolloutRequest(typing_extensions.TypedDict, total=False): ...
+class CancelRolloutRequest(typing_extensions.TypedDict, total=False):
+    overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
 class CancelRolloutResponse(typing_extensions.TypedDict, total=False): ...
@@ -287,6 +301,7 @@ class CustomTargetTypeNotificationEvent(typing_extensions.TypedDict, total=False
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -316,6 +331,11 @@ class DeliveryPipeline(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class DeliveryPipelineAttribute(typing_extensions.TypedDict, total=False):
+    id: str
+    labels: dict[str, typing.Any]
+
+@typing.type_check_only
 class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False):
     deliveryPipeline: str
     message: str
@@ -328,6 +348,7 @@ class DeliveryPipelineNotificationEvent(typing_extensions.TypedDict, total=False
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -367,6 +388,46 @@ class DeployParameters(typing_extensions.TypedDict, total=False):
     values: dict[str, typing.Any]
 
 @typing.type_check_only
+class DeployPolicy(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    rules: _list[PolicyRule]
+    selectors: _list[DeployPolicyResourceSelector]
+    suspended: bool
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class DeployPolicyEvaluationEvent(typing_extensions.TypedDict, total=False):
+    allowed: bool
+    deliveryPipeline: str
+    deployPolicy: str
+    deployPolicyUid: str
+    invoker: typing_extensions.Literal[
+        "INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"
+    ]
+    message: str
+    overrides: _list[
+        typing_extensions.Literal[
+            "POLICY_VERDICT_OVERRIDE_UNSPECIFIED",
+            "POLICY_OVERRIDDEN",
+            "POLICY_SUSPENDED",
+        ]
+    ]
+    pipelineUid: str
+    rule: str
+    ruleType: str
+    target: str
+    targetUid: str
+    verdict: typing_extensions.Literal[
+        "POLICY_VERDICT_UNSPECIFIED", "ALLOWED_BY_POLICY", "DENIED_BY_POLICY"
+    ]
+
+@typing.type_check_only
 class DeployPolicyNotificationEvent(typing_extensions.TypedDict, total=False):
     deployPolicy: str
     deployPolicyUid: str
@@ -379,8 +440,14 @@ class DeployPolicyNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class DeployPolicyResourceSelector(typing_extensions.TypedDict, total=False):
+    deliveryPipeline: DeliveryPipelineAttribute
+    target: TargetAttribute
 
 @typing.type_check_only
 class DeploymentJobs(typing_extensions.TypedDict, total=False):
@@ -424,6 +491,7 @@ class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
     deployment: str
     httpRoute: str
     podSelectorLabel: str
+    routeDestinations: RouteDestinations
     routeUpdateWaitTime: str
     service: str
     stableCutbackDuration: str
@@ -431,12 +499,14 @@ class GatewayServiceMesh(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GkeCluster(typing_extensions.TypedDict, total=False):
     cluster: str
+    dnsEndpoint: bool
     internalIp: bool
     proxyUrl: str
 
 @typing.type_check_only
 class IgnoreJobRequest(typing_extensions.TypedDict, total=False):
     jobId: str
+    overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
@@ -508,6 +578,7 @@ class JobRunNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -537,6 +608,12 @@ class ListCustomTargetTypesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListDeliveryPipelinesResponse(typing_extensions.TypedDict, total=False):
     deliveryPipelines: _list[DeliveryPipeline]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListDeployPoliciesResponse(typing_extensions.TypedDict, total=False):
+    deployPolicies: _list[DeployPolicy]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -591,6 +668,13 @@ class Metadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MultiTarget(typing_extensions.TypedDict, total=False):
     targetIds: _list[str]
+
+@typing.type_check_only
+class OneTimeWindow(typing_extensions.TypedDict, total=False):
+    endDate: Date
+    endTime: TimeOfDay
+    startDate: Date
+    startTime: TimeOfDay
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -658,6 +742,20 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
+
+@typing.type_check_only
+class PolicyRule(typing_extensions.TypedDict, total=False):
+    rolloutRestriction: RolloutRestriction
+
+@typing.type_check_only
+class PolicyViolation(typing_extensions.TypedDict, total=False):
+    policyViolationDetails: _list[PolicyViolationDetails]
+
+@typing.type_check_only
+class PolicyViolationDetails(typing_extensions.TypedDict, total=False):
+    failureMessage: str
+    policy: str
+    ruleId: str
 
 @typing.type_check_only
 class Postdeploy(typing_extensions.TypedDict, total=False):
@@ -766,6 +864,7 @@ class ReleaseNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -789,6 +888,7 @@ class ReleaseRenderEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -803,7 +903,13 @@ class RepairPhase(typing_extensions.TypedDict, total=False):
     rollback: RollbackAttempt
 
 @typing.type_check_only
+class RepairPhaseConfig(typing_extensions.TypedDict, total=False):
+    retry: Retry
+    rollback: Rollback
+
+@typing.type_check_only
 class RepairRolloutOperation(typing_extensions.TypedDict, total=False):
+    currentRepairPhaseIndex: str
     jobId: str
     phaseId: str
     repairPhases: _list[RepairPhase]
@@ -814,6 +920,16 @@ class RepairRolloutRule(typing_extensions.TypedDict, total=False):
     condition: AutomationRuleCondition
     id: str
     jobs: _list[str]
+    phases: _list[str]
+    repairPhases: _list[RepairPhaseConfig]
+
+@typing.type_check_only
+class Retry(typing_extensions.TypedDict, total=False):
+    attempts: str
+    backoffMode: typing_extensions.Literal[
+        "BACKOFF_MODE_UNSPECIFIED", "BACKOFF_MODE_LINEAR", "BACKOFF_MODE_EXPONENTIAL"
+    ]
+    wait: str
 
 @typing.type_check_only
 class RetryAttempt(typing_extensions.TypedDict, total=False):
@@ -833,6 +949,7 @@ class RetryAttempt(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RetryJobRequest(typing_extensions.TypedDict, total=False):
     jobId: str
+    overrideDeployPolicy: _list[str]
     phaseId: str
 
 @typing.type_check_only
@@ -847,8 +964,14 @@ class RetryPhase(typing_extensions.TypedDict, total=False):
     totalAttempts: str
 
 @typing.type_check_only
+class Rollback(typing_extensions.TypedDict, total=False):
+    destinationPhase: str
+    disableRollbackIfRolloutPending: bool
+
+@typing.type_check_only
 class RollbackAttempt(typing_extensions.TypedDict, total=False):
     destinationPhase: str
+    disableRollbackIfRolloutPending: bool
     rolloutId: str
     state: typing_extensions.Literal[
         "REPAIR_STATE_UNSPECIFIED",
@@ -868,6 +991,7 @@ class RollbackTargetConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RollbackTargetRequest(typing_extensions.TypedDict, total=False):
+    overrideDeployPolicy: _list[str]
     releaseId: str
     rollbackConfig: RollbackTargetConfig
     rolloutId: str
@@ -881,6 +1005,7 @@ class RollbackTargetResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Rollout(typing_extensions.TypedDict, total=False):
+    activeRepairAutomationRun: str
     annotations: dict[str, typing.Any]
     approvalState: typing_extensions.Literal[
         "APPROVAL_STATE_UNSPECIFIED",
@@ -949,8 +1074,30 @@ class RolloutNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class RolloutRestriction(typing_extensions.TypedDict, total=False):
+    actions: _list[
+        typing_extensions.Literal[
+            "ROLLOUT_ACTIONS_UNSPECIFIED",
+            "ADVANCE",
+            "APPROVE",
+            "CANCEL",
+            "CREATE",
+            "IGNORE_JOB",
+            "RETRY_JOB",
+            "ROLLBACK",
+            "TERMINATE_JOBRUN",
+        ]
+    ]
+    id: str
+    invokers: _list[
+        typing_extensions.Literal["INVOKER_UNSPECIFIED", "USER", "DEPLOY_AUTOMATION"]
+    ]
+    timeWindows: TimeWindows
 
 @typing.type_check_only
 class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
@@ -984,8 +1131,14 @@ class RolloutUpdateEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
+
+@typing.type_check_only
+class RouteDestinations(typing_extensions.TypedDict, total=False):
+    destinationIds: _list[str]
+    propagateService: bool
 
 @typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
@@ -1079,6 +1232,7 @@ class Strategy(typing_extensions.TypedDict, total=False):
 class Target(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     anthosCluster: AnthosCluster
+    associatedEntities: dict[str, typing.Any]
     createTime: str
     customTarget: CustomTarget
     deployParameters: dict[str, typing.Any]
@@ -1119,6 +1273,7 @@ class TargetNotificationEvent(typing_extensions.TypedDict, total=False):
         "TYPE_RESTRICTION_VIOLATED",
         "TYPE_RESOURCE_DELETED",
         "TYPE_ROLLOUT_UPDATE",
+        "TYPE_DEPLOY_POLICY_EVALUATION",
         "TYPE_RENDER_STATUES_CHANGE",
     ]
 
@@ -1142,6 +1297,11 @@ class TargetRender(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Targets(typing_extensions.TypedDict, total=False):
+    destinationTargetId: str
+    sourceTargetId: str
+
+@typing.type_check_only
 class TargetsPresentCondition(typing_extensions.TypedDict, total=False):
     missingTargets: _list[str]
     status: bool
@@ -1153,7 +1313,8 @@ class TargetsTypeCondition(typing_extensions.TypedDict, total=False):
     status: bool
 
 @typing.type_check_only
-class TerminateJobRunRequest(typing_extensions.TypedDict, total=False): ...
+class TerminateJobRunRequest(typing_extensions.TypedDict, total=False):
+    overrideDeployPolicy: _list[str]
 
 @typing.type_check_only
 class TerminateJobRunResponse(typing_extensions.TypedDict, total=False): ...
@@ -1165,6 +1326,39 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
+class TimeWindows(typing_extensions.TypedDict, total=False):
+    oneTimeWindows: _list[OneTimeWindow]
+    timeZone: str
+    weeklyWindows: _list[WeeklyWindow]
+
+@typing.type_check_only
+class TimedPromoteReleaseCondition(typing_extensions.TypedDict, total=False):
+    nextPromotionTime: str
+    targetsList: _list[Targets]
+
+@typing.type_check_only
+class TimedPromoteReleaseOperation(typing_extensions.TypedDict, total=False):
+    phase: str
+    release: str
+    targetId: str
+
+@typing.type_check_only
+class TimedPromoteReleaseRule(typing_extensions.TypedDict, total=False):
+    condition: AutomationRuleCondition
+    destinationPhase: str
+    destinationTargetId: str
+    id: str
+    schedule: str
+    timeZone: str
 
 @typing.type_check_only
 class VerifyJob(typing_extensions.TypedDict, total=False): ...
@@ -1183,3 +1377,20 @@ class VerifyJobRun(typing_extensions.TypedDict, total=False):
         "CLOUD_BUILD_REQUEST_FAILED",
     ]
     failureMessage: str
+
+@typing.type_check_only
+class WeeklyWindow(typing_extensions.TypedDict, total=False):
+    daysOfWeek: _list[
+        typing_extensions.Literal[
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY",
+        ]
+    ]
+    endTime: TimeOfDay
+    startTime: TimeOfDay

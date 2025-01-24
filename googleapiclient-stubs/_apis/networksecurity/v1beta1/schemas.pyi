@@ -159,6 +159,14 @@ class CloneAddressGroupItemsRequest(typing_extensions.TypedDict, total=False):
     sourceAddressGroup: str
 
 @typing.type_check_only
+class CustomInterceptProfile(typing_extensions.TypedDict, total=False):
+    interceptEndpointGroup: str
+
+@typing.type_check_only
+class CustomMirroringProfile(typing_extensions.TypedDict, total=False):
+    mirroringEndpointGroup: str
+
+@typing.type_check_only
 class Destination(typing_extensions.TypedDict, total=False):
     hosts: _list[str]
     httpHeaderMatch: HttpHeaderMatch
@@ -290,6 +298,108 @@ class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
     regexMatch: str
 
 @typing.type_check_only
+class InterceptDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    forwardingRule: str
+    interceptDeploymentGroup: str
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptDeploymentGroup(typing_extensions.TypedDict, total=False):
+    connectedEndpointGroups: _list[InterceptDeploymentGroupConnectedEndpointGroup]
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptDeploymentGroupConnectedEndpointGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class InterceptEndpointGroup(typing_extensions.TypedDict, total=False):
+    associations: _list[InterceptEndpointGroupAssociationDetails]
+    createTime: str
+    description: str
+    interceptDeploymentGroup: str
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CLOSED",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    interceptEndpointGroup: str
+    labels: dict[str, typing.Any]
+    locationsDetails: _list[InterceptEndpointGroupAssociationLocationDetails]
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    network: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociationLocationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+
+@typing.type_check_only
 class ListAddressGroupReferencesResponse(typing_extensions.TypedDict, total=False):
     addressGroupReferences: _list[
         ListAddressGroupReferencesResponseAddressGroupReference
@@ -350,6 +460,29 @@ class ListGatewaySecurityPolicyRulesResponse(typing_extensions.TypedDict, total=
     gatewaySecurityPolicyRules: _list[GatewaySecurityPolicyRule]
     nextPageToken: str
     unreachable: _list[str]
+
+@typing.type_check_only
+class ListInterceptDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+    interceptDeploymentGroups: _list[InterceptDeploymentGroup]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInterceptDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    interceptDeployments: _list[InterceptDeployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListInterceptEndpointGroupAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    interceptEndpointGroupAssociations: _list[InterceptEndpointGroupAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInterceptEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+    interceptEndpointGroups: _list[InterceptEndpointGroup]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -542,17 +675,26 @@ class Rule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecurityProfile(typing_extensions.TypedDict, total=False):
     createTime: str
+    customInterceptProfile: CustomInterceptProfile
+    customMirroringProfile: CustomMirroringProfile
     description: str
     etag: str
     labels: dict[str, typing.Any]
     name: str
     threatPreventionProfile: ThreatPreventionProfile
-    type: typing_extensions.Literal["PROFILE_TYPE_UNSPECIFIED", "THREAT_PREVENTION"]
+    type: typing_extensions.Literal[
+        "PROFILE_TYPE_UNSPECIFIED",
+        "THREAT_PREVENTION",
+        "CUSTOM_MIRRORING",
+        "CUSTOM_INTERCEPT",
+    ]
     updateTime: str
 
 @typing.type_check_only
 class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     createTime: str
+    customInterceptProfile: str
+    customMirroringProfile: str
     description: str
     etag: str
     labels: dict[str, typing.Any]

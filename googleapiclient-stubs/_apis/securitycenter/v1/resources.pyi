@@ -202,33 +202,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class MuteConfigsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
-                    muteConfigId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any,
-                ) -> ListMuteConfigsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListMuteConfigsResponseHttpRequest,
-                    previous_response: ListMuteConfigsResponse,
-                ) -> ListMuteConfigsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -564,6 +543,23 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             ) -> SecurityMarksHttpRequest: ...
 
         @typing.type_check_only
+        class AttackPathsResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAttackPathsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAttackPathsResponseHttpRequest,
+                previous_response: ListAttackPathsResponse,
+            ) -> ListAttackPathsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class BigQueryExportsResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -708,33 +704,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class MuteConfigsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
-                    muteConfigId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any,
-                ) -> ListMuteConfigsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListMuteConfigsResponseHttpRequest,
-                    previous_response: ListMuteConfigsResponse,
-                ) -> ListMuteConfigsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,
@@ -1243,6 +1218,7 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OrganizationSettingsHttpRequest: ...
         def assets(self) -> AssetsResource: ...
+        def attackPaths(self) -> AttackPathsResource: ...
         def bigQueryExports(self) -> BigQueryExportsResource: ...
         def eventThreatDetectionSettings(
             self,
@@ -1449,33 +1425,12 @@ class SecurityCommandCenterResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class MuteConfigsResource(googleapiclient.discovery.Resource):
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: GoogleCloudSecuritycenterV1MuteConfig = ...,
-                    muteConfigId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> EmptyHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudSecuritycenterV1MuteConfigHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any,
-                ) -> ListMuteConfigsResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListMuteConfigsResponseHttpRequest,
-                    previous_response: ListMuteConfigsResponse,
-                ) -> ListMuteConfigsResponseHttpRequest | None: ...
                 def patch(
                     self,
                     *,

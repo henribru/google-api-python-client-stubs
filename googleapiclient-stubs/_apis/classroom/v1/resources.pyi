@@ -245,6 +245,57 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 def studentSubmissions(self) -> StudentSubmissionsResource: ...
 
             @typing.type_check_only
+            class RubricsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    courseId: str,
+                    courseWorkId: str,
+                    body: Rubric = ...,
+                    **kwargs: typing.Any,
+                ) -> RubricHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    courseId: str,
+                    courseWorkId: str,
+                    id: str,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self,
+                    *,
+                    courseId: str,
+                    courseWorkId: str,
+                    id: str,
+                    **kwargs: typing.Any,
+                ) -> RubricHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    courseId: str,
+                    courseWorkId: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRubricsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRubricsResponseHttpRequest,
+                    previous_response: ListRubricsResponse,
+                ) -> ListRubricsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    courseId: str,
+                    courseWorkId: str,
+                    id: str,
+                    body: Rubric = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> RubricHttpRequest: ...
+
+            @typing.type_check_only
             class StudentSubmissionsResource(googleapiclient.discovery.Resource):
                 def get(
                     self,
@@ -395,7 +446,18 @@ class ClassroomResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> CourseWorkHttpRequest: ...
+            def updateRubric(
+                self,
+                *,
+                courseId: str,
+                courseWorkId: str,
+                body: Rubric = ...,
+                id: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> RubricHttpRequest: ...
             def addOnAttachments(self) -> AddOnAttachmentsResource: ...
+            def rubrics(self) -> RubricsResource: ...
             def studentSubmissions(self) -> StudentSubmissionsResource: ...
 
         @typing.type_check_only
@@ -1057,6 +1119,14 @@ class ListInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListInvitationsResponse: ...
 
 @typing.type_check_only
+class ListRubricsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRubricsResponse: ...
+
+@typing.type_check_only
 class ListStudentSubmissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1095,6 +1165,14 @@ class RegistrationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Registration: ...
+
+@typing.type_check_only
+class RubricHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Rubric: ...
 
 @typing.type_check_only
 class StudentHttpRequest(googleapiclient.http.HttpRequest):

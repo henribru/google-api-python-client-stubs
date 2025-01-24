@@ -137,7 +137,7 @@ class GoogleChromeManagementV1BootPerformanceReport(
 @typing.type_check_only
 class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
-        "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE"
+        "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE", "LTS"
     ]
     count: str
     deviceOsVersion: str
@@ -492,6 +492,7 @@ class GoogleChromeManagementV1InstalledApp(typing_extensions.TypedDict, total=Fa
     homepageUri: str
     osUserCount: str
     permissions: _list[str]
+    riskAssessment: GoogleChromeManagementV1RiskAssessmentData
 
 @typing.type_check_only
 class GoogleChromeManagementV1KioskAppStatusReport(
@@ -662,6 +663,41 @@ class GoogleChromeManagementV1PrinterReport(typing_extensions.TypedDict, total=F
     userCount: str
 
 @typing.type_check_only
+class GoogleChromeManagementV1RiskAssessment(typing_extensions.TypedDict, total=False):
+    assessment: str
+    detailsUrl: str
+    version: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1RiskAssessmentData(
+    typing_extensions.TypedDict, total=False
+):
+    entries: _list[GoogleChromeManagementV1RiskAssessmentEntry]
+    overallRiskLevel: typing_extensions.Literal[
+        "RISK_LEVEL_UNSPECIFIED",
+        "RISK_LEVEL_LOW",
+        "RISK_LEVEL_MEDIUM",
+        "RISK_LEVEL_HIGH",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementV1RiskAssessmentEntry(
+    typing_extensions.TypedDict, total=False
+):
+    provider: typing_extensions.Literal[
+        "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
+        "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
+        "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
+    ]
+    riskAssessment: GoogleChromeManagementV1RiskAssessment
+    riskLevel: typing_extensions.Literal[
+        "RISK_LEVEL_UNSPECIFIED",
+        "RISK_LEVEL_LOW",
+        "RISK_LEVEL_MEDIUM",
+        "RISK_LEVEL_HIGH",
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementV1RuntimeCountersReport(
     typing_extensions.TypedDict, total=False
 ):
@@ -789,6 +825,8 @@ class GoogleChromeManagementV1TelemetryAppLaunchEvent(
         "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
         "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE",
         "APPLICATION_LAUNCH_SOURCE_SPARKY",
+        "APPLICATION_LAUNCH_SOURCE_NAVIGATION_CAPTURING",
+        "APPLICATION_LAUNCH_SOURCE_WEB_INSTALL_API",
     ]
     appType: typing_extensions.Literal[
         "TELEMETRY_APPLICATION_TYPE_UNSPECIFIED",
@@ -1096,6 +1134,255 @@ class GoogleChromeManagementV1UserRequestingExtensionDetails(
 ):
     email: str
     justification: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1AttestationCredential(
+    typing_extensions.TypedDict, total=False
+):
+    keyRotationTime: str
+    keyTrustLevel: typing_extensions.Literal[
+        "KEY_TRUST_LEVEL_UNSPECIFIED", "CHROME_BROWSER_HW_KEY", "CHROME_BROWSER_OS_KEY"
+    ]
+    keyType: typing_extensions.Literal["KEY_TYPE_UNSPECIFIED", "RSA_KEY", "EC_KEY"]
+    publicKey: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
+    typing_extensions.TypedDict, total=False
+):
+    caConnectionAdapterConfigReference: str
+    chromeOsDevice: GoogleChromeManagementVersionsV1ChromeOsDevice
+    chromeOsUserSession: GoogleChromeManagementVersionsV1ChromeOsUserSession
+    failureMessage: str
+    issuedCertificate: str
+    name: str
+    profileAdapterConfigReference: str
+    provisioningProfileId: str
+    signData: str
+    signature: str
+    signatureAlgorithm: typing_extensions.Literal[
+        "SIGNATURE_ALGORITHM_UNSPECIFIED",
+        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
+    ]
+    startTime: str
+    subjectPublicKeyInfo: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
+    typing_extensions.TypedDict, total=False
+):
+    affiliationState: typing_extensions.Literal[
+        "AFFILIATION_STATE_UNSPECIFIED",
+        "UNAFFILIATED_GENERIC",
+        "PROFILE_ONLY",
+        "UNAFFILIATED_LOCAL_MACHINE",
+        "UNAFFILIATED_CLOUD_MACHINE",
+        "AFFILIATED_CLOUD_MANAGED",
+    ]
+    annotatedLocation: str
+    annotatedUser: str
+    attestationCredential: GoogleChromeManagementVersionsV1AttestationCredential
+    browserChannel: str
+    browserVersion: str
+    deviceInfo: GoogleChromeManagementVersionsV1DeviceInfo
+    displayName: str
+    etag: str
+    extensionCount: str
+    firstEnrollmentTime: str
+    identityProvider: typing_extensions.Literal[
+        "IDENTITY_PROVIDER_UNSPECIFIED",
+        "GOOGLE_IDENTITY_PROVIDER",
+        "EXTERNAL_IDENTITY_PROVIDER",
+    ]
+    lastActivityTime: str
+    lastPolicyFetchTime: str
+    lastPolicySyncTime: str
+    lastStatusReportTime: str
+    name: str
+    osPlatformType: str
+    osPlatformVersion: str
+    osVersion: str
+    policyCount: str
+    profileId: str
+    profilePermanentId: str
+    reportingData: GoogleChromeManagementVersionsV1ReportingData
+    userEmail: str
+    userId: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeOsDevice(
+    typing_extensions.TypedDict, total=False
+):
+    deviceDirectoryApiId: str
+    serialNumber: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeOsUserSession(
+    typing_extensions.TypedDict, total=False
+):
+    chromeOsDevice: GoogleChromeManagementVersionsV1ChromeOsDevice
+    userDirectoryApiId: str
+    userPrimaryEmail: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1DeviceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    affiliatedDeviceId: str
+    deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "CHROME_BROWSER"]
+    hostname: str
+    machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    chromeBrowserProfiles: _list[GoogleChromeManagementVersionsV1ChromeBrowserProfile]
+    nextPageToken: str
+    totalSize: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingData(
+    typing_extensions.TypedDict, total=False
+):
+    browserExecutablePath: str
+    extensionData: _list[GoogleChromeManagementVersionsV1ReportingDataExtensionData]
+    extensionPolicyData: _list[
+        GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData
+    ]
+    installedBrowserVersion: str
+    policyData: _list[GoogleChromeManagementVersionsV1ReportingDataPolicyData]
+    profilePath: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData(
+    typing_extensions.TypedDict, total=False
+):
+    source: typing_extensions.Literal[
+        "POLICY_SOURCE_UNSPECIFIED",
+        "MACHINE_PLATFORM",
+        "USER_PLATFORM",
+        "MACHINE_LEVEL_USER_CLOUD",
+        "USER_CLOUD",
+        "MACHINE_MERGED",
+    ]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingDataExtensionData(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    extensionId: str
+    extensionType: typing_extensions.Literal[
+        "EXTENSION_TYPE_UNSPECIFIED", "EXTENSION", "APP", "THEME", "HOSTED_APP"
+    ]
+    homepageUri: str
+    installationType: typing_extensions.Literal[
+        "INSTALLATION_TYPE_UNSPECIFIED",
+        "MULTIPLE",
+        "NORMAL",
+        "ADMIN",
+        "DEVELOPMENT",
+        "SIDELOAD",
+        "OTHER",
+    ]
+    isDisabled: bool
+    isWebstoreExtension: bool
+    manifestVersion: int
+    name: str
+    permissions: _list[str]
+    version: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingDataExtensionPolicyData(
+    typing_extensions.TypedDict, total=False
+):
+    extensionId: str
+    extensionName: str
+    policyData: _list[GoogleChromeManagementVersionsV1ReportingDataPolicyData]
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ReportingDataPolicyData(
+    typing_extensions.TypedDict, total=False
+):
+    conflicts: _list[GoogleChromeManagementVersionsV1ReportingDataConflictingPolicyData]
+    error: str
+    name: str
+    source: typing_extensions.Literal[
+        "POLICY_SOURCE_UNSPECIFIED",
+        "MACHINE_PLATFORM",
+        "USER_PLATFORM",
+        "MACHINE_LEVEL_USER_CLOUD",
+        "USER_CLOUD",
+        "MACHINE_MERGED",
+    ]
+    value: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SignDataMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    startTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SignDataResponse(
+    typing_extensions.TypedDict, total=False
+):
+    certificateProvisioningProcess: (
+        GoogleChromeManagementVersionsV1CertificateProvisioningProcess
+    )
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess(
+    typing_extensions.TypedDict, total=False
+):
+    caConnectionAdapterConfigReference: str
+    chromeOsDevice: GoogleChromeManagementVersionsV1alpha1ChromeOsDevice
+    chromeOsUserSession: GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession
+    failureMessage: str
+    issuedCertificate: str
+    name: str
+    profileAdapterConfigReference: str
+    provisioningProfileId: str
+    signData: str
+    signature: str
+    signatureAlgorithm: typing_extensions.Literal[
+        "SIGNATURE_ALGORITHM_UNSPECIFIED",
+        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
+    ]
+    startTime: str
+    subjectPublicKeyInfo: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1alpha1ChromeOsDevice(
+    typing_extensions.TypedDict, total=False
+):
+    deviceDirectoryApiId: str
+    serialNumber: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession(
+    typing_extensions.TypedDict, total=False
+):
+    chromeOsDevice: GoogleChromeManagementVersionsV1alpha1ChromeOsDevice
+    userDirectoryApiId: str
+    userPrimaryEmail: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1alpha1SignDataMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    startTime: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1alpha1SignDataResponse(
+    typing_extensions.TypedDict, total=False
+):
+    certificateProvisioningProcess: (
+        GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess
+    )
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

@@ -16,13 +16,28 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class CompositeTypesResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, project: str, compositeType: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            compositeType: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, compositeType: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            compositeType: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> CompositeTypeHttpRequest: ...
         def insert(
-            self, *, project: str, body: CompositeType = ..., **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            body: CompositeType = ...,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
@@ -45,6 +60,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             compositeType: str,
             body: CompositeType = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
@@ -53,6 +69,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             compositeType: str,
             body: CompositeType = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
@@ -72,16 +89,23 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             deployment: str,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, deployment: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            deployment: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> DeploymentHttpRequest: ...
         def getIamPolicy(
             self,
             *,
             project: str,
             resource: str,
+            header_bypassBillingFilter: bool = ...,
             optionsRequestedPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
@@ -93,6 +117,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             createPolicy: typing_extensions.Literal[
                 "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
+            header_bypassBillingFilter: bool = ...,
             preview: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -121,6 +146,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
                 "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
+            header_bypassBillingFilter: bool = ...,
             preview: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -146,6 +172,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             resource: str,
             body: TestPermissionsRequest = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> TestPermissionsResponseHttpRequest: ...
         def update(
@@ -158,6 +185,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
                 "CREATE_OR_ACQUIRE", "ACQUIRE", "CREATE"
             ] = ...,
             deletePolicy: typing_extensions.Literal["DELETE", "ABANDON"] = ...,
+            header_bypassBillingFilter: bool = ...,
             preview: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
@@ -165,7 +193,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ManifestsResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, project: str, deployment: str, manifest: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            deployment: str,
+            manifest: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> ManifestHttpRequest: ...
         def list(
             self,
@@ -187,7 +221,12 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, project: str, operation: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            operation: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
@@ -208,7 +247,13 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class ResourcesResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, project: str, deployment: str, resource: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            deployment: str,
+            resource: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> ResourceHttpRequest: ...
         def list(
             self,
@@ -230,16 +275,37 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class TypeProvidersResource(googleapiclient.discovery.Resource):
         def delete(
-            self, *, project: str, typeProvider: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            typeProvider: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def get(
-            self, *, project: str, typeProvider: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            typeProvider: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> TypeProviderHttpRequest: ...
         def getType(
-            self, *, project: str, typeProvider: str, type: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            typeProvider: str,
+            type: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> TypeInfoHttpRequest: ...
         def insert(
-            self, *, project: str, body: TypeProvider = ..., **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            body: TypeProvider = ...,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def list(
             self,
@@ -278,6 +344,7 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             typeProvider: str,
             body: TypeProvider = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def update(
@@ -286,13 +353,19 @@ class DeploymentManagerResource(googleapiclient.discovery.Resource):
             project: str,
             typeProvider: str,
             body: TypeProvider = ...,
+            header_bypassBillingFilter: bool = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
 
     @typing.type_check_only
     class TypesResource(googleapiclient.discovery.Resource):
         def get(
-            self, *, project: str, type: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            type: str,
+            header_bypassBillingFilter: bool = ...,
+            **kwargs: typing.Any,
         ) -> TypeHttpRequest: ...
         def list(
             self,

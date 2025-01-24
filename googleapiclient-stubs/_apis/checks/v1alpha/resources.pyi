@@ -102,10 +102,49 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
 
+            @typing.type_check_only
+            class ScansResource(googleapiclient.discovery.Resource):
+                def generate(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleChecksRepoScanV1alphaGenerateScanRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleChecksRepoScanV1alphaRepoScanHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleChecksRepoScanV1alphaListRepoScansResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleChecksRepoScanV1alphaListRepoScansResponseHttpRequest,
+                    previous_response: GoogleChecksRepoScanV1alphaListRepoScansResponse,
+                ) -> (
+                    GoogleChecksRepoScanV1alphaListRepoScansResponseHttpRequest | None
+                ): ...
+
             def operations(self) -> OperationsResource: ...
+            def scans(self) -> ScansResource: ...
 
         def apps(self) -> AppsResource: ...
         def repos(self) -> ReposResource: ...
+
+    @typing.type_check_only
+    class AisafetyResource(googleapiclient.discovery.Resource):
+        def classifyContent(
+            self,
+            *,
+            body: GoogleChecksAisafetyV1alphaClassifyContentRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleChecksAisafetyV1alphaClassifyContentResponseHttpRequest: ...
 
     @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
@@ -130,6 +169,7 @@ class ChecksServiceResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
+    def aisafety(self) -> AisafetyResource: ...
     def media(self) -> MediaResource: ...
 
 @typing.type_check_only
@@ -157,6 +197,34 @@ class GoogleChecksAccountV1alphaListAppsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChecksAccountV1alphaListAppsResponse: ...
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChecksAisafetyV1alphaClassifyContentResponse: ...
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaListRepoScansResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChecksRepoScanV1alphaListRepoScansResponse: ...
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaRepoScanHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChecksRepoScanV1alphaRepoScan: ...
 
 @typing.type_check_only
 class GoogleChecksReportV1alphaListReportsResponseHttpRequest(

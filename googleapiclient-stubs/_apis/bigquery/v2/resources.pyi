@@ -28,13 +28,19 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             *,
             projectId: str,
             datasetId: str,
+            accessPolicyVersion: int = ...,
             datasetView: typing_extensions.Literal[
                 "DATASET_VIEW_UNSPECIFIED", "METADATA", "ACL", "FULL"
             ] = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def insert(
-            self, *, projectId: str, body: Dataset = ..., **kwargs: typing.Any
+            self,
+            *,
+            projectId: str,
+            body: Dataset = ...,
+            accessPolicyVersion: int = ...,
+            **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def list(
             self,
@@ -57,6 +63,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             body: Dataset = ...,
+            accessPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def undelete(
@@ -73,6 +80,7 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             projectId: str,
             datasetId: str,
             body: Dataset = ...,
+            accessPolicyVersion: int = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
 

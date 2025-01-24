@@ -760,6 +760,14 @@ class GoogleAnalyticsAdminV1alphaDataRetentionSettings(
     ]
     name: str
     resetUserDataOnNewActivity: bool
+    userDataRetention: typing_extensions.Literal[
+        "RETENTION_DURATION_UNSPECIFIED",
+        "TWO_MONTHS",
+        "FOURTEEN_MONTHS",
+        "TWENTY_SIX_MONTHS",
+        "THIRTY_EIGHT_MONTHS",
+        "FIFTY_MONTHS",
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaDataSharingSettings(

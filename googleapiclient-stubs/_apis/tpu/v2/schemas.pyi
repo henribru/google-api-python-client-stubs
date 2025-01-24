@@ -8,7 +8,7 @@ _list = list
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     topology: str
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5LITE_POD", "V5P"
+        "TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5LITE_POD", "V5P", "V6E"
     ]
 
 @typing.type_check_only
@@ -171,6 +171,7 @@ class Node(typing_extensions.TypedDict, total=False):
     multisliceNode: bool
     name: str
     networkConfig: NetworkConfig
+    networkConfigs: _list[NetworkConfig]
     networkEndpoints: _list[NetworkEndpoint]
     queuedResource: str
     runtimeVersion: str
@@ -193,6 +194,7 @@ class Node(typing_extensions.TypedDict, total=False):
         "HIDING",
         "HIDDEN",
         "UNHIDING",
+        "UNKNOWN",
     ]
     symptoms: _list[Symptom]
     tags: _list[str]

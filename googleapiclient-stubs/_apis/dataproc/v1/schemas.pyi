@@ -10,6 +10,89 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     acceleratorTypeUri: str
 
 @typing.type_check_only
+class AccessSessionSparkApplicationEnvironmentInfoResponse(
+    typing_extensions.TypedDict, total=False
+):
+    applicationEnvironmentInfo: ApplicationEnvironmentInfo
+
+@typing.type_check_only
+class AccessSessionSparkApplicationJobResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobData: JobData
+
+@typing.type_check_only
+class AccessSessionSparkApplicationResponse(typing_extensions.TypedDict, total=False):
+    application: ApplicationInfo
+
+@typing.type_check_only
+class AccessSessionSparkApplicationSqlQueryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    executionData: SqlExecutionUiData
+
+@typing.type_check_only
+class AccessSessionSparkApplicationSqlSparkPlanGraphResponse(
+    typing_extensions.TypedDict, total=False
+):
+    sparkPlanGraph: SparkPlanGraph
+
+@typing.type_check_only
+class AccessSessionSparkApplicationStageAttemptResponse(
+    typing_extensions.TypedDict, total=False
+):
+    stageData: StageData
+
+@typing.type_check_only
+class AccessSessionSparkApplicationStageRddOperationGraphResponse(
+    typing_extensions.TypedDict, total=False
+):
+    rddOperationGraph: RddOperationGraph
+
+@typing.type_check_only
+class AccessSparkApplicationEnvironmentInfoResponse(
+    typing_extensions.TypedDict, total=False
+):
+    applicationEnvironmentInfo: ApplicationEnvironmentInfo
+
+@typing.type_check_only
+class AccessSparkApplicationJobResponse(typing_extensions.TypedDict, total=False):
+    jobData: JobData
+
+@typing.type_check_only
+class AccessSparkApplicationResponse(typing_extensions.TypedDict, total=False):
+    application: ApplicationInfo
+
+@typing.type_check_only
+class AccessSparkApplicationSqlQueryResponse(typing_extensions.TypedDict, total=False):
+    executionData: SqlExecutionUiData
+
+@typing.type_check_only
+class AccessSparkApplicationSqlSparkPlanGraphResponse(
+    typing_extensions.TypedDict, total=False
+):
+    sparkPlanGraph: SparkPlanGraph
+
+@typing.type_check_only
+class AccessSparkApplicationStageAttemptResponse(
+    typing_extensions.TypedDict, total=False
+):
+    stageData: StageData
+
+@typing.type_check_only
+class AccessSparkApplicationStageRddOperationGraphResponse(
+    typing_extensions.TypedDict, total=False
+):
+    rddOperationGraph: RddOperationGraph
+
+@typing.type_check_only
+class AccumulableInfo(typing_extensions.TypedDict, total=False):
+    accumullableInfoId: str
+    name: str
+    update: str
+    value: str
+
+@typing.type_check_only
 class AnalyzeBatchRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
@@ -25,6 +108,51 @@ class AnalyzeOperationMetadata(typing_extensions.TypedDict, total=False):
     doneTime: str
     labels: dict[str, typing.Any]
     warnings: _list[str]
+
+@typing.type_check_only
+class AppSummary(typing_extensions.TypedDict, total=False):
+    numCompletedJobs: int
+    numCompletedStages: int
+
+@typing.type_check_only
+class ApplicationAttemptInfo(typing_extensions.TypedDict, total=False):
+    appSparkVersion: str
+    attemptId: str
+    completed: bool
+    durationMillis: str
+    endTime: str
+    lastUpdated: str
+    sparkUser: str
+    startTime: str
+
+@typing.type_check_only
+class ApplicationEnvironmentInfo(typing_extensions.TypedDict, total=False):
+    classpathEntries: dict[str, typing.Any]
+    hadoopProperties: dict[str, typing.Any]
+    metricsProperties: dict[str, typing.Any]
+    resourceProfiles: _list[ResourceProfileInfo]
+    runtime: SparkRuntimeInfo
+    sparkProperties: dict[str, typing.Any]
+    systemProperties: dict[str, typing.Any]
+
+@typing.type_check_only
+class ApplicationInfo(typing_extensions.TypedDict, total=False):
+    applicationContextIngestionStatus: typing_extensions.Literal[
+        "APPLICATION_CONTEXT_INGESTION_STATUS_UNSPECIFIED",
+        "APPLICATION_CONTEXT_INGESTION_STATUS_COMPLETED",
+    ]
+    applicationId: str
+    attempts: _list[ApplicationAttemptInfo]
+    coresGranted: int
+    coresPerExecutor: int
+    maxCores: int
+    memoryPerExecutorMb: int
+    name: str
+    quantileDataStatus: typing_extensions.Literal[
+        "QUANTILE_DATA_STATUS_UNSPECIFIED",
+        "QUANTILE_DATA_STATUS_COMPLETED",
+        "QUANTILE_DATA_STATUS_FAILED",
+    ]
 
 @typing.type_check_only
 class AutoscalingConfig(typing_extensions.TypedDict, total=False):
@@ -203,13 +331,40 @@ class ClusterStatus(typing_extensions.TypedDict, total=False):
         "STOPPED",
         "STARTING",
         "REPAIRING",
+        "SCHEDULED",
     ]
     stateStartTime: str
     substate: typing_extensions.Literal["UNSPECIFIED", "UNHEALTHY", "STALE_STATUS"]
 
 @typing.type_check_only
+class ClusterToRepair(typing_extensions.TypedDict, total=False):
+    clusterRepairAction: typing_extensions.Literal[
+        "CLUSTER_REPAIR_ACTION_UNSPECIFIED", "REPAIR_ERROR_DUE_TO_UPDATE_CLUSTER"
+    ]
+
+@typing.type_check_only
 class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     enableConfidentialCompute: bool
+
+@typing.type_check_only
+class ConsolidatedExecutorSummary(typing_extensions.TypedDict, total=False):
+    activeTasks: int
+    completedTasks: int
+    count: int
+    diskUsed: str
+    failedTasks: int
+    isExcluded: int
+    maxMemory: str
+    memoryMetrics: MemoryMetrics
+    memoryUsed: str
+    rddBlocks: int
+    totalCores: int
+    totalDurationMillis: str
+    totalGcTimeMillis: str
+    totalInputBytes: str
+    totalShuffleRead: str
+    totalShuffleWrite: str
+    totalTasks: int
 
 @typing.type_check_only
 class DataprocMetricConfig(typing_extensions.TypedDict, total=False):
@@ -273,6 +428,95 @@ class ExecutionConfig(typing_extensions.TypedDict, total=False):
     stagingBucket: str
     subnetworkUri: str
     ttl: str
+
+@typing.type_check_only
+class ExecutorMetrics(typing_extensions.TypedDict, total=False):
+    metrics: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecutorMetricsDistributions(typing_extensions.TypedDict, total=False):
+    diskBytesSpilled: _list[float]
+    failedTasks: _list[float]
+    inputBytes: _list[float]
+    inputRecords: _list[float]
+    killedTasks: _list[float]
+    memoryBytesSpilled: _list[float]
+    outputBytes: _list[float]
+    outputRecords: _list[float]
+    peakMemoryMetrics: ExecutorPeakMetricsDistributions
+    quantiles: _list[float]
+    shuffleRead: _list[float]
+    shuffleReadRecords: _list[float]
+    shuffleWrite: _list[float]
+    shuffleWriteRecords: _list[float]
+    succeededTasks: _list[float]
+    taskTimeMillis: _list[float]
+
+@typing.type_check_only
+class ExecutorPeakMetricsDistributions(typing_extensions.TypedDict, total=False):
+    executorMetrics: _list[ExecutorMetrics]
+    quantiles: _list[float]
+
+@typing.type_check_only
+class ExecutorResourceRequest(typing_extensions.TypedDict, total=False):
+    amount: str
+    discoveryScript: str
+    resourceName: str
+    vendor: str
+
+@typing.type_check_only
+class ExecutorStageSummary(typing_extensions.TypedDict, total=False):
+    diskBytesSpilled: str
+    executorId: str
+    failedTasks: int
+    inputBytes: str
+    inputRecords: str
+    isExcludedForStage: bool
+    killedTasks: int
+    memoryBytesSpilled: str
+    outputBytes: str
+    outputRecords: str
+    peakMemoryMetrics: ExecutorMetrics
+    shuffleRead: str
+    shuffleReadRecords: str
+    shuffleWrite: str
+    shuffleWriteRecords: str
+    stageAttemptId: int
+    stageId: str
+    succeededTasks: int
+    taskTimeMillis: str
+
+@typing.type_check_only
+class ExecutorSummary(typing_extensions.TypedDict, total=False):
+    activeTasks: int
+    addTime: str
+    attributes: dict[str, typing.Any]
+    completedTasks: int
+    diskUsed: str
+    excludedInStages: _list[str]
+    executorId: str
+    executorLogs: dict[str, typing.Any]
+    failedTasks: int
+    hostPort: str
+    isActive: bool
+    isExcluded: bool
+    maxMemory: str
+    maxTasks: int
+    memoryMetrics: MemoryMetrics
+    memoryUsed: str
+    peakMemoryMetrics: ExecutorMetrics
+    rddBlocks: int
+    removeReason: str
+    removeTime: str
+    resourceProfileId: int
+    resources: dict[str, typing.Any]
+    totalCores: int
+    totalDurationMillis: str
+    totalGcTimeMillis: str
+    totalInputBytes: str
+    totalShuffleRead: str
+    totalShuffleWrite: str
+    totalTasks: int
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -403,9 +647,20 @@ class InjectCredentialsRequest(typing_extensions.TypedDict, total=False):
     credentialsCiphertext: str
 
 @typing.type_check_only
+class InputMetrics(typing_extensions.TypedDict, total=False):
+    bytesRead: str
+    recordsRead: str
+
+@typing.type_check_only
+class InputQuantileMetrics(typing_extensions.TypedDict, total=False):
+    bytesRead: Quantiles
+    recordsRead: Quantiles
+
+@typing.type_check_only
 class InstanceFlexibilityPolicy(typing_extensions.TypedDict, total=False):
     instanceSelectionList: _list[InstanceSelection]
     instanceSelectionResults: _list[InstanceSelectionResult]
+    provisioningModelMix: ProvisioningModelMix
 
 @typing.type_check_only
 class InstanceGroupAutoscalingPolicyConfig(typing_extensions.TypedDict, total=False):
@@ -486,6 +741,37 @@ class Job(typing_extensions.TypedDict, total=False):
     yarnApplications: _list[YarnApplication]
 
 @typing.type_check_only
+class JobData(typing_extensions.TypedDict, total=False):
+    completionTime: str
+    description: str
+    jobGroup: str
+    jobId: str
+    killTasksSummary: dict[str, typing.Any]
+    name: str
+    numActiveStages: int
+    numActiveTasks: int
+    numCompletedIndices: int
+    numCompletedStages: int
+    numCompletedTasks: int
+    numFailedStages: int
+    numFailedTasks: int
+    numKilledTasks: int
+    numSkippedStages: int
+    numSkippedTasks: int
+    numTasks: int
+    skippedStages: _list[int]
+    sqlExecutionId: str
+    stageIds: _list[str]
+    status: typing_extensions.Literal[
+        "JOB_EXECUTION_STATUS_UNSPECIFIED",
+        "JOB_EXECUTION_STATUS_RUNNING",
+        "JOB_EXECUTION_STATUS_SUCCEEDED",
+        "JOB_EXECUTION_STATUS_FAILED",
+        "JOB_EXECUTION_STATUS_UNKNOWN",
+    ]
+    submissionTime: str
+
+@typing.type_check_only
 class JobMetadata(typing_extensions.TypedDict, total=False):
     jobId: str
     operationType: str
@@ -527,6 +813,15 @@ class JobStatus(typing_extensions.TypedDict, total=False):
     substate: typing_extensions.Literal[
         "UNSPECIFIED", "SUBMITTED", "QUEUED", "STALE_STATUS"
     ]
+
+@typing.type_check_only
+class JobsSummary(typing_extensions.TypedDict, total=False):
+    activeJobs: int
+    applicationId: str
+    attempts: _list[ApplicationAttemptInfo]
+    completedJobs: int
+    failedJobs: int
+    schedulingMode: str
 
 @typing.type_check_only
 class JupyterConfig(typing_extensions.TypedDict, total=False):
@@ -629,6 +924,13 @@ class ManagedGroupConfig(typing_extensions.TypedDict, total=False):
     instanceTemplateName: str
 
 @typing.type_check_only
+class MemoryMetrics(typing_extensions.TypedDict, total=False):
+    totalOffHeapStorageMemory: str
+    totalOnHeapStorageMemory: str
+    usedOffHeapStorageMemory: str
+    usedOnHeapStorageMemory: str
+
+@typing.type_check_only
 class MetastoreConfig(typing_extensions.TypedDict, total=False):
     dataprocMetastoreService: str
 
@@ -721,6 +1023,16 @@ class OrderedJob(typing_extensions.TypedDict, total=False):
     trinoJob: TrinoJob
 
 @typing.type_check_only
+class OutputMetrics(typing_extensions.TypedDict, total=False):
+    bytesWritten: str
+    recordsWritten: str
+
+@typing.type_check_only
+class OutputQuantileMetrics(typing_extensions.TypedDict, total=False):
+    bytesWritten: Quantiles
+    recordsWritten: Quantiles
+
+@typing.type_check_only
 class ParameterValidation(typing_extensions.TypedDict, total=False):
     regex: RegexValidation
     values: ValueValidation
@@ -747,6 +1059,11 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PoolData(typing_extensions.TypedDict, total=False):
+    name: str
+    stageIds: _list[str]
+
+@typing.type_check_only
 class PrestoJob(typing_extensions.TypedDict, total=False):
     clientTags: _list[str]
     continueOnFailure: bool
@@ -755,6 +1072,21 @@ class PrestoJob(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
     queryFileUri: str
     queryList: QueryList
+
+@typing.type_check_only
+class ProcessSummary(typing_extensions.TypedDict, total=False):
+    addTime: str
+    hostPort: str
+    isActive: bool
+    processId: str
+    processLogs: dict[str, typing.Any]
+    removeTime: str
+    totalCores: int
+
+@typing.type_check_only
+class ProvisioningModelMix(typing_extensions.TypedDict, total=False):
+    standardCapacityBase: int
+    standardCapacityPercentAboveBase: int
 
 @typing.type_check_only
 class PyPiRepositoryConfig(typing_extensions.TypedDict, total=False):
@@ -781,8 +1113,83 @@ class PySparkJob(typing_extensions.TypedDict, total=False):
     pythonFileUris: _list[str]
 
 @typing.type_check_only
+class Quantiles(typing_extensions.TypedDict, total=False):
+    count: str
+    maximum: str
+    minimum: str
+    percentile25: str
+    percentile50: str
+    percentile75: str
+    sum: str
+
+@typing.type_check_only
 class QueryList(typing_extensions.TypedDict, total=False):
     queries: _list[str]
+
+@typing.type_check_only
+class RddDataDistribution(typing_extensions.TypedDict, total=False):
+    address: str
+    diskUsed: str
+    memoryRemaining: str
+    memoryUsed: str
+    offHeapMemoryRemaining: str
+    offHeapMemoryUsed: str
+    onHeapMemoryRemaining: str
+    onHeapMemoryUsed: str
+
+@typing.type_check_only
+class RddOperationCluster(typing_extensions.TypedDict, total=False):
+    childClusters: _list[RddOperationCluster]
+    childNodes: _list[RddOperationNode]
+    name: str
+    rddClusterId: str
+
+@typing.type_check_only
+class RddOperationEdge(typing_extensions.TypedDict, total=False):
+    fromId: int
+    toId: int
+
+@typing.type_check_only
+class RddOperationGraph(typing_extensions.TypedDict, total=False):
+    edges: _list[RddOperationEdge]
+    incomingEdges: _list[RddOperationEdge]
+    outgoingEdges: _list[RddOperationEdge]
+    rootCluster: RddOperationCluster
+    stageId: str
+
+@typing.type_check_only
+class RddOperationNode(typing_extensions.TypedDict, total=False):
+    barrier: bool
+    cached: bool
+    callsite: str
+    name: str
+    nodeId: int
+    outputDeterministicLevel: typing_extensions.Literal[
+        "DETERMINISTIC_LEVEL_UNSPECIFIED",
+        "DETERMINISTIC_LEVEL_DETERMINATE",
+        "DETERMINISTIC_LEVEL_UNORDERED",
+        "DETERMINISTIC_LEVEL_INDETERMINATE",
+    ]
+
+@typing.type_check_only
+class RddPartitionInfo(typing_extensions.TypedDict, total=False):
+    blockName: str
+    diskUsed: str
+    executors: _list[str]
+    memoryUsed: str
+    storageLevel: str
+
+@typing.type_check_only
+class RddStorageInfo(typing_extensions.TypedDict, total=False):
+    dataDistribution: _list[RddDataDistribution]
+    diskUsed: str
+    memoryUsed: str
+    name: str
+    numCachedPartitions: int
+    numPartitions: int
+    partitions: _list[RddPartitionInfo]
+    rddStorageId: int
+    storageLevel: str
 
 @typing.type_check_only
 class RegexValidation(typing_extensions.TypedDict, total=False):
@@ -790,6 +1197,7 @@ class RegexValidation(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RepairClusterRequest(typing_extensions.TypedDict, total=False):
+    cluster: ClusterToRepair
     clusterUuid: str
     gracefulDecommissionTimeout: str
     nodePools: _list[NodePool]
@@ -822,6 +1230,17 @@ class ResizeNodeGroupRequest(typing_extensions.TypedDict, total=False):
     size: int
 
 @typing.type_check_only
+class ResourceInformation(typing_extensions.TypedDict, total=False):
+    addresses: _list[str]
+    name: str
+
+@typing.type_check_only
+class ResourceProfileInfo(typing_extensions.TypedDict, total=False):
+    executorResources: dict[str, typing.Any]
+    resourceProfileId: int
+    taskResources: dict[str, typing.Any]
+
+@typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
     autotuningConfig: AutotuningConfig
     cohort: str
@@ -837,6 +1256,108 @@ class RuntimeInfo(typing_extensions.TypedDict, total=False):
     diagnosticOutputUri: str
     endpoints: dict[str, typing.Any]
     outputUri: str
+
+@typing.type_check_only
+class SearchSessionSparkApplicationExecutorStageSummaryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageExecutors: _list[ExecutorStageSummary]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationExecutorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationExecutors: _list[ExecutorSummary]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationJobs: _list[JobData]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationSqlQueriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationSqlQueries: _list[SqlExecutionUiData]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationStageAttemptTasksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageAttemptTasks: _list[TaskData]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationStageAttemptsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageAttempts: _list[StageData]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationStagesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStages: _list[StageData]
+
+@typing.type_check_only
+class SearchSessionSparkApplicationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sparkApplications: _list[SparkApplication]
+
+@typing.type_check_only
+class SearchSparkApplicationExecutorStageSummaryResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageExecutors: _list[ExecutorStageSummary]
+
+@typing.type_check_only
+class SearchSparkApplicationExecutorsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sparkApplicationExecutors: _list[ExecutorSummary]
+
+@typing.type_check_only
+class SearchSparkApplicationJobsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sparkApplicationJobs: _list[JobData]
+
+@typing.type_check_only
+class SearchSparkApplicationSqlQueriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationSqlQueries: _list[SqlExecutionUiData]
+
+@typing.type_check_only
+class SearchSparkApplicationStageAttemptTasksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageAttemptTasks: _list[TaskData]
+
+@typing.type_check_only
+class SearchSparkApplicationStageAttemptsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sparkApplicationStageAttempts: _list[StageData]
+
+@typing.type_check_only
+class SearchSparkApplicationStagesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sparkApplicationStages: _list[StageData]
+
+@typing.type_check_only
+class SearchSparkApplicationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    sparkApplications: _list[SparkApplication]
 
 @typing.type_check_only
 class SecurityConfig(typing_extensions.TypedDict, total=False):
@@ -910,6 +1431,73 @@ class ShieldedInstanceConfig(typing_extensions.TypedDict, total=False):
     enableVtpm: bool
 
 @typing.type_check_only
+class ShufflePushReadMetrics(typing_extensions.TypedDict, total=False):
+    corruptMergedBlockChunks: str
+    localMergedBlocksFetched: str
+    localMergedBytesRead: str
+    localMergedChunksFetched: str
+    mergedFetchFallbackCount: str
+    remoteMergedBlocksFetched: str
+    remoteMergedBytesRead: str
+    remoteMergedChunksFetched: str
+    remoteMergedReqsDuration: str
+
+@typing.type_check_only
+class ShufflePushReadQuantileMetrics(typing_extensions.TypedDict, total=False):
+    corruptMergedBlockChunks: Quantiles
+    localMergedBlocksFetched: Quantiles
+    localMergedBytesRead: Quantiles
+    localMergedChunksFetched: Quantiles
+    mergedFetchFallbackCount: Quantiles
+    remoteMergedBlocksFetched: Quantiles
+    remoteMergedBytesRead: Quantiles
+    remoteMergedChunksFetched: Quantiles
+    remoteMergedReqsDuration: Quantiles
+
+@typing.type_check_only
+class ShuffleReadMetrics(typing_extensions.TypedDict, total=False):
+    fetchWaitTimeMillis: str
+    localBlocksFetched: str
+    localBytesRead: str
+    recordsRead: str
+    remoteBlocksFetched: str
+    remoteBytesRead: str
+    remoteBytesReadToDisk: str
+    remoteReqsDuration: str
+    shufflePushReadMetrics: ShufflePushReadMetrics
+
+@typing.type_check_only
+class ShuffleReadQuantileMetrics(typing_extensions.TypedDict, total=False):
+    fetchWaitTimeMillis: Quantiles
+    localBlocksFetched: Quantiles
+    readBytes: Quantiles
+    readRecords: Quantiles
+    remoteBlocksFetched: Quantiles
+    remoteBytesRead: Quantiles
+    remoteBytesReadToDisk: Quantiles
+    remoteReqsDuration: Quantiles
+    shufflePushReadMetrics: ShufflePushReadQuantileMetrics
+    totalBlocksFetched: Quantiles
+
+@typing.type_check_only
+class ShuffleWriteMetrics(typing_extensions.TypedDict, total=False):
+    bytesWritten: str
+    recordsWritten: str
+    writeTimeNanos: str
+
+@typing.type_check_only
+class ShuffleWriteQuantileMetrics(typing_extensions.TypedDict, total=False):
+    writeBytes: Quantiles
+    writeRecords: Quantiles
+    writeTimeNanos: Quantiles
+
+@typing.type_check_only
+class SinkProgress(typing_extensions.TypedDict, total=False):
+    description: str
+    metrics: dict[str, typing.Any]
+    numOutputRows: str
+
+@typing.type_check_only
 class SoftwareConfig(typing_extensions.TypedDict, total=False):
     imageVersion: str
     optionalComponents: _list[
@@ -932,6 +1520,22 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
         ]
     ]
     properties: dict[str, typing.Any]
+
+@typing.type_check_only
+class SourceProgress(typing_extensions.TypedDict, total=False):
+    description: str
+    endOffset: str
+    inputRowsPerSecond: float
+    latestOffset: str
+    metrics: dict[str, typing.Any]
+    numInputRows: str
+    processedRowsPerSecond: float
+    startOffset: str
+
+@typing.type_check_only
+class SparkApplication(typing_extensions.TypedDict, total=False):
+    application: ApplicationInfo
+    name: str
 
 @typing.type_check_only
 class SparkBatch(typing_extensions.TypedDict, total=False):
@@ -961,6 +1565,37 @@ class SparkJob(typing_extensions.TypedDict, total=False):
     properties: dict[str, typing.Any]
 
 @typing.type_check_only
+class SparkPlanGraph(typing_extensions.TypedDict, total=False):
+    edges: _list[SparkPlanGraphEdge]
+    executionId: str
+    nodes: _list[SparkPlanGraphNodeWrapper]
+
+@typing.type_check_only
+class SparkPlanGraphCluster(typing_extensions.TypedDict, total=False):
+    desc: str
+    metrics: _list[SqlPlanMetric]
+    name: str
+    nodes: _list[SparkPlanGraphNodeWrapper]
+    sparkPlanGraphClusterId: str
+
+@typing.type_check_only
+class SparkPlanGraphEdge(typing_extensions.TypedDict, total=False):
+    fromId: str
+    toId: str
+
+@typing.type_check_only
+class SparkPlanGraphNode(typing_extensions.TypedDict, total=False):
+    desc: str
+    metrics: _list[SqlPlanMetric]
+    name: str
+    sparkPlanGraphNodeId: str
+
+@typing.type_check_only
+class SparkPlanGraphNodeWrapper(typing_extensions.TypedDict, total=False):
+    cluster: SparkPlanGraphCluster
+    node: SparkPlanGraphNode
+
+@typing.type_check_only
 class SparkRBatch(typing_extensions.TypedDict, total=False):
     archiveUris: _list[str]
     args: _list[str]
@@ -975,6 +1610,12 @@ class SparkRJob(typing_extensions.TypedDict, total=False):
     loggingConfig: LoggingConfig
     mainRFileUri: str
     properties: dict[str, typing.Any]
+
+@typing.type_check_only
+class SparkRuntimeInfo(typing_extensions.TypedDict, total=False):
+    javaHome: str
+    javaVersion: str
+    scalaVersion: str
 
 @typing.type_check_only
 class SparkSqlBatch(typing_extensions.TypedDict, total=False):
@@ -1001,6 +1642,185 @@ class SparkStandaloneAutoscalingConfig(typing_extensions.TypedDict, total=False)
     scaleUpMinWorkerFraction: float
 
 @typing.type_check_only
+class SparkWrapperObject(typing_extensions.TypedDict, total=False):
+    appSummary: AppSummary
+    applicationEnvironmentInfo: ApplicationEnvironmentInfo
+    applicationId: str
+    applicationInfo: ApplicationInfo
+    eventTimestamp: str
+    executorStageSummary: ExecutorStageSummary
+    executorSummary: ExecutorSummary
+    jobData: JobData
+    poolData: PoolData
+    processSummary: ProcessSummary
+    rddOperationGraph: RddOperationGraph
+    rddStorageInfo: RddStorageInfo
+    resourceProfileInfo: ResourceProfileInfo
+    sparkPlanGraph: SparkPlanGraph
+    speculationStageSummary: SpeculationStageSummary
+    sqlExecutionUiData: SqlExecutionUiData
+    stageData: StageData
+    streamBlockData: StreamBlockData
+    streamingQueryData: StreamingQueryData
+    streamingQueryProgress: StreamingQueryProgress
+    taskData: TaskData
+
+@typing.type_check_only
+class SpeculationStageSummary(typing_extensions.TypedDict, total=False):
+    numActiveTasks: int
+    numCompletedTasks: int
+    numFailedTasks: int
+    numKilledTasks: int
+    numTasks: int
+    stageAttemptId: int
+    stageId: str
+
+@typing.type_check_only
+class SqlExecutionUiData(typing_extensions.TypedDict, total=False):
+    completionTime: str
+    description: str
+    details: str
+    errorMessage: str
+    executionId: str
+    jobs: dict[str, typing.Any]
+    metricValues: dict[str, typing.Any]
+    metricValuesIsNull: bool
+    metrics: _list[SqlPlanMetric]
+    modifiedConfigs: dict[str, typing.Any]
+    physicalPlanDescription: str
+    rootExecutionId: str
+    stages: _list[str]
+    submissionTime: str
+
+@typing.type_check_only
+class SqlPlanMetric(typing_extensions.TypedDict, total=False):
+    accumulatorId: str
+    metricType: str
+    name: str
+
+@typing.type_check_only
+class StageAttemptTasksSummary(typing_extensions.TypedDict, total=False):
+    applicationId: str
+    numFailedTasks: int
+    numKilledTasks: int
+    numPendingTasks: int
+    numRunningTasks: int
+    numSuccessTasks: int
+    numTasks: int
+    stageAttemptId: int
+    stageId: str
+
+@typing.type_check_only
+class StageData(typing_extensions.TypedDict, total=False):
+    accumulatorUpdates: _list[AccumulableInfo]
+    completionTime: str
+    description: str
+    details: str
+    executorMetricsDistributions: ExecutorMetricsDistributions
+    executorSummary: dict[str, typing.Any]
+    failureReason: str
+    firstTaskLaunchedTime: str
+    isShufflePushEnabled: bool
+    jobIds: _list[str]
+    killedTasksSummary: dict[str, typing.Any]
+    locality: dict[str, typing.Any]
+    name: str
+    numActiveTasks: int
+    numCompleteTasks: int
+    numCompletedIndices: int
+    numFailedTasks: int
+    numKilledTasks: int
+    numTasks: int
+    parentStageIds: _list[str]
+    peakExecutorMetrics: ExecutorMetrics
+    rddIds: _list[str]
+    resourceProfileId: int
+    schedulingPool: str
+    shuffleMergersCount: int
+    speculationSummary: SpeculationStageSummary
+    stageAttemptId: int
+    stageId: str
+    stageMetrics: StageMetrics
+    status: typing_extensions.Literal[
+        "STAGE_STATUS_UNSPECIFIED",
+        "STAGE_STATUS_ACTIVE",
+        "STAGE_STATUS_COMPLETE",
+        "STAGE_STATUS_FAILED",
+        "STAGE_STATUS_PENDING",
+        "STAGE_STATUS_SKIPPED",
+    ]
+    submissionTime: str
+    taskQuantileMetrics: TaskQuantileMetrics
+    tasks: dict[str, typing.Any]
+
+@typing.type_check_only
+class StageInputMetrics(typing_extensions.TypedDict, total=False):
+    bytesRead: str
+    recordsRead: str
+
+@typing.type_check_only
+class StageMetrics(typing_extensions.TypedDict, total=False):
+    diskBytesSpilled: str
+    executorCpuTimeNanos: str
+    executorDeserializeCpuTimeNanos: str
+    executorDeserializeTimeMillis: str
+    executorRunTimeMillis: str
+    jvmGcTimeMillis: str
+    memoryBytesSpilled: str
+    peakExecutionMemoryBytes: str
+    resultSerializationTimeMillis: str
+    resultSize: str
+    stageInputMetrics: StageInputMetrics
+    stageOutputMetrics: StageOutputMetrics
+    stageShuffleReadMetrics: StageShuffleReadMetrics
+    stageShuffleWriteMetrics: StageShuffleWriteMetrics
+
+@typing.type_check_only
+class StageOutputMetrics(typing_extensions.TypedDict, total=False):
+    bytesWritten: str
+    recordsWritten: str
+
+@typing.type_check_only
+class StageShufflePushReadMetrics(typing_extensions.TypedDict, total=False):
+    corruptMergedBlockChunks: str
+    localMergedBlocksFetched: str
+    localMergedBytesRead: str
+    localMergedChunksFetched: str
+    mergedFetchFallbackCount: str
+    remoteMergedBlocksFetched: str
+    remoteMergedBytesRead: str
+    remoteMergedChunksFetched: str
+    remoteMergedReqsDuration: str
+
+@typing.type_check_only
+class StageShuffleReadMetrics(typing_extensions.TypedDict, total=False):
+    bytesRead: str
+    fetchWaitTimeMillis: str
+    localBlocksFetched: str
+    localBytesRead: str
+    recordsRead: str
+    remoteBlocksFetched: str
+    remoteBytesRead: str
+    remoteBytesReadToDisk: str
+    remoteReqsDuration: str
+    stageShufflePushReadMetrics: StageShufflePushReadMetrics
+
+@typing.type_check_only
+class StageShuffleWriteMetrics(typing_extensions.TypedDict, total=False):
+    bytesWritten: str
+    recordsWritten: str
+    writeTimeNanos: str
+
+@typing.type_check_only
+class StagesSummary(typing_extensions.TypedDict, total=False):
+    applicationId: str
+    numActiveStages: int
+    numCompletedStages: int
+    numFailedStages: int
+    numPendingStages: int
+    numSkippedStages: int
+
+@typing.type_check_only
 class StartClusterRequest(typing_extensions.TypedDict, total=False):
     clusterUuid: str
     requestId: str
@@ -1024,6 +1844,21 @@ class StateHistory(typing_extensions.TypedDict, total=False):
     stateStartTime: str
 
 @typing.type_check_only
+class StateOperatorProgress(typing_extensions.TypedDict, total=False):
+    allRemovalsTimeMs: str
+    allUpdatesTimeMs: str
+    commitTimeMs: str
+    customMetrics: dict[str, typing.Any]
+    memoryUsedBytes: str
+    numRowsDroppedByWatermark: str
+    numRowsRemoved: str
+    numRowsTotal: str
+    numRowsUpdated: str
+    numShufflePartitions: str
+    numStateStoreInstances: str
+    operatorName: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -1035,9 +1870,162 @@ class StopClusterRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
+class StreamBlockData(typing_extensions.TypedDict, total=False):
+    deserialized: bool
+    diskSize: str
+    executorId: str
+    hostPort: str
+    memSize: str
+    name: str
+    storageLevel: str
+    useDisk: bool
+    useMemory: bool
+
+@typing.type_check_only
+class StreamingQueryData(typing_extensions.TypedDict, total=False):
+    endTimestamp: str
+    exception: str
+    isActive: bool
+    name: str
+    runId: str
+    startTimestamp: str
+    streamingQueryId: str
+
+@typing.type_check_only
+class StreamingQueryProgress(typing_extensions.TypedDict, total=False):
+    batchDuration: str
+    batchId: str
+    durationMillis: dict[str, typing.Any]
+    eventTime: dict[str, typing.Any]
+    name: str
+    observedMetrics: dict[str, typing.Any]
+    runId: str
+    sink: SinkProgress
+    sources: _list[SourceProgress]
+    stateOperators: _list[StateOperatorProgress]
+    streamingQueryProgressId: str
+    timestamp: str
+
+@typing.type_check_only
 class SubmitJobRequest(typing_extensions.TypedDict, total=False):
     job: Job
     requestId: str
+
+@typing.type_check_only
+class SummarizeSessionSparkApplicationExecutorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    activeExecutorSummary: ConsolidatedExecutorSummary
+    applicationId: str
+    deadExecutorSummary: ConsolidatedExecutorSummary
+    totalExecutorSummary: ConsolidatedExecutorSummary
+
+@typing.type_check_only
+class SummarizeSessionSparkApplicationJobsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    jobsSummary: JobsSummary
+
+@typing.type_check_only
+class SummarizeSessionSparkApplicationStageAttemptTasksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    stageAttemptTasksSummary: StageAttemptTasksSummary
+
+@typing.type_check_only
+class SummarizeSessionSparkApplicationStagesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    stagesSummary: StagesSummary
+
+@typing.type_check_only
+class SummarizeSparkApplicationExecutorsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    activeExecutorSummary: ConsolidatedExecutorSummary
+    applicationId: str
+    deadExecutorSummary: ConsolidatedExecutorSummary
+    totalExecutorSummary: ConsolidatedExecutorSummary
+
+@typing.type_check_only
+class SummarizeSparkApplicationJobsResponse(typing_extensions.TypedDict, total=False):
+    jobsSummary: JobsSummary
+
+@typing.type_check_only
+class SummarizeSparkApplicationStageAttemptTasksResponse(
+    typing_extensions.TypedDict, total=False
+):
+    stageAttemptTasksSummary: StageAttemptTasksSummary
+
+@typing.type_check_only
+class SummarizeSparkApplicationStagesResponse(typing_extensions.TypedDict, total=False):
+    stagesSummary: StagesSummary
+
+@typing.type_check_only
+class TaskData(typing_extensions.TypedDict, total=False):
+    accumulatorUpdates: _list[AccumulableInfo]
+    attempt: int
+    durationMillis: str
+    errorMessage: str
+    executorId: str
+    executorLogs: dict[str, typing.Any]
+    gettingResultTimeMillis: str
+    hasMetrics: bool
+    host: str
+    index: int
+    launchTime: str
+    partitionId: int
+    resultFetchStart: str
+    schedulerDelayMillis: str
+    speculative: bool
+    stageAttemptId: int
+    stageId: str
+    status: str
+    taskId: str
+    taskLocality: str
+    taskMetrics: TaskMetrics
+
+@typing.type_check_only
+class TaskMetrics(typing_extensions.TypedDict, total=False):
+    diskBytesSpilled: str
+    executorCpuTimeNanos: str
+    executorDeserializeCpuTimeNanos: str
+    executorDeserializeTimeMillis: str
+    executorRunTimeMillis: str
+    inputMetrics: InputMetrics
+    jvmGcTimeMillis: str
+    memoryBytesSpilled: str
+    outputMetrics: OutputMetrics
+    peakExecutionMemoryBytes: str
+    resultSerializationTimeMillis: str
+    resultSize: str
+    shuffleReadMetrics: ShuffleReadMetrics
+    shuffleWriteMetrics: ShuffleWriteMetrics
+
+@typing.type_check_only
+class TaskQuantileMetrics(typing_extensions.TypedDict, total=False):
+    diskBytesSpilled: Quantiles
+    durationMillis: Quantiles
+    executorCpuTimeNanos: Quantiles
+    executorDeserializeCpuTimeNanos: Quantiles
+    executorDeserializeTimeMillis: Quantiles
+    executorRunTimeMillis: Quantiles
+    gettingResultTimeMillis: Quantiles
+    inputMetrics: InputQuantileMetrics
+    jvmGcTimeMillis: Quantiles
+    memoryBytesSpilled: Quantiles
+    outputMetrics: OutputQuantileMetrics
+    peakExecutionMemoryBytes: Quantiles
+    resultSerializationTimeMillis: Quantiles
+    resultSize: Quantiles
+    schedulerDelayMillis: Quantiles
+    shuffleReadMetrics: ShuffleReadQuantileMetrics
+    shuffleWriteMetrics: ShuffleWriteQuantileMetrics
+
+@typing.type_check_only
+class TaskResourceRequest(typing_extensions.TypedDict, total=False):
+    amount: float
+    resourceName: str
 
 @typing.type_check_only
 class TemplateParameter(typing_extensions.TypedDict, total=False):
@@ -1149,6 +2137,28 @@ class WorkflowTemplate(typing_extensions.TypedDict, total=False):
 class WorkflowTemplatePlacement(typing_extensions.TypedDict, total=False):
     clusterSelector: ClusterSelector
     managedCluster: ManagedCluster
+
+@typing.type_check_only
+class WriteSessionSparkApplicationContextRequest(
+    typing_extensions.TypedDict, total=False
+):
+    parent: str
+    sparkWrapperObjects: _list[SparkWrapperObject]
+
+@typing.type_check_only
+class WriteSessionSparkApplicationContextResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class WriteSparkApplicationContextRequest(typing_extensions.TypedDict, total=False):
+    parent: str
+    sparkWrapperObjects: _list[SparkWrapperObject]
+
+@typing.type_check_only
+class WriteSparkApplicationContextResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class YarnApplication(typing_extensions.TypedDict, total=False):

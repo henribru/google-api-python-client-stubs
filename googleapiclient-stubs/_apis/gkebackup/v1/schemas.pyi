@@ -310,6 +310,7 @@ class Restore(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "DELETING",
+        "VALIDATING",
     ]
     stateReason: str
     uid: str

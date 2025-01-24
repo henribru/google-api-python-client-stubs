@@ -186,6 +186,7 @@ class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     autoRenewEnabled: bool
     installmentDetails: InstallmentPlan
     priceChangeDetails: SubscriptionItemPriceChangeDetails
+    recurringPrice: Money
 
 @typing.type_check_only
 class BasePlan(typing_extensions.TypedDict, total=False):
@@ -421,6 +422,7 @@ class DeviceSelector(typing_extensions.TypedDict, total=False):
     forbiddenSystemFeatures: _list[SystemFeature]
     includedDeviceIds: _list[DeviceId]
     requiredSystemFeatures: _list[SystemFeature]
+    systemOnChips: _list[SystemOnChip]
 
 @typing.type_check_only
 class DeviceSpec(typing_extensions.TypedDict, total=False):
@@ -460,10 +462,6 @@ class ExternalAccountIdentifiers(typing_extensions.TypedDict, total=False):
     obfuscatedExternalProfileId: str
 
 @typing.type_check_only
-class ExternalOfferInitialAcquisitionDetails(typing_extensions.TypedDict, total=False):
-    externalTransactionId: str
-
-@typing.type_check_only
 class ExternalSubscription(typing_extensions.TypedDict, total=False):
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "RECURRING", "PREPAID"
@@ -474,7 +472,6 @@ class ExternalTransaction(typing_extensions.TypedDict, total=False):
     createTime: str
     currentPreTaxAmount: Price
     currentTaxAmount: Price
-    externalOfferInitialAcquisitionDetails: ExternalOfferInitialAcquisitionDetails
     externalTransactionId: str
     oneTimeTransaction: OneTimeExternalTransaction
     originalPreTaxAmount: Price
@@ -846,6 +843,9 @@ class OfferTag(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class OneTimeCode(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
     externalTransactionToken: str
 
@@ -1121,6 +1121,11 @@ class SdkVersionTargeting(typing_extensions.TypedDict, total=False):
     value: _list[SdkVersion]
 
 @typing.type_check_only
+class SignupPromotion(typing_extensions.TypedDict, total=False):
+    oneTimeCode: OneTimeCode
+    vanityCode: VanityCode
+
+@typing.type_check_only
 class SplitApkMetadata(typing_extensions.TypedDict, total=False):
     isMasterSplit: bool
     splitId: str
@@ -1254,6 +1259,7 @@ class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     offerDetails: OfferDetails
     prepaidPlan: PrepaidPlan
     productId: str
+    signupPromotion: SignupPromotion
 
 @typing.type_check_only
 class SubscriptionPurchaseV2(typing_extensions.TypedDict, total=False):
@@ -1323,6 +1329,11 @@ class SystemFeature(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SystemInitiatedCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SystemOnChip(typing_extensions.TypedDict, total=False):
+    manufacturer: str
+    model: str
 
 @typing.type_check_only
 class Targeting(typing_extensions.TypedDict, total=False):
@@ -1548,6 +1559,10 @@ class UserInitiatedCancellation(typing_extensions.TypedDict, total=False):
 class UsesPermission(typing_extensions.TypedDict, total=False):
     maxSdkVersion: int
     name: str
+
+@typing.type_check_only
+class VanityCode(typing_extensions.TypedDict, total=False):
+    promotionCode: str
 
 @typing.type_check_only
 class Variant(typing_extensions.TypedDict, total=False):

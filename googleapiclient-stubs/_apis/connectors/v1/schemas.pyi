@@ -170,7 +170,12 @@ class Connection(typing_extensions.TypedDict, total=False):
     connectorVersion: str
     connectorVersionInfraConfig: ConnectorVersionInfraConfig
     connectorVersionLaunchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
     createTime: str
     description: str
@@ -253,8 +258,14 @@ class Connector(typing_extensions.TypedDict, total=False):
     externalUri: str
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
+    marketplaceConnectorDetails: MarketplaceConnectorDetails
     name: str
     tags: _list[str]
     updateTime: str
@@ -262,7 +273,9 @@ class Connector(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
+    alwaysAllocateCpu: bool
     connectionRatelimitWindowSeconds: str
+    connectorVersioningEnabled: bool
     deploymentModel: typing_extensions.Literal[
         "DEPLOYMENT_MODEL_UNSPECIFIED", "GKE_MST", "CLOUD_RUN_MST"
     ]
@@ -271,6 +284,7 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     maxInstanceRequestConcurrency: int
     migrateDeploymentModel: bool
     migrateTls: bool
+    provisionCloudSpanner: bool
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -292,7 +306,12 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     isCustomEntitiesSupported: bool
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
     name: str
     releaseVersion: str
@@ -348,6 +367,7 @@ class ConnectorsLogConfig(typing_extensions.TypedDict, total=False):
 class CustomConnector(typing_extensions.TypedDict, total=False):
     activeConnectorVersions: _list[str]
     allConnectorVersions: _list[str]
+    allMarketplaceVersions: _list[str]
     createTime: str
     customConnectorType: typing_extensions.Literal[
         "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
@@ -357,6 +377,7 @@ class CustomConnector(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     logo: str
     name: str
+    publishedMarketplaceVersions: _list[str]
     updateTime: str
 
 @typing.type_check_only
@@ -368,6 +389,8 @@ class CustomConnectorVersion(typing_extensions.TypedDict, total=False):
     enableBackendDestinationConfig: bool
     labels: dict[str, typing.Any]
     name: str
+    partnerMetadata: PartnerMetadata
+    publishStatus: PublishStatus
     serviceAccount: str
     specLocation: str
     specServerUrls: _list[str]
@@ -497,7 +520,7 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
 class EventSubscriptionDestination(typing_extensions.TypedDict, total=False):
     endpoint: EndPoint
     serviceAccount: str
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT", "GCS", "PUBSUB"]
 
 @typing.type_check_only
 class EventSubscriptionStatus(typing_extensions.TypedDict, total=False):
@@ -553,7 +576,12 @@ class EventingDetails(typing_extensions.TypedDict, total=False):
     documentationLink: str
     iconLocation: str
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
     name: str
     searchTags: _list[str]
@@ -565,6 +593,7 @@ class EventingRuntimeData(typing_extensions.TypedDict, total=False):
     eventsListenerPscSa: str
     status: EventingStatus
     webhookData: WebhookData
+    webhookSubscriptions: WebhookSubscriptions
 
 @typing.type_check_only
 class EventingStatus(typing_extensions.TypedDict, total=False):
@@ -991,6 +1020,13 @@ class ManagedZone(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class MarketplaceConnectorDetails(typing_extensions.TypedDict, total=False):
+    marketplaceProduct: str
+    marketplaceProductId: str
+    marketplaceProductUri: str
+    partner: str
+
+@typing.type_check_only
 class MultipleSelectConfig(typing_extensions.TypedDict, total=False):
     allowCustomValues: bool
     multipleSelectOptions: _list[MultipleSelectOption]
@@ -1071,6 +1107,24 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PartnerMetadata(typing_extensions.TypedDict, total=False):
+    acceptGcpTos: bool
+    additionalComments: str
+    confirmPartnerRequirements: bool
+    demoUri: str
+    integrationTemplates: str
+    marketplaceProduct: str
+    marketplaceProductId: str
+    marketplaceProductProjectId: str
+    marketplaceProductUri: str
+    partner: str
+    partnerConnectorDisplayName: str
+    publishRequestTime: str
+    targetApplication: str
+    targetCustomerSegment: str
+    useCases: str
+
+@typing.type_check_only
 class PerSliSloEligibility(typing_extensions.TypedDict, total=False):
     eligibilities: dict[str, typing.Any]
 
@@ -1090,7 +1144,12 @@ class Provider(typing_extensions.TypedDict, total=False):
     externalUri: str
     labels: dict[str, typing.Any]
     launchStage: typing_extensions.Literal[
-        "LAUNCH_STAGE_UNSPECIFIED", "PREVIEW", "GA", "DEPRECATED", "PRIVATE_PREVIEW"
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "PREVIEW",
+        "GA",
+        "DEPRECATED",
+        "TEST",
+        "PRIVATE_PREVIEW",
     ]
     name: str
     updateTime: str
@@ -1100,6 +1159,19 @@ class Provider(typing_extensions.TypedDict, total=False):
 class ProvisionedResource(typing_extensions.TypedDict, total=False):
     resourceType: str
     resourceUrl: str
+
+@typing.type_check_only
+class PublishCustomConnectorVersionRequest(typing_extensions.TypedDict, total=False):
+    partnerMetadata: PartnerMetadata
+
+@typing.type_check_only
+class PublishStatus(typing_extensions.TypedDict, total=False):
+    publishState: typing_extensions.Literal[
+        "PUBLISH_STATE_UNSPECIFIED", "PUBLISHED", "PUBLISH_IN_PROGRESS", "UNPUBLISHED"
+    ]
+    publishTime: str
+    publishedAs: str
+    publishedSource: str
 
 @typing.type_check_only
 class RefreshConnectionSchemaMetadataRequest(
@@ -1209,8 +1281,10 @@ class RuntimeActionSchema(typing_extensions.TypedDict, total=False):
     displayName: str
     inputJsonSchema: JsonSchema
     inputParameters: _list[InputParameter]
+    inputSchemaAsString: str
     resultJsonSchema: JsonSchema
     resultMetadata: _list[ResultMetadata]
+    resultSchemaAsString: str
 
 @typing.type_check_only
 class RuntimeConfig(typing_extensions.TypedDict, total=False):
@@ -1406,5 +1480,14 @@ class WebhookData(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class WebhookSubscriptions(typing_extensions.TypedDict, total=False):
+    webhookData: _list[WebhookData]
+
+@typing.type_check_only
 class WeeklyCycle(typing_extensions.TypedDict, total=False):
     schedule: _list[Schedule]
+
+@typing.type_check_only
+class WithdrawCustomConnectorVersionRequest(
+    typing_extensions.TypedDict, total=False
+): ...

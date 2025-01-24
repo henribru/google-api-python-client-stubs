@@ -54,6 +54,7 @@ class AnnotateTextResponse(typing_extensions.TypedDict, total=False):
 class ClassificationCategory(typing_extensions.TypedDict, total=False):
     confidence: float
     name: str
+    severity: float
 
 @typing.type_check_only
 class ClassifyTextRequest(typing_extensions.TypedDict, total=False):
@@ -125,8 +126,12 @@ class CpuMetric(typing_extensions.TypedDict, total=False):
         "A2_ULTRAGPU_2G",
         "A2_ULTRAGPU_4G",
         "A2_ULTRAGPU_8G",
+        "A3_HIGHGPU_1G",
+        "A3_HIGHGPU_2G",
+        "A3_HIGHGPU_4G",
         "A3_HIGHGPU_8G",
         "A3_MEGAGPU_8G",
+        "A3_ULTRAGPU_8G",
         "E2_STANDARD_2",
         "E2_STANDARD_4",
         "E2_STANDARD_8",
@@ -351,8 +356,12 @@ class GpuMetric(typing_extensions.TypedDict, total=False):
         "A2_ULTRAGPU_2G",
         "A2_ULTRAGPU_4G",
         "A2_ULTRAGPU_8G",
+        "A3_HIGHGPU_1G",
+        "A3_HIGHGPU_2G",
+        "A3_HIGHGPU_4G",
         "A3_HIGHGPU_8G",
         "A3_MEGAGPU_8G",
+        "A3_ULTRAGPU_8G",
         "E2_STANDARD_2",
         "E2_STANDARD_4",
         "E2_STANDARD_8",
@@ -493,6 +502,9 @@ class InfraUsage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ModerateTextRequest(typing_extensions.TypedDict, total=False):
     document: Document
+    modelVersion: typing_extensions.Literal[
+        "MODEL_VERSION_UNSPECIFIED", "MODEL_VERSION_1", "MODEL_VERSION_2"
+    ]
 
 @typing.type_check_only
 class ModerateTextResponse(typing_extensions.TypedDict, total=False):
@@ -535,8 +547,12 @@ class RamMetric(typing_extensions.TypedDict, total=False):
         "A2_ULTRAGPU_2G",
         "A2_ULTRAGPU_4G",
         "A2_ULTRAGPU_8G",
+        "A3_HIGHGPU_1G",
+        "A3_HIGHGPU_2G",
+        "A3_HIGHGPU_4G",
         "A3_HIGHGPU_8G",
         "A3_MEGAGPU_8G",
+        "A3_ULTRAGPU_8G",
         "E2_STANDARD_2",
         "E2_STANDARD_4",
         "E2_STANDARD_8",
@@ -1015,6 +1031,7 @@ class XPSImageModelServingSpecModelThroughputEstimation(
         "NVIDIA_L4",
         "NVIDIA_H100_80GB",
         "NVIDIA_H100_MEGA_80GB",
+        "NVIDIA_H200_141GB",
         "TPU_V2",
         "TPU_V3",
         "TPU_V4_POD",

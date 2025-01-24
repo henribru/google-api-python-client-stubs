@@ -115,6 +115,7 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
         "EXPORT_TO_SECURITY_COMMAND_CENTER_UNSPECIFIED", "ENABLED", "DISABLED"
     ]
     ignoreHttpStatusErrors: bool
+    latestRun: ScanRun
     managedScan: bool
     maxQps: int
     name: str
@@ -122,6 +123,15 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     schedule: Schedule
     startingUrls: _list[str]
     staticIpScan: bool
+    targetPlatforms: _list[
+        typing_extensions.Literal[
+            "TARGET_PLATFORM_UNSPECIFIED",
+            "APP_ENGINE",
+            "COMPUTE",
+            "CLOUD_RUN",
+            "CLOUD_FUNCTIONS",
+        ]
+    ]
     userAgent: typing_extensions.Literal[
         "USER_AGENT_UNSPECIFIED", "CHROME_LINUX", "CHROME_ANDROID", "SAFARI_IPHONE"
     ]

@@ -243,6 +243,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def export(
+                    self,
+                    *,
+                    name: str,
+                    body: ExportClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -292,6 +299,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     body: RestoreClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def restoreFromCloudSQL(
+                    self,
+                    *,
+                    parent: str,
+                    body: RestoreFromCloudSQLRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def switchover(

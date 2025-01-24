@@ -88,6 +88,20 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         previous_request: ListGitRepositoryLinksResponseHttpRequest,
                         previous_response: ListGitRepositoryLinksResponse,
                     ) -> ListGitRepositoryLinksResponseHttpRequest | None: ...
+                    def processGitLabEnterpriseWebhook(
+                        self,
+                        *,
+                        name: str,
+                        body: ProcessGitLabEnterpriseWebhookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def processGitLabWebhook(
+                        self,
+                        *,
+                        name: str,
+                        body: ProcessGitLabWebhookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
 
                 def create(
                     self,
@@ -153,6 +167,13 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def processGitHubEnterpriseWebhook(
+                    self,
+                    *,
+                    parent: str,
+                    body: ProcessGitHubEnterpriseWebhookRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> EmptyHttpRequest: ...
                 def gitRepositoryLinks(self) -> GitRepositoryLinksResource: ...
 
             @typing.type_check_only

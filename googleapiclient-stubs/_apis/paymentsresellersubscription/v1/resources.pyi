@@ -122,9 +122,20 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHttpRequest: ...
 
+        @typing.type_check_only
+        class UserSessionsResource(googleapiclient.discovery.Resource):
+            def generate(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponseHttpRequest: ...
+
         def products(self) -> ProductsResource: ...
         def promotions(self) -> PromotionsResource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
+        def userSessions(self) -> UserSessionsResource: ...
 
     def new_batch_http_request(
         self,
@@ -179,6 +190,16 @@ class GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponseHtt
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse: ...
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponseHttpRequest(

@@ -41,6 +41,26 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
         ) -> GoogleCloudDatacatalogV1EntryHttpRequest: ...
 
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            def retrieveConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDatacatalogV1OrganizationConfigHttpRequest: ...
+            def retrieveEffectiveConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDatacatalogV1MigrationConfigHttpRequest: ...
+            def setConfig(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDatacatalogV1SetConfigRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDatacatalogV1MigrationConfigHttpRequest: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -532,6 +552,16 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def policyTags(self) -> PolicyTagsResource: ...
 
+            def retrieveEffectiveConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDatacatalogV1MigrationConfigHttpRequest: ...
+            def setConfig(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDatacatalogV1SetConfigRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDatacatalogV1MigrationConfigHttpRequest: ...
             def entryGroups(self) -> EntryGroupsResource: ...
             def operations(self) -> OperationsResource: ...
             def tagTemplates(self) -> TagTemplatesResource: ...
@@ -553,6 +583,7 @@ class DataCatalogResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def catalog(self) -> CatalogResource: ...
     def entries(self) -> EntriesResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -666,6 +697,26 @@ class GoogleCloudDatacatalogV1ListTaxonomiesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDatacatalogV1ListTaxonomiesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1MigrationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDatacatalogV1MigrationConfig: ...
+
+@typing.type_check_only
+class GoogleCloudDatacatalogV1OrganizationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDatacatalogV1OrganizationConfig: ...
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1PolicyTagHttpRequest(googleapiclient.http.HttpRequest):

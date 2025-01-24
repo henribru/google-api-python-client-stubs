@@ -208,14 +208,22 @@ class StorageResource(googleapiclient.discovery.Resource):
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> BucketHttpRequest: ...
+        def relocate(
+            self,
+            *,
+            bucket: str,
+            body: RelocateBucketRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningOperationHttpRequest: ...
         def restore(
             self,
             *,
             bucket: str,
             generation: str,
+            projection: typing_extensions.Literal["full", "noAcl"] = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
-        ) -> googleapiclient.http.HttpRequest: ...
+        ) -> BucketHttpRequest: ...
         def setIamPolicy(
             self,
             *,
@@ -692,6 +700,23 @@ class StorageResource(googleapiclient.discovery.Resource):
         def list_next(
             self, previous_request: ObjectsHttpRequest, previous_response: Objects
         ) -> ObjectsHttpRequest | None: ...
+        def move(
+            self,
+            *,
+            bucket: str,
+            sourceObject: str,
+            destinationObject: str,
+            ifGenerationMatch: str = ...,
+            ifGenerationNotMatch: str = ...,
+            ifMetagenerationMatch: str = ...,
+            ifMetagenerationNotMatch: str = ...,
+            ifSourceGenerationMatch: str = ...,
+            ifSourceGenerationNotMatch: str = ...,
+            ifSourceMetagenerationMatch: str = ...,
+            ifSourceMetagenerationNotMatch: str = ...,
+            userProject: str = ...,
+            **kwargs: typing.Any,
+        ) -> ObjectHttpRequest: ...
         def patch(
             self,
             *,
@@ -828,6 +853,14 @@ class StorageResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
+        def advanceRelocateBucket(
+            self,
+            *,
+            bucket: str,
+            operationId: str,
+            body: AdvanceRelocateBucketOperationRequest = ...,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
         def cancel(
             self, *, bucket: str, operationId: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...

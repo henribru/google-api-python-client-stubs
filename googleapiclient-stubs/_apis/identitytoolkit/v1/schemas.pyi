@@ -412,11 +412,21 @@ class GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest(
     typing_extensions.TypedDict, total=False
 ):
     autoRetrievalInfo: GoogleCloudIdentitytoolkitV1AutoRetrievalInfo
+    captchaResponse: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED",
+        "CLIENT_TYPE_WEB",
+        "CLIENT_TYPE_ANDROID",
+        "CLIENT_TYPE_IOS",
+    ]
     iosReceipt: str
     iosSecret: str
     phoneNumber: str
     playIntegrityToken: str
     recaptchaToken: str
+    recaptchaVersion: typing_extensions.Literal[
+        "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+    ]
     safetyNetToken: str
     tenantId: str
 
