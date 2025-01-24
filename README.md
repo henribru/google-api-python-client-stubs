@@ -60,3 +60,8 @@ The stubs previously didn't include recursive type definitions due to a lack of 
 There are detailed stubs for the API services, but other parts of the library have only been annotated with [stubgen](https://mypy.readthedocs.io/en/stable/stubgen.html),
 so they're mostly typed as `Any`. I believe these parts are mostly used internally by the library itself,
 so for most users this should be fine. Contributions to improve these stubs are welcome, though.
+
+## Development
+You can run `create_stubs.py` to generate new stubs. Note that you should first update the google-api-python-client dependency and also clone https://github.com/googleapis/google-api-python-client.
+
+Feel free to use this to open a PR when new versions come out.
