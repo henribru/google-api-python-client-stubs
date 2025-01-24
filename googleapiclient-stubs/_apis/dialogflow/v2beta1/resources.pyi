@@ -2054,6 +2054,45 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class SipTrunksResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDialogflowV2beta1SipTrunk = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1SipTrunkHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1SipTrunkHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1ListSipTrunksResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListSipTrunksResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListSipTrunksResponse,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1ListSipTrunksResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1SipTrunk = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1SipTrunkHttpRequest: ...
+
+            @typing.type_check_only
             class StatelessSuggestionResource(googleapiclient.discovery.Resource):
                 def generate(
                     self,
@@ -2122,6 +2161,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def generators(self) -> GeneratorsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
+            def sipTrunks(self) -> SipTrunksResource: ...
             def statelessSuggestion(self) -> StatelessSuggestionResource: ...
             def suggestions(self) -> SuggestionsResource: ...
 
@@ -2528,6 +2568,16 @@ class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
     ) -> GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListSipTrunksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1ListSipTrunksResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListSuggestionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2586,6 +2636,14 @@ class GoogleCloudDialogflowV2beta1SessionEntityTypeHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2beta1SessionEntityType: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1SipTrunkHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1SipTrunk: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestArticlesResponseHttpRequest(

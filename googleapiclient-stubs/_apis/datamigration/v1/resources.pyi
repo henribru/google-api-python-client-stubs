@@ -278,6 +278,9 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
             class MigrationJobsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ObjectsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> MigrationJobObjectHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -285,6 +288,26 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListMigrationJobObjectsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListMigrationJobObjectsResponseHttpRequest,
+                        previous_response: ListMigrationJobObjectsResponse,
+                    ) -> ListMigrationJobObjectsResponseHttpRequest | None: ...
+                    def lookup(
+                        self,
+                        *,
+                        parent: str,
+                        body: LookupMigrationJobObjectRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> MigrationJobObjectHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -323,6 +346,9 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: DemoteDestinationRequest = ...,
                     **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def fetchSourceObjects(
+                    self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
                 def generateSshScript(
                     self,
@@ -650,6 +676,14 @@ class ListMappingRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListMappingRulesResponse: ...
 
 @typing.type_check_only
+class ListMigrationJobObjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMigrationJobObjectsResponse: ...
+
+@typing.type_check_only
 class ListMigrationJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -696,6 +730,14 @@ class MigrationJobHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> MigrationJob: ...
+
+@typing.type_check_only
+class MigrationJobObjectHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MigrationJobObject: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

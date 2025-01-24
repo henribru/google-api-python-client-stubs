@@ -313,6 +313,14 @@ class GoogleAnalyticsAdminV1betaDataRetentionSettings(
     ]
     name: str
     resetUserDataOnNewActivity: bool
+    userDataRetention: typing_extensions.Literal[
+        "RETENTION_DURATION_UNSPECIFIED",
+        "TWO_MONTHS",
+        "FOURTEEN_MONTHS",
+        "TWENTY_SIX_MONTHS",
+        "THIRTY_EIGHT_MONTHS",
+        "FIFTY_MONTHS",
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1betaDataSharingSettings(
@@ -620,6 +628,8 @@ class GoogleAnalyticsAdminV1betaSearchChangeHistoryEventsRequest(
             "GOOGLE_SIGNALS_SETTINGS",
             "CONVERSION_EVENT",
             "MEASUREMENT_PROTOCOL_SECRET",
+            "CUSTOM_DIMENSION",
+            "CUSTOM_METRIC",
             "DATA_RETENTION_SETTINGS",
             "DISPLAY_VIDEO_360_ADVERTISER_LINK",
             "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",

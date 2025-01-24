@@ -17,6 +17,7 @@ class GoogleCloudRunV2BuildpacksBuild(typing_extensions.TypedDict, total=False):
     enableAutomaticUpdates: bool
     environmentVariables: dict[str, typing.Any]
     functionTarget: str
+    projectDescriptor: str
     runtime: str
 
 @typing.type_check_only
@@ -210,6 +211,7 @@ class GoogleCloudRunV2ExportStatusResponse(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudRunV2GCSVolumeSource(typing_extensions.TypedDict, total=False):
     bucket: str
+    mountOptions: _list[str]
     readOnly: bool
 
 @typing.type_check_only
@@ -406,6 +408,10 @@ class GoogleCloudRunV2RevisionTemplate(typing_extensions.TypedDict, total=False)
     annotations: dict[str, typing.Any]
     containers: _list[GoogleCloudRunV2Container]
     encryptionKey: str
+    encryptionKeyRevocationAction: typing_extensions.Literal[
+        "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED", "PREVENT_NEW", "SHUTDOWN"
+    ]
+    encryptionKeyShutdownDuration: str
     executionEnvironment: typing_extensions.Literal[
         "EXECUTION_ENVIRONMENT_UNSPECIFIED",
         "EXECUTION_ENVIRONMENT_GEN1",
@@ -464,6 +470,7 @@ class GoogleCloudRunV2Service(typing_extensions.TypedDict, total=False):
         "INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER",
         "INGRESS_TRAFFIC_NONE",
     ]
+    invokerIamDisabled: bool
     labels: dict[str, typing.Any]
     lastModifier: str
     latestCreatedRevision: str
@@ -498,6 +505,8 @@ class GoogleCloudRunV2ServiceMesh(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleCloudRunV2ServiceScaling(typing_extensions.TypedDict, total=False):
+    manualInstanceCount: int
+    maxInstanceCount: int
     minInstanceCount: int
     scalingMode: typing_extensions.Literal[
         "SCALING_MODE_UNSPECIFIED", "AUTOMATIC", "MANUAL"
@@ -732,7 +741,9 @@ class GoogleDevtoolsCloudbuildV1BuildOperationMetadata(
 class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=False):
     automapSubstitutions: bool
     defaultLogsBucketBehavior: typing_extensions.Literal[
-        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+        "REGIONAL_USER_OWNED_BUCKET",
+        "LEGACY_BUCKET",
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool

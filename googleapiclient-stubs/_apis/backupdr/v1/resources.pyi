@@ -239,6 +239,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     allowMissing: bool = ...,
                     etag: str = ...,
                     force: bool = ...,
+                    ignoreBackupPlanReferences: bool = ...,
                     requestId: str = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
@@ -393,6 +394,16 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class ServiceConfigResource(googleapiclient.discovery.Resource):
+                def initialize(
+                    self,
+                    *,
+                    name: str,
+                    body: InitializeServiceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -415,6 +426,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
             def backupVaults(self) -> BackupVaultsResource: ...
             def managementServers(self) -> ManagementServersResource: ...
             def operations(self) -> OperationsResource: ...
+            def serviceConfig(self) -> ServiceConfigResource: ...
 
         def locations(self) -> LocationsResource: ...
 

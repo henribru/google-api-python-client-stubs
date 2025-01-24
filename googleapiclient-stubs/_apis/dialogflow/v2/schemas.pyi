@@ -379,6 +379,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     bargeInConfig: GoogleCloudDialogflowCxV3BargeInConfig
     enableWordInfo: bool
@@ -1203,6 +1204,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     bargeInConfig: GoogleCloudDialogflowCxV3beta1BargeInConfig
     enableWordInfo: bool
@@ -1972,6 +1974,7 @@ class GoogleCloudDialogflowV2Conversation(typing_extensions.TypedDict, total=Fal
     name: str
     phoneNumber: GoogleCloudDialogflowV2ConversationPhoneNumber
     startTime: str
+    telephonyConnectionInfo: GoogleCloudDialogflowV2ConversationTelephonyConnectionInfo
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ConversationContext(
@@ -1990,6 +1993,8 @@ class GoogleCloudDialogflowV2ConversationDataset(
     displayName: str
     inputConfig: GoogleCloudDialogflowV2InputConfig
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2ConversationEvent(
@@ -1998,12 +2003,14 @@ class GoogleCloudDialogflowV2ConversationEvent(
     conversation: str
     errorStatus: GoogleRpcStatus
     newMessagePayload: GoogleCloudDialogflowV2Message
+    newRecognitionResultPayload: GoogleCloudDialogflowV2StreamingRecognitionResult
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "CONVERSATION_STARTED",
         "CONVERSATION_FINISHED",
         "HUMAN_INTERVENTION_NEEDED",
         "NEW_MESSAGE",
+        "NEW_RECOGNITION_RESULT",
         "UNRECOVERABLE_ERROR",
     ]
 
@@ -2023,6 +2030,8 @@ class GoogleCloudDialogflowV2ConversationModel(
     displayName: str
     languageCode: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     smartReplyModelMetadata: GoogleCloudDialogflowV2SmartReplyModelMetadata
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -2051,6 +2060,7 @@ class GoogleCloudDialogflowV2ConversationModelEvaluation(
 class GoogleCloudDialogflowV2ConversationPhoneNumber(
     typing_extensions.TypedDict, total=False
 ):
+    countryCode: int
     phoneNumber: str
 
 @typing.type_check_only
@@ -2066,12 +2076,40 @@ class GoogleCloudDialogflowV2ConversationProfile(
     loggingConfig: GoogleCloudDialogflowV2LoggingConfig
     name: str
     newMessageEventNotificationConfig: GoogleCloudDialogflowV2NotificationConfig
+    newRecognitionResultNotificationConfig: GoogleCloudDialogflowV2NotificationConfig
     notificationConfig: GoogleCloudDialogflowV2NotificationConfig
     securitySettings: str
     sttConfig: GoogleCloudDialogflowV2SpeechToTextConfig
     timeZone: str
     ttsConfig: GoogleCloudDialogflowV2SynthesizeSpeechConfig
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationTelephonyConnectionInfo(
+    typing_extensions.TypedDict, total=False
+):
+    dialedNumber: str
+    extraMimeContents: _list[
+        GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoMimeContent
+    ]
+    sdp: str
+    sipHeaders: _list[
+        GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoSipHeader
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoMimeContent(
+    typing_extensions.TypedDict, total=False
+):
+    content: str
+    mimeType: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2ConversationTelephonyConnectionInfoSipHeader(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    value: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata(
@@ -2502,6 +2540,7 @@ class GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig(
 ):
     confidenceThreshold: float
     contextFilterSettings: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings
+    contextSize: int
     dialogflowQuerySource: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource
     documentQuerySource: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDocumentQuerySource
     knowledgeBaseQuerySource: GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigKnowledgeBaseQuerySource
@@ -2688,6 +2727,7 @@ class GoogleCloudDialogflowV2InputAudioConfig(typing_extensions.TypedDict, total
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     disableNoSpeechRecognizedEvent: bool
     enableAutomaticPunctuation: bool
@@ -2702,6 +2742,7 @@ class GoogleCloudDialogflowV2InputAudioConfig(typing_extensions.TypedDict, total
     ]
     optOutConformerModelMigration: bool
     phraseHints: _list[str]
+    phraseSets: _list[str]
     sampleRateHertz: int
     singleUtterance: bool
     speechContexts: _list[GoogleCloudDialogflowV2SpeechContext]
@@ -3082,6 +3123,7 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourc
 class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
     typing_extensions.TypedDict, total=False
 ):
+    metadata: dict[str, typing.Any]
     text: str
     title: str
     uri: str
@@ -3294,6 +3336,7 @@ class GoogleCloudDialogflowV2OutputAudioConfig(
         "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
         "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
         "OUTPUT_AUDIO_ENCODING_MULAW",
+        "OUTPUT_AUDIO_ENCODING_ALAW",
     ]
     sampleRateHertz: int
     synthesizeSpeechConfig: GoogleCloudDialogflowV2SynthesizeSpeechConfig
@@ -3384,6 +3427,7 @@ class GoogleCloudDialogflowV2SearchKnowledgeAnswer(
 class GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource(
     typing_extensions.TypedDict, total=False
 ):
+    metadata: dict[str, typing.Any]
     snippet: str
     title: str
     uri: str
@@ -3394,10 +3438,81 @@ class GoogleCloudDialogflowV2SearchKnowledgeRequest(
 ):
     conversation: str
     conversationProfile: str
+    endUserMetadata: dict[str, typing.Any]
+    exactSearch: bool
     latestMessage: str
     parent: str
     query: GoogleCloudDialogflowV2TextInput
+    querySource: typing_extensions.Literal[
+        "QUERY_SOURCE_UNSPECIFIED", "AGENT_QUERY", "SUGGESTED_QUERY"
+    ]
+    searchConfig: GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig
     sessionId: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig(
+    typing_extensions.TypedDict, total=False
+):
+    boostSpecs: _list[
+        GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs
+    ]
+    filterSpecs: _list[
+        GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs(
+    typing_extensions.TypedDict, total=False
+):
+    dataStores: _list[str]
+    spec: _list[
+        GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec(
+    typing_extensions.TypedDict, total=False
+):
+    conditionBoostSpecs: _list[
+        GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec(
+    typing_extensions.TypedDict, total=False
+):
+    boost: float
+    boostControlSpec: GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec
+    condition: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec(
+    typing_extensions.TypedDict, total=False
+):
+    attributeType: typing_extensions.Literal[
+        "ATTRIBUTE_TYPE_UNSPECIFIED", "NUMERICAL", "FRESHNESS"
+    ]
+    controlPoints: _list[
+        GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint
+    ]
+    fieldName: str
+    interpolationType: typing_extensions.Literal[
+        "INTERPOLATION_TYPE_UNSPECIFIED", "LINEAR"
+    ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint(
+    typing_extensions.TypedDict, total=False
+):
+    attributeValue: str
+    boostAmount: float
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs(
+    typing_extensions.TypedDict, total=False
+):
+    dataStores: _list[str]
+    filter: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SearchKnowledgeResponse(
@@ -3513,10 +3628,12 @@ class GoogleCloudDialogflowV2SpeechToTextConfig(
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     enableWordInfo: bool
     languageCode: str
     model: str
+    phraseSets: _list[str]
     sampleRateHertz: int
     speechModelVariant: typing_extensions.Literal[
         "SPEECH_MODEL_VARIANT_UNSPECIFIED",
@@ -3525,6 +3642,27 @@ class GoogleCloudDialogflowV2SpeechToTextConfig(
         "USE_ENHANCED",
     ]
     useTimeoutBasedEndpointing: bool
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SpeechWordInfo(typing_extensions.TypedDict, total=False):
+    confidence: float
+    endOffset: str
+    startOffset: str
+    word: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2StreamingRecognitionResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    isFinal: bool
+    languageCode: str
+    messageType: typing_extensions.Literal[
+        "MESSAGE_TYPE_UNSPECIFIED", "TRANSCRIPT", "END_OF_SINGLE_UTTERANCE"
+    ]
+    speechEndOffset: str
+    speechWordInfo: _list[GoogleCloudDialogflowV2SpeechWordInfo]
+    transcript: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestArticlesRequest(
@@ -3714,6 +3852,7 @@ class GoogleCloudDialogflowV2TextToSpeechSettings(
         "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
         "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
         "OUTPUT_AUDIO_ENCODING_MULAW",
+        "OUTPUT_AUDIO_ENCODING_ALAW",
     ]
     sampleRateHertz: int
     synthesizeSpeechConfigs: dict[str, typing.Any]
@@ -3849,12 +3988,14 @@ class GoogleCloudDialogflowV2beta1ConversationEvent(
     conversation: str
     errorStatus: GoogleRpcStatus
     newMessagePayload: GoogleCloudDialogflowV2beta1Message
+    newRecognitionResultPayload: GoogleCloudDialogflowV2beta1StreamingRecognitionResult
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "CONVERSATION_STARTED",
         "CONVERSATION_FINISHED",
         "HUMAN_INTERVENTION_NEEDED",
         "NEW_MESSAGE",
+        "NEW_RECOGNITION_RESULT",
         "UNRECOVERABLE_ERROR",
     ]
 
@@ -4459,6 +4600,7 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerative
 class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
     typing_extensions.TypedDict, total=False
 ):
+    metadata: dict[str, typing.Any]
     text: str
     title: str
     uri: str
@@ -4630,6 +4772,35 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer(
     reply: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1SpeechWordInfo(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    endOffset: str
+    startOffset: str
+    word: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1StreamingRecognitionResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    dtmfDigits: GoogleCloudDialogflowV2beta1TelephonyDtmfEvents
+    isFinal: bool
+    languageCode: str
+    messageType: typing_extensions.Literal[
+        "MESSAGE_TYPE_UNSPECIFIED",
+        "TRANSCRIPT",
+        "DTMF_DIGITS",
+        "END_OF_SINGLE_UTTERANCE",
+        "PARTIAL_DTMF_DIGITS",
+    ]
+    speechEndOffset: str
+    speechWordInfo: _list[GoogleCloudDialogflowV2beta1SpeechWordInfo]
+    stability: float
+    transcript: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestArticlesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -4686,6 +4857,32 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
         GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse
     )
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1TelephonyDtmfEvents(
+    typing_extensions.TypedDict, total=False
+):
+    dtmfEvents: _list[
+        typing_extensions.Literal[
+            "TELEPHONY_DTMF_UNSPECIFIED",
+            "DTMF_ONE",
+            "DTMF_TWO",
+            "DTMF_THREE",
+            "DTMF_FOUR",
+            "DTMF_FIVE",
+            "DTMF_SIX",
+            "DTMF_SEVEN",
+            "DTMF_EIGHT",
+            "DTMF_NINE",
+            "DTMF_ZERO",
+            "DTMF_A",
+            "DTMF_B",
+            "DTMF_C",
+            "DTMF_D",
+            "DTMF_STAR",
+            "DTMF_POUND",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1WebhookRequest(

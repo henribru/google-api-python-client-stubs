@@ -148,6 +148,35 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo(
+    typing_extensions.TypedDict, total=False
+):
+    cloudMarketplace: (
+        GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo
+    )
+
+@typing.type_check_only
+class GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    commercialState: typing_extensions.Literal[
+        "COMMERCIAL_STATE_UNSPECIFIED", "ONBOARDING", "ACTIVE"
+    ]
+    service: str
+
+@typing.type_check_only
+class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo(
+    typing_extensions.TypedDict, total=False
+):
+    cloudMarketplace: GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo
+
+@typing.type_check_only
+class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    order: str
+
+@typing.type_check_only
 class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
     analyticsHubSubscriptionInfo: AnalyticsHubSubscriptionInfo
@@ -226,6 +255,7 @@ class Listing(typing_extensions.TypedDict, total=False):
             "CATEGORY_TRAVEL_AND_TOURISM",
         ]
     ]
+    commercialInfo: GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo
     dataProvider: DataProvider
     description: str
     discoveryType: typing_extensions.Literal[
@@ -332,6 +362,7 @@ class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SelectedResource(typing_extensions.TypedDict, total=False):
+    routine: str
     table: str
 
 @typing.type_check_only
@@ -353,6 +384,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubscribeDataExchangeRequest(typing_extensions.TypedDict, total=False):
     destination: str
+    destinationDataset: DestinationDataset
     subscriberContact: str
     subscription: str
 
@@ -371,6 +403,7 @@ class SubscribeListingResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
+    commercialInfo: GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo
     creationTime: str
     dataExchange: str
     lastModifyTime: str

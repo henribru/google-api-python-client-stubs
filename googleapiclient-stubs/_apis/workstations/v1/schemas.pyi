@@ -28,6 +28,15 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BoostConfig(typing_extensions.TypedDict, total=False):
+    accelerators: _list[Accelerator]
+    bootDiskSizeGb: int
+    enableNestedVirtualization: bool
+    id: str
+    machineType: str
+    poolSize: int
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -67,6 +76,7 @@ class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GceInstance(typing_extensions.TypedDict, total=False):
     accelerators: _list[Accelerator]
+    boostConfigs: _list[BoostConfig]
     bootDiskSizeGb: int
     confidentialInstanceConfig: GceConfidentialInstanceConfig
     disablePublicIpAddresses: bool
@@ -80,6 +90,12 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     shieldedInstanceConfig: GceShieldedInstanceConfig
     tags: _list[str]
     vmTags: dict[str, typing.Any]
+
+@typing.type_check_only
+class GceInstanceHost(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    zone: str
 
 @typing.type_check_only
 class GcePersistentDisk(typing_extensions.TypedDict, total=False):
@@ -218,12 +234,17 @@ class ReadinessCheck(typing_extensions.TypedDict, total=False):
     port: int
 
 @typing.type_check_only
+class RuntimeHost(typing_extensions.TypedDict, total=False):
+    gceInstanceHost: GceInstanceHost
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
 
 @typing.type_check_only
 class StartWorkstationRequest(typing_extensions.TypedDict, total=False):
+    boostConfig: str
     etag: str
     validateOnly: bool
 
@@ -259,6 +280,8 @@ class Workstation(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    runtimeHost: RuntimeHost
+    sourceWorkstation: str
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -287,6 +310,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     privateClusterConfig: PrivateClusterConfig
     reconciling: bool
     subnetwork: str
+    tags: dict[str, typing.Any]
     uid: str
     updateTime: str
 

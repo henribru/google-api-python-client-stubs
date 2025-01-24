@@ -5,9 +5,28 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AddSplitPointsRequest(typing_extensions.TypedDict, total=False):
+    initiator: str
+    splitPoints: _list[SplitPoints]
+
+@typing.type_check_only
+class AddSplitPointsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AsymmetricAutoscalingOption(typing_extensions.TypedDict, total=False):
+    overrides: AutoscalingConfigOverrides
+    replicaSelection: InstanceReplicaSelection
+
+@typing.type_check_only
 class AutoscalingConfig(typing_extensions.TypedDict, total=False):
+    asymmetricAutoscalingOptions: _list[AsymmetricAutoscalingOption]
     autoscalingLimits: AutoscalingLimits
     autoscalingTargets: AutoscalingTargets
+
+@typing.type_check_only
+class AutoscalingConfigOverrides(typing_extensions.TypedDict, total=False):
+    autoscalingLimits: AutoscalingLimits
+    autoscalingTargetHighPriorityCpuUtilizationPercent: int
 
 @typing.type_check_only
 class AutoscalingLimits(typing_extensions.TypedDict, total=False):
@@ -88,6 +107,7 @@ class BatchWriteResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BeginTransactionRequest(typing_extensions.TypedDict, total=False):
+    mutationKey: Mutation
     options: TransactionOptions
     requestOptions: RequestOptions
 
@@ -119,6 +139,7 @@ class ChildLink(typing_extensions.TypedDict, total=False):
 class CommitRequest(typing_extensions.TypedDict, total=False):
     maxCommitDelay: str
     mutations: _list[Mutation]
+    precommitToken: MultiplexedSessionPrecommitToken
     requestOptions: RequestOptions
     returnCommitStats: bool
     singleUseTransaction: TransactionOptions
@@ -128,6 +149,7 @@ class CommitRequest(typing_extensions.TypedDict, total=False):
 class CommitResponse(typing_extensions.TypedDict, total=False):
     commitStats: CommitStats
     commitTimestamp: str
+    precommitToken: MultiplexedSessionPrecommitToken
 
 @typing.type_check_only
 class CommitStats(typing_extensions.TypedDict, total=False):
@@ -330,6 +352,7 @@ class ExcludeReplicas(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
+    lastStatements: bool
     requestOptions: RequestOptions
     seqno: str
     statements: _list[Statement]
@@ -337,6 +360,7 @@ class ExecuteBatchDmlRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
+    precommitToken: MultiplexedSessionPrecommitToken
     resultSets: _list[ResultSet]
     status: Status
 
@@ -344,10 +368,13 @@ class ExecuteBatchDmlResponse(typing_extensions.TypedDict, total=False):
 class ExecuteSqlRequest(typing_extensions.TypedDict, total=False):
     dataBoostEnabled: bool
     directedReadOptions: DirectedReadOptions
+    lastStatement: bool
     paramTypes: dict[str, typing.Any]
     params: dict[str, typing.Any]
     partitionToken: str
-    queryMode: typing_extensions.Literal["NORMAL", "PLAN", "PROFILE"]
+    queryMode: typing_extensions.Literal[
+        "NORMAL", "PLAN", "PROFILE", "WITH_STATS", "WITH_PLAN_AND_STATS"
+    ]
     queryOptions: QueryOptions
     requestOptions: RequestOptions
     resumeToken: str
@@ -419,6 +446,9 @@ class Instance(typing_extensions.TypedDict, total=False):
     autoscalingConfig: AutoscalingConfig
     config: str
     createTime: str
+    defaultBackupScheduleType: typing_extensions.Literal[
+        "DEFAULT_BACKUP_SCHEDULE_TYPE_UNSPECIFIED", "NONE", "AUTOMATIC"
+    ]
     displayName: str
     edition: typing_extensions.Literal[
         "EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE", "ENTERPRISE_PLUS"
@@ -432,6 +462,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     name: str
     nodeCount: int
     processingUnits: int
+    replicaComputeCapacity: _list[ReplicaComputeCapacity]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
     updateTime: str
 
@@ -481,6 +512,14 @@ class InstancePartition(typing_extensions.TypedDict, total=False):
     referencingDatabases: _list[str]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
     updateTime: str
+
+@typing.type_check_only
+class InstanceReplicaSelection(typing_extensions.TypedDict, total=False):
+    location: str
+
+@typing.type_check_only
+class Key(typing_extensions.TypedDict, total=False):
+    keyParts: _list[typing.Any]
 
 @typing.type_check_only
 class KeyRange(typing_extensions.TypedDict, total=False):
@@ -658,6 +697,7 @@ class OptimizeRestoredDatabaseMetadata(typing_extensions.TypedDict, total=False)
 class PartialResultSet(typing_extensions.TypedDict, total=False):
     chunkedValue: bool
     metadata: ResultSetMetadata
+    precommitToken: MultiplexedSessionPrecommitToken
     resumeToken: str
     stats: ResultSetStats
     values: _list[typing.Any]
@@ -777,9 +817,16 @@ class ReadRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ReadWrite(typing_extensions.TypedDict, total=False):
+    multiplexedSessionPreviousTransactionId: str
     readLockMode: typing_extensions.Literal[
         "READ_LOCK_MODE_UNSPECIFIED", "PESSIMISTIC", "OPTIMISTIC"
     ]
+
+@typing.type_check_only
+class ReplicaComputeCapacity(typing_extensions.TypedDict, total=False):
+    nodeCount: int
+    processingUnits: int
+    replicaSelection: InstanceReplicaSelection
 
 @typing.type_check_only
 class ReplicaInfo(typing_extensions.TypedDict, total=False):
@@ -836,6 +883,7 @@ class RestoreInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResultSet(typing_extensions.TypedDict, total=False):
     metadata: ResultSetMetadata
+    precommitToken: MultiplexedSessionPrecommitToken
     rows: _list[_list[typing.Any]]
     stats: ResultSetStats
 
@@ -891,6 +939,13 @@ class ShortRepresentation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SingleRegionQuorum(typing_extensions.TypedDict, total=False):
     servingLocation: str
+
+@typing.type_check_only
+class SplitPoints(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    index: str
+    keys: _list[Key]
+    table: str
 
 @typing.type_check_only
 class Statement(typing_extensions.TypedDict, total=False):
@@ -954,11 +1009,12 @@ class Type(typing_extensions.TypedDict, total=False):
         "JSON",
         "PROTO",
         "ENUM",
+        "INTERVAL",
     ]
     protoTypeFqn: str
     structType: StructType
     typeAnnotation: typing_extensions.Literal[
-        "TYPE_ANNOTATION_CODE_UNSPECIFIED", "PG_NUMERIC", "PG_JSONB"
+        "TYPE_ANNOTATION_CODE_UNSPECIFIED", "PG_NUMERIC", "PG_JSONB", "PG_OID"
     ]
 
 @typing.type_check_only

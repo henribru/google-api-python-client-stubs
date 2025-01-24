@@ -34,6 +34,7 @@ class AddNoteRequest(typing_extensions.TypedDict, total=False):
 class AuctionPackage(typing_extensions.TypedDict, total=False):
     createTime: str
     creator: str
+    dealOwnerSeatId: str
     description: str
     displayName: str
     eligibleSeatIds: _list[str]

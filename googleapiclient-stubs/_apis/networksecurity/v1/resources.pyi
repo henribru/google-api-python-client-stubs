@@ -407,6 +407,21 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class AuthzPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AuthzPolicy = ...,
+                    authzPolicyId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AuthzPolicyHttpRequest: ...
                 def getIamPolicy(
                     self,
                     *,
@@ -414,6 +429,30 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     options_requestedPolicyVersion: int = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAuthzPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAuthzPoliciesResponseHttpRequest,
+                    previous_response: ListAuthzPoliciesResponse,
+                ) -> ListAuthzPoliciesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AuthzPolicy = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -838,6 +877,14 @@ class AuthorizationPolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> AuthorizationPolicy: ...
 
 @typing.type_check_only
+class AuthzPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AuthzPolicy: ...
+
+@typing.type_check_only
 class ClientTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -926,6 +973,14 @@ class ListAuthorizationPoliciesResponseHttpRequest(googleapiclient.http.HttpRequ
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAuthorizationPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAuthzPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAuthzPoliciesResponse: ...
 
 @typing.type_check_only
 class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):

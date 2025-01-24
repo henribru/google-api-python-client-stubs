@@ -622,6 +622,17 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         def Binary_vread(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
+                        def Consent_enforcement_status(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def Patient_consent_enforcement_status(
+                            self,
+                            *,
+                            name: str,
+                            x_count: int = ...,
+                            x_page_token: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
                         def Patient_everything(
                             self,
                             *,
@@ -732,6 +743,20 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
 
+                    def applyAdminConsents(
+                        self,
+                        *,
+                        name: str,
+                        body: ApplyAdminConsentsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def applyConsents(
+                        self,
+                        *,
+                        name: str,
+                        body: ApplyConsentsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -750,6 +775,9 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def explainDataAccess(
+                        self, *, name: str, resourceId: str = ..., **kwargs: typing.Any
+                    ) -> ExplainDataAccessResponseHttpRequest: ...
                     def export(
                         self,
                         *,
@@ -1214,6 +1242,14 @@ class EvaluateUserConsentsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EvaluateUserConsentsResponse: ...
+
+@typing.type_check_only
+class ExplainDataAccessResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ExplainDataAccessResponse: ...
 
 @typing.type_check_only
 class FhirStoreHttpRequest(googleapiclient.http.HttpRequest):

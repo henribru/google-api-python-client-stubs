@@ -18,6 +18,71 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AnalysisRulesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1AnalysisRule = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1AnalysisRuleHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1AnalysisRuleHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1AnalysisRule = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1AnalysisRuleHttpRequest: ...
+
+            @typing.type_check_only
+            class AuthorizedViewSetsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class AuthorizedViewsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ConversationsResource(googleapiclient.discovery.Resource):
+                        def calculateStats(
+                            self,
+                            *,
+                            location: str,
+                            filter: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudContactcenterinsightsV1CalculateStatsResponseHttpRequest: ...
+
+                    def queryMetrics(
+                        self,
+                        *,
+                        location: str,
+                        body: GoogleCloudContactcenterinsightsV1QueryMetricsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def conversations(self) -> ConversationsResource: ...
+
+                def authorizedViews(self) -> AuthorizedViewsResource: ...
+
+            @typing.type_check_only
             class ConversationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AnalysesResource(googleapiclient.discovery.Resource):
@@ -51,6 +116,48 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                         GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest
                         | None
                     ): ...
+
+                @typing.type_check_only
+                class FeedbackLabelsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudContactcenterinsightsV1FeedbackLabel = ...,
+                        feedbackLabelId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudContactcenterinsightsV1FeedbackLabelHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudContactcenterinsightsV1FeedbackLabelHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest,
+                        previous_response: GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse,
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest
+                        | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudContactcenterinsightsV1FeedbackLabel = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudContactcenterinsightsV1FeedbackLabelHttpRequest: ...
 
                 def bulkAnalyze(
                     self,
@@ -135,6 +242,7 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def analyses(self) -> AnalysesResource: ...
+                def feedbackLabels(self) -> FeedbackLabelsResource: ...
 
             @typing.type_check_only
             class EncryptionSpecResource(googleapiclient.discovery.Resource):
@@ -160,6 +268,13 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
             class IssueModelsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class IssuesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudContactcenterinsightsV1Issue = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -304,6 +419,159 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 ) -> GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest: ...
 
             @typing.type_check_only
+            class QaScorecardsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class QaQuestionsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudContactcenterinsightsV1QaQuestion = ...,
+                            qaQuestionId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            GoogleCloudContactcenterinsightsV1QaQuestionHttpRequest
+                        ): ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> (
+                            GoogleCloudContactcenterinsightsV1QaQuestionHttpRequest
+                        ): ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudContactcenterinsightsV1ListQaQuestionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudContactcenterinsightsV1ListQaQuestionsResponseHttpRequest,
+                            previous_response: GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse,
+                        ) -> (
+                            GoogleCloudContactcenterinsightsV1ListQaQuestionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudContactcenterinsightsV1QaQuestion = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            GoogleCloudContactcenterinsightsV1QaQuestionHttpRequest
+                        ): ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudContactcenterinsightsV1QaScorecardRevision = ...,
+                        qaScorecardRevisionId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1QaScorecardRevisionHttpRequest
+                    ): ...
+                    def delete(
+                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def deploy(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudContactcenterinsightsV1DeployQaScorecardRevisionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1QaScorecardRevisionHttpRequest
+                    ): ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1QaScorecardRevisionHttpRequest
+                    ): ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponseHttpRequest,
+                        previous_response: GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse,
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponseHttpRequest
+                        | None
+                    ): ...
+                    def tuneQaScorecardRevision(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudContactcenterinsightsV1TuneQaScorecardRevisionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def undeploy(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudContactcenterinsightsV1UndeployQaScorecardRevisionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudContactcenterinsightsV1QaScorecardRevisionHttpRequest
+                    ): ...
+                    def qaQuestions(self) -> QaQuestionsResource: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudContactcenterinsightsV1QaScorecard = ...,
+                    qaScorecardId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1QaScorecardHttpRequest: ...
+                def delete(
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                ) -> GoogleProtobufEmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudContactcenterinsightsV1QaScorecardHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudContactcenterinsightsV1ListQaScorecardsResponseHttpRequest,
+                    previous_response: GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse,
+                ) -> (
+                    GoogleCloudContactcenterinsightsV1ListQaScorecardsResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudContactcenterinsightsV1QaScorecard = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudContactcenterinsightsV1QaScorecardHttpRequest: ...
+                def revisions(self) -> RevisionsResource: ...
+
+            @typing.type_check_only
             class ViewsResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -343,12 +611,50 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleCloudContactcenterinsightsV1ViewHttpRequest: ...
 
+            def bulkDownloadFeedbackLabels(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def bulkUploadFeedbackLabels(
+                self,
+                *,
+                parent: str,
+                body: GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def getEncryptionSpec(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest: ...
             def getSettings(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
+            def listAllFeedbackLabels(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponseHttpRequest: ...
+            def listAllFeedbackLabels_next(
+                self,
+                previous_request: GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponseHttpRequest,
+                previous_response: GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse,
+            ) -> (
+                GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponseHttpRequest
+                | None
+            ): ...
+            def queryMetrics(
+                self,
+                *,
+                location: str,
+                body: GoogleCloudContactcenterinsightsV1QueryMetricsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
             def updateSettings(
                 self,
                 *,
@@ -357,12 +663,15 @@ class ContactcenterinsightsResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudContactcenterinsightsV1SettingsHttpRequest: ...
+            def analysisRules(self) -> AnalysisRulesResource: ...
+            def authorizedViewSets(self) -> AuthorizedViewSetsResource: ...
             def conversations(self) -> ConversationsResource: ...
             def encryptionSpec(self) -> EncryptionSpecResource: ...
             def insightsdata(self) -> InsightsdataResource: ...
             def issueModels(self) -> IssueModelsResource: ...
             def operations(self) -> OperationsResource: ...
             def phraseMatchers(self) -> PhraseMatchersResource: ...
+            def qaScorecards(self) -> QaScorecardsResource: ...
             def views(self) -> ViewsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -390,6 +699,16 @@ class GoogleCloudContactcenterinsightsV1AnalysisHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1Analysis: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AnalysisRuleHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1AnalysisRule: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseHttpRequest(
@@ -432,6 +751,16 @@ class GoogleCloudContactcenterinsightsV1EncryptionSpecHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1EncryptionSpec: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1FeedbackLabelHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1FeedbackLabel: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1IssueHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -452,6 +781,16 @@ class GoogleCloudContactcenterinsightsV1IssueModelHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1IssueModel: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -462,6 +801,16 @@ class GoogleCloudContactcenterinsightsV1ListAnalysesResponseHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1ListAnalysesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -470,6 +819,16 @@ class GoogleCloudContactcenterinsightsV1ListConversationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1ListConversationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListFeedbackLabelsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListIssueModelsResponseHttpRequest(
@@ -502,6 +861,36 @@ class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseHttpRequest(
     ) -> GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse: ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListQaQuestionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardRevisionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListQaScorecardsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1ListQaScorecardsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListViewsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -520,6 +909,36 @@ class GoogleCloudContactcenterinsightsV1PhraseMatcherHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudContactcenterinsightsV1PhraseMatcher: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QaQuestionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1QaQuestion: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QaScorecardHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1QaScorecard: ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QaScorecardRevisionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudContactcenterinsightsV1QaScorecardRevision: ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1SettingsHttpRequest(

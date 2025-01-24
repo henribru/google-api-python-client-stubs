@@ -379,6 +379,7 @@ class GoogleCloudDialogflowCxV3InputAudioConfig(
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     bargeInConfig: GoogleCloudDialogflowCxV3BargeInConfig
     enableWordInfo: bool
@@ -859,6 +860,7 @@ class GoogleCloudDialogflowCxV3beta1Agent(typing_extensions.TypedDict, total=Fal
     advancedSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettings
     answerFeedbackSettings: GoogleCloudDialogflowCxV3beta1AgentAnswerFeedbackSettings
     avatarUri: str
+    bigqueryExportSettings: GoogleCloudDialogflowCxV3beta1BigQueryExportSettings
     clientCertificateSettings: (
         GoogleCloudDialogflowCxV3beta1AgentClientCertificateSettings
     )
@@ -873,6 +875,8 @@ class GoogleCloudDialogflowCxV3beta1Agent(typing_extensions.TypedDict, total=Fal
     locked: bool
     name: str
     personalizationSettings: GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     securitySettings: str
     speechToTextSettings: GoogleCloudDialogflowCxV3beta1SpeechToTextSettings
     startFlow: str
@@ -993,6 +997,13 @@ class GoogleCloudDialogflowCxV3beta1BatchRunTestCasesResponse(
     results: _list[GoogleCloudDialogflowCxV3beta1TestCaseResult]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1BigQueryExportSettings(
+    typing_extensions.TypedDict, total=False
+):
+    bigqueryTable: str
+    enabled: bool
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1BoostSpec(typing_extensions.TypedDict, total=False):
     conditionBoostSpecs: _list[
         GoogleCloudDialogflowCxV3beta1BoostSpecConditionBoostSpec
@@ -1104,6 +1115,7 @@ class GoogleCloudDialogflowCxV3beta1Conversation(
 class GoogleCloudDialogflowCxV3beta1ConversationInteraction(
     typing_extensions.TypedDict, total=False
 ):
+    answerFeedback: GoogleCloudDialogflowCxV3beta1AnswerFeedback
     createTime: str
     missingTransition: (
         GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition
@@ -1113,6 +1125,7 @@ class GoogleCloudDialogflowCxV3beta1ConversationInteraction(
     requestUtterances: str
     response: GoogleCloudDialogflowCxV3beta1DetectIntentResponse
     responseUtterances: str
+    stepMetrics: _list[GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition(
@@ -1120,6 +1133,13 @@ class GoogleCloudDialogflowCxV3beta1ConversationInteractionMissingTransition(
 ):
     intentDisplayName: str
     score: float
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics(
+    typing_extensions.TypedDict, total=False
+):
+    latency: str
+    name: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ConversationMetrics(
@@ -1633,6 +1653,13 @@ class GoogleCloudDialogflowCxV3beta1ExportIntentsResponse(
     intentsUri: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ExportPlaybookRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dataFormat: typing_extensions.Literal["DATA_FORMAT_UNSPECIFIED", "BLOB", "JSON"]
+    playbookUri: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1699,6 +1726,7 @@ class GoogleCloudDialogflowCxV3beta1FlowImportStrategy(
 class GoogleCloudDialogflowCxV3beta1FlowInvocation(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     flow: str
     flowState: typing_extensions.Literal[
         "OUTPUT_STATE_UNSPECIFIED",
@@ -1869,9 +1897,19 @@ class GoogleCloudDialogflowCxV3beta1GenerativeSettingsKnowledgeConnectorSettings
 class GoogleCloudDialogflowCxV3beta1Generator(typing_extensions.TypedDict, total=False):
     displayName: str
     llmModelSettings: GoogleCloudDialogflowCxV3beta1LlmModelSettings
+    modelParameter: GoogleCloudDialogflowCxV3beta1GeneratorModelParameter
     name: str
     placeholders: _list[GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder]
     promptText: GoogleCloudDialogflowCxV3beta1Phrase
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1GeneratorModelParameter(
+    typing_extensions.TypedDict, total=False
+):
+    maxDecodeSteps: int
+    temperature: float
+    topK: int
+    topP: float
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1GeneratorPlaceholder(
@@ -1972,6 +2010,14 @@ class GoogleCloudDialogflowCxV3beta1ImportIntentsResponseConflictingResources(
     intentDisplayNames: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ImportPlaybookRequest(
+    typing_extensions.TypedDict, total=False
+):
+    importStrategy: GoogleCloudDialogflowCxV3beta1PlaybookImportStrategy
+    playbookContent: str
+    playbookUri: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -2024,6 +2070,7 @@ class GoogleCloudDialogflowCxV3beta1InputAudioConfig(
         "AUDIO_ENCODING_AMR_WB",
         "AUDIO_ENCODING_OGG_OPUS",
         "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+        "AUDIO_ENCODING_ALAW",
     ]
     bargeInConfig: GoogleCloudDialogflowCxV3beta1BargeInConfig
     enableWordInfo: bool
@@ -2356,6 +2403,7 @@ class GoogleCloudDialogflowCxV3beta1OutputAudioConfig(
         "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
         "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
         "OUTPUT_AUDIO_ENCODING_MULAW",
+        "OUTPUT_AUDIO_ENCODING_ALAW",
     ]
     sampleRateHertz: int
     synthesizeSpeechConfig: GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig
@@ -2431,8 +2479,38 @@ class GoogleCloudDialogflowCxV3beta1Playbook(typing_extensions.TypedDict, total=
     referencedFlows: _list[str]
     referencedPlaybooks: _list[str]
     referencedTools: _list[str]
+    speechSettings: GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings
     tokenCount: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1PlaybookImportStrategy(
+    typing_extensions.TypedDict, total=False
+):
+    mainPlaybookImportStrategy: typing_extensions.Literal[
+        "IMPORT_STRATEGY_UNSPECIFIED",
+        "IMPORT_STRATEGY_CREATE_NEW",
+        "IMPORT_STRATEGY_REPLACE",
+        "IMPORT_STRATEGY_KEEP",
+        "IMPORT_STRATEGY_MERGE",
+        "IMPORT_STRATEGY_THROW_ERROR",
+    ]
+    nestedResourceImportStrategy: typing_extensions.Literal[
+        "IMPORT_STRATEGY_UNSPECIFIED",
+        "IMPORT_STRATEGY_CREATE_NEW",
+        "IMPORT_STRATEGY_REPLACE",
+        "IMPORT_STRATEGY_KEEP",
+        "IMPORT_STRATEGY_MERGE",
+        "IMPORT_STRATEGY_THROW_ERROR",
+    ]
+    toolImportStrategy: typing_extensions.Literal[
+        "IMPORT_STRATEGY_UNSPECIFIED",
+        "IMPORT_STRATEGY_CREATE_NEW",
+        "IMPORT_STRATEGY_REPLACE",
+        "IMPORT_STRATEGY_KEEP",
+        "IMPORT_STRATEGY_MERGE",
+        "IMPORT_STRATEGY_THROW_ERROR",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PlaybookInput(
@@ -2445,12 +2523,14 @@ class GoogleCloudDialogflowCxV3beta1PlaybookInput(
 class GoogleCloudDialogflowCxV3beta1PlaybookInstruction(
     typing_extensions.TypedDict, total=False
 ):
+    guidelines: str
     steps: _list[GoogleCloudDialogflowCxV3beta1PlaybookStep]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1PlaybookInvocation(
     typing_extensions.TypedDict, total=False
 ):
+    displayName: str
     playbook: str
     playbookInput: GoogleCloudDialogflowCxV3beta1PlaybookInput
     playbookOutput: GoogleCloudDialogflowCxV3beta1PlaybookOutput
@@ -2661,6 +2741,17 @@ class GoogleCloudDialogflowCxV3beta1RestoreAgentRequestGitSource(
     trackingBranch: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    playbook: GoogleCloudDialogflowCxV3beta1Playbook
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1RolloutConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -2723,6 +2814,9 @@ class GoogleCloudDialogflowCxV3beta1SafetySettings(
     typing_extensions.TypedDict, total=False
 ):
     bannedPhrases: _list[GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase]
+    defaultBannedPhraseMatchStrategy: typing_extensions.Literal[
+        "PHRASE_MATCH_STRATEGY_UNSPECIFIED", "PARTIAL_MATCH", "WORD_MATCH"
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase(
@@ -2954,6 +3048,7 @@ class GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig(
     oauthGrantType: typing_extensions.Literal[
         "OAUTH_GRANT_TYPE_UNSPECIFIED", "CLIENT_CREDENTIAL"
     ]
+    scopes: _list[str]
     tokenEndpoint: str
 
 @typing.type_check_only
@@ -3041,6 +3136,7 @@ class GoogleCloudDialogflowCxV3beta1ToolTLSConfigCACert(
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ToolUse(typing_extensions.TypedDict, total=False):
     action: str
+    displayName: str
     inputActionParameters: dict[str, typing.Any]
     outputActionParameters: dict[str, typing.Any]
     tool: str
@@ -3439,12 +3535,14 @@ class GoogleCloudDialogflowV2ConversationEvent(
     conversation: str
     errorStatus: GoogleRpcStatus
     newMessagePayload: GoogleCloudDialogflowV2Message
+    newRecognitionResultPayload: GoogleCloudDialogflowV2StreamingRecognitionResult
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "CONVERSATION_STARTED",
         "CONVERSATION_FINISHED",
         "HUMAN_INTERVENTION_NEEDED",
         "NEW_MESSAGE",
+        "NEW_RECOGNITION_RESULT",
         "UNRECOVERABLE_ERROR",
     ]
 
@@ -3460,6 +3558,8 @@ class GoogleCloudDialogflowV2ConversationModel(
     displayName: str
     languageCode: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     smartReplyModelMetadata: GoogleCloudDialogflowV2SmartReplyModelMetadata
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -3988,6 +4088,7 @@ class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourc
 class GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
     typing_extensions.TypedDict, total=False
 ):
+    metadata: dict[str, typing.Any]
     text: str
     title: str
     uri: str
@@ -4110,6 +4211,27 @@ class GoogleCloudDialogflowV2SmartReplyModelMetadata(
         "SMART_REPLY_DUAL_ENCODER_MODEL",
         "SMART_REPLY_BERT_MODEL",
     ]
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2SpeechWordInfo(typing_extensions.TypedDict, total=False):
+    confidence: float
+    endOffset: str
+    startOffset: str
+    word: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2StreamingRecognitionResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    isFinal: bool
+    languageCode: str
+    messageType: typing_extensions.Literal[
+        "MESSAGE_TYPE_UNSPECIFIED", "TRANSCRIPT", "END_OF_SINGLE_UTTERANCE"
+    ]
+    speechEndOffset: str
+    speechWordInfo: _list[GoogleCloudDialogflowV2SpeechWordInfo]
+    transcript: str
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2SuggestArticlesResponse(
@@ -4240,12 +4362,14 @@ class GoogleCloudDialogflowV2beta1ConversationEvent(
     conversation: str
     errorStatus: GoogleRpcStatus
     newMessagePayload: GoogleCloudDialogflowV2beta1Message
+    newRecognitionResultPayload: GoogleCloudDialogflowV2beta1StreamingRecognitionResult
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED",
         "CONVERSATION_STARTED",
         "CONVERSATION_FINISHED",
         "HUMAN_INTERVENTION_NEEDED",
         "NEW_MESSAGE",
+        "NEW_RECOGNITION_RESULT",
         "UNRECOVERABLE_ERROR",
     ]
 
@@ -4850,6 +4974,7 @@ class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerative
 class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet(
     typing_extensions.TypedDict, total=False
 ):
+    metadata: dict[str, typing.Any]
     text: str
     title: str
     uri: str
@@ -5021,6 +5146,35 @@ class GoogleCloudDialogflowV2beta1SmartReplyAnswer(
     reply: str
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1SpeechWordInfo(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    endOffset: str
+    startOffset: str
+    word: str
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1StreamingRecognitionResult(
+    typing_extensions.TypedDict, total=False
+):
+    confidence: float
+    dtmfDigits: GoogleCloudDialogflowV2beta1TelephonyDtmfEvents
+    isFinal: bool
+    languageCode: str
+    messageType: typing_extensions.Literal[
+        "MESSAGE_TYPE_UNSPECIFIED",
+        "TRANSCRIPT",
+        "DTMF_DIGITS",
+        "END_OF_SINGLE_UTTERANCE",
+        "PARTIAL_DTMF_DIGITS",
+    ]
+    speechEndOffset: str
+    speechWordInfo: _list[GoogleCloudDialogflowV2beta1SpeechWordInfo]
+    stability: float
+    transcript: str
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1SuggestArticlesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -5077,6 +5231,32 @@ class GoogleCloudDialogflowV2beta1SuggestionResult(
         GoogleCloudDialogflowV2beta1SuggestKnowledgeAssistResponse
     )
     suggestSmartRepliesResponse: GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1TelephonyDtmfEvents(
+    typing_extensions.TypedDict, total=False
+):
+    dtmfEvents: _list[
+        typing_extensions.Literal[
+            "TELEPHONY_DTMF_UNSPECIFIED",
+            "DTMF_ONE",
+            "DTMF_TWO",
+            "DTMF_THREE",
+            "DTMF_FOUR",
+            "DTMF_FIVE",
+            "DTMF_SIX",
+            "DTMF_SEVEN",
+            "DTMF_EIGHT",
+            "DTMF_NINE",
+            "DTMF_ZERO",
+            "DTMF_A",
+            "DTMF_B",
+            "DTMF_C",
+            "DTMF_D",
+            "DTMF_STAR",
+            "DTMF_POUND",
+        ]
+    ]
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1WebhookRequest(

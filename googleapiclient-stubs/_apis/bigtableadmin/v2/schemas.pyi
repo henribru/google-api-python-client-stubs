@@ -102,6 +102,11 @@ class Cluster(typing_extensions.TypedDict, total=False):
     encryptionConfig: EncryptionConfig
     location: str
     name: str
+    nodeScalingFactor: typing_extensions.Literal[
+        "NODE_SCALING_FACTOR_UNSPECIFIED",
+        "NODE_SCALING_FACTOR_1X",
+        "NODE_SCALING_FACTOR_2X",
+    ]
     serveNodes: int
     state: typing_extensions.Literal[
         "STATE_NOT_KNOWN", "READY", "CREATING", "RESIZING", "DISABLED"

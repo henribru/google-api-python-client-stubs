@@ -495,7 +495,11 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     entitlementId: str
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACCOUNT_NOT_LINKED", "ACCOUNT_NOT_ACTIVE", "ACTIVE"
+        "STATE_UNSPECIFIED",
+        "ACCOUNT_NOT_LINKED",
+        "ACCOUNT_NOT_ACTIVE",
+        "ACTIVE",
+        "ACCOUNT_SUSPENDED",
     ]
 
 @typing.type_check_only

@@ -28,6 +28,7 @@ class Analysis(typing_extensions.TypedDict, total=False):
         "ANALYSIS_TYPE_UNSPECIFIED",
         "ANALYSIS_TYPE_DEPENDENCY",
         "ANALYSIS_TYPE_RESOURCE_USAGE",
+        "ANALYSIS_TYPE_RESOURCE_EXISTENCE",
     ]
     displayName: str
     service: str
@@ -158,6 +159,7 @@ class CommonLanguageSettings(typing_extensions.TypedDict, total=False):
         ]
     ]
     referenceDocsUri: str
+    selectiveGapicGeneration: SelectiveGapicGeneration
 
 @typing.type_check_only
 class ConsumerPolicy(typing_extensions.TypedDict, total=False):
@@ -237,6 +239,7 @@ class DisableServiceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Documentation(typing_extensions.TypedDict, total=False):
+    additionalIamInfo: str
     documentationRootUrl: str
     overview: str
     pages: _list[Page]
@@ -311,6 +314,7 @@ class EnumValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
+    protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
 
 @typing.type_check_only
@@ -368,6 +372,7 @@ class GetServiceIdentityResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    renamedServices: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleApiService(typing_extensions.TypedDict, total=False):
@@ -461,6 +466,62 @@ class GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata(
 ): ...
 
 @typing.type_check_only
+class GoogleApiServiceusageV2betaAnalysis(typing_extensions.TypedDict, total=False):
+    analysis: GoogleApiServiceusageV2betaAnalysisResult
+    analysisType: typing_extensions.Literal[
+        "ANALYSIS_TYPE_UNSPECIFIED",
+        "ANALYSIS_TYPE_DEPENDENCY",
+        "ANALYSIS_TYPE_RESOURCE_USAGE",
+    ]
+    displayName: str
+    service: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaAnalysisResult(
+    typing_extensions.TypedDict, total=False
+):
+    blockers: _list[GoogleApiServiceusageV2betaImpact]
+    warnings: _list[GoogleApiServiceusageV2betaImpact]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    analysis: _list[GoogleApiServiceusageV2betaAnalysis]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaConsumerPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    enableRules: _list[GoogleApiServiceusageV2betaEnableRule]
+    etag: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaEnableRule(typing_extensions.TypedDict, total=False):
+    services: _list[str]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaImpact(typing_extensions.TypedDict, total=False):
+    detail: str
+    impactType: typing_extensions.Literal[
+        "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
+    ]
+
+@typing.type_check_only
+class GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class Http(typing_extensions.TypedDict, total=False):
     fullyDecodeReservedExpansion: bool
     rules: _list[HttpRule]
@@ -482,8 +543,11 @@ class HttpRule(typing_extensions.TypedDict, total=False):
 class Impact(typing_extensions.TypedDict, total=False):
     detail: str
     impactType: typing_extensions.Literal[
-        "IMPACT_TYPE_UNSPECIFIED", "DEPENDENCY_MISSING_DEPENDENCIES"
+        "IMPACT_TYPE_UNSPECIFIED",
+        "DEPENDENCY_MISSING_DEPENDENCIES",
+        "RESOURCE_EXISTENCE_PROJECT",
     ]
+    parent: str
 
 @typing.type_check_only
 class ImportAdminOverridesMetadata(typing_extensions.TypedDict, total=False): ...
@@ -844,6 +908,10 @@ class RolloutInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RubySettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+
+@typing.type_check_only
+class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+    methods: _list[str]
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):

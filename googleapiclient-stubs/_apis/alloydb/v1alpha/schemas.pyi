@@ -49,6 +49,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "READY", "CREATING", "FAILED", "DELETING"
     ]
+    tags: dict[str, typing.Any]
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "ON_DEMAND", "AUTOMATED", "CONTINUOUS"
     ]
@@ -138,6 +139,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     subscriptionType: typing_extensions.Literal[
         "SUBSCRIPTION_TYPE_UNSPECIFIED", "STANDARD", "TRIAL"
     ]
+    tags: dict[str, typing.Any]
     trialMetadata: TrialMetadata
     uid: str
     updateTime: str
@@ -207,6 +209,13 @@ class ContinuousBackupSource(typing_extensions.TypedDict, total=False):
     pointInTime: str
 
 @typing.type_check_only
+class CsvExportOptions(typing_extensions.TypedDict, total=False):
+    escapeCharacter: str
+    fieldDelimiter: str
+    quoteCharacter: str
+    selectQuery: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -221,9 +230,20 @@ class EncryptionInfo(typing_extensions.TypedDict, total=False):
     kmsKeyVersions: _list[str]
 
 @typing.type_check_only
+class ExportClusterRequest(typing_extensions.TypedDict, total=False):
+    csvExportOptions: CsvExportOptions
+    database: str
+    gcsDestination: GcsDestination
+    sqlExportOptions: SqlExportOptions
+
+@typing.type_check_only
 class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
     requestId: str
     validateOnly: bool
+
+@typing.type_check_only
+class GcsDestination(typing_extensions.TypedDict, total=False):
+    uri: str
 
 @typing.type_check_only
 class GeminiClusterConfig(typing_extensions.TypedDict, total=False):
@@ -458,12 +478,18 @@ class PromoteClusterRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     pscEnabled: bool
+    serviceOwnedProjectNumber: str
 
 @typing.type_check_only
 class PscInstanceConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
     pscDnsName: str
+    pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
+
+@typing.type_check_only
+class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
+    networkAttachmentResource: str
 
 @typing.type_check_only
 class QuantityBasedExpiry(typing_extensions.TypedDict, total=False):
@@ -501,8 +527,21 @@ class RestoreClusterRequest(typing_extensions.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
+class RestoreFromCloudSQLRequest(typing_extensions.TypedDict, total=False):
+    cloudsqlBackupRunSource: CloudSQLBackupRunSource
+    cluster: Cluster
+    clusterId: str
+
+@typing.type_check_only
 class SecondaryConfig(typing_extensions.TypedDict, total=False):
     primaryClusterName: str
+
+@typing.type_check_only
+class SqlExportOptions(typing_extensions.TypedDict, total=False):
+    cleanTargetObjects: bool
+    ifExistTargetObjects: bool
+    schemaOnly: bool
+    tables: _list[str]
 
 @typing.type_check_only
 class SslConfig(typing_extensions.TypedDict, total=False):
@@ -731,6 +770,8 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
         "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+        "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -770,6 +811,9 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "STATE_OTHER",
     ]
     customMetadata: StorageDatabasecenterPartnerapiV1mainCustomMetadataData
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "EDITION_ENTERPRISE", "EDITION_ENTERPRISE_PLUS"
+    ]
     entitlements: _list[StorageDatabasecenterPartnerapiV1mainEntitlement]
     expectedState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -795,6 +839,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     location: str
     machineConfiguration: StorageDatabasecenterPartnerapiV1mainMachineConfiguration
     primaryResourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
+    primaryResourceLocation: str
     product: StorageDatabasecenterProtoCommonProduct
     resourceContainer: str
     resourceName: str
@@ -895,6 +940,8 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
         "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+        "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
     ]
 
 @typing.type_check_only
@@ -923,6 +970,7 @@ class StorageDatabasecenterPartnerapiV1mainMachineConfiguration(
     cpuCount: int
     memorySizeInBytes: str
     shardCount: int
+    vcpuCount: float
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainObservabilityMetricData(
@@ -963,11 +1011,17 @@ class StorageDatabasecenterPartnerapiV1mainOperationError(
 class StorageDatabasecenterPartnerapiV1mainRetentionSettings(
     typing_extensions.TypedDict, total=False
 ):
+    durationBasedRetention: str
     quantityBasedRetention: int
     retentionUnit: typing_extensions.Literal[
-        "RETENTION_UNIT_UNSPECIFIED", "COUNT", "TIME", "RETENTION_UNIT_OTHER"
+        "RETENTION_UNIT_UNSPECIFIED",
+        "COUNT",
+        "TIME",
+        "DURATION",
+        "RETENTION_UNIT_OTHER",
     ]
     timeBasedRetention: str
+    timestampBasedRetentionTime: str
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainTags(

@@ -11,16 +11,24 @@ class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 class Connection(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     createTime: str
+    cryptoKeyConfig: CryptoKeyConfig
     deleteTime: str
     disabled: bool
     etag: str
     githubConfig: GitHubConfig
+    githubEnterpriseConfig: GitHubEnterpriseConfig
+    gitlabConfig: GitLabConfig
+    gitlabEnterpriseConfig: GitLabEnterpriseConfig
     installationState: InstallationState
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
+    keyReference: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -67,6 +75,35 @@ class GitHubConfig(typing_extensions.TypedDict, total=False):
     installationUri: str
 
 @typing.type_check_only
+class GitHubEnterpriseConfig(typing_extensions.TypedDict, total=False):
+    appId: str
+    appInstallationId: str
+    appSlug: str
+    hostUri: str
+    installationUri: str
+    privateKeySecretVersion: str
+    serverVersion: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCaCertificate: str
+    webhookSecretSecretVersion: str
+
+@typing.type_check_only
+class GitLabConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    readAuthorizerCredential: UserCredential
+    webhookSecretSecretVersion: str
+
+@typing.type_check_only
+class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    hostUri: str
+    readAuthorizerCredential: UserCredential
+    serverVersion: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCaCertificate: str
+    webhookSecretSecretVersion: str
+
+@typing.type_check_only
 class GitRepositoryLink(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cloneUri: str
@@ -78,6 +115,13 @@ class GitRepositoryLink(typing_extensions.TypedDict, total=False):
     reconciling: bool
     uid: str
     updateTime: str
+    webhookId: str
+
+@typing.type_check_only
+class HttpBody(typing_extensions.TypedDict, total=False):
+    contentType: str
+    data: str
+    extensions: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
 class Installation(typing_extensions.TypedDict, total=False):
@@ -155,7 +199,28 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class ProcessGitHubEnterpriseWebhookRequest(typing_extensions.TypedDict, total=False):
+    body: HttpBody
+
+@typing.type_check_only
+class ProcessGitLabEnterpriseWebhookRequest(typing_extensions.TypedDict, total=False):
+    body: HttpBody
+
+@typing.type_check_only
+class ProcessGitLabWebhookRequest(typing_extensions.TypedDict, total=False):
+    body: HttpBody
+
+@typing.type_check_only
+class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
+    service: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class UserCredential(typing_extensions.TypedDict, total=False):
+    userTokenSecretVersion: str
+    username: str

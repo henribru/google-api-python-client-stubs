@@ -158,10 +158,6 @@ class ConfigurationVariables(typing_extensions.TypedDict, total=False):
     variableSet: _list[VariableSet]
 
 @typing.type_check_only
-class CreateEnrollmentTokenResponse(typing_extensions.TypedDict, total=False):
-    enrollmentToken: str
-
-@typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
     androidId: str
     device: str
@@ -195,6 +191,14 @@ class DeviceState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DevicesListResponse(typing_extensions.TypedDict, total=False):
     device: _list[Device]
+
+@typing.type_check_only
+class EnrollmentToken(typing_extensions.TypedDict, total=False):
+    duration: str
+    enrollmentTokenType: typing_extensions.Literal[
+        "enrollmentTokenTypeUnspecified", "userlessDevice", "userDevice"
+    ]
+    token: str
 
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):
@@ -407,6 +411,7 @@ class Policy(typing_extensions.TypedDict, total=False):
         "deviceReportPolicyUnspecified", "deviceReportDisabled", "deviceReportEnabled"
     ]
     maintenanceWindow: MaintenanceWindow
+    policyId: str
     productAvailabilityPolicy: typing_extensions.Literal[
         "productAvailabilityPolicyUnspecified", "whitelist", "all"
     ]

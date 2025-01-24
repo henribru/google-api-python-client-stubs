@@ -27,6 +27,10 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class CommercialInfo(typing_extensions.TypedDict, total=False):
+    cloudMarketplace: GoogleCloudMarketplaceInfo
+
+@typing.type_check_only
 class DataExchange(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
@@ -40,19 +44,6 @@ class DataExchange(typing_extensions.TypedDict, total=False):
 class DataProvider(typing_extensions.TypedDict, total=False):
     name: str
     primaryContact: str
-
-@typing.type_check_only
-class DestinationDataset(typing_extensions.TypedDict, total=False):
-    datasetReference: DestinationDatasetReference
-    description: str
-    friendlyName: str
-    labels: dict[str, typing.Any]
-    location: str
-
-@typing.type_check_only
-class DestinationDatasetReference(typing_extensions.TypedDict, total=False):
-    datasetId: str
-    projectId: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -71,6 +62,27 @@ class GetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
+
+@typing.type_check_only
+class GoogleCloudBigqueryDataexchangeV1beta1DestinationDataset(
+    typing_extensions.TypedDict, total=False
+):
+    datasetReference: GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference
+    description: str
+    friendlyName: str
+    labels: dict[str, typing.Any]
+    location: str
+
+@typing.type_check_only
+class GoogleCloudBigqueryDataexchangeV1beta1DestinationDatasetReference(
+    typing_extensions.TypedDict, total=False
+):
+    datasetId: str
+    projectId: str
+
+@typing.type_check_only
+class GoogleCloudMarketplaceInfo(typing_extensions.TypedDict, total=False):
+    order: str
 
 @typing.type_check_only
 class LinkedResource(typing_extensions.TypedDict, total=False):
@@ -175,13 +187,14 @@ class SubscribeDataExchangeResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SubscribeListingRequest(typing_extensions.TypedDict, total=False):
-    destinationDataset: DestinationDataset
+    destinationDataset: GoogleCloudBigqueryDataexchangeV1beta1DestinationDataset
 
 @typing.type_check_only
 class SubscribeListingResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Subscription(typing_extensions.TypedDict, total=False):
+    commercialInfo: CommercialInfo
     creationTime: str
     dataExchange: str
     lastModifyTime: str

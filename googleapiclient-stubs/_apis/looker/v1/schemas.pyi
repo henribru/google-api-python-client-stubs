@@ -130,6 +130,9 @@ class Instance(typing_extensions.TypedDict, total=False):
         "LOOKER_CORE_STANDARD_ANNUAL",
         "LOOKER_CORE_ENTERPRISE_ANNUAL",
         "LOOKER_CORE_EMBED_ANNUAL",
+        "LOOKER_CORE_NONPROD_STANDARD_ANNUAL",
+        "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL",
+        "LOOKER_CORE_NONPROD_EMBED_ANNUAL",
     ]
     privateIpEnabled: bool
     pscConfig: PscConfig

@@ -25,6 +25,8 @@ class Authority(typing_extensions.TypedDict, total=False):
     identityProvider: str
     issuer: str
     oidcJwks: str
+    scopeTenancyIdentityProvider: str
+    scopeTenancyWorkloadIdentityPool: str
     workloadIdentityPool: str
 
 @typing.type_check_only

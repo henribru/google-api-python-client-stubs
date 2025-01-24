@@ -31,6 +31,9 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
                 body: GenerateIdTokenRequest = ...,
                 **kwargs: typing.Any,
             ) -> GenerateIdTokenResponseHttpRequest: ...
+            def getAllowedLocations(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> ServiceAccountAllowedLocationsHttpRequest: ...
             def signBlob(
                 self, *, name: str, body: SignBlobRequest = ..., **kwargs: typing.Any
             ) -> SignBlobResponseHttpRequest: ...
@@ -69,6 +72,14 @@ class GenerateIdTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GenerateIdTokenResponse: ...
+
+@typing.type_check_only
+class ServiceAccountAllowedLocationsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ServiceAccountAllowedLocations: ...
 
 @typing.type_check_only
 class SignBlobResponseHttpRequest(googleapiclient.http.HttpRequest):

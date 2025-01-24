@@ -1939,6 +1939,23 @@ class DfareportingResource(googleapiclient.discovery.Resource):
         ) -> TargetingTemplateHttpRequest: ...
 
     @typing.type_check_only
+    class TvCampaignDetailsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, profileId: str, id: str, accountId: str = ..., **kwargs: typing.Any
+        ) -> TvCampaignDetailHttpRequest: ...
+
+    @typing.type_check_only
+    class TvCampaignSummariesResource(googleapiclient.discovery.Resource):
+        def list(
+            self,
+            *,
+            profileId: str,
+            accountId: str = ...,
+            name: str = ...,
+            **kwargs: typing.Any,
+        ) -> TvCampaignSummariesListResponseHttpRequest: ...
+
+    @typing.type_check_only
     class UserProfilesResource(googleapiclient.discovery.Resource):
         def get(
             self, *, profileId: str, **kwargs: typing.Any
@@ -2079,6 +2096,8 @@ class DfareportingResource(googleapiclient.discovery.Resource):
     def subaccounts(self) -> SubaccountsResource: ...
     def targetableRemarketingLists(self) -> TargetableRemarketingListsResource: ...
     def targetingTemplates(self) -> TargetingTemplatesResource: ...
+    def tvCampaignDetails(self) -> TvCampaignDetailsResource: ...
+    def tvCampaignSummaries(self) -> TvCampaignSummariesResource: ...
     def userProfiles(self) -> UserProfilesResource: ...
     def userRolePermissionGroups(self) -> UserRolePermissionGroupsResource: ...
     def userRolePermissions(self) -> UserRolePermissionsResource: ...
@@ -2954,6 +2973,22 @@ class TargetingTemplatesListResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TargetingTemplatesListResponse: ...
+
+@typing.type_check_only
+class TvCampaignDetailHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TvCampaignDetail: ...
+
+@typing.type_check_only
+class TvCampaignSummariesListResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TvCampaignSummariesListResponse: ...
 
 @typing.type_check_only
 class UserProfileHttpRequest(googleapiclient.http.HttpRequest):

@@ -11,12 +11,12 @@ class AOFConfig(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class AssetLocation(typing_extensions.TypedDict, total=False):
-    ccfeRmsPath: str
-    expected: IsolationExpectations
-    extraParameters: _list[ExtraParameter]
-    locationData: _list[LocationData]
-    parentAsset: _list[CloudAsset]
+class AutomatedBackupConfig(typing_extensions.TypedDict, total=False):
+    automatedBackupMode: typing_extensions.Literal[
+        "AUTOMATED_BACKUP_MODE_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
+    fixedFrequencySchedule: FixedFrequencySchedule
+    retention: str
 
 @typing.type_check_only
 class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
@@ -33,10 +33,57 @@ class AvailabilityConfiguration(typing_extensions.TypedDict, total=False):
     promotableReplicaConfigured: bool
 
 @typing.type_check_only
+class Backup(typing_extensions.TypedDict, total=False):
+    backupFiles: _list[BackupFile]
+    backupType: typing_extensions.Literal[
+        "BACKUP_TYPE_UNSPECIFIED", "ON_DEMAND", "AUTOMATED"
+    ]
+    cluster: str
+    clusterUid: str
+    createTime: str
+    encryptionInfo: EncryptionInfo
+    engineVersion: str
+    expireTime: str
+    name: str
+    nodeType: typing_extensions.Literal[
+        "NODE_TYPE_UNSPECIFIED",
+        "REDIS_SHARED_CORE_NANO",
+        "REDIS_HIGHMEM_MEDIUM",
+        "REDIS_HIGHMEM_XLARGE",
+        "REDIS_STANDARD_SMALL",
+    ]
+    replicaCount: int
+    shardCount: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "SUSPENDED"
+    ]
+    totalSizeBytes: str
+    uid: str
+
+@typing.type_check_only
+class BackupClusterRequest(typing_extensions.TypedDict, total=False):
+    backupId: str
+    ttl: str
+
+@typing.type_check_only
+class BackupCollection(typing_extensions.TypedDict, total=False):
+    cluster: str
+    clusterUid: str
+    kmsKey: str
+    name: str
+    uid: str
+
+@typing.type_check_only
 class BackupConfiguration(typing_extensions.TypedDict, total=False):
     automatedBackupEnabled: bool
     backupRetentionSettings: RetentionSettings
     pointInTimeRecoveryEnabled: bool
+
+@typing.type_check_only
+class BackupFile(typing_extensions.TypedDict, total=False):
+    createTime: str
+    fileName: str
+    sizeBytes: str
 
 @typing.type_check_only
 class BackupRun(typing_extensions.TypedDict, total=False):
@@ -44,10 +91,6 @@ class BackupRun(typing_extensions.TypedDict, total=False):
     error: OperationError
     startTime: str
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "SUCCESSFUL", "FAILED"]
-
-@typing.type_check_only
-class BlobstoreLocation(typing_extensions.TypedDict, total=False):
-    policyId: _list[str]
 
 @typing.type_check_only
 class CertChain(typing_extensions.TypedDict, total=False):
@@ -59,25 +102,24 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class CloudAsset(typing_extensions.TypedDict, total=False):
-    assetName: str
-    assetType: str
-
-@typing.type_check_only
-class CloudAssetComposition(typing_extensions.TypedDict, total=False):
-    childAsset: _list[CloudAsset]
-
-@typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    asyncClusterEndpointsDeletionEnabled: bool
     authorizationMode: typing_extensions.Literal[
         "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
     ]
+    automatedBackupConfig: AutomatedBackupConfig
+    backupCollection: str
+    clusterEndpoints: _list[ClusterEndpoint]
     createTime: str
     crossClusterReplicationConfig: CrossClusterReplicationConfig
     deletionProtectionEnabled: bool
     discoveryEndpoints: _list[DiscoveryEndpoint]
+    encryptionInfo: EncryptionInfo
+    gcsSource: GcsBackupSource
+    kmsKey: str
     maintenancePolicy: ClusterMaintenancePolicy
     maintenanceSchedule: ClusterMaintenanceSchedule
+    managedBackupSource: ManagedBackupSource
     name: str
     nodeType: typing_extensions.Literal[
         "NODE_TYPE_UNSPECIFIED",
@@ -90,6 +132,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     preciseSizeGb: float
     pscConfigs: _list[PscConfig]
     pscConnections: _list[PscConnection]
+    pscServiceAttachments: _list[PscServiceAttachment]
     redisConfigs: dict[str, typing.Any]
     replicaCount: int
     shardCount: int
@@ -105,6 +148,10 @@ class Cluster(typing_extensions.TypedDict, total=False):
     ]
     uid: str
     zoneDistributionConfig: ZoneDistributionConfig
+
+@typing.type_check_only
+class ClusterEndpoint(typing_extensions.TypedDict, total=False):
+    connections: _list[ConnectionDetail]
 
 @typing.type_check_only
 class ClusterMaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -143,6 +190,11 @@ class ClusterWeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
 class Compliance(typing_extensions.TypedDict, total=False):
     standard: str
     version: str
+
+@typing.type_check_only
+class ConnectionDetail(typing_extensions.TypedDict, total=False):
+    pscAutoConnection: PscAutoConnection
+    pscConnection: PscConnection
 
 @typing.type_check_only
 class CrossClusterReplicationConfig(typing_extensions.TypedDict, total=False):
@@ -285,6 +337,8 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
         "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+        "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -318,6 +372,9 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "STATE_OTHER",
     ]
     customMetadata: CustomMetadataData
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "EDITION_ENTERPRISE", "EDITION_ENTERPRISE_PLUS"
+    ]
     entitlements: _list[Entitlement]
     expectedState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -343,6 +400,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     location: str
     machineConfiguration: MachineConfiguration
     primaryResourceId: DatabaseResourceId
+    primaryResourceLocation: str
     product: Product
     resourceContainer: str
     resourceName: str
@@ -443,11 +501,9 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
         "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+        "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+        "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
     ]
-
-@typing.type_check_only
-class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
-    location: _list[LocationAssignment]
 
 @typing.type_check_only
 class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
@@ -459,6 +515,25 @@ class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class EncryptionInfo(typing_extensions.TypedDict, total=False):
+    encryptionType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "GOOGLE_DEFAULT_ENCRYPTION", "CUSTOMER_MANAGED_ENCRYPTION"
+    ]
+    kmsKeyPrimaryState: typing_extensions.Literal[
+        "KMS_KEY_STATE_UNSPECIFIED",
+        "ENABLED",
+        "PERMISSION_DENIED",
+        "DISABLED",
+        "DESTROYED",
+        "DESTROY_SCHEDULED",
+        "EKM_KEY_UNREACHABLE_DETECTED",
+        "BILLING_DISABLED",
+        "UNKNOWN_FAILURE",
+    ]
+    kmsKeyVersions: _list[str]
+    lastUpdateTime: str
+
+@typing.type_check_only
 class Entitlement(typing_extensions.TypedDict, total=False):
     entitlementState: typing_extensions.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
@@ -466,18 +541,26 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
 
 @typing.type_check_only
-class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
-    outputConfig: OutputConfig
+class ExportBackupRequest(typing_extensions.TypedDict, total=False):
+    gcsBucket: str
 
 @typing.type_check_only
-class ExtraParameter(typing_extensions.TypedDict, total=False):
-    regionalMigDistributionPolicy: RegionalMigDistributionPolicy
+class ExportInstanceRequest(typing_extensions.TypedDict, total=False):
+    outputConfig: OutputConfig
 
 @typing.type_check_only
 class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
     dataProtectionMode: typing_extensions.Literal[
         "DATA_PROTECTION_MODE_UNSPECIFIED", "LIMITED_DATA_LOSS", "FORCE_DATA_LOSS"
     ]
+
+@typing.type_check_only
+class FixedFrequencySchedule(typing_extensions.TypedDict, total=False):
+    startTime: TimeOfDay
+
+@typing.type_check_only
+class GcsBackupSource(typing_extensions.TypedDict, total=False):
+    uris: _list[str]
 
 @typing.type_check_only
 class GcsDestination(typing_extensions.TypedDict, total=False):
@@ -587,39 +670,16 @@ class InternalResourceMetadata(typing_extensions.TypedDict, total=False):
     resourceName: str
 
 @typing.type_check_only
-class IsolationExpectations(typing_extensions.TypedDict, total=False):
-    requirementOverride: RequirementOverride
-    ziOrgPolicy: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    ziRegionPolicy: typing_extensions.Literal[
-        "ZI_REGION_POLICY_UNSPECIFIED",
-        "ZI_REGION_POLICY_UNKNOWN",
-        "ZI_REGION_POLICY_NOT_SET",
-        "ZI_REGION_POLICY_FAIL_OPEN",
-        "ZI_REGION_POLICY_FAIL_CLOSED",
-    ]
-    ziRegionState: typing_extensions.Literal[
-        "ZI_REGION_UNSPECIFIED",
-        "ZI_REGION_UNKNOWN",
-        "ZI_REGION_NOT_ENABLED",
-        "ZI_REGION_ENABLED",
-    ]
-    zoneIsolation: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zoneSeparation: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsOrgPolicy: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsRegionState: typing_extensions.Literal[
-        "ZS_REGION_UNSPECIFIED",
-        "ZS_REGION_UNKNOWN",
-        "ZS_REGION_NOT_ENABLED",
-        "ZS_REGION_ENABLED",
-    ]
+class ListBackupCollectionsResponse(typing_extensions.TypedDict, total=False):
+    backupCollections: _list[BackupCollection]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+    backups: _list[Backup]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
@@ -652,34 +712,11 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
-class LocationAssignment(typing_extensions.TypedDict, total=False):
-    location: str
-    locationType: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "CLUSTER",
-        "POP",
-        "CLOUD_ZONE",
-        "CLOUD_REGION",
-        "MULTI_REGION_GEO",
-        "MULTI_REGION_JURISDICTION",
-        "GLOBAL",
-        "OTHER",
-    ]
-
-@typing.type_check_only
-class LocationData(typing_extensions.TypedDict, total=False):
-    blobstoreLocation: BlobstoreLocation
-    childAssetLocation: CloudAssetComposition
-    directLocation: DirectLocationAssignment
-    gcpProjectProxy: TenantProjectProxy
-    placerLocation: PlacerLocation
-    spannerLocation: SpannerLocation
-
-@typing.type_check_only
 class MachineConfiguration(typing_extensions.TypedDict, total=False):
     cpuCount: int
     memorySizeInBytes: str
     shardCount: int
+    vcpuCount: float
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -694,6 +731,10 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
     endTime: str
     scheduleDeadlineTime: str
     startTime: str
+
+@typing.type_check_only
+class ManagedBackupSource(typing_extensions.TypedDict, total=False):
+    backup: str
 
 @typing.type_check_only
 class ManagedCertificateAuthority(typing_extensions.TypedDict, total=False):
@@ -721,6 +762,7 @@ class ObservabilityMetricData(typing_extensions.TypedDict, total=False):
         "NETWORK_CONNECTIONS",
         "STORAGE_UTILIZATION",
         "STORAGE_USED_BYTES",
+        "NODE_COUNT",
     ]
     observationTime: str
     resourceName: str
@@ -778,10 +820,6 @@ class PersistenceConfig(typing_extensions.TypedDict, total=False):
     rdbSnapshotStartTime: str
 
 @typing.type_check_only
-class PlacerLocation(typing_extensions.TypedDict, total=False):
-    placerConfig: str
-
-@typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     engine: typing_extensions.Literal[
         "ENGINE_UNSPECIFIED",
@@ -818,16 +856,57 @@ class Product(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class PscAutoConnection(typing_extensions.TypedDict, total=False):
+    address: str
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "CONNECTION_TYPE_DISCOVERY",
+        "CONNECTION_TYPE_PRIMARY",
+        "CONNECTION_TYPE_READER",
+    ]
+    forwardingRule: str
+    network: str
+    projectId: str
+    pscConnectionId: str
+    pscConnectionStatus: typing_extensions.Literal[
+        "PSC_CONNECTION_STATUS_UNSPECIFIED",
+        "PSC_CONNECTION_STATUS_ACTIVE",
+        "PSC_CONNECTION_STATUS_NOT_FOUND",
+    ]
+    serviceAttachment: str
+
+@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     network: str
 
 @typing.type_check_only
 class PscConnection(typing_extensions.TypedDict, total=False):
     address: str
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "CONNECTION_TYPE_DISCOVERY",
+        "CONNECTION_TYPE_PRIMARY",
+        "CONNECTION_TYPE_READER",
+    ]
     forwardingRule: str
     network: str
     projectId: str
     pscConnectionId: str
+    pscConnectionStatus: typing_extensions.Literal[
+        "PSC_CONNECTION_STATUS_UNSPECIFIED",
+        "PSC_CONNECTION_STATUS_ACTIVE",
+        "PSC_CONNECTION_STATUS_NOT_FOUND",
+    ]
+    serviceAttachment: str
+
+@typing.type_check_only
+class PscServiceAttachment(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "CONNECTION_TYPE_DISCOVERY",
+        "CONNECTION_TYPE_PRIMARY",
+        "CONNECTION_TYPE_READER",
+    ]
     serviceAttachment: str
 
 @typing.type_check_only
@@ -849,23 +928,9 @@ class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
-    targetShape: int
-    zones: _list[ZoneConfiguration]
-
-@typing.type_check_only
 class RemoteCluster(typing_extensions.TypedDict, total=False):
     cluster: str
     uid: str
-
-@typing.type_check_only
-class RequirementOverride(typing_extensions.TypedDict, total=False):
-    ziOverride: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zsOverride: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
 
 @typing.type_check_only
 class RescheduleClusterMaintenanceRequest(typing_extensions.TypedDict, total=False):
@@ -886,16 +951,17 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RetentionSettings(typing_extensions.TypedDict, total=False):
+    durationBasedRetention: str
     quantityBasedRetention: int
     retentionUnit: typing_extensions.Literal[
-        "RETENTION_UNIT_UNSPECIFIED", "COUNT", "TIME", "RETENTION_UNIT_OTHER"
+        "RETENTION_UNIT_UNSPECIFIED",
+        "COUNT",
+        "TIME",
+        "DURATION",
+        "RETENTION_UNIT_OTHER",
     ]
     timeBasedRetention: str
-
-@typing.type_check_only
-class SpannerLocation(typing_extensions.TypedDict, total=False):
-    backupName: _list[str]
-    dbName: _list[str]
+    timestampBasedRetentionTime: str
 
 @typing.type_check_only
 class StateInfo(typing_extensions.TypedDict, total=False):
@@ -910,10 +976,6 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tags(typing_extensions.TypedDict, total=False):
     tags: dict[str, typing.Any]
-
-@typing.type_check_only
-class TenantProjectProxy(typing_extensions.TypedDict, total=False):
-    projectNumbers: _list[str]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
@@ -964,10 +1026,6 @@ class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
-
-@typing.type_check_only
-class ZoneConfiguration(typing_extensions.TypedDict, total=False):
-    zone: str
 
 @typing.type_check_only
 class ZoneDistributionConfig(typing_extensions.TypedDict, total=False):

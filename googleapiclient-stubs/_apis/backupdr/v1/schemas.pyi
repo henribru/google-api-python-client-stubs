@@ -49,14 +49,6 @@ class AllocationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
-class AssetLocation(typing_extensions.TypedDict, total=False):
-    ccfeRmsPath: str
-    expected: IsolationExpectations
-    extraParameters: _list[ExtraParameter]
-    locationData: _list[LocationData]
-    parentAsset: _list[CloudAsset]
-
-@typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -112,6 +104,8 @@ class Backup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     resourceSizeBytes: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     serviceLocks: _list[BackupLock]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR"
@@ -190,7 +184,7 @@ class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
     resourceType: str
     rulesConfigInfo: _list[RuleConfigInfo]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "UPDATING"
     ]
     updateTime: str
 
@@ -202,6 +196,13 @@ class BackupRule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BackupVault(typing_extensions.TypedDict, total=False):
+    accessRestriction: typing_extensions.Literal[
+        "ACCESS_RESTRICTION_UNSPECIFIED",
+        "WITHIN_PROJECT",
+        "WITHIN_ORGANIZATION",
+        "UNRESTRICTED",
+        "WITHIN_ORG_BUT_UNRESTRICTED_FOR_BA",
+    ]
     annotations: dict[str, typing.Any]
     backupCount: str
     backupMinimumEnforcedRetentionDuration: str
@@ -232,20 +233,7 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
-class BlobstoreLocation(typing_extensions.TypedDict, total=False):
-    policyId: _list[str]
-
-@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class CloudAsset(typing_extensions.TypedDict, total=False):
-    assetName: str
-    assetType: str
-
-@typing.type_check_only
-class CloudAssetComposition(typing_extensions.TypedDict, total=False):
-    childAsset: _list[CloudAsset]
 
 @typing.type_check_only
 class ComputeInstanceBackupProperties(typing_extensions.TypedDict, total=False):
@@ -362,10 +350,6 @@ class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
-class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
-    location: _list[LocationAssignment]
-
-@typing.type_check_only
 class DisplayDevice(typing_extensions.TypedDict, total=False):
     enableDisplay: bool
 
@@ -383,10 +367,6 @@ class Expr(typing_extensions.TypedDict, total=False):
     expression: str
     location: str
     title: str
-
-@typing.type_check_only
-class ExtraParameter(typing_extensions.TypedDict, total=False):
-    regionalMigDistributionPolicy: RegionalMigDistributionPolicy
 
 @typing.type_check_only
 class FetchAccessTokenRequest(typing_extensions.TypedDict, total=False):
@@ -428,6 +408,12 @@ class GcpBackupConfig(typing_extensions.TypedDict, total=False):
     backupPlanRules: _list[str]
 
 @typing.type_check_only
+class GcpResource(typing_extensions.TypedDict, total=False):
+    gcpResourcename: str
+    location: str
+    type: str
+
+@typing.type_check_only
 class GuestOsFeature(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal[
         "FEATURE_TYPE_UNSPECIFIED",
@@ -453,6 +439,11 @@ class InitializeParams(typing_extensions.TypedDict, total=False):
     replicaZones: _list[str]
 
 @typing.type_check_only
+class InitializeServiceRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    resourceType: str
+
+@typing.type_check_only
 class InitiateBackupRequest(typing_extensions.TypedDict, total=False):
     backupId: str
     requestId: str
@@ -466,41 +457,6 @@ class InitiateBackupResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class InstanceParams(typing_extensions.TypedDict, total=False):
     resourceManagerTags: dict[str, typing.Any]
-
-@typing.type_check_only
-class IsolationExpectations(typing_extensions.TypedDict, total=False):
-    requirementOverride: RequirementOverride
-    ziOrgPolicy: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    ziRegionPolicy: typing_extensions.Literal[
-        "ZI_REGION_POLICY_UNSPECIFIED",
-        "ZI_REGION_POLICY_UNKNOWN",
-        "ZI_REGION_POLICY_NOT_SET",
-        "ZI_REGION_POLICY_FAIL_OPEN",
-        "ZI_REGION_POLICY_FAIL_CLOSED",
-    ]
-    ziRegionState: typing_extensions.Literal[
-        "ZI_REGION_UNSPECIFIED",
-        "ZI_REGION_UNKNOWN",
-        "ZI_REGION_NOT_ENABLED",
-        "ZI_REGION_ENABLED",
-    ]
-    zoneIsolation: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zoneSeparation: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsOrgPolicy: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsRegionState: typing_extensions.Literal[
-        "ZS_REGION_UNSPECIFIED",
-        "ZS_REGION_UNKNOWN",
-        "ZS_REGION_NOT_ENABLED",
-        "ZS_REGION_ENABLED",
-    ]
 
 @typing.type_check_only
 class ListBackupPlanAssociationsResponse(typing_extensions.TypedDict, total=False):
@@ -555,30 +511,6 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
-
-@typing.type_check_only
-class LocationAssignment(typing_extensions.TypedDict, total=False):
-    location: str
-    locationType: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "CLUSTER",
-        "POP",
-        "CLOUD_ZONE",
-        "CLOUD_REGION",
-        "MULTI_REGION_GEO",
-        "MULTI_REGION_JURISDICTION",
-        "GLOBAL",
-        "OTHER",
-    ]
-
-@typing.type_check_only
-class LocationData(typing_extensions.TypedDict, total=False):
-    blobstoreLocation: BlobstoreLocation
-    childAssetLocation: CloudAssetComposition
-    directLocation: DirectLocationAssignment
-    gcpProjectProxy: TenantProjectProxy
-    placerLocation: PlacerLocation
-    spannerLocation: SpannerLocation
 
 @typing.type_check_only
 class ManagementServer(typing_extensions.TypedDict, total=False):
@@ -677,10 +609,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PlacerLocation(typing_extensions.TypedDict, total=False):
-    placerConfig: str
-
-@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -688,28 +616,18 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
-    targetShape: int
-    zones: _list[ZoneConfiguration]
-
-@typing.type_check_only
 class RemoveDataSourceRequest(typing_extensions.TypedDict, total=False):
     requestId: str
-
-@typing.type_check_only
-class RequirementOverride(typing_extensions.TypedDict, total=False):
-    ziOverride: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zsOverride: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
 
 @typing.type_check_only
 class RestoreBackupRequest(typing_extensions.TypedDict, total=False):
     computeInstanceRestoreProperties: ComputeInstanceRestoreProperties
     computeInstanceTargetEnvironment: ComputeInstanceTargetEnvironment
     requestId: str
+
+@typing.type_check_only
+class RestoreBackupResponse(typing_extensions.TypedDict, total=False):
+    targetResource: TargetResource
 
 @typing.type_check_only
 class RuleConfigInfo(typing_extensions.TypedDict, total=False):
@@ -769,9 +687,7 @@ class SetInternalStatusRequest(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
-class SpannerLocation(typing_extensions.TypedDict, total=False):
-    backupName: _list[str]
-    dbName: _list[str]
+class SetInternalStatusResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class StandardSchedule(typing_extensions.TypedDict, total=False):
@@ -824,8 +740,8 @@ class Tags(typing_extensions.TypedDict, total=False):
     items: _list[str]
 
 @typing.type_check_only
-class TenantProjectProxy(typing_extensions.TypedDict, total=False):
-    projectNumbers: _list[str]
+class TargetResource(typing_extensions.TypedDict, total=False):
+    gcpResource: GcpResource
 
 @typing.type_check_only
 class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
@@ -865,7 +781,3 @@ class WorkforceIdentityBasedManagementURI(typing_extensions.TypedDict, total=Fal
 class WorkforceIdentityBasedOAuth2ClientID(typing_extensions.TypedDict, total=False):
     firstPartyOauth2ClientId: str
     thirdPartyOauth2ClientId: str
-
-@typing.type_check_only
-class ZoneConfiguration(typing_extensions.TypedDict, total=False):
-    zone: str

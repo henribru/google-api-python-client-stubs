@@ -83,6 +83,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def performMaintenance(
+                    self,
+                    *,
+                    name: str,
+                    body: PerformMaintenanceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def simulateMaintenanceEvent(
                     self,
                     *,
@@ -166,6 +173,13 @@ class TPUResource(googleapiclient.discovery.Resource):
                     previous_request: ListQueuedResourcesResponseHttpRequest,
                     previous_response: ListQueuedResourcesResponse,
                 ) -> ListQueuedResourcesResponseHttpRequest | None: ...
+                def performMaintenanceQueuedResource(
+                    self,
+                    *,
+                    name: str,
+                    body: PerformMaintenanceQueuedResourceRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def reset(
                     self,
                     *,

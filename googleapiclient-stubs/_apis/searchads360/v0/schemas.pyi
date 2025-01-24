@@ -325,12 +325,16 @@ class GoogleAdsSearchads360V0Common__Metrics(typing_extensions.TypedDict, total=
     costPerConversion: float
     costPerCurrentModelAttributedConversion: float
     crossDeviceConversions: float
+    crossDeviceConversionsByConversionDate: float
     crossDeviceConversionsValue: float
+    crossDeviceConversionsValueByConversionDate: float
     crossSellCostOfGoodsSoldMicros: str
     crossSellGrossProfitMicros: str
     crossSellRevenueMicros: str
     crossSellUnitsSold: float
     ctr: float
+    generalInvalidClickRate: float
+    generalInvalidClicks: str
     historicalCreativeQualityScore: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "BELOW_AVERAGE", "AVERAGE", "ABOVE_AVERAGE"
     ]
@@ -1321,6 +1325,7 @@ class GoogleAdsSearchads360V0Resources__AdGroup(
     ]
     cpcBidMicros: str
     creationTime: str
+    effectiveLabels: _list[str]
     endDate: str
     engineId: str
     engineStatus: typing_extensions.Literal[
@@ -1376,6 +1381,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupAd(
 ):
     ad: GoogleAdsSearchads360V0Resources__Ad
     creationTime: str
+    effectiveLabels: _list[str]
     engineId: str
     engineStatus: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1404,6 +1410,15 @@ class GoogleAdsSearchads360V0Resources__AdGroupAd(
     status: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "REMOVED"
     ]
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroupAd: str
+    label: str
+    ownerCustomerId: str
+    resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupAdLabel(
@@ -1459,6 +1474,7 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     creationTime: str
     criterionId: str
     effectiveCpcBidMicros: str
+    effectiveLabels: _list[str]
     engineId: str
     engineStatus: typing_extensions.Literal[
         "UNSPECIFIED",
@@ -1547,10 +1563,28 @@ class GoogleAdsSearchads360V0Resources__AdGroupCriterion(
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroupCriterion: str
+    label: str
+    ownerCustomerId: str
+    resourceName: str
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel(
     typing_extensions.TypedDict, total=False
 ):
     adGroupCriterion: str
+    label: str
+    ownerCustomerId: str
+    resourceName: str
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel(
+    typing_extensions.TypedDict, total=False
+):
+    adGroup: str
     label: str
     ownerCustomerId: str
     resourceName: str
@@ -1924,6 +1958,7 @@ class GoogleAdsSearchads360V0Resources__Campaign(
     dynamicSearchAdsSetting: (
         GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting
     )
+    effectiveLabels: _list[str]
     endDate: str
     engineId: str
     excludedParentAssetFieldTypes: _list[
@@ -2103,6 +2138,15 @@ class GoogleAdsSearchads360V0Resources__CampaignCriterion(
     ]
     userList: GoogleAdsSearchads360V0Common__UserListInfo
     webpage: GoogleAdsSearchads360V0Common__WebpageInfo
+
+@typing.type_check_only
+class GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel(
+    typing_extensions.TypedDict, total=False
+):
+    campaign: str
+    label: str
+    ownerCustomerId: str
+    resourceName: str
 
 @typing.type_check_only
 class GoogleAdsSearchads360V0Resources__CampaignLabel(
@@ -2615,6 +2659,14 @@ class GoogleAdsSearchads360V0Resources__UserList(
     ]
 
 @typing.type_check_only
+class GoogleAdsSearchads360V0Resources__UserLocationView(
+    typing_extensions.TypedDict, total=False
+):
+    countryCriterionId: str
+    resourceName: str
+    targetingLocation: bool
+
+@typing.type_check_only
 class GoogleAdsSearchads360V0Resources__Visit(typing_extensions.TypedDict, total=False):
     adId: str
     assetFieldType: typing_extensions.Literal[
@@ -2727,13 +2779,18 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     )
     adGroup: GoogleAdsSearchads360V0Resources__AdGroup
     adGroupAd: GoogleAdsSearchads360V0Resources__AdGroupAd
+    adGroupAdEffectiveLabel: GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel
     adGroupAdLabel: GoogleAdsSearchads360V0Resources__AdGroupAdLabel
     adGroupAsset: GoogleAdsSearchads360V0Resources__AdGroupAsset
     adGroupAssetSet: GoogleAdsSearchads360V0Resources__AdGroupAssetSet
     adGroupAudienceView: GoogleAdsSearchads360V0Resources__AdGroupAudienceView
     adGroupBidModifier: GoogleAdsSearchads360V0Resources__AdGroupBidModifier
     adGroupCriterion: GoogleAdsSearchads360V0Resources__AdGroupCriterion
+    adGroupCriterionEffectiveLabel: (
+        GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel
+    )
     adGroupCriterionLabel: GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel
+    adGroupEffectiveLabel: GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel
     adGroupLabel: GoogleAdsSearchads360V0Resources__AdGroupLabel
     ageRangeView: GoogleAdsSearchads360V0Resources__AgeRangeView
     asset: GoogleAdsSearchads360V0Resources__Asset
@@ -2756,6 +2813,7 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     campaignAudienceView: GoogleAdsSearchads360V0Resources__CampaignAudienceView
     campaignBudget: GoogleAdsSearchads360V0Resources__CampaignBudget
     campaignCriterion: GoogleAdsSearchads360V0Resources__CampaignCriterion
+    campaignEffectiveLabel: GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel
     campaignLabel: GoogleAdsSearchads360V0Resources__CampaignLabel
     cartDataSalesView: GoogleAdsSearchads360V0Resources__CartDataSalesView
     conversion: GoogleAdsSearchads360V0Resources__Conversion
@@ -2784,6 +2842,7 @@ class GoogleAdsSearchads360V0Services__SearchAds360Row(
     segments: GoogleAdsSearchads360V0Common__Segments
     shoppingPerformanceView: GoogleAdsSearchads360V0Resources__ShoppingPerformanceView
     userList: GoogleAdsSearchads360V0Resources__UserList
+    userLocationView: GoogleAdsSearchads360V0Resources__UserLocationView
     visit: GoogleAdsSearchads360V0Resources__Visit
     webpageView: GoogleAdsSearchads360V0Resources__WebpageView
 

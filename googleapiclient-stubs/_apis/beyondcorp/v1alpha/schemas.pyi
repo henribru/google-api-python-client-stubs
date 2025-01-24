@@ -662,6 +662,18 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "TRIAL", "PAID", "ALLOWLIST"]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication(
     typing_extensions.TypedDict, total=False
 ):
@@ -682,7 +694,13 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher(
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub(
     typing_extensions.TypedDict, total=False
 ):
-    natGatewayConfig: GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig
+    internetGateway: GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway(
+    typing_extensions.TypedDict, total=False
+):
+    assignedIps: _list[str]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListApplicationsResponse(
@@ -699,19 +717,6 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     nextPageToken: str
     securityGateways: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway]
     unreachable: _list[str]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig(
-    typing_extensions.TypedDict, total=False
-):
-    natIps: _list[str]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering(
-    typing_extensions.TypedDict, total=False
-):
-    dnsZones: _list[str]
-    targetVpcNetwork: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
@@ -744,14 +749,6 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetada
     statusMessage: str
     target: str
     verb: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest(
-    typing_extensions.TypedDict, total=False
-):
-    requestId: str
-    validateOnly: bool
-    vpcPeerings: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering]
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(

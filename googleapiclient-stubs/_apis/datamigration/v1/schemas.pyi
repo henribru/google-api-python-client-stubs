@@ -79,6 +79,11 @@ class BackgroundJobLogEntry(typing_extensions.TypedDict, total=False):
     startTime: str
 
 @typing.type_check_only
+class BinaryLogParser(typing_extensions.TypedDict, total=False):
+    logFileDirectories: LogFileDirectories
+    oracleAsmLogFileAccess: OracleAsmLogFileAccess
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -198,8 +203,16 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     oracle: OracleConnectionProfile
     postgresql: PostgreSqlConnectionProfile
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
+        "DATABASE_PROVIDER_UNSPECIFIED",
+        "CLOUDSQL",
+        "RDS",
+        "AURORA",
+        "ALLOYDB",
+        "AZURE_DATABASE",
     ]
+    role: typing_extensions.Literal["ROLE_UNSPECIFIED", "SOURCE", "DESTINATION"]
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     sqlserver: SqlServerConnectionProfile
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -316,7 +329,12 @@ class DatabaseType(typing_extensions.TypedDict, total=False):
         "DATABASE_ENGINE_UNSPECIFIED", "MYSQL", "POSTGRESQL", "SQLSERVER", "ORACLE"
     ]
     provider: typing_extensions.Literal[
-        "DATABASE_PROVIDER_UNSPECIFIED", "CLOUDSQL", "RDS", "AURORA", "ALLOYDB"
+        "DATABASE_PROVIDER_UNSPECIFIED",
+        "CLOUDSQL",
+        "RDS",
+        "AURORA",
+        "ALLOYDB",
+        "AZURE_DATABASE",
     ]
 
 @typing.type_check_only
@@ -597,6 +615,11 @@ class ListMappingRulesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMigrationJobObjectsResponse(typing_extensions.TypedDict, total=False):
+    migrationJobObjects: _list[MigrationJobObject]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListMigrationJobsResponse(typing_extensions.TypedDict, total=False):
     migrationJobs: _list[MigrationJob]
     nextPageToken: str
@@ -620,6 +643,18 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class LogFileDirectories(typing_extensions.TypedDict, total=False):
+    archivedLogDirectory: str
+    onlineLogDirectory: str
+
+@typing.type_check_only
+class LogMiner(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class LookupMigrationJobObjectRequest(typing_extensions.TypedDict, total=False):
+    sourceObjectIdentifier: SourceObjectIdentifier
 
 @typing.type_check_only
 class MachineConfig(typing_extensions.TypedDict, total=False):
@@ -677,6 +712,7 @@ class MappingRuleFilter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MaterializedViewEntity(typing_extensions.TypedDict, total=False):
     customFeatures: dict[str, typing.Any]
+    indices: _list[IndexEntity]
     sqlCode: str
 
 @typing.type_check_only
@@ -696,6 +732,8 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     filter: str
     labels: dict[str, typing.Any]
     name: str
+    objectsConfig: MigrationJobObjectsConfig
+    oracleToPostgresConfig: OracleToPostgresConfig
     performanceConfig: PerformanceConfig
     phase: typing_extensions.Literal[
         "PHASE_UNSPECIFIED",
@@ -707,6 +745,8 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
         "READY_FOR_PROMOTE",
     ]
     reverseSshConnectivity: ReverseSshConnectivity
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     source: str
     sourceDatabase: DatabaseType
     sqlserverHomogeneousMigrationJobConfig: SqlServerHomogeneousMigrationJobConfig
@@ -732,6 +772,39 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ONE_TIME", "CONTINUOUS"]
     updateTime: str
     vpcPeeringConnectivity: VpcPeeringConnectivity
+
+@typing.type_check_only
+class MigrationJobObject(typing_extensions.TypedDict, total=False):
+    createTime: str
+    error: Status
+    name: str
+    phase: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED",
+        "FULL_DUMP",
+        "CDC",
+        "READY_FOR_PROMOTE",
+        "PROMOTE_IN_PROGRESS",
+        "PROMOTED",
+        "DIFF_BACKUP",
+    ]
+    sourceObject: SourceObjectIdentifier
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "NOT_STARTED",
+        "RUNNING",
+        "STOPPING",
+        "STOPPED",
+        "RESTARTING",
+        "FAILED",
+        "REMOVING",
+        "NOT_SELECTED",
+        "COMPLETED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MigrationJobObjectsConfig(typing_extensions.TypedDict, total=False):
+    sourceObjectsConfig: SourceObjectsConfig
 
 @typing.type_check_only
 class MigrationJobVerificationError(typing_extensions.TypedDict, total=False):
@@ -822,6 +895,9 @@ class OracleAsmConfig(typing_extensions.TypedDict, total=False):
     username: str
 
 @typing.type_check_only
+class OracleAsmLogFileAccess(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class OracleConnectionProfile(typing_extensions.TypedDict, total=False):
     databaseService: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
@@ -834,6 +910,20 @@ class OracleConnectionProfile(typing_extensions.TypedDict, total=False):
     ssl: SslConfig
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     username: str
+
+@typing.type_check_only
+class OracleSourceConfig(typing_extensions.TypedDict, total=False):
+    binaryLogParser: BinaryLogParser
+    cdcStartPosition: str
+    logMiner: LogMiner
+    maxConcurrentCdcConnections: int
+    maxConcurrentFullDumpConnections: int
+    skipFullDump: bool
+
+@typing.type_check_only
+class OracleToPostgresConfig(typing_extensions.TypedDict, total=False):
+    oracleSourceConfig: OracleSourceConfig
+    postgresDestinationConfig: PostgresDestinationConfig
 
 @typing.type_check_only
 class PackageEntity(typing_extensions.TypedDict, total=False):
@@ -865,6 +955,7 @@ class Position(typing_extensions.TypedDict, total=False):
 class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     alloydbClusterId: str
     cloudSqlId: str
+    database: str
     host: str
     networkArchitecture: typing_extensions.Literal[
         "NETWORK_ARCHITECTURE_UNSPECIFIED",
@@ -878,6 +969,11 @@ class PostgreSqlConnectionProfile(typing_extensions.TypedDict, total=False):
     ssl: SslConfig
     staticIpConnectivity: StaticIpConnectivity
     username: str
+
+@typing.type_check_only
+class PostgresDestinationConfig(typing_extensions.TypedDict, total=False):
+    maxConcurrentConnections: int
+    transactionTimeout: str
 
 @typing.type_check_only
 class PrimaryInstanceSettings(typing_extensions.TypedDict, total=False):
@@ -896,6 +992,8 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     error: Status
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -917,10 +1015,13 @@ class PrivateServiceConnectConnectivity(typing_extensions.TypedDict, total=False
     serviceAttachment: str
 
 @typing.type_check_only
-class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False): ...
+class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False):
+    objectsFilter: MigrationJobObjectsConfig
 
 @typing.type_check_only
 class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
+    objectsFilter: MigrationJobObjectsConfig
+    restartFailedObjects: bool
     skipValidation: bool
 
 @typing.type_check_only
@@ -1025,6 +1126,22 @@ class SourceNumericFilter(typing_extensions.TypedDict, total=False):
     sourceMinScaleFilter: int
 
 @typing.type_check_only
+class SourceObjectConfig(typing_extensions.TypedDict, total=False):
+    objectIdentifier: SourceObjectIdentifier
+
+@typing.type_check_only
+class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+    database: str
+    type: typing_extensions.Literal["MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED", "DATABASE"]
+
+@typing.type_check_only
+class SourceObjectsConfig(typing_extensions.TypedDict, total=False):
+    objectConfigs: _list[SourceObjectConfig]
+    objectsSelectionType: typing_extensions.Literal[
+        "OBJECTS_SELECTION_TYPE_UNSPECIFIED", "ALL_OBJECTS", "SPECIFIED_OBJECTS"
+    ]
+
+@typing.type_check_only
 class SourceSqlChange(typing_extensions.TypedDict, total=False):
     sqlCode: str
 
@@ -1096,7 +1213,7 @@ class SslConfig(typing_extensions.TypedDict, total=False):
     clientCertificate: str
     clientKey: str
     type: typing_extensions.Literal[
-        "SSL_TYPE_UNSPECIFIED", "SERVER_ONLY", "SERVER_CLIENT"
+        "SSL_TYPE_UNSPECIFIED", "SERVER_ONLY", "SERVER_CLIENT", "REQUIRED", "NONE"
     ]
 
 @typing.type_check_only

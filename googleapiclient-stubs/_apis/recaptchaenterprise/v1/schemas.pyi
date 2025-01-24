@@ -432,6 +432,9 @@ class GoogleCloudRecaptchaenterpriseV1RetrieveLegacySecretKeyResponse(
 class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
     typing_extensions.TypedDict, total=False
 ):
+    challenge: typing_extensions.Literal[
+        "CHALLENGE_UNSPECIFIED", "NOCAPTCHA", "PASSED", "FAILED"
+    ]
     extendedVerdictReasons: _list[str]
     reasons: _list[
         typing_extensions.Literal[

@@ -21,6 +21,18 @@ class AptRepository(typing_extensions.TypedDict, total=False):
     publicRepository: GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository
 
 @typing.type_check_only
+class Attachment(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    attachmentNamespace: str
+    createTime: str
+    files: _list[str]
+    name: str
+    ociVersionName: str
+    target: str
+    type: str
+    updateTime: str
+
+@typing.type_check_only
 class BatchDeleteVersionsMetadata(typing_extensions.TypedDict, total=False):
     failedVersions: _list[str]
 
@@ -119,6 +131,7 @@ class GoogetArtifact(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleDevtoolsArtifactregistryV1File(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     fetchTime: str
     hashes: _list[Hash]
@@ -186,6 +199,14 @@ class GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigYumRepositoryPublicR
         "EPEL",
     ]
     repositoryPath: str
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1Rule(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
+    condition: Expr
+    name: str
+    operation: typing_extensions.Literal["OPERATION_UNSPECIFIED", "DOWNLOAD"]
+    packageId: str
 
 @typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
@@ -264,6 +285,11 @@ class KfpArtifact(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class ListAttachmentsResponse(typing_extensions.TypedDict, total=False):
+    attachments: _list[Attachment]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListDockerImagesResponse(typing_extensions.TypedDict, total=False):
     dockerImages: _list[DockerImage]
     nextPageToken: str
@@ -302,6 +328,11 @@ class ListPythonPackagesResponse(typing_extensions.TypedDict, total=False):
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     repositories: _list[Repository]
+
+@typing.type_check_only
+class ListRulesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    rules: _list[GoogleDevtoolsArtifactregistryV1Rule]
 
 @typing.type_check_only
 class ListTagsResponse(typing_extensions.TypedDict, total=False):
@@ -400,9 +431,6 @@ class ProjectSettings(typing_extensions.TypedDict, total=False):
     pullPercent: int
 
 @typing.type_check_only
-class PromoteArtifactMetadata(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class PythonPackage(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
@@ -462,12 +490,14 @@ class Repository(typing_extensions.TypedDict, total=False):
         "ASSURED_OSS_REPOSITORY",
     ]
     name: str
+    registryUri: str
     remoteRepositoryConfig: RemoteRepositoryConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
     sizeBytes: str
     updateTime: str
     virtualRepositoryConfig: VirtualRepositoryConfig
+    vulnerabilityScanningConfig: VulnerabilityScanningConfig
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -505,6 +535,14 @@ class UploadAptArtifactRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class UploadAptArtifactResponse(typing_extensions.TypedDict, total=False):
     aptArtifacts: _list[AptArtifact]
+
+@typing.type_check_only
+class UploadFileMediaResponse(typing_extensions.TypedDict, total=False):
+    operation: Operation
+
+@typing.type_check_only
+class UploadFileRequest(typing_extensions.TypedDict, total=False):
+    fileId: str
 
 @typing.type_check_only
 class UploadGenericArtifactMediaResponse(typing_extensions.TypedDict, total=False):
@@ -591,6 +629,7 @@ class VPCSCConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
     createTime: str
     description: str
     metadata: dict[str, typing.Any]
@@ -601,6 +640,20 @@ class Version(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VirtualRepositoryConfig(typing_extensions.TypedDict, total=False):
     upstreamPolicies: _list[UpstreamPolicy]
+
+@typing.type_check_only
+class VulnerabilityScanningConfig(typing_extensions.TypedDict, total=False):
+    enablementConfig: typing_extensions.Literal[
+        "ENABLEMENT_CONFIG_UNSPECIFIED", "INHERITED", "DISABLED"
+    ]
+    enablementState: typing_extensions.Literal[
+        "ENABLEMENT_STATE_UNSPECIFIED",
+        "SCANNING_UNSUPPORTED",
+        "SCANNING_DISABLED",
+        "SCANNING_ACTIVE",
+    ]
+    enablementStateReason: str
+    lastEnableTime: str
 
 @typing.type_check_only
 class YumArtifact(typing_extensions.TypedDict, total=False):

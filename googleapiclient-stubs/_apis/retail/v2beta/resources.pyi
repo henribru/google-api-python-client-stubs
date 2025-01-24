@@ -213,6 +213,22 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudRetailV2betaControlHttpRequest: ...
 
                 @typing.type_check_only
+                class GenerativeQuestionResource(googleapiclient.discovery.Resource):
+                    def batchUpdate(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponseHttpRequest: ...
+
+                @typing.type_check_only
+                class GenerativeQuestionsResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self, *, parent: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponseHttpRequest: ...
+
+                @typing.type_check_only
                 class ModelsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -397,11 +413,7 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         parent: str,
-                        ets: str = ...,
-                        prebuiltRule: str = ...,
-                        rawJson: str = ...,
-                        uri: str = ...,
-                        userEvent: str = ...,
+                        body: GoogleCloudRetailV2betaCollectUserEventRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleApiHttpBodyHttpRequest: ...
                     def export(
@@ -471,6 +483,11 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 def getDefaultBranch(
                     self, *, catalog: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaGetDefaultBranchResponseHttpRequest: ...
+                def getGenerativeQuestionFeature(
+                    self, *, catalog: str, **kwargs: typing.Any
+                ) -> (
+                    GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfigHttpRequest
+                ): ...
                 def list(
                     self,
                     *,
@@ -515,10 +532,30 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaCompletionConfigHttpRequest: ...
+                def updateGenerativeQuestion(
+                    self,
+                    *,
+                    catalog: str,
+                    body: GoogleCloudRetailV2betaGenerativeQuestionConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRetailV2betaGenerativeQuestionConfigHttpRequest: ...
+                def updateGenerativeQuestionFeature(
+                    self,
+                    *,
+                    catalog: str,
+                    body: GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfigHttpRequest
+                ): ...
                 def attributesConfig(self) -> AttributesConfigResource: ...
                 def branches(self) -> BranchesResource: ...
                 def completionData(self) -> CompletionDataResource: ...
                 def controls(self) -> ControlsResource: ...
+                def generativeQuestion(self) -> GenerativeQuestionResource: ...
+                def generativeQuestions(self) -> GenerativeQuestionsResource: ...
                 def models(self) -> ModelsResource: ...
                 def operations(self) -> OperationsResource: ...
                 def placements(self) -> PlacementsResource: ...
@@ -633,6 +670,16 @@ class GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponseHttpRequest(
     ) -> GoogleCloudRetailV2betaBatchRemoveCatalogAttributesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaBatchUpdateGenerativeQuestionConfigsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaCatalogHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -669,6 +716,26 @@ class GoogleCloudRetailV2betaControlHttpRequest(googleapiclient.http.HttpRequest
     ) -> GoogleCloudRetailV2betaControl: ...
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaGenerativeQuestionConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaGenerativeQuestionConfig: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaGenerativeQuestionsFeatureConfig: ...
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaGetDefaultBranchResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -697,6 +764,16 @@ class GoogleCloudRetailV2betaListControlsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRetailV2betaListControlsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaListGenerativeQuestionConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaListModelsResponseHttpRequest(

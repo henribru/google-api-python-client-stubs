@@ -114,6 +114,17 @@ class Filter(typing_extensions.TypedDict, total=False):
     propertyFilter: PropertyFilter
 
 @typing.type_check_only
+class FindNearest(typing_extensions.TypedDict, total=False):
+    distanceMeasure: typing_extensions.Literal[
+        "DISTANCE_MEASURE_UNSPECIFIED", "EUCLIDEAN", "COSINE", "DOT_PRODUCT"
+    ]
+    distanceResultProperty: str
+    distanceThreshold: float
+    limit: int
+    queryVector: Value
+    vectorProperty: PropertyReference
+
+@typing.type_check_only
 class GoogleDatastoreAdminV1CommonMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
     labels: dict[str, typing.Any]
@@ -344,9 +355,13 @@ class LookupResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Mutation(typing_extensions.TypedDict, total=False):
     baseVersion: str
+    conflictResolutionStrategy: typing_extensions.Literal[
+        "STRATEGY_UNSPECIFIED", "SERVER_VALUE", "FAIL"
+    ]
     delete: Key
     insert: Entity
     propertyMask: PropertyMask
+    propertyTransforms: _list[PropertyTransform]
     update: Entity
     updateTime: str
     upsert: Entity
@@ -356,6 +371,7 @@ class MutationResult(typing_extensions.TypedDict, total=False):
     conflictDetected: bool
     createTime: str
     key: Key
+    transformResults: _list[Value]
     updateTime: str
     version: str
 
@@ -411,10 +427,23 @@ class PropertyReference(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class PropertyTransform(typing_extensions.TypedDict, total=False):
+    appendMissingElements: ArrayValue
+    increment: Value
+    maximum: Value
+    minimum: Value
+    property: str
+    removeAllFromArray: ArrayValue
+    setToServerValue: typing_extensions.Literal[
+        "SERVER_VALUE_UNSPECIFIED", "REQUEST_TIME"
+    ]
+
+@typing.type_check_only
 class Query(typing_extensions.TypedDict, total=False):
     distinctOn: _list[PropertyReference]
     endCursor: str
     filter: Filter
+    findNearest: FindNearest
     kind: _list[KindExpression]
     limit: int
     offset: int

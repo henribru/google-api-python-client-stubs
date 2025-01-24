@@ -33,6 +33,7 @@ class ArtifactResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Artifacts(typing_extensions.TypedDict, total=False):
+    goModules: _list[GoModule]
     images: _list[str]
     mavenArtifacts: _list[MavenArtifact]
     npmPackages: _list[NpmPackage]
@@ -188,10 +189,13 @@ class BuildOperationMetadata(typing_extensions.TypedDict, total=False):
 class BuildOptions(typing_extensions.TypedDict, total=False):
     automapSubstitutions: bool
     defaultLogsBucketBehavior: typing_extensions.Literal[
-        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED", "REGIONAL_USER_OWNED_BUCKET"
+        "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
+        "REGIONAL_USER_OWNED_BUCKET",
+        "LEGACY_BUCKET",
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool
+    enableStructuredLogging: bool
     env: _list[str]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
@@ -216,7 +220,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[Volume]
@@ -534,8 +538,17 @@ class GitSource(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class GoModule(typing_extensions.TypedDict, total=False):
+    modulePath: str
+    moduleVersion: str
+    repositoryLocation: str
+    repositoryName: str
+    repositoryProjectId: str
+    sourcePath: str
+
+@typing.type_check_only
 class Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -638,7 +651,14 @@ class PoolOption(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrivatePoolV1Config(typing_extensions.TypedDict, total=False):
     networkConfig: NetworkConfig
+    privateServiceConnect: PrivateServiceConnect
     workerConfig: WorkerConfig
+
+@typing.type_check_only
+class PrivateServiceConnect(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
+    publicIpAddressDisabled: bool
+    routeAllTraffic: bool
 
 @typing.type_check_only
 class ProcessAppManifestCallbackOperationMetadata(
@@ -726,6 +746,7 @@ class Results(typing_extensions.TypedDict, total=False):
     artifactTiming: TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    goModules: _list[UploadedGoModule]
     images: _list[BuiltImage]
     mavenArtifacts: _list[UploadedMavenArtifact]
     npmPackages: _list[UploadedNpmPackage]
@@ -834,6 +855,12 @@ class UpdateWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     completeTime: str
     createTime: str
     workerPool: str
+
+@typing.type_check_only
+class UploadedGoModule(typing_extensions.TypedDict, total=False):
+    fileHashes: FileHashes
+    pushTiming: TimeSpan
+    uri: str
 
 @typing.type_check_only
 class UploadedMavenArtifact(typing_extensions.TypedDict, total=False):

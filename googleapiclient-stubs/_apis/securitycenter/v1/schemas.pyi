@@ -60,7 +60,9 @@ class AssetDiscoveryConfig(typing_extensions.TypedDict, total=False):
 class Attack(typing_extensions.TypedDict, total=False):
     classification: str
     volumeBps: int
+    volumeBpsLong: str
     volumePps: int
+    volumePpsLong: str
 
 @typing.type_check_only
 class AttackExposure(typing_extensions.TypedDict, total=False):
@@ -154,6 +156,7 @@ class AzureMetadata(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AzureResourceGroup(typing_extensions.TypedDict, total=False):
+    id: str
     name: str
 
 @typing.type_check_only
@@ -374,6 +377,15 @@ class DataFlowEvent(typing_extensions.TypedDict, total=False):
     violatedLocation: str
 
 @typing.type_check_only
+class DataRetentionDeletionEvent(typing_extensions.TypedDict, total=False):
+    dataObjectCount: str
+    eventDetectionTime: str
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_MAX_TTL_EXCEEDED"
+    ]
+    maxRetentionAllowed: str
+
+@typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     displayName: str
     grantees: _list[str]
@@ -386,6 +398,10 @@ class Database(typing_extensions.TypedDict, total=False):
 class Detection(typing_extensions.TypedDict, total=False):
     binary: str
     percentPagesMatched: float
+
+@typing.type_check_only
+class Disk(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class DiskPath(typing_extensions.TypedDict, total=False):
@@ -401,6 +417,12 @@ class DynamicMuteRecord(typing_extensions.TypedDict, total=False):
 class EffectiveEventThreatDetectionCustomModule(
     typing_extensions.TypedDict, total=False
 ):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     config: dict[str, typing.Any]
     description: str
     displayName: str
@@ -421,6 +443,12 @@ class EnvironmentVariable(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventThreatDetectionCustomModule(typing_extensions.TypedDict, total=False):
     ancestorModule: str
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     config: dict[str, typing.Any]
     description: str
     displayName: str
@@ -478,8 +506,10 @@ class Finding(typing_extensions.TypedDict, total=False):
     createTime: str
     dataAccessEvents: _list[DataAccessEvent]
     dataFlowEvents: _list[DataFlowEvent]
+    dataRetentionDeletionEvents: _list[DataRetentionDeletionEvent]
     database: Database
     description: str
+    disk: Disk
     eventTime: str
     exfiltration: Exfiltration
     externalSystems: dict[str, typing.Any]
@@ -599,6 +629,12 @@ class GoogleCloudSecuritycenterV1CustomOutputSpec(
 class GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule(
     typing_extensions.TypedDict, total=False
 ):
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     customConfig: GoogleCloudSecuritycenterV1CustomConfig
     displayName: str
     enablementState: typing_extensions.Literal[
@@ -716,6 +752,12 @@ class GoogleCloudSecuritycenterV1SecurityHealthAnalyticsCustomModule(
     typing_extensions.TypedDict, total=False
 ):
     ancestorModule: str
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD_PLATFORM",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
     customConfig: GoogleCloudSecuritycenterV1CustomConfig
     displayName: str
     enablementState: typing_extensions.Literal[
@@ -848,7 +890,9 @@ class GoogleCloudSecuritycenterV2Application(typing_extensions.TypedDict, total=
 class GoogleCloudSecuritycenterV2Attack(typing_extensions.TypedDict, total=False):
     classification: str
     volumeBps: int
+    volumeBpsLong: str
     volumePps: int
+    volumePpsLong: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2AttackExposure(
@@ -908,6 +952,7 @@ class GoogleCloudSecuritycenterV2AzureMetadata(
 class GoogleCloudSecuritycenterV2AzureResourceGroup(
     typing_extensions.TypedDict, total=False
 ):
+    id: str
     name: str
 
 @typing.type_check_only
@@ -1117,6 +1162,17 @@ class GoogleCloudSecuritycenterV2DataFlowEvent(
     violatedLocation: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2DataRetentionDeletionEvent(
+    typing_extensions.TypedDict, total=False
+):
+    dataObjectCount: str
+    eventDetectionTime: str
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "EVENT_TYPE_MAX_TTL_EXCEEDED"
+    ]
+    maxRetentionAllowed: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=False):
     displayName: str
     grantees: _list[str]
@@ -1129,6 +1185,10 @@ class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=Fal
 class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=False):
     binary: str
     percentPagesMatched: float
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Disk(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2DiskPath(typing_extensions.TypedDict, total=False):
@@ -1206,8 +1266,12 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     createTime: str
     dataAccessEvents: _list[GoogleCloudSecuritycenterV2DataAccessEvent]
     dataFlowEvents: _list[GoogleCloudSecuritycenterV2DataFlowEvent]
+    dataRetentionDeletionEvents: _list[
+        GoogleCloudSecuritycenterV2DataRetentionDeletionEvent
+    ]
     database: GoogleCloudSecuritycenterV2Database
     description: str
+    disk: GoogleCloudSecuritycenterV2Disk
     eventTime: str
     exfiltration: GoogleCloudSecuritycenterV2Exfiltration
     externalSystems: dict[str, typing.Any]
@@ -1285,6 +1349,137 @@ class GoogleCloudSecuritycenterV2Indicator(typing_extensions.TypedDict, total=Fa
     ipAddresses: _list[str]
     signatures: _list[GoogleCloudSecuritycenterV2ProcessSignature]
     uris: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Issue(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    detection: str
+    domains: _list[GoogleCloudSecuritycenterV2IssueDomain]
+    exposureScore: float
+    issueType: typing_extensions.Literal[
+        "ISSUE_TYPE_UNSPECIFIED", "CHOKEPOINT", "TOXIC_COMBINATION", "INSIGHT"
+    ]
+    lastObservationTime: str
+    mute: GoogleCloudSecuritycenterV2IssueMute
+    name: str
+    primaryResource: GoogleCloudSecuritycenterV2IssueResource
+    relatedFindings: _list[GoogleCloudSecuritycenterV2IssueFinding]
+    remediations: _list[str]
+    secondaryResources: _list[GoogleCloudSecuritycenterV2IssueResource]
+    securityContexts: _list[GoogleCloudSecuritycenterV2IssueSecurityContext]
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueDomain(typing_extensions.TypedDict, total=False):
+    domainCategory: typing_extensions.Literal[
+        "DOMAIN_CATEGORY_UNSPECIFIED",
+        "AI",
+        "CODE",
+        "CONTAINER",
+        "DATA",
+        "IDENTITY_AND_ACCESS",
+        "VULNERABILITY",
+    ]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueFinding(typing_extensions.TypedDict, total=False):
+    cve: GoogleCloudSecuritycenterV2IssueFindingCve
+    name: str
+    securityBulletin: GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueFindingCve(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueMute(typing_extensions.TypedDict, total=False):
+    muteInitiator: str
+    muteReason: str
+    muteState: typing_extensions.Literal["MUTE_STATE_UNSPECIFIED", "NOT_MUTED", "MUTED"]
+    muteUpdateTime: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResource(
+    typing_extensions.TypedDict, total=False
+):
+    awsMetadata: GoogleCloudSecuritycenterV2IssueResourceAwsMetadata
+    azureMetadata: GoogleCloudSecuritycenterV2IssueResourceAzureMetadata
+    cloudProvider: typing_extensions.Literal[
+        "CLOUD_PROVIDER_UNSPECIFIED",
+        "GOOGLE_CLOUD",
+        "AMAZON_WEB_SERVICES",
+        "MICROSOFT_AZURE",
+    ]
+    displayName: str
+    googleCloudMetadata: GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata
+    name: str
+    type: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAwsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    account: GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount(
+    typing_extensions.TypedDict, total=False
+):
+    id: str
+    name: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAzureMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    subscription: GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    projectId: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueSecurityContext(
+    typing_extensions.TypedDict, total=False
+):
+    aggregatedCount: GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount
+    context: GoogleCloudSecuritycenterV2IssueSecurityContextContext
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: int
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IssueSecurityContextContext(
+    typing_extensions.TypedDict, total=False
+):
+    type: str
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2KernelRootkit(
@@ -1399,6 +1594,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "ACCOUNT_ACCESS_REMOVAL",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "EVENT_TRIGGERED_EXECUTION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
             "UNSECURED_CREDENTIALS",
             "MODIFY_AUTHENTICATION_PROCESS",
@@ -1415,6 +1611,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
             "CONTAINER_ADMINISTRATION_COMMAND",
+            "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
@@ -1485,6 +1682,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "ACCOUNT_ACCESS_REMOVAL",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "EVENT_TRIGGERED_EXECUTION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
             "UNSECURED_CREDENTIALS",
             "MODIFY_AUTHENTICATION_PROCESS",
@@ -1501,6 +1699,7 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
             "CONTAINER_ADMINISTRATION_COMMAND",
+            "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
@@ -2079,6 +2278,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "ACCOUNT_ACCESS_REMOVAL",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "EVENT_TRIGGERED_EXECUTION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
             "UNSECURED_CREDENTIALS",
             "MODIFY_AUTHENTICATION_PROCESS",
@@ -2095,6 +2295,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
             "CONTAINER_ADMINISTRATION_COMMAND",
+            "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
@@ -2165,6 +2366,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "ACCOUNT_ACCESS_REMOVAL",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+            "EVENT_TRIGGERED_EXECUTION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
             "UNSECURED_CREDENTIALS",
             "MODIFY_AUTHENTICATION_PROCESS",
@@ -2181,6 +2383,7 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
             "CONTAINER_ADMINISTRATION_COMMAND",
+            "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",

@@ -18,66 +18,7 @@ class DataformResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
-            class CollectionsResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
-
-            @typing.type_check_only
             class RepositoriesResource(googleapiclient.discovery.Resource):
-                @typing.type_check_only
-                class CommentThreadsResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class CommentsResource(googleapiclient.discovery.Resource):
-                        def getIamPolicy(
-                            self,
-                            *,
-                            resource: str,
-                            options_requestedPolicyVersion: int = ...,
-                            **kwargs: typing.Any,
-                        ) -> PolicyHttpRequest: ...
-                        def setIamPolicy(
-                            self,
-                            *,
-                            resource: str,
-                            body: SetIamPolicyRequest = ...,
-                            **kwargs: typing.Any,
-                        ) -> PolicyHttpRequest: ...
-
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def comments(self) -> CommentsResource: ...
-
                 @typing.type_check_only
                 class CompilationResultsResource(googleapiclient.discovery.Resource):
                     def create(
@@ -533,7 +474,6 @@ class DataformResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-                def commentThreads(self) -> CommentThreadsResource: ...
                 def compilationResults(self) -> CompilationResultsResource: ...
                 def releaseConfigs(self) -> ReleaseConfigsResource: ...
                 def workflowConfigs(self) -> WorkflowConfigsResource: ...
@@ -568,7 +508,6 @@ class DataformResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> ConfigHttpRequest: ...
-            def collections(self) -> CollectionsResource: ...
             def repositories(self) -> RepositoriesResource: ...
 
         def locations(self) -> LocationsResource: ...

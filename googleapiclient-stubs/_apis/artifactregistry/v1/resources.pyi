@@ -43,6 +43,37 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     ) -> UploadAptArtifactMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
+                class AttachmentsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: Attachment = ...,
+                        attachmentId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> AttachmentHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAttachmentsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAttachmentsResponseHttpRequest,
+                        previous_response: ListAttachmentsResponse,
+                    ) -> ListAttachmentsResponseHttpRequest | None: ...
+
+                @typing.type_check_only
                 class DockerImagesResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, name: str, **kwargs: typing.Any
@@ -91,6 +122,21 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         previous_request: ListFilesResponseHttpRequest,
                         previous_response: ListFilesResponse,
                     ) -> ListFilesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleDevtoolsArtifactregistryV1File = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleDevtoolsArtifactregistryV1FileHttpRequest: ...
+                    def upload(
+                        self,
+                        *,
+                        parent: str,
+                        body: UploadFileRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> UploadFileMediaResponseHttpRequest: ...
 
                 @typing.type_check_only
                 class GenericArtifactsResource(googleapiclient.discovery.Resource):
@@ -257,6 +303,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                             previous_request: ListVersionsResponseHttpRequest,
                             previous_response: ListVersionsResponse,
                         ) -> ListVersionsResponseHttpRequest | None: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: Version = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> VersionHttpRequest: ...
 
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
@@ -308,6 +362,44 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                         previous_request: ListPythonPackagesResponseHttpRequest,
                         previous_response: ListPythonPackagesResponse,
                     ) -> ListPythonPackagesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class RulesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleDevtoolsArtifactregistryV1Rule = ...,
+                        ruleId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleDevtoolsArtifactregistryV1RuleHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleDevtoolsArtifactregistryV1RuleHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListRulesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListRulesResponseHttpRequest,
+                        previous_response: ListRulesResponse,
+                    ) -> ListRulesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleDevtoolsArtifactregistryV1Rule = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleDevtoolsArtifactregistryV1RuleHttpRequest: ...
 
                 @typing.type_check_only
                 class YumArtifactsResource(googleapiclient.discovery.Resource):
@@ -385,6 +477,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def aptArtifacts(self) -> AptArtifactsResource: ...
+                def attachments(self) -> AttachmentsResource: ...
                 def dockerImages(self) -> DockerImagesResource: ...
                 def files(self) -> FilesResource: ...
                 def genericArtifacts(self) -> GenericArtifactsResource: ...
@@ -395,6 +488,7 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
                 def npmPackages(self) -> NpmPackagesResource: ...
                 def packages(self) -> PackagesResource: ...
                 def pythonPackages(self) -> PythonPackagesResource: ...
+                def rules(self) -> RulesResource: ...
                 def yumArtifacts(self) -> YumArtifactsResource: ...
 
             def get(
@@ -456,6 +550,14 @@ class ArtifactRegistryResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class AttachmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Attachment: ...
+
+@typing.type_check_only
 class DockerImageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -486,6 +588,22 @@ class GoogleDevtoolsArtifactregistryV1FileHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleDevtoolsArtifactregistryV1File: ...
+
+@typing.type_check_only
+class GoogleDevtoolsArtifactregistryV1RuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleDevtoolsArtifactregistryV1Rule: ...
+
+@typing.type_check_only
+class ListAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAttachmentsResponse: ...
 
 @typing.type_check_only
 class ListDockerImagesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -550,6 +668,14 @@ class ListRepositoriesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListRepositoriesResponse: ...
+
+@typing.type_check_only
+class ListRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRulesResponse: ...
 
 @typing.type_check_only
 class ListTagsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -662,6 +788,14 @@ class UploadAptArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> UploadAptArtifactMediaResponse: ...
+
+@typing.type_check_only
+class UploadFileMediaResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> UploadFileMediaResponse: ...
 
 @typing.type_check_only
 class UploadGenericArtifactMediaResponseHttpRequest(googleapiclient.http.HttpRequest):

@@ -8,7 +8,7 @@ _list = list
 class AcceleratorConfig(typing_extensions.TypedDict, total=False):
     topology: str
     type: typing_extensions.Literal[
-        "TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5LITE_POD", "V5P"
+        "TYPE_UNSPECIFIED", "V2", "V3", "V4", "V5LITE_POD", "V5P", "V6E"
     ]
 
 @typing.type_check_only
@@ -149,6 +149,9 @@ class Location(typing_extensions.TypedDict, total=False):
 class MultiNodeParams(typing_extensions.TypedDict, total=False):
     nodeCount: int
     nodeIdPrefix: str
+    workloadType: typing_extensions.Literal[
+        "WORKLOAD_TYPE_UNSPECIFIED", "THROUGHPUT_OPTIMIZED", "AVAILABILITY_OPTIMIZED"
+    ]
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -214,9 +217,11 @@ class Node(typing_extensions.TypedDict, total=False):
         "HIDING",
         "HIDDEN",
         "UNHIDING",
+        "UNKNOWN",
     ]
     symptoms: _list[Symptom]
     tags: _list[str]
+    upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
 class NodeSpec(typing_extensions.TypedDict, total=False):
@@ -242,6 +247,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class PerformMaintenanceQueuedResourceRequest(typing_extensions.TypedDict, total=False):
+    nodeNames: _list[str]
+
+@typing.type_check_only
+class PerformMaintenanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ProvisioningData(typing_extensions.TypedDict, total=False): ...
@@ -386,6 +398,15 @@ class Symptom(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tpu(typing_extensions.TypedDict, total=False):
     nodeSpec: _list[NodeSpec]
+
+@typing.type_check_only
+class UpcomingMaintenance(typing_extensions.TypedDict, total=False):
+    canReschedule: bool
+    latestWindowStartTime: str
+    maintenanceStatus: typing_extensions.Literal["UNKNOWN", "PENDING", "ONGOING"]
+    type: typing_extensions.Literal["UNKNOWN_TYPE", "SCHEDULED", "UNSCHEDULED"]
+    windowEndTime: str
+    windowStartTime: str
 
 @typing.type_check_only
 class Usage(typing_extensions.TypedDict, total=False):

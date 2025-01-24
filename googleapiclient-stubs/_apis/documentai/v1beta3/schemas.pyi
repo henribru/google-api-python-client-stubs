@@ -787,6 +787,8 @@ class GoogleCloudDocumentaiV1beta3DatasetSchema(
 ):
     documentSchema: GoogleCloudDocumentaiV1beta3DocumentSchema
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DatasetSpannerIndexingConfig(

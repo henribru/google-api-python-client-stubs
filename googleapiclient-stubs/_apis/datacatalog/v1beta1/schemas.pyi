@@ -488,6 +488,9 @@ class GoogleCloudDatacatalogV1TableSpec(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class GoogleCloudDatacatalogV1Tag(typing_extensions.TypedDict, total=False):
     column: str
+    dataplexTransferStatus: typing_extensions.Literal[
+        "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED", "MIGRATED", "TRANSFERRED"
+    ]
     fields: dict[str, typing.Any]
     name: str
     template: str

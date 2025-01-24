@@ -102,7 +102,6 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
 class CompilationResultAction(typing_extensions.TypedDict, total=False):
     assertion: Assertion
     canonicalTarget: Target
-    dataPreparation: DataPreparation
     declaration: Declaration
     filePath: str
     notebook: Notebook
@@ -126,13 +125,6 @@ class Config(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DataEncryptionState(typing_extensions.TypedDict, total=False):
     kmsKeyVersionName: str
-
-@typing.type_check_only
-class DataPreparation(typing_extensions.TypedDict, total=False):
-    contents: str
-    dependencyTargets: _list[Target]
-    disabled: bool
-    tags: _list[str]
 
 @typing.type_check_only
 class Declaration(typing_extensions.TypedDict, total=False):
@@ -545,6 +537,7 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Workspace(typing_extensions.TypedDict, total=False):
+    createTime: str
     dataEncryptionState: DataEncryptionState
     name: str
 

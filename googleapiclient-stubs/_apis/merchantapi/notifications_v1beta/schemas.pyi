@@ -45,6 +45,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -52,6 +53,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str

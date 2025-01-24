@@ -56,6 +56,12 @@ class Attributes(typing_extensions.TypedDict, total=False):
             "FREE_LISTINGS",
             "FREE_LOCAL_LISTINGS",
             "YOUTUBE_SHOPPING",
+            "YOUTUBE_SHOPPING_CHECKOUT",
+            "YOUTUBE_AFFILIATE",
+            "FREE_VEHICLE_LISTINGS",
+            "VEHICLE_ADS",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL",
         ]
     ]
     promotionDisplayTimePeriod: Interval
@@ -93,6 +99,7 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
     status: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -140,6 +147,7 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
     resolution: str
     severity: typing_extensions.Literal[
@@ -179,6 +187,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -186,6 +195,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str

@@ -227,6 +227,7 @@ class Question(typing_extensions.TypedDict, total=False):
     fileUploadQuestion: FileUploadQuestion
     grading: Grading
     questionId: str
+    ratingQuestion: RatingQuestion
     required: bool
     rowQuestion: RowQuestion
     scaleQuestion: ScaleQuestion
@@ -247,6 +248,13 @@ class QuestionItem(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class QuizSettings(typing_extensions.TypedDict, total=False):
     isQuiz: bool
+
+@typing.type_check_only
+class RatingQuestion(typing_extensions.TypedDict, total=False):
+    iconType: typing_extensions.Literal[
+        "RATING_ICON_TYPE_UNSPECIFIED", "STAR", "HEART", "THUMB_UP"
+    ]
+    ratingScaleLevel: int
 
 @typing.type_check_only
 class RenewWatchRequest(typing_extensions.TypedDict, total=False): ...

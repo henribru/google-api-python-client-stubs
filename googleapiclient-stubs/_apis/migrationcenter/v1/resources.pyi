@@ -373,6 +373,27 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
+            class RelationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RelationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRelationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRelationsResponseHttpRequest,
+                    previous_response: ListRelationsResponse,
+                ) -> ListRelationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ReportConfigsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ReportsResource(googleapiclient.discovery.Resource):
@@ -569,6 +590,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
             def importJobs(self) -> ImportJobsResource: ...
             def operations(self) -> OperationsResource: ...
             def preferenceSets(self) -> PreferenceSetsResource: ...
+            def relations(self) -> RelationsResource: ...
             def reportConfigs(self) -> ReportConfigsResource: ...
             def sources(self) -> SourcesResource: ...
 
@@ -733,6 +755,14 @@ class ListPreferenceSetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListPreferenceSetsResponse: ...
 
 @typing.type_check_only
+class ListRelationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRelationsResponse: ...
+
+@typing.type_check_only
 class ListReportConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -779,6 +809,14 @@ class PreferenceSetHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PreferenceSet: ...
+
+@typing.type_check_only
+class RelationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Relation: ...
 
 @typing.type_check_only
 class ReportHttpRequest(googleapiclient.http.HttpRequest):

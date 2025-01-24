@@ -95,6 +95,7 @@ class Node(typing_extensions.TypedDict, total=False):
         "HIDING",
         "HIDDEN",
         "UNHIDING",
+        "UNKNOWN",
     ]
     symptoms: _list[Symptom]
     tensorflowVersion: str

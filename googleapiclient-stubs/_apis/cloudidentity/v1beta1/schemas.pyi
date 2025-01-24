@@ -741,6 +741,11 @@ class ListOrgMembershipsResponse(typing_extensions.TypedDict, total=False):
     orgMemberships: _list[OrgMembership]
 
 @typing.type_check_only
+class ListPoliciesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    policies: _list[Policy]
+
+@typing.type_check_only
 class ListUserInvitationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     userInvitations: _list[UserInvitation]
@@ -861,6 +866,21 @@ class OrgMembership(typing_extensions.TypedDict, total=False):
     type: typing_extensions.Literal["ENTITY_TYPE_UNSPECIFIED", "SHARED_DRIVE"]
 
 @typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    customer: str
+    name: str
+    policyQuery: PolicyQuery
+    setting: Setting
+    type: typing_extensions.Literal["POLICY_TYPE_UNSPECIFIED", "SYSTEM", "ADMIN"]
+
+@typing.type_check_only
+class PolicyQuery(typing_extensions.TypedDict, total=False):
+    group: str
+    orgUnit: str
+    query: str
+    sortOrder: float
+
+@typing.type_check_only
 class PosixGroup(typing_extensions.TypedDict, total=False):
     gid: str
     name: str
@@ -927,6 +947,11 @@ class SecuritySettings(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SendUserInvitationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class Setting(typing_extensions.TypedDict, total=False):
+    type: str
+    value: dict[str, typing.Any]
 
 @typing.type_check_only
 class SignInBehavior(typing_extensions.TypedDict, total=False):

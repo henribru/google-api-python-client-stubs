@@ -378,8 +378,16 @@ class GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig(
         "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "AUDIT", "ENFORCE"
     ]
     managedRules: _list[GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule]
+    phoneEnforcementState: typing_extensions.Literal[
+        "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "AUDIT", "ENFORCE"
+    ]
     recaptchaKeys: _list[GoogleCloudIdentitytoolkitAdminV2RecaptchaKey]
+    tollFraudManagedRules: _list[
+        GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule
+    ]
     useAccountDefender: bool
+    useSmsBotScore: bool
+    useSmsTollFraudProtection: bool
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2RecaptchaKey(
@@ -394,6 +402,13 @@ class GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule(
 ):
     action: typing_extensions.Literal["RECAPTCHA_ACTION_UNSPECIFIED", "BLOCK"]
     endScore: float
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["RECAPTCHA_ACTION_UNSPECIFIED", "BLOCK"]
+    startScore: float
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2RequestLogging(
@@ -623,6 +638,8 @@ class GoogleCloudIdentitytoolkitV2RecaptchaConfig(
         GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState
     ]
     recaptchaKey: str
+    useSmsBotScore: bool
+    useSmsTollFraudProtection: bool
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState(
@@ -632,7 +649,7 @@ class GoogleCloudIdentitytoolkitV2RecaptchaEnforcementState(
         "ENFORCEMENT_STATE_UNSPECIFIED", "OFF", "AUDIT", "ENFORCE"
     ]
     provider: typing_extensions.Literal[
-        "RECAPTCHA_PROVIDER_UNSPECIFIED", "EMAIL_PASSWORD_PROVIDER"
+        "RECAPTCHA_PROVIDER_UNSPECIFIED", "EMAIL_PASSWORD_PROVIDER", "PHONE_PROVIDER"
     ]
 
 @typing.type_check_only
@@ -674,11 +691,21 @@ class GoogleCloudIdentitytoolkitV2StartMfaPhoneRequestInfo(
     typing_extensions.TypedDict, total=False
 ):
     autoRetrievalInfo: GoogleCloudIdentitytoolkitV2AutoRetrievalInfo
+    captchaResponse: str
+    clientType: typing_extensions.Literal[
+        "CLIENT_TYPE_UNSPECIFIED",
+        "CLIENT_TYPE_WEB",
+        "CLIENT_TYPE_ANDROID",
+        "CLIENT_TYPE_IOS",
+    ]
     iosReceipt: str
     iosSecret: str
     phoneNumber: str
     playIntegrityToken: str
     recaptchaToken: str
+    recaptchaVersion: typing_extensions.Literal[
+        "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"
+    ]
     safetyNetToken: str
 
 @typing.type_check_only

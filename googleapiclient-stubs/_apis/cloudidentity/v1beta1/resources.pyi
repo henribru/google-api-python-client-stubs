@@ -467,6 +467,23 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
 
         def memberships(self) -> MembershipsResource: ...
 
+    @typing.type_check_only
+    class PoliciesResource(googleapiclient.discovery.Resource):
+        def get(self, *, name: str, **kwargs: typing.Any) -> PolicyHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListPoliciesResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListPoliciesResponseHttpRequest,
+            previous_response: ListPoliciesResponse,
+        ) -> ListPoliciesResponseHttpRequest | None: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -485,6 +502,7 @@ class CloudIdentityResource(googleapiclient.discovery.Resource):
     def inboundSamlSsoProfiles(self) -> InboundSamlSsoProfilesResource: ...
     def inboundSsoAssignments(self) -> InboundSsoAssignmentsResource: ...
     def orgUnits(self) -> OrgUnitsResource: ...
+    def policies(self) -> PoliciesResource: ...
 
 @typing.type_check_only
 class CheckTransitiveMembershipResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -623,6 +641,14 @@ class ListOrgMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOrgMembershipsResponse: ...
 
 @typing.type_check_only
+class ListPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListPoliciesResponse: ...
+
+@typing.type_check_only
 class ListUserInvitationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -677,6 +703,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Policy: ...
 
 @typing.type_check_only
 class SearchDirectGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

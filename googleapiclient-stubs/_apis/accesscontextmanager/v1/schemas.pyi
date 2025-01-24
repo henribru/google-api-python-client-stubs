@@ -32,7 +32,7 @@ class AccessScope(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AccessSettings(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
-    reauthSettings: ReauthSettings
+    sessionSettings: SessionSettings
 
 @typing.type_check_only
 class ApiOperation(typing_extensions.TypedDict, total=False):
@@ -150,10 +150,12 @@ class EgressFrom(typing_extensions.TypedDict, total=False):
 class EgressPolicy(typing_extensions.TypedDict, total=False):
     egressFrom: EgressFrom
     egressTo: EgressTo
+    title: str
 
 @typing.type_check_only
 class EgressSource(typing_extensions.TypedDict, total=False):
     accessLevel: str
+    resource: str
 
 @typing.type_check_only
 class EgressTo(typing_extensions.TypedDict, total=False):
@@ -177,9 +179,9 @@ class GcpUserAccessBinding(typing_extensions.TypedDict, total=False):
     dryRunAccessLevels: _list[str]
     groupKey: str
     name: str
-    reauthSettings: ReauthSettings
     restrictedClientApplications: _list[Application]
     scopedAccessSettings: _list[ScopedAccessSettings]
+    sessionSettings: SessionSettings
 
 @typing.type_check_only
 class GcpUserAccessBindingOperationMetadata(
@@ -209,6 +211,7 @@ class IngressFrom(typing_extensions.TypedDict, total=False):
 class IngressPolicy(typing_extensions.TypedDict, total=False):
     ingressFrom: IngressFrom
     ingressTo: IngressTo
+    title: str
 
 @typing.type_check_only
 class IngressSource(typing_extensions.TypedDict, total=False):
@@ -290,16 +293,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
-class ReauthSettings(typing_extensions.TypedDict, total=False):
-    maxInactivity: str
-    reauthMethod: typing_extensions.Literal[
-        "REAUTH_METHOD_UNSPECIFIED", "LOGIN", "SECURITY_KEY", "PASSWORD"
-    ]
-    sessionLength: str
-    sessionLengthEnabled: bool
-    useOidcMaxAge: bool
-
-@typing.type_check_only
 class ReplaceAccessLevelsRequest(typing_extensions.TypedDict, total=False):
     accessLevels: _list[AccessLevel]
     etag: str
@@ -326,6 +319,7 @@ class ScopedAccessSettings(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServicePerimeter(typing_extensions.TypedDict, total=False):
     description: str
+    etag: str
     name: str
     perimeterType: typing_extensions.Literal[
         "PERIMETER_TYPE_REGULAR", "PERIMETER_TYPE_BRIDGE"
@@ -343,6 +337,16 @@ class ServicePerimeterConfig(typing_extensions.TypedDict, total=False):
     resources: _list[str]
     restrictedServices: _list[str]
     vpcAccessibleServices: VpcAccessibleServices
+
+@typing.type_check_only
+class SessionSettings(typing_extensions.TypedDict, total=False):
+    maxInactivity: str
+    sessionLength: str
+    sessionLengthEnabled: bool
+    sessionReauthMethod: typing_extensions.Literal[
+        "SESSION_REAUTH_METHOD_UNSPECIFIED", "LOGIN", "SECURITY_KEY", "PASSWORD"
+    ]
+    useOidcMaxAge: bool
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

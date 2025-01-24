@@ -223,6 +223,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                             *,
                             parent: str,
                             body: Rollout = ...,
+                            overrideDeployPolicy: str | _list[str] = ...,
                             requestId: str = ...,
                             rolloutId: str = ...,
                             startingPhaseId: str = ...,
@@ -275,6 +276,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                         *,
                         parent: str,
                         body: Release = ...,
+                        overrideDeployPolicy: str | _list[str] = ...,
                         releaseId: str = ...,
                         requestId: str = ...,
                         validateOnly: bool = ...,
@@ -381,6 +383,72 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
                 def automationRuns(self) -> AutomationRunsResource: ...
                 def automations(self) -> AutomationsResource: ...
                 def releases(self) -> ReleasesResource: ...
+
+            @typing.type_check_only
+            class DeployPoliciesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DeployPolicy = ...,
+                    deployPolicyId: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    allowMissing: bool = ...,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DeployPolicyHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDeployPoliciesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDeployPoliciesResponseHttpRequest,
+                    previous_response: ListDeployPoliciesResponse,
+                ) -> ListDeployPoliciesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DeployPolicy = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -507,6 +575,7 @@ class CloudDeployResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def customTargetTypes(self) -> CustomTargetTypesResource: ...
             def deliveryPipelines(self) -> DeliveryPipelinesResource: ...
+            def deployPolicies(self) -> DeployPoliciesResource: ...
             def operations(self) -> OperationsResource: ...
             def targets(self) -> TargetsResource: ...
 
@@ -607,6 +676,14 @@ class DeliveryPipelineHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DeliveryPipeline: ...
 
 @typing.type_check_only
+class DeployPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeployPolicy: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -661,6 +738,14 @@ class ListDeliveryPipelinesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDeliveryPipelinesResponse: ...
+
+@typing.type_check_only
+class ListDeployPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDeployPoliciesResponse: ...
 
 @typing.type_check_only
 class ListJobRunsResponseHttpRequest(googleapiclient.http.HttpRequest):

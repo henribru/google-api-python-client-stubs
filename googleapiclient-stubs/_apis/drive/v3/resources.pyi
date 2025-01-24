@@ -18,6 +18,33 @@ class DriveResource(googleapiclient.discovery.Resource):
         def get(self, **kwargs: typing.Any) -> AboutHttpRequest: ...
 
     @typing.type_check_only
+    class AccessproposalsResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, fileId: str, proposalId: str, **kwargs: typing.Any
+        ) -> AccessProposalHttpRequest: ...
+        def list(
+            self,
+            *,
+            fileId: str,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListAccessProposalsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListAccessProposalsResponseHttpRequest,
+            previous_response: ListAccessProposalsResponse,
+        ) -> ListAccessProposalsResponseHttpRequest | None: ...
+        def resolve(
+            self,
+            *,
+            fileId: str,
+            proposalId: str,
+            body: ResolveAccessProposalRequest = ...,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
+
+    @typing.type_check_only
     class AppsResource(googleapiclient.discovery.Resource):
         def get(self, *, appId: str, **kwargs: typing.Any) -> AppHttpRequest: ...
         def list(
@@ -565,6 +592,7 @@ class DriveResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def about(self) -> AboutResource: ...
+    def accessproposals(self) -> AccessproposalsResource: ...
     def apps(self) -> AppsResource: ...
     def changes(self) -> ChangesResource: ...
     def channels(self) -> ChannelsResource: ...
@@ -585,6 +613,14 @@ class AboutHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> About: ...
+
+@typing.type_check_only
+class AccessProposalHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccessProposal: ...
 
 @typing.type_check_only
 class AppHttpRequest(googleapiclient.http.HttpRequest):
@@ -681,6 +717,14 @@ class LabelListHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LabelList: ...
+
+@typing.type_check_only
+class ListAccessProposalsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAccessProposalsResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):

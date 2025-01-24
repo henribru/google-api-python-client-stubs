@@ -166,8 +166,12 @@ class DimensionValue(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class EmptyFilter(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Filter(typing_extensions.TypedDict, total=False):
     betweenFilter: BetweenFilter
+    emptyFilter: EmptyFilter
     fieldName: str
     inListFilter: InListFilter
     numericFilter: NumericFilter

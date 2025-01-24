@@ -383,6 +383,7 @@ class GalleryReference(typing_extensions.TypedDict, total=False):
     owner: str
     repository: str
     signature: str
+    templateDeveloperId: str
     version: str
 
 @typing.type_check_only

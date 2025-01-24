@@ -340,6 +340,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                activeOnly: bool = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

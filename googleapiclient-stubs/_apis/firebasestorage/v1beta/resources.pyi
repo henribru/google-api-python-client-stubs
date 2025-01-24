@@ -46,7 +46,20 @@ class FirebasestorageResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
+        @typing.type_check_only
+        class DefaultBucketResource(googleapiclient.discovery.Resource):
+            def create(
+                self, *, parent: str, body: DefaultBucket = ..., **kwargs: typing.Any
+            ) -> DefaultBucketHttpRequest: ...
+
+        def deleteDefaultBucket(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> EmptyHttpRequest: ...
+        def getDefaultBucket(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> DefaultBucketHttpRequest: ...
         def buckets(self) -> BucketsResource: ...
+        def defaultBucket(self) -> DefaultBucketResource: ...
 
     def new_batch_http_request(
         self,
@@ -69,6 +82,14 @@ class BucketHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Bucket: ...
+
+@typing.type_check_only
+class DefaultBucketHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DefaultBucket: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

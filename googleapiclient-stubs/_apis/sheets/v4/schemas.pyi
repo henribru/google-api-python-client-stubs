@@ -1705,6 +1705,7 @@ class SetBasicFilterRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SetDataValidationRequest(typing_extensions.TypedDict, total=False):
+    filteredRowsIncluded: bool
     range: GridRange
     rule: DataValidationRule
 

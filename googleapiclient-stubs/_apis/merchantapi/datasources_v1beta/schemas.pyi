@@ -13,8 +13,10 @@ class DataSource(typing_extensions.TypedDict, total=False):
         "INPUT_UNSPECIFIED", "API", "FILE", "UI", "AUTOFEED"
     ]
     localInventoryDataSource: LocalInventoryDataSource
+    merchantReviewDataSource: MerchantReviewDataSource
     name: str
     primaryProductDataSource: PrimaryProductDataSource
+    productReviewDataSource: ProductReviewDataSource
     promotionDataSource: PromotionDataSource
     regionalInventoryDataSource: RegionalInventoryDataSource
     supplementalProductDataSource: SupplementalProductDataSource
@@ -102,6 +104,9 @@ class LocalInventoryDataSource(typing_extensions.TypedDict, total=False):
     feedLabel: str
 
 @typing.type_check_only
+class MerchantReviewDataSource(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PrimaryProductDataSource(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "CHANNEL_UNSPECIFIED", "ONLINE_PRODUCTS", "LOCAL_PRODUCTS", "PRODUCTS"
@@ -134,13 +139,18 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
+
+@typing.type_check_only
+class ProductReviewDataSource(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str

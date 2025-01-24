@@ -23,6 +23,238 @@ class GoogleChecksAccountV1alphaListAppsResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentRequest(
+    typing_extensions.TypedDict, total=False
+):
+    classifierVersion: typing_extensions.Literal[
+        "CLASSIFIER_VERSION_UNSPECIFIED", "STABLE", "LATEST"
+    ]
+    context: GoogleChecksAisafetyV1alphaClassifyContentRequestContext
+    input: GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent
+    policies: _list[GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig]
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentRequestContext(
+    typing_extensions.TypedDict, total=False
+):
+    prompt: str
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent(
+    typing_extensions.TypedDict, total=False
+):
+    textInput: GoogleChecksAisafetyV1alphaTextInput
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig(
+    typing_extensions.TypedDict, total=False
+):
+    policyType: typing_extensions.Literal[
+        "POLICY_TYPE_UNSPECIFIED",
+        "DANGEROUS_CONTENT",
+        "PII_SOLICITING_RECITING",
+        "HARASSMENT",
+        "SEXUALLY_EXPLICIT",
+        "HATE_SPEECH",
+        "MEDICAL_INFO",
+        "VIOLENCE_AND_GORE",
+        "OBSCENITY_AND_PROFANITY",
+    ]
+    threshold: float
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentResponse(
+    typing_extensions.TypedDict, total=False
+):
+    policyResults: _list[GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult]
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult(
+    typing_extensions.TypedDict, total=False
+):
+    policyType: typing_extensions.Literal[
+        "POLICY_TYPE_UNSPECIFIED",
+        "DANGEROUS_CONTENT",
+        "PII_SOLICITING_RECITING",
+        "HARASSMENT",
+        "SEXUALLY_EXPLICIT",
+        "HATE_SPEECH",
+        "MEDICAL_INFO",
+        "VIOLENCE_AND_GORE",
+        "OBSCENITY_AND_PROFANITY",
+    ]
+    score: float
+    violationResult: typing_extensions.Literal[
+        "VIOLATION_RESULT_UNSPECIFIED",
+        "VIOLATIVE",
+        "NON_VIOLATIVE",
+        "CLASSIFICATION_ERROR",
+    ]
+
+@typing.type_check_only
+class GoogleChecksAisafetyV1alphaTextInput(typing_extensions.TypedDict, total=False):
+    content: str
+    languageCode: str
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaCliAnalysis(typing_extensions.TypedDict, total=False):
+    codeScans: _list[GoogleChecksRepoScanV1alphaCodeScan]
+    sources: _list[GoogleChecksRepoScanV1alphaSource]
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaCodeAttribution(
+    typing_extensions.TypedDict, total=False
+):
+    codeExcerpt: str
+    lineNumber: int
+    path: str
+    startLineNumber: int
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaCodeScan(typing_extensions.TypedDict, total=False):
+    dataTypeClassifications: _list[
+        GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification
+    ]
+    sourceCode: GoogleChecksRepoScanV1alphaSourceCode
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaCodeScanDataTypeClassification(
+    typing_extensions.TypedDict, total=False
+):
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "DATA_TYPE_APPROXIMATE_LOCATION",
+        "DATA_TYPE_PRECISE_LOCATION",
+        "DATA_TYPE_PERSONAL_NAME",
+        "DATA_TYPE_EMAIL_ADDRESS",
+        "DATA_TYPE_USER_IDS",
+        "DATA_TYPE_PHYSICAL_ADDRESS",
+        "DATA_TYPE_PHONE_NUMBER",
+        "DATA_TYPE_RACE_AND_ETHNICITY",
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS",
+        "DATA_TYPE_SEXUAL_ORIENTATION",
+        "DATA_TYPE_OTHER_PERSONAL_INFO",
+        "DATA_TYPE_PAYMENT_INFO",
+        "DATA_TYPE_PURCHASE_HISTORY",
+        "DATA_TYPE_CREDIT_SCORE",
+        "DATA_TYPE_OTHER_FINANCIAL_INFO",
+        "DATA_TYPE_HEALTH_INFO",
+        "DATA_TYPE_FITNESS_INFO",
+        "DATA_TYPE_EMAILS",
+        "DATA_TYPE_TEXT_MESSAGES",
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES",
+        "DATA_TYPE_PHOTOS",
+        "DATA_TYPE_VIDEOS",
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
+        "DATA_TYPE_MUSIC_FILES",
+        "DATA_TYPE_OTHER_AUDIO_FILES",
+        "DATA_TYPE_FILES_AND_DOCS",
+        "DATA_TYPE_CALENDAR_EVENTS",
+        "DATA_TYPE_CONTACTS",
+        "DATA_TYPE_APP_INTERACTIONS",
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY",
+        "DATA_TYPE_INSTALLED_APPS",
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT",
+        "DATA_TYPE_OTHER_ACTIONS",
+        "DATA_TYPE_WEB_BROWSING_HISTORY",
+        "DATA_TYPE_CRASH_LOGS",
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS",
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA",
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS",
+    ]
+    lineNumber: int
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaGenerateScanRequest(
+    typing_extensions.TypedDict, total=False
+):
+    cliAnalysis: GoogleChecksRepoScanV1alphaCliAnalysis
+    cliVersion: str
+    localScanPath: str
+    scmMetadata: GoogleChecksRepoScanV1alphaScmMetadata
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaListRepoScansResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    repoScans: _list[GoogleChecksRepoScanV1alphaRepoScan]
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaPullRequest(typing_extensions.TypedDict, total=False):
+    baseBranch: str
+    prNumber: str
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaRepoScan(typing_extensions.TypedDict, total=False):
+    cliVersion: str
+    localScanPath: str
+    name: str
+    resultsUri: str
+    scmMetadata: GoogleChecksRepoScanV1alphaScmMetadata
+    sources: _list[GoogleChecksRepoScanV1alphaSource]
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaScmMetadata(typing_extensions.TypedDict, total=False):
+    branch: str
+    pullRequest: GoogleChecksRepoScanV1alphaPullRequest
+    remoteUri: str
+    revisionId: str
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaSource(typing_extensions.TypedDict, total=False):
+    codeAttribution: GoogleChecksRepoScanV1alphaCodeAttribution
+    dataType: typing_extensions.Literal[
+        "DATA_TYPE_UNSPECIFIED",
+        "DATA_TYPE_APPROXIMATE_LOCATION",
+        "DATA_TYPE_PRECISE_LOCATION",
+        "DATA_TYPE_PERSONAL_NAME",
+        "DATA_TYPE_EMAIL_ADDRESS",
+        "DATA_TYPE_USER_IDS",
+        "DATA_TYPE_PHYSICAL_ADDRESS",
+        "DATA_TYPE_PHONE_NUMBER",
+        "DATA_TYPE_RACE_AND_ETHNICITY",
+        "DATA_TYPE_POLITICAL_OR_RELIGIOUS_BELIEFS",
+        "DATA_TYPE_SEXUAL_ORIENTATION",
+        "DATA_TYPE_OTHER_PERSONAL_INFO",
+        "DATA_TYPE_PAYMENT_INFO",
+        "DATA_TYPE_PURCHASE_HISTORY",
+        "DATA_TYPE_CREDIT_SCORE",
+        "DATA_TYPE_OTHER_FINANCIAL_INFO",
+        "DATA_TYPE_HEALTH_INFO",
+        "DATA_TYPE_FITNESS_INFO",
+        "DATA_TYPE_EMAILS",
+        "DATA_TYPE_TEXT_MESSAGES",
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES",
+        "DATA_TYPE_PHOTOS",
+        "DATA_TYPE_VIDEOS",
+        "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
+        "DATA_TYPE_MUSIC_FILES",
+        "DATA_TYPE_OTHER_AUDIO_FILES",
+        "DATA_TYPE_FILES_AND_DOCS",
+        "DATA_TYPE_CALENDAR_EVENTS",
+        "DATA_TYPE_CONTACTS",
+        "DATA_TYPE_APP_INTERACTIONS",
+        "DATA_TYPE_IN_APP_SEARCH_HISTORY",
+        "DATA_TYPE_INSTALLED_APPS",
+        "DATA_TYPE_OTHER_USER_GENERATED_CONTENT",
+        "DATA_TYPE_OTHER_ACTIONS",
+        "DATA_TYPE_WEB_BROWSING_HISTORY",
+        "DATA_TYPE_CRASH_LOGS",
+        "DATA_TYPE_PERFORMANCE_DIAGNOSTICS",
+        "DATA_TYPE_OTHER_APP_PERFORMANCE_DATA",
+        "DATA_TYPE_DEVICE_OR_OTHER_IDS",
+    ]
+    falsePositive: bool
+
+@typing.type_check_only
+class GoogleChecksRepoScanV1alphaSourceCode(typing_extensions.TypedDict, total=False):
+    code: str
+    endLine: int
+    path: str
+    startLine: int
+
+@typing.type_check_only
 class GoogleChecksReportV1alphaAnalyzeUploadRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -143,6 +375,9 @@ class GoogleChecksReportV1alphaCheck(typing_extensions.TypedDict, total=False):
         "DATA_MONITORING_CRITICAL_SDK_ISSUE",
         "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
         "DATA_MONITORING_PII_LOGCAT_LEAK",
+        "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA",
+        "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA",
+        "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS",
     ]
 
 @typing.type_check_only
@@ -216,6 +451,7 @@ class GoogleChecksReportV1alphaCheckDataTypeEvidence(
         "DATA_TYPE_FITNESS_INFO",
         "DATA_TYPE_EMAILS",
         "DATA_TYPE_TEXT_MESSAGES",
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES",
         "DATA_TYPE_PHOTOS",
         "DATA_TYPE_VIDEOS",
         "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
@@ -376,6 +612,7 @@ class GoogleChecksReportV1alphaDataMonitoringDataTypeResult(
         "DATA_TYPE_FITNESS_INFO",
         "DATA_TYPE_EMAILS",
         "DATA_TYPE_TEXT_MESSAGES",
+        "DATA_TYPE_OTHER_IN_APP_MESSAGES",
         "DATA_TYPE_PHOTOS",
         "DATA_TYPE_VIDEOS",
         "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",

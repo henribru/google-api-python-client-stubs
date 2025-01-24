@@ -101,6 +101,16 @@ class ColumnSettings(typing_extensions.TypedDict, total=False):
     visible: bool
 
 @typing.type_check_only
+class ColumnSortingOptions(typing_extensions.TypedDict, total=False):
+    column: str
+    direction: typing_extensions.Literal[
+        "SORT_ORDER_UNSPECIFIED",
+        "SORT_ORDER_NONE",
+        "SORT_ORDER_ASCENDING",
+        "SORT_ORDER_DESCENDING",
+    ]
+
+@typing.type_check_only
 class Dashboard(typing_extensions.TypedDict, total=False):
     annotations: DashboardAnnotations
     columnLayout: ColumnLayout
@@ -149,6 +159,7 @@ class DataSet(typing_extensions.TypedDict, total=False):
     plotType: typing_extensions.Literal[
         "PLOT_TYPE_UNSPECIFIED", "LINE", "STACKED_AREA", "STACKED_BAR", "HEATMAP"
     ]
+    sort: _list[ColumnSortingOptions]
     targetAxis: typing_extensions.Literal["TARGET_AXIS_UNSPECIFIED", "Y1", "Y2"]
     timeSeriesQuery: TimeSeriesQuery
 
@@ -208,6 +219,7 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "UPTIME_CHECK_FAILURE",
         "CLOUD_ALERTING_ALERT",
         "SERVICE_HEALTH_INCIDENT",
+        "SAP_BACKINT",
     ]
     filter: str
     resourceNames: _list[str]

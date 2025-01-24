@@ -18,7 +18,63 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class BackupCollectionsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class BackupsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: ExportBackupRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BackupHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBackupsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupsResponseHttpRequest,
+                        previous_response: ListBackupsResponse,
+                    ) -> ListBackupsResponseHttpRequest | None: ...
+
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BackupCollectionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBackupCollectionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackupCollectionsResponseHttpRequest,
+                    previous_response: ListBackupCollectionsResponse,
+                ) -> ListBackupCollectionsResponseHttpRequest | None: ...
+                def backups(self) -> BackupsResource: ...
+
+            @typing.type_check_only
             class ClustersResource(googleapiclient.discovery.Resource):
+                def backup(
+                    self,
+                    *,
+                    name: str,
+                    body: BackupClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -186,6 +242,7 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def backupCollections(self) -> BackupCollectionsResource: ...
             def clusters(self) -> ClustersResource: ...
             def instances(self) -> InstancesResource: ...
             def operations(self) -> OperationsResource: ...
@@ -205,6 +262,22 @@ class CloudRedisResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class BackupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Backup: ...
+
+@typing.type_check_only
+class BackupCollectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackupCollection: ...
 
 @typing.type_check_only
 class CertificateAuthorityHttpRequest(googleapiclient.http.HttpRequest):
@@ -245,6 +318,22 @@ class InstanceAuthStringHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InstanceAuthString: ...
+
+@typing.type_check_only
+class ListBackupCollectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupCollectionsResponse: ...
+
+@typing.type_check_only
+class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupsResponse: ...
 
 @typing.type_check_only
 class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):

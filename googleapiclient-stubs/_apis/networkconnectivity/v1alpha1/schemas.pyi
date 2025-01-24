@@ -73,6 +73,7 @@ class Hub(typing_extensions.TypedDict, total=False):
 class InternalRange(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    immutable: bool
     ipCidrRange: str
     labels: dict[str, typing.Any]
     migration: Migration

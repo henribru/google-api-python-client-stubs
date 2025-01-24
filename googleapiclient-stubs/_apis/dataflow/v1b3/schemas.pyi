@@ -66,6 +66,17 @@ class BigTableIODetails(typing_extensions.TypedDict, total=False):
     tableId: str
 
 @typing.type_check_only
+class BoundedTrie(typing_extensions.TypedDict, total=False):
+    bound: int
+    root: BoundedTrieNode
+    singleton: _list[str]
+
+@typing.type_check_only
+class BoundedTrieNode(typing_extensions.TypedDict, total=False):
+    children: dict[str, typing.Any]
+    truncated: bool
+
+@typing.type_check_only
 class BucketOptions(typing_extensions.TypedDict, total=False):
     exponential: Base2Exponent
     linear: Linear
@@ -160,6 +171,7 @@ class CounterStructuredNameAndMetadata(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class CounterUpdate(typing_extensions.TypedDict, total=False):
     boolean: bool
+    boundedTrie: BoundedTrie
     cumulative: bool
     distribution: DistributionUpdate
     floatingPoint: float
@@ -209,6 +221,11 @@ class DataSamplingReport(typing_extensions.TypedDict, total=False):
     pcollectionsSampledCount: str
     persistenceErrorsCount: str
     translationErrorsCount: str
+
+@typing.type_check_only
+class DataflowGaugeValue(typing_extensions.TypedDict, total=False):
+    measuredTime: str
+    value: str
 
 @typing.type_check_only
 class DataflowHistogramValue(typing_extensions.TypedDict, total=False):
@@ -406,6 +423,15 @@ class FloatingPointList(typing_extensions.TypedDict, total=False):
 class FloatingPointMean(typing_extensions.TypedDict, total=False):
     count: SplitInt64
     sum: float
+
+@typing.type_check_only
+class GPUUsage(typing_extensions.TypedDict, total=False):
+    timestamp: str
+    utilization: GPUUtilization
+
+@typing.type_check_only
+class GPUUtilization(typing_extensions.TypedDict, total=False):
+    rate: float
 
 @typing.type_check_only
 class GetDebugConfigRequest(typing_extensions.TypedDict, total=False):
@@ -699,12 +725,14 @@ class MetricUpdate(typing_extensions.TypedDict, total=False):
     name: MetricStructuredName
     scalar: typing.Any
     set: typing.Any
+    trie: typing.Any
     updateTime: str
 
 @typing.type_check_only
 class MetricValue(typing_extensions.TypedDict, total=False):
     metric: str
     metricLabels: dict[str, typing.Any]
+    valueGauge64: DataflowGaugeValue
     valueHistogram: DataflowHistogramValue
     valueInt64: str
 
@@ -909,6 +937,7 @@ class ReportedParallelism(typing_extensions.TypedDict, total=False):
 class ResourceUtilizationReport(typing_extensions.TypedDict, total=False):
     containers: dict[str, typing.Any]
     cpuTime: _list[CPUTime]
+    gpuUsage: _list[GPUUsage]
     memoryInfo: _list[MemInfo]
 
 @typing.type_check_only

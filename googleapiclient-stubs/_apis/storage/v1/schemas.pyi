@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdvanceRelocateBucketOperationRequest(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    ttl: str
+
+@typing.type_check_only
 class AnywhereCache(typing_extensions.TypedDict, total=False):
     admissionPolicy: str
     anywhereCacheId: str
@@ -269,6 +274,7 @@ class Object(typing_extensions.TypedDict, total=False):
     temporaryHold: bool
     timeCreated: str
     timeDeleted: str
+    timeFinalized: str
     timeStorageClassUpdated: str
     updated: str
 
@@ -307,6 +313,12 @@ class Policy(typing_extensions.TypedDict, total=False):
     kind: str
     resourceId: str
     version: int
+
+@typing.type_check_only
+class RelocateBucketRequest(typing_extensions.TypedDict, total=False):
+    destinationCustomPlacementConfig: dict[str, typing.Any]
+    destinationLocation: str
+    validateOnly: bool
 
 @typing.type_check_only
 class RewriteResponse(typing_extensions.TypedDict, total=False):

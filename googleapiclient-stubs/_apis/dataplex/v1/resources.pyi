@@ -260,7 +260,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def delete(
-                    self, *, name: str, **kwargs: typing.Any
+                    self, *, name: str, force: bool = ..., **kwargs: typing.Any
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def generateDataQualityRules(
                     self,
@@ -1445,6 +1445,7 @@ class CloudDataplexResource(googleapiclient.discovery.Resource):
                     parent: str,
                     body: GoogleCloudDataplexV1MetadataJob = ...,
                     metadataJobId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
                 def get(

@@ -54,6 +54,7 @@ class V2Key(typing_extensions.TypedDict, total=False):
     keyString: str
     name: str
     restrictions: V2Restrictions
+    serviceAccountEmail: str
     uid: str
     updateTime: str
 

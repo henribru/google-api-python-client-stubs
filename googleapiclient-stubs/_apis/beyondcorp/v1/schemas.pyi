@@ -380,6 +380,83 @@ class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(
     verb: str
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1Application(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    endpointMatchers: _list[GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher(
+    typing_extensions.TypedDict, total=False
+):
+    hostname: str
+    ports: _list[int]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1Hub(
+    typing_extensions.TypedDict, total=False
+):
+    internetGateway: GoogleCloudBeyondcorpSecuritygatewaysV1InternetGateway
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1InternetGateway(
+    typing_extensions.TypedDict, total=False
+):
+    assignedIps: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    applications: _list[GoogleCloudBeyondcorpSecuritygatewaysV1Application]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityGateways: _list[GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    externalIps: _list[str]
+    hubs: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "RUNNING",
+        "DOWN",
+        "ERROR",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):

@@ -477,6 +477,12 @@ class GoogleCloudApigeeV1ConnectorsPlatformConfig(
     expiresAt: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ControlPlaneAccess(typing_extensions.TypedDict, total=False):
+    analyticsPublisherIdentities: _list[str]
+    name: str
+    synchronizerIdentities: _list[str]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1Credential(typing_extensions.TypedDict, total=False):
     apiProducts: _list[GoogleCloudApigeeV1ApiProductRef]
     attributes: _list[GoogleCloudApigeeV1Attribute]
@@ -815,6 +821,7 @@ class GoogleCloudApigeeV1Environment(typing_extensions.TypedDict, total=False):
     apiProxyType: typing_extensions.Literal[
         "API_PROXY_TYPE_UNSPECIFIED", "PROGRAMMABLE", "CONFIGURABLE"
     ]
+    clientIpResolutionConfig: GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig
     createdAt: str
     deploymentType: typing_extensions.Literal[
         "DEPLOYMENT_TYPE_UNSPECIFIED", "PROXY", "ARCHIVE"
@@ -835,9 +842,27 @@ class GoogleCloudApigeeV1Environment(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    headerIndexAlgorithm: (
+        GoogleCloudApigeeV1EnvironmentClientIPResolutionConfigHeaderIndexAlgorithm
+    )
+
+@typing.type_check_only
+class GoogleCloudApigeeV1EnvironmentClientIPResolutionConfigHeaderIndexAlgorithm(
+    typing_extensions.TypedDict, total=False
+):
+    ipHeaderIndex: int
+    ipHeaderName: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1EnvironmentConfig(typing_extensions.TypedDict, total=False):
     addonsConfig: GoogleCloudApigeeV1RuntimeAddonsConfig
     arcConfigLocation: str
+    clientIpResolutionConfig: (
+        GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfig
+    )
     createTime: str
     dataCollectors: _list[GoogleCloudApigeeV1DataCollectorConfig]
     debugMask: GoogleCloudApigeeV1DebugMask
@@ -859,6 +884,21 @@ class GoogleCloudApigeeV1EnvironmentConfig(typing_extensions.TypedDict, total=Fa
     targets: _list[GoogleCloudApigeeV1TargetServerConfig]
     traceConfig: GoogleCloudApigeeV1RuntimeTraceConfig
     uid: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    headerIndexAlgorithm: (
+        GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfigHeaderIndexAlgorithm
+    )
+
+@typing.type_check_only
+class GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfigHeaderIndexAlgorithm(
+    typing_extensions.TypedDict, total=False
+):
+    ipHeaderIndex: int
+    ipHeaderName: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1EnvironmentGroup(typing_extensions.TypedDict, total=False):
@@ -1329,6 +1369,13 @@ class GoogleCloudApigeeV1ListSecurityProfilesResponse(
 ):
     nextPageToken: str
     securityProfiles: _list[GoogleCloudApigeeV1SecurityProfile]
+
+@typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityProfilesV2Response(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityProfilesV2: _list[GoogleCloudApigeeV1SecurityProfileV2]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityReportsResponse(
@@ -2074,6 +2121,23 @@ class GoogleCloudApigeeV1SecurityProfileScoringConfig(
     description: str
     scorePath: str
     title: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileV2(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    googleDefined: bool
+    name: str
+    profileAssessmentConfigs: dict[str, typing.Any]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig(
+    typing_extensions.TypedDict, total=False
+):
+    weight: typing_extensions.Literal[
+        "WEIGHT_UNSPECIFIED", "MINOR", "MODERATE", "MAJOR"
+    ]
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SecurityReport(typing_extensions.TypedDict, total=False):

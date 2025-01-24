@@ -506,6 +506,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
             self,
             *,
             account: str,
+            integrator: str = ...,
             pageSize: int = ...,
             pageToken: str = ...,
             **kwargs: typing.Any,
@@ -559,6 +560,37 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         def reportJobs(self) -> ReportJobsResource: ...
         def reports(self) -> ReportsResource: ...
         def skuGroups(self) -> SkuGroupsResource: ...
+
+    @typing.type_check_only
+    class IntegratorsResource(googleapiclient.discovery.Resource):
+        def listSubscribers(
+            self,
+            *,
+            integrator: str,
+            account: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest: ...
+        def listSubscribers_next(
+            self,
+            previous_request: GoogleCloudChannelV1ListSubscribersResponseHttpRequest,
+            previous_response: GoogleCloudChannelV1ListSubscribersResponse,
+        ) -> GoogleCloudChannelV1ListSubscribersResponseHttpRequest | None: ...
+        def registerSubscriber(
+            self,
+            *,
+            integrator: str,
+            body: GoogleCloudChannelV1RegisterSubscriberRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudChannelV1RegisterSubscriberResponseHttpRequest: ...
+        def unregisterSubscriber(
+            self,
+            *,
+            integrator: str,
+            body: GoogleCloudChannelV1UnregisterSubscriberRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleCloudChannelV1UnregisterSubscriberResponseHttpRequest: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -639,6 +671,7 @@ class CloudchannelResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def accounts(self) -> AccountsResource: ...
+    def integrators(self) -> IntegratorsResource: ...
     def operations(self) -> OperationsResource: ...
     def products(self) -> ProductsResource: ...
 

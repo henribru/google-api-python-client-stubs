@@ -87,5 +87,6 @@ class Workflow(typing_extensions.TypedDict, total=False):
     sourceContents: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "UNAVAILABLE"]
     stateError: StateError
+    tags: dict[str, typing.Any]
     updateTime: str
     userEnvVars: dict[str, typing.Any]

@@ -58,6 +58,11 @@ class AwsSourceDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AwsSourceVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED",
+        "VM_ARCHITECTURE_X86_FAMILY",
+        "VM_ARCHITECTURE_ARM64",
+    ]
     committedStorageBytes: str
     disks: _list[AwsDiskDetails]
     firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
@@ -112,6 +117,11 @@ class AzureSourceDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AzureSourceVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED",
+        "VM_ARCHITECTURE_X86_FAMILY",
+        "VM_ARCHITECTURE_ARM64",
+    ]
     committedStorageBytes: str
     disks: _list[AzureDiskDetails]
     firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
@@ -119,6 +129,11 @@ class AzureSourceVmDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AzureVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED",
+        "VM_ARCHITECTURE_X86_FAMILY",
+        "VM_ARCHITECTURE_ARM64",
+    ]
     bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     committedStorageMb: str
     computerName: str
@@ -957,6 +972,11 @@ class VmwareSourceDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VmwareSourceVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED",
+        "VM_ARCHITECTURE_X86_FAMILY",
+        "VM_ARCHITECTURE_ARM64",
+    ]
     committedStorageBytes: str
     disks: _list[VmwareDiskDetails]
     firmware: typing_extensions.Literal["FIRMWARE_UNSPECIFIED", "EFI", "BIOS"]
@@ -964,6 +984,11 @@ class VmwareSourceVmDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VmwareVmDetails(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "VM_ARCHITECTURE_UNSPECIFIED",
+        "VM_ARCHITECTURE_X86_FAMILY",
+        "VM_ARCHITECTURE_ARM64",
+    ]
     bootOption: typing_extensions.Literal["BOOT_OPTION_UNSPECIFIED", "EFI", "BIOS"]
     committedStorageMb: str
     cpuCount: int

@@ -5,11 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AcceptTermsOfService(typing_extensions.TypedDict, total=False):
-    name: str
-    regionCode: str
-
-@typing.type_check_only
 class Accepted(typing_extensions.TypedDict, total=False):
     acceptedBy: str
     termsOfService: str
@@ -26,6 +21,9 @@ class Account(typing_extensions.TypedDict, total=False):
     timeZone: TimeZone
 
 @typing.type_check_only
+class AccountAggregation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AccountIssue(typing_extensions.TypedDict, total=False):
     detail: str
     documentationUri: str
@@ -38,7 +36,7 @@ class AccountIssue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AddAccountService(typing_extensions.TypedDict, total=False):
-    accountAggregation: Empty
+    accountAggregation: AccountAggregation
     provider: str
 
 @typing.type_check_only
@@ -107,11 +105,11 @@ class CarrierRate(typing_extensions.TypedDict, total=False):
     percentageAdjustment: str
 
 @typing.type_check_only
-class ClaimHomepageRequest(typing_extensions.TypedDict, total=False): ...
+class ClaimHomepageRequest(typing_extensions.TypedDict, total=False):
+    overwrite: bool
 
 @typing.type_check_only
 class CreateAndConfigureAccountRequest(typing_extensions.TypedDict, total=False):
-    acceptTermsOfService: AcceptTermsOfService
     account: Account
     service: _list[AddAccountService]
     users: _list[CreateUserRequest]
@@ -233,6 +231,7 @@ class ImpactedDestination(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -313,6 +312,7 @@ class OnlineReturnPolicy(typing_extensions.TypedDict, total=False):
     returnPolicyId: str
     returnPolicyUri: str
     returnShippingFee: ReturnShippingFee
+    seasonalOverrides: _list[SeasonalOverride]
 
 @typing.type_check_only
 class PhoneNumber(typing_extensions.TypedDict, total=False):
@@ -382,6 +382,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "LOCAL_CLOUD_RETAIL",
         "PRODUCT_REVIEWS",
         "MERCHANT_REVIEWS",
+        "YOUTUBE_CHECKOUT",
     ]
 
 @typing.type_check_only
@@ -389,6 +390,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
@@ -448,6 +450,13 @@ class ReturnShippingFee(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Row(typing_extensions.TypedDict, total=False):
     cells: _list[Value]
+
+@typing.type_check_only
+class SeasonalOverride(typing_extensions.TypedDict, total=False):
+    begin: Date
+    end: Date
+    label: str
+    policy: Policy
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):

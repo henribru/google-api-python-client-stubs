@@ -45,7 +45,6 @@ class Auth(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
-    credentialId: str
     presenter: str
     principal: str
 
@@ -82,6 +81,7 @@ class CheckRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CheckResponse(typing_extensions.TypedDict, total=False):
+    dynamicMetadata: dict[str, typing.Any]
     headers: dict[str, typing.Any]
     status: Status
 

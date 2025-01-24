@@ -22,11 +22,52 @@ class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False)
     listConstraint: GoogleCloudOrgpolicyV2ConstraintListConstraint
     name: str
     supportsDryRun: bool
+    supportsSimulation: bool
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintBooleanConstraint(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    customConstraintDefinition: (
+        GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition
+    )
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition(
+    typing_extensions.TypedDict, total=False
+):
+    actionType: typing_extensions.Literal["ACTION_TYPE_UNSPECIFIED", "ALLOW", "DENY"]
+    condition: str
+    methodTypes: _list[
+        typing_extensions.Literal[
+            "METHOD_TYPE_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "REMOVE_GRANT",
+            "GOVERN_TAGS",
+        ]
+    ]
+    parameters: dict[str, typing.Any]
+    resourceTypes: _list[str]
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter(
+    typing_extensions.TypedDict, total=False
+):
+    defaultValue: typing.Any
+    item: typing_extensions.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
+    metadata: (
+        GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata
+    )
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "LIST", "STRING", "BOOLEAN"]
+    validValuesExpr: str
+
+@typing.type_check_only
+class GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
 
 @typing.type_check_only
 class GoogleCloudOrgpolicyV2ConstraintListConstraint(
@@ -100,6 +141,7 @@ class GoogleCloudOrgpolicyV2PolicySpecPolicyRule(
     condition: GoogleTypeExpr
     denyAll: bool
     enforce: bool
+    parameters: dict[str, typing.Any]
     values: GoogleCloudOrgpolicyV2PolicySpecPolicyRuleStringValues
 
 @typing.type_check_only

@@ -427,7 +427,34 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         previous_response: ListAuthorizedDomainsResponse,
                     ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
 
+                @typing.type_check_only
+                class ServicesResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class VersionsResource(googleapiclient.discovery.Resource):
+                        def delete(
+                            self,
+                            *,
+                            projectsId: str,
+                            locationsId: str,
+                            applicationsId: str,
+                            servicesId: str,
+                            versionsId: str,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+
+                    def delete(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        servicesId: str,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def versions(self) -> VersionsResource: ...
+
                 def authorizedDomains(self) -> AuthorizedDomainsResource: ...
+                def services(self) -> ServicesResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):

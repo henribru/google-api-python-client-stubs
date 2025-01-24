@@ -123,6 +123,18 @@ class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     rolloutUpdateTime: str
 
 @typing.type_check_only
+class GoogleCloudOsconfigV2beta__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class Inventory(typing_extensions.TypedDict, total=False):
     items: dict[str, typing.Any]
     name: str

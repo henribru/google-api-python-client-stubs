@@ -75,12 +75,15 @@ class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
     createTime: str
+    databaseDeploymentDetails: DatabaseDeploymentDetails
+    databaseDetails: DatabaseDetails
     insightList: InsightList
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
     name: str
     performanceData: AssetPerformanceData
     sources: _list[str]
+    title: str
     updateTime: str
 
 @typing.type_check_only
@@ -94,6 +97,8 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
         "SOURCE_TYPE_CUSTOM",
         "SOURCE_TYPE_DISCOVERY_CLIENT",
     ]
+    databaseDeploymentDetails: DatabaseDeploymentDetails
+    databaseDetails: DatabaseDetails
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
     performanceSamples: _list[PerformanceSample]
@@ -110,11 +115,21 @@ class AssetPerformanceData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
     machineTypeLabel: str
 
 @typing.type_check_only
 class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
     machineTypeLabel: str
     provisioningState: str
@@ -201,6 +216,8 @@ class DailyResourceUsageAggregationCPU(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class DailyResourceUsageAggregationDisk(typing_extensions.TypedDict, total=False):
     iops: DailyResourceUsageAggregationStats
+    readIops: DailyResourceUsageAggregationStats
+    writeIops: DailyResourceUsageAggregationStats
 
 @typing.type_check_only
 class DailyResourceUsageAggregationMemory(typing_extensions.TypedDict, total=False):
@@ -217,6 +234,84 @@ class DailyResourceUsageAggregationStats(typing_extensions.TypedDict, total=Fals
     median: float
     ninteyFifthPercentile: float
     peak: float
+
+@typing.type_check_only
+class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
+    aggregatedStats: DatabaseDeploymentDetailsAggregatedStats
+    edition: str
+    generatedId: str
+    manualUniqueId: str
+    mysql: MysqlDatabaseDeployment
+    postgresql: PostgreSqlDatabaseDeployment
+    sqlServer: SqlServerDatabaseDeployment
+    topology: DatabaseDeploymentTopology
+    version: str
+
+@typing.type_check_only
+class DatabaseDeploymentDetailsAggregatedStats(
+    typing_extensions.TypedDict, total=False
+):
+    databaseCount: int
+
+@typing.type_check_only
+class DatabaseDeploymentTopology(typing_extensions.TypedDict, total=False):
+    coreCount: int
+    coreLimit: int
+    diskAllocatedBytes: str
+    diskUsedBytes: str
+    instances: _list[DatabaseInstance]
+    memoryBytes: str
+    memoryLimitBytes: str
+    physicalCoreCount: int
+    physicalCoreLimit: int
+
+@typing.type_check_only
+class DatabaseDetails(typing_extensions.TypedDict, total=False):
+    allocatedStorageBytes: str
+    databaseName: str
+    parentDatabaseDeployment: DatabaseDetailsParentDatabaseDeployment
+    schemas: _list[DatabaseSchema]
+
+@typing.type_check_only
+class DatabaseDetailsParentDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    generatedId: str
+    manualUniqueId: str
+
+@typing.type_check_only
+class DatabaseInstance(typing_extensions.TypedDict, total=False):
+    instanceName: str
+    network: DatabaseInstanceNetwork
+    role: typing_extensions.Literal[
+        "ROLE_UNSPECIFIED", "PRIMARY", "SECONDARY", "ARBITER"
+    ]
+
+@typing.type_check_only
+class DatabaseInstanceNetwork(typing_extensions.TypedDict, total=False):
+    hostNames: _list[str]
+    ipAddresses: _list[str]
+    primaryMacAddress: str
+
+@typing.type_check_only
+class DatabaseObjects(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "CATEGORY_UNSPECIFIED",
+        "TABLE",
+        "INDEX",
+        "CONSTRAINTS",
+        "VIEWS",
+        "SOURCE_CODE",
+        "OTHER",
+    ]
+    count: str
+
+@typing.type_check_only
+class DatabaseSchema(typing_extensions.TypedDict, total=False):
+    mysql: MySqlSchemaDetails
+    objects: _list[DatabaseObjects]
+    postgresql: PostgreSqlSchemaDetails
+    schemaName: str
+    sqlServer: SqlServerSchemaDetails
+    tablesSizeBytes: str
 
 @typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
@@ -285,6 +380,8 @@ class DiskPartitionList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DiskUsageSample(typing_extensions.TypedDict, total=False):
     averageIops: float
+    averageReadIops: float
+    averageWriteIops: float
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -345,6 +442,11 @@ class GenericInsight(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenericPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
 
 @typing.type_check_only
@@ -423,6 +525,7 @@ class ImportDataFile(typing_extensions.TypedDict, total=False):
         "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
         "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
         "IMPORT_JOB_FORMAT_STRATOZONE_CSV",
+        "IMPORT_JOB_FORMAT_DATABASE_ZIP",
     ]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "ACTIVE"]
@@ -459,12 +562,19 @@ class ImportJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImportRowError(typing_extensions.TypedDict, total=False):
+    archiveError: ImportRowErrorArchiveErrorDetails
+    assetTitle: str
     csvError: ImportRowErrorCsvErrorDetails
     errors: _list[ImportError]
     rowNumber: int
     vmName: str
     vmUuid: str
     xlsxError: ImportRowErrorXlsxErrorDetails
+
+@typing.type_check_only
+class ImportRowErrorArchiveErrorDetails(typing_extensions.TypedDict, total=False):
+    csvError: ImportRowErrorCsvErrorDetails
+    filePath: str
 
 @typing.type_check_only
 class ImportRowErrorCsvErrorDetails(typing_extensions.TypedDict, total=False):
@@ -538,6 +648,11 @@ class ListPreferenceSetsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListRelationsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    relations: _list[Relation]
+
+@typing.type_check_only
 class ListReportConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     reportConfigs: _list[ReportConfig]
@@ -567,6 +682,7 @@ class Location(typing_extensions.TypedDict, total=False):
 class MachineArchitectureDetails(typing_extensions.TypedDict, total=False):
     bios: BiosDetails
     cpuArchitecture: str
+    cpuManufacturer: str
     cpuName: str
     cpuSocketCount: int
     cpuThreadCount: int
@@ -633,6 +749,54 @@ class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class MySqlPlugin(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    plugin: str
+    version: str
+
+@typing.type_check_only
+class MySqlProperty(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    numericValue: str
+    property: str
+
+@typing.type_check_only
+class MySqlSchemaDetails(typing_extensions.TypedDict, total=False):
+    storageEngines: _list[MySqlStorageEngineDetails]
+
+@typing.type_check_only
+class MySqlStorageEngineDetails(typing_extensions.TypedDict, total=False):
+    encryptedTableCount: int
+    engine: typing_extensions.Literal[
+        "ENGINE_UNSPECIFIED",
+        "INNODB",
+        "MYISAM",
+        "MEMORY",
+        "CSV",
+        "ARCHIVE",
+        "BLACKHOLE",
+        "NDB",
+        "MERGE",
+        "FEDERATED",
+        "EXAMPLE",
+        "OTHER",
+    ]
+    tableCount: int
+
+@typing.type_check_only
+class MySqlVariable(typing_extensions.TypedDict, total=False):
+    category: str
+    value: str
+    variable: str
+
+@typing.type_check_only
+class MysqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    plugins: _list[MySqlPlugin]
+    properties: _list[MySqlProperty]
+    resourceGroupsCount: int
+    variables: _list[MySqlVariable]
 
 @typing.type_check_only
 class NetworkAdapterDetails(typing_extensions.TypedDict, total=False):
@@ -730,6 +894,11 @@ class PerformanceSample(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PhysicalPlatformDetails(typing_extensions.TypedDict, total=False):
+    hyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     location: str
 
 @typing.type_check_only
@@ -739,6 +908,37 @@ class PlatformDetails(typing_extensions.TypedDict, total=False):
     genericDetails: GenericPlatformDetails
     physicalDetails: PhysicalPlatformDetails
     vmwareDetails: VmwarePlatformDetails
+
+@typing.type_check_only
+class PostgreSqlDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    properties: _list[PostgreSqlProperty]
+    settings: _list[PostgreSqlSetting]
+
+@typing.type_check_only
+class PostgreSqlExtension(typing_extensions.TypedDict, total=False):
+    extension: str
+    version: str
+
+@typing.type_check_only
+class PostgreSqlProperty(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    numericValue: str
+    property: str
+
+@typing.type_check_only
+class PostgreSqlSchemaDetails(typing_extensions.TypedDict, total=False):
+    foreignTablesCount: int
+    postgresqlExtensions: _list[PostgreSqlExtension]
+
+@typing.type_check_only
+class PostgreSqlSetting(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    intValue: str
+    realValue: float
+    setting: str
+    source: str
+    stringValue: str
+    unit: str
 
 @typing.type_check_only
 class PreferenceSet(typing_extensions.TypedDict, total=False):
@@ -752,6 +952,16 @@ class PreferenceSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RegionPreferences(typing_extensions.TypedDict, total=False):
     preferredRegions: _list[str]
+
+@typing.type_check_only
+class Relation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dstAsset: str
+    name: str
+    srcAsset: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "LOGICAL_DATABASE", "DATABASE_DEPLOYMENT_HOSTING_SERVER"
+    ]
 
 @typing.type_check_only
 class RemoveAssetsFromGroupRequest(typing_extensions.TypedDict, total=False):
@@ -995,6 +1205,32 @@ class Source(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class SqlServerDatabaseDeployment(typing_extensions.TypedDict, total=False):
+    features: _list[SqlServerFeature]
+    serverFlags: _list[SqlServerServerFlag]
+    traceFlags: _list[SqlServerTraceFlag]
+
+@typing.type_check_only
+class SqlServerFeature(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    featureName: str
+
+@typing.type_check_only
+class SqlServerSchemaDetails(typing_extensions.TypedDict, total=False):
+    clrObjectCount: int
+
+@typing.type_check_only
+class SqlServerServerFlag(typing_extensions.TypedDict, total=False):
+    serverFlagName: str
+    value: str
+    valueInUse: str
+
+@typing.type_check_only
+class SqlServerTraceFlag(typing_extensions.TypedDict, total=False):
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "OFF", "GLOBAL", "SESSION"]
+    traceFlagName: str
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
@@ -1088,6 +1324,11 @@ class VmwareEnginePreferences(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
+    esxHyperthreading: typing_extensions.Literal[
+        "HYPERTHREADING_STATUS_UNSPECIFIED",
+        "HYPERTHREADING_STATUS_DISABLED",
+        "HYPERTHREADING_STATUS_ENABLED",
+    ]
     esxVersion: str
     osid: str
     vcenterFolder: str

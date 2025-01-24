@@ -517,6 +517,12 @@ class RequestUtilization(typing_extensions.TypedDict, total=False):
     targetRequestCountPerSecond: int
 
 @typing.type_check_only
+class ResourceEvent(typing_extensions.TypedDict, total=False):
+    eventId: str
+    name: str
+    state: ContainerState
+
+@typing.type_check_only
 class ResourceRecord(typing_extensions.TypedDict, total=False):
     name: str
     rrdata: str

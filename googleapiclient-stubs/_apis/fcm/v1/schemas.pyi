@@ -64,6 +64,7 @@ class AndroidNotification(typing_extensions.TypedDict, total=False):
 class ApnsConfig(typing_extensions.TypedDict, total=False):
     fcmOptions: ApnsFcmOptions
     headers: dict[str, typing.Any]
+    liveActivityToken: str
     payload: dict[str, typing.Any]
 
 @typing.type_check_only

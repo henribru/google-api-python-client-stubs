@@ -246,6 +246,11 @@ class AssetAssociation(typing_extensions.TypedDict, total=False):
         "ASSET_ROLE_RATING",
         "ASSET_ROLE_ICON",
         "ASSET_ROLE_COVER_IMAGE",
+        "ASSET_ROLE_BACKGROUND_COLOR",
+        "ASSET_ROLE_ACCENT_COLOR",
+        "ASSET_ROLE_REQUIRE_LOGO",
+        "ASSET_ROLE_REQUIRE_IMAGE",
+        "ASSET_ROLE_ENABLE_ASSET_ENHANCEMENTS",
     ]
 
 @typing.type_check_only
@@ -611,20 +616,6 @@ class BulkListAssignedTargetingOptionsResponse(
     nextPageToken: str
 
 @typing.type_check_only
-class BulkListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
-class BulkListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class BulkUpdateLineItemsRequest(typing_extensions.TypedDict, total=False):
     lineItemIds: _list[str]
     targetLineItem: LineItem
@@ -828,29 +819,6 @@ class CommonInStreamAttribute(typing_extensions.TypedDict, total=False):
     finalUrl: str
     trackingUrl: str
     video: YoutubeVideoDetails
-
-@typing.type_check_only
-class Consent(typing_extensions.TypedDict, total=False):
-    adPersonalization: typing_extensions.Literal[
-        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
-    ]
-    adUserData: typing_extensions.Literal[
-        "CONSENT_STATUS_UNSPECIFIED", "CONSENT_STATUS_GRANTED", "CONSENT_STATUS_DENIED"
-    ]
-
-@typing.type_check_only
-class ContactInfo(typing_extensions.TypedDict, total=False):
-    countryCode: str
-    hashedEmails: _list[str]
-    hashedFirstName: str
-    hashedLastName: str
-    hashedPhoneNumbers: _list[str]
-    zipCodes: _list[str]
-
-@typing.type_check_only
-class ContactInfoList(typing_extensions.TypedDict, total=False):
-    consent: Consent
-    contactInfos: _list[ContactInfo]
 
 @typing.type_check_only
 class ContentDurationAssignedTargetingOptionDetails(
@@ -1059,6 +1027,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only
@@ -1097,6 +1066,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_TYPE_PUBLISHER_HOSTED",
         "CREATIVE_TYPE_NATIVE_VIDEO",
         "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+        "CREATIVE_TYPE_ASSET_BASED_CREATIVE",
     ]
     dimensions: Dimensions
     displayName: str
@@ -1179,6 +1149,7 @@ class CreativeConfig(typing_extensions.TypedDict, total=False):
         "CREATIVE_TYPE_PUBLISHER_HOSTED",
         "CREATIVE_TYPE_NATIVE_VIDEO",
         "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+        "CREATIVE_TYPE_ASSET_BASED_CREATIVE",
     ]
     displayCreativeConfig: InventorySourceDisplayCreativeConfig
     videoCreativeConfig: InventorySourceVideoCreativeConfig
@@ -1583,18 +1554,6 @@ class DuplicateLineItemResponse(typing_extensions.TypedDict, total=False):
     duplicateLineItemId: str
 
 @typing.type_check_only
-class EditCustomerMatchMembersRequest(typing_extensions.TypedDict, total=False):
-    addedContactInfoList: ContactInfoList
-    addedMobileDeviceIdList: MobileDeviceIdList
-    advertiserId: str
-    removedContactInfoList: ContactInfoList
-    removedMobileDeviceIdList: MobileDeviceIdList
-
-@typing.type_check_only
-class EditCustomerMatchMembersResponse(typing_extensions.TypedDict, total=False):
-    firstAndThirdPartyAudienceId: str
-
-@typing.type_check_only
 class EditGuaranteedOrderReadAccessorsRequest(typing_extensions.TypedDict, total=False):
     addedAdvertisers: _list[str]
     partnerId: str
@@ -1732,6 +1691,8 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
 
 @typing.type_check_only
@@ -1824,6 +1785,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1915,6 +1878,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2009,6 +1974,8 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
 
 @typing.type_check_only
@@ -2021,49 +1988,6 @@ class ExitEvent(typing_extensions.TypedDict, total=False):
         "EXIT_EVENT_TYPE_BACKUP",
     ]
     url: str
-
-@typing.type_check_only
-class FirstAndThirdPartyAudience(typing_extensions.TypedDict, total=False):
-    activeDisplayAudienceSize: str
-    appId: str
-    audienceSource: typing_extensions.Literal[
-        "AUDIENCE_SOURCE_UNSPECIFIED",
-        "DISPLAY_VIDEO_360",
-        "CAMPAIGN_MANAGER",
-        "AD_MANAGER",
-        "SEARCH_ADS_360",
-        "YOUTUBE",
-        "ADS_DATA_HUB",
-    ]
-    audienceType: typing_extensions.Literal[
-        "AUDIENCE_TYPE_UNSPECIFIED",
-        "CUSTOMER_MATCH_CONTACT_INFO",
-        "CUSTOMER_MATCH_DEVICE_ID",
-        "CUSTOMER_MATCH_USER_ID",
-        "ACTIVITY_BASED",
-        "FREQUENCY_CAP",
-        "TAG_BASED",
-        "YOUTUBE_USERS",
-        "LICENSED",
-    ]
-    contactInfoList: ContactInfoList
-    description: str
-    displayAudienceSize: str
-    displayDesktopAudienceSize: str
-    displayMobileAppAudienceSize: str
-    displayMobileWebAudienceSize: str
-    displayName: str
-    firstAndThirdPartyAudienceId: str
-    firstAndThirdPartyAudienceType: typing_extensions.Literal[
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_UNSPECIFIED",
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_FIRST_PARTY",
-        "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_THIRD_PARTY",
-    ]
-    gmailAudienceSize: str
-    membershipDurationDays: str
-    mobileDeviceIdList: MobileDeviceIdList
-    name: str
-    youtubeAudienceSize: str
 
 @typing.type_check_only
 class FirstAndThirdPartyAudienceGroup(typing_extensions.TypedDict, total=False):
@@ -2391,6 +2315,8 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2691,6 +2617,8 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -2962,13 +2890,6 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListCampaignAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
@@ -3004,11 +2925,6 @@ class ListCustomListsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListFirstAndThirdPartyAudiencesResponse(typing_extensions.TypedDict, total=False):
-    firstAndThirdPartyAudiences: _list[FirstAndThirdPartyAudience]
-    nextPageToken: str
-
-@typing.type_check_only
 class ListFloodlightActivitiesResponse(typing_extensions.TypedDict, total=False):
     floodlightActivities: _list[FloodlightActivity]
     nextPageToken: str
@@ -3021,13 +2937,6 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListInsertionOrderAssignedTargetingOptionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -3202,11 +3111,6 @@ class MobileApp(typing_extensions.TypedDict, total=False):
     displayName: str
     platform: typing_extensions.Literal["PLATFORM_UNSPECIFIED", "IOS", "ANDROID"]
     publisher: str
-
-@typing.type_check_only
-class MobileDeviceIdList(typing_extensions.TypedDict, total=False):
-    consent: Consent
-    mobileDeviceIds: _list[str]
 
 @typing.type_check_only
 class Money(typing_extensions.TypedDict, total=False):
@@ -3694,6 +3598,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only
@@ -3719,6 +3624,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only

@@ -125,6 +125,51 @@ class AdUrl(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Adloox(typing_extensions.TypedDict, total=False):
+    adultExplicitSexualContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    armsAmmunitionContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent: (
+        typing_extensions.Literal[
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW",
+        ]
+    )
+    deathInjuryMilitaryConflictContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    debatedSensitiveSocialIssueContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    displayIabViewability: typing_extensions.Literal[
+        "DISPLAY_IAB_VIEWABILITY_UNSPECIFIED",
+        "DISPLAY_IAB_VIEWABILITY_10",
+        "DISPLAY_IAB_VIEWABILITY_20",
+        "DISPLAY_IAB_VIEWABILITY_35",
+        "DISPLAY_IAB_VIEWABILITY_50",
+        "DISPLAY_IAB_VIEWABILITY_75",
+    ]
     excludedAdlooxCategories: _list[
         typing_extensions.Literal[
             "ADLOOX_UNSPECIFIED",
@@ -137,6 +182,66 @@ class Adloox(typing_extensions.TypedDict, total=False):
             "LOW_VIEWABILITY_DOMAINS",
             "FRAUD",
         ]
+    ]
+    excludedFraudIvtMfaCategories: _list[
+        typing_extensions.Literal["FRAUD_IVT_MFA_CATEGORY_UNSPECIFIED", "FRAUD_IVT_MFA"]
+    ]
+    hateSpeechActsAggressionContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    illegalDrugsTobaccoEcigarettesVapingAlcoholContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    misinformationContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    obscenityProfanityContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    onlinePiracyContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    spamHarmfulContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    terrorismContent: typing_extensions.Literal[
+        "GARM_RISK_EXCLUSION_UNSPECIFIED",
+        "GARM_RISK_EXCLUSION_FLOOR",
+        "GARM_RISK_EXCLUSION_HIGH",
+        "GARM_RISK_EXCLUSION_MEDIUM",
+        "GARM_RISK_EXCLUSION_LOW",
+    ]
+    videoIabViewability: typing_extensions.Literal[
+        "VIDEO_IAB_VIEWABILITY_UNSPECIFIED",
+        "VIDEO_IAB_VIEWABILITY_10",
+        "VIDEO_IAB_VIEWABILITY_20",
+        "VIDEO_IAB_VIEWABILITY_35",
+        "VIDEO_IAB_VIEWABILITY_50",
+        "VIDEO_IAB_VIEWABILITY_75",
     ]
 
 @typing.type_check_only
@@ -353,6 +458,8 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     int64Value: str
     onScreenPositionValue: typing_extensions.Literal[
@@ -477,6 +584,11 @@ class AssetAssociation(typing_extensions.TypedDict, total=False):
         "ASSET_ROLE_RATING",
         "ASSET_ROLE_ICON",
         "ASSET_ROLE_COVER_IMAGE",
+        "ASSET_ROLE_BACKGROUND_COLOR",
+        "ASSET_ROLE_ACCENT_COLOR",
+        "ASSET_ROLE_REQUIRE_LOGO",
+        "ASSET_ROLE_REQUIRE_IMAGE",
+        "ASSET_ROLE_ENABLE_ASSET_ENHANCEMENTS",
     ]
 
 @typing.type_check_only
@@ -1291,6 +1403,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only
@@ -1329,6 +1442,7 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_TYPE_PUBLISHER_HOSTED",
         "CREATIVE_TYPE_NATIVE_VIDEO",
         "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+        "CREATIVE_TYPE_ASSET_BASED_CREATIVE",
     ]
     dimensions: Dimensions
     displayName: str
@@ -1411,6 +1525,7 @@ class CreativeConfig(typing_extensions.TypedDict, total=False):
         "CREATIVE_TYPE_PUBLISHER_HOSTED",
         "CREATIVE_TYPE_NATIVE_VIDEO",
         "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+        "CREATIVE_TYPE_ASSET_BASED_CREATIVE",
     ]
     displayCreativeConfig: InventorySourceDisplayCreativeConfig
     videoCreativeConfig: InventorySourceVideoCreativeConfig
@@ -2006,6 +2121,8 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
 
 @typing.type_check_only
@@ -2098,6 +2215,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -2189,6 +2308,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -2283,6 +2404,8 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
 
 @typing.type_check_only
@@ -2665,6 +2788,8 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2969,6 +3094,8 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_ADMOST_GBID",
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
+        "EXCHANGE_CORE",
+        "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -3998,6 +4125,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only
@@ -4023,6 +4151,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_6",
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
+        "SDF_VERSION_8",
     ]
 
 @typing.type_check_only

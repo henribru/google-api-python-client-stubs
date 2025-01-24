@@ -22,6 +22,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED",
         "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
         "PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS",
+        "PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS",
         "NO_SOURCE_LOCATION",
         "INVALID_ARGUMENT",
         "TRACE_TOO_LONG",
@@ -98,7 +99,6 @@ class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
 class CloudRunRevisionInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     location: str
-    serviceName: str
     serviceUri: str
     uri: str
 
@@ -124,6 +124,8 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
     protocol: str
     reachabilityDetails: ReachabilityDetails
     relatedProjects: _list[str]
+    returnReachabilityDetails: ReachabilityDetails
+    roundTrip: bool
     source: Endpoint
     updateTime: str
 
@@ -239,6 +241,8 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "REDIS_CLUSTER_UNSUPPORTED_PROTOCOL",
         "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION",
         "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
+        "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
+        "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED",
     ]
     destinationIp: str
     region: str
@@ -254,6 +258,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Endpoint(typing_extensions.TypedDict, total=False):
+    alloyDbInstance: str
     appEngineVersion: AppEngineVersionEndpoint
     cloudFunction: CloudFunctionEndpoint
     cloudRunRevision: CloudRunRevisionEndpoint
@@ -266,6 +271,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
         "VPN_GATEWAY",
         "PSC",
     ]
+    fqdn: str
     gkeMasterCluster: str
     instance: str
     ipAddress: str
@@ -325,6 +331,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
         "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
         "UNSUPPORTED_FIREWALL_POLICY_RULE",
         "TRACKING_STATE",
+        "ANALYSIS_SKIPPED",
     ]
     networkUri: str
     policy: str
@@ -369,6 +376,7 @@ class ForwardingRuleInfo(typing_extensions.TypedDict, total=False):
 class GKEMasterInfo(typing_extensions.TypedDict, total=False):
     clusterNetworkUri: str
     clusterUri: str
+    dnsEndpoint: str
     externalIp: str
     internalIp: str
 
@@ -609,10 +617,12 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     destPortRanges: _list[str]
     displayName: str
     instanceTags: _list[str]
+    nccHubRouteUri: str
     nccHubUri: str
     nccSpokeUri: str
     networkUri: str
     nextHop: str
+    nextHopNetworkUri: str
     nextHopType: typing_extensions.Literal[
         "NEXT_HOP_TYPE_UNSPECIFIED",
         "NEXT_HOP_IP",
@@ -628,6 +638,9 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_ROUTER_APPLIANCE",
         "NEXT_HOP_NCC_HUB",
     ]
+    nextHopUri: str
+    originatingRouteDisplayName: str
+    originatingRouteUri: str
     priority: int
     protocols: _list[str]
     region: str
@@ -643,6 +656,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "PEERING_STATIC",
         "PEERING_DYNAMIC",
         "POLICY_BASED",
+        "ADVERTISED",
     ]
     srcIpRange: str
     srcPortRanges: _list[str]
@@ -782,6 +796,11 @@ class VpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
     metadataFields: _list[str]
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    targetResourceState: typing_extensions.Literal[
+        "TARGET_RESOURCE_STATE_UNSPECIFIED",
+        "TARGET_RESOURCE_EXISTS",
+        "TARGET_RESOURCE_DOES_NOT_EXIST",
+    ]
     updateTime: str
     vpnTunnel: str
 

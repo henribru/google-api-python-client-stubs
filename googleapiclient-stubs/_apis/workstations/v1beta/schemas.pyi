@@ -92,6 +92,12 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     vmTags: dict[str, typing.Any]
 
 @typing.type_check_only
+class GceInstanceHost(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+    zone: str
+
+@typing.type_check_only
 class GcePersistentDisk(typing_extensions.TypedDict, total=False):
     diskType: str
     readOnly: bool
@@ -135,6 +141,7 @@ class Host(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HttpOptions(typing_extensions.TypedDict, total=False):
     allowedUnauthenticatedCorsPreflightRequests: bool
+    disableLocalhostReplacement: bool
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -219,6 +226,10 @@ class ReadinessCheck(typing_extensions.TypedDict, total=False):
     port: int
 
 @typing.type_check_only
+class RuntimeHost(typing_extensions.TypedDict, total=False):
+    gceInstanceHost: GceInstanceHost
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -262,6 +273,7 @@ class Workstation(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    runtimeHost: RuntimeHost
     satisfiesPzi: bool
     satisfiesPzs: bool
     sourceWorkstation: str
@@ -299,6 +311,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     subnetwork: str
+    tags: dict[str, typing.Any]
     uid: str
     updateTime: str
 

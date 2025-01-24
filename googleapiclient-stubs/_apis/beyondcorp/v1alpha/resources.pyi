@@ -990,30 +990,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                 ): ...
 
             @typing.type_check_only
-            class NetConnectionsResource(googleapiclient.discovery.Resource):
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1PolicyHttpRequest: ...
-                def setIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    body: GoogleIamV1SetIamPolicyRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: GoogleIamV1TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
-
-            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -1152,13 +1128,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1SetIamPolicyRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1PolicyHttpRequest: ...
-                def setPeering(
-                    self,
-                    *,
-                    securityGateway: str,
-                    body: GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def testIamPermissions(
                     self,
                     *,
@@ -1196,7 +1165,6 @@ class BeyondCorpResource(googleapiclient.discovery.Resource):
             def connectors(self) -> ConnectorsResource: ...
             def global_(self) -> GlobalResource: ...
             def insights(self) -> InsightsResource: ...
-            def netConnections(self) -> NetConnectionsResource: ...
             def operations(self) -> OperationsResource: ...
             def securityGateways(self) -> SecurityGatewaysResource: ...
 

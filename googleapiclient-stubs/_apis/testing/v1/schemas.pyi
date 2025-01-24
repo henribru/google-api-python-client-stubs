@@ -129,6 +129,7 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     targetSdkVersion: int
     usesFeature: _list[UsesFeature]
     usesPermission: _list[str]
+    usesPermissionTags: _list[UsesPermissionTag]
     versionCode: str
     versionName: str
 
@@ -671,6 +672,11 @@ class UniformSharding(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UsesFeature(typing_extensions.TypedDict, total=False):
     isRequired: bool
+    name: str
+
+@typing.type_check_only
+class UsesPermissionTag(typing_extensions.TypedDict, total=False):
+    maxSdkVersion: int
     name: str
 
 @typing.type_check_only

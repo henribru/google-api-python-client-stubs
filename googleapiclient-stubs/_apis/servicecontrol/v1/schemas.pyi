@@ -55,7 +55,6 @@ class Auth(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
-    credentialId: str
     presenter: str
     principal: str
 

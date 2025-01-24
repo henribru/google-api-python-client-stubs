@@ -16,6 +16,8 @@ class AcceleratorConfig(typing_extensions.TypedDict, total=False):
         "NVIDIA_TESLA_A100",
         "NVIDIA_A100_80GB",
         "NVIDIA_L4",
+        "NVIDIA_H100_80GB",
+        "NVIDIA_H100_MEGA_80GB",
         "NVIDIA_TESLA_T4_VWS",
         "NVIDIA_TESLA_P100_VWS",
         "NVIDIA_TESLA_P4_VWS",
@@ -147,6 +149,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     creator: str
     disableProxyAccess: bool
+    enableThirdPartyIdentity: bool
     gceSetup: GceSetup
     healthInfo: dict[str, typing.Any]
     healthState: typing_extensions.Literal[

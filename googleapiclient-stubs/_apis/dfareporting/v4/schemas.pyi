@@ -523,6 +523,7 @@ class CompanionSetting(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CompatibleFields(typing_extensions.TypedDict, total=False):
     crossDimensionReachReportCompatibleFields: CrossDimensionReachReportCompatibleFields
+    crossMediaReachReportCompatibleFields: CrossMediaReachReportCompatibleFields
     floodlightReportCompatibleFields: FloodlightReportCompatibleFields
     kind: str
     pathToConversionReportCompatibleFields: PathToConversionReportCompatibleFields
@@ -1245,6 +1246,13 @@ class CrossDimensionReachReportCompatibleFields(
     kind: str
     metrics: _list[Metric]
     overlapMetrics: _list[Metric]
+
+@typing.type_check_only
+class CrossMediaReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
+    dimensionFilters: _list[Dimension]
+    dimensions: _list[Dimension]
+    kind: str
+    metrics: _list[Metric]
 
 @typing.type_check_only
 class CustomFloodlightVariable(typing_extensions.TypedDict, total=False):
@@ -2638,6 +2646,7 @@ class Report(typing_extensions.TypedDict, total=False):
     accountId: str
     criteria: dict[str, typing.Any]
     crossDimensionReachCriteria: dict[str, typing.Any]
+    crossMediaReachCriteria: dict[str, typing.Any]
     delivery: dict[str, typing.Any]
     etag: str
     fileName: str
@@ -2653,7 +2662,12 @@ class Report(typing_extensions.TypedDict, total=False):
     schedule: dict[str, typing.Any]
     subAccountId: str
     type: typing_extensions.Literal[
-        "STANDARD", "REACH", "PATH_TO_CONVERSION", "CROSS_DIMENSION_REACH", "FLOODLIGHT"
+        "STANDARD",
+        "REACH",
+        "PATH_TO_CONVERSION",
+        "CROSS_DIMENSION_REACH",
+        "FLOODLIGHT",
+        "CROSS_MEDIA_REACH",
     ]
 
 @typing.type_check_only
@@ -2954,6 +2968,39 @@ class ThirdPartyTrackingUrl(typing_extensions.TypedDict, total=False):
 class TranscodeSetting(typing_extensions.TypedDict, total=False):
     enabledVideoFormats: _list[int]
     kind: str
+
+@typing.type_check_only
+class TvCampaignDetail(typing_extensions.TypedDict, total=False):
+    id: str
+    kind: str
+    timepoints: _list[TvCampaignTimepoint]
+
+@typing.type_check_only
+class TvCampaignSummariesListResponse(typing_extensions.TypedDict, total=False):
+    kind: str
+    tvCampaignSummaries: _list[TvCampaignSummary]
+
+@typing.type_check_only
+class TvCampaignSummary(typing_extensions.TypedDict, total=False):
+    endDate: str
+    grp: str
+    id: str
+    impressions: str
+    kind: str
+    name: str
+    spend: float
+    startDate: str
+    type: typing_extensions.Literal[
+        "CAMPAIGN_COMPONENT_TYPE_UNSPECIFIED", "COMPANY", "BRAND", "PRODUCT", "CAMPAIGN"
+    ]
+
+@typing.type_check_only
+class TvCampaignTimepoint(typing_extensions.TypedDict, total=False):
+    dateWindow: typing_extensions.Literal[
+        "WEEKS_UNSPECIFIED", "WEEKS_ONE", "WEEKS_FOUR", "WEEKS_EIGHT", "WEEKS_TWELVE"
+    ]
+    spend: float
+    startDate: str
 
 @typing.type_check_only
 class UniversalAdId(typing_extensions.TypedDict, total=False):

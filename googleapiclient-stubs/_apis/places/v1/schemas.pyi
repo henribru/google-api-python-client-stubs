@@ -10,6 +10,40 @@ class GoogleGeoTypeViewport(typing_extensions.TypedDict, total=False):
     low: GoogleTypeLatLng
 
 @typing.type_check_only
+class GoogleMapsPlacesV1AddressDescriptor(typing_extensions.TypedDict, total=False):
+    areas: _list[GoogleMapsPlacesV1AddressDescriptorArea]
+    landmarks: _list[GoogleMapsPlacesV1AddressDescriptorLandmark]
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AddressDescriptorArea(typing_extensions.TypedDict, total=False):
+    containment: typing_extensions.Literal[
+        "CONTAINMENT_UNSPECIFIED", "WITHIN", "OUTSKIRTS", "NEAR"
+    ]
+    displayName: GoogleTypeLocalizedText
+    name: str
+    placeId: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1AddressDescriptorLandmark(
+    typing_extensions.TypedDict, total=False
+):
+    displayName: GoogleTypeLocalizedText
+    name: str
+    placeId: str
+    spatialRelationship: typing_extensions.Literal[
+        "NEAR",
+        "WITHIN",
+        "BESIDE",
+        "ACROSS_THE_ROAD",
+        "DOWN_THE_ROAD",
+        "AROUND_THE_CORNER",
+        "BEHIND",
+    ]
+    straightLineDistanceMeters: float
+    travelDistanceMeters: float
+    types: _list[str]
+
+@typing.type_check_only
 class GoogleMapsPlacesV1AuthorAttribution(typing_extensions.TypedDict, total=False):
     displayName: str
     photoUri: str
@@ -19,6 +53,7 @@ class GoogleMapsPlacesV1AuthorAttribution(typing_extensions.TypedDict, total=Fal
 class GoogleMapsPlacesV1AutocompletePlacesRequest(
     typing_extensions.TypedDict, total=False
 ):
+    includePureServiceAreaBusinesses: bool
     includeQueryPredictions: bool
     includedPrimaryTypes: _list[str]
     includedRegionCodes: _list[str]
@@ -199,6 +234,7 @@ class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=
     type: typing_extensions.Literal[
         "FUEL_TYPE_UNSPECIFIED",
         "DIESEL",
+        "DIESEL_PLUS",
         "REGULAR_UNLEADED",
         "MIDGRADE",
         "PREMIUM",
@@ -213,6 +249,7 @@ class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=
         "LPG",
         "E80",
         "E85",
+        "E100",
         "METHANE",
         "BIO_DIESEL",
         "TRUCK_DIESEL",
@@ -222,6 +259,8 @@ class GoogleMapsPlacesV1FuelOptionsFuelPrice(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleMapsPlacesV1Photo(typing_extensions.TypedDict, total=False):
     authorAttributions: _list[GoogleMapsPlacesV1AuthorAttribution]
+    flagContentUri: str
+    googleMapsUri: str
     heightPx: int
     name: str
     widthPx: int
@@ -235,6 +274,7 @@ class GoogleMapsPlacesV1PhotoMedia(typing_extensions.TypedDict, total=False):
 class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     accessibilityOptions: GoogleMapsPlacesV1PlaceAccessibilityOptions
     addressComponents: _list[GoogleMapsPlacesV1PlaceAddressComponent]
+    addressDescriptor: GoogleMapsPlacesV1AddressDescriptor
     adrFormatAddress: str
     allowsDogs: bool
     areaSummary: GoogleMapsPlacesV1PlaceAreaSummary
@@ -245,6 +285,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
         "CLOSED_TEMPORARILY",
         "CLOSED_PERMANENTLY",
     ]
+    containingPlaces: _list[GoogleMapsPlacesV1PlaceContainingPlace]
     curbsidePickup: bool
     currentOpeningHours: GoogleMapsPlacesV1PlaceOpeningHours
     currentSecondaryOpeningHours: _list[GoogleMapsPlacesV1PlaceOpeningHours]
@@ -259,6 +300,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     goodForChildren: bool
     goodForGroups: bool
     goodForWatchingSports: bool
+    googleMapsLinks: GoogleMapsPlacesV1PlaceGoogleMapsLinks
     googleMapsUri: str
     iconBackgroundColor: str
     iconMaskBaseUri: str
@@ -282,8 +324,10 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
         "PRICE_LEVEL_EXPENSIVE",
         "PRICE_LEVEL_VERY_EXPENSIVE",
     ]
+    priceRange: GoogleMapsPlacesV1PriceRange
     primaryType: str
     primaryTypeDisplayName: GoogleTypeLocalizedText
+    pureServiceAreaBusiness: bool
     rating: float
     regularOpeningHours: GoogleMapsPlacesV1PlaceOpeningHours
     regularSecondaryOpeningHours: _list[GoogleMapsPlacesV1PlaceOpeningHours]
@@ -328,6 +372,7 @@ class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceAreaSummary(typing_extensions.TypedDict, total=False):
     contentBlocks: _list[GoogleMapsPlacesV1ContentBlock]
+    flagContentUri: str
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=False):
@@ -335,15 +380,32 @@ class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=Fals
     providerUri: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceContainingPlace(typing_extensions.TypedDict, total=False):
+    id: str
+    name: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceGenerativeSummary(
     typing_extensions.TypedDict, total=False
 ):
     description: GoogleTypeLocalizedText
+    descriptionFlagContentUri: str
     overview: GoogleTypeLocalizedText
+    overviewFlagContentUri: str
     references: GoogleMapsPlacesV1References
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=False):
+    directionsUri: str
+    photosUri: str
+    placeUri: str
+    reviewsUri: str
+    writeAReviewUri: str
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceOpeningHours(typing_extensions.TypedDict, total=False):
+    nextCloseTime: str
+    nextOpenTime: str
     openNow: bool
     periods: _list[GoogleMapsPlacesV1PlaceOpeningHoursPeriod]
     secondaryHoursType: typing_extensions.Literal[
@@ -420,6 +482,11 @@ class GoogleMapsPlacesV1Polyline(typing_extensions.TypedDict, total=False):
     encodedPolyline: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PriceRange(typing_extensions.TypedDict, total=False):
+    endPrice: GoogleTypeMoney
+    startPrice: GoogleTypeMoney
+
+@typing.type_check_only
 class GoogleMapsPlacesV1References(typing_extensions.TypedDict, total=False):
     places: _list[str]
     reviews: _list[GoogleMapsPlacesV1Review]
@@ -427,6 +494,8 @@ class GoogleMapsPlacesV1References(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
     authorAttribution: GoogleMapsPlacesV1AuthorAttribution
+    flagContentUri: str
+    googleMapsUri: str
     name: str
     originalText: GoogleTypeLocalizedText
     publishTime: str
@@ -457,6 +526,7 @@ class GoogleMapsPlacesV1RoutingParameters(typing_extensions.TypedDict, total=Fal
 
 @typing.type_check_only
 class GoogleMapsPlacesV1RoutingSummary(typing_extensions.TypedDict, total=False):
+    directionsUri: str
     legs: _list[GoogleMapsPlacesV1RoutingSummaryLeg]
 
 @typing.type_check_only
@@ -493,6 +563,7 @@ class GoogleMapsPlacesV1SearchNearbyResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleMapsPlacesV1SearchTextRequest(typing_extensions.TypedDict, total=False):
     evOptions: GoogleMapsPlacesV1SearchTextRequestEVOptions
+    includePureServiceAreaBusinesses: bool
     includedType: str
     languageCode: str
     locationBias: GoogleMapsPlacesV1SearchTextRequestLocationBias
@@ -568,6 +639,7 @@ class GoogleMapsPlacesV1SearchTextResponse(typing_extensions.TypedDict, total=Fa
     nextPageToken: str
     places: _list[GoogleMapsPlacesV1Place]
     routingSummaries: _list[GoogleMapsPlacesV1RoutingSummary]
+    searchUri: str
 
 @typing.type_check_only
 class GoogleTypeDate(typing_extensions.TypedDict, total=False):

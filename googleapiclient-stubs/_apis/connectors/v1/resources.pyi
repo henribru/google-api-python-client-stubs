@@ -127,6 +127,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        schemaAsString: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListRuntimeActionSchemasResponseHttpRequest: ...
                     def list_next(
@@ -271,6 +272,20 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: DeprecateCustomConnectorVersionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def publish(
+                        self,
+                        *,
+                        name: str,
+                        body: PublishCustomConnectorVersionRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def withdraw(
+                        self,
+                        *,
+                        name: str,
+                        body: WithdrawCustomConnectorVersionRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 

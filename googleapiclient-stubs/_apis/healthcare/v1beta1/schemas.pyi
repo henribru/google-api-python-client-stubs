@@ -757,11 +757,20 @@ class GoogleCloudHealthcareV1beta1DicomStreamConfig(
 class GoogleCloudHealthcareV1beta1FhirBigQueryDestination(
     typing_extensions.TypedDict, total=False
 ):
+    changeDataCaptureConfig: GoogleCloudHealthcareV1beta1FhirChangeDataCaptureConfig
     datasetUri: str
     force: bool
     schemaConfig: SchemaConfig
     writeDisposition: typing_extensions.Literal[
         "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
+    ]
+
+@typing.type_check_only
+class GoogleCloudHealthcareV1beta1FhirChangeDataCaptureConfig(
+    typing_extensions.TypedDict, total=False
+):
+    historyMode: typing_extensions.Literal[
+        "HISTORY_MODE_UNSPECIFIED", "KEEP_LATEST_VERSION", "KEEP_ALL_VERSIONS"
     ]
 
 @typing.type_check_only
