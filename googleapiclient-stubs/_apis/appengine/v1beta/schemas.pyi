@@ -53,6 +53,7 @@ class Application(typing_extensions.TypedDict, total=False):
     servingStatus: typing_extensions.Literal[
         "UNSPECIFIED", "SERVING", "USER_DISABLED", "SYSTEM_DISABLED"
     ]
+    sslPolicy: typing_extensions.Literal["SSL_POLICY_UNSPECIFIED", "DEFAULT", "MODERN"]
 
 @typing.type_check_only
 class AuthorizedCertificate(typing_extensions.TypedDict, total=False):

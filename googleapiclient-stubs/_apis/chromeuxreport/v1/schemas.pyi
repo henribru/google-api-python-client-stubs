@@ -66,6 +66,7 @@ class Percentiles(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class QueryHistoryRequest(typing_extensions.TypedDict, total=False):
+    collectionPeriodCount: int
     formFactor: typing_extensions.Literal[
         "ALL_FORM_FACTORS", "PHONE", "DESKTOP", "TABLET"
     ]

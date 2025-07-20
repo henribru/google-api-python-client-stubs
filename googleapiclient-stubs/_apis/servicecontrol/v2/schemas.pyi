@@ -125,6 +125,7 @@ class Request(typing_extensions.TypedDict, total=False):
     host: str
     id: str
     method: str
+    origin: str
     path: str
     protocol: str
     query: str

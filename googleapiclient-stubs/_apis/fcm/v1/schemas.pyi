@@ -6,6 +6,7 @@ _list = list
 
 @typing.type_check_only
 class AndroidConfig(typing_extensions.TypedDict, total=False):
+    bandwidthConstrainedOk: bool
     collapseKey: str
     data: dict[str, typing.Any]
     directBootOk: bool
@@ -13,6 +14,7 @@ class AndroidConfig(typing_extensions.TypedDict, total=False):
     notification: AndroidNotification
     priority: typing_extensions.Literal["NORMAL", "HIGH"]
     restrictedPackageName: str
+    restrictedSatelliteOk: bool
     ttl: str
 
 @typing.type_check_only

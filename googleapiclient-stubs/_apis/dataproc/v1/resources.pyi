@@ -552,6 +552,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         self,
                         *,
                         name: str,
+                        jobIds: str | _list[str] = ...,
                         jobStatus: typing_extensions.Literal[
                             "JOB_EXECUTION_STATUS_UNSPECIFIED",
                             "JOB_EXECUTION_STATUS_RUNNING",
@@ -576,6 +577,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         details: bool = ...,
+                        operationIds: str | _list[str] = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
                         parent: str = ...,
@@ -646,6 +648,7 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         pageSize: int = ...,
                         pageToken: str = ...,
                         parent: str = ...,
+                        stageIds: str | _list[str] = ...,
                         stageStatus: typing_extensions.Literal[
                             "STAGE_STATUS_UNSPECIFIED",
                             "STAGE_STATUS_ACTIVE",
@@ -670,7 +673,12 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         SummarizeSessionSparkApplicationExecutorsResponseHttpRequest
                     ): ...
                     def summarizeJobs(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        jobIds: str | _list[str] = ...,
+                        parent: str = ...,
+                        **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationJobsResponseHttpRequest: ...
                     def summarizeStageAttemptTasks(
                         self,
@@ -682,7 +690,12 @@ class DataprocResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationStageAttemptTasksResponseHttpRequest: ...
                     def summarizeStages(
-                        self, *, name: str, parent: str = ..., **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        parent: str = ...,
+                        stageIds: str | _list[str] = ...,
+                        **kwargs: typing.Any,
                     ) -> SummarizeSessionSparkApplicationStagesResponseHttpRequest: ...
                     def write(
                         self,

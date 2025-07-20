@@ -393,11 +393,17 @@ class Proto2DescriptorProto(typing_extensions.TypedDict, total=False):
     name: str
     nestedType: _list[Proto2DescriptorProto]
     oneofDecl: _list[Proto2OneofDescriptorProto]
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSET", "VISIBILITY_LOCAL", "VISIBILITY_EXPORT"
+    ]
 
 @typing.type_check_only
 class Proto2EnumDescriptorProto(typing_extensions.TypedDict, total=False):
     name: str
     value: _list[Proto2EnumValueDescriptorProto]
+    visibility: typing_extensions.Literal[
+        "VISIBILITY_UNSET", "VISIBILITY_LOCAL", "VISIBILITY_EXPORT"
+    ]
 
 @typing.type_check_only
 class Proto2EnumValueDescriptorProto(typing_extensions.TypedDict, total=False):
@@ -443,6 +449,7 @@ class Proto2FileDescriptorProto(typing_extensions.TypedDict, total=False):
     enumType: _list[Proto2EnumDescriptorProto]
     messageType: _list[Proto2DescriptorProto]
     name: str
+    optionDependency: _list[str]
     package: str
     syntax: str
 

@@ -10,6 +10,68 @@ class AgentCommand(typing_extensions.TypedDict, total=False):
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
+class AgentStatus(typing_extensions.TypedDict, total=False):
+    agentName: str
+    availableVersion: str
+    cloudApiAccessFullScopesGranted: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    configurationErrorMessage: str
+    configurationFilePath: str
+    configurationValid: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    installedVersion: str
+    kernelVersion: SapDiscoveryResourceInstancePropertiesKernelVersion
+    references: _list[AgentStatusReference]
+    services: _list[AgentStatusServiceStatus]
+    systemdServiceEnabled: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    systemdServiceRunning: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+
+@typing.type_check_only
+class AgentStatusConfigValue(typing_extensions.TypedDict, total=False):
+    isDefault: bool
+    name: str
+    value: str
+
+@typing.type_check_only
+class AgentStatusIAMPermission(typing_extensions.TypedDict, total=False):
+    granted: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    name: str
+
+@typing.type_check_only
+class AgentStatusReference(typing_extensions.TypedDict, total=False):
+    name: str
+    url: str
+
+@typing.type_check_only
+class AgentStatusServiceStatus(typing_extensions.TypedDict, total=False):
+    configValues: _list[AgentStatusConfigValue]
+    errorMessage: str
+    fullyFunctional: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    iamPermissions: _list[AgentStatusIAMPermission]
+    name: str
+    state: typing_extensions.Literal[
+        "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
+    ]
+    unspecifiedStateMessage: str
+
+@typing.type_check_only
+class BackupProperties(typing_extensions.TypedDict, total=False):
+    latestBackupStatus: typing_extensions.Literal[
+        "BACKUP_STATE_UNSPECIFIED", "BACKUP_STATE_SUCCESS", "BACKUP_STATE_FAILURE"
+    ]
+    latestBackupTime: str
+
+@typing.type_check_only
 class BigQueryDestination(typing_extensions.TypedDict, total=False):
     createNewResultsTable: bool
     destinationDataset: str
@@ -18,9 +80,41 @@ class BigQueryDestination(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CloudResource(typing_extensions.TypedDict, total=False):
+    instanceProperties: InstanceProperties
+    kind: typing_extensions.Literal[
+        "RESOURCE_KIND_UNSPECIFIED",
+        "RESOURCE_KIND_INSTANCE",
+        "RESOURCE_KIND_DISK",
+        "RESOURCE_KIND_ADDRESS",
+        "RESOURCE_KIND_FILESTORE",
+        "RESOURCE_KIND_HEALTH_CHECK",
+        "RESOURCE_KIND_FORWARDING_RULE",
+        "RESOURCE_KIND_BACKEND_SERVICE",
+        "RESOURCE_KIND_SUBNETWORK",
+        "RESOURCE_KIND_NETWORK",
+        "RESOURCE_KIND_PUBLIC_ADDRESS",
+        "RESOURCE_KIND_INSTANCE_GROUP",
+    ]
+    name: str
+
+@typing.type_check_only
 class Command(typing_extensions.TypedDict, total=False):
     agentCommand: AgentCommand
     shellCommand: ShellCommand
+
+@typing.type_check_only
+class DatabaseProperties(typing_extensions.TypedDict, total=False):
+    backupProperties: BackupProperties
+    databaseType: typing_extensions.Literal[
+        "DATABASE_TYPE_UNSPECIFIED",
+        "HANA",
+        "MAX_DB",
+        "DB2",
+        "ORACLE",
+        "SQLSERVER",
+        "ASE",
+    ]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -84,12 +178,37 @@ class GceInstanceFilter(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Insight(typing_extensions.TypedDict, total=False):
+    agentStatus: AgentStatus
     instanceId: str
     sapDiscovery: SapDiscovery
     sapValidation: SapValidation
     sentTime: str
     sqlserverValidation: SqlserverValidation
     torsoValidation: TorsoValidation
+
+@typing.type_check_only
+class InstanceProperties(typing_extensions.TypedDict, total=False):
+    instanceNumber: str
+    machineType: str
+    roles: _list[
+        typing_extensions.Literal[
+            "INSTANCE_ROLE_UNSPECIFIED",
+            "INSTANCE_ROLE_ASCS",
+            "INSTANCE_ROLE_ERS",
+            "INSTANCE_ROLE_APP_SERVER",
+            "INSTANCE_ROLE_HANA_PRIMARY",
+            "INSTANCE_ROLE_HANA_SECONDARY",
+        ]
+    ]
+    sapInstanceProperties: SapInstanceProperties
+    status: str
+    upcomingMaintenanceEvent: UpcomingMaintenanceEvent
+
+@typing.type_check_only
+class ListDiscoveredProfilesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    workloadProfiles: _list[WorkloadProfile]
 
 @typing.type_check_only
 class ListEvaluationsResponse(typing_extensions.TypedDict, total=False):
@@ -159,6 +278,11 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class Product(typing_extensions.TypedDict, total=False):
+    name: str
+    version: str
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     name: str
     serviceAccount: str
@@ -209,6 +333,16 @@ class RunEvaluationRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
+class SapComponent(typing_extensions.TypedDict, total=False):
+    databaseProperties: DatabaseProperties
+    haHosts: _list[str]
+    resources: _list[CloudResource]
+    sid: str
+    topologyType: typing_extensions.Literal[
+        "TOPOLOGY_TYPE_UNSPECIFIED", "TOPOLOGY_SCALE_UP", "TOPOLOGY_SCALE_OUT"
+    ]
+
+@typing.type_check_only
 class SapDiscovery(typing_extensions.TypedDict, total=False):
     applicationLayer: SapDiscoveryComponent
     databaseLayer: SapDiscoveryComponent
@@ -216,6 +350,7 @@ class SapDiscovery(typing_extensions.TypedDict, total=False):
     projectNumber: str
     systemId: str
     updateTime: str
+    useDrReconciliation: bool
     workloadProperties: SapDiscoveryWorkloadProperties
 
 @typing.type_check_only
@@ -251,10 +386,17 @@ class SapDiscoveryComponentApplicationProperties(
 class SapDiscoveryComponentDatabaseProperties(typing_extensions.TypedDict, total=False):
     databaseSid: str
     databaseType: typing_extensions.Literal[
-        "DATABASE_TYPE_UNSPECIFIED", "HANA", "MAX_DB", "DB2"
+        "DATABASE_TYPE_UNSPECIFIED",
+        "HANA",
+        "MAX_DB",
+        "DB2",
+        "ORACLE",
+        "SQLSERVER",
+        "ASE",
     ]
     databaseVersion: str
     instanceNumber: str
+    landscapeId: str
     primaryInstanceUri: str
     sharedNfsUri: str
 
@@ -301,6 +443,7 @@ class SapDiscoveryResource(typing_extensions.TypedDict, total=False):
 class SapDiscoveryResourceInstanceProperties(typing_extensions.TypedDict, total=False):
     appInstances: _list[SapDiscoveryResourceInstancePropertiesAppInstance]
     clusterInstances: _list[str]
+    diskMounts: _list[SapDiscoveryResourceInstancePropertiesDiskMount]
     instanceNumber: str
     instanceRole: typing_extensions.Literal[
         "INSTANCE_ROLE_UNSPECIFIED",
@@ -321,6 +464,7 @@ class SapDiscoveryResourceInstanceProperties(typing_extensions.TypedDict, total=
         "INSTANCE_ROLE_ASCS_ERS_APP_SERVER_DATABASE",
     ]
     isDrSite: bool
+    osKernelVersion: SapDiscoveryResourceInstancePropertiesKernelVersion
     virtualHostname: str
 
 @typing.type_check_only
@@ -329,6 +473,32 @@ class SapDiscoveryResourceInstancePropertiesAppInstance(
 ):
     name: str
     number: str
+
+@typing.type_check_only
+class SapDiscoveryResourceInstancePropertiesDiskMount(
+    typing_extensions.TypedDict, total=False
+):
+    diskNames: _list[str]
+    mountPoint: str
+    name: str
+
+@typing.type_check_only
+class SapDiscoveryResourceInstancePropertiesKernelVersion(
+    typing_extensions.TypedDict, total=False
+):
+    distroKernel: SapDiscoveryResourceInstancePropertiesKernelVersionVersion
+    osKernel: SapDiscoveryResourceInstancePropertiesKernelVersionVersion
+    rawString: str
+
+@typing.type_check_only
+class SapDiscoveryResourceInstancePropertiesKernelVersionVersion(
+    typing_extensions.TypedDict, total=False
+):
+    build: int
+    major: int
+    minor: int
+    patch: int
+    remainder: str
 
 @typing.type_check_only
 class SapDiscoveryWorkloadProperties(typing_extensions.TypedDict, total=False):
@@ -354,6 +524,10 @@ class SapDiscoveryWorkloadPropertiesSoftwareComponentProperties(
     version: str
 
 @typing.type_check_only
+class SapInstanceProperties(typing_extensions.TypedDict, total=False):
+    numbers: _list[str]
+
+@typing.type_check_only
 class SapValidation(typing_extensions.TypedDict, total=False):
     projectId: str
     validationDetails: _list[SapValidationValidationDetail]
@@ -373,6 +547,22 @@ class SapValidationValidationDetail(typing_extensions.TypedDict, total=False):
         "HANA_SECURITY",
         "CUSTOM",
     ]
+
+@typing.type_check_only
+class SapWorkload(typing_extensions.TypedDict, total=False):
+    application: SapComponent
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED",
+        "INVALID",
+        "CENTRALIZED",
+        "DISTRIBUTED",
+        "DISTRIBUTED_HA",
+        "STANDALONE_DATABASE",
+        "STANDALONE_DATABASE_HA",
+    ]
+    database: SapComponent
+    metadata: dict[str, typing.Any]
+    products: _list[Product]
 
 @typing.type_check_only
 class ScannedResource(typing_extensions.TypedDict, total=False):
@@ -438,10 +628,26 @@ class TorsoValidation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class UpcomingMaintenanceEvent(typing_extensions.TypedDict, total=False):
+    endTime: str
+    maintenanceStatus: str
+    onHostMaintenance: str
+    startTime: str
+    type: str
+
+@typing.type_check_only
 class ViolationDetails(typing_extensions.TypedDict, total=False):
     asset: str
     observed: dict[str, typing.Any]
     serviceAccount: str
+
+@typing.type_check_only
+class WorkloadProfile(typing_extensions.TypedDict, total=False):
+    labels: dict[str, typing.Any]
+    name: str
+    refreshedTime: str
+    sapWorkload: SapWorkload
+    workloadType: typing_extensions.Literal["WORKLOAD_TYPE_UNSPECIFIED", "S4_HANA"]
 
 @typing.type_check_only
 class WriteInsightRequest(typing_extensions.TypedDict, total=False):

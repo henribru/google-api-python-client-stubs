@@ -209,6 +209,7 @@ class CreateTimeSeriesSummary(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Criteria(typing_extensions.TypedDict, total=False):
+    filter: str
     policies: _list[str]
 
 @typing.type_check_only
@@ -497,6 +498,7 @@ class ListTimeSeriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     timeSeries: _list[TimeSeries]
     unit: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListUptimeCheckConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -991,10 +993,12 @@ class UptimeCheckConfig(typing_extensions.TypedDict, total=False):
         "CHECKER_TYPE_UNSPECIFIED", "STATIC_IP_CHECKERS", "VPC_CHECKERS"
     ]
     contentMatchers: _list[ContentMatcher]
+    disabled: bool
     displayName: str
     httpCheck: HttpCheck
     internalCheckers: _list[InternalChecker]
     isInternal: bool
+    logCheckFailures: bool
     monitoredResource: MonitoredResource
     name: str
     period: str

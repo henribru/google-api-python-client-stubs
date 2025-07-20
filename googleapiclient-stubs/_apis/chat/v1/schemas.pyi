@@ -60,14 +60,26 @@ class ActionStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Annotation(typing_extensions.TypedDict, total=False):
+    customEmojiMetadata: CustomEmojiMetadata
     length: int
     richLinkMetadata: RichLinkMetadata
     slashCommand: SlashCommandMetadata
     startIndex: int
     type: typing_extensions.Literal[
-        "ANNOTATION_TYPE_UNSPECIFIED", "USER_MENTION", "SLASH_COMMAND", "RICH_LINK"
+        "ANNOTATION_TYPE_UNSPECIFIED",
+        "USER_MENTION",
+        "SLASH_COMMAND",
+        "RICH_LINK",
+        "CUSTOM_EMOJI",
     ]
     userMention: UserMentionMetadata
+
+@typing.type_check_only
+class AppCommandMetadata(typing_extensions.TypedDict, total=False):
+    appCommandId: int
+    appCommandType: typing_extensions.Literal[
+        "APP_COMMAND_TYPE_UNSPECIFIED", "SLASH_COMMAND", "QUICK_COMMAND"
+    ]
 
 @typing.type_check_only
 class AttachedGif(typing_extensions.TypedDict, total=False):
@@ -174,7 +186,20 @@ class CompleteImportSpaceResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomEmoji(typing_extensions.TypedDict, total=False):
+    emojiName: str
+    name: str
+    payload: CustomEmojiPayload
+    temporaryImageUri: str
     uid: str
+
+@typing.type_check_only
+class CustomEmojiMetadata(typing_extensions.TypedDict, total=False):
+    customEmoji: CustomEmoji
+
+@typing.type_check_only
+class CustomEmojiPayload(typing_extensions.TypedDict, total=False):
+    fileContent: str
+    filename: str
 
 @typing.type_check_only
 class DateInput(typing_extensions.TypedDict, total=False):
@@ -196,11 +221,13 @@ class DeletionMetadata(typing_extensions.TypedDict, total=False):
         "APP_MESSAGE_EXPIRY",
         "CREATOR_VIA_APP",
         "SPACE_OWNER_VIA_APP",
+        "SPACE_MEMBER",
     ]
 
 @typing.type_check_only
 class DeprecatedEvent(typing_extensions.TypedDict, total=False):
     action: FormAction
+    appCommandMetadata: AppCommandMetadata
     common: CommonEventObject
     configCompleteRedirectUrl: str
     dialogEventType: typing_extensions.Literal[
@@ -210,6 +237,7 @@ class DeprecatedEvent(typing_extensions.TypedDict, total=False):
     isDialogEvent: bool
     message: Message
     space: Space
+    thread: Thread
     threadKey: str
     token: str
     type: typing_extensions.Literal[
@@ -219,6 +247,7 @@ class DeprecatedEvent(typing_extensions.TypedDict, total=False):
         "REMOVED_FROM_SPACE",
         "CARD_CLICKED",
         "WIDGET_UPDATED",
+        "APP_COMMAND",
     ]
     user: User
 
@@ -509,6 +538,7 @@ class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
     externalDataSource: GoogleAppsCardV1Action
+    hintText: str
     items: _list[GoogleAppsCardV1SelectionItem]
     label: str
     multiSelectMaxSelectedItems: int
@@ -700,6 +730,11 @@ class KeyValue(typing_extensions.TypedDict, total=False):
     iconUrl: str
     onClick: OnClick
     topLabel: str
+
+@typing.type_check_only
+class ListCustomEmojisResponse(typing_extensions.TypedDict, total=False):
+    customEmojis: _list[CustomEmoji]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
@@ -996,6 +1031,20 @@ class SpaceEvent(typing_extensions.TypedDict, total=False):
     reactionDeletedEventData: ReactionDeletedEventData
     spaceBatchUpdatedEventData: SpaceBatchUpdatedEventData
     spaceUpdatedEventData: SpaceUpdatedEventData
+
+@typing.type_check_only
+class SpaceNotificationSetting(typing_extensions.TypedDict, total=False):
+    muteSetting: typing_extensions.Literal[
+        "MUTE_SETTING_UNSPECIFIED", "UNMUTED", "MUTED"
+    ]
+    name: str
+    notificationSetting: typing_extensions.Literal[
+        "NOTIFICATION_SETTING_UNSPECIFIED",
+        "ALL",
+        "MAIN_CONVERSATIONS",
+        "FOR_YOU",
+        "OFF",
+    ]
 
 @typing.type_check_only
 class SpaceReadState(typing_extensions.TypedDict, total=False):

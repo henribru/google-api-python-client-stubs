@@ -20,6 +20,7 @@ class Component(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContactCenter(typing_extensions.TypedDict, total=False):
     adminUser: AdminUser
+    advancedReportingEnabled: bool
     ccaipManagedUsers: bool
     createTime: str
     critical: Critical
@@ -33,6 +34,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     normal: Normal
     privateAccess: PrivateAccess
     privateComponents: _list[str]
+    releaseVersion: str
     samlParams: SAMLParams
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -87,7 +89,6 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
         "STANDARD_XLARGE",
         "STANDARD_2XLARGE",
         "STANDARD_3XLARGE",
-        "DEV_XSMALL",
         "MULTIREGION_SMALL",
         "MULTIREGION_MEDIUM",
         "MULTIREGION_LARGE",
@@ -169,7 +170,6 @@ class Quota(typing_extensions.TypedDict, total=False):
         "STANDARD_XLARGE",
         "STANDARD_2XLARGE",
         "STANDARD_3XLARGE",
-        "DEV_XSMALL",
         "MULTIREGION_SMALL",
         "MULTIREGION_MEDIUM",
         "MULTIREGION_LARGE",

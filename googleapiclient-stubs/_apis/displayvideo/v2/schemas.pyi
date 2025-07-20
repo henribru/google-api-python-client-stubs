@@ -86,7 +86,6 @@ class Adloox(typing_extensions.TypedDict, total=False):
 class Advertiser(typing_extensions.TypedDict, total=False):
     adServerConfig: AdvertiserAdServerConfig
     advertiserId: str
-    billingConfig: AdvertiserBillingConfig
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
     displayName: str
@@ -110,10 +109,6 @@ class Advertiser(typing_extensions.TypedDict, total=False):
 class AdvertiserAdServerConfig(typing_extensions.TypedDict, total=False):
     cmHybridConfig: CmHybridConfig
     thirdPartyOnlyConfig: ThirdPartyOnlyConfig
-
-@typing.type_check_only
-class AdvertiserBillingConfig(typing_extensions.TypedDict, total=False):
-    billingProfileId: str
 
 @typing.type_check_only
 class AdvertiserCreativeConfig(typing_extensions.TypedDict, total=False):
@@ -406,11 +401,9 @@ class AssignedUserRole(typing_extensions.TypedDict, total=False):
 class AudienceGroupAssignedTargetingOptionDetails(
     typing_extensions.TypedDict, total=False
 ):
-    excludedFirstAndThirdPartyAudienceGroup: FirstAndThirdPartyAudienceGroup
     excludedGoogleAudienceGroup: GoogleAudienceGroup
     includedCombinedAudienceGroup: CombinedAudienceGroup
     includedCustomListGroup: CustomListGroup
-    includedFirstAndThirdPartyAudienceGroups: _list[FirstAndThirdPartyAudienceGroup]
     includedGoogleAudienceGroup: GoogleAudienceGroup
 
 @typing.type_check_only
@@ -682,6 +675,15 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
 
 @typing.type_check_only
@@ -1028,6 +1030,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -1159,10 +1162,7 @@ class CustomBiddingAlgorithm(typing_extensions.TypedDict, total=False):
     advertiserId: str
     customBiddingAlgorithmId: str
     customBiddingAlgorithmType: typing_extensions.Literal[
-        "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED",
-        "SCRIPT_BASED",
-        "ADS_DATA_HUB_BASED",
-        "GOAL_BUILDER_BASED",
+        "CUSTOM_BIDDING_ALGORITHM_TYPE_UNSPECIFIED", "SCRIPT_BASED"
     ]
     displayName: str
     entityStatus: typing_extensions.Literal[
@@ -1692,6 +1692,8 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
 
@@ -1786,6 +1788,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     googleAdManagerAgencyId: str
@@ -1879,6 +1883,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     status: typing_extensions.Literal[
@@ -1975,6 +1981,8 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
 
@@ -1988,48 +1996,6 @@ class ExitEvent(typing_extensions.TypedDict, total=False):
         "EXIT_EVENT_TYPE_BACKUP",
     ]
     url: str
-
-@typing.type_check_only
-class FirstAndThirdPartyAudienceGroup(typing_extensions.TypedDict, total=False):
-    settings: _list[FirstAndThirdPartyAudienceTargetingSetting]
-
-@typing.type_check_only
-class FirstAndThirdPartyAudienceTargetingSetting(
-    typing_extensions.TypedDict, total=False
-):
-    firstAndThirdPartyAudienceId: str
-    recency: typing_extensions.Literal[
-        "RECENCY_NO_LIMIT",
-        "RECENCY_1_MINUTE",
-        "RECENCY_5_MINUTES",
-        "RECENCY_10_MINUTES",
-        "RECENCY_15_MINUTES",
-        "RECENCY_30_MINUTES",
-        "RECENCY_1_HOUR",
-        "RECENCY_2_HOURS",
-        "RECENCY_3_HOURS",
-        "RECENCY_6_HOURS",
-        "RECENCY_12_HOURS",
-        "RECENCY_1_DAY",
-        "RECENCY_2_DAYS",
-        "RECENCY_3_DAYS",
-        "RECENCY_5_DAYS",
-        "RECENCY_7_DAYS",
-        "RECENCY_10_DAYS",
-        "RECENCY_14_DAYS",
-        "RECENCY_15_DAYS",
-        "RECENCY_21_DAYS",
-        "RECENCY_28_DAYS",
-        "RECENCY_30_DAYS",
-        "RECENCY_40_DAYS",
-        "RECENCY_45_DAYS",
-        "RECENCY_60_DAYS",
-        "RECENCY_90_DAYS",
-        "RECENCY_120_DAYS",
-        "RECENCY_180_DAYS",
-        "RECENCY_270_DAYS",
-        "RECENCY_365_DAYS",
-    ]
 
 @typing.type_check_only
 class FixedBidStrategy(typing_extensions.TypedDict, total=False):
@@ -2156,6 +2122,15 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
     negative: bool
     targetingOptionId: str
@@ -2197,6 +2172,15 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
 
 @typing.type_check_only
@@ -2316,6 +2300,8 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
@@ -2618,6 +2604,8 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
@@ -3345,7 +3333,6 @@ class PartnerCost(typing_extensions.TypedDict, total=False):
         "PARTNER_COST_TYPE_THIRD_PARTY_AD_SERVER",
         "PARTNER_COST_TYPE_TRUST_METRICS",
         "PARTNER_COST_TYPE_VIZU",
-        "PARTNER_COST_TYPE_ADLINGO_FEE",
         "PARTNER_COST_TYPE_CUSTOM_FEE_1",
         "PARTNER_COST_TYPE_CUSTOM_FEE_2",
         "PARTNER_COST_TYPE_CUSTOM_FEE_3",
@@ -3599,6 +3586,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -3625,6 +3613,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -3879,6 +3868,7 @@ class ThirdPartyVendorConfig(typing_extensions.TypedDict, total=False):
         "THIRD_PARTY_VENDOR_NIELSEN",
         "THIRD_PARTY_VENDOR_KANTAR",
         "THIRD_PARTY_VENDOR_DYNATA",
+        "THIRD_PARTY_VENDOR_TRANSUNION",
     ]
 
 @typing.type_check_only
@@ -3963,6 +3953,12 @@ class UserRewardedContentTargetingOptionDetails(
         "USER_REWARDED_CONTENT_USER_REWARDED",
         "USER_REWARDED_CONTENT_NOT_USER_REWARDED",
     ]
+
+@typing.type_check_only
+class VideoAdInventoryControl(typing_extensions.TypedDict, total=False):
+    allowInFeed: bool
+    allowInStream: bool
+    allowShorts: bool
 
 @typing.type_check_only
 class VideoAdSequenceSettings(typing_extensions.TypedDict, total=False):
@@ -4181,6 +4177,7 @@ class YoutubeAndPartnersSettings(typing_extensions.TypedDict, total=False):
     relatedVideoIds: _list[str]
     targetFrequency: TargetFrequency
     thirdPartyMeasurementSettings: YoutubeAndPartnersThirdPartyMeasurementSettings
+    videoAdInventoryControl: VideoAdInventoryControl
     videoAdSequenceSettings: VideoAdSequenceSettings
     viewFrequencyCap: FrequencyCap
 

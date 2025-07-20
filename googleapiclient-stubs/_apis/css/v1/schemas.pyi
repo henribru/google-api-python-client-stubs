@@ -182,6 +182,18 @@ class ListCssProductsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListQuotaGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    quotaGroups: _list[QuotaGroup]
+
+@typing.type_check_only
+class MethodDetails(typing_extensions.TypedDict, total=False):
+    method: str
+    path: str
+    subapi: str
+    version: str
+
+@typing.type_check_only
 class Price(typing_extensions.TypedDict, total=False):
     amountMicros: str
     currencyCode: str
@@ -201,6 +213,14 @@ class ProductDimension(typing_extensions.TypedDict, total=False):
 class ProductWeight(typing_extensions.TypedDict, total=False):
     unit: str
     value: float
+
+@typing.type_check_only
+class QuotaGroup(typing_extensions.TypedDict, total=False):
+    methodDetails: _list[MethodDetails]
+    name: str
+    quotaLimit: str
+    quotaMinuteLimit: str
+    quotaUsage: str
 
 @typing.type_check_only
 class UpdateAccountLabelsRequest(typing_extensions.TypedDict, total=False):

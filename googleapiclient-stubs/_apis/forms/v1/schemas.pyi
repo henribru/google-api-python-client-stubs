@@ -116,6 +116,7 @@ class Form(typing_extensions.TypedDict, total=False):
     info: Info
     items: _list[Item]
     linkedSheetId: str
+    publishSettings: PublishSettings
     responderUri: str
     revisionId: str
     settings: FormSettings
@@ -132,6 +133,12 @@ class FormResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FormSettings(typing_extensions.TypedDict, total=False):
+    emailCollectionType: typing_extensions.Literal[
+        "EMAIL_COLLECTION_TYPE_UNSPECIFIED",
+        "DO_NOT_COLLECT",
+        "VERIFIED",
+        "RESPONDER_INPUT",
+    ]
     quizSettings: QuizSettings
 
 @typing.type_check_only
@@ -221,6 +228,15 @@ class Option(typing_extensions.TypedDict, total=False):
 class PageBreakItem(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class PublishSettings(typing_extensions.TypedDict, total=False):
+    publishState: PublishState
+
+@typing.type_check_only
+class PublishState(typing_extensions.TypedDict, total=False):
+    isAcceptingResponses: bool
+    isPublished: bool
+
+@typing.type_check_only
 class Question(typing_extensions.TypedDict, total=False):
     choiceQuestion: ChoiceQuestion
     dateQuestion: DateQuestion
@@ -282,6 +298,16 @@ class ScaleQuestion(typing_extensions.TypedDict, total=False):
     highLabel: str
     low: int
     lowLabel: str
+
+@typing.type_check_only
+class SetPublishSettingsRequest(typing_extensions.TypedDict, total=False):
+    publishSettings: PublishSettings
+    updateMask: str
+
+@typing.type_check_only
+class SetPublishSettingsResponse(typing_extensions.TypedDict, total=False):
+    formId: str
+    publishSettings: PublishSettings
 
 @typing.type_check_only
 class TextAnswer(typing_extensions.TypedDict, total=False):

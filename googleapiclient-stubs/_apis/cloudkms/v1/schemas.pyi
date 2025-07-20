@@ -50,6 +50,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AutokeyConfig(typing_extensions.TypedDict, total=False):
+    etag: str
     keyProject: str
     name: str
     state: typing_extensions.Literal[
@@ -79,6 +80,11 @@ class CertificateChains(typing_extensions.TypedDict, total=False):
     caviumCerts: _list[str]
     googleCardCerts: _list[str]
     googlePartitionCerts: _list[str]
+
+@typing.type_check_only
+class ChecksummedData(typing_extensions.TypedDict, total=False):
+    crc32cChecksum: str
+    data: str
 
 @typing.type_check_only
 class CryptoKey(typing_extensions.TypedDict, total=False):
@@ -141,6 +147,9 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     attestation: KeyOperationAttestation
     createTime: str
@@ -211,6 +220,9 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
@@ -338,6 +350,9 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     cryptoKeyVersion: str
     importJob: str
@@ -370,6 +385,11 @@ class ImportJob(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class KeyAccessJustificationsEnrollmentConfig(typing_extensions.TypedDict, total=False):
+    auditLogging: bool
+    policyEnforcement: bool
+
+@typing.type_check_only
 class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
     allowedAccessReasons: _list[
         typing_extensions.Literal[
@@ -387,6 +407,11 @@ class KeyAccessJustificationsPolicy(typing_extensions.TypedDict, total=False):
             "CUSTOMER_AUTHORIZED_WORKFLOW_SERVICING",
         ]
     ]
+
+@typing.type_check_only
+class KeyAccessJustificationsPolicyConfig(typing_extensions.TypedDict, total=False):
+    defaultKeyAccessJustificationPolicy: KeyAccessJustificationsPolicy
+    name: str
 
 @typing.type_check_only
 class KeyHandle(typing_extensions.TypedDict, total=False):
@@ -547,12 +572,19 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     name: str
     pem: str
     pemCrc32c: str
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+    ]
+    publicKey: ChecksummedData
+    publicKeyFormat: typing_extensions.Literal[
+        "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "NIST_PQC"
     ]
 
 @typing.type_check_only
@@ -618,6 +650,20 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ShowEffectiveAutokeyConfigResponse(typing_extensions.TypedDict, total=False):
     keyProject: str
+
+@typing.type_check_only
+class ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    externalConfig: KeyAccessJustificationsEnrollmentConfig
+    hardwareConfig: KeyAccessJustificationsEnrollmentConfig
+    softwareConfig: KeyAccessJustificationsEnrollmentConfig
+
+@typing.type_check_only
+class ShowEffectiveKeyAccessJustificationsPolicyConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    effectiveKajPolicy: KeyAccessJustificationsPolicyConfig
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

@@ -150,6 +150,7 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class EncryptionConfig(typing_extensions.TypedDict, total=False):
     kmsKey: str
+    kmsKeys: _list[str]
 
 @typing.type_check_only
 class ErrorDetails(typing_extensions.TypedDict, total=False):
@@ -179,6 +180,7 @@ class Federation(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING", "ERROR"
     ]
     stateMessage: str
+    tags: dict[str, typing.Any]
     uid: str
     updateTime: str
     version: str
@@ -291,6 +293,9 @@ class MaintenanceWindow(typing_extensions.TypedDict, total=False):
     hourOfDay: int
 
 @typing.type_check_only
+class MessageSet(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class MetadataExport(typing_extensions.TypedDict, total=False):
     databaseDumpType: typing_extensions.Literal["TYPE_UNSPECIFIED", "MYSQL", "AVRO"]
     destinationGcsUri: str
@@ -359,6 +364,8 @@ class MultiRegionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MultiRegionMetadata(typing_extensions.TypedDict, total=False):
     constituentRegions: _list[str]
+    continent: str
+    witnessRegion: str
 
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
@@ -496,6 +503,7 @@ class Service(typing_extensions.TypedDict, total=False):
         "MIGRATING",
     ]
     stateMessage: str
+    tags: dict[str, typing.Any]
     telemetryConfig: TelemetryConfig
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "DEVELOPER", "ENTERPRISE"]
     uid: str
@@ -516,6 +524,14 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: MessageSet
+    space: str
 
 @typing.type_check_only
 class TelemetryConfig(typing_extensions.TypedDict, total=False):

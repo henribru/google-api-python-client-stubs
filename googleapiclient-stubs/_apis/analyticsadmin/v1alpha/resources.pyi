@@ -1047,6 +1047,47 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             ) -> GoogleAnalyticsAdminV1alphaKeyEventHttpRequest: ...
 
         @typing.type_check_only
+        class ReportingDataAnnotationsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: GoogleAnalyticsAdminV1alphaReportingDataAnnotation = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaReportingDataAnnotationHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleProtobufEmptyHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaReportingDataAnnotationHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponseHttpRequest
+                | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaReportingDataAnnotation = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaReportingDataAnnotationHttpRequest: ...
+
+        @typing.type_check_only
         class RollupPropertySourceLinksResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -1160,6 +1201,38 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest: ...
 
+        @typing.type_check_only
+        class SubpropertySyncConfigsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleAnalyticsAdminV1alphaSubpropertySyncConfigHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponseHttpRequest
+            ): ...
+            def list_next(
+                self,
+                previous_request: GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponseHttpRequest,
+                previous_response: GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse,
+            ) -> (
+                GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponseHttpRequest
+                | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleAnalyticsAdminV1alphaSubpropertySyncConfig = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleAnalyticsAdminV1alphaSubpropertySyncConfigHttpRequest: ...
+
         def acknowledgeUserDataCollection(
             self,
             *,
@@ -1219,6 +1292,9 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def getGoogleSignalsSettings(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaGoogleSignalsSettingsHttpRequest: ...
+        def getReportingIdentitySettings(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleAnalyticsAdminV1alphaReportingIdentitySettingsHttpRequest: ...
         def list(
             self,
             *,
@@ -1310,9 +1386,11 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def firebaseLinks(self) -> FirebaseLinksResource: ...
         def googleAdsLinks(self) -> GoogleAdsLinksResource: ...
         def keyEvents(self) -> KeyEventsResource: ...
+        def reportingDataAnnotations(self) -> ReportingDataAnnotationsResource: ...
         def rollupPropertySourceLinks(self) -> RollupPropertySourceLinksResource: ...
         def searchAds360Links(self) -> SearchAds360LinksResource: ...
         def subpropertyEventFilters(self) -> SubpropertyEventFiltersResource: ...
+        def subpropertySyncConfigs(self) -> SubpropertySyncConfigsResource: ...
 
     def new_batch_http_request(
         self,
@@ -1909,6 +1987,16 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1949,6 +2037,16 @@ class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse: ...
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse: ...
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMeasurementProtocolSecretHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1985,6 +2083,26 @@ class GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReportingDataAnnotationHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaReportingDataAnnotation: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReportingIdentitySettingsHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaReportingIdentitySettings: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRollupPropertySourceLinkHttpRequest(
@@ -2055,6 +2173,16 @@ class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaSubpropertyEventFilter: ...
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertySyncConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleAnalyticsAdminV1alphaSubpropertySyncConfig: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

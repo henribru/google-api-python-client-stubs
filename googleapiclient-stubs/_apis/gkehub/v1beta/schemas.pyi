@@ -5,16 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AnthosObservabilityFeatureSpec(typing_extensions.TypedDict, total=False):
-    defaultMembershipSpec: AnthosObservabilityMembershipSpec
-
-@typing.type_check_only
-class AnthosObservabilityMembershipSpec(typing_extensions.TypedDict, total=False):
-    doNotOptimizeMetrics: bool
-    enableStackdriverOnApplications: bool
-    version: str
-
-@typing.type_check_only
 class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -139,18 +129,19 @@ class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
-    anthosobservability: AnthosObservabilityFeatureSpec
     appdevexperience: AppDevExperienceFeatureSpec
     clusterupgrade: ClusterUpgradeFleetSpec
     dataplanev2: DataplaneV2FeatureSpec
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
+    rbacrolebindingactuation: RBACRoleBindingActuationFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
     appdevexperience: AppDevExperienceFeatureState
     clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
+    rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
     state: FeatureState
 
 @typing.type_check_only
@@ -186,6 +177,7 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+    deploymentOverrides: _list[ConfigManagementDeploymentOverride]
     enabled: bool
     git: ConfigManagementGitConfig
     metricsGcpServiceAccountEmail: str
@@ -273,6 +265,20 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     resourceGroupControllerManager: str
     rootReconciler: str
     syncer: str
+
+@typing.type_check_only
+class ConfigManagementContainerOverride(typing_extensions.TypedDict, total=False):
+    containerName: str
+    cpuLimit: str
+    cpuRequest: str
+    memoryLimit: str
+    memoryRequest: str
+
+@typing.type_check_only
+class ConfigManagementDeploymentOverride(typing_extensions.TypedDict, total=False):
+    containers: _list[ConfigManagementContainerOverride]
+    deploymentName: str
+    deploymentNamespace: str
 
 @typing.type_check_only
 class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
@@ -849,7 +855,6 @@ class MembershipEndpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
-    anthosobservability: AnthosObservabilityMembershipSpec
     cloudbuild: MembershipSpec
     configmanagement: ConfigManagementMembershipSpec
     fleetobservability: FleetObservabilityMembershipSpec
@@ -1104,6 +1109,15 @@ class RBACRoleBinding(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
+class RBACRoleBindingActuationFeatureSpec(typing_extensions.TypedDict, total=False):
+    allowedCustomRoles: _list[str]
+
+@typing.type_check_only
+class RBACRoleBindingActuationFeatureState(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class RBACRoleBindingLifecycleState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
@@ -1122,6 +1136,7 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
+    customRole: str
     predefinedRole: typing_extensions.Literal[
         "UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"
     ]
@@ -1174,6 +1189,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "CNI_INSTALLATION_FAILED",
         "CNI_POD_UNSCHEDULABLE",
         "CLUSTER_HAS_ZERO_NODES",
+        "CANONICAL_SERVICE_ERROR",
         "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
         "VPCSC_GA_SUPPORTED",
         "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
@@ -1196,10 +1212,16 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "LEGACY_MC_SECRETS",
+        "WORKLOAD_IDENTITY_REQUIRED",
+        "NON_STANDARD_BINARY_USAGE",
+        "UNSUPPORTED_GATEWAY_CLASS",
+        "MANAGED_CNI_NOT_ENABLED",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
         "MODERNIZATION_ABORTED",
+        "MODERNIZATION_WILL_BE_SCHEDULED",
     ]
     details: str
     documentationLink: str

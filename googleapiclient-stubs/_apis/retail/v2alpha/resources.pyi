@@ -365,6 +365,15 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class PlacementsResource(googleapiclient.discovery.Resource):
+                    def conversationalSearch(
+                        self,
+                        *,
+                        placement: str,
+                        body: GoogleCloudRetailV2alphaConversationalSearchRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudRetailV2alphaConversationalSearchResponseHttpRequest
+                    ): ...
                     def predict(
                         self,
                         *,
@@ -394,6 +403,15 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudRetailV2alphaAddControlRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudRetailV2alphaServingConfigHttpRequest: ...
+                    def conversationalSearch(
+                        self,
+                        *,
+                        placement: str,
+                        body: GoogleCloudRetailV2alphaConversationalSearchRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudRetailV2alphaConversationalSearchResponseHttpRequest
+                    ): ...
                     def create(
                         self,
                         *,
@@ -534,6 +552,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 def getCompletionConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2alphaCompletionConfigHttpRequest: ...
+                def getConversationalSearchCustomizationConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2alphaConversationalSearchCustomizationConfigHttpRequest: ...
                 def getDefaultBranch(
                     self, *, catalog: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2alphaGetDefaultBranchResponseHttpRequest: ...
@@ -586,6 +607,14 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2alphaCompletionConfigHttpRequest: ...
+                def updateConversationalSearchCustomizationConfig(
+                    self,
+                    *,
+                    catalog: str,
+                    body: GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRetailV2alphaConversationalSearchCustomizationConfigHttpRequest: ...
                 def updateGenerativeQuestion(
                     self,
                     *,
@@ -814,6 +843,26 @@ class GoogleCloudRetailV2alphaControlHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRetailV2alphaControl: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaConversationalSearchCustomizationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2alphaConversationalSearchCustomizationConfig: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2alphaConversationalSearchResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2alphaConversationalSearchResponse: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaGenerativeQuestionConfigHttpRequest(

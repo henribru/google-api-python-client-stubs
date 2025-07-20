@@ -149,6 +149,7 @@ class CourseWork(typing_extensions.TypedDict, total=False):
     dueDate: Date
     dueTime: TimeOfDay
     gradeCategory: GradeCategory
+    gradingPeriodId: str
     id: str
     individualStudentsOptions: IndividualStudentsOptions
     materials: _list[Material]
@@ -250,6 +251,12 @@ class Form(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GeminiGem(typing_extensions.TypedDict, total=False):
+    id: str
+    title: str
+    url: str
+
+@typing.type_check_only
 class GlobalPermission(typing_extensions.TypedDict, total=False):
     permission: typing_extensions.Literal["PERMISSION_UNSPECIFIED", "CREATE_COURSE"]
 
@@ -285,6 +292,18 @@ class GradebookSettings(typing_extensions.TypedDict, total=False):
         "SHOW_TEACHERS_ONLY",
     ]
     gradeCategories: _list[GradeCategory]
+
+@typing.type_check_only
+class GradingPeriod(typing_extensions.TypedDict, total=False):
+    endDate: Date
+    id: str
+    startDate: Date
+    title: str
+
+@typing.type_check_only
+class GradingPeriodSettings(typing_extensions.TypedDict, total=False):
+    applyToExistingCoursework: bool
+    gradingPeriods: _list[GradingPeriod]
 
 @typing.type_check_only
 class Guardian(typing_extensions.TypedDict, total=False):
@@ -403,7 +422,9 @@ class ListTopicResponse(typing_extensions.TypedDict, total=False):
 class Material(typing_extensions.TypedDict, total=False):
     driveFile: SharedDriveFile
     form: Form
+    gem: GeminiGem
     link: Link
+    notebook: NotebookLmNotebook
     youtubeVideo: YouTubeVideo
 
 @typing.type_check_only
@@ -442,6 +463,12 @@ class Name(typing_extensions.TypedDict, total=False):
     familyName: str
     fullName: str
     givenName: str
+
+@typing.type_check_only
+class NotebookLmNotebook(typing_extensions.TypedDict, total=False):
+    id: str
+    title: str
+    url: str
 
 @typing.type_check_only
 class ReclaimStudentSubmissionRequest(typing_extensions.TypedDict, total=False): ...

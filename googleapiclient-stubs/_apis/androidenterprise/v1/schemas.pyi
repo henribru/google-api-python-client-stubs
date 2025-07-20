@@ -203,8 +203,16 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):
     administrator: _list[Administrator]
+    enterpriseType: typing_extensions.Literal[
+        "enterpriseTypeUnspecified",
+        "managedGoogleDomain",
+        "managedGooglePlayAccountsEnterprise",
+    ]
     googleAuthenticationSettings: GoogleAuthenticationSettings
     id: str
+    managedGoogleDomainType: typing_extensions.Literal[
+        "managedGoogleDomainTypeUnspecified", "typeTeam", "typeDomain"
+    ]
     name: str
     primaryDomain: str
 
@@ -215,6 +223,12 @@ class EnterpriseAccount(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EnterpriseAuthenticationAppLinkConfig(typing_extensions.TypedDict, total=False):
     uri: str
+
+@typing.type_check_only
+class EnterpriseUpgradeEvent(typing_extensions.TypedDict, total=False):
+    upgradeState: typing_extensions.Literal[
+        "upgradeStateUnspecified", "upgradeStateSucceeded"
+    ]
 
 @typing.type_check_only
 class EnterprisesListResponse(typing_extensions.TypedDict, total=False):
@@ -235,6 +249,10 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EntitlementsListResponse(typing_extensions.TypedDict, total=False):
     entitlement: _list[Entitlement]
+
+@typing.type_check_only
+class GenerateEnterpriseUpgradeUrlResponse(typing_extensions.TypedDict, total=False):
+    url: str
 
 @typing.type_check_only
 class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
@@ -366,6 +384,7 @@ class Notification(typing_extensions.TypedDict, total=False):
     appUpdateEvent: AppUpdateEvent
     deviceReportUpdateEvent: DeviceReportUpdateEvent
     enterpriseId: str
+    enterpriseUpgradeEvent: EnterpriseUpgradeEvent
     installFailureEvent: InstallFailureEvent
     newDeviceEvent: NewDeviceEvent
     newPermissionsEvent: NewPermissionsEvent
@@ -380,6 +399,7 @@ class Notification(typing_extensions.TypedDict, total=False):
         "productAvailabilityChange",
         "newDevice",
         "deviceReportUpdate",
+        "enterpriseUpgrade",
     ]
     productApprovalEvent: ProductApprovalEvent
     productAvailabilityChangeEvent: ProductAvailabilityChangeEvent

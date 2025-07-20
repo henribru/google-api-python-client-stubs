@@ -30,6 +30,20 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> AutofeedSettingsHttpRequest: ...
 
         @typing.type_check_only
+        class AutomaticImprovementsResource(googleapiclient.discovery.Resource):
+            def getAutomaticImprovements(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AutomaticImprovementsHttpRequest: ...
+            def updateAutomaticImprovements(
+                self,
+                *,
+                name: str,
+                body: AutomaticImprovements = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> AutomaticImprovementsHttpRequest: ...
+
+        @typing.type_check_only
         class BusinessIdentityResource(googleapiclient.discovery.Resource):
             def getBusinessIdentity(
                 self, *, name: str, **kwargs: typing.Any
@@ -58,6 +72,19 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> BusinessInfoHttpRequest: ...
 
         @typing.type_check_only
+        class DeveloperRegistrationResource(googleapiclient.discovery.Resource):
+            def registerGcp(
+                self, *, name: str, body: RegisterGCPRequest = ..., **kwargs: typing.Any
+            ) -> DeveloperRegistrationHttpRequest: ...
+            def unregisterGcp(
+                self,
+                *,
+                name: str,
+                body: UnregisterGCPRequest = ...,
+                **kwargs: typing.Any,
+            ) -> EmptyHttpRequest: ...
+
+        @typing.type_check_only
         class EmailPreferencesResource(googleapiclient.discovery.Resource):
             def getEmailPreferences(
                 self, *, name: str, **kwargs: typing.Any
@@ -70,6 +97,29 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> EmailPreferencesHttpRequest: ...
+
+        @typing.type_check_only
+        class GbpAccountsResource(googleapiclient.discovery.Resource):
+            def linkGbpAccount(
+                self,
+                *,
+                parent: str,
+                body: LinkGbpAccountRequest = ...,
+                **kwargs: typing.Any,
+            ) -> LinkGbpAccountResponseHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListGbpAccountsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListGbpAccountsResponseHttpRequest,
+                previous_response: ListGbpAccountsResponse,
+            ) -> ListGbpAccountsResponseHttpRequest | None: ...
 
         @typing.type_check_only
         class HomepageResource(googleapiclient.discovery.Resource):
@@ -118,7 +168,82 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> ListAccountIssuesResponseHttpRequest | None: ...
 
         @typing.type_check_only
+        class OmnichannelSettingsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class LfpProvidersResource(googleapiclient.discovery.Resource):
+                def find(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FindLfpProvidersResponseHttpRequest: ...
+                def find_next(
+                    self,
+                    previous_request: FindLfpProvidersResponseHttpRequest,
+                    previous_response: FindLfpProvidersResponse,
+                ) -> FindLfpProvidersResponseHttpRequest | None: ...
+                def linkLfpProvider(
+                    self,
+                    *,
+                    name: str,
+                    body: LinkLfpProviderRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> LinkLfpProviderResponseHttpRequest: ...
+
+            def create(
+                self,
+                *,
+                parent: str,
+                body: OmnichannelSetting = ...,
+                **kwargs: typing.Any,
+            ) -> OmnichannelSettingHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> OmnichannelSettingHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListOmnichannelSettingsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListOmnichannelSettingsResponseHttpRequest,
+                previous_response: ListOmnichannelSettingsResponse,
+            ) -> ListOmnichannelSettingsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: OmnichannelSetting = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OmnichannelSettingHttpRequest: ...
+            def requestInventoryVerification(
+                self,
+                *,
+                name: str,
+                body: RequestInventoryVerificationRequest = ...,
+                **kwargs: typing.Any,
+            ) -> RequestInventoryVerificationResponseHttpRequest: ...
+            def lfpProviders(self) -> LfpProvidersResource: ...
+
+        @typing.type_check_only
         class OnlineReturnPoliciesResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: OnlineReturnPolicy = ...,
+                **kwargs: typing.Any,
+            ) -> OnlineReturnPolicyHttpRequest: ...
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EmptyHttpRequest: ...
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> OnlineReturnPolicyHttpRequest: ...
@@ -135,9 +260,41 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 previous_request: ListOnlineReturnPoliciesResponseHttpRequest,
                 previous_response: ListOnlineReturnPoliciesResponse,
             ) -> ListOnlineReturnPoliciesResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: OnlineReturnPolicy = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OnlineReturnPolicyHttpRequest: ...
 
         @typing.type_check_only
         class ProgramsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CheckoutSettingsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: CheckoutSettings = ...,
+                    **kwargs: typing.Any,
+                ) -> CheckoutSettingsHttpRequest: ...
+                def deleteCheckoutSettings(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def getCheckoutSettings(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> CheckoutSettingsHttpRequest: ...
+                def updateCheckoutSettings(
+                    self,
+                    *,
+                    name: str,
+                    body: CheckoutSettings = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> CheckoutSettingsHttpRequest: ...
+
             def disable(
                 self,
                 *,
@@ -166,6 +323,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 previous_request: ListProgramsResponseHttpRequest,
                 previous_response: ListProgramsResponse,
             ) -> ListProgramsResponseHttpRequest | None: ...
+            def checkoutSettings(self) -> CheckoutSettingsResource: ...
 
         @typing.type_check_only
         class RegionsResource(googleapiclient.discovery.Resource):
@@ -202,6 +360,73 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> RegionHttpRequest: ...
+
+        @typing.type_check_only
+        class RelationshipsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AccountRelationshipHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAccountRelationshipsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccountRelationshipsResponseHttpRequest,
+                previous_response: ListAccountRelationshipsResponse,
+            ) -> ListAccountRelationshipsResponseHttpRequest | None: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: AccountRelationship = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> AccountRelationshipHttpRequest: ...
+
+        @typing.type_check_only
+        class ServicesResource(googleapiclient.discovery.Resource):
+            def approve(
+                self,
+                *,
+                name: str,
+                body: ApproveAccountServiceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> AccountServiceHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> AccountServiceHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAccountServicesResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAccountServicesResponseHttpRequest,
+                previous_response: ListAccountServicesResponse,
+            ) -> ListAccountServicesResponseHttpRequest | None: ...
+            def propose(
+                self,
+                *,
+                parent: str,
+                body: ProposeAccountServiceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> AccountServiceHttpRequest: ...
+            def reject(
+                self,
+                *,
+                name: str,
+                body: RejectAccountServiceRequest = ...,
+                **kwargs: typing.Any,
+            ) -> EmptyHttpRequest: ...
 
         @typing.type_check_only
         class ShippingSettingsResource(googleapiclient.discovery.Resource):
@@ -264,6 +489,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self, *, name: str, force: bool = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
+        def getDeveloperRegistration(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> DeveloperRegistrationHttpRequest: ...
         def list(
             self,
             *,
@@ -299,14 +527,20 @@ class MerchantResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> AccountHttpRequest: ...
         def autofeedSettings(self) -> AutofeedSettingsResource: ...
+        def automaticImprovements(self) -> AutomaticImprovementsResource: ...
         def businessIdentity(self) -> BusinessIdentityResource: ...
         def businessInfo(self) -> BusinessInfoResource: ...
+        def developerRegistration(self) -> DeveloperRegistrationResource: ...
         def emailPreferences(self) -> EmailPreferencesResource: ...
+        def gbpAccounts(self) -> GbpAccountsResource: ...
         def homepage(self) -> HomepageResource: ...
         def issues(self) -> IssuesResource: ...
+        def omnichannelSettings(self) -> OmnichannelSettingsResource: ...
         def onlineReturnPolicies(self) -> OnlineReturnPoliciesResource: ...
         def programs(self) -> ProgramsResource: ...
         def regions(self) -> RegionsResource: ...
+        def relationships(self) -> RelationshipsResource: ...
+        def services(self) -> ServicesResource: ...
         def shippingSettings(self) -> ShippingSettingsResource: ...
         def termsOfServiceAgreementStates(
             self,
@@ -322,7 +556,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
             account: str = ...,
             regionCode: str = ...,
             **kwargs: typing.Any,
-        ) -> EmptyHttpRequest: ...
+        ) -> AcceptTermsOfServiceResponseHttpRequest: ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> TermsOfServiceHttpRequest: ...
@@ -352,6 +586,14 @@ class MerchantResource(googleapiclient.discovery.Resource):
     def termsOfService(self) -> TermsOfServiceResource: ...
 
 @typing.type_check_only
+class AcceptTermsOfServiceResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AcceptTermsOfServiceResponse: ...
+
+@typing.type_check_only
 class AccountHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -360,12 +602,36 @@ class AccountHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Account: ...
 
 @typing.type_check_only
+class AccountRelationshipHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccountRelationship: ...
+
+@typing.type_check_only
+class AccountServiceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccountService: ...
+
+@typing.type_check_only
 class AutofeedSettingsHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AutofeedSettings: ...
+
+@typing.type_check_only
+class AutomaticImprovementsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AutomaticImprovements: ...
 
 @typing.type_check_only
 class BusinessIdentityHttpRequest(googleapiclient.http.HttpRequest):
@@ -384,6 +650,22 @@ class BusinessInfoHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BusinessInfo: ...
 
 @typing.type_check_only
+class CheckoutSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckoutSettings: ...
+
+@typing.type_check_only
+class DeveloperRegistrationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DeveloperRegistration: ...
+
+@typing.type_check_only
 class EmailPreferencesHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -400,12 +682,36 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class FindLfpProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FindLfpProvidersResponse: ...
+
+@typing.type_check_only
 class HomepageHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Homepage: ...
+
+@typing.type_check_only
+class LinkGbpAccountResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LinkGbpAccountResponse: ...
+
+@typing.type_check_only
+class LinkLfpProviderResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LinkLfpProviderResponse: ...
 
 @typing.type_check_only
 class ListAccountIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -416,12 +722,44 @@ class ListAccountIssuesResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListAccountIssuesResponse: ...
 
 @typing.type_check_only
+class ListAccountRelationshipsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAccountRelationshipsResponse: ...
+
+@typing.type_check_only
+class ListAccountServicesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAccountServicesResponse: ...
+
+@typing.type_check_only
 class ListAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAccountsResponse: ...
+
+@typing.type_check_only
+class ListGbpAccountsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListGbpAccountsResponse: ...
+
+@typing.type_check_only
+class ListOmnichannelSettingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListOmnichannelSettingsResponse: ...
 
 @typing.type_check_only
 class ListOnlineReturnPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -464,6 +802,14 @@ class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListUsersResponse: ...
 
 @typing.type_check_only
+class OmnichannelSettingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> OmnichannelSetting: ...
+
+@typing.type_check_only
 class OnlineReturnPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -486,6 +832,14 @@ class RegionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Region: ...
+
+@typing.type_check_only
+class RequestInventoryVerificationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RequestInventoryVerificationResponse: ...
 
 @typing.type_check_only
 class ShippingSettingsHttpRequest(googleapiclient.http.HttpRequest):

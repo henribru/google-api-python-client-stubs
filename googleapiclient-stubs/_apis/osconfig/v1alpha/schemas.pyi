@@ -81,6 +81,18 @@ class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     rolloutUpdateTime: str
 
 @typing.type_check_only
+class GoogleCloudOsconfigV2__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV2beta__OperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -246,6 +258,9 @@ class ListOSPolicyAssignmentsResponse(typing_extensions.TypedDict, total=False):
 class ListVulnerabilityReportsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     vulnerabilityReports: _list[VulnerabilityReport]
+
+@typing.type_check_only
+class MessageSet(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class OSPolicy(typing_extensions.TypedDict, total=False):
@@ -565,6 +580,14 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: MessageSet
+    space: str
 
 @typing.type_check_only
 class VulnerabilityReport(typing_extensions.TypedDict, total=False):

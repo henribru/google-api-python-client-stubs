@@ -13,6 +13,8 @@ class AccessApprovalServiceAccount(typing_extensions.TypedDict, total=False):
 class AccessApprovalSettings(typing_extensions.TypedDict, total=False):
     activeKeyVersion: str
     ancestorHasActiveKeyVersion: bool
+    approvalPolicy: CustomerApprovalApprovalPolicy
+    effectiveApprovalPolicy: CustomerApprovalApprovalPolicy
     enrolledAncestor: bool
     enrolledServices: _list[EnrolledService]
     invalidKeyVersion: bool
@@ -71,11 +73,22 @@ class ApproveDecision(typing_extensions.TypedDict, total=False):
     autoApproved: bool
     expireTime: str
     invalidateTime: str
+    policyApproved: bool
     signatureInfo: SignatureInfo
 
 @typing.type_check_only
 class AugmentedInfo(typing_extensions.TypedDict, total=False):
     command: str
+
+@typing.type_check_only
+class CustomerApprovalApprovalPolicy(typing_extensions.TypedDict, total=False):
+    justificationBasedApprovalPolicy: typing_extensions.Literal[
+        "JUSTIFICATION_BASED_APPROVAL_POLICY_UNSPECIFIED",
+        "JUSTIFICATION_BASED_APPROVAL_ENABLED_ALL",
+        "JUSTIFICATION_BASED_APPROVAL_ENABLED_EXTERNAL_JUSTIFICATIONS",
+        "JUSTIFICATION_BASED_APPROVAL_NOT_ENABLED",
+        "JUSTIFICATION_BASED_APPROVAL_INHERITED",
+    ]
 
 @typing.type_check_only
 class DismissApprovalRequestMessage(typing_extensions.TypedDict, total=False): ...
@@ -147,6 +160,9 @@ class SignatureInfo(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     googlePublicKeyPem: str
     serializedApprovalRequest: str

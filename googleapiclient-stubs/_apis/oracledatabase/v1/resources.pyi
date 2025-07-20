@@ -92,11 +92,39 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     previous_request: ListAutonomousDatabasesResponseHttpRequest,
                     previous_response: ListAutonomousDatabasesResponse,
                 ) -> ListAutonomousDatabasesResponseHttpRequest | None: ...
+                def restart(
+                    self,
+                    *,
+                    name: str,
+                    body: RestartAutonomousDatabaseRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def restore(
                     self,
                     *,
                     name: str,
                     body: RestoreAutonomousDatabaseRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def start(
+                    self,
+                    *,
+                    name: str,
+                    body: StartAutonomousDatabaseRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def stop(
+                    self,
+                    *,
+                    name: str,
+                    body: StopAutonomousDatabaseRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def switchover(
+                    self,
+                    *,
+                    name: str,
+                    body: SwitchoverAutonomousDatabaseRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
@@ -263,6 +291,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                     self,
                     *,
                     parent: str,
+                    filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
                     **kwargs: typing.Any,
@@ -310,6 +339,7 @@ class OracleDatabaseResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

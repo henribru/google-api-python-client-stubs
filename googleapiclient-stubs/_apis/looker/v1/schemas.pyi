@@ -9,24 +9,6 @@ class AdminSettings(typing_extensions.TypedDict, total=False):
     allowedEmailDomains: _list[str]
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: _list[AuditLogConfig]
-    service: str
-
-@typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-@typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    members: _list[str]
-    role: str
-
-@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -92,13 +74,6 @@ class ExportMetadataEncryptionKey(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    expression: str
-    location: str
-    title: str
-
-@typing.type_check_only
 class ImportInstanceRequest(typing_extensions.TypedDict, total=False):
     gcsUri: str
 
@@ -133,12 +108,17 @@ class Instance(typing_extensions.TypedDict, total=False):
         "LOOKER_CORE_NONPROD_STANDARD_ANNUAL",
         "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL",
         "LOOKER_CORE_NONPROD_EMBED_ANNUAL",
+        "LOOKER_CORE_TRIAL_STANDARD",
+        "LOOKER_CORE_TRIAL_ENTERPRISE",
+        "LOOKER_CORE_TRIAL_EMBED",
     ]
     privateIpEnabled: bool
     pscConfig: PscConfig
     pscEnabled: bool
     publicIpEnabled: bool
     reservedRange: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "ACTIVE",
@@ -152,6 +132,22 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
     updateTime: str
     userMetadata: UserMetadata
+
+@typing.type_check_only
+class InstanceBackup(typing_extensions.TypedDict, total=False):
+    createTime: str
+    encryptionConfig: EncryptionConfig
+    expireTime: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "DELETING", "ACTIVE", "FAILED"
+    ]
+
+@typing.type_check_only
+class ListInstanceBackupsResponse(typing_extensions.TypedDict, total=False):
+    instanceBackups: _list[InstanceBackup]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
@@ -220,13 +216,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: _list[AuditConfig]
-    bindings: _list[Binding]
-    etag: str
-    version: int
-
-@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     allowedVpcs: _list[str]
     lookerServiceAttachmentUri: str
@@ -236,31 +225,23 @@ class PscConfig(typing_extensions.TypedDict, total=False):
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class RestoreInstanceRequest(typing_extensions.TypedDict, total=False):
+    backup: str
+
+@typing.type_check_only
 class ServiceAttachment(typing_extensions.TypedDict, total=False):
     connectionStatus: typing_extensions.Literal[
         "UNKNOWN", "ACCEPTED", "PENDING", "REJECTED", "NEEDS_ATTENTION", "CLOSED"
     ]
     localFqdn: str
+    localFqdns: _list[str]
     targetServiceAttachmentUri: str
-
-@typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
-
-@typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
-
-@typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

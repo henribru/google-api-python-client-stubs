@@ -25,6 +25,15 @@ class AddressGroup(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class AntivirusOverride(typing_extensions.TypedDict, total=False):
+    action: typing_extensions.Literal[
+        "THREAT_ACTION_UNSPECIFIED", "DEFAULT_ACTION", "ALLOW", "ALERT", "DENY"
+    ]
+    protocol: typing_extensions.Literal[
+        "PROTOCOL_UNSPECIFIED", "SMTP", "SMB", "POP3", "IMAP", "HTTP2", "HTTP", "FTP"
+    ]
+
+@typing.type_check_only
 class AuthorizationPolicy(typing_extensions.TypedDict, total=False):
     action: typing_extensions.Literal["ACTION_UNSPECIFIED", "ALLOW", "DENY"]
     createTime: str
@@ -68,13 +77,18 @@ class AuthzPolicyAuthzRuleFrom(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleFromRequestSource(typing_extensions.TypedDict, total=False):
-    principals: _list[AuthzPolicyAuthzRuleStringMatch]
+    ipBlocks: _list[AuthzPolicyAuthzRuleIpBlock]
     resources: _list[AuthzPolicyAuthzRuleRequestResource]
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleHeaderMatch(typing_extensions.TypedDict, total=False):
     name: str
     value: AuthzPolicyAuthzRuleStringMatch
+
+@typing.type_check_only
+class AuthzPolicyAuthzRuleIpBlock(typing_extensions.TypedDict, total=False):
+    length: int
+    prefix: str
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleRequestResource(typing_extensions.TypedDict, total=False):
@@ -136,6 +150,20 @@ class AuthzPolicyTarget(typing_extensions.TypedDict, total=False):
     resources: _list[str]
 
 @typing.type_check_only
+class BackendAuthenticationConfig(typing_extensions.TypedDict, total=False):
+    clientCertificate: str
+    createTime: str
+    description: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    trustConfig: str
+    updateTime: str
+    wellKnownRoots: typing_extensions.Literal[
+        "WELL_KNOWN_ROOTS_UNSPECIFIED", "NONE", "PUBLIC_ROOTS"
+    ]
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -193,6 +221,8 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
     ]
@@ -298,6 +328,136 @@ class HttpHeaderMatch(typing_extensions.TypedDict, total=False):
     regexMatch: str
 
 @typing.type_check_only
+class InterceptDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    forwardingRule: str
+    interceptDeploymentGroup: str
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptDeploymentGroup(typing_extensions.TypedDict, total=False):
+    connectedEndpointGroups: _list[InterceptDeploymentGroupConnectedEndpointGroup]
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    locations: _list[InterceptLocation]
+    name: str
+    nestedDeployments: _list[InterceptDeploymentGroupDeployment]
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptDeploymentGroupConnectedEndpointGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class InterceptDeploymentGroupDeployment(typing_extensions.TypedDict, total=False):
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
+class InterceptEndpointGroup(typing_extensions.TypedDict, total=False):
+    associations: _list[InterceptEndpointGroupAssociationDetails]
+    connectedDeploymentGroup: InterceptEndpointGroupConnectedDeploymentGroup
+    createTime: str
+    description: str
+    interceptDeploymentGroup: str
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CLOSED",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    interceptEndpointGroup: str
+    labels: dict[str, typing.Any]
+    locations: _list[InterceptLocation]
+    locationsDetails: _list[InterceptEndpointGroupAssociationLocationDetails]
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    network: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociationLocationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+
+@typing.type_check_only
+class InterceptEndpointGroupConnectedDeploymentGroup(
+    typing_extensions.TypedDict, total=False
+):
+    locations: _list[InterceptLocation]
+    name: str
+
+@typing.type_check_only
+class InterceptLocation(typing_extensions.TypedDict, total=False):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+
+@typing.type_check_only
 class ListAddressGroupReferencesResponse(typing_extensions.TypedDict, total=False):
     addressGroupReferences: _list[
         ListAddressGroupReferencesResponseAddressGroupReference
@@ -316,6 +476,7 @@ class ListAddressGroupReferencesResponseAddressGroupReference(
 class ListAddressGroupsResponse(typing_extensions.TypedDict, total=False):
     addressGroups: _list[AddressGroup]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -325,6 +486,14 @@ class ListAuthorizationPoliciesResponse(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class ListAuthzPoliciesResponse(typing_extensions.TypedDict, total=False):
     authzPolicies: _list[AuthzPolicy]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListBackendAuthenticationConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    backendAuthenticationConfigs: _list[BackendAuthenticationConfig]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -360,8 +529,54 @@ class ListGatewaySecurityPolicyRulesResponse(typing_extensions.TypedDict, total=
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListInterceptDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+    interceptDeploymentGroups: _list[InterceptDeploymentGroup]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInterceptDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    interceptDeployments: _list[InterceptDeployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListInterceptEndpointGroupAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    interceptEndpointGroupAssociations: _list[InterceptEndpointGroupAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInterceptEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+    interceptEndpointGroups: _list[InterceptEndpointGroup]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMirroringDeploymentGroupsResponse(typing_extensions.TypedDict, total=False):
+    mirroringDeploymentGroups: _list[MirroringDeploymentGroup]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMirroringDeploymentsResponse(typing_extensions.TypedDict, total=False):
+    mirroringDeployments: _list[MirroringDeployment]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListMirroringEndpointGroupAssociationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    mirroringEndpointGroupAssociations: _list[MirroringEndpointGroupAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMirroringEndpointGroupsResponse(typing_extensions.TypedDict, total=False):
+    mirroringEndpointGroups: _list[MirroringEndpointGroup]
     nextPageToken: str
 
 @typing.type_check_only
@@ -383,6 +598,7 @@ class ListSecurityProfilesResponse(typing_extensions.TypedDict, total=False):
 class ListServerTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     serverTlsPolicies: _list[ServerTlsPolicy]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTlsInspectionPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -413,6 +629,136 @@ class MTLSPolicy(typing_extensions.TypedDict, total=False):
         "REJECT_INVALID",
     ]
     clientValidationTrustConfig: str
+
+@typing.type_check_only
+class MirroringDeployment(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    forwardingRule: str
+    labels: dict[str, typing.Any]
+    mirroringDeploymentGroup: str
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
+    connectedEndpointGroups: _list[MirroringDeploymentGroupConnectedEndpointGroup]
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    locations: _list[MirroringLocation]
+    name: str
+    nestedDeployments: _list[MirroringDeploymentGroupDeployment]
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringDeploymentGroupConnectedEndpointGroup(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class MirroringDeploymentGroupDeployment(typing_extensions.TypedDict, total=False):
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
+class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
+    associations: _list[MirroringEndpointGroupAssociationDetails]
+    connectedDeploymentGroups: _list[MirroringEndpointGroupConnectedDeploymentGroup]
+    createTime: str
+    description: str
+    labels: dict[str, typing.Any]
+    mirroringDeploymentGroup: str
+    name: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CLOSED",
+        "CREATING",
+        "DELETING",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociation(typing_extensions.TypedDict, total=False):
+    createTime: str
+    labels: dict[str, typing.Any]
+    locations: _list[MirroringLocation]
+    locationsDetails: _list[MirroringEndpointGroupAssociationLocationDetails]
+    mirroringEndpointGroup: str
+    name: str
+    network: str
+    reconciling: bool
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    network: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "CLOSED",
+        "OUT_OF_SYNC",
+        "DELETE_FAILED",
+    ]
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociationLocationDetails(
+    typing_extensions.TypedDict, total=False
+):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
+
+@typing.type_check_only
+class MirroringEndpointGroupConnectedDeploymentGroup(
+    typing_extensions.TypedDict, total=False
+):
+    locations: _list[MirroringLocation]
+    name: str
+
+@typing.type_check_only
+class MirroringLocation(typing_extensions.TypedDict, total=False):
+    location: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "OUT_OF_SYNC"]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -465,6 +811,7 @@ class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     createTime: str
     customInterceptProfile: str
     customMirroringProfile: str
+    dataPathId: str
     description: str
     etag: str
     labels: dict[str, typing.Any]
@@ -520,6 +867,7 @@ class ThreatOverride(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ThreatPreventionProfile(typing_extensions.TypedDict, total=False):
+    antivirusOverrides: _list[AntivirusOverride]
     severityOverrides: _list[SeverityOverride]
     threatOverrides: _list[ThreatOverride]
 

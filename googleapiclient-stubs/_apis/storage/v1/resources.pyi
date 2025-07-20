@@ -684,6 +684,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             bucket: str,
             delimiter: str = ...,
             endOffset: str = ...,
+            filter: str = ...,
             includeFoldersAsPrefixes: bool = ...,
             includeTrailingDelimiter: bool = ...,
             matchGlob: str = ...,
@@ -714,6 +715,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             ifSourceGenerationNotMatch: str = ...,
             ifSourceMetagenerationMatch: str = ...,
             ifSourceMetagenerationNotMatch: str = ...,
+            projection: typing_extensions.Literal["full", "noAcl"] = ...,
             userProject: str = ...,
             **kwargs: typing.Any,
         ) -> ObjectHttpRequest: ...

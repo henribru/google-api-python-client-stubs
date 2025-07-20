@@ -27,6 +27,14 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     body: GetDebugConfigRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GetDebugConfigResponseHttpRequest: ...
+                def getWorkerStacktraces(
+                    self,
+                    *,
+                    projectId: str,
+                    jobId: str,
+                    body: GetWorkerStacktracesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GetWorkerStacktracesResponseHttpRequest: ...
                 def sendCapture(
                     self,
                     *,
@@ -589,6 +597,14 @@ class GetTemplateResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GetTemplateResponse: ...
+
+@typing.type_check_only
+class GetWorkerStacktracesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetWorkerStacktracesResponse: ...
 
 @typing.type_check_only
 class JobHttpRequest(googleapiclient.http.HttpRequest):

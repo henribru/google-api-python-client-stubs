@@ -31,6 +31,24 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, requestId: str = ..., **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def fetchForResourceType(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    resourceType: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchBackupPlanAssociationsForResourceTypeResponseHttpRequest: ...
+                def fetchForResourceType_next(
+                    self,
+                    previous_request: FetchBackupPlanAssociationsForResourceTypeResponseHttpRequest,
+                    previous_response: FetchBackupPlanAssociationsForResourceTypeResponse,
+                ) -> (
+                    FetchBackupPlanAssociationsForResourceTypeResponseHttpRequest | None
+                ): ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> BackupPlanAssociationHttpRequest: ...
@@ -48,6 +66,15 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     previous_request: ListBackupPlanAssociationsResponseHttpRequest,
                     previous_response: ListBackupPlanAssociationsResponse,
                 ) -> ListBackupPlanAssociationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BackupPlanAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def triggerBackup(
                     self,
                     *,
@@ -58,6 +85,25 @@ class BackupdrResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class BackupPlansResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BackupPlanRevisionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBackupPlanRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupPlanRevisionsResponseHttpRequest,
+                        previous_response: ListBackupPlanRevisionsResponse,
+                    ) -> ListBackupPlanRevisionsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -88,6 +134,16 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     previous_request: ListBackupPlansResponseHttpRequest,
                     previous_response: ListBackupPlansResponse,
                 ) -> ListBackupPlansResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BackupPlan = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def revisions(self) -> RevisionsResource: ...
 
             @typing.type_check_only
             class BackupVaultsResource(googleapiclient.discovery.Resource):
@@ -296,6 +352,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: BackupVault = ...,
                     force: bool = ...,
+                    forceUpdateAccessRestriction: bool = ...,
                     requestId: str = ...,
                     updateMask: str = ...,
                     validateOnly: bool = ...,
@@ -309,6 +366,30 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
                 def dataSources(self) -> DataSourcesResource: ...
+
+            @typing.type_check_only
+            class DataSourceReferencesResource(googleapiclient.discovery.Resource):
+                def fetchForResourceType(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    resourceType: str = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchDataSourceReferencesForResourceTypeResponseHttpRequest: ...
+                def fetchForResourceType_next(
+                    self,
+                    previous_request: FetchDataSourceReferencesForResourceTypeResponseHttpRequest,
+                    previous_response: FetchDataSourceReferencesForResourceTypeResponse,
+                ) -> (
+                    FetchDataSourceReferencesForResourceTypeResponseHttpRequest | None
+                ): ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DataSourceReferenceHttpRequest: ...
 
             @typing.type_check_only
             class ManagementServersResource(googleapiclient.discovery.Resource):
@@ -395,6 +476,24 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class ResourceBackupConfigsResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListResourceBackupConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListResourceBackupConfigsResponseHttpRequest,
+                    previous_response: ListResourceBackupConfigsResponse,
+                ) -> ListResourceBackupConfigsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ServiceConfigResource(googleapiclient.discovery.Resource):
                 def initialize(
                     self,
@@ -411,6 +510,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -424,8 +524,10 @@ class BackupdrResource(googleapiclient.discovery.Resource):
             def backupPlanAssociations(self) -> BackupPlanAssociationsResource: ...
             def backupPlans(self) -> BackupPlansResource: ...
             def backupVaults(self) -> BackupVaultsResource: ...
+            def dataSourceReferences(self) -> DataSourceReferencesResource: ...
             def managementServers(self) -> ManagementServersResource: ...
             def operations(self) -> OperationsResource: ...
+            def resourceBackupConfigs(self) -> ResourceBackupConfigsResource: ...
             def serviceConfig(self) -> ServiceConfigResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -469,6 +571,14 @@ class BackupPlanAssociationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> BackupPlanAssociation: ...
 
 @typing.type_check_only
+class BackupPlanRevisionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackupPlanRevision: ...
+
+@typing.type_check_only
 class BackupVaultHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -485,6 +595,14 @@ class DataSourceHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DataSource: ...
 
 @typing.type_check_only
+class DataSourceReferenceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DataSourceReference: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -499,6 +617,26 @@ class FetchAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchAccessTokenResponse: ...
+
+@typing.type_check_only
+class FetchBackupPlanAssociationsForResourceTypeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchBackupPlanAssociationsForResourceTypeResponse: ...
+
+@typing.type_check_only
+class FetchDataSourceReferencesForResourceTypeResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchDataSourceReferencesForResourceTypeResponse: ...
 
 @typing.type_check_only
 class FetchUsableBackupVaultsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -523,6 +661,14 @@ class ListBackupPlanAssociationsResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListBackupPlanAssociationsResponse: ...
+
+@typing.type_check_only
+class ListBackupPlanRevisionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupPlanRevisionsResponse: ...
 
 @typing.type_check_only
 class ListBackupPlansResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -579,6 +725,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListOperationsResponse: ...
+
+@typing.type_check_only
+class ListResourceBackupConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListResourceBackupConfigsResponse: ...
 
 @typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):

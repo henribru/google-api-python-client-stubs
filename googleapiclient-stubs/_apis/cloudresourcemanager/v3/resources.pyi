@@ -31,6 +31,20 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class FoldersResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class CapabilitiesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> CapabilityHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: Capability = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
         def create(
             self, *, body: Folder = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
@@ -100,6 +114,7 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
         def undelete(
             self, *, name: str, body: UndeleteFolderRequest = ..., **kwargs: typing.Any
         ) -> OperationHttpRequest: ...
+        def capabilities(self) -> CapabilitiesResource: ...
 
     @typing.type_check_only
     class LiensResource(googleapiclient.discovery.Resource):
@@ -121,6 +136,34 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
             previous_request: ListLiensResponseHttpRequest,
             previous_response: ListLiensResponse,
         ) -> ListLiensResponseHttpRequest | None: ...
+
+    @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class EffectiveTagBindingCollectionsResource(
+            googleapiclient.discovery.Resource
+        ):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EffectiveTagBindingCollectionHttpRequest: ...
+
+        @typing.type_check_only
+        class TagBindingCollectionsResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> TagBindingCollectionHttpRequest: ...
+            def update(
+                self,
+                *,
+                name: str,
+                body: TagBindingCollection = ...,
+                **kwargs: typing.Any,
+            ) -> OperationHttpRequest: ...
+
+        def effectiveTagBindingCollections(
+            self,
+        ) -> EffectiveTagBindingCollectionsResource: ...
+        def tagBindingCollections(self) -> TagBindingCollectionsResource: ...
 
     @typing.type_check_only
     class OperationsResource(googleapiclient.discovery.Resource):
@@ -434,12 +477,29 @@ class CloudResourceManagerResource(googleapiclient.discovery.Resource):
     def effectiveTags(self) -> EffectiveTagsResource: ...
     def folders(self) -> FoldersResource: ...
     def liens(self) -> LiensResource: ...
+    def locations(self) -> LocationsResource: ...
     def operations(self) -> OperationsResource: ...
     def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
     def tagBindings(self) -> TagBindingsResource: ...
     def tagKeys(self) -> TagKeysResource: ...
     def tagValues(self) -> TagValuesResource: ...
+
+@typing.type_check_only
+class CapabilityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Capability: ...
+
+@typing.type_check_only
+class EffectiveTagBindingCollectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EffectiveTagBindingCollection: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -584,6 +644,14 @@ class SearchProjectsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SearchProjectsResponse: ...
+
+@typing.type_check_only
+class TagBindingCollectionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TagBindingCollection: ...
 
 @typing.type_check_only
 class TagKeyHttpRequest(googleapiclient.http.HttpRequest):

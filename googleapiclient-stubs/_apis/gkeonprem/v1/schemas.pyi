@@ -178,6 +178,7 @@ class BareMetalCluster(typing_extensions.TypedDict, total=False):
     fleet: Fleet
     loadBalancer: BareMetalLoadBalancerConfig
     localName: str
+    localNamespace: str
     maintenanceConfig: BareMetalMaintenanceConfig
     maintenanceStatus: BareMetalMaintenanceStatus
     name: str
@@ -434,6 +435,7 @@ class EnrollBareMetalClusterRequest(typing_extensions.TypedDict, total=False):
     adminClusterMembership: str
     bareMetalClusterId: str
     localName: str
+    localNamespace: str
 
 @typing.type_check_only
 class EnrollBareMetalNodePoolRequest(typing_extensions.TypedDict, total=False):
@@ -727,6 +729,7 @@ class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     controlPlaneNode: VmwareAdminControlPlaneNodeConfig
     createTime: str
     description: str
+    enableAdvancedCluster: bool
     endpoint: str
     etag: str
     fleet: Fleet
@@ -738,6 +741,7 @@ class VmwareAdminCluster(typing_extensions.TypedDict, total=False):
     onPremVersion: str
     platformConfig: VmwarePlatformConfig
     preparedSecrets: VmwareAdminPreparedSecretsConfig
+    privateRegistryConfig: VmwareAdminPrivateRegistryConfig
     reconciling: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -805,6 +809,11 @@ class VmwareAdminPreparedSecretsConfig(typing_extensions.TypedDict, total=False)
     enabled: bool
 
 @typing.type_check_only
+class VmwareAdminPrivateRegistryConfig(typing_extensions.TypedDict, total=False):
+    address: str
+    caCert: str
+
+@typing.type_check_only
 class VmwareAdminSeesawConfig(typing_extensions.TypedDict, total=False):
     enableHa: bool
     group: str
@@ -858,6 +867,7 @@ class VmwareCluster(typing_extensions.TypedDict, total=False):
     deleteTime: str
     description: str
     disableBundledIngress: bool
+    enableAdvancedCluster: bool
     enableControlPlaneV2: bool
     endpoint: str
     etag: str

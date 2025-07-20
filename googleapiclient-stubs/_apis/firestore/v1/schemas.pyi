@@ -264,6 +264,35 @@ class GoogleFirestoreAdminV1BulkDeleteDocumentsRequest(
     namespaceIds: _list[str]
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1CloneDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    database: str
+    endTime: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    pitrSnapshot: GoogleFirestoreAdminV1PitrSnapshot
+    progressPercentage: GoogleFirestoreAdminV1Progress
+    startTime: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1CloneDatabaseRequest(
+    typing_extensions.TypedDict, total=False
+):
+    databaseId: str
+    encryptionConfig: GoogleFirestoreAdminV1EncryptionConfig
+    pitrSnapshot: GoogleFirestoreAdminV1PitrSnapshot
+    tags: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CmekConfig(typing_extensions.TypedDict, total=False):
     activeKeyVersion: _list[str]
     kmsKeyName: str
@@ -297,6 +326,9 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "OPTIMISTIC_WITH_ENTITY_GROUPS",
     ]
     createTime: str
+    databaseEdition: typing_extensions.Literal[
+        "DATABASE_EDITION_UNSPECIFIED", "STANDARD", "ENTERPRISE"
+    ]
     deleteProtectionState: typing_extensions.Literal[
         "DELETE_PROTECTION_STATE_UNSPECIFIED",
         "DELETE_PROTECTION_DISABLED",
@@ -305,6 +337,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     deleteTime: str
     earliestVersionTime: str
     etag: str
+    freeTier: bool
     keyPrefix: str
     locationId: str
     name: str
@@ -315,6 +348,7 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     ]
     previousId: str
     sourceInfo: GoogleFirestoreAdminV1SourceInfo
+    tags: dict[str, typing.Any]
     type: typing_extensions.Literal[
         "DATABASE_TYPE_UNSPECIFIED", "FIRESTORE_NATIVE", "DATASTORE_MODE"
     ]
@@ -324,6 +358,16 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1DisableUserCredsRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1EnableUserCredsRequest(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -439,8 +483,14 @@ class GoogleFirestoreAdminV1ImportDocumentsRequest(
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
-    apiScope: typing_extensions.Literal["ANY_API", "DATASTORE_MODE_API"]
+    apiScope: typing_extensions.Literal[
+        "ANY_API", "DATASTORE_MODE_API", "MONGODB_COMPATIBLE_API"
+    ]
+    density: typing_extensions.Literal[
+        "DENSITY_UNSPECIFIED", "SPARSE_ALL", "SPARSE_ANY", "DENSE"
+    ]
     fields: _list[GoogleFirestoreAdminV1IndexField]
+    multikey: bool
     name: str
     queryScope: typing_extensions.Literal[
         "QUERY_SCOPE_UNSPECIFIED",
@@ -448,6 +498,7 @@ class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
         "COLLECTION_GROUP",
         "COLLECTION_RECURSIVE",
     ]
+    shardCount: int
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"
     ]
@@ -526,14 +577,35 @@ class GoogleFirestoreAdminV1ListIndexesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1ListUserCredsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    userCreds: _list[GoogleFirestoreAdminV1UserCreds]
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1LocationMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1PitrSnapshot(typing_extensions.TypedDict, total=False):
+    database: str
+    databaseUid: str
+    snapshotTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):
     completedWork: str
     estimatedWork: str
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ResetUserPasswordRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ResourceIdentity(typing_extensions.TypedDict, total=False):
+    principal: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1RestoreDatabaseMetadata(
@@ -562,6 +634,7 @@ class GoogleFirestoreAdminV1RestoreDatabaseRequest(
     backup: str
     databaseId: str
     encryptionConfig: GoogleFirestoreAdminV1EncryptionConfig
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1SourceEncryptionOptions(
@@ -593,6 +666,15 @@ class GoogleFirestoreAdminV1TtlConfigDelta(typing_extensions.TypedDict, total=Fa
 class GoogleFirestoreAdminV1UpdateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1UserCreds(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    resourceIdentity: GoogleFirestoreAdminV1ResourceIdentity
+    securePassword: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1VectorConfig(typing_extensions.TypedDict, total=False):

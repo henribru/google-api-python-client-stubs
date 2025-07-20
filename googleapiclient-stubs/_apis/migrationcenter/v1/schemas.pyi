@@ -14,6 +14,7 @@ class AddAssetsToGroupRequest(typing_extensions.TypedDict, total=False):
 class AggregateAssetsValuesRequest(typing_extensions.TypedDict, total=False):
     aggregations: _list[Aggregation]
     filter: str
+    showHidden: bool
 
 @typing.type_check_only
 class AggregateAssetsValuesResponse(typing_extensions.TypedDict, total=False):
@@ -77,6 +78,9 @@ class Asset(typing_extensions.TypedDict, total=False):
     createTime: str
     databaseDeploymentDetails: DatabaseDeploymentDetails
     databaseDetails: DatabaseDetails
+    hidden: bool
+    hideReason: str
+    hideTime: str
     insightList: InsightList
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
@@ -124,6 +128,9 @@ class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     machineTypeLabel: str
 
 @typing.type_check_only
+class AwsRds(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
     hyperthreading: typing_extensions.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
@@ -137,6 +144,7 @@ class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BatchDeleteAssetsRequest(typing_extensions.TypedDict, total=False):
     allowMissing: bool
+    cascadingRules: _list[CascadingRule]
     names: _list[str]
 
 @typing.type_check_only
@@ -158,6 +166,13 @@ class BiosDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CascadeLogicalDBsRule(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CascadingRule(typing_extensions.TypedDict, total=False):
+    cascadeLogicalDbs: CascadeLogicalDBsRule
 
 @typing.type_check_only
 class ComputeEngineMigrationTarget(typing_extensions.TypedDict, total=False):
@@ -238,6 +253,7 @@ class DailyResourceUsageAggregationStats(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
     aggregatedStats: DatabaseDeploymentDetailsAggregatedStats
+    awsRds: AwsRds
     edition: str
     generatedId: str
     manualUniqueId: str
@@ -372,6 +388,12 @@ class DiskPartition(typing_extensions.TypedDict, total=False):
     subPartitions: DiskPartitionList
     type: str
     uuid: str
+
+@typing.type_check_only
+class DiskPartitionDetails(typing_extensions.TypedDict, total=False):
+    freeSpaceBytes: str
+    partitions: DiskPartitionList
+    totalCapacityBytes: str
 
 @typing.type_check_only
 class DiskPartitionList(typing_extensions.TypedDict, total=False):
@@ -697,6 +719,7 @@ class MachineDetails(typing_extensions.TypedDict, total=False):
     architecture: MachineArchitectureDetails
     coreCount: int
     createTime: str
+    diskPartitions: DiskPartitionDetails
     disks: MachineDiskDetails
     guestOs: GuestOsDetails
     machineName: str

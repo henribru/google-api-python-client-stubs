@@ -21,6 +21,9 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
             class ChildAccountsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class SitesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> PlatformChildSiteHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -47,6 +50,9 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class GroupsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> PlatformGroupHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -60,6 +66,14 @@ class AdSensePlatformResource(googleapiclient.discovery.Resource):
                     previous_request: ListPlatformGroupsResponseHttpRequest,
                     previous_response: ListPlatformGroupsResponse,
                 ) -> ListPlatformGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: PlatformGroup = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> PlatformGroupHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -262,6 +276,14 @@ class PlatformChildSiteHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> PlatformChildSite: ...
+
+@typing.type_check_only
+class PlatformGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PlatformGroup: ...
 
 @typing.type_check_only
 class RequestSiteReviewResponseHttpRequest(googleapiclient.http.HttpRequest):

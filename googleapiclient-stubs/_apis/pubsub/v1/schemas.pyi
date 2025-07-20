@@ -190,6 +190,11 @@ class IngestionDataSourceSettings(typing_extensions.TypedDict, total=False):
     platformLogsSettings: PlatformLogsSettings
 
 @typing.type_check_only
+class JavaScriptUDF(typing_extensions.TypedDict, total=False):
+    code: str
+    functionName: str
+
+@typing.type_check_only
 class ListSchemaRevisionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     schemas: _list[Schema]
@@ -228,6 +233,12 @@ class ListTopicsResponse(typing_extensions.TypedDict, total=False):
 class MessageStoragePolicy(typing_extensions.TypedDict, total=False):
     allowedPersistenceRegions: _list[str]
     enforceInTransit: bool
+
+@typing.type_check_only
+class MessageTransform(typing_extensions.TypedDict, total=False):
+    disabled: bool
+    enabled: bool
+    javascriptUdf: JavaScriptUDF
 
 @typing.type_check_only
 class ModifyAckDeadlineRequest(typing_extensions.TypedDict, total=False):
@@ -361,6 +372,7 @@ class Subscription(typing_extensions.TypedDict, total=False):
     filter: str
     labels: dict[str, typing.Any]
     messageRetentionDuration: str
+    messageTransforms: _list[MessageTransform]
     name: str
     pushConfig: PushConfig
     retainAckedMessages: bool
@@ -391,6 +403,7 @@ class Topic(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     messageRetentionDuration: str
     messageStoragePolicy: MessageStoragePolicy
+    messageTransforms: _list[MessageTransform]
     name: str
     satisfiesPzs: bool
     schemaSettings: SchemaSettings

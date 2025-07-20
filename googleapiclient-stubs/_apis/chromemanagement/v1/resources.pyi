@@ -96,6 +96,35 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class CommandsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest,
+                    previous_response: GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse,
+                ) -> (
+                    GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest
+                    | None
+                ): ...
+
             def delete(
                 self, *, name: str, **kwargs: typing.Any
             ) -> GoogleProtobufEmptyHttpRequest: ...
@@ -120,6 +149,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
                 GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest
                 | None
             ): ...
+            def commands(self) -> CommandsResource: ...
 
         @typing.type_check_only
         class ReportsResource(googleapiclient.discovery.Resource):
@@ -633,6 +663,26 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfile: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse: ...
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpRequest(

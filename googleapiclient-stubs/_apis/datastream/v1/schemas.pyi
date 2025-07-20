@@ -12,9 +12,11 @@ class AvroFileFormat(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class BackfillAllStrategy(typing_extensions.TypedDict, total=False):
+    mongodbExcludedObjects: MongodbCluster
     mysqlExcludedObjects: MysqlRdbms
     oracleExcludedObjects: OracleRdbms
     postgresqlExcludedObjects: PostgresqlRdbms
+    salesforceExcludedObjects: SalesforceOrg
     sqlServerExcludedObjects: SqlServerRdbms
 
 @typing.type_check_only
@@ -40,6 +42,7 @@ class BackfillNoneStrategy(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class BigQueryDestinationConfig(typing_extensions.TypedDict, total=False):
     appendOnly: AppendOnly
+    blmtConfig: BlmtConfig
     dataFreshness: str
     merge: Merge
     singleTargetDataset: SingleTargetDataset
@@ -55,6 +58,14 @@ class BinaryLogParser(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BinaryLogPosition(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class BlmtConfig(typing_extensions.TypedDict, total=False):
+    bucket: str
+    connectionName: str
+    fileFormat: typing_extensions.Literal["FILE_FORMAT_UNSPECIFIED", "PARQUET"]
+    rootPath: str
+    tableFormat: typing_extensions.Literal["TABLE_FORMAT_UNSPECIFIED", "ICEBERG"]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -73,11 +84,15 @@ class ConnectionProfile(typing_extensions.TypedDict, total=False):
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     gcsProfile: GcsProfile
     labels: dict[str, typing.Any]
+    mongodbProfile: MongodbProfile
     mysqlProfile: MysqlProfile
     name: str
     oracleProfile: OracleProfile
     postgresqlProfile: PostgresqlProfile
     privateConnectivity: PrivateConnectivity
+    salesforceProfile: SalesforceProfile
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     sqlServerProfile: SqlServerProfile
     staticServiceIpConnectivity: StaticServiceIpConnectivity
     updateTime: str
@@ -100,16 +115,20 @@ class DiscoverConnectionProfileRequest(typing_extensions.TypedDict, total=False)
     connectionProfileName: str
     fullHierarchy: bool
     hierarchyDepth: int
+    mongodbCluster: MongodbCluster
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
+    salesforceOrg: SalesforceOrg
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
 class DiscoverConnectionProfileResponse(typing_extensions.TypedDict, total=False):
+    mongodbCluster: MongodbCluster
     mysqlRdbms: MysqlRdbms
     oracleRdbms: OracleRdbms
     postgresqlRdbms: PostgresqlRdbms
+    salesforceOrg: SalesforceOrg
     sqlServerRdbms: SqlServerRdbms
 
 @typing.type_check_only
@@ -154,6 +173,11 @@ class GcsProfile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Gtid(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class HostAddress(typing_extensions.TypedDict, total=False):
+    hostname: str
+    port: int
 
 @typing.type_check_only
 class JsonFileFormat(typing_extensions.TypedDict, total=False):
@@ -227,6 +251,56 @@ class LookupStreamObjectRequest(typing_extensions.TypedDict, total=False):
 class Merge(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class MongodbCluster(typing_extensions.TypedDict, total=False):
+    databases: _list[MongodbDatabase]
+
+@typing.type_check_only
+class MongodbCollection(typing_extensions.TypedDict, total=False):
+    collection: str
+    fields: _list[MongodbField]
+
+@typing.type_check_only
+class MongodbDatabase(typing_extensions.TypedDict, total=False):
+    collections: _list[MongodbCollection]
+    database: str
+
+@typing.type_check_only
+class MongodbField(typing_extensions.TypedDict, total=False):
+    field: str
+
+@typing.type_check_only
+class MongodbObjectIdentifier(typing_extensions.TypedDict, total=False):
+    collection: str
+    database: str
+
+@typing.type_check_only
+class MongodbProfile(typing_extensions.TypedDict, total=False):
+    hostAddresses: _list[HostAddress]
+    password: str
+    replicaSet: str
+    secretManagerStoredPassword: str
+    srvConnectionFormat: SrvConnectionFormat
+    sslConfig: MongodbSslConfig
+    standardConnectionFormat: StandardConnectionFormat
+    username: str
+
+@typing.type_check_only
+class MongodbSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: MongodbCluster
+    includeObjects: MongodbCluster
+    maxConcurrentBackfillTasks: int
+
+@typing.type_check_only
+class MongodbSslConfig(typing_extensions.TypedDict, total=False):
+    caCertificate: str
+    caCertificateSet: bool
+    clientCertificate: str
+    clientCertificateSet: bool
+    clientKey: str
+    clientKeySet: bool
+    secretManagerStoredClientKey: str
+
+@typing.type_check_only
 class MostRecentStartPosition(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -247,6 +321,10 @@ class MysqlDatabase(typing_extensions.TypedDict, total=False):
     mysqlTables: _list[MysqlTable]
 
 @typing.type_check_only
+class MysqlGtidPosition(typing_extensions.TypedDict, total=False):
+    gtidSet: str
+
+@typing.type_check_only
 class MysqlLogPosition(typing_extensions.TypedDict, total=False):
     logFile: str
     logPosition: int
@@ -261,6 +339,7 @@ class MysqlProfile(typing_extensions.TypedDict, total=False):
     hostname: str
     password: str
     port: int
+    secretManagerStoredPassword: str
     sslConfig: MysqlSslConfig
     username: str
 
@@ -295,6 +374,12 @@ class MysqlTable(typing_extensions.TypedDict, total=False):
 class NextAvailableStartPosition(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Oauth2ClientCredentials(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+    secretManagerStoredClientSecret: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -321,6 +406,7 @@ class OracleAsmConfig(typing_extensions.TypedDict, total=False):
     oracleSslConfig: OracleSslConfig
     password: str
     port: int
+    secretManagerStoredPassword: str
     username: str
 
 @typing.type_check_only
@@ -411,6 +497,7 @@ class PostgresqlProfile(typing_extensions.TypedDict, total=False):
     hostname: str
     password: str
     port: int
+    secretManagerStoredPassword: str
     sslConfig: PostgresqlSslConfig
     username: str
 
@@ -448,6 +535,9 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     error: Error
     labels: dict[str, typing.Any]
     name: str
+    pscInterfaceConfig: PscInterfaceConfig
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -462,6 +552,10 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PrivateConnectivity(typing_extensions.TypedDict, total=False):
     privateConnection: str
+
+@typing.type_check_only
+class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
 
 @typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
@@ -479,6 +573,37 @@ class RunStreamRequest(typing_extensions.TypedDict, total=False):
     force: bool
 
 @typing.type_check_only
+class SalesforceField(typing_extensions.TypedDict, total=False):
+    dataType: str
+    name: str
+    nillable: bool
+
+@typing.type_check_only
+class SalesforceObject(typing_extensions.TypedDict, total=False):
+    fields: _list[SalesforceField]
+    objectName: str
+
+@typing.type_check_only
+class SalesforceObjectIdentifier(typing_extensions.TypedDict, total=False):
+    objectName: str
+
+@typing.type_check_only
+class SalesforceOrg(typing_extensions.TypedDict, total=False):
+    objects: _list[SalesforceObject]
+
+@typing.type_check_only
+class SalesforceProfile(typing_extensions.TypedDict, total=False):
+    domain: str
+    oauth2ClientCredentials: Oauth2ClientCredentials
+    userCredentials: UserCredentials
+
+@typing.type_check_only
+class SalesforceSourceConfig(typing_extensions.TypedDict, total=False):
+    excludeObjects: SalesforceOrg
+    includeObjects: SalesforceOrg
+    pollingInterval: str
+
+@typing.type_check_only
 class ServerAndClientVerification(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
@@ -494,25 +619,31 @@ class SingleTargetDataset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SourceConfig(typing_extensions.TypedDict, total=False):
+    mongodbSourceConfig: MongodbSourceConfig
     mysqlSourceConfig: MysqlSourceConfig
     oracleSourceConfig: OracleSourceConfig
     postgresqlSourceConfig: PostgresqlSourceConfig
+    salesforceSourceConfig: SalesforceSourceConfig
     sourceConnectionProfile: str
     sqlServerSourceConfig: SqlServerSourceConfig
 
 @typing.type_check_only
 class SourceHierarchyDatasets(typing_extensions.TypedDict, total=False):
     datasetTemplate: DatasetTemplate
+    projectId: str
 
 @typing.type_check_only
 class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
+    mongodbIdentifier: MongodbObjectIdentifier
     mysqlIdentifier: MysqlObjectIdentifier
     oracleIdentifier: OracleObjectIdentifier
     postgresqlIdentifier: PostgresqlObjectIdentifier
+    salesforceIdentifier: SalesforceObjectIdentifier
     sqlServerIdentifier: SqlServerObjectIdentifier
 
 @typing.type_check_only
 class SpecificStartPosition(typing_extensions.TypedDict, total=False):
+    mysqlGtidPosition: MysqlGtidPosition
     mysqlLogPosition: MysqlLogPosition
     oracleScnPosition: OracleScnPosition
     sqlServerLsnPosition: SqlServerLsnPosition
@@ -546,6 +677,7 @@ class SqlServerProfile(typing_extensions.TypedDict, total=False):
     hostname: str
     password: str
     port: int
+    secretManagerStoredPassword: str
     username: str
 
 @typing.type_check_only
@@ -573,6 +705,13 @@ class SqlServerTable(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SqlServerTransactionLogs(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SrvConnectionFormat(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class StandardConnectionFormat(typing_extensions.TypedDict, total=False):
+    directConnection: bool
 
 @typing.type_check_only
 class StartBackfillJobRequest(typing_extensions.TypedDict, total=False): ...
@@ -609,6 +748,8 @@ class Stream(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     lastRecoveryTime: str
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     sourceConfig: SourceConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -635,6 +776,14 @@ class StreamObject(typing_extensions.TypedDict, total=False):
     name: str
     sourceObject: SourceObjectIdentifier
     updateTime: str
+
+@typing.type_check_only
+class UserCredentials(typing_extensions.TypedDict, total=False):
+    password: str
+    secretManagerStoredPassword: str
+    secretManagerStoredSecurityToken: str
+    securityToken: str
+    username: str
 
 @typing.type_check_only
 class Validation(typing_extensions.TypedDict, total=False):

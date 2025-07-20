@@ -171,6 +171,7 @@ class DatalineageResource(googleapiclient.discovery.Resource):
                     name: str,
                     body: GoogleCloudDatacatalogLineageV1Process = ...,
                     allowMissing: bool = ...,
+                    requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDatacatalogLineageV1ProcessHttpRequest: ...

@@ -386,6 +386,89 @@ class IamResource(googleapiclient.discovery.Resource):
 
                             def operations(self) -> OperationsResource: ...
 
+                        def addAttestationRule(
+                            self,
+                            *,
+                            resource: str,
+                            body: AddAttestationRuleRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: WorkloadIdentityPoolManagedIdentity = ...,
+                            workloadIdentityPoolManagedIdentityId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> OperationHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> WorkloadIdentityPoolManagedIdentityHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            showDeleted: bool = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            ListWorkloadIdentityPoolManagedIdentitiesResponseHttpRequest
+                        ): ...
+                        def list_next(
+                            self,
+                            previous_request: ListWorkloadIdentityPoolManagedIdentitiesResponseHttpRequest,
+                            previous_response: ListWorkloadIdentityPoolManagedIdentitiesResponse,
+                        ) -> (
+                            ListWorkloadIdentityPoolManagedIdentitiesResponseHttpRequest
+                            | None
+                        ): ...
+                        def listAttestationRules(
+                            self,
+                            *,
+                            resource: str,
+                            filter: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> ListAttestationRulesResponseHttpRequest: ...
+                        def listAttestationRules_next(
+                            self,
+                            previous_request: ListAttestationRulesResponseHttpRequest,
+                            previous_response: ListAttestationRulesResponse,
+                        ) -> ListAttestationRulesResponseHttpRequest | None: ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: WorkloadIdentityPoolManagedIdentity = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def removeAttestationRule(
+                            self,
+                            *,
+                            resource: str,
+                            body: RemoveAttestationRuleRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def setAttestationRules(
+                            self,
+                            *,
+                            resource: str,
+                            body: SetAttestationRulesRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
+                        def undelete(
+                            self,
+                            *,
+                            name: str,
+                            body: UndeleteWorkloadIdentityPoolManagedIdentityRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
                         def operations(self) -> OperationsResource: ...
                         def workloadSources(self) -> WorkloadSourcesResource: ...
 
@@ -395,6 +478,51 @@ class IamResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> OperationHttpRequest: ...
 
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WorkloadIdentityPoolNamespace = ...,
+                        workloadIdentityPoolNamespaceId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WorkloadIdentityPoolNamespaceHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListWorkloadIdentityPoolNamespacesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWorkloadIdentityPoolNamespacesResponseHttpRequest,
+                        previous_response: ListWorkloadIdentityPoolNamespacesResponse,
+                    ) -> (
+                        ListWorkloadIdentityPoolNamespacesResponseHttpRequest | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: WorkloadIdentityPoolNamespace = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def undelete(
+                        self,
+                        *,
+                        name: str,
+                        body: UndeleteWorkloadIdentityPoolNamespaceRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def managedIdentities(self) -> ManagedIdentitiesResource: ...
                     def operations(self) -> OperationsResource: ...
 
@@ -524,6 +652,13 @@ class IamResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> WorkloadIdentityPoolHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -546,6 +681,20 @@ class IamResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def undelete(
                     self,
                     *,
@@ -816,6 +965,14 @@ class LintPolicyResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> LintPolicyResponse: ...
 
 @typing.type_check_only
+class ListAttestationRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAttestationRulesResponse: ...
+
+@typing.type_check_only
 class ListOauthClientCredentialsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -880,6 +1037,26 @@ class ListWorkforcePoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListWorkforcePoolsResponse: ...
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolManagedIdentitiesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkloadIdentityPoolManagedIdentitiesResponse: ...
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolNamespacesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkloadIdentityPoolNamespacesResponse: ...
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolProviderKeysResponseHttpRequest(
@@ -1052,6 +1229,22 @@ class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> WorkloadIdentityPool: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolManagedIdentityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadIdentityPoolManagedIdentity: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolNamespaceHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadIdentityPoolNamespace: ...
 
 @typing.type_check_only
 class WorkloadIdentityPoolProviderHttpRequest(googleapiclient.http.HttpRequest):

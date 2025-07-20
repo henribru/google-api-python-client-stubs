@@ -2397,6 +2397,18 @@ class GoogleAdsSearchads360V0Resources__CustomColumn(
 class GoogleAdsSearchads360V0Resources__Customer(
     typing_extensions.TypedDict, total=False
 ):
+    accountLevel: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "CLIENT_ACCOUNT_FACEBOOK",
+        "CLIENT_ACCOUNT_GOOGLE_ADS",
+        "CLIENT_ACCOUNT_MICROSOFT",
+        "CLIENT_ACCOUNT_YAHOO_JAPAN",
+        "CLIENT_ACCOUNT_ENGINE_TRACK",
+        "MANAGER",
+        "SUB_MANAGER",
+        "ASSOCIATE_MANAGER",
+    ]
     accountStatus: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "PAUSED", "SUSPENDED", "REMOVED", "DRAFT"
     ]
@@ -2412,6 +2424,8 @@ class GoogleAdsSearchads360V0Resources__Customer(
         "SEARCH_ADS_360",
         "YAHOO_JAPAN",
     ]
+    associateManagerDescriptiveName: str
+    associateManagerId: str
     autoTaggingEnabled: bool
     conversionTrackingSetting: (
         GoogleAdsSearchads360V0Resources__ConversionTrackingSetting
@@ -2427,10 +2441,14 @@ class GoogleAdsSearchads360V0Resources__Customer(
     id: str
     lastModifiedTime: str
     manager: bool
+    managerDescriptiveName: str
+    managerId: str
     resourceName: str
     status: typing_extensions.Literal[
         "UNSPECIFIED", "UNKNOWN", "ENABLED", "CANCELED", "SUSPENDED", "CLOSED"
     ]
+    subManagerDescriptiveName: str
+    subManagerId: str
     timeZone: str
     trackingUrlTemplate: str
 

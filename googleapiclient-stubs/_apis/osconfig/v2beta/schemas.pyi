@@ -34,6 +34,18 @@ class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     rolloutUpdateTime: str
 
 @typing.type_check_only
+class GoogleCloudOsconfigV2__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV2beta_OrchestrationScope_LocationSelector(
     typing_extensions.TypedDict, total=False
 ):
@@ -62,9 +74,9 @@ class GoogleCloudOsconfigV2beta_PolicyOrchestrator_IterationState(
     error: Status
     failedActions: str
     finishTime: str
+    iterationId: str
     performedActions: str
     progress: float
-    rolloutResource: str
     startTime: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "PROCESSING", "COMPLETED", "FAILED", "CANCELLED", "UNKNOWN"
@@ -131,6 +143,9 @@ class GoogleCloudOsconfigV2beta__PolicyOrchestrator(
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class MessageSet(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class OSPolicy(typing_extensions.TypedDict, total=False):
@@ -361,3 +376,11 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: MessageSet
+    space: str

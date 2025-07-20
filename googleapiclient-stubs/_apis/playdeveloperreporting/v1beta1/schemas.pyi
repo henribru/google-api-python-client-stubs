@@ -154,6 +154,13 @@ class GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1LmkRateMetricSet(
+    typing_extensions.TypedDict, total=False
+):
+    freshnessInfo: GooglePlayDeveloperReportingV1beta1FreshnessInfo
+    name: str
+
+@typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1MetricValue(
     typing_extensions.TypedDict, total=False
 ):
@@ -256,6 +263,27 @@ class GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetReques
 
 @typing.type_check_only
 class GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    rows: _list[GooglePlayDeveloperReportingV1beta1MetricsRow]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetRequest(
+    typing_extensions.TypedDict, total=False
+):
+    dimensions: _list[str]
+    filter: str
+    metrics: _list[str]
+    pageSize: int
+    pageToken: str
+    timelineSpec: GooglePlayDeveloperReportingV1beta1TimelineSpec
+    userCohort: typing_extensions.Literal[
+        "USER_COHORT_UNSPECIFIED", "OS_PUBLIC", "OS_BETA", "APP_TESTERS"
+    ]
+
+@typing.type_check_only
+class GooglePlayDeveloperReportingV1beta1QueryLmkRateMetricSetResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str

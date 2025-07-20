@@ -96,6 +96,7 @@ class TestingResource(googleapiclient.discovery.Resource):
                 "PROVIDED_SOFTWARE",
                 "DEVICE_IP_BLOCKS",
             ],
+            includeViewableModels: bool = ...,
             projectId: str = ...,
             **kwargs: typing.Any,
         ) -> TestEnvironmentCatalogHttpRequest: ...

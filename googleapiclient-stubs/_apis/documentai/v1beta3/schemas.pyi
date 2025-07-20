@@ -846,8 +846,10 @@ class GoogleCloudDocumentaiV1beta3DisableProcessorResponse(
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3Document(typing_extensions.TypedDict, total=False):
+    blobAssets: _list[GoogleCloudDocumentaiV1beta3DocumentBlobAsset]
     chunkedDocument: GoogleCloudDocumentaiV1beta3DocumentChunkedDocument
     content: str
+    docid: str
     documentLayout: GoogleCloudDocumentaiV1beta3DocumentDocumentLayout
     entities: _list[GoogleCloudDocumentaiV1beta3DocumentEntity]
     entityRelations: _list[GoogleCloudDocumentaiV1beta3DocumentEntityRelation]
@@ -862,6 +864,20 @@ class GoogleCloudDocumentaiV1beta3Document(typing_extensions.TypedDict, total=Fa
     uri: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentAnnotations(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentBlobAsset(
+    typing_extensions.TypedDict, total=False
+):
+    assetId: str
+    content: str
+    mimeType: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentChunkedDocument(
     typing_extensions.TypedDict, total=False
 ):
@@ -871,6 +887,9 @@ class GoogleCloudDocumentaiV1beta3DocumentChunkedDocument(
 class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk(
     typing_extensions.TypedDict, total=False
 ):
+    chunkFields: _list[
+        GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField
+    ]
     chunkId: str
     content: str
     pageFooters: _list[
@@ -881,6 +900,17 @@ class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunk(
     ]
     pageSpan: GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan
     sourceBlockIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    imageChunkField: (
+        GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField
+    )
+    tableChunkField: (
+        GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField
+    )
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageFooter(
@@ -904,6 +934,21 @@ class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkChunkPageSpan(
     pageStart: int
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkImageChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1beta3DocumentAnnotations
+    blobAssetId: str
+    dataUri: str
+    gcsUri: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentChunkedDocumentChunkTableChunkField(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1beta3DocumentAnnotations
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentDocumentLayout(
     typing_extensions.TypedDict, total=False
 ):
@@ -914,10 +959,23 @@ class GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlock(
     typing_extensions.TypedDict, total=False
 ):
     blockId: str
+    boundingBox: GoogleCloudDocumentaiV1beta3BoundingPoly
+    imageBlock: GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock
     listBlock: GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock
     pageSpan: GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutPageSpan
     tableBlock: GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock
     textBlock: GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTextBlock
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutImageBlock(
+    typing_extensions.TypedDict, total=False
+):
+    annotations: GoogleCloudDocumentaiV1beta3DocumentAnnotations
+    blobAssetId: str
+    dataUri: str
+    gcsUri: str
+    imageText: str
+    mimeType: str
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock(
@@ -945,6 +1003,7 @@ class GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayou
 class GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableBlock(
     typing_extensions.TypedDict, total=False
 ):
+    annotations: GoogleCloudDocumentaiV1beta3DocumentAnnotations
     bodyRows: _list[
         GoogleCloudDocumentaiV1beta3DocumentDocumentLayoutDocumentLayoutBlockLayoutTableRow
     ]
@@ -1004,6 +1063,7 @@ class GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue(
     floatValue: float
     integerValue: int
     moneyValue: GoogleTypeMoney
+    signatureValue: bool
     text: str
 
 @typing.type_check_only
@@ -1385,6 +1445,7 @@ class GoogleCloudDocumentaiV1beta3DocumentSchemaEntityTypeProperty(
 ):
     description: str
     displayName: str
+    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -1793,6 +1854,12 @@ class GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfig(
     typing_extensions.TypedDict, total=False
 ):
     chunkingConfig: GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig
+    enableImageAnnotation: bool
+    enableImageExtraction: bool
+    enableLlmLayoutParsing: bool
+    enableTableAnnotation: bool
+    returnBoundingBoxes: bool
+    returnImages: bool
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1beta3ProcessOptionsLayoutConfigChunkingConfig(

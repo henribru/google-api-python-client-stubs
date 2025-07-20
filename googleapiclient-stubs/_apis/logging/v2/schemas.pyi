@@ -5,16 +5,28 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: _list[AuditLogConfig]
-    service: str
+class AppHub(typing_extensions.TypedDict, total=False):
+    application: AppHubApplication
+    service: AppHubService
+    workload: AppHubWorkload
 
 @typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
+class AppHubApplication(typing_extensions.TypedDict, total=False):
+    container: str
+    id: str
+    location: str
+
+@typing.type_check_only
+class AppHubService(typing_extensions.TypedDict, total=False):
+    criticalityType: str
+    environmentType: str
+    id: str
+
+@typing.type_check_only
+class AppHubWorkload(typing_extensions.TypedDict, total=False):
+    criticalityType: str
+    environmentType: str
+    id: str
 
 @typing.type_check_only
 class BigQueryDataset(typing_extensions.TypedDict, total=False):
@@ -336,6 +348,8 @@ class LogBucket(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LogEntry(typing_extensions.TypedDict, total=False):
+    apphub: AppHub
+    apphubDestination: AppHub
     errorGroups: _list[LogErrorGroup]
     httpRequest: HttpRequest
     insertId: str
@@ -571,7 +585,6 @@ class OpsAnalyticsQuery(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
     etag: str
     version: int

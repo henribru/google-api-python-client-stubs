@@ -133,6 +133,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    results: _list[StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -296,6 +297,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     typing_extensions.TypedDict, total=False
 ):
+    goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule]
     images: _list[str]
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact
@@ -313,6 +315,17 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
     location: str
     paths: _list[str]
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
+    typing_extensions.TypedDict, total=False
+):
+    modulePath: str
+    moduleVersion: str
+    repositoryLocation: str
+    repositoryName: str
+    repositoryProjectId: str
+    sourcePath: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
@@ -347,6 +360,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
     availableSecrets: ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets
     buildTriggerId: str
     createTime: str
+    dependencies: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency]
     failureInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo
     finishTime: str
     gitConfig: ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig
@@ -421,6 +435,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool
+    enableStructuredLogging: bool
     env: _list[str]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
@@ -442,10 +457,11 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
         "E2_MEDIUM",
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
+    pubsubTopic: str
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
@@ -517,6 +533,30 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
+    typing_extensions.TypedDict, total=False
+):
+    empty: bool
+    gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
+    typing_extensions.TypedDict, total=False
+):
+    depth: str
+    destPath: str
+    recurseSubmodules: bool
+    repository: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository
+    revision: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository(
+    typing_extensions.TypedDict, total=False
+):
+    developerConnect: str
+    url: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -554,7 +594,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
     typing_extensions.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -585,6 +625,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact
@@ -671,6 +712,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 ):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
@@ -765,6 +814,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
     continuousAnalysis: typing_extensions.Literal[
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
+    files: _list[File]
     lastAnalysisTime: str
     lastScanTime: str
     sbomStatus: SBOMStatus
@@ -855,6 +905,11 @@ class ExternalRef(typing_extensions.TypedDict, total=False):
     comment: str
     locator: str
     type: str
+
+@typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    name: str
 
 @typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
@@ -1107,11 +1162,13 @@ class ListNoteOccurrencesResponse(typing_extensions.TypedDict, total=False):
 class ListNotesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     notes: _list[Note]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOccurrencesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     occurrences: _list[Occurrence]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -1520,6 +1577,12 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class StepResult(typing_extensions.TypedDict, total=False):
+    attestationContentName: str
+    attestationType: str
+    name: str
+
+@typing.type_check_only
 class Subject(typing_extensions.TypedDict, total=False):
     digest: dict[str, typing.Any]
     name: str
@@ -1600,6 +1663,7 @@ class VulnerabilityLocation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VulnerabilityOccurrencesSummary(typing_extensions.TypedDict, total=False):
     counts: _list[FixableTotalByDigest]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class WindowsDetail(typing_extensions.TypedDict, total=False):

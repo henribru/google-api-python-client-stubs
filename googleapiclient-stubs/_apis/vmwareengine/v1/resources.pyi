@@ -18,6 +18,27 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AnnouncementsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AnnouncementHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAnnouncementsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAnnouncementsResponseHttpRequest,
+                    previous_response: ListAnnouncementsResponse,
+                ) -> ListAnnouncementsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class DnsBindPermissionResource(googleapiclient.discovery.Resource):
                 def grant(
                     self,
@@ -533,6 +554,36 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
+                @typing.type_check_only
+                class UpgradesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> UpgradeHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListUpgradesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListUpgradesResponseHttpRequest,
+                        previous_response: ListUpgradesResponse,
+                    ) -> ListUpgradesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: Upgrade = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
                 def create(
                     self,
                     *,
@@ -651,6 +702,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                     self,
                 ) -> ManagementDnsZoneBindingsResource: ...
                 def subnets(self) -> SubnetsResource: ...
+                def upgrades(self) -> UpgradesResource: ...
 
             @typing.type_check_only
             class PrivateConnectionsResource(googleapiclient.discovery.Resource):
@@ -770,6 +822,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -780,6 +833,7 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def announcements(self) -> AnnouncementsResource: ...
             def dnsBindPermission(self) -> DnsBindPermissionResource: ...
             def networkPeerings(self) -> NetworkPeeringsResource: ...
             def networkPolicies(self) -> NetworkPoliciesResource: ...
@@ -804,6 +858,14 @@ class VMwareEngineResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
+
+@typing.type_check_only
+class AnnouncementHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Announcement: ...
 
 @typing.type_check_only
 class ClusterHttpRequest(googleapiclient.http.HttpRequest):
@@ -878,6 +940,14 @@ class HcxActivationKeyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> HcxActivationKey: ...
+
+@typing.type_check_only
+class ListAnnouncementsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAnnouncementsResponse: ...
 
 @typing.type_check_only
 class ListClustersResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1020,6 +1090,14 @@ class ListSubnetsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListSubnetsResponse: ...
 
 @typing.type_check_only
+class ListUpgradesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListUpgradesResponse: ...
+
+@typing.type_check_only
 class ListVmwareEngineNetworksResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1130,6 +1208,14 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class UpgradeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Upgrade: ...
 
 @typing.type_check_only
 class VmwareEngineNetworkHttpRequest(googleapiclient.http.HttpRequest):

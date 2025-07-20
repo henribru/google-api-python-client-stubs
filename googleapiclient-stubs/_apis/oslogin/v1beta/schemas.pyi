@@ -8,6 +8,21 @@ _list = list
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyRequest(
+    typing_extensions.TypedDict, total=False
+):
+    appEngineInstance: str
+    computeInstance: str
+    serviceAccount: str
+    sshPublicKey: str
+
+@typing.type_check_only
+class GoogleCloudOsloginControlplaneRegionalV1betaSignSshPublicKeyResponse(
+    typing_extensions.TypedDict, total=False
+):
+    signedSshPublicKey: str
+
+@typing.type_check_only
 class ImportSshPublicKeyResponse(typing_extensions.TypedDict, total=False):
     details: str
     loginProfile: LoginProfile
@@ -34,6 +49,10 @@ class PosixAccount(typing_extensions.TypedDict, total=False):
     systemId: str
     uid: str
     username: str
+
+@typing.type_check_only
+class ProvisionPosixAccountRequest(typing_extensions.TypedDict, total=False):
+    regions: _list[str]
 
 @typing.type_check_only
 class SecurityKey(typing_extensions.TypedDict, total=False):

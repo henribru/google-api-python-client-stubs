@@ -18,6 +18,9 @@ class Entitlement(typing_extensions.TypedDict, total=False):
 class Reader(typing_extensions.TypedDict, total=False):
     createTime: str
     name: str
+    originatingPublicationId: str
+    ppid: str
+    publicationId: str
 
 @typing.type_check_only
 class ReaderEntitlements(typing_extensions.TypedDict, total=False):

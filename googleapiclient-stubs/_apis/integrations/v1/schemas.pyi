@@ -1047,6 +1047,7 @@ class EnterpriseCrmEventbusProtoTaskAlertConfig(
 class EnterpriseCrmEventbusProtoTaskExecutionDetails(
     typing_extensions.TypedDict, total=False
 ):
+    skippedOnFailure: bool
     taskAttemptStats: _list[
         EnterpriseCrmEventbusProtoTaskExecutionDetailsTaskAttemptStats
     ]
@@ -1850,6 +1851,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     description: str
     destinationConfigs: _list[GoogleCloudConnectorsV1DestinationConfig]
     envoyImageLocation: str
+    euaOauthAuthConfig: GoogleCloudConnectorsV1AuthConfig
     eventingConfig: GoogleCloudConnectorsV1EventingConfig
     eventingEnablementType: typing_extensions.Literal[
         "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
@@ -1857,6 +1859,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
         "ONLY_EVENTING",
     ]
     eventingRuntimeData: GoogleCloudConnectorsV1EventingRuntimeData
+    fallbackOnAdminCredentials: bool
     host: str
     imageLocation: str
     isTrustedTester: bool
@@ -1874,6 +1877,7 @@ class GoogleCloudConnectorsV1Connection(typing_extensions.TypedDict, total=False
     ]
     suspended: bool
     tlsServiceDirectory: str
+    trafficShapingConfigs: _list[GoogleCloudConnectorsV1TrafficShapingConfig]
     updateTime: str
 
 @typing.type_check_only
@@ -1940,16 +1944,23 @@ class GoogleCloudConnectorsV1EncryptionKey(typing_extensions.TypedDict, total=Fa
     ]
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1EnrichmentConfig(typing_extensions.TypedDict, total=False):
+    appendAcl: bool
+
+@typing.type_check_only
 class GoogleCloudConnectorsV1EventingConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[GoogleCloudConnectorsV1ConfigVariable]
     authConfig: GoogleCloudConnectorsV1AuthConfig
     deadLetterConfig: GoogleCloudConnectorsV1EventingConfigDeadLetterConfig
+    enrichmentConfig: GoogleCloudConnectorsV1EnrichmentConfig
     enrichmentEnabled: bool
     eventsListenerIngressEndpoint: str
     listenerAuthConfig: GoogleCloudConnectorsV1AuthConfig
+    privateConnectivityAllowlistedProjects: _list[str]
     privateConnectivityEnabled: bool
     proxyDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
     registrationDestinationConfig: GoogleCloudConnectorsV1DestinationConfig
+    sslConfig: GoogleCloudConnectorsV1SslConfig
 
 @typing.type_check_only
 class GoogleCloudConnectorsV1EventingConfigDeadLetterConfig(
@@ -2040,6 +2051,13 @@ class GoogleCloudConnectorsV1SslConfig(typing_extensions.TypedDict, total=False)
     useSsl: bool
 
 @typing.type_check_only
+class GoogleCloudConnectorsV1TrafficShapingConfig(
+    typing_extensions.TypedDict, total=False
+):
+    duration: str
+    quotaLimit: str
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaAccessToken(
     typing_extensions.TypedDict, total=False
 ):
@@ -2048,6 +2066,17 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     refreshToken: str
     refreshTokenExpireTime: str
     tokenType: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaAgentFlow(typing_extensions.TypedDict, total=False):
+    createTime: str
+    creator: str
+    description: str
+    displayName: str
+    flowConfig: str
+    name: str
+    noCodeAgent: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaApiTriggerResource(
@@ -2176,6 +2205,19 @@ class GoogleCloudIntegrationsV1alphaCertificate(
     validStartTime: str
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaChangeCustomerConfigRequest(
+    typing_extensions.TypedDict, total=False
+):
+    customerConfig: GoogleCloudIntegrationsV1alphaCustomerConfig
+    updateMask: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaChangeCustomerConfigResponse(
+    typing_extensions.TypedDict, total=False
+):
+    customerConfig: GoogleCloudIntegrationsV1alphaCustomerConfig
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaClientCertificate(
     typing_extensions.TypedDict, total=False
 ):
@@ -2198,8 +2240,11 @@ class GoogleCloudIntegrationsV1alphaClientConfig(
     ]
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
     createTime: str
+    customerConfig: GoogleCloudIntegrationsV1alphaCustomerConfig
     description: str
+    enableHttpCall: bool
     enableInternalIp: bool
+    enableManagedAiFeatures: bool
     enableVariableMasking: bool
     id: str
     isGmek: bool
@@ -2276,6 +2321,9 @@ class GoogleCloudIntegrationsV1alphaCreateCloudFunctionRequest(
 ):
     functionName: str
     functionRegion: str
+    gcfApiVersion: typing_extensions.Literal[
+        "GCF_API_VERSION_UNSPECIFIED", "API_VERSION_V1", "API_VERSION_V2"
+    ]
     projectId: str
 
 @typing.type_check_only
@@ -2312,6 +2360,16 @@ class GoogleCloudIntegrationsV1alphaCredential(
     oidcToken: GoogleCloudIntegrationsV1alphaOidcToken
     serviceAccountCredentials: GoogleCloudIntegrationsV1alphaServiceAccountCredentials
     usernameAndPassword: GoogleCloudIntegrationsV1alphaUsernameAndPassword
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaCustomerConfig(
+    typing_extensions.TypedDict, total=False
+):
+    cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
+    enableHttpCall: bool
+    enableManagedAiFeatures: bool
+    enableVariableMasking: bool
+    runAsServiceAccount: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaDeprovisionClientRequest(
@@ -2407,6 +2465,7 @@ class GoogleCloudIntegrationsV1alphaExecuteIntegrationsResponse(
     executionId: str
     outputParameters: dict[str, typing.Any]
     parameterEntries: _list[EnterpriseCrmFrontendsEventbusProtoParameterEntry]
+    parameters: dict[str, typing.Any]
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest(
@@ -2440,6 +2499,7 @@ class GoogleCloudIntegrationsV1alphaExecuteTestCasesResponse(
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaExecution(typing_extensions.TypedDict, total=False):
+    cloudKmsKey: str
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
     directSubExecutions: _list[GoogleCloudIntegrationsV1alphaExecution]
@@ -2543,6 +2603,34 @@ class GoogleCloudIntegrationsV1alphaFile(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateAgentFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    creator: str
+    description: str
+    displayName: str
+    intent: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateAgentFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentFlow: GoogleCloudIntegrationsV1alphaAgentFlow
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    intent: str
+    updater: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentFlow: GoogleCloudIntegrationsV1alphaAgentFlow
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2578,7 +2666,6 @@ class GoogleCloudIntegrationsV1alphaImportTemplateRequest(
     typing_extensions.TypedDict, total=False
 ):
     integration: str
-    integrationRegion: str
     subIntegrations: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -2690,6 +2777,7 @@ class GoogleCloudIntegrationsV1alphaIntegrationParameter(
 class GoogleCloudIntegrationsV1alphaIntegrationVersion(
     typing_extensions.TypedDict, total=False
 ):
+    cloudKmsKey: str
     cloudLoggingDetails: GoogleCloudIntegrationsV1alphaCloudLoggingDetails
     createTime: str
     createdFromTemplate: str
@@ -2771,6 +2859,13 @@ class GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
     scriptId: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaListAgentFlowsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    agentFlows: _list[GoogleCloudIntegrationsV1alphaAgentFlow]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListAuthConfigsResponse(
@@ -2857,13 +2952,6 @@ class GoogleCloudIntegrationsV1alphaListTemplatesResponse(
 ):
     nextPageToken: str
     templates: _list[GoogleCloudIntegrationsV1alphaTemplate]
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListTestCaseExecutionsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    executions: _list[GoogleCloudIntegrationsV1alphaExecution]
-    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListTestCasesResponse(
@@ -3030,11 +3118,30 @@ class GoogleCloudIntegrationsV1alphaProjectProperties(
     provisionedRegions: _list[str]
 
 @typing.type_check_only
+class GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorRequest(
+    typing_extensions.TypedDict, total=False
+):
+    workflows: _list[
+        typing_extensions.Literal[
+            "SAMPLE_INTEGRATIONS_UNSPECIFIED",
+            "SAMPLE_WORKFLOW_ECOM_PROCESSING",
+            "EXECUTE_CONNECTOR_TOOL_WORKFLOW",
+        ]
+    ]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaProvisionClientPostProcessorResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaProvisionClientRequest(
     typing_extensions.TypedDict, total=False
 ):
     cloudKmsConfig: GoogleCloudIntegrationsV1alphaCloudKmsConfig
     createSampleWorkflows: bool
+    enableHttpCall: bool
+    enableManagedAiFeatures: bool
     provisionGmek: bool
     runAsServiceAccount: str
     skipCpProvision: bool
@@ -3060,7 +3167,14 @@ class GoogleCloudIntegrationsV1alphaReplaceServiceAccountRequest(
 class GoogleCloudIntegrationsV1alphaReplayExecutionRequest(
     typing_extensions.TypedDict, total=False
 ):
+    modifiedParameters: dict[str, typing.Any]
+    replayMode: typing_extensions.Literal[
+        "REPLAY_MODE_UNSPECIFIED",
+        "REPLAY_MODE_FROM_BEGINNING",
+        "REPLAY_MODE_POINT_OF_FAILURE",
+    ]
     replayReason: str
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaReplayExecutionResponse(
@@ -3114,6 +3228,30 @@ class GoogleCloudIntegrationsV1alphaScheduleIntegrationsResponse(
     typing_extensions.TypedDict, total=False
 ):
     executionInfoIds: _list[str]
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSearchIntegrationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    integrations: _list[
+        GoogleCloudIntegrationsV1alphaSearchIntegrationsResponseIntegrationSearchResult
+    ]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaSearchIntegrationsResponseIntegrationSearchResult(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    creator: str
+    description: str
+    id: str
+    name: str
+    region: str
+    status: typing_extensions.Literal[
+        "INTEGRATION_STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "ARCHIVED", "SNAPSHOT"
+    ]
+    version: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaSearchTemplatesResponse(
@@ -3422,6 +3560,12 @@ class GoogleCloudIntegrationsV1alphaTestTaskConfig(
     task: str
     taskConfig: GoogleCloudIntegrationsV1alphaTaskConfig
     taskNumber: str
+
+@typing.type_check_only
+class GoogleCloudIntegrationsV1alphaToggleHttpRequest(
+    typing_extensions.TypedDict, total=False
+):
+    enableHttpCall: bool
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaTriggerConfig(

@@ -12,7 +12,11 @@ class AlloyDbConnectionProfile(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AlloyDbSettings(typing_extensions.TypedDict, total=False):
     databaseVersion: typing_extensions.Literal[
-        "DATABASE_VERSION_UNSPECIFIED", "POSTGRES_14", "POSTGRES_15", "POSTGRES_16"
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
     ]
     encryptionConfig: EncryptionConfig
     initialUser: UserPassword
@@ -112,9 +116,11 @@ class CloudSqlSettings(typing_extensions.TypedDict, total=False):
     cmekKeyName: str
     collation: str
     dataCacheConfig: DataCacheConfig
+    dataDiskProvisionedIops: str
+    dataDiskProvisionedThroughput: str
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
-        "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD"
+        "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD", "HYPERDISK_BALANCED"
     ]
     databaseFlags: dict[str, typing.Any]
     databaseVersion: typing_extensions.Literal[
@@ -166,6 +172,7 @@ class ColumnEntity(typing_extensions.TypedDict, total=False):
     charset: str
     collation: str
     comment: str
+    computed: bool
     customFeatures: dict[str, typing.Any]
     dataType: str
     defaultValue: str
@@ -240,6 +247,14 @@ class ConstraintEntity(typing_extensions.TypedDict, total=False):
 class ConversionWorkspace(typing_extensions.TypedDict, total=False):
     createTime: str
     destination: DatabaseEngineInfo
+    destinationProvider: typing_extensions.Literal[
+        "DATABASE_PROVIDER_UNSPECIFIED",
+        "CLOUDSQL",
+        "RDS",
+        "AURORA",
+        "ALLOYDB",
+        "AZURE_DATABASE",
+    ]
     displayName: str
     globalSettings: dict[str, typing.Any]
     hasUncommittedChanges: bool
@@ -247,6 +262,14 @@ class ConversionWorkspace(typing_extensions.TypedDict, total=False):
     latestCommitTime: str
     name: str
     source: DatabaseEngineInfo
+    sourceProvider: typing_extensions.Literal[
+        "DATABASE_PROVIDER_UNSPECIFIED",
+        "CLOUDSQL",
+        "RDS",
+        "AURORA",
+        "ALLOYDB",
+        "AZURE_DATABASE",
+    ]
     updateTime: str
 
 @typing.type_check_only
@@ -381,7 +404,13 @@ class EncryptionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EntityDdl(typing_extensions.TypedDict, total=False):
     ddl: str
+    ddlKind: typing_extensions.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
     ddlType: str
+    editedDdlKind: typing_extensions.Literal[
+        "DDL_KIND_UNSPECIFIED", "SOURCE", "DETERMINISTIC", "AI", "USER_EDIT"
+    ]
     entity: str
     entityType: typing_extensions.Literal[
         "DATABASE_ENTITY_TYPE_UNSPECIFIED",
@@ -542,6 +571,7 @@ class GoogleCloudClouddmsV1OperationMetadata(typing_extensions.TypedDict, total=
     apiVersion: str
     createTime: str
     endTime: str
+    metadata: dict[str, typing.Any]
     requestedCancellation: bool
     statusMessage: str
     target: str
@@ -659,6 +689,7 @@ class LookupMigrationJobObjectRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MachineConfig(typing_extensions.TypedDict, total=False):
     cpuCount: int
+    machineType: str
 
 @typing.type_check_only
 class MappingRule(typing_extensions.TypedDict, total=False):
@@ -750,6 +781,7 @@ class MigrationJob(typing_extensions.TypedDict, total=False):
     source: str
     sourceDatabase: DatabaseType
     sqlserverHomogeneousMigrationJobConfig: SqlServerHomogeneousMigrationJobConfig
+    sqlserverToPostgresConfig: SqlServerToPostgresConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "MAINTENANCE",
@@ -992,6 +1024,7 @@ class PrivateConnection(typing_extensions.TypedDict, total=False):
     error: Status
     labels: dict[str, typing.Any]
     name: str
+    pscInterfaceConfig: PscInterfaceConfig
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal[
@@ -1017,6 +1050,10 @@ class PrivateServiceConnectConnectivity(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class PromoteMigrationJobRequest(typing_extensions.TypedDict, total=False):
     objectsFilter: MigrationJobObjectsConfig
+
+@typing.type_check_only
+class PscInterfaceConfig(typing_extensions.TypedDict, total=False):
+    networkAttachment: str
 
 @typing.type_check_only
 class RestartMigrationJobRequest(typing_extensions.TypedDict, total=False):
@@ -1132,7 +1169,11 @@ class SourceObjectConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SourceObjectIdentifier(typing_extensions.TypedDict, total=False):
     database: str
-    type: typing_extensions.Literal["MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED", "DATABASE"]
+    schema: str
+    table: str
+    type: typing_extensions.Literal[
+        "MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED", "DATABASE", "SCHEMA", "TABLE"
+    ]
 
 @typing.type_check_only
 class SourceObjectsConfig(typing_extensions.TypedDict, total=False):
@@ -1174,6 +1215,7 @@ class SqlServerBackups(typing_extensions.TypedDict, total=False):
 class SqlServerConnectionProfile(typing_extensions.TypedDict, total=False):
     backups: SqlServerBackups
     cloudSqlId: str
+    database: str
     forwardSshConnectivity: ForwardSshTunnelConnectivity
     host: str
     password: str
@@ -1204,6 +1246,18 @@ class SqlServerHomogeneousMigrationJobConfig(typing_extensions.TypedDict, total=
     useDiffBackup: bool
 
 @typing.type_check_only
+class SqlServerSourceConfig(typing_extensions.TypedDict, total=False):
+    cdcStartPosition: str
+    maxConcurrentCdcConnections: int
+    maxConcurrentFullDumpConnections: int
+    skipFullDump: bool
+
+@typing.type_check_only
+class SqlServerToPostgresConfig(typing_extensions.TypedDict, total=False):
+    postgresDestinationConfig: PostgresDestinationConfig
+    sqlserverSourceConfig: SqlServerSourceConfig
+
+@typing.type_check_only
 class SshScript(typing_extensions.TypedDict, total=False):
     script: str
 
@@ -1212,6 +1266,7 @@ class SslConfig(typing_extensions.TypedDict, total=False):
     caCertificate: str
     clientCertificate: str
     clientKey: str
+    sslFlags: dict[str, typing.Any]
     type: typing_extensions.Literal[
         "SSL_TYPE_UNSPECIFIED", "SERVER_ONLY", "SERVER_CLIENT", "REQUIRED", "NONE"
     ]

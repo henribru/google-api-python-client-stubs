@@ -32,6 +32,25 @@ class DefaultRule(typing_extensions.TypedDict, total=False):
     takeFromDataSources: _list[DataSourceReference]
 
 @typing.type_check_only
+class Destination(typing_extensions.TypedDict, total=False):
+    destination: typing_extensions.Literal[
+        "DESTINATION_ENUM_UNSPECIFIED",
+        "SHOPPING_ADS",
+        "DISPLAY_ADS",
+        "LOCAL_INVENTORY_ADS",
+        "FREE_LISTINGS",
+        "FREE_LOCAL_LISTINGS",
+        "YOUTUBE_SHOPPING",
+        "YOUTUBE_SHOPPING_CHECKOUT",
+        "YOUTUBE_AFFILIATE",
+        "FREE_VEHICLE_LISTINGS",
+        "VEHICLE_ADS",
+        "CLOUD_RETAIL",
+        "LOCAL_CLOUD_RETAIL",
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -114,6 +133,7 @@ class PrimaryProductDataSource(typing_extensions.TypedDict, total=False):
     contentLanguage: str
     countries: _list[str]
     defaultRule: DefaultRule
+    destinations: _list[Destination]
     feedLabel: str
 
 @typing.type_check_only
@@ -134,6 +154,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -150,6 +171,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str

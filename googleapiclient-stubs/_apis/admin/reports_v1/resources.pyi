@@ -42,6 +42,7 @@ class ReportsResource(googleapiclient.discovery.Resource):
                 "data_studio",
                 "keep",
                 "vault",
+                "gemini_in_workspace_apps",
             ],
             actorIpAddress: str = ...,
             customerId: str = ...,

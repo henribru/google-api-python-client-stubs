@@ -95,6 +95,7 @@ class GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfig(
     typing_extensions.TypedDict, total=False
 ):
     conversationProfile: str
+    generator: str
     summarizationModel: typing_extensions.Literal[
         "SUMMARIZATION_MODEL_UNSPECIFIED", "BASELINE_MODEL", "BASELINE_MODEL_V2_0"
     ]
@@ -113,6 +114,11 @@ class GoogleCloudContactcenterinsightsV1AnswerFeedback(
     displayed: bool
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AppealAssessmentRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ArticleSuggestionData(
     typing_extensions.TypedDict, total=False
 ):
@@ -122,6 +128,49 @@ class GoogleCloudContactcenterinsightsV1ArticleSuggestionData(
     source: str
     title: str
     uri: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1Assessment(
+    typing_extensions.TypedDict, total=False
+):
+    agentInfo: GoogleCloudContactcenterinsightsV1ConversationQualityMetadataAgentInfo
+    createTime: str
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DRAFT", "PUBLISHED", "APPEALED", "FINALIZED"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AssessmentRule(
+    typing_extensions.TypedDict, total=False
+):
+    active: bool
+    createTime: str
+    displayName: str
+    name: str
+    sampleRule: GoogleCloudContactcenterinsightsV1SampleRule
+    scheduleInfo: GoogleCloudContactcenterinsightsV1ScheduleInfo
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AuthorizedView(
+    typing_extensions.TypedDict, total=False
+):
+    conversationFilter: str
+    createTime: str
+    displayName: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1AuthorizedViewSet(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadata(
@@ -175,6 +224,25 @@ class GoogleCloudContactcenterinsightsV1BulkDeleteConversationsResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDeleteFeedbackLabelsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -199,12 +267,16 @@ class GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequest(
 ):
     conversationFilter: str
     feedbackLabelType: typing_extensions.Literal[
-        "FEEDBACK_LABEL_TYPE_UNSPECIFIED", "QUALITY_AI", "TOPIC_MODELING"
+        "FEEDBACK_LABEL_TYPE_UNSPECIFIED",
+        "QUALITY_AI",
+        "TOPIC_MODELING",
+        "AGENT_ASSIST_SUMMARY",
     ]
     filter: str
     gcsDestination: GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestGcsDestination
     maxDownloadCount: int
     parent: str
+    sheetsDestination: GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination
     templateQaScorecardId: _list[str]
 
 @typing.type_check_only
@@ -218,6 +290,13 @@ class GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestGcsDest
     recordsPerFileCount: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsRequestSheetsDestination(
+    typing_extensions.TypedDict, total=False
+):
+    sheetTitle: str
+    spreadsheetUri: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1BulkDownloadFeedbackLabelsResponse(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -229,6 +308,9 @@ class GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequest(
     gcsSource: (
         GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSource
     )
+    sheetsSource: (
+        GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource
+    )
     validateOnly: bool
 
 @typing.type_check_only
@@ -239,10 +321,22 @@ class GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestGcsSource
     objectUri: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1BulkUploadFeedbackLabelsRequestSheetsSource(
+    typing_extensions.TypedDict, total=False
+):
+    spreadsheetUri: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponse(
     typing_extensions.TypedDict, total=False
 ):
     currentStats: GoogleCloudContactcenterinsightsV1IssueModelLabelStats
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1CalculateStatsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1CalculateStatsResponse(
@@ -333,6 +427,7 @@ class GoogleCloudContactcenterinsightsV1ConversationDataSource(
 ):
     dialogflowSource: GoogleCloudContactcenterinsightsV1DialogflowSource
     gcsSource: GoogleCloudContactcenterinsightsV1GcsSource
+    metadataUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ConversationLevelSentiment(
@@ -392,6 +487,7 @@ class GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionData(
     answerRecord: str
     confidence: float
     conversationModel: str
+    generatorId: str
     metadata: dict[str, typing.Any]
     text: str
     textSections: dict[str, typing.Any]
@@ -475,6 +571,18 @@ class GoogleCloudContactcenterinsightsV1CreateIssueRequest(
     parent: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1Dataset(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    ttl: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EVAL", "LIVE"]
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -484,6 +592,20 @@ class GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadata(
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1DeleteIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1DeleteQaQuestionTagMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1DeleteQaQuestionTagRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1DeleteQaQuestionTagRequest(
     typing_extensions.TypedDict, total=False
 ):
     name: str
@@ -542,11 +664,13 @@ class GoogleCloudContactcenterinsightsV1Dimension(
     dimensionKey: typing_extensions.Literal[
         "DIMENSION_KEY_UNSPECIFIED",
         "ISSUE",
+        "ISSUE_NAME",
         "AGENT",
         "AGENT_TEAM",
         "QA_QUESTION_ID",
         "QA_QUESTION_ANSWER_VALUE",
         "CONVERSATION_PROFILE_ID",
+        "MEDIUM",
     ]
     issueDimensionMetadata: (
         GoogleCloudContactcenterinsightsV1DimensionIssueDimensionMetadata
@@ -640,8 +764,10 @@ class GoogleCloudContactcenterinsightsV1ExactMatchConfig(
 class GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    completedExportCount: int
     createTime: str
     endTime: str
+    failedExportCount: int
     partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest
 
@@ -652,6 +778,17 @@ class GoogleCloudContactcenterinsightsV1ExportInsightsDataRequest(
     bigQueryDestination: (
         GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestination
     )
+    exportSchemaVersion: typing_extensions.Literal[
+        "EXPORT_SCHEMA_VERSION_UNSPECIFIED",
+        "EXPORT_V1",
+        "EXPORT_V2",
+        "EXPORT_V3",
+        "EXPORT_V4",
+        "EXPORT_V5",
+        "EXPORT_V6",
+        "EXPORT_V7",
+        "EXPORT_VERSION_LATEST_AVAILABLE",
+    ]
     filter: str
     kmsKey: str
     parent: str
@@ -721,6 +858,11 @@ class GoogleCloudContactcenterinsightsV1FeedbackLabel(
     name: str
     qaAnswerLabel: GoogleCloudContactcenterinsightsV1QaAnswerAnswerValue
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1FinalizeAssessmentRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1GcsSource(
@@ -807,6 +949,7 @@ class GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationCo
 class GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource(
     typing_extensions.TypedDict, total=False
 ):
+    audioBucketUri: str
     bucketObjectType: typing_extensions.Literal[
         "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
     ]
@@ -961,6 +1104,34 @@ class GoogleCloudContactcenterinsightsV1ListAnalysisRulesResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAssessmentRulesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assessmentRules: _list[GoogleCloudContactcenterinsightsV1AssessmentRule]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAssessmentsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assessments: _list[GoogleCloudContactcenterinsightsV1Assessment]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAuthorizedViewSetsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    authorizedViewSets: _list[GoogleCloudContactcenterinsightsV1AuthorizedViewSet]
+    nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListAuthorizedViewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    authorizedViews: _list[GoogleCloudContactcenterinsightsV1AuthorizedView]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListConversationsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -987,11 +1158,25 @@ class GoogleCloudContactcenterinsightsV1ListIssuesResponse(
     issues: _list[GoogleCloudContactcenterinsightsV1Issue]
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListNotesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    notes: _list[GoogleCloudContactcenterinsightsV1Note]
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
     phraseMatchers: _list[GoogleCloudContactcenterinsightsV1PhraseMatcher]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ListQaQuestionTagsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    qaQuestionTags: _list[GoogleCloudContactcenterinsightsV1QaQuestionTag]
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1ListQaQuestionsResponse(
@@ -1020,6 +1205,34 @@ class GoogleCloudContactcenterinsightsV1ListViewsResponse(
 ):
     nextPageToken: str
     views: _list[GoogleCloudContactcenterinsightsV1View]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1Note(typing_extensions.TypedDict, total=False):
+    assessmentNote: GoogleCloudContactcenterinsightsV1NoteAssessmentNote
+    content: str
+    conversationTurnNote: GoogleCloudContactcenterinsightsV1NoteConversationTurnNote
+    createTime: str
+    name: str
+    noteCreator: GoogleCloudContactcenterinsightsV1UserInfo
+    qaQuestionNote: GoogleCloudContactcenterinsightsV1NoteQaQuestionNote
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1NoteAssessmentNote(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1NoteConversationTurnNote(
+    typing_extensions.TypedDict, total=False
+):
+    turnIndex: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1NoteQaQuestionNote(
+    typing_extensions.TypedDict, total=False
+):
+    qaQuestion: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1PhraseMatchData(
@@ -1072,6 +1285,11 @@ class GoogleCloudContactcenterinsightsV1PhraseMatcher(
     versionTag: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1PublishAssessmentRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1QaAnswer(
     typing_extensions.TypedDict, total=False
 ):
@@ -1115,7 +1333,13 @@ class GoogleCloudContactcenterinsightsV1QaQuestion(
     metrics: GoogleCloudContactcenterinsightsV1QaQuestionMetrics
     name: str
     order: int
+    predefinedQuestionConfig: (
+        GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig
+    )
     questionBody: str
+    questionType: typing_extensions.Literal[
+        "QA_QUESTION_TYPE_UNSPECIFIED", "CUSTOMIZABLE", "PREDEFINED"
+    ]
     tags: _list[str]
     tuningMetadata: GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadata
     updateTime: str
@@ -1136,6 +1360,26 @@ class GoogleCloudContactcenterinsightsV1QaQuestionMetrics(
     typing_extensions.TypedDict, total=False
 ):
     accuracy: float
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
+        "CONVERSATION_OUTCOME",
+        "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
+    ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QaQuestionTag(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    name: str
+    qaQuestionIds: _list[str]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1QaQuestionTuningMetadata(
@@ -1160,6 +1404,7 @@ class GoogleCloudContactcenterinsightsV1QaScorecard(
     createTime: str
     description: str
     displayName: str
+    isDefault: bool
     name: str
     updateTime: str
 
@@ -1217,6 +1462,13 @@ class GoogleCloudContactcenterinsightsV1QaScorecardRevision(
         "DELETING",
         "TRAINING_CANCELLED",
     ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QueryInterval(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1QueryMetricsMetadata(
@@ -1298,6 +1550,34 @@ class GoogleCloudContactcenterinsightsV1QueryMetricsResponseSliceTimeSeries(
     ]
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewRequest(
+    typing_extensions.TypedDict, total=False
+):
+    agentPerformanceSource: (
+        GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewRequestAgentSource
+    )
+    comparisonQueryInterval: GoogleCloudContactcenterinsightsV1QueryInterval
+    filter: str
+    queryInterval: GoogleCloudContactcenterinsightsV1QueryInterval
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewRequestAgentSource(
+    typing_extensions.TypedDict, total=False
+):
+    agentId: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1QueryPerformanceOverviewResponse(
+    typing_extensions.TypedDict, total=False
+):
+    summaryText: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1RedactionConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -1332,6 +1612,61 @@ class GoogleCloudContactcenterinsightsV1RuntimeAnnotationUserInput(
     querySource: typing_extensions.Literal[
         "QUERY_SOURCE_UNSPECIFIED", "AGENT_QUERY", "SUGGESTED_QUERY"
     ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SampleConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1SampleConversationsRequest
+    sampleConversationsStats: GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SampleConversationsMetadataSampleConversationsStats(
+    typing_extensions.TypedDict, total=False
+):
+    failedSampleCount: int
+    successfulSampleCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SampleConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    destinationDataset: GoogleCloudContactcenterinsightsV1Dataset
+    parent: str
+    sampleRule: GoogleCloudContactcenterinsightsV1SampleRule
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SampleConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SampleRule(
+    typing_extensions.TypedDict, total=False
+):
+    conversationFilter: str
+    dimension: str
+    samplePercentage: float
+    sampleRow: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1ScheduleInfo(
+    typing_extensions.TypedDict, total=False
+):
+    endTime: str
+    schedule: str
+    startTime: str
+    timeZone: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1SearchAuthorizedViewsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    authorizedViews: _list[GoogleCloudContactcenterinsightsV1AuthorizedView]
+    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1SentimentData(
@@ -1423,6 +1758,21 @@ class GoogleCloudContactcenterinsightsV1UndeployQaScorecardRevisionRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1UpdateQaQuestionTagMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1UpdateQaQuestionTagRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1UpdateQaQuestionTagRequest(
+    typing_extensions.TypedDict, total=False
+):
+    qaQuestionTag: GoogleCloudContactcenterinsightsV1QaQuestionTag
+    updateMask: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1UploadConversationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1441,6 +1791,12 @@ class GoogleCloudContactcenterinsightsV1UploadConversationRequest(
     parent: str
     redactionConfig: GoogleCloudContactcenterinsightsV1RedactionConfig
     speechConfig: GoogleCloudContactcenterinsightsV1SpeechConfig
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1UserInfo(
+    typing_extensions.TypedDict, total=False
+):
+    username: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1View(typing_extensions.TypedDict, total=False):
@@ -1530,6 +1886,7 @@ class GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConf
     typing_extensions.TypedDict, total=False
 ):
     conversationProfile: str
+    generator: str
     summarizationModel: typing_extensions.Literal[
         "SUMMARIZATION_MODEL_UNSPECIFIED", "BASELINE_MODEL", "BASELINE_MODEL_V2_0"
     ]
@@ -1610,6 +1967,25 @@ class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteConversationsResponse(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    filter: str
+    parent: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1BulkDeleteFeedbackLabelsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1CallAnnotation(
     typing_extensions.TypedDict, total=False
 ):
@@ -1667,6 +2043,7 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationDataSource(
 ):
     dialogflowSource: GoogleCloudContactcenterinsightsV1alpha1DialogflowSource
     gcsSource: GoogleCloudContactcenterinsightsV1alpha1GcsSource
+    metadataUri: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentiment(
@@ -1726,6 +2103,7 @@ class GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestio
     answerRecord: str
     confidence: float
     conversationModel: str
+    generatorId: str
     metadata: dict[str, typing.Any]
     text: str
     textSections: dict[str, typing.Any]
@@ -1809,6 +2187,18 @@ class GoogleCloudContactcenterinsightsV1alpha1CreateIssueRequest(
     parent: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1Dataset(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    description: str
+    displayName: str
+    name: str
+    ttl: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "EVAL", "LIVE"]
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -1818,6 +2208,20 @@ class GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadata(
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequest(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1DeleteQaQuestionTagMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1alpha1DeleteQaQuestionTagRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1DeleteQaQuestionTagRequest(
     typing_extensions.TypedDict, total=False
 ):
     name: str
@@ -1871,11 +2275,13 @@ class GoogleCloudContactcenterinsightsV1alpha1Dimension(
     dimensionKey: typing_extensions.Literal[
         "DIMENSION_KEY_UNSPECIFIED",
         "ISSUE",
+        "ISSUE_NAME",
         "AGENT",
         "AGENT_TEAM",
         "QA_QUESTION_ID",
         "QA_QUESTION_ANSWER_VALUE",
         "CONVERSATION_PROFILE_ID",
+        "MEDIUM",
     ]
     issueDimensionMetadata: (
         GoogleCloudContactcenterinsightsV1alpha1DimensionIssueDimensionMetadata
@@ -1961,8 +2367,10 @@ class GoogleCloudContactcenterinsightsV1alpha1EntityMentionData(
 class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadata(
     typing_extensions.TypedDict, total=False
 ):
+    completedExportCount: int
     createTime: str
     endTime: str
+    failedExportCount: int
     partialErrors: _list[GoogleRpcStatus]
     request: GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequest
 
@@ -1971,6 +2379,17 @@ class GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequest(
     typing_extensions.TypedDict, total=False
 ):
     bigQueryDestination: GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestination
+    exportSchemaVersion: typing_extensions.Literal[
+        "EXPORT_SCHEMA_VERSION_UNSPECIFIED",
+        "EXPORT_V1",
+        "EXPORT_V2",
+        "EXPORT_V3",
+        "EXPORT_V4",
+        "EXPORT_V5",
+        "EXPORT_V6",
+        "EXPORT_V7",
+        "EXPORT_VERSION_LATEST_AVAILABLE",
+    ]
     filter: str
     kmsKey: str
     parent: str
@@ -2126,6 +2545,7 @@ class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversa
 class GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource(
     typing_extensions.TypedDict, total=False
 ):
+    audioBucketUri: str
     bucketObjectType: typing_extensions.Literal[
         "BUCKET_OBJECT_TYPE_UNSPECIFIED", "TRANSCRIPT", "AUDIO"
     ]
@@ -2315,6 +2735,16 @@ class GoogleCloudContactcenterinsightsV1alpha1QaAnswerAnswerValue(
     strValue: str
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1QaQuestionTag(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    displayName: str
+    name: str
+    qaQuestionIds: _list[str]
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1QaScorecardResult(
     typing_extensions.TypedDict, total=False
 ):
@@ -2422,6 +2852,17 @@ class GoogleCloudContactcenterinsightsV1alpha1QueryMetricsResponseSliceTimeSerie
     ]
 
 @typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1QueryPerformanceOverviewResponse(
+    typing_extensions.TypedDict, total=False
+):
+    summaryText: str
+
+@typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1RedactionConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -2460,6 +2901,45 @@ class GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationUserInput(
     querySource: typing_extensions.Literal[
         "QUERY_SOURCE_UNSPECIFIED", "AGENT_QUERY", "SUGGESTED_QUERY"
     ]
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    partialErrors: _list[GoogleRpcStatus]
+    request: GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest
+    sampleConversationsStats: GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SampleConversationsMetadataSampleConversationsStats(
+    typing_extensions.TypedDict, total=False
+):
+    failedSampleCount: int
+    successfulSampleCount: int
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SampleConversationsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    destinationDataset: GoogleCloudContactcenterinsightsV1alpha1Dataset
+    parent: str
+    sampleRule: GoogleCloudContactcenterinsightsV1alpha1SampleRule
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SampleConversationsResponse(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1SampleRule(
+    typing_extensions.TypedDict, total=False
+):
+    conversationFilter: str
+    dimension: str
+    samplePercentage: float
+    sampleRow: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1SentimentData(
@@ -2515,6 +2995,21 @@ class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequest(
 class GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1UpdateQaQuestionTagMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    endTime: str
+    request: GoogleCloudContactcenterinsightsV1alpha1UpdateQaQuestionTagRequest
+
+@typing.type_check_only
+class GoogleCloudContactcenterinsightsV1alpha1UpdateQaQuestionTagRequest(
+    typing_extensions.TypedDict, total=False
+):
+    qaQuestionTag: GoogleCloudContactcenterinsightsV1alpha1QaQuestionTag
+    updateMask: str
 
 @typing.type_check_only
 class GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadata(

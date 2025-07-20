@@ -21,77 +21,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
             class DatasetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AnnotationStoresResource(googleapiclient.discovery.Resource):
-                    @typing.type_check_only
-                    class AnnotationsResource(googleapiclient.discovery.Resource):
-                        def create(
-                            self,
-                            *,
-                            parent: str,
-                            body: Annotation = ...,
-                            **kwargs: typing.Any,
-                        ) -> AnnotationHttpRequest: ...
-                        def delete(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> EmptyHttpRequest: ...
-                        def get(
-                            self, *, name: str, **kwargs: typing.Any
-                        ) -> AnnotationHttpRequest: ...
-                        def list(
-                            self,
-                            *,
-                            parent: str,
-                            filter: str = ...,
-                            pageSize: int = ...,
-                            pageToken: str = ...,
-                            view: typing_extensions.Literal[
-                                "ANNOTATION_VIEW_UNSPECIFIED",
-                                "ANNOTATION_VIEW_BASIC",
-                                "ANNOTATION_VIEW_FULL",
-                            ] = ...,
-                            **kwargs: typing.Any,
-                        ) -> ListAnnotationsResponseHttpRequest: ...
-                        def list_next(
-                            self,
-                            previous_request: ListAnnotationsResponseHttpRequest,
-                            previous_response: ListAnnotationsResponse,
-                        ) -> ListAnnotationsResponseHttpRequest | None: ...
-                        def patch(
-                            self,
-                            *,
-                            name: str,
-                            body: Annotation = ...,
-                            updateMask: str = ...,
-                            **kwargs: typing.Any,
-                        ) -> AnnotationHttpRequest: ...
-
-                    def create(
-                        self,
-                        *,
-                        parent: str,
-                        body: AnnotationStore = ...,
-                        annotationStoreId: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> AnnotationStoreHttpRequest: ...
-                    def delete(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> EmptyHttpRequest: ...
-                    def evaluate(
-                        self,
-                        *,
-                        name: str,
-                        body: EvaluateAnnotationStoreRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> OperationHttpRequest: ...
-                    def export(
-                        self,
-                        *,
-                        name: str,
-                        body: ExportAnnotationsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> OperationHttpRequest: ...
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> AnnotationStoreHttpRequest: ...
                     def getIamPolicy(
                         self,
                         *,
@@ -99,35 +28,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         options_requestedPolicyVersion: int = ...,
                         **kwargs: typing.Any,
                     ) -> PolicyHttpRequest: ...
-                    def import_(
-                        self,
-                        *,
-                        name: str,
-                        body: ImportAnnotationsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> OperationHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        filter: str = ...,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListAnnotationStoresResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListAnnotationStoresResponseHttpRequest,
-                        previous_response: ListAnnotationStoresResponse,
-                    ) -> ListAnnotationStoresResponseHttpRequest | None: ...
-                    def patch(
-                        self,
-                        *,
-                        name: str,
-                        body: AnnotationStore = ...,
-                        updateMask: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> AnnotationStoreHttpRequest: ...
                     def setIamPolicy(
                         self,
                         *,
@@ -142,7 +42,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
-                    def annotations(self) -> AnnotationsResource: ...
 
                 @typing.type_check_only
                 class ConsentStoresResource(googleapiclient.discovery.Resource):
@@ -519,6 +418,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                         *,
                                         parent: str,
                                         dicomWebPath: str,
+                                        viewport: str = ...,
                                         **kwargs: typing.Any,
                                     ) -> HttpBodyHttpRequest: ...
 
@@ -548,6 +448,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     *,
                                     parent: str,
                                     dicomWebPath: str,
+                                    viewport: str = ...,
                                     **kwargs: typing.Any,
                                 ) -> HttpBodyHttpRequest: ...
                                 def bulkdata(self) -> BulkdataResource: ...
@@ -840,6 +741,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             profile: str = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
+                        def bulk_export(
+                            self,
+                            *,
+                            name: str,
+                            outputFormat: str = ...,
+                            x_since: str = ...,
+                            x_type: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
                         def capabilities(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
@@ -926,6 +836,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
 
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def delete_fhir_operation(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def get_fhir_operation_status(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+
                     def applyAdminConsents(
                         self,
                         *,
@@ -940,6 +859,16 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: ApplyConsentsRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def bulk_export_group(
+                        self,
+                        *,
+                        name: str,
+                        organizeOutputBy: str = ...,
+                        outputFormat: str = ...,
+                        x_since: str = ...,
+                        x_type: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
                     def configureSearch(
                         self,
                         *,
@@ -1053,6 +982,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def fhir(self) -> FhirResource: ...
+                    def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
                 class Hl7V2StoresResource(googleapiclient.discovery.Resource):
@@ -1338,6 +1268,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -1374,22 +1305,6 @@ class AnalyzeEntitiesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AnalyzeEntitiesResponse: ...
-
-@typing.type_check_only
-class AnnotationHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> Annotation: ...
-
-@typing.type_check_only
-class AnnotationStoreHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> AnnotationStore: ...
 
 @typing.type_check_only
 class ArchiveUserDataMappingResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1542,22 +1457,6 @@ class IngestMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> IngestMessageResponse: ...
-
-@typing.type_check_only
-class ListAnnotationStoresResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListAnnotationStoresResponse: ...
-
-@typing.type_check_only
-class ListAnnotationsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListAnnotationsResponse: ...
 
 @typing.type_check_only
 class ListAttributeDefinitionsResponseHttpRequest(googleapiclient.http.HttpRequest):

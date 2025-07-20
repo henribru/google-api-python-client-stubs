@@ -13,6 +13,12 @@ class AnonymousUser(typing_extensions.TypedDict, total=False):
     displayName: str
 
 @typing.type_check_only
+class ArtifactConfig(typing_extensions.TypedDict, total=False):
+    recordingConfig: RecordingConfig
+    smartNotesConfig: SmartNotesConfig
+    transcriptionConfig: TranscriptionConfig
+
+@typing.type_check_only
 class ConferenceRecord(typing_extensions.TypedDict, total=False):
     endTime: str
     expireTime: str
@@ -68,6 +74,21 @@ class ListTranscriptsResponse(typing_extensions.TypedDict, total=False):
     transcripts: _list[Transcript]
 
 @typing.type_check_only
+class ModerationRestrictions(typing_extensions.TypedDict, total=False):
+    chatRestriction: typing_extensions.Literal[
+        "RESTRICTION_TYPE_UNSPECIFIED", "HOSTS_ONLY", "NO_RESTRICTION"
+    ]
+    defaultJoinAsViewerType: typing_extensions.Literal[
+        "DEFAULT_JOIN_AS_VIEWER_TYPE_UNSPECIFIED", "ON", "OFF"
+    ]
+    presentRestriction: typing_extensions.Literal[
+        "RESTRICTION_TYPE_UNSPECIFIED", "HOSTS_ONLY", "NO_RESTRICTION"
+    ]
+    reactionRestriction: typing_extensions.Literal[
+        "RESTRICTION_TYPE_UNSPECIFIED", "HOSTS_ONLY", "NO_RESTRICTION"
+    ]
+
+@typing.type_check_only
 class Participant(typing_extensions.TypedDict, total=False):
     anonymousUser: AnonymousUser
     earliestStartTime: str
@@ -97,9 +118,21 @@ class Recording(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RecordingConfig(typing_extensions.TypedDict, total=False):
+    autoRecordingGeneration: typing_extensions.Literal[
+        "AUTO_GENERATION_TYPE_UNSPECIFIED", "ON", "OFF"
+    ]
+
+@typing.type_check_only
 class SignedinUser(typing_extensions.TypedDict, total=False):
     displayName: str
     user: str
+
+@typing.type_check_only
+class SmartNotesConfig(typing_extensions.TypedDict, total=False):
+    autoSmartNotesGeneration: typing_extensions.Literal[
+        "AUTO_GENERATION_TYPE_UNSPECIFIED", "ON", "OFF"
+    ]
 
 @typing.type_check_only
 class Space(typing_extensions.TypedDict, total=False):
@@ -114,9 +147,17 @@ class SpaceConfig(typing_extensions.TypedDict, total=False):
     accessType: typing_extensions.Literal[
         "ACCESS_TYPE_UNSPECIFIED", "OPEN", "TRUSTED", "RESTRICTED"
     ]
+    artifactConfig: ArtifactConfig
+    attendanceReportGenerationType: typing_extensions.Literal[
+        "ATTENDANCE_REPORT_GENERATION_TYPE_UNSPECIFIED",
+        "GENERATE_REPORT",
+        "DO_NOT_GENERATE",
+    ]
     entryPointAccess: typing_extensions.Literal[
         "ENTRY_POINT_ACCESS_UNSPECIFIED", "ALL", "CREATOR_APP_ONLY"
     ]
+    moderation: typing_extensions.Literal["MODERATION_UNSPECIFIED", "OFF", "ON"]
+    moderationRestrictions: ModerationRestrictions
 
 @typing.type_check_only
 class Transcript(typing_extensions.TypedDict, total=False):
@@ -136,3 +177,9 @@ class TranscriptEntry(typing_extensions.TypedDict, total=False):
     participant: str
     startTime: str
     text: str
+
+@typing.type_check_only
+class TranscriptionConfig(typing_extensions.TypedDict, total=False):
+    autoTranscriptionGeneration: typing_extensions.Literal[
+        "AUTO_GENERATION_TYPE_UNSPECIFIED", "ON", "OFF"
+    ]

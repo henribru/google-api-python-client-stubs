@@ -32,9 +32,12 @@ class Certificate(typing_extensions.TypedDict, total=False):
     name: str
     pemCertificate: str
     sanDnsnames: _list[str]
-    scope: typing_extensions.Literal["DEFAULT", "EDGE_CACHE", "ALL_REGIONS"]
+    scope: typing_extensions.Literal[
+        "DEFAULT", "EDGE_CACHE", "ALL_REGIONS", "CLIENT_AUTH"
+    ]
     selfManaged: SelfManagedCertificate
     updateTime: str
+    usedBy: _list[UsedBy]
 
 @typing.type_check_only
 class CertificateAuthorityConfig(typing_extensions.TypedDict, total=False):
@@ -236,3 +239,7 @@ class TrustConfig(typing_extensions.TypedDict, total=False):
 class TrustStore(typing_extensions.TypedDict, total=False):
     intermediateCas: _list[IntermediateCA]
     trustAnchors: _list[TrustAnchor]
+
+@typing.type_check_only
+class UsedBy(typing_extensions.TypedDict, total=False):
+    name: str

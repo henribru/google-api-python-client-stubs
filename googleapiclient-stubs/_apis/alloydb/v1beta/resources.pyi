@@ -261,6 +261,13 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> ClusterHttpRequest: ...
+                def import_(
+                    self,
+                    *,
+                    name: str,
+                    body: ImportClusterRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -359,6 +366,9 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    scope: typing_extensions.Literal[
+                        "SCOPE_UNSPECIFIED", "DATABASE", "CONNECTION_POOL"
+                    ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListSupportedDatabaseFlagsResponseHttpRequest: ...
                 def list_next(
@@ -374,6 +384,7 @@ class CloudAlloyDBAdminResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

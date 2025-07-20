@@ -10,6 +10,13 @@ class AndroidxCrawlerOutputPoint(typing_extensions.TypedDict, total=False):
     yCoordinate: int
 
 @typing.type_check_only
+class AndroidxCrawlerOutputRectangle(typing_extensions.TypedDict, total=False):
+    bottom: int
+    left: int
+    right: int
+    top: int
+
+@typing.type_check_only
 class GoogleFirebaseAppdistroV1Release(typing_extensions.TypedDict, total=False):
     binaryDownloadUri: str
     buildVersion: str
@@ -53,7 +60,6 @@ class GoogleFirebaseAppdistroV1alphaAabCertificate(
 class GoogleFirebaseAppdistroV1alphaAiInstructions(
     typing_extensions.TypedDict, total=False
 ):
-    appDescription: str
     steps: _list[GoogleFirebaseAppdistroV1alphaAiStep]
 
 @typing.type_check_only
@@ -109,6 +115,12 @@ class GoogleFirebaseAppdistroV1alphaAssertionDetails(
     explanation: str
     result: bool
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    names: _list[str]
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse(
@@ -174,12 +186,20 @@ class GoogleFirebaseAppdistroV1alphaDeviceExecution(
 class GoogleFirebaseAppdistroV1alphaDeviceInteraction(
     typing_extensions.TypedDict, total=False
 ):
+    enterText: GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText
     keyCode: str
     screenshot: GoogleFirebaseAppdistroV1alphaScreenshot
     swipe: GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe
     tap: AndroidxCrawlerOutputPoint
     textInput: str
     wait: GoogleFirebaseAppdistroV1alphaDeviceInteractionWait
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText(
+    typing_extensions.TypedDict, total=False
+):
+    elementBounds: AndroidxCrawlerOutputRectangle
+    text: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe(
@@ -247,6 +267,7 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
         "AAB_DEVELOPER_ACCOUNT_NOT_LINKED",
         "AAB_NO_APP_WITH_GIVEN_PACKAGE_NAME_IN_ACCOUNT",
         "AAB_UPLOAD_ERROR",
+        "APP_NOT_FOUND",
     ]
     message: str
     release: GoogleFirebaseAppdistroV1alphaRelease
@@ -258,9 +279,17 @@ class GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse(
 class GoogleFirebaseAppdistroV1alphaGoalAction(
     typing_extensions.TypedDict, total=False
 ):
+    debugInfo: GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo
     deviceAction: GoogleFirebaseAppdistroV1alphaDeviceAction
     explanation: str
     terminalAction: GoogleFirebaseAppdistroV1alphaTerminalAction
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo(
+    typing_extensions.TypedDict, total=False
+):
+    annotatedScreenshotUri: str
+    jsonUri: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaGoalDetails(
@@ -301,11 +330,6 @@ class GoogleFirebaseAppdistroV1alphaLoginCredentialFieldHints(
 ):
     passwordResourceName: str
     usernameResourceName: str
-
-@typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaProvisionAppResponse(
-    typing_extensions.TypedDict, total=False
-): ...
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaRelease(typing_extensions.TypedDict, total=False):
@@ -376,6 +400,7 @@ class GoogleFirebaseAppdistroV1alphaTerminalAction(
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaTestCase(typing_extensions.TypedDict, total=False):
     aiInstructions: GoogleFirebaseAppdistroV1alphaAiInstructions
+    createTime: str
     displayName: str
     name: str
 
@@ -396,6 +421,12 @@ class GoogleFirebaseAppdistroV1alphaTestDevice(
     model: str
     orientation: str
     version: str
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaTestQuota(typing_extensions.TypedDict, total=False):
+    limit: str
+    name: str
+    usage: str
 
 @typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaTesterUdid(

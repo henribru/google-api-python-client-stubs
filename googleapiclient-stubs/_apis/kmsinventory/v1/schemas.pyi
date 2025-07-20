@@ -105,6 +105,9 @@ class GoogleCloudKmsV1CryptoKeyVersion(typing_extensions.TypedDict, total=False)
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     attestation: GoogleCloudKmsV1KeyOperationAttestation
     createTime: str
@@ -177,6 +180,9 @@ class GoogleCloudKmsV1CryptoKeyVersionTemplate(
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "PQ_SIGN_ML_DSA_65",
+        "PQ_SIGN_SLH_DSA_SHA2_128S",
+        "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
     ]
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"

@@ -233,6 +233,10 @@ class ChromeOsDevice(typing_extensions.TypedDict, total=False):
         "educationUpgrade",
         "education",
         "kioskUpgrade",
+        "enterpriseUpgradePerpetual",
+        "enterpriseUpgradeFixedTerm",
+        "educationUpgradePerpetual",
+        "educationUpgradeFixedTerm",
     ]
     diskSpaceUsage: ByteUsage
     diskVolumeReports: _list[dict[str, typing.Any]]
@@ -347,6 +351,7 @@ class DirectoryChromeosdevicesCommand(typing_extensions.TypedDict, total=False):
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
         "CAPTURE_LOGS",
+        "FETCH_CRD_AVAILABILITY_INFO",
         "FETCH_SUPPORT_PACKET",
     ]
 
@@ -372,6 +377,7 @@ class DirectoryChromeosdevicesIssueCommandRequest(
         "REMOTE_POWERWASH",
         "DEVICE_START_CRD_SESSION",
         "CAPTURE_LOGS",
+        "FETCH_CRD_AVAILABILITY_INFO",
         "FETCH_SUPPORT_PACKET",
     ]
     payload: str

@@ -25,6 +25,7 @@ class AuthCodeData(typing_extensions.TypedDict, total=False):
     authCode: str
     pkceVerifier: str
     redirectUri: str
+    scopes: _list[str]
 
 @typing.type_check_only
 class CheckReadinessResponse(typing_extensions.TypedDict, total=False):
@@ -214,6 +215,7 @@ class InputParameter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     consumerDefinedName: str
+    consumerProjectNumber: str
     createTime: str
     instanceType: str
     labels: dict[str, typing.Any]

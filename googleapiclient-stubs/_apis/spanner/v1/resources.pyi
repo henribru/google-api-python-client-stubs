@@ -381,6 +381,20 @@ class SpannerResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
+                    def adaptMessage(
+                        self,
+                        *,
+                        name: str,
+                        body: AdaptMessageRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> AdaptMessageResponseHttpRequest: ...
+                    def adapter(
+                        self,
+                        *,
+                        parent: str,
+                        body: AdapterSession = ...,
+                        **kwargs: typing.Any,
+                    ) -> AdapterSessionHttpRequest: ...
                     def batchCreate(
                         self,
                         *,
@@ -816,6 +830,22 @@ class SpannerResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def projects(self) -> ProjectsResource: ...
     def scans(self) -> ScansResource: ...
+
+@typing.type_check_only
+class AdaptMessageResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdaptMessageResponse: ...
+
+@typing.type_check_only
+class AdapterSessionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AdapterSession: ...
 
 @typing.type_check_only
 class AddSplitPointsResponseHttpRequest(googleapiclient.http.HttpRequest):

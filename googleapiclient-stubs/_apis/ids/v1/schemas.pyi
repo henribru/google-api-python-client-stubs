@@ -5,24 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AuditConfig(typing_extensions.TypedDict, total=False):
-    auditLogConfigs: _list[AuditLogConfig]
-    service: str
-
-@typing.type_check_only
-class AuditLogConfig(typing_extensions.TypedDict, total=False):
-    exemptedMembers: _list[str]
-    logType: typing_extensions.Literal[
-        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
-    ]
-
-@typing.type_check_only
-class Binding(typing_extensions.TypedDict, total=False):
-    condition: Expr
-    members: _list[str]
-    role: str
-
-@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -48,13 +30,6 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     threatExceptions: _list[str]
     trafficLogs: bool
     updateTime: str
-
-@typing.type_check_only
-class Expr(typing_extensions.TypedDict, total=False):
-    description: str
-    expression: str
-    location: str
-    title: str
 
 @typing.type_check_only
 class ListEndpointsResponse(typing_extensions.TypedDict, total=False):
@@ -99,27 +74,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class Policy(typing_extensions.TypedDict, total=False):
-    auditConfigs: _list[AuditConfig]
-    bindings: _list[Binding]
-    etag: str
-    version: int
-
-@typing.type_check_only
-class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
-    policy: Policy
-    updateMask: str
-
-@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
-
-@typing.type_check_only
-class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]
-
-@typing.type_check_only
-class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
-    permissions: _list[str]

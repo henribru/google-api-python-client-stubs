@@ -114,6 +114,13 @@ class GoogleCloudApigeeV1ApiCategoryResponse(typing_extensions.TypedDict, total=
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ApiDebugSession(typing_extensions.TypedDict, total=False):
+    apiProxyRevisionId: str
+    createTime: str
+    environmentId: str
+    id: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ApiDoc(typing_extensions.TypedDict, total=False):
     anonAllowed: bool
     apiProductName: str
@@ -178,6 +185,7 @@ class GoogleCloudApigeeV1ApiProduct(typing_extensions.TypedDict, total=False):
     quotaInterval: str
     quotaTimeUnit: str
     scopes: _list[str]
+    space: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProductRef(typing_extensions.TypedDict, total=False):
@@ -195,6 +203,7 @@ class GoogleCloudApigeeV1ApiProxy(typing_extensions.TypedDict, total=False):
     name: str
     readOnly: bool
     revision: _list[str]
+    space: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1ApiProxyRevision(typing_extensions.TypedDict, total=False):
@@ -776,6 +785,23 @@ class GoogleCloudApigeeV1DisableSecurityActionRequest(
 ): ...
 
 @typing.type_check_only
+class GoogleCloudApigeeV1DnsZone(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    domain: str
+    name: str
+    peeringConfig: GoogleCloudApigeeV1DnsZonePeeringConfig
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1DnsZonePeeringConfig(typing_extensions.TypedDict, total=False):
+    targetNetworkId: str
+    targetProjectId: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1DocumentationFile(typing_extensions.TypedDict, total=False):
     contents: str
     displayName: str
@@ -1159,6 +1185,13 @@ class GoogleCloudApigeeV1ListApiCategoriesResponse(
     status: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListApiDebugSessionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    sessions: _list[GoogleCloudApigeeV1ApiDebugSession]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListApiDocsResponse(typing_extensions.TypedDict, total=False):
     data: _list[GoogleCloudApigeeV1ApiDoc]
     errorCode: str
@@ -1259,6 +1292,11 @@ class GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse(
     nextStartKey: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListDnsZonesResponse(typing_extensions.TypedDict, total=False):
+    dnsZones: _list[GoogleCloudApigeeV1DnsZone]
+    nextPageToken: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListEndpointAttachmentsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1357,6 +1395,13 @@ class GoogleCloudApigeeV1ListSecurityIncidentsResponse(
     securityIncidents: _list[GoogleCloudApigeeV1SecurityIncident]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSecurityMonitoringConditionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    securityMonitoringConditions: _list[GoogleCloudApigeeV1SecurityMonitoringCondition]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListSecurityProfileRevisionsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1391,6 +1436,11 @@ class GoogleCloudApigeeV1ListSharedFlowsResponse(
     sharedFlows: _list[GoogleCloudApigeeV1SharedFlow]
 
 @typing.type_check_only
+class GoogleCloudApigeeV1ListSpacesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    spaces: _list[GoogleCloudApigeeV1Space]
+
+@typing.type_check_only
 class GoogleCloudApigeeV1ListTraceConfigOverridesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1418,6 +1468,22 @@ class GoogleCloudApigeeV1MetricAggregation(typing_extensions.TypedDict, total=Fa
 @typing.type_check_only
 class GoogleCloudApigeeV1MonetizationConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MoveApiProductRequest(
+    typing_extensions.TypedDict, total=False
+):
+    space: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MoveApiProxyRequest(typing_extensions.TypedDict, total=False):
+    space: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1MoveSharedFlowRequest(
+    typing_extensions.TypedDict, total=False
+):
+    space: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1NatAddress(typing_extensions.TypedDict, total=False):
@@ -1518,6 +1584,7 @@ class GoogleCloudApigeeV1Organization(typing_extensions.TypedDict, total=False):
     expiresAt: str
     lastModifiedAt: str
     name: str
+    networkEgressRestricted: bool
     portalDisabled: bool
     projectId: str
     properties: GoogleCloudApigeeV1Properties
@@ -2085,6 +2152,24 @@ class GoogleCloudApigeeV1SecurityIncident(typing_extensions.TypedDict, total=Fal
     trafficCount: str
 
 @typing.type_check_only
+class GoogleCloudApigeeV1SecurityMonitoringCondition(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    include: (
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestResourceArray
+    )
+    includeAllResources: (
+        GoogleCloudApigeeV1BatchComputeSecurityAssessmentResultsRequestIncludeAll
+    )
+    name: str
+    profile: str
+    scope: str
+    totalDeployedResources: int
+    totalMonitoredResources: int
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudApigeeV1SecurityProfile(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
@@ -2241,6 +2326,7 @@ class GoogleCloudApigeeV1SharedFlow(typing_extensions.TypedDict, total=False):
     metaData: GoogleCloudApigeeV1EntityMetadata
     name: str
     revision: _list[str]
+    space: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1SharedFlowRevision(typing_extensions.TypedDict, total=False):
@@ -2258,6 +2344,13 @@ class GoogleCloudApigeeV1SharedFlowRevision(typing_extensions.TypedDict, total=F
     revision: str
     sharedFlows: _list[str]
     type: str
+
+@typing.type_check_only
+class GoogleCloudApigeeV1Space(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    name: str
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudApigeeV1Stats(typing_extensions.TypedDict, total=False):

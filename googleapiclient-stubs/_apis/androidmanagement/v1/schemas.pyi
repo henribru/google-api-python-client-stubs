@@ -12,6 +12,13 @@ class AdbShellCommandEvent(typing_extensions.TypedDict, total=False):
 class AdbShellInteractiveEvent(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class AddEsimParams(typing_extensions.TypedDict, total=False):
+    activationCode: str
+    activationState: typing_extensions.Literal[
+        "ACTIVATION_STATE_UNSPECIFIED", "ACTIVATED", "NOT_ACTIVATED"
+    ]
+
+@typing.type_check_only
 class AdvancedSecurityOverrides(typing_extensions.TypedDict, total=False):
     commonCriteriaMode: typing_extensions.Literal[
         "COMMON_CRITERIA_MODE_UNSPECIFIED",
@@ -53,6 +60,82 @@ class AlwaysOnVpnPackage(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApiLevelCondition(typing_extensions.TypedDict, total=False):
     minApiLevel: int
+
+@typing.type_check_only
+class ApnPolicy(typing_extensions.TypedDict, total=False):
+    apnSettings: _list[ApnSetting]
+    overrideApns: typing_extensions.Literal[
+        "OVERRIDE_APNS_UNSPECIFIED", "OVERRIDE_APNS_DISABLED", "OVERRIDE_APNS_ENABLED"
+    ]
+
+@typing.type_check_only
+class ApnSetting(typing_extensions.TypedDict, total=False):
+    alwaysOnSetting: typing_extensions.Literal[
+        "ALWAYS_ON_SETTING_UNSPECIFIED", "NOT_ALWAYS_ON", "ALWAYS_ON"
+    ]
+    apn: str
+    apnTypes: _list[
+        typing_extensions.Literal[
+            "APN_TYPE_UNSPECIFIED",
+            "ENTERPRISE",
+            "BIP",
+            "CBS",
+            "DEFAULT",
+            "DUN",
+            "EMERGENCY",
+            "FOTA",
+            "HIPRI",
+            "IA",
+            "IMS",
+            "MCX",
+            "MMS",
+            "RCS",
+            "SUPL",
+            "VSIM",
+            "XCAP",
+        ]
+    ]
+    authType: typing_extensions.Literal[
+        "AUTH_TYPE_UNSPECIFIED", "NONE", "PAP", "CHAP", "PAP_OR_CHAP"
+    ]
+    carrierId: int
+    displayName: str
+    mmsProxyAddress: str
+    mmsProxyPort: int
+    mmsc: str
+    mtuV4: int
+    mtuV6: int
+    mvnoType: typing_extensions.Literal[
+        "MVNO_TYPE_UNSPECIFIED", "GID", "ICCID", "IMSI", "SPN"
+    ]
+    networkTypes: _list[
+        typing_extensions.Literal[
+            "NETWORK_TYPE_UNSPECIFIED",
+            "EDGE",
+            "GPRS",
+            "GSM",
+            "HSDPA",
+            "HSPA",
+            "HSPAP",
+            "HSUPA",
+            "IWLAN",
+            "LTE",
+            "NR",
+            "TD_SCDMA",
+            "UMTS",
+        ]
+    ]
+    numericOperatorId: str
+    password: str
+    protocol: typing_extensions.Literal[
+        "PROTOCOL_UNSPECIFIED", "IP", "IPV4V6", "IPV6", "NON_IP", "PPP", "UNSTRUCTURED"
+    ]
+    proxyAddress: str
+    proxyPort: int
+    roamingProtocol: typing_extensions.Literal[
+        "PROTOCOL_UNSPECIFIED", "IP", "IPV4V6", "IPV6", "NON_IP", "PPP", "UNSTRUCTURED"
+    ]
+    username: str
 
 @typing.type_check_only
 class AppProcessInfo(typing_extensions.TypedDict, total=False):
@@ -198,6 +281,15 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     minimumVersionCode: int
     packageName: str
     permissionGrants: _list[PermissionGrant]
+    preferentialNetworkId: typing_extensions.Literal[
+        "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+        "NO_PREFERENTIAL_NETWORK",
+        "PREFERENTIAL_NETWORK_ID_ONE",
+        "PREFERENTIAL_NETWORK_ID_TWO",
+        "PREFERENTIAL_NETWORK_ID_THREE",
+        "PREFERENTIAL_NETWORK_ID_FOUR",
+        "PREFERENTIAL_NETWORK_ID_FIVE",
+    ]
     userControlSettings: typing_extensions.Literal[
         "USER_CONTROL_SETTINGS_UNSPECIFIED",
         "USER_CONTROL_ALLOWED",
@@ -208,6 +300,11 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
         "WORK_PROFILE_WIDGETS_ALLOWED",
         "WORK_PROFILE_WIDGETS_DISALLOWED",
     ]
+
+@typing.type_check_only
+class ApplicationPolicyChange(typing_extensions.TypedDict, total=False):
+    application: ApplicationPolicy
+    updateMask: str
 
 @typing.type_check_only
 class ApplicationReport(typing_extensions.TypedDict, total=False):
@@ -236,6 +333,16 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApplicationReportingSettings(typing_extensions.TypedDict, total=False):
     includeRemovedApps: bool
+
+@typing.type_check_only
+class BackupServiceToggledEvent(typing_extensions.TypedDict, total=False):
+    adminPackageName: str
+    adminUserId: int
+    backupServiceState: typing_extensions.Literal[
+        "BACKUP_SERVICE_STATE_UNSPECIFIED",
+        "BACKUP_SERVICE_DISABLED",
+        "BACKUP_SERVICE_ENABLED",
+    ]
 
 @typing.type_check_only
 class BatchUsageLogEvents(typing_extensions.TypedDict, total=False):
@@ -283,6 +390,7 @@ class ClearAppsDataStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Command(typing_extensions.TypedDict, total=False):
+    addEsimParams: AddEsimParams
     clearAppsDataParams: ClearAppsDataParams
     clearAppsDataStatus: ClearAppsDataStatus
     createTime: str
@@ -295,7 +403,11 @@ class Command(typing_extensions.TypedDict, total=False):
         "INVALID_VALUE",
         "UNSUPPORTED",
     ]
+    esimStatus: EsimCommandStatus
     newPassword: str
+    removeEsimParams: RemoveEsimParams
+    requestDeviceInfoParams: RequestDeviceInfoParams
+    requestDeviceInfoStatus: RequestDeviceInfoStatus
     resetPasswordFlags: _list[
         typing_extensions.Literal[
             "RESET_PASSWORD_FLAG_UNSPECIFIED",
@@ -317,8 +429,13 @@ class Command(typing_extensions.TypedDict, total=False):
         "CLEAR_APP_DATA",
         "START_LOST_MODE",
         "STOP_LOST_MODE",
+        "ADD_ESIM",
+        "REMOVE_ESIM",
+        "REQUEST_DEVICE_INFO",
+        "WIPE",
     ]
     userName: str
+    wipeParams: WipeParams
 
 @typing.type_check_only
 class CommonCriteriaModeInfo(typing_extensions.TypedDict, total=False):
@@ -366,6 +483,11 @@ class ContentProviderEndpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CrossProfilePolicies(typing_extensions.TypedDict, total=False):
+    crossProfileAppFunctions: typing_extensions.Literal[
+        "CROSS_PROFILE_APP_FUNCTIONS_UNSPECIFIED",
+        "CROSS_PROFILE_APP_FUNCTIONS_DISALLOWED",
+        "CROSS_PROFILE_APP_FUNCTIONS_ALLOWED",
+    ]
     crossProfileCopyPaste: typing_extensions.Literal[
         "CROSS_PROFILE_COPY_PASTE_UNSPECIFIED",
         "COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
@@ -463,12 +585,19 @@ class Device(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeviceConnectivityManagement(typing_extensions.TypedDict, total=False):
+    apnPolicy: ApnPolicy
+    bluetoothSharing: typing_extensions.Literal[
+        "BLUETOOTH_SHARING_UNSPECIFIED",
+        "BLUETOOTH_SHARING_ALLOWED",
+        "BLUETOOTH_SHARING_DISALLOWED",
+    ]
     configureWifi: typing_extensions.Literal[
         "CONFIGURE_WIFI_UNSPECIFIED",
         "ALLOW_CONFIGURING_WIFI",
         "DISALLOW_ADD_WIFI_CONFIG",
         "DISALLOW_CONFIGURING_WIFI",
     ]
+    preferentialNetworkServiceSettings: PreferentialNetworkServiceSettings
     tetheringSettings: typing_extensions.Literal[
         "TETHERING_SETTINGS_UNSPECIFIED",
         "ALLOW_ALL_TETHERING",
@@ -566,6 +695,14 @@ class DpcMigrationInfo(typing_extensions.TypedDict, total=False):
     previousDpc: str
 
 @typing.type_check_only
+class Eid(typing_extensions.TypedDict, total=False):
+    eid: str
+
+@typing.type_check_only
+class EidInfo(typing_extensions.TypedDict, total=False):
+    eids: _list[Eid]
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -601,16 +738,61 @@ class Enterprise(typing_extensions.TypedDict, total=False):
             "STATUS_REPORT",
             "COMMAND",
             "USAGE_LOGS",
+            "ENTERPRISE_UPGRADE",
         ]
     ]
     enterpriseDisplayName: str
+    enterpriseType: typing_extensions.Literal[
+        "ENTERPRISE_TYPE_UNSPECIFIED",
+        "MANAGED_GOOGLE_DOMAIN",
+        "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE",
+    ]
     googleAuthenticationSettings: GoogleAuthenticationSettings
     logo: ExternalData
+    managedGoogleDomainType: typing_extensions.Literal[
+        "MANAGED_GOOGLE_DOMAIN_TYPE_UNSPECIFIED", "TYPE_TEAM", "TYPE_DOMAIN"
+    ]
+    managedGooglePlayAccountsEnterpriseType: typing_extensions.Literal[
+        "MANAGED_GOOGLE_PLAY_ACCOUNTS_ENTERPRISE_TYPE_UNSPECIFIED",
+        "CUSTOMER_MANAGED",
+        "EMM_MANAGED",
+    ]
     name: str
     primaryColor: int
     pubsubTopic: str
     signinDetails: _list[SigninDetail]
     termsAndConditions: _list[TermsAndConditions]
+
+@typing.type_check_only
+class EnterpriseUpgradeEvent(typing_extensions.TypedDict, total=False):
+    enterprise: str
+    upgradeState: typing_extensions.Literal[
+        "UPGRADE_STATE_UNSPECIFIED", "UPGRADE_STATE_SUCCEEDED"
+    ]
+
+@typing.type_check_only
+class EsimCommandStatus(typing_extensions.TypedDict, total=False):
+    esimInfo: EsimInfo
+    internalErrorDetails: InternalErrorDetails
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "SUCCESS",
+        "IN_PROGRESS",
+        "PENDING_USER_ACTION",
+        "ERROR_SETUP_IN_PROGRESS",
+        "ERROR_USER_DENIED",
+        "INTERNAL_ERROR",
+        "ERROR_ICC_ID_NOT_FOUND",
+        "ERROR_MULTIPLE_ACTIVE_ESIMS_NO_AVAILABLE_SLOT",
+    ]
+
+@typing.type_check_only
+class EsimInfo(typing_extensions.TypedDict, total=False):
+    iccId: str
+
+@typing.type_check_only
+class EuiccChipInfo(typing_extensions.TypedDict, total=False):
+    eid: str
 
 @typing.type_check_only
 class ExtensionConfig(typing_extensions.TypedDict, total=False):
@@ -636,6 +818,15 @@ class FreezePeriod(typing_extensions.TypedDict, total=False):
     startDate: Date
 
 @typing.type_check_only
+class GenerateEnterpriseUpgradeUrlRequest(typing_extensions.TypedDict, total=False):
+    adminEmail: str
+    allowedDomains: _list[str]
+
+@typing.type_check_only
+class GenerateEnterpriseUpgradeUrlResponse(typing_extensions.TypedDict, total=False):
+    url: str
+
+@typing.type_check_only
 class GoogleAuthenticationSettings(typing_extensions.TypedDict, total=False):
     googleAuthenticationRequired: typing_extensions.Literal[
         "GOOGLE_AUTHENTICATION_REQUIRED_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
@@ -650,6 +841,7 @@ class HardwareInfo(typing_extensions.TypedDict, total=False):
     cpuThrottlingTemperatures: _list[float]
     deviceBasebandVersion: str
     enterpriseSpecificId: str
+    euiccChipInfo: _list[EuiccChipInfo]
     gpuShutdownTemperatures: _list[float]
     gpuThrottlingTemperatures: _list[float]
     hardware: str
@@ -685,6 +877,46 @@ class InstallConstraint(typing_extensions.TypedDict, total=False):
         "NETWORK_TYPE_CONSTRAINT_UNSPECIFIED",
         "INSTALL_ON_ANY_NETWORK",
         "INSTALL_ONLY_ON_UNMETERED_NETWORK",
+    ]
+
+@typing.type_check_only
+class InternalErrorDetails(typing_extensions.TypedDict, total=False):
+    errorCode: str
+    errorCodeDetail: typing_extensions.Literal[
+        "ERROR_CODE_DETAIL_UNSPECIFIED",
+        "ERROR_TIME_OUT",
+        "ERROR_EUICC_MISSING",
+        "ERROR_UNSUPPORTED_VERSION",
+        "ERROR_ADDRESS_MISSING",
+        "ERROR_INVALID_CONFIRMATION_CODE",
+        "ERROR_CERTIFICATE_ERROR",
+        "ERROR_NO_PROFILES_AVAILABLE",
+        "ERROR_CONNECTION_ERROR",
+        "ERROR_INVALID_RESPONSE",
+        "ERROR_CARRIER_LOCKED",
+        "ERROR_DISALLOWED_BY_PPR",
+        "ERROR_INVALID_ACTIVATION_CODE",
+        "ERROR_INCOMPATIBLE_CARRIER",
+        "ERROR_OPERATION_BUSY",
+        "ERROR_INSTALL_PROFILE",
+        "ERROR_EUICC_INSUFFICIENT_MEMORY",
+        "ERROR_INVALID_PORT",
+        "ERROR_SIM_MISSING",
+    ]
+    operationCode: str
+    operationCodeDetail: typing_extensions.Literal[
+        "OPERATION_CODE_DETAIL_UNSPECIFIED",
+        "OPERATION_SYSTEM",
+        "OPERATION_SIM_SLOT",
+        "OPERATION_EUICC_CARD",
+        "OPERATION_SMDX",
+        "OPERATION_SWITCH",
+        "OPERATION_DOWNLOAD",
+        "OPERATION_METADATA",
+        "OPERATION_EUICC_GSMA",
+        "OPERATION_APDU",
+        "OPERATION_SMDX_SUBJECT_REASON_CODE",
+        "OPERATION_HTTP",
     ]
 
 @typing.type_check_only
@@ -902,6 +1134,14 @@ class MigrationToken(typing_extensions.TypedDict, total=False):
     value: str
 
 @typing.type_check_only
+class ModifyPolicyApplicationsRequest(typing_extensions.TypedDict, total=False):
+    changes: _list[ApplicationPolicyChange]
+
+@typing.type_check_only
+class ModifyPolicyApplicationsResponse(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
 class NetworkInfo(typing_extensions.TypedDict, total=False):
     imei: str
     meid: str
@@ -941,6 +1181,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
         "DEVICE_INCOMPATIBLE",
+        "PROJECT_NOT_PERMITTED",
     ]
     packageName: str
     settingName: str
@@ -955,6 +1196,9 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "ONC_WIFI_INVALID_ENTERPRISE_CONFIG",
         "ONC_WIFI_USER_SHOULD_REMOVE_NETWORK",
         "ONC_WIFI_KEY_PAIR_ALIAS_NOT_CORRESPONDING_TO_EXISTING_KEY",
+        "PERMISSIBLE_USAGE_RESTRICTION",
+        "REQUIRED_ACCOUNT_NOT_IN_ENTERPRISE",
+        "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
     ]
 
 @typing.type_check_only
@@ -972,6 +1216,7 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
         "DEVICE_INCOMPATIBLE",
+        "PROJECT_NOT_PERMITTED",
     ]
     packageName: str
     settingName: str
@@ -1087,6 +1332,11 @@ class PersonalApplicationPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PersonalUsagePolicies(typing_extensions.TypedDict, total=False):
     accountTypesWithManagementDisabled: _list[str]
+    bluetoothSharing: typing_extensions.Literal[
+        "BLUETOOTH_SHARING_UNSPECIFIED",
+        "BLUETOOTH_SHARING_ALLOWED",
+        "BLUETOOTH_SHARING_DISALLOWED",
+    ]
     cameraDisabled: bool
     maxDaysWithWorkOff: int
     personalApplications: _list[PersonalApplicationPolicy]
@@ -1116,6 +1366,9 @@ class Policy(typing_extensions.TypedDict, total=False):
         "NEVER",
         "WIFI_ONLY",
         "ALWAYS",
+    ]
+    appFunctions: typing_extensions.Literal[
+        "APP_FUNCTIONS_UNSPECIFIED", "APP_FUNCTIONS_DISALLOWED", "APP_FUNCTIONS_ALLOWED"
     ]
     applications: _list[ApplicationPolicy]
     assistContentPolicy: typing_extensions.Literal[
@@ -1166,6 +1419,11 @@ class Policy(typing_extensions.TypedDict, total=False):
         "ENABLED_WITH_PASSWORD",
     ]
     ensureVerifyAppsEnabled: bool
+    enterpriseDisplayNameVisibility: typing_extensions.Literal[
+        "ENTERPRISE_DISPLAY_NAME_VISIBILITY_UNSPECIFIED",
+        "ENTERPRISE_DISPLAY_NAME_VISIBLE",
+        "ENTERPRISE_DISPLAY_NAME_HIDDEN",
+    ]
     factoryResetDisabled: bool
     frpAdminEmails: _list[str]
     funDisabled: bool
@@ -1268,6 +1526,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     vpnConfigDisabled: bool
     wifiConfigDisabled: bool
     wifiConfigsLockdownEnabled: bool
+    wipeDataFlags: _list[
+        typing_extensions.Literal["WIPE_DATA_FLAG_UNSPECIFIED", "WIPE_ESIMS"]
+    ]
+    workAccountSetupConfig: WorkAccountSetupConfig
 
 @typing.type_check_only
 class PolicyEnforcementRule(typing_extensions.TypedDict, total=False):
@@ -1301,6 +1563,41 @@ class PowerManagementEvent(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PreferentialNetworkServiceConfig(typing_extensions.TypedDict, total=False):
+    fallbackToDefaultConnection: typing_extensions.Literal[
+        "FALLBACK_TO_DEFAULT_CONNECTION_UNSPECIFIED",
+        "FALLBACK_TO_DEFAULT_CONNECTION_ALLOWED",
+        "FALLBACK_TO_DEFAULT_CONNECTION_DISALLOWED",
+    ]
+    nonMatchingNetworks: typing_extensions.Literal[
+        "NON_MATCHING_NETWORKS_UNSPECIFIED",
+        "NON_MATCHING_NETWORKS_ALLOWED",
+        "NON_MATCHING_NETWORKS_DISALLOWED",
+    ]
+    preferentialNetworkId: typing_extensions.Literal[
+        "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+        "NO_PREFERENTIAL_NETWORK",
+        "PREFERENTIAL_NETWORK_ID_ONE",
+        "PREFERENTIAL_NETWORK_ID_TWO",
+        "PREFERENTIAL_NETWORK_ID_THREE",
+        "PREFERENTIAL_NETWORK_ID_FOUR",
+        "PREFERENTIAL_NETWORK_ID_FIVE",
+    ]
+
+@typing.type_check_only
+class PreferentialNetworkServiceSettings(typing_extensions.TypedDict, total=False):
+    defaultPreferentialNetworkId: typing_extensions.Literal[
+        "PREFERENTIAL_NETWORK_ID_UNSPECIFIED",
+        "NO_PREFERENTIAL_NETWORK",
+        "PREFERENTIAL_NETWORK_ID_ONE",
+        "PREFERENTIAL_NETWORK_ID_TWO",
+        "PREFERENTIAL_NETWORK_ID_THREE",
+        "PREFERENTIAL_NETWORK_ID_FOUR",
+        "PREFERENTIAL_NETWORK_ID_FIVE",
+    ]
+    preferentialNetworkServiceConfigs: _list[PreferentialNetworkServiceConfig]
+
+@typing.type_check_only
 class ProvisioningInfo(typing_extensions.TypedDict, total=False):
     apiLevel: int
     authenticatedUserEmail: str
@@ -1330,6 +1627,33 @@ class RemoteLockEvent(typing_extensions.TypedDict, total=False):
     adminPackageName: str
     adminUserId: int
     targetUserId: int
+
+@typing.type_check_only
+class RemoveEsimParams(typing_extensions.TypedDict, total=False):
+    iccId: str
+
+@typing.type_check_only
+class RemovePolicyApplicationsRequest(typing_extensions.TypedDict, total=False):
+    packageNames: _list[str]
+
+@typing.type_check_only
+class RemovePolicyApplicationsResponse(typing_extensions.TypedDict, total=False):
+    policy: Policy
+
+@typing.type_check_only
+class RequestDeviceInfoParams(typing_extensions.TypedDict, total=False):
+    deviceInfo: typing_extensions.Literal["DEVICE_INFO_UNSPECIFIED", "EID"]
+
+@typing.type_check_only
+class RequestDeviceInfoStatus(typing_extensions.TypedDict, total=False):
+    eidInfo: EidInfo
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "SUCCEEDED",
+        "PENDING_USER_ACTION",
+        "USER_DECLINED",
+        "UNSUPPORTED",
+    ]
 
 @typing.type_check_only
 class ScreenBrightnessSettings(typing_extensions.TypedDict, total=False):
@@ -1480,7 +1804,13 @@ class SystemUpdateInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TelephonyInfo(typing_extensions.TypedDict, total=False):
+    activationState: typing_extensions.Literal[
+        "ACTIVATION_STATE_UNSPECIFIED", "ACTIVATED", "NOT_ACTIVATED"
+    ]
     carrierName: str
+    configMode: typing_extensions.Literal[
+        "CONFIG_MODE_UNSPECIFIED", "ADMIN_CONFIGURED", "USER_CONFIGURED"
+    ]
     iccId: str
     phoneNumber: str
 
@@ -1507,6 +1837,7 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
     adbShellCommandEvent: AdbShellCommandEvent
     adbShellInteractiveEvent: AdbShellInteractiveEvent
     appProcessStartEvent: AppProcessStartEvent
+    backupServiceToggledEvent: BackupServiceToggledEvent
     certAuthorityInstalledEvent: CertAuthorityInstalledEvent
     certAuthorityRemovedEvent: CertAuthorityRemovedEvent
     certValidationFailureEvent: CertValidationFailureEvent
@@ -1549,6 +1880,7 @@ class UsageLogEvent(typing_extensions.TypedDict, total=False):
         "LOST_MODE_OUTGOING_PHONE_CALL",
         "LOST_MODE_LOCATION",
         "ENROLLMENT_COMPLETE",
+        "BACKUP_SERVICE_TOGGLED",
     ]
     filePulledEvent: FilePulledEvent
     filePushedEvent: FilePushedEvent
@@ -1648,3 +1980,24 @@ class WipeAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class WipeFailureEvent(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class WipeParams(typing_extensions.TypedDict, total=False):
+    wipeDataFlags: _list[
+        typing_extensions.Literal[
+            "WIPE_DATA_FLAG_UNSPECIFIED",
+            "PRESERVE_RESET_PROTECTION_DATA",
+            "WIPE_EXTERNAL_STORAGE",
+            "WIPE_ESIMS",
+        ]
+    ]
+    wipeReason: UserFacingMessage
+
+@typing.type_check_only
+class WorkAccountSetupConfig(typing_extensions.TypedDict, total=False):
+    authenticationType: typing_extensions.Literal[
+        "AUTHENTICATION_TYPE_UNSPECIFIED",
+        "AUTHENTICATION_TYPE_NOT_ENFORCED",
+        "GOOGLE_AUTHENTICATED",
+    ]
+    requiredAccountEmail: str

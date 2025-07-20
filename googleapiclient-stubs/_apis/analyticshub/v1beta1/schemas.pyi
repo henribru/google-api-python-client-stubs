@@ -46,6 +46,19 @@ class DataProvider(typing_extensions.TypedDict, total=False):
     primaryContact: str
 
 @typing.type_check_only
+class DestinationDataset(typing_extensions.TypedDict, total=False):
+    datasetReference: DestinationDatasetReference
+    description: str
+    friendlyName: str
+    labels: dict[str, typing.Any]
+    location: str
+
+@typing.type_check_only
+class DestinationDatasetReference(typing_extensions.TypedDict, total=False):
+    datasetId: str
+    projectId: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -107,6 +120,7 @@ class ListOrgDataExchangesResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Listing(typing_extensions.TypedDict, total=False):
+    allowOnlyMetadataSharing: bool
     bigqueryDataset: BigQueryDatasetSource
     categories: _list[
         typing_extensions.Literal[
@@ -130,6 +144,7 @@ class Listing(typing_extensions.TypedDict, total=False):
             "CATEGORY_SCIENCE_AND_RESEARCH",
             "CATEGORY_TRANSPORTATION_AND_LOGISTICS",
             "CATEGORY_TRAVEL_AND_TOURISM",
+            "CATEGORY_GOOGLE_EARTH_ENGINE",
         ]
     ]
     dataProvider: DataProvider
@@ -197,10 +212,12 @@ class Subscription(typing_extensions.TypedDict, total=False):
     commercialInfo: CommercialInfo
     creationTime: str
     dataExchange: str
+    destinationDataset: DestinationDataset
     lastModifyTime: str
     linkedDatasetMap: dict[str, typing.Any]
     linkedResources: _list[LinkedResource]
     listing: str
+    logLinkedDatasetQueryUserEmail: bool
     name: str
     organizationDisplayName: str
     organizationId: str

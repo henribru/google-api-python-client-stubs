@@ -178,6 +178,13 @@ class CloudComposerResource(googleapiclient.discovery.Resource):
                     body: PollAirflowCommandRequest = ...,
                     **kwargs: typing.Any,
                 ) -> PollAirflowCommandResponseHttpRequest: ...
+                def restartWebServer(
+                    self,
+                    *,
+                    name: str,
+                    body: RestartWebServerRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def saveSnapshot(
                     self,
                     *,

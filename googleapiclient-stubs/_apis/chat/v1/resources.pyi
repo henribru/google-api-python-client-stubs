@@ -14,6 +14,27 @@ _list = list
 @typing.type_check_only
 class HangoutsChatResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class CustomEmojisResource(googleapiclient.discovery.Resource):
+        def create(
+            self, *, body: CustomEmoji = ..., **kwargs: typing.Any
+        ) -> CustomEmojiHttpRequest: ...
+        def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def get(self, *, name: str, **kwargs: typing.Any) -> CustomEmojiHttpRequest: ...
+        def list(
+            self,
+            *,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListCustomEmojisResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: ListCustomEmojisResponseHttpRequest,
+            previous_response: ListCustomEmojisResponse,
+        ) -> ListCustomEmojisResponseHttpRequest | None: ...
+
+    @typing.type_check_only
     class MediaResource(googleapiclient.discovery.Resource):
         def download(
             self, *, resourceName: str, **kwargs: typing.Any
@@ -249,6 +270,20 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class SpacesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class SpaceNotificationSettingResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SpaceNotificationSettingHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: SpaceNotificationSetting = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> SpaceNotificationSettingHttpRequest: ...
+
+            @typing.type_check_only
             class ThreadsResource(googleapiclient.discovery.Resource):
                 def getThreadReadState(
                     self, *, name: str, **kwargs: typing.Any
@@ -265,6 +300,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> SpaceReadStateHttpRequest: ...
+            def spaceNotificationSetting(self) -> SpaceNotificationSettingResource: ...
             def threads(self) -> ThreadsResource: ...
 
         def spaces(self) -> SpacesResource: ...
@@ -281,6 +317,7 @@ class HangoutsChatResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def customEmojis(self) -> CustomEmojisResource: ...
     def media(self) -> MediaResource: ...
     def spaces(self) -> SpacesResource: ...
     def users(self) -> UsersResource: ...
@@ -302,12 +339,28 @@ class CompleteImportSpaceResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> CompleteImportSpaceResponse: ...
 
 @typing.type_check_only
+class CustomEmojiHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CustomEmoji: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class ListCustomEmojisResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListCustomEmojisResponse: ...
 
 @typing.type_check_only
 class ListMembershipsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -404,6 +457,14 @@ class SpaceEventHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SpaceEvent: ...
+
+@typing.type_check_only
+class SpaceNotificationSettingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SpaceNotificationSetting: ...
 
 @typing.type_check_only
 class SpaceReadStateHttpRequest(googleapiclient.http.HttpRequest):

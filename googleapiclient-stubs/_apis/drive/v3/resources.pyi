@@ -359,16 +359,13 @@ class DriveResource(googleapiclient.discovery.Resource):
         ) -> ChannelHttpRequest: ...
 
     @typing.type_check_only
-    class OperationResource(googleapiclient.discovery.Resource):
+    class OperationsResource(googleapiclient.discovery.Resource):
         def cancel(
             self, *, name: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> googleapiclient.http.HttpRequest: ...
-
-    @typing.type_check_only
-    class OperationsResource(googleapiclient.discovery.Resource):
         def get(self, *, name: str, **kwargs: typing.Any) -> OperationHttpRequest: ...
         def list(
             self,
@@ -393,6 +390,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             fileId: str,
             body: Permission = ...,
             emailMessage: str = ...,
+            enforceExpansiveAccess: bool = ...,
             enforceSingleParent: bool = ...,
             moveToNewOwnersRoot: bool = ...,
             sendNotificationEmail: bool = ...,
@@ -407,6 +405,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             *,
             fileId: str,
             permissionId: str,
+            enforceExpansiveAccess: bool = ...,
             supportsAllDrives: bool = ...,
             supportsTeamDrives: bool = ...,
             useDomainAdminAccess: bool = ...,
@@ -445,6 +444,7 @@ class DriveResource(googleapiclient.discovery.Resource):
             fileId: str,
             permissionId: str,
             body: Permission = ...,
+            enforceExpansiveAccess: bool = ...,
             removeExpiration: bool = ...,
             supportsAllDrives: bool = ...,
             supportsTeamDrives: bool = ...,
@@ -599,7 +599,6 @@ class DriveResource(googleapiclient.discovery.Resource):
     def comments(self) -> CommentsResource: ...
     def drives(self) -> DrivesResource: ...
     def files(self) -> FilesResource: ...
-    def operation(self) -> OperationResource: ...
     def operations(self) -> OperationsResource: ...
     def permissions(self) -> PermissionsResource: ...
     def replies(self) -> RepliesResource: ...

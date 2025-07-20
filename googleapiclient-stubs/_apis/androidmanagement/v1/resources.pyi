@@ -54,12 +54,14 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                     "WIPE_DATA_FLAG_UNSPECIFIED",
                     "PRESERVE_RESET_PROTECTION_DATA",
                     "WIPE_EXTERNAL_STORAGE",
+                    "WIPE_ESIMS",
                 ]
                 | _list[
                     typing_extensions.Literal[
                         "WIPE_DATA_FLAG_UNSPECIFIED",
                         "PRESERVE_RESET_PROTECTION_DATA",
                         "WIPE_EXTERNAL_STORAGE",
+                        "WIPE_ESIMS",
                     ]
                 ] = ...,
                 wipeReasonMessage: str = ...,
@@ -158,6 +160,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 previous_request: ListPoliciesResponseHttpRequest,
                 previous_response: ListPoliciesResponse,
             ) -> ListPoliciesResponseHttpRequest | None: ...
+            def modifyPolicyApplications(
+                self,
+                *,
+                name: str,
+                body: ModifyPolicyApplicationsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> ModifyPolicyApplicationsResponseHttpRequest: ...
             def patch(
                 self,
                 *,
@@ -166,6 +175,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
                 updateMask: str = ...,
                 **kwargs: typing.Any,
             ) -> PolicyHttpRequest: ...
+            def removePolicyApplications(
+                self,
+                *,
+                name: str,
+                body: RemovePolicyApplicationsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> RemovePolicyApplicationsResponseHttpRequest: ...
 
         @typing.type_check_only
         class WebAppsResource(googleapiclient.discovery.Resource):
@@ -215,6 +231,13 @@ class AndroidManagementResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> EnterpriseHttpRequest: ...
         def delete(self, *, name: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
+        def generateEnterpriseUpgradeUrl(
+            self,
+            *,
+            name: str,
+            body: GenerateEnterpriseUpgradeUrlRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GenerateEnterpriseUpgradeUrlResponseHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> EnterpriseHttpRequest: ...
         def list(
             self,
@@ -323,6 +346,14 @@ class EnterpriseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Enterprise: ...
 
 @typing.type_check_only
+class GenerateEnterpriseUpgradeUrlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateEnterpriseUpgradeUrlResponse: ...
+
+@typing.type_check_only
 class ListDevicesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -387,6 +418,14 @@ class MigrationTokenHttpRequest(googleapiclient.http.HttpRequest):
     ) -> MigrationToken: ...
 
 @typing.type_check_only
+class ModifyPolicyApplicationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ModifyPolicyApplicationsResponse: ...
+
+@typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -409,6 +448,14 @@ class ProvisioningInfoHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ProvisioningInfo: ...
+
+@typing.type_check_only
+class RemovePolicyApplicationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemovePolicyApplicationsResponse: ...
 
 @typing.type_check_only
 class SignupUrlHttpRequest(googleapiclient.http.HttpRequest):

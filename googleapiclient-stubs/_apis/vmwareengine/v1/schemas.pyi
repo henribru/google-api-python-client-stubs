@@ -5,6 +5,22 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Announcement(typing_extensions.TypedDict, total=False):
+    activityType: str
+    cluster: str
+    code: str
+    createTime: str
+    description: str
+    metadata: dict[str, typing.Any]
+    name: str
+    privateCloud: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DELETING", "CREATING"
+    ]
+    targetResourceType: str
+    updateTime: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -51,6 +67,13 @@ class Cluster(typing_extensions.TypedDict, total=False):
     stretchedClusterConfig: StretchedClusterConfig
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class Constraints(typing_extensions.TypedDict, total=False):
+    disallowedIntervals: _list[WeeklyTimeInterval]
+    minHoursDay: int
+    minHoursWeek: int
+    rescheduleDateRange: Interval
 
 @typing.type_check_only
 class Credentials(typing_extensions.TypedDict, total=False):
@@ -147,10 +170,21 @@ class HcxActivationKey(typing_extensions.TypedDict, total=False):
     uid: str
 
 @typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+
+@typing.type_check_only
 class IpRange(typing_extensions.TypedDict, total=False):
     externalAddress: str
     ipAddress: str
     ipAddressRange: str
+
+@typing.type_check_only
+class ListAnnouncementsResponse(typing_extensions.TypedDict, total=False):
+    announcements: _list[Announcement]
+    nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListClustersResponse(typing_extensions.TypedDict, total=False):
@@ -252,6 +286,12 @@ class ListSubnetsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListUpgradesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    upgrades: _list[Upgrade]
+
+@typing.type_check_only
 class ListVmwareEngineNetworksResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
@@ -332,6 +372,7 @@ class NetworkPeering(typing_extensions.TypedDict, total=False):
         "THIRD_PARTY_SERVICE",
         "DELL_POWERSCALE",
         "GOOGLE_CLOUD_NETAPP_VOLUMES",
+        "GOOGLE_CLOUD_FILESTORE_INSTANCES",
     ]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "INACTIVE", "ACTIVE", "CREATING", "DELETING"
@@ -525,6 +566,14 @@ class RevokeDnsBindPermissionRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
 @typing.type_check_only
+class Schedule(typing_extensions.TypedDict, total=False):
+    constraints: Constraints
+    editWindow: Interval
+    lastEditor: typing_extensions.Literal["EDITOR_UNSPECIFIED", "SYSTEM", "USER"]
+    startTime: str
+    weeklyWindows: _list[TimeWindow]
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -571,8 +620,67 @@ class Thresholds(typing_extensions.TypedDict, total=False):
     scaleOut: int
 
 @typing.type_check_only
+class TimeOfDay(typing_extensions.TypedDict, total=False):
+    hours: int
+    minutes: int
+    nanos: int
+    seconds: int
+
+@typing.type_check_only
+class TimeWindow(typing_extensions.TypedDict, total=False):
+    dayOfWeek: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    duration: str
+    startTime: TimeOfDay
+
+@typing.type_check_only
 class UndeletePrivateCloudRequest(typing_extensions.TypedDict, total=False):
     requestId: str
+
+@typing.type_check_only
+class Upgrade(typing_extensions.TypedDict, total=False):
+    componentUpgrades: _list[VmwareUpgradeComponent]
+    createTime: str
+    description: str
+    endTime: str
+    estimatedDuration: str
+    etag: str
+    name: str
+    schedule: Schedule
+    startVersion: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "SCHEDULED",
+        "ONGOING",
+        "SUCCEEDED",
+        "PAUSED",
+        "FAILED",
+        "CANCELLING",
+        "CANCELLED",
+        "RESCHEDULING",
+    ]
+    targetVersion: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "VSPHERE_UPGRADE",
+        "VSPHERE_PATCH",
+        "WORKAROUND",
+        "FIRMWARE_UPGRADE",
+        "SWITCH_UPGRADE",
+        "OTHER",
+        "INFRASTRUCTURE_UPGRADE",
+    ]
+    uid: str
+    updateTime: str
+    version: str
 
 @typing.type_check_only
 class Vcenter(typing_extensions.TypedDict, total=False):
@@ -596,8 +704,61 @@ class VmwareEngineNetwork(typing_extensions.TypedDict, total=False):
     vpcNetworks: _list[VpcNetwork]
 
 @typing.type_check_only
+class VmwareUpgradeComponent(typing_extensions.TypedDict, total=False):
+    componentType: typing_extensions.Literal[
+        "VMWARE_COMPONENT_TYPE_UNSPECIFIED",
+        "VCENTER",
+        "ESXI",
+        "NSXT_UC",
+        "NSXT_EDGE",
+        "NSXT_MGR",
+        "HCX",
+        "VSAN",
+        "DVS",
+        "NAMESERVER_VM",
+        "KMS_VM",
+        "WITNESS_VM",
+        "NSXT",
+        "CLUSTER",
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "RUNNING",
+        "PAUSED",
+        "SUCCEEDED",
+        "FAILED",
+        "NOT_STARTED",
+        "NOT_APPLICABLE",
+    ]
+
+@typing.type_check_only
 class VpcNetwork(typing_extensions.TypedDict, total=False):
     network: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "INTRANET", "INTERNET", "GOOGLE_CLOUD"
     ]
+
+@typing.type_check_only
+class WeeklyTimeInterval(typing_extensions.TypedDict, total=False):
+    endDay: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    endTime: TimeOfDay
+    startDay: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    startTime: TimeOfDay

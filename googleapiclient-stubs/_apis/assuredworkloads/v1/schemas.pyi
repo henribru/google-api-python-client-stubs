@@ -29,6 +29,26 @@ class GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse(
     nextPageToken: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["WORKLOAD_UPDATE_ACTION_UNSPECIFIED", "APPLY"]
+    createTime: str
+    updateName: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest(
+    typing_extensions.TypedDict, total=False
+):
+    action: typing_extensions.Literal["WORKLOAD_UPDATE_ACTION_UNSPECIFIED", "APPLY"]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateResponse(
+    typing_extensions.TypedDict, total=False
+):
+    appliedUpdate: GoogleCloudAssuredworkloadsV1WorkloadUpdate
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1AssetMoveAnalysis(
     typing_extensions.TypedDict, total=False
 ):
@@ -66,10 +86,35 @@ class GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata(
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
         "CANADA_CONTROLLED_GOODS",
+        "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT",
+        "CANADA_DATA_BOUNDARY_AND_SUPPORT",
+        "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS",
+        "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B",
+        "DATA_BOUNDARY_FOR_CJIS",
+        "DATA_BOUNDARY_FOR_FEDRAMP_HIGH",
+        "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE",
+        "DATA_BOUNDARY_FOR_IL2",
+        "DATA_BOUNDARY_FOR_IL4",
+        "DATA_BOUNDARY_FOR_IL5",
+        "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075",
+        "DATA_BOUNDARY_FOR_ITAR",
+        "EU_DATA_BOUNDARY_AND_SUPPORT",
+        "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
+        "US_DATA_BOUNDARY_AND_SUPPORT",
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES",
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT",
+        "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
+        "REGIONAL_DATA_BOUNDARY",
+        "JAPAN_DATA_BOUNDARY",
     ]
     createTime: str
     displayName: str
     parent: str
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponse(
@@ -82,6 +127,13 @@ class GoogleCloudAssuredworkloadsV1ListViolationsResponse(
 ):
     nextPageToken: str
     violations: _list[GoogleCloudAssuredworkloadsV1Violation]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadUpdates: _list[GoogleCloudAssuredworkloadsV1WorkloadUpdate]
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListWorkloadsResponse(
@@ -118,6 +170,37 @@ class GoogleCloudAssuredworkloadsV1MutatePartnerPermissionsRequest(
     updateMask: str
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1OrgPolicy(typing_extensions.TypedDict, total=False):
+    constraint: str
+    inherit: bool
+    reset: bool
+    resource: str
+    rule: GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRule(
+    typing_extensions.TypedDict, total=False
+):
+    allowAll: bool
+    denyAll: bool
+    enforce: bool
+    values: GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1OrgPolicyPolicyRuleStringValues(
+    typing_extensions.TypedDict, total=False
+):
+    allowedValues: _list[str]
+    deniedValues: _list[str]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1OrgPolicyUpdate(
+    typing_extensions.TypedDict, total=False
+):
+    appliedPolicy: GoogleCloudAssuredworkloadsV1OrgPolicy
+    suggestedPolicy: GoogleCloudAssuredworkloadsV1OrgPolicy
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -132,6 +215,12 @@ class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest(
 class GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1UpdateDetails(
+    typing_extensions.TypedDict, total=False
+):
+    orgPolicyUpdate: GoogleCloudAssuredworkloadsV1OrgPolicyUpdate
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1Violation(typing_extensions.TypedDict, total=False):
@@ -240,6 +329,26 @@ class GoogleCloudAssuredworkloadsV1Workload(typing_extensions.TypedDict, total=F
         "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
         "IRS_1075",
         "CANADA_CONTROLLED_GOODS",
+        "AUSTRALIA_DATA_BOUNDARY_AND_SUPPORT",
+        "CANADA_DATA_BOUNDARY_AND_SUPPORT",
+        "DATA_BOUNDARY_FOR_CANADA_CONTROLLED_GOODS",
+        "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B",
+        "DATA_BOUNDARY_FOR_CJIS",
+        "DATA_BOUNDARY_FOR_FEDRAMP_HIGH",
+        "DATA_BOUNDARY_FOR_FEDRAMP_MODERATE",
+        "DATA_BOUNDARY_FOR_IL2",
+        "DATA_BOUNDARY_FOR_IL4",
+        "DATA_BOUNDARY_FOR_IL5",
+        "DATA_BOUNDARY_FOR_IRS_PUBLICATION_1075",
+        "DATA_BOUNDARY_FOR_ITAR",
+        "EU_DATA_BOUNDARY_AND_SUPPORT",
+        "ISRAEL_DATA_BOUNDARY_AND_SUPPORT",
+        "US_DATA_BOUNDARY_AND_SUPPORT",
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES",
+        "US_DATA_BOUNDARY_FOR_HEALTHCARE_AND_LIFE_SCIENCES_WITH_SUPPORT",
+        "KSA_DATA_BOUNDARY_WITH_ACCESS_JUSTIFICATIONS",
+        "REGIONAL_DATA_BOUNDARY",
+        "JAPAN_DATA_BOUNDARY",
     ]
     complianceStatus: GoogleCloudAssuredworkloadsV1WorkloadComplianceStatus
     compliantButDisallowedServices: _list[str]
@@ -370,6 +479,18 @@ class GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse(
     setupStatus: typing_extensions.Literal[
         "SETUP_STATE_UNSPECIFIED", "STATUS_PENDING", "STATUS_COMPLETE"
     ]
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1WorkloadUpdate(
+    typing_extensions.TypedDict, total=False
+):
+    createTime: str
+    details: GoogleCloudAssuredworkloadsV1UpdateDetails
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "AVAILABLE", "APPLIED", "WITHDRAWN"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions(

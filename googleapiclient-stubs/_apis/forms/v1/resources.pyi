@@ -67,9 +67,16 @@ class FormsResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> BatchUpdateFormResponseHttpRequest: ...
         def create(
-            self, *, body: Form = ..., **kwargs: typing.Any
+            self, *, body: Form = ..., unpublished: bool = ..., **kwargs: typing.Any
         ) -> FormHttpRequest: ...
         def get(self, *, formId: str, **kwargs: typing.Any) -> FormHttpRequest: ...
+        def setPublishSettings(
+            self,
+            *,
+            formId: str,
+            body: SetPublishSettingsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> SetPublishSettingsResponseHttpRequest: ...
         def responses(self) -> ResponsesResource: ...
         def watches(self) -> WatchesResource: ...
 
@@ -134,6 +141,14 @@ class ListWatchesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListWatchesResponse: ...
+
+@typing.type_check_only
+class SetPublishSettingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SetPublishSettingsResponse: ...
 
 @typing.type_check_only
 class WatchHttpRequest(googleapiclient.http.HttpRequest):

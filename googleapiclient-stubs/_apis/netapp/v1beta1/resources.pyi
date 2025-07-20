@@ -319,6 +319,46 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class VolumesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class QuotaRulesResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: QuotaRule = ...,
+                        quotaRuleId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> QuotaRuleHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListQuotaRulesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListQuotaRulesResponseHttpRequest,
+                        previous_response: ListQuotaRulesResponse,
+                    ) -> ListQuotaRulesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: QuotaRule = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class ReplicationsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -470,6 +510,13 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def restore(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreBackupFilesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def revert(
                     self,
                     *,
@@ -477,6 +524,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                     body: RevertVolumeRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def quotaRules(self) -> QuotaRulesResource: ...
                 def replications(self) -> ReplicationsResource: ...
                 def snapshots(self) -> SnapshotsResource: ...
 
@@ -487,6 +535,7 @@ class NetAppFilesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -626,6 +675,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListQuotaRulesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListQuotaRulesResponse: ...
+
+@typing.type_check_only
 class ListReplicationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -672,6 +729,14 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class QuotaRuleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QuotaRule: ...
 
 @typing.type_check_only
 class ReplicationHttpRequest(googleapiclient.http.HttpRequest):

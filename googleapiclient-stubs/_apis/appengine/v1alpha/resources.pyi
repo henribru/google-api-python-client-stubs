@@ -135,6 +135,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 appsId: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -179,6 +180,70 @@ class AppengineResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class ApplicationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class AuthorizedCertificatesResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        body: AuthorizedCertificate = ...,
+                        **kwargs: typing.Any,
+                    ) -> AuthorizedCertificateHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        authorizedCertificatesId: str,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        authorizedCertificatesId: str,
+                        view: typing_extensions.Literal[
+                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> AuthorizedCertificateHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        view: typing_extensions.Literal[
+                            "BASIC_CERTIFICATE", "FULL_CERTIFICATE"
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListAuthorizedCertificatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListAuthorizedCertificatesResponseHttpRequest,
+                        previous_response: ListAuthorizedCertificatesResponse,
+                    ) -> ListAuthorizedCertificatesResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        authorizedCertificatesId: str,
+                        body: AuthorizedCertificate = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> AuthorizedCertificateHttpRequest: ...
+
+                @typing.type_check_only
                 class AuthorizedDomainsResource(googleapiclient.discovery.Resource):
                     def list(
                         self,
@@ -196,7 +261,34 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         previous_response: ListAuthorizedDomainsResponse,
                     ) -> ListAuthorizedDomainsResponseHttpRequest | None: ...
 
+                @typing.type_check_only
+                class DomainMappingsResource(googleapiclient.discovery.Resource):
+                    def create(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        body: DomainMapping = ...,
+                        noManagedCertificate: bool = ...,
+                        overrideStrategy: typing_extensions.Literal[
+                            "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY", "STRICT", "OVERRIDE"
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        domainMappingsId: str,
+                        **kwargs: typing.Any,
+                    ) -> DomainMappingHttpRequest: ...
+
+                def authorizedCertificates(self) -> AuthorizedCertificatesResource: ...
                 def authorizedDomains(self) -> AuthorizedDomainsResource: ...
+                def domainMappings(self) -> DomainMappingsResource: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -231,6 +323,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 projectsId: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

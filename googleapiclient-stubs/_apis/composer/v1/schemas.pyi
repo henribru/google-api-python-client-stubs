@@ -336,6 +336,9 @@ class RecoveryConfig(typing_extensions.TypedDict, total=False):
     scheduledSnapshotsConfig: ScheduledSnapshotsConfig
 
 @typing.type_check_only
+class RestartWebServerRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SaveSnapshotRequest(typing_extensions.TypedDict, total=False):
     snapshotLocation: str
 

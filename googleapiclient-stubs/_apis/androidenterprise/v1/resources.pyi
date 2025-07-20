@@ -79,6 +79,14 @@ class AndroidEnterpriseResource(googleapiclient.discovery.Resource):
         def enroll(
             self, *, token: str, body: Enterprise = ..., **kwargs: typing.Any
         ) -> EnterpriseHttpRequest: ...
+        def generateEnterpriseUpgradeUrl(
+            self,
+            *,
+            enterpriseId: str,
+            adminEmail: str = ...,
+            allowedDomains: str | _list[str] = ...,
+            **kwargs: typing.Any,
+        ) -> GenerateEnterpriseUpgradeUrlResponseHttpRequest: ...
         def generateSignupUrl(
             self,
             *,
@@ -618,6 +626,14 @@ class EntitlementsListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> EntitlementsListResponse: ...
+
+@typing.type_check_only
+class GenerateEnterpriseUpgradeUrlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateEnterpriseUpgradeUrlResponse: ...
 
 @typing.type_check_only
 class GroupLicenseHttpRequest(googleapiclient.http.HttpRequest):

@@ -22,6 +22,12 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> LfpInventoryHttpRequest: ...
 
         @typing.type_check_only
+        class LfpMerchantStatesResource(googleapiclient.discovery.Resource):
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LfpMerchantStateHttpRequest: ...
+
+        @typing.type_check_only
         class LfpSalesResource(googleapiclient.discovery.Resource):
             def insert(
                 self, *, parent: str, body: LfpSale = ..., **kwargs: typing.Any
@@ -54,6 +60,7 @@ class MerchantResource(googleapiclient.discovery.Resource):
             ) -> ListLfpStoresResponseHttpRequest | None: ...
 
         def lfpInventories(self) -> LfpInventoriesResource: ...
+        def lfpMerchantStates(self) -> LfpMerchantStatesResource: ...
         def lfpSales(self) -> LfpSalesResource: ...
         def lfpStores(self) -> LfpStoresResource: ...
 
@@ -86,6 +93,14 @@ class LfpInventoryHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> LfpInventory: ...
+
+@typing.type_check_only
+class LfpMerchantStateHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LfpMerchantState: ...
 
 @typing.type_check_only
 class LfpSaleHttpRequest(googleapiclient.http.HttpRequest):

@@ -48,7 +48,12 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     view: typing_extensions.Literal[
-                        "ASSET_VIEW_UNSPECIFIED", "ASSET_VIEW_BASIC", "ASSET_VIEW_FULL"
+                        "ASSET_VIEW_UNSPECIFIED",
+                        "ASSET_VIEW_BASIC",
+                        "ASSET_VIEW_FULL",
+                        "ASSET_VIEW_STANDARD",
+                        "ASSET_VIEW_UI",
+                        "ASSET_VIEW_LABELS",
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> AssetHttpRequest: ...
@@ -60,8 +65,14 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                     orderBy: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    showHidden: bool = ...,
                     view: typing_extensions.Literal[
-                        "ASSET_VIEW_UNSPECIFIED", "ASSET_VIEW_BASIC", "ASSET_VIEW_FULL"
+                        "ASSET_VIEW_UNSPECIFIED",
+                        "ASSET_VIEW_BASIC",
+                        "ASSET_VIEW_FULL",
+                        "ASSET_VIEW_STANDARD",
+                        "ASSET_VIEW_UI",
+                        "ASSET_VIEW_LABELS",
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> ListAssetsResponseHttpRequest: ...
@@ -565,6 +576,7 @@ class MigrationCenterAPIResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

@@ -883,6 +883,15 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class SuggestionsResource(googleapiclient.discovery.Resource):
+                def generate(
+                    self,
+                    *,
+                    conversation: str,
+                    body: GoogleCloudDialogflowV2beta1GenerateSuggestionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseHttpRequest
+                ): ...
                 def searchKnowledge(
                     self,
                     *,
@@ -1820,6 +1829,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class SuggestionsResource(googleapiclient.discovery.Resource):
+                    def generate(
+                        self,
+                        *,
+                        conversation: str,
+                        body: GoogleCloudDialogflowV2beta1GenerateSuggestionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseHttpRequest: ...
                     def searchKnowledge(
                         self,
                         *,
@@ -1855,6 +1871,13 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudDialogflowV2beta1ConversationHttpRequest: ...
+                def ingestContextReferences(
+                    self,
+                    *,
+                    conversation: str,
+                    body: GoogleCloudDialogflowV2beta1IngestContextReferencesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1IngestContextReferencesResponseHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -2054,6 +2077,46 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class PhoneNumbersResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest
+                ): ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest,
+                    previous_response: GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse,
+                ) -> (
+                    GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest
+                    | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1PhoneNumber = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
+                def undelete(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
+
+            @typing.type_check_only
             class SipTrunksResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -2135,6 +2198,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -2161,6 +2225,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
             def generators(self) -> GeneratorsResource: ...
             def knowledgeBases(self) -> KnowledgeBasesResource: ...
             def operations(self) -> OperationsResource: ...
+            def phoneNumbers(self) -> PhoneNumbersResource: ...
             def sipTrunks(self) -> SipTrunksResource: ...
             def statelessSuggestion(self) -> StatelessSuggestionResource: ...
             def suggestions(self) -> SuggestionsResource: ...
@@ -2187,6 +2252,43 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                 previous_response: GoogleLongrunningListOperationsResponse,
             ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
+        class PhoneNumbersResource(googleapiclient.discovery.Resource):
+            def delete(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                showDeleted: bool = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest,
+                previous_response: GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse,
+            ) -> (
+                GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest | None
+            ): ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1PhoneNumber = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
+            def undelete(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudDialogflowV2beta1UndeletePhoneNumberRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest: ...
 
         @typing.type_check_only
         class SuggestionsResource(googleapiclient.discovery.Resource):
@@ -2229,6 +2331,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
         def knowledgeBases(self) -> KnowledgeBasesResource: ...
         def locations(self) -> LocationsResource: ...
         def operations(self) -> OperationsResource: ...
+        def phoneNumbers(self) -> PhoneNumbersResource: ...
         def suggestions(self) -> SuggestionsResource: ...
 
     def new_batch_http_request(
@@ -2410,6 +2513,16 @@ class GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponseHttpRequest(
     ) -> GoogleCloudDialogflowV2beta1GenerateStatelessSummaryResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1GenerateSuggestionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1GenerateSuggestionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1GeneratorHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2418,6 +2531,16 @@ class GoogleCloudDialogflowV2beta1GeneratorHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2beta1Generator: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1IngestContextReferencesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1IngestContextReferencesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1IntentHttpRequest(googleapiclient.http.HttpRequest):
@@ -2558,6 +2681,16 @@ class GoogleCloudDialogflowV2beta1ListParticipantsResponseHttpRequest(
     ) -> GoogleCloudDialogflowV2beta1ListParticipantsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowV2beta1ListPhoneNumbersResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1ListPhoneNumbersResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2606,6 +2739,16 @@ class GoogleCloudDialogflowV2beta1ParticipantHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowV2beta1Participant: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowV2beta1PhoneNumberHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowV2beta1PhoneNumber: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowV2beta1SearchAgentsResponseHttpRequest(

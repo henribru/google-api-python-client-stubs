@@ -399,6 +399,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_WARN_PAGE_PRINT",
             "CHROME_BLOCK_URL_VISITED",
             "CHROME_WARN_URL_VISITED",
+            "CHROME_BLOCK_SCREENSHOT",
             "CHROME_STORE_CONTENT",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
@@ -437,6 +438,7 @@ class RuleViolationInfo(typing_extensions.TypedDict, total=False):
             "CHROME_WARN_PAGE_PRINT",
             "CHROME_BLOCK_URL_VISITED",
             "CHROME_WARN_URL_VISITED",
+            "CHROME_BLOCK_SCREENSHOT",
             "CHROME_STORE_CONTENT",
             "DELETE_WEBPROTECT_EVIDENCE",
             "CHAT_BLOCK_CONTENT",
@@ -551,6 +553,21 @@ class UserChanges(typing_extensions.TypedDict, total=False):
 class UserDefinedDetectorInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     resourceName: str
+
+@typing.type_check_only
+class VaultAcceleratedDeletion(typing_extensions.TypedDict, total=False):
+    actionType: typing_extensions.Literal[
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_UNSPECIFIED",
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CREATE",
+        "VAULT_ACCELERATED_DELETION_ACTION_TYPE_CANCEL",
+    ]
+    appType: typing_extensions.Literal[
+        "VAULT_ACCELERATED_DELETION_APP_TYPE_UNSPECIFIED",
+        "VAULT_ACCELERATED_DELETION_APP_TYPE_GMAIL",
+    ]
+    createTime: str
+    deletionRequestId: str
+    matterId: str
 
 @typing.type_check_only
 class VoiceMisconfiguration(typing_extensions.TypedDict, total=False):

@@ -121,6 +121,7 @@ class ImportFile(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancesBulkInsertOperationMetadata(typing_extensions.TypedDict, total=False):
+    machineType: str
     perLocationStatus: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -166,6 +167,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     selfLinkWithId: str
+    setAutoscalerLinkOperationMetadata: SetAutoscalerLinkOperationMetadata
     setCommonInstanceMetadataOperationMetadata: (
         SetCommonInstanceMetadataOperationMetadata
     )
@@ -239,6 +241,10 @@ class ResourceUpdate(typing_extensions.TypedDict, total=False):
 class ResourcesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Resource]
+
+@typing.type_check_only
+class SetAutoscalerLinkOperationMetadata(typing_extensions.TypedDict, total=False):
+    zonalIgmIds: _list[str]
 
 @typing.type_check_only
 class SetCommonInstanceMetadataOperationMetadata(

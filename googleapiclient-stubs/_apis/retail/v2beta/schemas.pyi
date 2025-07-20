@@ -430,6 +430,7 @@ class GoogleCloudRetailV2alphaMerchantCenterAccountLink(
 class GoogleCloudRetailV2alphaMerchantCenterAccountLinkMerchantCenterFeedFilter(
     typing_extensions.TypedDict, total=False
 ):
+    dataSourceId: str
     primaryFeedId: str
     primaryFeedName: str
 
@@ -940,6 +941,14 @@ class GoogleCloudRetailV2betaControl(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchCustomizationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    catalog: str
+    intentClassificationConfig: GoogleCloudRetailV2betaIntentClassificationConfig
+    retailerDisplayName: str
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaCreateModelMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -951,6 +960,10 @@ class GoogleCloudRetailV2betaCustomAttribute(typing_extensions.TypedDict, total=
     numbers: _list[float]
     searchable: bool
     text: _list[str]
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaDoubleList(typing_extensions.TypedDict, total=False):
+    values: _list[float]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaExperimentInfo(typing_extensions.TypedDict, total=False):
@@ -1134,6 +1147,43 @@ class GoogleCloudRetailV2betaImportUserEventsResponse(
     importSummary: GoogleCloudRetailV2betaUserEventImportSummary
 
 @typing.type_check_only
+class GoogleCloudRetailV2betaIntentClassificationConfig(
+    typing_extensions.TypedDict, total=False
+):
+    blocklistKeywords: _list[str]
+    disabledIntentTypes: _list[str]
+    example: _list[GoogleCloudRetailV2betaIntentClassificationConfigExample]
+    inlineSource: GoogleCloudRetailV2betaIntentClassificationConfigInlineSource
+    modelPreamble: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaIntentClassificationConfigExample(
+    typing_extensions.TypedDict, total=False
+):
+    classifiedPositive: bool
+    intentType: str
+    query: str
+    reason: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaIntentClassificationConfigInlineForceIntent(
+    typing_extensions.TypedDict, total=False
+):
+    intentType: str
+    operation: typing_extensions.Literal[
+        "OPERATION_UNSPECIFIED", "EXACT_MATCH", "CONTAINS"
+    ]
+    query: str
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaIntentClassificationConfigInlineSource(
+    typing_extensions.TypedDict, total=False
+):
+    inlineForceIntents: _list[
+        GoogleCloudRetailV2betaIntentClassificationConfigInlineForceIntent
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2betaInterval(typing_extensions.TypedDict, total=False):
     exclusiveMaximum: float
     exclusiveMinimum: float
@@ -1184,9 +1234,6 @@ class GoogleCloudRetailV2betaListServingConfigsResponse(
 @typing.type_check_only
 class GoogleCloudRetailV2betaLocalInventory(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
-    availability: typing_extensions.Literal[
-        "AVAILABILITY_UNSPECIFIED", "IN_STOCK", "OUT_OF_STOCK", "PREORDER", "BACKORDER"
-    ]
     fulfillmentTypes: _list[str]
     placeId: str
     priceInfo: GoogleCloudRetailV2betaPriceInfo
@@ -1195,6 +1242,7 @@ class GoogleCloudRetailV2betaLocalInventory(typing_extensions.TypedDict, total=F
 class GoogleCloudRetailV2betaMerchantCenterFeedFilter(
     typing_extensions.TypedDict, total=False
 ):
+    dataSourceId: str
     primaryFeedId: str
     primaryFeedName: str
 
@@ -1679,19 +1727,23 @@ class GoogleCloudRetailV2betaSearchRequest(typing_extensions.TypedDict, total=Fa
     facetSpecs: _list[GoogleCloudRetailV2betaSearchRequestFacetSpec]
     filter: str
     labels: dict[str, typing.Any]
+    languageCode: str
     offset: int
     orderBy: str
     pageCategories: _list[str]
     pageSize: int
     pageToken: str
     personalizationSpec: GoogleCloudRetailV2betaSearchRequestPersonalizationSpec
+    placeId: str
     query: str
     queryExpansionSpec: GoogleCloudRetailV2betaSearchRequestQueryExpansionSpec
+    regionCode: str
     searchMode: typing_extensions.Literal[
         "SEARCH_MODE_UNSPECIFIED", "PRODUCT_SEARCH_ONLY", "FACETED_SEARCH_ONLY"
     ]
     spellCorrectionSpec: GoogleCloudRetailV2betaSearchRequestSpellCorrectionSpec
     tileNavigationSpec: GoogleCloudRetailV2betaSearchRequestTileNavigationSpec
+    userAttributes: dict[str, typing.Any]
     userInfo: GoogleCloudRetailV2betaUserInfo
     variantRollupKeys: _list[str]
     visitorId: str
@@ -1871,6 +1923,7 @@ class GoogleCloudRetailV2betaSearchResponseSearchResult(
     id: str
     matchingVariantCount: int
     matchingVariantFields: dict[str, typing.Any]
+    modelScores: dict[str, typing.Any]
     personalLabels: _list[str]
     product: GoogleCloudRetailV2betaProduct
     variantRollupValues: dict[str, typing.Any]
@@ -1938,6 +1991,10 @@ class GoogleCloudRetailV2betaSetInventoryRequest(
 class GoogleCloudRetailV2betaSetInventoryResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaStringList(typing_extensions.TypedDict, total=False):
+    values: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaTile(typing_extensions.TypedDict, total=False):

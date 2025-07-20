@@ -200,6 +200,10 @@ class BasePlan(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
 
 @typing.type_check_only
+class BatchGetOrdersResponse(typing_extensions.TypedDict, total=False):
+    orders: _list[Order]
+
+@typing.type_check_only
 class BatchGetSubscriptionOffersRequest(typing_extensions.TypedDict, total=False):
     requests: _list[GetSubscriptionOfferRequest]
 
@@ -267,6 +271,12 @@ class BundlesListResponse(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class BuyerAddress(typing_extensions.TypedDict, total=False):
+    buyerCountry: str
+    buyerPostcode: str
+    buyerState: str
+
+@typing.type_check_only
 class CancelAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -292,6 +302,10 @@ class CanceledStateContext(typing_extensions.TypedDict, total=False):
     userInitiatedCancellation: UserInitiatedCancellation
 
 @typing.type_check_only
+class CancellationEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+
+@typing.type_check_only
 class Comment(typing_extensions.TypedDict, total=False):
     developerComment: DeveloperComment
     userComment: UserComment
@@ -304,6 +318,7 @@ class ConvertRegionPricesRequest(typing_extensions.TypedDict, total=False):
 class ConvertRegionPricesResponse(typing_extensions.TypedDict, total=False):
     convertedOtherRegionsPrice: ConvertedOtherRegionsPrice
     convertedRegionPrices: dict[str, typing.Any]
+    regionVersion: RegionsVersion
 
 @typing.type_check_only
 class ConvertedOtherRegionsPrice(typing_extensions.TypedDict, total=False):
@@ -734,6 +749,17 @@ class LanguageTargeting(typing_extensions.TypedDict, total=False):
     value: _list[str]
 
 @typing.type_check_only
+class LineItem(typing_extensions.TypedDict, total=False):
+    listingPrice: Money
+    oneTimePurchaseDetails: OneTimePurchaseDetails
+    paidAppDetails: PaidAppDetails
+    productId: str
+    productTitle: str
+    subscriptionDetails: SubscriptionDetails
+    tax: Money
+    total: Money
+
+@typing.type_check_only
 class ListAppRecoveriesResponse(typing_extensions.TypedDict, total=False):
     recoveryActions: _list[AppRecoveryAction]
 
@@ -850,6 +876,48 @@ class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
     externalTransactionToken: str
 
 @typing.type_check_only
+class OneTimePurchaseDetails(typing_extensions.TypedDict, total=False):
+    offerId: str
+    purchaseOptionId: str
+    quantity: int
+    rentalDetails: RentalDetails
+
+@typing.type_check_only
+class Order(typing_extensions.TypedDict, total=False):
+    buyerAddress: BuyerAddress
+    createTime: str
+    developerRevenueInBuyerCurrency: Money
+    lastEventTime: str
+    lineItems: _list[LineItem]
+    orderDetails: OrderDetails
+    orderHistory: OrderHistory
+    orderId: str
+    pointsDetails: PointsDetails
+    purchaseToken: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "PENDING",
+        "PROCESSED",
+        "CANCELED",
+        "PENDING_REFUND",
+        "PARTIALLY_REFUNDED",
+        "REFUNDED",
+    ]
+    tax: Money
+    total: Money
+
+@typing.type_check_only
+class OrderDetails(typing_extensions.TypedDict, total=False):
+    taxInclusive: bool
+
+@typing.type_check_only
+class OrderHistory(typing_extensions.TypedDict, total=False):
+    cancellationEvent: CancellationEvent
+    partialRefundEvents: _list[PartialRefundEvent]
+    processedEvent: ProcessedEvent
+    refundEvent: RefundEvent
+
+@typing.type_check_only
 class OtherRecurringProduct(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -890,9 +958,21 @@ class PageInfo(typing_extensions.TypedDict, total=False):
     totalResults: int
 
 @typing.type_check_only
+class PaidAppDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PartialRefund(typing_extensions.TypedDict, total=False):
     refundId: str
     refundPreTaxAmount: Price
+
+@typing.type_check_only
+class PartialRefundEvent(typing_extensions.TypedDict, total=False):
+    createTime: str
+    processTime: str
+    refundDetails: RefundDetails
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "PROCESSED_SUCCESSFULLY"
+    ]
 
 @typing.type_check_only
 class PausedStateContext(typing_extensions.TypedDict, total=False):
@@ -900,6 +980,13 @@ class PausedStateContext(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class PendingCancellation(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class PointsDetails(typing_extensions.TypedDict, total=False):
+    pointsCouponValue: Money
+    pointsDiscountRateMicros: str
+    pointsOfferId: str
+    pointsSpent: str
 
 @typing.type_check_only
 class PrepaidBasePlanType(typing_extensions.TypedDict, total=False):
@@ -916,6 +1003,30 @@ class PrepaidPlan(typing_extensions.TypedDict, total=False):
 class Price(typing_extensions.TypedDict, total=False):
     currency: str
     priceMicros: str
+
+@typing.type_check_only
+class ProcessedEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+
+@typing.type_check_only
+class ProductLineItem(typing_extensions.TypedDict, total=False):
+    productId: str
+    productOfferDetails: ProductOfferDetails
+
+@typing.type_check_only
+class ProductOfferDetails(typing_extensions.TypedDict, total=False):
+    consumptionState: typing_extensions.Literal[
+        "CONSUMPTION_STATE_UNSPECIFIED",
+        "CONSUMPTION_STATE_YET_TO_BE_CONSUMED",
+        "CONSUMPTION_STATE_CONSUMED",
+    ]
+    offerId: str
+    offerTags: _list[str]
+    offerToken: str
+    purchaseOptionId: str
+    quantity: int
+    refundableQuantity: int
+    rentOfferDetails: RentOfferDetails
 
 @typing.type_check_only
 class ProductPurchase(typing_extensions.TypedDict, total=False):
@@ -936,8 +1047,31 @@ class ProductPurchase(typing_extensions.TypedDict, total=False):
     regionCode: str
 
 @typing.type_check_only
+class ProductPurchaseV2(typing_extensions.TypedDict, total=False):
+    acknowledgementState: typing_extensions.Literal[
+        "ACKNOWLEDGEMENT_STATE_UNSPECIFIED",
+        "ACKNOWLEDGEMENT_STATE_PENDING",
+        "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED",
+    ]
+    kind: str
+    obfuscatedExternalAccountId: str
+    obfuscatedExternalProfileId: str
+    orderId: str
+    productLineItem: _list[ProductLineItem]
+    purchaseCompletionTime: str
+    purchaseStateContext: PurchaseStateContext
+    regionCode: str
+    testPurchaseContext: TestPurchaseContext
+
+@typing.type_check_only
 class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+
+@typing.type_check_only
+class PurchaseStateContext(typing_extensions.TypedDict, total=False):
+    purchaseState: typing_extensions.Literal[
+        "PURCHASE_STATE_UNSPECIFIED", "PURCHASED", "CANCELLED", "PENDING"
+    ]
 
 @typing.type_check_only
 class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
@@ -950,6 +1084,19 @@ class RecurringExternalTransaction(typing_extensions.TypedDict, total=False):
         "ALTERNATIVE_BILLING_ONLY",
     ]
     otherRecurringProduct: OtherRecurringProduct
+
+@typing.type_check_only
+class RefundDetails(typing_extensions.TypedDict, total=False):
+    tax: Money
+    total: Money
+
+@typing.type_check_only
+class RefundEvent(typing_extensions.TypedDict, total=False):
+    eventTime: str
+    refundDetails: RefundDetails
+    refundReason: typing_extensions.Literal[
+        "REFUND_REASON_UNSPECIFIED", "OTHER", "CHARGEBACK"
+    ]
 
 @typing.type_check_only
 class RefundExternalTransactionRequest(typing_extensions.TypedDict, total=False):
@@ -1035,6 +1182,12 @@ class RemoteInAppUpdateDataPerBundle(typing_extensions.TypedDict, total=False):
     versionCode: str
 
 @typing.type_check_only
+class RentOfferDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RentalDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class ReplacementCancellation(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1069,10 +1222,15 @@ class ReviewsReplyResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RevocationContext(typing_extensions.TypedDict, total=False):
     fullRefund: RevocationContextFullRefund
+    itemBasedRefund: RevocationContextItemBasedRefund
     proratedRefund: RevocationContextProratedRefund
 
 @typing.type_check_only
 class RevocationContextFullRefund(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RevocationContextItemBasedRefund(typing_extensions.TypedDict, total=False):
+    productId: str
 
 @typing.type_check_only
 class RevocationContextProratedRefund(typing_extensions.TypedDict, total=False): ...
@@ -1169,6 +1327,16 @@ class SubscriptionDeferralInfo(typing_extensions.TypedDict, total=False):
     expectedExpiryTimeMillis: str
 
 @typing.type_check_only
+class SubscriptionDetails(typing_extensions.TypedDict, total=False):
+    basePlanId: str
+    offerId: str
+    offerPhase: typing_extensions.Literal[
+        "OFFER_PHASE_UNSPECIFIED", "BASE", "INTRODUCTORY", "FREE_TRIAL"
+    ]
+    servicePeriodEndTime: str
+    servicePeriodStartTime: str
+
+@typing.type_check_only
 class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=False):
     expectedNewPriceChargeTime: str
     newPrice: Money
@@ -1179,7 +1347,11 @@ class SubscriptionItemPriceChangeDetails(typing_extensions.TypedDict, total=Fals
         "OPT_OUT_PRICE_INCREASE",
     ]
     priceChangeState: typing_extensions.Literal[
-        "PRICE_CHANGE_STATE_UNSPECIFIED", "OUTSTANDING", "CONFIRMED", "APPLIED"
+        "PRICE_CHANGE_STATE_UNSPECIFIED",
+        "OUTSTANDING",
+        "CONFIRMED",
+        "APPLIED",
+        "CANCELED",
     ]
 
 @typing.type_check_only
@@ -1256,6 +1428,7 @@ class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
     deferredItemReplacement: DeferredItemReplacement
     expiryTime: str
+    latestSuccessfulOrderId: str
     offerDetails: OfferDetails
     prepaidPlan: PrepaidPlan
     productId: str
@@ -1371,6 +1544,10 @@ class TargetingUpdate(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class TestPurchase(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class TestPurchaseContext(typing_extensions.TypedDict, total=False):
+    fopType: typing_extensions.Literal["FOP_TYPE_UNSPECIFIED", "TEST"]
 
 @typing.type_check_only
 class Testers(typing_extensions.TypedDict, total=False):

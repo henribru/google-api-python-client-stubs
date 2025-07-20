@@ -14,7 +14,27 @@ _list = list
 @typing.type_check_only
 class IAMCredentialsResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class LocationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class WorkforcePoolsResource(googleapiclient.discovery.Resource):
+            def getAllowedLocations(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> WorkforcePoolAllowedLocationsHttpRequest: ...
+
+        def workforcePools(self) -> WorkforcePoolsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class WorkloadIdentityPoolsResource(googleapiclient.discovery.Resource):
+                def getAllowedLocations(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> WorkloadIdentityPoolAllowedLocationsHttpRequest: ...
+
+            def workloadIdentityPools(self) -> WorkloadIdentityPoolsResource: ...
+
         @typing.type_check_only
         class ServiceAccountsResource(googleapiclient.discovery.Resource):
             def generateAccessToken(
@@ -41,6 +61,7 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
                 self, *, name: str, body: SignJwtRequest = ..., **kwargs: typing.Any
             ) -> SignJwtResponseHttpRequest: ...
 
+        def locations(self) -> LocationsResource: ...
         def serviceAccounts(self) -> ServiceAccountsResource: ...
 
     def new_batch_http_request(
@@ -55,6 +76,7 @@ class IAMCredentialsResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def locations(self) -> LocationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -96,3 +118,19 @@ class SignJwtResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SignJwtResponse: ...
+
+@typing.type_check_only
+class WorkforcePoolAllowedLocationsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkforcePoolAllowedLocations: ...
+
+@typing.type_check_only
+class WorkloadIdentityPoolAllowedLocationsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkloadIdentityPoolAllowedLocations: ...

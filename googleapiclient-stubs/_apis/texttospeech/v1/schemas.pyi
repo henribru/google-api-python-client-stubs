@@ -18,6 +18,7 @@ class AudioConfig(typing_extensions.TypedDict, total=False):
         "MULAW",
         "ALAW",
         "PCM",
+        "M4A",
     ]
     effectsProfileId: _list[str]
     pitch: float
@@ -34,6 +35,8 @@ class CustomPronunciationParams(typing_extensions.TypedDict, total=False):
         "PHONETIC_ENCODING_UNSPECIFIED",
         "PHONETIC_ENCODING_IPA",
         "PHONETIC_ENCODING_X_SAMPA",
+        "PHONETIC_ENCODING_JAPANESE_YOMIGANA",
+        "PHONETIC_ENCODING_PINYIN",
     ]
     phrase: str
     pronunciation: str
@@ -90,6 +93,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SynthesisInput(typing_extensions.TypedDict, total=False):
     customPronunciations: CustomPronunciations
+    markup: str
     multiSpeakerMarkup: MultiSpeakerMarkup
     ssml: str
     text: str

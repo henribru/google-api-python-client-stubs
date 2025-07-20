@@ -83,10 +83,19 @@ class AddSlicerResponse(typing_extensions.TypedDict, total=False):
     slicer: Slicer
 
 @typing.type_check_only
+class AddTableRequest(typing_extensions.TypedDict, total=False):
+    table: Table
+
+@typing.type_check_only
+class AddTableResponse(typing_extensions.TypedDict, total=False):
+    table: Table
+
+@typing.type_check_only
 class AppendCellsRequest(typing_extensions.TypedDict, total=False):
     fields: str
     rows: _list[RowData]
     sheetId: int
+    tableId: str
 
 @typing.type_check_only
 class AppendDimensionRequest(typing_extensions.TypedDict, total=False):
@@ -114,6 +123,7 @@ class AutoResizeDimensionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BandedRange(typing_extensions.TypedDict, total=False):
     bandedRangeId: int
+    bandedRangeReference: str
     columnProperties: BandingProperties
     range: GridRange
     rowProperties: BandingProperties
@@ -230,6 +240,7 @@ class BasicFilter(typing_extensions.TypedDict, total=False):
     filterSpecs: _list[FilterSpec]
     range: GridRange
     sortSpecs: _list[SortSpec]
+    tableId: str
 
 @typing.type_check_only
 class BasicSeriesDataPointStyleOverride(typing_extensions.TypedDict, total=False):
@@ -480,6 +491,7 @@ class CandlestickSeries(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CellData(typing_extensions.TypedDict, total=False):
+    chipRuns: _list[ChipRun]
     dataSourceFormula: DataSourceFormula
     dataSourceTable: DataSourceTable
     dataValidation: DataValidationRule
@@ -614,6 +626,16 @@ class ChartSpec(typing_extensions.TypedDict, total=False):
     titleTextPosition: TextPosition
     treemapChart: TreemapChartSpec
     waterfallChart: WaterfallChartSpec
+
+@typing.type_check_only
+class Chip(typing_extensions.TypedDict, total=False):
+    personProperties: PersonProperties
+    richLinkProperties: RichLinkProperties
+
+@typing.type_check_only
+class ChipRun(typing_extensions.TypedDict, total=False):
+    chip: Chip
+    startIndex: int
 
 @typing.type_check_only
 class ClearBasicFilterRequest(typing_extensions.TypedDict, total=False):
@@ -989,6 +1011,10 @@ class DeleteSheetRequest(typing_extensions.TypedDict, total=False):
     sheetId: int
 
 @typing.type_check_only
+class DeleteTableRequest(typing_extensions.TypedDict, total=False):
+    tableId: str
+
+@typing.type_check_only
 class DeveloperMetadata(typing_extensions.TypedDict, total=False):
     location: DeveloperMetadataLocation
     metadataId: int
@@ -1144,6 +1170,7 @@ class FilterView(typing_extensions.TypedDict, total=False):
     namedRangeId: str
     range: GridRange
     sortSpecs: _list[SortSpec]
+    tableId: str
     title: str
 
 @typing.type_check_only
@@ -1169,6 +1196,7 @@ class FindReplaceResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GetSpreadsheetByDataFilterRequest(typing_extensions.TypedDict, total=False):
     dataFilters: _list[DataFilter]
+    excludeTablesInBandedRanges: bool
     includeGridData: bool
 
 @typing.type_check_only
@@ -1398,6 +1426,13 @@ class PasteDataRequest(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PersonProperties(typing_extensions.TypedDict, total=False):
+    displayFormat: typing_extensions.Literal[
+        "DISPLAY_FORMAT_UNSPECIFIED", "DEFAULT", "LAST_NAME_COMMA_FIRST_NAME", "EMAIL"
+    ]
+    email: str
+
+@typing.type_check_only
 class PieChartSpec(typing_extensions.TypedDict, total=False):
     domain: ChartData
     legendPosition: typing_extensions.Literal[
@@ -1527,6 +1562,7 @@ class ProtectedRange(typing_extensions.TypedDict, total=False):
     protectedRangeId: int
     range: GridRange
     requestingUserCanEdit: bool
+    tableId: str
     unprotectedRanges: _list[GridRange]
     warningOnly: bool
 
@@ -1582,6 +1618,7 @@ class Request(typing_extensions.TypedDict, total=False):
     addProtectedRange: AddProtectedRangeRequest
     addSheet: AddSheetRequest
     addSlicer: AddSlicerRequest
+    addTable: AddTableRequest
     appendCells: AppendCellsRequest
     appendDimension: AppendDimensionRequest
     autoFill: AutoFillRequest
@@ -1604,6 +1641,7 @@ class Request(typing_extensions.TypedDict, total=False):
     deleteProtectedRange: DeleteProtectedRangeRequest
     deleteRange: DeleteRangeRequest
     deleteSheet: DeleteSheetRequest
+    deleteTable: DeleteTableRequest
     duplicateFilterView: DuplicateFilterViewRequest
     duplicateSheet: DuplicateSheetRequest
     findReplace: FindReplaceRequest
@@ -1638,6 +1676,7 @@ class Request(typing_extensions.TypedDict, total=False):
     updateSheetProperties: UpdateSheetPropertiesRequest
     updateSlicerSpec: UpdateSlicerSpecRequest
     updateSpreadsheetProperties: UpdateSpreadsheetPropertiesRequest
+    updateTable: UpdateTableRequest
 
 @typing.type_check_only
 class Response(typing_extensions.TypedDict, total=False):
@@ -1650,6 +1689,7 @@ class Response(typing_extensions.TypedDict, total=False):
     addProtectedRange: AddProtectedRangeResponse
     addSheet: AddSheetResponse
     addSlicer: AddSlicerResponse
+    addTable: AddTableResponse
     cancelDataSourceRefresh: CancelDataSourceRefreshResponse
     createDeveloperMetadata: CreateDeveloperMetadataResponse
     deleteConditionalFormatRule: DeleteConditionalFormatRuleResponse
@@ -1665,6 +1705,11 @@ class Response(typing_extensions.TypedDict, total=False):
     updateDataSource: UpdateDataSourceResponse
     updateDeveloperMetadata: UpdateDeveloperMetadataResponse
     updateEmbeddedObjectPosition: UpdateEmbeddedObjectPositionResponse
+
+@typing.type_check_only
+class RichLinkProperties(typing_extensions.TypedDict, total=False):
+    mimeType: str
+    uri: str
 
 @typing.type_check_only
 class RowData(typing_extensions.TypedDict, total=False):
@@ -1724,6 +1769,7 @@ class Sheet(typing_extensions.TypedDict, total=False):
     protectedRanges: _list[ProtectedRange]
     rowGroups: _list[DimensionGroup]
     slicers: _list[Slicer]
+    tables: _list[Table]
 
 @typing.type_check_only
 class SheetProperties(typing_extensions.TypedDict, total=False):
@@ -1811,6 +1857,48 @@ class SpreadsheetProperties(typing_extensions.TypedDict, total=False):
 class SpreadsheetTheme(typing_extensions.TypedDict, total=False):
     primaryFontFamily: str
     themeColors: _list[ThemeColorPair]
+
+@typing.type_check_only
+class Table(typing_extensions.TypedDict, total=False):
+    columnProperties: _list[TableColumnProperties]
+    name: str
+    range: GridRange
+    rowsProperties: TableRowsProperties
+    tableId: str
+
+@typing.type_check_only
+class TableColumnDataValidationRule(typing_extensions.TypedDict, total=False):
+    condition: BooleanCondition
+
+@typing.type_check_only
+class TableColumnProperties(typing_extensions.TypedDict, total=False):
+    columnIndex: int
+    columnName: str
+    columnType: typing_extensions.Literal[
+        "COLUMN_TYPE_UNSPECIFIED",
+        "DOUBLE",
+        "CURRENCY",
+        "PERCENT",
+        "DATE",
+        "TIME",
+        "DATE_TIME",
+        "TEXT",
+        "BOOLEAN",
+        "DROPDOWN",
+        "FILES_CHIP",
+        "PEOPLE_CHIP",
+        "FINANCE_CHIP",
+        "PLACE_CHIP",
+        "RATINGS_CHIP",
+    ]
+    dataValidationRule: TableColumnDataValidationRule
+
+@typing.type_check_only
+class TableRowsProperties(typing_extensions.TypedDict, total=False):
+    firstBandColorStyle: ColorStyle
+    footerColorStyle: ColorStyle
+    headerColorStyle: ColorStyle
+    secondBandColorStyle: ColorStyle
 
 @typing.type_check_only
 class TextFormat(typing_extensions.TypedDict, total=False):
@@ -2035,6 +2123,11 @@ class UpdateSlicerSpecRequest(typing_extensions.TypedDict, total=False):
 class UpdateSpreadsheetPropertiesRequest(typing_extensions.TypedDict, total=False):
     fields: str
     properties: SpreadsheetProperties
+
+@typing.type_check_only
+class UpdateTableRequest(typing_extensions.TypedDict, total=False):
+    fields: str
+    table: Table
 
 @typing.type_check_only
 class UpdateValuesByDataFilterResponse(typing_extensions.TypedDict, total=False):

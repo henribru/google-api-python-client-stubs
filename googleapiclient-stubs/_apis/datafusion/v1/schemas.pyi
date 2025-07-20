@@ -86,6 +86,8 @@ class Instance(typing_extensions.TypedDict, total=False):
     eventPublishConfig: EventPublishConfig
     gcsBucket: str
     labels: dict[str, typing.Any]
+    loggingConfig: LoggingConfig
+    maintenanceEvents: _list[MaintenanceEvent]
     maintenancePolicy: MaintenancePolicy
     name: str
     networkConfig: NetworkConfig
@@ -93,6 +95,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     p4ServiceAccount: str
     patchRevision: str
     privateInstance: bool
+    satisfiesPzi: bool
     satisfiesPzs: bool
     serviceAccount: str
     serviceEndpoint: str
@@ -110,6 +113,7 @@ class Instance(typing_extensions.TypedDict, total=False):
         "DISABLED",
     ]
     stateMessage: str
+    tags: dict[str, typing.Any]
     tenantProjectId: str
     type: typing_extensions.Literal[
         "TYPE_UNSPECIFIED", "BASIC", "ENTERPRISE", "DEVELOPER"
@@ -153,6 +157,18 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class LoggingConfig(typing_extensions.TypedDict, total=False):
+    instanceCloudLoggingDisabled: bool
+
+@typing.type_check_only
+class MaintenanceEvent(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "SCHEDULED", "STARTED", "COMPLETED"
+    ]
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):

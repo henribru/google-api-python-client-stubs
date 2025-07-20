@@ -315,6 +315,7 @@ class Environment(typing_extensions.TypedDict, total=False):
         "STREAMING_MODE_AT_LEAST_ONCE",
     ]
     tempStoragePrefix: str
+    usePublicIps: bool
     useStreamingEngineResourceBasedBilling: bool
     userAgent: dict[str, typing.Any]
     version: dict[str, typing.Any]
@@ -378,6 +379,7 @@ class FlattenInstruction(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FlexTemplateRuntimeEnvironment(typing_extensions.TypedDict, total=False):
     additionalExperiments: _list[str]
+    additionalPipelineOptions: _list[str]
     additionalUserLabels: dict[str, typing.Any]
     autoscalingAlgorithm: typing_extensions.Literal[
         "AUTOSCALING_ALGORITHM_UNKNOWN",
@@ -449,6 +451,14 @@ class GetTemplateResponse(typing_extensions.TypedDict, total=False):
     runtimeMetadata: RuntimeMetadata
     status: Status
     templateType: typing_extensions.Literal["UNKNOWN", "LEGACY", "FLEX"]
+
+@typing.type_check_only
+class GetWorkerStacktracesRequest(typing_extensions.TypedDict, total=False):
+    workerId: str
+
+@typing.type_check_only
+class GetWorkerStacktracesResponse(typing_extensions.TypedDict, total=False):
+    sdks: _list[Sdk]
 
 @typing.type_check_only
 class Histogram(typing_extensions.TypedDict, total=False):
@@ -715,6 +725,7 @@ class MetricStructuredName(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MetricUpdate(typing_extensions.TypedDict, total=False):
+    boundedTrie: typing.Any
     cumulative: bool
     distribution: typing.Any
     gauge: typing.Any
@@ -946,6 +957,7 @@ class ResourceUtilizationReportResponse(typing_extensions.TypedDict, total=False
 @typing.type_check_only
 class RuntimeEnvironment(typing_extensions.TypedDict, total=False):
     additionalExperiments: _list[str]
+    additionalPipelineOptions: _list[str]
     additionalUserLabels: dict[str, typing.Any]
     bypassTempDirValidation: bool
     diskSizeGb: int
@@ -983,8 +995,13 @@ class RuntimeUpdatableParams(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SDKInfo(typing_extensions.TypedDict, total=False):
-    language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON", "GO"]
+    language: typing_extensions.Literal["UNKNOWN", "JAVA", "PYTHON", "GO", "YAML"]
     version: str
+
+@typing.type_check_only
+class Sdk(typing_extensions.TypedDict, total=False):
+    sdkId: str
+    stacks: _list[Stack]
 
 @typing.type_check_only
 class SdkBug(typing_extensions.TypedDict, total=False):
@@ -1173,6 +1190,14 @@ class SpannerIODetails(typing_extensions.TypedDict, total=False):
 class SplitInt64(typing_extensions.TypedDict, total=False):
     highBits: int
     lowBits: int
+
+@typing.type_check_only
+class Stack(typing_extensions.TypedDict, total=False):
+    stackContent: str
+    threadCount: int
+    threadName: str
+    threadState: str
+    timestamp: str
 
 @typing.type_check_only
 class StageExecutionDetails(typing_extensions.TypedDict, total=False):
@@ -1381,6 +1406,7 @@ class TemplateMetadata(typing_extensions.TypedDict, total=False):
     streaming: bool
     supportsAtLeastOnce: bool
     supportsExactlyOnce: bool
+    yamlDefinition: str
 
 @typing.type_check_only
 class TopologyConfig(typing_extensions.TypedDict, total=False):

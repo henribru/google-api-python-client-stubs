@@ -272,8 +272,6 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     numClients: str
     numCustomTemplates: str
     numGtagConfigs: str
-    numMacros: str
-    numRules: str
     numTags: str
     numTransformations: str
     numTriggers: str
@@ -378,6 +376,7 @@ class FolderEntities(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GalleryReference(typing_extensions.TypedDict, total=False):
+    galleryTemplateId: str
     host: str
     isModified: bool
     owner: str
@@ -388,6 +387,7 @@ class GalleryReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GetContainerSnippetResponse(typing_extensions.TypedDict, total=False):
+    containerConfig: str
     snippet: str
 
 @typing.type_check_only
@@ -580,12 +580,10 @@ class SyncWorkspaceResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tag(typing_extensions.TypedDict, total=False):
     accountId: str
-    blockingRuleId: _list[str]
     blockingTriggerId: _list[str]
     consentSettings: TagConsentSetting
     containerId: str
     fingerprint: str
-    firingRuleId: _list[str]
     firingTriggerId: _list[str]
     liveOnly: bool
     monitoringMetadata: Parameter

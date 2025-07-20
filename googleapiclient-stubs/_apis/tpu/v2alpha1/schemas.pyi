@@ -31,6 +31,7 @@ class ActiveData(typing_extensions.TypedDict, total=False): ...
 class AttachedDisk(typing_extensions.TypedDict, total=False):
     mode: typing_extensions.Literal["DISK_MODE_UNSPECIFIED", "READ_WRITE", "READ_ONLY"]
     sourceDisk: str
+    workerIds: _list[str]
 
 @typing.type_check_only
 class BestEffort(typing_extensions.TypedDict, total=False): ...
@@ -38,7 +39,11 @@ class BestEffort(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class BootDiskConfig(typing_extensions.TypedDict, total=False):
     customerEncryptionKey: CustomerEncryptionKey
+    diskSizeGb: str
     enableConfidentialCompute: bool
+    provisionedIops: str
+    provisionedThroughput: str
+    sourceImage: str
 
 @typing.type_check_only
 class CreatingData(typing_extensions.TypedDict, total=False): ...
@@ -264,8 +269,16 @@ class QueuedResource(typing_extensions.TypedDict, total=False):
     createTime: str
     guaranteed: Guaranteed
     name: str
+    provisioningModel: typing_extensions.Literal[
+        "PROVISIONING_MODEL_UNSPECIFIED",
+        "STANDARD",
+        "SPOT",
+        "RESERVATION_BOUND",
+        "FLEX_START",
+    ]
     queueingPolicy: QueueingPolicy
     reservationName: str
+    runDuration: RunDuration
     spot: Spot
     state: QueuedResourceState
     tpu: Tpu
@@ -322,6 +335,11 @@ class Reservation(typing_extensions.TypedDict, total=False):
 class ResetQueuedResourceRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class RunDuration(typing_extensions.TypedDict, total=False):
+    maxRunDuration: str
+    terminationTime: str
+
+@typing.type_check_only
 class RuntimeVersion(typing_extensions.TypedDict, total=False):
     name: str
     version: str
@@ -329,8 +347,13 @@ class RuntimeVersion(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SchedulingConfig(typing_extensions.TypedDict, total=False):
     preemptible: bool
+    provisioningModel: typing_extensions.Literal[
+        "PROVISIONING_MODEL_UNSPECIFIED", "STANDARD", "SPOT", "RESERVATION_BOUND"
+    ]
+    reservationName: str
     reserved: bool
     spot: bool
+    terminationTimestamp: str
 
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):

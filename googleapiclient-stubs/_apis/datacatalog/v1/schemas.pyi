@@ -475,6 +475,7 @@ class GoogleCloudDatacatalogV1MigrationConfig(typing_extensions.TypedDict, total
         "TAG_TEMPLATE_MIGRATION_ENABLED",
         "TAG_TEMPLATE_MIGRATION_DISABLED",
     ]
+    templateMigrationEnabledTime: str
 
 @typing.type_check_only
 class GoogleCloudDatacatalogV1ModelSpec(typing_extensions.TypedDict, total=False):

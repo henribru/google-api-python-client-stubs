@@ -55,9 +55,16 @@ class CheckInstanceUpgradabilityResponse(typing_extensions.TypedDict, total=Fals
     upgradeable: bool
 
 @typing.type_check_only
+class ConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
+    confidentialInstanceType: typing_extensions.Literal[
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED", "SEV"
+    ]
+
+@typing.type_check_only
 class Config(typing_extensions.TypedDict, total=False):
     availableImages: _list[ImageRelease]
     defaultValues: DefaultValues
+    disableWorkbenchLegacyCreation: bool
     supportedValues: SupportedValues
 
 @typing.type_check_only
@@ -125,6 +132,7 @@ class GPUDriverConfig(typing_extensions.TypedDict, total=False):
 class GceSetup(typing_extensions.TypedDict, total=False):
     acceleratorConfigs: _list[AcceleratorConfig]
     bootDisk: BootDisk
+    confidentialInstanceConfig: ConfidentialInstanceConfig
     containerImage: ContainerImage
     dataDisks: _list[DataDisk]
     disablePublicIp: bool
@@ -134,6 +142,7 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     metadata: dict[str, typing.Any]
     minCpuPlatform: str
     networkInterfaces: _list[NetworkInterface]
+    reservationAffinity: ReservationAffinity
     serviceAccounts: _list[ServiceAccount]
     shieldedInstanceConfig: ShieldedInstanceConfig
     tags: _list[str]
@@ -149,6 +158,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     createTime: str
     creator: str
     disableProxyAccess: bool
+    enableDeletionProtection: bool
     enableThirdPartyIdentity: bool
     gceSetup: GceSetup
     healthInfo: dict[str, typing.Any]
@@ -243,6 +253,17 @@ class Policy(typing_extensions.TypedDict, total=False):
 class ReportInstanceInfoSystemRequest(typing_extensions.TypedDict, total=False):
     event: Event
     vmId: str
+
+@typing.type_check_only
+class ReservationAffinity(typing_extensions.TypedDict, total=False):
+    consumeReservationType: typing_extensions.Literal[
+        "RESERVATION_UNSPECIFIED",
+        "RESERVATION_NONE",
+        "RESERVATION_ANY",
+        "RESERVATION_SPECIFIC",
+    ]
+    key: str
+    values: _list[str]
 
 @typing.type_check_only
 class ResetInstanceRequest(typing_extensions.TypedDict, total=False): ...

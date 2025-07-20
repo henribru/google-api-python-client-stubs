@@ -313,6 +313,7 @@ class ValidateAttestationOccurrenceResponse(typing_extensions.TypedDict, total=F
 class VerificationRule(typing_extensions.TypedDict, total=False):
     attestationSource: AttestationSource
     configBasedBuildRequired: bool
+    customConstraints: str
     trustedBuilder: typing_extensions.Literal[
         "BUILDER_UNSPECIFIED", "GOOGLE_CLOUD_BUILD"
     ]

@@ -42,6 +42,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     gender: str
     googleProductCategory: str
     gtin: _list[str]
+    gtins: _list[str]
     identifierExists: bool
     imageLink: str
     includedDestinations: _list[str]
@@ -56,6 +57,7 @@ class Attributes(typing_extensions.TypedDict, total=False):
     material: str
     maxEnergyEfficiencyClass: str
     maxHandlingTime: str
+    maximumRetailPrice: Price
     minEnergyEfficiencyClass: str
     minHandlingTime: str
     mobileLink: str
@@ -101,6 +103,12 @@ class Attributes(typing_extensions.TypedDict, total=False):
     virtualModelLink: str
 
 @typing.type_check_only
+class AutomatedDiscounts(typing_extensions.TypedDict, total=False):
+    gadPrice: Price
+    priorPrice: Price
+    priorPriceProgressive: Price
+
+@typing.type_check_only
 class Certification(typing_extensions.TypedDict, total=False):
     certificationAuthority: str
     certificationCode: str
@@ -142,6 +150,7 @@ class DestinationStatus(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -191,6 +200,7 @@ class ItemLevelIssue(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -232,6 +242,7 @@ class Price(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Product(typing_extensions.TypedDict, total=False):
     attributes: Attributes
+    automatedDiscounts: AutomatedDiscounts
     channel: typing_extensions.Literal["CHANNEL_ENUM_UNSPECIFIED", "ONLINE", "LOCAL"]
     contentLanguage: str
     customAttributes: _list[CustomAttribute]
@@ -260,6 +271,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -304,6 +316,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str

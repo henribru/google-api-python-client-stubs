@@ -166,6 +166,18 @@ class ListPreviewsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListResourceChangesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resourceChanges: _list[ResourceChange]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListResourceDriftsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resourceDrifts: _list[ResourceDrift]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListResourcesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     resources: _list[Resource]
@@ -302,6 +314,22 @@ class PreviewResult(typing_extensions.TypedDict, total=False):
     jsonSignedUri: str
 
 @typing.type_check_only
+class PropertyChange(typing_extensions.TypedDict, total=False):
+    after: typing.Any
+    afterSensitivePaths: _list[str]
+    before: typing.Any
+    beforeSensitivePaths: _list[str]
+    path: str
+
+@typing.type_check_only
+class PropertyDrift(typing_extensions.TypedDict, total=False):
+    after: typing.Any
+    afterSensitivePaths: _list[str]
+    before: typing.Any
+    beforeSensitivePaths: _list[str]
+    path: str
+
+@typing.type_check_only
 class Resource(typing_extensions.TypedDict, total=False):
     caiAssets: dict[str, typing.Any]
     intent: typing_extensions.Literal[
@@ -316,6 +344,36 @@ class Resource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceCAIInfo(typing_extensions.TypedDict, total=False):
     fullResourceName: str
+
+@typing.type_check_only
+class ResourceChange(typing_extensions.TypedDict, total=False):
+    intent: typing_extensions.Literal[
+        "INTENT_UNSPECIFIED", "CREATE", "UPDATE", "DELETE", "RECREATE", "UNCHANGED"
+    ]
+    name: str
+    propertyChanges: _list[PropertyChange]
+    terraformInfo: ResourceChangeTerraformInfo
+
+@typing.type_check_only
+class ResourceChangeTerraformInfo(typing_extensions.TypedDict, total=False):
+    actions: _list[str]
+    address: str
+    provider: str
+    resourceName: str
+    type: str
+
+@typing.type_check_only
+class ResourceDrift(typing_extensions.TypedDict, total=False):
+    name: str
+    propertyDrifts: _list[PropertyDrift]
+    terraformInfo: ResourceDriftTerraformInfo
+
+@typing.type_check_only
+class ResourceDriftTerraformInfo(typing_extensions.TypedDict, total=False):
+    address: str
+    provider: str
+    resourceName: str
+    type: str
 
 @typing.type_check_only
 class ResourceTerraformInfo(typing_extensions.TypedDict, total=False):

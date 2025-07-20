@@ -83,6 +83,7 @@ class Asset(typing_extensions.TypedDict, total=False):
     hideTime: str
     insightList: InsightList
     labels: dict[str, typing.Any]
+    machineDetails: MachineDetails
     name: str
     performanceData: AssetPerformanceData
     sources: _list[str]
@@ -104,6 +105,7 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
     databaseDeploymentDetails: DatabaseDeploymentDetails
     databaseDetails: DatabaseDetails
     labels: dict[str, typing.Any]
+    machineDetails: MachineDetails
     performanceSamples: _list[PerformanceSample]
     reportTime: str
     traceToken: str
@@ -170,6 +172,9 @@ class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     ]
     location: str
     machineTypeLabel: str
+
+@typing.type_check_only
+class AwsRds(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
@@ -404,6 +409,7 @@ class DailyResourceUsageAggregationStats(typing_extensions.TypedDict, total=Fals
 @typing.type_check_only
 class DatabaseDeploymentDetails(typing_extensions.TypedDict, total=False):
     aggregatedStats: DatabaseDeploymentDetailsAggregatedStats
+    awsRds: AwsRds
     edition: str
     generatedId: str
     manualUniqueId: str
@@ -585,6 +591,7 @@ class DiscoveryClient(typing_extensions.TypedDict, total=False):
     heartbeatTime: str
     labels: dict[str, typing.Any]
     name: str
+    recommendedVersions: _list[DiscoveryClientDiscoveryClientRecommendedVersion]
     serviceAccount: str
     signalsEndpoint: str
     source: str
@@ -593,6 +600,13 @@ class DiscoveryClient(typing_extensions.TypedDict, total=False):
     ]
     ttl: str
     updateTime: str
+    version: str
+
+@typing.type_check_only
+class DiscoveryClientDiscoveryClientRecommendedVersion(
+    typing_extensions.TypedDict, total=False
+):
+    uri: str
     version: str
 
 @typing.type_check_only
@@ -605,7 +619,6 @@ class DiskEntry(typing_extensions.TypedDict, total=False):
     status: str
     totalCapacityBytes: str
     totalFreeBytes: str
-    vmwareConfig: VmwareDiskConfig
 
 @typing.type_check_only
 class DiskEntryList(typing_extensions.TypedDict, total=False):
@@ -620,6 +633,12 @@ class DiskPartition(typing_extensions.TypedDict, total=False):
     subPartitions: DiskPartitionList
     type: str
     uuid: str
+
+@typing.type_check_only
+class DiskPartitionDetails(typing_extensions.TypedDict, total=False):
+    freeSpaceBytes: str
+    partitions: DiskPartitionList
+    totalCapacityBytes: str
 
 @typing.type_check_only
 class DiskPartitionList(typing_extensions.TypedDict, total=False):
@@ -975,6 +994,56 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class MachineArchitectureDetails(typing_extensions.TypedDict, total=False):
+    bios: BiosDetails
+    cpuArchitecture: str
+    cpuName: str
+    cpuSocketCount: int
+    firmwareType: typing_extensions.Literal["FIRMWARE_TYPE_UNSPECIFIED", "BIOS", "EFI"]
+    hyperthreading: typing_extensions.Literal[
+        "CPU_HYPER_THREADING_UNSPECIFIED", "DISABLED", "ENABLED"
+    ]
+    vendor: str
+
+@typing.type_check_only
+class MachineDetails(typing_extensions.TypedDict, total=False):
+    architecture: MachineArchitectureDetails
+    coreCount: int
+    createTime: str
+    diskPartitions: DiskPartitionDetails
+    disks: MachineDiskDetails
+    guestOs: GuestOsDetails
+    machineName: str
+    memoryMb: int
+    network: MachineNetworkDetails
+    platform: PlatformDetails
+    powerState: typing_extensions.Literal[
+        "POWER_STATE_UNSPECIFIED",
+        "PENDING",
+        "ACTIVE",
+        "SUSPENDING",
+        "SUSPENDED",
+        "DELETING",
+        "DELETED",
+    ]
+    uuid: str
+
+@typing.type_check_only
+class MachineDiskDetails(typing_extensions.TypedDict, total=False):
+    disks: DiskEntryList
+    rawScanResult: str
+    totalCapacityBytes: str
+    totalFreeBytes: str
+
+@typing.type_check_only
+class MachineNetworkDetails(typing_extensions.TypedDict, total=False):
+    defaultGateway: str
+    networkAdapters: NetworkAdapterList
+    primaryIpAddress: str
+    primaryMacAddress: str
+    publicIpAddress: str
 
 @typing.type_check_only
 class MachinePreferences(typing_extensions.TypedDict, total=False):
@@ -1649,6 +1718,7 @@ class VirtualMachineArchitectureDetails(typing_extensions.TypedDict, total=False
 class VirtualMachineDetails(typing_extensions.TypedDict, total=False):
     coreCount: int
     createTime: str
+    diskPartitions: DiskPartitionDetails
     guestOs: GuestOsDetails
     memoryMb: int
     osFamily: typing_extensions.Literal[
@@ -1734,23 +1804,6 @@ class VirtualMachinePreferencesSizingOptimizationCustomParameters(
     cpuUsagePercentage: int
     memoryUsagePercentage: int
     storageMultiplier: float
-
-@typing.type_check_only
-class VmwareDiskConfig(typing_extensions.TypedDict, total=False):
-    backingType: typing_extensions.Literal[
-        "BACKING_TYPE_UNSPECIFIED",
-        "BACKING_TYPE_FLAT_V1",
-        "BACKING_TYPE_FLAT_V2",
-        "BACKING_TYPE_PMEM",
-        "BACKING_TYPE_RDM_V1",
-        "BACKING_TYPE_RDM_V2",
-        "BACKING_TYPE_SESPARSE",
-        "BACKING_TYPE_SESPARSE_V1",
-        "BACKING_TYPE_SESPARSE_V2",
-    ]
-    rdmCompatibilityMode: str
-    shared: bool
-    vmdkDiskMode: str
 
 @typing.type_check_only
 class VmwareEngineMigrationTarget(typing_extensions.TypedDict, total=False): ...

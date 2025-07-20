@@ -162,6 +162,7 @@ class EgressTo(typing_extensions.TypedDict, total=False):
     externalResources: _list[str]
     operations: _list[ApiOperation]
     resources: _list[str]
+    roles: _list[str]
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -222,6 +223,7 @@ class IngressSource(typing_extensions.TypedDict, total=False):
 class IngressTo(typing_extensions.TypedDict, total=False):
     operations: _list[ApiOperation]
     resources: _list[str]
+    roles: _list[str]
 
 @typing.type_check_only
 class ListAccessLevelsResponse(typing_extensions.TypedDict, total=False):

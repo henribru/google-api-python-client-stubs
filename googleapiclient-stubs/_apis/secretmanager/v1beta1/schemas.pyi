@@ -100,6 +100,7 @@ class Secret(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
     replication: Replication
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class SecretPayload(typing_extensions.TypedDict, total=False):

@@ -21,6 +21,22 @@ class AllowedKeyType(typing_extensions.TypedDict, total=False):
     rsa: RsaKeyType
 
 @typing.type_check_only
+class AttributeTypeAndValue(typing_extensions.TypedDict, total=False):
+    objectId: ObjectId
+    type: typing_extensions.Literal[
+        "ATTRIBUTE_TYPE_UNSPECIFIED",
+        "COMMON_NAME",
+        "COUNTRY_CODE",
+        "ORGANIZATION",
+        "ORGANIZATIONAL_UNIT",
+        "LOCALITY",
+        "PROVINCE",
+        "STREET_ADDRESS",
+        "POSTAL_CODE",
+    ]
+    value: str
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -73,7 +89,10 @@ class Certificate(typing_extensions.TypedDict, total=False):
     pemCsr: str
     revocationDetails: RevocationDetails
     subjectMode: typing_extensions.Literal[
-        "SUBJECT_REQUEST_MODE_UNSPECIFIED", "DEFAULT", "REFLECTED_SPIFFE"
+        "SUBJECT_REQUEST_MODE_UNSPECIFIED",
+        "DEFAULT",
+        "RDN_SEQUENCE",
+        "REFLECTED_SPIFFE",
     ]
     updateTime: str
 
@@ -105,6 +124,7 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "ENTERPRISE", "DEVOPS"]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "SELF_SIGNED", "SUBORDINATE"]
     updateTime: str
+    userDefinedAccessUrls: UserDefinedAccessUrls
 
 @typing.type_check_only
 class CertificateConfig(typing_extensions.TypedDict, total=False):
@@ -234,6 +254,7 @@ class IssuanceModes(typing_extensions.TypedDict, total=False):
 class IssuancePolicy(typing_extensions.TypedDict, total=False):
     allowedIssuanceModes: IssuanceModes
     allowedKeyTypes: _list[AllowedKeyType]
+    backdateDuration: str
     baselineValues: X509Parameters
     identityConstraints: CertificateIdentityConstraints
     maximumLifetime: str
@@ -386,6 +407,10 @@ class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RelativeDistinguishedName(typing_extensions.TypedDict, total=False):
+    attributes: _list[AttributeTypeAndValue]
+
+@typing.type_check_only
 class RevocationDetails(typing_extensions.TypedDict, total=False):
     revocationState: typing_extensions.Literal[
         "REVOCATION_REASON_UNSPECIFIED",
@@ -456,6 +481,7 @@ class Subject(typing_extensions.TypedDict, total=False):
     organizationalUnit: str
     postalCode: str
     province: str
+    rdnSequence: _list[RelativeDistinguishedName]
     streetAddress: str
 
 @typing.type_check_only
@@ -500,6 +526,11 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UndeleteCertificateAuthorityRequest(typing_extensions.TypedDict, total=False):
     requestId: str
+
+@typing.type_check_only
+class UserDefinedAccessUrls(typing_extensions.TypedDict, total=False):
+    aiaIssuingCertificateUrls: _list[str]
+    crlAccessUrls: _list[str]
 
 @typing.type_check_only
 class X509Extension(typing_extensions.TypedDict, total=False):

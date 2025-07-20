@@ -56,7 +56,13 @@ class DoubleRange(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicCluster(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     cluster: dict[str, typing.Any]
     errorState: UpdateFailureState
@@ -66,7 +72,13 @@ class DynamicCluster(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicEndpointConfig(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     endpointConfig: dict[str, typing.Any]
     errorState: UpdateFailureState
@@ -77,7 +89,13 @@ class DynamicEndpointConfig(typing_extensions.TypedDict, total=False):
 class DynamicListener(typing_extensions.TypedDict, total=False):
     activeState: DynamicListenerState
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     drainingState: DynamicListenerState
     errorState: UpdateFailureState
@@ -93,7 +111,13 @@ class DynamicListenerState(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicRouteConfig(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     errorState: UpdateFailureState
     lastUpdated: str
@@ -103,7 +127,13 @@ class DynamicRouteConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DynamicScopedRouteConfigs(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     errorState: UpdateFailureState
     lastUpdated: str
@@ -133,7 +163,13 @@ class Extension(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GenericXdsConfig(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "UNKNOWN", "REQUESTED", "DOES_NOT_EXIST", "ACKED", "NACKED"
+        "UNKNOWN",
+        "REQUESTED",
+        "DOES_NOT_EXIST",
+        "ACKED",
+        "NACKED",
+        "RECEIVED_ERROR",
+        "TIMEOUT",
     ]
     configStatus: typing_extensions.Literal[
         "UNKNOWN", "SYNCED", "NOT_SENT", "STALE", "ERROR"
@@ -205,7 +241,11 @@ class PathSegment(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PerXdsConfig(typing_extensions.TypedDict, total=False):
     clientStatus: typing_extensions.Literal[
-        "CLIENT_UNKNOWN", "CLIENT_REQUESTED", "CLIENT_ACKED", "CLIENT_NACKED"
+        "CLIENT_UNKNOWN",
+        "CLIENT_REQUESTED",
+        "CLIENT_ACKED",
+        "CLIENT_NACKED",
+        "CLIENT_RECEIVED_ERROR",
     ]
     clusterConfig: ClustersConfigDump
     endpointConfig: EndpointsConfigDump
@@ -245,6 +285,7 @@ class SocketAddress(typing_extensions.TypedDict, total=False):
     address: str
     ipv4Compat: bool
     namedPort: str
+    networkNamespaceFilepath: str
     portValue: int
     protocol: typing_extensions.Literal["TCP", "UDP"]
     resolverName: str

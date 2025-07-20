@@ -143,6 +143,11 @@ class AvroOptions(typing_extensions.TypedDict, total=False):
     useAvroLogicalTypes: bool
 
 @typing.type_check_only
+class BatchDeleteRowAccessPoliciesRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    policyIds: _list[str]
+
+@typing.type_check_only
 class BiEngineReason(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED",
@@ -298,9 +303,11 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
     encoding: str
     fieldDelimiter: str
     nullMarker: str
+    nullMarkers: _list[str]
     preserveAsciiControlCharacters: bool
     quote: str
     skipLeadingRows: str
+    sourceColumnMatch: str
 
 @typing.type_check_only
 class DataFormatOptions(typing_extensions.TypedDict, total=False):
@@ -522,6 +529,8 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     compression: str
     connectionId: str
     csvOptions: CsvOptions
+    dateFormat: str
+    datetimeFormat: str
     decimalTargetTypes: _list[
         typing_extensions.Literal[
             "DECIMAL_TARGET_TYPE_UNSPECIFIED", "NUMERIC", "BIGNUMERIC", "STRING"
@@ -548,11 +557,22 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     schema: TableSchema
     sourceFormat: str
     sourceUris: _list[str]
+    timeFormat: str
+    timeZone: str
+    timestampFormat: str
 
 @typing.type_check_only
 class ExternalDatasetReference(typing_extensions.TypedDict, total=False):
     connection: str
     externalSource: str
+
+@typing.type_check_only
+class ExternalRuntimeOptions(typing_extensions.TypedDict, total=False):
+    containerCpu: float
+    containerMemory: str
+    maxBatchingRows: str
+    runtimeConnection: str
+    runtimeVersion: str
 
 @typing.type_check_only
 class ExternalServiceCost(typing_extensions.TypedDict, total=False):
@@ -694,6 +714,7 @@ class IndexUnusedReason(typing_extensions.TypedDict, total=False):
         "BASE_TABLE_TOO_SMALL",
         "BASE_TABLE_TOO_LARGE",
         "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW",
+        "COLUMN_METADATA_INDEX_NOT_USED",
         "NOT_SUPPORTED_IN_STANDARD_EDITION",
         "INDEX_SUPPRESSED_BY_FUNCTION_OPTION",
         "QUERY_CACHE_HIT",
@@ -770,6 +791,7 @@ class JobConfiguration(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     load: JobConfigurationLoad
     query: JobConfigurationQuery
+    reservation: str
 
 @typing.type_check_only
 class JobConfigurationExtract(typing_extensions.TypedDict, total=False):
@@ -797,6 +819,8 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     copyFilesOnly: bool
     createDisposition: str
     createSession: bool
+    dateFormat: str
+    datetimeFormat: str
     decimalTargetTypes: _list[
         typing_extensions.Literal[
             "DECIMAL_TARGET_TYPE_UNSPECIFIED", "NUMERIC", "BIGNUMERIC", "STRING"
@@ -816,6 +840,7 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     jsonExtension: typing_extensions.Literal["JSON_EXTENSION_UNSPECIFIED", "GEOJSON"]
     maxBadRecords: int
     nullMarker: str
+    nullMarkers: _list[str]
     parquetOptions: ParquetOptions
     preserveAsciiControlCharacters: bool
     projectionFields: _list[str]
@@ -827,9 +852,15 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     schemaInlineFormat: str
     schemaUpdateOptions: _list[str]
     skipLeadingRows: int
+    sourceColumnMatch: typing_extensions.Literal[
+        "SOURCE_COLUMN_MATCH_UNSPECIFIED", "POSITION", "NAME"
+    ]
     sourceFormat: str
     sourceUris: _list[str]
+    timeFormat: str
     timePartitioning: TimePartitioning
+    timeZone: str
+    timestampFormat: str
     useAvroLogicalTypes: bool
     writeDisposition: str
 
@@ -862,6 +893,7 @@ class JobConfigurationQuery(typing_extensions.TypedDict, total=False):
     useQueryCache: bool
     userDefinedFunctionResources: _list[UserDefinedFunctionResource]
     writeDisposition: str
+    writeIncrementalResults: bool
 
 @typing.type_check_only
 class JobConfigurationTableCopy(typing_extensions.TypedDict, total=False):
@@ -1262,6 +1294,11 @@ class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class PythonOptions(typing_extensions.TypedDict, total=False):
+    entryPoint: str
+    packages: _list[str]
+
+@typing.type_check_only
 class QueryInfo(typing_extensions.TypedDict, total=False):
     optimizationDetails: dict[str, typing.Any]
 
@@ -1291,6 +1328,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     continuous: bool
     createSession: bool
     defaultDataset: DatasetReference
+    destinationEncryptionConfiguration: EncryptionConfiguration
     dryRun: bool
     formatOptions: DataFormatOptions
     jobCreationMode: typing_extensions.Literal[
@@ -1298,6 +1336,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
         "JOB_CREATION_REQUIRED",
         "JOB_CREATION_OPTIONAL",
     ]
+    jobTimeoutMs: str
     kind: str
     labels: dict[str, typing.Any]
     location: str
@@ -1308,27 +1347,35 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     query: str
     queryParameters: _list[QueryParameter]
     requestId: str
+    reservation: str
     timeoutMs: int
     useLegacySql: bool
     useQueryCache: bool
+    writeIncrementalResults: bool
 
 @typing.type_check_only
 class QueryResponse(typing_extensions.TypedDict, total=False):
     cacheHit: bool
+    creationTime: str
     dmlStats: DmlStatistics
+    endTime: str
     errors: _list[ErrorProto]
     jobComplete: bool
     jobCreationReason: JobCreationReason
     jobReference: JobReference
     kind: str
+    location: str
     numDmlAffectedRows: str
     pageToken: str
     queryId: str
     rows: _list[TableRow]
     schema: TableSchema
     sessionInfo: SessionInfo
+    startTime: str
+    totalBytesBilled: str
     totalBytesProcessed: str
     totalRows: str
+    totalSlotMs: str
 
 @typing.type_check_only
 class QueryTimelineSample(typing_extensions.TypedDict, total=False):
@@ -1337,6 +1384,7 @@ class QueryTimelineSample(typing_extensions.TypedDict, total=False):
     elapsedMs: str
     estimatedRunnableUnits: str
     pendingUnits: str
+    shuffleRamUsageRatio: float
     totalSlotMs: str
 
 @typing.type_check_only
@@ -1405,11 +1453,13 @@ class Routine(typing_extensions.TypedDict, total=False):
         "DETERMINISM_LEVEL_UNSPECIFIED", "DETERMINISTIC", "NOT_DETERMINISTIC"
     ]
     etag: str
+    externalRuntimeOptions: ExternalRuntimeOptions
     importedLibraries: _list[str]
     language: typing_extensions.Literal[
         "LANGUAGE_UNSPECIFIED", "SQL", "JAVASCRIPT", "PYTHON", "JAVA", "SCALA"
     ]
     lastModifiedTime: str
+    pythonOptions: PythonOptions
     remoteFunctionOptions: RemoteFunctionOptions
     returnTableType: StandardSqlTableType
     returnType: StandardSqlDataType
@@ -1443,6 +1493,7 @@ class RowAccessPolicy(typing_extensions.TypedDict, total=False):
     creationTime: str
     etag: str
     filterPredicate: str
+    grantees: _list[str]
     lastModifiedTime: str
     rowAccessPolicyReference: RowAccessPolicyReference
 
@@ -1600,6 +1651,26 @@ class StorageDescriptor(typing_extensions.TypedDict, total=False):
     serdeInfo: SerDeInfo
 
 @typing.type_check_only
+class StoredColumnsUnusedReason(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "STORED_COLUMNS_COVER_INSUFFICIENT",
+        "BASE_TABLE_HAS_RLS",
+        "BASE_TABLE_HAS_CLS",
+        "UNSUPPORTED_PREFILTER",
+        "INTERNAL_ERROR",
+        "OTHER_REASON",
+    ]
+    message: str
+    uncoveredColumns: _list[str]
+
+@typing.type_check_only
+class StoredColumnsUsage(typing_extensions.TypedDict, total=False):
+    baseTable: TableReference
+    isQueryAccelerated: bool
+    storedColumnsUnusedReasons: _list[StoredColumnsUnusedReason]
+
+@typing.type_check_only
 class Streamingbuffer(typing_extensions.TypedDict, total=False):
     estimatedBytes: str
     estimatedRows: str
@@ -1637,7 +1708,7 @@ class Table(typing_extensions.TypedDict, total=False):
     lastModifiedTime: str
     location: str
     managedTableType: typing_extensions.Literal[
-        "MANAGED_TABLE_TYPE_UNSPECIFIED", "NATIVE", "ICEBERG"
+        "MANAGED_TABLE_TYPE_UNSPECIFIED", "NATIVE", "BIGLAKE"
     ]
     materializedView: MaterializedViewDefinition
     materializedViewStatus: MaterializedViewStatus
@@ -1853,6 +1924,8 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
         "FEEDBACK_TYPE_UNSPECIFIED", "IMPLICIT", "EXPLICIT"
     ]
     fitIntercept: bool
+    forecastLimitLowerBound: float
+    forecastLimitUpperBound: float
     hiddenUnits: _list[str]
     holidayRegion: typing_extensions.Literal[
         "HOLIDAY_REGION_UNSPECIFIED",
@@ -2126,6 +2199,7 @@ class VectorSearchStatistics(typing_extensions.TypedDict, total=False):
     indexUsageMode: typing_extensions.Literal[
         "INDEX_USAGE_MODE_UNSPECIFIED", "UNUSED", "PARTIALLY_USED", "FULLY_USED"
     ]
+    storedColumnsUsages: _list[StoredColumnsUsage]
 
 @typing.type_check_only
 class ViewDefinition(typing_extensions.TypedDict, total=False):

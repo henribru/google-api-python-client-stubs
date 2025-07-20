@@ -24,6 +24,7 @@ class WebfontsResource(googleapiclient.discovery.Resource):
             | _list[
                 typing_extensions.Literal["CAPABILITY_UNSPECIFIED", "WOFF2", "VF"]
             ] = ...,
+            category: str = ...,
             family: str | _list[str] = ...,
             sort: typing_extensions.Literal[
                 "SORT_UNDEFINED", "ALPHA", "DATE", "POPULARITY", "STYLE", "TRENDING"

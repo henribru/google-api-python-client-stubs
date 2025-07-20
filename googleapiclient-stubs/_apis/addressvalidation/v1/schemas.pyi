@@ -184,6 +184,7 @@ class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=Fa
     ]
     hasInferredComponents: bool
     hasReplacedComponents: bool
+    hasSpellCorrectedComponents: bool
     hasUnconfirmedComponents: bool
     inputGranularity: typing_extensions.Literal[
         "GRANULARITY_UNSPECIFIED",
@@ -193,6 +194,13 @@ class GoogleMapsAddressvalidationV1Verdict(typing_extensions.TypedDict, total=Fa
         "BLOCK",
         "ROUTE",
         "OTHER",
+    ]
+    possibleNextAction: typing_extensions.Literal[
+        "POSSIBLE_NEXT_ACTION_UNSPECIFIED",
+        "FIX",
+        "CONFIRM_ADD_SUBPREMISES",
+        "CONFIRM",
+        "ACCEPT",
     ]
     validationGranularity: typing_extensions.Literal[
         "GRANULARITY_UNSPECIFIED",

@@ -37,22 +37,6 @@ class AppAccessRiskVerdict(typing_extensions.TypedDict, total=False):
             "UNKNOWN_CONTROLLING",
         ]
     ]
-    otherApps: typing_extensions.Literal[
-        "UNKNOWN",
-        "UNEVALUATED",
-        "NOT_INSTALLED",
-        "INSTALLED",
-        "CAPTURING",
-        "CONTROLLING",
-    ]
-    playOrSystemApps: typing_extensions.Literal[
-        "UNKNOWN",
-        "UNEVALUATED",
-        "NOT_INSTALLED",
-        "INSTALLED",
-        "CAPTURING",
-        "CONTROLLING",
-    ]
 
 @typing.type_check_only
 class AppIntegrity(typing_extensions.TypedDict, total=False):
@@ -70,6 +54,14 @@ class DecodeIntegrityTokenRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DecodeIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
     tokenPayloadExternal: TokenPayloadExternal
+
+@typing.type_check_only
+class DecodePcIntegrityTokenRequest(typing_extensions.TypedDict, total=False):
+    integrityToken: str
+
+@typing.type_check_only
+class DecodePcIntegrityTokenResponse(typing_extensions.TypedDict, total=False):
+    tokenPayloadExternal: PcTokenPayloadExternal
 
 @typing.type_check_only
 class DeviceAttributes(typing_extensions.TypedDict, total=False):
@@ -116,6 +108,25 @@ class EnvironmentDetails(typing_extensions.TypedDict, total=False):
         "HIGH_RISK",
         "POSSIBLE_RISK",
     ]
+
+@typing.type_check_only
+class PcDeviceIntegrity(typing_extensions.TypedDict, total=False):
+    deviceRecognitionVerdict: _list[
+        typing_extensions.Literal[
+            "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED", "MEETS_PC_INTEGRITY"
+        ]
+    ]
+
+@typing.type_check_only
+class PcRequestDetails(typing_extensions.TypedDict, total=False):
+    requestHash: str
+    requestPackageName: str
+    requestTime: str
+
+@typing.type_check_only
+class PcTokenPayloadExternal(typing_extensions.TypedDict, total=False):
+    deviceIntegrity: PcDeviceIntegrity
+    requestDetails: PcRequestDetails
 
 @typing.type_check_only
 class RecentDeviceActivity(typing_extensions.TypedDict, total=False):

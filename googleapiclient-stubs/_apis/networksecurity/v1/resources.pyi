@@ -54,6 +54,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddressGroupsResponseHttpRequest: ...
                 def list_next(
@@ -295,6 +296,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddressGroupsResponseHttpRequest: ...
                 def list_next(
@@ -467,6 +469,46 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class BackendAuthenticationConfigsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: BackendAuthenticationConfig = ...,
+                    backendAuthenticationConfigId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BackendAuthenticationConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBackendAuthenticationConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackendAuthenticationConfigsResponseHttpRequest,
+                    previous_response: ListBackendAuthenticationConfigsResponse,
+                ) -> ListBackendAuthenticationConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BackendAuthenticationConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class ClientTlsPoliciesResource(googleapiclient.discovery.Resource):
@@ -649,6 +691,350 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 def rules(self) -> RulesResource: ...
 
             @typing.type_check_only
+            class InterceptDeploymentGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InterceptDeploymentGroup = ...,
+                    interceptDeploymentGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InterceptDeploymentGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInterceptDeploymentGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInterceptDeploymentGroupsResponseHttpRequest,
+                    previous_response: ListInterceptDeploymentGroupsResponse,
+                ) -> ListInterceptDeploymentGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InterceptDeploymentGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class InterceptDeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InterceptDeployment = ...,
+                    interceptDeploymentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InterceptDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInterceptDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInterceptDeploymentsResponseHttpRequest,
+                    previous_response: ListInterceptDeploymentsResponse,
+                ) -> ListInterceptDeploymentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InterceptDeployment = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class InterceptEndpointGroupAssociationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InterceptEndpointGroupAssociation = ...,
+                    interceptEndpointGroupAssociationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InterceptEndpointGroupAssociationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInterceptEndpointGroupAssociationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInterceptEndpointGroupAssociationsResponseHttpRequest,
+                    previous_response: ListInterceptEndpointGroupAssociationsResponse,
+                ) -> (
+                    ListInterceptEndpointGroupAssociationsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InterceptEndpointGroupAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class InterceptEndpointGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InterceptEndpointGroup = ...,
+                    interceptEndpointGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InterceptEndpointGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInterceptEndpointGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInterceptEndpointGroupsResponseHttpRequest,
+                    previous_response: ListInterceptEndpointGroupsResponse,
+                ) -> ListInterceptEndpointGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InterceptEndpointGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringDeploymentGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringDeploymentGroup = ...,
+                    mirroringDeploymentGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringDeploymentGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringDeploymentGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringDeploymentGroupsResponseHttpRequest,
+                    previous_response: ListMirroringDeploymentGroupsResponse,
+                ) -> ListMirroringDeploymentGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringDeploymentGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringDeploymentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringDeployment = ...,
+                    mirroringDeploymentId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringDeploymentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringDeploymentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringDeploymentsResponseHttpRequest,
+                    previous_response: ListMirroringDeploymentsResponse,
+                ) -> ListMirroringDeploymentsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringDeployment = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringEndpointGroupAssociationsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringEndpointGroupAssociation = ...,
+                    mirroringEndpointGroupAssociationId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringEndpointGroupAssociationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringEndpointGroupAssociationsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringEndpointGroupAssociationsResponseHttpRequest,
+                    previous_response: ListMirroringEndpointGroupAssociationsResponse,
+                ) -> (
+                    ListMirroringEndpointGroupAssociationsResponseHttpRequest | None
+                ): ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringEndpointGroupAssociation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class MirroringEndpointGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: MirroringEndpointGroup = ...,
+                    mirroringEndpointGroupId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> MirroringEndpointGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListMirroringEndpointGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListMirroringEndpointGroupsResponseHttpRequest,
+                    previous_response: ListMirroringEndpointGroupsResponse,
+                ) -> ListMirroringEndpointGroupsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: MirroringEndpointGroup = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -707,6 +1093,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListServerTlsPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -820,6 +1207,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -833,11 +1221,30 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             def addressGroups(self) -> AddressGroupsResource: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
             def authzPolicies(self) -> AuthzPoliciesResource: ...
+            def backendAuthenticationConfigs(
+                self,
+            ) -> BackendAuthenticationConfigsResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def firewallEndpointAssociations(
                 self,
             ) -> FirewallEndpointAssociationsResource: ...
             def gatewaySecurityPolicies(self) -> GatewaySecurityPoliciesResource: ...
+            def interceptDeploymentGroups(
+                self,
+            ) -> InterceptDeploymentGroupsResource: ...
+            def interceptDeployments(self) -> InterceptDeploymentsResource: ...
+            def interceptEndpointGroupAssociations(
+                self,
+            ) -> InterceptEndpointGroupAssociationsResource: ...
+            def interceptEndpointGroups(self) -> InterceptEndpointGroupsResource: ...
+            def mirroringDeploymentGroups(
+                self,
+            ) -> MirroringDeploymentGroupsResource: ...
+            def mirroringDeployments(self) -> MirroringDeploymentsResource: ...
+            def mirroringEndpointGroupAssociations(
+                self,
+            ) -> MirroringEndpointGroupAssociationsResource: ...
+            def mirroringEndpointGroups(self) -> MirroringEndpointGroupsResource: ...
             def operations(self) -> OperationsResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
             def tlsInspectionPolicies(self) -> TlsInspectionPoliciesResource: ...
@@ -883,6 +1290,14 @@ class AuthzPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AuthzPolicy: ...
+
+@typing.type_check_only
+class BackendAuthenticationConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackendAuthenticationConfig: ...
 
 @typing.type_check_only
 class ClientTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -951,6 +1366,38 @@ class GoogleIamV1TestIamPermissionsResponseHttpRequest(
     ) -> GoogleIamV1TestIamPermissionsResponse: ...
 
 @typing.type_check_only
+class InterceptDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InterceptDeployment: ...
+
+@typing.type_check_only
+class InterceptDeploymentGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InterceptDeploymentGroup: ...
+
+@typing.type_check_only
+class InterceptEndpointGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InterceptEndpointGroup: ...
+
+@typing.type_check_only
+class InterceptEndpointGroupAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InterceptEndpointGroupAssociation: ...
+
+@typing.type_check_only
 class ListAddressGroupReferencesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -981,6 +1428,16 @@ class ListAuthzPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAuthzPoliciesResponse: ...
+
+@typing.type_check_only
+class ListBackendAuthenticationConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackendAuthenticationConfigsResponse: ...
 
 @typing.type_check_only
 class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1027,12 +1484,84 @@ class ListGatewaySecurityPolicyRulesResponseHttpRequest(
     ) -> ListGatewaySecurityPolicyRulesResponse: ...
 
 @typing.type_check_only
+class ListInterceptDeploymentGroupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInterceptDeploymentGroupsResponse: ...
+
+@typing.type_check_only
+class ListInterceptDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInterceptDeploymentsResponse: ...
+
+@typing.type_check_only
+class ListInterceptEndpointGroupAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInterceptEndpointGroupAssociationsResponse: ...
+
+@typing.type_check_only
+class ListInterceptEndpointGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInterceptEndpointGroupsResponse: ...
+
+@typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListMirroringDeploymentGroupsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringDeploymentGroupsResponse: ...
+
+@typing.type_check_only
+class ListMirroringDeploymentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringDeploymentsResponse: ...
+
+@typing.type_check_only
+class ListMirroringEndpointGroupAssociationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringEndpointGroupAssociationsResponse: ...
+
+@typing.type_check_only
+class ListMirroringEndpointGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListMirroringEndpointGroupsResponse: ...
 
 @typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1089,6 +1618,38 @@ class LocationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
+
+@typing.type_check_only
+class MirroringDeploymentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringDeployment: ...
+
+@typing.type_check_only
+class MirroringDeploymentGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringDeploymentGroup: ...
+
+@typing.type_check_only
+class MirroringEndpointGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringEndpointGroup: ...
+
+@typing.type_check_only
+class MirroringEndpointGroupAssociationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> MirroringEndpointGroupAssociation: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

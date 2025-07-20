@@ -66,6 +66,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -79,6 +80,7 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str

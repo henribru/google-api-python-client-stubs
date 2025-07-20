@@ -248,6 +248,7 @@ class Object(typing_extensions.TypedDict, total=False):
     contentEncoding: str
     contentLanguage: str
     contentType: str
+    contexts: dict[str, typing.Any]
     crc32c: str
     customTime: str
     customerEncryption: dict[str, typing.Any]
@@ -298,6 +299,12 @@ class ObjectAccessControl(typing_extensions.TypedDict, total=False):
 class ObjectAccessControls(typing_extensions.TypedDict, total=False):
     items: _list[ObjectAccessControl]
     kind: str
+
+@typing.type_check_only
+class ObjectCustomContextPayload(typing_extensions.TypedDict, total=False):
+    createTime: str
+    updateTime: str
+    value: str
 
 @typing.type_check_only
 class Objects(typing_extensions.TypedDict, total=False):

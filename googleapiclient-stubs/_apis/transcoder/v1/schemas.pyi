@@ -234,6 +234,7 @@ class Job(typing_extensions.TypedDict, total=False):
     createTime: str
     endTime: str
     error: Status
+    fillContentGaps: bool
     inputUri: str
     labels: dict[str, typing.Any]
     mode: typing_extensions.Literal[

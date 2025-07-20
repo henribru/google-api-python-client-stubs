@@ -508,6 +508,23 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
             self, *, resourceId: str, body: TransitObject = ..., **kwargs: typing.Any
         ) -> TransitObjectHttpRequest: ...
 
+    @typing.type_check_only
+    class WalletobjectsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class V1Resource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class PrivateContentResource(googleapiclient.discovery.Resource):
+                def setPassUpdateNotice(
+                    self,
+                    *,
+                    body: SetPassUpdateNoticeRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> SetPassUpdateNoticeResponseHttpRequest: ...
+
+            def privateContent(self) -> PrivateContentResource: ...
+
+        def v1(self) -> V1Resource: ...
+
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -539,6 +556,7 @@ class WalletobjectsResource(googleapiclient.discovery.Resource):
     def smarttap(self) -> SmarttapResource: ...
     def transitclass(self) -> TransitclassResource: ...
     def transitobject(self) -> TransitobjectResource: ...
+    def walletobjects(self) -> WalletobjectsResource: ...
 
 @typing.type_check_only
 class EventTicketClassHttpRequest(googleapiclient.http.HttpRequest):
@@ -867,6 +885,14 @@ class PermissionsHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Permissions: ...
+
+@typing.type_check_only
+class SetPassUpdateNoticeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SetPassUpdateNoticeResponse: ...
 
 @typing.type_check_only
 class SmartTapHttpRequest(googleapiclient.http.HttpRequest):

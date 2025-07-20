@@ -545,12 +545,16 @@ class GoogleAnalyticsAdminV1alphaChangeHistoryChangeChangeHistoryResource(
     firebaseLink: GoogleAnalyticsAdminV1alphaFirebaseLink
     googleAdsLink: GoogleAnalyticsAdminV1alphaGoogleAdsLink
     googleSignalsSettings: GoogleAnalyticsAdminV1alphaGoogleSignalsSettings
+    keyEvent: GoogleAnalyticsAdminV1alphaKeyEvent
     measurementProtocolSecret: GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret
     property: GoogleAnalyticsAdminV1alphaProperty
+    reportingDataAnnotation: GoogleAnalyticsAdminV1alphaReportingDataAnnotation
+    reportingIdentitySettings: GoogleAnalyticsAdminV1alphaReportingIdentitySettings
     searchAds360Link: GoogleAnalyticsAdminV1alphaSearchAds360Link
     skadnetworkConversionValueSchema: (
         GoogleAnalyticsAdminV1alphaSKAdNetworkConversionValueSchema
     )
+    subpropertySyncConfig: GoogleAnalyticsAdminV1alphaSubpropertySyncConfig
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaChangeHistoryEvent(
@@ -1226,6 +1230,13 @@ class GoogleAnalyticsAdminV1alphaListPropertiesResponse(
     properties: _list[GoogleAnalyticsAdminV1alphaProperty]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListReportingDataAnnotationsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    reportingDataAnnotations: _list[GoogleAnalyticsAdminV1alphaReportingDataAnnotation]
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListRollupPropertySourceLinksResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1256,6 +1267,13 @@ class GoogleAnalyticsAdminV1alphaListSubpropertyEventFiltersResponse(
 ):
     nextPageToken: str
     subpropertyEventFilters: _list[GoogleAnalyticsAdminV1alphaSubpropertyEventFilter]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaListSubpropertySyncConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    subpropertySyncConfigs: _list[GoogleAnalyticsAdminV1alphaSubpropertySyncConfig]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaMatchingCondition(
@@ -1391,6 +1409,9 @@ class GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse(
 class GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest(
     typing_extensions.TypedDict, total=False
 ):
+    customDimensionAndMetricSynchronizationMode: typing_extensions.Literal[
+        "SYNCHRONIZATION_MODE_UNSPECIFIED", "NONE", "ALL"
+    ]
     subproperty: GoogleAnalyticsAdminV1alphaProperty
     subpropertyEventFilter: GoogleAnalyticsAdminV1alphaSubpropertyEventFilter
 
@@ -1406,6 +1427,36 @@ class GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest(
     typing_extensions.TypedDict, total=False
 ):
     eventEditRules: _list[str]
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReportingDataAnnotation(
+    typing_extensions.TypedDict, total=False
+):
+    annotationDate: GoogleTypeDate
+    annotationDateRange: GoogleAnalyticsAdminV1alphaReportingDataAnnotationDateRange
+    color: typing_extensions.Literal[
+        "COLOR_UNSPECIFIED", "PURPLE", "BROWN", "BLUE", "GREEN", "RED", "CYAN", "ORANGE"
+    ]
+    description: str
+    name: str
+    systemGenerated: bool
+    title: str
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReportingDataAnnotationDateRange(
+    typing_extensions.TypedDict, total=False
+):
+    endDate: GoogleTypeDate
+    startDate: GoogleTypeDate
+
+@typing.type_check_only
+class GoogleAnalyticsAdminV1alphaReportingIdentitySettings(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    reportingIdentity: typing_extensions.Literal[
+        "IDENTITY_BLENDING_STRATEGY_UNSPECIFIED", "BLENDED", "OBSERVED", "DEVICE_BASED"
+    ]
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaRollupPropertySourceLink(
@@ -1505,7 +1556,11 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsRequest(
             "ADSENSE_LINK",
             "AUDIENCE",
             "EVENT_CREATE_RULE",
+            "KEY_EVENT",
             "CALCULATED_METRIC",
+            "REPORTING_DATA_ANNOTATION",
+            "SUBPROPERTY_SYNC_CONFIG",
+            "REPORTING_IDENTITY_SETTINGS",
         ]
     ]
 
@@ -1586,6 +1641,16 @@ class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterExpressionList(
     ]
 
 @typing.type_check_only
+class GoogleAnalyticsAdminV1alphaSubpropertySyncConfig(
+    typing_extensions.TypedDict, total=False
+):
+    applyToProperty: str
+    customDimensionAndMetricSyncMode: typing_extensions.Literal[
+        "SYNCHRONIZATION_MODE_UNSPECIFIED", "NONE", "ALL"
+    ]
+    name: str
+
+@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -1593,3 +1658,9 @@ class GoogleAnalyticsAdminV1alphaUpdateAccessBindingRequest(
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int

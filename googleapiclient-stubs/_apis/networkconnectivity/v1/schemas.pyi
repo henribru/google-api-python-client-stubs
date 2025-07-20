@@ -14,6 +14,23 @@ class AcceptHubSpokeResponse(typing_extensions.TypedDict, total=False):
     spoke: Spoke
 
 @typing.type_check_only
+class AcceptSpokeUpdateRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+    spokeEtag: str
+    spokeUri: str
+
+@typing.type_check_only
+class AllocationOptions(typing_extensions.TypedDict, total=False):
+    allocationStrategy: typing_extensions.Literal[
+        "ALLOCATION_STRATEGY_UNSPECIFIED",
+        "RANDOM",
+        "FIRST_AVAILABLE",
+        "RANDOM_FIRST_N_AVAILABLE",
+        "FIRST_SMALLEST_FITTING",
+    ]
+    firstAvailableRangesLookupSize: int
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -98,7 +115,9 @@ class Expr(typing_extensions.TypedDict, total=False):
 class Filter(typing_extensions.TypedDict, total=False):
     destRange: str
     ipProtocol: str
-    protocolVersion: typing_extensions.Literal["PROTOCOL_VERSION_UNSPECIFIED", "IPV4"]
+    protocolVersion: typing_extensions.Literal[
+        "PROTOCOL_VERSION_UNSPECIFIED", "IPV4", "IPV6"
+    ]
     srcRange: str
 
 @typing.type_check_only
@@ -149,6 +168,7 @@ class Group(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
     uid: str
     updateTime: str
@@ -177,6 +197,7 @@ class Hub(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
     uniqueId: str
     updateTime: str
@@ -193,8 +214,11 @@ class InterconnectAttachment(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InternalRange(typing_extensions.TypedDict, total=False):
+    allocationOptions: AllocationOptions
     createTime: str
     description: str
+    excludeCidrRanges: _list[str]
+    immutable: bool
     ipCidrRange: str
     labels: dict[str, typing.Any]
     migration: Migration
@@ -232,6 +256,8 @@ class LinkedProducerVpcNetwork(typing_extensions.TypedDict, total=False):
     network: str
     peering: str
     producerNetwork: str
+    proposedExcludeExportRanges: _list[str]
+    proposedIncludeExportRanges: _list[str]
     serviceConsumerVpcSpoke: str
 
 @typing.type_check_only
@@ -246,6 +272,8 @@ class LinkedVpcNetwork(typing_extensions.TypedDict, total=False):
     excludeExportRanges: _list[str]
     includeExportRanges: _list[str]
     producerVpcSpokes: _list[str]
+    proposedExcludeExportRanges: _list[str]
+    proposedIncludeExportRanges: _list[str]
     uri: str
 
 @typing.type_check_only
@@ -353,6 +381,7 @@ class LocationMetadata(typing_extensions.TypedDict, total=False):
             "LOCATION_FEATURE_UNSPECIFIED",
             "SITE_TO_CLOUD_SPOKES",
             "SITE_TO_SITE_SPOKES",
+            "GATEWAY_SPOKES",
         ]
     ]
 
@@ -372,6 +401,11 @@ class NextHopRouterApplianceInstance(typing_extensions.TypedDict, total=False):
     siteToSiteDataTransfer: bool
     uri: str
     vpcNetwork: str
+
+@typing.type_check_only
+class NextHopSpoke(typing_extensions.TypedDict, total=False):
+    siteToSiteDataTransfer: bool
+    uri: str
 
 @typing.type_check_only
 class NextHopVPNTunnel(typing_extensions.TypedDict, total=False):
@@ -514,6 +548,13 @@ class RejectHubSpokeResponse(typing_extensions.TypedDict, total=False):
     spoke: Spoke
 
 @typing.type_check_only
+class RejectSpokeUpdateRequest(typing_extensions.TypedDict, total=False):
+    details: str
+    requestId: str
+    spokeEtag: str
+    spokeUri: str
+
+@typing.type_check_only
 class Route(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -523,6 +564,7 @@ class Route(typing_extensions.TypedDict, total=False):
     name: str
     nextHopInterconnectAttachment: NextHopInterconnectAttachment
     nextHopRouterApplianceInstance: NextHopRouterApplianceInstance
+    nextHopSpoke: NextHopSpoke
     nextHopVpcNetwork: NextHopVpcNetwork
     nextHopVpnTunnel: NextHopVPNTunnel
     priority: str
@@ -537,6 +579,7 @@ class Route(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
     type: typing_extensions.Literal[
         "ROUTE_TYPE_UNSPECIFIED",
@@ -563,6 +606,7 @@ class RouteTable(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
     uid: str
     updateTime: str
@@ -638,6 +682,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
 class Spoke(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
+    etag: str
+    fieldPathsPendingUpdate: _list[str]
     group: str
     hub: str
     labels: dict[str, typing.Any]
@@ -666,6 +712,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
     uniqueId: str
     updateTime: str
@@ -683,6 +730,7 @@ class SpokeStateCount(typing_extensions.TypedDict, total=False):
         "UPDATING",
         "INACTIVE",
         "OBSOLETE",
+        "FAILED",
     ]
 
 @typing.type_check_only

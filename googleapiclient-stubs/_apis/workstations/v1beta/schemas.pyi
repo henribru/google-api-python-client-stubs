@@ -35,6 +35,7 @@ class BoostConfig(typing_extensions.TypedDict, total=False):
     id: str
     machineType: str
     poolSize: int
+    reservationAffinity: ReservationAffinity
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -70,6 +71,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GatewayConfig(typing_extensions.TypedDict, total=False):
+    http2Enabled: bool
+
+@typing.type_check_only
 class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     enableConfidentialCompute: bool
 
@@ -85,6 +90,7 @@ class GceInstance(typing_extensions.TypedDict, total=False):
     machineType: str
     poolSize: int
     pooledInstances: int
+    reservationAffinity: ReservationAffinity
     serviceAccount: str
     serviceAccountScopes: _list[str]
     shieldedInstanceConfig: GceShieldedInstanceConfig
@@ -226,6 +232,14 @@ class ReadinessCheck(typing_extensions.TypedDict, total=False):
     port: int
 
 @typing.type_check_only
+class ReservationAffinity(typing_extensions.TypedDict, total=False):
+    consumeReservationType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "NO_RESERVATION", "ANY_RESERVATION", "SPECIFIC_RESERVATION"
+    ]
+    key: str
+    values: _list[str]
+
+@typing.type_check_only
 class RuntimeHost(typing_extensions.TypedDict, total=False):
     gceInstanceHost: GceInstanceHost
 
@@ -263,7 +277,9 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
 class Workstation(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     boostConfigs: _list[WorkstationBoostConfig]
+    conditions: _list[Status]
     createTime: str
+    degraded: bool
     deleteTime: str
     displayName: str
     env: dict[str, typing.Any]
@@ -303,6 +319,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     displayName: str
     domainConfig: DomainConfig
     etag: str
+    gatewayConfig: GatewayConfig
     labels: dict[str, typing.Any]
     name: str
     network: str

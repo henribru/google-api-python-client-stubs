@@ -129,6 +129,18 @@ class GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata(
     rolloutUpdateTime: str
 
 @typing.type_check_only
+class GoogleCloudOsconfigV2__OperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    apiVersion: str
+    createTime: str
+    endTime: str
+    requestedCancellation: bool
+    statusMessage: str
+    target: str
+    verb: str
+
+@typing.type_check_only
 class GoogleCloudOsconfigV2beta__OperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -177,6 +189,9 @@ class LookupEffectiveGuestPolicyRequest(typing_extensions.TypedDict, total=False
     osArchitecture: str
     osShortName: str
     osVersion: str
+
+@typing.type_check_only
+class MessageSet(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class MonthlySchedule(typing_extensions.TypedDict, total=False):
@@ -446,6 +461,14 @@ class SoftwareRecipeStepRunScript(typing_extensions.TypedDict, total=False):
         "INTERPRETER_UNSPECIFIED", "SHELL", "POWERSHELL"
     ]
     script: str
+
+@typing.type_check_only
+class StatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: MessageSet
+    space: str
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
