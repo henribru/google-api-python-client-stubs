@@ -7,6 +7,7 @@ authors = [
 ]
 readme = "README.md"
 license = "Apache-2.0"
+license-files = ["LICENSE"]
 repository = "https://github.com/henribru/google-api-python-client-stubs"
 classifiers = [
    "Typing :: Stubs Only",
@@ -38,9 +39,10 @@ known-first-party = [
 [tool.mypy]
 warn_unused_ignores = true
 
-[tool.hatch.build.targets.wheel]
-packages = ["googleapiclient-stubs", "apiclient-stubs"]
+[tool.uv.build-backend]
+module-name = ["googleapiclient-stubs", "apiclient-stubs"]
+module-root = ""
 
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.8.0,<0.9.0"]
+build-backend = "uv_build"
