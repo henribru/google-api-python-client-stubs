@@ -21,8 +21,8 @@ requires-python = ">=3.7"
 
 [tool.uv]
 dev-dependencies = [
-    "mypy>=1.11.2 ; python_full_version >= '3.8'",
-    "ruff>=0.6.8",
+    "mypy>=1.17.0 ; python_full_version >= '3.9'",
+    "ruff>=0.12.4",
     "stubdefaulter>=0.1.0",
 ]
 
