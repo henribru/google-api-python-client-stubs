@@ -273,6 +273,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
+    configuredCapabilities: _list[str]
     createTime: str
     labels: dict[str, typing.Any]
     lifecycleState: typing_extensions.Literal[

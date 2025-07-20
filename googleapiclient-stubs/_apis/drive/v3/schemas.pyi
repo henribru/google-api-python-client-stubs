@@ -141,6 +141,16 @@ class ContentRestriction(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class DownloadRestriction(typing_extensions.TypedDict, total=False):
+    restrictedForReaders: bool
+    restrictedForWriters: bool
+
+@typing.type_check_only
+class DownloadRestrictionsMetadata(typing_extensions.TypedDict, total=False):
+    effectiveDownloadRestrictionWithContext: DownloadRestriction
+    itemDownloadRestriction: DownloadRestriction
+
+@typing.type_check_only
 class Drive(typing_extensions.TypedDict, total=False):
     backgroundImageFile: dict[str, typing.Any]
     backgroundImageLink: str
@@ -170,6 +180,7 @@ class File(typing_extensions.TypedDict, total=False):
     copyRequiresWriterPermission: bool
     createdTime: str
     description: str
+    downloadRestrictions: DownloadRestrictionsMetadata
     driveId: str
     explicitlyTrashed: bool
     exportLinks: dict[str, typing.Any]
@@ -182,6 +193,7 @@ class File(typing_extensions.TypedDict, total=False):
     iconLink: str
     id: str
     imageMediaMetadata: dict[str, typing.Any]
+    inheritedPermissionsDisabled: bool
     isAppAuthorized: bool
     kind: str
     labelInfo: dict[str, typing.Any]
@@ -318,6 +330,7 @@ class Permission(typing_extensions.TypedDict, total=False):
     emailAddress: str
     expirationTime: str
     id: str
+    inheritedPermissionsDisabled: bool
     kind: str
     pendingOwner: bool
     permissionDetails: _list[dict[str, typing.Any]]

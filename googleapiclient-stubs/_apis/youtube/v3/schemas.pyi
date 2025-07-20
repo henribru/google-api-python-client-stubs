@@ -364,6 +364,7 @@ class ChannelStatistics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ChannelStatus(typing_extensions.TypedDict, total=False):
+    isChannelMonetizationEnabled: bool
     isLinked: bool
     longUploadsStatus: typing_extensions.Literal[
         "longUploadsUnspecified", "allowed", "eligible", "disallowed"
@@ -438,6 +439,7 @@ class CommentSnippet(typing_extensions.TypedDict, total=False):
         "published", "heldForReview", "likelySpam", "rejected"
     ]
     parentId: str
+    postId: str
     publishedAt: str
     textDisplay: str
     textOriginal: str
@@ -477,6 +479,7 @@ class CommentThreadSnippet(typing_extensions.TypedDict, total=False):
     canReply: bool
     channelId: str
     isPublic: bool
+    postId: str
     topLevelComment: Comment
     totalReplyCount: int
     videoId: str
@@ -700,6 +703,10 @@ class ContentRating(typing_extensions.TypedDict, total=False):
             "djctqInappropriateLanguage",
             "djctqCriminalActs",
             "djctqImpactingContent",
+            "djctqFear",
+            "djctqMedicalProcedures",
+            "djctqSensitiveTopics",
+            "djctqFantasyViolence",
         ]
     ]
     ecbmctRating: typing_extensions.Literal[
@@ -2391,6 +2398,13 @@ class VideoTopicDetails(typing_extensions.TypedDict, total=False):
     relevantTopicIds: _list[str]
     topicCategories: _list[str]
     topicIds: _list[str]
+
+@typing.type_check_only
+class VideoTrainability(typing_extensions.TypedDict, total=False):
+    etag: str
+    kind: str
+    permitted: _list[str]
+    videoId: str
 
 @typing.type_check_only
 class WatchSettings(typing_extensions.TypedDict, total=False):

@@ -180,10 +180,8 @@ class ContainerVersion(typing_extensions.TypedDict, total=False):
     deleted: bool
     fingerprint: str
     folder: _list[Folder]
-    macro: _list[Macro]
     name: str
     notes: str
-    rule: _list[Rule]
     tag: _list[Tag]
     trigger: _list[Trigger]
     variable: _list[Variable]
@@ -195,8 +193,6 @@ class ContainerVersionHeader(typing_extensions.TypedDict, total=False):
     containerVersionId: str
     deleted: bool
     name: str
-    numMacros: str
-    numRules: str
     numTags: str
     numTriggers: str
     numVariables: str
@@ -281,22 +277,6 @@ class ListVariablesResponse(typing_extensions.TypedDict, total=False):
     variables: _list[Variable]
 
 @typing.type_check_only
-class Macro(typing_extensions.TypedDict, total=False):
-    accountId: str
-    containerId: str
-    disablingRuleId: _list[str]
-    enablingRuleId: _list[str]
-    fingerprint: str
-    macroId: str
-    name: str
-    notes: str
-    parameter: _list[Parameter]
-    parentFolderId: str
-    scheduleEndMs: str
-    scheduleStartMs: str
-    type: str
-
-@typing.type_check_only
 class Parameter(typing_extensions.TypedDict, total=False):
     key: str
     list: _list[Parameter]
@@ -318,16 +298,6 @@ class PublishContainerVersionResponse(typing_extensions.TypedDict, total=False):
     containerVersion: ContainerVersion
 
 @typing.type_check_only
-class Rule(typing_extensions.TypedDict, total=False):
-    accountId: str
-    condition: _list[Condition]
-    containerId: str
-    fingerprint: str
-    name: str
-    notes: str
-    ruleId: str
-
-@typing.type_check_only
 class SetupTag(typing_extensions.TypedDict, total=False):
     stopOnSetupFailure: bool
     tagName: str
@@ -335,11 +305,9 @@ class SetupTag(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tag(typing_extensions.TypedDict, total=False):
     accountId: str
-    blockingRuleId: _list[str]
     blockingTriggerId: _list[str]
     containerId: str
     fingerprint: str
-    firingRuleId: _list[str]
     firingTriggerId: _list[str]
     liveOnly: bool
     name: str

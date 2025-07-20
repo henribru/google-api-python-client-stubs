@@ -202,6 +202,7 @@ class GoogleCloudIdentitytoolkitV1GetOobCodeRequest(
     iOSAppStoreId: str
     iOSBundleId: str
     idToken: str
+    linkDomain: str
     newEmail: str
     recaptchaVersion: typing_extensions.Literal[
         "RECAPTCHA_VERSION_UNSPECIFIED", "RECAPTCHA_ENTERPRISE"

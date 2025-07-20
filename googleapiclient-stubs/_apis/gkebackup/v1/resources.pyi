@@ -18,6 +18,73 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class BackupChannelsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class BackupPlanBindingsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> BackupPlanBindingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListBackupPlanBindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListBackupPlanBindingsResponseHttpRequest,
+                        previous_response: ListBackupPlanBindingsResponse,
+                    ) -> ListBackupPlanBindingsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: BackupChannel = ...,
+                    backupChannelId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    force: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BackupChannelHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBackupChannelsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackupChannelsResponseHttpRequest,
+                    previous_response: ListBackupChannelsResponse,
+                ) -> ListBackupChannelsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BackupChannel = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def backupPlanBindings(self) -> BackupPlanBindingsResource: ...
+
+            @typing.type_check_only
             class BackupPlansResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class BackupsResource(googleapiclient.discovery.Resource):
@@ -100,6 +167,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListBackupsResponseHttpRequest: ...
                     def list_next(
@@ -220,6 +288,68 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class RestoreChannelsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RestorePlanBindingsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> RestorePlanBindingHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListRestorePlanBindingsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListRestorePlanBindingsResponseHttpRequest,
+                        previous_response: ListRestorePlanBindingsResponse,
+                    ) -> ListRestorePlanBindingsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: RestoreChannel = ...,
+                    restoreChannelId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> RestoreChannelHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListRestoreChannelsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListRestoreChannelsResponseHttpRequest,
+                    previous_response: ListRestoreChannelsResponse,
+                ) -> ListRestoreChannelsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: RestoreChannel = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def restorePlanBindings(self) -> RestorePlanBindingsResource: ...
 
             @typing.type_check_only
             class RestorePlansResource(googleapiclient.discovery.Resource):
@@ -404,6 +534,7 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -414,8 +545,10 @@ class BackupForGKEResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def backupChannels(self) -> BackupChannelsResource: ...
             def backupPlans(self) -> BackupPlansResource: ...
             def operations(self) -> OperationsResource: ...
+            def restoreChannels(self) -> RestoreChannelsResource: ...
             def restorePlans(self) -> RestorePlansResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -443,12 +576,28 @@ class BackupHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Backup: ...
 
 @typing.type_check_only
+class BackupChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackupChannel: ...
+
+@typing.type_check_only
 class BackupPlanHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> BackupPlan: ...
+
+@typing.type_check_only
+class BackupPlanBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackupPlanBinding: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -485,6 +634,22 @@ class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
+class ListBackupChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupChannelsResponse: ...
+
+@typing.type_check_only
+class ListBackupPlanBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupPlanBindingsResponse: ...
+
+@typing.type_check_only
 class ListBackupPlansResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -507,6 +672,22 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListLocationsResponse: ...
+
+@typing.type_check_only
+class ListRestoreChannelsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestoreChannelsResponse: ...
+
+@typing.type_check_only
+class ListRestorePlanBindingsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListRestorePlanBindingsResponse: ...
 
 @typing.type_check_only
 class ListRestorePlansResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -565,12 +746,28 @@ class RestoreHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Restore: ...
 
 @typing.type_check_only
+class RestoreChannelHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestoreChannel: ...
+
+@typing.type_check_only
 class RestorePlanHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> RestorePlan: ...
+
+@typing.type_check_only
+class RestorePlanBindingHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RestorePlanBinding: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

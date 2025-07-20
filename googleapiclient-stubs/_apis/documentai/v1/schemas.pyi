@@ -564,6 +564,7 @@ class GoogleCloudDocumentaiV1DisableProcessorResponse(
 class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     chunkedDocument: GoogleCloudDocumentaiV1DocumentChunkedDocument
     content: str
+    docid: str
     documentLayout: GoogleCloudDocumentaiV1DocumentDocumentLayout
     entities: _list[GoogleCloudDocumentaiV1DocumentEntity]
     entityRelations: _list[GoogleCloudDocumentaiV1DocumentEntityRelation]
@@ -630,6 +631,7 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlock(
     typing_extensions.TypedDict, total=False
 ):
     blockId: str
+    boundingBox: GoogleCloudDocumentaiV1BoundingPoly
     listBlock: (
         GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutListBlock
     )
@@ -726,6 +728,7 @@ class GoogleCloudDocumentaiV1DocumentEntityNormalizedValue(
     floatValue: float
     integerValue: int
     moneyValue: GoogleTypeMoney
+    signatureValue: bool
     text: str
 
 @typing.type_check_only
@@ -1053,6 +1056,7 @@ class GoogleCloudDocumentaiV1DocumentSchemaEntityTypeProperty(
     typing_extensions.TypedDict, total=False
 ):
     displayName: str
+    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
     name: str
     occurrenceType: typing_extensions.Literal[
         "OCCURRENCE_TYPE_UNSPECIFIED",
@@ -1326,6 +1330,8 @@ class GoogleCloudDocumentaiV1ProcessOptionsLayoutConfig(
     typing_extensions.TypedDict, total=False
 ):
     chunkingConfig: GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig
+    returnBoundingBoxes: bool
+    returnImages: bool
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1ProcessOptionsLayoutConfigChunkingConfig(

@@ -42,6 +42,12 @@ class AttestationAuthorityHint(typing_extensions.TypedDict, total=False):
     humanReadableName: str
 
 @typing.type_check_only
+class BaseImage(typing_extensions.TypedDict, total=False):
+    layerCount: int
+    name: str
+    repository: str
+
+@typing.type_check_only
 class Basis(typing_extensions.TypedDict, total=False):
     fingerprint: Fingerprint
     resourceUrl: str
@@ -111,6 +117,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    results: _list[StepResult]
     script: str
     secretEnv: _list[str]
     status: typing_extensions.Literal[
@@ -268,6 +275,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ApprovalResult(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Artifacts(
     typing_extensions.TypedDict, total=False
 ):
+    goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule]
     images: _list[str]
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact
@@ -285,6 +293,17 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsArtifactObjects(
     location: str
     paths: _list[str]
     timing: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsGoModule(
+    typing_extensions.TypedDict, total=False
+):
+    modulePath: str
+    moduleVersion: str
+    repositoryLocation: str
+    repositoryName: str
+    repositoryProjectId: str
+    sourcePath: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsMavenArtifact(
@@ -319,6 +338,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Build(
     availableSecrets: ContaineranalysisGoogleDevtoolsCloudbuildV1Secrets
     buildTriggerId: str
     createTime: str
+    dependencies: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency]
     failureInfo: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildFailureInfo
     finishTime: str
     gitConfig: ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig
@@ -393,6 +413,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool
+    enableStructuredLogging: bool
     env: _list[str]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
@@ -414,10 +435,11 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptions(
         "E2_MEDIUM",
     ]
     pool: ContaineranalysisGoogleDevtoolsCloudbuildV1BuildOptionsPoolOption
+    pubsubTopic: str
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1Volume]
@@ -489,6 +511,30 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1Dependency(
+    typing_extensions.TypedDict, total=False
+):
+    empty: bool
+    gitSource: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceDependency(
+    typing_extensions.TypedDict, total=False
+):
+    depth: str
+    destPath: str
+    recurseSubmodules: bool
+    repository: ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository
+    revision: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1DependencyGitSourceRepository(
+    typing_extensions.TypedDict, total=False
+):
+    developerConnect: str
+    url: str
+
+@typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -526,7 +572,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1GitSource(
 class ContaineranalysisGoogleDevtoolsCloudbuildV1Hash(
     typing_extensions.TypedDict, total=False
 ):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -557,6 +603,7 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1Results(
     artifactTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    goModules: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[ContaineranalysisGoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[
         ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact
@@ -643,6 +690,14 @@ class ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan(
 ):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedGoModule(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: ContaineranalysisGoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: ContaineranalysisGoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
@@ -752,6 +807,7 @@ class Discovered(typing_extensions.TypedDict, total=False):
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
     cpe: str
+    files: _list[File]
     lastScanTime: str
     operation: Operation
     sbomStatus: SBOMStatus
@@ -777,6 +833,7 @@ class Discovery(typing_extensions.TypedDict, total=False):
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
 
 @typing.type_check_only
@@ -836,12 +893,18 @@ class ExternalRef(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
 
 @typing.type_check_only
 class FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
+    layerDetails: LayerDetails
 
 @typing.type_check_only
 class FileNote(typing_extensions.TypedDict, total=False):
@@ -1085,6 +1148,13 @@ class Layer(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class LayerDetails(typing_extensions.TypedDict, total=False):
+    baseImages: _list[BaseImage]
+    command: str
+    diffId: str
+    index: int
+
+@typing.type_check_only
 class License(typing_extensions.TypedDict, total=False):
     comments: str
     expression: str
@@ -1163,6 +1233,7 @@ class Note(typing_extensions.TypedDict, total=False):
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
     longDescription: str
     name: str
@@ -1170,6 +1241,7 @@ class Note(typing_extensions.TypedDict, total=False):
     relatedUrl: _list[RelatedUrl]
     sbom: DocumentNote
     sbomReference: SBOMReferenceNote
+    secret: SecretNote
     shortDescription: str
     spdxFile: FileNote
     spdxPackage: PackageInfoNote
@@ -1209,6 +1281,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
     name: str
     noteName: str
@@ -1217,6 +1290,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     resourceUrl: str
     sbom: DocumentOccurrence
     sbomReference: SBOMReferenceOccurrence
+    secret: SecretOccurrence
     spdxFile: FileOccurrence
     spdxPackage: PackageInfoOccurrence
     spdxRelationship: RelationshipOccurrence
@@ -1519,6 +1593,31 @@ class ScanConfig(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class SecretLocation(typing_extensions.TypedDict, total=False):
+    fileLocation: FileLocation
+
+@typing.type_check_only
+class SecretNote(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SecretOccurrence(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal[
+        "SECRET_KIND_UNSPECIFIED",
+        "SECRET_KIND_UNKNOWN",
+        "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY",
+    ]
+    locations: _list[SecretLocation]
+    statuses: _list[SecretStatus]
+
+@typing.type_check_only
+class SecretStatus(typing_extensions.TypedDict, total=False):
+    message: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "UNKNOWN", "VALID", "INVALID"
+    ]
+    updateTime: str
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
 
@@ -1594,6 +1693,12 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StepResult(typing_extensions.TypedDict, total=False):
+    attestationContentName: str
+    attestationType: str
+    name: str
 
 @typing.type_check_only
 class StorageSource(typing_extensions.TypedDict, total=False):

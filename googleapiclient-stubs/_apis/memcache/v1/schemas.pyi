@@ -10,28 +10,7 @@ class ApplyParametersRequest(typing_extensions.TypedDict, total=False):
     nodeIds: _list[str]
 
 @typing.type_check_only
-class AssetLocation(typing_extensions.TypedDict, total=False):
-    ccfeRmsPath: str
-    expected: IsolationExpectations
-    extraParameters: _list[ExtraParameter]
-    locationData: _list[LocationData]
-    parentAsset: _list[CloudAsset]
-
-@typing.type_check_only
-class BlobstoreLocation(typing_extensions.TypedDict, total=False):
-    policyId: _list[str]
-
-@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class CloudAsset(typing_extensions.TypedDict, total=False):
-    assetName: str
-    assetType: str
-
-@typing.type_check_only
-class CloudAssetComposition(typing_extensions.TypedDict, total=False):
-    childAsset: _list[CloudAsset]
 
 @typing.type_check_only
 class DailyCycle(typing_extensions.TypedDict, total=False):
@@ -51,15 +30,7 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
     time: TimeOfDay
 
 @typing.type_check_only
-class DirectLocationAssignment(typing_extensions.TypedDict, total=False):
-    location: _list[LocationAssignment]
-
-@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class ExtraParameter(typing_extensions.TypedDict, total=False):
-    regionalMigDistributionPolicy: RegionalMigDistributionPolicy
 
 @typing.type_check_only
 class GoogleCloudMemcacheV1LocationMetadata(typing_extensions.TypedDict, total=False):
@@ -98,6 +69,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     typing_extensions.TypedDict, total=False
 ):
     consumerDefinedName: str
+    consumerProjectNumber: str
     createTime: str
     instanceType: str
     labels: dict[str, typing.Any]
@@ -231,41 +203,6 @@ class InstanceMessage(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class IsolationExpectations(typing_extensions.TypedDict, total=False):
-    requirementOverride: RequirementOverride
-    ziOrgPolicy: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    ziRegionPolicy: typing_extensions.Literal[
-        "ZI_REGION_POLICY_UNSPECIFIED",
-        "ZI_REGION_POLICY_UNKNOWN",
-        "ZI_REGION_POLICY_NOT_SET",
-        "ZI_REGION_POLICY_FAIL_OPEN",
-        "ZI_REGION_POLICY_FAIL_CLOSED",
-    ]
-    ziRegionState: typing_extensions.Literal[
-        "ZI_REGION_UNSPECIFIED",
-        "ZI_REGION_UNKNOWN",
-        "ZI_REGION_NOT_ENABLED",
-        "ZI_REGION_ENABLED",
-    ]
-    zoneIsolation: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zoneSeparation: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsOrgPolicy: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-    zsRegionState: typing_extensions.Literal[
-        "ZS_REGION_UNSPECIFIED",
-        "ZS_REGION_UNKNOWN",
-        "ZS_REGION_NOT_ENABLED",
-        "ZS_REGION_ENABLED",
-    ]
-
-@typing.type_check_only
 class ListInstancesResponse(typing_extensions.TypedDict, total=False):
     instances: _list[Instance]
     nextPageToken: str
@@ -288,30 +225,6 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
-
-@typing.type_check_only
-class LocationAssignment(typing_extensions.TypedDict, total=False):
-    location: str
-    locationType: typing_extensions.Literal[
-        "UNSPECIFIED",
-        "CLUSTER",
-        "POP",
-        "CLOUD_ZONE",
-        "CLOUD_REGION",
-        "MULTI_REGION_GEO",
-        "MULTI_REGION_JURISDICTION",
-        "GLOBAL",
-        "OTHER",
-    ]
-
-@typing.type_check_only
-class LocationData(typing_extensions.TypedDict, total=False):
-    blobstoreLocation: BlobstoreLocation
-    childAssetLocation: CloudAssetComposition
-    directLocation: DirectLocationAssignment
-    gcpProjectProxy: TenantProjectProxy
-    placerLocation: PlacerLocation
-    spannerLocation: SpannerLocation
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
@@ -382,24 +295,6 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
-class PlacerLocation(typing_extensions.TypedDict, total=False):
-    placerConfig: str
-
-@typing.type_check_only
-class RegionalMigDistributionPolicy(typing_extensions.TypedDict, total=False):
-    targetShape: int
-    zones: _list[ZoneConfiguration]
-
-@typing.type_check_only
-class RequirementOverride(typing_extensions.TypedDict, total=False):
-    ziOverride: typing_extensions.Literal[
-        "ZI_UNSPECIFIED", "ZI_UNKNOWN", "ZI_NOT_REQUIRED", "ZI_PREFERRED", "ZI_REQUIRED"
-    ]
-    zsOverride: typing_extensions.Literal[
-        "ZS_UNSPECIFIED", "ZS_UNKNOWN", "ZS_NOT_REQUIRED", "ZS_REQUIRED"
-    ]
-
-@typing.type_check_only
 class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
     rescheduleType: typing_extensions.Literal[
         "RESCHEDULE_TYPE_UNSPECIFIED",
@@ -425,19 +320,10 @@ class Schedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
 
 @typing.type_check_only
-class SpannerLocation(typing_extensions.TypedDict, total=False):
-    backupName: _list[str]
-    dbName: _list[str]
-
-@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
-
-@typing.type_check_only
-class TenantProjectProxy(typing_extensions.TypedDict, total=False):
-    projectNumbers: _list[str]
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):
@@ -477,10 +363,6 @@ class WeeklyMaintenanceWindow(typing_extensions.TypedDict, total=False):
     ]
     duration: str
     startTime: TimeOfDay
-
-@typing.type_check_only
-class ZoneConfiguration(typing_extensions.TypedDict, total=False):
-    zone: str
 
 @typing.type_check_only
 class ZoneMetadata(typing_extensions.TypedDict, total=False): ...

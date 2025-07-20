@@ -56,6 +56,9 @@ class Date(typing_extensions.TypedDict, total=False):
     year: int
 
 @typing.type_check_only
+class DetachFunctionRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class EventFilter(typing_extensions.TypedDict, total=False):
     attribute: str
     operator: str
@@ -92,10 +95,18 @@ class Function(typing_extensions.TypedDict, total=False):
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
+    satisfiesPzi: bool
     satisfiesPzs: bool
     serviceConfig: ServiceConfig
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "DEPLOYING", "DELETING", "UNKNOWN"
+        "STATE_UNSPECIFIED",
+        "ACTIVE",
+        "FAILED",
+        "DEPLOYING",
+        "DELETING",
+        "UNKNOWN",
+        "DETACHING",
+        "DETACH_FAILED",
     ]
     stateMessages: _list[GoogleCloudFunctionsV2betaStateMessage]
     updateTime: str
@@ -135,6 +146,7 @@ class GoogleCloudFunctionsV2betaOperationMetadata(
     buildName: str
     cancelRequested: bool
     createTime: str
+    customIamRoleDetected: bool
     endTime: str
     operationType: typing_extensions.Literal[
         "OPERATIONTYPE_UNSPECIFIED",
@@ -337,7 +349,8 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
-class SetupFunctionUpgradeConfigRequest(typing_extensions.TypedDict, total=False): ...
+class SetupFunctionUpgradeConfigRequest(typing_extensions.TypedDict, total=False):
+    triggerServiceAccount: str
 
 @typing.type_check_only
 class Source(typing_extensions.TypedDict, total=False):
@@ -388,5 +401,4 @@ class UpgradeInfo(typing_extensions.TypedDict, total=False):
         "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
         "COMMIT_FUNCTION_UPGRADE_ERROR",
-        "DETACH_IN_PROGRESS",
     ]

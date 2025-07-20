@@ -1092,6 +1092,45 @@ class DialogflowResource(googleapiclient.discovery.Resource):
 
                 @typing.type_check_only
                 class ToolsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class VersionsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowCxV3beta1ToolVersion = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3beta1ToolVersionHttpRequest: ...
+                        def delete(
+                            self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3beta1ToolVersionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3beta1ListToolVersionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowCxV3beta1ListToolVersionsResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3beta1ListToolVersionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def restore(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowCxV3beta1RestoreToolVersionRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponseHttpRequest: ...
+
                     def create(
                         self,
                         *,
@@ -1136,6 +1175,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleCloudDialogflowCxV3beta1ToolHttpRequest: ...
+                    def versions(self) -> VersionsResource: ...
 
                 @typing.type_check_only
                 class TransitionRouteGroupsResource(googleapiclient.discovery.Resource):
@@ -1387,6 +1427,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -1816,6 +1857,16 @@ class GoogleCloudDialogflowCxV3beta1ListTestCasesResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3beta1ListTestCasesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ListToolVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1ListToolVersionsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1ListToolsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1914,6 +1965,16 @@ class GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3beta1RestorePlaybookVersionResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1RestoreToolVersionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1SecuritySettingsHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1960,6 +2021,16 @@ class GoogleCloudDialogflowCxV3beta1ToolHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3beta1Tool: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3beta1ToolVersionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3beta1ToolVersion: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3beta1TransitionRouteGroupHttpRequest(

@@ -402,21 +402,6 @@ class GoogleCloudBeyondcorpAppgatewaysV1AppGatewayOperationMetadata(
     verb: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule(
-    typing_extensions.TypedDict, total=False
-):
-    group: GoogleCloudBeyondcorpPartnerservicesV1alphaGroup
-    name: str
-    ruleSetting: GoogleCloudBeyondcorpPartnerservicesV1alphaRuleSetting
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaEncryptionInfo(
-    typing_extensions.TypedDict, total=False
-):
-    encryptionSaEmail: str
-    jwk: str
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaGroup(
     typing_extensions.TypedDict, total=False
 ):
@@ -424,24 +409,11 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaGroup(
     id: str
 
 @typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaListBrowserDlpRulesResponse(
-    typing_extensions.TypedDict, total=False
-):
-    browserDlpRules: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaBrowserDlpRule]
-
-@typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaListPartnerTenantsResponse(
     typing_extensions.TypedDict, total=False
 ):
     nextPageToken: str
     partnerTenants: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaListProxyConfigsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    nextPageToken: str
-    proxyConfigs: _list[GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig]
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata(
@@ -472,46 +444,6 @@ class GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerTenant(
     name: str
     partnerMetadata: GoogleCloudBeyondcorpPartnerservicesV1alphaPartnerMetadata
     updateTime: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaProxyConfig(
-    typing_extensions.TypedDict, total=False
-):
-    createTime: str
-    displayName: str
-    encryptionInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaEncryptionInfo
-    name: str
-    proxyProtocolConfig: GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig
-    proxyUri: str
-    routingInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaRoutingInfo
-    transportInfo: GoogleCloudBeyondcorpPartnerservicesV1alphaTransportInfo
-    updateTime: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig(
-    typing_extensions.TypedDict, total=False
-):
-    metadata: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaRoutingInfo(
-    typing_extensions.TypedDict, total=False
-):
-    pacUri: str
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaRuleSetting(
-    typing_extensions.TypedDict, total=False
-):
-    type: str
-    value: dict[str, typing.Any]
-
-@typing.type_check_only
-class GoogleCloudBeyondcorpPartnerservicesV1alphaTransportInfo(
-    typing_extensions.TypedDict, total=False
-):
-    serverCaCertPem: str
-    sslDecryptCaCertPem: str
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpPartnerservicesV1mainPartnerServiceOperationMetadata(
@@ -648,6 +580,7 @@ class GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription(
     autoRenewEnabled: bool
     billingAccount: str
     createTime: str
+    csgCustomer: bool
     endTime: str
     name: str
     seatCount: str
@@ -897,10 +830,6 @@ class ResourceInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
-
-@typing.type_check_only
-class ShouldThrottleResponse(typing_extensions.TypedDict, total=False):
-    shouldThrottle: bool
 
 @typing.type_check_only
 class Tunnelv1ProtoTunnelerError(typing_extensions.TypedDict, total=False):

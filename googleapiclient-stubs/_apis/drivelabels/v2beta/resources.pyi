@@ -240,6 +240,13 @@ class DriveLabelsResource(googleapiclient.discovery.Resource):
             body: GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest = ...,
             **kwargs: typing.Any,
         ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
+        def updateLabelEnabledAppSettings(
+            self,
+            *,
+            name: str,
+            body: GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleAppsDriveLabelsV2betaLabelHttpRequest: ...
         def updatePermissions(
             self,
             *,

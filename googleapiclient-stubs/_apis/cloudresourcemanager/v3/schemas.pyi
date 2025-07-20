@@ -23,6 +23,11 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class Capability(typing_extensions.TypedDict, total=False):
+    name: str
+    value: bool
+
+@typing.type_check_only
 class CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation(
     typing_extensions.TypedDict, total=False
 ):
@@ -92,6 +97,12 @@ class EffectiveTag(typing_extensions.TypedDict, total=False):
     tagValue: str
 
 @typing.type_check_only
+class EffectiveTagBindingCollection(typing_extensions.TypedDict, total=False):
+    effectiveTags: dict[str, typing.Any]
+    fullResourceName: str
+    name: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -103,10 +114,12 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):
+    configuredCapabilities: _list[str]
     createTime: str
     deleteTime: str
     displayName: str
     etag: str
+    managementProject: str
     name: str
     parent: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"]
@@ -239,6 +252,7 @@ class Policy(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Project(typing_extensions.TypedDict, total=False):
+    configuredCapabilities: _list[str]
     createTime: str
     deleteTime: str
     displayName: str
@@ -289,6 +303,13 @@ class TagBinding(typing_extensions.TypedDict, total=False):
     parent: str
     tagValue: str
     tagValueNamespacedName: str
+
+@typing.type_check_only
+class TagBindingCollection(typing_extensions.TypedDict, total=False):
+    etag: str
+    fullResourceName: str
+    name: str
+    tags: dict[str, typing.Any]
 
 @typing.type_check_only
 class TagHold(typing_extensions.TypedDict, total=False):

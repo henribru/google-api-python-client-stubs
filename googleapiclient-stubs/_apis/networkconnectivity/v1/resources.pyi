@@ -122,6 +122,13 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         body: AcceptHubSpokeRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def acceptSpokeUpdate(
+                        self,
+                        *,
+                        name: str,
+                        body: AcceptSpokeUpdateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -208,6 +215,13 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                         *,
                         name: str,
                         body: RejectHubSpokeRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def rejectSpokeUpdate(
+                        self,
+                        *,
+                        name: str,
+                        body: RejectSpokeUpdateRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
                     def setIamPolicy(
@@ -301,6 +315,13 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InternalRangeHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -325,6 +346,20 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
 
             @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
@@ -692,6 +727,7 @@ class NetworkconnectivityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

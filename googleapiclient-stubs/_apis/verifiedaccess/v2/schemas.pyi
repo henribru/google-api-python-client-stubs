@@ -5,6 +5,12 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class Antivirus(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "MISSING", "DISABLED", "ENABLED"
+    ]
+
+@typing.type_check_only
 class Challenge(typing_extensions.TypedDict, total=False):
     challenge: str
 
@@ -16,6 +22,7 @@ class CrowdStrikeAgent(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DeviceSignals(typing_extensions.TypedDict, total=False):
     allowScreenLock: bool
+    antivirus: Antivirus
     browserVersion: str
     builtInDnsClientEnabled: bool
     chromeRemoteDesktopAppBlocked: bool
@@ -122,6 +129,7 @@ class VerifyChallengeResponseResult(typing_extensions.TypedDict, total=False):
         "CHROME_BROWSER_OS_KEY",
         "CHROME_BROWSER_NO_KEY",
     ]
+    profilePermanentId: str
     signedPublicKeyAndChallenge: str
     virtualDeviceId: str
     virtualProfileId: str

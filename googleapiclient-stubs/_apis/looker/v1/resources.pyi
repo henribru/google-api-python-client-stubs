@@ -21,27 +21,33 @@ class LookerResource(googleapiclient.discovery.Resource):
             class InstancesResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class BackupsResource(googleapiclient.discovery.Resource):
-                    def getIamPolicy(
+                    def create(
                         self,
                         *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
+                        parent: str,
+                        body: InstanceBackup = ...,
                         **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def setIamPolicy(
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> InstanceBackupHttpRequest: ...
+                    def list(
                         self,
                         *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
+                        parent: str,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
                         **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def testIamPermissions(
+                    ) -> ListInstanceBackupsResponseHttpRequest: ...
+                    def list_next(
                         self,
-                        *,
-                        resource: str,
-                        body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> TestIamPermissionsResponseHttpRequest: ...
+                        previous_request: ListInstanceBackupsResponseHttpRequest,
+                        previous_response: ListInstanceBackupsResponse,
+                    ) -> ListInstanceBackupsResponseHttpRequest | None: ...
 
                 def create(
                     self,
@@ -64,13 +70,6 @@ class LookerResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
-                def getIamPolicy(
-                    self,
-                    *,
-                    resource: str,
-                    options_requestedPolicyVersion: int = ...,
-                    **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
                 def import_(
                     self,
                     *,
@@ -106,20 +105,13 @@ class LookerResource(googleapiclient.discovery.Resource):
                     body: RestartInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
-                def setIamPolicy(
+                def restore(
                     self,
                     *,
-                    resource: str,
-                    body: SetIamPolicyRequest = ...,
+                    name: str,
+                    body: RestoreInstanceRequest = ...,
                     **kwargs: typing.Any,
-                ) -> PolicyHttpRequest: ...
-                def testIamPermissions(
-                    self,
-                    *,
-                    resource: str,
-                    body: TestIamPermissionsRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> TestIamPermissionsResponseHttpRequest: ...
+                ) -> OperationHttpRequest: ...
                 def backups(self) -> BackupsResource: ...
 
             @typing.type_check_only
@@ -159,6 +151,7 @@ class LookerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -205,6 +198,22 @@ class InstanceHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Instance: ...
 
 @typing.type_check_only
+class InstanceBackupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InstanceBackup: ...
+
+@typing.type_check_only
+class ListInstanceBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInstanceBackupsResponse: ...
+
+@typing.type_check_only
 class ListInstancesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -243,19 +252,3 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
-
-@typing.type_check_only
-class PolicyHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> Policy: ...
-
-@typing.type_check_only
-class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> TestIamPermissionsResponse: ...

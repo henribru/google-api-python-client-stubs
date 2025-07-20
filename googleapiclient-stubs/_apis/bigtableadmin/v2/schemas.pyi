@@ -203,6 +203,36 @@ class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
     parent: str
 
 @typing.type_check_only
+class CreateLogicalViewMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    originalRequest: CreateLogicalViewRequest
+    startTime: str
+
+@typing.type_check_only
+class CreateLogicalViewRequest(typing_extensions.TypedDict, total=False):
+    logicalView: LogicalView
+    logicalViewId: str
+    parent: str
+
+@typing.type_check_only
+class CreateMaterializedViewMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    originalRequest: CreateMaterializedViewRequest
+    startTime: str
+
+@typing.type_check_only
+class CreateMaterializedViewRequest(typing_extensions.TypedDict, total=False):
+    materializedView: MaterializedView
+    materializedViewId: str
+    parent: str
+
+@typing.type_check_only
+class CreateSchemaBundleMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    name: str
+    startTime: str
+
+@typing.type_check_only
 class CreateTableRequest(typing_extensions.TypedDict, total=False):
     initialSplits: _list[Split]
     table: Table
@@ -329,7 +359,8 @@ class GoogleBigtableAdminV2TypeBytesEncoding(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeBytesEncodingRaw(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    escapeNulls: bool
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeDate(typing_extensions.TypedDict, total=False): ...
@@ -347,12 +378,18 @@ class GoogleBigtableAdminV2TypeInt64(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeInt64Encoding(typing_extensions.TypedDict, total=False):
     bigEndianBytes: GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes
+    orderedCodeBytes: GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes(
     typing_extensions.TypedDict, total=False
 ):
     bytesType: GoogleBigtableAdminV2TypeBytes
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeMap(typing_extensions.TypedDict, total=False):
@@ -371,7 +408,8 @@ class GoogleBigtableAdminV2TypeStringEncoding(typing_extensions.TypedDict, total
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes(
     typing_extensions.TypedDict, total=False
-): ...
+):
+    nullEscapeChar: str
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeStringEncodingUtf8Raw(
@@ -380,7 +418,30 @@ class GoogleBigtableAdminV2TypeStringEncodingUtf8Raw(
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeStruct(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeStructEncoding
     fields: _list[GoogleBigtableAdminV2TypeStructField]
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStructEncoding(typing_extensions.TypedDict, total=False):
+    delimitedBytes: GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes
+    orderedCodeBytes: GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes
+    singleton: GoogleBigtableAdminV2TypeStructEncodingSingleton
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes(
+    typing_extensions.TypedDict, total=False
+):
+    delimiter: str
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeStructEncodingSingleton(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeStructField(typing_extensions.TypedDict, total=False):
@@ -388,7 +449,14 @@ class GoogleBigtableAdminV2TypeStructField(typing_extensions.TypedDict, total=Fa
     type: Type
 
 @typing.type_check_only
-class GoogleBigtableAdminV2TypeTimestamp(typing_extensions.TypedDict, total=False): ...
+class GoogleBigtableAdminV2TypeTimestamp(typing_extensions.TypedDict, total=False):
+    encoding: GoogleBigtableAdminV2TypeTimestampEncoding
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeTimestampEncoding(
+    typing_extensions.TypedDict, total=False
+):
+    unixMicrosInt64: GoogleBigtableAdminV2TypeInt64Encoding
 
 @typing.type_check_only
 class HotTablet(typing_extensions.TypedDict, total=False):
@@ -454,9 +522,24 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListLogicalViewsResponse(typing_extensions.TypedDict, total=False):
+    logicalViews: _list[LogicalView]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListMaterializedViewsResponse(typing_extensions.TypedDict, total=False):
+    materializedViews: _list[MaterializedView]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListSchemaBundlesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    schemaBundles: _list[SchemaBundle]
 
 @typing.type_check_only
 class ListTablesResponse(typing_extensions.TypedDict, total=False):
@@ -470,6 +553,20 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class LogicalView(typing_extensions.TypedDict, total=False):
+    deletionProtection: bool
+    etag: str
+    name: str
+    query: str
+
+@typing.type_check_only
+class MaterializedView(typing_extensions.TypedDict, total=False):
+    deletionProtection: bool
+    etag: str
+    name: str
+    query: str
 
 @typing.type_check_only
 class Modification(typing_extensions.TypedDict, total=False):
@@ -532,6 +629,10 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class ProtoSchema(typing_extensions.TypedDict, total=False):
+    protoDescriptors: str
+
+@typing.type_check_only
 class RestoreInfo(typing_extensions.TypedDict, total=False):
     backupInfo: BackupInfo
     sourceType: typing_extensions.Literal["RESTORE_SOURCE_TYPE_UNSPECIFIED", "BACKUP"]
@@ -551,6 +652,12 @@ class RestoreTableRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RowAffinity(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SchemaBundle(typing_extensions.TypedDict, total=False):
+    etag: str
+    name: str
+    protoSchema: ProtoSchema
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
@@ -593,7 +700,9 @@ class Table(typing_extensions.TypedDict, total=False):
     ]
     name: str
     restoreInfo: RestoreInfo
+    rowKeySchema: GoogleBigtableAdminV2TypeStruct
     stats: TableStats
+    tieredStorageConfig: TieredStorageConfig
 
 @typing.type_check_only
 class TableProgress(typing_extensions.TypedDict, total=False):
@@ -617,6 +726,14 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class TieredStorageConfig(typing_extensions.TypedDict, total=False):
+    infrequentAccess: TieredStorageRule
+
+@typing.type_check_only
+class TieredStorageRule(typing_extensions.TypedDict, total=False):
+    includeIfOlderThan: str
 
 @typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
@@ -672,6 +789,23 @@ class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
     finishTime: str
     originalRequest: PartialUpdateInstanceRequest
     requestTime: str
+
+@typing.type_check_only
+class UpdateLogicalViewMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    originalRequest: UpdateLogicalViewRequest
+    startTime: str
+
+@typing.type_check_only
+class UpdateLogicalViewRequest(typing_extensions.TypedDict, total=False):
+    logicalView: LogicalView
+    updateMask: str
+
+@typing.type_check_only
+class UpdateSchemaBundleMetadata(typing_extensions.TypedDict, total=False):
+    endTime: str
+    name: str
+    startTime: str
 
 @typing.type_check_only
 class UpdateTableMetadata(typing_extensions.TypedDict, total=False):

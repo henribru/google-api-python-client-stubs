@@ -59,6 +59,7 @@ class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DirectoryServicesConfig(typing_extensions.TypedDict, total=False):
+    ldap: LdapConfig
     managedActiveDirectory: ManagedActiveDirectoryConfig
 
 @typing.type_check_only
@@ -80,6 +81,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     typing_extensions.TypedDict, total=False
 ):
     consumerDefinedName: str
+    consumerProjectNumber: str
     createTime: str
     instanceType: str
     labels: dict[str, typing.Any]
@@ -236,6 +238,13 @@ class Instance(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class LdapConfig(typing_extensions.TypedDict, total=False):
+    domain: str
+    groupsOu: str
+    servers: _list[str]
+    usersOu: str
+
+@typing.type_check_only
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
@@ -300,11 +309,15 @@ class ManagedActiveDirectoryConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkConfig(typing_extensions.TypedDict, total=False):
     connectMode: typing_extensions.Literal[
-        "CONNECT_MODE_UNSPECIFIED", "DIRECT_PEERING", "PRIVATE_SERVICE_ACCESS"
+        "CONNECT_MODE_UNSPECIFIED",
+        "DIRECT_PEERING",
+        "PRIVATE_SERVICE_ACCESS",
+        "PRIVATE_SERVICE_CONNECT",
     ]
     ipAddresses: _list[str]
     modes: _list[typing_extensions.Literal["ADDRESS_MODE_UNSPECIFIED", "MODE_IPV4"]]
     network: str
+    pscConfig: PscConfig
     reservedIpRange: str
 
 @typing.type_check_only
@@ -315,6 +328,7 @@ class NfsExportOptions(typing_extensions.TypedDict, total=False):
     anonGid: str
     anonUid: str
     ipRanges: _list[str]
+    network: str
     securityFlavors: _list[
         typing_extensions.Literal[
             "SECURITY_FLAVOR_UNSPECIFIED", "AUTH_SYS", "KRB5", "KRB5I", "KRB5P"
@@ -356,7 +370,12 @@ class PerformanceLimits(typing_extensions.TypedDict, total=False):
     maxWriteThroughputBps: str
 
 @typing.type_check_only
-class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...
+class PromoteReplicaRequest(typing_extensions.TypedDict, total=False):
+    peerInstance: str
+
+@typing.type_check_only
+class PscConfig(typing_extensions.TypedDict, total=False):
+    endpointProject: str
 
 @typing.type_check_only
 class ReplicaConfig(typing_extensions.TypedDict, total=False):
@@ -367,7 +386,7 @@ class ReplicaConfig(typing_extensions.TypedDict, total=False):
     ]
     stateReasons: _list[
         typing_extensions.Literal[
-            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE"
+            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE", "REMOVE_FAILED"
         ]
     ]
 

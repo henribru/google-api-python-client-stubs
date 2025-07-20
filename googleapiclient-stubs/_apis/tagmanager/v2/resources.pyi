@@ -890,6 +890,16 @@ class TagManagerResource(googleapiclient.discovery.Resource):
                     def get(
                         self, *, path: str, **kwargs: typing.Any
                     ) -> CustomTemplateHttpRequest: ...
+                    def import_from_gallery(
+                        self,
+                        *,
+                        parent: str,
+                        acknowledgePermissions: bool = ...,
+                        galleryOwner: str = ...,
+                        galleryRepository: str = ...,
+                        gallerySha: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> CustomTemplateHttpRequest: ...
                     def list(
                         self, *, parent: str, pageToken: str = ..., **kwargs: typing.Any
                     ) -> ListTemplatesResponseHttpRequest: ...

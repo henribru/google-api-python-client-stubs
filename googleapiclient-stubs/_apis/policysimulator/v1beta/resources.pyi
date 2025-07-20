@@ -18,6 +18,16 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AccessPolicySimulationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
             class OrgPolicyViolationsPreviewsResource(
                 googleapiclient.discovery.Resource
             ):
@@ -99,6 +109,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
 
+            def accessPolicySimulations(self) -> AccessPolicySimulationsResource: ...
             def orgPolicyViolationsPreviews(
                 self,
             ) -> OrgPolicyViolationsPreviewsResource: ...
@@ -130,6 +141,16 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
     class OrganizationsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AccessPolicySimulationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
             @typing.type_check_only
             class OrgPolicyViolationsPreviewsResource(
                 googleapiclient.discovery.Resource
@@ -266,6 +287,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
 
+            def accessPolicySimulations(self) -> AccessPolicySimulationsResource: ...
             def orgPolicyViolationsPreviews(
                 self,
             ) -> OrgPolicyViolationsPreviewsResource: ...
@@ -277,6 +299,16 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class AccessPolicySimulationsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
+
             @typing.type_check_only
             class OrgPolicyViolationsPreviewsResource(
                 googleapiclient.discovery.Resource
@@ -359,6 +391,7 @@ class PolicySimulatorResource(googleapiclient.discovery.Resource):
                 def operations(self) -> OperationsResource: ...
                 def results(self) -> ResultsResource: ...
 
+            def accessPolicySimulations(self) -> AccessPolicySimulationsResource: ...
             def orgPolicyViolationsPreviews(
                 self,
             ) -> OrgPolicyViolationsPreviewsResource: ...

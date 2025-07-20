@@ -316,6 +316,13 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
+                    def extendMigration(
+                        self,
+                        *,
+                        migratingVm: str,
+                        body: ExtendMigrationRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def finalizeMigration(
                         self,
                         *,
@@ -536,6 +543,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

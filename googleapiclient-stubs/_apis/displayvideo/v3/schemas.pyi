@@ -64,6 +64,7 @@ class AdGroup(typing_extensions.TypedDict, total=False):
         "AD_GROUP_FORMAT_RESPONSIVE",
         "AD_GROUP_FORMAT_REACH",
         "AD_GROUP_FORMAT_MASTHEAD",
+        "AD_GROUP_FORMAT_DEMAND_GEN",
     ]
     adGroupId: str
     advertiserId: str
@@ -351,7 +352,9 @@ class AgeRangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlgorithmRules(typing_extensions.TypedDict, total=False):
+    attributionModelId: str
     impressionSignalRuleset: AlgorithmRulesRuleset
+    postImpressionSignalRuleset: AlgorithmRulesRuleset
 
 @typing.type_check_only
 class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
@@ -459,6 +462,8 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     int64Value: str
@@ -469,6 +474,29 @@ class AlgorithmRulesComparisonValue(typing_extensions.TypedDict, total=False):
         "ON_SCREEN_POSITION_BELOW_THE_FOLD",
     ]
     stringValue: str
+    videoPlayerSizeValue: typing_extensions.Literal[
+        "VIDEO_PLAYER_SIZE_UNSPECIFIED",
+        "VIDEO_PLAYER_SIZE_SMALL",
+        "VIDEO_PLAYER_SIZE_LARGE",
+        "VIDEO_PLAYER_SIZE_HD",
+        "VIDEO_PLAYER_SIZE_UNKNOWN",
+    ]
+
+@typing.type_check_only
+class AlgorithmRulesFloodlightActivityConversionSignal(
+    typing_extensions.TypedDict, total=False
+):
+    conversionCounting: typing_extensions.Literal[
+        "CONVERSION_COUNTING_UNSPECIFIED", "ALL_CONVERSIONS", "POST_CLICK", "POST_VIEW"
+    ]
+    countingMethod: typing_extensions.Literal[
+        "COUNTING_METHOD_UNSPECIFIED",
+        "CONVERSIONS_COUNT",
+        "SALES_QUANTITY",
+        "SALES_VALUE",
+        "UNIQUE_COUNT",
+    ]
+    floodlightActivityId: str
 
 @typing.type_check_only
 class AlgorithmRulesRule(typing_extensions.TypedDict, total=False):
@@ -493,6 +521,16 @@ class AlgorithmRulesRuleset(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlgorithmRulesSignal(typing_extensions.TypedDict, total=False):
+    activeViewSignal: typing_extensions.Literal[
+        "ACTIVE_VIEW_SIGNAL_UNSPECIFIED",
+        "ACTIVE_VIEW_VIEWED",
+        "AUDIBLE",
+        "VIDEO_COMPLETED",
+        "TIME_ON_SCREEN",
+        "VIDEO_PLAYER_SIZE",
+        "COMPLETED_IN_VIEW_AUDIBLE",
+    ]
+    clickSignal: typing_extensions.Literal["CLICK_SIGNAL_UNSPECIFIED", "CLICK"]
     impressionSignal: typing_extensions.Literal[
         "IMPRESSION_SIGNAL_UNSPECIFIED",
         "DAY_AND_TIME",
@@ -523,6 +561,16 @@ class AlgorithmRulesSignalComparison(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AlgorithmRulesSignalValue(typing_extensions.TypedDict, total=False):
+    activeViewSignal: typing_extensions.Literal[
+        "ACTIVE_VIEW_SIGNAL_UNSPECIFIED",
+        "ACTIVE_VIEW_VIEWED",
+        "AUDIBLE",
+        "VIDEO_COMPLETED",
+        "TIME_ON_SCREEN",
+        "VIDEO_PLAYER_SIZE",
+        "COMPLETED_IN_VIEW_AUDIBLE",
+    ]
+    floodlightActivityConversionSignal: AlgorithmRulesFloodlightActivityConversionSignal
     number: float
 
 @typing.type_check_only
@@ -627,6 +675,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         ContentOutstreamPositionAssignedTargetingOptionDetails
     )
     contentStreamTypeDetails: ContentStreamTypeAssignedTargetingOptionDetails
+    contentThemeExclusionDetails: ContentThemeAssignedTargetingOptionDetails
     dayAndTimeDetails: DayAndTimeAssignedTargetingOptionDetails
     deviceMakeModelDetails: DeviceMakeModelAssignedTargetingOptionDetails
     deviceTypeDetails: DeviceTypeAssignedTargetingOptionDetails
@@ -711,6 +760,7 @@ class AssignedTargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_VIDEO",
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
+        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
     ]
     thirdPartyVerifierDetails: ThirdPartyVerifierAssignedTargetingOptionDetails
     urlDetails: UrlAssignedTargetingOptionDetails
@@ -1035,6 +1085,15 @@ class BusinessChainTargetingOptionDetails(typing_extensions.TypedDict, total=Fal
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
 
 @typing.type_check_only
@@ -1309,6 +1368,51 @@ class ContentStreamTypeTargetingOptionDetails(typing_extensions.TypedDict, total
     ]
 
 @typing.type_check_only
+class ContentThemeAssignedTargetingOptionDetails(
+    typing_extensions.TypedDict, total=False
+):
+    contentTheme: typing_extensions.Literal[
+        "CONTENT_THEME_UNSPECIFIED",
+        "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+        "CONTENT_THEME_MATURE_GAMES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+        "CONTENT_THEME_POLITICS",
+        "CONTENT_THEME_RECENT_NEWS",
+        "CONTENT_THEME_RELIGION",
+        "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+        "CONTENT_THEME_UNPLEASANT_NEWS",
+    ]
+    excludedContentTheme: typing_extensions.Literal[
+        "CONTENT_THEME_UNSPECIFIED",
+        "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+        "CONTENT_THEME_MATURE_GAMES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+        "CONTENT_THEME_POLITICS",
+        "CONTENT_THEME_RECENT_NEWS",
+        "CONTENT_THEME_RELIGION",
+        "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+        "CONTENT_THEME_UNPLEASANT_NEWS",
+    ]
+    excludedTargetingOptionId: str
+
+@typing.type_check_only
+class ContentThemeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
+    contentTheme: typing_extensions.Literal[
+        "CONTENT_THEME_UNSPECIFIED",
+        "CONTENT_THEME_FIGHTING_VIDEO_GAMES",
+        "CONTENT_THEME_MATURE_GAMES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_HEALTH_SOURCES",
+        "CONTENT_THEME_NOT_YET_DETERMINED_NEWS_SOURCES",
+        "CONTENT_THEME_POLITICS",
+        "CONTENT_THEME_RECENT_NEWS",
+        "CONTENT_THEME_RELIGION",
+        "CONTENT_THEME_UNPLEASANT_HEALTH_CONTENT",
+        "CONTENT_THEME_UNPLEASANT_NEWS",
+    ]
+
+@typing.type_check_only
 class ConversionCountingConfig(typing_extensions.TypedDict, total=False):
     floodlightActivityConfigs: _list[TrackingFloodlightActivityConfig]
     postViewCountPercentageMillis: str
@@ -1379,6 +1483,7 @@ class CreateAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_VIDEO",
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
+        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
     ]
 
 @typing.type_check_only
@@ -1404,6 +1509,7 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -1745,6 +1851,7 @@ class DeleteAssignedTargetingOptionsRequest(typing_extensions.TypedDict, total=F
         "TARGETING_TYPE_YOUTUBE_VIDEO",
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
+        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
     ]
 
 @typing.type_check_only
@@ -2122,6 +2229,8 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
 
@@ -2216,6 +2325,8 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     googleAdManagerAgencyId: str
@@ -2309,6 +2420,8 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     status: typing_extensions.Literal[
@@ -2405,6 +2518,8 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
 
@@ -2629,6 +2744,15 @@ class GeoRegionAssignedTargetingOptionDetails(typing_extensions.TypedDict, total
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
     negative: bool
     targetingOptionId: str
@@ -2670,6 +2794,15 @@ class GeoRegionTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "GEO_REGION_TYPE_NEIGHBORHOOD",
         "GEO_REGION_TYPE_UNIVERSITY",
         "GEO_REGION_TYPE_DISTRICT",
+        "GEO_REGION_TYPE_NATIONAL_PARK",
+        "GEO_REGION_TYPE_BARRIO",
+        "GEO_REGION_TYPE_SUB_WARD",
+        "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+        "GEO_REGION_TYPE_SUB_DISTRICT",
+        "GEO_REGION_TYPE_QUARTER",
+        "GEO_REGION_TYPE_DIVISION",
+        "GEO_REGION_TYPE_COMMUNE",
+        "GEO_REGION_TYPE_COLLOQUIAL_AREA",
     ]
 
 @typing.type_check_only
@@ -2789,6 +2922,8 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
@@ -2972,6 +3107,7 @@ class IntegralAdScience(typing_extensions.TypedDict, total=False):
     excludedViolenceRisk: typing_extensions.Literal[
         "VIOLENCE_UNSPECIFIED", "VIOLENCE_HR", "VIOLENCE_HMR"
     ]
+    qualitySyncCustomSegmentId: _list[str]
     traqScoreOption: typing_extensions.Literal[
         "TRAQ_UNSPECIFIED",
         "TRAQ_250",
@@ -3095,6 +3231,8 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_TOPON_GBID",
         "EXCHANGE_NETFLIX",
         "EXCHANGE_CORE",
+        "EXCHANGE_COMMERCE_GRID",
+        "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
     ]
     guaranteedOrderId: str
@@ -4126,6 +4264,7 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -4152,6 +4291,7 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7",
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
+        "SDF_VERSION_8_1",
     ]
 
 @typing.type_check_only
@@ -4286,6 +4426,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
     contentInstreamPositionDetails: ContentInstreamPositionTargetingOptionDetails
     contentOutstreamPositionDetails: ContentOutstreamPositionTargetingOptionDetails
     contentStreamTypeDetails: ContentStreamTypeTargetingOptionDetails
+    contentThemeDetails: ContentThemeTargetingOptionDetails
     deviceMakeModelDetails: DeviceMakeModelTargetingOptionDetails
     deviceTypeDetails: DeviceTypeTargetingOptionDetails
     digitalContentLabelDetails: DigitalContentLabelTargetingOptionDetails
@@ -4355,6 +4496,7 @@ class TargetingOption(typing_extensions.TypedDict, total=False):
         "TARGETING_TYPE_YOUTUBE_VIDEO",
         "TARGETING_TYPE_YOUTUBE_CHANNEL",
         "TARGETING_TYPE_SESSION_POSITION",
+        "TARGETING_TYPE_CONTENT_THEME_EXCLUSION",
     ]
     userRewardedContentDetails: UserRewardedContentTargetingOptionDetails
     videoPlayerSizeDetails: VideoPlayerSizeTargetingOptionDetails
@@ -4408,6 +4550,7 @@ class ThirdPartyVendorConfig(typing_extensions.TypedDict, total=False):
         "THIRD_PARTY_VENDOR_NIELSEN",
         "THIRD_PARTY_VENDOR_KANTAR",
         "THIRD_PARTY_VENDOR_DYNATA",
+        "THIRD_PARTY_VENDOR_TRANSUNION",
     ]
 
 @typing.type_check_only
@@ -4492,6 +4635,12 @@ class UserRewardedContentTargetingOptionDetails(
         "USER_REWARDED_CONTENT_USER_REWARDED",
         "USER_REWARDED_CONTENT_NOT_USER_REWARDED",
     ]
+
+@typing.type_check_only
+class VideoAdInventoryControl(typing_extensions.TypedDict, total=False):
+    allowInFeed: bool
+    allowInStream: bool
+    allowShorts: bool
 
 @typing.type_check_only
 class VideoAdSequenceSettings(typing_extensions.TypedDict, total=False):
@@ -4647,6 +4796,7 @@ class YoutubeAndPartnersSettings(typing_extensions.TypedDict, total=False):
     relatedVideoIds: _list[str]
     targetFrequency: TargetFrequency
     thirdPartyMeasurementConfigs: ThirdPartyMeasurementConfigs
+    videoAdInventoryControl: VideoAdInventoryControl
     videoAdSequenceSettings: VideoAdSequenceSettings
     viewFrequencyCap: FrequencyCap
 

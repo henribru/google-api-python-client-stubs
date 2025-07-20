@@ -54,7 +54,11 @@ class AnalyticsHubResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> ListingHttpRequest: ...
                     def delete(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        deleteCommercial: bool = ...,
+                        **kwargs: typing.Any,
                     ) -> EmptyHttpRequest: ...
                     def get(
                         self, *, name: str, **kwargs: typing.Any

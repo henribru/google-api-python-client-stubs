@@ -134,6 +134,13 @@ class GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse(
     userSession: GoogleCloudPaymentsResellerSubscriptionV1UserSession
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload(
+    typing_extensions.TypedDict, total=False
+):
+    attachedToGoogleStructure: bool
+    partnerStructureId: str
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload(
     typing_extensions.TypedDict, total=False
 ):
@@ -211,6 +218,7 @@ class GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement
 class GoogleCloudPaymentsResellerSubscriptionV1ProductPayload(
     typing_extensions.TypedDict, total=False
 ):
+    googleHomePayload: GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload
     googleOnePayload: GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload
     youtubePayload: GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload
 
@@ -257,6 +265,17 @@ class GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetai
     discountRatioMicros: str
     recurrenceCount: int
     regionCode: str
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod(
@@ -404,8 +423,20 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetai
         "BILLING_CYCLE_SPEC_UNSPECIFIED",
         "BILLING_CYCLE_SPEC_ALIGN_WITH_PREVIOUS_SUBSCRIPTION",
         "BILLING_CYCLE_SPEC_START_IMMEDIATELY",
+        "BILLING_CYCLE_SPEC_DEFERRED_TO_NEXT_RECURRENCE",
     ]
     previousSubscriptionId: str
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse(
+    typing_extensions.TypedDict, total=False
+):
+    subscription: GoogleCloudPaymentsResellerSubscriptionV1Subscription
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest(

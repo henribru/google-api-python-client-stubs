@@ -121,6 +121,10 @@ class BlobStorageSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class BulkExportGcsDestination(typing_extensions.TypedDict, total=False):
+    uriPrefix: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -226,6 +230,8 @@ class CryptoHashConfig(typing_extensions.TypedDict, total=False):
 class Dataset(typing_extensions.TypedDict, total=False):
     encryptionSpec: EncryptionSpec
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     timeZone: str
 
 @typing.type_check_only
@@ -444,6 +450,7 @@ class FhirNotificationConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
+    bulkExportGcsDestination: BulkExportGcsDestination
     complexDataTypeReferenceParsing: typing_extensions.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
@@ -458,7 +465,9 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     notificationConfigs: _list[FhirNotificationConfig]
     streamConfigs: _list[StreamConfig]
     validationConfig: ValidationConfig
-    version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
+    version: typing_extensions.Literal[
+        "VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4", "R5"
+    ]
 
 @typing.type_check_only
 class FhirStoreMetric(typing_extensions.TypedDict, total=False):

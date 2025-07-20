@@ -18,6 +18,26 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class CmekConfigsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDiscoveryengineV1CmekConfigHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleCloudDiscoveryengineV1ListCmekConfigsResponseHttpRequest: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudDiscoveryengineV1CmekConfig = ...,
+                    setDefault: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            @typing.type_check_only
             class CollectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class DataConnectorResource(googleapiclient.discovery.Resource):
@@ -527,6 +547,26 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             ): ...
 
                         @typing.type_check_only
+                        class SitemapsResource(googleapiclient.discovery.Resource):
+                            def create(
+                                self,
+                                *,
+                                parent: str,
+                                body: GoogleCloudDiscoveryengineV1Sitemap = ...,
+                                **kwargs: typing.Any,
+                            ) -> GoogleLongrunningOperationHttpRequest: ...
+                            def delete(
+                                self, *, name: str, **kwargs: typing.Any
+                            ) -> GoogleLongrunningOperationHttpRequest: ...
+                            def fetch(
+                                self,
+                                *,
+                                parent: str,
+                                matcher_urisMatcher_uris: str | _list[str] = ...,
+                                **kwargs: typing.Any,
+                            ) -> GoogleCloudDiscoveryengineV1FetchSitemapsResponseHttpRequest: ...
+
+                        @typing.type_check_only
                         class TargetSitesResource(googleapiclient.discovery.Resource):
                             @typing.type_check_only
                             class OperationsResource(
@@ -645,6 +685,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                             **kwargs: typing.Any,
                         ) -> GoogleLongrunningOperationHttpRequest: ...
                         def operations(self) -> OperationsResource: ...
+                        def sitemaps(self) -> SitemapsResource: ...
                         def targetSites(self) -> TargetSitesResource: ...
 
                     @typing.type_check_only
@@ -882,6 +923,13 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
 
                     @typing.type_check_only
                     class OperationsResource(googleapiclient.discovery.Resource):
+                        def cancel(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleLongrunningCancelOperationRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
                         def get(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> GoogleLongrunningOperationHttpRequest: ...
@@ -1512,6 +1560,28 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class SiteSearchEngineResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
+                    class SitemapsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDiscoveryengineV1Sitemap = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleLongrunningOperationHttpRequest: ...
+                        def fetch(
+                            self,
+                            *,
+                            parent: str,
+                            matcher_urisMatcher_uris: str | _list[str] = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            GoogleCloudDiscoveryengineV1FetchSitemapsResponseHttpRequest
+                        ): ...
+
+                    @typing.type_check_only
                     class TargetSitesResource(googleapiclient.discovery.Resource):
                         def batchCreate(
                             self,
@@ -1578,6 +1648,7 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         body: GoogleCloudDiscoveryengineV1RecrawlUrisRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def sitemaps(self) -> SitemapsResource: ...
                     def targetSites(self) -> TargetSitesResource: ...
 
                 @typing.type_check_only
@@ -1735,6 +1806,70 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                         previous_response: GoogleLongrunningListOperationsResponse,
                     ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDiscoveryengineV1IdentityMappingStore = ...,
+                    cmekConfigName: str = ...,
+                    disableCmek: bool = ...,
+                    identityMappingStoreId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1IdentityMappingStoreHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudDiscoveryengineV1IdentityMappingStoreHttpRequest: ...
+                def importIdentityMappings(
+                    self,
+                    *,
+                    identityMappingStore: str,
+                    body: GoogleCloudDiscoveryengineV1ImportIdentityMappingsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponseHttpRequest,
+                    previous_response: GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponseHttpRequest
+                    | None
+                ): ...
+                def listIdentityMappings(
+                    self,
+                    *,
+                    identityMappingStore: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1ListIdentityMappingsResponseHttpRequest
+                ): ...
+                def listIdentityMappings_next(
+                    self,
+                    previous_request: GoogleCloudDiscoveryengineV1ListIdentityMappingsResponseHttpRequest,
+                    previous_response: GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse,
+                ) -> (
+                    GoogleCloudDiscoveryengineV1ListIdentityMappingsResponseHttpRequest
+                    | None
+                ): ...
+                def purgeIdentityMappings(
+                    self,
+                    *,
+                    identityMappingStore: str,
+                    body: GoogleCloudDiscoveryengineV1PurgeIdentityMappingsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
                 def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
@@ -1756,6 +1891,16 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class PodcastsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+
+                def operations(self) -> OperationsResource: ...
 
             @typing.type_check_only
             class RankingConfigsResource(googleapiclient.discovery.Resource):
@@ -1794,22 +1939,60 @@ class DiscoveryEngineResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> GoogleCloudDiscoveryengineV1UserEventHttpRequest: ...
 
-            def generateGroundedContent(
+            @typing.type_check_only
+            class UserStoresResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class UserLicensesResource(googleapiclient.discovery.Resource):
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1ListUserLicensesResponseHttpRequest
+                    ): ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDiscoveryengineV1ListUserLicensesResponseHttpRequest,
+                        previous_response: GoogleCloudDiscoveryengineV1ListUserLicensesResponse,
+                    ) -> (
+                        GoogleCloudDiscoveryengineV1ListUserLicensesResponseHttpRequest
+                        | None
+                    ): ...
+
+                def batchUpdateUserLicenses(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def userLicenses(self) -> UserLicensesResource: ...
+
+            def getCmekConfig(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleCloudDiscoveryengineV1CmekConfigHttpRequest: ...
+            def updateCmekConfig(
                 self,
                 *,
-                location: str,
-                body: GoogleCloudDiscoveryengineV1GenerateGroundedContentRequest = ...,
+                name: str,
+                body: GoogleCloudDiscoveryengineV1CmekConfig = ...,
+                setDefault: bool = ...,
                 **kwargs: typing.Any,
-            ) -> (
-                GoogleCloudDiscoveryengineV1GenerateGroundedContentResponseHttpRequest
-            ): ...
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def cmekConfigs(self) -> CmekConfigsResource: ...
             def collections(self) -> CollectionsResource: ...
             def dataStores(self) -> DataStoresResource: ...
             def groundingConfigs(self) -> GroundingConfigsResource: ...
             def identityMappingStores(self) -> IdentityMappingStoresResource: ...
             def operations(self) -> OperationsResource: ...
+            def podcasts(self) -> PodcastsResource: ...
             def rankingConfigs(self) -> RankingConfigsResource: ...
             def userEvents(self) -> UserEventsResource: ...
+            def userStores(self) -> UserStoresResource: ...
 
         @typing.type_check_only
         class OperationsResource(googleapiclient.discovery.Resource):
@@ -1909,6 +2092,16 @@ class GoogleCloudDiscoveryengineV1CheckGroundingResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1CheckGroundingResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1CmekConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1CmekConfig: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1CompleteQueryResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1983,14 +2176,34 @@ class GoogleCloudDiscoveryengineV1FetchDomainVerificationStatusResponseHttpReque
     ) -> GoogleCloudDiscoveryengineV1FetchDomainVerificationStatusResponse: ...
 
 @typing.type_check_only
-class GoogleCloudDiscoveryengineV1GenerateGroundedContentResponseHttpRequest(
+class GoogleCloudDiscoveryengineV1FetchSitemapsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
-    ) -> GoogleCloudDiscoveryengineV1GenerateGroundedContentResponse: ...
+    ) -> GoogleCloudDiscoveryengineV1FetchSitemapsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1IdentityMappingStoreHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1IdentityMappingStore: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ListCmekConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1ListCmekConfigsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1ListControlsResponseHttpRequest(
@@ -2053,6 +2266,26 @@ class GoogleCloudDiscoveryengineV1ListEnginesResponseHttpRequest(
     ) -> GoogleCloudDiscoveryengineV1ListEnginesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1ListIdentityMappingStoresResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ListIdentityMappingsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1ListIdentityMappingsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDiscoveryengineV1ListSchemasResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -2081,6 +2314,16 @@ class GoogleCloudDiscoveryengineV1ListTargetSitesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDiscoveryengineV1ListTargetSitesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDiscoveryengineV1ListUserLicensesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDiscoveryengineV1ListUserLicensesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDiscoveryengineV1RankResponseHttpRequest(

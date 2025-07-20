@@ -145,6 +145,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     "DSSE_ATTESTATION",
                     "VULNERABILITY_ASSESSMENT",
                     "SBOM_REFERENCE",
+                    "SECRET",
                 ] = ...,
                 name: str = ...,
                 pageSize: int = ...,

@@ -91,12 +91,14 @@ class Backup(typing_extensions.TypedDict, total=False):
     backupApplianceBackupProperties: BackupApplianceBackupProperties
     backupApplianceLocks: _list[BackupLock]
     backupType: typing_extensions.Literal[
-        "BACKUP_TYPE_UNSPECIFIED", "SCHEDULED", "ON_DEMAND"
+        "BACKUP_TYPE_UNSPECIFIED", "SCHEDULED", "ON_DEMAND", "ON_DEMAND_OPERATIONAL"
     ]
+    cloudSqlInstanceBackupProperties: CloudSqlInstanceBackupProperties
     computeInstanceBackupProperties: ComputeInstanceBackupProperties
     consistencyTime: str
     createTime: str
     description: str
+    diskBackupProperties: DiskBackupProperties
     enforcedRetentionEndTime: str
     etag: str
     expireTime: str
@@ -108,7 +110,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     satisfiesPzs: bool
     serviceLocks: _list[BackupLock]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR", "UPLOADING"
     ]
     updateTime: str
 
@@ -139,6 +141,26 @@ class BackupApplianceLockInfo(typing_extensions.TypedDict, total=False):
     slaId: str
 
 @typing.type_check_only
+class BackupConfigDetails(typing_extensions.TypedDict, total=False):
+    applicableResource: str
+    backupConfigSource: str
+    backupConfigSourceDisplayName: str
+    backupDrPlanConfig: BackupDrPlanConfig
+    backupDrTemplateConfig: BackupDrTemplateConfig
+    backupLocations: _list[BackupLocation]
+    backupVault: str
+    latestSuccessfulBackupTime: str
+    pitrSettings: PitrSettings
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "ERROR"]
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "CLOUD_SQL_INSTANCE_BACKUP_CONFIG",
+        "COMPUTE_ENGINE_RESOURCE_POLICY",
+        "BACKUPDR_BACKUP_PLAN",
+        "BACKUPDR_TEMPLATE",
+    ]
+
+@typing.type_check_only
 class BackupConfigInfo(typing_extensions.TypedDict, total=False):
     backupApplianceBackupConfig: BackupApplianceBackupConfig
     gcpBackupConfig: GcpBackupConfig
@@ -151,6 +173,28 @@ class BackupConfigInfo(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED",
     ]
     lastSuccessfulBackupConsistencyTime: str
+    lastSuccessfulLogBackupConsistencyTime: str
+
+@typing.type_check_only
+class BackupDrPlanConfig(typing_extensions.TypedDict, total=False):
+    backupDrPlanRules: _list[BackupDrPlanRule]
+
+@typing.type_check_only
+class BackupDrPlanRule(typing_extensions.TypedDict, total=False):
+    lastSuccessfulBackupTime: str
+    ruleId: str
+
+@typing.type_check_only
+class BackupDrTemplateConfig(typing_extensions.TypedDict, total=False):
+    firstPartyManagementUri: str
+    thirdPartyManagementUri: str
+
+@typing.type_check_only
+class BackupLocation(typing_extensions.TypedDict, total=False):
+    locationId: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "ZONAL", "REGIONAL", "MULTI_REGIONAL"
+    ]
 
 @typing.type_check_only
 class BackupLock(typing_extensions.TypedDict, total=False):
@@ -167,16 +211,25 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     description: str
     etag: str
     labels: dict[str, typing.Any]
+    logRetentionDays: str
     name: str
     resourceType: str
+    revisionId: str
+    revisionName: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "UPDATING"
     ]
+    supportedResourceTypes: _list[str]
     updateTime: str
 
 @typing.type_check_only
 class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
     backupPlan: str
+    backupPlanRevisionId: str
+    backupPlanRevisionName: str
+    cloudSqlInstanceBackupPlanAssociationProperties: (
+        CloudSqlInstanceBackupPlanAssociationProperties
+    )
     createTime: str
     dataSource: str
     name: str
@@ -187,6 +240,16 @@ class BackupPlanAssociation(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE", "UPDATING"
     ]
     updateTime: str
+
+@typing.type_check_only
+class BackupPlanRevision(typing_extensions.TypedDict, total=False):
+    backupPlanSnapshot: BackupPlan
+    createTime: str
+    name: str
+    revisionId: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "INACTIVE"
+    ]
 
 @typing.type_check_only
 class BackupRule(typing_extensions.TypedDict, total=False):
@@ -215,7 +278,7 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     name: str
     serviceAccount: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "ERROR", "UPDATING"
     ]
     totalStoredBytes: str
     uid: str
@@ -234,6 +297,41 @@ class Binding(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class CloudSqlInstanceBackupPlanAssociationProperties(
+    typing_extensions.TypedDict, total=False
+):
+    instanceCreateTime: str
+
+@typing.type_check_only
+class CloudSqlInstanceBackupProperties(typing_extensions.TypedDict, total=False):
+    databaseInstalledVersion: str
+    finalBackup: bool
+    instanceTier: str
+    sourceInstance: str
+
+@typing.type_check_only
+class CloudSqlInstanceDataSourceProperties(typing_extensions.TypedDict, total=False):
+    databaseInstalledVersion: str
+    instanceCreateTime: str
+    instanceTier: str
+    name: str
+
+@typing.type_check_only
+class CloudSqlInstanceDataSourceReferenceProperties(
+    typing_extensions.TypedDict, total=False
+):
+    databaseInstalledVersion: str
+    instanceCreateTime: str
+    instanceTier: str
+    name: str
+
+@typing.type_check_only
+class CloudSqlInstanceInitializationConfig(typing_extensions.TypedDict, total=False):
+    edition: typing_extensions.Literal[
+        "EDITION_UNSPECIFIED", "ENTERPRISE", "ENTERPRISE_PLUS"
+    ]
 
 @typing.type_check_only
 class ComputeInstanceBackupProperties(typing_extensions.TypedDict, total=False):
@@ -315,6 +413,7 @@ class CustomerEncryptionKey(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSource(typing_extensions.TypedDict, total=False):
+    backupBlockedByVaultAccessRestriction: bool
     backupConfigInfo: BackupConfigInfo
     backupCount: str
     configState: typing_extensions.Literal[
@@ -343,11 +442,94 @@ class DataSourceBackupApplianceApplication(typing_extensions.TypedDict, total=Fa
     type: str
 
 @typing.type_check_only
+class DataSourceBackupConfigInfo(typing_extensions.TypedDict, total=False):
+    lastBackupState: typing_extensions.Literal[
+        "LAST_BACKUP_STATE_UNSPECIFIED",
+        "FIRST_BACKUP_PENDING",
+        "SUCCEEDED",
+        "FAILED",
+        "PERMISSION_DENIED",
+    ]
+    lastSuccessfulBackupConsistencyTime: str
+
+@typing.type_check_only
 class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
+    cloudSqlInstanceDatasourceProperties: CloudSqlInstanceDataSourceProperties
     computeInstanceDatasourceProperties: ComputeInstanceDataSourceProperties
+    diskDatasourceProperties: DiskDataSourceProperties
     gcpResourcename: str
     location: str
     type: str
+
+@typing.type_check_only
+class DataSourceGcpResourceInfo(typing_extensions.TypedDict, total=False):
+    cloudSqlInstanceProperties: CloudSqlInstanceDataSourceReferenceProperties
+    gcpResourcename: str
+    location: str
+    type: str
+
+@typing.type_check_only
+class DataSourceReference(typing_extensions.TypedDict, total=False):
+    createTime: str
+    dataSource: str
+    dataSourceBackupConfigInfo: DataSourceBackupConfigInfo
+    dataSourceBackupConfigState: typing_extensions.Literal[
+        "BACKUP_CONFIG_STATE_UNSPECIFIED", "ACTIVE", "PASSIVE"
+    ]
+    dataSourceBackupCount: str
+    dataSourceGcpResourceInfo: DataSourceGcpResourceInfo
+    name: str
+
+@typing.type_check_only
+class DiskBackupProperties(typing_extensions.TypedDict, total=False):
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "X86_64", "ARM64"
+    ]
+    description: str
+    guestOsFeature: _list[GuestOsFeature]
+    licenses: _list[str]
+    region: str
+    replicaZones: _list[str]
+    sizeGb: str
+    sourceDisk: str
+    type: str
+    zone: str
+
+@typing.type_check_only
+class DiskDataSourceProperties(typing_extensions.TypedDict, total=False):
+    description: str
+    name: str
+    sizeGb: str
+    type: str
+
+@typing.type_check_only
+class DiskRestoreProperties(typing_extensions.TypedDict, total=False):
+    accessMode: typing_extensions.Literal[
+        "READ_WRITE_SINGLE", "READ_WRITE_MANY", "READ_ONLY_MANY"
+    ]
+    architecture: typing_extensions.Literal[
+        "ARCHITECTURE_UNSPECIFIED", "X86_64", "ARM64"
+    ]
+    description: str
+    diskEncryptionKey: CustomerEncryptionKey
+    enableConfidentialCompute: bool
+    guestOsFeature: _list[GuestOsFeature]
+    labels: dict[str, typing.Any]
+    licenses: _list[str]
+    name: str
+    physicalBlockSizeBytes: str
+    provisionedIops: str
+    provisionedThroughput: str
+    resourceManagerTags: dict[str, typing.Any]
+    resourcePolicy: _list[str]
+    sizeGb: str
+    storagePool: str
+    type: str
+
+@typing.type_check_only
+class DiskTargetEnvironment(typing_extensions.TypedDict, total=False):
+    project: str
+    zone: str
 
 @typing.type_check_only
 class DisplayDevice(typing_extensions.TypedDict, total=False):
@@ -380,6 +562,20 @@ class FetchAccessTokenResponse(typing_extensions.TypedDict, total=False):
     writeLocation: str
 
 @typing.type_check_only
+class FetchBackupPlanAssociationsForResourceTypeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    backupPlanAssociations: _list[BackupPlanAssociation]
+    nextPageToken: str
+
+@typing.type_check_only
+class FetchDataSourceReferencesForResourceTypeResponse(
+    typing_extensions.TypedDict, total=False
+):
+    dataSourceReferences: _list[DataSourceReference]
+    nextPageToken: str
+
+@typing.type_check_only
 class FetchUsableBackupVaultsResponse(typing_extensions.TypedDict, total=False):
     backupVaults: _list[BackupVault]
     nextPageToken: str
@@ -398,6 +594,8 @@ class FinalizeBackupRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GCPBackupPlanInfo(typing_extensions.TypedDict, total=False):
     backupPlan: str
+    backupPlanRevisionId: str
+    backupPlanRevisionName: str
     backupPlanRuleId: str
 
 @typing.type_check_only
@@ -405,6 +603,8 @@ class GcpBackupConfig(typing_extensions.TypedDict, total=False):
     backupPlan: str
     backupPlanAssociation: str
     backupPlanDescription: str
+    backupPlanRevisionId: str
+    backupPlanRevisionName: str
     backupPlanRules: _list[str]
 
 @typing.type_check_only
@@ -440,6 +640,7 @@ class InitializeParams(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InitializeServiceRequest(typing_extensions.TypedDict, total=False):
+    cloudSqlInstanceInitializationConfig: CloudSqlInstanceInitializationConfig
     requestId: str
     resourceType: str
 
@@ -461,6 +662,12 @@ class InstanceParams(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListBackupPlanAssociationsResponse(typing_extensions.TypedDict, total=False):
     backupPlanAssociations: _list[BackupPlanAssociation]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListBackupPlanRevisionsResponse(typing_extensions.TypedDict, total=False):
+    backupPlanRevisions: _list[BackupPlanRevision]
     nextPageToken: str
     unreachable: _list[str]
 
@@ -503,6 +710,11 @@ class ListManagementServersResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListResourceBackupConfigsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    resourceBackupConfigs: _list[ResourceBackupConfig]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -609,6 +821,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class PitrSettings(typing_extensions.TypedDict, total=False):
+    retentionDays: int
+
+@typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
     auditConfigs: _list[AuditConfig]
     bindings: _list[Binding]
@@ -616,13 +832,36 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class RegionDiskTargetEnvironment(typing_extensions.TypedDict, total=False):
+    project: str
+    region: str
+    replicaZones: _list[str]
+
+@typing.type_check_only
 class RemoveDataSourceRequest(typing_extensions.TypedDict, total=False):
     requestId: str
+
+@typing.type_check_only
+class ResourceBackupConfig(typing_extensions.TypedDict, total=False):
+    backupConfigsDetails: _list[BackupConfigDetails]
+    backupConfigured: bool
+    name: str
+    targetResource: str
+    targetResourceDisplayName: str
+    targetResourceLabels: dict[str, typing.Any]
+    targetResourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED", "CLOUD_SQL_INSTANCE", "COMPUTE_ENGINE_VM"
+    ]
+    uid: str
+    vaulted: bool
 
 @typing.type_check_only
 class RestoreBackupRequest(typing_extensions.TypedDict, total=False):
     computeInstanceRestoreProperties: ComputeInstanceRestoreProperties
     computeInstanceTargetEnvironment: ComputeInstanceTargetEnvironment
+    diskRestoreProperties: DiskRestoreProperties
+    diskTargetEnvironment: DiskTargetEnvironment
+    regionDiskTargetEnvironment: RegionDiskTargetEnvironment
     requestId: str
 
 @typing.type_check_only

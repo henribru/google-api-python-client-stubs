@@ -262,6 +262,7 @@ class GoogleIdentityAccesscontextmanagerV1EgressTo(
     externalResources: _list[str]
     operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
     resources: _list[str]
+    roles: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1IngressFrom(
@@ -297,6 +298,7 @@ class GoogleIdentityAccesscontextmanagerV1IngressTo(
 ):
     operations: _list[GoogleIdentityAccesscontextmanagerV1ApiOperation]
     resources: _list[str]
+    roles: _list[str]
 
 @typing.type_check_only
 class GoogleIdentityAccesscontextmanagerV1MethodSelector(

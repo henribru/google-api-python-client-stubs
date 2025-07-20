@@ -18,6 +18,9 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         def getAutokeyConfig(
             self, *, name: str, **kwargs: typing.Any
         ) -> AutokeyConfigHttpRequest: ...
+        def getKajPolicyConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
         def updateAutokeyConfig(
             self,
             *,
@@ -26,6 +29,28 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             updateMask: str = ...,
             **kwargs: typing.Any,
         ) -> AutokeyConfigHttpRequest: ...
+        def updateKajPolicyConfig(
+            self,
+            *,
+            name: str,
+            body: KeyAccessJustificationsPolicyConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
+
+    @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        def getKajPolicyConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
+        def updateKajPolicyConfig(
+            self,
+            *,
+            name: str,
+            body: KeyAccessJustificationsPolicyConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -182,7 +207,13 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> CryptoKeyVersionHttpRequest: ...
                         def getPublicKey(
-                            self, *, name: str, **kwargs: typing.Any
+                            self,
+                            *,
+                            name: str,
+                            publicKeyFormat: typing_extensions.Literal[
+                                "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "NIST_PQC"
+                            ] = ...,
+                            **kwargs: typing.Any,
                         ) -> PublicKeyHttpRequest: ...
                         def import_(
                             self,
@@ -458,6 +489,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -482,9 +514,28 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
             def keyRings(self) -> KeyRingsResource: ...
             def operations(self) -> OperationsResource: ...
 
+        def getKajPolicyConfig(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
         def showEffectiveAutokeyConfig(
             self, *, parent: str, **kwargs: typing.Any
         ) -> ShowEffectiveAutokeyConfigResponseHttpRequest: ...
+        def showEffectiveKeyAccessJustificationsEnrollmentConfig(
+            self, *, project: str, **kwargs: typing.Any
+        ) -> (
+            ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponseHttpRequest
+        ): ...
+        def showEffectiveKeyAccessJustificationsPolicyConfig(
+            self, *, project: str, **kwargs: typing.Any
+        ) -> ShowEffectiveKeyAccessJustificationsPolicyConfigResponseHttpRequest: ...
+        def updateKajPolicyConfig(
+            self,
+            *,
+            name: str,
+            body: KeyAccessJustificationsPolicyConfig = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> KeyAccessJustificationsPolicyConfigHttpRequest: ...
         def locations(self) -> LocationsResource: ...
 
     def new_batch_http_request(
@@ -500,6 +551,7 @@ class CloudKMSResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def folders(self) -> FoldersResource: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -589,6 +641,14 @@ class ImportJobHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ImportJob: ...
+
+@typing.type_check_only
+class KeyAccessJustificationsPolicyConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> KeyAccessJustificationsPolicyConfig: ...
 
 @typing.type_check_only
 class KeyHandleHttpRequest(googleapiclient.http.HttpRequest):
@@ -733,6 +793,26 @@ class ShowEffectiveAutokeyConfigResponseHttpRequest(googleapiclient.http.HttpReq
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ShowEffectiveAutokeyConfigResponse: ...
+
+@typing.type_check_only
+class ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowEffectiveKeyAccessJustificationsEnrollmentConfigResponse: ...
+
+@typing.type_check_only
+class ShowEffectiveKeyAccessJustificationsPolicyConfigResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowEffectiveKeyAccessJustificationsPolicyConfigResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

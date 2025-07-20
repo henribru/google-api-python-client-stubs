@@ -81,6 +81,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListEndpointPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -177,6 +178,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListGrpcRoutesResponseHttpRequest: ...
                 def list_next(
@@ -215,6 +217,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListHttpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -227,6 +230,48 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     *,
                     name: str,
                     body: HttpRoute = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
+            class LbEdgeExtensionsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: LbEdgeExtension = ...,
+                    lbEdgeExtensionId: str = ...,
+                    requestId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> LbEdgeExtensionHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListLbEdgeExtensionsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListLbEdgeExtensionsResponseHttpRequest,
+                    previous_response: ListLbEdgeExtensionsResponse,
+                ) -> ListLbEdgeExtensionsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: LbEdgeExtension = ...,
+                    requestId: str = ...,
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -356,6 +401,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListMeshesResponseHttpRequest: ...
                 def list_next(
@@ -432,6 +478,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     previous_request: ListServiceBindingsResponseHttpRequest,
                     previous_response: ListServiceBindingsResponse,
                 ) -> ListServiceBindingsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ServiceBinding = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class ServiceLbPoliciesResource(googleapiclient.discovery.Resource):
@@ -493,6 +547,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListTcpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -531,6 +586,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListTlsRoutesResponseHttpRequest: ...
                 def list_next(
@@ -631,6 +687,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -646,6 +703,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
             def gateways(self) -> GatewaysResource: ...
             def grpcRoutes(self) -> GrpcRoutesResource: ...
             def httpRoutes(self) -> HttpRoutesResource: ...
+            def lbEdgeExtensions(self) -> LbEdgeExtensionsResource: ...
             def lbRouteExtensions(self) -> LbRouteExtensionsResource: ...
             def lbTrafficExtensions(self) -> LbTrafficExtensionsResource: ...
             def meshes(self) -> MeshesResource: ...
@@ -729,6 +787,14 @@ class HttpRouteHttpRequest(googleapiclient.http.HttpRequest):
     ) -> HttpRoute: ...
 
 @typing.type_check_only
+class LbEdgeExtensionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> LbEdgeExtension: ...
+
+@typing.type_check_only
 class LbRouteExtensionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -791,6 +857,14 @@ class ListHttpRoutesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListHttpRoutesResponse: ...
+
+@typing.type_check_only
+class ListLbEdgeExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListLbEdgeExtensionsResponse: ...
 
 @typing.type_check_only
 class ListLbRouteExtensionsResponseHttpRequest(googleapiclient.http.HttpRequest):

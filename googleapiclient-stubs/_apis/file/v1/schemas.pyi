@@ -76,6 +76,7 @@ class GoogleCloudSaasacceleratorManagementProvidersV1Instance(
     typing_extensions.TypedDict, total=False
 ):
     consumerDefinedName: str
+    consumerProjectNumber: str
     createTime: str
     instanceType: str
     labels: dict[str, typing.Any]
@@ -330,7 +331,8 @@ class PerformanceLimits(typing_extensions.TypedDict, total=False):
     maxWriteThroughputBps: str
 
 @typing.type_check_only
-class PromoteReplicaRequest(typing_extensions.TypedDict, total=False): ...
+class PromoteReplicaRequest(typing_extensions.TypedDict, total=False):
+    peerInstance: str
 
 @typing.type_check_only
 class ReplicaConfig(typing_extensions.TypedDict, total=False):
@@ -341,7 +343,7 @@ class ReplicaConfig(typing_extensions.TypedDict, total=False):
     ]
     stateReasons: _list[
         typing_extensions.Literal[
-            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE"
+            "STATE_REASON_UNSPECIFIED", "PEER_INSTANCE_UNREACHABLE", "REMOVE_FAILED"
         ]
     ]
 

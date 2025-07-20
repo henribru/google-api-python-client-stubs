@@ -136,6 +136,10 @@ class Barrier(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class CancelJobRequest(typing_extensions.TypedDict, total=False):
+    requestId: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -240,6 +244,8 @@ class JobStatus(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "DELETION_IN_PROGRESS",
+        "CANCELLATION_IN_PROGRESS",
+        "CANCELLED",
     ]
     statusEvents: _list[StatusEvent]
     taskGroups: dict[str, typing.Any]
@@ -306,6 +312,8 @@ class Message(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "DELETION_IN_PROGRESS",
+        "CANCELLATION_IN_PROGRESS",
+        "CANCELLED",
     ]
     newTaskState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",

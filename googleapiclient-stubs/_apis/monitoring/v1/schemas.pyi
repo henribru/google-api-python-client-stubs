@@ -220,6 +220,8 @@ class EventAnnotation(typing_extensions.TypedDict, total=False):
         "CLOUD_ALERTING_ALERT",
         "SERVICE_HEALTH_INCIDENT",
         "SAP_BACKINT",
+        "SAP_AVAILABILITY",
+        "SAP_OPERATIONS",
     ]
     filter: str
     resourceNames: _list[str]
@@ -319,6 +321,7 @@ class MetricsScope(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MonitoredProject(typing_extensions.TypedDict, total=False):
     createTime: str
+    isTombstoned: bool
     name: str
 
 @typing.type_check_only
@@ -437,6 +440,7 @@ class RowLayout(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Scorecard(typing_extensions.TypedDict, total=False):
     blankView: Empty
+    breakdowns: _list[Breakdown]
     dimensions: _list[Dimension]
     gaugeView: GaugeView
     measures: _list[Measure]
@@ -450,7 +454,10 @@ class SectionHeader(typing_extensions.TypedDict, total=False):
     subtitle: str
 
 @typing.type_check_only
-class SingleViewGroup(typing_extensions.TypedDict, total=False): ...
+class SingleViewGroup(typing_extensions.TypedDict, total=False):
+    displayType: typing_extensions.Literal[
+        "DISPLAY_TYPE_UNSPECIFIED", "DROPDOWN", "TAB"
+    ]
 
 @typing.type_check_only
 class SourceContext(typing_extensions.TypedDict, total=False):
@@ -494,6 +501,12 @@ class TableDataSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableDisplayOptions(typing_extensions.TypedDict, total=False):
     shownColumns: _list[str]
+
+@typing.type_check_only
+class TemplateVariableCondition(typing_extensions.TypedDict, total=False):
+    comparator: typing_extensions.Literal["COMPARATOR_UNSPECIFIED", "REGEX_FULL_MATCH"]
+    templateVariable: str
+    templateVariableValue: str
 
 @typing.type_check_only
 class Text(typing_extensions.TypedDict, total=False):
@@ -594,6 +607,17 @@ class TimeSeriesTable(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Treemap(typing_extensions.TypedDict, total=False):
+    dataSets: _list[TreemapDataSet]
+    treemapHierarchy: _list[str]
+
+@typing.type_check_only
+class TreemapDataSet(typing_extensions.TypedDict, total=False):
+    breakdowns: _list[Breakdown]
+    measures: _list[Measure]
+    timeSeriesQuery: TimeSeriesQuery
+
+@typing.type_check_only
 class Type(typing_extensions.TypedDict, total=False):
     edition: str
     fields: _list[Field]
@@ -604,6 +628,10 @@ class Type(typing_extensions.TypedDict, total=False):
     syntax: typing_extensions.Literal[
         "SYNTAX_PROTO2", "SYNTAX_PROTO3", "SYNTAX_EDITIONS"
     ]
+
+@typing.type_check_only
+class VisibilityCondition(typing_extensions.TypedDict, total=False):
+    templateVariableCondition: TemplateVariableCondition
 
 @typing.type_check_only
 class Widget(typing_extensions.TypedDict, total=False):
@@ -621,6 +649,8 @@ class Widget(typing_extensions.TypedDict, total=False):
     text: Text
     timeSeriesTable: TimeSeriesTable
     title: str
+    treemap: Treemap
+    visibilityCondition: VisibilityCondition
     xyChart: XyChart
 
 @typing.type_check_only

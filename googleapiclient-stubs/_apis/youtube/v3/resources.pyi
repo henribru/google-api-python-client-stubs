@@ -209,6 +209,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 "orderUnspecified", "time", "relevance"
             ] = ...,
             pageToken: str = ...,
+            postId: str = ...,
             searchTerms: str = ...,
             textFormat: typing_extensions.Literal[
                 "textFormatUnspecified", "html", "plainText"
@@ -843,6 +844,12 @@ class YouTubeResource(googleapiclient.discovery.Resource):
         ) -> VideoCategoryListResponseHttpRequest: ...
 
     @typing.type_check_only
+    class VideoTrainabilityResource(googleapiclient.discovery.Resource):
+        def get(
+            self, *, id: str = ..., **kwargs: typing.Any
+        ) -> VideoTrainabilityHttpRequest: ...
+
+    @typing.type_check_only
     class VideosResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, id: str, onBehalfOfContentOwner: str = ..., **kwargs: typing.Any
@@ -984,6 +991,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     def thumbnails(self) -> ThumbnailsResource: ...
     def videoAbuseReportReasons(self) -> VideoAbuseReportReasonsResource: ...
     def videoCategories(self) -> VideoCategoriesResource: ...
+    def videoTrainability(self) -> VideoTrainabilityResource: ...
     def videos(self) -> VideosResource: ...
     def watermarks(self) -> WatermarksResource: ...
     def youtube(self) -> YoutubeResource: ...
@@ -1355,6 +1363,14 @@ class VideoListResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> VideoListResponse: ...
+
+@typing.type_check_only
+class VideoTrainabilityHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> VideoTrainability: ...
 
 @typing.type_check_only
 class BytesHttpRequest(googleapiclient.http.HttpRequest):

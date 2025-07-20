@@ -143,6 +143,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                     force: bool = ...,
                     privateConnectionId: str = ...,
                     requestId: str = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -287,6 +288,7 @@ class DatastreamResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

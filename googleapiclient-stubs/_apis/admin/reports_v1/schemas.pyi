@@ -19,7 +19,22 @@ class Activity(typing_extensions.TypedDict, total=False):
     id: dict[str, typing.Any]
     ipAddress: str
     kind: str
+    networkInfo: ActivityNetworkInfo
     ownerDomain: str
+    resourceDetails: _list[ResourceDetails]
+
+@typing.type_check_only
+class ActivityNetworkInfo(typing_extensions.TypedDict, total=False):
+    ipAsn: _list[int]
+    regionCode: str
+    subdivisionCode: str
+
+@typing.type_check_only
+class AppliedLabel(typing_extensions.TypedDict, total=False):
+    fieldValues: _list[FieldValue]
+    id: str
+    reason: Reason
+    title: str
 
 @typing.type_check_only
 class Channel(typing_extensions.TypedDict, total=False):
@@ -35,6 +50,51 @@ class Channel(typing_extensions.TypedDict, total=False):
     type: str
 
 @typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
+class FieldValue(typing_extensions.TypedDict, total=False):
+    dateValue: Date
+    displayName: str
+    id: str
+    integerValue: str
+    longTextValue: str
+    reason: Reason
+    selectionListValue: FieldValueSelectionListValue
+    selectionValue: FieldValueSelectionValue
+    textListValue: FieldValueTextListValue
+    textValue: str
+    type: str
+    unsetValue: bool
+    userListValue: FieldValueUserListValue
+    userValue: FieldValueUserValue
+
+@typing.type_check_only
+class FieldValueSelectionListValue(typing_extensions.TypedDict, total=False):
+    values: _list[FieldValueSelectionValue]
+
+@typing.type_check_only
+class FieldValueSelectionValue(typing_extensions.TypedDict, total=False):
+    badged: bool
+    displayName: str
+    id: str
+
+@typing.type_check_only
+class FieldValueTextListValue(typing_extensions.TypedDict, total=False):
+    values: _list[str]
+
+@typing.type_check_only
+class FieldValueUserListValue(typing_extensions.TypedDict, total=False):
+    values: _list[FieldValueUserValue]
+
+@typing.type_check_only
+class FieldValueUserValue(typing_extensions.TypedDict, total=False):
+    email: str
+
+@typing.type_check_only
 class NestedParameter(typing_extensions.TypedDict, total=False):
     boolValue: bool
     intValue: str
@@ -43,6 +103,18 @@ class NestedParameter(typing_extensions.TypedDict, total=False):
     multiValue: _list[str]
     name: str
     value: str
+
+@typing.type_check_only
+class Reason(typing_extensions.TypedDict, total=False):
+    reasonType: str
+
+@typing.type_check_only
+class ResourceDetails(typing_extensions.TypedDict, total=False):
+    appliedLabels: _list[AppliedLabel]
+    id: str
+    relation: str
+    title: str
+    type: str
 
 @typing.type_check_only
 class UsageReport(typing_extensions.TypedDict, total=False):

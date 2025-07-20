@@ -71,6 +71,36 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 ) -> SplitCapacityCommitmentResponseHttpRequest: ...
 
             @typing.type_check_only
+            class ReservationGroupsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: ReservationGroup = ...,
+                    reservationGroupId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ReservationGroupHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> ReservationGroupHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListReservationGroupsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListReservationGroupsResponseHttpRequest,
+                    previous_response: ListReservationGroupsResponse,
+                ) -> ListReservationGroupsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ReservationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class AssignmentsResource(googleapiclient.discovery.Resource):
@@ -85,6 +115,13 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     def delete(
                         self, *, name: str, **kwargs: typing.Any
                     ) -> EmptyHttpRequest: ...
+                    def getIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        options_requestedPolicyVersion: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
                     def list(
                         self,
                         *,
@@ -113,6 +150,20 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                         updateMask: str = ...,
                         **kwargs: typing.Any,
                     ) -> AssignmentHttpRequest: ...
+                    def setIamPolicy(
+                        self,
+                        *,
+                        resource: str,
+                        body: SetIamPolicyRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> PolicyHttpRequest: ...
+                    def testIamPermissions(
+                        self,
+                        *,
+                        resource: str,
+                        body: TestIamPermissionsRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> TestIamPermissionsResponseHttpRequest: ...
 
                 def create(
                     self,
@@ -135,6 +186,13 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> ReservationHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
                 def list(
                     self,
                     *,
@@ -156,6 +214,20 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> ReservationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
                 def assignments(self) -> AssignmentsResource: ...
 
             def getBiReservation(
@@ -198,6 +270,7 @@ class BigQueryReservationResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> BiReservationHttpRequest: ...
             def capacityCommitments(self) -> CapacityCommitmentsResource: ...
+            def reservationGroups(self) -> ReservationGroupsResource: ...
             def reservations(self) -> ReservationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -265,6 +338,14 @@ class ListCapacityCommitmentsResponseHttpRequest(googleapiclient.http.HttpReques
     ) -> ListCapacityCommitmentsResponse: ...
 
 @typing.type_check_only
+class ListReservationGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListReservationGroupsResponse: ...
+
+@typing.type_check_only
 class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -273,12 +354,28 @@ class ListReservationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListReservationsResponse: ...
 
 @typing.type_check_only
+class PolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Policy: ...
+
+@typing.type_check_only
 class ReservationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Reservation: ...
+
+@typing.type_check_only
+class ReservationGroupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ReservationGroup: ...
 
 @typing.type_check_only
 class SearchAllAssignmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -303,3 +400,11 @@ class SplitCapacityCommitmentResponseHttpRequest(googleapiclient.http.HttpReques
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SplitCapacityCommitmentResponse: ...
+
+@typing.type_check_only
+class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TestIamPermissionsResponse: ...

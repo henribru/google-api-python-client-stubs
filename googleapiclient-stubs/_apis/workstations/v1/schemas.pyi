@@ -70,6 +70,10 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class GatewayConfig(typing_extensions.TypedDict, total=False):
+    http2Enabled: bool
+
+@typing.type_check_only
 class GceConfidentialInstanceConfig(typing_extensions.TypedDict, total=False):
     enableConfidentialCompute: bool
 
@@ -304,6 +308,7 @@ class WorkstationCluster(typing_extensions.TypedDict, total=False):
     displayName: str
     domainConfig: DomainConfig
     etag: str
+    gatewayConfig: GatewayConfig
     labels: dict[str, typing.Any]
     name: str
     network: str

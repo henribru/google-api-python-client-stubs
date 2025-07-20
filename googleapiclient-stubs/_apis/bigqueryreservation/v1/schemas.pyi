@@ -20,6 +20,18 @@ class Assignment(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
 
 @typing.type_check_only
+class AuditConfig(typing_extensions.TypedDict, total=False):
+    auditLogConfigs: _list[AuditLogConfig]
+    service: str
+
+@typing.type_check_only
+class AuditLogConfig(typing_extensions.TypedDict, total=False):
+    exemptedMembers: _list[str]
+    logType: typing_extensions.Literal[
+        "LOG_TYPE_UNSPECIFIED", "ADMIN_READ", "DATA_WRITE", "DATA_READ"
+    ]
+
+@typing.type_check_only
 class Autoscale(typing_extensions.TypedDict, total=False):
     currentSlots: str
     maxSlots: str
@@ -30,6 +42,12 @@ class BiReservation(typing_extensions.TypedDict, total=False):
     preferredTables: _list[TableReference]
     size: str
     updateTime: str
+
+@typing.type_check_only
+class Binding(typing_extensions.TypedDict, total=False):
+    condition: Expr
+    members: _list[str]
+    role: str
 
 @typing.type_check_only
 class CapacityCommitment(typing_extensions.TypedDict, total=False):
@@ -73,7 +91,15 @@ class CapacityCommitment(typing_extensions.TypedDict, total=False):
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class FailoverReservationRequest(typing_extensions.TypedDict, total=False): ...
+class Expr(typing_extensions.TypedDict, total=False):
+    description: str
+    expression: str
+    location: str
+    title: str
+
+@typing.type_check_only
+class FailoverReservationRequest(typing_extensions.TypedDict, total=False):
+    failoverMode: typing_extensions.Literal["FAILOVER_MODE_UNSPECIFIED", "SOFT", "HARD"]
 
 @typing.type_check_only
 class ListAssignmentsResponse(typing_extensions.TypedDict, total=False):
@@ -86,18 +112,38 @@ class ListCapacityCommitmentsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListReservationGroupsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    reservationGroups: _list[ReservationGroup]
+
+@typing.type_check_only
 class ListReservationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     reservations: _list[Reservation]
 
 @typing.type_check_only
 class MergeCapacityCommitmentsRequest(typing_extensions.TypedDict, total=False):
+    capacityCommitmentId: str
     capacityCommitmentIds: _list[str]
 
 @typing.type_check_only
 class MoveAssignmentRequest(typing_extensions.TypedDict, total=False):
     assignmentId: str
     destinationId: str
+
+@typing.type_check_only
+class Policy(typing_extensions.TypedDict, total=False):
+    auditConfigs: _list[AuditConfig]
+    bindings: _list[Binding]
+    etag: str
+    version: int
+
+@typing.type_check_only
+class ReplicationStatus(typing_extensions.TypedDict, total=False):
+    error: Status
+    lastErrorTime: str
+    lastReplicationTime: str
+    softFailoverStartTime: str
 
 @typing.type_check_only
 class Reservation(typing_extensions.TypedDict, total=False):
@@ -109,13 +155,23 @@ class Reservation(typing_extensions.TypedDict, total=False):
     ]
     ignoreIdleSlots: bool
     labels: dict[str, typing.Any]
+    maxSlots: str
     multiRegionAuxiliary: bool
     name: str
     originalPrimaryLocation: str
     primaryLocation: str
+    replicationStatus: ReplicationStatus
+    reservationGroup: str
+    scalingMode: typing_extensions.Literal[
+        "SCALING_MODE_UNSPECIFIED", "AUTOSCALE_ONLY", "IDLE_SLOTS_ONLY", "ALL_SLOTS"
+    ]
     secondaryLocation: str
     slotCapacity: str
     updateTime: str
+
+@typing.type_check_only
+class ReservationGroup(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class SearchAllAssignmentsResponse(typing_extensions.TypedDict, total=False):
@@ -126,6 +182,11 @@ class SearchAllAssignmentsResponse(typing_extensions.TypedDict, total=False):
 class SearchAssignmentsResponse(typing_extensions.TypedDict, total=False):
     assignments: _list[Assignment]
     nextPageToken: str
+
+@typing.type_check_only
+class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
+    policy: Policy
+    updateMask: str
 
 @typing.type_check_only
 class SplitCapacityCommitmentRequest(typing_extensions.TypedDict, total=False):
@@ -147,3 +208,11 @@ class TableReference(typing_extensions.TypedDict, total=False):
     datasetId: str
     projectId: str
     tableId: str
+
+@typing.type_check_only
+class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]
+
+@typing.type_check_only
+class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
+    permissions: _list[str]

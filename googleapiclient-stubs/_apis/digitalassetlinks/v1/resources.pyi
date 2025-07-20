@@ -15,10 +15,14 @@ _list = list
 class DigitalassetlinksResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class AssetlinksResource(googleapiclient.discovery.Resource):
+        def bulkCheck(
+            self, *, body: BulkCheckRequest = ..., **kwargs: typing.Any
+        ) -> BulkCheckResponseHttpRequest: ...
         def check(
             self,
             *,
             relation: str = ...,
+            returnRelationExtensions: bool = ...,
             source_androidApp_certificate_sha256Fingerprint: str = ...,
             source_androidApp_packageName: str = ...,
             source_web_site: str = ...,
@@ -34,6 +38,7 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
             self,
             *,
             relation: str = ...,
+            returnRelationExtensions: bool = ...,
             source_androidApp_certificate_sha256Fingerprint: str = ...,
             source_androidApp_packageName: str = ...,
             source_web_site: str = ...,
@@ -54,6 +59,14 @@ class DigitalassetlinksResource(googleapiclient.discovery.Resource):
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def assetlinks(self) -> AssetlinksResource: ...
     def statements(self) -> StatementsResource: ...
+
+@typing.type_check_only
+class BulkCheckResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BulkCheckResponse: ...
 
 @typing.type_check_only
 class CheckResponseHttpRequest(googleapiclient.http.HttpRequest):

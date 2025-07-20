@@ -155,12 +155,21 @@ class ApplicationInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class AuthenticationConfig(typing_extensions.TypedDict, total=False):
+    userWorkloadAuthenticationType: typing_extensions.Literal[
+        "AUTHENTICATION_TYPE_UNSPECIFIED", "SERVICE_ACCOUNT", "END_USER_CREDENTIALS"
+    ]
+
+@typing.type_check_only
 class AutoscalingConfig(typing_extensions.TypedDict, total=False):
     policyUri: str
 
 @typing.type_check_only
 class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
     basicAlgorithm: BasicAutoscalingAlgorithm
+    clusterType: typing_extensions.Literal[
+        "CLUSTER_TYPE_UNSPECIFIED", "STANDARD", "ZERO_SCALE"
+    ]
     id: str
     labels: dict[str, typing.Any]
     name: str
@@ -171,7 +180,12 @@ class AutoscalingPolicy(typing_extensions.TypedDict, total=False):
 class AutotuningConfig(typing_extensions.TypedDict, total=False):
     scenarios: _list[
         typing_extensions.Literal[
-            "SCENARIO_UNSPECIFIED", "SCALING", "BROADCAST_HASH_JOIN", "MEMORY"
+            "SCENARIO_UNSPECIFIED",
+            "SCALING",
+            "BROADCAST_HASH_JOIN",
+            "MEMORY",
+            "NONE",
+            "AUTO",
         ]
     ]
 
@@ -247,6 +261,11 @@ class Binding(typing_extensions.TypedDict, total=False):
     role: str
 
 @typing.type_check_only
+class BuildInfo(typing_extensions.TypedDict, total=False):
+    buildKey: str
+    buildValue: str
+
+@typing.type_check_only
 class CancelJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -265,6 +284,12 @@ class Cluster(typing_extensions.TypedDict, total=False):
 class ClusterConfig(typing_extensions.TypedDict, total=False):
     autoscalingConfig: AutoscalingConfig
     auxiliaryNodeGroups: _list[AuxiliaryNodeGroup]
+    clusterTier: typing_extensions.Literal[
+        "CLUSTER_TIER_UNSPECIFIED", "CLUSTER_TIER_STANDARD", "CLUSTER_TIER_PREMIUM"
+    ]
+    clusterType: typing_extensions.Literal[
+        "CLUSTER_TYPE_UNSPECIFIED", "STANDARD", "SINGLE_NODE", "ZERO_SCALE"
+    ]
     configBucket: str
     dataprocMetricConfig: DataprocMetricConfig
     encryptionConfig: EncryptionConfig
@@ -420,6 +445,7 @@ class EnvironmentConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecutionConfig(typing_extensions.TypedDict, total=False):
+    authenticationConfig: AuthenticationConfig
     idleTtl: str
     kmsKey: str
     networkTags: _list[str]
@@ -526,6 +552,11 @@ class Expr(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class FallbackReason(typing_extensions.TypedDict, total=False):
+    fallbackNode: str
+    fallbackReason: str
+
+@typing.type_check_only
 class FlinkJob(typing_extensions.TypedDict, total=False):
     args: _list[str]
     jarFileUris: _list[str]
@@ -549,6 +580,7 @@ class GceClusterConfig(typing_extensions.TypedDict, total=False):
         "BIDIRECTIONAL",
     ]
     reservationAffinity: ReservationAffinity
+    resourceManagerTags: dict[str, typing.Any]
     serviceAccount: str
     serviceAccountScopes: _list[str]
     shieldedInstanceConfig: ShieldedInstanceConfig
@@ -861,8 +893,11 @@ class KubernetesSoftwareConfig(typing_extensions.TypedDict, total=False):
 class LifecycleConfig(typing_extensions.TypedDict, total=False):
     autoDeleteTime: str
     autoDeleteTtl: str
+    autoStopTime: str
+    autoStopTtl: str
     idleDeleteTtl: str
     idleStartTime: str
+    idleStopTtl: str
 
 @typing.type_check_only
 class ListAutoscalingPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -955,6 +990,20 @@ class NamespacedGkeDeploymentTarget(typing_extensions.TypedDict, total=False):
     targetGkeCluster: str
 
 @typing.type_check_only
+class NativeBuildInfoUiData(typing_extensions.TypedDict, total=False):
+    buildClass: str
+    buildInfo: _list[BuildInfo]
+
+@typing.type_check_only
+class NativeSqlExecutionUiData(typing_extensions.TypedDict, total=False):
+    description: str
+    executionId: str
+    fallbackDescription: str
+    fallbackNodeToReason: _list[FallbackReason]
+    numFallbackNodes: int
+    numNativeNodes: int
+
+@typing.type_check_only
 class NodeGroup(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     name: str
@@ -981,6 +1030,7 @@ class NodeGroupOperationMetadata(typing_extensions.TypedDict, total=False):
         "UPDATE_LABELS",
         "START",
         "STOP",
+        "UPDATE_METADATA_CONFIG",
     ]
     status: ClusterOperationStatus
     statusHistory: _list[ClusterOperationStatus]
@@ -1082,6 +1132,10 @@ class ProcessSummary(typing_extensions.TypedDict, total=False):
     processLogs: dict[str, typing.Any]
     removeTime: str
     totalCores: int
+
+@typing.type_check_only
+class PropertiesInfo(typing_extensions.TypedDict, total=False):
+    autotuningProperties: dict[str, typing.Any]
 
 @typing.type_check_only
 class ProvisioningModelMix(typing_extensions.TypedDict, total=False):
@@ -1256,6 +1310,7 @@ class RuntimeInfo(typing_extensions.TypedDict, total=False):
     diagnosticOutputUri: str
     endpoints: dict[str, typing.Any]
     outputUri: str
+    propertiesInfo: PropertiesInfo
 
 @typing.type_check_only
 class SearchSessionSparkApplicationExecutorStageSummaryResponse(
@@ -1504,13 +1559,16 @@ class SoftwareConfig(typing_extensions.TypedDict, total=False):
         typing_extensions.Literal[
             "COMPONENT_UNSPECIFIED",
             "ANACONDA",
+            "DELTA",
             "DOCKER",
             "DRUID",
             "FLINK",
             "HBASE",
             "HIVE_WEBHCAT",
             "HUDI",
+            "ICEBERG",
             "JUPYTER",
+            "PIG",
             "PRESTO",
             "TRINO",
             "RANGER",
@@ -1651,6 +1709,8 @@ class SparkWrapperObject(typing_extensions.TypedDict, total=False):
     executorStageSummary: ExecutorStageSummary
     executorSummary: ExecutorSummary
     jobData: JobData
+    nativeBuildInfoUiData: NativeBuildInfoUiData
+    nativeSqlExecutionUiData: NativeSqlExecutionUiData
     poolData: PoolData
     processSummary: ProcessSummary
     rddOperationGraph: RddOperationGraph
@@ -2061,7 +2121,9 @@ class UsageMetrics(typing_extensions.TypedDict, total=False):
     acceleratorType: str
     milliAcceleratorSeconds: str
     milliDcuSeconds: str
+    milliSlotSeconds: str
     shuffleStorageGbSeconds: str
+    updateTime: str
 
 @typing.type_check_only
 class UsageSnapshot(typing_extensions.TypedDict, total=False):
@@ -2069,9 +2131,16 @@ class UsageSnapshot(typing_extensions.TypedDict, total=False):
     milliAccelerator: str
     milliDcu: str
     milliDcuPremium: str
+    milliSlot: str
     shuffleStorageGb: str
     shuffleStorageGbPremium: str
     snapshotTime: str
+
+@typing.type_check_only
+class ValueInfo(typing_extensions.TypedDict, total=False):
+    annotation: str
+    overriddenValue: str
+    value: str
 
 @typing.type_check_only
 class ValueValidation(typing_extensions.TypedDict, total=False):

@@ -150,6 +150,7 @@ class ManagedZoneForwardingConfig(typing_extensions.TypedDict, total=False):
 class ManagedZoneForwardingConfigNameServerTarget(
     typing_extensions.TypedDict, total=False
 ):
+    domainName: str
     forwardingPath: typing_extensions.Literal["default", "private"]
     ipv4Address: str
     ipv6Address: str

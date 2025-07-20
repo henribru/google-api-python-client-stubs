@@ -72,6 +72,56 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                     ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
+                class EndUserAuthenticationsResource(
+                    googleapiclient.discovery.Resource
+                ):
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: EndUserAuthentication = ...,
+                        endUserAuthenticationId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "END_USER_AUTHENTICATION_VIEW_UNSPECIFIED",
+                            "BASIC_VIEW",
+                            "FULL_VIEW",
+                        ] = ...,
+                        **kwargs: typing.Any,
+                    ) -> EndUserAuthenticationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListEndUserAuthenticationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListEndUserAuthenticationsResponseHttpRequest,
+                        previous_response: ListEndUserAuthenticationsResponse,
+                    ) -> ListEndUserAuthenticationsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: EndUserAuthentication = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
                 class EventSubscriptionsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -254,6 +304,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 def connectionSchemaMetadata(
                     self,
                 ) -> ConnectionSchemaMetadataResource: ...
+                def endUserAuthentications(self) -> EndUserAuthenticationsResource: ...
                 def eventSubscriptions(self) -> EventSubscriptionsResource: ...
                 def runtimeActionSchemas(self) -> RuntimeActionSchemasResource: ...
                 def runtimeEntitySchemas(self) -> RuntimeEntitySchemasResource: ...
@@ -450,6 +501,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         orderBy: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListManagedZonesResponseHttpRequest: ...
                     def list_next(
@@ -540,7 +592,10 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             *,
                             name: str,
                             view: typing_extensions.Literal[
-                                "AUTH_SCHEMA_VIEW_UNSPECIFIED", "BASIC", "JSON_SCHEMA"
+                                "AUTH_SCHEMA_VIEW_UNSPECIFIED",
+                                "BASIC",
+                                "JSON_SCHEMA",
+                                "EUA_SCHEMA",
                             ] = ...,
                             **kwargs: typing.Any,
                         ) -> FetchAuthSchemaResponseHttpRequest: ...
@@ -646,6 +701,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -744,6 +800,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Empty: ...
 
 @typing.type_check_only
+class EndUserAuthenticationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> EndUserAuthentication: ...
+
+@typing.type_check_only
 class EndpointAttachmentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -822,6 +886,14 @@ class ListCustomConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListCustomConnectorsResponse: ...
+
+@typing.type_check_only
+class ListEndUserAuthenticationsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListEndUserAuthenticationsResponse: ...
 
 @typing.type_check_only
 class ListEndpointAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):

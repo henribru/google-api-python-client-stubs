@@ -291,6 +291,104 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
                 def revisions(self) -> RevisionsResource: ...
 
+            @typing.type_check_only
+            class WorkerPoolsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class RevisionsResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        etag: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudRunV2RevisionHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudRunV2ListRevisionsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudRunV2ListRevisionsResponseHttpRequest,
+                        previous_response: GoogleCloudRunV2ListRevisionsResponse,
+                    ) -> GoogleCloudRunV2ListRevisionsResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleCloudRunV2WorkerPool = ...,
+                    validateOnly: bool = ...,
+                    workerPoolId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRunV2WorkerPoolHttpRequest: ...
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    showDeleted: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRunV2ListWorkerPoolsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: GoogleCloudRunV2ListWorkerPoolsResponseHttpRequest,
+                    previous_response: GoogleCloudRunV2ListWorkerPoolsResponse,
+                ) -> GoogleCloudRunV2ListWorkerPoolsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleCloudRunV2WorkerPool = ...,
+                    allowMissing: bool = ...,
+                    forceNewRevision: bool = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: GoogleIamV1TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+                def revisions(self) -> RevisionsResource: ...
+
             def exportImage(
                 self,
                 *,
@@ -311,6 +409,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def jobs(self) -> JobsResource: ...
             def operations(self) -> OperationsResource: ...
             def services(self) -> ServicesResource: ...
+            def workerPools(self) -> WorkerPoolsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -405,6 +504,16 @@ class GoogleCloudRunV2ListTasksResponseHttpRequest(googleapiclient.http.HttpRequ
     ) -> GoogleCloudRunV2ListTasksResponse: ...
 
 @typing.type_check_only
+class GoogleCloudRunV2ListWorkerPoolsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2ListWorkerPoolsResponse: ...
+
+@typing.type_check_only
 class GoogleCloudRunV2MetadataHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -443,6 +552,14 @@ class GoogleCloudRunV2TaskHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRunV2Task: ...
+
+@typing.type_check_only
+class GoogleCloudRunV2WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRunV2WorkerPool: ...
 
 @typing.type_check_only
 class GoogleIamV1PolicyHttpRequest(googleapiclient.http.HttpRequest):

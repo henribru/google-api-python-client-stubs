@@ -255,6 +255,39 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                 **kwargs: typing.Any,
             ) -> ListTasksResponseHttpRequest: ...
 
+        @typing.type_check_only
+        class WorkerpoolsResource(googleapiclient.discovery.Resource):
+            def create(
+                self,
+                *,
+                parent: str,
+                body: WorkerPool = ...,
+                dryRun: str = ...,
+                **kwargs: typing.Any,
+            ) -> WorkerPoolHttpRequest: ...
+            def delete(
+                self, *, name: str, dryRun: str = ..., **kwargs: typing.Any
+            ) -> StatusHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> WorkerPoolHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                labelSelector: str = ...,
+                limit: int = ...,
+                **kwargs: typing.Any,
+            ) -> ListWorkerPoolsResponseHttpRequest: ...
+            def replaceWorkerPool(
+                self,
+                *,
+                name: str,
+                body: WorkerPool = ...,
+                dryRun: str = ...,
+                **kwargs: typing.Any,
+            ) -> WorkerPoolHttpRequest: ...
+
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
         def configurations(self) -> ConfigurationsResource: ...
         def domainmappings(self) -> DomainmappingsResource: ...
@@ -264,6 +297,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
         def routes(self) -> RoutesResource: ...
         def services(self) -> ServicesResource: ...
         def tasks(self) -> TasksResource: ...
+        def workerpools(self) -> WorkerpoolsResource: ...
 
     @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
@@ -520,10 +554,35 @@ class CloudRunResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
 
+            @typing.type_check_only
+            class WorkerpoolsResource(googleapiclient.discovery.Resource):
+                def getIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    options_requestedPolicyVersion: int = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def setIamPolicy(
+                    self,
+                    *,
+                    resource: str,
+                    body: SetIamPolicyRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> PolicyHttpRequest: ...
+                def testIamPermissions(
+                    self,
+                    *,
+                    resource: str,
+                    body: TestIamPermissionsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TestIamPermissionsResponseHttpRequest: ...
+
             def list(
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -542,6 +601,7 @@ class CloudRunResource(googleapiclient.discovery.Resource):
             def revisions(self) -> RevisionsResource: ...
             def routes(self) -> RoutesResource: ...
             def services(self) -> ServicesResource: ...
+            def workerpools(self) -> WorkerpoolsResource: ...
 
         def authorizeddomains(self) -> AuthorizeddomainsResource: ...
         def locations(self) -> LocationsResource: ...
@@ -700,6 +760,14 @@ class ListTasksResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListTasksResponse: ...
 
 @typing.type_check_only
+class ListWorkerPoolsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkerPoolsResponse: ...
+
+@typing.type_check_only
 class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -754,3 +822,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class WorkerPoolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkerPool: ...

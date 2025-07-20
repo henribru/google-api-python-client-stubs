@@ -827,6 +827,16 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class OrdersResource(googleapiclient.discovery.Resource):
+        def batchget(
+            self,
+            *,
+            packageName: str,
+            orderIds: str | _list[str] = ...,
+            **kwargs: typing.Any,
+        ) -> BatchGetOrdersResponseHttpRequest: ...
+        def get(
+            self, *, packageName: str, orderId: str, **kwargs: typing.Any
+        ) -> OrderHttpRequest: ...
         def refund(
             self,
             *,
@@ -865,6 +875,12 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
                 token: str,
                 **kwargs: typing.Any,
             ) -> ProductPurchaseHttpRequest: ...
+
+        @typing.type_check_only
+        class Productsv2Resource(googleapiclient.discovery.Resource):
+            def getproductpurchasev2(
+                self, *, packageName: str, token: str, **kwargs: typing.Any
+            ) -> ProductPurchaseV2HttpRequest: ...
 
         @typing.type_check_only
         class SubscriptionsResource(googleapiclient.discovery.Resource):
@@ -950,6 +966,7 @@ class AndroidPublisherResource(googleapiclient.discovery.Resource):
             ) -> VoidedPurchasesListResponseHttpRequest: ...
 
         def products(self) -> ProductsResource: ...
+        def productsv2(self) -> Productsv2Resource: ...
         def subscriptions(self) -> SubscriptionsResource: ...
         def subscriptionsv2(self) -> Subscriptionsv2Resource: ...
         def voidedpurchases(self) -> VoidedpurchasesResource: ...
@@ -1137,6 +1154,14 @@ class AppRecoveryActionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AppRecoveryAction: ...
+
+@typing.type_check_only
+class BatchGetOrdersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BatchGetOrdersResponse: ...
 
 @typing.type_check_only
 class BatchGetSubscriptionOffersResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1423,12 +1448,28 @@ class MigrateBasePlanPricesResponseHttpRequest(googleapiclient.http.HttpRequest)
     ) -> MigrateBasePlanPricesResponse: ...
 
 @typing.type_check_only
+class OrderHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Order: ...
+
+@typing.type_check_only
 class ProductPurchaseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ProductPurchase: ...
+
+@typing.type_check_only
+class ProductPurchaseV2HttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ProductPurchaseV2: ...
 
 @typing.type_check_only
 class ReviewHttpRequest(googleapiclient.http.HttpRequest):

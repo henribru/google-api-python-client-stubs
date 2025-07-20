@@ -74,9 +74,6 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
         def getJwt(
             self, *, mobilesdkAppId: str, **kwargs: typing.Any
         ) -> GoogleFirebaseAppdistroV1alphaJwtHttpRequest: ...
-        def provisionApp(
-            self, *, mobilesdkAppId: str, **kwargs: typing.Any
-        ) -> GoogleFirebaseAppdistroV1alphaProvisionAppResponseHttpRequest: ...
         def release_by_hash(self) -> Release_by_hashResource: ...
         def releases(self) -> ReleasesResource: ...
         def testers(self) -> TestersResource: ...
@@ -130,6 +127,13 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class TestCasesResource(googleapiclient.discovery.Resource):
+                def batchDelete(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirebaseAppdistroV1alphaBatchDeleteTestCasesRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleProtobufEmptyHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -188,6 +192,9 @@ class FirebaseAppDistributionResource(googleapiclient.discovery.Resource):
                 self, *, project: str, mobilesdkAppId: str = ..., **kwargs: typing.Any
             ) -> GoogleFirebaseAppdistroV1alphaGetTesterUdidsResponseHttpRequest: ...
 
+        def getTestQuota(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleFirebaseAppdistroV1alphaTestQuotaHttpRequest: ...
         def apps(self) -> AppsResource: ...
         def testers(self) -> TestersResource: ...
 
@@ -303,16 +310,6 @@ class GoogleFirebaseAppdistroV1alphaListTestCasesResponseHttpRequest(
     ) -> GoogleFirebaseAppdistroV1alphaListTestCasesResponse: ...
 
 @typing.type_check_only
-class GoogleFirebaseAppdistroV1alphaProvisionAppResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleFirebaseAppdistroV1alphaProvisionAppResponse: ...
-
-@typing.type_check_only
 class GoogleFirebaseAppdistroV1alphaReleaseTestHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -341,6 +338,16 @@ class GoogleFirebaseAppdistroV1alphaTestConfigHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirebaseAppdistroV1alphaTestConfig: ...
+
+@typing.type_check_only
+class GoogleFirebaseAppdistroV1alphaTestQuotaHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirebaseAppdistroV1alphaTestQuota: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

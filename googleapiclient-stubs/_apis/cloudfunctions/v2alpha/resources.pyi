@@ -44,6 +44,13 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> OperationHttpRequest: ...
+                def detachFunction(
+                    self,
+                    *,
+                    name: str,
+                    body: DetachFunctionRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def generateDownloadUrl(
                     self,
                     *,
@@ -157,6 +164,7 @@ class CloudFunctionsResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

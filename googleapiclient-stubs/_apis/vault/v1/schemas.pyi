@@ -48,7 +48,7 @@ class AddMatterPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CalendarExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
     ]
 
 @typing.type_check_only
@@ -118,6 +118,14 @@ class CountArtifactsResponse(typing_extensions.TypedDict, total=False):
     totalCount: str
 
 @typing.type_check_only
+class DriveDocumentIds(typing_extensions.TypedDict, total=False):
+    ids: _list[str]
+
+@typing.type_check_only
+class DriveDocumentInfo(typing_extensions.TypedDict, total=False):
+    documentIds: DriveDocumentIds
+
+@typing.type_check_only
 class DriveExportOptions(typing_extensions.TypedDict, total=False):
     includeAccessInfo: bool
 
@@ -131,6 +139,12 @@ class DriveOptions(typing_extensions.TypedDict, total=False):
     ]
     includeSharedDrives: bool
     includeTeamDrives: bool
+    sharedDrivesOption: typing_extensions.Literal[
+        "SHARED_DRIVES_OPTION_UNSPECIFIED",
+        "NOT_INCLUDED",
+        "INCLUDED_IF_ACCOUNT_IS_NOT_A_MEMBER",
+        "INCLUDED",
+    ]
     versionDate: str
 
 @typing.type_check_only
@@ -156,6 +170,7 @@ class Export(typing_extensions.TypedDict, total=False):
 class ExportOptions(typing_extensions.TypedDict, total=False):
     calendarOptions: CalendarExportOptions
     driveOptions: DriveExportOptions
+    geminiOptions: GeminiExportOptions
     groupsOptions: GroupsExportOptions
     hangoutsChatOptions: HangoutsChatExportOptions
     mailOptions: MailExportOptions
@@ -171,6 +186,15 @@ class ExportStats(typing_extensions.TypedDict, total=False):
     totalArtifactCount: str
 
 @typing.type_check_only
+class GeminiExportOptions(typing_extensions.TypedDict, total=False):
+    exportFormat: typing_extensions.Literal[
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
+    ]
+
+@typing.type_check_only
+class GeminiOptions(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GroupsCountResult(typing_extensions.TypedDict, total=False):
     accountCountErrors: _list[AccountCountError]
     accountCounts: _list[AccountCount]
@@ -181,13 +205,13 @@ class GroupsCountResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GroupsExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
     ]
 
 @typing.type_check_only
 class HangoutsChatExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
     ]
 
 @typing.type_check_only
@@ -254,6 +278,7 @@ class Hold(typing_extensions.TypedDict, total=False):
         "HANGOUTS_CHAT",
         "VOICE",
         "CALENDAR",
+        "GEMINI",
     ]
     holdId: str
     name: str
@@ -301,7 +326,7 @@ class MailCountResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MailExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
     ]
     exportLinkedDriveFiles: bool
     showConfidentialModeContent: bool
@@ -357,12 +382,15 @@ class Query(typing_extensions.TypedDict, total=False):
         "HANGOUTS_CHAT",
         "VOICE",
         "CALENDAR",
+        "GEMINI",
     ]
     dataScope: typing_extensions.Literal[
         "DATA_SCOPE_UNSPECIFIED", "ALL_DATA", "HELD_DATA", "UNPROCESSED_DATA"
     ]
+    driveDocumentInfo: DriveDocumentInfo
     driveOptions: DriveOptions
     endTime: str
+    geminiOptions: GeminiOptions
     hangoutsChatInfo: HangoutsChatInfo
     hangoutsChatOptions: HangoutsChatOptions
     mailOptions: MailOptions
@@ -375,6 +403,7 @@ class Query(typing_extensions.TypedDict, total=False):
         "ROOM",
         "SITES_URL",
         "SHARED_DRIVE",
+        "DRIVE_DOCUMENT",
     ]
     orgUnitInfo: OrgUnitInfo
     searchMethod: typing_extensions.Literal[
@@ -386,6 +415,7 @@ class Query(typing_extensions.TypedDict, total=False):
         "ROOM",
         "SITES_URL",
         "SHARED_DRIVE",
+        "DRIVE_DOCUMENT",
     ]
     sharedDriveInfo: SharedDriveInfo
     sitesUrlInfo: SitesUrlInfo
@@ -451,7 +481,7 @@ class UserInfo(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class VoiceExportOptions(typing_extensions.TypedDict, total=False):
     exportFormat: typing_extensions.Literal[
-        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS"
+        "EXPORT_FORMAT_UNSPECIFIED", "MBOX", "PST", "ICS", "XML"
     ]
 
 @typing.type_check_only

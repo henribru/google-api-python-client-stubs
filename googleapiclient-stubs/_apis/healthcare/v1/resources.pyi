@@ -382,6 +382,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                         *,
                                         parent: str,
                                         dicomWebPath: str,
+                                        viewport: str = ...,
                                         **kwargs: typing.Any,
                                     ) -> HttpBodyHttpRequest: ...
 
@@ -411,6 +412,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     *,
                                     parent: str,
                                     dicomWebPath: str,
+                                    viewport: str = ...,
                                     **kwargs: typing.Any,
                                 ) -> HttpBodyHttpRequest: ...
                                 def frames(self) -> FramesResource: ...
@@ -657,6 +659,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             profile: str = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
+                        def bulk_export(
+                            self,
+                            *,
+                            name: str,
+                            outputFormat: str = ...,
+                            x_since: str = ...,
+                            x_type: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
                         def capabilities(
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
@@ -743,6 +754,15 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             self, *, name: str, **kwargs: typing.Any
                         ) -> HttpBodyHttpRequest: ...
 
+                    @typing.type_check_only
+                    class OperationsResource(googleapiclient.discovery.Resource):
+                        def delete_fhir_operation(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+                        def get_fhir_operation_status(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> HttpBodyHttpRequest: ...
+
                     def applyAdminConsents(
                         self,
                         *,
@@ -757,6 +777,16 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: ApplyConsentsRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def bulk_export_group(
+                        self,
+                        *,
+                        name: str,
+                        organizeOutputBy: str = ...,
+                        outputFormat: str = ...,
+                        x_since: str = ...,
+                        x_type: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -849,6 +879,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
                     def fhir(self) -> FhirResource: ...
+                    def operations(self) -> OperationsResource: ...
 
                 @typing.type_check_only
                 class Hl7V2StoresResource(googleapiclient.discovery.Resource):
@@ -1118,6 +1149,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

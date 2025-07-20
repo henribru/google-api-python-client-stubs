@@ -145,7 +145,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: CancelWorkflowInvocationRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> CancelWorkflowInvocationResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -196,7 +196,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: CommitWorkspaceChangesRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> CommitWorkspaceChangesResponseHttpRequest: ...
                     def create(
                         self,
                         *,
@@ -280,14 +280,14 @@ class DataformResource(googleapiclient.discovery.Resource):
                         name: str,
                         body: PullGitCommitsRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> PullGitCommitsResponseHttpRequest: ...
                     def push(
                         self,
                         *,
                         name: str,
                         body: PushGitCommitsRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> PushGitCommitsResponseHttpRequest: ...
                     def queryDirectoryContents(
                         self,
                         *,
@@ -316,21 +316,21 @@ class DataformResource(googleapiclient.discovery.Resource):
                         workspace: str,
                         body: RemoveDirectoryRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> RemoveDirectoryResponseHttpRequest: ...
                     def removeFile(
                         self,
                         *,
                         workspace: str,
                         body: RemoveFileRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> RemoveFileResponseHttpRequest: ...
                     def reset(
                         self,
                         *,
                         name: str,
                         body: ResetWorkspaceChangesRequest = ...,
                         **kwargs: typing.Any,
-                    ) -> EmptyHttpRequest: ...
+                    ) -> ResetWorkspaceChangesResponseHttpRequest: ...
                     def searchFiles(
                         self,
                         *,
@@ -490,6 +490,7 @@ class DataformResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -527,12 +528,28 @@ class DataformResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class CancelWorkflowInvocationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelWorkflowInvocationResponse: ...
+
+@typing.type_check_only
 class CommitRepositoryChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> CommitRepositoryChangesResponse: ...
+
+@typing.type_check_only
+class CommitWorkspaceChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CommitWorkspaceChangesResponse: ...
 
 @typing.type_check_only
 class CompilationResultHttpRequest(googleapiclient.http.HttpRequest):
@@ -713,6 +730,22 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Policy: ...
 
 @typing.type_check_only
+class PullGitCommitsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PullGitCommitsResponse: ...
+
+@typing.type_check_only
+class PushGitCommitsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> PushGitCommitsResponse: ...
+
+@typing.type_check_only
 class QueryCompilationResultActionsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -775,12 +808,36 @@ class ReleaseConfigHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ReleaseConfig: ...
 
 @typing.type_check_only
+class RemoveDirectoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemoveDirectoryResponse: ...
+
+@typing.type_check_only
+class RemoveFileResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RemoveFileResponse: ...
+
+@typing.type_check_only
 class RepositoryHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Repository: ...
+
+@typing.type_check_only
+class ResetWorkspaceChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ResetWorkspaceChangesResponse: ...
 
 @typing.type_check_only
 class SearchFilesResponseHttpRequest(googleapiclient.http.HttpRequest):

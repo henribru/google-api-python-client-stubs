@@ -574,6 +574,7 @@ class Conversion(typing_extensions.TypedDict, total=False):
     nonPersonalizedAd: bool
     ordinal: str
     quantity: str
+    sessionAttributesEncoded: str
     timestampMicros: str
     treatmentForUnderage: bool
     userIdentifiers: _list[UserIdentifier]
@@ -2852,6 +2853,7 @@ class TagSetting(typing_extensions.TypedDict, total=False):
     additionalKeyValues: str
     includeClickThroughUrls: bool
     includeClickTracking: bool
+    includeUnescapedlpurlMacro: bool
     keywordOption: typing_extensions.Literal[
         "PLACEHOLDER_WITH_LIST_OF_KEYWORDS",
         "IGNORE",

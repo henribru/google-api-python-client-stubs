@@ -176,6 +176,7 @@ class ResetIdentityAwareProxyClientSecretRequest(
 class Resource(typing_extensions.TypedDict, total=False):
     expectedNextState: dict[str, typing.Any]
     labels: dict[str, typing.Any]
+    locations: _list[str]
     name: str
     nextStateOfTags: NextStateOfTags
     service: str

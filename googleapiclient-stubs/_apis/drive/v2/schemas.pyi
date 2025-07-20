@@ -234,6 +234,7 @@ class File(typing_extensions.TypedDict, total=False):
     id: str
     imageMediaMetadata: dict[str, typing.Any]
     indexableText: dict[str, typing.Any]
+    inheritedPermissionsDisabled: bool
     isAppAuthorized: bool
     kind: str
     labelInfo: dict[str, typing.Any]
@@ -374,6 +375,7 @@ class Permission(typing_extensions.TypedDict, total=False):
     etag: str
     expirationDate: str
     id: str
+    inheritedPermissionsDisabled: bool
     kind: str
     name: str
     pendingOwner: bool

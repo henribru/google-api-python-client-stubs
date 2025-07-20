@@ -81,6 +81,22 @@ class CssResource(googleapiclient.discovery.Resource):
                 self, *, name: str, body: AccountLabel = ..., **kwargs: typing.Any
             ) -> AccountLabelHttpRequest: ...
 
+        @typing.type_check_only
+        class QuotasResource(googleapiclient.discovery.Resource):
+            def list(
+                self,
+                *,
+                parent: str,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListQuotaGroupsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListQuotaGroupsResponseHttpRequest,
+                previous_response: ListQuotaGroupsResponse,
+            ) -> ListQuotaGroupsResponseHttpRequest | None: ...
+
         def get(
             self, *, name: str, parent: str = ..., **kwargs: typing.Any
         ) -> AccountHttpRequest: ...
@@ -109,6 +125,7 @@ class CssResource(googleapiclient.discovery.Resource):
         def cssProductInputs(self) -> CssProductInputsResource: ...
         def cssProducts(self) -> CssProductsResource: ...
         def labels(self) -> LabelsResource: ...
+        def quotas(self) -> QuotasResource: ...
 
     def new_batch_http_request(
         self,
@@ -187,3 +204,11 @@ class ListCssProductsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListCssProductsResponse: ...
+
+@typing.type_check_only
+class ListQuotaGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListQuotaGroupsResponse: ...

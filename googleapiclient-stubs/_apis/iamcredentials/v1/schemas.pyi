@@ -20,6 +20,7 @@ class GenerateIdTokenRequest(typing_extensions.TypedDict, total=False):
     audience: str
     delegates: _list[str]
     includeEmail: bool
+    organizationNumberIncluded: bool
 
 @typing.type_check_only
 class GenerateIdTokenResponse(typing_extensions.TypedDict, total=False):
@@ -49,3 +50,13 @@ class SignJwtRequest(typing_extensions.TypedDict, total=False):
 class SignJwtResponse(typing_extensions.TypedDict, total=False):
     keyId: str
     signedJwt: str
+
+@typing.type_check_only
+class WorkforcePoolAllowedLocations(typing_extensions.TypedDict, total=False):
+    encodedLocations: str
+    locations: _list[str]
+
+@typing.type_check_only
+class WorkloadIdentityPoolAllowedLocations(typing_extensions.TypedDict, total=False):
+    encodedLocations: str
+    locations: _list[str]

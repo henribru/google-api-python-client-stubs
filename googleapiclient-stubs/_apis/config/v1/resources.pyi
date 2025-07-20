@@ -209,6 +209,48 @@ class ConfigResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class PreviewsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class ResourceChangesResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ResourceChangeHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListResourceChangesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListResourceChangesResponseHttpRequest,
+                        previous_response: ListResourceChangesResponse,
+                    ) -> ListResourceChangesResponseHttpRequest | None: ...
+
+                @typing.type_check_only
+                class ResourceDriftsResource(googleapiclient.discovery.Resource):
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> ResourceDriftHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListResourceDriftsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListResourceDriftsResponseHttpRequest,
+                        previous_response: ListResourceDriftsResponse,
+                    ) -> ListResourceDriftsResponseHttpRequest | None: ...
+
                 def create(
                     self,
                     *,
@@ -246,6 +288,8 @@ class ConfigResource(googleapiclient.discovery.Resource):
                     previous_request: ListPreviewsResponseHttpRequest,
                     previous_response: ListPreviewsResponse,
                 ) -> ListPreviewsResponseHttpRequest | None: ...
+                def resourceChanges(self) -> ResourceChangesResource: ...
+                def resourceDrifts(self) -> ResourceDriftsResource: ...
 
             @typing.type_check_only
             class TerraformVersionsResource(googleapiclient.discovery.Resource):
@@ -275,6 +319,7 @@ class ConfigResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -363,6 +408,22 @@ class ListPreviewsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListPreviewsResponse: ...
 
 @typing.type_check_only
+class ListResourceChangesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListResourceChangesResponse: ...
+
+@typing.type_check_only
+class ListResourceDriftsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListResourceDriftsResponse: ...
+
+@typing.type_check_only
 class ListResourcesResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -433,6 +494,22 @@ class ResourceHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Resource: ...
+
+@typing.type_check_only
+class ResourceChangeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ResourceChange: ...
+
+@typing.type_check_only
+class ResourceDriftHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ResourceDrift: ...
 
 @typing.type_check_only
 class RevisionHttpRequest(googleapiclient.http.HttpRequest):

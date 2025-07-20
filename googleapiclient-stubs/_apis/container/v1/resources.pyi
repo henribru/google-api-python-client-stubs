@@ -66,6 +66,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                         zone: str = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def fetchNodePoolUpgradeInfo(
+                        self, *, name: str, version: str = ..., **kwargs: typing.Any
+                    ) -> NodePoolUpgradeInfoHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -153,6 +156,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     zone: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def fetchClusterUpgradeInfo(
+                    self, *, name: str, version: str = ..., **kwargs: typing.Any
+                ) -> ClusterUpgradeInfoHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -333,6 +339,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                         name: str = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def fetchNodePoolUpgradeInfo(
+                        self, *, name: str, version: str = ..., **kwargs: typing.Any
+                    ) -> NodePoolUpgradeInfoHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -428,6 +437,9 @@ class ContainerResource(googleapiclient.discovery.Resource):
                     name: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def fetchClusterUpgradeInfo(
+                    self, *, name: str, version: str = ..., **kwargs: typing.Any
+                ) -> ClusterUpgradeInfoHttpRequest: ...
                 def get(
                     self,
                     *,
@@ -621,6 +633,14 @@ class ClusterHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Cluster: ...
 
 @typing.type_check_only
+class ClusterUpgradeInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ClusterUpgradeInfo: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -683,6 +703,14 @@ class NodePoolHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> NodePool: ...
+
+@typing.type_check_only
+class NodePoolUpgradeInfoHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> NodePoolUpgradeInfo: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

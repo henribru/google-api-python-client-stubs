@@ -132,6 +132,7 @@ class GoogleApiSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleChannelConfig(typing_extensions.TypedDict, total=False):
     cryptoKeyName: str
+    labels: dict[str, typing.Any]
     name: str
     updateTime: str
 
@@ -375,6 +376,7 @@ class Pipeline(typing_extensions.TypedDict, total=False):
     mediations: _list[GoogleCloudEventarcV1PipelineMediation]
     name: str
     retryPolicy: GoogleCloudEventarcV1PipelineRetryPolicy
+    satisfiesPzs: bool
     uid: str
     updateTime: str
 

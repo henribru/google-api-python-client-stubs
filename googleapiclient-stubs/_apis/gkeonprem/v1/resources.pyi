@@ -510,6 +510,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                     name: str,
                     allowMissing: bool = ...,
                     etag: str = ...,
+                    ignoreErrors: bool = ...,
                     validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
@@ -766,6 +767,7 @@ class GKEOnPremResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

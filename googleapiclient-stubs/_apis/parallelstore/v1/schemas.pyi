@@ -18,6 +18,7 @@ class DestinationParallelstore(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExportDataRequest(typing_extensions.TypedDict, total=False):
     destinationGcsBucket: DestinationGcsBucket
+    metadataOptions: TransferMetadataOptions
     requestId: str
     serviceAccount: str
     sourceParallelstore: SourceParallelstore
@@ -28,6 +29,7 @@ class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class ImportDataRequest(typing_extensions.TypedDict, total=False):
     destinationParallelstore: DestinationParallelstore
+    metadataOptions: TransferMetadataOptions
     requestId: str
     serviceAccount: str
     sourceGcsBucket: SourceGcsBucket
@@ -37,6 +39,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     accessPoints: _list[str]
     capacityGib: str
     createTime: str
+    daosVersion: str
     deploymentType: typing_extensions.Literal[
         "DEPLOYMENT_TYPE_UNSPECIFIED", "SCRATCH", "PERSISTENT"
     ]
@@ -112,6 +115,13 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
+    deleteResource: bool
+    exclusiveAction: typing_extensions.Literal[
+        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
+    ]
+
+@typing.type_check_only
 class SourceGcsBucket(typing_extensions.TypedDict, total=False):
     uri: str
 
@@ -124,3 +134,9 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class TransferMetadataOptions(typing_extensions.TypedDict, total=False):
+    gid: typing_extensions.Literal["GID_UNSPECIFIED", "GID_SKIP", "GID_NUMBER_PRESERVE"]
+    mode: typing_extensions.Literal["MODE_UNSPECIFIED", "MODE_SKIP", "MODE_PRESERVE"]
+    uid: typing_extensions.Literal["UID_UNSPECIFIED", "UID_SKIP", "UID_NUMBER_PRESERVE"]

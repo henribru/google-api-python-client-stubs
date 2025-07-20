@@ -62,6 +62,7 @@ class Job(typing_extensions.TypedDict, total=False):
     name: str
     pubsubTarget: PubsubTarget
     retryConfig: RetryConfig
+    satisfiesPzs: bool
     schedule: str
     scheduleTime: str
     state: typing_extensions.Literal[

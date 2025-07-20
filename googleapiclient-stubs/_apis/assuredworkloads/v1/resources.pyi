@@ -40,6 +40,32 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class WorkloadsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
+                class UpdatesResource(googleapiclient.discovery.Resource):
+                    def apply(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudAssuredworkloadsV1ApplyWorkloadUpdateRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponseHttpRequest,
+                        previous_response: GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse,
+                    ) -> (
+                        GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponseHttpRequest
+                        | None
+                    ): ...
+
+                @typing.type_check_only
                 class ViolationsResource(googleapiclient.discovery.Resource):
                     def acknowledge(
                         self,
@@ -104,6 +130,9 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                 def delete(
                     self, *, name: str, etag: str = ..., **kwargs: typing.Any
                 ) -> GoogleProtobufEmptyHttpRequest: ...
+                def enableComplianceUpdates(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponseHttpRequest: ...
                 def enableResourceMonitoring(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponseHttpRequest: ...
@@ -148,6 +177,7 @@ class AssuredworkloadsResource(googleapiclient.discovery.Resource):
                     body: GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudAssuredworkloadsV1RestrictAllowedResourcesResponseHttpRequest: ...
+                def updates(self) -> UpdatesResource: ...
                 def violations(self) -> ViolationsResource: ...
 
             def operations(self) -> OperationsResource: ...
@@ -190,6 +220,16 @@ class GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponseHttpRequest(
     ) -> GoogleCloudAssuredworkloadsV1AnalyzeWorkloadMoveResponse: ...
 
 @typing.type_check_only
+class GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1EnableComplianceUpdatesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudAssuredworkloadsV1EnableResourceMonitoringResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -208,6 +248,16 @@ class GoogleCloudAssuredworkloadsV1ListViolationsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudAssuredworkloadsV1ListViolationsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudAssuredworkloadsV1ListWorkloadUpdatesResponse: ...
 
 @typing.type_check_only
 class GoogleCloudAssuredworkloadsV1ListWorkloadsResponseHttpRequest(

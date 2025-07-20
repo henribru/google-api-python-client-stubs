@@ -14,6 +14,40 @@ _list = list
 @typing.type_check_only
 class SQLAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class BackupsResource(googleapiclient.discovery.Resource):
+        def CreateBackup(
+            self, *, parent: str, body: Backup = ..., **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def DeleteBackup(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> OperationHttpRequest: ...
+        def GetBackup(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> BackupHttpRequest: ...
+        def ListBackups(
+            self,
+            *,
+            parent: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            **kwargs: typing.Any,
+        ) -> ListBackupsResponseHttpRequest: ...
+        def ListBackups_next(
+            self,
+            previous_request: ListBackupsResponseHttpRequest,
+            previous_response: ListBackupsResponse,
+        ) -> ListBackupsResponseHttpRequest | None: ...
+        def UpdateBackup(
+            self,
+            *,
+            name: str,
+            body: Backup = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+
+    @typing.type_check_only
     class BackupRunsResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, project: str, instance: str, id: str, **kwargs: typing.Any
@@ -104,7 +138,15 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
     class FlagsResource(googleapiclient.discovery.Resource):
         def list(
-            self, *, databaseVersion: str = ..., **kwargs: typing.Any
+            self,
+            *,
+            databaseVersion: str = ...,
+            flagScope: typing_extensions.Literal[
+                "SQL_FLAG_SCOPE_UNSPECIFIED",
+                "SQL_FLAG_SCOPE_DATABASE",
+                "SQL_FLAG_SCOPE_CONNECTION_POOL",
+            ] = ...,
+            **kwargs: typing.Any,
         ) -> FlagsListResponseHttpRequest: ...
 
     @typing.type_check_only
@@ -143,7 +185,15 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def delete(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            enableFinalBackup: bool = ...,
+            finalBackupDescription: str = ...,
+            finalBackupExpiryTime: str = ...,
+            finalBackupTtlDays: str = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def demote(
             self,
@@ -214,6 +264,13 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             project: str,
             instance: str,
             body: DatabaseInstance = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
+        def pointInTimeRestore(
+            self,
+            *,
+            parent: str,
+            body: PointInTimeRestoreContext = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def promoteReplica(
@@ -457,6 +514,7 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def Backups(self) -> BackupsResource: ...
     def backupRuns(self) -> BackupRunsResource: ...
     def connect(self) -> ConnectResource: ...
     def databases(self) -> DatabasesResource: ...
@@ -467,6 +525,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
     def sslCerts(self) -> SslCertsResource: ...
     def tiers(self) -> TiersResource: ...
     def users(self) -> UsersResource: ...
+
+@typing.type_check_only
+class BackupHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Backup: ...
 
 @typing.type_check_only
 class BackupRunHttpRequest(googleapiclient.http.HttpRequest):
@@ -565,6 +631,14 @@ class InstancesListServerCertificatesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> InstancesListServerCertificatesResponse: ...
+
+@typing.type_check_only
+class ListBackupsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackupsResponse: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):

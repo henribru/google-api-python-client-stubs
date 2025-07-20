@@ -64,6 +64,12 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             body: Dataset = ...,
             accessPolicyVersion: int = ...,
+            updateMode: typing_extensions.Literal[
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL",
+            ] = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
         def undelete(
@@ -81,6 +87,12 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             datasetId: str,
             body: Dataset = ...,
             accessPolicyVersion: int = ...,
+            updateMode: typing_extensions.Literal[
+                "UPDATE_MODE_UNSPECIFIED",
+                "UPDATE_METADATA",
+                "UPDATE_ACL",
+                "UPDATE_FULL",
+            ] = ...,
             **kwargs: typing.Any,
         ) -> DatasetHttpRequest: ...
 
@@ -256,6 +268,13 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: SetIamPolicyRequest = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def testIamPermissions(
+            self,
+            *,
+            resource: str,
+            body: TestIamPermissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> TestIamPermissionsResponseHttpRequest: ...
         def update(
             self,
             *,
@@ -268,6 +287,34 @@ class BigqueryResource(googleapiclient.discovery.Resource):
 
     @typing.type_check_only
     class RowAccessPoliciesResource(googleapiclient.discovery.Resource):
+        def batchDelete(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            body: BatchDeleteRowAccessPoliciesRequest = ...,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
+        def delete(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            policyId: str,
+            force: bool = ...,
+            **kwargs: typing.Any,
+        ) -> googleapiclient.http.HttpRequest: ...
+        def get(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            policyId: str,
+            **kwargs: typing.Any,
+        ) -> RowAccessPolicyHttpRequest: ...
         def getIamPolicy(
             self,
             *,
@@ -275,6 +322,15 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: GetIamPolicyRequest = ...,
             **kwargs: typing.Any,
         ) -> PolicyHttpRequest: ...
+        def insert(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            body: RowAccessPolicy = ...,
+            **kwargs: typing.Any,
+        ) -> RowAccessPolicyHttpRequest: ...
         def list(
             self,
             *,
@@ -297,6 +353,16 @@ class BigqueryResource(googleapiclient.discovery.Resource):
             body: TestIamPermissionsRequest = ...,
             **kwargs: typing.Any,
         ) -> TestIamPermissionsResponseHttpRequest: ...
+        def update(
+            self,
+            *,
+            projectId: str,
+            datasetId: str,
+            tableId: str,
+            policyId: str,
+            body: RowAccessPolicy = ...,
+            **kwargs: typing.Any,
+        ) -> RowAccessPolicyHttpRequest: ...
 
     @typing.type_check_only
     class TabledataResource(googleapiclient.discovery.Resource):
@@ -547,6 +613,14 @@ class RoutineHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Routine: ...
+
+@typing.type_check_only
+class RowAccessPolicyHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> RowAccessPolicy: ...
 
 @typing.type_check_only
 class TableHttpRequest(googleapiclient.http.HttpRequest):

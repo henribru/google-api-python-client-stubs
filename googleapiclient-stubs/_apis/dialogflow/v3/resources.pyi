@@ -728,6 +728,143 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     ) -> GoogleCloudDialogflowCxV3IntentHttpRequest: ...
 
                 @typing.type_check_only
+                class PlaybooksResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class ExamplesResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowCxV3Example = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3ExampleHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3ExampleHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            languageCode: str = ...,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3ListExamplesResponseHttpRequest
+                        ): ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowCxV3ListExamplesResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowCxV3ListExamplesResponse,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3ListExamplesResponseHttpRequest
+                            | None
+                        ): ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowCxV3Example = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3ExampleHttpRequest: ...
+
+                    @typing.type_check_only
+                    class VersionsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowCxV3PlaybookVersion = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3PlaybookVersionHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3PlaybookVersionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3ListPlaybookVersionsResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowCxV3ListPlaybookVersionsResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3ListPlaybookVersionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def restore(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowCxV3RestorePlaybookVersionRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3RestorePlaybookVersionResponseHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3Playbook = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3PlaybookHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def export(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3ExportPlaybookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3PlaybookHttpRequest: ...
+                    def import_(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3ImportPlaybookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleLongrunningOperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3ListPlaybooksResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowCxV3ListPlaybooksResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowCxV3ListPlaybooksResponse,
+                    ) -> (
+                        GoogleCloudDialogflowCxV3ListPlaybooksResponseHttpRequest | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3Playbook = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3PlaybookHttpRequest: ...
+                    def examples(self) -> ExamplesResource: ...
+                    def versions(self) -> VersionsResource: ...
+
+                @typing.type_check_only
                 class SessionsResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class EntityTypesResource(googleapiclient.discovery.Resource):
@@ -919,6 +1056,87 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                     def results(self) -> ResultsResource: ...
 
                 @typing.type_check_only
+                class ToolsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class VersionsResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: GoogleCloudDialogflowCxV3ToolVersion = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3ToolVersionHttpRequest: ...
+                        def delete(
+                            self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                        ) -> GoogleProtobufEmptyHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> GoogleCloudDialogflowCxV3ToolVersionHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3ListToolVersionsResponseHttpRequest
+                        ): ...
+                        def list_next(
+                            self,
+                            previous_request: GoogleCloudDialogflowCxV3ListToolVersionsResponseHttpRequest,
+                            previous_response: GoogleCloudDialogflowCxV3ListToolVersionsResponse,
+                        ) -> (
+                            GoogleCloudDialogflowCxV3ListToolVersionsResponseHttpRequest
+                            | None
+                        ): ...
+                        def restore(
+                            self,
+                            *,
+                            name: str,
+                            body: GoogleCloudDialogflowCxV3RestoreToolVersionRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> GoogleCloudDialogflowCxV3RestoreToolVersionResponseHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: GoogleCloudDialogflowCxV3Tool = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3ToolHttpRequest: ...
+                    def delete(
+                        self, *, name: str, force: bool = ..., **kwargs: typing.Any
+                    ) -> GoogleProtobufEmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> GoogleCloudDialogflowCxV3ToolHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3ListToolsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: GoogleCloudDialogflowCxV3ListToolsResponseHttpRequest,
+                        previous_response: GoogleCloudDialogflowCxV3ListToolsResponse,
+                    ) -> (
+                        GoogleCloudDialogflowCxV3ListToolsResponseHttpRequest | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: GoogleCloudDialogflowCxV3Tool = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> GoogleCloudDialogflowCxV3ToolHttpRequest: ...
+                    def versions(self) -> VersionsResource: ...
+
+                @typing.type_check_only
                 class TransitionRouteGroupsResource(googleapiclient.discovery.Resource):
                     def create(
                         self,
@@ -1079,8 +1297,10 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 def flows(self) -> FlowsResource: ...
                 def generators(self) -> GeneratorsResource: ...
                 def intents(self) -> IntentsResource: ...
+                def playbooks(self) -> PlaybooksResource: ...
                 def sessions(self) -> SessionsResource: ...
                 def testCases(self) -> TestCasesResource: ...
+                def tools(self) -> ToolsResource: ...
                 def transitionRouteGroups(self) -> TransitionRouteGroupsResource: ...
                 def webhooks(self) -> WebhooksResource: ...
 
@@ -1156,6 +1376,7 @@ class DialogflowResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -1301,6 +1522,14 @@ class GoogleCloudDialogflowCxV3EnvironmentHttpRequest(googleapiclient.http.HttpR
     ) -> GoogleCloudDialogflowCxV3Environment: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ExampleHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3Example: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ExperimentHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1423,6 +1652,16 @@ class GoogleCloudDialogflowCxV3ListEnvironmentsResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3ListEnvironmentsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ListExamplesResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ListExamplesResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ListExperimentsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1473,6 +1712,26 @@ class GoogleCloudDialogflowCxV3ListPagesResponseHttpRequest(
     ) -> GoogleCloudDialogflowCxV3ListPagesResponse: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3ListPlaybookVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ListPlaybookVersionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListPlaybooksResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ListPlaybooksResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3ListSecuritySettingsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1511,6 +1770,26 @@ class GoogleCloudDialogflowCxV3ListTestCasesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3ListTestCasesResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListToolVersionsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ListToolVersionsResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ListToolsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ListToolsResponse: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3ListTransitionRouteGroupsResponseHttpRequest(
@@ -1571,6 +1850,44 @@ class GoogleCloudDialogflowCxV3PageHttpRequest(googleapiclient.http.HttpRequest)
     ) -> GoogleCloudDialogflowCxV3Page: ...
 
 @typing.type_check_only
+class GoogleCloudDialogflowCxV3PlaybookHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3Playbook: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3PlaybookVersionHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3PlaybookVersion: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3RestorePlaybookVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3RestorePlaybookVersionResponse: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3RestoreToolVersionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3RestoreToolVersionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudDialogflowCxV3SecuritySettingsHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1607,6 +1924,22 @@ class GoogleCloudDialogflowCxV3TestCaseResultHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudDialogflowCxV3TestCaseResult: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ToolHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3Tool: ...
+
+@typing.type_check_only
+class GoogleCloudDialogflowCxV3ToolVersionHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudDialogflowCxV3ToolVersion: ...
 
 @typing.type_check_only
 class GoogleCloudDialogflowCxV3TransitionRouteGroupHttpRequest(

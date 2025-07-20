@@ -110,6 +110,7 @@ class AccountIssue(typing_extensions.TypedDict, total=False):
     actions: _list[Action]
     impact: AccountIssueImpact
     prerenderedContent: str
+    prerenderedOutOfCourtDisputeSettlement: str
     title: str
 
 @typing.type_check_only
@@ -222,6 +223,7 @@ class AccountUser(typing_extensions.TypedDict, total=False):
     orderManager: bool
     paymentsAnalyst: bool
     paymentsManager: bool
+    readOnly: bool
     reportingManager: bool
 
 @typing.type_check_only
@@ -1609,6 +1611,7 @@ class Product(typing_extensions.TypedDict, total=False):
     material: str
     maxEnergyEfficiencyClass: str
     maxHandlingTime: str
+    maximumRetailPrice: Price
     minEnergyEfficiencyClass: str
     minHandlingTime: str
     mobileLink: str
@@ -1713,6 +1716,7 @@ class ProductIssue(typing_extensions.TypedDict, total=False):
     actions: _list[Action]
     impact: ProductIssueImpact
     prerenderedContent: str
+    prerenderedOutOfCourtDisputeSettlement: str
     title: str
 
 @typing.type_check_only
@@ -1984,6 +1988,7 @@ class Promotion(typing_extensions.TypedDict, total=False):
         "FREE_SHIPPING_OVERNIGHT",
         "FREE_SHIPPING_TWO_DAY",
     ]
+    customRedemptionRestriction: str
     freeGiftDescription: str
     freeGiftItemId: str
     freeGiftValue: PriceAmount
@@ -1997,6 +2002,7 @@ class Promotion(typing_extensions.TypedDict, total=False):
     limitQuantity: int
     limitValue: PriceAmount
     longTitle: str
+    maxDiscountAmount: PriceAmount
     minimumPurchaseAmount: PriceAmount
     minimumPurchaseQuantity: int
     moneyBudget: PriceAmount
@@ -2023,6 +2029,15 @@ class Promotion(typing_extensions.TypedDict, total=False):
         typing_extensions.Literal[
             "REDEMPTION_CHANNEL_UNSPECIFIED", "IN_STORE", "ONLINE"
         ]
+    ]
+    redemptionRestriction: typing_extensions.Literal[
+        "REDEMPTION_RESTRICTION_UNSPECIFIED",
+        "SUBSCRIBE_AND_SAVE",
+        "FIRST_ORDER",
+        "SIGN_UP_FOR_EMAIL",
+        "SIGN_UP_FOR_TEXT",
+        "FORMS_OF_PAYMENT",
+        "CUSTOM",
     ]
     shippingServiceNames: _list[str]
     storeApplicability: typing_extensions.Literal[

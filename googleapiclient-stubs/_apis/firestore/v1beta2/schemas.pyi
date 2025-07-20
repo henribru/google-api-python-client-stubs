@@ -30,6 +30,26 @@ class GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata(
     startTime: str
 
 @typing.type_check_only
+class GoogleFirestoreAdminV1CloneDatabaseMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    database: str
+    endTime: str
+    operationState: typing_extensions.Literal[
+        "OPERATION_STATE_UNSPECIFIED",
+        "INITIALIZING",
+        "PROCESSING",
+        "CANCELLING",
+        "FINALIZING",
+        "SUCCESSFUL",
+        "FAILED",
+        "CANCELLED",
+    ]
+    pitrSnapshot: GoogleFirestoreAdminV1PitrSnapshot
+    progressPercentage: GoogleFirestoreAdminV1Progress
+    startTime: str
+
+@typing.type_check_only
 class GoogleFirestoreAdminV1CreateDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -38,6 +58,12 @@ class GoogleFirestoreAdminV1CreateDatabaseMetadata(
 class GoogleFirestoreAdminV1DeleteDatabaseMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1PitrSnapshot(typing_extensions.TypedDict, total=False):
+    database: str
+    databaseUid: str
+    snapshotTime: str
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1Progress(typing_extensions.TypedDict, total=False):

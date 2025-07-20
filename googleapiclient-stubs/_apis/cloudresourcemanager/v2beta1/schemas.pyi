@@ -91,11 +91,13 @@ class Expr(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Folder(typing_extensions.TypedDict, total=False):
+    configuredCapabilities: _list[str]
     createTime: str
     displayName: str
     lifecycleState: typing_extensions.Literal[
         "LIFECYCLE_STATE_UNSPECIFIED", "ACTIVE", "DELETE_REQUESTED"
     ]
+    managementProject: str
     name: str
     parent: str
     tags: dict[str, typing.Any]

@@ -88,6 +88,7 @@ class AwsVmDetails(typing_extensions.TypedDict, total=False):
     sourceDescription: str
     sourceId: str
     tags: dict[str, typing.Any]
+    vcpuCount: int
     virtualizationType: typing_extensions.Literal[
         "VM_VIRTUALIZATION_TYPE_UNSPECIFIED", "HVM", "PARAVIRTUAL"
     ]
@@ -251,6 +252,7 @@ class ComputeEngineTargetDefaults(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_BOOT_OPTION_BIOS",
     ]
     computeScheduling: ComputeScheduling
+    diskReplicaZones: _list[str]
     diskType: typing_extensions.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
@@ -292,6 +294,7 @@ class ComputeEngineTargetDetails(typing_extensions.TypedDict, total=False):
         "COMPUTE_ENGINE_BOOT_OPTION_BIOS",
     ]
     computeScheduling: ComputeScheduling
+    diskReplicaZones: _list[str]
     diskType: typing_extensions.Literal[
         "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
         "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
@@ -465,6 +468,15 @@ class Encryption(typing_extensions.TypedDict, total=False):
     kmsKey: str
 
 @typing.type_check_only
+class Expiration(typing_extensions.TypedDict, total=False):
+    expireTime: str
+    extendable: bool
+    extensionCount: int
+
+@typing.type_check_only
+class ExtendMigrationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class FetchInventoryResponse(typing_extensions.TypedDict, total=False):
     awsVms: AwsVmsDetails
     azureVms: AzureVmsDetails
@@ -522,6 +534,9 @@ class ImageImportJob(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ImageImportOsAdaptationParameters(typing_extensions.TypedDict, total=False):
+    bootConversion: typing_extensions.Literal[
+        "BOOT_CONVERSION_UNSPECIFIED", "NONE", "BIOS_TO_EFI"
+    ]
     generalize: bool
     licenseType: typing_extensions.Literal[
         "COMPUTE_ENGINE_LICENSE_TYPE_DEFAULT",
@@ -678,6 +693,7 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
     description: str
     displayName: str
     error: Status
+    expiration: Expiration
     group: str
     labels: dict[str, typing.Any]
     lastReplicationCycle: ReplicationCycle
@@ -700,6 +716,8 @@ class MigratingVm(typing_extensions.TypedDict, total=False):
         "FINALIZING",
         "FINALIZED",
         "ERROR",
+        "EXPIRED",
+        "FINALIZED_EXPIRED",
     ]
     stateTime: str
     targetDefaults: TargetVMDetails
@@ -973,6 +991,7 @@ class VmCapabilities(typing_extensions.TypedDict, total=False):
             "OS_CAPABILITY_UNSPECIFIED",
             "OS_CAPABILITY_NVME_STORAGE_ACCESS",
             "OS_CAPABILITY_GVNIC_NETWORK_INTERFACE",
+            "OS_CAPABILITY_IDPF_NETWORK_INTERFACE",
         ]
     ]
 

@@ -5,6 +5,17 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AllocationOptions(typing_extensions.TypedDict, total=False):
+    allocationStrategy: typing_extensions.Literal[
+        "ALLOCATION_STRATEGY_UNSPECIFIED",
+        "RANDOM",
+        "FIRST_AVAILABLE",
+        "RANDOM_FIRST_N_AVAILABLE",
+        "FIRST_SMALLEST_FITTING",
+    ]
+    firstAvailableRangesLookupSize: int
+
+@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -64,15 +75,17 @@ class Hub(typing_extensions.TypedDict, total=False):
     name: str
     spokes: _list[str]
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING", "FAILED"
     ]
     uniqueId: str
     updateTime: str
 
 @typing.type_check_only
 class InternalRange(typing_extensions.TypedDict, total=False):
+    allocationOptions: AllocationOptions
     createTime: str
     description: str
+    excludeCidrRanges: _list[str]
     immutable: bool
     ipCidrRange: str
     labels: dict[str, typing.Any]
@@ -172,7 +185,7 @@ class Spoke(typing_extensions.TypedDict, total=False):
     linkedVpnTunnels: _list[str]
     name: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING"
+        "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "DELETING", "UPDATING", "FAILED"
     ]
     uniqueId: str
     updateTime: str

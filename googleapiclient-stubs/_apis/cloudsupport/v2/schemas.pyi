@@ -223,16 +223,3 @@ class SearchCaseClassificationsResponse(typing_extensions.TypedDict, total=False
 class SearchCasesResponse(typing_extensions.TypedDict, total=False):
     cases: _list[Case]
     nextPageToken: str
-
-@typing.type_check_only
-class WorkflowOperationMetadata(typing_extensions.TypedDict, total=False):
-    namespace: str
-    operationAction: typing_extensions.Literal[
-        "OPERATION_ACTION_UNSPECIFIED",
-        "CREATE_SUPPORT_ACCOUNT",
-        "UPDATE_SUPPORT_ACCOUNT",
-        "PURCHASE_SUPPORT_ACCOUNT",
-    ]
-    workflowOperationType: typing_extensions.Literal[
-        "UNKNOWN_OPERATION_TYPE", "WORKFLOWS_V1", "WORKFLOWS_V2"
-    ]

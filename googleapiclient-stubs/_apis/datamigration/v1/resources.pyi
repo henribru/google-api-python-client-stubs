@@ -194,6 +194,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                         "DATABASE_ENTITY_VIEW_BASIC",
                         "DATABASE_ENTITY_VIEW_FULL",
                         "DATABASE_ENTITY_VIEW_ROOT_SUMMARY",
+                        "DATABASE_ENTITY_VIEW_FULL_COMPACT",
                     ] = ...,
                     **kwargs: typing.Any,
                 ) -> DescribeDatabaseEntitiesResponseHttpRequest: ...
@@ -496,6 +497,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                     privateConnectionId: str = ...,
                     requestId: str = ...,
                     skipValidation: bool = ...,
+                    validateOnly: bool = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def delete(
@@ -561,6 +563,7 @@ class DatabaseMigrationServiceResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

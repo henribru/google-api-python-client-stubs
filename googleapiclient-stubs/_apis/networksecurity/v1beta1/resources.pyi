@@ -54,6 +54,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddressGroupsResponseHttpRequest: ...
                 def list_next(
@@ -295,6 +296,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListAddressGroupsResponseHttpRequest: ...
                 def list_next(
@@ -467,6 +469,46 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class BackendAuthenticationConfigsResource(
+                googleapiclient.discovery.Resource
+            ):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: BackendAuthenticationConfig = ...,
+                    backendAuthenticationConfigId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, etag: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> BackendAuthenticationConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListBackendAuthenticationConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListBackendAuthenticationConfigsResponseHttpRequest,
+                    previous_response: ListBackendAuthenticationConfigsResponse,
+                ) -> ListBackendAuthenticationConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: BackendAuthenticationConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class ClientTlsPoliciesResource(googleapiclient.discovery.Resource):
@@ -1023,6 +1065,72 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 ) -> ListOperationsResponseHttpRequest | None: ...
 
             @typing.type_check_only
+            class SacAttachmentsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SACAttachment = ...,
+                    requestId: str = ...,
+                    sacAttachmentId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SACAttachmentHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSACAttachmentsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSACAttachmentsResponseHttpRequest,
+                    previous_response: ListSACAttachmentsResponse,
+                ) -> ListSACAttachmentsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class SacRealmsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: SACRealm = ...,
+                    requestId: str = ...,
+                    sacRealmId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> SACRealmHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListSACRealmsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListSACRealmsResponseHttpRequest,
+                    previous_response: ListSACRealmsResponse,
+                ) -> ListSACRealmsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class ServerTlsPoliciesResource(googleapiclient.discovery.Resource):
                 def create(
                     self,
@@ -1051,6 +1159,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListServerTlsPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -1164,6 +1273,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -1177,6 +1287,9 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             def addressGroups(self) -> AddressGroupsResource: ...
             def authorizationPolicies(self) -> AuthorizationPoliciesResource: ...
             def authzPolicies(self) -> AuthzPoliciesResource: ...
+            def backendAuthenticationConfigs(
+                self,
+            ) -> BackendAuthenticationConfigsResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
             def firewallEndpointAssociations(
                 self,
@@ -1199,6 +1312,8 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
             ) -> MirroringEndpointGroupAssociationsResource: ...
             def mirroringEndpointGroups(self) -> MirroringEndpointGroupsResource: ...
             def operations(self) -> OperationsResource: ...
+            def sacAttachments(self) -> SacAttachmentsResource: ...
+            def sacRealms(self) -> SacRealmsResource: ...
             def serverTlsPolicies(self) -> ServerTlsPoliciesResource: ...
             def tlsInspectionPolicies(self) -> TlsInspectionPoliciesResource: ...
             def urlLists(self) -> UrlListsResource: ...
@@ -1243,6 +1358,14 @@ class AuthzPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> AuthzPolicy: ...
+
+@typing.type_check_only
+class BackendAuthenticationConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> BackendAuthenticationConfig: ...
 
 @typing.type_check_only
 class ClientTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1373,6 +1496,16 @@ class ListAuthzPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAuthzPoliciesResponse: ...
+
+@typing.type_check_only
+class ListBackendAuthenticationConfigsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListBackendAuthenticationConfigsResponse: ...
 
 @typing.type_check_only
 class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -1507,6 +1640,22 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListSACAttachmentsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSACAttachmentsResponse: ...
+
+@typing.type_check_only
+class ListSACRealmsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListSACRealmsResponse: ...
+
+@typing.type_check_only
 class ListSecurityProfileGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1593,6 +1742,22 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class SACAttachmentHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SACAttachment: ...
+
+@typing.type_check_only
+class SACRealmHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SACRealm: ...
 
 @typing.type_check_only
 class SecurityProfileHttpRequest(googleapiclient.http.HttpRequest):

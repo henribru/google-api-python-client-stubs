@@ -559,10 +559,6 @@ class ListAppGatewaysResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
-class ShouldThrottleResponse(typing_extensions.TypedDict, total=False):
-    shouldThrottle: bool
-
-@typing.type_check_only
 class Tunnelv1ProtoTunnelerError(typing_extensions.TypedDict, total=False):
     err: str
     retryable: bool

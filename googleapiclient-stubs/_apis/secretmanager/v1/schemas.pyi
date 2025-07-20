@@ -137,6 +137,7 @@ class Secret(typing_extensions.TypedDict, total=False):
     name: str
     replication: Replication
     rotation: Rotation
+    tags: dict[str, typing.Any]
     topics: _list[Topic]
     ttl: str
     versionAliases: dict[str, typing.Any]

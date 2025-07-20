@@ -481,6 +481,7 @@ class GoogleAppsDriveLabelsV2Label(typing_extensions.TypedDict, total=False):
     disableTime: str
     disabler: GoogleAppsDriveLabelsV2UserInfo
     displayHints: GoogleAppsDriveLabelsV2LabelDisplayHints
+    enabledAppSettings: GoogleAppsDriveLabelsV2LabelEnabledAppSettings
     fields: _list[GoogleAppsDriveLabelsV2Field]
     id: str
     labelType: typing_extensions.Literal[
@@ -522,6 +523,18 @@ class GoogleAppsDriveLabelsV2LabelDisplayHints(
     hiddenInSearch: bool
     priority: str
     shownInApply: bool
+
+@typing.type_check_only
+class GoogleAppsDriveLabelsV2LabelEnabledAppSettings(
+    typing_extensions.TypedDict, total=False
+):
+    enabledApps: _list[GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp]
+
+@typing.type_check_only
+class GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp(
+    typing_extensions.TypedDict, total=False
+):
+    app: typing_extensions.Literal["APP_UNSPECIFIED", "DRIVE", "GMAIL"]
 
 @typing.type_check_only
 class GoogleAppsDriveLabelsV2LabelLimits(typing_extensions.TypedDict, total=False):
@@ -652,6 +665,15 @@ class GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest(
     copyMode: typing_extensions.Literal[
         "COPY_MODE_UNSPECIFIED", "DO_NOT_COPY", "ALWAYS_COPY", "COPY_APPLIABLE"
     ]
+    languageCode: str
+    useAdminAccess: bool
+    view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]
+
+@typing.type_check_only
+class GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest(
+    typing_extensions.TypedDict, total=False
+):
+    enabledAppSettings: GoogleAppsDriveLabelsV2LabelEnabledAppSettings
     languageCode: str
     useAdminAccess: bool
     view: typing_extensions.Literal["LABEL_VIEW_BASIC", "LABEL_VIEW_FULL"]

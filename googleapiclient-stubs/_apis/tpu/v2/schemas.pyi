@@ -198,6 +198,7 @@ class Node(typing_extensions.TypedDict, total=False):
     ]
     symptoms: _list[Symptom]
     tags: _list[str]
+    upcomingMaintenance: UpcomingMaintenance
 
 @typing.type_check_only
 class NodeSpec(typing_extensions.TypedDict, total=False):
@@ -338,3 +339,12 @@ class Symptom(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Tpu(typing_extensions.TypedDict, total=False):
     nodeSpec: _list[NodeSpec]
+
+@typing.type_check_only
+class UpcomingMaintenance(typing_extensions.TypedDict, total=False):
+    canReschedule: bool
+    latestWindowStartTime: str
+    maintenanceStatus: typing_extensions.Literal["UNKNOWN", "PENDING", "ONGOING"]
+    type: typing_extensions.Literal["UNKNOWN_TYPE", "SCHEDULED", "UNSCHEDULED"]
+    windowEndTime: str
+    windowStartTime: str

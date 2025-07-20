@@ -264,6 +264,25 @@ class GoogleCloudDataplexV1AssetStatus(typing_extensions.TypedDict, total=False)
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1BusinessGlossaryEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED",
+        "GLOSSARY_CREATE",
+        "GLOSSARY_UPDATE",
+        "GLOSSARY_DELETE",
+        "GLOSSARY_CATEGORY_CREATE",
+        "GLOSSARY_CATEGORY_UPDATE",
+        "GLOSSARY_CATEGORY_DELETE",
+        "GLOSSARY_TERM_CREATE",
+        "GLOSSARY_TERM_UPDATE",
+        "GLOSSARY_TERM_DELETE",
+    ]
+    message: str
+    resource: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1CancelJobRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -341,12 +360,28 @@ class GoogleCloudDataplexV1DataDiscoveryResult(
     typing_extensions.TypedDict, total=False
 ):
     bigqueryPublishing: GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing
+    scanStatistics: GoogleCloudDataplexV1DataDiscoveryResultScanStatistics
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing(
     typing_extensions.TypedDict, total=False
 ):
     dataset: str
+    location: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDiscoveryResultScanStatistics(
+    typing_extensions.TypedDict, total=False
+):
+    dataProcessedBytes: str
+    filesExcluded: int
+    filesetsCreated: int
+    filesetsDeleted: int
+    filesetsUpdated: int
+    scannedFileCount: int
+    tablesCreated: int
+    tablesDeleted: int
+    tablesUpdated: int
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataDiscoverySpec(typing_extensions.TypedDict, total=False):
@@ -360,6 +395,8 @@ class GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig(
     typing_extensions.TypedDict, total=False
 ):
     connection: str
+    location: str
+    project: str
     tableType: typing_extensions.Literal[
         "TABLE_TYPE_UNSPECIFIED", "EXTERNAL", "BIGLAKE"
     ]
@@ -515,6 +552,8 @@ class GoogleCloudDataplexV1DataQualityColumnResult(
     typing_extensions.TypedDict, total=False
 ):
     column: str
+    dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
+    passed: bool
     score: float
 
 @typing.type_check_only
@@ -533,6 +572,7 @@ class GoogleCloudDataplexV1DataQualityDimensionResult(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualityResult(typing_extensions.TypedDict, total=False):
+    catalogPublishingStatus: GoogleCloudDataplexV1DataScanCatalogPublishingStatus
     columns: _list[GoogleCloudDataplexV1DataQualityColumnResult]
     dimensions: _list[GoogleCloudDataplexV1DataQualityDimensionResult]
     passed: bool
@@ -687,6 +727,7 @@ class GoogleCloudDataplexV1DataQualityScanRuleResult(
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataQualitySpec(typing_extensions.TypedDict, total=False):
+    catalogPublishingEnabled: bool
     postScanActions: GoogleCloudDataplexV1DataQualitySpecPostScanActions
     rowFilter: str
     rules: _list[GoogleCloudDataplexV1DataQualityRule]
@@ -768,7 +809,14 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class GoogleCloudDataplexV1DataScanCatalogPublishingStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=False):
+    catalogPublishingStatus: GoogleCloudDataplexV1DataScanCatalogPublishingStatus
     createTime: str
     dataProfile: GoogleCloudDataplexV1DataScanEventDataProfileResult
     dataProfileConfigs: GoogleCloudDataplexV1DataScanEventDataProfileAppliedConfigs
@@ -966,6 +1014,27 @@ class GoogleCloudDataplexV1DiscoveryEventTableDetails(
     ]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1EncryptionConfig(typing_extensions.TypedDict, total=False):
+    createTime: str
+    encryptionState: typing_extensions.Literal[
+        "ENCRYPTION_STATE_UNSPECIFIED", "ENCRYPTING", "COMPLETED", "FAILED"
+    ]
+    etag: str
+    failureDetails: GoogleCloudDataplexV1EncryptionConfigFailureDetails
+    key: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EncryptionConfigFailureDetails(
+    typing_extensions.TypedDict, total=False
+):
+    errorCode: typing_extensions.Literal[
+        "UNKNOWN", "INTERNAL_ERROR", "REQUIRE_USER_ACTION"
+    ]
+    errorMessage: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1Entity(typing_extensions.TypedDict, total=False):
     access: GoogleCloudDataplexV1StorageAccess
     asset: str
@@ -1028,6 +1097,30 @@ class GoogleCloudDataplexV1EntryGroup(typing_extensions.TypedDict, total=False):
     ]
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryLink(typing_extensions.TypedDict, total=False):
+    createTime: str
+    entryLinkType: str
+    entryReferences: _list[GoogleCloudDataplexV1EntryLinkEntryReference]
+    name: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryLinkEntryReference(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    path: str
+    type: typing_extensions.Literal["UNSPECIFIED", "SOURCE", "TARGET"]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1EntryLinkEvent(typing_extensions.TypedDict, total=False):
+    eventType: typing_extensions.Literal[
+        "EVENT_TYPE_UNSPECIFIED", "ENTRY_LINK_CREATE", "ENTRY_LINK_DELETE"
+    ]
+    message: str
+    resource: str
 
 @typing.type_check_only
 class GoogleCloudDataplexV1EntrySource(typing_extensions.TypedDict, total=False):
@@ -1150,6 +1243,41 @@ class GoogleCloudDataplexV1GenerateDataQualityRulesResponse(
     rule: _list[GoogleCloudDataplexV1DataQualityRule]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1Glossary(typing_extensions.TypedDict, total=False):
+    categoryCount: int
+    createTime: str
+    description: str
+    displayName: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    termCount: int
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GlossaryCategory(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    name: str
+    parent: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1GlossaryTerm(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    displayName: str
+    labels: dict[str, typing.Any]
+    name: str
+    parent: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class GoogleCloudDataplexV1GovernanceEvent(typing_extensions.TypedDict, total=False):
     entity: GoogleCloudDataplexV1GovernanceEventEntity
     eventType: typing_extensions.Literal[
@@ -1184,6 +1312,7 @@ class GoogleCloudDataplexV1GovernanceEventEntity(
 class GoogleCloudDataplexV1ImportItem(typing_extensions.TypedDict, total=False):
     aspectKeys: _list[str]
     entry: GoogleCloudDataplexV1Entry
+    entryLink: GoogleCloudDataplexV1EntryLink
     updateMask: str
 
 @typing.type_check_only
@@ -1327,6 +1456,14 @@ class GoogleCloudDataplexV1ListDataTaxonomiesResponse(
     unreachableLocations: _list[str]
 
 @typing.type_check_only
+class GoogleCloudDataplexV1ListEncryptionConfigsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    encryptionConfigs: _list[GoogleCloudDataplexV1EncryptionConfig]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
 class GoogleCloudDataplexV1ListEntitiesResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -1362,6 +1499,30 @@ class GoogleCloudDataplexV1ListEnvironmentsResponse(
 ):
     environments: _list[GoogleCloudDataplexV1Environment]
     nextPageToken: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListGlossariesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    glossaries: _list[GoogleCloudDataplexV1Glossary]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListGlossaryCategoriesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    categories: _list[GoogleCloudDataplexV1GlossaryCategory]
+    nextPageToken: str
+    unreachableLocations: _list[str]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1ListGlossaryTermsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    terms: _list[GoogleCloudDataplexV1GlossaryTerm]
+    unreachableLocations: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1ListJobsResponse(typing_extensions.TypedDict, total=False):
@@ -1410,23 +1571,52 @@ class GoogleCloudDataplexV1ListZonesResponse(typing_extensions.TypedDict, total=
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataJob(typing_extensions.TypedDict, total=False):
     createTime: str
+    exportResult: GoogleCloudDataplexV1MetadataJobExportJobResult
+    exportSpec: GoogleCloudDataplexV1MetadataJobExportJobSpec
     importResult: GoogleCloudDataplexV1MetadataJobImportJobResult
     importSpec: GoogleCloudDataplexV1MetadataJobImportJobSpec
     labels: dict[str, typing.Any]
     name: str
     status: GoogleCloudDataplexV1MetadataJobStatus
-    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IMPORT"]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "IMPORT", "EXPORT"]
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobExportJobResult(
+    typing_extensions.TypedDict, total=False
+):
+    errorMessage: str
+    exportedEntries: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobExportJobSpec(
+    typing_extensions.TypedDict, total=False
+):
+    outputPath: str
+    scope: GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope
+
+@typing.type_check_only
+class GoogleCloudDataplexV1MetadataJobExportJobSpecExportJobScope(
+    typing_extensions.TypedDict, total=False
+):
+    aspectTypes: _list[str]
+    entryGroups: _list[str]
+    entryTypes: _list[str]
+    organizationLevel: bool
+    projects: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataJobImportJobResult(
     typing_extensions.TypedDict, total=False
 ):
     createdEntries: str
+    createdEntryLinks: str
     deletedEntries: str
+    deletedEntryLinks: str
     recreatedEntries: str
     unchangedEntries: str
+    unchangedEntryLinks: str
     updateTime: str
     updatedEntries: str
 
@@ -1435,10 +1625,10 @@ class GoogleCloudDataplexV1MetadataJobImportJobSpec(
     typing_extensions.TypedDict, total=False
 ):
     aspectSyncMode: typing_extensions.Literal[
-        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL"
+        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL", "NONE"
     ]
     entrySyncMode: typing_extensions.Literal[
-        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL"
+        "SYNC_MODE_UNSPECIFIED", "FULL", "INCREMENTAL", "NONE"
     ]
     logLevel: typing_extensions.Literal["LOG_LEVEL_UNSPECIFIED", "DEBUG", "INFO"]
     scope: GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope
@@ -1451,7 +1641,10 @@ class GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope(
 ):
     aspectTypes: _list[str]
     entryGroups: _list[str]
+    entryLinkTypes: _list[str]
     entryTypes: _list[str]
+    glossaries: _list[str]
+    referencedEntryScopes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudDataplexV1MetadataJobStatus(typing_extensions.TypedDict, total=False):

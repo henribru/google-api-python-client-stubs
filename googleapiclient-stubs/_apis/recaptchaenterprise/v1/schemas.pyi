@@ -131,6 +131,13 @@ class GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment(
     version: str
 
 @typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1Bot(typing_extensions.TypedDict, total=False):
+    botType: typing_extensions.Literal[
+        "BOT_TYPE_UNSPECIFIED", "AI_AGENT", "CONTENT_SCRAPER", "SEARCH_INDEXER"
+    ]
+    name: str
+
+@typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ChallengeMetrics(
     typing_extensions.TypedDict, total=False
 ):
@@ -159,6 +166,7 @@ class GoogleCloudRecaptchaenterpriseV1Event(typing_extensions.TypedDict, total=F
     hashedAccountId: str
     headers: _list[str]
     ja3: str
+    ja4: str
     requestedUri: str
     siteKey: str
     token: str
@@ -246,6 +254,9 @@ class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessment(
     cardTestingVerdict: (
         GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdict
     )
+    riskReasons: _list[
+        GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason
+    ]
     stolenInstrumentVerdict: (
         GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict
     )
@@ -262,6 +273,19 @@ class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentCardTestingVerdic
     typing_extensions.TypedDict, total=False
 ):
     risk: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentRiskReason(
+    typing_extensions.TypedDict, total=False
+):
+    reason: typing_extensions.Literal[
+        "REASON_UNSPECIFIED",
+        "HIGH_TRANSACTION_VELOCITY",
+        "EXCESSIVE_ENUMERATION_PATTERN",
+        "SHORT_IDENTITY_HISTORY",
+        "GEOLOCATION_DISCREPANCY",
+        "ASSOCIATED_WITH_FRAUD_CLUSTER",
+    ]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1FraudPreventionAssessmentStolenInstrumentVerdict(
@@ -449,6 +473,7 @@ class GoogleCloudRecaptchaenterpriseV1RiskAnalysis(
         ]
     ]
     score: float
+    verifiedBots: _list[GoogleCloudRecaptchaenterpriseV1Bot]
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1ScoreDistribution(
@@ -647,9 +672,27 @@ class GoogleCloudRecaptchaenterpriseV1WebKeySettings(
     challengeSecurityPreference: typing_extensions.Literal[
         "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED", "USABILITY", "BALANCE", "SECURITY"
     ]
+    challengeSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings
     integrationType: typing_extensions.Literal[
-        "INTEGRATION_TYPE_UNSPECIFIED", "SCORE", "CHECKBOX", "INVISIBLE"
+        "INTEGRATION_TYPE_UNSPECIFIED",
+        "SCORE",
+        "CHECKBOX",
+        "INVISIBLE",
+        "POLICY_BASED_CHALLENGE",
     ]
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings(
+    typing_extensions.TypedDict, total=False
+):
+    scoreThreshold: float
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings(
+    typing_extensions.TypedDict, total=False
+):
+    actionSettings: dict[str, typing.Any]
+    defaultSettings: GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings
 
 @typing.type_check_only
 class GoogleProtobufEmpty(typing_extensions.TypedDict, total=False): ...

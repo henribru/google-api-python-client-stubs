@@ -43,6 +43,13 @@ class BatchResource(googleapiclient.discovery.Resource):
 
                     def tasks(self) -> TasksResource: ...
 
+                def cancel(
+                    self,
+                    *,
+                    name: str,
+                    body: CancelJobRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def create(
                     self,
                     *,
@@ -125,6 +132,7 @@ class BatchResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

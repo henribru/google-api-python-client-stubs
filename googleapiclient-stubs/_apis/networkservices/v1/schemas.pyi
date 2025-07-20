@@ -413,11 +413,13 @@ class ListAuthzExtensionsResponse(typing_extensions.TypedDict, total=False):
 class ListEndpointPoliciesResponse(typing_extensions.TypedDict, total=False):
     endpointPolicies: _list[EndpointPolicy]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGatewayRouteViewsResponse(typing_extensions.TypedDict, total=False):
     gatewayRouteViews: _list[GatewayRouteView]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListGatewaysResponse(typing_extensions.TypedDict, total=False):
@@ -429,11 +431,13 @@ class ListGatewaysResponse(typing_extensions.TypedDict, total=False):
 class ListGrpcRoutesResponse(typing_extensions.TypedDict, total=False):
     grpcRoutes: _list[GrpcRoute]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListHttpRoutesResponse(typing_extensions.TypedDict, total=False):
     httpRoutes: _list[HttpRoute]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLbRouteExtensionsResponse(typing_extensions.TypedDict, total=False):
@@ -456,11 +460,13 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListMeshRouteViewsResponse(typing_extensions.TypedDict, total=False):
     meshRouteViews: _list[MeshRouteView]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListMeshesResponse(typing_extensions.TypedDict, total=False):
     meshes: _list[Mesh]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -471,30 +477,36 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
 class ListServiceBindingsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     serviceBindings: _list[ServiceBinding]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServiceLbPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     serviceLbPolicies: _list[ServiceLbPolicy]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTcpRoutesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tcpRoutes: _list[TcpRoute]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListTlsRoutesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     tlsRoutes: _list[TlsRoute]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListWasmPluginVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
+    unreachable: _list[str]
     wasmPluginVersions: _list[WasmPluginVersion]
 
 @typing.type_check_only
 class ListWasmPluginsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
+    unreachable: _list[str]
     wasmPlugins: _list[WasmPlugin]
 
 @typing.type_check_only
@@ -586,6 +598,7 @@ class ServiceLbPolicy(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
     failoverConfig: ServiceLbPolicyFailoverConfig
+    isolationConfig: ServiceLbPolicyIsolationConfig
     labels: dict[str, typing.Any]
     loadBalancingAlgorithm: typing_extensions.Literal[
         "LOAD_BALANCING_ALGORITHM_UNSPECIFIED",
@@ -604,6 +617,15 @@ class ServiceLbPolicyAutoCapacityDrain(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class ServiceLbPolicyFailoverConfig(typing_extensions.TypedDict, total=False):
     failoverHealthThreshold: int
+
+@typing.type_check_only
+class ServiceLbPolicyIsolationConfig(typing_extensions.TypedDict, total=False):
+    isolationGranularity: typing_extensions.Literal[
+        "ISOLATION_GRANULARITY_UNSPECIFIED", "REGION"
+    ]
+    isolationMode: typing_extensions.Literal[
+        "ISOLATION_MODE_UNSPECIFIED", "NEAREST", "STRICT"
+    ]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

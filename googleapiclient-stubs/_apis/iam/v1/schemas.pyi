@@ -10,8 +10,16 @@ class AccessRestrictions(typing_extensions.TypedDict, total=False):
     disableProgrammaticSignin: bool
 
 @typing.type_check_only
+class AddAttestationRuleRequest(typing_extensions.TypedDict, total=False):
+    attestationRule: AttestationRule
+
+@typing.type_check_only
 class AdminAuditData(typing_extensions.TypedDict, total=False):
     permissionDelta: PermissionDelta
+
+@typing.type_check_only
+class AttestationRule(typing_extensions.TypedDict, total=False):
+    googleCloudResource: str
 
 @typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
@@ -120,7 +128,7 @@ class GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client(
     typing_extensions.TypedDict, total=False
 ):
     attributesType: typing_extensions.Literal[
-        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL"
+        "ATTRIBUTES_TYPE_UNSPECIFIED", "AZURE_AD_GROUPS_MAIL", "AZURE_AD_GROUPS_ID"
     ]
     clientId: str
     clientSecret: GoogleIamAdminV1WorkforcePoolProviderOidcClientSecret
@@ -179,6 +187,28 @@ class GoogleIamAdminV1WorkforcePoolProviderSaml(
     idpMetadataXml: str
 
 @typing.type_check_only
+class InlineCertificateIssuanceConfig(typing_extensions.TypedDict, total=False):
+    caPools: dict[str, typing.Any]
+    keyAlgorithm: typing_extensions.Literal[
+        "KEY_ALGORITHM_UNSPECIFIED",
+        "RSA_2048",
+        "RSA_3072",
+        "RSA_4096",
+        "ECDSA_P256",
+        "ECDSA_P384",
+    ]
+    lifetime: str
+    rotationWindowPercentage: int
+
+@typing.type_check_only
+class InlineTrustConfig(typing_extensions.TypedDict, total=False):
+    additionalTrustBundles: dict[str, typing.Any]
+
+@typing.type_check_only
+class IntermediateCA(typing_extensions.TypedDict, total=False):
+    pemCertificate: str
+
+@typing.type_check_only
 class KeyData(typing_extensions.TypedDict, total=False):
     format: typing_extensions.Literal["KEY_FORMAT_UNSPECIFIED", "RSA_X509_PEM"]
     key: str
@@ -207,6 +237,11 @@ class LintResult(typing_extensions.TypedDict, total=False):
         "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "NOTICE", "INFO", "DEPRECATED"
     ]
     validationUnitName: str
+
+@typing.type_check_only
+class ListAttestationRulesResponse(typing_extensions.TypedDict, total=False):
+    attestationRules: _list[AttestationRule]
+    nextPageToken: str
 
 @typing.type_check_only
 class ListOauthClientCredentialsResponse(typing_extensions.TypedDict, total=False):
@@ -245,6 +280,20 @@ class ListWorkforcePoolProvidersResponse(typing_extensions.TypedDict, total=Fals
 class ListWorkforcePoolsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     workforcePools: _list[WorkforcePool]
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolManagedIdentitiesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadIdentityPoolManagedIdentities: _list[WorkloadIdentityPoolManagedIdentity]
+
+@typing.type_check_only
+class ListWorkloadIdentityPoolNamespacesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    nextPageToken: str
+    workloadIdentityPoolNamespaces: _list[WorkloadIdentityPoolNamespace]
 
 @typing.type_check_only
 class ListWorkloadIdentityPoolProviderKeysResponse(
@@ -315,6 +364,10 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     statusDetail: str
     target: str
     verb: str
+
+@typing.type_check_only
+class OwnerService(typing_extensions.TypedDict, total=False):
+    principalSubject: str
 
 @typing.type_check_only
 class PatchServiceAccountRequest(typing_extensions.TypedDict, total=False):
@@ -389,6 +442,10 @@ class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class RemoveAttestationRuleRequest(typing_extensions.TypedDict, total=False):
+    attestationRule: AttestationRule
+
+@typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
     deleted: bool
     description: str
@@ -449,6 +506,10 @@ class ServiceConfig(typing_extensions.TypedDict, total=False):
     domain: str
 
 @typing.type_check_only
+class SetAttestationRulesRequest(typing_extensions.TypedDict, total=False):
+    attestationRules: _list[AttestationRule]
+
+@typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
@@ -486,6 +547,15 @@ class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
 
 @typing.type_check_only
+class TrustAnchor(typing_extensions.TypedDict, total=False):
+    pemCertificate: str
+
+@typing.type_check_only
+class TrustStore(typing_extensions.TypedDict, total=False):
+    intermediateCas: _list[IntermediateCA]
+    trustAnchors: _list[TrustAnchor]
+
+@typing.type_check_only
 class UndeleteOauthClientRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -514,6 +584,16 @@ class UndeleteWorkforcePoolRequest(typing_extensions.TypedDict, total=False): ..
 
 @typing.type_check_only
 class UndeleteWorkforcePoolSubjectRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UndeleteWorkloadIdentityPoolManagedIdentityRequest(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class UndeleteWorkloadIdentityPoolNamespaceRequest(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class UndeleteWorkloadIdentityPoolProviderKeyRequest(
@@ -549,6 +629,7 @@ class WorkforcePoolProvider(typing_extensions.TypedDict, total=False):
     attributeCondition: str
     attributeMapping: dict[str, typing.Any]
     description: str
+    detailedAuditLogging: bool
     disabled: bool
     displayName: str
     expireTime: str
@@ -574,7 +655,29 @@ class WorkloadIdentityPool(typing_extensions.TypedDict, total=False):
     disabled: bool
     displayName: str
     expireTime: str
+    inlineCertificateIssuanceConfig: InlineCertificateIssuanceConfig
+    inlineTrustConfig: InlineTrustConfig
+    mode: typing_extensions.Literal[
+        "MODE_UNSPECIFIED", "FEDERATION_ONLY", "TRUST_DOMAIN"
+    ]
     name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkloadIdentityPoolManagedIdentity(typing_extensions.TypedDict, total=False):
+    description: str
+    disabled: bool
+    expireTime: str
+    name: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+
+@typing.type_check_only
+class WorkloadIdentityPoolNamespace(typing_extensions.TypedDict, total=False):
+    description: str
+    disabled: bool
+    expireTime: str
+    name: str
+    ownerService: OwnerService
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
 
 @typing.type_check_only
@@ -595,6 +698,7 @@ class WorkloadIdentityPoolProvider(typing_extensions.TypedDict, total=False):
     oidc: Oidc
     saml: Saml
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
+    x509: X509
 
 @typing.type_check_only
 class WorkloadIdentityPoolProviderKey(typing_extensions.TypedDict, total=False):
@@ -603,3 +707,7 @@ class WorkloadIdentityPoolProviderKey(typing_extensions.TypedDict, total=False):
     name: str
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "DELETED"]
     use: typing_extensions.Literal["KEY_USE_UNSPECIFIED", "ENCRYPTION"]
+
+@typing.type_check_only
+class X509(typing_extensions.TypedDict, total=False):
+    trustStore: TrustStore

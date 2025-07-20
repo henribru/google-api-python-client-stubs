@@ -14,7 +14,20 @@ _list = list
 @typing.type_check_only
 class DataPortabilityResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class AccessTypeResource(googleapiclient.discovery.Resource):
+        def check(
+            self, *, body: CheckAccessTypeRequest = ..., **kwargs: typing.Any
+        ) -> CheckAccessTypeResponseHttpRequest: ...
+
+    @typing.type_check_only
     class ArchiveJobsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self,
+            *,
+            name: str,
+            body: CancelPortabilityArchiveRequest = ...,
+            **kwargs: typing.Any,
+        ) -> CancelPortabilityArchiveResponseHttpRequest: ...
         def getPortabilityArchiveState(
             self, *, name: str, **kwargs: typing.Any
         ) -> PortabilityArchiveStateHttpRequest: ...
@@ -50,9 +63,26 @@ class DataPortabilityResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def accessType(self) -> AccessTypeResource: ...
     def archiveJobs(self) -> ArchiveJobsResource: ...
     def authorization(self) -> AuthorizationResource: ...
     def portabilityArchive(self) -> PortabilityArchiveResource: ...
+
+@typing.type_check_only
+class CancelPortabilityArchiveResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CancelPortabilityArchiveResponse: ...
+
+@typing.type_check_only
+class CheckAccessTypeResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckAccessTypeResponse: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):

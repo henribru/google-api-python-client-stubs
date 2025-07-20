@@ -29,7 +29,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         **kwargs: typing.Any,
                     ) -> ExecuteActionResponseHttpRequest: ...
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "ACTION_SCHEMA_VIEW_UNSPECIFIED",
+                            "ACTION_SCHEMA_VIEW_BASIC",
+                            "ACTION_SCHEMA_VIEW_ENRICHED",
+                        ] = ...,
+                        **kwargs: typing.Any,
                     ) -> ActionHttpRequest: ...
                     def list(
                         self,
@@ -82,6 +90,7 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                             pageSize: int = ...,
                             pageToken: str = ...,
                             sortBy: str | _list[str] = ...,
+                            sortOrder: str | _list[str] = ...,
                             **kwargs: typing.Any,
                         ) -> ListEntitiesResponseHttpRequest: ...
                         def list_next(
@@ -102,7 +111,15 @@ class ConnectorsResource(googleapiclient.discovery.Resource):
                         ) -> UpdateEntitiesWithConditionsResponseHttpRequest: ...
 
                     def get(
-                        self, *, name: str, **kwargs: typing.Any
+                        self,
+                        *,
+                        name: str,
+                        view: typing_extensions.Literal[
+                            "ENTITY_TYPE_SCHEMA_VIEW_UNSPECIFIED",
+                            "ENTITY_TYPE_SCHEMA_VIEW_BASIC",
+                            "ENTITY_TYPE_SCHEMA_VIEW_ENRICHED",
+                        ] = ...,
+                        **kwargs: typing.Any,
                     ) -> EntityTypeHttpRequest: ...
                     def list(
                         self,

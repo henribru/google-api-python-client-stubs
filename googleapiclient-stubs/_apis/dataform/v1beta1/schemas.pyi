@@ -5,6 +5,31 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ActionErrorTable(typing_extensions.TypedDict, total=False):
+    retentionDays: int
+    target: Target
+
+@typing.type_check_only
+class ActionIncrementalLoadMode(typing_extensions.TypedDict, total=False):
+    column: str
+
+@typing.type_check_only
+class ActionLoadConfig(typing_extensions.TypedDict, total=False):
+    append: ActionSimpleLoadMode
+    maximum: ActionIncrementalLoadMode
+    replace: ActionSimpleLoadMode
+    unique: ActionIncrementalLoadMode
+
+@typing.type_check_only
+class ActionSimpleLoadMode(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ActionSqlDefinition(typing_extensions.TypedDict, total=False):
+    errorTable: ActionErrorTable
+    loadConfig: ActionLoadConfig
+    query: str
+
+@typing.type_check_only
 class Assertion(typing_extensions.TypedDict, total=False):
     dependencyTargets: _list[Target]
     disabled: bool
@@ -28,8 +53,12 @@ class Binding(typing_extensions.TypedDict, total=False):
 class CancelWorkflowInvocationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CancelWorkflowInvocationResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CodeCompilationConfig(typing_extensions.TypedDict, total=False):
     assertionSchema: str
+    builtinAssertionNamePrefix: str
     databaseSuffix: str
     defaultDatabase: str
     defaultLocation: str
@@ -79,6 +108,9 @@ class CommitWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
     paths: _list[str]
 
 @typing.type_check_only
+class CommitWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CompilationError(typing_extensions.TypedDict, total=False):
     actionTarget: Target
     message: str
@@ -93,6 +125,7 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
     dataEncryptionState: DataEncryptionState
     dataformCoreVersion: str
     gitCommitish: str
+    internalMetadata: str
     name: str
     releaseConfig: str
     resolvedGitCommitSha: str
@@ -102,8 +135,10 @@ class CompilationResult(typing_extensions.TypedDict, total=False):
 class CompilationResultAction(typing_extensions.TypedDict, total=False):
     assertion: Assertion
     canonicalTarget: Target
+    dataPreparation: DataPreparation
     declaration: Declaration
     filePath: str
+    internalMetadata: str
     notebook: Notebook
     operations: Operations
     relation: Relation
@@ -127,6 +162,21 @@ class DataEncryptionState(typing_extensions.TypedDict, total=False):
     kmsKeyVersionName: str
 
 @typing.type_check_only
+class DataPreparation(typing_extensions.TypedDict, total=False):
+    contentsSql: SqlDefinition
+    contentsYaml: str
+    dependencyTargets: _list[Target]
+    disabled: bool
+    tags: _list[str]
+
+@typing.type_check_only
+class DataPreparationAction(typing_extensions.TypedDict, total=False):
+    contentsSql: ActionSqlDefinition
+    contentsYaml: str
+    generatedSql: str
+    jobId: str
+
+@typing.type_check_only
 class Declaration(typing_extensions.TypedDict, total=False):
     relationDescriptor: RelationDescriptor
 
@@ -144,6 +194,11 @@ class DirectorySearchResult(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ErrorTable(typing_extensions.TypedDict, total=False):
+    retentionDays: int
+    target: Target
 
 @typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
@@ -192,6 +247,15 @@ class GitRemoteSettings(typing_extensions.TypedDict, total=False):
         "TOKEN_STATUS_UNSPECIFIED", "NOT_FOUND", "INVALID", "VALID"
     ]
     url: str
+
+@typing.type_check_only
+class IamPolicyOverrideView(typing_extensions.TypedDict, total=False):
+    iamPolicyName: PolicyName
+    isActive: bool
+
+@typing.type_check_only
+class IncrementalLoadMode(typing_extensions.TypedDict, total=False):
+    column: str
 
 @typing.type_check_only
 class IncrementalTableConfig(typing_extensions.TypedDict, total=False):
@@ -264,6 +328,13 @@ class ListWorkspacesResponse(typing_extensions.TypedDict, total=False):
     workspaces: _list[Workspace]
 
 @typing.type_check_only
+class LoadConfig(typing_extensions.TypedDict, total=False):
+    append: SimpleLoadMode
+    maximum: IncrementalLoadMode
+    replace: SimpleLoadMode
+    unique: IncrementalLoadMode
+
+@typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
     displayName: str
     labels: dict[str, typing.Any]
@@ -308,6 +379,7 @@ class NotebookAction(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NotebookRuntimeOptions(typing_extensions.TypedDict, total=False):
+    aiPlatformNotebookRuntimeTemplate: str
     gcsOutputBucket: str
 
 @typing.type_check_only
@@ -336,13 +408,25 @@ class Policy(typing_extensions.TypedDict, total=False):
     version: int
 
 @typing.type_check_only
+class PolicyName(typing_extensions.TypedDict, total=False):
+    id: str
+    region: str
+    type: str
+
+@typing.type_check_only
 class PullGitCommitsRequest(typing_extensions.TypedDict, total=False):
     author: CommitAuthor
     remoteBranch: str
 
 @typing.type_check_only
+class PullGitCommitsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class PushGitCommitsRequest(typing_extensions.TypedDict, total=False):
     remoteBranch: str
+
+@typing.type_check_only
+class PushGitCommitsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class QueryCompilationResultActionsResponse(typing_extensions.TypedDict, total=False):
@@ -409,6 +493,7 @@ class ReleaseConfig(typing_extensions.TypedDict, total=False):
     cronSchedule: str
     disabled: bool
     gitCommitish: str
+    internalMetadata: str
     name: str
     recentScheduledReleaseRecords: _list[ScheduledReleaseRecord]
     releaseCompilationResult: str
@@ -419,8 +504,14 @@ class RemoveDirectoryRequest(typing_extensions.TypedDict, total=False):
     path: str
 
 @typing.type_check_only
+class RemoveDirectoryResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RemoveFileRequest(typing_extensions.TypedDict, total=False):
     path: str
+
+@typing.type_check_only
+class RemoveFileResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Repository(typing_extensions.TypedDict, total=False):
@@ -428,6 +519,7 @@ class Repository(typing_extensions.TypedDict, total=False):
     dataEncryptionState: DataEncryptionState
     displayName: str
     gitRemoteSettings: GitRemoteSettings
+    internalMetadata: str
     kmsKeyName: str
     labels: dict[str, typing.Any]
     name: str
@@ -440,6 +532,9 @@ class Repository(typing_extensions.TypedDict, total=False):
 class ResetWorkspaceChangesRequest(typing_extensions.TypedDict, total=False):
     clean: bool
     paths: _list[str]
+
+@typing.type_check_only
+class ResetWorkspaceChangesResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ScheduledExecutionRecord(typing_extensions.TypedDict, total=False):
@@ -466,6 +561,15 @@ class SearchResult(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
+
+@typing.type_check_only
+class SimpleLoadMode(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SqlDefinition(typing_extensions.TypedDict, total=False):
+    errorTable: ErrorTable
+    load: LoadConfig
+    query: str
 
 @typing.type_check_only
 class SshAuthenticationConfig(typing_extensions.TypedDict, total=False):
@@ -503,6 +607,8 @@ class UncommittedFileChange(typing_extensions.TypedDict, total=False):
 class WorkflowConfig(typing_extensions.TypedDict, total=False):
     createTime: str
     cronSchedule: str
+    disabled: bool
+    internalMetadata: str
     invocationConfig: InvocationConfig
     name: str
     recentScheduledExecutionRecords: _list[ScheduledExecutionRecord]
@@ -514,6 +620,7 @@ class WorkflowConfig(typing_extensions.TypedDict, total=False):
 class WorkflowInvocation(typing_extensions.TypedDict, total=False):
     compilationResult: str
     dataEncryptionState: DataEncryptionState
+    internalMetadata: str
     invocationConfig: InvocationConfig
     invocationTiming: Interval
     name: str
@@ -527,7 +634,9 @@ class WorkflowInvocation(typing_extensions.TypedDict, total=False):
 class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
     bigqueryAction: BigQueryAction
     canonicalTarget: Target
+    dataPreparationAction: DataPreparationAction
     failureReason: str
+    internalMetadata: str
     invocationTiming: Interval
     notebookAction: NotebookAction
     state: typing_extensions.Literal[
@@ -539,6 +648,7 @@ class WorkflowInvocationAction(typing_extensions.TypedDict, total=False):
 class Workspace(typing_extensions.TypedDict, total=False):
     createTime: str
     dataEncryptionState: DataEncryptionState
+    internalMetadata: str
     name: str
 
 @typing.type_check_only

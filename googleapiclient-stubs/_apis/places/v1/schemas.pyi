@@ -148,8 +148,7 @@ class GoogleMapsPlacesV1Circle(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleMapsPlacesV1ContentBlock(typing_extensions.TypedDict, total=False):
     content: GoogleTypeLocalizedText
-    references: GoogleMapsPlacesV1References
-    topic: str
+    referencedPlaces: _list[str]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1ContextualContent(typing_extensions.TypedDict, total=False):
@@ -222,6 +221,7 @@ class GoogleMapsPlacesV1EVChargeOptionsConnectorAggregation(
         "EV_CONNECTOR_TYPE_TESLA",
         "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
         "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+        "EV_CONNECTOR_TYPE_NACS",
     ]
 
 @typing.type_check_only
@@ -277,7 +277,6 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     addressDescriptor: GoogleMapsPlacesV1AddressDescriptor
     adrFormatAddress: str
     allowsDogs: bool
-    areaSummary: GoogleMapsPlacesV1PlaceAreaSummary
     attributions: _list[GoogleMapsPlacesV1PlaceAttribution]
     businessStatus: typing_extensions.Literal[
         "BUSINESS_STATUS_UNSPECIFIED",
@@ -293,6 +292,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     dineIn: bool
     displayName: GoogleTypeLocalizedText
     editorialSummary: GoogleTypeLocalizedText
+    evChargeAmenitySummary: GoogleMapsPlacesV1PlaceEvChargeAmenitySummary
     evChargeOptions: GoogleMapsPlacesV1EVChargeOptions
     formattedAddress: str
     fuelOptions: GoogleMapsPlacesV1FuelOptions
@@ -311,11 +311,13 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     menuForChildren: bool
     name: str
     nationalPhoneNumber: str
+    neighborhoodSummary: GoogleMapsPlacesV1PlaceNeighborhoodSummary
     outdoorSeating: bool
     parkingOptions: GoogleMapsPlacesV1PlaceParkingOptions
     paymentOptions: GoogleMapsPlacesV1PlacePaymentOptions
     photos: _list[GoogleMapsPlacesV1Photo]
     plusCode: GoogleMapsPlacesV1PlacePlusCode
+    postalAddress: GoogleTypePostalAddress
     priceLevel: typing_extensions.Literal[
         "PRICE_LEVEL_UNSPECIFIED",
         "PRICE_LEVEL_FREE",
@@ -333,6 +335,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     regularSecondaryOpeningHours: _list[GoogleMapsPlacesV1PlaceOpeningHours]
     reservable: bool
     restroom: bool
+    reviewSummary: GoogleMapsPlacesV1PlaceReviewSummary
     reviews: _list[GoogleMapsPlacesV1Review]
     servesBeer: bool
     servesBreakfast: bool
@@ -347,6 +350,7 @@ class GoogleMapsPlacesV1Place(typing_extensions.TypedDict, total=False):
     shortFormattedAddress: str
     subDestinations: _list[GoogleMapsPlacesV1PlaceSubDestination]
     takeout: bool
+    timeZone: GoogleTypeTimeZone
     types: _list[str]
     userRatingCount: int
     utcOffsetMinutes: int
@@ -370,11 +374,6 @@ class GoogleMapsPlacesV1PlaceAddressComponent(typing_extensions.TypedDict, total
     types: _list[str]
 
 @typing.type_check_only
-class GoogleMapsPlacesV1PlaceAreaSummary(typing_extensions.TypedDict, total=False):
-    contentBlocks: _list[GoogleMapsPlacesV1ContentBlock]
-    flagContentUri: str
-
-@typing.type_check_only
 class GoogleMapsPlacesV1PlaceAttribution(typing_extensions.TypedDict, total=False):
     provider: str
     providerUri: str
@@ -385,14 +384,23 @@ class GoogleMapsPlacesV1PlaceContainingPlace(typing_extensions.TypedDict, total=
     name: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceEvChargeAmenitySummary(
+    typing_extensions.TypedDict, total=False
+):
+    coffee: GoogleMapsPlacesV1ContentBlock
+    disclosureText: GoogleTypeLocalizedText
+    flagContentUri: str
+    overview: GoogleMapsPlacesV1ContentBlock
+    restaurant: GoogleMapsPlacesV1ContentBlock
+    store: GoogleMapsPlacesV1ContentBlock
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceGenerativeSummary(
     typing_extensions.TypedDict, total=False
 ):
-    description: GoogleTypeLocalizedText
-    descriptionFlagContentUri: str
+    disclosureText: GoogleTypeLocalizedText
     overview: GoogleTypeLocalizedText
     overviewFlagContentUri: str
-    references: GoogleMapsPlacesV1References
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=False):
@@ -401,6 +409,15 @@ class GoogleMapsPlacesV1PlaceGoogleMapsLinks(typing_extensions.TypedDict, total=
     placeUri: str
     reviewsUri: str
     writeAReviewUri: str
+
+@typing.type_check_only
+class GoogleMapsPlacesV1PlaceNeighborhoodSummary(
+    typing_extensions.TypedDict, total=False
+):
+    description: GoogleMapsPlacesV1ContentBlock
+    disclosureText: GoogleTypeLocalizedText
+    flagContentUri: str
+    overview: GoogleMapsPlacesV1ContentBlock
 
 @typing.type_check_only
 class GoogleMapsPlacesV1PlaceOpeningHours(typing_extensions.TypedDict, total=False):
@@ -473,6 +490,13 @@ class GoogleMapsPlacesV1PlacePlusCode(typing_extensions.TypedDict, total=False):
     globalCode: str
 
 @typing.type_check_only
+class GoogleMapsPlacesV1PlaceReviewSummary(typing_extensions.TypedDict, total=False):
+    disclosureText: GoogleTypeLocalizedText
+    flagContentUri: str
+    reviewsUri: str
+    text: GoogleTypeLocalizedText
+
+@typing.type_check_only
 class GoogleMapsPlacesV1PlaceSubDestination(typing_extensions.TypedDict, total=False):
     id: str
     name: str
@@ -485,11 +509,6 @@ class GoogleMapsPlacesV1Polyline(typing_extensions.TypedDict, total=False):
 class GoogleMapsPlacesV1PriceRange(typing_extensions.TypedDict, total=False):
     endPrice: GoogleTypeMoney
     startPrice: GoogleTypeMoney
-
-@typing.type_check_only
-class GoogleMapsPlacesV1References(typing_extensions.TypedDict, total=False):
-    places: _list[str]
-    reviews: _list[GoogleMapsPlacesV1Review]
 
 @typing.type_check_only
 class GoogleMapsPlacesV1Review(typing_extensions.TypedDict, total=False):
@@ -610,6 +629,7 @@ class GoogleMapsPlacesV1SearchTextRequestEVOptions(
             "EV_CONNECTOR_TYPE_TESLA",
             "EV_CONNECTOR_TYPE_UNSPECIFIED_GB_T",
             "EV_CONNECTOR_TYPE_UNSPECIFIED_WALL_OUTLET",
+            "EV_CONNECTOR_TYPE_NACS",
         ]
     ]
     minimumChargingRateKw: float
@@ -662,3 +682,22 @@ class GoogleTypeMoney(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class GoogleTypePostalAddress(typing_extensions.TypedDict, total=False):
+    addressLines: _list[str]
+    administrativeArea: str
+    languageCode: str
+    locality: str
+    organization: str
+    postalCode: str
+    recipients: _list[str]
+    regionCode: str
+    revision: int
+    sortingCode: str
+    sublocality: str
+
+@typing.type_check_only
+class GoogleTypeTimeZone(typing_extensions.TypedDict, total=False):
+    id: str
+    version: str

@@ -67,6 +67,8 @@ class CloudFunction(typing_extensions.TypedDict, total=False):
     network: str
     onDeployUpdatePolicy: OnDeployUpdatePolicy
     runtime: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     secretEnvironmentVariables: _list[SecretEnvVar]
     secretVolumes: _list[SecretVolume]
     serviceAccountEmail: str

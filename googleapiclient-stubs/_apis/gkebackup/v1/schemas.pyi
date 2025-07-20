@@ -38,7 +38,10 @@ class Backup(typing_extensions.TypedDict, total=False):
     resourceCount: int
     retainDays: int
     retainExpireTime: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     selectedApplications: NamespacedNames
+    selectedNamespaceLabels: ResourceLabels
     selectedNamespaces: Namespaces
     sizeBytes: str
     state: typing_extensions.Literal[
@@ -55,6 +58,18 @@ class Backup(typing_extensions.TypedDict, total=False):
     volumeCount: int
 
 @typing.type_check_only
+class BackupChannel(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    destinationProject: str
+    destinationProjectId: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class BackupConfig(typing_extensions.TypedDict, total=False):
     allNamespaces: bool
     encryptionKey: EncryptionKey
@@ -62,10 +77,21 @@ class BackupConfig(typing_extensions.TypedDict, total=False):
     includeVolumeData: bool
     permissiveMode: bool
     selectedApplications: NamespacedNames
+    selectedNamespaceLabels: ResourceLabels
+    selectedNamespaces: Namespaces
+
+@typing.type_check_only
+class BackupConfigDetails(typing_extensions.TypedDict, total=False):
+    allNamespaces: bool
+    encryptionKey: EncryptionKey
+    includeSecrets: bool
+    includeVolumeData: bool
+    selectedApplications: NamespacedNames
     selectedNamespaces: Namespaces
 
 @typing.type_check_only
 class BackupPlan(typing_extensions.TypedDict, total=False):
+    backupChannel: str
     backupConfig: BackupConfig
     backupSchedule: Schedule
     cluster: str
@@ -74,6 +100,7 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     description: str
     etag: str
     labels: dict[str, typing.Any]
+    lastSuccessfulBackupTime: str
     name: str
     protectedPodCount: int
     retentionPolicy: RetentionPolicy
@@ -91,6 +118,36 @@ class BackupPlan(typing_extensions.TypedDict, total=False):
     stateReason: str
     uid: str
     updateTime: str
+
+@typing.type_check_only
+class BackupPlanBinding(typing_extensions.TypedDict, total=False):
+    backupPlan: str
+    backupPlanDetails: BackupPlanDetails
+    cluster: str
+    createTime: str
+    etag: str
+    name: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
+class BackupPlanDetails(typing_extensions.TypedDict, total=False):
+    backupConfigDetails: BackupConfigDetails
+    lastSuccessfulBackup: str
+    lastSuccessfulBackupTime: str
+    nextScheduledBackupTime: str
+    protectedPodCount: int
+    retentionPolicyDetails: RetentionPolicyDetails
+    rpoRiskLevel: int
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CLUSTER_PENDING",
+        "PROVISIONING",
+        "READY",
+        "FAILED",
+        "DEACTIVATED",
+        "DELETING",
+    ]
 
 @typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
@@ -200,6 +257,23 @@ class GroupKindDependency(typing_extensions.TypedDict, total=False):
     satisfying: GroupKind
 
 @typing.type_check_only
+class Label(typing_extensions.TypedDict, total=False):
+    key: str
+    value: str
+
+@typing.type_check_only
+class ListBackupChannelsResponse(typing_extensions.TypedDict, total=False):
+    backupChannels: _list[BackupChannel]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListBackupPlanBindingsResponse(typing_extensions.TypedDict, total=False):
+    backupPlanBindings: _list[BackupPlanBinding]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListBackupPlansResponse(typing_extensions.TypedDict, total=False):
     backupPlans: _list[BackupPlan]
     nextPageToken: str
@@ -209,11 +283,24 @@ class ListBackupPlansResponse(typing_extensions.TypedDict, total=False):
 class ListBackupsResponse(typing_extensions.TypedDict, total=False):
     backups: _list[Backup]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
+
+@typing.type_check_only
+class ListRestoreChannelsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    restoreChannels: _list[RestoreChannel]
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListRestorePlanBindingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    restorePlanBindings: _list[RestorePlanBinding]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRestorePlansResponse(typing_extensions.TypedDict, total=False):
@@ -282,6 +369,10 @@ class ResourceFilter(typing_extensions.TypedDict, total=False):
     namespaces: _list[str]
 
 @typing.type_check_only
+class ResourceLabels(typing_extensions.TypedDict, total=False):
+    resourceLabels: _list[Label]
+
+@typing.type_check_only
 class ResourceSelector(typing_extensions.TypedDict, total=False):
     groupKind: GroupKind
     labels: dict[str, typing.Any]
@@ -317,6 +408,18 @@ class Restore(typing_extensions.TypedDict, total=False):
     updateTime: str
     volumeDataRestorePolicyOverrides: _list[VolumeDataRestorePolicyOverride]
     volumesRestoredCount: int
+
+@typing.type_check_only
+class RestoreChannel(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    destinationProject: str
+    destinationProjectId: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    uid: str
+    updateTime: str
 
 @typing.type_check_only
 class RestoreConfig(typing_extensions.TypedDict, total=False):
@@ -363,6 +466,7 @@ class RestorePlan(typing_extensions.TypedDict, total=False):
     etag: str
     labels: dict[str, typing.Any]
     name: str
+    restoreChannel: str
     restoreConfig: RestoreConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CLUSTER_PENDING", "READY", "FAILED", "DELETING"
@@ -372,10 +476,25 @@ class RestorePlan(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class RestorePlanBinding(typing_extensions.TypedDict, total=False):
+    backupPlan: str
+    createTime: str
+    etag: str
+    name: str
+    restorePlan: str
+    uid: str
+    updateTime: str
+
+@typing.type_check_only
 class RetentionPolicy(typing_extensions.TypedDict, total=False):
     backupDeleteLockDays: int
     backupRetainDays: int
     locked: bool
+
+@typing.type_check_only
+class RetentionPolicyDetails(typing_extensions.TypedDict, total=False):
+    backupDeleteLockDays: int
+    backupRetainDays: int
 
 @typing.type_check_only
 class RpoConfig(typing_extensions.TypedDict, total=False):
@@ -442,6 +561,8 @@ class VolumeBackup(typing_extensions.TypedDict, total=False):
         "VOLUME_BACKUP_FORMAT_UNSPECIFIED", "GCE_PERSISTENT_DISK"
     ]
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     sourcePvc: NamespacedName
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -451,6 +572,7 @@ class VolumeBackup(typing_extensions.TypedDict, total=False):
         "SUCCEEDED",
         "FAILED",
         "DELETING",
+        "CLEANED_UP",
     ]
     stateMessage: str
     storageBytes: str

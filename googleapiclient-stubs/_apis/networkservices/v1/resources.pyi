@@ -153,6 +153,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListEndpointPoliciesResponseHttpRequest: ...
                 def list_next(
@@ -249,6 +250,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListGrpcRoutesResponseHttpRequest: ...
                 def list_next(
@@ -287,6 +289,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListHttpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -428,6 +431,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListMeshesResponseHttpRequest: ...
                 def list_next(
@@ -504,6 +508,14 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     previous_request: ListServiceBindingsResponseHttpRequest,
                     previous_response: ListServiceBindingsResponse,
                 ) -> ListServiceBindingsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: ServiceBinding = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             @typing.type_check_only
             class ServiceLbPoliciesResource(googleapiclient.discovery.Resource):
@@ -565,6 +577,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListTcpRoutesResponseHttpRequest: ...
                 def list_next(
@@ -603,6 +616,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                     parent: str,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListTlsRoutesResponseHttpRequest: ...
                 def list_next(
@@ -703,6 +717,7 @@ class NetworkServicesResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,

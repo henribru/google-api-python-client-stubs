@@ -36,6 +36,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "FIREWALL_CONFIG_NOT_FOUND",
         "ROUTE_CONFIG_NOT_FOUND",
         "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
+        "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_ENDPOINT",
         "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
         "SOURCE_REDIS_CLUSTER_UNSUPPORTED",
         "SOURCE_REDIS_INSTANCE_UNSUPPORTED",
@@ -43,6 +44,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "NON_ROUTABLE_IP_ADDRESS",
         "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
         "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
+        "NO_SERVERLESS_IP_RANGES",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -93,6 +95,7 @@ class CloudFunctionInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CloudRunRevisionEndpoint(typing_extensions.TypedDict, total=False):
+    serviceUri: str
     uri: str
 
 @typing.type_check_only
@@ -131,6 +134,14 @@ class ConnectivityTest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeliverInfo(typing_extensions.TypedDict, total=False):
+    googleServiceType: typing_extensions.Literal[
+        "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+        "IAP",
+        "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+        "CLOUD_DNS",
+        "PRIVATE_GOOGLE_ACCESS",
+        "SERVERLESS_VPC_ACCESS",
+    ]
     ipAddress: str
     pscGoogleApiTarget: str
     resourceUri: str
@@ -157,6 +168,14 @@ class DeliverInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DirectVpcEgressConnectionInfo(typing_extensions.TypedDict, total=False):
+    networkUri: str
+    region: str
+    selectedIpAddress: str
+    selectedIpRange: str
+    subnetworkUri: str
+
+@typing.type_check_only
 class DropInfo(typing_extensions.TypedDict, total=False):
     cause: typing_extensions.Literal[
         "CAUSE_UNSPECIFIED",
@@ -174,6 +193,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
         "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
         "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+        "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS",
         "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
         "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
         "PRIVATE_TRAFFIC_TO_INTERNET",
@@ -184,6 +204,7 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "FORWARDING_RULE_MISMATCH",
         "FORWARDING_RULE_NO_INSTANCES",
         "FIREWALL_BLOCKING_LOAD_BALANCER_BACKEND_HEALTH_CHECK",
+        "INGRESS_FIREWALL_TAGS_UNSUPPORTED_BY_DIRECT_VPC_EGRESS",
         "INSTANCE_NOT_RUNNING",
         "GKE_CLUSTER_NOT_RUNNING",
         "CLOUD_SQL_INSTANCE_NOT_RUNNING",
@@ -243,6 +264,14 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
         "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
         "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED",
+        "PSC_PORT_MAPPING_PORT_MISMATCH",
+        "PSC_PORT_MAPPING_WITHOUT_PSC_CONNECTION_UNSUPPORTED",
+        "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
+        "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
+        "NO_MATCHING_NAT64_GATEWAY",
+        "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
+        "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION",
+        "CLOUD_NAT_PROTOCOL_UNSUPPORTED",
     ]
     destinationIp: str
     region: str
@@ -334,6 +363,7 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     ]
     networkUri: str
     policy: str
+    policyPriority: int
     policyUri: str
     priority: int
     targetServiceAccounts: _list[str]
@@ -355,6 +385,7 @@ class ForwardInfo(typing_extensions.TypedDict, total=False):
         "ANOTHER_PROJECT",
         "NCC_HUB",
         "ROUTER_APPLIANCE",
+        "SECURE_WEB_PROXY_GATEWAY",
     ]
 
 @typing.type_check_only
@@ -389,8 +420,19 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
         "GOOGLE_API",
         "GOOGLE_API_PSC",
         "GOOGLE_API_VPC_SC",
+        "SERVERLESS_VPC_ACCESS",
     ]
     sourceIp: str
+
+@typing.type_check_only
+class Host(typing_extensions.TypedDict, total=False):
+    cloudInstanceId: str
+    cloudProjectId: str
+    cloudProvider: str
+    cloudRegion: str
+    cloudVpcId: str
+    cloudZone: str
+    os: str
 
 @typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
@@ -401,7 +443,9 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     networkTags: _list[str]
     networkUri: str
     pscNetworkAttachmentUri: str
+    running: bool
     serviceAccount: str
+    status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "NOT_RUNNING"]
     uri: str
 
 @typing.type_check_only
@@ -425,6 +469,21 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListMonitoringPointsResponse(typing_extensions.TypedDict, total=False):
+    monitoringPoints: _list[MonitoringPoint]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNetworkMonitoringProvidersResponse(typing_extensions.TypedDict, total=False):
+    networkMonitoringProviders: _list[NetworkMonitoringProvider]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListNetworkPathsResponse(typing_extensions.TypedDict, total=False):
+    networkPaths: _list[NetworkPath]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
@@ -434,6 +493,11 @@ class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     unreachable: _list[str]
     vpcFlowLogsConfigs: _list[VpcFlowLogsConfig]
+
+@typing.type_check_only
+class ListWebPathsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    webPaths: _list[WebPath]
 
 @typing.type_check_only
 class LoadBalancerBackend(typing_extensions.TypedDict, total=False):
@@ -490,6 +554,33 @@ class Location(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class MonitoringPoint(typing_extensions.TypedDict, total=False):
+    autoGeoLocationEnabled: bool
+    connectionStatus: typing_extensions.Literal[
+        "CONNECTION_STATUS_UNSPECIFIED", "ONLINE", "OFFLINE"
+    ]
+    createTime: str
+    displayName: str
+    errors: _list[
+        typing_extensions.Literal[
+            "ERROR_CODE_UNSPECIFIED", "NTP_ERROR", "UPGRADE_ERROR", "DOWNLOAD_FAILED"
+        ]
+    ]
+    geoLocation: str
+    host: Host
+    hostname: str
+    name: str
+    networkInterfaces: _list[NetworkInterface]
+    originatingIp: str
+    providerTags: _list[ProviderTag]
+    type: str
+    updateTime: str
+    upgradeType: typing_extensions.Literal[
+        "UPGRADE_TYPE_UNSPECIFIED", "MANUAL", "MANAGED", "SCHEDULED", "AUTO", "EXTERNAL"
+    ]
+    version: str
+
+@typing.type_check_only
 class NatInfo(typing_extensions.TypedDict, total=False):
     natGatewayName: str
     networkUri: str
@@ -518,6 +609,59 @@ class NetworkInfo(typing_extensions.TypedDict, total=False):
     matchedSubnetUri: str
     region: str
     uri: str
+
+@typing.type_check_only
+class NetworkInterface(typing_extensions.TypedDict, total=False):
+    adapterDescription: str
+    cidr: str
+    interfaceName: str
+    ipAddress: str
+    macAddress: str
+    speed: str
+    vlanId: str
+
+@typing.type_check_only
+class NetworkMonitoringProvider(typing_extensions.TypedDict, total=False):
+    createTime: str
+    name: str
+    providerType: typing_extensions.Literal["PROVIDER_TYPE_UNSPECIFIED", "EXTERNAL"]
+    providerUri: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTIVATING",
+        "ACTIVE",
+        "SUSPENDING",
+        "SUSPENDED",
+        "DELETING",
+        "DELETED",
+    ]
+    updateTime: str
+
+@typing.type_check_only
+class NetworkPath(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destination: str
+    destinationGeoLocation: str
+    displayName: str
+    dualEnded: bool
+    monitoringEnabled: bool
+    monitoringPolicyDisplayName: str
+    monitoringPolicyId: str
+    monitoringStatus: typing_extensions.Literal[
+        "MONITORING_STATUS_UNSPECIFIED",
+        "MONITORING",
+        "POLICY_MISMATCH",
+        "MONITORING_POINT_OFFLINE",
+        "DISABLED",
+    ]
+    name: str
+    networkProtocol: typing_extensions.Literal[
+        "NETWORK_PROTOCOL_UNSPECIFIED", "ICMP", "UDP", "TCP"
+    ]
+    providerTags: _list[ProviderTag]
+    providerUiUri: str
+    sourceMonitoringPointId: str
+    updateTime: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -550,8 +694,10 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
         "PROBING_ABORT_CAUSE_UNSPECIFIED", "PERMISSION_DENIED", "NO_SOURCE_LOCATION"
     ]
     destinationEgressLocation: EdgeLocation
+    edgeResponses: _list[SingleEdgeResponse]
     endpointInfo: EndpointInfo
     error: Status
+    probedAllDevices: bool
     probingLatency: LatencyDistribution
     result: typing_extensions.Literal[
         "PROBING_RESULT_UNSPECIFIED",
@@ -563,6 +709,19 @@ class ProbingDetails(typing_extensions.TypedDict, total=False):
     sentProbeCount: int
     successfulProbeCount: int
     verifyTime: str
+
+@typing.type_check_only
+class ProviderTag(typing_extensions.TypedDict, total=False):
+    category: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "NETWORK_PATH",
+        "PATH_TEMPLATE",
+        "WEB_PATH",
+        "MONITORING_POLICY",
+        "MONITORING_POINT",
+    ]
+    value: str
 
 @typing.type_check_only
 class ProxyConnectionInfo(typing_extensions.TypedDict, total=False):
@@ -636,6 +795,7 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
         "NEXT_HOP_ILB",
         "NEXT_HOP_ROUTER_APPLIANCE",
         "NEXT_HOP_NCC_HUB",
+        "SECURE_WEB_PROXY_GATEWAY",
     ]
     nextHopUri: str
     originatingRouteDisplayName: str
@@ -662,6 +822,10 @@ class RouteInfo(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class ServerlessExternalConnectionInfo(typing_extensions.TypedDict, total=False):
+    selectedIpAddress: str
+
+@typing.type_check_only
 class ServerlessNegInfo(typing_extensions.TypedDict, total=False):
     negUri: str
 
@@ -669,6 +833,21 @@ class ServerlessNegInfo(typing_extensions.TypedDict, total=False):
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     policy: Policy
     updateMask: str
+
+@typing.type_check_only
+class SingleEdgeResponse(typing_extensions.TypedDict, total=False):
+    destinationEgressLocation: EdgeLocation
+    destinationRouter: str
+    probingLatency: LatencyDistribution
+    result: typing_extensions.Literal[
+        "PROBING_RESULT_UNSPECIFIED",
+        "REACHABLE",
+        "UNREACHABLE",
+        "REACHABILITY_INCONSISTENT",
+        "UNDETERMINED",
+    ]
+    sentProbeCount: int
+    successfulProbeCount: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -686,6 +865,7 @@ class Step(typing_extensions.TypedDict, total=False):
     cloudSqlInstance: CloudSQLInstanceInfo
     deliver: DeliverInfo
     description: str
+    directVpcEgressConnection: DirectVpcEgressConnectionInfo
     drop: DropInfo
     endpoint: EndpointInfo
     firewall: FirewallInfo
@@ -703,6 +883,7 @@ class Step(typing_extensions.TypedDict, total=False):
     redisCluster: RedisClusterInfo
     redisInstance: RedisInstanceInfo
     route: RouteInfo
+    serverlessExternalConnection: ServerlessExternalConnectionInfo
     serverlessNeg: ServerlessNegInfo
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -732,6 +913,8 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_VPN_GATEWAY",
         "ARRIVE_AT_VPN_TUNNEL",
         "ARRIVE_AT_VPC_CONNECTOR",
+        "DIRECT_VPC_EGRESS_CONNECTION",
+        "SERVERLESS_EXTERNAL_CONNECTION",
         "NAT",
         "PROXY_CONNECTION",
         "DELIVER",
@@ -825,3 +1008,29 @@ class VpnTunnelInfo(typing_extensions.TypedDict, total=False):
     sourceGateway: str
     sourceGatewayIp: str
     uri: str
+
+@typing.type_check_only
+class WebPath(typing_extensions.TypedDict, total=False):
+    createTime: str
+    destination: str
+    displayName: str
+    interval: str
+    monitoringEnabled: bool
+    monitoringPolicyDisplayName: str
+    monitoringPolicyId: str
+    monitoringStatus: typing_extensions.Literal[
+        "MONITORING_STATUS_UNSPECIFIED",
+        "MONITORING",
+        "POLICY_MISMATCH",
+        "MONITORING_POINT_OFFLINE",
+        "DISABLED",
+    ]
+    name: str
+    providerTags: _list[ProviderTag]
+    providerUiUri: str
+    relatedNetworkPathId: str
+    sourceMonitoringPointId: str
+    updateTime: str
+    workflowType: typing_extensions.Literal[
+        "WORKFLOW_TYPE_UNSPECIFIED", "BROWSER", "HTTP"
+    ]

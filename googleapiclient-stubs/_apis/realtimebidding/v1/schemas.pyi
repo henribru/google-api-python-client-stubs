@@ -212,7 +212,9 @@ class CreativeServingDecision(typing_extensions.TypedDict, total=False):
     ]
     detectedCategories: _list[str]
     detectedCategoriesTaxonomy: typing_extensions.Literal[
-        "AD_CATEGORY_TAXONOMY_UNSPECIFIED", "IAB_CONTENT_1_0"
+        "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
+        "GOOGLE_AD_CATEGORY_TAXONOMY",
+        "IAB_CONTENT_1_0",
     ]
     detectedClickThroughUrls: _list[str]
     detectedDomains: _list[str]

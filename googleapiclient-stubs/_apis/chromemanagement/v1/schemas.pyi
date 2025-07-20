@@ -137,7 +137,7 @@ class GoogleChromeManagementV1BootPerformanceReport(
 @typing.type_check_only
 class GoogleChromeManagementV1BrowserVersion(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
-        "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE", "LTS"
+        "RELEASE_CHANNEL_UNSPECIFIED", "CANARY", "DEV", "BETA", "STABLE"
     ]
     count: str
     deviceOsVersion: str
@@ -161,6 +161,7 @@ class GoogleChromeManagementV1ChromeAppInfo(typing_extensions.TypedDict, total=F
     isKioskOnly: bool
     isTheme: bool
     kioskEnabled: bool
+    manifestVersion: str
     minUserCount: int
     permissions: _list[GoogleChromeManagementV1ChromeAppPermission]
     siteAccess: _list[GoogleChromeManagementV1ChromeAppSiteAccess]
@@ -377,19 +378,23 @@ class GoogleChromeManagementV1DisplayDevice(typing_extensions.TypedDict, total=F
     displayHeightMm: int
     displayName: str
     displayWidthMm: int
+    edidVersion: str
     internal: bool
     manufactureYear: int
     manufacturerId: str
     modelId: int
+    serialNumber: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1DisplayInfo(typing_extensions.TypedDict, total=False):
     deviceId: str
     displayName: str
+    edidVersion: str
     isInternal: bool
     refreshRate: int
     resolutionHeight: int
     resolutionWidth: int
+    serialNumber: int
 
 @typing.type_check_only
 class GoogleChromeManagementV1EnumeratePrintJobsResponse(
@@ -451,7 +456,7 @@ class GoogleChromeManagementV1HeartbeatStatusReport(
 ):
     reportTime: str
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "UNKNOWN", "ONLINE", "OFFLINE"
+        "STATE_UNSPECIFIED", "UNKNOWN", "ONLINE", "OFFLINE", "DEVICE_OUTDATED"
     ]
 
 @typing.type_check_only
@@ -688,6 +693,7 @@ class GoogleChromeManagementV1RiskAssessmentEntry(
         "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
         "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
         "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
+        "RISK_ASSESSMENT_PROVIDER_LAYERX",
     ]
     riskAssessment: GoogleChromeManagementV1RiskAssessment
     riskLevel: typing_extensions.Literal[
@@ -948,6 +954,7 @@ class GoogleChromeManagementV1TelemetryEvent(typing_extensions.TypedDict, total=
     networkStateChangeEvent: (
         GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent
     )
+    osCrashEvent: GoogleChromeManagementV1TelemetryOsCrashEvent
     reportTime: str
     usbPeripheralsEvent: GoogleChromeManagementV1TelemetryUsbPeripheralsEvent
     user: GoogleChromeManagementV1TelemetryUserInfo
@@ -1028,6 +1035,22 @@ class GoogleChromeManagementV1TelemetryNotificationFilter(
     )
     userEmail: str
     userOrgUnitId: str
+
+@typing.type_check_only
+class GoogleChromeManagementV1TelemetryOsCrashEvent(
+    typing_extensions.TypedDict, total=False
+):
+    crashId: str
+    crashType: typing_extensions.Literal[
+        "CRASH_TYPE_UNSPECIFIED", "CRASH_TYPE_KERNEL", "CRASH_TYPE_EMBEDDED_CONTROLLER"
+    ]
+    sessionType: typing_extensions.Literal[
+        "SESSION_TYPE_UNSPECIFIED",
+        "SESSION_TYPE_SIGNED_IN_USER",
+        "SESSION_TYPE_KIOSK",
+        "SESSION_TYPE_MANAGED_GUEST",
+        "SESSION_TYPE_ACTIVE_DIRECTORY",
+    ]
 
 @typing.type_check_only
 class GoogleChromeManagementV1TelemetryUsbPeripheralsEvent(
@@ -1150,20 +1173,18 @@ class GoogleChromeManagementVersionsV1AttestationCredential(
 class GoogleChromeManagementVersionsV1CertificateProvisioningProcess(
     typing_extensions.TypedDict, total=False
 ):
-    caConnectionAdapterConfigReference: str
     chromeOsDevice: GoogleChromeManagementVersionsV1ChromeOsDevice
     chromeOsUserSession: GoogleChromeManagementVersionsV1ChromeOsUserSession
     failureMessage: str
+    genericCaConnection: GoogleChromeManagementVersionsV1GenericCaConnection
+    genericProfile: GoogleChromeManagementVersionsV1GenericProfile
     issuedCertificate: str
     name: str
-    profileAdapterConfigReference: str
     provisioningProfileId: str
     signData: str
     signature: str
     signatureAlgorithm: typing_extensions.Literal[
-        "SIGNATURE_ALGORITHM_UNSPECIFIED",
-        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
-        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
+        "SIGNATURE_ALGORITHM_UNSPECIFIED", "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
     ]
     startTime: str
     subjectPublicKeyInfo: str
@@ -1211,6 +1232,32 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfile(
     userId: str
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand(
+    typing_extensions.TypedDict, total=False
+):
+    commandResult: (
+        GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult
+    )
+    commandState: typing_extensions.Literal[
+        "COMMAND_STATE_UNSPECIFIED", "PENDING", "EXPIRED", "EXECUTED_BY_CLIENT"
+    ]
+    commandType: str
+    issueTime: str
+    name: str
+    payload: dict[str, typing.Any]
+    validDuration: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult(
+    typing_extensions.TypedDict, total=False
+):
+    clientExecutionTime: str
+    resultCode: str
+    resultType: typing_extensions.Literal[
+        "COMMAND_RESULT_TYPE_UNSPECIFIED", "IGNORED", "FAILURE", "SUCCESS"
+    ]
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeOsDevice(
     typing_extensions.TypedDict, total=False
 ):
@@ -1233,6 +1280,28 @@ class GoogleChromeManagementVersionsV1DeviceInfo(
     deviceType: typing_extensions.Literal["DEVICE_TYPE_UNSPECIFIED", "CHROME_BROWSER"]
     hostname: str
     machine: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1GenericCaConnection(
+    typing_extensions.TypedDict, total=False
+):
+    caConnectionAdapterConfigReference: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1GenericProfile(
+    typing_extensions.TypedDict, total=False
+):
+    profileAdapterConfigReference: str
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    chromeBrowserProfileCommands: _list[
+        GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand
+    ]
+    nextPageToken: str
+    totalSize: str
 
 @typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse(
@@ -1331,57 +1400,6 @@ class GoogleChromeManagementVersionsV1SignDataResponse(
 ):
     certificateProvisioningProcess: (
         GoogleChromeManagementVersionsV1CertificateProvisioningProcess
-    )
-
-@typing.type_check_only
-class GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess(
-    typing_extensions.TypedDict, total=False
-):
-    caConnectionAdapterConfigReference: str
-    chromeOsDevice: GoogleChromeManagementVersionsV1alpha1ChromeOsDevice
-    chromeOsUserSession: GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession
-    failureMessage: str
-    issuedCertificate: str
-    name: str
-    profileAdapterConfigReference: str
-    provisioningProfileId: str
-    signData: str
-    signature: str
-    signatureAlgorithm: typing_extensions.Literal[
-        "SIGNATURE_ALGORITHM_UNSPECIFIED",
-        "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
-        "SIGNATURE_ALGORITHM_ECDSA_SHA256",
-    ]
-    startTime: str
-    subjectPublicKeyInfo: str
-
-@typing.type_check_only
-class GoogleChromeManagementVersionsV1alpha1ChromeOsDevice(
-    typing_extensions.TypedDict, total=False
-):
-    deviceDirectoryApiId: str
-    serialNumber: str
-
-@typing.type_check_only
-class GoogleChromeManagementVersionsV1alpha1ChromeOsUserSession(
-    typing_extensions.TypedDict, total=False
-):
-    chromeOsDevice: GoogleChromeManagementVersionsV1alpha1ChromeOsDevice
-    userDirectoryApiId: str
-    userPrimaryEmail: str
-
-@typing.type_check_only
-class GoogleChromeManagementVersionsV1alpha1SignDataMetadata(
-    typing_extensions.TypedDict, total=False
-):
-    startTime: str
-
-@typing.type_check_only
-class GoogleChromeManagementVersionsV1alpha1SignDataResponse(
-    typing_extensions.TypedDict, total=False
-):
-    certificateProvisioningProcess: (
-        GoogleChromeManagementVersionsV1alpha1CertificateProvisioningProcess
     )
 
 @typing.type_check_only

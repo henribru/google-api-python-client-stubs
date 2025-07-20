@@ -774,6 +774,9 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         ) -> CourseHttpRequest: ...
         def delete(self, *, id: str, **kwargs: typing.Any) -> EmptyHttpRequest: ...
         def get(self, *, id: str, **kwargs: typing.Any) -> CourseHttpRequest: ...
+        def getGradingPeriodSettings(
+            self, *, courseId: str, **kwargs: typing.Any
+        ) -> GradingPeriodSettingsHttpRequest: ...
         def list(
             self,
             *,
@@ -817,6 +820,14 @@ class ClassroomResource(googleapiclient.discovery.Resource):
         def update(
             self, *, id: str, body: Course = ..., **kwargs: typing.Any
         ) -> CourseHttpRequest: ...
+        def updateGradingPeriodSettings(
+            self,
+            *,
+            courseId: str,
+            body: GradingPeriodSettings = ...,
+            updateMask: str = ...,
+            **kwargs: typing.Any,
+        ) -> GradingPeriodSettingsHttpRequest: ...
         def aliases(self) -> AliasesResource: ...
         def announcements(self) -> AnnouncementsResource: ...
         def courseWork(self) -> CourseWorkResource: ...
@@ -1021,6 +1032,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class GradingPeriodSettingsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GradingPeriodSettings: ...
 
 @typing.type_check_only
 class GuardianHttpRequest(googleapiclient.http.HttpRequest):

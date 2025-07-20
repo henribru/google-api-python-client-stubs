@@ -5,6 +5,21 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AdaptMessageRequest(typing_extensions.TypedDict, total=False):
+    attachments: dict[str, typing.Any]
+    payload: str
+    protocol: str
+
+@typing.type_check_only
+class AdaptMessageResponse(typing_extensions.TypedDict, total=False):
+    payload: str
+    stateUpdates: dict[str, typing.Any]
+
+@typing.type_check_only
+class AdapterSession(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class AddSplitPointsRequest(typing_extensions.TypedDict, total=False):
     initiator: str
     splitPoints: _list[SplitPoints]
@@ -54,6 +69,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     expireTime: str
     freeableSizeBytes: str
     incrementalBackupChainId: str
+    instancePartitions: _list[BackupInstancePartition]
     maxExpireTime: str
     name: str
     oldestVersionTime: str
@@ -69,6 +85,10 @@ class BackupInfo(typing_extensions.TypedDict, total=False):
     createTime: str
     sourceDatabase: str
     versionTime: str
+
+@typing.type_check_only
+class BackupInstancePartition(typing_extensions.TypedDict, total=False):
+    instancePartition: str
 
 @typing.type_check_only
 class BackupSchedule(typing_extensions.TypedDict, total=False):
@@ -130,10 +150,25 @@ class ChangeQuorumRequest(typing_extensions.TypedDict, total=False):
     quorumType: QuorumType
 
 @typing.type_check_only
+class ChangeStreamRecord(typing_extensions.TypedDict, total=False):
+    dataChangeRecord: DataChangeRecord
+    heartbeatRecord: HeartbeatRecord
+    partitionEndRecord: PartitionEndRecord
+    partitionEventRecord: PartitionEventRecord
+    partitionStartRecord: PartitionStartRecord
+
+@typing.type_check_only
 class ChildLink(typing_extensions.TypedDict, total=False):
     childIndex: int
     type: str
     variable: str
+
+@typing.type_check_only
+class ColumnMetadata(typing_extensions.TypedDict, total=False):
+    isPrimaryKey: bool
+    name: str
+    ordinalPosition: str
+    type: Type
 
 @typing.type_check_only
 class CommitRequest(typing_extensions.TypedDict, total=False):
@@ -273,6 +308,30 @@ class CrontabSpec(typing_extensions.TypedDict, total=False):
     timeZone: str
 
 @typing.type_check_only
+class DataChangeRecord(typing_extensions.TypedDict, total=False):
+    columnMetadata: _list[ColumnMetadata]
+    commitTimestamp: str
+    isLastRecordInTransactionInPartition: bool
+    isSystemTransaction: bool
+    modType: typing_extensions.Literal[
+        "MOD_TYPE_UNSPECIFIED", "INSERT", "UPDATE", "DELETE"
+    ]
+    mods: _list[Mod]
+    numberOfPartitionsInTransaction: int
+    numberOfRecordsInTransaction: int
+    recordSequence: str
+    serverTransactionId: str
+    table: str
+    transactionTag: str
+    valueCaptureType: typing_extensions.Literal[
+        "VALUE_CAPTURE_TYPE_UNSPECIFIED",
+        "OLD_AND_NEW_VALUES",
+        "NEW_VALUES",
+        "NEW_ROW",
+        "NEW_ROW_AND_OLD_VALUES",
+    ]
+
+@typing.type_check_only
 class Database(typing_extensions.TypedDict, total=False):
     createTime: str
     databaseDialect: typing_extensions.Literal[
@@ -291,6 +350,11 @@ class Database(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "CREATING", "READY", "READY_OPTIMIZING"
     ]
     versionRetentionPeriod: str
+
+@typing.type_check_only
+class DatabaseMoveConfig(typing_extensions.TypedDict, total=False):
+    databaseId: str
+    encryptionConfig: InstanceEncryptionConfig
 
 @typing.type_check_only
 class DatabaseRole(typing_extensions.TypedDict, total=False):
@@ -421,6 +485,10 @@ class GetPolicyOptions(typing_extensions.TypedDict, total=False):
     requestedPolicyVersion: int
 
 @typing.type_check_only
+class HeartbeatRecord(typing_extensions.TypedDict, total=False):
+    timestamp: str
+
+@typing.type_check_only
 class IncludeReplicas(typing_extensions.TypedDict, total=False):
     autoFailoverDisabled: bool
     replicaSelections: _list[ReplicaSelection]
@@ -492,6 +560,11 @@ class InstanceConfig(typing_extensions.TypedDict, total=False):
     replicas: _list[ReplicaInfo]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "CREATING", "READY"]
     storageLimitPerProcessingUnit: str
+
+@typing.type_check_only
+class InstanceEncryptionConfig(typing_extensions.TypedDict, total=False):
+    kmsKeyName: str
+    kmsKeyNames: _list[str]
 
 @typing.type_check_only
 class InstanceOperationProgress(typing_extensions.TypedDict, total=False):
@@ -654,8 +727,28 @@ class MetricMatrixRow(typing_extensions.TypedDict, total=False):
     cols: _list[float]
 
 @typing.type_check_only
+class Mod(typing_extensions.TypedDict, total=False):
+    keys: _list[ModValue]
+    newValues: _list[ModValue]
+    oldValues: _list[ModValue]
+
+@typing.type_check_only
+class ModValue(typing_extensions.TypedDict, total=False):
+    columnMetadataIndex: int
+    value: typing.Any
+
+@typing.type_check_only
+class MoveInEvent(typing_extensions.TypedDict, total=False):
+    sourcePartitionToken: str
+
+@typing.type_check_only
 class MoveInstanceRequest(typing_extensions.TypedDict, total=False):
     targetConfig: str
+    targetDatabaseMoveConfigs: _list[DatabaseMoveConfig]
+
+@typing.type_check_only
+class MoveOutEvent(typing_extensions.TypedDict, total=False):
+    destinationPartitionToken: str
 
 @typing.type_check_only
 class MultiplexedSessionPrecommitToken(typing_extensions.TypedDict, total=False):
@@ -696,6 +789,7 @@ class OptimizeRestoredDatabaseMetadata(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class PartialResultSet(typing_extensions.TypedDict, total=False):
     chunkedValue: bool
+    last: bool
     metadata: ResultSetMetadata
     precommitToken: MultiplexedSessionPrecommitToken
     resumeToken: str
@@ -705,6 +799,20 @@ class PartialResultSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Partition(typing_extensions.TypedDict, total=False):
     partitionToken: str
+
+@typing.type_check_only
+class PartitionEndRecord(typing_extensions.TypedDict, total=False):
+    endTimestamp: str
+    partitionToken: str
+    recordSequence: str
+
+@typing.type_check_only
+class PartitionEventRecord(typing_extensions.TypedDict, total=False):
+    commitTimestamp: str
+    moveInEvents: _list[MoveInEvent]
+    moveOutEvents: _list[MoveOutEvent]
+    partitionToken: str
+    recordSequence: str
 
 @typing.type_check_only
 class PartitionOptions(typing_extensions.TypedDict, total=False):
@@ -732,6 +840,12 @@ class PartitionReadRequest(typing_extensions.TypedDict, total=False):
 class PartitionResponse(typing_extensions.TypedDict, total=False):
     partitions: _list[Partition]
     transaction: Transaction
+
+@typing.type_check_only
+class PartitionStartRecord(typing_extensions.TypedDict, total=False):
+    partitionTokens: _list[str]
+    recordSequence: str
+    startTimestamp: str
 
 @typing.type_check_only
 class PartitionedDml(typing_extensions.TypedDict, total=False): ...
@@ -980,6 +1094,9 @@ class Transaction(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransactionOptions(typing_extensions.TypedDict, total=False):
     excludeTxnFromChangeStreams: bool
+    isolationLevel: typing_extensions.Literal[
+        "ISOLATION_LEVEL_UNSPECIFIED", "SERIALIZABLE", "REPEATABLE_READ"
+    ]
     partitionedDml: PartitionedDml
     readOnly: ReadOnly
     readWrite: ReadWrite

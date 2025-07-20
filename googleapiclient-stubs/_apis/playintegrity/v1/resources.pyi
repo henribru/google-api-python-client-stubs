@@ -32,6 +32,13 @@ class PlayIntegrityResource(googleapiclient.discovery.Resource):
             body: DecodeIntegrityTokenRequest = ...,
             **kwargs: typing.Any,
         ) -> DecodeIntegrityTokenResponseHttpRequest: ...
+        def decodePcIntegrityToken(
+            self,
+            *,
+            packageName: str,
+            body: DecodePcIntegrityTokenRequest = ...,
+            **kwargs: typing.Any,
+        ) -> DecodePcIntegrityTokenResponseHttpRequest: ...
 
     def new_batch_http_request(
         self,
@@ -55,6 +62,14 @@ class DecodeIntegrityTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> DecodeIntegrityTokenResponse: ...
+
+@typing.type_check_only
+class DecodePcIntegrityTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DecodePcIntegrityTokenResponse: ...
 
 @typing.type_check_only
 class WriteDeviceRecallResponseHttpRequest(googleapiclient.http.HttpRequest):

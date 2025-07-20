@@ -44,6 +44,8 @@ class GoogleCloudMetastoreV1MultiRegionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     constituentRegions: _list[str]
+    continent: str
+    witnessRegion: str
 
 @typing.type_check_only
 class GoogleCloudMetastoreV1OperationMetadata(typing_extensions.TypedDict, total=False):
@@ -117,6 +119,8 @@ class GoogleCloudMetastoreV1alphaMultiRegionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     constituentRegions: _list[str]
+    continent: str
+    witnessRegion: str
 
 @typing.type_check_only
 class GoogleCloudMetastoreV1alphaOperationMetadata(
@@ -192,6 +196,8 @@ class GoogleCloudMetastoreV1betaMultiRegionMetadata(
     typing_extensions.TypedDict, total=False
 ):
     constituentRegions: _list[str]
+    continent: str
+    witnessRegion: str
 
 @typing.type_check_only
 class GoogleCloudMetastoreV1betaOperationMetadata(

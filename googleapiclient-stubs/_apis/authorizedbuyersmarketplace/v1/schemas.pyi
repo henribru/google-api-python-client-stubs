@@ -144,6 +144,9 @@ class DeactivateClientUserRequest(typing_extensions.TypedDict, total=False): ...
 class Deal(typing_extensions.TypedDict, total=False):
     billedBuyer: str
     buyer: str
+    buyerPermissionType: typing_extensions.Literal[
+        "BUYER_PERMISSION_TYPE_UNSPECIFIED", "NEGOTIATOR_ONLY", "BIDDER"
+    ]
     client: str
     createTime: str
     creativeRequirements: CreativeRequirements

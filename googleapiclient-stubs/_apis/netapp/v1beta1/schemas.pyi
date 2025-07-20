@@ -40,10 +40,12 @@ class ActiveDirectory(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    backupRegion: str
     backupType: typing_extensions.Literal["TYPE_UNSPECIFIED", "MANUAL", "SCHEDULED"]
     chainStorageBytes: str
     createTime: str
     description: str
+    enforcedRetentionEndTime: str
     labels: dict[str, typing.Any]
     name: str
     satisfiesPzi: bool
@@ -59,6 +61,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "ERROR",
         "UPDATING",
     ]
+    volumeRegion: str
     volumeUsageBytes: str
 
 @typing.type_check_only
@@ -84,11 +87,27 @@ class BackupPolicy(typing_extensions.TypedDict, total=False):
     weeklyBackupLimit: int
 
 @typing.type_check_only
+class BackupRetentionPolicy(typing_extensions.TypedDict, total=False):
+    backupMinimumEnforcedRetentionDays: int
+    dailyBackupImmutable: bool
+    manualBackupImmutable: bool
+    monthlyBackupImmutable: bool
+    weeklyBackupImmutable: bool
+
+@typing.type_check_only
 class BackupVault(typing_extensions.TypedDict, total=False):
+    backupRegion: str
+    backupRetentionPolicy: BackupRetentionPolicy
+    backupVaultType: typing_extensions.Literal[
+        "BACKUP_VAULT_TYPE_UNSPECIFIED", "IN_REGION", "CROSS_REGION"
+    ]
     createTime: str
     description: str
+    destinationBackupVault: str
     labels: dict[str, typing.Any]
     name: str
+    sourceBackupVault: str
+    sourceRegion: str
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "DELETING", "ERROR", "UPDATING"
     ]
@@ -137,18 +156,32 @@ class HybridPeeringDetails(typing_extensions.TypedDict, total=False):
     command: str
     commandExpiryTime: str
     passphrase: str
+    peerClusterName: str
+    peerSvmName: str
+    peerVolumeName: str
     subnetIp: str
 
 @typing.type_check_only
 class HybridReplicationParameters(typing_extensions.TypedDict, total=False):
     clusterLocation: str
     description: str
+    hybridReplicationType: typing_extensions.Literal[
+        "VOLUME_HYBRID_REPLICATION_TYPE_UNSPECIFIED",
+        "MIGRATION",
+        "CONTINUOUS_REPLICATION",
+        "ONPREM_REPLICATION",
+        "REVERSE_ONPREM_REPLICATION",
+    ]
     labels: dict[str, typing.Any]
+    largeVolumeConstituentCount: int
     peerClusterName: str
     peerIpAddresses: _list[str]
     peerSvmName: str
     peerVolumeName: str
     replication: str
+    replicationSchedule: typing_extensions.Literal[
+        "HYBRID_REPLICATION_SCHEDULE_UNSPECIFIED", "EVERY_10_MINUTES", "HOURLY", "DAILY"
+    ]
 
 @typing.type_check_only
 class KmsConfig(typing_extensions.TypedDict, total=False):
@@ -216,6 +249,12 @@ class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     operations: _list[Operation]
 
 @typing.type_check_only
+class ListQuotaRulesResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    quotaRules: _list[QuotaRule]
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListReplicationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     replications: _list[Replication]
@@ -249,6 +288,14 @@ class Location(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class LocationMetadata(typing_extensions.TypedDict, total=False):
+    hasVcp: bool
+    supportedFlexPerformance: _list[
+        typing_extensions.Literal[
+            "FLEX_PERFORMANCE_UNSPECIFIED",
+            "FLEX_PERFORMANCE_DEFAULT",
+            "FLEX_PERFORMANCE_CUSTOM",
+        ]
+    ]
     supportedServiceLevels: _list[
         typing_extensions.Literal[
             "SERVICE_LEVEL_UNSPECIFIED", "PREMIUM", "EXTREME", "STANDARD", "FLEX"
@@ -291,6 +338,26 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class QuotaRule(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    diskLimitMib: int
+    labels: dict[str, typing.Any]
+    name: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "CREATING", "UPDATING", "DELETING", "READY", "ERROR"
+    ]
+    stateDetails: str
+    target: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED",
+        "INDIVIDUAL_USER_QUOTA",
+        "INDIVIDUAL_GROUP_QUOTA",
+        "DEFAULT_USER_QUOTA",
+        "DEFAULT_GROUP_QUOTA",
+    ]
+
+@typing.type_check_only
 class Replication(typing_extensions.TypedDict, total=False):
     clusterLocation: str
     createTime: str
@@ -300,8 +367,13 @@ class Replication(typing_extensions.TypedDict, total=False):
     healthy: bool
     hybridPeeringDetails: HybridPeeringDetails
     hybridReplicationType: typing_extensions.Literal[
-        "HYBRID_REPLICATION_TYPE_UNSPECIFIED", "MIGRATION", "CONTINUOUS_REPLICATION"
+        "HYBRID_REPLICATION_TYPE_UNSPECIFIED",
+        "MIGRATION",
+        "CONTINUOUS_REPLICATION",
+        "ONPREM_REPLICATION",
+        "REVERSE_ONPREM_REPLICATION",
     ]
+    hybridReplicationUserCommands: UserCommands
     labels: dict[str, typing.Any]
     mirrorState: typing_extensions.Literal[
         "MIRROR_STATE_UNSPECIFIED",
@@ -311,6 +383,7 @@ class Replication(typing_extensions.TypedDict, total=False):
         "TRANSFERRING",
         "BASELINE_TRANSFERRING",
         "ABORTED",
+        "EXTERNALLY_MANAGED",
     ]
     name: str
     replicationSchedule: typing_extensions.Literal[
@@ -329,9 +402,17 @@ class Replication(typing_extensions.TypedDict, total=False):
         "ERROR",
         "PENDING_CLUSTER_PEERING",
         "PENDING_SVM_PEERING",
+        "PENDING_REMOTE_RESYNC",
+        "EXTERNALLY_MANAGED_REPLICATION",
     ]
     stateDetails: str
     transferStats: TransferStats
+
+@typing.type_check_only
+class RestoreBackupFilesRequest(typing_extensions.TypedDict, total=False):
+    backup: str
+    fileList: _list[str]
+    restoreDestinationPath: str
 
 @typing.type_check_only
 class RestoreParameters(typing_extensions.TypedDict, total=False):
@@ -406,11 +487,14 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     allowAutoTiering: bool
     capacityGib: str
     createTime: str
+    customPerformanceEnabled: bool
     description: str
+    enableHotTierAutoResize: bool
     encryptionType: typing_extensions.Literal[
         "ENCRYPTION_TYPE_UNSPECIFIED", "SERVICE_MANAGED", "CLOUD_KMS"
     ]
     globalAccessAllowed: bool
+    hotTierSizeGib: str
     kmsConfig: str
     labels: dict[str, typing.Any]
     ldapEnabled: bool
@@ -434,6 +518,8 @@ class StoragePool(typing_extensions.TypedDict, total=False):
         "ERROR",
     ]
     stateDetails: str
+    totalIops: str
+    totalThroughputMibps: str
     volumeCapacityGib: str
     volumeCount: int
     zone: str
@@ -447,6 +533,7 @@ class SyncReplicationRequest(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class TieringPolicy(typing_extensions.TypedDict, total=False):
     coolingThresholdDays: int
+    hotTierBypassModeEnabled: bool
     tierAction: typing_extensions.Literal[
         "TIER_ACTION_UNSPECIFIED", "ENABLED", "PAUSED"
     ]
@@ -461,6 +548,10 @@ class TransferStats(typing_extensions.TypedDict, total=False):
     totalTransferDuration: str
     transferBytes: str
     updateTime: str
+
+@typing.type_check_only
+class UserCommands(typing_extensions.TypedDict, total=False):
+    commands: _list[str]
 
 @typing.type_check_only
 class ValidateDirectoryServiceRequest(typing_extensions.TypedDict, total=False):

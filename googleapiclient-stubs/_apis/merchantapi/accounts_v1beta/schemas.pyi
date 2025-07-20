@@ -5,6 +5,17 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class About(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+    uri: str
+
+@typing.type_check_only
+class AcceptTermsOfServiceResponse(typing_extensions.TypedDict, total=False):
+    termsOfServiceAgreementState: TermsOfServiceAgreementState
+
+@typing.type_check_only
 class Accepted(typing_extensions.TypedDict, total=False):
     acceptedBy: str
     termsOfService: str
@@ -35,9 +46,40 @@ class AccountIssue(typing_extensions.TypedDict, total=False):
     title: str
 
 @typing.type_check_only
+class AccountManagement(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AccountRelationship(typing_extensions.TypedDict, total=False):
+    accountIdAlias: str
+    name: str
+    provider: str
+    providerDisplayName: str
+
+@typing.type_check_only
+class AccountService(typing_extensions.TypedDict, total=False):
+    accountAggregation: AccountAggregation
+    accountManagement: AccountManagement
+    campaignsManagement: CampaignsManagement
+    externalAccountId: str
+    handshake: Handshake
+    localListingManagement: LocalListingManagement
+    mutability: typing_extensions.Literal[
+        "MUTABILITY_UNSPECIFIED", "MUTABLE", "IMMUTABLE"
+    ]
+    name: str
+    productsManagement: ProductsManagement
+    provider: str
+    providerDisplayName: str
+
+@typing.type_check_only
 class AddAccountService(typing_extensions.TypedDict, total=False):
     accountAggregation: AccountAggregation
     provider: str
+
+@typing.type_check_only
+class AddUser(typing_extensions.TypedDict, total=False):
+    user: User
+    userId: str
 
 @typing.type_check_only
 class Address(typing_extensions.TypedDict, total=False):
@@ -48,10 +90,37 @@ class Address(typing_extensions.TypedDict, total=False):
     streetAddress: str
 
 @typing.type_check_only
+class ApproveAccountServiceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AutofeedSettings(typing_extensions.TypedDict, total=False):
     eligible: bool
     enableProducts: bool
     name: str
+
+@typing.type_check_only
+class AutomaticImageImprovements(typing_extensions.TypedDict, total=False):
+    accountImageImprovementsSettings: ImageImprovementsAccountLevelSettings
+    effectiveAllowAutomaticImageImprovements: bool
+
+@typing.type_check_only
+class AutomaticImprovements(typing_extensions.TypedDict, total=False):
+    imageImprovements: AutomaticImageImprovements
+    itemUpdates: AutomaticItemUpdates
+    name: str
+    shippingImprovements: AutomaticShippingImprovements
+
+@typing.type_check_only
+class AutomaticItemUpdates(typing_extensions.TypedDict, total=False):
+    accountItemUpdatesSettings: ItemUpdatesAccountLevelSettings
+    effectiveAllowAvailabilityUpdates: bool
+    effectiveAllowConditionUpdates: bool
+    effectiveAllowPriceUpdates: bool
+    effectiveAllowStrictAvailabilityUpdates: bool
+
+@typing.type_check_only
+class AutomaticShippingImprovements(typing_extensions.TypedDict, total=False):
+    allowShippingImprovements: bool
 
 @typing.type_check_only
 class BusinessDayConfig(typing_extensions.TypedDict, total=False):
@@ -96,6 +165,9 @@ class BusinessInfo(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CampaignsManagement(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CarrierRate(typing_extensions.TypedDict, total=False):
     carrier: str
     carrierService: str
@@ -105,6 +177,41 @@ class CarrierRate(typing_extensions.TypedDict, total=False):
     percentageAdjustment: str
 
 @typing.type_check_only
+class CheckoutSettings(typing_extensions.TypedDict, total=False):
+    effectiveEnrollmentState: typing_extensions.Literal[
+        "CHECKOUT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED", "OPTED_OUT"
+    ]
+    effectiveReviewState: typing_extensions.Literal[
+        "CHECKOUT_REVIEW_STATE_UNSPECIFIED", "IN_REVIEW", "APPROVED", "DISAPPROVED"
+    ]
+    effectiveUriSettings: UriSettings
+    eligibleDestinations: _list[
+        typing_extensions.Literal[
+            "DESTINATION_ENUM_UNSPECIFIED",
+            "SHOPPING_ADS",
+            "DISPLAY_ADS",
+            "LOCAL_INVENTORY_ADS",
+            "FREE_LISTINGS",
+            "FREE_LOCAL_LISTINGS",
+            "YOUTUBE_SHOPPING",
+            "YOUTUBE_SHOPPING_CHECKOUT",
+            "YOUTUBE_AFFILIATE",
+            "FREE_VEHICLE_LISTINGS",
+            "VEHICLE_ADS",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL",
+        ]
+    ]
+    enrollmentState: typing_extensions.Literal[
+        "CHECKOUT_ENROLLMENT_STATE_UNSPECIFIED", "INACTIVE", "ENROLLED", "OPTED_OUT"
+    ]
+    name: str
+    reviewState: typing_extensions.Literal[
+        "CHECKOUT_REVIEW_STATE_UNSPECIFIED", "IN_REVIEW", "APPROVED", "DISAPPROVED"
+    ]
+    uriSettings: UriSettings
+
+@typing.type_check_only
 class ClaimHomepageRequest(typing_extensions.TypedDict, total=False):
     overwrite: bool
 
@@ -112,6 +219,7 @@ class ClaimHomepageRequest(typing_extensions.TypedDict, total=False):
 class CreateAndConfigureAccountRequest(typing_extensions.TypedDict, total=False):
     account: Account
     service: _list[AddAccountService]
+    user: _list[AddUser]
     users: _list[CreateUserRequest]
 
 @typing.type_check_only
@@ -157,6 +265,11 @@ class DeliveryTime(typing_extensions.TypedDict, total=False):
     warehouseBasedDeliveryTimes: _list[WarehouseBasedDeliveryTime]
 
 @typing.type_check_only
+class DeveloperRegistration(typing_extensions.TypedDict, total=False):
+    gcpIds: _list[str]
+    name: str
+
+@typing.type_check_only
 class DisableProgramRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -178,8 +291,28 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class EnableProgramRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class FindLfpProvidersResponse(typing_extensions.TypedDict, total=False):
+    lfpProviders: _list[LfpProvider]
+    nextPageToken: str
+
+@typing.type_check_only
+class GbpAccount(typing_extensions.TypedDict, total=False):
+    gbpAccountId: str
+    gbpAccountName: str
+    listingCount: str
+    name: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "USER", "BUSINESS_ACCOUNT"]
+
+@typing.type_check_only
 class GeoTargetArea(typing_extensions.TypedDict, total=False):
     geotargetCriteriaIds: _list[str]
+
+@typing.type_check_only
+class Handshake(typing_extensions.TypedDict, total=False):
+    actor: typing_extensions.Literal["ACTOR_UNSPECIFIED", "ACCOUNT", "OTHER_PARTY"]
+    approvalState: typing_extensions.Literal[
+        "APPROVAL_STATE_UNSPECIFIED", "PENDING", "ESTABLISHED", "REJECTED"
+    ]
 
 @typing.type_check_only
 class Headers(typing_extensions.TypedDict, total=False):
@@ -204,6 +337,10 @@ class IdentityAttribute(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ImageImprovementsAccountLevelSettings(typing_extensions.TypedDict, total=False):
+    allowAutomaticImageImprovements: bool
+
+@typing.type_check_only
 class Impact(typing_extensions.TypedDict, total=False):
     regionCode: str
     severity: typing_extensions.Literal[
@@ -226,6 +363,7 @@ class ImpactedDestination(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -235,14 +373,94 @@ class ImpactedDestination(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class InStock(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+    uri: str
+
+@typing.type_check_only
+class InventoryVerification(typing_extensions.TypedDict, total=False):
+    contact: str
+    contactEmail: str
+    contactState: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "ACTION_REQUIRED",
+        "INACTIVE",
+        "RUNNING",
+        "SUCCEEDED",
+        "SUSPENDED",
+    ]
+
+@typing.type_check_only
+class ItemUpdatesAccountLevelSettings(typing_extensions.TypedDict, total=False):
+    allowAvailabilityUpdates: bool
+    allowConditionUpdates: bool
+    allowPriceUpdates: bool
+    allowStrictAvailabilityUpdates: bool
+
+@typing.type_check_only
+class LfpLink(typing_extensions.TypedDict, total=False):
+    externalAccountId: str
+    lfpProvider: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+
+@typing.type_check_only
+class LfpProvider(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    regionCode: str
+
+@typing.type_check_only
+class LinkGbpAccountRequest(typing_extensions.TypedDict, total=False):
+    gbpEmail: str
+
+@typing.type_check_only
+class LinkGbpAccountResponse(typing_extensions.TypedDict, total=False):
+    response: Empty
+
+@typing.type_check_only
+class LinkLfpProviderRequest(typing_extensions.TypedDict, total=False):
+    externalAccountId: str
+
+@typing.type_check_only
+class LinkLfpProviderResponse(typing_extensions.TypedDict, total=False):
+    response: Empty
+
+@typing.type_check_only
 class ListAccountIssuesResponse(typing_extensions.TypedDict, total=False):
     accountIssues: _list[AccountIssue]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAccountRelationshipsResponse(typing_extensions.TypedDict, total=False):
+    accountRelationships: _list[AccountRelationship]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListAccountServicesResponse(typing_extensions.TypedDict, total=False):
+    accountServices: _list[AccountService]
     nextPageToken: str
 
 @typing.type_check_only
 class ListAccountsResponse(typing_extensions.TypedDict, total=False):
     accounts: _list[Account]
     nextPageToken: str
+
+@typing.type_check_only
+class ListGbpAccountsResponse(typing_extensions.TypedDict, total=False):
+    gbpAccounts: _list[GbpAccount]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListOmnichannelSettingsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    omnichannelSettings: _list[OmnichannelSetting]
 
 @typing.type_check_only
 class ListOnlineReturnPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -275,6 +493,9 @@ class LocalCutoffTime(typing_extensions.TypedDict, total=False):
     minute: str
 
 @typing.type_check_only
+class LocalListingManagement(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class LocationIdSet(typing_extensions.TypedDict, total=False):
     locationIds: _list[str]
 
@@ -292,6 +513,27 @@ class MinimumOrderValueTable(typing_extensions.TypedDict, total=False):
     storeCodeSetWithMovs: _list[StoreCodeSetWithMov]
 
 @typing.type_check_only
+class OmnichannelSetting(typing_extensions.TypedDict, total=False):
+    about: About
+    inStock: InStock
+    inventoryVerification: InventoryVerification
+    lfpLink: LfpLink
+    lsfType: typing_extensions.Literal[
+        "LSF_TYPE_UNSPECIFIED", "GHLSF", "MHLSF_BASIC", "MHLSF_FULL"
+    ]
+    name: str
+    odo: OnDisplayToOrder
+    pickup: Pickup
+    regionCode: str
+
+@typing.type_check_only
+class OnDisplayToOrder(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+    uri: str
+
+@typing.type_check_only
 class OnlineReturnPolicy(typing_extensions.TypedDict, total=False):
     acceptDefectiveOnly: bool
     acceptExchange: bool
@@ -304,6 +546,12 @@ class OnlineReturnPolicy(typing_extensions.TypedDict, total=False):
     policy: Policy
     processRefundDays: int
     restockingFee: RestockingFee
+    returnLabelSource: typing_extensions.Literal[
+        "RETURN_LABEL_SOURCE_UNSPECIFIED",
+        "DOWNLOAD_AND_PRINT",
+        "IN_THE_PACKAGE",
+        "CUSTOMER_RESPONSIBILITY",
+    ]
     returnMethods: _list[
         typing_extensions.Literal[
             "RETURN_METHOD_UNSPECIFIED", "BY_MAIL", "IN_STORE", "AT_A_KIOSK"
@@ -319,6 +567,13 @@ class PhoneNumber(typing_extensions.TypedDict, total=False):
     e164Number: str
     extension: str
     shortCode: ShortCode
+
+@typing.type_check_only
+class Pickup(typing_extensions.TypedDict, total=False):
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "ACTIVE", "FAILED", "RUNNING", "ACTION_REQUIRED"
+    ]
+    uri: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -377,6 +632,7 @@ class ProductChange(typing_extensions.TypedDict, total=False):
         "FREE_LISTINGS",
         "FREE_LOCAL_LISTINGS",
         "FREE_LOCAL_VEHICLE_LISTINGS",
+        "YOUTUBE_AFFILIATE",
         "YOUTUBE_SHOPPING",
         "CLOUD_RETAIL",
         "LOCAL_CLOUD_RETAIL",
@@ -390,11 +646,15 @@ class ProductStatusChangeMessage(typing_extensions.TypedDict, total=False):
     account: str
     attribute: typing_extensions.Literal["ATTRIBUTE_UNSPECIFIED", "STATUS"]
     changes: _list[ProductChange]
+    eventTime: str
     expirationTime: str
     managingAccount: str
     resource: str
     resourceId: str
     resourceType: typing_extensions.Literal["RESOURCE_UNSPECIFIED", "PRODUCT"]
+
+@typing.type_check_only
+class ProductsManagement(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Program(typing_extensions.TypedDict, total=False):
@@ -405,6 +665,11 @@ class Program(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "NOT_ELIGIBLE", "ELIGIBLE", "ENABLED"
     ]
     unmetRequirements: _list[Requirement]
+
+@typing.type_check_only
+class ProposeAccountServiceRequest(typing_extensions.TypedDict, total=False):
+    accountService: AccountService
+    provider: str
 
 @typing.type_check_only
 class RateGroup(typing_extensions.TypedDict, total=False):
@@ -423,6 +688,20 @@ class Region(typing_extensions.TypedDict, total=False):
     postalCodeArea: PostalCodeArea
     regionalInventoryEligible: bool
     shippingEligible: bool
+
+@typing.type_check_only
+class RegisterGCPRequest(typing_extensions.TypedDict, total=False):
+    developerEmail: str
+
+@typing.type_check_only
+class RejectAccountServiceRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RequestInventoryVerificationRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class RequestInventoryVerificationResponse(typing_extensions.TypedDict, total=False):
+    omnichannelSetting: OmnichannelSetting
 
 @typing.type_check_only
 class Required(typing_extensions.TypedDict, total=False):
@@ -453,10 +732,11 @@ class Row(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SeasonalOverride(typing_extensions.TypedDict, total=False):
-    begin: Date
-    end: Date
+    endDate: Date
     label: str
-    policy: Policy
+    returnDays: int
+    returnUntilDate: Date
+    startDate: Date
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
@@ -551,10 +831,22 @@ class TransitTimeValue(typing_extensions.TypedDict, total=False):
 class UnclaimHomepageRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class UnregisterGCPRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UriSettings(typing_extensions.TypedDict, total=False):
+    cartUriTemplate: str
+    checkoutUriTemplate: str
+
+@typing.type_check_only
 class User(typing_extensions.TypedDict, total=False):
     accessRights: _list[
         typing_extensions.Literal[
-            "ACCESS_RIGHT_UNSPECIFIED", "STANDARD", "ADMIN", "PERFORMANCE_REPORTING"
+            "ACCESS_RIGHT_UNSPECIFIED",
+            "STANDARD",
+            "READ_ONLY",
+            "ADMIN",
+            "PERFORMANCE_REPORTING",
         ]
     ]
     name: str

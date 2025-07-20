@@ -5,16 +5,59 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AccountConnector(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    createTime: str
+    etag: str
+    labels: dict[str, typing.Any]
+    name: str
+    oauthStartUri: str
+    providerOauthConfig: ProviderOAuthConfig
+    updateTime: str
+
+@typing.type_check_only
+class AppHubWorkload(typing_extensions.TypedDict, total=False):
+    criticality: str
+    environment: str
+    workload: str
+
+@typing.type_check_only
+class ArtifactConfig(typing_extensions.TypedDict, total=False):
+    googleArtifactAnalysis: GoogleArtifactAnalysis
+    googleArtifactRegistry: GoogleArtifactRegistry
+    uri: str
+
+@typing.type_check_only
+class BitbucketCloudConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    readAuthorizerCredential: UserCredential
+    webhookSecretSecretVersion: str
+    workspace: str
+
+@typing.type_check_only
+class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
+    authorizerCredential: UserCredential
+    hostUri: str
+    readAuthorizerCredential: UserCredential
+    serverVersion: str
+    serviceDirectoryConfig: ServiceDirectoryConfig
+    sslCaCertificate: str
+    webhookSecretSecretVersion: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
+    bitbucketCloudConfig: BitbucketCloudConfig
+    bitbucketDataCenterConfig: BitbucketDataCenterConfig
     createTime: str
     cryptoKeyConfig: CryptoKeyConfig
     deleteTime: str
     disabled: bool
     etag: str
+    gitProxyConfig: GitProxyConfig
     githubConfig: GitHubConfig
     githubEnterpriseConfig: GitHubEnterpriseConfig
     gitlabConfig: GitLabConfig
@@ -32,6 +75,21 @@ class CryptoKeyConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class ExchangeError(typing_extensions.TypedDict, total=False):
+    code: str
+    description: str
+
+@typing.type_check_only
+class FetchAccessTokenRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FetchAccessTokenResponse(typing_extensions.TypedDict, total=False):
+    exchangeError: ExchangeError
+    expirationTime: str
+    scopes: _list[str]
+    token: str
 
 @typing.type_check_only
 class FetchGitHubInstallationsResponse(typing_extensions.TypedDict, total=False):
@@ -64,6 +122,11 @@ class FetchReadWriteTokenResponse(typing_extensions.TypedDict, total=False):
     expirationTime: str
     gitUsername: str
     token: str
+
+@typing.type_check_only
+class GKEWorkload(typing_extensions.TypedDict, total=False):
+    cluster: str
+    deployment: str
 
 @typing.type_check_only
 class GitHubConfig(typing_extensions.TypedDict, total=False):
@@ -104,12 +167,17 @@ class GitLabEnterpriseConfig(typing_extensions.TypedDict, total=False):
     webhookSecretSecretVersion: str
 
 @typing.type_check_only
+class GitProxyConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
 class GitRepositoryLink(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     cloneUri: str
     createTime: str
     deleteTime: str
     etag: str
+    gitProxyUri: str
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -118,10 +186,35 @@ class GitRepositoryLink(typing_extensions.TypedDict, total=False):
     webhookId: str
 
 @typing.type_check_only
+class GoogleArtifactAnalysis(typing_extensions.TypedDict, total=False):
+    projectId: str
+
+@typing.type_check_only
+class GoogleArtifactRegistry(typing_extensions.TypedDict, total=False):
+    artifactRegistryPackage: str
+    projectId: str
+
+@typing.type_check_only
 class HttpBody(typing_extensions.TypedDict, total=False):
     contentType: str
     data: str
     extensions: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class InsightsConfig(typing_extensions.TypedDict, total=False):
+    annotations: dict[str, typing.Any]
+    appHubApplication: str
+    artifactConfigs: _list[ArtifactConfig]
+    createTime: str
+    errors: _list[Status]
+    labels: dict[str, typing.Any]
+    name: str
+    reconciling: bool
+    runtimeConfigs: _list[RuntimeConfig]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "PENDING", "COMPLETE", "ERROR"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class Installation(typing_extensions.TypedDict, total=False):
@@ -146,6 +239,12 @@ class LinkableGitRepository(typing_extensions.TypedDict, total=False):
     cloneUri: str
 
 @typing.type_check_only
+class ListAccountConnectorsResponse(typing_extensions.TypedDict, total=False):
+    accountConnectors: _list[AccountConnector]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
@@ -158,6 +257,12 @@ class ListGitRepositoryLinksResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListInsightsConfigsResponse(typing_extensions.TypedDict, total=False):
+    insightsConfigs: _list[InsightsConfig]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
     locations: _list[Location]
     nextPageToken: str
@@ -166,6 +271,12 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+
+@typing.type_check_only
+class ListUsersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    unreachable: _list[str]
+    users: _list[User]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -199,6 +310,16 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class ProcessBitbucketCloudWebhookRequest(typing_extensions.TypedDict, total=False):
+    body: HttpBody
+
+@typing.type_check_only
+class ProcessBitbucketDataCenterWebhookRequest(
+    typing_extensions.TypedDict, total=False
+):
+    body: HttpBody
+
+@typing.type_check_only
 class ProcessGitHubEnterpriseWebhookRequest(typing_extensions.TypedDict, total=False):
     body: HttpBody
 
@@ -211,6 +332,28 @@ class ProcessGitLabWebhookRequest(typing_extensions.TypedDict, total=False):
     body: HttpBody
 
 @typing.type_check_only
+class ProviderOAuthConfig(typing_extensions.TypedDict, total=False):
+    scopes: _list[str]
+    systemProviderId: typing_extensions.Literal[
+        "SYSTEM_PROVIDER_UNSPECIFIED",
+        "GITHUB",
+        "GITLAB",
+        "GOOGLE",
+        "SENTRY",
+        "ROVO",
+        "NEW_RELIC",
+        "DATASTAX",
+        "DYNATRACE",
+    ]
+
+@typing.type_check_only
+class RuntimeConfig(typing_extensions.TypedDict, total=False):
+    appHubWorkload: AppHubWorkload
+    gkeWorkload: GKEWorkload
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "LINKED", "UNLINKED"]
+    uri: str
+
+@typing.type_check_only
 class ServiceDirectoryConfig(typing_extensions.TypedDict, total=False):
     service: str
 
@@ -219,6 +362,13 @@ class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class User(typing_extensions.TypedDict, total=False):
+    createTime: str
+    displayName: str
+    lastTokenRequestTime: str
+    name: str
 
 @typing.type_check_only
 class UserCredential(typing_extensions.TypedDict, total=False):

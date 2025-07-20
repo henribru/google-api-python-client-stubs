@@ -181,6 +181,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     description: str
     destinationConfigs: _list[DestinationConfig]
     envoyImageLocation: str
+    euaOauthAuthConfig: AuthConfig
     eventingConfig: EventingConfig
     eventingEnablementType: typing_extensions.Literal[
         "EVENTING_ENABLEMENT_TYPE_UNSPECIFIED",
@@ -188,6 +189,7 @@ class Connection(typing_extensions.TypedDict, total=False):
         "ONLY_EVENTING",
     ]
     eventingRuntimeData: EventingRuntimeData
+    fallbackOnAdminCredentials: bool
     host: str
     imageLocation: str
     isTrustedTester: bool
@@ -205,6 +207,7 @@ class Connection(typing_extensions.TypedDict, total=False):
     ]
     suspended: bool
     tlsServiceDirectory: str
+    trafficShapingConfigs: _list[TrafficShapingConfig]
     updateTime: str
 
 @typing.type_check_only
@@ -284,7 +287,13 @@ class ConnectorInfraConfig(typing_extensions.TypedDict, total=False):
     maxInstanceRequestConcurrency: int
     migrateDeploymentModel: bool
     migrateTls: bool
+    networkEgressMode: typing_extensions.Literal[
+        "NETWORK_EGRESS_MODE_UNSPECIFIED",
+        "SERVERLESS_VPC_ACCESS_CONNECTOR",
+        "DIRECT_VPC_EGRESS",
+    ]
     provisionCloudSpanner: bool
+    provisionMemstore: bool
     ratelimitThreshold: str
     resourceLimits: ResourceLimits
     resourceRequests: ResourceRequests
@@ -301,7 +310,6 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
     displayName: str
     egressControlConfig: EgressControlConfig
     eventingConfigTemplate: EventingConfigTemplate
-    isAsyncOperationsSupported: bool
     isCustomActionsSupported: bool
     isCustomEntitiesSupported: bool
     labels: dict[str, typing.Any]
@@ -331,6 +339,7 @@ class ConnectorVersion(typing_extensions.TypedDict, total=False):
         ]
     ]
     updateTime: str
+    vpcscConfig: VpcscConfig
 
 @typing.type_check_only
 class ConnectorVersionInfraConfig(typing_extensions.TypedDict, total=False):
@@ -370,7 +379,7 @@ class CustomConnector(typing_extensions.TypedDict, total=False):
     allMarketplaceVersions: _list[str]
     createTime: str
     customConnectorType: typing_extensions.Literal[
-        "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
+        "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO", "SDK"
     ]
     description: str
     displayName: str
@@ -382,7 +391,10 @@ class CustomConnector(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CustomConnectorVersion(typing_extensions.TypedDict, total=False):
+    asyncOperationsSupport: bool
     authConfig: AuthConfig
+    authConfigTemplates: _list[AuthConfigTemplate]
+    authOverrideSupport: bool
     backendVariableTemplates: _list[ConfigVariableTemplate]
     createTime: str
     destinationConfigs: _list[DestinationConfig]
@@ -451,6 +463,11 @@ class DestinationConfigTemplate(typing_extensions.TypedDict, total=False):
     regexPattern: str
 
 @typing.type_check_only
+class EUASecret(typing_extensions.TypedDict, total=False):
+    secretValue: str
+    secretVersion: str
+
+@typing.type_check_only
 class EgressControlConfig(typing_extensions.TypedDict, total=False):
     backends: str
     extractionRules: ExtractionRules
@@ -478,6 +495,141 @@ class EndPoint(typing_extensions.TypedDict, total=False):
     headers: _list[Header]
 
 @typing.type_check_only
+class EndUserAuthentication(typing_extensions.TypedDict, total=False):
+    configVariables: _list[EndUserAuthenticationConfigVariable]
+    createTime: str
+    destinationConfigs: _list[DestinationConfig]
+    endUserAuthenticationConfig: EndUserAuthenticationConfig
+    labels: _list[str]
+    name: str
+    notifyEndpointDestination: EndUserAuthenticationNotifyEndpointDestination
+    roles: _list[
+        typing_extensions.Literal[
+            "ROLE_UNSPECIFIED", "READER", "READER_DOMAIN_WIDE_ACCESSIBLE"
+        ]
+    ]
+    status: EndUserAuthenticationEndUserAuthenticationStatus
+    updateTime: str
+    userId: str
+
+@typing.type_check_only
+class EndUserAuthenticationConfig(typing_extensions.TypedDict, total=False):
+    additionalVariables: _list[EndUserAuthenticationConfigVariable]
+    authKey: str
+    authType: typing_extensions.Literal[
+        "AUTH_TYPE_UNSPECIFIED",
+        "USER_PASSWORD",
+        "OAUTH2_JWT_BEARER",
+        "OAUTH2_CLIENT_CREDENTIALS",
+        "SSH_PUBLIC_KEY",
+        "OAUTH2_AUTH_CODE_FLOW",
+        "GOOGLE_AUTHENTICATION",
+        "OAUTH2_AUTH_CODE_FLOW_GOOGLE_MANAGED",
+    ]
+    oauth2AuthCodeFlow: EndUserAuthenticationConfigOauth2AuthCodeFlow
+    oauth2AuthCodeFlowGoogleManaged: (
+        EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged
+    )
+    oauth2ClientCredentials: EndUserAuthenticationConfigOauth2ClientCredentials
+    oauth2JwtBearer: EndUserAuthenticationConfigOauth2JwtBearer
+    sshPublicKey: EndUserAuthenticationConfigSshPublicKey
+    userPassword: EndUserAuthenticationConfigUserPassword
+
+@typing.type_check_only
+class EndUserAuthenticationConfigOauth2AuthCodeFlow(
+    typing_extensions.TypedDict, total=False
+):
+    authCode: str
+    authUri: str
+    clientId: str
+    clientSecret: EUASecret
+    enablePkce: bool
+    oauthTokenData: OAuthTokenData
+    pkceVerifier: str
+    redirectUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class EndUserAuthenticationConfigOauth2AuthCodeFlowGoogleManaged(
+    typing_extensions.TypedDict, total=False
+):
+    authCode: str
+    oauthTokenData: OAuthTokenData
+    redirectUri: str
+    scopes: _list[str]
+
+@typing.type_check_only
+class EndUserAuthenticationConfigOauth2ClientCredentials(
+    typing_extensions.TypedDict, total=False
+):
+    clientId: str
+    clientSecret: EUASecret
+
+@typing.type_check_only
+class EndUserAuthenticationConfigOauth2JwtBearer(
+    typing_extensions.TypedDict, total=False
+):
+    clientKey: EUASecret
+    jwtClaims: EndUserAuthenticationConfigOauth2JwtBearerJwtClaims
+
+@typing.type_check_only
+class EndUserAuthenticationConfigOauth2JwtBearerJwtClaims(
+    typing_extensions.TypedDict, total=False
+):
+    audience: str
+    issuer: str
+    subject: str
+
+@typing.type_check_only
+class EndUserAuthenticationConfigSshPublicKey(typing_extensions.TypedDict, total=False):
+    certType: str
+    sshClientCert: EUASecret
+    sshClientCertPass: EUASecret
+    username: str
+
+@typing.type_check_only
+class EndUserAuthenticationConfigUserPassword(typing_extensions.TypedDict, total=False):
+    password: EUASecret
+    username: str
+
+@typing.type_check_only
+class EndUserAuthenticationConfigVariable(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    intValue: str
+    key: str
+    secretValue: EUASecret
+    stringValue: str
+
+@typing.type_check_only
+class EndUserAuthenticationEndUserAuthenticationStatus(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "ERROR"]
+
+@typing.type_check_only
+class EndUserAuthenticationNotifyEndpointDestination(
+    typing_extensions.TypedDict, total=False
+):
+    endpoint: EndUserAuthenticationNotifyEndpointDestinationEndPoint
+    serviceAccount: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT"]
+
+@typing.type_check_only
+class EndUserAuthenticationNotifyEndpointDestinationEndPoint(
+    typing_extensions.TypedDict, total=False
+):
+    endpointUri: str
+    headers: _list[EndUserAuthenticationNotifyEndpointDestinationEndPointHeader]
+
+@typing.type_check_only
+class EndUserAuthenticationNotifyEndpointDestinationEndPointHeader(
+    typing_extensions.TypedDict, total=False
+):
+    key: str
+    value: str
+
+@typing.type_check_only
 class EndpointAttachment(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -497,6 +649,10 @@ class EndpointAttachment(typing_extensions.TypedDict, total=False):
         "ACCEPTED_NOT_PROGRAMMED",
     ]
     updateTime: str
+
+@typing.type_check_only
+class EnrichmentConfig(typing_extensions.TypedDict, total=False):
+    appendAcl: bool
 
 @typing.type_check_only
 class EnumOption(typing_extensions.TypedDict, total=False):
@@ -519,6 +675,7 @@ class EventSubscription(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class EventSubscriptionDestination(typing_extensions.TypedDict, total=False):
     endpoint: EndPoint
+    pubsub: PubSub
     serviceAccount: str
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "ENDPOINT", "GCS", "PUBSUB"]
 
@@ -545,12 +702,15 @@ class EventingConfig(typing_extensions.TypedDict, total=False):
     additionalVariables: _list[ConfigVariable]
     authConfig: AuthConfig
     deadLetterConfig: DeadLetterConfig
+    enrichmentConfig: EnrichmentConfig
     enrichmentEnabled: bool
     eventsListenerIngressEndpoint: str
     listenerAuthConfig: AuthConfig
+    privateConnectivityAllowlistedProjects: _list[str]
     privateConnectivityEnabled: bool
     proxyDestinationConfig: DestinationConfig
     registrationDestinationConfig: DestinationConfig
+    sslConfig: SslConfig
 
 @typing.type_check_only
 class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
@@ -567,6 +727,7 @@ class EventingConfigTemplate(typing_extensions.TypedDict, total=False):
     listenerAuthConfigTemplates: _list[AuthConfigTemplate]
     proxyDestinationConfig: DestinationConfigTemplate
     registrationDestinationConfig: DestinationConfigTemplate
+    sslConfigTemplate: SslConfigTemplate
     triggerConfigVariables: _list[ConfigVariableTemplate]
 
 @typing.type_check_only
@@ -759,6 +920,7 @@ class InputParameter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     consumerDefinedName: str
+    consumerProjectNumber: str
     createTime: str
     instanceType: str
     labels: dict[str, typing.Any]
@@ -803,6 +965,7 @@ class JsonAuthSchema(AlternativeJsonAuthSchema): ...
 
 @typing.type_check_only
 class JsonSchema(typing_extensions.TypedDict, total=False):
+    additionalDetails: dict[str, typing.Any]
     default: typing.Any
     description: str
     enum: _list[typing.Any]
@@ -901,6 +1064,12 @@ class ListCustomConnectorsResponse(typing_extensions.TypedDict, total=False):
     unreachable: _list[str]
 
 @typing.type_check_only
+class ListEndUserAuthenticationsResponse(typing_extensions.TypedDict, total=False):
+    endUserAuthentications: _list[EndUserAuthentication]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListEndpointAttachmentsResponse(typing_extensions.TypedDict, total=False):
     endpointAttachments: _list[EndpointAttachment]
     nextPageToken: str
@@ -931,6 +1100,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListManagedZonesResponse(typing_extensions.TypedDict, total=False):
     managedZones: _list[ManagedZone]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
@@ -1062,6 +1232,13 @@ class NotificationParameter(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class OAuthTokenData(typing_extensions.TypedDict, total=False):
+    accessToken: EUASecret
+    createTime: str
+    expiry: str
+    refreshToken: EUASecret
+
+@typing.type_check_only
 class Oauth2AuthCodeFlow(typing_extensions.TypedDict, total=False):
     authCode: str
     authUri: str
@@ -1112,7 +1289,9 @@ class PartnerMetadata(typing_extensions.TypedDict, total=False):
     additionalComments: str
     confirmPartnerRequirements: bool
     demoUri: str
+    hasDynamicSpecUri: bool
     integrationTemplates: str
+    localSpecPath: str
     marketplaceProduct: str
     marketplaceProductId: str
     marketplaceProductProjectId: str
@@ -1159,6 +1338,13 @@ class Provider(typing_extensions.TypedDict, total=False):
 class ProvisionedResource(typing_extensions.TypedDict, total=False):
     resourceType: str
     resourceUrl: str
+
+@typing.type_check_only
+class PubSub(typing_extensions.TypedDict, total=False):
+    attributes: dict[str, typing.Any]
+    configVariables: _list[ConfigVariable]
+    projectId: str
+    topicId: str
 
 @typing.type_check_only
 class PublishCustomConnectorVersionRequest(typing_extensions.TypedDict, total=False):
@@ -1427,6 +1613,7 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SupportedRuntimeFeatures(typing_extensions.TypedDict, total=False):
     actionApis: bool
+    asyncOperations: bool
     entityApis: bool
     sqlQuery: bool
 
@@ -1446,6 +1633,11 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     seconds: int
 
 @typing.type_check_only
+class TrafficShapingConfig(typing_extensions.TypedDict, total=False):
+    duration: str
+    quotaLimit: str
+
+@typing.type_check_only
 class UpdatePolicy(typing_extensions.TypedDict, total=False):
     channel: typing_extensions.Literal[
         "UPDATE_CHANNEL_UNSPECIFIED", "EARLIER", "LATER", "WEEK1", "WEEK2", "WEEK5"
@@ -1463,12 +1655,17 @@ class ValidateCustomConnectorSpecRequest(typing_extensions.TypedDict, total=Fals
     serviceAccount: str
     specLocation: str
     specType: typing_extensions.Literal[
-        "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO"
+        "CUSTOM_CONNECTOR_TYPE_UNSPECIFIED", "OPEN_API", "PROTO", "SDK"
     ]
 
 @typing.type_check_only
 class ValidateCustomConnectorSpecResponse(typing_extensions.TypedDict, total=False):
     errorMessage: str
+
+@typing.type_check_only
+class VpcscConfig(typing_extensions.TypedDict, total=False):
+    defaultAllowlistedHost: _list[str]
+    disableFirewallVpcscFlow: bool
 
 @typing.type_check_only
 class WebhookData(typing_extensions.TypedDict, total=False):

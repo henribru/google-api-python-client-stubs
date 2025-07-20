@@ -170,6 +170,7 @@ class SheetsResource(googleapiclient.discovery.Resource):
             self,
             *,
             spreadsheetId: str,
+            excludeTablesInBandedRanges: bool = ...,
             includeGridData: bool = ...,
             ranges: str | _list[str] = ...,
             **kwargs: typing.Any,

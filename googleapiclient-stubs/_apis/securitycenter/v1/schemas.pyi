@@ -33,6 +33,26 @@ class AdaptiveProtection(typing_extensions.TypedDict, total=False):
     confidence: float
 
 @typing.type_check_only
+class AffectedResources(typing_extensions.TypedDict, total=False):
+    count: str
+
+@typing.type_check_only
+class AiModel(typing_extensions.TypedDict, total=False):
+    deploymentPlatform: typing_extensions.Literal[
+        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE"
+    ]
+    displayName: str
+    domain: str
+    library: str
+    location: str
+    name: str
+    publisher: str
+
+@typing.type_check_only
+class Allowed(typing_extensions.TypedDict, total=False):
+    ipRules: _list[IpRule]
+
+@typing.type_check_only
 class Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
@@ -191,6 +211,10 @@ class BatchCreateResourceValueConfigsResponse(typing_extensions.TypedDict, total
     resourceValueConfigs: _list[GoogleCloudSecuritycenterV1ResourceValueConfig]
 
 @typing.type_check_only
+class BigQueryDestination(typing_extensions.TypedDict, total=False):
+    dataset: str
+
+@typing.type_check_only
 class Binding(typing_extensions.TypedDict, total=False):
     condition: Expr
     members: _list[str]
@@ -201,6 +225,10 @@ class BulkMuteFindingsRequest(typing_extensions.TypedDict, total=False):
     filter: str
     muteAnnotation: str
     muteState: typing_extensions.Literal["MUTE_STATE_UNSPECIFIED", "MUTED", "UNDEFINED"]
+
+@typing.type_check_only
+class Chokepoint(typing_extensions.TypedDict, total=False):
+    relatedFindings: _list[str]
 
 @typing.type_check_only
 class CloudArmor(typing_extensions.TypedDict, total=False):
@@ -237,22 +265,6 @@ class Compliance(typing_extensions.TypedDict, total=False):
     ids: _list[str]
     standard: str
     version: str
-
-@typing.type_check_only
-class ComplianceSnapshot(typing_extensions.TypedDict, total=False):
-    category: str
-    cloudProvider: typing_extensions.Literal[
-        "CLOUD_PROVIDER_UNSPECIFIED",
-        "GOOGLE_CLOUD_PLATFORM",
-        "AMAZON_WEB_SERVICES",
-        "MICROSOFT_AZURE",
-    ]
-    complianceStandard: str
-    complianceVersion: str
-    count: str
-    leafContainerResource: str
-    name: str
-    snapshotTime: str
 
 @typing.type_check_only
 class Connection(typing_extensions.TypedDict, total=False):
@@ -358,6 +370,11 @@ class Cvssv3(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Cwe(typing_extensions.TypedDict, total=False):
+    id: str
+    references: _list[Reference]
+
+@typing.type_check_only
 class DataAccessEvent(typing_extensions.TypedDict, total=False):
     eventId: str
     eventTime: str
@@ -393,6 +410,16 @@ class Database(typing_extensions.TypedDict, total=False):
     query: str
     userName: str
     version: str
+
+@typing.type_check_only
+class Dataset(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    source: str
+
+@typing.type_check_only
+class Denied(typing_extensions.TypedDict, total=False):
+    ipRules: _list[IpRule]
 
 @typing.type_check_only
 class Detection(typing_extensions.TypedDict, total=False):
@@ -472,6 +499,14 @@ class Exfiltration(typing_extensions.TypedDict, total=False):
     totalExfiltratedBytes: str
 
 @typing.type_check_only
+class ExportFindingsMetadata(typing_extensions.TypedDict, total=False):
+    bigQueryDestination: BigQueryDestination
+    exportStartTime: str
+
+@typing.type_check_only
+class ExportFindingsResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -483,19 +518,29 @@ class File(typing_extensions.TypedDict, total=False):
     contents: str
     diskPath: DiskPath
     hashedSize: str
+    operations: _list[FileOperation]
     partiallyHashed: bool
     path: str
     sha256: str
     size: str
 
 @typing.type_check_only
+class FileOperation(typing_extensions.TypedDict, total=False):
+    type: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "OPEN", "READ", "RENAME", "WRITE", "EXECUTE"
+    ]
+
+@typing.type_check_only
 class Finding(typing_extensions.TypedDict, total=False):
     access: Access
+    affectedResources: AffectedResources
+    aiModel: AiModel
     application: Application
     attackExposure: AttackExposure
     backupDisasterRecovery: BackupDisasterRecovery
     canonicalName: str
     category: str
+    chokepoint: Chokepoint
     cloudArmor: CloudArmor
     cloudDlpDataProfile: CloudDlpDataProfile
     cloudDlpInspection: CloudDlpInspection
@@ -525,10 +570,13 @@ class Finding(typing_extensions.TypedDict, total=False):
         "POSTURE_VIOLATION",
         "TOXIC_COMBINATION",
         "SENSITIVE_DATA_RISK",
+        "CHOKEPOINT",
     ]
     groupMemberships: _list[GroupMembership]
     iamBindings: _list[IamBinding]
     indicator: Indicator
+    ipRules: IpRules
+    job: Job
     kernelRootkit: KernelRootkit
     kubernetes: Kubernetes
     loadBalancers: _list[LoadBalancer]
@@ -540,6 +588,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     muteInitiator: str
     muteUpdateTime: str
     name: str
+    networks: _list[Network]
     nextSteps: str
     notebook: Notebook
     orgPolicies: _list[OrgPolicy]
@@ -555,6 +604,7 @@ class Finding(typing_extensions.TypedDict, total=False):
     sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     toxicCombination: ToxicCombination
+    vertexAi: VertexAi
     vulnerability: Vulnerability
 
 @typing.type_check_only
@@ -882,6 +932,28 @@ class GoogleCloudSecuritycenterV2AdaptiveProtection(
     confidence: float
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2AffectedResources(
+    typing_extensions.TypedDict, total=False
+):
+    count: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2AiModel(typing_extensions.TypedDict, total=False):
+    deploymentPlatform: typing_extensions.Literal[
+        "DEPLOYMENT_PLATFORM_UNSPECIFIED", "VERTEX_AI", "GKE"
+    ]
+    displayName: str
+    domain: str
+    library: str
+    location: str
+    name: str
+    publisher: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Allowed(typing_extensions.TypedDict, total=False):
+    ipRules: _list[GoogleCloudSecuritycenterV2IpRule]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Application(typing_extensions.TypedDict, total=False):
     baseUri: str
     fullUri: str
@@ -1006,6 +1078,10 @@ class GoogleCloudSecuritycenterV2Binding(typing_extensions.TypedDict, total=Fals
 class GoogleCloudSecuritycenterV2BulkMuteFindingsResponse(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Chokepoint(typing_extensions.TypedDict, total=False):
+    relatedFindings: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2CloudArmor(typing_extensions.TypedDict, total=False):
@@ -1139,6 +1215,11 @@ class GoogleCloudSecuritycenterV2Cvssv3(typing_extensions.TypedDict, total=False
     ]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Cwe(typing_extensions.TypedDict, total=False):
+    id: str
+    references: _list[GoogleCloudSecuritycenterV2Reference]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2DataAccessEvent(
     typing_extensions.TypedDict, total=False
 ):
@@ -1180,6 +1261,16 @@ class GoogleCloudSecuritycenterV2Database(typing_extensions.TypedDict, total=Fal
     query: str
     userName: str
     version: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Dataset(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    source: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Denied(typing_extensions.TypedDict, total=False):
+    ipRules: _list[GoogleCloudSecuritycenterV2IpRule]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Detection(typing_extensions.TypedDict, total=False):
@@ -1243,19 +1334,31 @@ class GoogleCloudSecuritycenterV2File(typing_extensions.TypedDict, total=False):
     contents: str
     diskPath: GoogleCloudSecuritycenterV2DiskPath
     hashedSize: str
+    operations: _list[GoogleCloudSecuritycenterV2FileOperation]
     partiallyHashed: bool
     path: str
     sha256: str
     size: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2FileOperation(
+    typing_extensions.TypedDict, total=False
+):
+    type: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED", "OPEN", "READ", "RENAME", "WRITE", "EXECUTE"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=False):
     access: GoogleCloudSecuritycenterV2Access
+    affectedResources: GoogleCloudSecuritycenterV2AffectedResources
+    aiModel: GoogleCloudSecuritycenterV2AiModel
     application: GoogleCloudSecuritycenterV2Application
     attackExposure: GoogleCloudSecuritycenterV2AttackExposure
     backupDisasterRecovery: GoogleCloudSecuritycenterV2BackupDisasterRecovery
     canonicalName: str
     category: str
+    chokepoint: GoogleCloudSecuritycenterV2Chokepoint
     cloudArmor: GoogleCloudSecuritycenterV2CloudArmor
     cloudDlpDataProfile: GoogleCloudSecuritycenterV2CloudDlpDataProfile
     cloudDlpInspection: GoogleCloudSecuritycenterV2CloudDlpInspection
@@ -1287,10 +1390,13 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
         "POSTURE_VIOLATION",
         "TOXIC_COMBINATION",
         "SENSITIVE_DATA_RISK",
+        "CHOKEPOINT",
     ]
     groupMemberships: _list[GoogleCloudSecuritycenterV2GroupMembership]
     iamBindings: _list[GoogleCloudSecuritycenterV2IamBinding]
     indicator: GoogleCloudSecuritycenterV2Indicator
+    ipRules: GoogleCloudSecuritycenterV2IpRules
+    job: GoogleCloudSecuritycenterV2Job
     kernelRootkit: GoogleCloudSecuritycenterV2KernelRootkit
     kubernetes: GoogleCloudSecuritycenterV2Kubernetes
     loadBalancers: _list[GoogleCloudSecuritycenterV2LoadBalancer]
@@ -1302,6 +1408,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     muteInitiator: str
     muteUpdateTime: str
     name: str
+    networks: _list[GoogleCloudSecuritycenterV2Network]
     nextSteps: str
     notebook: GoogleCloudSecuritycenterV2Notebook
     orgPolicies: _list[GoogleCloudSecuritycenterV2OrgPolicy]
@@ -1317,6 +1424,7 @@ class GoogleCloudSecuritycenterV2Finding(typing_extensions.TypedDict, total=Fals
     sourceProperties: dict[str, typing.Any]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "INACTIVE"]
     toxicCombination: GoogleCloudSecuritycenterV2ToxicCombination
+    vertexAi: GoogleCloudSecuritycenterV2VertexAi
     vulnerability: GoogleCloudSecuritycenterV2Vulnerability
 
 @typing.type_check_only
@@ -1334,7 +1442,9 @@ class GoogleCloudSecuritycenterV2GroupMembership(
 ):
     groupId: str
     groupType: typing_extensions.Literal[
-        "GROUP_TYPE_UNSPECIFIED", "GROUP_TYPE_TOXIC_COMBINATION"
+        "GROUP_TYPE_UNSPECIFIED",
+        "GROUP_TYPE_TOXIC_COMBINATION",
+        "GROUP_TYPE_CHOKEPOINT",
     ]
 
 @typing.type_check_only
@@ -1349,6 +1459,20 @@ class GoogleCloudSecuritycenterV2Indicator(typing_extensions.TypedDict, total=Fa
     ipAddresses: _list[str]
     signatures: _list[GoogleCloudSecuritycenterV2ProcessSignature]
     uris: _list[str]
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IpRule(typing_extensions.TypedDict, total=False):
+    portRanges: _list[GoogleCloudSecuritycenterV2PortRange]
+    protocol: str
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2IpRules(typing_extensions.TypedDict, total=False):
+    allowed: GoogleCloudSecuritycenterV2Allowed
+    denied: GoogleCloudSecuritycenterV2Denied
+    destinationIpRanges: _list[str]
+    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
+    exposedServices: _list[str]
+    sourceIpRanges: _list[str]
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Issue(typing_extensions.TypedDict, total=False):
@@ -1384,6 +1508,7 @@ class GoogleCloudSecuritycenterV2IssueDomain(typing_extensions.TypedDict, total=
         "DATA",
         "IDENTITY_AND_ACCESS",
         "VULNERABILITY",
+        "THREAT",
     ]
 
 @typing.type_check_only
@@ -1482,6 +1607,15 @@ class GoogleCloudSecuritycenterV2IssueSecurityContextContext(
     values: _list[str]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Job(typing_extensions.TypedDict, total=False):
+    errorCode: int
+    location: str
+    name: str
+    state: typing_extensions.Literal[
+        "JOB_STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2KernelRootkit(
     typing_extensions.TypedDict, total=False
 ):
@@ -1549,11 +1683,30 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
     additionalTechniques: _list[
         typing_extensions.Literal[
             "TECHNIQUE_UNSPECIFIED",
+            "DATA_OBFUSCATION",
+            "DATA_OBFUSCATION_STEGANOGRAPHY",
+            "OS_CREDENTIAL_DUMPING",
+            "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+            "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+            "DATA_FROM_LOCAL_SYSTEM",
+            "AUTOMATED_EXFILTRATION",
+            "OBFUSCATED_FILES_OR_INFO",
+            "STEGANOGRAPHY",
+            "COMPILE_AFTER_DELIVERY",
+            "COMMAND_OBFUSCATION",
+            "SCHEDULED_TRANSFER",
+            "SYSTEM_OWNER_USER_DISCOVERY",
             "MASQUERADING",
             "MATCH_LEGITIMATE_NAME_OR_LOCATION",
             "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
             "STARTUP_ITEMS",
             "NETWORK_SERVICE_DISCOVERY",
+            "SCHEDULED_TASK_JOB",
+            "SCHEDULED_TASK_JOB_CRON",
+            "CONTAINER_ORCHESTRATION_JOB",
+            "PROCESS_INJECTION",
+            "INPUT_CAPTURE",
+            "INPUT_CAPTURE_KEYLOGGING",
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
@@ -1561,7 +1714,12 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL",
+            "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+            "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
             "INDICATOR_REMOVAL_FILE_DELETION",
+            "INDICATOR_REMOVAL_TIMESTOMP",
+            "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1569,52 +1727,99 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "DEFAULT_ACCOUNTS",
             "LOCAL_ACCOUNTS",
             "CLOUD_ACCOUNTS",
+            "FILE_AND_DIRECTORY_DISCOVERY",
+            "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
             "PROXY",
             "EXTERNAL_PROXY",
             "MULTI_HOP_PROXY",
             "ACCOUNT_MANIPULATION",
             "ADDITIONAL_CLOUD_CREDENTIALS",
+            "ADDITIONAL_CLOUD_ROLES",
             "SSH_AUTHORIZED_KEYS",
             "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
+            "MULTI_STAGE_CHANNELS",
             "INGRESS_TOOL_TRANSFER",
             "NATIVE_API",
             "BRUTE_FORCE",
+            "AUTOMATED_COLLECTION",
             "SHARED_MODULES",
+            "DATA_ENCODING",
+            "STANDARD_ENCODING",
             "ACCESS_TOKEN_MANIPULATION",
             "TOKEN_IMPERSONATION_OR_THEFT",
+            "CREATE_ACCOUNT",
+            "LOCAL_ACCOUNT",
+            "DEOBFUSCATE_DECODE_FILES_OR_INFO",
             "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "SUPPLY_CHAIN_COMPROMISE",
+            "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+            "EXPLOITATION_FOR_CLIENT_EXECUTION",
+            "USER_EXECUTION",
+            "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
+            "DATA_ENCRYPTED_FOR_IMPACT",
             "SERVICE_STOP",
             "INHIBIT_SYSTEM_RECOVERY",
+            "FIRMWARE_CORRUPTION",
             "RESOURCE_HIJACKING",
             "NETWORK_DENIAL_OF_SERVICE",
             "CLOUD_SERVICE_DISCOVERY",
             "STEAL_APPLICATION_ACCESS_TOKEN",
             "ACCOUNT_ACCESS_REMOVAL",
+            "TRANSFER_DATA_TO_CLOUD_ACCOUNT",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
             "EVENT_TRIGGERED_EXECUTION",
+            "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
+            "KERNEL_MODULES_AND_EXTENSIONS",
+            "SHORTCUT_MODIFICATION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
             "UNSECURED_CREDENTIALS",
+            "CREDENTIALS_IN_FILES",
+            "BASH_HISTORY",
+            "PRIVATE_KEYS",
+            "SUBVERT_TRUST_CONTROL",
+            "INSTALL_ROOT_CERTIFICATE",
+            "COMPROMISE_HOST_SOFTWARE_BINARY",
+            "CREDENTIALS_FROM_PASSWORD_STORES",
             "MODIFY_AUTHENTICATION_PROCESS",
+            "PLUGGABLE_AUTHENTICATION_MODULES",
+            "MULTI_FACTOR_AUTHENTICATION",
             "IMPAIR_DEFENSES",
             "DISABLE_OR_MODIFY_TOOLS",
+            "INDICATOR_BLOCKING",
+            "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
+            "HIDE_ARTIFACTS",
+            "HIDDEN_FILES_AND_DIRECTORIES",
+            "HIDDEN_USERS",
             "EXFILTRATION_OVER_WEB_SERVICE",
             "EXFILTRATION_TO_CLOUD_STORAGE",
             "DYNAMIC_RESOLUTION",
             "LATERAL_TOOL_TRANSFER",
+            "HIJACK_EXECUTION_FLOW",
+            "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
             "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
             "CREATE_SNAPSHOT",
             "CLOUD_INFRASTRUCTURE_DISCOVERY",
+            "DEVELOP_CAPABILITIES",
+            "DEVELOP_CAPABILITIES_MALWARE",
             "OBTAIN_CAPABILITIES",
+            "OBTAIN_CAPABILITIES_MALWARE",
+            "OBTAIN_CAPABILITIES_VULNERABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "STAGE_CAPABILITIES",
+            "UPLOAD_MALWARE",
             "CONTAINER_ADMINISTRATION_COMMAND",
             "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "REFLECTIVE_CODE_LOADING",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+            "FINANCIAL_THEFT",
         ]
     ]
     primaryTactic: typing_extensions.Literal[
@@ -1637,11 +1842,30 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
     primaryTechniques: _list[
         typing_extensions.Literal[
             "TECHNIQUE_UNSPECIFIED",
+            "DATA_OBFUSCATION",
+            "DATA_OBFUSCATION_STEGANOGRAPHY",
+            "OS_CREDENTIAL_DUMPING",
+            "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+            "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+            "DATA_FROM_LOCAL_SYSTEM",
+            "AUTOMATED_EXFILTRATION",
+            "OBFUSCATED_FILES_OR_INFO",
+            "STEGANOGRAPHY",
+            "COMPILE_AFTER_DELIVERY",
+            "COMMAND_OBFUSCATION",
+            "SCHEDULED_TRANSFER",
+            "SYSTEM_OWNER_USER_DISCOVERY",
             "MASQUERADING",
             "MATCH_LEGITIMATE_NAME_OR_LOCATION",
             "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
             "STARTUP_ITEMS",
             "NETWORK_SERVICE_DISCOVERY",
+            "SCHEDULED_TASK_JOB",
+            "SCHEDULED_TASK_JOB_CRON",
+            "CONTAINER_ORCHESTRATION_JOB",
+            "PROCESS_INJECTION",
+            "INPUT_CAPTURE",
+            "INPUT_CAPTURE_KEYLOGGING",
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
@@ -1649,7 +1873,12 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL",
+            "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+            "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
             "INDICATOR_REMOVAL_FILE_DELETION",
+            "INDICATOR_REMOVAL_TIMESTOMP",
+            "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -1657,52 +1886,99 @@ class GoogleCloudSecuritycenterV2MitreAttack(typing_extensions.TypedDict, total=
             "DEFAULT_ACCOUNTS",
             "LOCAL_ACCOUNTS",
             "CLOUD_ACCOUNTS",
+            "FILE_AND_DIRECTORY_DISCOVERY",
+            "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
             "PROXY",
             "EXTERNAL_PROXY",
             "MULTI_HOP_PROXY",
             "ACCOUNT_MANIPULATION",
             "ADDITIONAL_CLOUD_CREDENTIALS",
+            "ADDITIONAL_CLOUD_ROLES",
             "SSH_AUTHORIZED_KEYS",
             "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
+            "MULTI_STAGE_CHANNELS",
             "INGRESS_TOOL_TRANSFER",
             "NATIVE_API",
             "BRUTE_FORCE",
+            "AUTOMATED_COLLECTION",
             "SHARED_MODULES",
+            "DATA_ENCODING",
+            "STANDARD_ENCODING",
             "ACCESS_TOKEN_MANIPULATION",
             "TOKEN_IMPERSONATION_OR_THEFT",
+            "CREATE_ACCOUNT",
+            "LOCAL_ACCOUNT",
+            "DEOBFUSCATE_DECODE_FILES_OR_INFO",
             "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "SUPPLY_CHAIN_COMPROMISE",
+            "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+            "EXPLOITATION_FOR_CLIENT_EXECUTION",
+            "USER_EXECUTION",
+            "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
+            "DATA_ENCRYPTED_FOR_IMPACT",
             "SERVICE_STOP",
             "INHIBIT_SYSTEM_RECOVERY",
+            "FIRMWARE_CORRUPTION",
             "RESOURCE_HIJACKING",
             "NETWORK_DENIAL_OF_SERVICE",
             "CLOUD_SERVICE_DISCOVERY",
             "STEAL_APPLICATION_ACCESS_TOKEN",
             "ACCOUNT_ACCESS_REMOVAL",
+            "TRANSFER_DATA_TO_CLOUD_ACCOUNT",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
             "EVENT_TRIGGERED_EXECUTION",
+            "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
+            "KERNEL_MODULES_AND_EXTENSIONS",
+            "SHORTCUT_MODIFICATION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
             "UNSECURED_CREDENTIALS",
+            "CREDENTIALS_IN_FILES",
+            "BASH_HISTORY",
+            "PRIVATE_KEYS",
+            "SUBVERT_TRUST_CONTROL",
+            "INSTALL_ROOT_CERTIFICATE",
+            "COMPROMISE_HOST_SOFTWARE_BINARY",
+            "CREDENTIALS_FROM_PASSWORD_STORES",
             "MODIFY_AUTHENTICATION_PROCESS",
+            "PLUGGABLE_AUTHENTICATION_MODULES",
+            "MULTI_FACTOR_AUTHENTICATION",
             "IMPAIR_DEFENSES",
             "DISABLE_OR_MODIFY_TOOLS",
+            "INDICATOR_BLOCKING",
+            "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
+            "HIDE_ARTIFACTS",
+            "HIDDEN_FILES_AND_DIRECTORIES",
+            "HIDDEN_USERS",
             "EXFILTRATION_OVER_WEB_SERVICE",
             "EXFILTRATION_TO_CLOUD_STORAGE",
             "DYNAMIC_RESOLUTION",
             "LATERAL_TOOL_TRANSFER",
+            "HIJACK_EXECUTION_FLOW",
+            "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
             "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
             "CREATE_SNAPSHOT",
             "CLOUD_INFRASTRUCTURE_DISCOVERY",
+            "DEVELOP_CAPABILITIES",
+            "DEVELOP_CAPABILITIES_MALWARE",
             "OBTAIN_CAPABILITIES",
+            "OBTAIN_CAPABILITIES_MALWARE",
+            "OBTAIN_CAPABILITIES_VULNERABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "STAGE_CAPABILITIES",
+            "UPLOAD_MALWARE",
             "CONTAINER_ADMINISTRATION_COMMAND",
             "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "REFLECTIVE_CODE_LOADING",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+            "FINANCIAL_THEFT",
         ]
     ]
     version: str
@@ -1722,6 +1998,10 @@ class GoogleCloudSecuritycenterV2MuteConfig(typing_extensions.TypedDict, total=F
 class GoogleCloudSecuritycenterV2MuteInfo(typing_extensions.TypedDict, total=False):
     dynamicMuteRecords: _list[GoogleCloudSecuritycenterV2DynamicMuteRecord]
     staticMute: GoogleCloudSecuritycenterV2StaticMute
+
+@typing.type_check_only
+class GoogleCloudSecuritycenterV2Network(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2Node(typing_extensions.TypedDict, total=False):
@@ -1767,6 +2047,11 @@ class GoogleCloudSecuritycenterV2Package(typing_extensions.TypedDict, total=Fals
     packageVersion: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2Pipeline(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Pod(typing_extensions.TypedDict, total=False):
     containers: _list[GoogleCloudSecuritycenterV2Container]
     labels: _list[GoogleCloudSecuritycenterV2Label]
@@ -1782,6 +2067,11 @@ class GoogleCloudSecuritycenterV2PolicyDriftDetails(
     field: str
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2PortRange(typing_extensions.TypedDict, total=False):
+    max: str
+    min: str
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Process(typing_extensions.TypedDict, total=False):
     args: _list[str]
     argumentsTruncated: bool
@@ -1793,6 +2083,7 @@ class GoogleCloudSecuritycenterV2Process(typing_extensions.TypedDict, total=Fals
     parentPid: str
     pid: str
     script: GoogleCloudSecuritycenterV2File
+    userId: str
 
 @typing.type_check_only
 class GoogleCloudSecuritycenterV2ProcessSignature(
@@ -1976,12 +2267,20 @@ class GoogleCloudSecuritycenterV2ToxicCombination(
     relatedFindings: _list[str]
 
 @typing.type_check_only
+class GoogleCloudSecuritycenterV2VertexAi(typing_extensions.TypedDict, total=False):
+    datasets: _list[GoogleCloudSecuritycenterV2Dataset]
+    pipelines: _list[GoogleCloudSecuritycenterV2Pipeline]
+
+@typing.type_check_only
 class GoogleCloudSecuritycenterV2Vulnerability(
     typing_extensions.TypedDict, total=False
 ):
     cve: GoogleCloudSecuritycenterV2Cve
+    cwes: _list[GoogleCloudSecuritycenterV2Cwe]
     fixedPackage: GoogleCloudSecuritycenterV2Package
     offendingPackage: GoogleCloudSecuritycenterV2Package
+    providerRiskScore: str
+    reachable: bool
     securityBulletin: GoogleCloudSecuritycenterV2SecurityBulletin
 
 @typing.type_check_only
@@ -2026,7 +2325,9 @@ class GroupFindingsResponse(typing_extensions.TypedDict, total=False):
 class GroupMembership(typing_extensions.TypedDict, total=False):
     groupId: str
     groupType: typing_extensions.Literal[
-        "GROUP_TYPE_UNSPECIFIED", "GROUP_TYPE_TOXIC_COMBINATION"
+        "GROUP_TYPE_UNSPECIFIED",
+        "GROUP_TYPE_TOXIC_COMBINATION",
+        "GROUP_TYPE_CHOKEPOINT",
     ]
 
 @typing.type_check_only
@@ -2050,6 +2351,29 @@ class Indicator(typing_extensions.TypedDict, total=False):
     ipAddresses: _list[str]
     signatures: _list[ProcessSignature]
     uris: _list[str]
+
+@typing.type_check_only
+class IpRule(typing_extensions.TypedDict, total=False):
+    portRanges: _list[PortRange]
+    protocol: str
+
+@typing.type_check_only
+class IpRules(typing_extensions.TypedDict, total=False):
+    allowed: Allowed
+    denied: Denied
+    destinationIpRanges: _list[str]
+    direction: typing_extensions.Literal["DIRECTION_UNSPECIFIED", "INGRESS", "EGRESS"]
+    exposedServices: _list[str]
+    sourceIpRanges: _list[str]
+
+@typing.type_check_only
+class Job(typing_extensions.TypedDict, total=False):
+    errorCode: int
+    location: str
+    name: str
+    state: typing_extensions.Literal[
+        "JOB_STATE_UNSPECIFIED", "PENDING", "RUNNING", "SUCCEEDED", "FAILED"
+    ]
 
 @typing.type_check_only
 class KernelRootkit(typing_extensions.TypedDict, total=False):
@@ -2233,11 +2557,30 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
     additionalTechniques: _list[
         typing_extensions.Literal[
             "TECHNIQUE_UNSPECIFIED",
+            "DATA_OBFUSCATION",
+            "DATA_OBFUSCATION_STEGANOGRAPHY",
+            "OS_CREDENTIAL_DUMPING",
+            "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+            "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+            "DATA_FROM_LOCAL_SYSTEM",
+            "AUTOMATED_EXFILTRATION",
+            "OBFUSCATED_FILES_OR_INFO",
+            "STEGANOGRAPHY",
+            "COMPILE_AFTER_DELIVERY",
+            "COMMAND_OBFUSCATION",
+            "SCHEDULED_TRANSFER",
+            "SYSTEM_OWNER_USER_DISCOVERY",
             "MASQUERADING",
             "MATCH_LEGITIMATE_NAME_OR_LOCATION",
             "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
             "STARTUP_ITEMS",
             "NETWORK_SERVICE_DISCOVERY",
+            "SCHEDULED_TASK_JOB",
+            "SCHEDULED_TASK_JOB_CRON",
+            "CONTAINER_ORCHESTRATION_JOB",
+            "PROCESS_INJECTION",
+            "INPUT_CAPTURE",
+            "INPUT_CAPTURE_KEYLOGGING",
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
@@ -2245,7 +2588,12 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL",
+            "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+            "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
             "INDICATOR_REMOVAL_FILE_DELETION",
+            "INDICATOR_REMOVAL_TIMESTOMP",
+            "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -2253,52 +2601,99 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "DEFAULT_ACCOUNTS",
             "LOCAL_ACCOUNTS",
             "CLOUD_ACCOUNTS",
+            "FILE_AND_DIRECTORY_DISCOVERY",
+            "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
             "PROXY",
             "EXTERNAL_PROXY",
             "MULTI_HOP_PROXY",
             "ACCOUNT_MANIPULATION",
             "ADDITIONAL_CLOUD_CREDENTIALS",
+            "ADDITIONAL_CLOUD_ROLES",
             "SSH_AUTHORIZED_KEYS",
             "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
+            "MULTI_STAGE_CHANNELS",
             "INGRESS_TOOL_TRANSFER",
             "NATIVE_API",
             "BRUTE_FORCE",
+            "AUTOMATED_COLLECTION",
             "SHARED_MODULES",
+            "DATA_ENCODING",
+            "STANDARD_ENCODING",
             "ACCESS_TOKEN_MANIPULATION",
             "TOKEN_IMPERSONATION_OR_THEFT",
+            "CREATE_ACCOUNT",
+            "LOCAL_ACCOUNT",
+            "DEOBFUSCATE_DECODE_FILES_OR_INFO",
             "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "SUPPLY_CHAIN_COMPROMISE",
+            "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+            "EXPLOITATION_FOR_CLIENT_EXECUTION",
+            "USER_EXECUTION",
+            "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
+            "DATA_ENCRYPTED_FOR_IMPACT",
             "SERVICE_STOP",
             "INHIBIT_SYSTEM_RECOVERY",
+            "FIRMWARE_CORRUPTION",
             "RESOURCE_HIJACKING",
             "NETWORK_DENIAL_OF_SERVICE",
             "CLOUD_SERVICE_DISCOVERY",
             "STEAL_APPLICATION_ACCESS_TOKEN",
             "ACCOUNT_ACCESS_REMOVAL",
+            "TRANSFER_DATA_TO_CLOUD_ACCOUNT",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
             "EVENT_TRIGGERED_EXECUTION",
+            "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
+            "KERNEL_MODULES_AND_EXTENSIONS",
+            "SHORTCUT_MODIFICATION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
             "UNSECURED_CREDENTIALS",
+            "CREDENTIALS_IN_FILES",
+            "BASH_HISTORY",
+            "PRIVATE_KEYS",
+            "SUBVERT_TRUST_CONTROL",
+            "INSTALL_ROOT_CERTIFICATE",
+            "COMPROMISE_HOST_SOFTWARE_BINARY",
+            "CREDENTIALS_FROM_PASSWORD_STORES",
             "MODIFY_AUTHENTICATION_PROCESS",
+            "PLUGGABLE_AUTHENTICATION_MODULES",
+            "MULTI_FACTOR_AUTHENTICATION",
             "IMPAIR_DEFENSES",
             "DISABLE_OR_MODIFY_TOOLS",
+            "INDICATOR_BLOCKING",
+            "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
+            "HIDE_ARTIFACTS",
+            "HIDDEN_FILES_AND_DIRECTORIES",
+            "HIDDEN_USERS",
             "EXFILTRATION_OVER_WEB_SERVICE",
             "EXFILTRATION_TO_CLOUD_STORAGE",
             "DYNAMIC_RESOLUTION",
             "LATERAL_TOOL_TRANSFER",
+            "HIJACK_EXECUTION_FLOW",
+            "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
             "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
             "CREATE_SNAPSHOT",
             "CLOUD_INFRASTRUCTURE_DISCOVERY",
+            "DEVELOP_CAPABILITIES",
+            "DEVELOP_CAPABILITIES_MALWARE",
             "OBTAIN_CAPABILITIES",
+            "OBTAIN_CAPABILITIES_MALWARE",
+            "OBTAIN_CAPABILITIES_VULNERABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "STAGE_CAPABILITIES",
+            "UPLOAD_MALWARE",
             "CONTAINER_ADMINISTRATION_COMMAND",
             "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "REFLECTIVE_CODE_LOADING",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+            "FINANCIAL_THEFT",
         ]
     ]
     primaryTactic: typing_extensions.Literal[
@@ -2321,11 +2716,30 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
     primaryTechniques: _list[
         typing_extensions.Literal[
             "TECHNIQUE_UNSPECIFIED",
+            "DATA_OBFUSCATION",
+            "DATA_OBFUSCATION_STEGANOGRAPHY",
+            "OS_CREDENTIAL_DUMPING",
+            "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+            "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+            "DATA_FROM_LOCAL_SYSTEM",
+            "AUTOMATED_EXFILTRATION",
+            "OBFUSCATED_FILES_OR_INFO",
+            "STEGANOGRAPHY",
+            "COMPILE_AFTER_DELIVERY",
+            "COMMAND_OBFUSCATION",
+            "SCHEDULED_TRANSFER",
+            "SYSTEM_OWNER_USER_DISCOVERY",
             "MASQUERADING",
             "MATCH_LEGITIMATE_NAME_OR_LOCATION",
             "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
             "STARTUP_ITEMS",
             "NETWORK_SERVICE_DISCOVERY",
+            "SCHEDULED_TASK_JOB",
+            "SCHEDULED_TASK_JOB_CRON",
+            "CONTAINER_ORCHESTRATION_JOB",
+            "PROCESS_INJECTION",
+            "INPUT_CAPTURE",
+            "INPUT_CAPTURE_KEYLOGGING",
             "PROCESS_DISCOVERY",
             "COMMAND_AND_SCRIPTING_INTERPRETER",
             "UNIX_SHELL",
@@ -2333,7 +2747,12 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
             "PERMISSION_GROUPS_DISCOVERY",
             "CLOUD_GROUPS",
+            "INDICATOR_REMOVAL",
+            "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+            "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
             "INDICATOR_REMOVAL_FILE_DELETION",
+            "INDICATOR_REMOVAL_TIMESTOMP",
+            "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
             "APPLICATION_LAYER_PROTOCOL",
             "DNS",
             "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -2341,52 +2760,99 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
             "DEFAULT_ACCOUNTS",
             "LOCAL_ACCOUNTS",
             "CLOUD_ACCOUNTS",
+            "FILE_AND_DIRECTORY_DISCOVERY",
+            "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
             "PROXY",
             "EXTERNAL_PROXY",
             "MULTI_HOP_PROXY",
             "ACCOUNT_MANIPULATION",
             "ADDITIONAL_CLOUD_CREDENTIALS",
+            "ADDITIONAL_CLOUD_ROLES",
             "SSH_AUTHORIZED_KEYS",
             "ADDITIONAL_CONTAINER_CLUSTER_ROLES",
+            "MULTI_STAGE_CHANNELS",
             "INGRESS_TOOL_TRANSFER",
             "NATIVE_API",
             "BRUTE_FORCE",
+            "AUTOMATED_COLLECTION",
             "SHARED_MODULES",
+            "DATA_ENCODING",
+            "STANDARD_ENCODING",
             "ACCESS_TOKEN_MANIPULATION",
             "TOKEN_IMPERSONATION_OR_THEFT",
+            "CREATE_ACCOUNT",
+            "LOCAL_ACCOUNT",
+            "DEOBFUSCATE_DECODE_FILES_OR_INFO",
             "EXPLOIT_PUBLIC_FACING_APPLICATION",
+            "SUPPLY_CHAIN_COMPROMISE",
+            "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+            "EXPLOITATION_FOR_CLIENT_EXECUTION",
+            "USER_EXECUTION",
+            "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
             "DOMAIN_POLICY_MODIFICATION",
             "DATA_DESTRUCTION",
+            "DATA_ENCRYPTED_FOR_IMPACT",
             "SERVICE_STOP",
             "INHIBIT_SYSTEM_RECOVERY",
+            "FIRMWARE_CORRUPTION",
             "RESOURCE_HIJACKING",
             "NETWORK_DENIAL_OF_SERVICE",
             "CLOUD_SERVICE_DISCOVERY",
             "STEAL_APPLICATION_ACCESS_TOKEN",
             "ACCOUNT_ACCESS_REMOVAL",
+            "TRANSFER_DATA_TO_CLOUD_ACCOUNT",
             "STEAL_WEB_SESSION_COOKIE",
             "CREATE_OR_MODIFY_SYSTEM_PROCESS",
             "EVENT_TRIGGERED_EXECUTION",
+            "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
+            "KERNEL_MODULES_AND_EXTENSIONS",
+            "SHORTCUT_MODIFICATION",
             "ABUSE_ELEVATION_CONTROL_MECHANISM",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+            "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
             "UNSECURED_CREDENTIALS",
+            "CREDENTIALS_IN_FILES",
+            "BASH_HISTORY",
+            "PRIVATE_KEYS",
+            "SUBVERT_TRUST_CONTROL",
+            "INSTALL_ROOT_CERTIFICATE",
+            "COMPROMISE_HOST_SOFTWARE_BINARY",
+            "CREDENTIALS_FROM_PASSWORD_STORES",
             "MODIFY_AUTHENTICATION_PROCESS",
+            "PLUGGABLE_AUTHENTICATION_MODULES",
+            "MULTI_FACTOR_AUTHENTICATION",
             "IMPAIR_DEFENSES",
             "DISABLE_OR_MODIFY_TOOLS",
+            "INDICATOR_BLOCKING",
+            "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
+            "HIDE_ARTIFACTS",
+            "HIDDEN_FILES_AND_DIRECTORIES",
+            "HIDDEN_USERS",
             "EXFILTRATION_OVER_WEB_SERVICE",
             "EXFILTRATION_TO_CLOUD_STORAGE",
             "DYNAMIC_RESOLUTION",
             "LATERAL_TOOL_TRANSFER",
+            "HIJACK_EXECUTION_FLOW",
+            "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
             "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
             "CREATE_SNAPSHOT",
             "CLOUD_INFRASTRUCTURE_DISCOVERY",
+            "DEVELOP_CAPABILITIES",
+            "DEVELOP_CAPABILITIES_MALWARE",
             "OBTAIN_CAPABILITIES",
+            "OBTAIN_CAPABILITIES_MALWARE",
+            "OBTAIN_CAPABILITIES_VULNERABILITIES",
             "ACTIVE_SCANNING",
             "SCANNING_IP_BLOCKS",
+            "STAGE_CAPABILITIES",
+            "UPLOAD_MALWARE",
             "CONTAINER_ADMINISTRATION_COMMAND",
             "DEPLOY_CONTAINER",
             "ESCAPE_TO_HOST",
             "CONTAINER_AND_RESOURCE_DISCOVERY",
+            "REFLECTIVE_CODE_LOADING",
             "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+            "FINANCIAL_THEFT",
         ]
     ]
     version: str
@@ -2395,6 +2861,10 @@ class MitreAttack(typing_extensions.TypedDict, total=False):
 class MuteInfo(typing_extensions.TypedDict, total=False):
     dynamicMuteRecords: _list[DynamicMuteRecord]
     staticMute: StaticMute
+
+@typing.type_check_only
+class Network(typing_extensions.TypedDict, total=False):
+    name: str
 
 @typing.type_check_only
 class Node(typing_extensions.TypedDict, total=False):
@@ -2460,6 +2930,11 @@ class PathNodeAssociatedFinding(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Pipeline(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+
+@typing.type_check_only
 class Pod(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     labels: _list[Label]
@@ -2480,6 +2955,11 @@ class PolicyDriftDetails(typing_extensions.TypedDict, total=False):
     field: str
 
 @typing.type_check_only
+class PortRange(typing_extensions.TypedDict, total=False):
+    max: str
+    min: str
+
+@typing.type_check_only
 class Position(typing_extensions.TypedDict, total=False):
     columnNumber: int
     lineNumber: int
@@ -2496,6 +2976,7 @@ class Process(typing_extensions.TypedDict, total=False):
     parentPid: str
     pid: str
     script: File
+    userId: str
 
 @typing.type_check_only
 class ProcessSignature(typing_extensions.TypedDict, total=False):
@@ -2755,10 +3236,18 @@ class ValuedResource(typing_extensions.TypedDict, total=False):
     resourceValueConfigsUsed: _list[ResourceValueConfigMetadata]
 
 @typing.type_check_only
+class VertexAi(typing_extensions.TypedDict, total=False):
+    datasets: _list[Dataset]
+    pipelines: _list[Pipeline]
+
+@typing.type_check_only
 class Vulnerability(typing_extensions.TypedDict, total=False):
     cve: Cve
+    cwes: _list[Cwe]
     fixedPackage: Package
     offendingPackage: Package
+    providerRiskScore: str
+    reachable: bool
     securityBulletin: SecurityBulletin
 
 @typing.type_check_only

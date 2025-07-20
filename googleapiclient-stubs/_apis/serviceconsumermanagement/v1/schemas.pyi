@@ -27,6 +27,11 @@ class ApplyTenantProjectConfigRequest(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class Aspect(typing_extensions.TypedDict, total=False):
+    kind: str
+    spec: dict[str, typing.Any]
+
+@typing.type_check_only
 class AttachTenantProjectRequest(typing_extensions.TypedDict, total=False):
     externalResource: str
     reservedResource: str
@@ -68,6 +73,7 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     deadline: float
     disableAuth: bool
     jwtAudience: str
+    loadBalancingPolicy: str
     minDeadline: float
     operationDeadline: float
     overridesByRequestProtocol: dict[str, typing.Any]
@@ -76,6 +82,30 @@ class BackendRule(typing_extensions.TypedDict, total=False):
     ]
     protocol: str
     selector: str
+
+@typing.type_check_only
+class BatchingConfigProto(typing_extensions.TypedDict, total=False):
+    batchDescriptor: BatchingDescriptorProto
+    thresholds: BatchingSettingsProto
+
+@typing.type_check_only
+class BatchingDescriptorProto(typing_extensions.TypedDict, total=False):
+    batchedField: str
+    discriminatorFields: _list[str]
+    subresponseField: str
+
+@typing.type_check_only
+class BatchingSettingsProto(typing_extensions.TypedDict, total=False):
+    delayThreshold: str
+    elementCountLimit: int
+    elementCountThreshold: int
+    flowControlByteLimit: int
+    flowControlElementLimit: int
+    flowControlLimitExceededBehavior: typing_extensions.Literal[
+        "UNSET_BEHAVIOR", "THROW_EXCEPTION", "BLOCK", "IGNORE"
+    ]
+    requestByteLimit: int
+    requestByteThreshold: str
 
 @typing.type_check_only
 class Billing(typing_extensions.TypedDict, total=False):
@@ -228,6 +258,7 @@ class EnumValue(typing_extensions.TypedDict, total=False):
 class ExperimentalFeatures(typing_extensions.TypedDict, total=False):
     protobufPythonicTypesEnabled: bool
     restAsyncIoEnabled: bool
+    unversionedPackageDisabled: bool
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -369,6 +400,7 @@ class MethodPolicy(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MethodSettings(typing_extensions.TypedDict, total=False):
     autoPopulatedFields: _list[str]
+    batching: BatchingConfigProto
     longRunning: LongRunning
     selector: str
 
@@ -563,11 +595,13 @@ class SearchTenancyUnitsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SelectiveGapicGeneration(typing_extensions.TypedDict, total=False):
+    generateOmittedAsInternal: bool
     methods: _list[str]
 
 @typing.type_check_only
 class Service(typing_extensions.TypedDict, total=False):
     apis: _list[Api]
+    aspects: _list[Aspect]
     authentication: Authentication
     backend: Backend
     billing: Billing

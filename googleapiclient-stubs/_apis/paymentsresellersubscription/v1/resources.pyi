@@ -114,6 +114,20 @@ class PaymentsResellerSubscriptionResource(googleapiclient.discovery.Resource):
                 subscriptionId: str = ...,
                 **kwargs: typing.Any,
             ) -> GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest: ...
+            def resume(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponseHttpRequest: ...
+            def suspend(
+                self,
+                *,
+                name: str,
+                body: GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponseHttpRequest: ...
             def undoCancel(
                 self,
                 *,
@@ -222,6 +236,16 @@ class GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponseHttpRequest
     ) -> GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse: ...
 
 @typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse: ...
+
+@typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -230,6 +254,16 @@ class GoogleCloudPaymentsResellerSubscriptionV1SubscriptionHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudPaymentsResellerSubscriptionV1Subscription: ...
+
+@typing.type_check_only
+class GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse: ...
 
 @typing.type_check_only
 class GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponseHttpRequest(

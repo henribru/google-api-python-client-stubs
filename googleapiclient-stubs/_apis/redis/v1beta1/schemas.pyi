@@ -69,6 +69,7 @@ class BackupClusterRequest(typing_extensions.TypedDict, total=False):
 class BackupCollection(typing_extensions.TypedDict, total=False):
     cluster: str
     clusterUid: str
+    createTime: str
     kmsKey: str
     name: str
     uid: str
@@ -103,6 +104,7 @@ class CertificateAuthority(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Cluster(typing_extensions.TypedDict, total=False):
+    allowFewerZonesDeployment: bool
     asyncClusterEndpointsDeletionEnabled: bool
     authorizationMode: typing_extensions.Literal[
         "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
@@ -128,6 +130,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "REDIS_HIGHMEM_XLARGE",
         "REDIS_STANDARD_SMALL",
     ]
+    ondemandMaintenance: bool
     persistenceConfig: ClusterPersistenceConfig
     preciseSizeGb: float
     pscConfigs: _list[PscConfig]
@@ -136,6 +139,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     redisConfigs: dict[str, typing.Any]
     replicaCount: int
     shardCount: int
+    simulateMaintenanceEvent: bool
     sizeGb: int
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "ACTIVE", "UPDATING", "DELETING"
@@ -192,6 +196,21 @@ class Compliance(typing_extensions.TypedDict, total=False):
     version: str
 
 @typing.type_check_only
+class ConfigBasedSignalData(typing_extensions.TypedDict, total=False):
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: DatabaseResourceId
+    signalBoolValue: bool
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+    ]
+
+@typing.type_check_only
 class ConnectionDetail(typing_extensions.TypedDict, total=False):
     pscAutoConnection: PscAutoConnection
     pscConnection: PscConnection
@@ -212,6 +231,7 @@ class CustomMetadataData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
+    configBasedSignalData: ConfigBasedSignalData
     feedTimestamp: str
     feedType: typing_extensions.Literal[
         "FEEDTYPE_UNSPECIFIED",
@@ -219,6 +239,7 @@ class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
         "OBSERVABILITY_DATA",
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
+        "CONFIG_BASED_SIGNAL_DATA",
     ]
     observabilityMetricData: ObservabilityMetricData
     recommendationSignalData: DatabaseResourceRecommendationSignalData
@@ -233,6 +254,7 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
     description: str
     eventTime: str
     externalUri: str
+    location: str
     name: str
     provider: typing_extensions.Literal[
         "PROVIDER_UNSPECIFIED",
@@ -339,6 +361,22 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
         "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+        "SIGNAL_TYPE_HOT_NODE",
+        "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+        "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+        "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+        "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+        "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+        "SIGNAL_TYPE_INEFFICIENT_QUERY",
+        "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+        "SIGNAL_TYPE_MEMORY_LIMIT",
+        "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+        "SIGNAL_TYPE_LARGE_ROWS",
+        "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+        "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+        "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -384,6 +422,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "DELETED",
         "STATE_OTHER",
     ]
+    gcbdrConfiguration: GCBDRConfiguration
     id: DatabaseResourceId
     instanceType: typing_extensions.Literal[
         "INSTANCE_TYPE_UNSPECIFIED",
@@ -395,6 +434,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
         "SUB_RESOURCE_TYPE_PRIMARY",
         "SUB_RESOURCE_TYPE_SECONDARY",
         "SUB_RESOURCE_TYPE_READ_REPLICA",
+        "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     location: str
@@ -404,6 +444,15 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     product: Product
     resourceContainer: str
     resourceName: str
+    suspensionReason: typing_extensions.Literal[
+        "SUSPENSION_REASON_UNSPECIFIED",
+        "WIPEOUT_HIDE_EVENT",
+        "WIPEOUT_PURGE_EVENT",
+        "BILLING_DISABLED",
+        "ABUSER_DETECTED",
+        "ENCRYPTION_KEY_INACCESSIBLE",
+        "REPLICATED_CLUSTER_ENCRYPTION_KEY_INACCESSIBLE",
+    ]
     tagsSet: Tags
     updationTime: str
     userLabelSet: UserLabels
@@ -503,6 +552,22 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
         "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+        "SIGNAL_TYPE_HOT_NODE",
+        "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+        "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+        "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+        "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+        "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+        "SIGNAL_TYPE_INEFFICIENT_QUERY",
+        "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+        "SIGNAL_TYPE_MEMORY_LIMIT",
+        "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+        "SIGNAL_TYPE_LARGE_ROWS",
+        "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+        "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+        "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
     ]
 
 @typing.type_check_only
@@ -538,7 +603,9 @@ class Entitlement(typing_extensions.TypedDict, total=False):
     entitlementState: typing_extensions.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
     ]
-    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
+    type: typing_extensions.Literal[
+        "ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI", "NATIVE", "GCA_STANDARD"
+    ]
 
 @typing.type_check_only
 class ExportBackupRequest(typing_extensions.TypedDict, total=False):
@@ -557,6 +624,10 @@ class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class FixedFrequencySchedule(typing_extensions.TypedDict, total=False):
     startTime: TimeOfDay
+
+@typing.type_check_only
+class GCBDRConfiguration(typing_extensions.TypedDict, total=False):
+    gcbdrManaged: bool
 
 @typing.type_check_only
 class GcsBackupSource(typing_extensions.TypedDict, total=False):
@@ -652,6 +723,7 @@ class Instance(typing_extensions.TypedDict, total=False):
             "SUSPENSION_REASON_UNSPECIFIED", "CUSTOMER_MANAGED_KEY_ISSUE"
         ]
     ]
+    tags: dict[str, typing.Any]
     tier: typing_extensions.Literal["TIER_UNSPECIFIED", "BASIC", "STANDARD_HA"]
     transitEncryptionMode: typing_extensions.Literal[
         "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED", "SERVER_AUTHENTICATION", "DISABLED"
@@ -665,6 +737,7 @@ class InstanceAuthString(typing_extensions.TypedDict, total=False):
 class InternalResourceMetadata(typing_extensions.TypedDict, total=False):
     backupConfiguration: BackupConfiguration
     backupRun: BackupRun
+    isDeletionProtectionEnabled: bool
     product: Product
     resourceId: DatabaseResourceId
     resourceName: str
@@ -763,6 +836,8 @@ class ObservabilityMetricData(typing_extensions.TypedDict, total=False):
         "STORAGE_UTILIZATION",
         "STORAGE_USED_BYTES",
         "NODE_COUNT",
+        "MEMORY_USED_BYTES",
+        "PROCESSING_UNIT_COUNT",
     ]
     observationTime: str
     resourceName: str
@@ -838,7 +913,10 @@ class Product(typing_extensions.TypedDict, total=False):
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+        "ENGINE_EXADATA_ORACLE",
+        "ENGINE_ADB_SERVERLESS_ORACLE",
     ]
+    minorVersion: str
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
         "PRODUCT_TYPE_CLOUD_SQL",
@@ -850,8 +928,10 @@ class Product(typing_extensions.TypedDict, total=False):
         "ON_PREM",
         "PRODUCT_TYPE_MEMORYSTORE",
         "PRODUCT_TYPE_BIGTABLE",
-        "PRODUCT_TYPE_OTHER",
         "PRODUCT_TYPE_FIRESTORE",
+        "PRODUCT_TYPE_COMPUTE_ENGINE",
+        "PRODUCT_TYPE_ORACLE_ON_GCP",
+        "PRODUCT_TYPE_OTHER",
     ]
     version: str
 
@@ -890,6 +970,7 @@ class PscConnection(typing_extensions.TypedDict, total=False):
     ]
     forwardingRule: str
     network: str
+    port: int
     projectId: str
     pscConnectionId: str
     pscConnectionStatus: typing_extensions.Literal[
@@ -1001,6 +1082,13 @@ class TypedValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateInfo(typing_extensions.TypedDict, total=False):
+    targetNodeType: typing_extensions.Literal[
+        "NODE_TYPE_UNSPECIFIED",
+        "REDIS_SHARED_CORE_NANO",
+        "REDIS_HIGHMEM_MEDIUM",
+        "REDIS_HIGHMEM_XLARGE",
+        "REDIS_STANDARD_SMALL",
+    ]
     targetReplicaCount: int
     targetShardCount: int
 

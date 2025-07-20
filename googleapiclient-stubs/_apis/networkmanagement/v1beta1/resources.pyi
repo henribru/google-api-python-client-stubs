@@ -14,6 +14,107 @@ _list = list
 @typing.type_check_only
 class NetworkManagementResource(googleapiclient.discovery.Resource):
     @typing.type_check_only
+    class OrganizationsResource(googleapiclient.discovery.Resource):
+        @typing.type_check_only
+        class LocationsResource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class GlobalResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class OperationsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelOperationRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> EmptyHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        name: str,
+                        filter: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListOperationsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListOperationsResponseHttpRequest,
+                        previous_response: ListOperationsResponse,
+                    ) -> ListOperationsResponseHttpRequest | None: ...
+
+                def operations(self) -> OperationsResource: ...
+
+            @typing.type_check_only
+            class VpcFlowLogsConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: VpcFlowLogsConfig = ...,
+                    vpcFlowLogsConfigId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> VpcFlowLogsConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVpcFlowLogsConfigsResponseHttpRequest,
+                    previous_response: ListVpcFlowLogsConfigsResponse,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: VpcFlowLogsConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> LocationHttpRequest: ...
+            def list(
+                self,
+                *,
+                name: str,
+                extraLocationTypes: str | _list[str] = ...,
+                filter: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListLocationsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListLocationsResponseHttpRequest,
+                previous_response: ListLocationsResponse,
+            ) -> ListLocationsResponseHttpRequest | None: ...
+            def global_(self) -> GlobalResource: ...
+            def vpcFlowLogsConfigs(self) -> VpcFlowLogsConfigsResource: ...
+
+        def locations(self) -> LocationsResource: ...
+
+    @typing.type_check_only
     class ProjectsResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -159,6 +260,20 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def queryOrgVpcFlowLogsConfigs(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest: ...
+                def queryOrgVpcFlowLogsConfigs_next(
+                    self,
+                    previous_request: QueryOrgVpcFlowLogsConfigsResponseHttpRequest,
+                    previous_response: QueryOrgVpcFlowLogsConfigsResponse,
+                ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest | None: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -167,6 +282,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -194,6 +310,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
         ]
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
+    def organizations(self) -> OrganizationsResource: ...
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
@@ -267,6 +384,14 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Policy: ...
+
+@typing.type_check_only
+class QueryOrgVpcFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryOrgVpcFlowLogsConfigsResponse: ...
 
 @typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):

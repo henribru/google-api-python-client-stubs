@@ -41,10 +41,6 @@ class EntryPoint(typing_extensions.TypedDict, total=False):
     webApp: GoogleAppsScriptTypeWebAppEntryPoint
 
 @typing.type_check_only
-class ExecuteStreamResponse(typing_extensions.TypedDict, total=False):
-    result: ScriptExecutionResult
-
-@typing.type_check_only
 class ExecutionError(typing_extensions.TypedDict, total=False):
     errorMessage: str
     errorType: str
@@ -177,10 +173,6 @@ class ListUserProcessesResponse(typing_extensions.TypedDict, total=False):
     processes: _list[GoogleAppsScriptTypeProcess]
 
 @typing.type_check_only
-class ListValue(typing_extensions.TypedDict, total=False):
-    values: _list[Value]
-
-@typing.type_check_only
 class ListVersionsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     versions: _list[Version]
@@ -214,10 +206,6 @@ class Project(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
-class ScriptExecutionResult(typing_extensions.TypedDict, total=False):
-    returnValue: Value
-
-@typing.type_check_only
 class ScriptStackTraceElement(typing_extensions.TypedDict, total=False):
     function: str
     lineNumber: int
@@ -229,24 +217,8 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
-class Struct(typing_extensions.TypedDict, total=False):
-    fields: dict[str, typing.Any]
-
-@typing.type_check_only
 class UpdateDeploymentRequest(typing_extensions.TypedDict, total=False):
     deploymentConfig: DeploymentConfig
-
-@typing.type_check_only
-class Value(typing_extensions.TypedDict, total=False):
-    boolValue: bool
-    bytesValue: str
-    dateValue: str
-    listValue: ListValue
-    nullValue: typing_extensions.Literal["NULL_VALUE"]
-    numberValue: float
-    protoValue: dict[str, typing.Any]
-    stringValue: str
-    structValue: Struct
 
 @typing.type_check_only
 class Version(typing_extensions.TypedDict, total=False):

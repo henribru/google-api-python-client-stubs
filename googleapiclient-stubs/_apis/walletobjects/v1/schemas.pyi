@@ -1578,6 +1578,15 @@ class SecurityAnimation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class SetPassUpdateNoticeRequest(typing_extensions.TypedDict, total=False):
+    externalPassId: str
+    updateUri: str
+    updatedPassJwtSignature: str
+
+@typing.type_check_only
+class SetPassUpdateNoticeResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class SignUpInfo(typing_extensions.TypedDict, total=False):
     classId: str
 

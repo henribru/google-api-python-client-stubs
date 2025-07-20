@@ -73,8 +73,10 @@ class GoogleCloudIdentitytoolkitAdminV2Config(typing_extensions.TypedDict, total
     autodeleteAnonymousUsers: bool
     blockingFunctions: GoogleCloudIdentitytoolkitAdminV2BlockingFunctionsConfig
     client: GoogleCloudIdentitytoolkitAdminV2ClientConfig
+    defaultHostingSite: str
     emailPrivacyConfig: GoogleCloudIdentitytoolkitAdminV2EmailPrivacyConfig
     mfa: GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig
+    mobileLinksConfig: GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig
     monitoring: GoogleCloudIdentitytoolkitAdminV2MonitoringConfig
     multiTenant: GoogleCloudIdentitytoolkitAdminV2MultiTenantConfig
     name: str
@@ -267,6 +269,14 @@ class GoogleCloudIdentitytoolkitAdminV2ListTenantsResponse(
 ):
     nextPageToken: str
     tenants: _list[GoogleCloudIdentitytoolkitAdminV2Tenant]
+
+@typing.type_check_only
+class GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig(
+    typing_extensions.TypedDict, total=False
+):
+    domain: typing_extensions.Literal[
+        "DOMAIN_UNSPECIFIED", "FIREBASE_DYNAMIC_LINK_DOMAIN", "HOSTING_DOMAIN"
+    ]
 
 @typing.type_check_only
 class GoogleCloudIdentitytoolkitAdminV2MonitoringConfig(
@@ -507,6 +517,7 @@ class GoogleCloudIdentitytoolkitAdminV2Tenant(typing_extensions.TypedDict, total
     hashConfig: GoogleCloudIdentitytoolkitAdminV2HashConfig
     inheritance: GoogleCloudIdentitytoolkitAdminV2Inheritance
     mfaConfig: GoogleCloudIdentitytoolkitAdminV2MultiFactorAuthConfig
+    mobileLinksConfig: GoogleCloudIdentitytoolkitAdminV2MobileLinksConfig
     monitoring: GoogleCloudIdentitytoolkitAdminV2MonitoringConfig
     name: str
     passwordPolicyConfig: GoogleCloudIdentitytoolkitAdminV2PasswordPolicyConfig

@@ -52,29 +52,6 @@ class AnalyzeEntitiesResponse(typing_extensions.TypedDict, total=False):
     relationships: _list[EntityMentionRelationship]
 
 @typing.type_check_only
-class Annotation(typing_extensions.TypedDict, total=False):
-    annotationSource: AnnotationSource
-    customData: dict[str, typing.Any]
-    imageAnnotation: ImageAnnotation
-    name: str
-    resourceAnnotation: ResourceAnnotation
-    textAnnotation: SensitiveTextAnnotation
-
-@typing.type_check_only
-class AnnotationConfig(typing_extensions.TypedDict, total=False):
-    annotationStoreName: str
-    storeQuote: bool
-
-@typing.type_check_only
-class AnnotationSource(typing_extensions.TypedDict, total=False):
-    cloudHealthcareSource: CloudHealthcareSource
-
-@typing.type_check_only
-class AnnotationStore(typing_extensions.TypedDict, total=False):
-    labels: dict[str, typing.Any]
-    name: str
-
-@typing.type_check_only
 class ApplyAdminConsentsErrorDetail(typing_extensions.TypedDict, total=False):
     consentErrors: _list[ConsentErrors]
     existingOperationId: str
@@ -160,9 +137,8 @@ class BlobStorageSettings(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
-class BoundingPoly(typing_extensions.TypedDict, total=False):
-    label: str
-    vertices: _list[Vertex]
+class BulkExportGcsDestination(typing_extensions.TypedDict, total=False):
+    uriPrefix: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -196,10 +172,6 @@ class CleanTextField(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class CleanTextTag(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class CloudHealthcareSource(typing_extensions.TypedDict, total=False):
-    name: str
 
 @typing.type_check_only
 class ConfigureSearchRequest(typing_extensions.TypedDict, total=False):
@@ -297,6 +269,8 @@ class CryptoHashField(typing_extensions.TypedDict, total=False): ...
 class Dataset(typing_extensions.TypedDict, total=False):
     encryptionSpec: EncryptionSpec
     name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     timeZone: str
 
 @typing.type_check_only
@@ -314,7 +288,6 @@ class DeidentifiedStoreDestination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeidentifyConfig(typing_extensions.TypedDict, total=False):
-    annotation: AnnotationConfig
     dicom: DicomConfig
     dicomTagConfig: DicomTagConfig
     fhir: FhirConfig
@@ -354,10 +327,6 @@ class DeidentifySummary(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class DeleteTag(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
-class Detail(typing_extensions.TypedDict, total=False):
-    findings: _list[Finding]
 
 @typing.type_check_only
 class DicomConfig(typing_extensions.TypedDict, total=False):
@@ -436,17 +405,6 @@ class EntityMentionRelationship(typing_extensions.TypedDict, total=False):
     subjectId: str
 
 @typing.type_check_only
-class EvaluateAnnotationStoreRequest(typing_extensions.TypedDict, total=False):
-    bigqueryDestination: GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination
-    evalInfoTypeMapping: dict[str, typing.Any]
-    goldenInfoTypeMapping: dict[str, typing.Any]
-    goldenStore: str
-    infoTypeConfig: InfoTypeConfig
-
-@typing.type_check_only
-class EvaluateAnnotationStoreResponse(typing_extensions.TypedDict, total=False): ...
-
-@typing.type_check_only
 class EvaluateUserConsentsRequest(typing_extensions.TypedDict, total=False):
     consentList: ConsentList
     pageSize: int
@@ -498,14 +456,6 @@ class ExplainDataAccessConsentScope(typing_extensions.TypedDict, total=False):
 class ExplainDataAccessResponse(typing_extensions.TypedDict, total=False):
     consentScopes: _list[ExplainDataAccessConsentScope]
     warning: str
-
-@typing.type_check_only
-class ExportAnnotationsRequest(typing_extensions.TypedDict, total=False):
-    bigqueryDestination: GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination
-    gcsDestination: GoogleCloudHealthcareV1beta1AnnotationGcsDestination
-
-@typing.type_check_only
-class ExportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ExportDicomDataRequest(typing_extensions.TypedDict, total=False):
@@ -582,6 +532,7 @@ class FhirOutput(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class FhirStore(typing_extensions.TypedDict, total=False):
+    bulkExportGcsDestination: BulkExportGcsDestination
     complexDataTypeReferenceParsing: typing_extensions.Literal[
         "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED", "DISABLED", "ENABLED"
     ]
@@ -598,7 +549,9 @@ class FhirStore(typing_extensions.TypedDict, total=False):
     searchConfig: SearchConfig
     streamConfigs: _list[StreamConfig]
     validationConfig: ValidationConfig
-    version: typing_extensions.Literal["VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4"]
+    version: typing_extensions.Literal[
+        "VERSION_UNSPECIFIED", "DSTU2", "STU3", "R4", "R5"
+    ]
 
 @typing.type_check_only
 class FhirStoreMetric(typing_extensions.TypedDict, total=False):
@@ -627,17 +580,6 @@ class FieldMetadata(typing_extensions.TypedDict, total=False):
     paths: _list[str]
 
 @typing.type_check_only
-class FilterList(typing_extensions.TypedDict, total=False):
-    infoTypes: _list[str]
-
-@typing.type_check_only
-class Finding(typing_extensions.TypedDict, total=False):
-    end: str
-    infoType: str
-    quote: str
-    start: str
-
-@typing.type_check_only
 class GcsDestination(typing_extensions.TypedDict, total=False):
     contentStructure: typing_extensions.Literal[
         "CONTENT_STRUCTURE_UNSPECIFIED", "MESSAGE_JSON"
@@ -654,29 +596,6 @@ class GcsDestination(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GcsSource(typing_extensions.TypedDict, total=False):
-    uri: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1AnnotationBigQueryDestination(
-    typing_extensions.TypedDict, total=False
-):
-    force: bool
-    schemaType: typing_extensions.Literal["SCHEMA_TYPE_UNSPECIFIED", "SIMPLE"]
-    tableUri: str
-    writeDisposition: typing_extensions.Literal[
-        "WRITE_DISPOSITION_UNSPECIFIED", "WRITE_EMPTY", "WRITE_TRUNCATE", "WRITE_APPEND"
-    ]
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1AnnotationGcsDestination(
-    typing_extensions.TypedDict, total=False
-):
-    uriPrefix: str
-
-@typing.type_check_only
-class GoogleCloudHealthcareV1beta1AnnotationGcsSource(
-    typing_extensions.TypedDict, total=False
-):
     uri: str
 
 @typing.type_check_only
@@ -847,11 +766,6 @@ class Image(typing_extensions.TypedDict, total=False):
     rawBytes: str
 
 @typing.type_check_only
-class ImageAnnotation(typing_extensions.TypedDict, total=False):
-    boundingPolys: _list[BoundingPoly]
-    frameIndex: int
-
-@typing.type_check_only
 class ImageConfig(typing_extensions.TypedDict, total=False):
     additionalInfoTypes: _list[str]
     excludeInfoTypes: _list[str]
@@ -862,13 +776,6 @@ class ImageConfig(typing_extensions.TypedDict, total=False):
         "REDACT_NO_TEXT",
         "REDACT_SENSITIVE_TEXT_CLEAN_DESCRIPTORS",
     ]
-
-@typing.type_check_only
-class ImportAnnotationsRequest(typing_extensions.TypedDict, total=False):
-    gcsSource: GoogleCloudHealthcareV1beta1AnnotationGcsSource
-
-@typing.type_check_only
-class ImportAnnotationsResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class ImportDicomDataRequest(typing_extensions.TypedDict, total=False):
@@ -909,12 +816,6 @@ class ImportResourcesRequest(typing_extensions.TypedDict, total=False):
     gcsSource: GoogleCloudHealthcareV1beta1FhirGcsSource
 
 @typing.type_check_only
-class InfoTypeConfig(typing_extensions.TypedDict, total=False):
-    evaluateList: FilterList
-    ignoreList: FilterList
-    strictMatching: bool
-
-@typing.type_check_only
 class InfoTypeTransformation(typing_extensions.TypedDict, total=False):
     characterMaskConfig: CharacterMaskConfig
     cryptoHashConfig: CryptoHashConfig
@@ -949,16 +850,6 @@ class KmsWrappedCryptoKey(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LinkedEntity(typing_extensions.TypedDict, total=False):
     entityId: str
-
-@typing.type_check_only
-class ListAnnotationStoresResponse(typing_extensions.TypedDict, total=False):
-    annotationStores: _list[AnnotationStore]
-    nextPageToken: str
-
-@typing.type_check_only
-class ListAnnotationsResponse(typing_extensions.TypedDict, total=False):
-    annotations: _list[Annotation]
-    nextPageToken: str
 
 @typing.type_check_only
 class ListAttributeDefinitionsResponse(typing_extensions.TypedDict, total=False):
@@ -1151,10 +1042,6 @@ class ReplaceWithInfoTypeConfig(typing_extensions.TypedDict, total=False): ...
 class ResetTag(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class ResourceAnnotation(typing_extensions.TypedDict, total=False):
-    label: str
-
-@typing.type_check_only
 class Resources(typing_extensions.TypedDict, total=False):
     resources: _list[str]
 
@@ -1267,10 +1154,6 @@ class Segment(typing_extensions.TypedDict, total=False):
     fields: dict[str, typing.Any]
     segmentId: str
     setId: str
-
-@typing.type_check_only
-class SensitiveTextAnnotation(typing_extensions.TypedDict, total=False):
-    details: dict[str, typing.Any]
 
 @typing.type_check_only
 class SeriesMetrics(typing_extensions.TypedDict, total=False):
@@ -1394,8 +1277,3 @@ class ValidationConfig(typing_extensions.TypedDict, total=False):
 class VersionSource(typing_extensions.TypedDict, total=False):
     mshField: str
     value: str
-
-@typing.type_check_only
-class Vertex(typing_extensions.TypedDict, total=False):
-    x: float
-    y: float

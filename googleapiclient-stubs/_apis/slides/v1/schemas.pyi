@@ -1088,6 +1088,7 @@ class StretchedPictureFill(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubstringMatchCriteria(typing_extensions.TypedDict, total=False):
     matchCase: bool
+    searchByRegex: bool
     text: str
 
 @typing.type_check_only

@@ -19,6 +19,7 @@ class GoogleCloudOrgpolicyV2Constraint(typing_extensions.TypedDict, total=False)
     ]
     description: str
     displayName: str
+    equivalentConstraint: str
     listConstraint: GoogleCloudOrgpolicyV2ConstraintListConstraint
     name: str
     supportsDryRun: bool

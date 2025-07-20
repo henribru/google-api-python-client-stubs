@@ -5,11 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AnalyticsHubSubscriptionInfo(typing_extensions.TypedDict, total=False):
-    listing: str
-    subscription: str
-
-@typing.type_check_only
 class AuditConfig(typing_extensions.TypedDict, total=False):
     auditLogConfigs: _list[AuditLogConfig]
     service: str
@@ -30,14 +25,6 @@ class AvroConfig(typing_extensions.TypedDict, total=False):
 class BigQueryConfig(typing_extensions.TypedDict, total=False):
     dropUnknownFields: bool
     serviceAccountEmail: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "ACTIVE",
-        "PERMISSION_DENIED",
-        "NOT_FOUND",
-        "SCHEMA_MISMATCH",
-        "IN_TRANSIT_LOCATION_RESTRICTION",
-    ]
     table: str
     useTableSchema: bool
     useTopicSchema: bool
@@ -66,14 +53,6 @@ class CloudStorageConfig(typing_extensions.TypedDict, total=False):
     maxDuration: str
     maxMessages: str
     serviceAccountEmail: str
-    state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED",
-        "ACTIVE",
-        "PERMISSION_DENIED",
-        "NOT_FOUND",
-        "IN_TRANSIT_LOCATION_RESTRICTION",
-        "SCHEMA_MISMATCH",
-    ]
     textConfig: TextConfig
 
 @typing.type_check_only
@@ -86,6 +65,7 @@ class DataExchange(typing_extensions.TypedDict, total=False):
     documentation: str
     icon: str
     listingCount: int
+    logLinkedDatasetQueryUserEmail: bool
     name: str
     primaryContact: str
     sharingEnvironmentConfig: SharingEnvironmentConfig
@@ -179,7 +159,6 @@ class GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMark
 @typing.type_check_only
 class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     ackDeadlineSeconds: int
-    analyticsHubSubscriptionInfo: AnalyticsHubSubscriptionInfo
     bigqueryConfig: BigQueryConfig
     cloudStorageConfig: CloudStorageConfig
     deadLetterPolicy: DeadLetterPolicy
@@ -190,12 +169,16 @@ class GooglePubsubV1Subscription(typing_extensions.TypedDict, total=False):
     filter: str
     labels: dict[str, typing.Any]
     messageRetentionDuration: str
+    messageTransforms: _list[MessageTransform]
     name: str
     pushConfig: PushConfig
     retainAckedMessages: bool
     retryPolicy: RetryPolicy
-    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOURCE_ERROR"]
-    topicMessageRetentionDuration: str
+
+@typing.type_check_only
+class JavaScriptUDF(typing_extensions.TypedDict, total=False):
+    code: str
+    functionName: str
 
 @typing.type_check_only
 class LinkedResource(typing_extensions.TypedDict, total=False):
@@ -230,6 +213,7 @@ class ListSubscriptionsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Listing(typing_extensions.TypedDict, total=False):
+    allowOnlyMetadataSharing: bool
     bigqueryDataset: BigQueryDatasetSource
     categories: _list[
         typing_extensions.Literal[
@@ -253,6 +237,7 @@ class Listing(typing_extensions.TypedDict, total=False):
             "CATEGORY_SCIENCE_AND_RESEARCH",
             "CATEGORY_TRANSPORTATION_AND_LOGISTICS",
             "CATEGORY_TRAVEL_AND_TOURISM",
+            "CATEGORY_GOOGLE_EARTH_ENGINE",
         ]
     ]
     commercialInfo: GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo
@@ -264,6 +249,7 @@ class Listing(typing_extensions.TypedDict, total=False):
     displayName: str
     documentation: str
     icon: str
+    logLinkedDatasetQueryUserEmail: bool
     name: str
     primaryContact: str
     publisher: Publisher
@@ -274,6 +260,12 @@ class Listing(typing_extensions.TypedDict, total=False):
     ]
     restrictedExportConfig: RestrictedExportConfig
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE"]
+
+@typing.type_check_only
+class MessageTransform(typing_extensions.TypedDict, total=False):
+    disabled: bool
+    enabled: bool
+    javascriptUdf: JavaScriptUDF
 
 @typing.type_check_only
 class NoWrapper(typing_extensions.TypedDict, total=False):
@@ -355,7 +347,8 @@ class RetryPolicy(typing_extensions.TypedDict, total=False):
     minimumBackoff: str
 
 @typing.type_check_only
-class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False): ...
+class RevokeSubscriptionRequest(typing_extensions.TypedDict, total=False):
+    revokeCommercial: bool
 
 @typing.type_check_only
 class RevokeSubscriptionResponse(typing_extensions.TypedDict, total=False): ...
@@ -406,10 +399,12 @@ class Subscription(typing_extensions.TypedDict, total=False):
     commercialInfo: GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo
     creationTime: str
     dataExchange: str
+    destinationDataset: DestinationDataset
     lastModifyTime: str
     linkedDatasetMap: dict[str, typing.Any]
     linkedResources: _list[LinkedResource]
     listing: str
+    logLinkedDatasetQueryUserEmail: bool
     name: str
     organizationDisplayName: str
     organizationId: str

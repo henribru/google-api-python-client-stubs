@@ -216,6 +216,7 @@ class InstallationState(typing_extensions.TypedDict, total=False):
 class ListConnectionsResponse(typing_extensions.TypedDict, total=False):
     connections: _list[Connection]
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListLocationsResponse(typing_extensions.TypedDict, total=False):
@@ -226,6 +227,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListRepositoriesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     repositories: _list[Repository]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):

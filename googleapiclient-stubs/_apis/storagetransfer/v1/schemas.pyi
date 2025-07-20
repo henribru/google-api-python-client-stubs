@@ -41,6 +41,7 @@ class AzureBlobStorageData(typing_extensions.TypedDict, total=False):
     azureCredentials: AzureCredentials
     container: str
     credentialsSecret: str
+    federatedIdentityConfig: FederatedIdentityConfig
     path: str
     storageAccount: str
 
@@ -100,6 +101,11 @@ class EventStream(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class FederatedIdentityConfig(typing_extensions.TypedDict, total=False):
+    clientId: str
+    tenantId: str
+
+@typing.type_check_only
 class GcsData(typing_extensions.TypedDict, total=False):
     bucketName: str
     managedFolderTransferEnabled: bool
@@ -138,7 +144,7 @@ class LoggingConfig(typing_extensions.TypedDict, total=False):
     enableOnpremGcsTransferLogs: bool
     logActionStates: _list[
         typing_extensions.Literal[
-            "LOGGABLE_ACTION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"
+            "LOGGABLE_ACTION_STATE_UNSPECIFIED", "SUCCEEDED", "FAILED", "SKIPPED"
         ]
     ]
     logActions: _list[
@@ -312,6 +318,7 @@ class TransferJob(typing_extensions.TypedDict, total=False):
     projectId: str
     replicationSpec: ReplicationSpec
     schedule: Schedule
+    serviceAccount: str
     status: typing_extensions.Literal[
         "STATUS_UNSPECIFIED", "ENABLED", "DISABLED", "DELETED"
     ]

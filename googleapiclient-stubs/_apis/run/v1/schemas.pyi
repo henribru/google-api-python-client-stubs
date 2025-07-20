@@ -259,6 +259,7 @@ class GoogleDevtoolsCloudbuildV1ArtifactObjects(
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Artifacts(typing_extensions.TypedDict, total=False):
+    goModules: _list[GoogleDevtoolsCloudbuildV1GoModule]
     images: _list[str]
     mavenArtifacts: _list[GoogleDevtoolsCloudbuildV1MavenArtifact]
     npmPackages: _list[GoogleDevtoolsCloudbuildV1NpmPackage]
@@ -272,6 +273,7 @@ class GoogleDevtoolsCloudbuildV1Build(typing_extensions.TypedDict, total=False):
     availableSecrets: GoogleDevtoolsCloudbuildV1Secrets
     buildTriggerId: str
     createTime: str
+    dependencies: _list[GoogleDevtoolsCloudbuildV1Dependency]
     failureInfo: GoogleDevtoolsCloudbuildV1FailureInfo
     finishTime: str
     gitConfig: GoogleDevtoolsCloudbuildV1GitConfig
@@ -333,6 +335,7 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
     ]
     diskSizeGb: str
     dynamicSubstitutions: bool
+    enableStructuredLogging: bool
     env: _list[str]
     logStreamingOption: typing_extensions.Literal[
         "STREAM_DEFAULT", "STREAM_ON", "STREAM_OFF"
@@ -354,10 +357,11 @@ class GoogleDevtoolsCloudbuildV1BuildOptions(typing_extensions.TypedDict, total=
         "E2_MEDIUM",
     ]
     pool: GoogleDevtoolsCloudbuildV1PoolOption
+    pubsubTopic: str
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
-        typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+        typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     ]
     substitutionOption: typing_extensions.Literal["MUST_MATCH", "ALLOW_LOOSE"]
     volumes: _list[GoogleDevtoolsCloudbuildV1Volume]
@@ -410,6 +414,11 @@ class GoogleDevtoolsCloudbuildV1ConnectedRepository(
     revision: str
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1Dependency(typing_extensions.TypedDict, total=False):
+    empty: bool
+    gitSource: GoogleDevtoolsCloudbuildV1GitSourceDependency
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1DeveloperConnectConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -445,8 +454,34 @@ class GoogleDevtoolsCloudbuildV1GitSource(typing_extensions.TypedDict, total=Fal
     url: str
 
 @typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GitSourceDependency(
+    typing_extensions.TypedDict, total=False
+):
+    depth: str
+    destPath: str
+    recurseSubmodules: bool
+    repository: GoogleDevtoolsCloudbuildV1GitSourceRepository
+    revision: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GitSourceRepository(
+    typing_extensions.TypedDict, total=False
+):
+    developerConnect: str
+    url: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1GoModule(typing_extensions.TypedDict, total=False):
+    modulePath: str
+    moduleVersion: str
+    repositoryLocation: str
+    repositoryName: str
+    repositoryProjectId: str
+    sourcePath: str
+
+@typing.type_check_only
 class GoogleDevtoolsCloudbuildV1Hash(typing_extensions.TypedDict, total=False):
-    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "SHA512"]
+    type: typing_extensions.Literal["NONE", "SHA256", "MD5", "GO_MODULE_H1", "SHA512"]
     value: str
 
 @typing.type_check_only
@@ -497,6 +532,7 @@ class GoogleDevtoolsCloudbuildV1Results(typing_extensions.TypedDict, total=False
     artifactTiming: GoogleDevtoolsCloudbuildV1TimeSpan
     buildStepImages: _list[str]
     buildStepOutputs: _list[str]
+    goModules: _list[GoogleDevtoolsCloudbuildV1UploadedGoModule]
     images: _list[GoogleDevtoolsCloudbuildV1BuiltImage]
     mavenArtifacts: _list[GoogleDevtoolsCloudbuildV1UploadedMavenArtifact]
     npmPackages: _list[GoogleDevtoolsCloudbuildV1UploadedNpmPackage]
@@ -561,6 +597,14 @@ class GoogleDevtoolsCloudbuildV1StorageSourceManifest(
 class GoogleDevtoolsCloudbuildV1TimeSpan(typing_extensions.TypedDict, total=False):
     endTime: str
     startTime: str
+
+@typing.type_check_only
+class GoogleDevtoolsCloudbuildV1UploadedGoModule(
+    typing_extensions.TypedDict, total=False
+):
+    fileHashes: GoogleDevtoolsCloudbuildV1FileHashes
+    pushTiming: GoogleDevtoolsCloudbuildV1TimeSpan
+    uri: str
 
 @typing.type_check_only
 class GoogleDevtoolsCloudbuildV1UploadedMavenArtifact(
@@ -633,6 +677,12 @@ class HTTPGetAction(typing_extensions.TypedDict, total=False):
 class HTTPHeader(typing_extensions.TypedDict, total=False):
     name: str
     value: str
+
+@typing.type_check_only
+class InstanceSplit(typing_extensions.TypedDict, total=False):
+    latestRevision: bool
+    percent: int
+    revisionName: str
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
@@ -744,6 +794,14 @@ class ListServicesResponse(typing_extensions.TypedDict, total=False):
 class ListTasksResponse(typing_extensions.TypedDict, total=False):
     apiVersion: str
     items: _list[Task]
+    kind: str
+    metadata: ListMeta
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListWorkerPoolsResponse(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    items: _list[WorkerPool]
     kind: str
     metadata: ListMeta
     unreachable: _list[str]
@@ -980,11 +1038,13 @@ class Task(typing_extensions.TypedDict, total=False):
 class TaskAttemptResult(typing_extensions.TypedDict, total=False):
     exitCode: int
     status: GoogleRpcStatus
+    termSignal: int
 
 @typing.type_check_only
 class TaskSpec(typing_extensions.TypedDict, total=False):
     containers: _list[Container]
     maxRetries: int
+    nodeSelector: dict[str, typing.Any]
     serviceAccountName: str
     timeoutSeconds: str
     volumes: _list[Volume]
@@ -1036,3 +1096,24 @@ class VolumeMount(typing_extensions.TypedDict, total=False):
     name: str
     readOnly: bool
     subPath: str
+
+@typing.type_check_only
+class WorkerPool(typing_extensions.TypedDict, total=False):
+    apiVersion: str
+    kind: str
+    metadata: ObjectMeta
+    spec: WorkerPoolSpec
+    status: WorkerPoolStatus
+
+@typing.type_check_only
+class WorkerPoolSpec(typing_extensions.TypedDict, total=False):
+    instanceSplits: _list[InstanceSplit]
+    template: RevisionTemplate
+
+@typing.type_check_only
+class WorkerPoolStatus(typing_extensions.TypedDict, total=False):
+    conditions: _list[GoogleCloudRunV1Condition]
+    instanceSplits: _list[InstanceSplit]
+    latestCreatedRevisionName: str
+    latestReadyRevisionName: str
+    observedGeneration: int

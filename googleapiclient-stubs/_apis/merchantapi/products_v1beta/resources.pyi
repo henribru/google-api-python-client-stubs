@@ -28,6 +28,15 @@ class MerchantResource(googleapiclient.discovery.Resource):
                 dataSource: str = ...,
                 **kwargs: typing.Any,
             ) -> ProductInputHttpRequest: ...
+            def patch(
+                self,
+                *,
+                name: str,
+                body: ProductInput = ...,
+                dataSource: str = ...,
+                updateMask: str = ...,
+                **kwargs: typing.Any,
+            ) -> ProductInputHttpRequest: ...
 
         @typing.type_check_only
         class ProductsResource(googleapiclient.discovery.Resource):

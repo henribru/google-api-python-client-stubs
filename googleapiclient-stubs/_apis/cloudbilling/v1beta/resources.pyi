@@ -135,13 +135,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
             def price(self) -> PriceResource: ...
             def prices(self) -> PricesResource: ...
 
-        def estimateCostScenario(
-            self,
-            *,
-            billingAccount: str,
-            body: EstimateCostScenarioForBillingAccountRequest = ...,
-            **kwargs: typing.Any,
-        ) -> EstimateCostScenarioForBillingAccountResponseHttpRequest: ...
         def services(self) -> ServicesResource: ...
         def skuGroups(self) -> SkuGroupsResource: ...
         def skus(self) -> SkusResource: ...
@@ -215,15 +208,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
         def price(self) -> PriceResource: ...
         def prices(self) -> PricesResource: ...
 
-    @typing.type_check_only
-    class V1betaResource(googleapiclient.discovery.Resource):
-        def estimateCostScenario(
-            self,
-            *,
-            body: EstimateCostScenarioWithListPriceRequest = ...,
-            **kwargs: typing.Any,
-        ) -> EstimateCostScenarioWithListPriceResponseHttpRequest: ...
-
     def new_batch_http_request(
         self,
         callback: collections.abc.Callable[
@@ -239,27 +223,6 @@ class CloudbillingResource(googleapiclient.discovery.Resource):
     def billingAccounts(self) -> BillingAccountsResource: ...
     def skuGroups(self) -> SkuGroupsResource: ...
     def skus(self) -> SkusResource: ...
-    def v1beta(self) -> V1betaResource: ...
-
-@typing.type_check_only
-class EstimateCostScenarioForBillingAccountResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> EstimateCostScenarioForBillingAccountResponse: ...
-
-@typing.type_check_only
-class EstimateCostScenarioWithListPriceResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> EstimateCostScenarioWithListPriceResponse: ...
 
 @typing.type_check_only
 class GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceHttpRequest(

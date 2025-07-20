@@ -191,6 +191,11 @@ class GoogleCloudChannelV1Customer(typing_extensions.TypedDict, total=False):
     cloudIdentityInfo: GoogleCloudChannelV1CloudIdentityInfo
     correlationId: str
     createTime: str
+    customerAttestationState: typing_extensions.Literal[
+        "CUSTOMER_ATTESTATION_STATE_UNSPECIFIED",
+        "EXEMPT",
+        "NON_EXEMPT_AND_INFO_VERIFIED",
+    ]
     domain: str
     languageCode: str
     name: str
@@ -1039,8 +1044,11 @@ class GoogleCloudChannelV1alpha1OperationMetadata(
 class GoogleCloudChannelV1alpha1OpportunityEvent(
     typing_extensions.TypedDict, total=False
 ):
-    eventType: typing_extensions.Literal["TYPE_UNSPECIFIED", "CREATED", "UPDATED"]
+    eventType: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "CREATED", "UPDATED", "PARTNER_DETACHED"
+    ]
     opportunity: str
+    partner: str
 
 @typing.type_check_only
 class GoogleCloudChannelV1alpha1Parameter(typing_extensions.TypedDict, total=False):

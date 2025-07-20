@@ -60,6 +60,13 @@ class GoogleCloudVideointelligenceV1_ExplicitContentFrame(
     timeOffset: str
 
 @typing.type_check_only
+class GoogleCloudVideointelligenceV1_ExportToOutputUriStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    status: GoogleRpc_Status
+
+@typing.type_check_only
 class GoogleCloudVideointelligenceV1_FaceAnnotation(
     typing_extensions.TypedDict, total=False
 ):
@@ -225,6 +232,7 @@ class GoogleCloudVideointelligenceV1_Track(typing_extensions.TypedDict, total=Fa
 class GoogleCloudVideointelligenceV1_VideoAnnotationProgress(
     typing_extensions.TypedDict, total=False
 ):
+    exportStatus: GoogleCloudVideointelligenceV1_ExportToOutputUriStatus
     feature: typing_extensions.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
@@ -346,6 +354,13 @@ class GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame(
         "VERY_LIKELY",
     ]
     timeOffset: str
+
+@typing.type_check_only
+class GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1beta2_FaceAnnotation(
@@ -519,6 +534,7 @@ class GoogleCloudVideointelligenceV1beta2_Track(
 class GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress(
     typing_extensions.TypedDict, total=False
 ):
+    exportStatus: GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus
     feature: typing_extensions.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
@@ -648,6 +664,13 @@ class GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame(
         "VERY_LIKELY",
     ]
     timeOffset: str
+
+@typing.type_check_only
+class GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p1beta1_FaceAnnotation(
@@ -821,6 +844,7 @@ class GoogleCloudVideointelligenceV1p1beta1_Track(
 class GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress(
     typing_extensions.TypedDict, total=False
 ):
+    exportStatus: GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus
     feature: typing_extensions.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
@@ -984,6 +1008,13 @@ class GoogleCloudVideointelligenceV1p2beta1_ExplicitContentFrame(
         "VERY_LIKELY",
     ]
     timeOffset: str
+
+@typing.type_check_only
+class GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p2beta1_FaceAnnotation(
@@ -1227,6 +1258,7 @@ class GoogleCloudVideointelligenceV1p2beta1_Track(
 class GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress(
     typing_extensions.TypedDict, total=False
 ):
+    exportStatus: GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus
     feature: typing_extensions.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",
@@ -1402,6 +1434,13 @@ class GoogleCloudVideointelligenceV1p3beta1_ExplicitContentFrame(
         "VERY_LIKELY",
     ]
     timeOffset: str
+
+@typing.type_check_only
+class GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus(
+    typing_extensions.TypedDict, total=False
+):
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+    status: GoogleRpc_Status
 
 @typing.type_check_only
 class GoogleCloudVideointelligenceV1p3beta1_FaceAnnotation(
@@ -1604,6 +1643,7 @@ class GoogleCloudVideointelligenceV1p3beta1_Track(
 class GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress(
     typing_extensions.TypedDict, total=False
 ):
+    exportStatus: GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus
     feature: typing_extensions.Literal[
         "FEATURE_UNSPECIFIED",
         "LABEL_DETECTION",

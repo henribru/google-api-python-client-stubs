@@ -41,8 +41,99 @@ class AvailableDatabaseVersion(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Backup(typing_extensions.TypedDict, total=False):
+    backupInterval: Interval
+    backupKind: typing_extensions.Literal[
+        "SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"
+    ]
+    backupRun: str
+    databaseVersion: typing_extensions.Literal[
+        "SQL_DATABASE_VERSION_UNSPECIFIED",
+        "MYSQL_5_1",
+        "MYSQL_5_5",
+        "MYSQL_5_6",
+        "MYSQL_5_7",
+        "MYSQL_8_0",
+        "MYSQL_8_0_18",
+        "MYSQL_8_0_26",
+        "MYSQL_8_0_27",
+        "MYSQL_8_0_28",
+        "MYSQL_8_0_29",
+        "MYSQL_8_0_30",
+        "MYSQL_8_0_31",
+        "MYSQL_8_0_32",
+        "MYSQL_8_0_33",
+        "MYSQL_8_0_34",
+        "MYSQL_8_0_35",
+        "MYSQL_8_0_36",
+        "MYSQL_8_0_37",
+        "MYSQL_8_0_39",
+        "MYSQL_8_0_40",
+        "MYSQL_8_0_41",
+        "MYSQL_8_0_42",
+        "MYSQL_8_0_43",
+        "MYSQL_8_0_44",
+        "MYSQL_8_0_45",
+        "MYSQL_8_0_46",
+        "MYSQL_8_4",
+        "SQLSERVER_2017_STANDARD",
+        "SQLSERVER_2017_ENTERPRISE",
+        "SQLSERVER_2017_EXPRESS",
+        "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
+        "POSTGRES_10",
+        "POSTGRES_11",
+        "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
+        "SQLSERVER_2019_STANDARD",
+        "SQLSERVER_2019_ENTERPRISE",
+        "SQLSERVER_2019_EXPRESS",
+        "SQLSERVER_2019_WEB",
+        "SQLSERVER_2022_STANDARD",
+        "SQLSERVER_2022_ENTERPRISE",
+        "SQLSERVER_2022_EXPRESS",
+        "SQLSERVER_2022_WEB",
+    ]
+    description: str
+    error: OperationError
+    expiryTime: str
+    instance: str
+    instanceDeletionTime: str
+    instanceSettings: DatabaseInstance
+    kind: str
+    kmsKey: str
+    kmsKeyVersion: str
+    location: str
+    maxChargeableBytes: str
+    name: str
+    satisfiesPzi: bool
+    satisfiesPzs: bool
+    selfLink: str
+    state: typing_extensions.Literal[
+        "SQL_BACKUP_STATE_UNSPECIFIED",
+        "ENQUEUED",
+        "RUNNING",
+        "FAILED",
+        "SUCCESSFUL",
+        "DELETING",
+        "DELETION_FAILED",
+    ]
+    timeZone: str
+    ttlDays: str
+    type: typing_extensions.Literal[
+        "SQL_BACKUP_TYPE_UNSPECIFIED", "AUTOMATED", "ON_DEMAND", "FINAL"
+    ]
+
+@typing.type_check_only
 class BackupConfiguration(typing_extensions.TypedDict, total=False):
     backupRetentionSettings: BackupRetentionSettings
+    backupTier: typing_extensions.Literal[
+        "BACKUP_TIER_UNSPECIFIED", "STANDARD", "ADVANCED", "ENHANCED"
+    ]
     binaryLogEnabled: bool
     enabled: bool
     kind: str
@@ -63,6 +154,7 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
 class BackupContext(typing_extensions.TypedDict, total=False):
     backupId: str
     kind: str
+    name: str
 
 @typing.type_check_only
 class BackupReencryptionConfig(typing_extensions.TypedDict, total=False):
@@ -80,6 +172,57 @@ class BackupRetentionSettings(typing_extensions.TypedDict, total=False):
 class BackupRun(typing_extensions.TypedDict, total=False):
     backupKind: typing_extensions.Literal[
         "SQL_BACKUP_KIND_UNSPECIFIED", "SNAPSHOT", "PHYSICAL"
+    ]
+    databaseVersion: typing_extensions.Literal[
+        "SQL_DATABASE_VERSION_UNSPECIFIED",
+        "MYSQL_5_1",
+        "MYSQL_5_5",
+        "MYSQL_5_6",
+        "MYSQL_5_7",
+        "MYSQL_8_0",
+        "MYSQL_8_0_18",
+        "MYSQL_8_0_26",
+        "MYSQL_8_0_27",
+        "MYSQL_8_0_28",
+        "MYSQL_8_0_29",
+        "MYSQL_8_0_30",
+        "MYSQL_8_0_31",
+        "MYSQL_8_0_32",
+        "MYSQL_8_0_33",
+        "MYSQL_8_0_34",
+        "MYSQL_8_0_35",
+        "MYSQL_8_0_36",
+        "MYSQL_8_0_37",
+        "MYSQL_8_0_39",
+        "MYSQL_8_0_40",
+        "MYSQL_8_0_41",
+        "MYSQL_8_0_42",
+        "MYSQL_8_0_43",
+        "MYSQL_8_0_44",
+        "MYSQL_8_0_45",
+        "MYSQL_8_0_46",
+        "MYSQL_8_4",
+        "SQLSERVER_2017_STANDARD",
+        "SQLSERVER_2017_ENTERPRISE",
+        "SQLSERVER_2017_EXPRESS",
+        "SQLSERVER_2017_WEB",
+        "POSTGRES_9_6",
+        "POSTGRES_10",
+        "POSTGRES_11",
+        "POSTGRES_12",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
+        "SQLSERVER_2019_STANDARD",
+        "SQLSERVER_2019_ENTERPRISE",
+        "SQLSERVER_2019_EXPRESS",
+        "SQLSERVER_2019_WEB",
+        "SQLSERVER_2022_STANDARD",
+        "SQLSERVER_2022_ENTERPRISE",
+        "SQLSERVER_2022_EXPRESS",
+        "SQLSERVER_2022_WEB",
     ]
     description: str
     diskEncryptionConfiguration: DiskEncryptionConfiguration
@@ -137,6 +280,13 @@ class CloneContext(typing_extensions.TypedDict, total=False):
     preferredZone: str
 
 @typing.type_check_only
+class ConnectPoolNodeConfig(typing_extensions.TypedDict, total=False):
+    dnsName: str
+    dnsNames: _list[DnsNameMapping]
+    ipAddresses: _list[IpMapping]
+    name: str
+
+@typing.type_check_only
 class ConnectSettings(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
@@ -162,11 +312,14 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
         "MYSQL_8_0_37",
-        "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_0_41",
         "MYSQL_8_0_42",
+        "MYSQL_8_0_43",
+        "MYSQL_8_0_44",
+        "MYSQL_8_0_45",
+        "MYSQL_8_0_46",
         "MYSQL_8_4",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
@@ -191,14 +344,30 @@ class ConnectSettings(typing_extensions.TypedDict, total=False):
         "SQLSERVER_2022_WEB",
     ]
     dnsName: str
+    dnsNames: _list[DnsNameMapping]
     ipAddresses: _list[IpMapping]
     kind: str
+    nodeCount: int
+    nodes: _list[ConnectPoolNodeConfig]
     pscEnabled: bool
     region: str
     serverCaCert: SslCert
     serverCaMode: typing_extensions.Literal[
-        "CA_MODE_UNSPECIFIED", "GOOGLE_MANAGED_INTERNAL_CA", "GOOGLE_MANAGED_CAS_CA"
+        "CA_MODE_UNSPECIFIED",
+        "GOOGLE_MANAGED_INTERNAL_CA",
+        "GOOGLE_MANAGED_CAS_CA",
+        "CUSTOMER_MANAGED_CAS_CA",
     ]
+
+@typing.type_check_only
+class ConnectionPoolConfig(typing_extensions.TypedDict, total=False):
+    connectionPoolingEnabled: bool
+    flags: _list[ConnectionPoolFlags]
+
+@typing.type_check_only
+class ConnectionPoolFlags(typing_extensions.TypedDict, total=False):
+    name: str
+    value: str
 
 @typing.type_check_only
 class DataCacheConfig(typing_extensions.TypedDict, total=False):
@@ -227,6 +396,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     backendType: typing_extensions.Literal[
         "SQL_BACKEND_TYPE_UNSPECIFIED", "FIRST_GEN", "SECOND_GEN", "EXTERNAL"
     ]
+    clearNetwork: bool
     connectionName: str
     createTime: str
     currentDiskSize: str
@@ -251,11 +421,14 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MYSQL_8_0_35",
         "MYSQL_8_0_36",
         "MYSQL_8_0_37",
-        "MYSQL_8_0_38",
         "MYSQL_8_0_39",
         "MYSQL_8_0_40",
         "MYSQL_8_0_41",
         "MYSQL_8_0_42",
+        "MYSQL_8_0_43",
+        "MYSQL_8_0_44",
+        "MYSQL_8_0_45",
+        "MYSQL_8_0_46",
         "MYSQL_8_4",
         "SQLSERVER_2017_STANDARD",
         "SQLSERVER_2017_ENTERPRISE",
@@ -282,15 +455,18 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     diskEncryptionConfiguration: DiskEncryptionConfiguration
     diskEncryptionStatus: DiskEncryptionStatus
     dnsName: str
+    dnsNames: _list[DnsNameMapping]
     etag: str
     failoverReplica: dict[str, typing.Any]
     gceZone: str
     geminiConfig: GeminiInstanceConfig
+    includeReplicasForMajorVersionUpgrade: bool
     instanceType: typing_extensions.Literal[
         "SQL_INSTANCE_TYPE_UNSPECIFIED",
         "CLOUD_SQL_INSTANCE",
         "ON_PREMISES_INSTANCE",
         "READ_REPLICA_INSTANCE",
+        "READ_POOL_INSTANCE",
     ]
     ipAddresses: _list[IpMapping]
     ipv6Address: str
@@ -299,6 +475,8 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
     masterInstanceName: str
     maxDiskSize: str
     name: str
+    nodeCount: int
+    nodes: _list[PoolNodeConfig]
     onPremisesConfiguration: OnPremisesConfiguration
     outOfDiskReport: SqlOutOfDiskReport
     primaryDnsName: str
@@ -331,6 +509,7 @@ class DatabaseInstance(typing_extensions.TypedDict, total=False):
         "MAINTENANCE",
         "FAILED",
         "ONLINE_MAINTENANCE",
+        "REPAIRING",
     ]
     suspensionReason: _list[
         typing_extensions.Literal[
@@ -395,6 +574,17 @@ class DiskEncryptionStatus(typing_extensions.TypedDict, total=False):
     kmsKeyVersionName: str
 
 @typing.type_check_only
+class DnsNameMapping(typing_extensions.TypedDict, total=False):
+    connectionType: typing_extensions.Literal[
+        "CONNECTION_TYPE_UNSPECIFIED",
+        "PUBLIC",
+        "PRIVATE_SERVICES_ACCESS",
+        "PRIVATE_SERVICE_CONNECT",
+    ]
+    dnsScope: typing_extensions.Literal["DNS_SCOPE_UNSPECIFIED", "INSTANCE"]
+    name: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -403,11 +593,12 @@ class ExportContext(typing_extensions.TypedDict, total=False):
     csvExportOptions: dict[str, typing.Any]
     databases: _list[str]
     fileType: typing_extensions.Literal[
-        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK"
+        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"
     ]
     kind: str
     offload: bool
     sqlExportOptions: dict[str, typing.Any]
+    tdeExportOptions: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
@@ -444,11 +635,14 @@ class Flag(typing_extensions.TypedDict, total=False):
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
             "MYSQL_8_0_37",
-            "MYSQL_8_0_38",
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_0_41",
             "MYSQL_8_0_42",
+            "MYSQL_8_0_43",
+            "MYSQL_8_0_44",
+            "MYSQL_8_0_45",
+            "MYSQL_8_0_46",
             "MYSQL_8_4",
             "SQLSERVER_2017_STANDARD",
             "SQLSERVER_2017_ENTERPRISE",
@@ -473,11 +667,18 @@ class Flag(typing_extensions.TypedDict, total=False):
             "SQLSERVER_2022_WEB",
         ]
     ]
+    flagScope: typing_extensions.Literal[
+        "SQL_FLAG_SCOPE_UNSPECIFIED",
+        "SQL_FLAG_SCOPE_DATABASE",
+        "SQL_FLAG_SCOPE_CONNECTION_POOL",
+    ]
     inBeta: bool
     kind: str
     maxValue: str
     minValue: str
     name: str
+    recommendedIntValue: str
+    recommendedStringValue: str
     requiresRestart: bool
     type: typing_extensions.Literal[
         "SQL_FLAG_TYPE_UNSPECIFIED",
@@ -521,11 +722,12 @@ class ImportContext(typing_extensions.TypedDict, total=False):
     csvImportOptions: dict[str, typing.Any]
     database: str
     fileType: typing_extensions.Literal[
-        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK"
+        "SQL_FILE_TYPE_UNSPECIFIED", "SQL", "CSV", "BAK", "TDE"
     ]
     importUser: str
     kind: str
     sqlImportOptions: dict[str, typing.Any]
+    tdeImportOptions: dict[str, typing.Any]
     uri: str
 
 @typing.type_check_only
@@ -596,7 +798,10 @@ class InstancesReencryptRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancesRestoreBackupRequest(typing_extensions.TypedDict, total=False):
+    backup: str
+    backupdrBackup: str
     restoreBackupContext: RestoreBackupContext
+    restoreInstanceSettings: DatabaseInstance
 
 @typing.type_check_only
 class InstancesRotateServerCaRequest(typing_extensions.TypedDict, total=False):
@@ -609,6 +814,11 @@ class InstancesRotateServerCertificateRequest(typing_extensions.TypedDict, total
 @typing.type_check_only
 class InstancesTruncateLogRequest(typing_extensions.TypedDict, total=False):
     truncateLogContext: TruncateLogContext
+
+@typing.type_check_only
+class Interval(typing_extensions.TypedDict, total=False):
+    endTime: str
+    startTime: str
 
 @typing.type_check_only
 class IpConfiguration(typing_extensions.TypedDict, total=False):
@@ -645,6 +855,12 @@ class IpMapping(typing_extensions.TypedDict, total=False):
         "PRIVATE",
         "MIGRATED_1ST_GEN",
     ]
+
+@typing.type_check_only
+class ListBackupsResponse(typing_extensions.TypedDict, total=False):
+    backups: _list[Backup]
+    nextPageToken: str
+    warnings: _list[ApiWarning]
 
 @typing.type_check_only
 class LocationPreference(typing_extensions.TypedDict, total=False):
@@ -748,6 +964,7 @@ class Operation(typing_extensions.TypedDict, total=False):
         "AUTO_RESTART",
         "REENCRYPT",
         "SWITCHOVER",
+        "UPDATE_BACKUP",
         "ACQUIRE_SSRS_LEASE",
         "RELEASE_SSRS_LEASE",
         "RECONFIGURE_OLD_PRIMARY",
@@ -756,6 +973,10 @@ class Operation(typing_extensions.TypedDict, total=False):
         "SWITCHOVER_TO_REPLICA",
         "MAJOR_VERSION_UPGRADE",
         "ADVANCED_BACKUP",
+        "MANAGE_BACKUP",
+        "ENHANCED_BACKUP",
+        "REPAIR_READ_POOL",
+        "CREATE_READ_POOL",
     ]
     selfLink: str
     startTime: str
@@ -817,6 +1038,35 @@ class PerformDiskShrinkContext(typing_extensions.TypedDict, total=False):
     targetSizeGb: str
 
 @typing.type_check_only
+class PointInTimeRestoreContext(typing_extensions.TypedDict, total=False):
+    allocatedIpRange: str
+    datasource: str
+    pointInTime: str
+    preferredSecondaryZone: str
+    preferredZone: str
+    privateNetwork: str
+    targetInstance: str
+
+@typing.type_check_only
+class PoolNodeConfig(typing_extensions.TypedDict, total=False):
+    dnsName: str
+    dnsNames: _list[DnsNameMapping]
+    gceZone: str
+    ipAddresses: _list[IpMapping]
+    name: str
+    state: typing_extensions.Literal[
+        "SQL_INSTANCE_STATE_UNSPECIFIED",
+        "RUNNABLE",
+        "SUSPENDED",
+        "PENDING_DELETE",
+        "PENDING_CREATE",
+        "MAINTENANCE",
+        "FAILED",
+        "ONLINE_MAINTENANCE",
+        "REPAIRING",
+    ]
+
+@typing.type_check_only
 class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
     consumerNetwork: str
     consumerNetworkStatus: str
@@ -827,6 +1077,7 @@ class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    networkAttachmentUri: str
     pscAutoConnections: _list[PscAutoConnectionConfig]
     pscEnabled: bool
 
@@ -887,14 +1138,21 @@ class Settings(typing_extensions.TypedDict, total=False):
     ]
     backupConfiguration: BackupConfiguration
     collation: str
+    connectionPoolConfig: ConnectionPoolConfig
     connectorEnforcement: typing_extensions.Literal[
         "CONNECTOR_ENFORCEMENT_UNSPECIFIED", "NOT_REQUIRED", "REQUIRED"
     ]
     crashSafeReplicationEnabled: bool
     dataCacheConfig: DataCacheConfig
+    dataDiskProvisionedIops: str
+    dataDiskProvisionedThroughput: str
     dataDiskSizeGb: str
     dataDiskType: typing_extensions.Literal[
-        "SQL_DATA_DISK_TYPE_UNSPECIFIED", "PD_SSD", "PD_HDD", "OBSOLETE_LOCAL_SSD"
+        "SQL_DATA_DISK_TYPE_UNSPECIFIED",
+        "PD_SSD",
+        "PD_HDD",
+        "OBSOLETE_LOCAL_SSD",
+        "HYPERDISK_BALANCED",
     ]
     databaseFlags: _list[DatabaseFlags]
     databaseReplicationEnabled: bool
@@ -914,9 +1172,11 @@ class Settings(typing_extensions.TypedDict, total=False):
     pricingPlan: typing_extensions.Literal[
         "SQL_PRICING_PLAN_UNSPECIFIED", "PACKAGE", "PER_USE"
     ]
+    replicationLagMaxSeconds: int
     replicationType: typing_extensions.Literal[
         "SQL_REPLICATION_TYPE_UNSPECIFIED", "SYNCHRONOUS", "ASYNCHRONOUS"
     ]
+    retainBackupsOnDelete: bool
     settingsVersion: str
     sqlServerAuditConfig: SqlServerAuditConfig
     storageAutoResize: bool
@@ -989,6 +1249,7 @@ class SqlExternalSyncSettingError(typing_extensions.TypedDict, total=False):
         "UNSUPPORTED_SYSTEM_OBJECTS",
         "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
         "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE",
+        "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI",
     ]
 
 @typing.type_check_only

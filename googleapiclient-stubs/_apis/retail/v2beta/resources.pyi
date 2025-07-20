@@ -480,6 +480,9 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                 def getCompletionConfig(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaCompletionConfigHttpRequest: ...
+                def getConversationalSearchCustomizationConfig(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleCloudRetailV2betaConversationalSearchCustomizationConfigHttpRequest: ...
                 def getDefaultBranch(
                     self, *, catalog: str, **kwargs: typing.Any
                 ) -> GoogleCloudRetailV2betaGetDefaultBranchResponseHttpRequest: ...
@@ -532,6 +535,14 @@ class CloudRetailResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleCloudRetailV2betaCompletionConfigHttpRequest: ...
+                def updateConversationalSearchCustomizationConfig(
+                    self,
+                    *,
+                    catalog: str,
+                    body: GoogleCloudRetailV2betaConversationalSearchCustomizationConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleCloudRetailV2betaConversationalSearchCustomizationConfigHttpRequest: ...
                 def updateGenerativeQuestion(
                     self,
                     *,
@@ -714,6 +725,16 @@ class GoogleCloudRetailV2betaControlHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleCloudRetailV2betaControl: ...
+
+@typing.type_check_only
+class GoogleCloudRetailV2betaConversationalSearchCustomizationConfigHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleCloudRetailV2betaConversationalSearchCustomizationConfig: ...
 
 @typing.type_check_only
 class GoogleCloudRetailV2betaGenerativeQuestionConfigHttpRequest(

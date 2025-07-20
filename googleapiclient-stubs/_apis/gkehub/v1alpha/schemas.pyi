@@ -5,16 +5,6 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
-class AnthosObservabilityFeatureSpec(typing_extensions.TypedDict, total=False):
-    defaultMembershipSpec: AnthosObservabilityMembershipSpec
-
-@typing.type_check_only
-class AnthosObservabilityMembershipSpec(typing_extensions.TypedDict, total=False):
-    doNotOptimizeMetrics: bool
-    enableStackdriverOnApplications: bool
-    version: str
-
-@typing.type_check_only
 class AppDevExperienceFeatureSpec(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -163,7 +153,6 @@ class ClusterUpgradeUpgradeStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
-    anthosobservability: AnthosObservabilityFeatureSpec
     appdevexperience: AppDevExperienceFeatureSpec
     cloudauditlogging: CloudAuditLoggingFeatureSpec
     clusterupgrade: ClusterUpgradeFleetSpec
@@ -171,7 +160,9 @@ class CommonFeatureSpec(typing_extensions.TypedDict, total=False):
     fleetobservability: FleetObservabilityFeatureSpec
     multiclusteringress: MultiClusterIngressFeatureSpec
     namespaceactuation: NamespaceActuationFeatureSpec
+    rbacrolebindingactuation: RBACRoleBindingActuationFeatureSpec
     workloadcertificate: FeatureSpec
+    workloadidentity: WorkloadIdentityFeatureSpec
 
 @typing.type_check_only
 class CommonFeatureState(typing_extensions.TypedDict, total=False):
@@ -179,8 +170,10 @@ class CommonFeatureState(typing_extensions.TypedDict, total=False):
     clusterupgrade: ClusterUpgradeFleetState
     fleetobservability: FleetObservabilityFeatureState
     namespaceactuation: NamespaceActuationFeatureState
+    rbacrolebindingactuation: RBACRoleBindingActuationFeatureState
     servicemesh: ServiceMeshFeatureState
     state: FeatureState
+    workloadidentity: WorkloadIdentityFeatureState
 
 @typing.type_check_only
 class CommonFleetDefaultMemberConfigSpec(typing_extensions.TypedDict, total=False):
@@ -215,6 +208,7 @@ class ConfigManagementBinauthzVersion(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ConfigManagementConfigSync(typing_extensions.TypedDict, total=False):
+    deploymentOverrides: _list[ConfigManagementDeploymentOverride]
     enabled: bool
     git: ConfigManagementGitConfig
     metricsGcpServiceAccountEmail: str
@@ -302,6 +296,20 @@ class ConfigManagementConfigSyncVersion(typing_extensions.TypedDict, total=False
     resourceGroupControllerManager: str
     rootReconciler: str
     syncer: str
+
+@typing.type_check_only
+class ConfigManagementContainerOverride(typing_extensions.TypedDict, total=False):
+    containerName: str
+    cpuLimit: str
+    cpuRequest: str
+    memoryLimit: str
+    memoryRequest: str
+
+@typing.type_check_only
+class ConfigManagementDeploymentOverride(typing_extensions.TypedDict, total=False):
+    containers: _list[ConfigManagementContainerOverride]
+    deploymentName: str
+    deploymentNamespace: str
 
 @typing.type_check_only
 class ConfigManagementErrorResource(typing_extensions.TypedDict, total=False):
@@ -900,7 +908,6 @@ class MembershipEndpoint(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MembershipFeatureSpec(typing_extensions.TypedDict, total=False):
-    anthosobservability: AnthosObservabilityMembershipSpec
     cloudbuild: CloudBuildMembershipSpec
     configmanagement: ConfigManagementMembershipSpec
     fleetobservability: FleetObservabilityMembershipSpec
@@ -923,6 +930,7 @@ class MembershipFeatureState(typing_extensions.TypedDict, total=False):
     policycontroller: PolicyControllerMembershipState
     servicemesh: ServiceMeshMembershipState
     state: FeatureState
+    workloadidentity: WorkloadIdentityMembershipState
 
 @typing.type_check_only
 class MembershipSpec(typing_extensions.TypedDict, total=False):
@@ -1174,6 +1182,15 @@ class RBACRoleBinding(typing_extensions.TypedDict, total=False):
     user: str
 
 @typing.type_check_only
+class RBACRoleBindingActuationFeatureSpec(typing_extensions.TypedDict, total=False):
+    allowedCustomRoles: _list[str]
+
+@typing.type_check_only
+class RBACRoleBindingActuationFeatureState(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class RBACRoleBindingLifecycleState(typing_extensions.TypedDict, total=False):
     code: typing_extensions.Literal[
         "CODE_UNSPECIFIED", "CREATING", "READY", "DELETING", "UPDATING"
@@ -1192,6 +1209,7 @@ class ResourceOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Role(typing_extensions.TypedDict, total=False):
+    customRole: str
     predefinedRole: typing_extensions.Literal[
         "UNKNOWN", "ADMIN", "EDIT", "VIEW", "ANTHOS_SUPPORT"
     ]
@@ -1259,6 +1277,7 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "CNI_INSTALLATION_FAILED",
         "CNI_POD_UNSCHEDULABLE",
         "CLUSTER_HAS_ZERO_NODES",
+        "CANONICAL_SERVICE_ERROR",
         "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
         "VPCSC_GA_SUPPORTED",
         "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
@@ -1281,10 +1300,16 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "QUOTA_EXCEEDED_HTTP_FILTERS",
         "QUOTA_EXCEEDED_TCP_FILTERS",
         "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "LEGACY_MC_SECRETS",
+        "WORKLOAD_IDENTITY_REQUIRED",
+        "NON_STANDARD_BINARY_USAGE",
+        "UNSUPPORTED_GATEWAY_CLASS",
+        "MANAGED_CNI_NOT_ENABLED",
         "MODERNIZATION_SCHEDULED",
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
         "MODERNIZATION_ABORTED",
+        "MODERNIZATION_WILL_BE_SCHEDULED",
     ]
     details: str
     documentationLink: str
@@ -1324,8 +1349,61 @@ class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class ServiceMeshFeatureCondition(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "CODE_UNSPECIFIED",
+        "MESH_IAM_PERMISSION_DENIED",
+        "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
+        "CNI_CONFIG_UNSUPPORTED",
+        "GKE_SANDBOX_UNSUPPORTED",
+        "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
+        "CNI_INSTALLATION_FAILED",
+        "CNI_POD_UNSCHEDULABLE",
+        "CLUSTER_HAS_ZERO_NODES",
+        "CANONICAL_SERVICE_ERROR",
+        "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
+        "VPCSC_GA_SUPPORTED",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+        "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
+        "CONFIG_APPLY_INTERNAL_ERROR",
+        "CONFIG_VALIDATION_ERROR",
+        "CONFIG_VALIDATION_WARNING",
+        "QUOTA_EXCEEDED_BACKEND_SERVICES",
+        "QUOTA_EXCEEDED_HEALTH_CHECKS",
+        "QUOTA_EXCEEDED_HTTP_ROUTES",
+        "QUOTA_EXCEEDED_TCP_ROUTES",
+        "QUOTA_EXCEEDED_TLS_ROUTES",
+        "QUOTA_EXCEEDED_TRAFFIC_POLICIES",
+        "QUOTA_EXCEEDED_ENDPOINT_POLICIES",
+        "QUOTA_EXCEEDED_GATEWAYS",
+        "QUOTA_EXCEEDED_MESHES",
+        "QUOTA_EXCEEDED_SERVER_TLS_POLICIES",
+        "QUOTA_EXCEEDED_CLIENT_TLS_POLICIES",
+        "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
+        "QUOTA_EXCEEDED_HTTP_FILTERS",
+        "QUOTA_EXCEEDED_TCP_FILTERS",
+        "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+        "LEGACY_MC_SECRETS",
+        "WORKLOAD_IDENTITY_REQUIRED",
+        "NON_STANDARD_BINARY_USAGE",
+        "UNSUPPORTED_GATEWAY_CLASS",
+        "MANAGED_CNI_NOT_ENABLED",
+        "MODERNIZATION_SCHEDULED",
+        "MODERNIZATION_IN_PROGRESS",
+        "MODERNIZATION_COMPLETED",
+        "MODERNIZATION_ABORTED",
+        "MODERNIZATION_WILL_BE_SCHEDULED",
+    ]
+    details: str
+    documentationLink: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "ERROR", "WARNING", "INFO"
+    ]
+
+@typing.type_check_only
 class ServiceMeshFeatureState(typing_extensions.TypedDict, total=False):
     analysisMessages: _list[ServiceMeshAnalysisMessage]
+    conditions: _list[ServiceMeshFeatureCondition]
 
 @typing.type_check_only
 class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
@@ -1406,3 +1484,37 @@ class ValidationResult(typing_extensions.TypedDict, total=False):
         "CROSS_PROJECT_PERMISSION",
         "FLEET_ALLOWED_FOR_PROJECT_GUARDRAIL",
     ]
+
+@typing.type_check_only
+class WorkloadIdentityFeatureSpec(typing_extensions.TypedDict, total=False):
+    scopeTenancyPool: str
+
+@typing.type_check_only
+class WorkloadIdentityFeatureState(typing_extensions.TypedDict, total=False):
+    namespaceStateDetails: dict[str, typing.Any]
+    namespaceStates: dict[str, typing.Any]
+    scopeTenancyWorkloadIdentityPool: str
+    workloadIdentityPool: str
+    workloadIdentityPoolStateDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class WorkloadIdentityMembershipState(typing_extensions.TypedDict, total=False):
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityNamespaceStateDetail(typing_extensions.TypedDict, total=False):
+    code: typing_extensions.Literal[
+        "NAMESPACE_STATE_UNSPECIFIED", "NAMESPACE_STATE_OK", "NAMESPACE_STATE_ERROR"
+    ]
+    description: str
+
+@typing.type_check_only
+class WorkloadIdentityWorkloadIdentityPoolStateDetail(
+    typing_extensions.TypedDict, total=False
+):
+    code: typing_extensions.Literal[
+        "WORKLOAD_IDENTITY_POOL_STATE_UNSPECIFIED",
+        "WORKLOAD_IDENTITY_POOL_STATE_OK",
+        "WORKLOAD_IDENTITY_POOL_STATE_ERROR",
+    ]
+    description: str

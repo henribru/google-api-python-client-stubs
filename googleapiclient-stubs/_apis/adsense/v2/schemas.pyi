@@ -201,6 +201,9 @@ class PolicyIssue(typing_extensions.TypedDict, total=False):
 class PolicyTopic(typing_extensions.TypedDict, total=False):
     mustFix: bool
     topic: str
+    type: typing_extensions.Literal[
+        "POLICY_TOPIC_TYPE_UNSPECIFIED", "POLICY", "ADVERTISER_PREFERENCE", "REGULATORY"
+    ]
 
 @typing.type_check_only
 class ReportResult(typing_extensions.TypedDict, total=False):

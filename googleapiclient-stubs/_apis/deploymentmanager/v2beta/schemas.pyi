@@ -185,6 +185,7 @@ class InputMapping(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstancesBulkInsertOperationMetadata(typing_extensions.TypedDict, total=False):
+    machineType: str
     perLocationStatus: dict[str, typing.Any]
 
 @typing.type_check_only
@@ -230,6 +231,7 @@ class Operation(typing_extensions.TypedDict, total=False):
     region: str
     selfLink: str
     selfLinkWithId: str
+    setAutoscalerLinkOperationMetadata: SetAutoscalerLinkOperationMetadata
     setCommonInstanceMetadataOperationMetadata: (
         SetCommonInstanceMetadataOperationMetadata
     )
@@ -322,6 +324,10 @@ class ResourcesListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServiceAccount(typing_extensions.TypedDict, total=False):
     email: str
+
+@typing.type_check_only
+class SetAutoscalerLinkOperationMetadata(typing_extensions.TypedDict, total=False):
+    zonalIgmIds: _list[str]
 
 @typing.type_check_only
 class SetCommonInstanceMetadataOperationMetadata(

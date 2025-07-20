@@ -48,6 +48,11 @@ class AndroidMatrix(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class AndroidModel(typing_extensions.TypedDict, total=False):
+    accessDeniedReasons: _list[
+        typing_extensions.Literal[
+            "ACCESS_DENIED_REASON_UNSPECIFIED", "EULA_NOT_ACCEPTED"
+        ]
+    ]
     brand: str
     codename: str
     form: typing_extensions.Literal[
@@ -134,7 +139,12 @@ class ApkManifest(typing_extensions.TypedDict, total=False):
     versionName: str
 
 @typing.type_check_only
+class ApkSplits(typing_extensions.TypedDict, total=False):
+    bundleSplits: _list[FileReference]
+
+@typing.type_check_only
 class AppBundle(typing_extensions.TypedDict, total=False):
+    apks: ApkSplits
     bundleLocation: FileReference
 
 @typing.type_check_only
@@ -343,6 +353,7 @@ class IosXcTest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LabInfo(typing_extensions.TypedDict, total=False):
     name: str
+    regionCode: str
 
 @typing.type_check_only
 class LauncherActivityIntent(typing_extensions.TypedDict, total=False): ...

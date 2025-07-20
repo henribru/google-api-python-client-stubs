@@ -141,6 +141,11 @@ class Item(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class Metadata(typing_extensions.TypedDict, total=False):
+    firstIncompleteDate: str
+    firstIncompleteHour: str
+
+@typing.type_check_only
 class MobileFriendlyIssue(typing_extensions.TypedDict, total=False):
     rule: typing_extensions.Literal[
         "MOBILE_FRIENDLY_RULE_UNSPECIFIED",
@@ -211,11 +216,13 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
     aggregationType: typing_extensions.Literal[
         "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
     ]
-    dataState: typing_extensions.Literal["DATA_STATE_UNSPECIFIED", "FINAL", "ALL"]
+    dataState: typing_extensions.Literal[
+        "DATA_STATE_UNSPECIFIED", "FINAL", "ALL", "HOURLY_ALL"
+    ]
     dimensionFilterGroups: _list[ApiDimensionFilterGroup]
     dimensions: _list[
         typing_extensions.Literal[
-            "DATE", "QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE"
+            "DATE", "QUERY", "PAGE", "COUNTRY", "DEVICE", "SEARCH_APPEARANCE", "HOUR"
         ]
     ]
     endDate: str
@@ -231,6 +238,7 @@ class SearchAnalyticsQueryRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchAnalyticsQueryResponse(typing_extensions.TypedDict, total=False):
+    metadata: Metadata
     responseAggregationType: typing_extensions.Literal[
         "AUTO", "BY_PROPERTY", "BY_PAGE", "BY_NEWS_SHOWCASE_PANEL"
     ]

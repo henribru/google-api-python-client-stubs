@@ -18,6 +18,99 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class AccountConnectorsResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class UsersResource(googleapiclient.discovery.Resource):
+                    def delete(
+                        self,
+                        *,
+                        name: str,
+                        etag: str = ...,
+                        requestId: str = ...,
+                        validateOnly: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def deleteSelf(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def fetchAccessToken(
+                        self,
+                        *,
+                        accountConnector: str,
+                        body: FetchAccessTokenRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> FetchAccessTokenResponseHttpRequest: ...
+                    def fetchSelf(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> UserHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListUsersResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListUsersResponseHttpRequest,
+                        previous_response: ListUsersResponse,
+                    ) -> ListUsersResponseHttpRequest | None: ...
+
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: AccountConnector = ...,
+                    accountConnectorId: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    force: bool = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> AccountConnectorHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListAccountConnectorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListAccountConnectorsResponseHttpRequest,
+                    previous_response: ListAccountConnectorsResponse,
+                ) -> ListAccountConnectorsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: AccountConnector = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def users(self) -> UsersResource: ...
+
+            @typing.type_check_only
             class ConnectionsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class GitRepositoryLinksResource(googleapiclient.discovery.Resource):
@@ -88,6 +181,20 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                         previous_request: ListGitRepositoryLinksResponseHttpRequest,
                         previous_response: ListGitRepositoryLinksResponse,
                     ) -> ListGitRepositoryLinksResponseHttpRequest | None: ...
+                    def processBitbucketCloudWebhook(
+                        self,
+                        *,
+                        name: str,
+                        body: ProcessBitbucketCloudWebhookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
+                    def processBitbucketDataCenterWebhook(
+                        self,
+                        *,
+                        name: str,
+                        body: ProcessBitbucketDataCenterWebhookRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> EmptyHttpRequest: ...
                     def processGitLabEnterpriseWebhook(
                         self,
                         *,
@@ -177,6 +284,55 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                 def gitRepositoryLinks(self) -> GitRepositoryLinksResource: ...
 
             @typing.type_check_only
+            class InsightsConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: InsightsConfig = ...,
+                    insightsConfigId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self,
+                    *,
+                    name: str,
+                    etag: str = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> InsightsConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListInsightsConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListInsightsConfigsResponseHttpRequest,
+                    previous_response: ListInsightsConfigsResponse,
+                ) -> ListInsightsConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: InsightsConfig = ...,
+                    allowMissing: bool = ...,
+                    requestId: str = ...,
+                    validateOnly: bool = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+
+            @typing.type_check_only
             class OperationsResource(googleapiclient.discovery.Resource):
                 def cancel(
                     self,
@@ -213,6 +369,7 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -223,7 +380,9 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def accountConnectors(self) -> AccountConnectorsResource: ...
             def connections(self) -> ConnectionsResource: ...
+            def insightsConfigs(self) -> InsightsConfigsResource: ...
             def operations(self) -> OperationsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -243,6 +402,14 @@ class DeveloperConnectResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class AccountConnectorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> AccountConnector: ...
+
+@typing.type_check_only
 class ConnectionHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -257,6 +424,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class FetchAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchAccessTokenResponse: ...
 
 @typing.type_check_only
 class FetchGitHubInstallationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -307,6 +482,22 @@ class GitRepositoryLinkHttpRequest(googleapiclient.http.HttpRequest):
     ) -> GitRepositoryLink: ...
 
 @typing.type_check_only
+class InsightsConfigHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> InsightsConfig: ...
+
+@typing.type_check_only
+class ListAccountConnectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAccountConnectorsResponse: ...
+
+@typing.type_check_only
 class ListConnectionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -321,6 +512,14 @@ class ListGitRepositoryLinksResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListGitRepositoryLinksResponse: ...
+
+@typing.type_check_only
+class ListInsightsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListInsightsConfigsResponse: ...
 
 @typing.type_check_only
 class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -339,6 +538,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListUsersResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListUsersResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -353,3 +560,11 @@ class OperationHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Operation: ...
+
+@typing.type_check_only
+class UserHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> User: ...

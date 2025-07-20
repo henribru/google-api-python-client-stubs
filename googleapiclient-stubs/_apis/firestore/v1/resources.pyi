@@ -305,11 +305,59 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                     previous_response: GoogleLongrunningListOperationsResponse,
                 ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
+            @typing.type_check_only
+            class UserCredsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: GoogleFirestoreAdminV1UserCreds = ...,
+                    userCredsId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def disable(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirestoreAdminV1DisableUserCredsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
+                def enable(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirestoreAdminV1EnableUserCredsRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
+                def list(
+                    self, *, parent: str, **kwargs: typing.Any
+                ) -> GoogleFirestoreAdminV1ListUserCredsResponseHttpRequest: ...
+                def resetPassword(
+                    self,
+                    *,
+                    name: str,
+                    body: GoogleFirestoreAdminV1ResetUserPasswordRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GoogleFirestoreAdminV1UserCredsHttpRequest: ...
+
             def bulkDeleteDocuments(
                 self,
                 *,
                 name: str,
                 body: GoogleFirestoreAdminV1BulkDeleteDocumentsRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def clone(
+                self,
+                *,
+                parent: str,
+                body: GoogleFirestoreAdminV1CloneDatabaseRequest = ...,
                 **kwargs: typing.Any,
             ) -> GoogleLongrunningOperationHttpRequest: ...
             def create(
@@ -362,6 +410,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
             def collectionGroups(self) -> CollectionGroupsResource: ...
             def documents(self) -> DocumentsResource: ...
             def operations(self) -> OperationsResource: ...
+            def userCreds(self) -> UserCredsResource: ...
 
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
@@ -384,6 +433,7 @@ class FirestoreResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -550,6 +600,24 @@ class GoogleFirestoreAdminV1ListIndexesResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleFirestoreAdminV1ListIndexesResponse: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1ListUserCredsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirestoreAdminV1ListUserCredsResponse: ...
+
+@typing.type_check_only
+class GoogleFirestoreAdminV1UserCredsHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleFirestoreAdminV1UserCreds: ...
 
 @typing.type_check_only
 class GoogleLongrunningListOperationsResponseHttpRequest(

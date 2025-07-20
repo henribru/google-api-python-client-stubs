@@ -136,6 +136,7 @@ class Build(typing_extensions.TypedDict, total=False):
     availableSecrets: Secrets
     buildTriggerId: str
     createTime: str
+    dependencies: _list[Dependency]
     failureInfo: FailureInfo
     finishTime: str
     gitConfig: GitConfig
@@ -217,6 +218,7 @@ class BuildOptions(typing_extensions.TypedDict, total=False):
         "E2_MEDIUM",
     ]
     pool: PoolOption
+    pubsubTopic: str
     requestedVerifyOption: typing_extensions.Literal["NOT_VERIFIED", "VERIFIED"]
     secretEnv: _list[str]
     sourceProvenanceHash: _list[
@@ -266,6 +268,7 @@ class BuildTrigger(typing_extensions.TypedDict, total=False):
     build: Build
     createTime: str
     description: str
+    developerConnectEventConfig: DeveloperConnectEventConfig
     disabled: bool
     eventType: typing_extensions.Literal[
         "EVENT_TYPE_UNSPECIFIED", "REPO", "WEBHOOK", "PUBSUB", "MANUAL"
@@ -387,10 +390,30 @@ class DeleteWorkerPoolOperationMetadata(typing_extensions.TypedDict, total=False
     workerPool: str
 
 @typing.type_check_only
+class Dependency(typing_extensions.TypedDict, total=False):
+    empty: bool
+    gitSource: GitSourceDependency
+
+@typing.type_check_only
 class DeveloperConnectConfig(typing_extensions.TypedDict, total=False):
     dir: str
     gitRepositoryLink: str
     revision: str
+
+@typing.type_check_only
+class DeveloperConnectEventConfig(typing_extensions.TypedDict, total=False):
+    gitRepositoryLink: str
+    gitRepositoryLinkType: typing_extensions.Literal[
+        "GIT_REPOSITORY_LINK_TYPE_UNSPECIFIED",
+        "GITHUB",
+        "GITHUB_ENTERPRISE",
+        "GITLAB",
+        "GITLAB_ENTERPRISE",
+        "BITBUCKET_DATA_CENTER",
+        "BITBUCKET_CLOUD",
+    ]
+    pullRequest: PullRequestFilter
+    push: PushFilter
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -535,6 +558,19 @@ class GitRepoSource(typing_extensions.TypedDict, total=False):
 class GitSource(typing_extensions.TypedDict, total=False):
     dir: str
     revision: str
+    url: str
+
+@typing.type_check_only
+class GitSourceDependency(typing_extensions.TypedDict, total=False):
+    depth: str
+    destPath: str
+    recurseSubmodules: bool
+    repository: GitSourceRepository
+    revision: str
+
+@typing.type_check_only
+class GitSourceRepository(typing_extensions.TypedDict, total=False):
+    developerConnect: str
     url: str
 
 @typing.type_check_only

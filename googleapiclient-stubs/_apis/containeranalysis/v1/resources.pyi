@@ -71,6 +71,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListNotesResponseHttpRequest: ...
                 def list_next(
@@ -131,7 +132,12 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> NoteHttpRequest: ...
                 def getVulnerabilitySummary(
-                    self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    returnPartialSuccess: bool = ...,
+                    **kwargs: typing.Any,
                 ) -> VulnerabilityOccurrencesSummaryHttpRequest: ...
                 def list(
                     self,
@@ -140,6 +146,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOccurrencesResponseHttpRequest: ...
                 def list_next(
@@ -236,6 +243,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListNotesResponseHttpRequest: ...
             def list_next(
@@ -296,7 +304,12 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 self, *, name: str, **kwargs: typing.Any
             ) -> NoteHttpRequest: ...
             def getVulnerabilitySummary(
-                self, *, parent: str, filter: str = ..., **kwargs: typing.Any
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                returnPartialSuccess: bool = ...,
+                **kwargs: typing.Any,
             ) -> VulnerabilityOccurrencesSummaryHttpRequest: ...
             def list(
                 self,
@@ -305,6 +318,7 @@ class ContainerAnalysisResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListOccurrencesResponseHttpRequest: ...
             def list_next(

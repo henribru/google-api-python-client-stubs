@@ -50,6 +50,12 @@ class AttestationOccurrence(typing_extensions.TypedDict, total=False):
     signatures: _list[Signature]
 
 @typing.type_check_only
+class BaseImage(typing_extensions.TypedDict, total=False):
+    layerCount: int
+    name: str
+    repository: str
+
+@typing.type_check_only
 class BinarySourceInfo(typing_extensions.TypedDict, total=False):
     binaryVersion: PackageVersion
     sourceVersion: PackageVersion
@@ -230,6 +236,7 @@ class DiscoveryOccurrence(typing_extensions.TypedDict, total=False):
         "CONTINUOUS_ANALYSIS_UNSPECIFIED", "ACTIVE", "INACTIVE"
     ]
     cpe: str
+    files: _list[File]
     lastScanTime: str
     sbomStatus: SBOMStatus
 
@@ -248,12 +255,18 @@ class EnvelopeSignature(typing_extensions.TypedDict, total=False):
     sig: str
 
 @typing.type_check_only
+class File(typing_extensions.TypedDict, total=False):
+    digest: dict[str, typing.Any]
+    name: str
+
+@typing.type_check_only
 class FileHashes(typing_extensions.TypedDict, total=False):
     fileHash: _list[Hash]
 
 @typing.type_check_only
 class FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
+    layerDetails: LayerDetails
 
 @typing.type_check_only
 class Fingerprint(typing_extensions.TypedDict, total=False):
@@ -274,8 +287,23 @@ class GitSourceContext(typing_extensions.TypedDict, total=False):
     url: str
 
 @typing.type_check_only
+class GrafeasV1BaseImage(typing_extensions.TypedDict, total=False):
+    layerCount: int
+    name: str
+    repository: str
+
+@typing.type_check_only
 class GrafeasV1FileLocation(typing_extensions.TypedDict, total=False):
     filePath: str
+    layerDetails: GrafeasV1LayerDetails
+
+@typing.type_check_only
+class GrafeasV1LayerDetails(typing_extensions.TypedDict, total=False):
+    baseImages: _list[GrafeasV1BaseImage]
+    chainId: str
+    command: str
+    diffId: str
+    index: int
 
 @typing.type_check_only
 class GrafeasV1SlsaProvenanceZeroTwoSlsaBuilder(
@@ -391,6 +419,14 @@ class Layer(typing_extensions.TypedDict, total=False):
     directive: str
 
 @typing.type_check_only
+class LayerDetails(typing_extensions.TypedDict, total=False):
+    baseImages: _list[BaseImage]
+    chainId: str
+    command: str
+    diffId: str
+    index: int
+
+@typing.type_check_only
 class License(typing_extensions.TypedDict, total=False):
     comments: str
     expression: str
@@ -462,6 +498,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
         "DSSE_ATTESTATION",
         "VULNERABILITY_ASSESSMENT",
         "SBOM_REFERENCE",
+        "SECRET",
     ]
     name: str
     noteName: str
@@ -469,6 +506,7 @@ class Occurrence(typing_extensions.TypedDict, total=False):
     remediation: str
     resourceUri: str
     sbomReference: SBOMReferenceOccurrence
+    secret: SecretOccurrence
     updateTime: str
     upgrade: UpgradeOccurrence
     vulnerability: VulnerabilityOccurrence
@@ -490,6 +528,7 @@ class PackageData(typing_extensions.TypedDict, total=False):
     dependencyChain: _list[LanguagePackageDependency]
     fileLocation: _list[FileLocation]
     hashDigest: str
+    layerDetails: LayerDetails
     licenses: _list[str]
     maintainer: Maintainer
     os: str
@@ -629,6 +668,28 @@ class SbomReferenceIntotoPredicate(typing_extensions.TypedDict, total=False):
     location: str
     mimeType: str
     referrerId: str
+
+@typing.type_check_only
+class SecretLocation(typing_extensions.TypedDict, total=False):
+    fileLocation: GrafeasV1FileLocation
+
+@typing.type_check_only
+class SecretOccurrence(typing_extensions.TypedDict, total=False):
+    kind: typing_extensions.Literal[
+        "SECRET_KIND_UNSPECIFIED",
+        "SECRET_KIND_UNKNOWN",
+        "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY",
+    ]
+    locations: _list[SecretLocation]
+    statuses: _list[SecretStatus]
+
+@typing.type_check_only
+class SecretStatus(typing_extensions.TypedDict, total=False):
+    message: str
+    status: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED", "UNKNOWN", "VALID", "INVALID"
+    ]
+    updateTime: str
 
 @typing.type_check_only
 class Signature(typing_extensions.TypedDict, total=False):

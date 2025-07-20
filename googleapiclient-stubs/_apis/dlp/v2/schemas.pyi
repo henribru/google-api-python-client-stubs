@@ -577,6 +577,7 @@ class GooglePrivacyDlpV2DataProfileAction(typing_extensions.TypedDict, total=Fal
     exportData: GooglePrivacyDlpV2Export
     pubSubNotification: GooglePrivacyDlpV2PubSubNotification
     publishToChronicle: GooglePrivacyDlpV2PublishToChronicle
+    publishToDataplexCatalog: GooglePrivacyDlpV2PublishToDataplexCatalog
     publishToScc: GooglePrivacyDlpV2PublishToSecurityCommandCenter
     tagResources: GooglePrivacyDlpV2TagResources
 
@@ -597,6 +598,37 @@ class GooglePrivacyDlpV2DataProfileConfigSnapshot(
     inspectConfig: GooglePrivacyDlpV2InspectConfig
     inspectTemplateModifiedTime: str
     inspectTemplateName: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileFinding(typing_extensions.TypedDict, total=False):
+    dataProfileResourceName: str
+    dataSourceType: GooglePrivacyDlpV2DataSourceType
+    findingId: str
+    fullResourceName: str
+    infotype: GooglePrivacyDlpV2InfoType
+    location: GooglePrivacyDlpV2DataProfileFindingLocation
+    quote: str
+    quoteInfo: GooglePrivacyDlpV2QuoteInfo
+    resourceVisibility: typing_extensions.Literal[
+        "RESOURCE_VISIBILITY_UNSPECIFIED",
+        "RESOURCE_VISIBILITY_PUBLIC",
+        "RESOURCE_VISIBILITY_INCONCLUSIVE",
+        "RESOURCE_VISIBILITY_RESTRICTED",
+    ]
+    timestamp: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileFindingLocation(
+    typing_extensions.TypedDict, total=False
+):
+    containerName: str
+    dataProfileFindingRecordLocation: GooglePrivacyDlpV2DataProfileFindingRecordLocation
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DataProfileFindingRecordLocation(
+    typing_extensions.TypedDict, total=False
+):
+    field: GooglePrivacyDlpV2FieldId
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DataProfileJobConfig(typing_extensions.TypedDict, total=False):
@@ -945,6 +977,7 @@ class GooglePrivacyDlpV2DiscoveryConfig(typing_extensions.TypedDict, total=False
     name: str
     orgConfig: GooglePrivacyDlpV2OrgConfig
     otherCloudStartingLocation: GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation
+    processingLocation: GooglePrivacyDlpV2ProcessingLocation
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "PAUSED"]
     targets: _list[GooglePrivacyDlpV2DiscoveryTarget]
     updateTime: str
@@ -1061,6 +1094,36 @@ class GooglePrivacyDlpV2DiscoveryTarget(typing_extensions.TypedDict, total=False
     cloudStorageTarget: GooglePrivacyDlpV2CloudStorageDiscoveryTarget
     otherCloudTarget: GooglePrivacyDlpV2OtherCloudDiscoveryTarget
     secretsTarget: GooglePrivacyDlpV2SecretsDiscoveryTarget
+    vertexDatasetTarget: GooglePrivacyDlpV2VertexDatasetDiscoveryTarget
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryVertexDatasetConditions(
+    typing_extensions.TypedDict, total=False
+):
+    createdAfter: str
+    minAge: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryVertexDatasetFilter(
+    typing_extensions.TypedDict, total=False
+):
+    collection: GooglePrivacyDlpV2VertexDatasetCollection
+    others: GooglePrivacyDlpV2AllOtherResources
+    vertexDatasetResourceReference: GooglePrivacyDlpV2VertexDatasetResourceReference
+
+@typing.type_check_only
+class GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence(
+    typing_extensions.TypedDict, total=False
+):
+    inspectTemplateModifiedCadence: (
+        GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence
+    )
+    refreshFrequency: typing_extensions.Literal[
+        "UPDATE_FREQUENCY_UNSPECIFIED",
+        "UPDATE_FREQUENCY_NEVER",
+        "UPDATE_FREQUENCY_DAILY",
+        "UPDATE_FREQUENCY_MONTHLY",
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
@@ -1090,6 +1153,21 @@ class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2DocumentLocation(typing_extensions.TypedDict, total=False):
     fileOffset: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2Domain(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal["CATEGORY_UNSPECIFIED", "AI", "CODE"]
+    signals: _list[
+        typing_extensions.Literal[
+            "SIGNAL_UNSPECIFIED",
+            "MODEL",
+            "TEXT_EMBEDDING",
+            "VERTEX_PLUGIN",
+            "VECTOR_PLUGIN",
+            "SOURCE_CODE",
+            "SERVICE",
+        ]
+    ]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2EntityId(typing_extensions.TypedDict, total=False):
@@ -1130,6 +1208,7 @@ class GooglePrivacyDlpV2ExclusionRule(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2Export(typing_extensions.TypedDict, total=False):
     profileTable: GooglePrivacyDlpV2BigQueryTable
+    sampleFindingsTable: GooglePrivacyDlpV2BigQueryTable
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Expressions(typing_extensions.TypedDict, total=False):
@@ -1194,6 +1273,7 @@ class GooglePrivacyDlpV2FileStoreDataProfile(typing_extensions.TypedDict, total=
     dataRiskLevel: GooglePrivacyDlpV2DataRiskLevel
     dataSourceType: GooglePrivacyDlpV2DataSourceType
     dataStorageLocations: _list[str]
+    domains: _list[GooglePrivacyDlpV2Domain]
     fileClusterSummaries: _list[GooglePrivacyDlpV2FileClusterSummary]
     fileStoreInfoTypeSummaries: _list[GooglePrivacyDlpV2FileStoreInfoTypeSummary]
     fileStoreIsEmpty: bool
@@ -1207,6 +1287,7 @@ class GooglePrivacyDlpV2FileStoreDataProfile(typing_extensions.TypedDict, total=
     profileStatus: GooglePrivacyDlpV2ProfileStatus
     projectDataProfile: str
     projectId: str
+    relatedResources: _list[GooglePrivacyDlpV2RelatedResource]
     resourceAttributes: dict[str, typing.Any]
     resourceLabels: dict[str, typing.Any]
     resourceVisibility: typing_extensions.Literal[
@@ -1215,8 +1296,10 @@ class GooglePrivacyDlpV2FileStoreDataProfile(typing_extensions.TypedDict, total=
         "RESOURCE_VISIBILITY_INCONCLUSIVE",
         "RESOURCE_VISIBILITY_RESTRICTED",
     ]
+    sampleFindingsTable: GooglePrivacyDlpV2BigQueryTable
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "RUNNING", "DONE"]
+    tags: _list[GooglePrivacyDlpV2Tag]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2FileStoreInfoTypeSummary(
@@ -1275,6 +1358,9 @@ class GooglePrivacyDlpV2FixedSizeBucketingConfig(
     upperBound: GooglePrivacyDlpV2Value
 
 @typing.type_check_only
+class GooglePrivacyDlpV2GlobalProcessing(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2HotwordRule(typing_extensions.TypedDict, total=False):
     hotwordRegex: GooglePrivacyDlpV2Regex
     likelihoodAdjustment: GooglePrivacyDlpV2LikelihoodAdjustment
@@ -1326,6 +1412,11 @@ class GooglePrivacyDlpV2HybridOptions(typing_extensions.TypedDict, total=False):
     tableOptions: GooglePrivacyDlpV2TableOptions
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ImageFallbackLocation(typing_extensions.TypedDict, total=False):
+    globalProcessing: GooglePrivacyDlpV2GlobalProcessing
+    multiRegionProcessing: GooglePrivacyDlpV2MultiRegionProcessing
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ImageLocation(typing_extensions.TypedDict, total=False):
     boundingBoxes: _list[GooglePrivacyDlpV2BoundingBox]
 
@@ -1372,6 +1463,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "CHINA",
         "COLOMBIA",
         "CROATIA",
+        "CZECHIA",
         "DENMARK",
         "FRANCE",
         "FINLAND",
@@ -1419,6 +1511,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "GOVERNMENT_ID",
         "DOCUMENT",
         "CONTEXTUAL_INFORMATION",
+        "CUSTOM",
     ]
 
 @typing.type_check_only
@@ -1429,6 +1522,7 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     example: str
     name: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
+    specificInfoTypes: _list[str]
     supportedBy: _list[
         typing_extensions.Literal["ENUM_TYPE_UNSPECIFIED", "INSPECT", "RISK_ANALYSIS"]
     ]
@@ -1791,6 +1885,11 @@ class GooglePrivacyDlpV2MetadataLocation(typing_extensions.TypedDict, total=Fals
     type: typing_extensions.Literal["METADATATYPE_UNSPECIFIED", "STORAGE_METADATA"]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2MultiRegionProcessing(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
 class GooglePrivacyDlpV2NumericalStatsConfig(typing_extensions.TypedDict, total=False):
     field: GooglePrivacyDlpV2FieldId
 
@@ -1906,6 +2005,10 @@ class GooglePrivacyDlpV2PrivacyMetric(typing_extensions.TypedDict, total=False):
     numericalStatsConfig: GooglePrivacyDlpV2NumericalStatsConfig
 
 @typing.type_check_only
+class GooglePrivacyDlpV2ProcessingLocation(typing_extensions.TypedDict, total=False):
+    imageFallbackLocation: GooglePrivacyDlpV2ImageFallbackLocation
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ProfileStatus(typing_extensions.TypedDict, total=False):
     status: GoogleRpcStatus
     timestamp: str
@@ -1974,6 +2077,12 @@ class GooglePrivacyDlpV2PublishSummaryToCscc(
 class GooglePrivacyDlpV2PublishToChronicle(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PublishToDataplexCatalog(
+    typing_extensions.TypedDict, total=False
+):
+    lowerDataRiskToLow: bool
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PublishToPubSub(typing_extensions.TypedDict, total=False):
@@ -2087,6 +2196,10 @@ class GooglePrivacyDlpV2ReidentifyContentResponse(
     overview: GooglePrivacyDlpV2TransformationOverview
 
 @typing.type_check_only
+class GooglePrivacyDlpV2RelatedResource(typing_extensions.TypedDict, total=False):
+    fullResource: str
+
+@typing.type_check_only
 class GooglePrivacyDlpV2ReplaceDictionaryConfig(
     typing_extensions.TypedDict, total=False
 ):
@@ -2141,6 +2254,12 @@ class GooglePrivacyDlpV2Row(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2SaveFindings(typing_extensions.TypedDict, total=False):
     outputConfig: GooglePrivacyDlpV2OutputStorageConfig
+
+@typing.type_check_only
+class GooglePrivacyDlpV2SaveToGcsFindingsOutput(
+    typing_extensions.TypedDict, total=False
+):
+    findings: _list[GooglePrivacyDlpV2Finding]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2Schedule(typing_extensions.TypedDict, total=False):
@@ -2269,6 +2388,7 @@ class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=Fals
     datasetId: str
     datasetLocation: str
     datasetProjectId: str
+    domains: _list[GooglePrivacyDlpV2Domain]
     encryptionStatus: typing_extensions.Literal[
         "ENCRYPTION_STATUS_UNSPECIFIED",
         "ENCRYPTION_GOOGLE_MANAGED",
@@ -2284,6 +2404,7 @@ class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=Fals
     profileLastGenerated: str
     profileStatus: GooglePrivacyDlpV2ProfileStatus
     projectDataProfile: str
+    relatedResources: _list[GooglePrivacyDlpV2RelatedResource]
     resourceLabels: dict[str, typing.Any]
     resourceVisibility: typing_extensions.Literal[
         "RESOURCE_VISIBILITY_UNSPECIFIED",
@@ -2292,11 +2413,13 @@ class GooglePrivacyDlpV2TableDataProfile(typing_extensions.TypedDict, total=Fals
         "RESOURCE_VISIBILITY_RESTRICTED",
     ]
     rowCount: str
+    sampleFindingsTable: GooglePrivacyDlpV2BigQueryTable
     scannedColumnCount: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "RUNNING", "DONE"]
     tableId: str
     tableSizeBytes: str
+    tags: _list[GooglePrivacyDlpV2Tag]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TableLocation(typing_extensions.TypedDict, total=False):
@@ -2309,7 +2432,14 @@ class GooglePrivacyDlpV2TableOptions(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2TableReference(typing_extensions.TypedDict, total=False):
     datasetId: str
+    projectId: str
     tableId: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2Tag(typing_extensions.TypedDict, total=False):
+    key: str
+    namespacedTagValue: str
+    value: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TagCondition(typing_extensions.TypedDict, total=False):
@@ -2545,6 +2675,35 @@ class GooglePrivacyDlpV2ValueFrequency(typing_extensions.TypedDict, total=False)
 class GooglePrivacyDlpV2VersionDescription(typing_extensions.TypedDict, total=False):
     description: str
     version: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VertexDatasetCollection(
+    typing_extensions.TypedDict, total=False
+):
+    vertexDatasetRegexes: GooglePrivacyDlpV2VertexDatasetRegexes
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VertexDatasetDiscoveryTarget(
+    typing_extensions.TypedDict, total=False
+):
+    conditions: GooglePrivacyDlpV2DiscoveryVertexDatasetConditions
+    disabled: GooglePrivacyDlpV2Disabled
+    filter: GooglePrivacyDlpV2DiscoveryVertexDatasetFilter
+    generationCadence: GooglePrivacyDlpV2DiscoveryVertexDatasetGenerationCadence
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VertexDatasetRegex(typing_extensions.TypedDict, total=False):
+    projectIdRegex: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VertexDatasetRegexes(typing_extensions.TypedDict, total=False):
+    patterns: _list[GooglePrivacyDlpV2VertexDatasetRegex]
+
+@typing.type_check_only
+class GooglePrivacyDlpV2VertexDatasetResourceReference(
+    typing_extensions.TypedDict, total=False
+):
+    datasetResourceName: str
 
 @typing.type_check_only
 class GooglePrivacyDlpV2WordList(typing_extensions.TypedDict, total=False):

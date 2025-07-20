@@ -16,12 +16,15 @@ class AutonomousDatabase(typing_extensions.TypedDict, total=False):
     cidr: str
     createTime: str
     database: str
+    disasterRecoverySupportedLocations: _list[str]
     displayName: str
     entitlementId: str
     labels: dict[str, typing.Any]
     name: str
     network: str
+    peerAutonomousDatabases: _list[str]
     properties: AutonomousDatabaseProperties
+    sourceConfig: SourceConfig
 
 @typing.type_check_only
 class AutonomousDatabaseApex(typing_extensions.TypedDict, total=False):
@@ -101,6 +104,7 @@ class AutonomousDatabaseConnectionUrls(typing_extensions.TypedDict, total=False)
 class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     actualUsedDataStorageSizeTb: float
     allocatedStorageSizeTb: float
+    allowlistedIps: _list[str]
     apexDetails: AutonomousDatabaseApex
     arePrimaryAllowlistedIpsUsed: bool
     autonomousContainerDatabaseId: str
@@ -112,6 +116,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     connectionUrls: AutonomousDatabaseConnectionUrls
     cpuCoreCount: int
     customerContacts: _list[CustomerContact]
+    dataGuardRoleChangedTime: str
     dataSafeState: typing_extensions.Literal[
         "DATA_SAFE_STATE_UNSPECIFIED",
         "REGISTERING",
@@ -138,6 +143,7 @@ class AutonomousDatabaseProperties(typing_extensions.TypedDict, total=False):
     dbWorkload: typing_extensions.Literal[
         "DB_WORKLOAD_UNSPECIFIED", "OLTP", "DW", "AJD", "APEX"
     ]
+    disasterRecoveryRoleChangedTime: str
     failedDataRecoveryDuration: str
     isAutoScalingEnabled: bool
     isLocalDataGuardEnabled: bool
@@ -294,9 +300,13 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
     additionalStorageCount: int
     availableStorageSizeGb: int
     computeCount: int
+    computeModel: typing_extensions.Literal[
+        "COMPUTE_MODEL_UNSPECIFIED", "COMPUTE_MODEL_ECPU", "COMPUTE_MODEL_OCPU"
+    ]
     cpuCount: int
     customerContacts: _list[CustomerContact]
     dataStorageSizeTb: float
+    databaseServerType: str
     dbNodeStorageSizeGb: int
     dbServerVersion: str
     maintenanceWindow: MaintenanceWindow
@@ -324,6 +334,7 @@ class CloudExadataInfrastructureProperties(typing_extensions.TypedDict, total=Fa
         "MAINTENANCE_IN_PROGRESS",
     ]
     storageCount: int
+    storageServerType: str
     storageServerVersion: str
     totalStorageSizeGb: int
 
@@ -344,6 +355,9 @@ class CloudVmCluster(typing_extensions.TypedDict, total=False):
 class CloudVmClusterProperties(typing_extensions.TypedDict, total=False):
     clusterName: str
     compartmentId: str
+    computeModel: typing_extensions.Literal[
+        "COMPUTE_MODEL_UNSPECIFIED", "COMPUTE_MODEL_ECPU", "COMPUTE_MODEL_OCPU"
+    ]
     cpuCoreCount: int
     dataStorageSizeTb: float
     dbNodeStorageSizeGb: int
@@ -500,6 +514,7 @@ class Entitlement(typing_extensions.TypedDict, total=False):
         "ACCOUNT_NOT_ACTIVE",
         "ACTIVE",
         "ACCOUNT_SUSPENDED",
+        "NOT_APPROVED_IN_PRIVATE_MARKETPLACE",
     ]
 
 @typing.type_check_only
@@ -663,6 +678,9 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     verb: str
 
 @typing.type_check_only
+class RestartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class RestoreAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
     restoreTime: str
 
@@ -682,10 +700,25 @@ class ScheduledOperationDetails(typing_extensions.TypedDict, total=False):
     stopTime: TimeOfDay
 
 @typing.type_check_only
+class SourceConfig(typing_extensions.TypedDict, total=False):
+    automaticBackupsReplicationEnabled: bool
+    autonomousDatabase: str
+
+@typing.type_check_only
+class StartAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
     code: int
     details: _list[dict[str, typing.Any]]
     message: str
+
+@typing.type_check_only
+class StopAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class SwitchoverAutonomousDatabaseRequest(typing_extensions.TypedDict, total=False):
+    peerAutonomousDatabase: str
 
 @typing.type_check_only
 class TimeOfDay(typing_extensions.TypedDict, total=False):

@@ -24,6 +24,7 @@ class Backup(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     clusterName: str
     clusterUid: str
+    createCompletionTime: str
     createTime: str
     databaseVersion: typing_extensions.Literal[
         "DATABASE_VERSION_UNSPECIFIED",
@@ -31,6 +32,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
     ]
     deleteTime: str
     description: str
@@ -102,6 +104,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
     ]
     deleteTime: str
     displayName: str
@@ -123,6 +126,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     secondaryConfig: SecondaryConfig
+    serviceAccountEmail: str
     sslConfig: SslConfig
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -155,6 +159,7 @@ class ClusterUpgradeDetails(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
     ]
     instanceUpgradeDetails: _list[InstanceUpgradeDetails]
     name: str
@@ -178,6 +183,24 @@ class ConnectionInfo(typing_extensions.TypedDict, total=False):
     pemCertificateChain: _list[str]
     pscDnsName: str
     publicIpAddress: str
+
+@typing.type_check_only
+class ConnectionPoolConfig(typing_extensions.TypedDict, total=False):
+    defaultPoolSize: str
+    enable: bool
+    enabled: bool
+    flags: dict[str, typing.Any]
+    ignoreStartupParameters: _list[str]
+    maxClientConn: str
+    maxPreparedStatements: str
+    minPoolSize: str
+    poolMode: typing_extensions.Literal[
+        "POOL_MODE_UNSPECIFIED", "POOL_MODE_SESSION", "POOL_MODE_TRANSACTION"
+    ]
+    poolerCount: int
+    queryWaitTimeout: str
+    serverIdleTimeout: str
+    statsUsers: _list[str]
 
 @typing.type_check_only
 class ContinuousBackupConfig(typing_extensions.TypedDict, total=False):
@@ -216,6 +239,20 @@ class CsvExportOptions(typing_extensions.TypedDict, total=False):
     selectQuery: str
 
 @typing.type_check_only
+class CsvImportOptions(typing_extensions.TypedDict, total=False):
+    columns: _list[str]
+    escapeCharacter: str
+    fieldDelimiter: str
+    quoteCharacter: str
+    table: str
+
+@typing.type_check_only
+class DenyMaintenancePeriod(typing_extensions.TypedDict, total=False):
+    endDate: GoogleTypeDate
+    startDate: GoogleTypeDate
+    time: GoogleTypeTimeOfDay
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -240,6 +277,12 @@ class ExportClusterRequest(typing_extensions.TypedDict, total=False):
 class FailoverInstanceRequest(typing_extensions.TypedDict, total=False):
     requestId: str
     validateOnly: bool
+
+@typing.type_check_only
+class GCAInstanceConfig(typing_extensions.TypedDict, total=False):
+    gcaEntitlement: typing_extensions.Literal[
+        "GCA_ENTITLEMENT_TYPE_UNSPECIFIED", "GCA_STANDARD"
+    ]
 
 @typing.type_check_only
 class GcsDestination(typing_extensions.TypedDict, total=False):
@@ -269,11 +312,25 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class GoogleTypeDate(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
+
+@typing.type_check_only
 class GoogleTypeTimeOfDay(typing_extensions.TypedDict, total=False):
     hours: int
     minutes: int
     nanos: int
     seconds: int
+
+@typing.type_check_only
+class ImportClusterRequest(typing_extensions.TypedDict, total=False):
+    csvImportOptions: CsvImportOptions
+    database: str
+    gcsUri: str
+    sqlImportOptions: SqlImportOptions
+    user: str
 
 @typing.type_check_only
 class InjectFaultRequest(typing_extensions.TypedDict, total=False):
@@ -283,16 +340,21 @@ class InjectFaultRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
+    activationPolicy: typing_extensions.Literal[
+        "ACTIVATION_POLICY_UNSPECIFIED", "ALWAYS", "NEVER"
+    ]
     annotations: dict[str, typing.Any]
     availabilityType: typing_extensions.Literal[
         "AVAILABILITY_TYPE_UNSPECIFIED", "ZONAL", "REGIONAL"
     ]
     clientConnectionConfig: ClientConnectionConfig
+    connectionPoolConfig: ConnectionPoolConfig
     createTime: str
     databaseFlags: dict[str, typing.Any]
     deleteTime: str
     displayName: str
     etag: str
+    gcaConfig: GCAInstanceConfig
     gceZone: str
     geminiConfig: GeminiInstanceConfig
     instanceType: typing_extensions.Literal[
@@ -331,9 +393,11 @@ class Instance(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class InstanceNetworkConfig(typing_extensions.TypedDict, total=False):
+    allocatedIpRangeOverride: str
     authorizedExternalNetworks: _list[AuthorizedNetwork]
     enableOutboundPublicIp: bool
     enablePublicIp: bool
+    network: str
 
 @typing.type_check_only
 class InstanceUpgradeDetails(typing_extensions.TypedDict, total=False):
@@ -394,6 +458,7 @@ class ListUsersResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MachineConfig(typing_extensions.TypedDict, total=False):
     cpuCount: int
+    machineType: str
 
 @typing.type_check_only
 class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
@@ -401,6 +466,7 @@ class MaintenanceSchedule(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaintenanceUpdatePolicy(typing_extensions.TypedDict, total=False):
+    denyMaintenancePeriods: _list[DenyMaintenancePeriod]
     maintenanceWindows: _list[MaintenanceWindow]
 
 @typing.type_check_only
@@ -437,6 +503,7 @@ class Node(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ObservabilityInstanceConfig(typing_extensions.TypedDict, total=False):
+    assistiveExperiencesEnabled: bool
     enabled: bool
     maxQueryStringLength: int
     preserveComments: bool
@@ -463,6 +530,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
     requestedCancellation: bool
     statusMessage: str
     target: str
+    upgradeClusterStatus: UpgradeClusterStatus
     verb: str
 
 @typing.type_check_only
@@ -476,6 +544,14 @@ class PromoteClusterRequest(typing_extensions.TypedDict, total=False):
     validateOnly: bool
 
 @typing.type_check_only
+class PscAutoConnectionConfig(typing_extensions.TypedDict, total=False):
+    consumerNetwork: str
+    consumerNetworkStatus: str
+    consumerProject: str
+    ipAddress: str
+    status: str
+
+@typing.type_check_only
 class PscConfig(typing_extensions.TypedDict, total=False):
     pscEnabled: bool
     serviceOwnedProjectNumber: str
@@ -483,6 +559,7 @@ class PscConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PscInstanceConfig(typing_extensions.TypedDict, total=False):
     allowedConsumerProjects: _list[str]
+    pscAutoConnections: _list[PscAutoConnectionConfig]
     pscDnsName: str
     pscInterfaceConfigs: _list[PscInterfaceConfig]
     serviceAttachmentLink: str
@@ -510,6 +587,10 @@ class QueryInsightsInstanceConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReadPoolConfig(typing_extensions.TypedDict, total=False):
     nodeCount: int
+
+@typing.type_check_only
+class ReadPoolInstancesUpgradeStageStatus(typing_extensions.TypedDict, total=False):
+    upgradeStats: Stats
 
 @typing.type_check_only
 class RestartInstanceRequest(typing_extensions.TypedDict, total=False):
@@ -542,6 +623,9 @@ class SqlExportOptions(typing_extensions.TypedDict, total=False):
     ifExistTargetObjects: bool
     schemaOnly: bool
     tables: _list[str]
+
+@typing.type_check_only
+class SqlImportOptions(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class SslConfig(typing_extensions.TypedDict, total=False):
@@ -578,6 +662,37 @@ class StageInfo(typing_extensions.TypedDict, total=False):
         "CANCEL_IN_PROGRESS",
         "CANCELLED",
     ]
+
+@typing.type_check_only
+class StageStatus(typing_extensions.TypedDict, total=False):
+    readPoolInstancesUpgrade: ReadPoolInstancesUpgradeStageStatus
+    stage: typing_extensions.Literal[
+        "STAGE_UNSPECIFIED",
+        "ALLOYDB_PRECHECK",
+        "PG_UPGRADE_CHECK",
+        "PREPARE_FOR_UPGRADE",
+        "PRIMARY_INSTANCE_UPGRADE",
+        "READ_POOL_INSTANCES_UPGRADE",
+        "ROLLBACK",
+        "CLEANUP",
+    ]
+    state: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
+
+@typing.type_check_only
+class Stats(typing_extensions.TypedDict, total=False):
+    failed: int
+    notStarted: int
+    ongoing: int
+    success: int
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):
@@ -666,6 +781,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
     description: str
     eventTime: str
     externalUri: str
+    location: str
     name: str
     provider: typing_extensions.Literal[
         "PROVIDER_UNSPECIFIED",
@@ -772,6 +888,21 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData(
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
         "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+        "SIGNAL_TYPE_HOT_NODE",
+        "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+        "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+        "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+        "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+        "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+        "SIGNAL_TYPE_INEFFICIENT_QUERY",
+        "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+        "SIGNAL_TYPE_MEMORY_LIMIT",
+        "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+        "SIGNAL_TYPE_LARGE_ROWS",
+        "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+        "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+        "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -823,6 +954,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "DELETED",
         "STATE_OTHER",
     ]
+    gcbdrConfiguration: StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration
     id: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     instanceType: typing_extensions.Literal[
         "INSTANCE_TYPE_UNSPECIFIED",
@@ -834,6 +966,7 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
         "SUB_RESOURCE_TYPE_PRIMARY",
         "SUB_RESOURCE_TYPE_SECONDARY",
         "SUB_RESOURCE_TYPE_READ_REPLICA",
+        "SUB_RESOURCE_TYPE_EXTERNAL_PRIMARY",
         "SUB_RESOURCE_TYPE_OTHER",
     ]
     location: str
@@ -843,6 +976,15 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata(
     product: StorageDatabasecenterProtoCommonProduct
     resourceContainer: str
     resourceName: str
+    suspensionReason: typing_extensions.Literal[
+        "SUSPENSION_REASON_UNSPECIFIED",
+        "WIPEOUT_HIDE_EVENT",
+        "WIPEOUT_PURGE_EVENT",
+        "BILLING_DISABLED",
+        "ABUSER_DETECTED",
+        "ENCRYPTION_KEY_INACCESSIBLE",
+        "REPLICATED_CLUSTER_ENCRYPTION_KEY_INACCESSIBLE",
+    ]
     tagsSet: StorageDatabasecenterPartnerapiV1mainTags
     updationTime: str
     userLabelSet: StorageDatabasecenterPartnerapiV1mainUserLabels
@@ -942,6 +1084,21 @@ class StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalD
         "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
         "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
         "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY",
+        "SIGNAL_TYPE_HOT_NODE",
+        "SIGNAL_TYPE_NO_POINT_IN_TIME_RECOVERY",
+        "SIGNAL_TYPE_RESOURCE_SUSPENDED",
+        "SIGNAL_TYPE_EXPENSIVE_COMMANDS",
+        "SIGNAL_TYPE_NO_MAINTENANCE_POLICY_CONFIGURED",
+        "SIGNAL_TYPE_NO_DELETION_PROTECTION",
+        "SIGNAL_TYPE_INEFFICIENT_QUERY",
+        "SIGNAL_TYPE_READ_INTENSIVE_WORKLOAD",
+        "SIGNAL_TYPE_MEMORY_LIMIT",
+        "SIGNAL_TYPE_MAX_SERVER_MEMORY",
+        "SIGNAL_TYPE_LARGE_ROWS",
+        "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
+        "SIGNAL_TYPE_HIGH_READ_PRESSURE",
+        "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
+        "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
     ]
 
 @typing.type_check_only
@@ -951,7 +1108,15 @@ class StorageDatabasecenterPartnerapiV1mainEntitlement(
     entitlementState: typing_extensions.Literal[
         "ENTITLEMENT_STATE_UNSPECIFIED", "ENTITLED", "REVOKED"
     ]
-    type: typing_extensions.Literal["ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI"]
+    type: typing_extensions.Literal[
+        "ENTITLEMENT_TYPE_UNSPECIFIED", "GEMINI", "NATIVE", "GCA_STANDARD"
+    ]
+
+@typing.type_check_only
+class StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration(
+    typing_extensions.TypedDict, total=False
+):
+    gcbdrManaged: bool
 
 @typing.type_check_only
 class StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata(
@@ -959,6 +1124,7 @@ class StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata(
 ):
     backupConfiguration: StorageDatabasecenterPartnerapiV1mainBackupConfiguration
     backupRun: StorageDatabasecenterPartnerapiV1mainBackupRun
+    isDeletionProtectionEnabled: bool
     product: StorageDatabasecenterProtoCommonProduct
     resourceId: StorageDatabasecenterPartnerapiV1mainDatabaseResourceId
     resourceName: str
@@ -986,6 +1152,9 @@ class StorageDatabasecenterPartnerapiV1mainObservabilityMetricData(
         "NETWORK_CONNECTIONS",
         "STORAGE_UTILIZATION",
         "STORAGE_USED_BYTES",
+        "NODE_COUNT",
+        "MEMORY_USED_BYTES",
+        "PROCESSING_UNIT_COUNT",
     ]
     observationTime: str
     resourceName: str
@@ -1054,6 +1223,8 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+        "ENGINE_EXADATA_ORACLE",
+        "ENGINE_ADB_SERVERLESS_ORACLE",
     ]
     type: typing_extensions.Literal[
         "PRODUCT_TYPE_UNSPECIFIED",
@@ -1066,8 +1237,10 @@ class StorageDatabasecenterProtoCommonProduct(typing_extensions.TypedDict, total
         "ON_PREM",
         "PRODUCT_TYPE_MEMORYSTORE",
         "PRODUCT_TYPE_BIGTABLE",
-        "PRODUCT_TYPE_OTHER",
         "PRODUCT_TYPE_FIRESTORE",
+        "PRODUCT_TYPE_COMPUTE_ENGINE",
+        "PRODUCT_TYPE_ORACLE_ON_GCP",
+        "PRODUCT_TYPE_OTHER",
     ]
     version: str
 
@@ -1090,7 +1263,10 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
     flagName: str
     integerRestrictions: IntegerRestrictions
     name: str
+    recommendedIntegerValue: str
+    recommendedStringValue: str
     requiresDbRestart: bool
+    scope: typing_extensions.Literal["SCOPE_UNSPECIFIED", "DATABASE", "CONNECTION_POOL"]
     stringRestrictions: StringRestrictions
     supportedDbVersions: _list[
         typing_extensions.Literal[
@@ -1099,6 +1275,7 @@ class SupportedDatabaseFlag(typing_extensions.TypedDict, total=False):
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
+            "POSTGRES_17",
         ]
     ]
     valueType: typing_extensions.Literal[
@@ -1136,6 +1313,7 @@ class UpgradeClusterRequest(typing_extensions.TypedDict, total=False):
         "POSTGRES_14",
         "POSTGRES_15",
         "POSTGRES_16",
+        "POSTGRES_17",
     ]
 
 @typing.type_check_only
@@ -1151,6 +1329,37 @@ class UpgradeClusterResponse(typing_extensions.TypedDict, total=False):
         "PARTIAL_SUCCESS",
         "CANCEL_IN_PROGRESS",
         "CANCELLED",
+    ]
+
+@typing.type_check_only
+class UpgradeClusterStatus(typing_extensions.TypedDict, total=False):
+    cancellable: bool
+    sourceVersion: typing_extensions.Literal[
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
+    ]
+    stages: _list[StageStatus]
+    state: typing_extensions.Literal[
+        "STATUS_UNSPECIFIED",
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "SUCCESS",
+        "FAILED",
+        "PARTIAL_SUCCESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELLED",
+    ]
+    targetVersion: typing_extensions.Literal[
+        "DATABASE_VERSION_UNSPECIFIED",
+        "POSTGRES_13",
+        "POSTGRES_14",
+        "POSTGRES_15",
+        "POSTGRES_16",
+        "POSTGRES_17",
     ]
 
 @typing.type_check_only

@@ -18,6 +18,23 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
+            class DiscoveredprofilesResource(googleapiclient.discovery.Resource):
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDiscoveredProfilesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDiscoveredProfilesResponseHttpRequest,
+                    previous_response: ListDiscoveredProfilesResponse,
+                ) -> ListDiscoveredProfilesResponseHttpRequest | None: ...
+
+            @typing.type_check_only
             class EvaluationsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
                 class ExecutionsResource(googleapiclient.discovery.Resource):
@@ -127,6 +144,9 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
 
             @typing.type_check_only
             class InsightsResource(googleapiclient.discovery.Resource):
+                def delete(
+                    self, *, name: str, requestId: str = ..., **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
                 def writeInsight(
                     self,
                     *,
@@ -172,6 +192,13 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     *,
                     parent: str,
                     customRulesBucket: str = ...,
+                    evaluationType: typing_extensions.Literal[
+                        "EVALUATION_TYPE_UNSPECIFIED",
+                        "SAP",
+                        "SQL_SERVER",
+                        "OTHER",
+                        "SCC_IAC",
+                    ] = ...,
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
@@ -190,6 +217,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 self,
                 *,
                 name: str,
+                extraLocationTypes: str | _list[str] = ...,
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
@@ -200,6 +228,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                 previous_request: ListLocationsResponseHttpRequest,
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
+            def discoveredprofiles(self) -> DiscoveredprofilesResource: ...
             def evaluations(self) -> EvaluationsResource: ...
             def insights(self) -> InsightsResource: ...
             def operations(self) -> OperationsResource: ...
@@ -244,6 +273,14 @@ class ExecutionHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Execution: ...
+
+@typing.type_check_only
+class ListDiscoveredProfilesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDiscoveredProfilesResponse: ...
 
 @typing.type_check_only
 class ListEvaluationsResponseHttpRequest(googleapiclient.http.HttpRequest):
