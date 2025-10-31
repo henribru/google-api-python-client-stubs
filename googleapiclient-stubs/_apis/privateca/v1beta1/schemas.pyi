@@ -44,6 +44,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -67,13 +68,6 @@ class Policy(typing_extensions.TypedDict, total=False):
     bindings: _list[Binding]
     etag: str
     version: int
-
-@typing.type_check_only
-class ReconciliationOperationMetadata(typing_extensions.TypedDict, total=False):
-    deleteResource: bool
-    exclusiveAction: typing_extensions.Literal[
-        "UNKNOWN_REPAIR_ACTION", "DELETE", "RETRY"
-    ]
 
 @typing.type_check_only
 class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):

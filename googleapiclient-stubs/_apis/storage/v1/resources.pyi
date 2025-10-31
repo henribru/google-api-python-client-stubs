@@ -167,6 +167,7 @@ class StorageResource(googleapiclient.discovery.Resource):
             pageToken: str = ...,
             prefix: str = ...,
             projection: typing_extensions.Literal["full", "noAcl"] = ...,
+            returnPartialSuccess: bool = ...,
             softDeleted: bool = ...,
             userProject: str = ...,
             **kwargs: typing.Any,

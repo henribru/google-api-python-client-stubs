@@ -2068,17 +2068,6 @@ class GoogleCloudIntegrationsV1alphaAccessToken(
     tokenType: str
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaAgentFlow(typing_extensions.TypedDict, total=False):
-    createTime: str
-    creator: str
-    description: str
-    displayName: str
-    flowConfig: str
-    name: str
-    noCodeAgent: str
-    updateTime: str
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaApiTriggerResource(
     typing_extensions.TypedDict, total=False
 ):
@@ -2603,34 +2592,6 @@ class GoogleCloudIntegrationsV1alphaFile(typing_extensions.TypedDict, total=Fals
     ]
 
 @typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGenerateAgentFlowRequest(
-    typing_extensions.TypedDict, total=False
-):
-    creator: str
-    description: str
-    displayName: str
-    intent: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGenerateAgentFlowResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agentFlow: GoogleCloudIntegrationsV1alphaAgentFlow
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowRequest(
-    typing_extensions.TypedDict, total=False
-):
-    intent: str
-    updater: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaGenerateAndUpdateAgentFlowResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agentFlow: GoogleCloudIntegrationsV1alphaAgentFlow
-
-@typing.type_check_only
 class GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest(
     typing_extensions.TypedDict, total=False
 ):
@@ -2859,13 +2820,6 @@ class GoogleCloudIntegrationsV1alphaLinkAppsScriptProjectResponse(
     typing_extensions.TypedDict, total=False
 ):
     scriptId: str
-
-@typing.type_check_only
-class GoogleCloudIntegrationsV1alphaListAgentFlowsResponse(
-    typing_extensions.TypedDict, total=False
-):
-    agentFlows: _list[GoogleCloudIntegrationsV1alphaAgentFlow]
-    nextPageToken: str
 
 @typing.type_check_only
 class GoogleCloudIntegrationsV1alphaListAuthConfigsResponse(

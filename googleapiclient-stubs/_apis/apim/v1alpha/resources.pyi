@@ -162,6 +162,7 @@ class APIManagementResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -173,6 +174,9 @@ class APIManagementResource(googleapiclient.discovery.Resource):
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getEntitlement(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> EntitlementHttpRequest: ...
             def list(
                 self,
                 *,
@@ -252,6 +256,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class EntitlementHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Entitlement: ...
 
 @typing.type_check_only
 class ListApiObservationTagsResponseHttpRequest(googleapiclient.http.HttpRequest):

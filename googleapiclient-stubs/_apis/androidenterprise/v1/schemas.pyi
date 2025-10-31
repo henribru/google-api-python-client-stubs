@@ -198,7 +198,17 @@ class EnrollmentToken(typing_extensions.TypedDict, total=False):
     enrollmentTokenType: typing_extensions.Literal[
         "enrollmentTokenTypeUnspecified", "userlessDevice", "userDevice"
     ]
+    googleAuthenticationOptions: EnrollmentTokenGoogleAuthenticationOptions
     token: str
+
+@typing.type_check_only
+class EnrollmentTokenGoogleAuthenticationOptions(
+    typing_extensions.TypedDict, total=False
+):
+    authenticationRequirement: typing_extensions.Literal[
+        "authenticationRequirementUnspecified", "optional", "required"
+    ]
+    requiredAccountEmail: str
 
 @typing.type_check_only
 class Enterprise(typing_extensions.TypedDict, total=False):

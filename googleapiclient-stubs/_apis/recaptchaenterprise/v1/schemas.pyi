@@ -70,6 +70,7 @@ class GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest(
         "PASSWORD_INCORRECT",
     ]
     hashedAccountId: str
+    phoneAuthenticationEvent: GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent
     reasons: _list[
         typing_extensions.Literal[
             "REASON_UNSPECIFIED",
@@ -394,6 +395,13 @@ class GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest(
     typing_extensions.TypedDict, total=False
 ):
     skipBillingCheck: bool
+
+@typing.type_check_only
+class GoogleCloudRecaptchaenterpriseV1PhoneAuthenticationEvent(
+    typing_extensions.TypedDict, total=False
+):
+    eventTime: str
+    phoneNumber: str
 
 @typing.type_check_only
 class GoogleCloudRecaptchaenterpriseV1PhoneFraudAssessment(

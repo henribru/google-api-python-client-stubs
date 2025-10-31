@@ -39,6 +39,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -61,6 +62,44 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> ScopeHttpRequest: ...
 
+            @typing.type_check_only
+            class TraceScopesResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: TraceScope = ...,
+                    traceScopeId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> TraceScopeHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> TraceScopeHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListTraceScopesResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListTraceScopesResponseHttpRequest,
+                    previous_response: ListTraceScopesResponse,
+                ) -> ListTraceScopesResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: TraceScope = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> TraceScopeHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
@@ -81,6 +120,7 @@ class CloudObservabilityResource(googleapiclient.discovery.Resource):
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
             def scopes(self) -> ScopesResource: ...
+            def traceScopes(self) -> TraceScopesResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -123,6 +163,14 @@ class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListOperationsResponse: ...
 
 @typing.type_check_only
+class ListTraceScopesResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListTraceScopesResponse: ...
+
+@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -145,3 +193,11 @@ class ScopeHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Scope: ...
+
+@typing.type_check_only
+class TraceScopeHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> TraceScope: ...

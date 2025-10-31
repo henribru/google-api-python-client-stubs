@@ -47,6 +47,18 @@ class Aggregation(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Alert(typing_extensions.TypedDict, total=False):
+    closeTime: str
+    log: LogMetadata
+    metadata: MonitoredResourceMetadata
+    metric: Metric
+    name: str
+    openTime: str
+    policy: PolicySnapshot
+    resource: MonitoredResource
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "OPEN", "CLOSED"]
+
+@typing.type_check_only
 class AlertPolicy(typing_extensions.TypedDict, total=False):
     alertStrategy: AlertStrategy
     combiner: typing_extensions.Literal[
@@ -442,6 +454,12 @@ class ListAlertPoliciesResponse(typing_extensions.TypedDict, total=False):
     totalSize: int
 
 @typing.type_check_only
+class ListAlertsResponse(typing_extensions.TypedDict, total=False):
+    alerts: _list[Alert]
+    nextPageToken: str
+    totalSize: int
+
+@typing.type_check_only
 class ListGroupMembersResponse(typing_extensions.TypedDict, total=False):
     members: _list[MonitoredResource]
     nextPageToken: str
@@ -515,6 +533,10 @@ class ListUptimeCheckIpsResponse(typing_extensions.TypedDict, total=False):
 class LogMatch(typing_extensions.TypedDict, total=False):
     filter: str
     labelExtractors: dict[str, typing.Any]
+
+@typing.type_check_only
+class LogMetadata(typing_extensions.TypedDict, total=False):
+    extractedLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class MeshIstio(typing_extensions.TypedDict, total=False):
@@ -749,6 +771,15 @@ class Point(typing_extensions.TypedDict, total=False):
 class PointData(typing_extensions.TypedDict, total=False):
     timeInterval: TimeInterval
     values: _list[TypedValue]
+
+@typing.type_check_only
+class PolicySnapshot(typing_extensions.TypedDict, total=False):
+    displayName: str
+    name: str
+    severity: typing_extensions.Literal[
+        "SEVERITY_UNSPECIFIED", "CRITICAL", "ERROR", "WARNING"
+    ]
+    userLabels: dict[str, typing.Any]
 
 @typing.type_check_only
 class PrometheusQueryLanguageCondition(typing_extensions.TypedDict, total=False):

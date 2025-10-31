@@ -299,11 +299,6 @@ class ListAccessProposalsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
-class ListOperationsResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
-    operations: _list[Operation]
-
-@typing.type_check_only
 class ModifyLabelsRequest(typing_extensions.TypedDict, total=False):
     kind: str
     labelModifications: _list[LabelModification]

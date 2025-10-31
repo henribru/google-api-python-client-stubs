@@ -86,6 +86,11 @@ class Adloox(typing_extensions.TypedDict, total=False):
 class Advertiser(typing_extensions.TypedDict, total=False):
     adServerConfig: AdvertiserAdServerConfig
     advertiserId: str
+    containsEuPoliticalAds: typing_extensions.Literal[
+        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+        "CONTAINS_EU_POLITICAL_ADVERTISING",
+        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
+    ]
     creativeConfig: AdvertiserCreativeConfig
     dataAccessConfig: AdvertiserDataAccessConfig
     displayName: str
@@ -199,6 +204,7 @@ class AppAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=False
         "APP_PLATFORM_GENERIC_CTV",
         "APP_PLATFORM_LG_TV",
         "APP_PLATFORM_VIZIO_TV",
+        "APP_PLATFORM_VIDAA",
     ]
     displayName: str
     negative: bool
@@ -606,6 +612,20 @@ class BulkListAssignedTargetingOptionsResponse(
     typing_extensions.TypedDict, total=False
 ):
     lineItemAssignedTargetingOptions: _list[LineItemAssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
+class BulkListCampaignAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: _list[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
+class BulkListInsertionOrderAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -1031,6 +1051,8 @@ class CreateSdfDownloadTaskRequest(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
         "SDF_VERSION_8_1",
+        "SDF_VERSION_9",
+        "SDF_VERSION_9_1",
     ]
 
 @typing.type_check_only
@@ -1547,6 +1569,11 @@ class DoubleVerifyVideoViewability(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DuplicateLineItemRequest(typing_extensions.TypedDict, total=False):
+    containsEuPoliticalAds: typing_extensions.Literal[
+        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+        "CONTAINS_EU_POLITICAL_ADVERTISING",
+        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
+    ]
     targetDisplayName: str
 
 @typing.type_check_only
@@ -1695,6 +1722,7 @@ class ExchangeAssignedTargetingOptionDetails(typing_extensions.TypedDict, total=
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
 
 @typing.type_check_only
@@ -1791,6 +1819,7 @@ class ExchangeConfigEnabledExchange(typing_extensions.TypedDict, total=False):
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
     googleAdManagerAgencyId: str
     googleAdManagerBuyerNetworkId: str
@@ -1886,6 +1915,7 @@ class ExchangeReviewStatus(typing_extensions.TypedDict, total=False):
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
     status: typing_extensions.Literal[
         "REVIEW_STATUS_UNSPECIFIED",
@@ -1984,6 +2014,7 @@ class ExchangeTargetingOptionDetails(typing_extensions.TypedDict, total=False):
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
 
 @typing.type_check_only
@@ -2061,6 +2092,11 @@ class GenderTargetingOptionDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GenerateDefaultLineItemRequest(typing_extensions.TypedDict, total=False):
+    containsEuPoliticalAds: typing_extensions.Literal[
+        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+        "CONTAINS_EU_POLITICAL_ADVERTISING",
+        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
+    ]
     displayName: str
     insertionOrderId: str
     lineItemType: typing_extensions.Literal[
@@ -2303,6 +2339,7 @@ class GuaranteedOrder(typing_extensions.TypedDict, total=False):
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
     guaranteedOrderId: str
     legacyGuaranteedOrderId: str
@@ -2607,6 +2644,7 @@ class InventorySource(typing_extensions.TypedDict, total=False):
         "EXCHANGE_COMMERCE_GRID",
         "EXCHANGE_SPOTIFY",
         "EXCHANGE_TUBI",
+        "EXCHANGE_SNAP",
     ]
     guaranteedOrderId: str
     inventorySourceId: str
@@ -2754,6 +2792,11 @@ class LineItem(typing_extensions.TypedDict, total=False):
     bidStrategy: BiddingStrategy
     budget: LineItemBudget
     campaignId: str
+    containsEuPoliticalAds: typing_extensions.Literal[
+        "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+        "CONTAINS_EU_POLITICAL_ADVERTISING",
+        "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING",
+    ]
     conversionCounting: ConversionCountingConfig
     creativeIds: _list[str]
     displayName: str
@@ -2878,6 +2921,13 @@ class ListAssignedLocationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListCampaignAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: _list[AssignedTargetingOption]
+    nextPageToken: str
+
+@typing.type_check_only
 class ListCampaignsResponse(typing_extensions.TypedDict, total=False):
     campaigns: _list[Campaign]
     nextPageToken: str
@@ -2925,6 +2975,13 @@ class ListGoogleAudiencesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListGuaranteedOrdersResponse(typing_extensions.TypedDict, total=False):
     guaranteedOrders: _list[GuaranteedOrder]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInsertionOrderAssignedTargetingOptionsResponse(
+    typing_extensions.TypedDict, total=False
+):
+    assignedTargetingOptions: _list[AssignedTargetingOption]
     nextPageToken: str
 
 @typing.type_check_only
@@ -3587,6 +3644,8 @@ class SdfConfig(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
         "SDF_VERSION_8_1",
+        "SDF_VERSION_9",
+        "SDF_VERSION_9_1",
     ]
 
 @typing.type_check_only
@@ -3614,6 +3673,8 @@ class SdfDownloadTaskMetadata(typing_extensions.TypedDict, total=False):
         "SDF_VERSION_7_1",
         "SDF_VERSION_8",
         "SDF_VERSION_8_1",
+        "SDF_VERSION_9",
+        "SDF_VERSION_9_1",
     ]
 
 @typing.type_check_only

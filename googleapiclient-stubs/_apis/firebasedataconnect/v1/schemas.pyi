@@ -105,6 +105,12 @@ class GraphqlResponse(typing_extensions.TypedDict, total=False):
     errors: _list[GraphqlError]
 
 @typing.type_check_only
+class ImpersonateRequest(typing_extensions.TypedDict, total=False):
+    extensions: GraphqlRequestExtensions
+    operationName: str
+    variables: dict[str, typing.Any]
+
+@typing.type_check_only
 class Impersonation(typing_extensions.TypedDict, total=False):
     authClaims: dict[str, typing.Any]
     includeDebugDetails: bool
@@ -168,6 +174,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 class PostgreSql(typing_extensions.TypedDict, total=False):
     cloudSql: CloudSqlInstance
     database: str
+    ephemeral: bool
     schemaMigration: typing_extensions.Literal[
         "SQL_SCHEMA_MIGRATION_UNSPECIFIED", "MIGRATE_COMPATIBLE"
     ]

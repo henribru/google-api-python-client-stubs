@@ -15,8 +15,12 @@ class Assignment(typing_extensions.TypedDict, total=False):
         "ML_EXTERNAL",
         "BACKGROUND",
         "CONTINUOUS",
+        "BACKGROUND_CHANGE_DATA_CAPTURE",
+        "BACKGROUND_COLUMN_METADATA_INDEX",
+        "BACKGROUND_SEARCH_INDEX_REFRESH",
     ]
     name: str
+    schedulingPolicy: SchedulingPolicy
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "PENDING", "ACTIVE"]
 
 @typing.type_check_only
@@ -165,6 +169,7 @@ class Reservation(typing_extensions.TypedDict, total=False):
     scalingMode: typing_extensions.Literal[
         "SCALING_MODE_UNSPECIFIED", "AUTOSCALE_ONLY", "IDLE_SLOTS_ONLY", "ALL_SLOTS"
     ]
+    schedulingPolicy: SchedulingPolicy
     secondaryLocation: str
     slotCapacity: str
     updateTime: str
@@ -172,6 +177,11 @@ class Reservation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ReservationGroup(typing_extensions.TypedDict, total=False):
     name: str
+
+@typing.type_check_only
+class SchedulingPolicy(typing_extensions.TypedDict, total=False):
+    concurrency: str
+    maxSlots: str
 
 @typing.type_check_only
 class SearchAllAssignmentsResponse(typing_extensions.TypedDict, total=False):

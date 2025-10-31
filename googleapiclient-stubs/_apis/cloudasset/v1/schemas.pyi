@@ -72,6 +72,7 @@ class Asset(typing_extensions.TypedDict, total=False):
     accessLevel: GoogleIdentityAccesscontextmanagerV1AccessLevel
     accessPolicy: GoogleIdentityAccesscontextmanagerV1AccessPolicy
     ancestors: _list[str]
+    assetExceptions: _list[AssetException]
     assetType: str
     iamPolicy: Policy
     name: str
@@ -86,6 +87,11 @@ class Asset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssetEnrichment(typing_extensions.TypedDict, total=False):
     resourceOwners: ResourceOwners
+
+@typing.type_check_only
+class AssetException(typing_extensions.TypedDict, total=False):
+    details: str
+    exceptionType: typing_extensions.Literal["EXCEPTION_TYPE_UNSPECIFIED", "TRUNCATION"]
 
 @typing.type_check_only
 class AttachedResource(typing_extensions.TypedDict, total=False):

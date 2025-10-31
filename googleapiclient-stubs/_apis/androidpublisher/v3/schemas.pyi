@@ -37,6 +37,29 @@ class ActivateBasePlanRequest(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
+class ActivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
+class ActivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
 class ActivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
     basePlanId: str
     latencyTolerance: typing_extensions.Literal[
@@ -186,6 +209,7 @@ class AutoRenewingPlan(typing_extensions.TypedDict, total=False):
     autoRenewEnabled: bool
     installmentDetails: InstallmentPlan
     priceChangeDetails: SubscriptionItemPriceChangeDetails
+    priceStepUpConsentDetails: PriceStepUpConsentDetails
     recurringPrice: Money
 
 @typing.type_check_only
@@ -198,6 +222,30 @@ class BasePlan(typing_extensions.TypedDict, total=False):
     prepaidBasePlanType: PrepaidBasePlanType
     regionalConfigs: _list[RegionalBasePlanConfig]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE"]
+
+@typing.type_check_only
+class BatchDeleteOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[DeleteOneTimeProductOfferRequest]
+
+@typing.type_check_only
+class BatchDeleteOneTimeProductsRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[DeleteOneTimeProductRequest]
+
+@typing.type_check_only
+class BatchDeletePurchaseOptionsRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[DeletePurchaseOptionRequest]
+
+@typing.type_check_only
+class BatchGetOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[GetOneTimeProductOfferRequest]
+
+@typing.type_check_only
+class BatchGetOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+    oneTimeProductOffers: _list[OneTimeProductOffer]
+
+@typing.type_check_only
+class BatchGetOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+    oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
 class BatchGetOrdersResponse(typing_extensions.TypedDict, total=False):
@@ -230,6 +278,42 @@ class BatchUpdateBasePlanStatesRequest(typing_extensions.TypedDict, total=False)
 @typing.type_check_only
 class BatchUpdateBasePlanStatesResponse(typing_extensions.TypedDict, total=False):
     subscriptions: _list[Subscription]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOfferStatesRequest(
+    typing_extensions.TypedDict, total=False
+):
+    requests: _list[UpdateOneTimeProductOfferStateRequest]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOfferStatesResponse(
+    typing_extensions.TypedDict, total=False
+):
+    oneTimeProductOffers: _list[OneTimeProductOffer]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOffersRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdateOneTimeProductOfferRequest]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+    oneTimeProductOffers: _list[OneTimeProductOffer]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductsRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdateOneTimeProductRequest]
+
+@typing.type_check_only
+class BatchUpdateOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+    oneTimeProducts: _list[OneTimeProduct]
+
+@typing.type_check_only
+class BatchUpdatePurchaseOptionStatesRequest(typing_extensions.TypedDict, total=False):
+    requests: _list[UpdatePurchaseOptionStateRequest]
+
+@typing.type_check_only
+class BatchUpdatePurchaseOptionStatesResponse(typing_extensions.TypedDict, total=False):
+    oneTimeProducts: _list[OneTimeProduct]
 
 @typing.type_check_only
 class BatchUpdateSubscriptionOfferStatesRequest(
@@ -283,6 +367,25 @@ class CancelAppRecoveryRequest(typing_extensions.TypedDict, total=False): ...
 class CancelAppRecoveryResponse(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CancelOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
+class CancelSubscriptionPurchaseRequest(typing_extensions.TypedDict, total=False):
+    cancellationContext: CancellationContext
+
+@typing.type_check_only
+class CancelSubscriptionPurchaseResponse(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class CancelSurveyResult(typing_extensions.TypedDict, total=False):
     reason: typing_extensions.Literal[
         "CANCEL_SURVEY_REASON_UNSPECIFIED",
@@ -300,6 +403,14 @@ class CanceledStateContext(typing_extensions.TypedDict, total=False):
     replacementCancellation: ReplacementCancellation
     systemInitiatedCancellation: SystemInitiatedCancellation
     userInitiatedCancellation: UserInitiatedCancellation
+
+@typing.type_check_only
+class CancellationContext(typing_extensions.TypedDict, total=False):
+    cancellationType: typing_extensions.Literal[
+        "CANCELLATION_TYPE_UNSPECIFIED",
+        "USER_REQUESTED_STOP_RENEWALS",
+        "DEVELOPER_REQUESTED_STOP_PAYMENTS",
+    ]
 
 @typing.type_check_only
 class CancellationEvent(typing_extensions.TypedDict, total=False):
@@ -353,6 +464,29 @@ class DeactivateBasePlanRequest(typing_extensions.TypedDict, total=False):
     productId: str
 
 @typing.type_check_only
+class DeactivateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
+class DeactivatePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
 class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
     basePlanId: str
     latencyTolerance: typing_extensions.Literal[
@@ -365,8 +499,45 @@ class DeactivateSubscriptionOfferRequest(typing_extensions.TypedDict, total=Fals
     productId: str
 
 @typing.type_check_only
+class DeferredItemRemoval(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class DeferredItemReplacement(typing_extensions.TypedDict, total=False):
     productId: str
+
+@typing.type_check_only
+class DeleteOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    offerId: str
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
+class DeleteOneTimeProductRequest(typing_extensions.TypedDict, total=False):
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
+
+@typing.type_check_only
+class DeletePurchaseOptionRequest(typing_extensions.TypedDict, total=False):
+    force: bool
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    packageName: str
+    productId: str
+    purchaseOptionId: str
 
 @typing.type_check_only
 class DeobfuscationFile(typing_extensions.TypedDict, total=False):
@@ -582,6 +753,13 @@ class GeneratedUniversalApk(typing_extensions.TypedDict, total=False):
     downloadId: str
 
 @typing.type_check_only
+class GetOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    offerId: str
+    packageName: str
+    productId: str
+    purchaseOptionId: str
+
+@typing.type_check_only
 class GetSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):
     basePlanId: str
     offerId: str
@@ -769,6 +947,16 @@ class ListDeviceTierConfigsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListOneTimeProductOffersResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    oneTimeProductOffers: _list[OneTimeProductOffer]
+
+@typing.type_check_only
+class ListOneTimeProductsResponse(typing_extensions.TypedDict, total=False):
+    nextPageToken: str
+    oneTimeProducts: _list[OneTimeProduct]
+
+@typing.type_check_only
 class ListSubscriptionOffersResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     subscriptionOffers: _list[SubscriptionOffer]
@@ -874,6 +1062,127 @@ class OneTimeCode(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class OneTimeExternalTransaction(typing_extensions.TypedDict, total=False):
     externalTransactionToken: str
+
+@typing.type_check_only
+class OneTimeProduct(typing_extensions.TypedDict, total=False):
+    listings: _list[OneTimeProductListing]
+    offerTags: _list[OfferTag]
+    packageName: str
+    productId: str
+    purchaseOptions: _list[OneTimeProductPurchaseOption]
+    regionsVersion: RegionsVersion
+    restrictedPaymentCountries: RestrictedPaymentCountries
+    taxAndComplianceSettings: OneTimeProductTaxAndComplianceSettings
+
+@typing.type_check_only
+class OneTimeProductBuyPurchaseOption(typing_extensions.TypedDict, total=False):
+    legacyCompatible: bool
+    multiQuantityEnabled: bool
+
+@typing.type_check_only
+class OneTimeProductDiscountedOffer(typing_extensions.TypedDict, total=False):
+    endTime: str
+    redemptionLimit: str
+    startTime: str
+
+@typing.type_check_only
+class OneTimeProductListing(typing_extensions.TypedDict, total=False):
+    description: str
+    languageCode: str
+    title: str
+
+@typing.type_check_only
+class OneTimeProductOffer(typing_extensions.TypedDict, total=False):
+    discountedOffer: OneTimeProductDiscountedOffer
+    offerId: str
+    offerTags: _list[OfferTag]
+    packageName: str
+    preOrderOffer: OneTimeProductPreOrderOffer
+    productId: str
+    purchaseOptionId: str
+    regionalPricingAndAvailabilityConfigs: _list[
+        OneTimeProductOfferRegionalPricingAndAvailabilityConfig
+    ]
+    regionsVersion: RegionsVersion
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "CANCELLED", "INACTIVE"
+    ]
+
+@typing.type_check_only
+class OneTimeProductOfferNoPriceOverrideOptions(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class OneTimeProductOfferRegionalPricingAndAvailabilityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    absoluteDiscount: Money
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "NO_LONGER_AVAILABLE"
+    ]
+    noOverride: OneTimeProductOfferNoPriceOverrideOptions
+    regionCode: str
+    relativeDiscount: float
+
+@typing.type_check_only
+class OneTimeProductPreOrderOffer(typing_extensions.TypedDict, total=False):
+    endTime: str
+    priceChangeBehavior: typing_extensions.Literal[
+        "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED",
+        "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST",
+        "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY",
+    ]
+    releaseTime: str
+    startTime: str
+
+@typing.type_check_only
+class OneTimeProductPurchaseOption(typing_extensions.TypedDict, total=False):
+    buyOption: OneTimeProductBuyPurchaseOption
+    newRegionsConfig: OneTimeProductPurchaseOptionNewRegionsConfig
+    offerTags: _list[OfferTag]
+    purchaseOptionId: str
+    regionalPricingAndAvailabilityConfigs: _list[
+        OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig
+    ]
+    rentOption: OneTimeProductRentPurchaseOption
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED", "DRAFT", "ACTIVE", "INACTIVE", "INACTIVE_PUBLISHED"
+    ]
+    taxAndComplianceSettings: PurchaseOptionTaxAndComplianceSettings
+
+@typing.type_check_only
+class OneTimeProductPurchaseOptionNewRegionsConfig(
+    typing_extensions.TypedDict, total=False
+):
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNSPECIFIED", "AVAILABLE", "NO_LONGER_AVAILABLE"
+    ]
+    eurPrice: Money
+    usdPrice: Money
+
+@typing.type_check_only
+class OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig(
+    typing_extensions.TypedDict, total=False
+):
+    availability: typing_extensions.Literal[
+        "AVAILABILITY_UNSPECIFIED",
+        "AVAILABLE",
+        "NO_LONGER_AVAILABLE",
+        "AVAILABLE_IF_RELEASED",
+    ]
+    price: Money
+    regionCode: str
+
+@typing.type_check_only
+class OneTimeProductRentPurchaseOption(typing_extensions.TypedDict, total=False):
+    expirationPeriod: str
+    rentalPeriod: str
+
+@typing.type_check_only
+class OneTimeProductTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
+    isTokenizedDigitalAsset: bool
+    regionalTaxConfigs: _list[RegionalTaxConfig]
 
 @typing.type_check_only
 class OneTimePurchaseDetails(typing_extensions.TypedDict, total=False):
@@ -1005,6 +1314,14 @@ class Price(typing_extensions.TypedDict, total=False):
     priceMicros: str
 
 @typing.type_check_only
+class PriceStepUpConsentDetails(typing_extensions.TypedDict, total=False):
+    consentDeadlineTime: str
+    newPrice: Money
+    state: typing_extensions.Literal[
+        "CONSENT_STATE_UNSPECIFIED", "PENDING", "CONFIRMED", "COMPLETED"
+    ]
+
+@typing.type_check_only
 class ProcessedEvent(typing_extensions.TypedDict, total=False):
     eventTime: str
 
@@ -1066,6 +1383,14 @@ class ProductPurchaseV2(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ProductPurchasesAcknowledgeRequest(typing_extensions.TypedDict, total=False):
     developerPayload: str
+
+@typing.type_check_only
+class PurchaseOptionTaxAndComplianceSettings(typing_extensions.TypedDict, total=False):
+    withdrawalRightType: typing_extensions.Literal[
+        "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+        "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+        "WITHDRAWAL_RIGHT_SERVICE",
+    ]
 
 @typing.type_check_only
 class PurchaseStateContext(typing_extensions.TypedDict, total=False):
@@ -1137,6 +1462,28 @@ class RegionalSubscriptionOfferPhaseConfig(typing_extensions.TypedDict, total=Fa
 class RegionalSubscriptionOfferPhaseFreePriceOverride(
     typing_extensions.TypedDict, total=False
 ): ...
+
+@typing.type_check_only
+class RegionalTaxConfig(typing_extensions.TypedDict, total=False):
+    eligibleForStreamingServiceTaxRate: bool
+    regionCode: str
+    streamingTaxType: typing_extensions.Literal[
+        "STREAMING_TAX_TYPE_UNSPECIFIED",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
+        "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
+        "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL",
+    ]
+    taxTier: typing_extensions.Literal[
+        "TAX_TIER_UNSPECIFIED",
+        "TAX_TIER_BOOKS_1",
+        "TAX_TIER_NEWS_1",
+        "TAX_TIER_NEWS_2",
+        "TAX_TIER_MUSIC_OR_AUDIO_1",
+        "TAX_TIER_LIVE_OR_BROADCAST_1",
+    ]
 
 @typing.type_check_only
 class RegionalTaxRateInfo(typing_extensions.TypedDict, total=False):
@@ -1426,6 +1773,7 @@ class SubscriptionPurchase(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SubscriptionPurchaseLineItem(typing_extensions.TypedDict, total=False):
     autoRenewingPlan: AutoRenewingPlan
+    deferredItemRemoval: DeferredItemRemoval
     deferredItemReplacement: DeferredItemReplacement
     expiryTime: str
     latestSuccessfulOrderId: str
@@ -1628,6 +1976,41 @@ class TracksListResponse(typing_extensions.TypedDict, total=False):
 class UpdateBasePlanStateRequest(typing_extensions.TypedDict, total=False):
     activateBasePlanRequest: ActivateBasePlanRequest
     deactivateBasePlanRequest: DeactivateBasePlanRequest
+
+@typing.type_check_only
+class UpdateOneTimeProductOfferRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    oneTimeProductOffer: OneTimeProductOffer
+    regionsVersion: RegionsVersion
+    updateMask: str
+
+@typing.type_check_only
+class UpdateOneTimeProductOfferStateRequest(typing_extensions.TypedDict, total=False):
+    activateOneTimeProductOfferRequest: ActivateOneTimeProductOfferRequest
+    cancelOneTimeProductOfferRequest: CancelOneTimeProductOfferRequest
+    deactivateOneTimeProductOfferRequest: DeactivateOneTimeProductOfferRequest
+
+@typing.type_check_only
+class UpdateOneTimeProductRequest(typing_extensions.TypedDict, total=False):
+    allowMissing: bool
+    latencyTolerance: typing_extensions.Literal[
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+        "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT",
+    ]
+    oneTimeProduct: OneTimeProduct
+    regionsVersion: RegionsVersion
+    updateMask: str
+
+@typing.type_check_only
+class UpdatePurchaseOptionStateRequest(typing_extensions.TypedDict, total=False):
+    activatePurchaseOptionRequest: ActivatePurchaseOptionRequest
+    deactivatePurchaseOptionRequest: DeactivatePurchaseOptionRequest
 
 @typing.type_check_only
 class UpdateSubscriptionOfferRequest(typing_extensions.TypedDict, total=False):

@@ -305,6 +305,7 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -655,7 +656,15 @@ class ManagedKafkaResource(googleapiclient.discovery.Resource):
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SchemaRegistryHttpRequest: ...
                 def list(
-                    self, *, parent: str, **kwargs: typing.Any
+                    self,
+                    *,
+                    parent: str,
+                    view: typing_extensions.Literal[
+                        "SCHEMA_REGISTRY_VIEW_UNSPECIFIED",
+                        "SCHEMA_REGISTRY_VIEW_BASIC",
+                        "SCHEMA_REGISTRY_VIEW_FULL",
+                    ] = ...,
+                    **kwargs: typing.Any,
                 ) -> ListSchemaRegistriesResponseHttpRequest: ...
                 def compatibility(self) -> CompatibilityResource: ...
                 def config(self) -> ConfigResource: ...

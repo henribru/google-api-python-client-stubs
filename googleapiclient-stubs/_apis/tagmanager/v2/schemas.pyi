@@ -146,6 +146,9 @@ class BuiltInVariable(typing_extensions.TypedDict, total=False):
         "serverPageLocationPath",
         "serverPageLocationHostname",
         "visitorRegion",
+        "analyticsClientId",
+        "analyticsSessionId",
+        "analyticsSessionNumber",
     ]
     workspaceId: str
 

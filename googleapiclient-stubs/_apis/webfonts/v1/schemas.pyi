@@ -11,6 +11,11 @@ class Axis(typing_extensions.TypedDict, total=False):
     tag: str
 
 @typing.type_check_only
+class Tag(typing_extensions.TypedDict, total=False):
+    name: str
+    weight: float
+
+@typing.type_check_only
 class Webfont(typing_extensions.TypedDict, total=False):
     axes: _list[Axis]
     category: str
@@ -21,6 +26,7 @@ class Webfont(typing_extensions.TypedDict, total=False):
     lastModified: str
     menu: str
     subsets: _list[str]
+    tags: _list[Tag]
     variants: _list[str]
     version: str
 

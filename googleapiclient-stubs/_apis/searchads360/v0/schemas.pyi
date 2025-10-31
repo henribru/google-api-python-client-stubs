@@ -95,6 +95,7 @@ class GoogleAdsSearchads360V0Common__AssetUsage(
         "AD_IMAGE",
         "LEAD_FORM",
         "BUSINESS_LOGO",
+        "DESCRIPTION_PREFIX",
     ]
 
 @typing.type_check_only
@@ -809,6 +810,20 @@ class GoogleAdsSearchads360V0Errors__ErrorCode(
         "SERVICE_ACCESS_DENIED",
         "ACCESS_DENIED_FOR_ACCOUNT_TYPE",
         "METRIC_ACCESS_DENIED",
+    ]
+    conversionCustomVariableError: typing_extensions.Literal[
+        "UNSPECIFIED",
+        "UNKNOWN",
+        "DUPLICATE_NAME",
+        "DUPLICATE_TAG",
+        "RESERVED_TAG",
+        "NOT_FOUND",
+        "NOT_AVAILABLE",
+        "INCOMPATIBLE_TYPE",
+        "INVALID_METRIC",
+        "EXCEEDS_CARDINALITY_LIMIT",
+        "INVALID_DIMENSION",
+        "INCOMPATIBLE_WITH_SELECTED_RESOURCE",
     ]
     customColumnError: typing_extensions.Literal[
         "UNSPECIFIED",

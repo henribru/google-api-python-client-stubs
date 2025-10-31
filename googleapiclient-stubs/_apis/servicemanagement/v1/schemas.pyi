@@ -10,6 +10,7 @@ class Advice(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
+    edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
@@ -418,6 +419,7 @@ class LabelDescriptor(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListServiceConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -465,6 +467,7 @@ class ManagedService(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
+    edition: str
     name: str
     options: _list[Option]
     requestStreaming: bool
@@ -623,6 +626,7 @@ class Page(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class PhpSettings(typing_extensions.TypedDict, total=False):
     common: CommonLanguageSettings
+    libraryPackage: str
 
 @typing.type_check_only
 class Policy(typing_extensions.TypedDict, total=False):
@@ -699,7 +703,6 @@ class Rollout(typing_extensions.TypedDict, total=False):
         "FAILED_ROLLED_BACK",
     ]
     trafficPercentStrategy: TrafficPercentStrategy
-    universe: str
 
 @typing.type_check_only
 class RubySettings(typing_extensions.TypedDict, total=False):

@@ -51,6 +51,14 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 class EnableObservationJobRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class Entitlement(typing_extensions.TypedDict, total=False):
+    apiObservationEntitled: bool
+    billingProjectNumber: str
+    createTime: str
+    name: str
+    updateTime: str
+
+@typing.type_check_only
 class GclbObservationSource(typing_extensions.TypedDict, total=False):
     pscNetworkConfigs: _list[GclbObservationSourcePscNetworkConfig]
 
@@ -147,6 +155,7 @@ class ListObservationSourcesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):

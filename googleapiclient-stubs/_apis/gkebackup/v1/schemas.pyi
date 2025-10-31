@@ -53,6 +53,7 @@ class Backup(typing_extensions.TypedDict, total=False):
         "DELETING",
     ]
     stateReason: str
+    troubleshootingInfo: TroubleshootingInfo
     uid: str
     updateTime: str
     volumeCount: int
@@ -231,6 +232,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):
@@ -404,6 +406,7 @@ class Restore(typing_extensions.TypedDict, total=False):
         "VALIDATING",
     ]
     stateReason: str
+    troubleshootingInfo: TroubleshootingInfo
     uid: str
     updateTime: str
     volumeDataRestorePolicyOverrides: _list[VolumeDataRestorePolicyOverride]
@@ -550,6 +553,11 @@ class TransformationRuleAction(typing_extensions.TypedDict, total=False):
     ]
     path: str
     value: str
+
+@typing.type_check_only
+class TroubleshootingInfo(typing_extensions.TypedDict, total=False):
+    stateReasonCode: str
+    stateReasonUri: str
 
 @typing.type_check_only
 class VolumeBackup(typing_extensions.TypedDict, total=False):

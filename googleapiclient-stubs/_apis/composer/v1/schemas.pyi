@@ -25,6 +25,7 @@ class CheckUpgradeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckUpgradeResponse(typing_extensions.TypedDict, total=False):
     buildLogUri: str
+    configConflicts: _list[ConfigConflict]
     containsPypiModulesConflict: typing_extensions.Literal[
         "CONFLICT_RESULT_UNSPECIFIED", "CONFLICT", "NO_CONFLICT"
     ]
@@ -70,6 +71,13 @@ class ComposerWorkloadStatus(typing_extensions.TypedDict, total=False):
         "FAILED",
     ]
     statusMessage: str
+
+@typing.type_check_only
+class ConfigConflict(typing_extensions.TypedDict, total=False):
+    message: str
+    type: typing_extensions.Literal[
+        "CONFLICT_TYPE_UNSPECIFIED", "BLOCKING", "NON_BLOCKING"
+    ]
 
 @typing.type_check_only
 class DagProcessorResource(typing_extensions.TypedDict, total=False):
@@ -211,6 +219,7 @@ class ListImageVersionsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListUserWorkloadsConfigMapsResponse(typing_extensions.TypedDict, total=False):
@@ -291,6 +300,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
         "SAVE_SNAPSHOT",
         "LOAD_SNAPSHOT",
         "DATABASE_FAILOVER",
+        "MIGRATE",
     ]
     resource: str
     resourceUuid: str

@@ -95,6 +95,51 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def web(self) -> WebResource: ...
 
         @typing.type_check_only
+        class CertificateProvisioningProcessesResource(
+            googleapiclient.discovery.Resource
+        ):
+            @typing.type_check_only
+            class OperationsResource(googleapiclient.discovery.Resource):
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> GoogleLongrunningOperationHttpRequest: ...
+
+            def claim(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponseHttpRequest: ...
+            def get(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> GoogleChromeManagementVersionsV1CertificateProvisioningProcessHttpRequest: ...
+            def setFailure(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1SetFailureRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1SetFailureResponseHttpRequest: ...
+            def signData(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1SignDataRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleLongrunningOperationHttpRequest: ...
+            def uploadCertificate(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1UploadCertificateRequest = ...,
+                **kwargs: typing.Any,
+            ) -> (
+                GoogleChromeManagementVersionsV1UploadCertificateResponseHttpRequest
+            ): ...
+            def operations(self) -> OperationsResource: ...
+
+        @typing.type_check_only
         class ProfilesResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class CommandsResource(googleapiclient.discovery.Resource):
@@ -415,10 +460,52 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
             def notificationConfigs(self) -> NotificationConfigsResource: ...
             def users(self) -> UsersResource: ...
 
+        @typing.type_check_only
+        class ThirdPartyProfileUsersResource(googleapiclient.discovery.Resource):
+            def move(
+                self,
+                *,
+                name: str,
+                body: GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest = ...,
+                **kwargs: typing.Any,
+            ) -> GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpRequest: ...
+
         def apps(self) -> AppsResource: ...
+        def certificateProvisioningProcesses(
+            self,
+        ) -> CertificateProvisioningProcessesResource: ...
         def profiles(self) -> ProfilesResource: ...
         def reports(self) -> ReportsResource: ...
         def telemetry(self) -> TelemetryResource: ...
+        def thirdPartyProfileUsers(self) -> ThirdPartyProfileUsersResource: ...
+
+    @typing.type_check_only
+    class OperationsResource(googleapiclient.discovery.Resource):
+        def cancel(
+            self,
+            *,
+            name: str,
+            body: GoogleLongrunningCancelOperationRequest = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleProtobufEmptyHttpRequest: ...
+        def delete(
+            self, *, name: str, **kwargs: typing.Any
+        ) -> GoogleProtobufEmptyHttpRequest: ...
+        def list(
+            self,
+            *,
+            name: str,
+            filter: str = ...,
+            pageSize: int = ...,
+            pageToken: str = ...,
+            returnPartialSuccess: bool = ...,
+            **kwargs: typing.Any,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest: ...
+        def list_next(
+            self,
+            previous_request: GoogleLongrunningListOperationsResponseHttpRequest,
+            previous_response: GoogleLongrunningListOperationsResponse,
+        ) -> GoogleLongrunningListOperationsResponseHttpRequest | None: ...
 
     def new_batch_http_request(
         self,
@@ -433,6 +520,7 @@ class ChromeManagementResource(googleapiclient.discovery.Resource):
         | None = None,
     ) -> googleapiclient.http.BatchHttpRequest: ...
     def customers(self) -> CustomersResource: ...
+    def operations(self) -> OperationsResource: ...
 
 @typing.type_check_only
 class GoogleChromeManagementV1AppDetailsHttpRequest(googleapiclient.http.HttpRequest):
@@ -655,6 +743,16 @@ class GoogleChromeManagementV1TelemetryUserHttpRequest(
     ) -> GoogleChromeManagementV1TelemetryUser: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1CertificateProvisioningProcessHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1CertificateProvisioningProcess: ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ChromeBrowserProfileHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -675,6 +773,18 @@ class GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandHttpRequest(
     ) -> GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand: ...
 
 @typing.type_check_only
+class GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> (
+        GoogleChromeManagementVersionsV1ClaimCertificateProvisioningProcessResponse
+    ): ...
+
+@typing.type_check_only
 class GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -693,6 +803,54 @@ class GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponseHttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleChromeManagementVersionsV1ListChromeBrowserProfilesResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1SetFailureResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1SetFailureResponse: ...
+
+@typing.type_check_only
+class GoogleChromeManagementVersionsV1UploadCertificateResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleChromeManagementVersionsV1UploadCertificateResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningListOperationsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningListOperationsResponse: ...
+
+@typing.type_check_only
+class GoogleLongrunningOperationHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GoogleLongrunningOperation: ...
 
 @typing.type_check_only
 class GoogleProtobufEmptyHttpRequest(googleapiclient.http.HttpRequest):

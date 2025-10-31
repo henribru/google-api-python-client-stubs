@@ -51,11 +51,6 @@ class BitbucketDataCenterConfig(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class Capabilities(typing_extensions.TypedDict, total=False):
-    add: _list[str]
-    drop: _list[str]
-
-@typing.type_check_only
 class ChildStatusReference(typing_extensions.TypedDict, total=False):
     name: str
     pipelineTaskName: str
@@ -436,7 +431,6 @@ class Security(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SecurityContext(typing_extensions.TypedDict, total=False):
     allowPrivilegeEscalation: bool
-    capabilities: Capabilities
     privileged: bool
     runAsGroup: str
     runAsNonRoot: bool

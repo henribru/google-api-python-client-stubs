@@ -215,6 +215,10 @@ class Advertiser(typing_extensions.TypedDict, total=False):
     clickThroughUrlSuffix: str
     defaultClickThroughEventTagId: str
     defaultEmail: str
+    euPoliticalAdsDeclaration: typing_extensions.Literal[
+        "ADVERTISER_PLANS_TO_SERVE_EU_POLITICAL_ADS",
+        "ADVERTISER_DOES_NOT_PLAN_TO_SERVE_EU_POLITICAL_ADS",
+    ]
     floodlightConfigurationId: str
     floodlightConfigurationIdDimensionValue: DimensionValue
     id: str
@@ -399,6 +403,9 @@ class Campaign(typing_extensions.TypedDict, total=False):
     defaultClickThroughEventTagProperties: DefaultClickThroughEventTagProperties
     defaultLandingPageId: str
     endDate: str
+    euPoliticalAdsDeclaration: typing_extensions.Literal[
+        "CONTAINS_EU_POLITICAL_ADS", "DOES_NOT_CONTAIN_EU_POLITICAL_ADS"
+    ]
     eventTagOverrides: _list[EventTagOverride]
     externalId: str
     id: str
@@ -555,6 +562,26 @@ class ContentCategory(typing_extensions.TypedDict, total=False):
     name: str
 
 @typing.type_check_only
+class ContentSource(typing_extensions.TypedDict, total=False):
+    contentSourceName: str
+    createInfo: LastModifiedInfo
+    lastModifiedInfo: LastModifiedInfo
+    metaData: ContentSourceMetaData
+    resourceLink: str
+    resourceType: typing_extensions.Literal[
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "RESOURCE_TYPE_GOOGLE_SPREADSHEET",
+        "RESOURCE_TYPE_REMOTE_FILE",
+    ]
+
+@typing.type_check_only
+class ContentSourceMetaData(typing_extensions.TypedDict, total=False):
+    charset: str
+    fieldNames: _list[str]
+    rowNumber: int
+    separator: str
+
+@typing.type_check_only
 class Conversion(typing_extensions.TypedDict, total=False):
     adUserDataConsent: typing_extensions.Literal["GRANTED", "DENIED"]
     cartData: CartData
@@ -653,6 +680,8 @@ class Creative(typing_extensions.TypedDict, total=False):
         "CREATIVE_AUTHORING_SOURCE_STUDIO",
         "CREATIVE_AUTHORING_SOURCE_GWD",
         "CREATIVE_AUTHORING_SOURCE_ACS",
+        "CREATIVE_AUTHORING_SOURCE_ADOBE",
+        "CREATIVE_AUTHORING_SOURCE_TYPEFACE_AI",
     ]
     authoringTool: typing_extensions.Literal["NINJA", "SWIFFY"]
     autoAdvanceImages: bool
@@ -1368,6 +1397,17 @@ class CustomRichMediaEvents(typing_extensions.TypedDict, total=False):
     kind: str
 
 @typing.type_check_only
+class CustomRule(typing_extensions.TypedDict, total=False):
+    name: str
+    priority: int
+    ruleBlocks: _list[RuleBlock]
+
+@typing.type_check_only
+class CustomValueField(typing_extensions.TypedDict, total=False):
+    fieldId: int
+    requestKey: str
+
+@typing.type_check_only
 class CustomViewabilityMetric(typing_extensions.TypedDict, total=False):
     configuration: CustomViewabilityMetricConfiguration
     id: str
@@ -1453,6 +1493,19 @@ class DeliverySchedule(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class DependentFieldValue(typing_extensions.TypedDict, total=False):
+    elementId: str
+    fieldId: int
+
+@typing.type_check_only
+class DfareportingStudioCreativeAssetsInsertRequest(
+    typing_extensions.TypedDict, total=False
+):
+    studioAccountId: str
+    studioAdvertiserId: str
+    studioCreativeId: str
+
+@typing.type_check_only
 class DfpSettings(typing_extensions.TypedDict, total=False):
     dfpNetworkCode: str
     dfpNetworkName: str
@@ -1536,6 +1589,71 @@ class DirectorySitesListResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class DynamicFeed(typing_extensions.TypedDict, total=False):
+    contentSource: ContentSource
+    createInfo: LastModifiedInfo
+    dynamicFeedId: str
+    dynamicFeedName: str
+    element: Element
+    feedIngestionStatus: FeedIngestionStatus
+    feedSchedule: FeedSchedule
+    hasPublished: bool
+    lastModifiedInfo: LastModifiedInfo
+    status: typing_extensions.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
+    studioAdvertiserId: str
+
+@typing.type_check_only
+class DynamicFeedsInsertRequest(typing_extensions.TypedDict, total=False):
+    dynamicFeed: DynamicFeed
+    dynamicProfileId: str
+
+@typing.type_check_only
+class DynamicProfile(typing_extensions.TypedDict, total=False):
+    active: DynamicProfileVersion
+    archiveStatus: typing_extensions.Literal[
+        "ARCHIVE_STATUS_UNKNOWN", "UNARCHIVED", "ARCHIVED"
+    ]
+    createInfo: LastModifiedInfo
+    description: str
+    draft: DynamicProfileVersion
+    dynamicProfileId: str
+    kind: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    status: typing_extensions.Literal["STATUS_UNKNOWN", "ACTIVE", "INACTIVE", "DELETED"]
+    studioAdvertiserId: str
+
+@typing.type_check_only
+class DynamicProfileFeedSettings(typing_extensions.TypedDict, total=False):
+    dynamicFeedId: str
+    dynamicRules: DynamicRules
+    quantity: int
+
+@typing.type_check_only
+class DynamicProfileGenerateCodeResponse(typing_extensions.TypedDict, total=False):
+    code: str
+
+@typing.type_check_only
+class DynamicProfileVersion(typing_extensions.TypedDict, total=False):
+    dynamicProfileFeedSettings: _list[DynamicProfileFeedSettings]
+    versionId: str
+
+@typing.type_check_only
+class DynamicRules(typing_extensions.TypedDict, total=False):
+    autoTargetedFieldIds: _list[int]
+    customRules: _list[CustomRule]
+    customValueFields: _list[CustomValueField]
+    proximityFilter: ProximityFilter
+    remarketingValueAttributes: _list[RemarketingValueAttribute]
+    rotationType: typing_extensions.Literal[
+        "ROTATION_TYPE_UNKNOWN", "RANDOM", "OPTIMIZED", "WEIGHTED"
+    ]
+    ruleType: typing_extensions.Literal[
+        "RULE_SET_TYPE_UNKNOWN", "OPEN", "AUTO", "CUSTOM", "PROXIMITY_TARGETING"
+    ]
+    weightFieldId: int
+
+@typing.type_check_only
 class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
@@ -1548,6 +1666,21 @@ class DynamicTargetingKey(typing_extensions.TypedDict, total=False):
 class DynamicTargetingKeysListResponse(typing_extensions.TypedDict, total=False):
     dynamicTargetingKeys: _list[DynamicTargetingKey]
     kind: str
+
+@typing.type_check_only
+class Element(typing_extensions.TypedDict, total=False):
+    activeFieldId: int
+    createInfo: LastModifiedInfo
+    defaultFieldId: int
+    elementName: str
+    endTimestampFieldId: int
+    externalIdFieldId: int
+    feedFields: _list[FeedField]
+    isLocalTimestamp: bool
+    lastModifiedInfo: LastModifiedInfo
+    proximityTargetingFieldId: int
+    reportingLabelFieldId: int
+    startTimestampFieldId: int
 
 @typing.type_check_only
 class EncryptionInfo(typing_extensions.TypedDict, total=False):
@@ -1600,6 +1733,145 @@ class EventTagOverride(typing_extensions.TypedDict, total=False):
 class EventTagsListResponse(typing_extensions.TypedDict, total=False):
     eventTags: _list[EventTag]
     kind: str
+
+@typing.type_check_only
+class FeedField(typing_extensions.TypedDict, total=False):
+    defaultValue: str
+    filterable: bool
+    id: int
+    name: str
+    renderable: bool
+    required: bool
+    type: typing_extensions.Literal[
+        "TYPE_UNKNOWN",
+        "STRING",
+        "LONG",
+        "GPA_SERVED_IMAGE_URL",
+        "GPA_SERVED_ASSET_URL",
+        "COUNTRY_CODE_ISO",
+        "FLOAT",
+        "CM360_KEYWORD",
+        "CM360_SITE_ID",
+        "BOOL",
+        "EXIT_URL",
+        "DATETIME",
+        "CM360_CREATIVE_ID",
+        "CM360_PLACEMENT_ID",
+        "CM360_AD_ID",
+        "CM360_ADVERTISER_ID",
+        "CM360_CAMPAIGN_ID",
+        "CITY",
+        "REGION",
+        "POSTAL_CODE",
+        "METRO",
+        "CUSTOM_VALUE",
+        "REMARKETING_VALUE",
+        "GEO_CANONICAL",
+        "WEIGHT",
+        "STRING_LIST",
+        "CREATIVE_DIMENSION",
+        "USERLIST_ID",
+        "ASSET_LIBRARY_DIRECTORY_HANDLE",
+        "ASSET_LIBRARY_VIDEO_HANDLE",
+        "ASSET_LIBRARY_HANDLE",
+        "THIRD_PARTY_SERVED_URL",
+        "CM360_DYNAMIC_TARGETING_KEY",
+        "DV360_LINE_ITEM_ID",
+    ]
+
+@typing.type_check_only
+class FeedIngestionStatus(typing_extensions.TypedDict, total=False):
+    ingestionErrorRecords: _list[IngestionErrorRecord]
+    ingestionStatus: IngestionStatus
+    state: typing_extensions.Literal[
+        "FEED_PROCESSING_STATE_UNKNOWN",
+        "CANCELLED",
+        "INGESTING_QUEUED",
+        "INGESTING",
+        "INGESTED_SUCCESS",
+        "INGESTED_FAILURE",
+        "REQUEST_TO_PUBLISH",
+        "PUBLISHING",
+        "PUBLISHED_SUCCESS",
+        "PUBLISHED_FAILURE",
+    ]
+
+@typing.type_check_only
+class FeedSchedule(typing_extensions.TypedDict, total=False):
+    repeatValue: str
+    scheduleEnabled: bool
+    startHour: str
+    startMinute: str
+    timeZone: str
+
+@typing.type_check_only
+class FieldError(typing_extensions.TypedDict, total=False):
+    fieldId: int
+    fieldName: str
+    fieldValues: _list[str]
+    ingestionError: typing_extensions.Literal[
+        "UNKNOWN_PARSING_ERROR",
+        "MISSING_ID",
+        "MISSING_REPORTING_LABEL",
+        "EMPTY_VALUE",
+        "ASSET_DOWNLOAD_ERROR",
+        "ID_TOO_LONG",
+        "DUPLICATE_ID",
+        "PARSING_ERROR",
+        "COUNTRY_PARSING_ERROR",
+        "LONG_PARSING_ERROR",
+        "BOOL_PARSING_ERROR",
+        "EXPANDED_URL_PARSING_ERROR",
+        "FLOAT_PARSING_ERROR",
+        "DATETIME_PARSING_ERROR",
+        "INVALID_PREFERENCE_VALUE",
+        "GEO_NOT_FOUND_ERROR",
+        "GEO_PARSING_ERROR",
+        "GEO_PROXIMITY_TARGETING_MULTIPLE_LOCATION_ERROR",
+        "POSTAL_CODE_PARSING_ERROR",
+        "METRO_CODE_PARSING_ERROR",
+        "DATETIME_WITHOUT_TIMEZONE_PARSING_ERROR",
+        "WEIGHT_PARSING_ERROR",
+        "CREATIVE_DIMENSION_PARSING_ERROR",
+        "MULTIVALUE_ID",
+        "ENDTIME_BEFORE_STARTTIME",
+        "INVALID_ASSET_LIBRARY_HANDLE",
+        "INVALID_ASSET_LIBRARY_VIDEO_HANDLE",
+        "INVALID_ASSET_LIBRARY_DIRECTORY_HANDLE",
+        "DYNAMIC_TARGETING_KEY_NOT_DEFINED_FOR_ADVERTISER",
+        "USERLIST_ID_NOT_ACCESSIBLE_FOR_ADVERTISER",
+        "ENDTIME_PASSED",
+        "ENDTIME_TOO_SOON",
+        "TEXT_ASSET_REFERENCE",
+        "IMAGE_ASSET_SCS_REFERENCE",
+        "AIRPORT_GEO_TARGET",
+        "CANONICAL_NAME_QUERY_MISMATCH",
+        "NO_DEFAULT_ROW",
+        "NO_ACTIVE_DEFAULT_ROW",
+        "NO_DEFAULT_ROW_IN_DATE_RANGE",
+        "NO_ACTIVE_DEFAULT_ROW_IN_DATE_RANGE",
+        "PAYLOAD_LIMIT_EXCEEDED",
+        "SSL_NOT_COMPLIANT",
+    ]
+    isError: bool
+
+@typing.type_check_only
+class FieldFilter(typing_extensions.TypedDict, total=False):
+    boolValue: bool
+    dependentFieldValue: DependentFieldValue
+    fieldId: int
+    matchType: typing_extensions.Literal[
+        "LHS_MATCH_TYPE_UNKNOWN",
+        "EQUALS_OR_UNRESTRICTED",
+        "EQUALS",
+        "UNRESTRICTED",
+        "NOT_EQUALS",
+    ]
+    requestValue: RequestValue
+    stringValue: str
+    valueType: typing_extensions.Literal[
+        "RHS_VALUE_TYPE_UNKNOWN", "STRING", "REQUEST", "BOOL", "DEPENDENT"
+    ]
 
 @typing.type_check_only
 class File(typing_extensions.TypedDict, total=False):
@@ -1885,6 +2157,19 @@ class GeoTargeting(typing_extensions.TypedDict, total=False):
     regions: _list[Region]
 
 @typing.type_check_only
+class IngestionErrorRecord(typing_extensions.TypedDict, total=False):
+    errors: _list[FieldError]
+    recordId: str
+
+@typing.type_check_only
+class IngestionStatus(typing_extensions.TypedDict, total=False):
+    numActiveRows: str
+    numRowsProcessed: str
+    numRowsTotal: str
+    numRowsWithErrors: str
+    numWarningsTotal: str
+
+@typing.type_check_only
 class InventoryItem(typing_extensions.TypedDict, total=False):
     accountId: str
     adSlots: _list[AdSlot]
@@ -2079,6 +2364,8 @@ class MeasurementPartnerWrappingData(typing_extensions.TypedDict, total=False):
         "VPAID_ONLY_FILTERING",
         "VPAID_FILTERING",
         "NON_VPAID_FILTERING",
+        "BLOCKING_FILTERING_VPAID",
+        "BLOCKING_FILTERING_VPAID_ONLY",
     ]
     wrappedTag: str
 
@@ -2275,6 +2562,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     additionalSizes: _list[Size]
     advertiserId: str
     advertiserIdDimensionValue: DimensionValue
+    allowOnYoutube: bool
     campaignId: str
     campaignIdDimensionValue: DimensionValue
     comment: str
@@ -2353,6 +2641,7 @@ class Placement(typing_extensions.TypedDict, total=False):
     videoSettings: VideoSettings
     vpaidAdapterChoice: typing_extensions.Literal["DEFAULT", "FLASH", "HTML5", "BOTH"]
     wrappingOptOut: bool
+    youtubeSettings: YoutubeSettings
 
 @typing.type_check_only
 class PlacementAssignment(typing_extensions.TypedDict, total=False):
@@ -2573,6 +2862,22 @@ class ProjectsListResponse(typing_extensions.TypedDict, total=False):
     projects: _list[Project]
 
 @typing.type_check_only
+class ProximityFilter(typing_extensions.TypedDict, total=False):
+    fieldId: int
+    radiusBucketType: typing_extensions.Literal[
+        "RADIUS_BUCKET_TYPE_UNKNOWN",
+        "SMALL",
+        "MEDIUM",
+        "LARGE",
+        "MULTI_REGIONAL",
+        "NATIONAL",
+    ]
+    radiusUnitType: typing_extensions.Literal[
+        "RADIUS_UNIT_TYPE_UNKNOWN", "KILOMETERS", "MILES"
+    ]
+    radiusValue: int
+
+@typing.type_check_only
 class ReachReportCompatibleFields(typing_extensions.TypedDict, total=False):
     dimensionFilters: _list[Dimension]
     dimensions: _list[Dimension]
@@ -2643,6 +2948,11 @@ class RemarketingListsListResponse(typing_extensions.TypedDict, total=False):
     remarketingLists: _list[RemarketingList]
 
 @typing.type_check_only
+class RemarketingValueAttribute(typing_extensions.TypedDict, total=False):
+    fieldId: int
+    userAttributeIds: _list[str]
+
+@typing.type_check_only
 class Report(typing_extensions.TypedDict, total=False):
     accountId: str
     criteria: dict[str, typing.Any]
@@ -2693,6 +3003,12 @@ class ReportsConfiguration(typing_extensions.TypedDict, total=False):
     reportGenerationTimeZoneId: str
 
 @typing.type_check_only
+class RequestValue(typing_extensions.TypedDict, total=False):
+    excludeFromUserAttributeIds: _list[str]
+    key: str
+    userAttributeIds: _list[str]
+
+@typing.type_check_only
 class RichMediaExitOverride(typing_extensions.TypedDict, total=False):
     clickThroughUrl: ClickThroughUrl
     enabled: bool
@@ -2703,6 +3019,10 @@ class Rule(typing_extensions.TypedDict, total=False):
     assetId: str
     name: str
     targetingTemplateId: str
+
+@typing.type_check_only
+class RuleBlock(typing_extensions.TypedDict, total=False):
+    fieldFilter: _list[FieldFilter]
 
 @typing.type_check_only
 class Site(typing_extensions.TypedDict, total=False):
@@ -2804,6 +3124,53 @@ class SortedDimension(typing_extensions.TypedDict, total=False):
     kind: str
     name: str
     sortOrder: typing_extensions.Literal["ASCENDING", "DESCENDING"]
+
+@typing.type_check_only
+class StudioCreative(typing_extensions.TypedDict, total=False):
+    assetIds: _list[str]
+    backupImageAssetId: str
+    createdInfo: LastModifiedInfo
+    dimension: StudioCreativeDimension
+    dynamicProfileId: str
+    format: typing_extensions.Literal[
+        "UNKNOWN", "BANNER", "EXPANDING", "INTERSTITIAL", "VPAID_LINEAR_VIDEO"
+    ]
+    id: str
+    lastModifiedInfo: LastModifiedInfo
+    name: str
+    status: typing_extensions.Literal[
+        "UNKNOWN_STATUS",
+        "IN_DEVELOPMENT",
+        "PUBLISHED",
+        "QA_REJECTED",
+        "QA_APPROVED",
+        "TRAFFICKED",
+    ]
+    studioAccountId: str
+    studioAdvertiserId: str
+    studioCampaignId: str
+
+@typing.type_check_only
+class StudioCreativeAsset(typing_extensions.TypedDict, total=False):
+    createInfo: LastModifiedInfo
+    filename: str
+    filesize: str
+    id: str
+    lastModifiedInfo: LastModifiedInfo
+    studioAccountId: str
+    studioAdvertiserId: str
+    studioCreativeId: str
+    type: typing_extensions.Literal["UNKNOWN_TYPE", "HTML", "VIDEO", "IMAGE", "FONT"]
+    videoProcessingData: VideoProcessingData
+
+@typing.type_check_only
+class StudioCreativeAssetsResponse(typing_extensions.TypedDict, total=False):
+    assets: _list[StudioCreativeAsset]
+
+@typing.type_check_only
+class StudioCreativeDimension(typing_extensions.TypedDict, total=False):
+    height: int
+    width: int
 
 @typing.type_check_only
 class Subaccount(typing_extensions.TypedDict, total=False):
@@ -3208,6 +3575,13 @@ class VideoOffset(typing_extensions.TypedDict, total=False):
     offsetSeconds: int
 
 @typing.type_check_only
+class VideoProcessingData(typing_extensions.TypedDict, total=False):
+    errorReason: str
+    processingState: typing_extensions.Literal[
+        "UNKNOWN", "PROCESSING", "SUCCEEDED", "FAILED"
+    ]
+
+@typing.type_check_only
 class VideoSettings(typing_extensions.TypedDict, total=False):
     companionSettings: CompanionSetting
     durationSeconds: int
@@ -3218,3 +3592,39 @@ class VideoSettings(typing_extensions.TypedDict, total=False):
     publisherSpecificationId: str
     skippableSettings: SkippableSetting
     transcodeSettings: TranscodeSetting
+
+@typing.type_check_only
+class YoutubeSettings(typing_extensions.TypedDict, total=False):
+    businessLogoCreativeIds: _list[str]
+    businessName: str
+    callToActions: _list[
+        typing_extensions.Literal[
+            "CALL_TO_ACTION_UNKNOWN",
+            "CALL_TO_ACTION_LEARN_MORE",
+            "CALL_TO_ACTION_GET_QUOTE",
+            "CALL_TO_ACTION_APPLY_NOW",
+            "CALL_TO_ACTION_SIGN_UP",
+            "CALL_TO_ACTION_CONTACT_US",
+            "CALL_TO_ACTION_SUBSCRIBE",
+            "CALL_TO_ACTION_DOWNLOAD",
+            "CALL_TO_ACTION_BOOK_NOW",
+            "CALL_TO_ACTION_GET_OFFER",
+            "CALL_TO_ACTION_SHOP_NOW",
+            "CALL_TO_ACTION_VISIT_STORE",
+            "CALL_TO_ACTION_CALL_NOW",
+            "CALL_TO_ACTION_VIEW_MENU",
+            "CALL_TO_ACTION_TEST_DRIVE",
+            "CALL_TO_ACTION_SCHEDULE_NOW",
+            "CALL_TO_ACTION_BUY_NOW",
+            "CALL_TO_ACTION_DONATE_NOW",
+            "CALL_TO_ACTION_ORDER_NOW",
+            "CALL_TO_ACTION_PLAY_NOW",
+            "CALL_TO_ACTION_SEE_MORE",
+            "CALL_TO_ACTION_START_NOW",
+            "CALL_TO_ACTION_VISIT_SITE",
+            "CALL_TO_ACTION_WATCH_NOW",
+        ]
+    ]
+    descriptions: _list[str]
+    headlines: _list[str]
+    longHeadlines: _list[str]

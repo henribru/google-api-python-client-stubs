@@ -245,6 +245,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
     credentialProviderPolicy: typing_extensions.Literal[
         "CREDENTIAL_PROVIDER_POLICY_UNSPECIFIED", "CREDENTIAL_PROVIDER_ALLOWED"
     ]
+    customAppConfig: CustomAppConfig
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
@@ -274,6 +275,7 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
         "AVAILABLE",
         "REQUIRED_FOR_SETUP",
         "KIOSK",
+        "CUSTOM",
     ]
     lockTaskAllowed: bool
     managedConfiguration: dict[str, typing.Any]
@@ -290,6 +292,8 @@ class ApplicationPolicy(typing_extensions.TypedDict, total=False):
         "PREFERENTIAL_NETWORK_ID_FOUR",
         "PREFERENTIAL_NETWORK_ID_FIVE",
     ]
+    roles: _list[Role]
+    signingKeyCerts: _list[ApplicationSigningKeyCert]
     userControlSettings: typing_extensions.Literal[
         "USER_CONTROL_SETTINGS_UNSPECIFIED",
         "USER_CONTROL_ALLOWED",
@@ -313,6 +317,7 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
         "SYSTEM_APP_FACTORY_VERSION",
         "SYSTEM_APP_UPDATED_VERSION",
         "INSTALLED_FROM_PLAY_STORE",
+        "CUSTOM",
     ]
     displayName: str
     events: _list[ApplicationEvent]
@@ -333,6 +338,10 @@ class ApplicationReport(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ApplicationReportingSettings(typing_extensions.TypedDict, total=False):
     includeRemovedApps: bool
+
+@typing.type_check_only
+class ApplicationSigningKeyCert(typing_extensions.TypedDict, total=False):
+    signingKeyCertFingerprintSha256: str
 
 @typing.type_check_only
 class BackupServiceToggledEvent(typing_extensions.TypedDict, total=False):
@@ -517,10 +526,81 @@ class CryptoSelfTestCompletedEvent(typing_extensions.TypedDict, total=False):
     success: bool
 
 @typing.type_check_only
+class CustomAppConfig(typing_extensions.TypedDict, total=False):
+    userUninstallSettings: typing_extensions.Literal[
+        "USER_UNINSTALL_SETTINGS_UNSPECIFIED",
+        "DISALLOW_UNINSTALL_BY_USER",
+        "ALLOW_UNINSTALL_BY_USER",
+    ]
+
+@typing.type_check_only
 class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
     year: int
+
+@typing.type_check_only
+class DefaultApplication(typing_extensions.TypedDict, total=False):
+    packageName: str
+
+@typing.type_check_only
+class DefaultApplicationContext(typing_extensions.TypedDict, total=False):
+    defaultApplicationScope: typing_extensions.Literal[
+        "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
+        "SCOPE_FULLY_MANAGED",
+        "SCOPE_WORK_PROFILE",
+        "SCOPE_PERSONAL_PROFILE",
+    ]
+
+@typing.type_check_only
+class DefaultApplicationInfo(typing_extensions.TypedDict, total=False):
+    defaultApplicationSettingAttempts: _list[DefaultApplicationSettingAttempt]
+    defaultApplicationType: typing_extensions.Literal[
+        "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
+        "DEFAULT_ASSISTANT",
+        "DEFAULT_BROWSER",
+        "DEFAULT_CALL_REDIRECTION",
+        "DEFAULT_CALL_SCREENING",
+        "DEFAULT_DIALER",
+        "DEFAULT_HOME",
+        "DEFAULT_SMS",
+        "DEFAULT_WALLET",
+    ]
+    packageName: str
+
+@typing.type_check_only
+class DefaultApplicationSetting(typing_extensions.TypedDict, total=False):
+    defaultApplicationScopes: _list[
+        typing_extensions.Literal[
+            "DEFAULT_APPLICATION_SCOPE_UNSPECIFIED",
+            "SCOPE_FULLY_MANAGED",
+            "SCOPE_WORK_PROFILE",
+            "SCOPE_PERSONAL_PROFILE",
+        ]
+    ]
+    defaultApplicationType: typing_extensions.Literal[
+        "DEFAULT_APPLICATION_TYPE_UNSPECIFIED",
+        "DEFAULT_ASSISTANT",
+        "DEFAULT_BROWSER",
+        "DEFAULT_CALL_REDIRECTION",
+        "DEFAULT_CALL_SCREENING",
+        "DEFAULT_DIALER",
+        "DEFAULT_HOME",
+        "DEFAULT_SMS",
+        "DEFAULT_WALLET",
+    ]
+    defaultApplications: _list[DefaultApplication]
+
+@typing.type_check_only
+class DefaultApplicationSettingAttempt(typing_extensions.TypedDict, total=False):
+    attemptOutcome: typing_extensions.Literal[
+        "ATTEMPT_OUTCOME_UNSPECIFIED",
+        "SUCCESS",
+        "APP_NOT_INSTALLED",
+        "APP_SIGNING_CERT_MISMATCH",
+        "OTHER_FAILURE",
+    ]
+    packageName: str
 
 @typing.type_check_only
 class Device(typing_extensions.TypedDict, total=False):
@@ -540,6 +620,7 @@ class Device(typing_extensions.TypedDict, total=False):
         "DEACTIVATED_BY_DEVICE_FINANCE",
     ]
     commonCriteriaModeInfo: CommonCriteriaModeInfo
+    defaultApplicationInfo: _list[DefaultApplicationInfo]
     deviceSettings: DeviceSettings
     disabledReason: UserFacingMessage
     displays: _list[Display]
@@ -1023,6 +1104,7 @@ class ListMigrationTokensResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPoliciesResponse(typing_extensions.TypedDict, total=False):
@@ -1181,6 +1263,7 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
         "DEVICE_INCOMPATIBLE",
+        "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
     ]
     packageName: str
@@ -1199,6 +1282,8 @@ class NonComplianceDetail(typing_extensions.TypedDict, total=False):
         "PERMISSIBLE_USAGE_RESTRICTION",
         "REQUIRED_ACCOUNT_NOT_IN_ENTERPRISE",
         "NEW_ACCOUNT_NOT_IN_ENTERPRISE",
+        "DEFAULT_APPLICATION_SETTING_UNSUPPORTED_SCOPES",
+        "DEFAULT_APPLICATION_SETTING_FAILED_FOR_SCOPE",
     ]
 
 @typing.type_check_only
@@ -1216,6 +1301,7 @@ class NonComplianceDetailCondition(typing_extensions.TypedDict, total=False):
         "APP_INCOMPATIBLE",
         "APP_NOT_UPDATED",
         "DEVICE_INCOMPATIBLE",
+        "APP_SIGNING_CERT_MISMATCH",
         "PROJECT_NOT_PERMITTED",
     ]
     packageName: str
@@ -1406,6 +1492,7 @@ class Policy(typing_extensions.TypedDict, total=False):
     crossProfilePolicies: CrossProfilePolicies
     dataRoamingDisabled: bool
     debuggingFeaturesAllowed: bool
+    defaultApplicationSettings: _list[DefaultApplicationSetting]
     defaultPermissionPolicy: typing_extensions.Literal[
         "PERMISSION_POLICY_UNSPECIFIED", "PROMPT", "GRANT", "DENY"
     ]
@@ -1656,6 +1743,16 @@ class RequestDeviceInfoStatus(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class Role(typing_extensions.TypedDict, total=False):
+    roleType: typing_extensions.Literal[
+        "ROLE_TYPE_UNSPECIFIED",
+        "COMPANION_APP",
+        "KIOSK",
+        "MOBILE_THREAT_DEFENSE_ENDPOINT_DETECTION_RESPONSE",
+        "SYSTEM_HEALTH_MONITORING",
+    ]
+
+@typing.type_check_only
 class ScreenBrightnessSettings(typing_extensions.TypedDict, total=False):
     screenBrightness: int
     screenBrightnessMode: typing_extensions.Literal[
@@ -1726,6 +1823,7 @@ class SoftwareInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SpecificNonComplianceContext(typing_extensions.TypedDict, total=False):
+    defaultApplicationContext: DefaultApplicationContext
     oncWifiContext: OncWifiContext
     passwordPoliciesContext: PasswordPoliciesContext
 
@@ -1758,6 +1856,7 @@ class StatusReportingSettings(typing_extensions.TypedDict, total=False):
     applicationReportingSettings: ApplicationReportingSettings
     applicationReportsEnabled: bool
     commonCriteriaModeEnabled: bool
+    defaultApplicationInfoReportingEnabled: bool
     deviceSettingsEnabled: bool
     displayInfoEnabled: bool
     hardwareStatusEnabled: bool

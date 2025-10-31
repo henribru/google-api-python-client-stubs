@@ -157,6 +157,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -204,6 +205,62 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                         *,
                         datacenterConnector: str,
                         body: UpgradeApplianceRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+
+                @typing.type_check_only
+                class DiskMigrationJobsResource(googleapiclient.discovery.Resource):
+                    def cancel(
+                        self,
+                        *,
+                        name: str,
+                        body: CancelDiskMigrationJobRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: DiskMigrationJob = ...,
+                        diskMigrationJobId: str = ...,
+                        requestId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def delete(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> OperationHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> DiskMigrationJobHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        filter: str = ...,
+                        orderBy: str = ...,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListDiskMigrationJobsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListDiskMigrationJobsResponseHttpRequest,
+                        previous_response: ListDiskMigrationJobsResponse,
+                    ) -> ListDiskMigrationJobsResponseHttpRequest | None: ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: DiskMigrationJob = ...,
+                        requestId: str = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
+                    def run(
+                        self,
+                        *,
+                        name: str,
+                        body: RunDiskMigrationJobRequest = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
 
@@ -463,6 +520,23 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     previous_request: FetchInventoryResponseHttpRequest,
                     previous_response: FetchInventoryResponse,
                 ) -> FetchInventoryResponseHttpRequest | None: ...
+                def fetchStorageInventory(
+                    self,
+                    *,
+                    source: str,
+                    forceRefresh: bool = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    type: typing_extensions.Literal[
+                        "STORAGE_TYPE_UNSPECIFIED", "DISKS", "SNAPSHOTS"
+                    ] = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchStorageInventoryResponseHttpRequest: ...
+                def fetchStorageInventory_next(
+                    self,
+                    previous_request: FetchStorageInventoryResponseHttpRequest,
+                    previous_response: FetchStorageInventoryResponse,
+                ) -> FetchStorageInventoryResponseHttpRequest | None: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> SourceHttpRequest: ...
@@ -491,6 +565,7 @@ class VMMigrationServiceResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
                 def datacenterConnectors(self) -> DatacenterConnectorsResource: ...
+                def diskMigrationJobs(self) -> DiskMigrationJobsResource: ...
                 def migratingVms(self) -> MigratingVmsResource: ...
                 def utilizationReports(self) -> UtilizationReportsResource: ...
 
@@ -601,6 +676,14 @@ class DatacenterConnectorHttpRequest(googleapiclient.http.HttpRequest):
     ) -> DatacenterConnector: ...
 
 @typing.type_check_only
+class DiskMigrationJobHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DiskMigrationJob: ...
+
+@typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -615,6 +698,14 @@ class FetchInventoryResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchInventoryResponse: ...
+
+@typing.type_check_only
+class FetchStorageInventoryResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchStorageInventoryResponse: ...
 
 @typing.type_check_only
 class GroupHttpRequest(googleapiclient.http.HttpRequest):
@@ -663,6 +754,14 @@ class ListDatacenterConnectorsResponseHttpRequest(googleapiclient.http.HttpReque
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListDatacenterConnectorsResponse: ...
+
+@typing.type_check_only
+class ListDiskMigrationJobsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDiskMigrationJobsResponse: ...
 
 @typing.type_check_only
 class ListGroupsResponseHttpRequest(googleapiclient.http.HttpRequest):

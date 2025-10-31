@@ -78,6 +78,7 @@ class AuthzPolicyAuthzRuleFrom(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AuthzPolicyAuthzRuleFromRequestSource(typing_extensions.TypedDict, total=False):
     ipBlocks: _list[AuthzPolicyAuthzRuleIpBlock]
+    principals: _list[AuthzPolicyAuthzRulePrincipal]
     resources: _list[AuthzPolicyAuthzRuleRequestResource]
 
 @typing.type_check_only
@@ -89,6 +90,16 @@ class AuthzPolicyAuthzRuleHeaderMatch(typing_extensions.TypedDict, total=False):
 class AuthzPolicyAuthzRuleIpBlock(typing_extensions.TypedDict, total=False):
     length: int
     prefix: str
+
+@typing.type_check_only
+class AuthzPolicyAuthzRulePrincipal(typing_extensions.TypedDict, total=False):
+    principal: AuthzPolicyAuthzRuleStringMatch
+    principalSelector: typing_extensions.Literal[
+        "PRINCIPAL_SELECTOR_UNSPECIFIED",
+        "CLIENT_CERT_URI_SAN",
+        "CLIENT_CERT_DNS_NAME_SAN",
+        "CLIENT_CERT_COMMON_NAME",
+    ]
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleRequestResource(typing_extensions.TypedDict, total=False):
@@ -202,6 +213,15 @@ class Destination(typing_extensions.TypedDict, total=False):
     ports: _list[int]
 
 @typing.type_check_only
+class DnsThreatDetector(typing_extensions.TypedDict, total=False):
+    createTime: str
+    excludedNetworks: _list[str]
+    labels: dict[str, typing.Any]
+    name: str
+    provider: typing_extensions.Literal["PROVIDER_UNSPECIFIED", "INFOBLOX"]
+    updateTime: str
+
+@typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -218,6 +238,7 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
     billingProjectId: str
     createTime: str
     description: str
+    endpointSettings: FirewallEndpointEndpointSettings
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -247,6 +268,10 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
 class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=False):
     name: str
     network: str
+
+@typing.type_check_only
+class FirewallEndpointEndpointSettings(typing_extensions.TypedDict, total=False):
+    jumboFramesEnabled: bool
 
 @typing.type_check_only
 class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
@@ -503,6 +528,12 @@ class ListClientTlsPoliciesResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
 
 @typing.type_check_only
+class ListDnsThreatDetectorsResponse(typing_extensions.TypedDict, total=False):
+    dnsThreatDetectors: _list[DnsThreatDetector]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class ListFirewallEndpointAssociationsResponse(
     typing_extensions.TypedDict, total=False
 ):
@@ -583,6 +614,7 @@ class ListMirroringEndpointGroupsResponse(typing_extensions.TypedDict, total=Fal
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSACAttachmentsResponse(typing_extensions.TypedDict, total=False):
@@ -673,7 +705,7 @@ class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
     network: str
     reconciling: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "CLOSED"
     ]
     updateTime: str
 
@@ -714,6 +746,7 @@ class MirroringEndpointGroup(typing_extensions.TypedDict, total=False):
         "OUT_OF_SYNC",
         "DELETE_FAILED",
     ]
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "DIRECT"]
     updateTime: str
 
 @typing.type_check_only
@@ -875,8 +908,10 @@ class SecurityProfile(typing_extensions.TypedDict, total=False):
         "THREAT_PREVENTION",
         "CUSTOM_MIRRORING",
         "CUSTOM_INTERCEPT",
+        "URL_FILTERING",
     ]
     updateTime: str
+    urlFilteringProfile: UrlFilteringProfile
 
 @typing.type_check_only
 class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
@@ -890,6 +925,7 @@ class SecurityProfileGroup(typing_extensions.TypedDict, total=False):
     name: str
     threatPreventionProfile: str
     updateTime: str
+    urlFilteringProfile: str
 
 @typing.type_check_only
 class ServerTlsPolicy(typing_extensions.TypedDict, total=False):
@@ -963,6 +999,18 @@ class TlsInspectionPolicy(typing_extensions.TypedDict, total=False):
     ]
     trustConfig: str
     updateTime: str
+
+@typing.type_check_only
+class UrlFilter(typing_extensions.TypedDict, total=False):
+    filteringAction: typing_extensions.Literal[
+        "URL_FILTERING_ACTION_UNSPECIFIED", "ALLOW", "DENY"
+    ]
+    priority: int
+    urls: _list[str]
+
+@typing.type_check_only
+class UrlFilteringProfile(typing_extensions.TypedDict, total=False):
+    urlFilters: _list[UrlFilter]
 
 @typing.type_check_only
 class UrlList(typing_extensions.TypedDict, total=False):

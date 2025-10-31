@@ -14,6 +14,16 @@ class ComputeFlightEmissionsResponse(typing_extensions.TypedDict, total=False):
     modelVersion: ModelVersion
 
 @typing.type_check_only
+class ComputeScope3FlightEmissionsRequest(typing_extensions.TypedDict, total=False):
+    flights: _list[Scope3FlightSegment]
+    modelVersion: ModelVersion
+
+@typing.type_check_only
+class ComputeScope3FlightEmissionsResponse(typing_extensions.TypedDict, total=False):
+    flightEmissions: _list[Scope3FlightEmissions]
+    modelVersion: ModelVersion
+
+@typing.type_check_only
 class ComputeTypicalFlightEmissionsRequest(typing_extensions.TypedDict, total=False):
     markets: _list[Market]
 
@@ -74,6 +84,31 @@ class ModelVersion(typing_extensions.TypedDict, total=False):
     major: int
     minor: int
     patch: int
+
+@typing.type_check_only
+class Scope3FlightEmissions(typing_extensions.TypedDict, total=False):
+    flight: Scope3FlightSegment
+    source: typing_extensions.Literal[
+        "SCOPE3_DATA_TYPE_UNSPECIFIED",
+        "TIM_EMISSIONS",
+        "TYPICAL_FLIGHT_EMISSIONS",
+        "DISTANCE_BASED_EMISSIONS",
+    ]
+    ttwEmissionsGramsPerPax: str
+    wttEmissionsGramsPerPax: str
+    wtwEmissionsGramsPerPax: str
+
+@typing.type_check_only
+class Scope3FlightSegment(typing_extensions.TypedDict, total=False):
+    cabinClass: typing_extensions.Literal[
+        "CABIN_CLASS_UNSPECIFIED", "ECONOMY", "PREMIUM_ECONOMY", "BUSINESS", "FIRST"
+    ]
+    carrierCode: str
+    departureDate: Date
+    destination: str
+    distanceKm: str
+    flightNumber: int
+    origin: str
 
 @typing.type_check_only
 class TypicalFlightEmissions(typing_extensions.TypedDict, total=False):

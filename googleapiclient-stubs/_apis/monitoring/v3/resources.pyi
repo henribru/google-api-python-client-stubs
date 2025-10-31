@@ -257,6 +257,25 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             ) -> AlertPolicyHttpRequest: ...
 
         @typing.type_check_only
+        class AlertsResource(googleapiclient.discovery.Resource):
+            def get(self, *, name: str, **kwargs: typing.Any) -> AlertHttpRequest: ...
+            def list(
+                self,
+                *,
+                parent: str,
+                filter: str = ...,
+                orderBy: str = ...,
+                pageSize: int = ...,
+                pageToken: str = ...,
+                **kwargs: typing.Any,
+            ) -> ListAlertsResponseHttpRequest: ...
+            def list_next(
+                self,
+                previous_request: ListAlertsResponseHttpRequest,
+                previous_response: ListAlertsResponse,
+            ) -> ListAlertsResponseHttpRequest | None: ...
+
+        @typing.type_check_only
         class CollectdTimeSeriesResource(googleapiclient.discovery.Resource):
             def create(
                 self,
@@ -646,6 +665,7 @@ class MonitoringResource(googleapiclient.discovery.Resource):
             ) -> UptimeCheckConfigHttpRequest: ...
 
         def alertPolicies(self) -> AlertPoliciesResource: ...
+        def alerts(self) -> AlertsResource: ...
         def collectdTimeSeries(self) -> CollectdTimeSeriesResource: ...
         def groups(self) -> GroupsResource: ...
         def metricDescriptors(self) -> MetricDescriptorsResource: ...
@@ -774,6 +794,14 @@ class MonitoringResource(googleapiclient.discovery.Resource):
     def uptimeCheckIps(self) -> UptimeCheckIpsResource: ...
 
 @typing.type_check_only
+class AlertHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Alert: ...
+
+@typing.type_check_only
 class AlertPolicyHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -822,6 +850,14 @@ class ListAlertPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListAlertPoliciesResponse: ...
+
+@typing.type_check_only
+class ListAlertsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListAlertsResponse: ...
 
 @typing.type_check_only
 class ListGroupMembersResponseHttpRequest(googleapiclient.http.HttpRequest):

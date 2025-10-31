@@ -328,6 +328,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRuntimesResponse(typing_extensions.TypedDict, total=False):
@@ -617,6 +618,11 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class SubnetworkKey(typing_extensions.TypedDict, total=False):
+    hostProjectId: str
+    subnet: str
+
+@typing.type_check_only
 class TrafficSplit(typing_extensions.TypedDict, total=False):
     allocations: dict[str, typing.Any]
     shardBy: typing_extensions.Literal["UNSPECIFIED", "COOKIE", "IP", "RANDOM"]
@@ -713,6 +719,7 @@ class Version(typing_extensions.TypedDict, total=False):
     versionUrl: str
     vm: bool
     vpcAccessConnector: VpcAccessConnector
+    vpcEgress: VpcEgress
     zones: _list[str]
 
 @typing.type_check_only
@@ -727,6 +734,18 @@ class VpcAccessConnector(typing_extensions.TypedDict, total=False):
         "EGRESS_SETTING_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
     ]
     name: str
+
+@typing.type_check_only
+class VpcEgress(typing_extensions.TypedDict, total=False):
+    egressSetting: typing_extensions.Literal[
+        "EGRESS_SETTING_UNSPECIFIED", "ALL_TRAFFIC", "PRIVATE_IP_RANGES"
+    ]
+    networkTags: _list[VpcNetworkTag]
+    subnetworkKey: SubnetworkKey
+
+@typing.type_check_only
+class VpcNetworkTag(typing_extensions.TypedDict, total=False):
+    value: str
 
 @typing.type_check_only
 class ZipInfo(typing_extensions.TypedDict, total=False):

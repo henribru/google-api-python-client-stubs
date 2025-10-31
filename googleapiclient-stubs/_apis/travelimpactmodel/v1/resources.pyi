@@ -18,6 +18,12 @@ class TravelImpactModelResource(googleapiclient.discovery.Resource):
         def computeFlightEmissions(
             self, *, body: ComputeFlightEmissionsRequest = ..., **kwargs: typing.Any
         ) -> ComputeFlightEmissionsResponseHttpRequest: ...
+        def computeScope3FlightEmissions(
+            self,
+            *,
+            body: ComputeScope3FlightEmissionsRequest = ...,
+            **kwargs: typing.Any,
+        ) -> ComputeScope3FlightEmissionsResponseHttpRequest: ...
         def computeTypicalFlightEmissions(
             self,
             *,
@@ -46,6 +52,14 @@ class ComputeFlightEmissionsResponseHttpRequest(googleapiclient.http.HttpRequest
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ComputeFlightEmissionsResponse: ...
+
+@typing.type_check_only
+class ComputeScope3FlightEmissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ComputeScope3FlightEmissionsResponse: ...
 
 @typing.type_check_only
 class ComputeTypicalFlightEmissionsResponseHttpRequest(

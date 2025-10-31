@@ -19,6 +19,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
         class LocationsResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class InstancesResource(googleapiclient.discovery.Resource):
+                def checkAuthorization(
+                    self,
+                    *,
+                    name: str,
+                    body: CheckAuthorizationRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> CheckAuthorizationResponseHttpRequest: ...
                 def checkUpgradability(
                     self, *, notebookInstance: str, **kwargs: typing.Any
                 ) -> CheckInstanceUpgradabilityResponseHttpRequest: ...
@@ -41,6 +48,13 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     body: DiagnoseInstanceRequest = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def generateAccessToken(
+                    self,
+                    *,
+                    name: str,
+                    body: GenerateAccessTokenRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> GenerateAccessTokenResponseHttpRequest: ...
                 def get(
                     self, *, name: str, **kwargs: typing.Any
                 ) -> InstanceHttpRequest: ...
@@ -178,6 +192,7 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -224,6 +239,14 @@ class AIPlatformNotebooksResource(googleapiclient.discovery.Resource):
     def projects(self) -> ProjectsResource: ...
 
 @typing.type_check_only
+class CheckAuthorizationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> CheckAuthorizationResponse: ...
+
+@typing.type_check_only
 class CheckInstanceUpgradabilityResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -246,6 +269,14 @@ class EmptyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Empty: ...
+
+@typing.type_check_only
+class GenerateAccessTokenResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GenerateAccessTokenResponse: ...
 
 @typing.type_check_only
 class InstanceHttpRequest(googleapiclient.http.HttpRequest):

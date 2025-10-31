@@ -156,6 +156,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -568,6 +569,44 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     body: GoogleIamV1TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GoogleIamV1TestIamPermissionsResponseHttpRequest: ...
+
+            @typing.type_check_only
+            class DnsThreatDetectorsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: DnsThreatDetector = ...,
+                    dnsThreatDetectorId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> DnsThreatDetectorHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> EmptyHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> DnsThreatDetectorHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListDnsThreatDetectorsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListDnsThreatDetectorsResponseHttpRequest,
+                    previous_response: ListDnsThreatDetectorsResponse,
+                ) -> ListDnsThreatDetectorsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: DnsThreatDetector = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> DnsThreatDetectorHttpRequest: ...
 
             @typing.type_check_only
             class FirewallEndpointAssociationsResource(
@@ -1056,6 +1095,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -1291,6 +1331,7 @@ class NetworkSecurityResource(googleapiclient.discovery.Resource):
                 self,
             ) -> BackendAuthenticationConfigsResource: ...
             def clientTlsPolicies(self) -> ClientTlsPoliciesResource: ...
+            def dnsThreatDetectors(self) -> DnsThreatDetectorsResource: ...
             def firewallEndpointAssociations(
                 self,
             ) -> FirewallEndpointAssociationsResource: ...
@@ -1374,6 +1415,14 @@ class ClientTlsPolicyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ClientTlsPolicy: ...
+
+@typing.type_check_only
+class DnsThreatDetectorHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> DnsThreatDetector: ...
 
 @typing.type_check_only
 class EmptyHttpRequest(googleapiclient.http.HttpRequest):
@@ -1514,6 +1563,14 @@ class ListClientTlsPoliciesResponseHttpRequest(googleapiclient.http.HttpRequest)
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> ListClientTlsPoliciesResponse: ...
+
+@typing.type_check_only
+class ListDnsThreatDetectorsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListDnsThreatDetectorsResponse: ...
 
 @typing.type_check_only
 class ListFirewallEndpointAssociationsResponseHttpRequest(

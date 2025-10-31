@@ -148,6 +148,9 @@ class Container(typing_extensions.TypedDict, total=False):
             "elementVisibilityTime",
             "elementVisibilityFirstTime",
             "elementVisibilityRecentTime",
+            "analyticsClientId",
+            "analyticsSessionId",
+            "analyticsSessionNumber",
         ]
     ]
     fingerprint: str

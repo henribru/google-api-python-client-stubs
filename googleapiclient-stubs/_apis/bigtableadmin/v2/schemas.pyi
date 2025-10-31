@@ -172,7 +172,9 @@ class CreateAuthorizedViewRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateBackupMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     name: str
+    requestTime: str
     sourceTable: str
     startTime: str
 
@@ -205,7 +207,9 @@ class CreateInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateLogicalViewMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     originalRequest: CreateLogicalViewRequest
+    requestTime: str
     startTime: str
 
 @typing.type_check_only
@@ -217,7 +221,9 @@ class CreateLogicalViewRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CreateMaterializedViewMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     originalRequest: CreateMaterializedViewRequest
+    requestTime: str
     startTime: str
 
 @typing.type_check_only
@@ -228,9 +234,9 @@ class CreateMaterializedViewRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class CreateSchemaBundleMetadata(typing_extensions.TypedDict, total=False):
-    endTime: str
+    finishTime: str
     name: str
-    startTime: str
+    requestTime: str
 
 @typing.type_check_only
 class CreateTableRequest(typing_extensions.TypedDict, total=False):
@@ -313,6 +319,14 @@ class GoogleBigtableAdminV2AuthorizedViewSubsetView(
     rowPrefixes: _list[str]
 
 @typing.type_check_only
+class GoogleBigtableAdminV2MaterializedViewClusterState(
+    typing_extensions.TypedDict, total=False
+):
+    replicationState: typing_extensions.Literal[
+        "STATE_NOT_KNOWN", "INITIALIZING", "READY"
+    ]
+
+@typing.type_check_only
 class GoogleBigtableAdminV2TypeAggregate(typing_extensions.TypedDict, total=False):
     hllppUniqueCount: GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount
     inputType: Type
@@ -366,6 +380,11 @@ class GoogleBigtableAdminV2TypeBytesEncodingRaw(
 class GoogleBigtableAdminV2TypeDate(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class GoogleBigtableAdminV2TypeEnum(typing_extensions.TypedDict, total=False):
+    enumName: str
+    schemaBundleId: str
+
+@typing.type_check_only
 class GoogleBigtableAdminV2TypeFloat32(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -395,6 +414,11 @@ class GoogleBigtableAdminV2TypeInt64EncodingOrderedCodeBytes(
 class GoogleBigtableAdminV2TypeMap(typing_extensions.TypedDict, total=False):
     keyType: Type
     valueType: Type
+
+@typing.type_check_only
+class GoogleBigtableAdminV2TypeProto(typing_extensions.TypedDict, total=False):
+    messageName: str
+    schemaBundleId: str
 
 @typing.type_check_only
 class GoogleBigtableAdminV2TypeString(typing_extensions.TypedDict, total=False):
@@ -477,6 +501,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     state: typing_extensions.Literal["STATE_NOT_KNOWN", "READY", "CREATING"]
+    tags: dict[str, typing.Any]
     type: typing_extensions.Literal["TYPE_UNSPECIFIED", "PRODUCTION", "DEVELOPMENT"]
 
 @typing.type_check_only
@@ -535,6 +560,7 @@ class ListMaterializedViewsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSchemaBundlesResponse(typing_extensions.TypedDict, total=False):
@@ -563,6 +589,7 @@ class LogicalView(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MaterializedView(typing_extensions.TypedDict, total=False):
+    clusterStates: dict[str, typing.Any]
     deletionProtection: bool
     etag: str
     name: str
@@ -742,10 +769,12 @@ class Type(typing_extensions.TypedDict, total=False):
     boolType: GoogleBigtableAdminV2TypeBool
     bytesType: GoogleBigtableAdminV2TypeBytes
     dateType: GoogleBigtableAdminV2TypeDate
+    enumType: GoogleBigtableAdminV2TypeEnum
     float32Type: GoogleBigtableAdminV2TypeFloat32
     float64Type: GoogleBigtableAdminV2TypeFloat64
     int64Type: GoogleBigtableAdminV2TypeInt64
     mapType: GoogleBigtableAdminV2TypeMap
+    protoType: GoogleBigtableAdminV2TypeProto
     stringType: GoogleBigtableAdminV2TypeString
     structType: GoogleBigtableAdminV2TypeStruct
     timestampType: GoogleBigtableAdminV2TypeTimestamp
@@ -753,7 +782,9 @@ class Type(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UndeleteTableMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     name: str
+    requestTime: str
     startTime: str
 
 @typing.type_check_only
@@ -793,7 +824,9 @@ class UpdateInstanceMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class UpdateLogicalViewMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     originalRequest: UpdateLogicalViewRequest
+    requestTime: str
     startTime: str
 
 @typing.type_check_only
@@ -803,12 +836,14 @@ class UpdateLogicalViewRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class UpdateSchemaBundleMetadata(typing_extensions.TypedDict, total=False):
-    endTime: str
+    finishTime: str
     name: str
-    startTime: str
+    requestTime: str
 
 @typing.type_check_only
 class UpdateTableMetadata(typing_extensions.TypedDict, total=False):
     endTime: str
+    finishTime: str
     name: str
+    requestTime: str
     startTime: str

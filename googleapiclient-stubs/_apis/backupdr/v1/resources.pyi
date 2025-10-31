@@ -430,6 +430,13 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     previous_request: ListManagementServersResponseHttpRequest,
                     previous_response: ListManagementServersResponse,
                 ) -> ListManagementServersResponseHttpRequest | None: ...
+                def msComplianceMetadata(
+                    self,
+                    *,
+                    parent: str,
+                    body: FetchMsComplianceMetadataRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> FetchMsComplianceMetadataResponseHttpRequest: ...
                 def setIamPolicy(
                     self,
                     *,
@@ -467,6 +474,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -503,9 +511,22 @@ class BackupdrResource(googleapiclient.discovery.Resource):
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
 
+            @typing.type_check_only
+            class TrialResource(googleapiclient.discovery.Resource):
+                def subscribe(
+                    self,
+                    *,
+                    parent: str,
+                    body: SubscribeTrialRequest = ...,
+                    **kwargs: typing.Any,
+                ) -> TrialHttpRequest: ...
+
             def get(
                 self, *, name: str, **kwargs: typing.Any
             ) -> LocationHttpRequest: ...
+            def getTrial(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> TrialHttpRequest: ...
             def list(
                 self,
                 *,
@@ -529,6 +550,7 @@ class BackupdrResource(googleapiclient.discovery.Resource):
             def operations(self) -> OperationsResource: ...
             def resourceBackupConfigs(self) -> ResourceBackupConfigsResource: ...
             def serviceConfig(self) -> ServiceConfigResource: ...
+            def trial(self) -> TrialResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -637,6 +659,14 @@ class FetchDataSourceReferencesForResourceTypeResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FetchDataSourceReferencesForResourceTypeResponse: ...
+
+@typing.type_check_only
+class FetchMsComplianceMetadataResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> FetchMsComplianceMetadataResponse: ...
 
 @typing.type_check_only
 class FetchUsableBackupVaultsResponseHttpRequest(googleapiclient.http.HttpRequest):
@@ -773,3 +803,11 @@ class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> TestIamPermissionsResponse: ...
+
+@typing.type_check_only
+class TrialHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> Trial: ...

@@ -25,9 +25,9 @@ class ListProductReviewsResponse(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class MerchantReview(typing_extensions.TypedDict, total=False):
-    attributes: MerchantReviewAttributes
     customAttributes: _list[CustomAttribute]
     dataSource: str
+    merchantReviewAttributes: MerchantReviewAttributes
     merchantReviewId: str
     merchantReviewStatus: MerchantReviewStatus
     name: str
@@ -149,10 +149,10 @@ class ProductChange(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ProductReview(typing_extensions.TypedDict, total=False):
-    attributes: ProductReviewAttributes
     customAttributes: _list[CustomAttribute]
     dataSource: str
     name: str
+    productReviewAttributes: ProductReviewAttributes
     productReviewId: str
     productReviewStatus: ProductReviewStatus
 

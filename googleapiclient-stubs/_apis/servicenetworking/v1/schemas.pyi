@@ -64,6 +64,7 @@ class AddSubnetworkRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Api(typing_extensions.TypedDict, total=False):
+    edition: str
     methods: _list[Method]
     mixins: _list[Mixin]
     name: str
@@ -497,6 +498,7 @@ class ListDnsZonesResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPeeredDnsDomainsResponse(typing_extensions.TypedDict, total=False):
@@ -528,6 +530,7 @@ class LongRunning(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Method(typing_extensions.TypedDict, total=False):
+    edition: str
     name: str
     options: _list[Option]
     requestStreaming: bool

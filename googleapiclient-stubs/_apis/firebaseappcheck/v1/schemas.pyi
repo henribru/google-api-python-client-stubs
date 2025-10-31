@@ -215,8 +215,35 @@ class GoogleFirebaseAppcheckV1ListServicesResponse(
 class GoogleFirebaseAppcheckV1PlayIntegrityConfig(
     typing_extensions.TypedDict, total=False
 ):
+    accountDetails: GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails
+    appIntegrity: GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity
+    deviceIntegrity: GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity
     name: str
     tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails(
+    typing_extensions.TypedDict, total=False
+):
+    requireLicensed: bool
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity(
+    typing_extensions.TypedDict, total=False
+):
+    allowUnrecognizedVersion: bool
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity(
+    typing_extensions.TypedDict, total=False
+):
+    minDeviceRecognitionLevel: typing_extensions.Literal[
+        "DEVICE_RECOGNITION_LEVEL_UNSPECIFIED",
+        "NO_INTEGRITY",
+        "MEETS_BASIC_INTEGRITY",
+        "MEETS_DEVICE_INTEGRITY",
+        "MEETS_STRONG_INTEGRITY",
+    ]
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1PublicJwk(typing_extensions.TypedDict, total=False):
@@ -236,13 +263,21 @@ class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfig(
     typing_extensions.TypedDict, total=False
 ):
     name: str
+    riskAnalysis: GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis
     siteKey: str
     tokenTtl: str
+
+@typing.type_check_only
+class GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis(
+    typing_extensions.TypedDict, total=False
+):
+    minValidScore: float
 
 @typing.type_check_only
 class GoogleFirebaseAppcheckV1RecaptchaV3Config(
     typing_extensions.TypedDict, total=False
 ):
+    minValidScore: float
     name: str
     siteSecret: str
     siteSecretSet: bool

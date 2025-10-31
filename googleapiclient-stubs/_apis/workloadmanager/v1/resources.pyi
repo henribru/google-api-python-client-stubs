@@ -140,6 +140,15 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     previous_request: ListEvaluationsResponseHttpRequest,
                     previous_response: ListEvaluationsResponse,
                 ) -> ListEvaluationsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: Evaluation = ...,
+                    requestId: str = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
                 def executions(self) -> ExecutionsResource: ...
 
             @typing.type_check_only
@@ -177,6 +186,7 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -204,11 +214,6 @@ class WorkloadManagerResource(googleapiclient.discovery.Resource):
                     pageToken: str = ...,
                     **kwargs: typing.Any,
                 ) -> ListRulesResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListRulesResponseHttpRequest,
-                    previous_response: ListRulesResponse,
-                ) -> ListRulesResponseHttpRequest | None: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any

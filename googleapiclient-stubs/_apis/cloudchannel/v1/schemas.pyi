@@ -242,6 +242,19 @@ class GoogleCloudChannelV1DateRange(typing_extensions.TypedDict, total=False):
     usageStartDateTime: GoogleTypeDateTime
 
 @typing.type_check_only
+class GoogleCloudChannelV1DiscountComponent(typing_extensions.TypedDict, total=False):
+    discountAbsolute: GoogleTypeMoney
+    discountPercentage: float
+    discountType: typing_extensions.Literal[
+        "DISCOUNT_TYPE_UNSPECIFIED",
+        "REGIONAL_DISCOUNT",
+        "PROMOTIONAL_DISCOUNT",
+        "SALES_DISCOUNT",
+        "RESELLER_MARGIN",
+        "DEAL_CODE",
+    ]
+
+@typing.type_check_only
 class GoogleCloudChannelV1EduData(typing_extensions.TypedDict, total=False):
     instituteSize: typing_extensions.Literal[
         "INSTITUTE_SIZE_UNSPECIFIED",
@@ -615,8 +628,10 @@ class GoogleCloudChannelV1Plan(typing_extensions.TypedDict, total=False):
 class GoogleCloudChannelV1Price(typing_extensions.TypedDict, total=False):
     basePrice: GoogleTypeMoney
     discount: float
+    discountComponents: _list[GoogleCloudChannelV1DiscountComponent]
     effectivePrice: GoogleTypeMoney
     externalPriceUri: str
+    pricePeriod: GoogleCloudChannelV1Period
 
 @typing.type_check_only
 class GoogleCloudChannelV1PriceByResource(typing_extensions.TypedDict, total=False):
@@ -1160,6 +1175,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

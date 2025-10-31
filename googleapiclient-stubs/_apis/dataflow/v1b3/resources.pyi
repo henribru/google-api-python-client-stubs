@@ -27,14 +27,6 @@ class DataflowResource(googleapiclient.discovery.Resource):
                     body: GetDebugConfigRequest = ...,
                     **kwargs: typing.Any,
                 ) -> GetDebugConfigResponseHttpRequest: ...
-                def getWorkerStacktraces(
-                    self,
-                    *,
-                    projectId: str,
-                    jobId: str,
-                    body: GetWorkerStacktracesRequest = ...,
-                    **kwargs: typing.Any,
-                ) -> GetWorkerStacktracesResponseHttpRequest: ...
                 def sendCapture(
                     self,
                     *,
@@ -225,6 +217,15 @@ class DataflowResource(googleapiclient.discovery.Resource):
                         body: GetDebugConfigRequest = ...,
                         **kwargs: typing.Any,
                     ) -> GetDebugConfigResponseHttpRequest: ...
+                    def getWorkerStacktraces(
+                        self,
+                        *,
+                        projectId: str,
+                        location: str,
+                        jobId: str,
+                        body: GetWorkerStacktracesRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> GetWorkerStacktracesResponseHttpRequest: ...
                     def sendCapture(
                         self,
                         *,

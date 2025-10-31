@@ -104,11 +104,14 @@ class Buckets(typing_extensions.TypedDict, total=False):
     items: _list[Bucket]
     kind: str
     nextPageToken: str
+    unreachable: _list[str]
 
 @typing.type_check_only
 class BulkRestoreObjectsRequest(typing_extensions.TypedDict, total=False):
     allowOverwrite: bool
     copySourceAcl: bool
+    createdAfterTime: str
+    createdBeforeTime: str
     matchGlobs: _list[str]
     softDeletedAfterTime: str
     softDeletedBeforeTime: str

@@ -5,6 +5,132 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInput(
+    typing_extensions.TypedDict, total=False
+):
+    validationRules: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule
+    ]
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule(
+    typing_extensions.TypedDict, total=False
+):
+    childAlignmentRule: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule
+    description: str
+    entityAlignmentRule: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule
+    fieldOccurrences: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences
+    fieldRegex: (
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex
+    )
+    formValidation: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation
+    name: str
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule(
+    typing_extensions.TypedDict, total=False
+):
+    alignmentType: typing_extensions.Literal[
+        "ALIGNMENT_TYPE_UNSPECIFIED",
+        "ALIGNMENT_TYPE_HORIZONTAL",
+        "ALIGNMENT_TYPE_VERTICAL",
+    ]
+    tolerance: float
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleChildAlignmentRule(
+    typing_extensions.TypedDict, total=False
+):
+    alignmentRule: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule
+    childFields: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    ]
+    parentField: (
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    )
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant(
+    typing_extensions.TypedDict, total=False
+):
+    floatValue: float
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleEntityAlignmentRule(
+    typing_extensions.TypedDict, total=False
+):
+    alignmentRule: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleAlignmentRule
+    fields: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    ]
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField(
+    typing_extensions.TypedDict, total=False
+):
+    defaultValue: (
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant
+    )
+    fieldName: str
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences(
+    typing_extensions.TypedDict, total=False
+):
+    field: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    maxOccurrences: int
+    minOccurrences: int
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex(
+    typing_extensions.TypedDict, total=False
+):
+    field: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    pattern: str
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation(
+    typing_extensions.TypedDict, total=False
+):
+    leftOperand: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation
+    rightOperand: CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation
+    validationOperator: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED",
+        "OPERATION_TYPE_EQ",
+        "OPERATION_TYPE_NE",
+        "OPERATION_TYPE_LT",
+        "OPERATION_TYPE_LE",
+        "OPERATION_TYPE_GT",
+        "OPERATION_TYPE_GE",
+    ]
+
+@typing.type_check_only
+class CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation(
+    typing_extensions.TypedDict, total=False
+):
+    constants: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant
+    ]
+    fields: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField
+    ]
+    operationType: typing_extensions.Literal[
+        "OPERATION_TYPE_UNSPECIFIED",
+        "OPERATION_TYPE_SUM",
+        "OPERATION_TYPE_SUB",
+        "OPERATION_TYPE_MUL",
+        "OPERATION_TYPE_DIV",
+        "OPERATION_TYPE_MAX",
+        "OPERATION_TYPE_MIN",
+        "OPERATION_TYPE_ABS",
+        "OPERATION_TYPE_UNIQUE",
+        "OPERATION_TYPE_COUNT",
+    ]
+    operations: _list[
+        CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation
+    ]
+
+@typing.type_check_only
 class GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -567,7 +693,10 @@ class GoogleCloudDocumentaiV1Document(typing_extensions.TypedDict, total=False):
     docid: str
     documentLayout: GoogleCloudDocumentaiV1DocumentDocumentLayout
     entities: _list[GoogleCloudDocumentaiV1DocumentEntity]
+    entitiesRevisionId: str
+    entitiesRevisions: _list[GoogleCloudDocumentaiV1DocumentEntitiesRevision]
     entityRelations: _list[GoogleCloudDocumentaiV1DocumentEntityRelation]
+    entityValidationOutput: GoogleCloudDocumentaiV1DocumentEntityValidationOutput
     error: GoogleRpcStatus
     mimeType: str
     pages: _list[GoogleCloudDocumentaiV1DocumentPage]
@@ -704,11 +833,20 @@ class GoogleCloudDocumentaiV1DocumentDocumentLayoutDocumentLayoutBlockLayoutText
     type: str
 
 @typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentEntitiesRevision(
+    typing_extensions.TypedDict, total=False
+):
+    entities: _list[GoogleCloudDocumentaiV1DocumentEntity]
+    entityValidationOutput: GoogleCloudDocumentaiV1DocumentEntityValidationOutput
+    revisionId: str
+
+@typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentEntity(typing_extensions.TypedDict, total=False):
     confidence: float
     id: str
     mentionId: str
     mentionText: str
+    method: typing_extensions.Literal["METHOD_UNSPECIFIED", "EXTRACT", "DERIVE"]
     normalizedValue: GoogleCloudDocumentaiV1DocumentEntityNormalizedValue
     pageAnchor: GoogleCloudDocumentaiV1DocumentPageAnchor
     properties: _list[GoogleCloudDocumentaiV1DocumentEntity]
@@ -738,6 +876,30 @@ class GoogleCloudDocumentaiV1DocumentEntityRelation(
     objectId: str
     relation: str
     subjectId: str
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentEntityValidationOutput(
+    typing_extensions.TypedDict, total=False
+):
+    passAllRules: bool
+    validationResults: _list[
+        GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult
+    ]
+
+@typing.type_check_only
+class GoogleCloudDocumentaiV1DocumentEntityValidationOutputValidationResult(
+    typing_extensions.TypedDict, total=False
+):
+    ruleDescription: str
+    ruleName: str
+    validationDetails: str
+    validationResultType: typing_extensions.Literal[
+        "VALIDATION_RESULT_TYPE_UNSPECIFIED",
+        "VALIDATION_RESULT_TYPE_VALID",
+        "VALIDATION_RESULT_TYPE_INVALID",
+        "VALIDATION_RESULT_TYPE_SKIPPED",
+        "VALIDATION_RESULT_TYPE_NOT_APPLICABLE",
+    ]
 
 @typing.type_check_only
 class GoogleCloudDocumentaiV1DocumentOutputConfig(
@@ -1951,6 +2113,7 @@ class GoogleCloudLocationLocation(typing_extensions.TypedDict, total=False):
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

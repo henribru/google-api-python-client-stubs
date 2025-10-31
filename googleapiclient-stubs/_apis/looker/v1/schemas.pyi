@@ -80,6 +80,7 @@ class ImportInstanceRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Instance(typing_extensions.TypedDict, total=False):
     adminSettings: AdminSettings
+    classType: typing_extensions.Literal["CLASS_TYPE_UNSPECIFIED", "R1", "P1"]
     consumerNetwork: str
     createTime: str
     customDomain: CustomDomain
@@ -164,6 +165,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -233,6 +235,7 @@ class ServiceAttachment(typing_extensions.TypedDict, total=False):
     connectionStatus: typing_extensions.Literal[
         "UNKNOWN", "ACCEPTED", "PENDING", "REJECTED", "NEEDS_ATTENTION", "CLOSED"
     ]
+    failureReason: str
     localFqdn: str
     localFqdns: _list[str]
     targetServiceAttachmentUri: str

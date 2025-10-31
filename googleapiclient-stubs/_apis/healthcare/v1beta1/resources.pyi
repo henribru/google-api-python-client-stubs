@@ -20,30 +20,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
             @typing.type_check_only
             class DatasetsResource(googleapiclient.discovery.Resource):
                 @typing.type_check_only
-                class AnnotationStoresResource(googleapiclient.discovery.Resource):
-                    def getIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        options_requestedPolicyVersion: int = ...,
-                        **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def setIamPolicy(
-                        self,
-                        *,
-                        resource: str,
-                        body: SetIamPolicyRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> PolicyHttpRequest: ...
-                    def testIamPermissions(
-                        self,
-                        *,
-                        resource: str,
-                        body: TestIamPermissionsRequest = ...,
-                        **kwargs: typing.Any,
-                    ) -> TestIamPermissionsResponseHttpRequest: ...
-
-                @typing.type_check_only
                 class ConsentStoresResource(googleapiclient.discovery.Resource):
                     @typing.type_check_only
                     class AttributeDefinitionsResource(
@@ -451,6 +427,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                     viewport: str = ...,
                                     **kwargs: typing.Any,
                                 ) -> HttpBodyHttpRequest: ...
+                                def updateMetadata(
+                                    self,
+                                    *,
+                                    parent: str,
+                                    dicomWebPath: str,
+                                    body: HttpBody = ...,
+                                    **kwargs: typing.Any,
+                                ) -> HttpBodyHttpRequest: ...
                                 def bulkdata(self) -> BulkdataResource: ...
                                 def frames(self) -> FramesResource: ...
 
@@ -482,6 +466,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                                 dicomWebPath: str,
                                 **kwargs: typing.Any,
                             ) -> HttpBodyHttpRequest: ...
+                            def updateMetadata(
+                                self,
+                                *,
+                                parent: str,
+                                dicomWebPath: str,
+                                body: HttpBody = ...,
+                                **kwargs: typing.Any,
+                            ) -> OperationHttpRequest: ...
                             def instances(self) -> InstancesResource: ...
 
                         def delete(
@@ -527,6 +519,22 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                             body: HttpBody = ...,
                             **kwargs: typing.Any,
                         ) -> HttpBodyHttpRequest: ...
+                        def updateInstances(
+                            self,
+                            *,
+                            parent: str,
+                            dicomWebPath: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any,
+                        ) -> HttpBodyHttpRequest: ...
+                        def updateMetadata(
+                            self,
+                            *,
+                            parent: str,
+                            dicomWebPath: str,
+                            body: HttpBody = ...,
+                            **kwargs: typing.Any,
+                        ) -> OperationHttpRequest: ...
                         def series(self) -> SeriesResource: ...
 
                     def create(
@@ -634,6 +642,14 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         body: TestIamPermissionsRequest = ...,
                         **kwargs: typing.Any,
                     ) -> TestIamPermissionsResponseHttpRequest: ...
+                    def updateInstances(
+                        self,
+                        *,
+                        parent: str,
+                        dicomWebPath: str,
+                        body: HttpBody = ...,
+                        **kwargs: typing.Any,
+                    ) -> HttpBodyHttpRequest: ...
                     def dicomWeb(self) -> DicomWebResource: ...
                     def studies(self) -> StudiesResource: ...
 
@@ -1168,6 +1184,7 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -1239,7 +1256,6 @@ class CloudHealthcareResource(googleapiclient.discovery.Resource):
                     body: TestIamPermissionsRequest = ...,
                     **kwargs: typing.Any,
                 ) -> TestIamPermissionsResponseHttpRequest: ...
-                def annotationStores(self) -> AnnotationStoresResource: ...
                 def consentStores(self) -> ConsentStoresResource: ...
                 def dataMapperWorkspaces(self) -> DataMapperWorkspacesResource: ...
                 def dicomStores(self) -> DicomStoresResource: ...

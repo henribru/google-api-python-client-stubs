@@ -308,6 +308,10 @@ class GeoTargetArea(typing_extensions.TypedDict, total=False):
     geotargetCriteriaIds: _list[str]
 
 @typing.type_check_only
+class GetAccountForGcpRegistrationResponse(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
 class Handshake(typing_extensions.TypedDict, total=False):
     actor: typing_extensions.Literal["ACTOR_UNSPECIFIED", "ACCOUNT", "OTHER_PARTY"]
     approvalState: typing_extensions.Literal[
@@ -690,7 +694,7 @@ class Region(typing_extensions.TypedDict, total=False):
     shippingEligible: bool
 
 @typing.type_check_only
-class RegisterGCPRequest(typing_extensions.TypedDict, total=False):
+class RegisterGcpRequest(typing_extensions.TypedDict, total=False):
     developerEmail: str
 
 @typing.type_check_only
@@ -831,7 +835,7 @@ class TransitTimeValue(typing_extensions.TypedDict, total=False):
 class UnclaimHomepageRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
-class UnregisterGCPRequest(typing_extensions.TypedDict, total=False): ...
+class UnregisterGcpRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class UriSettings(typing_extensions.TypedDict, total=False):
@@ -847,6 +851,7 @@ class User(typing_extensions.TypedDict, total=False):
             "READ_ONLY",
             "ADMIN",
             "PERFORMANCE_REPORTING",
+            "API_DEVELOPER",
         ]
     ]
     name: str

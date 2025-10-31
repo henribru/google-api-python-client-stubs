@@ -85,6 +85,104 @@ class IamResource(googleapiclient.discovery.Resource):
                         self, *, name: str, **kwargs: typing.Any
                     ) -> OperationHttpRequest: ...
 
+                @typing.type_check_only
+                class ScimTenantsResource(googleapiclient.discovery.Resource):
+                    @typing.type_check_only
+                    class TokensResource(googleapiclient.discovery.Resource):
+                        def create(
+                            self,
+                            *,
+                            parent: str,
+                            body: WorkforcePoolProviderScimToken = ...,
+                            workforcePoolProviderScimTokenId: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
+                        def delete(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
+                        def get(
+                            self, *, name: str, **kwargs: typing.Any
+                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
+                        def list(
+                            self,
+                            *,
+                            parent: str,
+                            pageSize: int = ...,
+                            pageToken: str = ...,
+                            showDeleted: bool = ...,
+                            **kwargs: typing.Any,
+                        ) -> ListWorkforcePoolProviderScimTokensResponseHttpRequest: ...
+                        def list_next(
+                            self,
+                            previous_request: ListWorkforcePoolProviderScimTokensResponseHttpRequest,
+                            previous_response: ListWorkforcePoolProviderScimTokensResponse,
+                        ) -> (
+                            ListWorkforcePoolProviderScimTokensResponseHttpRequest
+                            | None
+                        ): ...
+                        def patch(
+                            self,
+                            *,
+                            name: str,
+                            body: WorkforcePoolProviderScimToken = ...,
+                            updateMask: str = ...,
+                            **kwargs: typing.Any,
+                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
+                        def undelete(
+                            self,
+                            *,
+                            name: str,
+                            body: UndeleteWorkforcePoolProviderScimTokenRequest = ...,
+                            **kwargs: typing.Any,
+                        ) -> WorkforcePoolProviderScimTokenHttpRequest: ...
+
+                    def create(
+                        self,
+                        *,
+                        parent: str,
+                        body: WorkforcePoolProviderScimTenant = ...,
+                        workforcePoolProviderScimTenantId: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def delete(
+                        self, *, name: str, hardDelete: bool = ..., **kwargs: typing.Any
+                    ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def get(
+                        self, *, name: str, **kwargs: typing.Any
+                    ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def list(
+                        self,
+                        *,
+                        parent: str,
+                        pageSize: int = ...,
+                        pageToken: str = ...,
+                        showDeleted: bool = ...,
+                        **kwargs: typing.Any,
+                    ) -> ListWorkforcePoolProviderScimTenantsResponseHttpRequest: ...
+                    def list_next(
+                        self,
+                        previous_request: ListWorkforcePoolProviderScimTenantsResponseHttpRequest,
+                        previous_response: ListWorkforcePoolProviderScimTenantsResponse,
+                    ) -> (
+                        ListWorkforcePoolProviderScimTenantsResponseHttpRequest | None
+                    ): ...
+                    def patch(
+                        self,
+                        *,
+                        name: str,
+                        body: WorkforcePoolProviderScimTenant = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def undelete(
+                        self,
+                        *,
+                        name: str,
+                        body: UndeleteWorkforcePoolProviderScimTenantRequest = ...,
+                        **kwargs: typing.Any,
+                    ) -> WorkforcePoolProviderScimTenantHttpRequest: ...
+                    def tokens(self) -> TokensResource: ...
+
                 def create(
                     self,
                     *,
@@ -130,6 +228,7 @@ class IamResource(googleapiclient.discovery.Resource):
                 ) -> OperationHttpRequest: ...
                 def keys(self) -> KeysResource: ...
                 def operations(self) -> OperationsResource: ...
+                def scimTenants(self) -> ScimTenantsResource: ...
 
             @typing.type_check_only
             class SubjectsResource(googleapiclient.discovery.Resource):
@@ -1023,6 +1122,26 @@ class ListWorkforcePoolProviderKeysResponseHttpRequest(
     ) -> ListWorkforcePoolProviderKeysResponse: ...
 
 @typing.type_check_only
+class ListWorkforcePoolProviderScimTenantsResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkforcePoolProviderScimTenantsResponse: ...
+
+@typing.type_check_only
+class ListWorkforcePoolProviderScimTokensResponseHttpRequest(
+    googleapiclient.http.HttpRequest
+):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ListWorkforcePoolProviderScimTokensResponse: ...
+
+@typing.type_check_only
 class ListWorkforcePoolProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -1221,6 +1340,22 @@ class WorkforcePoolProviderKeyHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> WorkforcePoolProviderKey: ...
+
+@typing.type_check_only
+class WorkforcePoolProviderScimTenantHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkforcePoolProviderScimTenant: ...
+
+@typing.type_check_only
+class WorkforcePoolProviderScimTokenHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> WorkforcePoolProviderScimToken: ...
 
 @typing.type_check_only
 class WorkloadIdentityPoolHttpRequest(googleapiclient.http.HttpRequest):

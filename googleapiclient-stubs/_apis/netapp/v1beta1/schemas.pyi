@@ -113,6 +113,30 @@ class BackupVault(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class CacheConfig(typing_extensions.TypedDict, total=False):
+    cifsChangeNotifyEnabled: bool
+
+@typing.type_check_only
+class CacheParameters(typing_extensions.TypedDict, total=False):
+    cacheConfig: CacheConfig
+    cacheState: typing_extensions.Literal[
+        "CACHE_STATE_UNSPECIFIED",
+        "PENDING_CLUSTER_PEERING",
+        "PENDING_SVM_PEERING",
+        "PEERED",
+        "ERROR",
+    ]
+    command: str
+    enableGlobalFileLock: bool
+    passphrase: str
+    peerClusterName: str
+    peerIpAddresses: _list[str]
+    peerSvmName: str
+    peerVolumeName: str
+    peeringCommandExpiryTime: str
+    stateDetails: str
+
+@typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -134,6 +158,13 @@ class EncryptVolumesRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class EstablishPeeringRequest(typing_extensions.TypedDict, total=False):
+    peerClusterName: str
+    peerIpAddresses: _list[str]
+    peerSvmName: str
+    peerVolumeName: str
+
+@typing.type_check_only
+class EstablishVolumePeeringRequest(typing_extensions.TypedDict, total=False):
     peerClusterName: str
     peerIpAddresses: _list[str]
     peerSvmName: str
@@ -247,6 +278,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListQuotaRulesResponse(typing_extensions.TypedDict, total=False):
@@ -384,6 +416,7 @@ class Replication(typing_extensions.TypedDict, total=False):
         "BASELINE_TRANSFERRING",
         "ABORTED",
         "EXTERNALLY_MANAGED",
+        "PENDING_PEERING",
     ]
     name: str
     replicationSchedule: typing_extensions.Literal[
@@ -435,6 +468,7 @@ class SimpleExportPolicyRule(typing_extensions.TypedDict, total=False):
         "ACCESS_TYPE_UNSPECIFIED", "READ_ONLY", "READ_WRITE", "READ_NONE"
     ]
     allowedClients: str
+    anonUid: str
     hasRootAccess: str
     kerberos5ReadOnly: bool
     kerberos5ReadWrite: bool
@@ -444,6 +478,9 @@ class SimpleExportPolicyRule(typing_extensions.TypedDict, total=False):
     kerberos5pReadWrite: bool
     nfsv3: bool
     nfsv4: bool
+    squashMode: typing_extensions.Literal[
+        "SQUASH_MODE_UNSPECIFIED", "NO_ROOT_SQUASH", "ROOT_SQUASH", "ALL_SQUASH"
+    ]
 
 @typing.type_check_only
 class Snapshot(typing_extensions.TypedDict, total=False):
@@ -485,7 +522,9 @@ class StopReplicationRequest(typing_extensions.TypedDict, total=False):
 class StoragePool(typing_extensions.TypedDict, total=False):
     activeDirectory: str
     allowAutoTiering: bool
+    availableThroughputMibps: float
     capacityGib: str
+    coldTierSizeUsedGib: str
     createTime: str
     customPerformanceEnabled: bool
     description: str
@@ -495,12 +534,14 @@ class StoragePool(typing_extensions.TypedDict, total=False):
     ]
     globalAccessAllowed: bool
     hotTierSizeGib: str
+    hotTierSizeUsedGib: str
     kmsConfig: str
     labels: dict[str, typing.Any]
     ldapEnabled: bool
     name: str
     network: str
     psaRange: str
+    qosType: typing_extensions.Literal["QOS_TYPE_UNSPECIFIED", "AUTO", "MANUAL"]
     replicaZone: str
     satisfiesPzi: bool
     satisfiesPzs: bool
@@ -516,6 +557,7 @@ class StoragePool(typing_extensions.TypedDict, total=False):
         "RESTORING",
         "DISABLED",
         "ERROR",
+        "DEGRADED",
     ]
     stateDetails: str
     totalIops: str
@@ -572,6 +614,7 @@ class VerifyKmsConfigResponse(typing_extensions.TypedDict, total=False):
 class Volume(typing_extensions.TypedDict, total=False):
     activeDirectory: str
     backupConfig: BackupConfig
+    cacheParameters: CacheParameters
     capacityGib: str
     coldTierSizeGib: str
     createTime: str
@@ -581,6 +624,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     ]
     exportPolicy: ExportPolicy
     hasReplication: bool
+    hotTierSizeUsedGib: str
     hybridReplicationParameters: HybridReplicationParameters
     kerberosEnabled: bool
     kmsConfig: str
@@ -638,6 +682,7 @@ class Volume(typing_extensions.TypedDict, total=False):
     ]
     stateDetails: str
     storagePool: str
+    throughputMibps: float
     tieringPolicy: TieringPolicy
     unixPermissions: str
     usedGib: str

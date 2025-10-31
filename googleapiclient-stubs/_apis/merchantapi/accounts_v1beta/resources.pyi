@@ -73,14 +73,17 @@ class MerchantResource(googleapiclient.discovery.Resource):
 
         @typing.type_check_only
         class DeveloperRegistrationResource(googleapiclient.discovery.Resource):
+            def getDeveloperRegistration(
+                self, *, name: str, **kwargs: typing.Any
+            ) -> DeveloperRegistrationHttpRequest: ...
             def registerGcp(
-                self, *, name: str, body: RegisterGCPRequest = ..., **kwargs: typing.Any
+                self, *, name: str, body: RegisterGcpRequest = ..., **kwargs: typing.Any
             ) -> DeveloperRegistrationHttpRequest: ...
             def unregisterGcp(
                 self,
                 *,
                 name: str,
-                body: UnregisterGCPRequest = ...,
+                body: UnregisterGcpRequest = ...,
                 **kwargs: typing.Any,
             ) -> EmptyHttpRequest: ...
 
@@ -489,9 +492,9 @@ class MerchantResource(googleapiclient.discovery.Resource):
             self, *, name: str, force: bool = ..., **kwargs: typing.Any
         ) -> EmptyHttpRequest: ...
         def get(self, *, name: str, **kwargs: typing.Any) -> AccountHttpRequest: ...
-        def getDeveloperRegistration(
-            self, *, name: str, **kwargs: typing.Any
-        ) -> DeveloperRegistrationHttpRequest: ...
+        def getAccountForGcpRegistration(
+            self, **kwargs: typing.Any
+        ) -> GetAccountForGcpRegistrationResponseHttpRequest: ...
         def list(
             self,
             *,
@@ -688,6 +691,14 @@ class FindLfpProvidersResponseHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> FindLfpProvidersResponse: ...
+
+@typing.type_check_only
+class GetAccountForGcpRegistrationResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> GetAccountForGcpRegistrationResponse: ...
 
 @typing.type_check_only
 class HomepageHttpRequest(googleapiclient.http.HttpRequest):

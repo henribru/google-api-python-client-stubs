@@ -27,6 +27,7 @@ class ContactCenter(typing_extensions.TypedDict, total=False):
     customerDomainPrefix: str
     displayName: str
     early: Early
+    featureConfig: FeatureConfig
     instanceConfig: InstanceConfig
     kmsKey: str
     labels: dict[str, typing.Any]
@@ -68,6 +69,10 @@ class Early(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class FeatureConfig(typing_extensions.TypedDict, total=False):
+    agentDesktopEnabled: bool
 
 @typing.type_check_only
 class GoogleCloudCommonOperationMetadata(typing_extensions.TypedDict, total=False):
@@ -116,6 +121,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):

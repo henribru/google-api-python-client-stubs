@@ -75,18 +75,29 @@ class AggregationSum(typing_extensions.TypedDict, total=False): ...
 class Asset(typing_extensions.TypedDict, total=False):
     assignedGroups: _list[str]
     attributes: dict[str, typing.Any]
+    awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
+    awsEcsClusterDetails: AwsEcsClusterDetails
+    awsEfsFileSystemDetails: AwsEfsFileSystemDetails
+    awsEksClusterDetails: AwsEksClusterDetails
+    awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsLambdaFunctionDetails: AwsLambdaFunctionDetails
+    awsRedshiftDetails: AwsRedshiftDetails
+    awsS3BucketDetails: AwsS3BucketDetails
+    awsVpcDetails: AwsVpcDetails
     createTime: str
     databaseDeploymentDetails: DatabaseDeploymentDetails
     databaseDetails: DatabaseDetails
     hidden: bool
     hideReason: str
     hideTime: str
+    hostingProviderDetails: HostingProviderDetails
     insightList: InsightList
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
     name: str
     performanceData: AssetPerformanceData
     sources: _list[str]
+    structuredAttributes: dict[str, typing.Any]
     title: str
     updateTime: str
     virtualMachineDetails: VirtualMachineDetails
@@ -94,6 +105,15 @@ class Asset(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AssetFrame(typing_extensions.TypedDict, total=False):
     attributes: dict[str, typing.Any]
+    awsCloudFrontDistributionDetails: AwsCloudFrontDistributionDetails
+    awsEcsClusterDetails: AwsEcsClusterDetails
+    awsEfsFileSystemDetails: AwsEfsFileSystemDetails
+    awsEksClusterDetails: AwsEksClusterDetails
+    awsElbLoadBalancerDetails: AwsElbLoadBalancerDetails
+    awsLambdaFunctionDetails: AwsLambdaFunctionDetails
+    awsRedshiftDetails: AwsRedshiftDetails
+    awsS3BucketDetails: AwsS3BucketDetails
+    awsVpcDetails: AwsVpcDetails
     collectionType: typing_extensions.Literal[
         "SOURCE_TYPE_UNKNOWN",
         "SOURCE_TYPE_UPLOAD",
@@ -104,10 +124,12 @@ class AssetFrame(typing_extensions.TypedDict, total=False):
     ]
     databaseDeploymentDetails: DatabaseDeploymentDetails
     databaseDetails: DatabaseDetails
+    hostingProviderDetails: HostingProviderDetails
     labels: dict[str, typing.Any]
     machineDetails: MachineDetails
     performanceSamples: _list[PerformanceSample]
     reportTime: str
+    structuredAttributes: dict[str, typing.Any]
     traceToken: str
     virtualMachineDetails: VirtualMachineDetails
 
@@ -164,6 +186,9 @@ class AssetsExportJobPerformanceData(typing_extensions.TypedDict, total=False):
     maxDays: int
 
 @typing.type_check_only
+class AwsCloudFrontDistributionDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     hyperthreading: typing_extensions.Literal[
         "HYPERTHREADING_STATUS_UNSPECIFIED",
@@ -174,7 +199,64 @@ class AwsEc2PlatformDetails(typing_extensions.TypedDict, total=False):
     machineTypeLabel: str
 
 @typing.type_check_only
+class AwsEcsClusterDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsEfsFileSystemDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsEksClusterDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsElbLoadBalancerDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsLambdaFunctionDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class AwsRds(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsRedshiftDetails(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class AwsS3BucketDetails(typing_extensions.TypedDict, total=False):
+    objectsMetadata: AwsS3BucketDetailsObjectsMetadata
+    storageClasses: _list[AwsS3BucketDetailsStorageClass]
+    versioning: AwsS3BucketDetailsVersioning
+
+@typing.type_check_only
+class AwsS3BucketDetailsObjectsMetadata(typing_extensions.TypedDict, total=False):
+    totalObjects: AwsS3BucketDetailsObjectsMetadataTotalObjects
+
+@typing.type_check_only
+class AwsS3BucketDetailsObjectsMetadataTotalObjects(
+    typing_extensions.TypedDict, total=False
+):
+    value: int
+
+@typing.type_check_only
+class AwsS3BucketDetailsStorageClass(typing_extensions.TypedDict, total=False):
+    totalBytes: str
+    type: typing_extensions.Literal[
+        "STORAGE_CLASS_TYPE_UNSPECIFIED",
+        "STANDARD",
+        "INTELLIGENT_TIERING",
+        "STANDARD_IA",
+        "ONE_ZONE_IA",
+        "GLACIER",
+        "DEEP_ARCHIVE",
+        "GLACIER_IR",
+        "REDUCED_REDUNDANCY",
+        "EXPRESS_ONEZONE",
+    ]
+
+@typing.type_check_only
+class AwsS3BucketDetailsVersioning(typing_extensions.TypedDict, total=False):
+    enabled: bool
+
+@typing.type_check_only
+class AwsVpcDetails(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
 class AzureVmPlatformDetails(typing_extensions.TypedDict, total=False):
@@ -207,7 +289,11 @@ class BiosDetails(typing_extensions.TypedDict, total=False):
     biosName: str
     biosReleaseDate: str
     biosVersion: str
+    id: str
+    manufacturer: str
+    releaseTime: str
     smbiosUuid: str
+    version: str
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -611,8 +697,10 @@ class DiscoveryClientDiscoveryClientRecommendedVersion(
 
 @typing.type_check_only
 class DiskEntry(typing_extensions.TypedDict, total=False):
+    capacityBytes: str
     diskLabel: str
     diskLabelType: str
+    freeSpaceBytes: str
     hwAddress: str
     interfaceType: str
     partitions: DiskPartitionList
@@ -752,9 +840,17 @@ class GuestConfigDetails(typing_extensions.TypedDict, total=False):
     issue: str
     nfsExports: NfsExportList
     selinux: Selinux
+    selinuxMode: typing_extensions.Literal[
+        "SE_LINUX_MODE_UNSPECIFIED",
+        "SE_LINUX_MODE_DISABLED",
+        "SE_LINUX_MODE_PERMISSIVE",
+        "SE_LINUX_MODE_ENFORCING",
+    ]
 
 @typing.type_check_only
 class GuestInstalledApplication(typing_extensions.TypedDict, total=False):
+    applicationName: str
+    installTime: str
     licenses: _list[str]
     name: str
     path: str
@@ -769,18 +865,36 @@ class GuestInstalledApplicationList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GuestOsDetails(typing_extensions.TypedDict, total=False):
     config: GuestConfigDetails
+    family: typing_extensions.Literal[
+        "OS_FAMILY_UNKNOWN", "OS_FAMILY_WINDOWS", "OS_FAMILY_LINUX", "OS_FAMILY_UNIX"
+    ]
+    osName: str
     runtime: GuestRuntimeDetails
+    version: str
 
 @typing.type_check_only
 class GuestRuntimeDetails(typing_extensions.TypedDict, total=False):
     domain: str
     installedApps: GuestInstalledApplicationList
+    lastBootTime: str
     lastUptime: Date
     machineName: str
     networkInfo: RuntimeNetworkInfo
     openFileList: OpenFileList
     processes: RunningProcessList
     services: RunningServiceList
+
+@typing.type_check_only
+class HostingProviderDetails(typing_extensions.TypedDict, total=False):
+    aws: HostingProviderDetailsAws
+    createTime: str
+    displayName: str
+    location: ResourceLocation
+    originalId: str
+
+@typing.type_check_only
+class HostingProviderDetailsAws(typing_extensions.TypedDict, total=False):
+    owningAccountId: str
 
 @typing.type_check_only
 class HostsEntry(typing_extensions.TypedDict, total=False):
@@ -957,6 +1071,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPreferenceSetsResponse(typing_extensions.TypedDict, total=False):
@@ -999,6 +1114,7 @@ class Location(typing_extensions.TypedDict, total=False):
 class MachineArchitectureDetails(typing_extensions.TypedDict, total=False):
     bios: BiosDetails
     cpuArchitecture: str
+    cpuManufacturer: str
     cpuName: str
     cpuSocketCount: int
     firmwareType: typing_extensions.Literal["FIRMWARE_TYPE_UNSPECIFIED", "BIOS", "EFI"]
@@ -1129,6 +1245,7 @@ class NetworkAdapterDetails(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class NetworkAdapterList(typing_extensions.TypedDict, total=False):
+    entries: _list[NetworkAdapterDetails]
     networkAdapters: _list[NetworkAdapterDetails]
 
 @typing.type_check_only
@@ -1146,6 +1263,7 @@ class NetworkAddress(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class NetworkAddressList(typing_extensions.TypedDict, total=False):
     addresses: _list[NetworkAddress]
+    entries: _list[NetworkAddress]
 
 @typing.type_check_only
 class NetworkConnection(typing_extensions.TypedDict, total=False):
@@ -1231,7 +1349,7 @@ class OperationMetadata(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class OutputFile(typing_extensions.TypedDict, total=False):
     csvOutputFile: CsvOutputFile
-    fileSizeBytes: int
+    fileSizeBytes: str
     xlsxOutputFile: XlsxOutputFile
 
 @typing.type_check_only
@@ -1502,6 +1620,10 @@ class ReportSummaryVMWareNodeAllocation(typing_extensions.TypedDict, total=False
     vmwareNode: ReportSummaryVMWareNode
 
 @typing.type_check_only
+class ResourceLocation(typing_extensions.TypedDict, total=False):
+    region: str
+
+@typing.type_check_only
 class RunAssetsExportJobRequest(typing_extensions.TypedDict, total=False):
     requestId: str
 
@@ -1523,6 +1645,7 @@ class RunningProcess(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RunningProcessList(typing_extensions.TypedDict, total=False):
+    entries: _list[RunningProcess]
     processes: _list[RunningProcess]
 
 @typing.type_check_only
@@ -1531,12 +1654,14 @@ class RunningService(typing_extensions.TypedDict, total=False):
     exePath: str
     name: str
     pid: str
+    serviceName: str
     startMode: str
     state: str
     status: str
 
 @typing.type_check_only
 class RunningServiceList(typing_extensions.TypedDict, total=False):
+    entries: _list[RunningService]
     services: _list[RunningService]
 
 @typing.type_check_only
@@ -1544,6 +1669,8 @@ class RuntimeNetworkInfo(typing_extensions.TypedDict, total=False):
     connections: NetworkConnectionList
     netstat: str
     netstatTime: DateTime
+    rawScanResult: str
+    scanTime: str
 
 @typing.type_check_only
 class Selinux(typing_extensions.TypedDict, total=False):
@@ -1840,7 +1967,10 @@ class VmwarePlatformDetails(typing_extensions.TypedDict, total=False):
     ]
     esxVersion: str
     osid: str
+    vcenterFolder: str
+    vcenterUri: str
     vcenterVersion: str
+    vcenterVmId: str
 
 @typing.type_check_only
 class XlsxOutputFile(typing_extensions.TypedDict, total=False):

@@ -223,9 +223,14 @@ class Image(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Input(typing_extensions.TypedDict, total=False):
+    attributes: InputAttributes
     key: str
     preprocessingConfig: PreprocessingConfig
     uri: str
+
+@typing.type_check_only
+class InputAttributes(typing_extensions.TypedDict, total=False):
+    trackDefinitions: _list[TrackDefinition]
 
 @typing.type_check_only
 class Job(typing_extensions.TypedDict, total=False):
@@ -389,6 +394,13 @@ class TextStream(typing_extensions.TypedDict, total=False):
     displayName: str
     languageCode: str
     mapping: _list[TextMapping]
+
+@typing.type_check_only
+class TrackDefinition(typing_extensions.TypedDict, total=False):
+    detectLanguages: bool
+    detectedLanguages: _list[str]
+    inputTrack: int
+    languages: _list[str]
 
 @typing.type_check_only
 class VideoStream(typing_extensions.TypedDict, total=False):

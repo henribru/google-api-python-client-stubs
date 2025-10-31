@@ -71,7 +71,10 @@ class BackupCollection(typing_extensions.TypedDict, total=False):
     clusterUid: str
     createTime: str
     kmsKey: str
+    lastBackupTime: str
     name: str
+    totalBackupCount: str
+    totalBackupSizeBytes: str
     uid: str
 
 @typing.type_check_only
@@ -79,6 +82,19 @@ class BackupConfiguration(typing_extensions.TypedDict, total=False):
     automatedBackupEnabled: bool
     backupRetentionSettings: RetentionSettings
     pointInTimeRecoveryEnabled: bool
+
+@typing.type_check_only
+class BackupDRConfiguration(typing_extensions.TypedDict, total=False):
+    backupdrManaged: bool
+
+@typing.type_check_only
+class BackupDRMetadata(typing_extensions.TypedDict, total=False):
+    backupConfiguration: BackupConfiguration
+    backupRun: BackupRun
+    backupdrConfiguration: BackupDRConfiguration
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: DatabaseResourceId
 
 @typing.type_check_only
 class BackupFile(typing_extensions.TypedDict, total=False):
@@ -110,17 +126,21 @@ class Cluster(typing_extensions.TypedDict, total=False):
         "AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"
     ]
     automatedBackupConfig: AutomatedBackupConfig
+    availableMaintenanceVersions: _list[str]
     backupCollection: str
     clusterEndpoints: _list[ClusterEndpoint]
     createTime: str
     crossClusterReplicationConfig: CrossClusterReplicationConfig
     deletionProtectionEnabled: bool
     discoveryEndpoints: _list[DiscoveryEndpoint]
+    effectiveMaintenanceVersion: str
     encryptionInfo: EncryptionInfo
     gcsSource: GcsBackupSource
     kmsKey: str
+    labels: dict[str, typing.Any]
     maintenancePolicy: ClusterMaintenancePolicy
     maintenanceSchedule: ClusterMaintenanceSchedule
+    maintenanceVersion: str
     managedBackupSource: ManagedBackupSource
     name: str
     nodeType: typing_extensions.Literal[
@@ -138,6 +158,8 @@ class Cluster(typing_extensions.TypedDict, total=False):
     pscServiceAttachments: _list[PscServiceAttachment]
     redisConfigs: dict[str, typing.Any]
     replicaCount: int
+    satisfiesPzi: bool
+    satisfiesPzs: bool
     shardCount: int
     simulateMaintenanceEvent: bool
     sizeGb: int
@@ -231,7 +253,9 @@ class CustomMetadataData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
+    backupdrMetadata: BackupDRMetadata
     configBasedSignalData: ConfigBasedSignalData
+    databaseResourceSignalData: DatabaseResourceSignalData
     feedTimestamp: str
     feedType: typing_extensions.Literal[
         "FEEDTYPE_UNSPECIFIED",
@@ -240,12 +264,15 @@ class DatabaseResourceFeed(typing_extensions.TypedDict, total=False):
         "SECURITY_FINDING_DATA",
         "RECOMMENDATION_SIGNAL_DATA",
         "CONFIG_BASED_SIGNAL_DATA",
+        "BACKUPDR_METADATA",
+        "DATABASE_RESOURCE_SIGNAL_DATA",
     ]
     observabilityMetricData: ObservabilityMetricData
     recommendationSignalData: DatabaseResourceRecommendationSignalData
     resourceHealthSignalData: DatabaseResourceHealthSignalData
     resourceId: DatabaseResourceId
     resourceMetadata: DatabaseResourceMetadata
+    skipIngestion: bool
 
 @typing.type_check_only
 class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False):
@@ -377,6 +404,13 @@ class DatabaseResourceHealthSignalData(typing_extensions.TypedDict, total=False)
         "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+        "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+        "SIGNAL_TYPE_REPLICATION_LAG",
+        "SIGNAL_TYPE_OUTDATED_VERSION",
+        "SIGNAL_TYPE_OUTDATED_CLIENT",
+        "SIGNAL_TYPE_DATABOOST_DISABLED",
+        "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
     ]
     state: typing_extensions.Literal["STATE_UNSPECIFIED", "ACTIVE", "RESOLVED", "MUTED"]
 
@@ -400,6 +434,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     availabilityConfiguration: AvailabilityConfiguration
     backupConfiguration: BackupConfiguration
     backupRun: BackupRun
+    backupdrConfiguration: BackupDRConfiguration
     creationTime: str
     currentState: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
@@ -411,7 +446,10 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     ]
     customMetadata: CustomMetadataData
     edition: typing_extensions.Literal[
-        "EDITION_UNSPECIFIED", "EDITION_ENTERPRISE", "EDITION_ENTERPRISE_PLUS"
+        "EDITION_UNSPECIFIED",
+        "EDITION_ENTERPRISE",
+        "EDITION_ENTERPRISE_PLUS",
+        "EDITION_STANDARD",
     ]
     entitlements: _list[Entitlement]
     expectedState: typing_extensions.Literal[
@@ -439,6 +477,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     ]
     location: str
     machineConfiguration: MachineConfiguration
+    maintenanceInfo: ResourceMaintenanceInfo
     primaryResourceId: DatabaseResourceId
     primaryResourceLocation: str
     product: Product
@@ -456,6 +495,7 @@ class DatabaseResourceMetadata(typing_extensions.TypedDict, total=False):
     tagsSet: Tags
     updationTime: str
     userLabelSet: UserLabels
+    zone: str
 
 @typing.type_check_only
 class DatabaseResourceRecommendationSignalData(
@@ -568,7 +608,38 @@ class DatabaseResourceRecommendationSignalData(
         "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
         "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+        "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+        "SIGNAL_TYPE_REPLICATION_LAG",
+        "SIGNAL_TYPE_OUTDATED_VERSION",
+        "SIGNAL_TYPE_OUTDATED_CLIENT",
+        "SIGNAL_TYPE_DATABOOST_DISABLED",
+        "SIGNAL_TYPE_RECOMMENDED_MAINTENANCE_POLICIES",
     ]
+
+@typing.type_check_only
+class DatabaseResourceSignalData(typing_extensions.TypedDict, total=False):
+    fullResourceName: str
+    lastRefreshTime: str
+    resourceId: DatabaseResourceId
+    signalBoolValue: bool
+    signalState: typing_extensions.Literal[
+        "SIGNAL_STATE_UNSPECIFIED", "ACTIVE", "INACTIVE", "DISMISSED"
+    ]
+    signalType: typing_extensions.Literal[
+        "SIGNAL_TYPE_UNSPECIFIED",
+        "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+        "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+        "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+        "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+        "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS",
+    ]
+
+@typing.type_check_only
+class Date(typing_extensions.TypedDict, total=False):
+    day: int
+    month: int
+    year: int
 
 @typing.type_check_only
 class DiscoveryEndpoint(typing_extensions.TypedDict, total=False):
@@ -775,6 +846,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -913,6 +985,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "ENGINE_OTHER",
         "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
         "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+        "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
         "ENGINE_EXADATA_ORACLE",
         "ENGINE_ADB_SERVERLESS_ORACLE",
     ]
@@ -931,6 +1004,7 @@ class Product(typing_extensions.TypedDict, total=False):
         "PRODUCT_TYPE_FIRESTORE",
         "PRODUCT_TYPE_COMPUTE_ENGINE",
         "PRODUCT_TYPE_ORACLE_ON_GCP",
+        "PRODUCT_TYPE_BIGQUERY",
         "PRODUCT_TYPE_OTHER",
     ]
     version: str
@@ -1029,6 +1103,42 @@ class RescheduleMaintenanceRequest(typing_extensions.TypedDict, total=False):
         "SPECIFIC_TIME",
     ]
     scheduleTime: str
+
+@typing.type_check_only
+class ResourceMaintenanceDenySchedule(typing_extensions.TypedDict, total=False):
+    endDate: Date
+    startDate: Date
+    time: TimeOfDay
+
+@typing.type_check_only
+class ResourceMaintenanceInfo(typing_extensions.TypedDict, total=False):
+    denyMaintenanceSchedules: _list[ResourceMaintenanceDenySchedule]
+    maintenanceSchedule: ResourceMaintenanceSchedule
+    maintenanceVersion: str
+
+@typing.type_check_only
+class ResourceMaintenanceSchedule(typing_extensions.TypedDict, total=False):
+    day: typing_extensions.Literal[
+        "DAY_OF_WEEK_UNSPECIFIED",
+        "MONDAY",
+        "TUESDAY",
+        "WEDNESDAY",
+        "THURSDAY",
+        "FRIDAY",
+        "SATURDAY",
+        "SUNDAY",
+    ]
+    phase: typing_extensions.Literal[
+        "WINDOW_PHASE_UNSPECIFIED",
+        "WINDOW_PHASE_ANY",
+        "WINDOW_PHASE_WEEK1",
+        "WINDOW_PHASE_WEEK2",
+        "WINDOW_PHASE_WEEK5",
+    ]
+    time: TimeOfDay
+    week: typing_extensions.Literal[
+        "PHASE_UNSPECIFIED", "ANY", "WEEK1", "WEEK2", "WEEK5"
+    ]
 
 @typing.type_check_only
 class RetentionSettings(typing_extensions.TypedDict, total=False):

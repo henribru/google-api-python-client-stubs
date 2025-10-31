@@ -7,6 +7,7 @@ _list = list
 @typing.type_check_only
 class AdvancedVoiceOptions(typing_extensions.TypedDict, total=False):
     lowLatencyJourneySynthesis: bool
+    relaxSafetyFilters: bool
 
 @typing.type_check_only
 class AudioConfig(typing_extensions.TypedDict, total=False):
@@ -62,6 +63,7 @@ class GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata(
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListVoicesResponse(typing_extensions.TypedDict, total=False):
@@ -70,6 +72,15 @@ class ListVoicesResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class MultiSpeakerMarkup(typing_extensions.TypedDict, total=False):
     turns: _list[Turn]
+
+@typing.type_check_only
+class MultiSpeakerVoiceConfig(typing_extensions.TypedDict, total=False):
+    speakerVoiceConfigs: _list[MultispeakerPrebuiltVoice]
+
+@typing.type_check_only
+class MultispeakerPrebuiltVoice(typing_extensions.TypedDict, total=False):
+    speakerAlias: str
+    speakerId: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -90,6 +101,7 @@ class SynthesisInput(typing_extensions.TypedDict, total=False):
     customPronunciations: CustomPronunciations
     markup: str
     multiSpeakerMarkup: MultiSpeakerMarkup
+    prompt: str
     ssml: str
     text: str
 
@@ -149,6 +161,8 @@ class VoiceCloneParams(typing_extensions.TypedDict, total=False):
 class VoiceSelectionParams(typing_extensions.TypedDict, total=False):
     customVoice: CustomVoiceParams
     languageCode: str
+    modelName: str
+    multiSpeakerVoiceConfig: MultiSpeakerVoiceConfig
     name: str
     ssmlGender: typing_extensions.Literal[
         "SSML_VOICE_GENDER_UNSPECIFIED", "MALE", "FEMALE", "NEUTRAL"

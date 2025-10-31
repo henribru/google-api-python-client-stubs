@@ -110,6 +110,12 @@ class EnvironmentDetails(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class PcAccountDetails(typing_extensions.TypedDict, total=False):
+    appLicensingVerdict: typing_extensions.Literal[
+        "UNKNOWN", "LICENSED", "UNLICENSED", "UNEVALUATED"
+    ]
+
+@typing.type_check_only
 class PcDeviceIntegrity(typing_extensions.TypedDict, total=False):
     deviceRecognitionVerdict: _list[
         typing_extensions.Literal[
@@ -124,9 +130,15 @@ class PcRequestDetails(typing_extensions.TypedDict, total=False):
     requestTime: str
 
 @typing.type_check_only
+class PcTestingDetails(typing_extensions.TypedDict, total=False):
+    isTestingResponse: bool
+
+@typing.type_check_only
 class PcTokenPayloadExternal(typing_extensions.TypedDict, total=False):
+    accountDetails: PcAccountDetails
     deviceIntegrity: PcDeviceIntegrity
     requestDetails: PcRequestDetails
+    testingDetails: PcTestingDetails
 
 @typing.type_check_only
 class RecentDeviceActivity(typing_extensions.TypedDict, total=False):

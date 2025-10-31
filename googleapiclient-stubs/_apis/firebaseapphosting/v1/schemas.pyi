@@ -5,6 +5,14 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class ArchiveSource(typing_extensions.TypedDict, total=False):
+    author: SourceUserMetadata
+    description: str
+    externalSignedUri: str
+    rootDirectory: str
+    userStorageUri: str
+
+@typing.type_check_only
 class Backend(typing_extensions.TypedDict, total=False):
     annotations: dict[str, typing.Any]
     appId: str
@@ -19,6 +27,7 @@ class Backend(typing_extensions.TypedDict, total=False):
     mode: str
     name: str
     reconciling: bool
+    requestLogsDisabled: bool
     serviceAccount: str
     servingLocality: typing_extensions.Literal[
         "SERVING_LOCALITY_UNSPECIFIED", "REGIONAL_STRICT", "GLOBAL_ACCESS"
@@ -51,6 +60,7 @@ class Build(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class BuildSource(typing_extensions.TypedDict, total=False):
+    archive: ArchiveSource
     codebase: CodebaseSource
     container: ContainerSource
 
@@ -361,6 +371,12 @@ class RunService(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ServingBehavior(typing_extensions.TypedDict, total=False):
     redirect: Redirect
+
+@typing.type_check_only
+class SourceUserMetadata(typing_extensions.TypedDict, total=False):
+    displayName: str
+    email: str
+    imageUri: str
 
 @typing.type_check_only
 class Status(typing_extensions.TypedDict, total=False):

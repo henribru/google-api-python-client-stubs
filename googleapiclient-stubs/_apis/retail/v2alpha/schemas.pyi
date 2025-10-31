@@ -625,7 +625,6 @@ class GoogleCloudRetailV2alphaConditionTimeRange(
 class GoogleCloudRetailV2alphaControl(typing_extensions.TypedDict, total=False):
     associatedServingConfigIds: _list[str]
     displayName: str
-    facetSpec: GoogleCloudRetailV2alphaSearchRequestFacetSpec
     name: str
     rule: GoogleCloudRetailV2alphaRule
     searchSolutionUseCase: _list[
@@ -662,6 +661,7 @@ class GoogleCloudRetailV2alphaConversationalSearchRequest(
     )
     pageCategories: _list[str]
     query: str
+    safetySettings: _list[GoogleCloudRetailV2alphaSafetySetting]
     searchParams: GoogleCloudRetailV2alphaConversationalSearchRequestSearchParams
     userInfo: GoogleCloudRetailV2alphaUserInfo
     userLabels: dict[str, typing.Any]
@@ -672,7 +672,7 @@ class GoogleCloudRetailV2alphaConversationalSearchRequestConversationalFiltering
     typing_extensions.TypedDict, total=False
 ):
     conversationalFilteringMode: typing_extensions.Literal[
-        "MODE_UNSPECIFIED", "CONVERSATIONAL_FILTER_ONLY"
+        "MODE_UNSPECIFIED", "DISABLED", "ENABLED", "CONVERSATIONAL_FILTER_ONLY"
     ]
     enableConversationalFiltering: bool
     userAnswer: GoogleCloudRetailV2alphaConversationalSearchRequestUserAnswer
@@ -707,9 +707,15 @@ class GoogleCloudRetailV2alphaConversationalSearchResponse(
 ):
     conversationId: str
     conversationalFilteringResult: GoogleCloudRetailV2alphaConversationalSearchResponseConversationalFilteringResult
+    conversationalTextResponse: str
+    followupQuestion: (
+        GoogleCloudRetailV2alphaConversationalSearchResponseFollowupQuestion
+    )
     refinedSearch: _list[
         GoogleCloudRetailV2alphaConversationalSearchResponseRefinedSearch
     ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "STREAMING", "SUCCEEDED"]
+    userQueryTypes: _list[str]
 
 @typing.type_check_only
 class GoogleCloudRetailV2alphaConversationalSearchResponseConversationalFilteringResult(
@@ -1288,6 +1294,15 @@ class GoogleCloudRetailV2alphaOutputResult(typing_extensions.TypedDict, total=Fa
     gcsResult: _list[GoogleCloudRetailV2alphaGcsOutputResult]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaPanelInfo(typing_extensions.TypedDict, total=False):
+    attributionToken: str
+    displayName: str
+    panelId: str
+    panelPosition: int
+    productDetails: _list[GoogleCloudRetailV2alphaProductDetail]
+    totalPanels: int
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaPauseModelRequest(
     typing_extensions.TypedDict, total=False
 ): ...
@@ -1673,6 +1688,28 @@ class GoogleCloudRetailV2alphaRuleTwowaySynonymsAction(
     synonyms: _list[str]
 
 @typing.type_check_only
+class GoogleCloudRetailV2alphaSafetySetting(typing_extensions.TypedDict, total=False):
+    category: typing_extensions.Literal[
+        "HARM_CATEGORY_UNSPECIFIED",
+        "HARM_CATEGORY_HATE_SPEECH",
+        "HARM_CATEGORY_DANGEROUS_CONTENT",
+        "HARM_CATEGORY_HARASSMENT",
+        "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+        "HARM_CATEGORY_CIVIC_INTEGRITY",
+    ]
+    method: typing_extensions.Literal[
+        "HARM_BLOCK_METHOD_UNSPECIFIED", "SEVERITY", "PROBABILITY"
+    ]
+    threshold: typing_extensions.Literal[
+        "HARM_BLOCK_THRESHOLD_UNSPECIFIED",
+        "BLOCK_LOW_AND_ABOVE",
+        "BLOCK_MEDIUM_AND_ABOVE",
+        "BLOCK_ONLY_HIGH",
+        "BLOCK_NONE",
+        "OFF",
+    ]
+
+@typing.type_check_only
 class GoogleCloudRetailV2alphaSearchRequest(typing_extensions.TypedDict, total=False):
     boostSpec: GoogleCloudRetailV2alphaSearchRequestBoostSpec
     branch: str
@@ -2009,6 +2046,7 @@ class GoogleCloudRetailV2alphaUserEvent(typing_extensions.TypedDict, total=False
     orderBy: str
     pageCategories: _list[str]
     pageViewId: str
+    panels: _list[GoogleCloudRetailV2alphaPanelInfo]
     productDetails: _list[GoogleCloudRetailV2alphaProductDetail]
     purchaseTransaction: GoogleCloudRetailV2alphaPurchaseTransaction
     referrerUri: str
@@ -2306,6 +2344,7 @@ class GoogleCloudRetailV2betaUserEventImportSummary(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

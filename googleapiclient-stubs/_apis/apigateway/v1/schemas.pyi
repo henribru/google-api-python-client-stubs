@@ -122,6 +122,7 @@ class ApigatewayListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ApigatewayListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[ApigatewayOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ApigatewayLocation(typing_extensions.TypedDict, total=False):

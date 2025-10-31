@@ -16,6 +16,7 @@ class Action(typing_extensions.TypedDict, total=False):
     displayName: str
     inputJsonSchema: JsonSchema
     inputParameters: _list[InputParameter]
+    metadata: dict[str, typing.Any]
     name: str
     resultJsonSchema: JsonSchema
     resultMetadata: _list[ResultMetadata]
@@ -34,6 +35,7 @@ class CheckReadinessResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class CheckStatusResponse(typing_extensions.TypedDict, total=False):
     description: str
+    metadata: dict[str, typing.Any]
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "ACTIVE", "ERROR", "AUTH_ERROR"
     ]
@@ -61,12 +63,15 @@ class Empty(typing_extensions.TypedDict, total=False): ...
 @typing.type_check_only
 class Entity(typing_extensions.TypedDict, total=False):
     fields: dict[str, typing.Any]
+    metadata: dict[str, typing.Any]
     name: str
 
 @typing.type_check_only
 class EntityType(typing_extensions.TypedDict, total=False):
+    defaultSortBy: str
     fields: _list[Field]
     jsonSchema: JsonSchema
+    metadata: dict[str, typing.Any]
     name: str
     operations: _list[
         typing_extensions.Literal[
@@ -81,6 +86,7 @@ class ExchangeAuthCodeRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExchangeAuthCodeResponse(typing_extensions.TypedDict, total=False):
     accessCredentials: AccessCredentials
+    metadata: dict[str, typing.Any]
 
 @typing.type_check_only
 class ExecuteActionRequest(typing_extensions.TypedDict, total=False):
@@ -88,6 +94,7 @@ class ExecuteActionRequest(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExecuteActionResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
     results: _list[dict[str, typing.Any]]
 
 @typing.type_check_only
@@ -97,6 +104,15 @@ class ExecuteSqlQueryRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ExecuteSqlQueryResponse(typing_extensions.TypedDict, total=False):
     results: _list[dict[str, typing.Any]]
+
+@typing.type_check_only
+class ExecuteToolRequest(typing_extensions.TypedDict, total=False):
+    parameters: dict[str, typing.Any]
+
+@typing.type_check_only
+class ExecuteToolResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
+    result: dict[str, typing.Any]
 
 @typing.type_check_only
 class Field(typing_extensions.TypedDict, total=False):
@@ -155,6 +171,12 @@ class Field(typing_extensions.TypedDict, total=False):
     name: str
     nullable: bool
     reference: Reference
+
+@typing.type_check_only
+class GetResourceResponse(typing_extensions.TypedDict, total=False):
+    data: str
+    metadata: dict[str, typing.Any]
+    mimeType: str
 
 @typing.type_check_only
 class InputParameter(typing_extensions.TypedDict, total=False):
@@ -303,19 +325,34 @@ class JsonSchema(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListActionsResponse(typing_extensions.TypedDict, total=False):
     actions: _list[Action]
+    metadata: dict[str, typing.Any]
     nextPageToken: str
     unsupportedActionNames: _list[str]
 
 @typing.type_check_only
 class ListEntitiesResponse(typing_extensions.TypedDict, total=False):
     entities: _list[Entity]
+    metadata: dict[str, typing.Any]
     nextPageToken: str
 
 @typing.type_check_only
 class ListEntityTypesResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
     nextPageToken: str
     types: _list[EntityType]
     unsupportedTypeNames: _list[str]
+
+@typing.type_check_only
+class ListResourcesResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
+    nextPageToken: str
+    resources: _list[Resource]
+
+@typing.type_check_only
+class ListToolsResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
+    nextPageToken: str
+    tools: _list[Tool]
 
 @typing.type_check_only
 class MaintenancePolicy(typing_extensions.TypedDict, total=False):
@@ -435,6 +472,15 @@ class RefreshAccessTokenRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class RefreshAccessTokenResponse(typing_extensions.TypedDict, total=False):
     accessCredentials: AccessCredentials
+    metadata: dict[str, typing.Any]
+
+@typing.type_check_only
+class Resource(typing_extensions.TypedDict, total=False):
+    description: str
+    mimeType: str
+    name: str
+    size: str
+    uri: str
 
 @typing.type_check_only
 class ResultMetadata(typing_extensions.TypedDict, total=False):
@@ -525,7 +571,25 @@ class TimeOfDay(typing_extensions.TypedDict, total=False):
     seconds: int
 
 @typing.type_check_only
+class Tool(typing_extensions.TypedDict, total=False):
+    annotations: ToolAnnotations
+    dependsOn: _list[str]
+    description: str
+    inputSchema: JsonSchema
+    name: str
+    outputSchema: JsonSchema
+
+@typing.type_check_only
+class ToolAnnotations(typing_extensions.TypedDict, total=False):
+    destructiveHint: bool
+    idempotentHint: bool
+    openWorldHint: bool
+    readOnlyHint: bool
+    title: str
+
+@typing.type_check_only
 class UpdateEntitiesWithConditionsResponse(typing_extensions.TypedDict, total=False):
+    metadata: dict[str, typing.Any]
     response: dict[str, typing.Any]
 
 @typing.type_check_only

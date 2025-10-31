@@ -49,6 +49,17 @@ class AllocationAffinity(typing_extensions.TypedDict, total=False):
     values: _list[str]
 
 @typing.type_check_only
+class AlloyDBClusterDataSourceProperties(typing_extensions.TypedDict, total=False):
+    name: str
+
+@typing.type_check_only
+class AlloyDbClusterBackupProperties(typing_extensions.TypedDict, total=False):
+    chainId: str
+    databaseVersion: str
+    description: str
+    storedBytes: str
+
+@typing.type_check_only
 class AttachedDisk(typing_extensions.TypedDict, total=False):
     autoDelete: bool
     boot: bool
@@ -88,6 +99,7 @@ class AuditLogConfig(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Backup(typing_extensions.TypedDict, total=False):
+    alloyDbBackupProperties: AlloyDbClusterBackupProperties
     backupApplianceBackupProperties: BackupApplianceBackupProperties
     backupApplianceLocks: _list[BackupLock]
     backupType: typing_extensions.Literal[
@@ -173,7 +185,6 @@ class BackupConfigInfo(typing_extensions.TypedDict, total=False):
         "PERMISSION_DENIED",
     ]
     lastSuccessfulBackupConsistencyTime: str
-    lastSuccessfulLogBackupConsistencyTime: str
 
 @typing.type_check_only
 class BackupDrPlanConfig(typing_extensions.TypedDict, total=False):
@@ -454,6 +465,7 @@ class DataSourceBackupConfigInfo(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataSourceGcpResource(typing_extensions.TypedDict, total=False):
+    alloyDbClusterDatasourceProperties: AlloyDBClusterDataSourceProperties
     cloudSqlInstanceDatasourceProperties: CloudSqlInstanceDataSourceProperties
     computeInstanceDatasourceProperties: ComputeInstanceDataSourceProperties
     diskDatasourceProperties: DiskDataSourceProperties
@@ -482,16 +494,23 @@ class DataSourceReference(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DiskBackupProperties(typing_extensions.TypedDict, total=False):
+    accessMode: str
     architecture: typing_extensions.Literal[
         "ARCHITECTURE_UNSPECIFIED", "X86_64", "ARM64"
     ]
     description: str
+    enableConfidentialCompute: bool
     guestOsFeature: _list[GuestOsFeature]
+    labels: dict[str, typing.Any]
     licenses: _list[str]
+    physicalBlockSizeBytes: str
+    provisionedIops: str
+    provisionedThroughput: str
     region: str
     replicaZones: _list[str]
     sizeGb: str
     sourceDisk: str
+    storagePool: str
     type: str
     zone: str
 
@@ -574,6 +593,14 @@ class FetchDataSourceReferencesForResourceTypeResponse(
 ):
     dataSourceReferences: _list[DataSourceReference]
     nextPageToken: str
+
+@typing.type_check_only
+class FetchMsComplianceMetadataRequest(typing_extensions.TypedDict, total=False):
+    projectId: str
+
+@typing.type_check_only
+class FetchMsComplianceMetadataResponse(typing_extensions.TypedDict, total=False):
+    isAssuredWorkload: bool
 
 @typing.type_check_only
 class FetchUsableBackupVaultsResponse(typing_extensions.TypedDict, total=False):
@@ -710,6 +737,7 @@ class ListManagementServersResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListResourceBackupConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -723,6 +751,17 @@ class Location(typing_extensions.TypedDict, total=False):
     locationId: str
     metadata: dict[str, typing.Any]
     name: str
+
+@typing.type_check_only
+class LocationMetadata(typing_extensions.TypedDict, total=False):
+    unsupportedFeatures: _list[
+        typing_extensions.Literal[
+            "FEATURE_UNSPECIFIED",
+            "MANAGEMENT_SERVER",
+            "COMPUTE_INSTANCE",
+            "PROTECTION_SUMMARY",
+        ]
+    ]
 
 @typing.type_check_only
 class ManagementServer(typing_extensions.TypedDict, total=False):
@@ -850,7 +889,11 @@ class ResourceBackupConfig(typing_extensions.TypedDict, total=False):
     targetResourceDisplayName: str
     targetResourceLabels: dict[str, typing.Any]
     targetResourceType: typing_extensions.Literal[
-        "RESOURCE_TYPE_UNSPECIFIED", "CLOUD_SQL_INSTANCE", "COMPUTE_ENGINE_VM"
+        "RESOURCE_TYPE_UNSPECIFIED",
+        "CLOUD_SQL_INSTANCE",
+        "COMPUTE_ENGINE_VM",
+        "COMPUTE_ENGINE_DISK",
+        "COMPUTE_ENGINE_REGIONAL_DISK",
     ]
     uid: str
     vaulted: bool
@@ -975,6 +1018,9 @@ class Status(typing_extensions.TypedDict, total=False):
     message: str
 
 @typing.type_check_only
+class SubscribeTrialRequest(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
 class Tags(typing_extensions.TypedDict, total=False):
     items: _list[str]
 
@@ -989,6 +1035,23 @@ class TestIamPermissionsRequest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TestIamPermissionsResponse(typing_extensions.TypedDict, total=False):
     permissions: _list[str]
+
+@typing.type_check_only
+class Trial(typing_extensions.TypedDict, total=False):
+    endReason: typing_extensions.Literal[
+        "END_REASON_UNSPECIFIED", "MOVE_TO_PAID", "DISCONTINUED"
+    ]
+    endTime: str
+    name: str
+    startTime: str
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "SUBSCRIBED",
+        "UNSUBSCRIBED",
+        "EXPIRED",
+        "ELIGIBLE",
+        "NOT_ELIGIBLE",
+    ]
 
 @typing.type_check_only
 class TriggerBackupRequest(typing_extensions.TypedDict, total=False):

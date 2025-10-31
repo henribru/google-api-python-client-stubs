@@ -104,6 +104,9 @@ class GoogleCloudDataplexV1AspectSource(typing_extensions.TypedDict, total=False
 class GoogleCloudDataplexV1AspectType(typing_extensions.TypedDict, total=False):
     authorization: GoogleCloudDataplexV1AspectTypeAuthorization
     createTime: str
+    dataClassification: typing_extensions.Literal[
+        "DATA_CLASSIFICATION_UNSPECIFIED", "METADATA_AND_DATA"
+    ]
     description: str
     displayName: str
     etag: str
@@ -426,6 +429,47 @@ class GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions(
 ):
     encoding: str
     typeInferenceDisabled: bool
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationResult(
+    typing_extensions.TypedDict, total=False
+):
+    tableResult: GoogleCloudDataplexV1DataDocumentationResultTableResult
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationResultField(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    fields: _list[GoogleCloudDataplexV1DataDocumentationResultField]
+    name: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationResultQuery(
+    typing_extensions.TypedDict, total=False
+):
+    description: str
+    sql: str
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationResultSchema(
+    typing_extensions.TypedDict, total=False
+):
+    fields: _list[GoogleCloudDataplexV1DataDocumentationResultField]
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationResultTableResult(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+    overview: str
+    queries: _list[GoogleCloudDataplexV1DataDocumentationResultQuery]
+    schema: GoogleCloudDataplexV1DataDocumentationResultSchema
+
+@typing.type_check_only
+class GoogleCloudDataplexV1DataDocumentationSpec(
+    typing_extensions.TypedDict, total=False
+): ...
 
 @typing.type_check_only
 class GoogleCloudDataplexV1DataProfileResult(typing_extensions.TypedDict, total=False):
@@ -789,6 +833,8 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
     data: GoogleCloudDataplexV1DataSource
     dataDiscoveryResult: GoogleCloudDataplexV1DataDiscoveryResult
     dataDiscoverySpec: GoogleCloudDataplexV1DataDiscoverySpec
+    dataDocumentationResult: GoogleCloudDataplexV1DataDocumentationResult
+    dataDocumentationSpec: GoogleCloudDataplexV1DataDocumentationSpec
     dataProfileResult: GoogleCloudDataplexV1DataProfileResult
     dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
     dataQualityResult: GoogleCloudDataplexV1DataQualityResult
@@ -803,7 +849,11 @@ class GoogleCloudDataplexV1DataScan(typing_extensions.TypedDict, total=False):
         "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "ACTION_REQUIRED"
     ]
     type: typing_extensions.Literal[
-        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE", "DATA_DISCOVERY"
+        "DATA_SCAN_TYPE_UNSPECIFIED",
+        "DATA_QUALITY",
+        "DATA_PROFILE",
+        "DATA_DISCOVERY",
+        "DATA_DOCUMENTATION",
     ]
     uid: str
     updateTime: str
@@ -833,7 +883,9 @@ class GoogleCloudDataplexV1DataScanEvent(typing_extensions.TypedDict, total=Fals
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "STARTED", "SUCCEEDED", "FAILED", "CANCELLED", "CREATED"
     ]
-    trigger: typing_extensions.Literal["TRIGGER_UNSPECIFIED", "ON_DEMAND", "SCHEDULE"]
+    trigger: typing_extensions.Literal[
+        "TRIGGER_UNSPECIFIED", "ON_DEMAND", "SCHEDULE", "ONE_TIME"
+    ]
     type: typing_extensions.Literal[
         "SCAN_TYPE_UNSPECIFIED", "DATA_PROFILE", "DATA_QUALITY", "DATA_DISCOVERY"
     ]
@@ -907,6 +959,8 @@ class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False)
     createTime: str
     dataDiscoveryResult: GoogleCloudDataplexV1DataDiscoveryResult
     dataDiscoverySpec: GoogleCloudDataplexV1DataDiscoverySpec
+    dataDocumentationResult: GoogleCloudDataplexV1DataDocumentationResult
+    dataDocumentationSpec: GoogleCloudDataplexV1DataDocumentationSpec
     dataProfileResult: GoogleCloudDataplexV1DataProfileResult
     dataProfileSpec: GoogleCloudDataplexV1DataProfileSpec
     dataQualityResult: GoogleCloudDataplexV1DataQualityResult
@@ -925,7 +979,11 @@ class GoogleCloudDataplexV1DataScanJob(typing_extensions.TypedDict, total=False)
         "PENDING",
     ]
     type: typing_extensions.Literal[
-        "DATA_SCAN_TYPE_UNSPECIFIED", "DATA_QUALITY", "DATA_PROFILE", "DATA_DISCOVERY"
+        "DATA_SCAN_TYPE_UNSPECIFIED",
+        "DATA_QUALITY",
+        "DATA_PROFILE",
+        "DATA_DISCOVERY",
+        "DATA_DOCUMENTATION",
     ]
     uid: str
 
@@ -1016,6 +1074,7 @@ class GoogleCloudDataplexV1DiscoveryEventTableDetails(
 @typing.type_check_only
 class GoogleCloudDataplexV1EncryptionConfig(typing_extensions.TypedDict, total=False):
     createTime: str
+    enableMetastoreEncryption: bool
     encryptionState: typing_extensions.Literal[
         "ENCRYPTION_STATE_UNSPECIFIED", "ENCRYPTING", "COMPLETED", "FAILED"
     ]
@@ -2102,6 +2161,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

@@ -5,6 +5,11 @@ import typing_extensions
 _list = list
 
 @typing.type_check_only
+class AcceleratePrivateCloudDeletionRequest(typing_extensions.TypedDict, total=False):
+    etag: str
+    requestId: str
+
+@typing.type_check_only
 class Announcement(typing_extensions.TypedDict, total=False):
     activityType: str
     cluster: str

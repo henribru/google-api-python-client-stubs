@@ -55,12 +55,15 @@ class Auth(typing_extensions.TypedDict, total=False):
     accessLevels: _list[str]
     audiences: _list[str]
     claims: dict[str, typing.Any]
+    oauth: Oauth
     presenter: str
     principal: str
 
 @typing.type_check_only
 class AuthenticationInfo(typing_extensions.TypedDict, total=False):
     authoritySelector: str
+    loggableShortLivedCredential: dict[str, typing.Any]
+    oauthInfo: OAuthInfo
     principalEmail: str
     principalSubject: str
     serviceAccountDelegationInfo: _list[ServiceAccountDelegationInfo]
@@ -131,6 +134,7 @@ class CheckError(typing_extensions.TypedDict, total=False):
 class CheckInfo(typing_extensions.TypedDict, total=False):
     apiKeyUid: str
     consumerInfo: ConsumerInfo
+    ignoreApiKeyUidAsCredentialId: bool
     unusedArguments: _list[str]
 
 @typing.type_check_only
@@ -279,6 +283,14 @@ class Money(typing_extensions.TypedDict, total=False):
     currencyCode: str
     nanos: int
     units: str
+
+@typing.type_check_only
+class OAuthInfo(typing_extensions.TypedDict, total=False):
+    oauthClientId: str
+
+@typing.type_check_only
+class Oauth(typing_extensions.TypedDict, total=False):
+    clientId: str
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):

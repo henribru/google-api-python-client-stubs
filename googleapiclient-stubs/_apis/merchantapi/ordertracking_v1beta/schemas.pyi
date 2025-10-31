@@ -20,6 +20,7 @@ class DateTime(typing_extensions.TypedDict, total=False):
 class LineItemDetails(typing_extensions.TypedDict, total=False):
     brand: str
     gtin: str
+    gtins: _list[str]
     lineItemId: str
     mpn: str
     productId: str

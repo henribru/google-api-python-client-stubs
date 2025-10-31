@@ -45,6 +45,7 @@ class AbortInfo(typing_extensions.TypedDict, total=False):
         "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
         "UNSUPPORTED_GOOGLE_MANAGED_PROJECT_CONFIG",
         "NO_SERVERLESS_IP_RANGES",
+        "IP_VERSION_PROTOCOL_MISMATCH",
     ]
     ipAddress: str
     projectsMissingPermission: _list[str]
@@ -272,15 +273,63 @@ class DropInfo(typing_extensions.TypedDict, total=False):
         "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
         "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION",
         "CLOUD_NAT_PROTOCOL_UNSUPPORTED",
+        "L2_INTERCONNECT_UNSUPPORTED_PROTOCOL",
+        "L2_INTERCONNECT_UNSUPPORTED_PORT",
+        "L2_INTERCONNECT_DESTINATION_IP_MISMATCH",
+        "NCC_ROUTE_WITHIN_HYBRID_SUBNET_UNSUPPORTED",
+        "HYBRID_SUBNET_REGION_MISMATCH",
     ]
+    destinationGeolocationCode: str
     destinationIp: str
     region: str
     resourceUri: str
+    sourceGeolocationCode: str
     sourceIp: str
 
 @typing.type_check_only
 class EdgeLocation(typing_extensions.TypedDict, total=False):
     metropolitanArea: str
+
+@typing.type_check_only
+class EffectiveVpcFlowLogsConfig(typing_extensions.TypedDict, total=False):
+    aggregationInterval: typing_extensions.Literal[
+        "AGGREGATION_INTERVAL_UNSPECIFIED",
+        "INTERVAL_5_SEC",
+        "INTERVAL_30_SEC",
+        "INTERVAL_1_MIN",
+        "INTERVAL_5_MIN",
+        "INTERVAL_10_MIN",
+        "INTERVAL_15_MIN",
+    ]
+    crossProjectMetadata: typing_extensions.Literal[
+        "CROSS_PROJECT_METADATA_UNSPECIFIED",
+        "CROSS_PROJECT_METADATA_ENABLED",
+        "CROSS_PROJECT_METADATA_DISABLED",
+    ]
+    filterExpr: str
+    flowSampling: float
+    interconnectAttachment: str
+    metadata: typing_extensions.Literal[
+        "METADATA_UNSPECIFIED",
+        "INCLUDE_ALL_METADATA",
+        "EXCLUDE_ALL_METADATA",
+        "CUSTOM_METADATA",
+    ]
+    metadataFields: _list[str]
+    name: str
+    network: str
+    scope: typing_extensions.Literal[
+        "SCOPE_UNSPECIFIED",
+        "SUBNET",
+        "COMPUTE_API_SUBNET",
+        "NETWORK",
+        "VPN_TUNNEL",
+        "INTERCONNECT_ATTACHMENT",
+        "ORGANIZATION",
+    ]
+    state: typing_extensions.Literal["STATE_UNSPECIFIED", "ENABLED", "DISABLED"]
+    subnet: str
+    vpnTunnel: str
 
 @typing.type_check_only
 class Empty(typing_extensions.TypedDict, total=False): ...
@@ -302,6 +351,7 @@ class Endpoint(typing_extensions.TypedDict, total=False):
     ]
     fqdn: str
     gkeMasterCluster: str
+    gkePod: str
     instance: str
     ipAddress: str
     loadBalancerId: str
@@ -369,6 +419,9 @@ class FirewallInfo(typing_extensions.TypedDict, total=False):
     priority: int
     targetServiceAccounts: _list[str]
     targetTags: _list[str]
+    targetType: typing_extensions.Literal[
+        "TARGET_TYPE_UNSPECIFIED", "INSTANCES", "INTERNAL_MANAGED_LB"
+    ]
     uri: str
 
 @typing.type_check_only
@@ -426,6 +479,12 @@ class GoogleServiceInfo(typing_extensions.TypedDict, total=False):
     sourceIp: str
 
 @typing.type_check_only
+class HybridSubnetInfo(typing_extensions.TypedDict, total=False):
+    displayName: str
+    region: str
+    uri: str
+
+@typing.type_check_only
 class InstanceInfo(typing_extensions.TypedDict, total=False):
     displayName: str
     externalIp: str
@@ -437,6 +496,18 @@ class InstanceInfo(typing_extensions.TypedDict, total=False):
     running: bool
     serviceAccount: str
     status: typing_extensions.Literal["STATUS_UNSPECIFIED", "RUNNING", "NOT_RUNNING"]
+    uri: str
+
+@typing.type_check_only
+class InterconnectAttachmentInfo(typing_extensions.TypedDict, total=False):
+    cloudRouterUri: str
+    displayName: str
+    interconnectUri: str
+    l2AttachmentMatchedIpAddress: str
+    region: str
+    type: typing_extensions.Literal[
+        "TYPE_UNSPECIFIED", "DEDICATED", "PARTNER", "PARTNER_PROVIDER", "L2_DEDICATED"
+    ]
     uri: str
 
 @typing.type_check_only
@@ -463,6 +534,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListVpcFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
@@ -544,6 +616,7 @@ class NatInfo(typing_extensions.TypedDict, total=False):
         "EXTERNAL_TO_INTERNAL",
         "CLOUD_NAT",
         "PRIVATE_SERVICE_CONNECT",
+        "GKE_POD_IP_MASQUERADING",
     ]
 
 @typing.type_check_only
@@ -719,6 +792,12 @@ class SetIamPolicyRequest(typing_extensions.TypedDict, total=False):
     updateMask: str
 
 @typing.type_check_only
+class ShowEffectiveFlowLogsConfigsResponse(typing_extensions.TypedDict, total=False):
+    effectiveFlowLogsConfigs: _list[EffectiveVpcFlowLogsConfig]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
 class SingleEdgeResponse(typing_extensions.TypedDict, total=False):
     destinationEgressLocation: EdgeLocation
     destinationRouter: str
@@ -757,7 +836,9 @@ class Step(typing_extensions.TypedDict, total=False):
     forwardingRule: ForwardingRuleInfo
     gkeMaster: GKEMasterInfo
     googleService: GoogleServiceInfo
+    hybridSubnet: HybridSubnetInfo
     instance: InstanceInfo
+    interconnectAttachment: InterconnectAttachmentInfo
     loadBalancer: LoadBalancerInfo
     loadBalancerBackendInfo: LoadBalancerBackendInfo
     nat: NatInfo
@@ -794,8 +875,10 @@ class Step(typing_extensions.TypedDict, total=False):
         "ARRIVE_AT_INSTANCE",
         "ARRIVE_AT_INTERNAL_LOAD_BALANCER",
         "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
+        "ARRIVE_AT_HYBRID_SUBNET",
         "ARRIVE_AT_VPN_GATEWAY",
         "ARRIVE_AT_VPN_TUNNEL",
+        "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
         "ARRIVE_AT_VPC_CONNECTOR",
         "DIRECT_VPC_EGRESS_CONNECTION",
         "SERVERLESS_EXTERNAL_CONNECTION",

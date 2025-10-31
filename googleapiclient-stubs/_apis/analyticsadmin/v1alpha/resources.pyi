@@ -1248,12 +1248,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1alphaProperty = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
-        def createConnectedSiteTag(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponseHttpRequest: ...
         def createRollupProperty(
             self,
             *,
@@ -1263,23 +1257,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
         def delete(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
-        def deleteConnectedSiteTag(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleProtobufEmptyHttpRequest: ...
-        def fetchAutomatedGa4ConfigurationOptOut(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponseHttpRequest: ...
-        def fetchConnectedGa4Property(
-            self, *, property: str = ..., **kwargs: typing.Any
-        ) -> (
-            GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponseHttpRequest
-        ): ...
         def get(
             self, *, name: str, **kwargs: typing.Any
         ) -> GoogleAnalyticsAdminV1alphaPropertyHttpRequest: ...
@@ -1309,12 +1286,6 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             previous_request: GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest,
             previous_response: GoogleAnalyticsAdminV1alphaListPropertiesResponse,
         ) -> GoogleAnalyticsAdminV1alphaListPropertiesResponseHttpRequest | None: ...
-        def listConnectedSiteTags(
-            self,
-            *,
-            body: GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest = ...,
-            **kwargs: typing.Any,
-        ) -> GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest: ...
         def patch(
             self,
             *,
@@ -1336,12 +1307,13 @@ class GoogleAnalyticsAdminResource(googleapiclient.discovery.Resource):
             body: GoogleAnalyticsAdminV1alphaRunAccessReportRequest = ...,
             **kwargs: typing.Any,
         ) -> GoogleAnalyticsAdminV1alphaRunAccessReportResponseHttpRequest: ...
-        def setAutomatedGa4ConfigurationOptOut(
+        def submitUserDeletion(
             self,
             *,
-            body: GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest = ...,
+            name: str,
+            body: GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest = ...,
             **kwargs: typing.Any,
-        ) -> GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponseHttpRequest: ...
+        ) -> GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponseHttpRequest: ...
         def updateAttributionSettings(
             self,
             *,
@@ -1547,16 +1519,6 @@ class GoogleAnalyticsAdminV1alphaConversionEventHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaConversionEvent: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaCreateRollupPropertyResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1687,26 +1649,6 @@ class GoogleAnalyticsAdminV1alphaExpandedDataSetHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaExpandedDataSet: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse: ...
-
-@typing.type_check_only
 class GoogleAnalyticsAdminV1alphaFirebaseLinkHttpRequest(
     googleapiclient.http.HttpRequest
 ):
@@ -1833,16 +1775,6 @@ class GoogleAnalyticsAdminV1alphaListChannelGroupsResponseHttpRequest(
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> GoogleAnalyticsAdminV1alphaListChannelGroupsResponse: ...
-
-@typing.type_check_only
-class GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaListConversionEventsResponseHttpRequest(
@@ -2155,14 +2087,14 @@ class GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponseHttpRequest(
     ) -> GoogleAnalyticsAdminV1alphaSearchChangeHistoryEventsResponse: ...
 
 @typing.type_check_only
-class GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponseHttpRequest(
+class GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponseHttpRequest(
     googleapiclient.http.HttpRequest
 ):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
-    ) -> GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse: ...
+    ) -> GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse: ...
 
 @typing.type_check_only
 class GoogleAnalyticsAdminV1alphaSubpropertyEventFilterHttpRequest(

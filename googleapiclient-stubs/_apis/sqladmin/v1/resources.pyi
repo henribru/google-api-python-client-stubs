@@ -211,6 +211,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: InstancesDemoteMasterRequest = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def executeSql(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: ExecuteSqlPayload = ...,
+            **kwargs: typing.Any,
+        ) -> SqlInstancesExecuteSqlResponseHttpRequest: ...
         def export(
             self,
             *,
@@ -273,6 +281,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             body: PointInTimeRestoreContext = ...,
             **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
+        def preCheckMajorVersionUpgrade(
+            self,
+            *,
+            project: str,
+            instance: str,
+            body: InstancesPreCheckMajorVersionUpgradeRequest = ...,
+            **kwargs: typing.Any,
+        ) -> OperationHttpRequest: ...
         def promoteReplica(
             self,
             *,
@@ -293,7 +309,14 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
             self, *, project: str, instance: str, **kwargs: typing.Any
         ) -> SqlInstancesReleaseSsrsLeaseResponseHttpRequest: ...
         def resetSslConfig(
-            self, *, project: str, instance: str, **kwargs: typing.Any
+            self,
+            *,
+            project: str,
+            instance: str,
+            mode: typing_extensions.Literal[
+                "RESET_SSL_MODE_UNSPECIFIED", "ALL", "SYNC_FROM_PRIMARY"
+            ] = ...,
+            **kwargs: typing.Any,
         ) -> OperationHttpRequest: ...
         def restart(
             self, *, project: str, instance: str, **kwargs: typing.Any
@@ -376,7 +399,12 @@ class SQLAdminResource(googleapiclient.discovery.Resource):
                 self, *, project: str, instance: str, **kwargs: typing.Any
             ) -> SqlInstancesGetDiskShrinkConfigResponseHttpRequest: ...
             def getLatestRecoveryTime(
-                self, *, project: str, instance: str, **kwargs: typing.Any
+                self,
+                *,
+                project: str,
+                instance: str,
+                sourceInstanceDeletionTime: str = ...,
+                **kwargs: typing.Any,
             ) -> SqlInstancesGetLatestRecoveryTimeResponseHttpRequest: ...
             def performDiskShrink(
                 self,
@@ -663,6 +691,14 @@ class SqlInstancesAcquireSsrsLeaseResponseHttpRequest(googleapiclient.http.HttpR
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> SqlInstancesAcquireSsrsLeaseResponse: ...
+
+@typing.type_check_only
+class SqlInstancesExecuteSqlResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> SqlInstancesExecuteSqlResponse: ...
 
 @typing.type_check_only
 class SqlInstancesGetDiskShrinkConfigResponseHttpRequest(

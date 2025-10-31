@@ -245,6 +245,7 @@ class ResourcesListResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class SetAutoscalerLinkOperationMetadata(typing_extensions.TypedDict, total=False):
     zonalIgmIds: _list[str]
+    zoneToIgmIds: dict[str, typing.Any]
 
 @typing.type_check_only
 class SetCommonInstanceMetadataOperationMetadata(

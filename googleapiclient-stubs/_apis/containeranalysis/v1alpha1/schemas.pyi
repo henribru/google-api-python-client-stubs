@@ -117,6 +117,7 @@ class BuildStep(typing_extensions.TypedDict, total=False):
     id: str
     name: str
     pullTiming: TimeSpan
+    remoteConfig: str
     results: _list[StepResult]
     script: str
     secretEnv: _list[str]
@@ -146,6 +147,10 @@ class BuildType(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class BuilderConfig(typing_extensions.TypedDict, total=False):
     id: str
+
+@typing.type_check_only
+class CISAKnownExploitedVulnerabilities(typing_extensions.TypedDict, total=False):
+    knownRansomwareCampaignUse: str
 
 @typing.type_check_only
 class CVSS(typing_extensions.TypedDict, total=False):
@@ -877,6 +882,11 @@ class EnvelopeSignature(typing_extensions.TypedDict, total=False):
     sig: str
 
 @typing.type_check_only
+class ExploitPredictionScoringSystem(typing_extensions.TypedDict, total=False):
+    percentile: float
+    score: float
+
+@typing.type_check_only
 class Expr(typing_extensions.TypedDict, total=False):
     description: str
     expression: str
@@ -1150,6 +1160,7 @@ class Layer(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class LayerDetails(typing_extensions.TypedDict, total=False):
     baseImages: _list[BaseImage]
+    chainId: str
     command: str
     diffId: str
     index: int
@@ -1547,6 +1558,11 @@ class ResourceDescriptor(typing_extensions.TypedDict, total=False):
     uri: str
 
 @typing.type_check_only
+class Risk(typing_extensions.TypedDict, total=False):
+    cisaKev: CISAKnownExploitedVulnerabilities
+    epss: ExploitPredictionScoringSystem
+
+@typing.type_check_only
 class RunDetails(typing_extensions.TypedDict, total=False):
     builder: ProvenanceBuilder
     byproducts: _list[ResourceDescriptor]
@@ -1605,6 +1621,26 @@ class SecretOccurrence(typing_extensions.TypedDict, total=False):
         "SECRET_KIND_UNSPECIFIED",
         "SECRET_KIND_UNKNOWN",
         "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY",
+        "SECRET_KIND_GCP_API_KEY",
+        "SECRET_KIND_GCP_OAUTH2_CLIENT_CREDENTIALS",
+        "SECRET_KIND_GCP_OAUTH2_ACCESS_TOKEN",
+        "SECRET_KIND_ANTHROPIC_ADMIN_API_KEY",
+        "SECRET_KIND_ANTHROPIC_API_KEY",
+        "SECRET_KIND_AZURE_ACCESS_TOKEN",
+        "SECRET_KIND_AZURE_IDENTITY_TOKEN",
+        "SECRET_KIND_DOCKER_HUB_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_APP_REFRESH_TOKEN",
+        "SECRET_KIND_GITHUB_APP_SERVER_TO_SERVER_TOKEN",
+        "SECRET_KIND_GITHUB_APP_USER_TO_SERVER_TOKEN",
+        "SECRET_KIND_GITHUB_CLASSIC_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_FINE_GRAINED_PERSONAL_ACCESS_TOKEN",
+        "SECRET_KIND_GITHUB_OAUTH_TOKEN",
+        "SECRET_KIND_HUGGINGFACE_API_KEY",
+        "SECRET_KIND_OPENAI_API_KEY",
+        "SECRET_KIND_PERPLEXITY_API_KEY",
+        "SECRET_KIND_STRIPE_SECRET_KEY",
+        "SECRET_KIND_STRIPE_RESTRICTED_KEY",
+        "SECRET_KIND_STRIPE_WEBHOOK_SECRET",
     ]
     locations: _list[SecretLocation]
     statuses: _list[SecretStatus]
@@ -1810,6 +1846,7 @@ class VulnerabilityDetails(typing_extensions.TypedDict, total=False):
     ]
     extraDetails: str
     packageIssue: _list[PackageIssue]
+    risk: Risk
     severity: typing_extensions.Literal[
         "SEVERITY_UNSPECIFIED", "MINIMAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"
     ]

@@ -936,6 +936,7 @@ class WebhookConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class WorkerConfig(typing_extensions.TypedDict, total=False):
     diskSizeGb: str
+    enableNestedVirtualization: bool
     machineType: str
 
 @typing.type_check_only

@@ -52,6 +52,7 @@ class DestinationDataset(typing_extensions.TypedDict, total=False):
     friendlyName: str
     labels: dict[str, typing.Any]
     location: str
+    replicaLocations: _list[str]
 
 @typing.type_check_only
 class DestinationDatasetReference(typing_extensions.TypedDict, total=False):

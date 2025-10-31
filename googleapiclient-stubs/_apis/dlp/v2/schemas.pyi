@@ -12,6 +12,7 @@ class GooglePrivacyDlpV2Action(typing_extensions.TypedDict, total=False):
     publishFindingsToCloudDataCatalog: (
         GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog
     )
+    publishFindingsToDataplexCatalog: GooglePrivacyDlpV2PublishFindingsToDataplexCatalog
     publishSummaryToCscc: GooglePrivacyDlpV2PublishSummaryToCscc
     publishToStackdriver: GooglePrivacyDlpV2PublishToStackdriver
     saveFindings: GooglePrivacyDlpV2SaveFindings
@@ -1151,6 +1152,13 @@ class GooglePrivacyDlpV2DlpJob(typing_extensions.TypedDict, total=False):
     ]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2DocumentFallbackLocation(
+    typing_extensions.TypedDict, total=False
+):
+    globalProcessing: GooglePrivacyDlpV2GlobalProcessing
+    multiRegionProcessing: GooglePrivacyDlpV2MultiRegionProcessing
+
+@typing.type_check_only
 class GooglePrivacyDlpV2DocumentLocation(typing_extensions.TypedDict, total=False):
     fileOffset: str
 
@@ -1265,6 +1273,7 @@ class GooglePrivacyDlpV2FileSet(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GooglePrivacyDlpV2FileStoreCollection(typing_extensions.TypedDict, total=False):
     includeRegexes: GooglePrivacyDlpV2FileStoreRegexes
+    includeTags: GooglePrivacyDlpV2TagFilters
 
 @typing.type_check_only
 class GooglePrivacyDlpV2FileStoreDataProfile(typing_extensions.TypedDict, total=False):
@@ -1454,6 +1463,7 @@ class GooglePrivacyDlpV2InfoTypeCategory(typing_extensions.TypedDict, total=Fals
         "ARGENTINA",
         "ARMENIA",
         "AUSTRALIA",
+        "AUSTRIA",
         "AZERBAIJAN",
         "BELARUS",
         "BELGIUM",
@@ -1520,6 +1530,7 @@ class GooglePrivacyDlpV2InfoTypeDescription(typing_extensions.TypedDict, total=F
     description: str
     displayName: str
     example: str
+    locationSupport: GooglePrivacyDlpV2LocationSupport
     name: str
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     specificInfoTypes: _list[str]
@@ -1877,6 +1888,13 @@ class GooglePrivacyDlpV2Location(typing_extensions.TypedDict, total=False):
     contentLocations: _list[GooglePrivacyDlpV2ContentLocation]
 
 @typing.type_check_only
+class GooglePrivacyDlpV2LocationSupport(typing_extensions.TypedDict, total=False):
+    locations: _list[str]
+    regionalizationScope: typing_extensions.Literal[
+        "REGIONALIZATION_SCOPE_UNSPECIFIED", "REGIONAL", "ANY_LOCATION"
+    ]
+
+@typing.type_check_only
 class GooglePrivacyDlpV2Manual(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
@@ -1965,6 +1983,7 @@ class GooglePrivacyDlpV2OutputStorageConfig(typing_extensions.TypedDict, total=F
         "BIG_QUERY_COLUMNS",
         "ALL_COLUMNS",
     ]
+    storagePath: GooglePrivacyDlpV2CloudStoragePath
     table: GooglePrivacyDlpV2BigQueryTable
 
 @typing.type_check_only
@@ -2006,6 +2025,7 @@ class GooglePrivacyDlpV2PrivacyMetric(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class GooglePrivacyDlpV2ProcessingLocation(typing_extensions.TypedDict, total=False):
+    documentFallbackLocation: GooglePrivacyDlpV2DocumentFallbackLocation
     imageFallbackLocation: GooglePrivacyDlpV2ImageFallbackLocation
 
 @typing.type_check_only
@@ -2065,6 +2085,11 @@ class GooglePrivacyDlpV2PubSubNotification(typing_extensions.TypedDict, total=Fa
 
 @typing.type_check_only
 class GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class GooglePrivacyDlpV2PublishFindingsToDataplexCatalog(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -2161,9 +2186,11 @@ class GooglePrivacyDlpV2RedactConfig(typing_extensions.TypedDict, total=False): 
 @typing.type_check_only
 class GooglePrivacyDlpV2RedactImageRequest(typing_extensions.TypedDict, total=False):
     byteItem: GooglePrivacyDlpV2ByteContentItem
+    deidentifyTemplate: str
     imageRedactionConfigs: _list[GooglePrivacyDlpV2ImageRedactionConfig]
     includeFindings: bool
     inspectConfig: GooglePrivacyDlpV2InspectConfig
+    inspectTemplate: str
     locationId: str
 
 @typing.type_check_only
@@ -2445,6 +2472,15 @@ class GooglePrivacyDlpV2Tag(typing_extensions.TypedDict, total=False):
 class GooglePrivacyDlpV2TagCondition(typing_extensions.TypedDict, total=False):
     sensitivityScore: GooglePrivacyDlpV2SensitivityScore
     tag: GooglePrivacyDlpV2TagValue
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TagFilter(typing_extensions.TypedDict, total=False):
+    namespacedTagKey: str
+    namespacedTagValue: str
+
+@typing.type_check_only
+class GooglePrivacyDlpV2TagFilters(typing_extensions.TypedDict, total=False):
+    tagFilters: _list[GooglePrivacyDlpV2TagFilter]
 
 @typing.type_check_only
 class GooglePrivacyDlpV2TagResources(typing_extensions.TypedDict, total=False):
@@ -2730,3 +2766,14 @@ class GoogleTypeTimeOfDay(typing_extensions.TypedDict, total=False):
     minutes: int
     nanos: int
     seconds: int
+
+@typing.type_check_only
+class Proto2BridgeMessageSet(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class UtilStatusProto(typing_extensions.TypedDict, total=False):
+    canonicalCode: int
+    code: int
+    message: str
+    messageSet: Proto2BridgeMessageSet
+    space: str

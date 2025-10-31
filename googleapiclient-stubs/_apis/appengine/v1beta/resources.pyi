@@ -203,6 +203,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                 filter: str = ...,
                 pageSize: int = ...,
                 pageToken: str = ...,
+                returnPartialSuccess: bool = ...,
                 **kwargs: typing.Any,
             ) -> ListOperationsResponseHttpRequest: ...
             def list_next(
@@ -506,6 +507,15 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         ] = ...,
                         **kwargs: typing.Any,
                     ) -> OperationHttpRequest: ...
+                    def delete(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        domainMappingsId: str,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
                     def get(
                         self,
                         *,
@@ -515,6 +525,17 @@ class AppengineResource(googleapiclient.discovery.Resource):
                         domainMappingsId: str,
                         **kwargs: typing.Any,
                     ) -> DomainMappingHttpRequest: ...
+                    def patch(
+                        self,
+                        *,
+                        projectsId: str,
+                        locationsId: str,
+                        applicationsId: str,
+                        domainMappingsId: str,
+                        body: DomainMapping = ...,
+                        updateMask: str = ...,
+                        **kwargs: typing.Any,
+                    ) -> OperationHttpRequest: ...
 
                 @typing.type_check_only
                 class ServicesResource(googleapiclient.discovery.Resource):
@@ -599,6 +620,7 @@ class AppengineResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(

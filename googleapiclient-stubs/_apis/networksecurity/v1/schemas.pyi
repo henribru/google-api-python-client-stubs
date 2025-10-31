@@ -78,6 +78,7 @@ class AuthzPolicyAuthzRuleFrom(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class AuthzPolicyAuthzRuleFromRequestSource(typing_extensions.TypedDict, total=False):
     ipBlocks: _list[AuthzPolicyAuthzRuleIpBlock]
+    principals: _list[AuthzPolicyAuthzRulePrincipal]
     resources: _list[AuthzPolicyAuthzRuleRequestResource]
 
 @typing.type_check_only
@@ -89,6 +90,16 @@ class AuthzPolicyAuthzRuleHeaderMatch(typing_extensions.TypedDict, total=False):
 class AuthzPolicyAuthzRuleIpBlock(typing_extensions.TypedDict, total=False):
     length: int
     prefix: str
+
+@typing.type_check_only
+class AuthzPolicyAuthzRulePrincipal(typing_extensions.TypedDict, total=False):
+    principal: AuthzPolicyAuthzRuleStringMatch
+    principalSelector: typing_extensions.Literal[
+        "PRINCIPAL_SELECTOR_UNSPECIFIED",
+        "CLIENT_CERT_URI_SAN",
+        "CLIENT_CERT_DNS_NAME_SAN",
+        "CLIENT_CERT_COMMON_NAME",
+    ]
 
 @typing.type_check_only
 class AuthzPolicyAuthzRuleRequestResource(typing_extensions.TypedDict, total=False):
@@ -218,6 +229,7 @@ class FirewallEndpoint(typing_extensions.TypedDict, total=False):
     billingProjectId: str
     createTime: str
     description: str
+    endpointSettings: FirewallEndpointEndpointSettings
     labels: dict[str, typing.Any]
     name: str
     reconciling: bool
@@ -247,6 +259,10 @@ class FirewallEndpointAssociation(typing_extensions.TypedDict, total=False):
 class FirewallEndpointAssociationReference(typing_extensions.TypedDict, total=False):
     name: str
     network: str
+
+@typing.type_check_only
+class FirewallEndpointEndpointSettings(typing_extensions.TypedDict, total=False):
+    jumboFramesEnabled: bool
 
 @typing.type_check_only
 class GatewaySecurityPolicy(typing_extensions.TypedDict, total=False):
@@ -583,6 +599,7 @@ class ListMirroringEndpointGroupsResponse(typing_extensions.TypedDict, total=Fal
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListSecurityProfileGroupsResponse(typing_extensions.TypedDict, total=False):
@@ -661,7 +678,7 @@ class MirroringDeploymentGroup(typing_extensions.TypedDict, total=False):
     network: str
     reconciling: bool
     state: typing_extensions.Literal[
-        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING"
+        "STATE_UNSPECIFIED", "ACTIVE", "CREATING", "DELETING", "CLOSED"
     ]
     updateTime: str
 

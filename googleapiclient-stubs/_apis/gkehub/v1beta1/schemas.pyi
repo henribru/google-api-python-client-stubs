@@ -108,6 +108,7 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):
@@ -130,6 +131,9 @@ class Membership(typing_extensions.TypedDict, total=False):
     ]
     labels: dict[str, typing.Any]
     lastConnectionTime: str
+    membershipType: typing_extensions.Literal[
+        "MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"
+    ]
     monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
@@ -214,6 +218,7 @@ class ResourceManifest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceOptions(typing_extensions.TypedDict, total=False):
     connectVersion: str
+    k8sGitVersion: str
     k8sVersion: str
     v1beta1Crd: bool
 

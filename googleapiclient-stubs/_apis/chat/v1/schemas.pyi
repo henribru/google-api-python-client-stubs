@@ -109,6 +109,11 @@ class Button(typing_extensions.TypedDict, total=False):
     textButton: TextButton
 
 @typing.type_check_only
+class CalendarEventLinkData(typing_extensions.TypedDict, total=False):
+    calendarId: str
+    eventId: str
+
+@typing.type_check_only
 class Card(typing_extensions.TypedDict, total=False):
     cardActions: _list[CardAction]
     header: CardHeader
@@ -330,6 +335,7 @@ class GoogleAppsCardV1Card(typing_extensions.TypedDict, total=False):
     displayStyle: typing_extensions.Literal[
         "DISPLAY_STYLE_UNSPECIFIED", "PEEK", "REPLACE"
     ]
+    expressionData: _list[GoogleAppsCardV1ExpressionData]
     fixedFooter: GoogleAppsCardV1CardFixedFooter
     header: GoogleAppsCardV1CardHeader
     name: str
@@ -410,7 +416,22 @@ class GoogleAppsCardV1Columns(typing_extensions.TypedDict, total=False):
     columnItems: _list[GoogleAppsCardV1Column]
 
 @typing.type_check_only
+class GoogleAppsCardV1CommonWidgetAction(typing_extensions.TypedDict, total=False):
+    updateVisibilityAction: GoogleAppsCardV1UpdateVisibilityAction
+
+@typing.type_check_only
+class GoogleAppsCardV1Condition(typing_extensions.TypedDict, total=False):
+    actionRuleId: str
+    expressionDataCondition: GoogleAppsCardV1ExpressionDataCondition
+
+@typing.type_check_only
+class GoogleAppsCardV1DataSourceConfig(typing_extensions.TypedDict, total=False):
+    platformDataSource: GoogleAppsCardV1PlatformDataSource
+    remoteDataSource: GoogleAppsCardV1Action
+
+@typing.type_check_only
 class GoogleAppsCardV1DateTimePicker(typing_extensions.TypedDict, total=False):
+    hostAppDataSource: HostAppDataSourceMarkup
     label: str
     name: str
     onChangeAction: GoogleAppsCardV1Action
@@ -421,18 +442,45 @@ class GoogleAppsCardV1DateTimePicker(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleAppsCardV1DecoratedText(typing_extensions.TypedDict, total=False):
     bottomLabel: str
+    bottomLabelText: GoogleAppsCardV1TextParagraph
     button: GoogleAppsCardV1Button
+    contentText: GoogleAppsCardV1TextParagraph
     endIcon: GoogleAppsCardV1Icon
     icon: GoogleAppsCardV1Icon
     onClick: GoogleAppsCardV1OnClick
     startIcon: GoogleAppsCardV1Icon
+    startIconVerticalAlignment: typing_extensions.Literal[
+        "VERTICAL_ALIGNMENT_UNSPECIFIED", "TOP", "MIDDLE", "BOTTOM"
+    ]
     switchControl: GoogleAppsCardV1SwitchControl
     text: str
     topLabel: str
+    topLabelText: GoogleAppsCardV1TextParagraph
     wrapText: bool
 
 @typing.type_check_only
 class GoogleAppsCardV1Divider(typing_extensions.TypedDict, total=False): ...
+
+@typing.type_check_only
+class GoogleAppsCardV1EventAction(typing_extensions.TypedDict, total=False):
+    actionRuleId: str
+    commonWidgetAction: GoogleAppsCardV1CommonWidgetAction
+    postEventTriggers: _list[GoogleAppsCardV1Trigger]
+
+@typing.type_check_only
+class GoogleAppsCardV1ExpressionData(typing_extensions.TypedDict, total=False):
+    conditions: _list[GoogleAppsCardV1Condition]
+    eventActions: _list[GoogleAppsCardV1EventAction]
+    expression: str
+    id: str
+
+@typing.type_check_only
+class GoogleAppsCardV1ExpressionDataCondition(typing_extensions.TypedDict, total=False):
+    conditionType: typing_extensions.Literal[
+        "CONDITION_TYPE_UNSPECIFIED",
+        "EXPRESSION_EVALUATION_SUCCESS",
+        "EXPRESSION_EVALUATION_FAILURE",
+    ]
 
 @typing.type_check_only
 class GoogleAppsCardV1Grid(typing_extensions.TypedDict, total=False):
@@ -532,11 +580,13 @@ class GoogleAppsCardV1Section(typing_extensions.TypedDict, total=False):
     collapseControl: GoogleAppsCardV1CollapseControl
     collapsible: bool
     header: str
+    id: str
     uncollapsibleWidgetsCount: int
     widgets: _list[GoogleAppsCardV1Widget]
 
 @typing.type_check_only
 class GoogleAppsCardV1SelectionInput(typing_extensions.TypedDict, total=False):
+    dataSourceConfigs: _list[GoogleAppsCardV1DataSourceConfig]
     externalDataSource: GoogleAppsCardV1Action
     hintText: str
     items: _list[GoogleAppsCardV1SelectionItem]
@@ -578,6 +628,7 @@ class GoogleAppsCardV1SwitchControl(typing_extensions.TypedDict, total=False):
 class GoogleAppsCardV1TextInput(typing_extensions.TypedDict, total=False):
     autoCompleteAction: GoogleAppsCardV1Action
     hintText: str
+    hostAppDataSource: HostAppDataSourceMarkup
     initialSuggestions: GoogleAppsCardV1Suggestions
     label: str
     name: str
@@ -591,6 +642,15 @@ class GoogleAppsCardV1TextInput(typing_extensions.TypedDict, total=False):
 class GoogleAppsCardV1TextParagraph(typing_extensions.TypedDict, total=False):
     maxLines: int
     text: str
+    textSyntax: typing_extensions.Literal["TEXT_SYNTAX_UNSPECIFIED", "HTML", "MARKDOWN"]
+
+@typing.type_check_only
+class GoogleAppsCardV1Trigger(typing_extensions.TypedDict, total=False):
+    actionRuleId: str
+
+@typing.type_check_only
+class GoogleAppsCardV1UpdateVisibilityAction(typing_extensions.TypedDict, total=False):
+    visibility: typing_extensions.Literal["VISIBILITY_UNSPECIFIED", "VISIBLE", "HIDDEN"]
 
 @typing.type_check_only
 class GoogleAppsCardV1Validation(typing_extensions.TypedDict, total=False):
@@ -608,14 +668,17 @@ class GoogleAppsCardV1Widget(typing_extensions.TypedDict, total=False):
     dateTimePicker: GoogleAppsCardV1DateTimePicker
     decoratedText: GoogleAppsCardV1DecoratedText
     divider: GoogleAppsCardV1Divider
+    eventActions: _list[GoogleAppsCardV1EventAction]
     grid: GoogleAppsCardV1Grid
     horizontalAlignment: typing_extensions.Literal[
         "HORIZONTAL_ALIGNMENT_UNSPECIFIED", "START", "CENTER", "END"
     ]
+    id: str
     image: GoogleAppsCardV1Image
     selectionInput: GoogleAppsCardV1SelectionInput
     textInput: GoogleAppsCardV1TextInput
     textParagraph: GoogleAppsCardV1TextParagraph
+    visibility: typing_extensions.Literal["VISIBILITY_UNSPECIFIED", "VISIBLE", "HIDDEN"]
 
 @typing.type_check_only
 class GoogleAppsCardV1Widgets(typing_extensions.TypedDict, total=False):
@@ -635,6 +698,7 @@ class Group(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class HostAppDataSourceMarkup(typing_extensions.TypedDict, total=False):
     chatDataSource: ChatClientDataSourceMarkup
+    workflowDataSource: WorkflowDataSourceMarkup
 
 @typing.type_check_only
 class Image(typing_extensions.TypedDict, total=False):
@@ -768,6 +832,14 @@ class MatchedUrl(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Media(typing_extensions.TypedDict, total=False):
     resourceName: str
+
+@typing.type_check_only
+class MeetSpaceLinkData(typing_extensions.TypedDict, total=False):
+    huddleStatus: typing_extensions.Literal[
+        "HUDDLE_STATUS_UNSPECIFIED", "STARTED", "ENDED", "MISSED"
+    ]
+    meetingCode: str
+    type: typing_extensions.Literal["TYPE_UNSPECIFIED", "MEETING", "HUDDLE"]
 
 @typing.type_check_only
 class Membership(typing_extensions.TypedDict, total=False):
@@ -919,10 +991,16 @@ class ReactionDeletedEventData(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class RichLinkMetadata(typing_extensions.TypedDict, total=False):
+    calendarEventLinkData: CalendarEventLinkData
     chatSpaceLinkData: ChatSpaceLinkData
     driveLinkData: DriveLinkData
+    meetSpaceLinkData: MeetSpaceLinkData
     richLinkType: typing_extensions.Literal[
-        "RICH_LINK_TYPE_UNSPECIFIED", "DRIVE_FILE", "CHAT_SPACE"
+        "RICH_LINK_TYPE_UNSPECIFIED",
+        "DRIVE_FILE",
+        "CHAT_SPACE",
+        "MEET_SPACE",
+        "CALENDAR_EVENT",
     ]
     uri: str
 
@@ -964,6 +1042,7 @@ class Space(typing_extensions.TypedDict, total=False):
     accessSettings: AccessSettings
     adminInstalled: bool
     createTime: str
+    customer: str
     displayName: str
     externalUserAllowed: bool
     importMode: bool
@@ -1126,3 +1205,8 @@ class WidgetMarkup(typing_extensions.TypedDict, total=False):
     image: Image
     keyValue: KeyValue
     textParagraph: TextParagraph
+
+@typing.type_check_only
+class WorkflowDataSourceMarkup(typing_extensions.TypedDict, total=False):
+    includeVariables: bool
+    type: typing_extensions.Literal["UNKNOWN", "USER", "SPACE", "USER_WITH_FREE_FORM"]

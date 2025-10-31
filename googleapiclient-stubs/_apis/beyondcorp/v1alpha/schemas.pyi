@@ -614,7 +614,86 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication(
     displayName: str
     endpointMatchers: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher]
     name: str
+    schema: typing_extensions.Literal[
+        "SCHEMA_UNSPECIFIED", "PROXY_GATEWAY", "API_GATEWAY"
+    ]
     updateTime: str
+    upstreams: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream(
+    typing_extensions.TypedDict, total=False
+):
+    egressPolicy: GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy
+    external: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal
+    network: GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork
+    proxyProtocol: GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamExternal(
+    typing_extensions.TypedDict, total=False
+):
+    endpoints: _list[GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork(
+    typing_extensions.TypedDict, total=False
+):
+    name: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders(
+    typing_extensions.TypedDict, total=False
+):
+    deviceInfo: (
+        GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo
+    )
+    groupInfo: (
+        GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo
+    )
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+    userInfo: (
+        GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo
+    )
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedDeviceInfo(
+    typing_extensions.TypedDict, total=False
+):
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedGroupInfo(
+    typing_extensions.TypedDict, total=False
+):
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeadersDelegatedUserInfo(
+    typing_extensions.TypedDict, total=False
+):
+    outputType: typing_extensions.Literal[
+        "OUTPUT_TYPE_UNSPECIFIED", "PROTOBUF", "JSON", "NONE"
+    ]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy(
+    typing_extensions.TypedDict, total=False
+):
+    regions: _list[str]
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpoint(
+    typing_extensions.TypedDict, total=False
+):
+    hostname: str
+    port: int
 
 @typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher(
@@ -652,14 +731,29 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaListSecurityGatewaysResponse(
     unreachable: _list[str]
 
 @typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig(
+    typing_extensions.TypedDict, total=False
+):
+    allowedClientHeaders: _list[str]
+    clientIp: bool
+    contextualHeaders: GoogleCloudBeyondcorpSecuritygatewaysV1alphaContextualHeaders
+    gatewayIdentity: typing_extensions.Literal[
+        "GATEWAY_IDENTITY_UNSPECIFIED", "RESOURCE_NAME"
+    ]
+    metadataHeaders: dict[str, typing.Any]
+
+@typing.type_check_only
 class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway(
     typing_extensions.TypedDict, total=False
 ):
     createTime: str
+    delegatingServiceAccount: str
     displayName: str
     externalIps: _list[str]
     hubs: dict[str, typing.Any]
     name: str
+    proxyProtocolConfig: GoogleCloudBeyondcorpSecuritygatewaysV1alphaProxyProtocolConfig
+    serviceDiscovery: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED",
         "CREATING",
@@ -682,6 +776,24 @@ class GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGatewayOperationMetada
     statusMessage: str
     target: str
     verb: str
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscovery(
+    typing_extensions.TypedDict, total=False
+):
+    apiGateway: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGateway(
+    typing_extensions.TypedDict, total=False
+):
+    resourceOverride: GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor
+
+@typing.type_check_only
+class GoogleCloudBeyondcorpSecuritygatewaysV1alphaServiceDiscoveryApiGatewayOperationDescriptor(
+    typing_extensions.TypedDict, total=False
+):
+    path: str
 
 @typing.type_check_only
 class GoogleCloudLocationListLocationsResponse(
@@ -745,6 +857,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

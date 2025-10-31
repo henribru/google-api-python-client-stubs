@@ -10,6 +10,15 @@ class AgentCommand(typing_extensions.TypedDict, total=False):
     parameters: dict[str, typing.Any]
 
 @typing.type_check_only
+class AgentStates(typing_extensions.TypedDict, total=False):
+    availableVersion: str
+    hanaMonitoring: ServiceStates
+    installedVersion: str
+    isFullyEnabled: bool
+    processMetrics: ServiceStates
+    systemDiscovery: ServiceStates
+
+@typing.type_check_only
 class AgentStatus(typing_extensions.TypedDict, total=False):
     agentName: str
     availableVersion: str
@@ -22,6 +31,7 @@ class AgentStatus(typing_extensions.TypedDict, total=False):
         "UNSPECIFIED_STATE", "SUCCESS_STATE", "FAILURE_STATE", "ERROR_STATE"
     ]
     installedVersion: str
+    instanceUri: str
     kernelVersion: SapDiscoveryResourceInstancePropertiesKernelVersion
     references: _list[AgentStatusReference]
     services: _list[AgentStatusServiceStatus]
@@ -128,6 +138,7 @@ class Evaluation(typing_extensions.TypedDict, total=False):
     evaluationType: typing_extensions.Literal[
         "EVALUATION_TYPE_UNSPECIFIED", "SAP", "SQL_SERVER", "OTHER", "SCC_IAC"
     ]
+    kmsKey: str
     labels: dict[str, typing.Any]
     name: str
     resourceFilter: ResourceFilter
@@ -140,6 +151,7 @@ class Evaluation(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Execution(typing_extensions.TypedDict, total=False):
     endTime: str
+    engine: typing_extensions.Literal["ENGINE_UNSPECIFIED", "ENGINE_SCANNER", "V2"]
     evaluationId: str
     externalDataSources: _list[ExternalDataSources]
     inventoryTime: str
@@ -177,9 +189,15 @@ class GceInstanceFilter(typing_extensions.TypedDict, total=False):
     serviceAccounts: _list[str]
 
 @typing.type_check_only
+class IAMPermission(typing_extensions.TypedDict, total=False):
+    granted: bool
+    name: str
+
+@typing.type_check_only
 class Insight(typing_extensions.TypedDict, total=False):
     agentStatus: AgentStatus
     instanceId: str
+    openShiftValidation: OpenShiftValidation
     sapDiscovery: SapDiscovery
     sapValidation: SapValidation
     sentTime: str
@@ -203,6 +221,17 @@ class InstanceProperties(typing_extensions.TypedDict, total=False):
     sapInstanceProperties: SapInstanceProperties
     status: str
     upcomingMaintenanceEvent: UpcomingMaintenanceEvent
+
+@typing.type_check_only
+class InvalidRule(typing_extensions.TypedDict, total=False):
+    displayName: str
+    gcsUri: str
+    name: str
+    valiadtionError: str
+
+@typing.type_check_only
+class InvalidRulesWrapper(typing_extensions.TypedDict, total=False):
+    invalidRules: _list[InvalidRule]
 
 @typing.type_check_only
 class ListDiscoveredProfilesResponse(typing_extensions.TypedDict, total=False):
@@ -236,10 +265,11 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListRulesResponse(typing_extensions.TypedDict, total=False):
-    nextPageToken: str
+    invalidRulesWrapper: InvalidRulesWrapper
     rules: _list[Rule]
 
 @typing.type_check_only
@@ -258,6 +288,11 @@ class Location(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Notice(typing_extensions.TypedDict, total=False):
     message: str
+
+@typing.type_check_only
+class OpenShiftValidation(typing_extensions.TypedDict, total=False):
+    clusterId: str
+    validationDetails: dict[str, typing.Any]
 
 @typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
@@ -304,6 +339,7 @@ class ResourceStatus(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class Rule(typing_extensions.TypedDict, total=False):
+    assetType: str
     description: str
     displayName: str
     errorMessage: str
@@ -311,6 +347,7 @@ class Rule(typing_extensions.TypedDict, total=False):
     primaryCategory: str
     remediation: str
     revisionId: str
+    ruleType: typing_extensions.Literal["RULE_TYPE_UNSPECIFIED", "BASELINE", "CUSTOM"]
     secondaryCategory: str
     severity: str
     tags: _list[str]
@@ -525,6 +562,7 @@ class SapDiscoveryWorkloadPropertiesSoftwareComponentProperties(
 
 @typing.type_check_only
 class SapInstanceProperties(typing_extensions.TypedDict, total=False):
+    agentStates: AgentStates
     numbers: _list[str]
 
 @typing.type_check_only
@@ -568,6 +606,18 @@ class SapWorkload(typing_extensions.TypedDict, total=False):
 class ScannedResource(typing_extensions.TypedDict, total=False):
     resource: str
     type: str
+
+@typing.type_check_only
+class ServiceStates(typing_extensions.TypedDict, total=False):
+    iamPermissions: _list[IAMPermission]
+    state: typing_extensions.Literal[
+        "STATE_UNSPECIFIED",
+        "CONFIG_FAILURE",
+        "IAM_FAILURE",
+        "FUNCTIONALITY_FAILURE",
+        "ENABLED",
+        "DISABLED",
+    ]
 
 @typing.type_check_only
 class ShellCommand(typing_extensions.TypedDict, total=False):

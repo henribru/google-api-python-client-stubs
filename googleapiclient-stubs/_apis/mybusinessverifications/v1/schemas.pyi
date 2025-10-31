@@ -42,9 +42,26 @@ class FetchVerificationOptionsResponse(typing_extensions.TypedDict, total=False)
     options: _list[VerificationOption]
 
 @typing.type_check_only
+class GenerateInstantVerificationTokenRequest(typing_extensions.TypedDict, total=False):
+    locationData: LocationData
+    locationId: str
+
+@typing.type_check_only
+class GenerateInstantVerificationTokenResponse(
+    typing_extensions.TypedDict, total=False
+):
+    instantVerificationToken: str
+    result: typing_extensions.Literal["RESULT_UNSPECIFIED", "SUCCEEDED", "FAILED"]
+
+@typing.type_check_only
 class ListVerificationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     verifications: _list[Verification]
+
+@typing.type_check_only
+class LocationData(typing_extensions.TypedDict, total=False):
+    address: PostalAddress
+    name: str
 
 @typing.type_check_only
 class PostalAddress(typing_extensions.TypedDict, total=False):
@@ -79,6 +96,7 @@ class Verification(typing_extensions.TypedDict, total=False):
         "SMS",
         "AUTO",
         "VETTED_PARTNER",
+        "TRUSTED_PARTNER",
     ]
     name: str
     state: typing_extensions.Literal[
@@ -99,6 +117,7 @@ class VerificationOption(typing_extensions.TypedDict, total=False):
         "SMS",
         "AUTO",
         "VETTED_PARTNER",
+        "TRUSTED_PARTNER",
     ]
 
 @typing.type_check_only
@@ -123,9 +142,11 @@ class VerifyLocationRequest(typing_extensions.TypedDict, total=False):
         "SMS",
         "AUTO",
         "VETTED_PARTNER",
+        "TRUSTED_PARTNER",
     ]
     phoneNumber: str
     token: VerificationToken
+    trustedPartnerToken: str
 
 @typing.type_check_only
 class VerifyLocationResponse(typing_extensions.TypedDict, total=False):

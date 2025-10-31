@@ -373,6 +373,7 @@ class ConfigManagementMembershipState(typing_extensions.TypedDict, total=False):
     clusterName: str
     configSyncState: ConfigManagementConfigSyncState
     hierarchyControllerState: ConfigManagementHierarchyControllerState
+    kubernetesApiServerVersion: str
     membershipSpec: ConfigManagementMembershipSpec
     operatorState: ConfigManagementOperatorState
     policyControllerState: ConfigManagementPolicyControllerState
@@ -777,6 +778,7 @@ class ListMembershipsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class ListPermittedScopesResponse(typing_extensions.TypedDict, total=False):
@@ -819,6 +821,9 @@ class Membership(typing_extensions.TypedDict, total=False):
     externalId: str
     labels: dict[str, typing.Any]
     lastConnectionTime: str
+    membershipType: typing_extensions.Literal[
+        "MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"
+    ]
     monitoringConfig: MonitoringConfig
     name: str
     state: MembershipState
@@ -1131,6 +1136,7 @@ class ResourceManifest(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ResourceOptions(typing_extensions.TypedDict, total=False):
     connectVersion: str
+    k8sGitVersion: str
     k8sVersion: str
     v1beta1Crd: bool
 
@@ -1221,7 +1227,18 @@ class ServiceMeshCondition(typing_extensions.TypedDict, total=False):
         "MODERNIZATION_IN_PROGRESS",
         "MODERNIZATION_COMPLETED",
         "MODERNIZATION_ABORTED",
+        "MODERNIZATION_PREPARING",
+        "MODERNIZATION_STALLED",
+        "MODERNIZATION_PREPARED",
+        "MODERNIZATION_MIGRATING_WORKLOADS",
+        "MODERNIZATION_ROLLING_BACK_CLUSTER",
         "MODERNIZATION_WILL_BE_SCHEDULED",
+        "MODERNIZATION_MANUAL",
+        "MODERNIZATION_ELIGIBLE",
+        "MODERNIZATION_MODERNIZING",
+        "MODERNIZATION_MODERNIZED_SOAKING",
+        "MODERNIZATION_FINALIZED",
+        "MODERNIZATION_ROLLING_BACK_FLEET",
     ]
     details: str
     documentationLink: str
@@ -1244,6 +1261,7 @@ class ServiceMeshControlPlaneManagement(typing_extensions.TypedDict, total=False
         "STALLED",
         "NEEDS_ATTENTION",
         "DEGRADED",
+        "DEPROVISIONING",
     ]
 
 @typing.type_check_only
@@ -1258,6 +1276,7 @@ class ServiceMeshDataPlaneManagement(typing_extensions.TypedDict, total=False):
         "STALLED",
         "NEEDS_ATTENTION",
         "DEGRADED",
+        "DEPROVISIONING",
     ]
 
 @typing.type_check_only
@@ -1269,7 +1288,10 @@ class ServiceMeshMembershipSpec(typing_extensions.TypedDict, total=False):
         "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED", "AUTOMATIC", "MANUAL"
     ]
     management: typing_extensions.Literal[
-        "MANAGEMENT_UNSPECIFIED", "MANAGEMENT_AUTOMATIC", "MANAGEMENT_MANUAL"
+        "MANAGEMENT_UNSPECIFIED",
+        "MANAGEMENT_AUTOMATIC",
+        "MANAGEMENT_MANUAL",
+        "MANAGEMENT_NOT_INSTALLED",
     ]
 
 @typing.type_check_only

@@ -579,8 +579,20 @@ class GoogleCloudRunV2StorageSource(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class GoogleCloudRunV2SubmitBuildRequest(typing_extensions.TypedDict, total=False):
     buildpackBuild: GoogleCloudRunV2BuildpacksBuild
+    client: str
     dockerBuild: GoogleCloudRunV2DockerBuild
     imageUri: str
+    machineType: str
+    releaseTrack: typing_extensions.Literal[
+        "LAUNCH_STAGE_UNSPECIFIED",
+        "UNIMPLEMENTED",
+        "PRELAUNCH",
+        "EARLY_ACCESS",
+        "ALPHA",
+        "BETA",
+        "GA",
+        "DEPRECATED",
+    ]
     serviceAccount: str
     storageSource: GoogleCloudRunV2StorageSource
     tags: _list[str]
@@ -701,6 +713,7 @@ class GoogleCloudRunV2Volume(typing_extensions.TypedDict, total=False):
 class GoogleCloudRunV2VolumeMount(typing_extensions.TypedDict, total=False):
     mountPath: str
     name: str
+    subPath: str
 
 @typing.type_check_only
 class GoogleCloudRunV2VpcAccess(typing_extensions.TypedDict, total=False):
@@ -762,6 +775,7 @@ class GoogleCloudRunV2WorkerPoolRevisionTemplate(
         "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED", "PREVENT_NEW", "SHUTDOWN"
     ]
     encryptionKeyShutdownDuration: str
+    gpuZonalRedundancyDisabled: bool
     labels: dict[str, typing.Any]
     nodeSelector: GoogleCloudRunV2NodeSelector
     revision: str
@@ -1225,6 +1239,7 @@ class GoogleIamV1TestIamPermissionsResponse(typing_extensions.TypedDict, total=F
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

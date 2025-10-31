@@ -39,6 +39,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ListOperationsResponseHttpRequest: ...
                 def list_next(
@@ -46,6 +47,46 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     previous_request: ListOperationsResponseHttpRequest,
                     previous_response: ListOperationsResponse,
                 ) -> ListOperationsResponseHttpRequest | None: ...
+
+            @typing.type_check_only
+            class VpcFlowLogsConfigsResource(googleapiclient.discovery.Resource):
+                def create(
+                    self,
+                    *,
+                    parent: str,
+                    body: VpcFlowLogsConfig = ...,
+                    vpcFlowLogsConfigId: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
+                def delete(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> OperationHttpRequest: ...
+                def get(
+                    self, *, name: str, **kwargs: typing.Any
+                ) -> VpcFlowLogsConfigHttpRequest: ...
+                def list(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    orderBy: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest: ...
+                def list_next(
+                    self,
+                    previous_request: ListVpcFlowLogsConfigsResponseHttpRequest,
+                    previous_response: ListVpcFlowLogsConfigsResponse,
+                ) -> ListVpcFlowLogsConfigsResponseHttpRequest | None: ...
+                def patch(
+                    self,
+                    *,
+                    name: str,
+                    body: VpcFlowLogsConfig = ...,
+                    updateMask: str = ...,
+                    **kwargs: typing.Any,
+                ) -> OperationHttpRequest: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -66,6 +107,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def operations(self) -> OperationsResource: ...
+            def vpcFlowLogsConfigs(self) -> VpcFlowLogsConfigsResource: ...
 
         def locations(self) -> LocationsResource: ...
 
@@ -165,6 +207,7 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                         filter: str = ...,
                         pageSize: int = ...,
                         pageToken: str = ...,
+                        returnPartialSuccess: bool = ...,
                         **kwargs: typing.Any,
                     ) -> ListOperationsResponseHttpRequest: ...
                     def list_next(
@@ -175,98 +218,6 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
 
                 def connectivityTests(self) -> ConnectivityTestsResource: ...
                 def operations(self) -> OperationsResource: ...
-
-            @typing.type_check_only
-            class NetworkMonitoringProvidersResource(
-                googleapiclient.discovery.Resource
-            ):
-                @typing.type_check_only
-                class MonitoringPointsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> MonitoringPointHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListMonitoringPointsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListMonitoringPointsResponseHttpRequest,
-                        previous_response: ListMonitoringPointsResponse,
-                    ) -> ListMonitoringPointsResponseHttpRequest | None: ...
-
-                @typing.type_check_only
-                class NetworkPathsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> NetworkPathHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListNetworkPathsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListNetworkPathsResponseHttpRequest,
-                        previous_response: ListNetworkPathsResponse,
-                    ) -> ListNetworkPathsResponseHttpRequest | None: ...
-
-                @typing.type_check_only
-                class WebPathsResource(googleapiclient.discovery.Resource):
-                    def get(
-                        self, *, name: str, **kwargs: typing.Any
-                    ) -> WebPathHttpRequest: ...
-                    def list(
-                        self,
-                        *,
-                        parent: str,
-                        pageSize: int = ...,
-                        pageToken: str = ...,
-                        **kwargs: typing.Any,
-                    ) -> ListWebPathsResponseHttpRequest: ...
-                    def list_next(
-                        self,
-                        previous_request: ListWebPathsResponseHttpRequest,
-                        previous_response: ListWebPathsResponse,
-                    ) -> ListWebPathsResponseHttpRequest | None: ...
-
-                def create(
-                    self,
-                    *,
-                    parent: str,
-                    body: NetworkMonitoringProvider = ...,
-                    networkMonitoringProviderId: str = ...,
-                    **kwargs: typing.Any,
-                ) -> OperationHttpRequest: ...
-                def delete(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> OperationHttpRequest: ...
-                def get(
-                    self, *, name: str, **kwargs: typing.Any
-                ) -> NetworkMonitoringProviderHttpRequest: ...
-                def list(
-                    self,
-                    *,
-                    parent: str,
-                    pageSize: int = ...,
-                    pageToken: str = ...,
-                    **kwargs: typing.Any,
-                ) -> ListNetworkMonitoringProvidersResponseHttpRequest: ...
-                def list_next(
-                    self,
-                    previous_request: ListNetworkMonitoringProvidersResponseHttpRequest,
-                    previous_response: ListNetworkMonitoringProvidersResponse,
-                ) -> ListNetworkMonitoringProvidersResponseHttpRequest | None: ...
-                def monitoringPoints(self) -> MonitoringPointsResource: ...
-                def networkPaths(self) -> NetworkPathsResource: ...
-                def webPaths(self) -> WebPathsResource: ...
 
             @typing.type_check_only
             class VpcFlowLogsConfigsResource(googleapiclient.discovery.Resource):
@@ -307,6 +258,35 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                     updateMask: str = ...,
                     **kwargs: typing.Any,
                 ) -> OperationHttpRequest: ...
+                def queryOrgVpcFlowLogsConfigs(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    **kwargs: typing.Any,
+                ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest: ...
+                def queryOrgVpcFlowLogsConfigs_next(
+                    self,
+                    previous_request: QueryOrgVpcFlowLogsConfigsResponseHttpRequest,
+                    previous_response: QueryOrgVpcFlowLogsConfigsResponse,
+                ) -> QueryOrgVpcFlowLogsConfigsResponseHttpRequest | None: ...
+                def showEffectiveFlowLogsConfigs(
+                    self,
+                    *,
+                    parent: str,
+                    filter: str = ...,
+                    pageSize: int = ...,
+                    pageToken: str = ...,
+                    resource: str = ...,
+                    **kwargs: typing.Any,
+                ) -> ShowEffectiveFlowLogsConfigsResponseHttpRequest: ...
+                def showEffectiveFlowLogsConfigs_next(
+                    self,
+                    previous_request: ShowEffectiveFlowLogsConfigsResponseHttpRequest,
+                    previous_response: ShowEffectiveFlowLogsConfigsResponse,
+                ) -> ShowEffectiveFlowLogsConfigsResponseHttpRequest | None: ...
 
             def get(
                 self, *, name: str, **kwargs: typing.Any
@@ -327,9 +307,6 @@ class NetworkManagementResource(googleapiclient.discovery.Resource):
                 previous_response: ListLocationsResponse,
             ) -> ListLocationsResponseHttpRequest | None: ...
             def global_(self) -> GlobalResource: ...
-            def networkMonitoringProviders(
-                self,
-            ) -> NetworkMonitoringProvidersResource: ...
             def vpcFlowLogsConfigs(self) -> VpcFlowLogsConfigsResource: ...
 
         def locations(self) -> LocationsResource: ...
@@ -382,32 +359,6 @@ class ListLocationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     ) -> ListLocationsResponse: ...
 
 @typing.type_check_only
-class ListMonitoringPointsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListMonitoringPointsResponse: ...
-
-@typing.type_check_only
-class ListNetworkMonitoringProvidersResponseHttpRequest(
-    googleapiclient.http.HttpRequest
-):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListNetworkMonitoringProvidersResponse: ...
-
-@typing.type_check_only
-class ListNetworkPathsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListNetworkPathsResponse: ...
-
-@typing.type_check_only
 class ListOperationsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -424,44 +375,12 @@ class ListVpcFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest
     ) -> ListVpcFlowLogsConfigsResponse: ...
 
 @typing.type_check_only
-class ListWebPathsResponseHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> ListWebPathsResponse: ...
-
-@typing.type_check_only
 class LocationHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> Location: ...
-
-@typing.type_check_only
-class MonitoringPointHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> MonitoringPoint: ...
-
-@typing.type_check_only
-class NetworkMonitoringProviderHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> NetworkMonitoringProvider: ...
-
-@typing.type_check_only
-class NetworkPathHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> NetworkPath: ...
 
 @typing.type_check_only
 class OperationHttpRequest(googleapiclient.http.HttpRequest):
@@ -480,6 +399,22 @@ class PolicyHttpRequest(googleapiclient.http.HttpRequest):
     ) -> Policy: ...
 
 @typing.type_check_only
+class QueryOrgVpcFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> QueryOrgVpcFlowLogsConfigsResponse: ...
+
+@typing.type_check_only
+class ShowEffectiveFlowLogsConfigsResponseHttpRequest(googleapiclient.http.HttpRequest):
+    def execute(
+        self,
+        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
+        num_retries: int = 0,
+    ) -> ShowEffectiveFlowLogsConfigsResponse: ...
+
+@typing.type_check_only
 class TestIamPermissionsResponseHttpRequest(googleapiclient.http.HttpRequest):
     def execute(
         self,
@@ -494,11 +429,3 @@ class VpcFlowLogsConfigHttpRequest(googleapiclient.http.HttpRequest):
         http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
         num_retries: int = 0,
     ) -> VpcFlowLogsConfig: ...
-
-@typing.type_check_only
-class WebPathHttpRequest(googleapiclient.http.HttpRequest):
-    def execute(
-        self,
-        http: httplib2.Http | googleapiclient.http.HttpMock | None = None,
-        num_retries: int = 0,
-    ) -> WebPath: ...

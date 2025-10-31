@@ -20,7 +20,9 @@ class AuthzExtension(typing_extensions.TypedDict, total=False):
     service: str
     timeout: str
     updateTime: str
-    wireFormat: typing_extensions.Literal["WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC"]
+    wireFormat: typing_extensions.Literal[
+        "WIRE_FORMAT_UNSPECIFIED", "EXT_PROC_GRPC", "EXT_AUTHZ_GRPC"
+    ]
 
 @typing.type_check_only
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
@@ -376,6 +378,19 @@ class LbRouteExtension(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class LbTcpExtension(typing_extensions.TypedDict, total=False):
+    createTime: str
+    description: str
+    extensionChains: _list[ExtensionChain]
+    labels: dict[str, typing.Any]
+    loadBalancingScheme: typing_extensions.Literal[
+        "LOAD_BALANCING_SCHEME_UNSPECIFIED", "INTERNAL_MANAGED", "EXTERNAL_MANAGED"
+    ]
+    name: str
+    networks: _list[str]
+    updateTime: str
+
+@typing.type_check_only
 class LbTrafficExtension(typing_extensions.TypedDict, total=False):
     createTime: str
     description: str
@@ -434,6 +449,12 @@ class ListLbEdgeExtensionsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListLbRouteExtensionsResponse(typing_extensions.TypedDict, total=False):
     lbRouteExtensions: _list[LbRouteExtension]
+    nextPageToken: str
+    unreachable: _list[str]
+
+@typing.type_check_only
+class ListLbTcpExtensionsResponse(typing_extensions.TypedDict, total=False):
+    lbTcpExtensions: _list[LbTcpExtension]
     nextPageToken: str
     unreachable: _list[str]
 

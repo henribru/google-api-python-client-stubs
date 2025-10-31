@@ -85,7 +85,8 @@ class AuthenticatorGroupsConfig(typing_extensions.TypedDict, total=False):
     securityGroup: str
 
 @typing.type_check_only
-class AutoIpamConfig(typing_extensions.TypedDict, total=False): ...
+class AutoIpamConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class AutoMonitoringConfig(typing_extensions.TypedDict, total=False):
@@ -100,6 +101,7 @@ class AutoUpgradeOptions(typing_extensions.TypedDict, total=False):
 class Autopilot(typing_extensions.TypedDict, total=False):
     conversionStatus: AutopilotConversionStatus
     enabled: bool
+    privilegedAdmissionConfig: PrivilegedAdmissionConfig
     workloadPolicyConfig: WorkloadPolicyConfig
 
 @typing.type_check_only
@@ -139,7 +141,8 @@ class AutoprovisioningNodePoolDefaults(typing_extensions.TypedDict, total=False)
     upgradeSettings: UpgradeSettings
 
 @typing.type_check_only
-class AutoscaledRolloutPolicy(typing_extensions.TypedDict, total=False): ...
+class AutoscaledRolloutPolicy(typing_extensions.TypedDict, total=False):
+    waitForDrainDuration: str
 
 @typing.type_check_only
 class AvailableVersion(typing_extensions.TypedDict, total=False):
@@ -308,6 +311,7 @@ class Cluster(typing_extensions.TypedDict, total=False):
     satisfiesPzi: bool
     satisfiesPzs: bool
     secretManagerConfig: SecretManagerConfig
+    secretSyncConfig: SecretSyncConfig
     securityPostureConfig: SecurityPostureConfig
     selfLink: str
     servicesIpv4Cidr: str
@@ -339,6 +343,7 @@ class ClusterAutoscaling(typing_extensions.TypedDict, total=False):
     autoscalingProfile: typing_extensions.Literal[
         "PROFILE_UNSPECIFIED", "OPTIMIZE_UTILIZATION", "BALANCED"
     ]
+    defaultComputeClassConfig: DefaultComputeClassConfig
     enableNodeAutoprovisioning: bool
     resourceLimits: _list[ResourceLimit]
 
@@ -403,6 +408,7 @@ class ClusterUpdate(typing_extensions.TypedDict, total=False):
     desiredMonitoringConfig: MonitoringConfig
     desiredMonitoringService: str
     desiredNetworkPerformanceConfig: ClusterNetworkPerformanceConfig
+    desiredNetworkTierConfig: NetworkTierConfig
     desiredNodeKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigKubeletConfig: NodeKubeletConfig
     desiredNodePoolAutoConfigLinuxNodeConfig: LinuxNodeConfig
@@ -508,6 +514,7 @@ class ConsumptionMeteringConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ContainerdConfig(typing_extensions.TypedDict, total=False):
     privateRegistryAccessConfig: PrivateRegistryAccessConfig
+    writableCgroups: WritableCgroups
 
 @typing.type_check_only
 class ControlPlaneEndpointsConfig(typing_extensions.TypedDict, total=False):
@@ -547,6 +554,8 @@ class DNSConfig(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class DNSEndpointConfig(typing_extensions.TypedDict, total=False):
     allowExternalTraffic: bool
+    enableK8sCertsViaDns: bool
+    enableK8sTokensViaDns: bool
     endpoint: str
 
 @typing.type_check_only
@@ -575,6 +584,10 @@ class Date(typing_extensions.TypedDict, total=False):
     day: int
     month: int
     year: int
+
+@typing.type_check_only
+class DefaultComputeClassConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
 
 @typing.type_check_only
 class DefaultSnatStatus(typing_extensions.TypedDict, total=False):
@@ -661,6 +674,9 @@ class Filter(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class Fleet(typing_extensions.TypedDict, total=False):
     membership: str
+    membershipType: typing_extensions.Literal[
+        "MEMBERSHIP_TYPE_UNSPECIFIED", "LIGHTWEIGHT"
+    ]
     preRegistered: bool
     project: str
 
@@ -778,6 +794,7 @@ class IPAllocationPolicy(typing_extensions.TypedDict, total=False):
     ipv6AccessType: typing_extensions.Literal[
         "IPV6_ACCESS_TYPE_UNSPECIFIED", "INTERNAL", "EXTERNAL"
     ]
+    networkTierConfig: NetworkTierConfig
     nodeIpv4Cidr: str
     nodeIpv4CidrBlock: str
     podCidrOverprovisionConfig: PodCIDROverprovisionConfig
@@ -1071,6 +1088,15 @@ class NetworkTags(typing_extensions.TypedDict, total=False):
     tags: _list[str]
 
 @typing.type_check_only
+class NetworkTierConfig(typing_extensions.TypedDict, total=False):
+    networkTier: typing_extensions.Literal[
+        "NETWORK_TIER_UNSPECIFIED",
+        "NETWORK_TIER_DEFAULT",
+        "NETWORK_TIER_PREMIUM",
+        "NETWORK_TIER_STANDARD",
+    ]
+
+@typing.type_check_only
 class NodeAffinity(typing_extensions.TypedDict, total=False):
     key: str
     operator: typing_extensions.Literal["OPERATOR_UNSPECIFIED", "IN", "NOT_IN"]
@@ -1182,6 +1208,7 @@ class NodeNetworkConfig(typing_extensions.TypedDict, total=False):
     createPodRange: bool
     enablePrivateNodes: bool
     networkPerformanceConfig: NetworkPerformanceConfig
+    networkTierConfig: NetworkTierConfig
     podCidrOverprovisionConfig: PodCIDROverprovisionConfig
     podIpv4CidrBlock: str
     podIpv4RangeUtilization: float
@@ -1401,6 +1428,10 @@ class PrivateRegistryAccessConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
 
 @typing.type_check_only
+class PrivilegedAdmissionConfig(typing_extensions.TypedDict, total=False):
+    allowlistPaths: _list[str]
+
+@typing.type_check_only
 class ProtectConfig(typing_extensions.TypedDict, total=False):
     workloadConfig: WorkloadConfig
     workloadVulnerabilityMode: typing_extensions.Literal[
@@ -1521,6 +1552,11 @@ class SecondaryBootDiskUpdateStrategy(typing_extensions.TypedDict, total=False):
 class SecretManagerConfig(typing_extensions.TypedDict, total=False):
     enabled: bool
     rotationConfig: RotationConfig
+
+@typing.type_check_only
+class SecretSyncConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    rotationConfig: SyncRotationConfig
 
 @typing.type_check_only
 class SecurityBulletinEvent(typing_extensions.TypedDict, total=False):
@@ -1736,6 +1772,11 @@ class StatusCondition(typing_extensions.TypedDict, total=False):
         "CLOUD_KMS_KEY_DESTROYED",
     ]
     message: str
+
+@typing.type_check_only
+class SyncRotationConfig(typing_extensions.TypedDict, total=False):
+    enabled: bool
+    rotationInterval: str
 
 @typing.type_check_only
 class TimeWindow(typing_extensions.TypedDict, total=False):
@@ -1965,3 +2006,7 @@ class WorkloadMetadataConfig(typing_extensions.TypedDict, total=False):
 class WorkloadPolicyConfig(typing_extensions.TypedDict, total=False):
     allowNetAdmin: bool
     autopilotCompatibilityAuditingEnabled: bool
+
+@typing.type_check_only
+class WritableCgroups(typing_extensions.TypedDict, total=False):
+    enabled: bool

@@ -337,9 +337,19 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
     deleteTime: str
     earliestVersionTime: str
     etag: str
+    firestoreDataAccessMode: typing_extensions.Literal[
+        "DATA_ACCESS_MODE_UNSPECIFIED",
+        "DATA_ACCESS_MODE_ENABLED",
+        "DATA_ACCESS_MODE_DISABLED",
+    ]
     freeTier: bool
     keyPrefix: str
     locationId: str
+    mongodbCompatibleDataAccessMode: typing_extensions.Literal[
+        "DATA_ACCESS_MODE_UNSPECIFIED",
+        "DATA_ACCESS_MODE_ENABLED",
+        "DATA_ACCESS_MODE_DISABLED",
+    ]
     name: str
     pointInTimeRecoveryEnablement: typing_extensions.Literal[
         "POINT_IN_TIME_RECOVERY_ENABLEMENT_UNSPECIFIED",
@@ -347,6 +357,11 @@ class GoogleFirestoreAdminV1Database(typing_extensions.TypedDict, total=False):
         "POINT_IN_TIME_RECOVERY_DISABLED",
     ]
     previousId: str
+    realtimeUpdatesMode: typing_extensions.Literal[
+        "REALTIME_UPDATES_MODE_UNSPECIFIED",
+        "REALTIME_UPDATES_MODE_ENABLED",
+        "REALTIME_UPDATES_MODE_DISABLED",
+    ]
     sourceInfo: GoogleFirestoreAdminV1SourceInfo
     tags: dict[str, typing.Any]
     type: typing_extensions.Literal[
@@ -502,6 +517,7 @@ class GoogleFirestoreAdminV1Index(typing_extensions.TypedDict, total=False):
     state: typing_extensions.Literal[
         "STATE_UNSPECIFIED", "CREATING", "READY", "NEEDS_REPAIR"
     ]
+    unique: bool
 
 @typing.type_check_only
 class GoogleFirestoreAdminV1IndexConfig(typing_extensions.TypedDict, total=False):
@@ -703,6 +719,7 @@ class GoogleLongrunningCancelOperationRequest(
 class GoogleLongrunningListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[GoogleLongrunningOperation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class GoogleLongrunningOperation(typing_extensions.TypedDict, total=False):

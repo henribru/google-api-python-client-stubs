@@ -154,6 +154,12 @@ class CreateDeviceRequest(typing_extensions.TypedDict, total=False):
     device: Device
 
 @typing.type_check_only
+class CreateInboundOidcSsoProfileOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    state: str
+
+@typing.type_check_only
 class CreateInboundSamlSsoProfileOperationMetadata(
     typing_extensions.TypedDict, total=False
 ):
@@ -172,6 +178,11 @@ class CustomAttributeValue(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DeleteIdpCredentialOperationMetadata(
+    typing_extensions.TypedDict, total=False
+): ...
+
+@typing.type_check_only
+class DeleteInboundOidcSsoProfileOperationMetadata(
     typing_extensions.TypedDict, total=False
 ): ...
 
@@ -671,6 +682,14 @@ class IdpCredential(typing_extensions.TypedDict, total=False):
     updateTime: str
 
 @typing.type_check_only
+class InboundOidcSsoProfile(typing_extensions.TypedDict, total=False):
+    customer: str
+    displayName: str
+    idpConfig: OidcIdpConfig
+    name: str
+    rpConfig: OidcRpConfig
+
+@typing.type_check_only
 class InboundSamlSsoProfile(typing_extensions.TypedDict, total=False):
     customer: str
     displayName: str
@@ -682,11 +701,16 @@ class InboundSamlSsoProfile(typing_extensions.TypedDict, total=False):
 class InboundSsoAssignment(typing_extensions.TypedDict, total=False):
     customer: str
     name: str
+    oidcSsoInfo: OidcSsoInfo
     rank: int
     samlSsoInfo: SamlSsoInfo
     signInBehavior: SignInBehavior
     ssoMode: typing_extensions.Literal[
-        "SSO_MODE_UNSPECIFIED", "SSO_OFF", "SAML_SSO", "DOMAIN_WIDE_SAML_IF_ENABLED"
+        "SSO_MODE_UNSPECIFIED",
+        "SSO_OFF",
+        "SAML_SSO",
+        "OIDC_SSO",
+        "DOMAIN_WIDE_SAML_IF_ENABLED",
     ]
     targetGroup: str
     targetOrgUnit: str
@@ -718,6 +742,11 @@ class ListGroupsResponse(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class ListIdpCredentialsResponse(typing_extensions.TypedDict, total=False):
     idpCredentials: _list[IdpCredential]
+    nextPageToken: str
+
+@typing.type_check_only
+class ListInboundOidcSsoProfilesResponse(typing_extensions.TypedDict, total=False):
+    inboundOidcSsoProfiles: _list[InboundOidcSsoProfile]
     nextPageToken: str
 
 @typing.type_check_only
@@ -851,6 +880,21 @@ class MoveOrgMembershipRequest(typing_extensions.TypedDict, total=False):
     destinationOrgUnit: str
 
 @typing.type_check_only
+class OidcIdpConfig(typing_extensions.TypedDict, total=False):
+    changePasswordUri: str
+    issuerUri: str
+
+@typing.type_check_only
+class OidcRpConfig(typing_extensions.TypedDict, total=False):
+    clientId: str
+    clientSecret: str
+    redirectUris: _list[str]
+
+@typing.type_check_only
+class OidcSsoInfo(typing_extensions.TypedDict, total=False):
+    inboundOidcSsoProfile: str
+
+@typing.type_check_only
 class Operation(typing_extensions.TypedDict, total=False):
     done: bool
     error: Status
@@ -968,6 +1012,12 @@ class Status(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TransitiveMembershipRole(typing_extensions.TypedDict, total=False):
     role: str
+
+@typing.type_check_only
+class UpdateInboundOidcSsoProfileOperationMetadata(
+    typing_extensions.TypedDict, total=False
+):
+    state: str
 
 @typing.type_check_only
 class UpdateInboundSamlSsoProfileOperationMetadata(

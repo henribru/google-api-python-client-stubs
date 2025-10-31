@@ -56,6 +56,7 @@ class ArimaForecastingMetrics(typing_extensions.TypedDict, total=False):
             "MONTHLY",
             "QUARTERLY",
             "YEARLY",
+            "HOURLY",
         ]
     ]
     timeSeriesId: _list[str]
@@ -78,6 +79,7 @@ class ArimaModelInfo(typing_extensions.TypedDict, total=False):
             "MONTHLY",
             "QUARTERLY",
             "YEARLY",
+            "HOURLY",
         ]
     ]
     timeSeriesId: str
@@ -101,6 +103,7 @@ class ArimaResult(typing_extensions.TypedDict, total=False):
             "MONTHLY",
             "QUARTERLY",
             "YEARLY",
+            "HOURLY",
         ]
     ]
 
@@ -121,6 +124,7 @@ class ArimaSingleModelForecastingMetrics(typing_extensions.TypedDict, total=Fals
             "MONTHLY",
             "QUARTERLY",
             "YEARLY",
+            "HOURLY",
         ]
     ]
     timeSeriesId: str
@@ -311,6 +315,9 @@ class CsvOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class DataFormatOptions(typing_extensions.TypedDict, total=False):
+    timestampOutputFormat: typing_extensions.Literal[
+        "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED", "FLOAT64", "INT64", "ISO8601_STRING"
+    ]
     useInt64Timestamp: bool
 
 @typing.type_check_only
@@ -560,6 +567,7 @@ class ExternalDataConfiguration(typing_extensions.TypedDict, total=False):
     timeFormat: str
     timeZone: str
     timestampFormat: str
+    timestampTargetPrecision: _list[int]
 
 @typing.type_check_only
 class ExternalDatasetReference(typing_extensions.TypedDict, total=False):
@@ -576,6 +584,7 @@ class ExternalRuntimeOptions(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class ExternalServiceCost(typing_extensions.TypedDict, total=False):
+    billingMethod: str
     bytesBilled: str
     bytesProcessed: str
     externalService: str
@@ -696,6 +705,18 @@ class HparamTuningTrial(typing_extensions.TypedDict, total=False):
     trialId: str
 
 @typing.type_check_only
+class IncrementalResultStats(typing_extensions.TypedDict, total=False):
+    disabledReason: typing_extensions.Literal["DISABLED_REASON_UNSPECIFIED", "OTHER"]
+    resultSetLastModifyTime: str
+    resultSetLastReplaceTime: str
+
+@typing.type_check_only
+class IndexPruningStats(typing_extensions.TypedDict, total=False):
+    baseTable: TableReference
+    postIndexPruningParallelInputCount: str
+    preIndexPruningParallelInputCount: str
+
+@typing.type_check_only
 class IndexUnusedReason(typing_extensions.TypedDict, total=False):
     baseTable: TableReference
     code: typing_extensions.Literal[
@@ -790,6 +811,7 @@ class JobConfiguration(typing_extensions.TypedDict, total=False):
     jobType: str
     labels: dict[str, typing.Any]
     load: JobConfigurationLoad
+    maxSlots: int
     query: JobConfigurationQuery
     reservation: str
 
@@ -861,6 +883,7 @@ class JobConfigurationLoad(typing_extensions.TypedDict, total=False):
     timePartitioning: TimePartitioning
     timeZone: str
     timestampFormat: str
+    timestampTargetPrecision: _list[int]
     useAvroLogicalTypes: bool
     writeDisposition: str
 
@@ -945,6 +968,7 @@ class JobStatistics(typing_extensions.TypedDict, total=False):
     parentJobId: str
     query: JobStatistics2
     quotaDeferments: _list[str]
+    reservationGroupPath: _list[str]
     reservationUsage: _list[dict[str, typing.Any]]
     reservation_id: str
     rowLevelSecurityStatistics: RowLevelSecurityStatistics
@@ -974,6 +998,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     estimatedBytesProcessed: str
     exportDataStatistics: ExportDataStatistics
     externalServiceCosts: _list[ExternalServiceCost]
+    incrementalResultStats: IncrementalResultStats
     loadQueryStatistics: LoadQueryStatistics
     materializedViewStatistics: MaterializedViewStatistics
     metadataCacheStatistics: MetadataCacheStatistics
@@ -997,6 +1022,7 @@ class JobStatistics2(typing_extensions.TypedDict, total=False):
     totalBytesProcessed: str
     totalBytesProcessedAccuracy: str
     totalPartitionsProcessed: str
+    totalServicesSkuSlotMs: str
     totalSlotMs: str
     transferredBytes: str
     undeclaredQueryParameters: _list[QueryParameter]
@@ -1294,6 +1320,12 @@ class ProjectReference(typing_extensions.TypedDict, total=False):
     projectId: str
 
 @typing.type_check_only
+class PruningStats(typing_extensions.TypedDict, total=False):
+    postCmetaPruningParallelInputCount: str
+    postCmetaPruningPartitionCount: str
+    preCmetaPruningParallelInputCount: str
+
+@typing.type_check_only
 class PythonOptions(typing_extensions.TypedDict, total=False):
     entryPoint: str
     packages: _list[str]
@@ -1313,6 +1345,7 @@ class QueryParameterType(typing_extensions.TypedDict, total=False):
     arrayType: QueryParameterType
     rangeElementType: QueryParameterType
     structTypes: _list[dict[str, typing.Any]]
+    timestampPrecision: str
     type: str
 
 @typing.type_check_only
@@ -1341,6 +1374,7 @@ class QueryRequest(typing_extensions.TypedDict, total=False):
     labels: dict[str, typing.Any]
     location: str
     maxResults: int
+    maxSlots: int
     maximumBytesBilled: str
     parameterMode: str
     preserveNulls: bool
@@ -1534,6 +1568,7 @@ class ScriptStatistics(typing_extensions.TypedDict, total=False):
 
 @typing.type_check_only
 class SearchStatistics(typing_extensions.TypedDict, total=False):
+    indexPruningStats: _list[IndexPruningStats]
     indexUnusedReasons: _list[IndexUnusedReason]
     indexUsageMode: typing_extensions.Literal[
         "INDEX_USAGE_MODE_UNSPECIFIED", "UNUSED", "PARTIALLY_USED", "FULLY_USED"
@@ -1794,6 +1829,7 @@ class TableFieldSchema(typing_extensions.TypedDict, total=False):
         "ROUNDING_MODE_UNSPECIFIED", "ROUND_HALF_AWAY_FROM_ZERO", "ROUND_HALF_EVEN"
     ]
     scale: str
+    timestampPrecision: str
     type: str
 
 @typing.type_check_only
@@ -1807,6 +1843,7 @@ class TableList(typing_extensions.TypedDict, total=False):
 @typing.type_check_only
 class TableMetadataCacheUsage(typing_extensions.TypedDict, total=False):
     explanation: str
+    pruningStats: PruningStats
     staleness: str
     tableReference: TableReference
     tableType: str
@@ -1920,6 +1957,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     dropout: float
     earlyStop: bool
     enableGlobalExplain: bool
+    endpointIdleTtl: str
     feedbackType: typing_extensions.Literal[
         "FEEDBACK_TYPE_UNSPECIFIED", "IMPLICIT", "EXPLICIT"
     ]
@@ -2093,6 +2131,7 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
             "AVERAGE_RANK",
         ]
     ]
+    huggingFaceModelId: str
     includeDrift: bool
     initialLearnRate: float
     inputLabelColumns: _list[str]
@@ -2118,15 +2157,19 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     lossType: typing_extensions.Literal[
         "LOSS_TYPE_UNSPECIFIED", "MEAN_SQUARED_LOSS", "MEAN_LOG_LOSS"
     ]
+    machineType: str
     maxIterations: str
     maxParallelTrials: str
+    maxReplicaCount: str
     maxTimeSeriesLength: str
     maxTreeDepth: str
     minAprioriSupport: float
     minRelativeProgress: float
+    minReplicaCount: str
     minSplitLoss: float
     minTimeSeriesLength: str
     minTreeChildWeight: str
+    modelGardenModelName: str
     modelRegistry: typing_extensions.Literal["MODEL_REGISTRY_UNSPECIFIED", "VERTEX_AI"]
     modelUri: str
     nonSeasonalOrder: ArimaOrder
@@ -2141,6 +2184,14 @@ class TrainingOptions(typing_extensions.TypedDict, total=False):
     optimizer: str
     pcaExplainedVarianceRatio: float
     pcaSolver: typing_extensions.Literal["UNSPECIFIED", "FULL", "RANDOMIZED", "AUTO"]
+    reservationAffinityKey: str
+    reservationAffinityType: typing_extensions.Literal[
+        "RESERVATION_AFFINITY_TYPE_UNSPECIFIED",
+        "NO_RESERVATION",
+        "ANY_RESERVATION",
+        "SPECIFIC_RESERVATION",
+    ]
+    reservationAffinityValues: _list[str]
     sampledShapleyNumPaths: str
     scaleFeatures: bool
     standardizeFeatures: bool

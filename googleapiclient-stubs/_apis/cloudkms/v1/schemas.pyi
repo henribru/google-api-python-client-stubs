@@ -104,6 +104,7 @@ class CryptoKey(typing_extensions.TypedDict, total=False):
         "ASYMMETRIC_DECRYPT",
         "RAW_ENCRYPT_DECRYPT",
         "MAC",
+        "KEY_ENCAPSULATION",
     ]
     rotationPeriod: str
     versionTemplate: CryptoKeyVersionTemplate
@@ -147,6 +148,9 @@ class CryptoKeyVersion(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
         "PQ_SIGN_ML_DSA_65",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
@@ -220,6 +224,9 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
         "PQ_SIGN_ML_DSA_65",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
@@ -227,6 +234,21 @@ class CryptoKeyVersionTemplate(typing_extensions.TypedDict, total=False):
     protectionLevel: typing_extensions.Literal[
         "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
     ]
+
+@typing.type_check_only
+class DecapsulateRequest(typing_extensions.TypedDict, total=False):
+    ciphertext: str
+    ciphertextCrc32c: str
+
+@typing.type_check_only
+class DecapsulateResponse(typing_extensions.TypedDict, total=False):
+    name: str
+    protectionLevel: typing_extensions.Literal[
+        "PROTECTION_LEVEL_UNSPECIFIED", "SOFTWARE", "HSM", "EXTERNAL", "EXTERNAL_VPC"
+    ]
+    sharedSecret: str
+    sharedSecretCrc32c: str
+    verifiedCiphertextCrc32c: bool
 
 @typing.type_check_only
 class DecryptRequest(typing_extensions.TypedDict, total=False):
@@ -350,6 +372,9 @@ class ImportCryptoKeyVersionRequest(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
         "PQ_SIGN_ML_DSA_65",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
@@ -572,6 +597,9 @@ class PublicKey(typing_extensions.TypedDict, total=False):
         "HMAC_SHA512",
         "HMAC_SHA224",
         "EXTERNAL_SYMMETRIC_ENCRYPTION",
+        "ML_KEM_768",
+        "ML_KEM_1024",
+        "KEM_XWING",
         "PQ_SIGN_ML_DSA_65",
         "PQ_SIGN_SLH_DSA_SHA2_128S",
         "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256",
@@ -584,7 +612,7 @@ class PublicKey(typing_extensions.TypedDict, total=False):
     ]
     publicKey: ChecksummedData
     publicKeyFormat: typing_extensions.Literal[
-        "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "NIST_PQC"
+        "PUBLIC_KEY_FORMAT_UNSPECIFIED", "PEM", "DER", "NIST_PQC", "XWING_RAW_BYTES"
     ]
 
 @typing.type_check_only

@@ -48,6 +48,16 @@ class BootDisk(typing_extensions.TypedDict, total=False):
 class CancelOperationRequest(typing_extensions.TypedDict, total=False): ...
 
 @typing.type_check_only
+class CheckAuthorizationRequest(typing_extensions.TypedDict, total=False):
+    authorizationDetails: dict[str, typing.Any]
+
+@typing.type_check_only
+class CheckAuthorizationResponse(typing_extensions.TypedDict, total=False):
+    createTime: str
+    oauth_uri: str
+    success: bool
+
+@typing.type_check_only
 class CheckInstanceUpgradabilityResponse(typing_extensions.TypedDict, total=False):
     upgradeImage: str
     upgradeInfo: str
@@ -82,6 +92,7 @@ class DataDisk(typing_extensions.TypedDict, total=False):
         "DISK_TYPE_UNSPECIFIED", "PD_STANDARD", "PD_SSD", "PD_BALANCED", "PD_EXTREME"
     ]
     kmsKey: str
+    resourcePolicies: _list[str]
 
 @typing.type_check_only
 class DefaultValues(typing_extensions.TypedDict, total=False):
@@ -149,6 +160,17 @@ class GceSetup(typing_extensions.TypedDict, total=False):
     vmImage: VmImage
 
 @typing.type_check_only
+class GenerateAccessTokenRequest(typing_extensions.TypedDict, total=False):
+    vmToken: str
+
+@typing.type_check_only
+class GenerateAccessTokenResponse(typing_extensions.TypedDict, total=False):
+    access_token: str
+    expires_in: int
+    scope: str
+    token_type: str
+
+@typing.type_check_only
 class ImageRelease(typing_extensions.TypedDict, total=False):
     imageName: str
     releaseName: str
@@ -159,6 +181,7 @@ class Instance(typing_extensions.TypedDict, total=False):
     creator: str
     disableProxyAccess: bool
     enableDeletionProtection: bool
+    enableManagedEuc: bool
     enableThirdPartyIdentity: bool
     gceSetup: GceSetup
     healthInfo: dict[str, typing.Any]
@@ -208,6 +231,7 @@ class ListLocationsResponse(typing_extensions.TypedDict, total=False):
 class ListOperationsResponse(typing_extensions.TypedDict, total=False):
     nextPageToken: str
     operations: _list[Operation]
+    unreachable: _list[str]
 
 @typing.type_check_only
 class Location(typing_extensions.TypedDict, total=False):

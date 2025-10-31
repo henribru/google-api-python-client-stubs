@@ -941,6 +941,29 @@ class YouTubeResource(googleapiclient.discovery.Resource):
     class YoutubeResource(googleapiclient.discovery.Resource):
         @typing.type_check_only
         class V3Resource(googleapiclient.discovery.Resource):
+            @typing.type_check_only
+            class LiveChatResource(googleapiclient.discovery.Resource):
+                @typing.type_check_only
+                class MessagesResource(googleapiclient.discovery.Resource):
+                    def stream(
+                        self,
+                        *,
+                        hl: str = ...,
+                        liveChatId: str = ...,
+                        maxResults: int = ...,
+                        pageToken: str = ...,
+                        part: str | _list[str] = ...,
+                        profileImageSize: int = ...,
+                        **kwargs: typing.Any,
+                    ) -> LiveChatMessageListResponseHttpRequest: ...
+                    def stream_next(
+                        self,
+                        previous_request: LiveChatMessageListResponseHttpRequest,
+                        previous_response: LiveChatMessageListResponse,
+                    ) -> LiveChatMessageListResponseHttpRequest | None: ...
+
+                def messages(self) -> MessagesResource: ...
+
             def updateCommentThreads(
                 self,
                 *,
@@ -948,6 +971,7 @@ class YouTubeResource(googleapiclient.discovery.Resource):
                 part: str | _list[str] = ...,
                 **kwargs: typing.Any,
             ) -> CommentThreadHttpRequest: ...
+            def liveChat(self) -> LiveChatResource: ...
 
         def v3(self) -> V3Resource: ...
 

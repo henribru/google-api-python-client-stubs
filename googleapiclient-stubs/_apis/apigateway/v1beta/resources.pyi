@@ -229,6 +229,7 @@ class ApigatewayResource(googleapiclient.discovery.Resource):
                     filter: str = ...,
                     pageSize: int = ...,
                     pageToken: str = ...,
+                    returnPartialSuccess: bool = ...,
                     **kwargs: typing.Any,
                 ) -> ApigatewayListOperationsResponseHttpRequest: ...
                 def list_next(
